@@ -1,0 +1,5 @@
+digraph common_image_3_4_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  common_image_3_4_1 -> common_io_3_4_1;
+  common_image_3_4_1 -> common_lang_3_4_1;
+}

@@ -1,0 +1,69 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: Apache License 2.0
+Implementation-Title: Viritin
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.vaadin.viritin
+Implementation-Version: 2.1
+Built-By: mstahv
+Bnd-LastModified: 1510868167472
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: org.vaadin
+Bundle-DocURL: https://github.com/viritin/viritin/
+Bundle-Vendor: Matti Tahvonen
+Class-Path: confirmdialog-3.1.1.jar vaadin-server-8.1.6.jar vaadin-sha
+ red-8.1.6.jar jsoup-1.8.3.jar gentyref-1.2.0.vaadin1.jar markdown4j-2
+ .2-cj-1.1.jar commons-io-2.4.jar commons-beanutils-1.9.2.jar commons-
+ logging-1.1.1.jar commons-collections-3.2.1.jar commons-lang3-3.4.jar
+  javax.el-api-2.2.4.jar
+Import-Package: com.vaadin.annotations;version="[8.1,9)",com.vaadin.da
+ ta;version="[8.1,9)",com.vaadin.event;version="[8.1,9)",com.vaadin.ic
+ ons;version="[8.1,9)",com.vaadin.navigator;version="[8.1,9)",com.vaad
+ in.server;version="[8.1,9)",com.vaadin.shared;version="[8.1,9)",com.v
+ aadin.shared.ui;version="[8.1,9)",com.vaadin.shared.util;version="[8.
+ 1,9)",com.vaadin.ui;version="[8.1,9)",com.vaadin.util;version="[8.1,9
+ )",elemental.json;version="[8.1,9)",javax.validation;version="[1.1,2)
+ ",org.apache.commons.io;version="[1.4,2)",org.apache.commons.lang3;ve
+ rsion="[3.4,4)",org.jsoup;version="[1.8,2)",org.jsoup.safety;version=
+ "[1.8,2)",org.markdown4j;version="[2.2,3)",org.vaadin.dialogs;version
+ ="[3.1,4)",org.vaadin.viritin;version="[2.1,3)",org.vaadin.viritin.bu
+ tton;version="[2.1,3)",org.vaadin.viritin.fluency.event;version="[2.1
+ ,3)",org.vaadin.viritin.fluency.server;version="[2.1,3)",org.vaadin.v
+ iritin.fluency.ui;version="[2.1,3)",org.vaadin.viritin.form;version="
+ [2.1,3)",org.vaadin.viritin.label;version="[2.1,3)",org.vaadin.viriti
+ n.layouts;version="[2.1,3)",org.vaadin.viritin.util;version="[2.1,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Matti Tahvonen
+Export-Package: org.vaadin.viritin;version="2.1.0";uses:="com.vaadin.s
+ erver",org.vaadin.viritin.button;version="2.1.0";uses:="com.vaadin.se
+ rver,com.vaadin.shared,com.vaadin.ui,org.vaadin.viritin.fluency.ui",o
+ rg.vaadin.viritin.components;version="2.1.0";uses:="com.vaadin.server
+ ,com.vaadin.ui,org.vaadin.viritin.layouts",org.vaadin.viritin.fields;
+ version="2.1.0";uses:="com.vaadin.data,com.vaadin.event,com.vaadin.se
+ rver,com.vaadin.shared,com.vaadin.ui,javax.validation,org.vaadin.viri
+ tin.button,org.vaadin.viritin.fluency.ui,org.vaadin.viritin.form,org.
+ vaadin.viritin.util",org.vaadin.viritin.fluency.event;version="2.1.0"
+ ;uses:="com.vaadin.event,com.vaadin.server",org.vaadin.viritin.fluenc
+ y.server;version="2.1.0";uses:="com.vaadin.server,org.vaadin.viritin"
+ ,org.vaadin.viritin.fluency.ui;version="2.1.0";uses:="com.vaadin.data
+ ,com.vaadin.event,com.vaadin.server,com.vaadin.shared.ui,com.vaadin.u
+ i,org.vaadin.viritin.fluency.event,org.vaadin.viritin.fluency.server"
+ ,org.vaadin.viritin.form;version="2.1.0";uses:="com.vaadin.data,com.v
+ aadin.ui",org.vaadin.viritin.grid;version="2.1.0";uses:="com.vaadin.u
+ i,org.vaadin.viritin.fluency.ui",org.vaadin.viritin.label;version="2.
+ 1.0";uses:="com.vaadin.shared.ui,com.vaadin.ui,org.jsoup.safety,org.v
+ aadin.viritin,org.vaadin.viritin.fluency.server,org.vaadin.viritin.fl
+ uency.ui",org.vaadin.viritin.layouts;version="2.1.0";uses:="com.vaadi
+ n.server,com.vaadin.shared.ui,com.vaadin.ui,org.vaadin.viritin,org.va
+ adin.viritin.fluency.ui",org.vaadin.viritin.navigator;version="2.1.0"
+ ;uses:="com.vaadin.navigator,com.vaadin.ui",org.vaadin.viritin.ui;ver
+ sion="2.1.0";uses:="com.vaadin.server,com.vaadin.shared,com.vaadin.ui
+ ",org.vaadin.viritin.util;version="2.1.0";uses:="com.vaadin.annotatio
+ ns,com.vaadin.server,com.vaadin.ui"
+Bundle-Name: Viritin
+Bundle-Version: 2.1.0
+Vaadin-Addon: viritin-2.1.jar
+Vaadin-Package-Version: 1
+Build-Jdk: 1.8.0_152-ea
+Created-By: Apache Maven Bundle Plugin
+

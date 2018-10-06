@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-License: https://github.com/javaee/activation/blob/master/LICEN
+ SE.txt
+Bundle-SymbolicName: javax.activation-api
+Archiver-Version: Plexus Archiver
+Built-By: shannon
+Bnd-LastModified: 1504739594803
+Implementation-Vendor-Id: com.sun
+Specification-Title: javax.activation.javax.activation-api
+Bundle-DocURL: http://www.oracle.com
+Import-Package: com.sun.activation.registries,javax.activation;version
+ ="1.2"
+DynamicImport-Package: *
+Export-Package: javax.activation;uses:="com.sun.activation.registries"
+ ;version="1.2"
+Bundle-Name: JavaBeans Activation Framework API jar
+Extension-Name: javax.activation
+Implementation-Title: javax.activation.javax.activation-api
+Bundle-Description: JavaBeans Activation Framework API jar
+Automatic-Module-Name: java.activation
+Implementation-Version: 1.2.0
+Specification-Vendor: Oracle
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Oracle
+Tool: Bnd-0.0.357
+Implementation-Vendor: Oracle
+Originally-Created-By: 1.8.0_141 (Oracle Corporation)
+Bundle-Version: 1.2.0
+Created-By: 1.7.0_121 (Oracle Corporation)
+Build-Jdk: 1.7.0_121
+Specification-Version: 1.2
+

@@ -1,0 +1,20 @@
+digraph wt_pdf_viewer_1_0_4_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_vaadin_annotations;
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_vaadin_server;
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_vaadin_shared;
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_vaadin_shared_communication;
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_vaadin_ui;
+  com_whitestein_vaadin_widgets_wtpdfviewer -> com_whitestein_vaadin_widgets_wtpdfviewer_client;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_google_gwt_core_client;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_google_gwt_dom_client;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_google_gwt_user_client_ui;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_client;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_client_annotations;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_client_communication;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_client_ui;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_shared;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_shared_communication;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_vaadin_shared_ui;
+  com_whitestein_vaadin_widgets_wtpdfviewer_client -> com_whitestein_vaadin_widgets_wtpdfviewer;
+}

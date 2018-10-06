@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: Apache License 2.0
+Bundle-Description: The ConfirmDialog add-on provides you a configurab
+ le way of requesting user         confirmation for a button click or 
+ some other some operation.
+Implementation-Title: ConfirmDialog
+Bundle-License: http://www.apache.org/Vaadin-ConfirmDialog/LICENSE-2.0
+ .txt
+Bundle-SymbolicName: org.vaadin.addon.confirmdialog
+Implementation-Version: 3.1.1
+Built-By: se
+Bnd-LastModified: 1488202969653
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: org.vaadin.addon
+Class-Path: vaadin-server-8.0.0.jar vaadin-shared-8.0.0.jar jsoup-1.8.
+ 3.jar gentyref-1.2.0.jar
+Import-Package: com.vaadin.server;version="[8.0,9)",com.vaadin.shared;
+ version="[8.0,9)",com.vaadin.shared.ui;version="[8.0,9)",com.vaadin.u
+ i;version="[8.0,9)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-2.3.0.201405100607
+Implementation-Vendor: Run Uilder
+Export-Package: org.vaadin.dialogs;version="3.1.1";uses:="com.vaadin.u
+ i"
+Bundle-Name: ConfirmDialog
+Bundle-Version: 3.1.1
+Vaadin-Addon: confirmdialog-3.1.1.jar
+Vaadin-Package-Version: 1
+Build-Jdk: 1.8.0_111
+Created-By: Apache Maven Bundle Plugin
+

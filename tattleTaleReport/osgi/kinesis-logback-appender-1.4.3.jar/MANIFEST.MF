@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: mbarton
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_162
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.gu.logback.appender.kinesis.helpers
+Bundle-Description: kinesis-logback-appender-1.4.3
+Bundle-Name: kinesis-logback-appender-1.4.3
+Bundle-Version: 0.0.0
+Export-Package: com.gu.logback.appender.kinesis;uses:="ch.qos.logback.
+ core,ch.qos.logback.core.spi,com.amazonaws,com.amazonaws.auth,com.ama
+ zonaws.handlers,com.amazonaws.regions,com.amazonaws.retry,com.amazona
+ ws.services.kinesis,com.amazonaws.services.kinesis.model,com.amazonaw
+ s.services.kinesisfirehose,com.amazonaws.services.kinesisfirehose.mod
+ el,com.gu.logback.appender.kinesis.helpers",com.gu.logback.appender.k
+ inesis.helpers;uses:="com.amazonaws,com.amazonaws.auth,com.amazonaws.
+ auth.profile,com.amazonaws.handlers,com.amazonaws.services.kinesis.mo
+ del,com.amazonaws.services.kinesisfirehose.model,com.gu.logback.appen
+ der.kinesis"
+Import-Package: ch.qos.logback.core;version="0.0.0",ch.qos.logback.cor
+ e.spi;version="0.0.0",com.amazonaws;version="0.0.0",com.amazonaws.aut
+ h;version="0.0.0",com.amazonaws.auth.profile;version="0.0.0",com.amaz
+ onaws.handlers;version="0.0.0",com.amazonaws.regions;version="0.0.0",
+ com.amazonaws.retry;version="0.0.0",com.amazonaws.services.kinesis,co
+ m.amazonaws.services.kinesis.model,com.amazonaws.services.kinesisfire
+ hose,com.amazonaws.services.kinesisfirehose.model,java.lang,java.nio,
+ java.util,java.util.concurrent

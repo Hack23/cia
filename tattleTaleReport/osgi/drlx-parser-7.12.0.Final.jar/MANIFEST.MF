@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: 
+Built-By: jenkins
+Bnd-LastModified: 1537950699663
+Implementation-Vendor-Id: org.drools
+Specification-Title: drlx-parser
+Bundle-DocURL: http://www.jboss.org/
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/droolsjbpm-build-bootstrap/drlx-p
+ arser
+Export-Package: org.drools.drlx;version="7.12.0",org.drools.javaparser
+ ;version="7.12.0",org.drools.javaparser.ast;version="7.12.0",org.droo
+ ls.javaparser.ast.body;version="7.12.0",org.drools.javaparser.ast.com
+ ments;version="7.12.0",org.drools.javaparser.ast.drlx;version="7.12.0
+ ",org.drools.javaparser.ast.drlx.expr;version="7.12.0",org.drools.jav
+ aparser.ast.expr;version="7.12.0",org.drools.javaparser.ast.nodeTypes
+ ;version="7.12.0",org.drools.javaparser.printer;version="7.12.0",org.
+ drools.javaparser.ast.stmt;version="7.12.0",org.drools.javaparser.ast
+ .type;version="7.12.0",org.drools.javaparser.utils;version="7.12.0"
+Bundle-Name: drlx-parser
+Bundle-Description: DRLX compiler
+Implementation-Title: drlx-parser
+Implementation-Version: 7.12.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com/kiegroup/droolsjbpm-build-b
+ ootstrap.git/drlx-parser
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.12.0.201809260831
+Scm-Revision: bb6b578461a076bd6371e8db0e2185a867689e82
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drlx-parser
+Specification-Version: 7.12.0.Final
+

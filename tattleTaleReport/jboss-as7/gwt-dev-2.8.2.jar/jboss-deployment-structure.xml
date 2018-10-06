@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="asm.asm"/>
+        <module name="javax.servlet.api"/>
+        <module name="org.osgi.core"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

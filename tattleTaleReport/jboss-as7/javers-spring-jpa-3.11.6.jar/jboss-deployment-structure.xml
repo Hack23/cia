@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javax.annotation.api"/>
+        <module name="javax.persistence.api"/>
+        <module name="org.hibernate"/>
+        <module name="org.slf4j"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

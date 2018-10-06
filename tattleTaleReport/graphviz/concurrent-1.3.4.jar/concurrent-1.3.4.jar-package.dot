@@ -1,0 +1,4 @@
+digraph concurrent_1_3_4_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  EDU_oswego_cs_dl_util_concurrent_misc -> EDU_oswego_cs_dl_util_concurrent;
+}

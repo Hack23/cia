@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javax.annotation.api"/>
+        <module name="javax.enterprise.api"/>
+        <module name="javax.inject.api"/>
+        <module name="javax.servlet.api"/>
+        <module name="javax.xml.bind.api"/>
+        <module name="org.jboss.as.web"/>
+        <module name="org.jboss.vfs"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

@@ -1,0 +1,9 @@
+digraph imageio_tiff_3_4_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  imageio_tiff_3_4_1 -> common_image_3_4_1;
+  imageio_tiff_3_4_1 -> common_io_3_4_1;
+  imageio_tiff_3_4_1 -> common_lang_3_4_1;
+  imageio_tiff_3_4_1 -> imageio_core_3_4_1;
+  imageio_tiff_3_4_1 -> imageio_metadata_3_4_1;
+  imageio_tiff_3_4_1 -> xml_apis_1_4_01;
+}

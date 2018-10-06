@@ -1,0 +1,4 @@
+digraph artemis_native_2_7_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_native_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+}

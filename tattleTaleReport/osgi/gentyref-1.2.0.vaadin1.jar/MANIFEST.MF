@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.vaadin.external.gentyref
+Archiver-Version: Plexus Archiver
+Built-By: buildagent
+Bnd-LastModified: 1492609238758
+Bundle-ManifestVersion: 2
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-3.3.0.201609221906
+Export-Package: com.googlecode.gentyref;version="1.2.0"
+Bundle-Name: GenTyRef
+Bundle-Version: 1.2.0.vaadin1
+Created-By: 1.8.0_60 (Oracle Corporation)
+Build-Jdk: 1.8.0_60
+

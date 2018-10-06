@@ -1,0 +1,24 @@
+digraph javax_mail_1_6_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_sun_mail_auth -> com_sun_mail_util;
+  com_sun_mail_iap -> com_sun_mail_util;
+  com_sun_mail_iap -> java_nio_charset;
+  com_sun_mail_imap -> com_sun_mail_imap_protocol;
+  com_sun_mail_imap -> com_sun_mail_util;
+  com_sun_mail_imap_protocol -> com_sun_mail_auth;
+  com_sun_mail_imap_protocol -> com_sun_mail_imap;
+  com_sun_mail_imap_protocol -> com_sun_mail_util;
+  com_sun_mail_imap_protocol -> java_nio_charset;
+  com_sun_mail_pop3 -> com_sun_mail_util;
+  com_sun_mail_smtp -> com_sun_mail_auth;
+  com_sun_mail_smtp -> com_sun_mail_util;
+  com_sun_mail_smtp -> java_nio_charset;
+  com_sun_mail_util -> java_net;
+  com_sun_mail_util -> java_nio_charset;
+  javax_mail -> com_sun_mail_util;
+  javax_mail -> java_lang;
+  javax_mail -> java_lang_annotation;
+  javax_mail_internet -> com_sun_mail_util;
+  javax_mail_internet -> java_nio_charset;
+  javax_mail_internet -> javax_mail;
+}

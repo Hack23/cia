@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Implementation-Title: ASM, a very small and fast Java bytecode manipul
+ ation framework
+Bundle-SymbolicName: org.objectweb.asm
+Export-Package: org.objectweb.asm;version="7.0.0.beta",org.objectweb.a
+ sm.signature;version="7.0.0.beta"
+Bundle-Name: org.objectweb.asm
+Bundle-Version: 7.0.0.beta
+Implementation-Version: 7.0-beta
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-DocURL: http://asm.ow2.org
+

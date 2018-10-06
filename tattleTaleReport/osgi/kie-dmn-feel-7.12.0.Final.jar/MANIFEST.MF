@@ -1,0 +1,70 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.dmn.feel
+Built-By: jenkins
+Bnd-LastModified: 1537951407331
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Decision Model Notation :: FEEL
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: TemplateCompiledFEELExpression.java=src/main/resourc
+ es/TemplateCompiledFEELExpression.java,TemplateCompiledFEELUnaryTests
+ .java=src/main/resources/TemplateCompiledFEELUnaryTests.java,dmn.xjb=
+ src/main/resources/dmn.xjb,dmn.xsd=src/main/resources/dmn.xsd
+Import-Package: org.antlr.v4.runtime,org.antlr.v4.runtime.atn,org.antl
+ r.v4.runtime.dfa,org.antlr.v4.runtime.misc,org.antlr.v4.runtime.tree,
+ org.drools.compiler.commons.jci.compilers,org.drools.compiler.commons
+ .jci.problems,org.drools.compiler.commons.jci.readers,org.drools.comp
+ iler.commons.jci.stores,org.drools.compiler.compiler.io.memory,org.dr
+ ools.compiler.rule.builder.dialect.java,org.drools.javaparser,org.dro
+ ols.javaparser.ast,org.drools.javaparser.ast.body,org.drools.javapars
+ er.ast.comments,org.drools.javaparser.ast.expr,org.drools.javaparser.
+ ast.nodeTypes,org.drools.javaparser.ast.stmt,org.drools.javaparser.as
+ t.type,org.kie.dmn.api.core,org.kie.dmn.api.core.ast,org.kie.dmn.api.
+ feel.runtime.events,org.kie.dmn.feel,org.kie.dmn.feel.codegen.feel11,
+ org.kie.dmn.feel.lang,org.kie.dmn.feel.lang.ast,org.kie.dmn.feel.lang
+ .impl,org.kie.dmn.feel.lang.types,org.kie.dmn.feel.marshaller,org.kie
+ .dmn.feel.parser.feel11,org.kie.dmn.feel.parser.feel11.profiles,org.k
+ ie.dmn.feel.runtime,org.kie.dmn.feel.runtime.decisiontables,org.kie.d
+ mn.feel.runtime.events,org.kie.dmn.feel.runtime.functions,org.kie.dmn
+ .feel.runtime.functions.extended,org.kie.dmn.feel.runtime.impl,org.ki
+ e.dmn.feel.util,org.kie.internal.utils,org.slf4j
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-feel
+Export-Package: org.kie.dmn.feel;version="7.12.0",org.kie.dmn.feel.cod
+ egen.feel11;version="7.12.0",org.kie.dmn.feel.lang;version="7.12.0",o
+ rg.kie.dmn.feel.lang.ast;version="7.12.0",org.kie.dmn.feel.lang.impl;
+ version="7.12.0",org.kie.dmn.feel.lang.types;version="7.12.0",org.kie
+ .dmn.feel.marshaller;version="7.12.0",org.kie.dmn.feel.parser.feel11;
+ version="7.12.0",org.kie.dmn.feel.parser.feel11.profiles;version="7.1
+ 2.0",org.kie.dmn.feel.runtime;version="7.12.0",org.kie.dmn.feel.runti
+ me.decisiontables;version="7.12.0",org.kie.dmn.feel.runtime.events;ve
+ rsion="7.12.0",org.kie.dmn.feel.runtime.functions;version="7.12.0",or
+ g.kie.dmn.feel.runtime.functions.extended;version="7.12.0",org.kie.dm
+ n.feel.runtime.impl;version="7.12.0",org.kie.dmn.feel.util;version="7
+ .12.0"
+Bundle-Name: KIE :: Decision Model Notation :: FEEL
+Bundle-Description: Top level pom for the KIE DMN support implementati
+ on
+Implementation-Title: KIE :: Decision Model Notation :: FEEL
+Automatic-Module-Name: org.kie.dmn.feel
+Implementation-Version: 7.12.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn
+ /kie-dmn-feel
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.12.0.201809260832
+Scm-Revision: ad4b20e7242e08abab773c1da4e4d86ae2d4f4db
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-fee
+ l
+Specification-Version: 7.12.0.Final
+

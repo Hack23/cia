@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.drools.decisiontables
+Built-By: jenkins
+Bnd-LastModified: 1537951588462
+Implementation-Vendor-Id: org.drools
+Specification-Title: Drools :: Decision Tables
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/kie.conf=src/main/resources/META-INF/kie.co
+ nf,python-dt/Example.xls=src/main/resources/python-dt/Example.xls,pyt
+ hon-dt/README.txt=src/main/resources/python-dt/README.txt,python-dt/p
+ ydt.py=src/main/resources/python-dt/pydt.py,python-dt/pydt_test.py=sr
+ c/main/resources/python-dt/pydt_test.py
+Import-Package: org.apache.poi.openxml4j.exceptions,org.apache.poi.ss.
+ usermodel,org.apache.poi.ss.util,org.drools.template.model,org.drools
+ .template.parser,org.drools.compiler.compiler,org.drools.core.io.impl
+ ,org.drools.core.util,org.drools.decisiontable.parser,org.drools.deci
+ siontable.parser.csv,org.drools.decisiontable.parser.xls,org.kie.api.
+ io,org.kie.internal.builder,org.kie.internal.io,org.kie.internal.osgi
+ ,org.slf4j
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/drools-decisiontables
+Export-Package: org.drools.decisiontable;version="7.12.0",org.drools.d
+ ecisiontable.osgi;version="7.12.0",org.drools.decisiontable.parser;ve
+ rsion="7.12.0",org.drools.decisiontable.parser.csv;version="7.12.0",o
+ rg.drools.decisiontable.parser.xls;version="7.12.0"
+Bundle-Name: Drools :: Decision Tables
+Bundle-Activator: org.drools.decisiontable.osgi.Activator
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion
+  does complex event processing (CEP).
+Implementation-Title: Drools :: Decision Tables
+Automatic-Module-Name: org.drools.decisiontables
+Implementation-Version: 7.12.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-
+ decisiontables
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.12.0.201809260832
+Scm-Revision: ad4b20e7242e08abab773c1da4e4d86ae2d4f4db
+Private-Package: python-dt
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/drools-decisiontabl
+ es
+Specification-Version: 7.12.0.Final
+

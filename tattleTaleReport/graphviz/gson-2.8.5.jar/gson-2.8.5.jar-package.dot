@@ -1,0 +1,26 @@
+digraph gson_2_8_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_google_gson -> com_google_gson_internal;
+  com_google_gson -> com_google_gson_internal_bind;
+  com_google_gson -> com_google_gson_internal_bind_util;
+  com_google_gson -> com_google_gson_reflect;
+  com_google_gson -> com_google_gson_stream;
+  com_google_gson_internal -> com_google_gson;
+  com_google_gson_internal -> com_google_gson_annotations;
+  com_google_gson_internal -> com_google_gson_internal_bind;
+  com_google_gson_internal -> com_google_gson_internal_reflect;
+  com_google_gson_internal -> com_google_gson_reflect;
+  com_google_gson_internal -> com_google_gson_stream;
+  com_google_gson_internal_bind -> com_google_gson;
+  com_google_gson_internal_bind -> com_google_gson_annotations;
+  com_google_gson_internal_bind -> com_google_gson_internal;
+  com_google_gson_internal_bind -> com_google_gson_internal_bind_util;
+  com_google_gson_internal_bind -> com_google_gson_internal_reflect;
+  com_google_gson_internal_bind -> com_google_gson_reflect;
+  com_google_gson_internal_bind -> com_google_gson_stream;
+  com_google_gson_internal_reflect -> com_google_gson;
+  com_google_gson_internal_reflect -> com_google_gson_internal;
+  com_google_gson_reflect -> com_google_gson_internal;
+  com_google_gson_stream -> com_google_gson_internal;
+  com_google_gson_stream -> com_google_gson_internal_bind;
+}

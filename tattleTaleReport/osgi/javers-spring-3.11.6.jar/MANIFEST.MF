@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.javers.spring.auditable
+Bundle-Description: javers-spring-3.11.6
+Bundle-Name: javers-spring-3.11.6
+Bundle-Version: 0.0.0
+Export-Package: org.javers.spring;uses:="org.javers.core",org.javers.s
+ pring.annotation,org.javers.spring.auditable;uses:="org.aspectj.lang,
+ org.javers.common.collections,org.springframework.security.core,org.s
+ pringframework.security.core.context",org.javers.spring.auditable.asp
+ ect;uses:="org.aspectj.lang,org.aspectj.lang.annotation,org.javers.co
+ re,org.javers.core.commit,org.javers.spring.auditable",org.javers.spr
+ ing.auditable.aspect.springdata;uses:="java.lang,java.lang.invoke,jav
+ a.util,java.util.function,org.aspectj.lang,org.aspectj.lang.annotatio
+ n,org.javers.core,org.javers.core.commit,org.javers.repository.jql,or
+ g.javers.spring.annotation,org.javers.spring.auditable,org.springfram
+ ework.data.repository,org.springframework.data.repository.core,org.sp
+ ringframework.data.repository.core.support"
+Import-Package: java.lang,java.lang.annotation,java.lang.invoke,java.u
+ til,java.util.function,org.aspectj.lang;version="1.9.2.RC2",org.aspec
+ tj.lang.annotation;version="1.9.2.RC2",org.javers.common.collections;
+ version="0.0.0",org.javers.core;version="0.0.0",org.javers.core.commi
+ t;version="0.0.0",org.javers.repository.jql;version="0.0.0",org.sprin
+ gframework.data.repository,org.springframework.data.repository.core,o
+ rg.springframework.data.repository.core.support,org.springframework.s
+ ecurity.core;version="5.1.0.RELEASE",org.springframework.security.cor
+ e.context;version="5.1.0.RELEASE"

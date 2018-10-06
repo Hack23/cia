@@ -1,0 +1,24 @@
+digraph logback_elasticsearch_appender_1_6_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_internetitem_logback_elasticsearch -> ch_qos_logback_access_spi;
+  com_internetitem_logback_elasticsearch -> ch_qos_logback_classic_spi;
+  com_internetitem_logback_elasticsearch -> ch_qos_logback_core;
+  com_internetitem_logback_elasticsearch -> com_fasterxml_jackson_core;
+  com_internetitem_logback_elasticsearch -> com_internetitem_logback_elasticsearch_config;
+  com_internetitem_logback_elasticsearch -> com_internetitem_logback_elasticsearch_util;
+  com_internetitem_logback_elasticsearch -> com_internetitem_logback_elasticsearch_writer;
+  com_internetitem_logback_elasticsearch_config -> com_amazonaws;
+  com_internetitem_logback_elasticsearch_config -> com_amazonaws_auth;
+  com_internetitem_logback_elasticsearch_config -> com_amazonaws_http;
+  com_internetitem_logback_elasticsearch_config -> com_amazonaws_regions;
+  com_internetitem_logback_elasticsearch_config -> com_amazonaws_util;
+  com_internetitem_logback_elasticsearch_config -> com_internetitem_logback_elasticsearch_util;
+  com_internetitem_logback_elasticsearch_util -> ch_qos_logback_access;
+  com_internetitem_logback_elasticsearch_util -> ch_qos_logback_classic;
+  com_internetitem_logback_elasticsearch_util -> ch_qos_logback_core;
+  com_internetitem_logback_elasticsearch_util -> ch_qos_logback_core_pattern;
+  com_internetitem_logback_elasticsearch_util -> ch_qos_logback_core_spi;
+  com_internetitem_logback_elasticsearch_util -> com_internetitem_logback_elasticsearch_config;
+  com_internetitem_logback_elasticsearch_writer -> com_internetitem_logback_elasticsearch_config;
+  com_internetitem_logback_elasticsearch_writer -> com_internetitem_logback_elasticsearch_util;
+}

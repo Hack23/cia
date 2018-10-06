@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: The MIT License (MIT)
+Implementation-Title: GridUtil
+Bundle-Description: GridUtil that simplify the use of filtering and so
+ me useful custom renderes
+Bundle-License: http://opensource.org/licenses/MIT
+Bundle-SymbolicName: org.vaadin.addons.vaadin-grid-util
+Implementation-Version: 2.1.1
+Built-By: marten
+Bnd-LastModified: 1520438238133
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: org.vaadin.addons
+Import-Package: com.vaadin.data,com.vaadin.data.converter,com.vaadin.d
+ ata.provider,com.vaadin.icons,com.vaadin.server,com.vaadin.shared,com
+ .vaadin.shared.communication,com.vaadin.shared.ui,com.vaadin.shared.u
+ i.datefield,com.vaadin.shared.ui.grid.renderers,com.vaadin.ui,com.vaa
+ din.ui.components.grid,com.vaadin.ui.renderers,org.vaadin.gridutil.ce
+ ll.filter,org.vaadin.gridutil.client.renderer.indicator,org.vaadin.gr
+ idutil.renderer
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: Marten Prieß
+Export-Package: org.vaadin.gridutil;version="2.1.1",org.vaadin.griduti
+ l.cell;uses:="com.vaadin.data,com.vaadin.server,com.vaadin.ui,com.vaa
+ din.ui.components.grid";version="2.1.1",org.vaadin.gridutil.cell.filt
+ er;uses:="com.vaadin.server";version="2.1.1",org.vaadin.gridutil.clie
+ nt.renderer;uses:="com.vaadin.shared.ui,org.vaadin.gridutil.renderer"
+ ;version="2.1.1",org.vaadin.gridutil.client.renderer.buttonvalue;uses
+ :="com.vaadin.shared.ui,org.vaadin.gridutil.renderer";version="2.1.1"
+ ,org.vaadin.gridutil.client.renderer.indicator;uses:="com.vaadin.shar
+ ed.communication,com.vaadin.shared.ui,com.vaadin.shared.ui.grid.rende
+ rers,org.vaadin.gridutil.renderer";version="2.1.1",org.vaadin.griduti
+ l.converter;uses:="com.vaadin.data";version="2.1.1",org.vaadin.gridut
+ il.public;version="2.1.1",org.vaadin.gridutil.renderer;uses:="com.vaa
+ din.shared.communication,com.vaadin.shared.ui.grid.renderers,com.vaad
+ in.ui.renderers,org.vaadin.gridutil.client.renderer.indicator";versio
+ n="2.1.1"
+Vaadin-Widgetsets: org.vaadin.gridutil.WidgetSet
+Bundle-Name: GridUtil
+Bundle-Version: 2.1.1
+Vaadin-Addon: vaadin-grid-util-2.1.1.jar
+Vaadin-Package-Version: 1
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_162
+Implementation-URL: https://github.com/melistik/vaadin-grid-util
+

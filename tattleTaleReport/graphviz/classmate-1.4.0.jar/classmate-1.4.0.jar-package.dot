@@ -1,0 +1,12 @@
+digraph classmate_1_4_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_fasterxml_classmate -> com_fasterxml_classmate_members;
+  com_fasterxml_classmate -> com_fasterxml_classmate_types;
+  com_fasterxml_classmate -> com_fasterxml_classmate_util;
+  com_fasterxml_classmate_members -> com_fasterxml_classmate;
+  com_fasterxml_classmate_members -> com_fasterxml_classmate_util;
+  com_fasterxml_classmate_types -> com_fasterxml_classmate;
+  com_fasterxml_classmate_types -> com_fasterxml_classmate_members;
+  com_fasterxml_classmate_util -> com_fasterxml_classmate;
+  com_fasterxml_classmate_util -> com_fasterxml_classmate_types;
+}

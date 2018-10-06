@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.fasterxml.jackson.core.jackson-annotations
+Built-By: tatu
+Bnd-LastModified: 1501386807097
+Implementation-Vendor-Id: com.fasterxml.jackson.core
+Specification-Title: Jackson-annotations
+Bundle-DocURL: http://github.com/FasterXML/jackson
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Implementation-Build-Date: 2017-07-30 03:53:23+0000
+Export-Package: com.fasterxml.jackson.annotation;version="2.9.0"
+Bundle-Name: Jackson-annotations
+Bundle-Description: Core annotations used for value types, used by Jac
+ kson data binding package.
+Implementation-Title: Jackson-annotations
+Implementation-Version: 2.9.0
+Bundle-ManifestVersion: 2
+Specification-Vendor: FasterXML
+Bundle-Vendor: FasterXML
+Tool: Bnd-2.3.0.201405100607
+Implementation-Vendor: FasterXML
+Bundle-Version: 2.9.0
+X-Compile-Target-JDK: 1.6
+X-Compile-Source-JDK: 1.6
+Build-Jdk: 1.7.0_79
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 2.9.0
+

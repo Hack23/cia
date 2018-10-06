@@ -1,0 +1,5 @@
+digraph netlib_java_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  netlib_java_1_1 -> arpack_combined_all_0_1;
+  netlib_java_1_1 -> core_1_1_2;
+}

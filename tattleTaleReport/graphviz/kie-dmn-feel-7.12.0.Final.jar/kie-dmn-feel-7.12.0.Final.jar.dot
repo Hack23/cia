@@ -1,0 +1,9 @@
+digraph kie_dmn_feel_7_12_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_dmn_feel_7_12_0_Final -> antlr4_runtime_4_7_1;
+  kie_dmn_feel_7_12_0_Final -> drlx_parser_7_12_0_Final;
+  kie_dmn_feel_7_12_0_Final -> drools_compiler_7_12_0_Final;
+  kie_dmn_feel_7_12_0_Final -> kie_dmn_api_7_12_0_Final;
+  kie_dmn_feel_7_12_0_Final -> kie_internal_7_12_0_Final;
+  kie_dmn_feel_7_12_0_Final -> slf4j_api_1_8_0_beta2;
+}

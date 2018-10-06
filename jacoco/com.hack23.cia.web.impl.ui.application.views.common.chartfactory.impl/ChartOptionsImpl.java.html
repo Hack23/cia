@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChartOptionsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">ChartOptionsImpl.java</span></div><h1>ChartOptionsImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import org.dussan.vaadin.dcharts.base.elements.XYaxis;
+import org.dussan.vaadin.dcharts.metadata.DataLabels;
+import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
+import org.dussan.vaadin.dcharts.metadata.SeriesToggles;
+import org.dussan.vaadin.dcharts.metadata.TooltipAxes;
+import org.dussan.vaadin.dcharts.metadata.XYaxes;
+import org.dussan.vaadin.dcharts.metadata.locations.LegendLocations;
+import org.dussan.vaadin.dcharts.metadata.locations.TooltipLocations;
+import org.dussan.vaadin.dcharts.metadata.renderers.AxisRenderers;
+import org.dussan.vaadin.dcharts.metadata.renderers.LegendRenderers;
+import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
+import org.dussan.vaadin.dcharts.options.Axes;
+import org.dussan.vaadin.dcharts.options.Cursor;
+import org.dussan.vaadin.dcharts.options.Grid;
+import org.dussan.vaadin.dcharts.options.Highlighter;
+import org.dussan.vaadin.dcharts.options.Legend;
+import org.dussan.vaadin.dcharts.options.Options;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.dussan.vaadin.dcharts.options.SeriesDefaults;
+import org.dussan.vaadin.dcharts.renderers.legend.EnhancedLegendRenderer;
+import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
+import org.dussan.vaadin.dcharts.renderers.series.PieRenderer;
+import org.dussan.vaadin.dcharts.renderers.tick.AxisTickRenderer;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
+
+/**
+ * The Class ChartOptionsImpl.
+ */
+@Component
+public final class ChartOptionsImpl implements ChartOptions {
+
+	/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */
+	private static final int ONE_COLUMN_NUMBER_OF_ROWS = 12;
+
+	/** The Constant ONE_COLUMN_NUMBER_OF_COLUMNS. */
+	private static final int ONE_COLUMN_NUMBER_OF_COLUMNS = 1;
+
+	/** The Constant ONE_ROW_NUMBER_OF_ROWS. */
+	private static final int ONE_ROW_NUMBER_OF_ROWS = 1;
+
+	/** The Constant ONE_ROW_NUMBER_OF_COLUMNS. */
+	private static final int ONE_ROW_NUMBER_OF_COLUMNS = 10;
+
+	/** The Constant SLICE_MARGIN. */
+	private static final int SLICE_MARGIN = 3;
+
+	/** The Constant START_ANGLE. */
+	private static final int START_ANGLE = -90;
+
+	/** The Constant FLOAT_FORMAT. */
+	private static final String FLOAT_FORMAT = &quot;%.2f&quot;;
+
+	/** The Constant NUMBER_TICKS. */
+	private static final int NUMBER_TICKS = 5;
+
+	/** The Constant LEGEND_COLUMNS. */
+	private static final int LEGEND_COLUMNS = 3;
+
+	/** The Constant LEGEND_ROWS. */
+	private static final int LEGEND_ROWS = 20;
+
+	/** The Constant LEGEND_FONT_SIZE. */
+	private static final String LEGEND_FONT_SIZE = &quot;10px&quot;;
+
+	/** The Constant BORDER_COLOR. */
+	private static final String BORDER_COLOR = &quot;#83898c&quot;;
+
+	/** The Constant GRIDLINE_COLOR. */
+	private static final String GRIDLINE_COLOR = &quot;#213f49&quot;;
+
+	/** The Constant BACKGROUND_COLOR. */
+	private static final String BACKGROUND_COLOR = &quot;#13303f&quot;;
+
+	/** The Constant TEXT_COLOR. */
+	private static final String TEXT_COLOR = &quot;#ffffff&quot;;
+
+	/** The Constant FONT_SIZE. */
+	private static final String FONT_SIZE = &quot;8px&quot;;
+
+	/** The Constant FONT_FAMILY. */
+	private static final String FONT_FAMILY = &quot;Inconsolata&quot;;
+
+	/** The Constant NUMBER_TICKS_DATE. */
+	public static final int NUMBER_TICKS_DATE = 8;
+
+	/** The Constant YEAR_MONTH_DAY_FORMAT. */
+	public static final String YEAR_MONTH_DAY_FORMAT = &quot;%F&quot;;
+
+	/**
+	 * Instantiates a new chart options impl.
+	 */
+	private ChartOptionsImpl() {
+		super();
+	}
+
+	/**
+	 * Creates the axes XY date float.
+	 *
+	 * @return the axes
+	 */
+	private static Axes createAxesXYDateFloat() {
+<span class="fc" id="L124">		return new Axes()</span>
+<span class="fc" id="L125">				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)</span>
+<span class="fc" id="L126">						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))</span>
+<span class="fc" id="L127">						.setNumberTicks(NUMBER_TICKS_DATE))</span>
+<span class="fc" id="L128">				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LINEAR).setTickOptions(new AxisTickRenderer().setFormatString(FLOAT_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));</span>
+	}
+
+	/**
+	 * Creates the axes XY date float log.
+	 *
+	 * @return the axes
+	 */
+	private static Axes createAxesXYDateFloatLog() {
+<span class="fc" id="L137">		return new Axes()</span>
+<span class="fc" id="L138">				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)</span>
+<span class="fc" id="L139">						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))</span>
+<span class="fc" id="L140">						.setNumberTicks(NUMBER_TICKS_DATE))</span>
+<span class="fc" id="L141">				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LOG).setTickOptions(new AxisTickRenderer().setFormatString(FLOAT_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));</span>
+	}
+
+
+	/**
+	 * Creates the default grid.
+	 *
+	 * @return the grid
+	 */
+	private static Grid createDefaultGrid() {
+<span class="fc" id="L151">		final Grid grid = new Grid();</span>
+<span class="fc" id="L152">		grid.setBackground(BACKGROUND_COLOR);</span>
+<span class="fc" id="L153">		grid.setGridLineColor(GRIDLINE_COLOR);</span>
+<span class="fc" id="L154">		grid.setBorderColor(BORDER_COLOR);</span>
+<span class="fc" id="L155">		return grid;</span>
+	}
+
+	/**
+	 * Created legend enhanced inside north west.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createdLegendEnhancedInsideNorthWest() {
+<span class="fc" id="L164">		return setLegendStyling(new Legend().setShow(true)</span>
+<span class="fc" id="L165">				.setRendererOptions(</span>
+<span class="fc" id="L166">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))</span>
+<span class="fc" id="L167">				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));</span>
+	}
+
+	/**
+	 * Created legend enhanced inside west.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createdLegendEnhancedInsideWest() {
+<span class="fc" id="L176">		return setLegendStyling(</span>
+<span class="fc" id="L177">				new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)</span>
+<span class="fc" id="L178">						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(new EnhancedLegendRenderer()</span>
+<span class="fc" id="L179">								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS)));</span>
+	}
+
+	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendOutside() {
+<span class="fc" id="L188">		return setLegendStyling(new Legend().setShow(true)</span>
+<span class="fc" id="L189">				.setRendererOptions(</span>
+<span class="fc" id="L190">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))</span>
+<span class="fc" id="L191">				.setPlacement(LegendPlacements.OUTSIDE_GRID));</span>
+	}
+
+	/**
+	 * Creates the legend outside one column.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendOutsideOneColumn() {
+<span class="fc" id="L200">		return setLegendStyling(new Legend().setShow(true)</span>
+<span class="fc" id="L201">				.setRendererOptions(</span>
+<span class="fc" id="L202">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))</span>
+<span class="fc" id="L203">				.setPlacement(LegendPlacements.OUTSIDE_GRID));</span>
+	}
+
+	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendInsideOneRow() {
+<span class="fc" id="L212">		return setLegendStyling(new Legend().setShow(true)</span>
+<span class="fc" id="L213">				.setRendererOptions(</span>
+<span class="fc" id="L214">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))</span>
+<span class="fc" id="L215">				.setPlacement(LegendPlacements.INSIDE_GRID));</span>
+	}
+
+	/**
+	 * Sets the legend styling.
+	 *
+	 * @param legend
+	 *            the legend
+	 * @return the legend
+	 */
+	private static Legend setLegendStyling(final Legend legend) {
+<span class="fc" id="L226">		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);</span>
+<span class="fc" id="L227">		return legend;</span>
+	}
+
+	/**
+	 * Creates the high lighter.
+	 *
+	 * @return the highlighter
+	 */
+	private static Highlighter createHighLighter() {
+<span class="fc" id="L236">		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)</span>
+<span class="fc" id="L237">				.setKeepTooltipInsideChart(true);</span>
+	}
+
+	/**
+	 * Creates the high lighter north.
+	 *
+	 * @return the highlighter
+	 */
+	private static Highlighter createHighLighterNorth() {
+<span class="fc" id="L246">		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)</span>
+<span class="fc" id="L247">				.setKeepTooltipInsideChart(true).setTooltipLocation(TooltipLocations.NORTH)</span>
+<span class="fc" id="L248">				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(true).setBringSeriesToFront(true);</span>
+	}
+
+	/**
+	 * Creates the series default pie chart.
+	 *
+	 * @return the series defaults
+	 */
+	private static SeriesDefaults createSeriesDefaultPieChart() {
+<span class="fc" id="L257">		return new SeriesDefaults().setRenderer(SeriesRenderers.PIE)</span>
+<span class="fc" id="L258">				.setRendererOptions(new PieRenderer().setShowDataLabels(true)).setShadow(true);</span>
+	}
+
+
+	/**
+	 * Creates the cursor.
+	 *
+	 * @return the cursor
+	 */
+	private static Cursor createCursor() {
+<span class="fc" id="L268">		return new Cursor().setZoom(true).setLooseZoom(true).setShow(true);</span>
+	}
+
+	@Override
+	public Options createOptionsCountryLineChart(final Series series) {
+<span class="fc" id="L273">		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)</span>
+<span class="fc" id="L274">				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))</span>
+<span class="fc" id="L275">				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));</span>
+
+<span class="fc" id="L277">		return new Options().addOption(new SeriesDefaults()).addOption(axes)</span>
+<span class="fc" id="L278">				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())</span>
+<span class="fc" id="L279">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	@Override
+	public Options createOptionsDonoutChart() {
+<span class="fc" id="L284">		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())</span>
+<span class="fc" id="L285">				.setHighlighter(createHighLighter()).addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	@Override
+	public Options createOptionsDonoutChartWithSeries(final Series series) {
+<span class="fc" id="L290">		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())</span>
+<span class="fc" id="L291">				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	/**
+	 * Creates the donout series default.
+	 *
+	 * @return the series defaults
+	 */
+	private static SeriesDefaults createDonoutSeriesDefault() {
+<span class="fc" id="L300">		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)</span>
+<span class="fc" id="L301">				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)</span>
+<span class="fc" id="L302">						.setDataLabels(DataLabels.VALUE));</span>
+	}
+
+	@Override
+	public Options createOptionsPartyLineChart(final Series series) {
+<span class="fc" id="L307">		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())</span>
+<span class="fc" id="L308">				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)</span>
+<span class="fc" id="L309">				.addOption(createLegendOutside()).addOption(createDefaultGrid());</span>
+	}
+
+	@Override
+	public Options createOptionsPersonLineChart(final Series series) {
+<span class="fc" id="L314">		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())</span>
+<span class="fc" id="L315">				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)</span>
+<span class="fc" id="L316">				.addOption(createLegendOutside()).addOption(createDefaultGrid());</span>
+	}
+
+	@Override
+	public Options createOptionsPieChart() {
+<span class="fc" id="L321">		return new Options().setSeriesDefaults(createSeriesDefaultPieChart())</span>
+<span class="fc" id="L322">				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())</span>
+<span class="fc" id="L323">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	@Override
+	public Options createOptionsXYDateFloatLegendOutside(final Series series) {
+<span class="nc" id="L328">		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())</span>
+<span class="nc" id="L329">				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())</span>
+<span class="nc" id="L330">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	@Override
+	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series series) {
+<span class="fc" id="L335">		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())</span>
+<span class="fc" id="L336">				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutsideOneColumn())</span>
+<span class="fc" id="L337">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+	@Override
+	public Options createOptionsXYDateFloatLogYAxisLegendOutside(final Series series) {
+<span class="fc" id="L342">		return new Options().addOption(new SeriesDefaults()).addOption(series).addOption(createAxesXYDateFloatLog())</span>
+<span class="fc" id="L343">				.addOption(createHighLighterNorth()).addOption(createLegendOutside())</span>
+<span class="fc" id="L344">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

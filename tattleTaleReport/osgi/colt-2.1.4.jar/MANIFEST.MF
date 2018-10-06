@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: blzg
+Build-Jdk: 1.7.0_79
+Created-By: Apache Maven 3.2.5
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: cern.jet.math
+Bundle-Description: colt-2.1.4
+Bundle-Name: colt-2.1.4
+Bundle-Version: 0.0.0
+Export-Package: cern.clhep,cern.colt;uses:="cern.colt.function,cern.co
+ lt.list,cern.colt.matrix,cern.colt.matrix.doublealgo,cern.colt.matrix
+ .impl,cern.jet.math,cern.jet.random,cern.jet.random.engine",cern.colt
+ .bitvector;uses:="cern.colt,cern.colt.function",cern.colt.buffer;uses
+ :="cern.colt,cern.colt.list",cern.colt.function,cern.colt.list;uses:=
+ "cern.colt,cern.colt.bitvector,cern.colt.buffer,cern.colt.function,ce
+ rn.jet.math,cern.jet.random,cern.jet.random.engine",cern.colt.list.ad
+ apter;uses:="cern.colt.list",cern.colt.map;uses:="cern.colt,cern.colt
+ .function,cern.colt.list,cern.jet.math,cern.jet.random,cern.jet.rando
+ m.engine",cern.colt.matrix;uses:="cern.colt,cern.colt.function,cern.c
+ olt.list,cern.colt.matrix.doublealgo,cern.colt.matrix.impl,cern.colt.
+ matrix.linalg,cern.colt.matrix.objectalgo,cern.jet.math,cern.jet.rand
+ om.engine,cern.jet.random.sampling",cern.colt.matrix.bench;uses:="cer
+ n.colt,cern.colt.function,cern.colt.list,cern.colt.matrix,cern.colt.m
+ atrix.doublealgo,cern.colt.matrix.impl,cern.colt.matrix.linalg,cern.c
+ olt.matrix.objectalgo,cern.jet.math",cern.colt.matrix.doublealgo;uses
+ :="cern.colt,cern.colt.function,cern.colt.matrix,cern.colt.matrix.imp
+ l,cern.colt.matrix.objectalgo,cern.jet.math,cern.jet.random.engine,ce
+ rn.jet.random.sampling",cern.colt.matrix.impl;uses:="cern.colt,cern.c
+ olt.function,cern.colt.list,cern.colt.map,cern.colt.matrix,cern.colt.
+ matrix.doublealgo,cern.colt.matrix.linalg,cern.jet.math,cern.jet.rand
+ om,cern.jet.random.engine,corejava",cern.colt.matrix.linalg;uses:="ED
+ U.oswego.cs.dl.util.concurrent,cern.colt,cern.colt.bitvector,cern.col
+ t.function,cern.colt.list,cern.colt.matrix,cern.colt.matrix.doublealg
+ o,cern.colt.matrix.impl,cern.jet.math",cern.colt.matrix.objectalgo;us
+ es:="cern.colt,cern.colt.function,cern.colt.matrix,cern.colt.matrix.i
+ mpl",cern.jet.math;uses:="cern.colt,cern.colt.function,cern.jet.rando
+ m.engine",cern.jet.random;uses:="cern.colt,cern.colt.function,cern.co
+ lt.list,cern.jet.math,cern.jet.random.engine,cern.jet.stat",cern.jet.
+ random.engine;uses:="cern.colt,cern.colt.function",cern.jet.random.sa
+ mpling;uses:="cern.colt,cern.colt.list,cern.jet.random,cern.jet.rando
+ m.engine",cern.jet.stat;uses:="cern.colt.list,cern.jet.math",cern.jet
+ .stat.quantile;uses:="cern.colt,cern.colt.function,cern.colt.list,cer
+ n.jet.math,cern.jet.random,cern.jet.random.engine,cern.jet.random.sam
+ pling,cern.jet.stat",corejava
+Import-Package: EDU.oswego.cs.dl.util.concurrent;version="0.0.0",java.
+ awt,java.io,java.lang,java.lang.reflect,java.text,java.util

@@ -1,0 +1,7 @@
+digraph logback_awslogs_appender_1_0_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  logback_awslogs_appender_1_0_0 -> aws_java_sdk_core_1_11_422;
+  logback_awslogs_appender_1_0_0 -> aws_java_sdk_logs_1_11_422;
+  logback_awslogs_appender_1_0_0 -> logback_classic_1_3_0_alpha4;
+  logback_awslogs_appender_1_0_0 -> logback_core_1_3_0_alpha4;
+}

@@ -1,0 +1,9 @@
+digraph netty_handler_4_1_30_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  netty_handler_4_1_30_Final -> bcpkix_jdk15on_1_60;
+  netty_handler_4_1_30_Final -> bcprov_jdk15on_1_60;
+  netty_handler_4_1_30_Final -> netty_buffer_4_1_30_Final;
+  netty_handler_4_1_30_Final -> netty_codec_4_1_30_Final;
+  netty_handler_4_1_30_Final -> netty_common_4_1_30_Final;
+  netty_handler_4_1_30_Final -> netty_transport_4_1_30_Final;
+}

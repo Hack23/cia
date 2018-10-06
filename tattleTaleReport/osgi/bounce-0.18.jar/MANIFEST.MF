@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Bundle-Description: A set of Java and Swing extensions, including ... 
+ layout managers like a FormLayout and CenterLayout, image filters, a 
+ comprehensive messaging mechanism, a XMLEditorKit with syntax highlig
+ hting and automatic indentation and more.
+Bundle-License: http://www.opensource.org/licenses/bsd-license.php
+Bundle-SymbolicName: edankert.com.bounce
+Built-By: Edwin
+Bnd-LastModified: 1286911909390
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Edwin Dankert
+Bundle-DocURL: http://www.edankert.com
+Import-Package: javax.swing,javax.swing.border,javax.swing.event,javax
+ .swing.filechooser,javax.swing.plaf,javax.swing.plaf.basic,javax.swin
+ g.plaf.metal,javax.swing.text,javax.swing.tree,javax.xml.namespace,or
+ g.bounce,org.bounce.com.sun.syndication.io,org.bounce.event,org.bounc
+ e.image,org.bounce.message,org.bounce.net,org.bounce.plaf,org.bounce.
+ preferences,org.bounce.text,org.bounce.text.xml,org.bounce.util,org.b
+ ounce.viewer.xml,org.bounce.wizard,org.bounce.xml,org.w3c.dom
+Tool: Bnd-0.0.357
+Export-Package: org.bounce.wizard;uses:="javax.swing,javax.swing.borde
+ r,org.bounce,javax.swing.event",org.bounce.com.sun.syndication.io,org
+ .bounce.event;uses:="javax.swing,org.bounce",org.bounce.text.xml;uses
+ :="javax.swing.text,javax.swing,org.bounce.text,org.bounce.xml",org.b
+ ounce.image;uses:="javax.swing",org.bounce.xml;uses:="org.w3c.dom,jav
+ ax.xml.namespace",org.bounce.text;uses:="javax.swing.text,javax.swing
+ .event,javax.swing.border,javax.swing,javax.swing.plaf",org.bounce.ut
+ il,org.bounce.message,org.bounce;uses:="javax.swing,org.bounce.event,
+ javax.swing.filechooser,javax.swing.border,javax.swing.plaf,org.bounc
+ e.plaf,javax.swing.text,javax.swing.tree,javax.swing.plaf.metal",org.
+ bounce.preferences;uses:="javax.swing,javax.swing.border,javax.swing.
+ tree,org.bounce,javax.swing.event",org.bounce.viewer.xml;uses:="org.w
+ 3c.dom,javax.swing.tree,javax.swing,javax.swing.plaf,javax.swing.plaf
+ .metal,org.bounce,org.bounce.xml",org.bounce.plaf;uses:="javax.swing.
+ plaf.basic,org.bounce,javax.swing,javax.swing.text,javax.swing.plaf",
+ org.bounce.net;uses:="javax.swing,javax.swing.border,org.bounce"
+Bundle-Name: Bounce
+Bundle-Version: 0.18.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.6.0_18
+

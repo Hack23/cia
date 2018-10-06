@@ -1,0 +1,9 @@
+digraph lucene_analyzers_phonetic_5_5_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_lucene_analysis_phonetic -> org_apache_commons_codec_language;
+  org_apache_lucene_analysis_phonetic -> org_apache_commons_codec_language_bm;
+  org_apache_lucene_analysis_phonetic -> org_apache_lucene_analysis;
+  org_apache_lucene_analysis_phonetic -> org_apache_lucene_analysis_tokenattributes;
+  org_apache_lucene_analysis_phonetic -> org_apache_lucene_analysis_util;
+  org_apache_lucene_analysis_phonetic -> org_apache_lucene_util;
+}

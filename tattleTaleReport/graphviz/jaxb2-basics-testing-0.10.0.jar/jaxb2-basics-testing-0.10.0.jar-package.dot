@@ -1,0 +1,5 @@
+digraph jaxb2_basics_testing_0_10_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jvnet_jaxb2_commons_lang -> org_custommonkey_xmlunit;
+  org_jvnet_jaxb2_commons_lang -> org_jvnet_jaxb2_commons_locator;
+}

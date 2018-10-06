@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserHomeSecuritySettingsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.home.pagemode</a> &gt; <span class="el_source">UserHomeSecuritySettingsPageModContentFactoryImpl.java</span></div><h1>UserHomeSecuritySettingsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
+import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class UserHomeSecuritySettingsPageModContentFactoryImpl.
+ */
+@Component
+public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
+	
+	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String ENABLE_GOOGLE_AUTHENTICATOR = &quot;Enable Google Authenticator&quot;;
+
+	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String DISABLE_GOOGLE_AUTHENTICATOR = &quot;Disable Google Authenticator&quot;;
+	
+<span class="fc" id="L63">	private static final List&lt;String&gt; AS_LIST = Collections.singletonList( &quot;userpassword&quot; );</span>
+
+	
+	/** The Constant USERHOME. */
+	private static final String USERHOME = &quot;Userhome:&quot;;
+
+	/** The Constant SECURITY_SETTINGS. */
+	private static final String SECURITY_SETTINGS = &quot;Security Settings&quot;;
+
+	/** The user home menu item factory. */
+	@Autowired
+	private UserHomeMenuItemFactory userHomeMenuItemFactory;
+
+	/**
+	 * Instantiates a new user home security settings page mod content factory
+	 * impl.
+	 */
+	public UserHomeSecuritySettingsPageModContentFactoryImpl() {
+<span class="fc" id="L81">		super();</span>
+<span class="fc" id="L82">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="pc bpc" id="L86" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L92">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L94">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L96">		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+
+<span class="fc" id="L98">		LabelFactory.createHeader2Label(panelContent, SECURITY_SETTINGS);</span>
+
+<span class="fc" id="L100">		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();</span>
+
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		if (userIdFromSecurityContext == null) {</span>
+<span class="nc" id="L103">			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);</span>
+		} else {
+			
+<span class="fc" id="L106">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L107">			overviewLayout.setSizeFull();</span>
+<span class="fc" id="L108">			panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L109">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+			
+<span class="fc" id="L111">			final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+			
+<span class="fc" id="L113">			RowUtil.createRowComponent(grid,createEnableGoogleAuthButton(),&quot;Enable MFA using google authenticator&quot;);</span>
+<span class="fc" id="L114">			RowUtil.createRowComponent(grid,createDisableGoogleAuthButton(),&quot;Disable MFA using google authenticator&quot;);			</span>
+		}
+
+<span class="fc" id="L117">		panel.setCaption(NAME + &quot;::&quot; + USERHOME + SECURITY_SETTINGS);</span>
+
+<span class="fc" id="L119">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L122">		return panelContent;</span>
+
+	}
+
+	private VerticalLayout createEnableGoogleAuthButton() {
+<span class="fc" id="L127">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L128">		formLayout.setSizeFull();</span>
+
+<span class="fc" id="L130">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L131">		formPanel.setSizeFull();</span>
+
+<span class="fc" id="L133">		formLayout.addComponent(formPanel);</span>
+
+<span class="fc" id="L135">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L136">		formPanel.setContent(formContent);</span>
+
+<span class="fc" id="L138">		final SetGoogleAuthenticatorCredentialRequest request = new SetGoogleAuthenticatorCredentialRequest();</span>
+<span class="fc" id="L139">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L140">		request.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L141">		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);</span>
+<span class="fc" id="L142">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
+				SetGoogleAuthenticatorCredentialRequest.class,
+				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR,
+				listener);
+		
+<span class="fc" id="L147">		return formLayout;</span>
+	}
+
+	private VerticalLayout createDisableGoogleAuthButton() {
+		
+<span class="fc" id="L152">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L153">		formLayout.setSizeFull();</span>
+
+<span class="fc" id="L155">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L156">		formPanel.setSizeFull();</span>
+
+<span class="fc" id="L158">		formLayout.addComponent(formPanel);</span>
+
+<span class="fc" id="L160">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L161">		formPanel.setContent(formContent);</span>
+
+<span class="fc" id="L163">		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();</span>
+<span class="fc" id="L164">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L165">		request.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L166">		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);</span>
+<span class="fc" id="L167">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
+				DisableGoogleAuthenticatorCredentialRequest.class,
+				AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR,
+				listener);
+		
+<span class="fc" id="L172">		return formLayout;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

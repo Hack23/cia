@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Implementation-Title: AntLR Parser Generator
+Implementation-Version: 2.7.7.redhat-7
+Archiver-Version: Plexus Archiver
+Java-Version: 1.8.0_65
+Built-By: mockbuild
+Scm-Connection: scm:git:git://git.app.eng.bos.redhat.com/antlr2.git
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: AntLR Parser Generator
+Implementation-Vendor-Id: antlr
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: http://git.app.eng.bos.redhat.com/git/antlr2.git
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 2.6.32-573.7.1.el6.x86_64
+Scm-Revision: bd0ab973efaa37ef67ff6dc58ec29d95f96c1828
+Created-By: Apache Maven 3.2.3
+Build-Jdk: 1.8.0_65
+Specification-Version: 2.7.7.redhat-7
+Implementation-URL: http://www.antlr.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: antlr
+Bundle-Description: antlr-2.7.7.redhat-7
+Bundle-Name: antlr-2.7.7.redhat-7
+Bundle-Version: 2.7.7.redhat-7
+Export-Package: antlr,antlr.ASdebug,antlr.actions.cpp,antlr.actions.cs
+ harp,antlr.actions.java,antlr.actions.python,antlr.build,antlr.collec
+ tions,antlr.collections.impl,antlr.debug,antlr.debug.misc,antlr.prepr
+ ocessor
+Import-Package: java.awt,java.awt.event,java.io,java.lang,java.lang.re
+ flect,java.util,javax.swing,javax.swing.event,javax.swing.tree

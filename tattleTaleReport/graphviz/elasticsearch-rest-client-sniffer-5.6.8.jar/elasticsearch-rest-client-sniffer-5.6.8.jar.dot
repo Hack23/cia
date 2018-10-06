@@ -1,0 +1,7 @@
+digraph elasticsearch_rest_client_sniffer_5_6_8_dependencies {
+  node [shape = box, fontsize=10.0];
+  elasticsearch_rest_client_sniffer_5_6_8 -> elasticsearch_rest_client_5_6_8;
+  elasticsearch_rest_client_sniffer_5_6_8 -> httpcore_4_4_10;
+  elasticsearch_rest_client_sniffer_5_6_8 -> jackson_core_2_9_7;
+  elasticsearch_rest_client_sniffer_5_6_8 -> jcl_over_slf4j_1_8_0_beta2;
+}

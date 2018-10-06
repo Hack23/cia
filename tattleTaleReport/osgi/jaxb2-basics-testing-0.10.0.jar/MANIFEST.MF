@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: Alexey Valikov
+Build-Jdk: 1.7.0_51
+Created-By: Apache Maven 3.2.1
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jvnet.jaxb2_commons.lang
+Bundle-Description: jaxb2-basics-testing-0.10.0
+Bundle-Name: jaxb2-basics-testing-0.10.0
+Bundle-Version: 0.0.0
+Export-Package: org.jvnet.jaxb2_commons.lang;uses:="org.custommonkey.x
+ mlunit,org.jvnet.jaxb2_commons.locator",org.jvnet.jaxb2_commons.test
+Import-Package: java.io,java.lang,java.net,java.security,java.util,jav
+ ax.xml.bind;version="2.4.0",javax.xml.datatype;version="1.0",javax.xm
+ l.transform.dom;version="1.0",junit.framework,org.apache.commons.io;v
+ ersion="2.6",org.apache.commons.logging;version="0.0.0",org.custommon
+ key.xmlunit,org.jvnet.jaxb2_commons.lang;version="0.0.0",org.jvnet.ja
+ xb2_commons.locator;version="0.0.0",org.w3c.dom;version="1.0"

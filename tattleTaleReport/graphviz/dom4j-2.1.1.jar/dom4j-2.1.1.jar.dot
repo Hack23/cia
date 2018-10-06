@@ -1,0 +1,5 @@
+digraph dom4j_2_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  dom4j_2_1_1 -> jaxb_api_2_4_0;
+  dom4j_2_1_1 -> xml_apis_1_4_01;
+}

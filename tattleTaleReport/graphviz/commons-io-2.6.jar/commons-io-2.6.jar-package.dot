@@ -1,0 +1,8 @@
+digraph commons_io_2_6_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_io -> java_nio_charset;
+  org_apache_commons_io -> java_nio_file;
+  org_apache_commons_io_input -> java_nio_charset;
+  org_apache_commons_io_input -> org_apache_commons_io;
+  org_apache_commons_io_output -> org_apache_commons_io;
+}

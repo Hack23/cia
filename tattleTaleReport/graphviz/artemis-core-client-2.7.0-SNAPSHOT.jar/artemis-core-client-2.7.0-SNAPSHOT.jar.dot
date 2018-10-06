@@ -1,0 +1,17 @@
+digraph artemis_core_client_2_7_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_core_client_2_7_0_SNAPSHOT -> artemis_commons_2_7_0_SNAPSHOT;
+  artemis_core_client_2_7_0_SNAPSHOT -> geronimo_json_1_0_spec_1_0_alpha_1;
+  artemis_core_client_2_7_0_SNAPSHOT -> geronimo_jta_1_1_spec_1_1_1;
+  artemis_core_client_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> jgroups_3_6_13_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_buffer_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_codec_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_codec_http_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_common_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_handler_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_transport_4_1_30_Final;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_transport_native_epoll_4_1_30_Final_linux_x86_64;
+  artemis_core_client_2_7_0_SNAPSHOT -> netty_transport_native_kqueue_4_1_30_Final_osx_x86_64;
+  artemis_core_client_2_7_0_SNAPSHOT -> xml_apis_1_4_01;
+}

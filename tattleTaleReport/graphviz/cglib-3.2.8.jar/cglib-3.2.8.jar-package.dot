@@ -1,0 +1,17 @@
+digraph cglib_3_2_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  net_sf_cglib_beans -> net_sf_cglib_core;
+  net_sf_cglib_core -> net_sf_cglib_core_internal;
+  net_sf_cglib_core -> net_sf_cglib_transform;
+  net_sf_cglib_core_internal -> net_sf_cglib_core;
+  net_sf_cglib_proxy -> net_sf_cglib_core;
+  net_sf_cglib_proxy -> net_sf_cglib_reflect;
+  net_sf_cglib_reflect -> net_sf_cglib_core;
+  net_sf_cglib_transform -> net_sf_cglib_core;
+  net_sf_cglib_transform -> org_apache_tools_ant;
+  net_sf_cglib_transform -> org_apache_tools_ant_types;
+  net_sf_cglib_transform -> org_objectweb_asm;
+  net_sf_cglib_transform_impl -> net_sf_cglib_core;
+  net_sf_cglib_transform_impl -> net_sf_cglib_transform;
+  net_sf_cglib_util -> net_sf_cglib_core;
+}

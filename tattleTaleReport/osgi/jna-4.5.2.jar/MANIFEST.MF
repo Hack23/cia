@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Implementation-Title: com.sun.jna
+Bundle-Description: JNA Library
+Bundle-SymbolicName: com.sun.jna
+Implementation-Version: 4.5.2 (b0)
+Bundle-Category: jni
+Specification-Vendor: JNA Development Team
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-ActivationPolicy: lazy
+Specification-Title: Java Native Access (JNA)
+Bundle-Vendor: JNA Development Team
+Main-Class: com.sun.jna.Native
+Implementation-Vendor: JNA Development Team
+Ant-Version: Apache Ant 1.10.3
+Export-Package: com.sun.jna,com.sun.jna.ptr,com.sun.jna.win32
+Bundle-Name: jna
+Bundle-Version: 4.5.2
+Bundle-NativeCode:  com/sun/jna/win32-x86/jnidispatch.dll; processor=x
+ 86;osname=win32, com/sun/jna/win32-x86-64/jnidispatch.dll; processor=
+ x86-64;osname=win32, com/sun/jna/win32-x86/jnidispatch.dll; processor
+ =x86;osname=win, com/sun/jna/win32-x86-64/jnidispatch.dll; processor=
+ x86-64;osname=win, com/sun/jna/w32ce-arm/jnidispatch.dll; processor=a
+ rm;osname=wince,  com/sun/jna/sunos-x86/libjnidispatch.so; processor=
+ x86;osname=sunos, com/sun/jna/sunos-x86-64/libjnidispatch.so; process
+ or=x86-64;osname=sunos, com/sun/jna/sunos-sparc/libjnidispatch.so; pr
+ ocessor=sparc;osname=sunos, com/sun/jna/sunos-sparcv9/libjnidispatch.
+ so; processor=sparcv9;osname=sunos,  com/sun/jna/aix-ppc/libjnidispat
+ ch.a; processor=ppc;osname=aix, com/sun/jna/aix-ppc64/libjnidispatch.
+ a; processor=ppc64;osname=aix,  com/sun/jna/linux-ppc/libjnidispatch.
+ so; processor=ppc;osname=linux, com/sun/jna/linux-ppc64/libjnidispatc
+ h.so; processor=ppc64;osname=linux, com/sun/jna/linux-ppc64le/libjnid
+ ispatch.so; processor=ppc64le;osname=linux, com/sun/jna/linux-x86/lib
+ jnidispatch.so; processor=x86;osname=linux, com/sun/jna/linux-x86-64/
+ libjnidispatch.so; processor=x86-64;osname=linux, com/sun/jna/linux-a
+ rm/libjnidispatch.so; processor=arm;osname=linux, com/sun/jna/linux-a
+ rmel/libjnidispatch.so; processor=armel;osname=linux, com/sun/jna/lin
+ ux-aarch64/libjnidispatch.so; processor=aarch64;osname=linux, com/sun
+ /jna/linux-ia64/libjnidispatch.so; processor=ia64;osname=linux, com/s
+ un/jna/linux-sparcv9/libjnidispatch.so; processor=sparcv9;osname=linu
+ x, com/sun/jna/linux-mips64el/libjnidispatch.so; processor=mips64el;o
+ sname=linux, com/sun/jna/linux-s390x/libjnidispatch.so; processor=S39
+ 0x;osname=linux,  com/sun/jna/freebsd-x86/libjnidispatch.so; processo
+ r=x86;osname=freebsd, com/sun/jna/freebsd-x86-64/libjnidispatch.so; p
+ rocessor=x86-64;osname=freebsd, com/sun/jna/openbsd-x86/libjnidispatc
+ h.so; processor=x86;osname=openbsd, com/sun/jna/openbsd-x86-64/libjni
+ dispatch.so; processor=x86-64;osname=openbsd,  com/sun/jna/darwin/lib
+ jnidispatch.jnilib; osname=macosx;processor=x86;processor=x86-64;proc
+ essor=ppc 
+Created-By: 1.8.0_151-b12 (Oracle Corporation)
+Specification-Version: 4
+

@@ -1,0 +1,13 @@
+digraph service_external_val_2018_9_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_external_val_2018_9_24_SNAPSHOT -> jaxb_api_2_4_0;
+  service_external_val_2018_9_24_SNAPSHOT -> model_external_val_kommunvalkrets_impl_2018_9_24_SNAPSHOT;
+  service_external_val_2018_9_24_SNAPSHOT -> model_external_val_landstingvalkrets_impl_2018_9_24_SNAPSHOT;
+  service_external_val_2018_9_24_SNAPSHOT -> model_external_val_partier_impl_2018_9_24_SNAPSHOT;
+  service_external_val_2018_9_24_SNAPSHOT -> model_external_val_riksdagsvalkrets_impl_2018_9_24_SNAPSHOT;
+  service_external_val_2018_9_24_SNAPSHOT -> service_external_common_2018_9_24_SNAPSHOT;
+  service_external_val_2018_9_24_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+  service_external_val_2018_9_24_SNAPSHOT -> spring_beans_5_1_0_RELEASE;
+  service_external_val_2018_9_24_SNAPSHOT -> spring_context_5_1_0_RELEASE;
+  service_external_val_2018_9_24_SNAPSHOT -> spring_oxm_5_1_0_RELEASE;
+}

@@ -1,0 +1,4 @@
+digraph icu4j_62_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  icu4j_62_1 -> xml_apis_1_4_01;
+}

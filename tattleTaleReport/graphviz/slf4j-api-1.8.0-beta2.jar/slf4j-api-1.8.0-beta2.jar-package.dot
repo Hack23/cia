@@ -1,0 +1,9 @@
+digraph slf4j_api_1_8_0_beta2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_slf4j -> org_slf4j_event;
+  org_slf4j -> org_slf4j_helpers;
+  org_slf4j -> org_slf4j_spi;
+  org_slf4j_event -> org_slf4j_helpers;
+  org_slf4j_helpers -> org_slf4j_event;
+  org_slf4j_helpers -> org_slf4j_spi;
+}

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.1
+Created-By: 1.3.1_12-b03 (Sun Microsystems Inc.)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: EDU.oswego.cs.dl.util.concurrent
+Bundle-Description: concurrent-1.3.4
+Bundle-Name: concurrent-1.3.4
+Bundle-Version: 0.0.0
+Export-Package: EDU.oswego.cs.dl.util.concurrent,EDU.oswego.cs.dl.util
+ .concurrent.misc;uses:="EDU.oswego.cs.dl.util.concurrent"
+Import-Package: java.awt,java.awt.event,java.beans,java.io,java.lang,j
+ ava.lang.reflect,java.util,javax.swing,javax.swing.border

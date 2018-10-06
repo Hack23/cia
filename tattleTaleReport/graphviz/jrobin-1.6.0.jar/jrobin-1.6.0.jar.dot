@@ -1,0 +1,4 @@
+digraph jrobin_1_6_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  jrobin_1_6_0 -> xml_apis_1_4_01;
+}

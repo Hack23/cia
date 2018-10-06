@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchDocumentPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">SearchDocumentPageModContentFactoryImpl.java</span></div><h1>SearchDocumentPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl.SearchDocumentResponseHandlerImpl;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+
+/**
+ * The Class SearchDocumentPageModContentFactoryImpl.
+ */
+@Component
+public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+
+	private static final String SEARCH = &quot;Search&quot;;
+
+<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Collections.singletonList( &quot;searchExpression&quot; );</span>
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
+
+	/** The Constant MAX_RESULT_SIZE. */
+	private static final int MAX_RESULT_SIZE = 100;
+
+	@Autowired
+	private DocumentMenuItemFactory documentMenuItemFactory;
+
+	/**
+	 * Instantiates a new search document page mod content factory impl.
+	 */
+	public SearchDocumentPageModContentFactoryImpl() {
+<span class="fc" id="L68">		super();</span>
+<span class="fc" id="L69">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L73">		return NAME.equals(page);</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L83">		documentMenuItemFactory.createDocumentsMenuBar(menuBar);</span>
+
+
+<span class="fc" id="L86">		final VerticalLayout searchLayout = new VerticalLayout();</span>
+<span class="fc" id="L87">		searchLayout.setSizeFull();</span>
+<span class="fc" id="L88">		panelContent.addComponent(searchLayout);</span>
+
+<span class="fc" id="L90">		final VerticalLayout searchresultLayout = new VerticalLayout();</span>
+<span class="fc" id="L91">		searchresultLayout.setSizeFull();</span>
+
+<span class="fc" id="L93">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L94">		formPanel.setSizeFull();</span>
+
+<span class="fc" id="L96">		searchresultLayout.addComponent(formPanel);</span>
+
+<span class="fc" id="L98">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L99">		formPanel.setContent(formContent);</span>
+
+<span class="fc" id="L101">		panelContent.addComponent(searchresultLayout);</span>
+<span class="fc" id="L102">		panelContent.setExpandRatio(searchresultLayout, ContentRatio.LARGE);</span>
+
+<span class="fc" id="L104">		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();</span>
+<span class="fc" id="L105">		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L106">		searchRequest.setMaxResults(MAX_RESULT_SIZE);</span>
+<span class="fc" id="L107">		searchRequest.setSearchExpression(&quot;&quot;);</span>
+<span class="fc" id="L108">		getFormFactory().addRequestInputFormFields(formContent, searchRequest,</span>
+				SearchDocumentRequest.class, AS_LIST, SEARCH,
+<span class="fc" id="L110">				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,</span>
+						searchresultLayout)));
+
+<span class="fc" id="L113">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L116">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

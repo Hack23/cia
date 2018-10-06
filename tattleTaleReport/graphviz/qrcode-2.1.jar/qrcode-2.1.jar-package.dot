@@ -1,0 +1,16 @@
+digraph qrcode_2_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  fi_jasoft_qrcode -> com_vaadin_server;
+  fi_jasoft_qrcode -> com_vaadin_shared_communication;
+  fi_jasoft_qrcode -> com_vaadin_ui;
+  fi_jasoft_qrcode -> fi_jasoft_qrcode_client_ui;
+  fi_jasoft_qrcode -> fi_jasoft_qrcode_zxing;
+  fi_jasoft_qrcode_client_ui -> com_google_gwt_event_shared;
+  fi_jasoft_qrcode_client_ui -> com_google_gwt_user_client_ui;
+  fi_jasoft_qrcode_client_ui -> com_vaadin_client;
+  fi_jasoft_qrcode_client_ui -> com_vaadin_client_communication;
+  fi_jasoft_qrcode_client_ui -> com_vaadin_client_ui;
+  fi_jasoft_qrcode_client_ui -> com_vaadin_shared_communication;
+  fi_jasoft_qrcode_client_ui -> com_vaadin_shared_ui;
+  fi_jasoft_qrcode_client_ui -> fi_jasoft_qrcode;
+}

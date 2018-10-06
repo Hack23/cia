@@ -1,0 +1,36 @@
+digraph commons_net_3_6_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_net -> org_apache_commons_net_util;
+  org_apache_commons_net_bsd -> org_apache_commons_net;
+  org_apache_commons_net_bsd -> org_apache_commons_net_io;
+  org_apache_commons_net_chargen -> org_apache_commons_net;
+  org_apache_commons_net_daytime -> org_apache_commons_net;
+  org_apache_commons_net_discard -> org_apache_commons_net;
+  org_apache_commons_net_echo -> org_apache_commons_net_discard;
+  org_apache_commons_net_finger -> org_apache_commons_net;
+  org_apache_commons_net_finger -> org_apache_commons_net_util;
+  org_apache_commons_net_ftp -> org_apache_commons_net;
+  org_apache_commons_net_ftp -> org_apache_commons_net_ftp_parser;
+  org_apache_commons_net_ftp -> org_apache_commons_net_io;
+  org_apache_commons_net_ftp -> org_apache_commons_net_util;
+  org_apache_commons_net_ftp_parser -> org_apache_commons_net_ftp;
+  org_apache_commons_net_imap -> org_apache_commons_net;
+  org_apache_commons_net_imap -> org_apache_commons_net_io;
+  org_apache_commons_net_imap -> org_apache_commons_net_util;
+  org_apache_commons_net_io -> org_apache_commons_net_util;
+  org_apache_commons_net_nntp -> org_apache_commons_net;
+  org_apache_commons_net_nntp -> org_apache_commons_net_io;
+  org_apache_commons_net_ntp -> org_apache_commons_net;
+  org_apache_commons_net_pop3 -> org_apache_commons_net;
+  org_apache_commons_net_pop3 -> org_apache_commons_net_io;
+  org_apache_commons_net_pop3 -> org_apache_commons_net_util;
+  org_apache_commons_net_smtp -> org_apache_commons_net;
+  org_apache_commons_net_smtp -> org_apache_commons_net_io;
+  org_apache_commons_net_smtp -> org_apache_commons_net_util;
+  org_apache_commons_net_telnet -> org_apache_commons_net;
+  org_apache_commons_net_tftp -> org_apache_commons_net;
+  org_apache_commons_net_tftp -> org_apache_commons_net_io;
+  org_apache_commons_net_time -> org_apache_commons_net;
+  org_apache_commons_net_util -> org_apache_commons_net_io;
+  org_apache_commons_net_whois -> org_apache_commons_net_finger;
+}

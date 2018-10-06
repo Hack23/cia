@@ -1,0 +1,71 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Implementation-Title: org.apache.lucene
+Implementation-Version: 5.5.5 b3441673c21c83762035dc21d3827ad16aa17b68
+  - sarowe - 2017-10-20 08:57:42
+X-Compile-Target-JDK: 1.7
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Lucene Search Engine: backward-codecs
+Extension-Name: org.apache.lucene
+X-Compile-Source-JDK: 1.7
+Created-By: 1.7.0_151-b01 (Oracle Corporation)
+Specification-Version: 5.5.5
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.codecs.lucene40
+Bundle-Description: lucene-backward-codecs-5.5.5
+Bundle-Name: lucene-backward-codecs-5.5.5
+Bundle-Version: 5.5.5
+Export-Package: org.apache.lucene.codecs;uses:="org.apache.lucene.inde
+ x",org.apache.lucene.codecs.blocktree;uses:="org.apache.lucene.codecs
+ ,org.apache.lucene.index,org.apache.lucene.store,org.apache.lucene.ut
+ il,org.apache.lucene.util.automaton,org.apache.lucene.util.fst",org.a
+ pache.lucene.codecs.lucene40;uses:="org.apache.lucene.codecs,org.apac
+ he.lucene.codecs.blocktree,org.apache.lucene.codecs.perfield,org.apac
+ he.lucene.index,org.apache.lucene.store,org.apache.lucene.util,org.ap
+ ache.lucene.util.packed",org.apache.lucene.codecs.lucene41;uses:="org
+ .apache.lucene.codecs,org.apache.lucene.codecs.blocktree,org.apache.l
+ ucene.codecs.compressing,org.apache.lucene.codecs.lucene40,org.apache
+ .lucene.codecs.perfield,org.apache.lucene.index,org.apache.lucene.sto
+ re,org.apache.lucene.util,org.apache.lucene.util.packed",org.apache.l
+ ucene.codecs.lucene410;uses:="org.apache.lucene.codecs,org.apache.luc
+ ene.codecs.lucene40,org.apache.lucene.codecs.lucene41,org.apache.luce
+ ne.codecs.lucene42,org.apache.lucene.codecs.lucene46,org.apache.lucen
+ e.codecs.lucene49,org.apache.lucene.codecs.perfield,org.apache.lucene
+ .index,org.apache.lucene.store,org.apache.lucene.util,org.apache.luce
+ ne.util.packed",org.apache.lucene.codecs.lucene42;uses:="org.apache.l
+ ucene.codecs,org.apache.lucene.codecs.compressing,org.apache.lucene.c
+ odecs.lucene40,org.apache.lucene.codecs.lucene41,org.apache.lucene.co
+ decs.perfield,org.apache.lucene.index,org.apache.lucene.store,org.apa
+ che.lucene.util,org.apache.lucene.util.fst,org.apache.lucene.util.pac
+ ked",org.apache.lucene.codecs.lucene45;uses:="org.apache.lucene.codec
+ s,org.apache.lucene.codecs.lucene40,org.apache.lucene.codecs.lucene41
+ ,org.apache.lucene.codecs.lucene42,org.apache.lucene.codecs.perfield,
+ org.apache.lucene.index,org.apache.lucene.store,org.apache.lucene.uti
+ l,org.apache.lucene.util.packed",org.apache.lucene.codecs.lucene46;us
+ es:="org.apache.lucene.codecs,org.apache.lucene.codecs.lucene40,org.a
+ pache.lucene.codecs.lucene41,org.apache.lucene.codecs.lucene42,org.ap
+ ache.lucene.codecs.perfield,org.apache.lucene.index,org.apache.lucene
+ .store,org.apache.lucene.util",org.apache.lucene.codecs.lucene49;uses
+ :="org.apache.lucene.codecs,org.apache.lucene.codecs.lucene40,org.apa
+ che.lucene.codecs.lucene41,org.apache.lucene.codecs.lucene42,org.apac
+ he.lucene.codecs.lucene46,org.apache.lucene.codecs.perfield,org.apach
+ e.lucene.index,org.apache.lucene.store,org.apache.lucene.util,org.apa
+ che.lucene.util.packed",org.apache.lucene.codecs.lucene50;uses:="java
+ .util,org.apache.lucene.codecs,org.apache.lucene.codecs.perfield,org.
+ apache.lucene.index,org.apache.lucene.store,org.apache.lucene.util,or
+ g.apache.lucene.util.packed",org.apache.lucene.codecs.lucene53;uses:=
+ "java.util,org.apache.lucene.codecs,org.apache.lucene.codecs.lucene50
+ ,org.apache.lucene.codecs.perfield"
+Import-Package: java.io,java.lang,java.text,java.util,java.util.concur
+ rent.atomic,org.apache.lucene.codecs;version="5.5.5",org.apache.lucen
+ e.codecs.compressing;version="5.5.5",org.apache.lucene.codecs.lucene5
+ 0;version="5.5.5",org.apache.lucene.codecs.lucene53;version="5.5.5",o
+ rg.apache.lucene.codecs.perfield;version="5.5.5",org.apache.lucene.in
+ dex;version="5.5.5",org.apache.lucene.store;version="5.5.5",org.apach
+ e.lucene.util;version="5.5.5",org.apache.lucene.util.automaton;versio
+ n="5.5.5",org.apache.lucene.util.fst;version="5.5.5",org.apache.lucen
+ e.util.packed;version="5.5.5"

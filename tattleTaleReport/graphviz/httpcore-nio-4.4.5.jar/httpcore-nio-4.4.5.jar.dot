@@ -1,0 +1,4 @@
+digraph httpcore_nio_4_4_5_dependencies {
+  node [shape = box, fontsize=10.0];
+  httpcore_nio_4_4_5 -> httpcore_4_4_10;
+}

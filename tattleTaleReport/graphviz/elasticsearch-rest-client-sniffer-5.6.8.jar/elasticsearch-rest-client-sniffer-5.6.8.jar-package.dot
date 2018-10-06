@@ -1,0 +1,6 @@
+digraph elasticsearch_rest_client_sniffer_5_6_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_elasticsearch_client_sniff -> com_fasterxml_jackson_core;
+  org_elasticsearch_client_sniff -> java_util;
+  org_elasticsearch_client_sniff -> org_elasticsearch_client;
+}

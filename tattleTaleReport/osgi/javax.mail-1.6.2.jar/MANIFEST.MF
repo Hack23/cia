@@ -1,0 +1,53 @@
+Manifest-Version: 1.0
+Bundle-License: https://javaee.github.io/javamail/LICENSE
+Bundle-SymbolicName: com.sun.mail.javax.mail
+Archiver-Version: Plexus Archiver
+Built-By: shannon
+Bnd-LastModified: 1535581841535
+Implementation-Vendor-Id: com.sun
+Specification-Title: JavaMail(TM) API Design Specification
+Bundle-DocURL: http://www.oracle.com
+Import-Package: javax.security.sasl;resolution:=optional,com.sun.mail.
+ iap;version="[1.6,2)",com.sun.mail.imap;version="[1.6,2)",com.sun.mai
+ l.util;version="[1.6,2)",javax.activation,javax.crypto,javax.crypto.s
+ pec,javax.mail;version="[1.6,2)",javax.mail.event;version="[1.6,2)",j
+ avax.mail.internet;version="[1.6,2)",javax.mail.search;version="[1.6,
+ 2)",javax.mail.util;version="[1.6,2)",javax.net,javax.net.ssl,javax.s
+ ecurity.auth.callback,javax.security.auth.x500,javax.xml.transform,ja
+ vax.xml.transform.stream,sun.security.util;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+DynamicImport-Package: *
+Export-Package: javax.mail;version="1.6";uses:="javax.activation,javax
+ .mail.event,javax.mail.search",javax.mail.event;version="1.6";uses:="
+ javax.mail",javax.mail.internet;version="1.6";uses:="javax.activation
+ ,javax.mail",javax.mail.search;version="1.6";uses:="javax.mail",javax
+ .mail.util;version="1.6";uses:="javax.activation,javax.mail.internet"
+ ,com.sun.mail.imap;version="1.6.2";uses:="com.sun.mail.iap,com.sun.ma
+ il.imap.protocol,com.sun.mail.util,javax.activation,javax.mail,javax.
+ mail.event,javax.mail.internet,javax.mail.search",com.sun.mail.imap.p
+ rotocol;version="1.6.2";uses:="com.sun.mail.iap,com.sun.mail.imap,com
+ .sun.mail.util,javax.mail,javax.mail.internet,javax.mail.search",com.
+ sun.mail.iap;version="1.6.2";uses:="com.sun.mail.util",com.sun.mail.p
+ op3;version="1.6.2";uses:="com.sun.mail.util,javax.mail,javax.mail.in
+ ternet",com.sun.mail.smtp;version="1.6.2";uses:="com.sun.mail.util,ja
+ vax.mail,javax.mail.internet",com.sun.mail.util;version="1.6.2";uses:
+ ="javax.mail,javax.mail.internet,javax.net.ssl",com.sun.mail.util.log
+ ging;version="1.6.2";uses:="javax.mail",com.sun.mail.handlers;version
+ ="1.6.2";uses:="javax.activation"
+Bundle-Name: JavaMail API
+Extension-Name: javax.mail
+Implementation-Title: javax.mail
+Bundle-Description: JavaMail API
+Automatic-Module-Name: java.mail
+Implementation-Version: 1.6.2
+Specification-Vendor: Oracle
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Oracle
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: Oracle
+Probe-Provider-XML-File-Names: META-INF/gfprobe-provider.xml
+Bundle-Version: 1.6.2
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_181
+Specification-Version: 1.6
+

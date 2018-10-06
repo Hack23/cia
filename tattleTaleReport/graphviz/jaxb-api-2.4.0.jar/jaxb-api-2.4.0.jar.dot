@@ -1,0 +1,5 @@
+digraph jaxb_api_2_4_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  jaxb_api_2_4_0 -> activation_1_1;
+  jaxb_api_2_4_0 -> xml_apis_1_4_01;
+}

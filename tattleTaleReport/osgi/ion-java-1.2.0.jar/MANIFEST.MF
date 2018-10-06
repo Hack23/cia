@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-Description: A Java implementation of the Amazon Ion data notat
+ ion.
+Automatic-Module-Name: software.amazon.ion
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: software.amazon.ion.java
+Ion-Java-Project-Version: 1.2.0
+Built-By: barbosf
+Bnd-LastModified: 1529689711747
+Bundle-ManifestVersion: 2
+Import-Package: software.amazon.ion.facet
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-3.2.0.201605172007
+Main-Class: software.amazon.ion.impl.PrivateCommandLine
+DSTAMP: 20180622
+Export-Package: software.amazon.ion;uses:="software.amazon.ion.facet,s
+ oftware.amazon.ion.system";version="1.2.0",software.amazon.ion.facet;
+ version="1.2.0",software.amazon.ion.system;uses:="software.amazon.ion
+ ";version="1.2.0",software.amazon.ion.util;uses:="software.amazon.ion
+ ";version="1.2.0"
+TSTAMP: 1748
+Bundle-Name: software.amazon.ion:ion-java
+Bundle-Version: 1.2.0
+Ion-Java-Build-Time: 2018-06-22T17:48:05Z
+TODAY: June 22 2018
+Build-Jdk: 1.8.0_172
+Created-By: Apache Maven Bundle Plugin
+

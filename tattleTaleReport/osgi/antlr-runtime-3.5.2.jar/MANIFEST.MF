@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Implementation-Title: ANTLR 3 Runtime
+Implementation-Version: 3.5.2
+Archiver-Version: Plexus Archiver
+Built-By: Sam Harwell
+Implementation-Vendor-Id: org.antlr
+Build-Jdk: 1.7.0_51
+Created-By: Apache Maven 3.0.5
+Implementation-Vendor: ANTLR
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.antlr.runtime.tree
+Bundle-Description: antlr-runtime-3.5.2
+Bundle-Name: antlr-runtime-3.5.2
+Bundle-Version: 3.5.2
+Export-Package: org.antlr.runtime;uses:="org.antlr.runtime.misc,org.an
+ tlr.runtime.tree",org.antlr.runtime.debug;uses:="org.antlr.runtime,or
+ g.antlr.runtime.misc,org.antlr.runtime.tree",org.antlr.runtime.misc,o
+ rg.antlr.runtime.tree;uses:="org.antlr.runtime,org.antlr.runtime.misc
+ ,org.antlr.stringtemplate"
+Import-Package: java.io,java.lang,java.net,java.util,java.util.regex,o
+ rg.antlr.stringtemplate

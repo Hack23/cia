@@ -1,0 +1,8 @@
+digraph yauaa_5_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  yauaa_5_2 -> commons_collections4_4_2;
+  yauaa_5_2 -> commons_lang3_3_8_1;
+  yauaa_5_2 -> jcl_over_slf4j_1_8_0_beta2;
+  yauaa_5_2 -> jsr305_3_0_2;
+  yauaa_5_2 -> slf4j_api_1_8_0_beta2;
+}

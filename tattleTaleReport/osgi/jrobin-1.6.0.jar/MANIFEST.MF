@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Bundle-Description: JRobin is a 100% pure Java alternative to RRDTool,
+  with about exactly the    same specifications. If you provide the sa
+ me data to RRDTool and JRobin,    you will get exactly the same resul
+ ts and graphs. All standard RRDTool    operations are supported.
+Implementation-Title: org.jrobin
+Bundle-SymbolicName: org.jrobin.jrobin
+Implementation-Version: 1.6.0
+Built-By: ${maven.username}
+Bnd-LastModified: 1414531459871
+Bundle-ManifestVersion: 2
+Specification-Vendor: Sasa Markovic
+Specification-Title: JRobin
+Import-Package: javax.imageio,javax.swing,javax.swing.event,javax.swin
+ g.filechooser,javax.swing.table,javax.swing.tree,javax.xml.parsers,or
+ g.w3c.dom,org.xml.sax
+Tool: Bnd-1.50.0
+Implementation-Vendor: http://www.jrobin.org/
+Main-Class: org.jrobin.cmd.RrdCommander
+Export-Package: org.jrobin.cmd;uses:="org.jrobin.core,org.jrobin.graph
+ ,org.jrobin.data";version="1.6.0",org.jrobin.convertor;uses:="org.jro
+ bin.core";version="1.6.0",org.jrobin.core;uses:="org.jrobin.data,org.
+ w3c.dom,org.xml.sax,org.jrobin.core.jrrd,javax.xml.parsers,org.jrobin
+ .core.timespec";version="1.6.0",org.jrobin.core.jrrd;uses:="org.jrobi
+ n.core";version="1.6.0",org.jrobin.core.timespec;uses:="javax.swing,o
+ rg.jrobin.core";version="1.6.0",org.jrobin.data;uses:="org.jrobin.cor
+ e";version="1.6.0",org.jrobin.graph;uses:="org.jrobin.data,org.jrobin
+ .core,javax.imageio,javax.swing,org.w3c.dom,org.xml.sax";version="1.6
+ .0",org.jrobin.inspector;uses:="org.jrobin.core,javax.swing.table,jav
+ ax.swing,javax.swing.filechooser,org.jrobin.graph,org.jrobin.data,jav
+ ax.swing.tree,javax.swing.event";version="1.6.0"
+Bundle-Name: JRobin
+Bundle-Version: 1.6.0
+Ignore-Package: sun.nio.ch,sun.misc
+Build-Jdk: 1.6.0_45
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 1.6.0
+

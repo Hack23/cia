@@ -1,0 +1,18 @@
+digraph jrobin_1_6_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jrobin_cmd -> org_jrobin_core;
+  org_jrobin_cmd -> org_jrobin_data;
+  org_jrobin_cmd -> org_jrobin_graph;
+  org_jrobin_convertor -> org_jrobin_core;
+  org_jrobin_core -> org_jrobin_core_jrrd;
+  org_jrobin_core -> org_jrobin_core_timespec;
+  org_jrobin_core -> org_jrobin_data;
+  org_jrobin_core_jrrd -> org_jrobin_core;
+  org_jrobin_core_timespec -> org_jrobin_core;
+  org_jrobin_data -> org_jrobin_core;
+  org_jrobin_graph -> org_jrobin_core;
+  org_jrobin_graph -> org_jrobin_data;
+  org_jrobin_inspector -> org_jrobin_core;
+  org_jrobin_inspector -> org_jrobin_data;
+  org_jrobin_inspector -> org_jrobin_graph;
+}

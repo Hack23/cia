@@ -1,0 +1,15 @@
+digraph service_external_worldbank_2018_9_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_external_worldbank_2018_9_24_SNAPSHOT -> commons_codec_1_11;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> commons_csv_1_6;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> fluent_hc_4_5_5;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> model_external_worldbank_data_impl_2018_9_24_SNAPSHOT;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> model_external_worldbank_indicators_impl_2018_9_24_SNAPSHOT;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> model_external_worldbank_topic_impl_2018_9_24_SNAPSHOT;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> model_internal_application_user_impl_2018_9_24_SNAPSHOT;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> service_external_common_2018_9_24_SNAPSHOT;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> spring_beans_5_1_0_RELEASE;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> spring_context_5_1_0_RELEASE;
+  service_external_worldbank_2018_9_24_SNAPSHOT -> spring_oxm_5_1_0_RELEASE;
+}

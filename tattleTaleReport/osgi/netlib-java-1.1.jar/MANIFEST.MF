@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: samuel
+Build-Jdk: 1.7.0_40
+Created-By: Apache Maven
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.netlib.arpack
+Bundle-Description: netlib-java-1.1
+Bundle-Name: netlib-java-1.1
+Bundle-Version: 0.0.0
+Export-Package: org.netlib.arpack;uses:="com.github.fommil.netlib,org.
+ netlib.util",org.netlib.blas;uses:="com.github.fommil.netlib,org.netl
+ ib.util",org.netlib.lapack;uses:="com.github.fommil.netlib,org.netlib
+ .util"
+Import-Package: com.github.fommil.netlib;version="0.0.0",java.lang,jav
+ a.util.logging,org.netlib.util;version="0.0.0"

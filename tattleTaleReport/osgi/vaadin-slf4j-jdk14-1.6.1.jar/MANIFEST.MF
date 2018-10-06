@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-Description: Slf4j API + JDK14 binding rebased to com.vaadin.ex
+ ternal
+Implementation-Title: vaadin-slf4j-jdk14
+Bundle-SymbolicName: com.vaadin.external.org.slf4j
+Implementation-Version: 1.6.1
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Vaadin Ltd
+Ant-Version: Apache Ant 1.8.2
+Export-Package: com.vaadin.external.org.slf4j;version=1.6.1, com.vaadi
+ n.external.org.slf4j.spi;version=1.6.1, com.vaadin.external.org.slf4j
+ .helpers;version=1.6.1
+Bundle-Version: 1.6.1
+Bundle-Name: vaadin-slf4j-jdk14
+Created-By: 1.6.0_32-b05 (Sun Microsystems Inc.)
+

@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Implementation-Title: JBoss Transaction SPI
+Implementation-Version: 7.6.0.Final-redhat-1
+Archiver-Version: Plexus Archiver
+Java-Version: 1.8.0_131
+Built-By: mockbuild
+Scm-Connection: scm:git:${jboss.as.scm.connection}
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: JBoss Transaction SPI
+Implementation-Vendor-Id: org.jboss
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/jboss-transaction-spi
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 2.6.32-642.15.1.el6.x86_64
+Scm-Revision: 4bec29b69d6f5d8a79358b5237bfa3b123ac6f2f
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_131
+Specification-Version: 7.6.0.Final-redhat-1
+Implementation-URL: http://www.jboss.org
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jboss.tm
+Bundle-Description: jboss-transaction-spi-7.6.0.Final-redhat-1
+Bundle-Name: jboss-transaction-spi-7.6.0.Final-redhat-1
+Bundle-Version: 7.6.0.Final-redhat-1
+Export-Package: org.jboss.tm,org.jboss.tm.listener,org.jboss.tm.usertx
+ ,org.jboss.tm.usertx.client;uses:="org.jboss.tm.usertx"
+Import-Package: java.io,java.lang,java.lang.reflect,java.util,java.uti
+ l.concurrent,java.util.concurrent.atomic,java.util.concurrent.locks,j
+ avax.naming,javax.naming.spi,javax.resource.spi,javax.resource.spi.wo
+ rk,javax.transaction;version="1.1.1",javax.transaction.xa;version="1.
+ 1.1",org.jboss.logging;version="3.3.2.Final"

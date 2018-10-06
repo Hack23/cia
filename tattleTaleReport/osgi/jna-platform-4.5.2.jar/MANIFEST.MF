@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Implementation-Title: com.sun.jna.platform
+Bundle-Description: JNA Platform Library
+Bundle-SymbolicName: com.sun.jna.platform
+Implementation-Version: 4.5.2 (b0)
+Bundle-Category: jni
+Require-Bundle: com.sun.jna;bundle-version="4.5.2"
+Specification-Vendor: JNA Development Team
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Specification-Title: Java Native Access (JNA)
+Bundle-Vendor: JNA Development Team
+Implementation-Vendor: JNA Development Team
+Ant-Version: Apache Ant 1.10.3
+Export-Package:  com.sun.jna.platform, com.sun.jna.platform.dnd, com.s
+ un.jna.platform.mac, com.sun.jna.platform.unix, com.sun.jna.platform.
+ win32, com.sun.jna.platform.win32.COM, com.sun.jna.platform.win32.COM
+ .tlb, com.sun.jna.platform.win32.COM.tlb.imp, com.sun.jna.platform.wi
+ nce 
+Bundle-Name: jna-platform
+Bundle-Version: 4.5.2
+Created-By: 1.8.0_151-b12 (Oracle Corporation)
+Specification-Version: 4
+

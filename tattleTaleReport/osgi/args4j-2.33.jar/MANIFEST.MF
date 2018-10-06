@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-Description: args4j : Java command line arguments parser
+Bundle-License: http://www.opensource.org/licenses/mit-license.php
+Bundle-SymbolicName: org.kohsuke.args4j
+Built-By: kohsuke
+Bnd-LastModified: 1454228360676
+Bundle-ManifestVersion: 2
+Bundle-DocURL: http://www.kohsuke.org/
+Bundle-Vendor: Kohsuke Kawaguchi
+Import-Package: org.kohsuke.args4j,org.kohsuke.args4j.spi,org.xml.sax,
+ org.xml.sax.helpers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-3.0.0.201509101326
+Export-Package: org.kohsuke.args4j.spi;uses:="org.kohsuke.args4j";vers
+ ion="2.33.0",org.kohsuke.args4j;uses:="org.kohsuke.args4j.spi,org.xml
+ .sax,org.xml.sax.helpers";version="2.33.0"
+Bundle-Name: args4j
+Bundle-Version: 2.33.0
+Build-Jdk: 1.7.0_15
+Created-By: Apache Maven Bundle Plugin
+

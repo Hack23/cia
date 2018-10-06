@@ -1,0 +1,9 @@
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: jsinterop.annotations
+Bundle-Description: jsinterop-annotations-1.0.2
+Bundle-Name: jsinterop-annotations-1.0.2
+Bundle-Version: 0.0.0
+Export-Package: jsinterop.annotations
+Import-Package: java.lang,java.lang.annotation

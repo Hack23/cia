@@ -1,0 +1,27 @@
+digraph ion_java_1_2_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  software_amazon_ion -> software_amazon_ion_facet;
+  software_amazon_ion -> software_amazon_ion_impl;
+  software_amazon_ion -> software_amazon_ion_system;
+  software_amazon_ion -> software_amazon_ion_util;
+  software_amazon_ion_apps -> software_amazon_ion;
+  software_amazon_ion_apps -> software_amazon_ion_system;
+  software_amazon_ion_impl -> software_amazon_ion;
+  software_amazon_ion_impl -> software_amazon_ion_facet;
+  software_amazon_ion_impl -> software_amazon_ion_impl_bin;
+  software_amazon_ion_impl -> software_amazon_ion_system;
+  software_amazon_ion_impl -> software_amazon_ion_util;
+  software_amazon_ion_impl_bin -> software_amazon_ion;
+  software_amazon_ion_impl_bin -> software_amazon_ion_impl;
+  software_amazon_ion_impl_bin -> software_amazon_ion_system;
+  software_amazon_ion_impl_lite -> software_amazon_ion;
+  software_amazon_ion_impl_lite -> software_amazon_ion_impl;
+  software_amazon_ion_impl_lite -> software_amazon_ion_system;
+  software_amazon_ion_impl_lite -> software_amazon_ion_util;
+  software_amazon_ion_system -> software_amazon_ion;
+  software_amazon_ion_system -> software_amazon_ion_impl;
+  software_amazon_ion_system -> software_amazon_ion_impl_lite;
+  software_amazon_ion_util -> software_amazon_ion;
+  software_amazon_ion_util -> software_amazon_ion_facet;
+  software_amazon_ion_util -> software_amazon_ion_impl;
+}

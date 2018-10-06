@@ -1,0 +1,5 @@
+digraph jaxb_core_2_3_0_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_sun_xml_bind_marshaller -> com_sun_xml_bind_v2_util;
+  com_sun_xml_bind_v2_model_core -> com_sun_xml_bind_v2_model_impl;
+}

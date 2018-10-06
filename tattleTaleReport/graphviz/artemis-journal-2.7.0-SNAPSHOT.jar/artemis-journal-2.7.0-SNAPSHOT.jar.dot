@@ -1,0 +1,8 @@
+digraph artemis_journal_2_7_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_journal_2_7_0_SNAPSHOT -> artemis_commons_2_7_0_SNAPSHOT;
+  artemis_journal_2_7_0_SNAPSHOT -> artemis_native_2_7_0_SNAPSHOT;
+  artemis_journal_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+  artemis_journal_2_7_0_SNAPSHOT -> netty_buffer_4_1_30_Final;
+  artemis_journal_2_7_0_SNAPSHOT -> netty_common_4_1_30_Final;
+}

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: snicoll
+Build-Jdk: 1.7.0_51
+Created-By: Apache Maven 3.2.3
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.codehaus.mojo.animal_sniffer
+Bundle-Description: animal-sniffer-annotations-1.14
+Bundle-Name: animal-sniffer-annotations-1.14
+Bundle-Version: 0.0.0
+Export-Package: org.codehaus.mojo.animal_sniffer
+Import-Package: java.lang,java.lang.annotation

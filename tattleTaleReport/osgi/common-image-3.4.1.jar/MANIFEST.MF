@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-common-image
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/common/co
+ mmon-image
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.image
+Bundle-Description: common-image-3.4.1
+Bundle-Name: common-image-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.image;uses:="com.twelvemonkeys.io,co
+ m.twelvemonkeys.lang,magick"
+Import-Package: com.twelvemonkeys.io;version="3.4.1",com.twelvemonkeys
+ .lang;version="3.4.1",java.awt,java.awt.color,java.awt.geom,java.awt.
+ image,java.io,java.lang,java.lang.reflect,java.math,java.util,java.ut
+ il.concurrent,javax.imageio,javax.swing,magick

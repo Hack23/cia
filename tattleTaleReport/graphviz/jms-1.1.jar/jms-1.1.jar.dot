@@ -1,0 +1,4 @@
+digraph jms_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  jms_1_1 -> geronimo_jta_1_1_spec_1_1_1;
+}

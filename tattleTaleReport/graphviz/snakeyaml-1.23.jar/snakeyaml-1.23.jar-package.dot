@@ -1,0 +1,13 @@
+digraph snakeyaml_1_23_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_yaml_snakeyaml -> org_yaml_snakeyaml_emitter;
+  org_yaml_snakeyaml -> org_yaml_snakeyaml_introspector;
+  org_yaml_snakeyaml -> org_yaml_snakeyaml_serializer;
+  org_yaml_snakeyaml_constructor -> org_yaml_snakeyaml_external_biz_base64Coder;
+  org_yaml_snakeyaml_introspector -> org_yaml_snakeyaml_util;
+  org_yaml_snakeyaml_representer -> org_yaml_snakeyaml_external_biz_base64Coder;
+  org_yaml_snakeyaml_representer -> org_yaml_snakeyaml_nodes;
+  org_yaml_snakeyaml_serializer -> org_yaml_snakeyaml_emitter;
+  org_yaml_snakeyaml_serializer -> org_yaml_snakeyaml_nodes;
+  org_yaml_snakeyaml_util -> org_yaml_snakeyaml_external_com_google_gdata_util_common_base;
+}

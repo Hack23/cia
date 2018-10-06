@@ -1,0 +1,30 @@
+digraph antlr4_runtime_4_7_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_antlr_v4_runtime -> java_nio_channels;
+  org_antlr_v4_runtime -> java_nio_charset;
+  org_antlr_v4_runtime -> java_nio_file;
+  org_antlr_v4_runtime -> org_antlr_v4_runtime_atn;
+  org_antlr_v4_runtime -> org_antlr_v4_runtime_dfa;
+  org_antlr_v4_runtime -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime -> org_antlr_v4_runtime_tree;
+  org_antlr_v4_runtime -> org_antlr_v4_runtime_tree_pattern;
+  org_antlr_v4_runtime_atn -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_atn -> org_antlr_v4_runtime_dfa;
+  org_antlr_v4_runtime_atn -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime_dfa -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_dfa -> org_antlr_v4_runtime_atn;
+  org_antlr_v4_runtime_dfa -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime_misc -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_misc -> org_antlr_v4_runtime_atn;
+  org_antlr_v4_runtime_tree -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_tree -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime_tree_pattern -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_tree_pattern -> org_antlr_v4_runtime_atn;
+  org_antlr_v4_runtime_tree_pattern -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime_tree_pattern -> org_antlr_v4_runtime_tree;
+  org_antlr_v4_runtime_tree_pattern -> org_antlr_v4_runtime_tree_xpath;
+  org_antlr_v4_runtime_tree_xpath -> org_antlr_v4_runtime;
+  org_antlr_v4_runtime_tree_xpath -> org_antlr_v4_runtime_atn;
+  org_antlr_v4_runtime_tree_xpath -> org_antlr_v4_runtime_misc;
+  org_antlr_v4_runtime_tree_xpath -> org_antlr_v4_runtime_tree;
+}

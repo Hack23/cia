@@ -1,0 +1,4 @@
+digraph lucene_queries_5_5_5_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_queries_5_5_5 -> lucene_core_5_5_5;
+}

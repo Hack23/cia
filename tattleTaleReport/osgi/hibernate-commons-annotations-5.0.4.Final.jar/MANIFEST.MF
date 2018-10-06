@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.hibernate.commons.annotations
+Bundle-SymbolicName: org.hibernate.common.hibernate-commons-annotation
+ s
+Implementation-Version: 5.0.4.Final
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1529013891000
+Implementation-Vendor-Id: org.hibernate
+Bundle-Vendor: Hibernate.org
+Import-Package: org.hibernate.annotations.common;version="[5.0,6)",org
+ .hibernate.annotations.common.reflection;version="[5.0,6)",org.hibern
+ ate.annotations.common.reflection.java.generics;version="[5.0,6)",org
+ .hibernate.annotations.common.util;version="[5.0,6)",org.hibernate.an
+ notations.common.util.impl;version="[5.0,6)",org.jboss.logging;versio
+ n="[3.3,4)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-3.4.0.201707252008
+Main-Class: org.hibernate.annotations.common.Version
+Implementation-Vendor: Hibernate.org
+Export-Package: org.hibernate.annotations.common.util.impl;version="5.
+ 0.4";uses:="org.jboss.logging",org.hibernate.annotations.common;versi
+ on="5.0.4",org.hibernate.annotations.common.annotationfactory;version
+ ="5.0.4",org.hibernate.annotations.common.reflection;version="5.0.4",
+ org.hibernate.annotations.common.reflection.java;version="5.0.4";uses
+ :="org.hibernate.annotations.common.reflection,org.hibernate.annotati
+ ons.common.reflection.java.generics",org.hibernate.annotations.common
+ .util;version="5.0.4";uses:="org.hibernate.annotations.common.reflect
+ ion",org.hibernate.annotations.common.reflection.java.generics;versio
+ n="5.0.4"
+Bundle-Name: hibernate-commons-annotations
+Bundle-Version: 5.0.4.Final
+Created-By: 1.8.0_171 (Oracle Corporation)
+Implementation-Url: http://hibernate.org
+

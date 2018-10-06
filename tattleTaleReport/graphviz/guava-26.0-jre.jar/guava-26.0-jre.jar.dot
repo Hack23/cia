@@ -1,0 +1,8 @@
+digraph guava_26_0_jre_dependencies {
+  node [shape = box, fontsize=10.0];
+  guava_26_0_jre -> animal_sniffer_annotations_1_14;
+  guava_26_0_jre -> checker_qual_2_5_2;
+  guava_26_0_jre -> error_prone_annotations_2_1_3;
+  guava_26_0_jre -> j2objc_annotations_1_1;
+  guava_26_0_jre -> jsr305_3_0_2;
+}

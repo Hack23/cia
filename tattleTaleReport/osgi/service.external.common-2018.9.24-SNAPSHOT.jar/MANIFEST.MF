@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.external.common
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.external.common.api
+Bundle-Description: service.external.common-2018.9.24-SNAPSHOT
+Bundle-Name: service.external.common-2018.9.24-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.external.common.api;uses:="java
+ .lang",com.hack23.cia.service.external.common.impl;uses:="com.hack23.
+ cia.service.external.common.api,java.nio.charset,org.apache.http.clie
+ nt.fluent,org.jdom2,org.jdom2.input,org.jdom2.input.sax,org.jdom2.tra
+ nsform"
+Import-Package: java.io,java.lang,java.net,java.nio.charset,java.util,
+ javax.xml.transform;version="1.0",javax.xml.transform.stream;version=
+ "1.0",org.apache.http.client.fluent;version="4.5.5",org.jdom2;version
+ ="2.0.0",org.jdom2.input;version="2.0.0",org.jdom2.input.sax;version=
+ "2.0.0",org.jdom2.transform;version="2.0.0",org.slf4j;version="0.0.0"
+ ,org.springframework.oxm;version="5.1.0.RELEASE",org.springframework.
+ stereotype;version="5.1.0.RELEASE"

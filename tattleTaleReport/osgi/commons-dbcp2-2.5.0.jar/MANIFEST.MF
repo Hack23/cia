@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.commons-dbcp2
+Built-By: ggregory
+Bnd-LastModified: 1531441957316
+Implementation-Vendor-Id: org.apache
+Specification-Title: Apache Commons DBCP
+Bundle-DocURL: http://commons.apache.org/dbcp/
+Include-Resource: org/apache/commons/dbcp2/LocalStrings.properties=src
+ /main/resources/org/apache/commons/dbcp2/LocalStrings.properties,META
+ -INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt=NOTICE.txt
+Import-Package: javax.transaction;version="1.1.0",javax.transaction.xa
+ ;version="1.1.0";partial=true;mandatory:=partial,javax.management,jav
+ ax.naming,javax.naming.spi,javax.sql,org.apache.commons.logging,org.a
+ pache.commons.pool2,org.apache.commons.pool2.impl
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Export-Package: org.apache.commons.dbcp2;version="2.5.0",org.apache.co
+ mmons.dbcp2.cpdsadapter;version="2.5.0",org.apache.commons.dbcp2.data
+ sources;version="2.5.0",org.apache.commons.dbcp2.managed;version="2.5
+ .0"
+Bundle-Name: Apache Commons DBCP
+Implementation-Title: Apache Commons DBCP
+Bundle-Description: Apache Commons DBCP software implements Database C
+ onnection Pooling
+Implementation-Version: 2.5.0
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 2.5.0
+X-Compile-Target-JDK: 1.8
+Implementation-Build: release@r00fd9d9b69caffef91aabc4091a9fe2fda787c7
+ e; 2018-07-13 00:28:10+0000
+X-Compile-Source-JDK: 1.8
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_172
+Implementation-URL: http://commons.apache.org/dbcp/
+Specification-Version: 2.5.0
+

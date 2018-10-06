@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-Description: An OSGi-fied version of markdown4j
+Bundle-SymbolicName: markdown4j
+Built-By: jdcasey
+Bnd-LastModified: 1456163879936
+Bundle-ActivationPolicy: lazy
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-3.0.0.201509101326
+Export-Package: com.github.rjeschke.txtmark;version="2.2.1";uses:="org
+ .markdown4j",org.markdown4j;version="2.2.1";uses:="com.github.rjeschk
+ e.txtmark"
+Bundle-Name: markdown4j
+Bundle-Version: 2.2.1.201602221157
+Build-Jdk: 1.7.0_95
+Created-By: Apache Maven Bundle Plugin
+

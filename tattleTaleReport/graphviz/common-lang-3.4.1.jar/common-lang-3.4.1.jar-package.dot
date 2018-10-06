@@ -1,0 +1,11 @@
+digraph common_lang_3_4_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_twelvemonkeys_lang -> com_twelvemonkeys_util;
+  com_twelvemonkeys_lang -> com_twelvemonkeys_util_convert;
+  com_twelvemonkeys_util -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_util_convert -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_util_convert -> com_twelvemonkeys_util;
+  com_twelvemonkeys_util_regex -> com_twelvemonkeys_util;
+  com_twelvemonkeys_util_service -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_util_service -> com_twelvemonkeys_util;
+}

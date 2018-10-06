@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.beanutils
+Archiver-Version: Plexus Archiver
+Built-By: mockbuild
+Bnd-LastModified: 1486461315792
+Implementation-Vendor-Id: commons-beanutils
+Specification-Title: Apache Commons BeanUtils
+Bundle-DocURL: https://commons.apache.org/proper/commons-beanutils/
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=
+ LICENSE.txt
+Import-Package: org.apache.commons.collections,org.apache.commons.coll
+ ections.comparators,org.apache.commons.collections.keyvalue,org.apach
+ e.commons.logging
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Scm-Url: http://svn.apache.org/viewvc/commons/proper/beanutils/tags/BE
+ ANUTILS_1_9_3_RC3
+Export-Package: org.apache.commons.beanutils;version="1.9.3.redhat-1",
+ org.apache.commons.beanutils.converters;version="1.9.3.redhat-1",org.
+ apache.commons.beanutils.expression;version="1.9.3.redhat-1",org.apac
+ he.commons.beanutils.locale;version="1.9.3.redhat-1",org.apache.commo
+ ns.beanutils.locale.converters;version="1.9.3.redhat-1"
+Bundle-Name: Apache Commons BeanUtils
+Implementation-Title: Apache Commons BeanUtils
+Bundle-Description: Apache Commons BeanUtils provides an easy-to-use b
+ ut flexible wrapper around reflection and introspection.
+Implementation-Version: 1.9.3.redhat-1
+Java-Version: 1.8.0_121
+Scm-Connection: scm:svn:http://svn.apache.org/repos/asf/commons/proper
+ /beanutils/tags/BEANUTILS_1_9_3_RC3
+Os-Arch: amd64
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Java-Vendor: Oracle Corporation
+Bundle-Vendor: The Apache Software Foundation
+Os-Name: Linux
+Tool: Bnd-3.0.0.201509101326
+Implementation-Vendor: The Apache Software Foundation
+Os-Version: 2.6.32-642.13.1.el6.x86_64
+Scm-Revision: UNKNOWN
+Bundle-Version: 1.9.3.redhat-1
+X-Compile-Target-JDK: 1.6
+Implementation-Build: UNKNOWN_BRANCH@rUNKNOWN; 2017-02-07 09:54:54+000
+ 0
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_121
+Implementation-URL: https://commons.apache.org/proper/commons-beanutil
+ s/
+Specification-Version: 1.9.3.redhat-1
+

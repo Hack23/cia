@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.polyjdbc.core.schema.model
+Bundle-Description: polyjdbc-0.7.3
+Bundle-Name: polyjdbc-0.7.3
+Bundle-Version: 0.0.0
+Export-Package: org.polyjdbc.core;uses:="org.polyjdbc.core.dialect,org
+ .polyjdbc.core.key,org.polyjdbc.core.query,org.polyjdbc.core.schema,o
+ rg.polyjdbc.core.transaction,org.polyjdbc.core.type,org.polyjdbc.core
+ .util",org.polyjdbc.core.dialect;uses:="org.polyjdbc.core.exception,o
+ rg.polyjdbc.core.query,org.polyjdbc.core.util",org.polyjdbc.core.exce
+ ption,org.polyjdbc.core.key;uses:="org.polyjdbc.core.dialect,org.poly
+ jdbc.core.exception,org.polyjdbc.core.transaction",org.polyjdbc.core.
+ query;uses:="org.polyjdbc.core.dialect,org.polyjdbc.core.exception,or
+ g.polyjdbc.core.key,org.polyjdbc.core.query.mapper,org.polyjdbc.core.
+ transaction,org.polyjdbc.core.type,org.polyjdbc.core.util",org.polyjd
+ bc.core.query.loader;uses:="org.polyjdbc.core.exception",org.polyjdbc
+ .core.query.mapper,org.polyjdbc.core.schema;uses:="org.polyjdbc.core.
+ dialect,org.polyjdbc.core.exception,org.polyjdbc.core.schema.model,or
+ g.polyjdbc.core.transaction",org.polyjdbc.core.schema.model;uses:="or
+ g.polyjdbc.core.dialect,org.polyjdbc.core.util",org.polyjdbc.core.tra
+ nsaction;uses:="org.polyjdbc.core.exception",org.polyjdbc.core.type;u
+ ses:="org.polyjdbc.core.exception",org.polyjdbc.core.util;uses:="org.
+ polyjdbc.core.query"
+Import-Package: java.io,java.lang,java.math,java.sql,java.util,java.ut
+ il.concurrent,java.util.regex,javax.sql,org.slf4j;version="0.0.0"

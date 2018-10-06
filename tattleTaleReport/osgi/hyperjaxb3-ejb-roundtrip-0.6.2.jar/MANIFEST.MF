@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: Alexey Valikov
+Build-Jdk: 1.7.0_80
+Created-By: Apache Maven 3.3.9
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jvnet.hyperjaxb3.ejb.test
+Bundle-Description: hyperjaxb3-ejb-roundtrip-0.6.2
+Bundle-Name: hyperjaxb3-ejb-roundtrip-0.6.2
+Bundle-Version: 0.0.0
+Export-Package: org.jvnet.hyperjaxb3.ejb.test;uses:="org.apache.common
+ s.lang3,org.jvnet.hyperjaxb3.ejb.util,org.jvnet.hyperjaxb3.lang.build
+ er,org.jvnet.jaxb2_commons.lang,org.jvnet.jaxb2_commons.locator,org.j
+ vnet.jaxb2_commons.test,org.jvnet.jaxb2_commons.xml.bind",org.jvnet.h
+ yperjaxb3.lang.builder;uses:="org.apache.commons.lang3,org.custommonk
+ ey.xmlunit,org.jvnet.hyperjaxb3.xml.datatype.util,org.jvnet.jaxb2_com
+ mons.lang,org.jvnet.jaxb2_commons.locator"
+Import-Package: java.io,java.lang,java.net,java.security,java.util,jav
+ ax.persistence;version="2.2",javax.xml.bind;version="2.4.0",javax.xml
+ .datatype;version="1.0",javax.xml.namespace;version="1.0",javax.xml.t
+ ransform.dom;version="1.0",junit.framework,org.apache.commons.io;vers
+ ion="2.6",org.apache.commons.io.filefilter;version="2.6",org.apache.c
+ ommons.lang3;version="3.8",org.apache.commons.logging;version="0.0.0"
+ ,org.custommonkey.xmlunit,org.jvnet.hyperjaxb3.ejb.util;version="0.0.
+ 0",org.jvnet.hyperjaxb3.xml.datatype.util;version="0.0.0",org.jvnet.j
+ axb2_commons.lang;version="0.0.0",org.jvnet.jaxb2_commons.locator;ver
+ sion="0.0.0",org.jvnet.jaxb2_commons.test;version="0.0.0",org.jvnet.j
+ axb2_commons.xml.bind;version="0.0.0",org.w3c.dom;version="1.0"

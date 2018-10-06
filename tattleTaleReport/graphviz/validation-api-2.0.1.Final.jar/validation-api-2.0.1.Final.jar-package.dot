@@ -1,0 +1,15 @@
+digraph validation_api_2_0_1_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_validation -> java_lang;
+  javax_validation -> java_lang_annotation;
+  javax_validation -> java_lang_invoke;
+  javax_validation -> java_time;
+  javax_validation -> java_util_function;
+  javax_validation -> java_util_stream;
+  javax_validation -> javax_validation_executable;
+  javax_validation -> javax_validation_valueextraction;
+  javax_validation_constraints -> java_lang_annotation;
+  javax_validation_groups -> java_lang_annotation;
+  javax_validation_metadata -> javax_validation;
+  javax_validation_spi -> javax_validation;
+}

@@ -1,0 +1,12 @@
+digraph viritin_2_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  viritin_2_1 -> commons_io_2_6;
+  viritin_2_1 -> commons_lang3_3_8_1;
+  viritin_2_1 -> confirmdialog_3_1_1;
+  viritin_2_1 -> gwt_elemental_2_8_2;
+  viritin_2_1 -> jsoup_1_11_3;
+  viritin_2_1 -> markdown4j_2_2_cj_1_1;
+  viritin_2_1 -> vaadin_server_8_6_0_beta1;
+  viritin_2_1 -> vaadin_shared_8_6_0_beta1;
+  viritin_2_1 -> validation_api_2_0_1_Final;
+}

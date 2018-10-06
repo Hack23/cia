@@ -1,0 +1,5 @@
+digraph javax_mail_1_6_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_mail_1_6_2 -> activation_1_1;
+  javax_mail_1_6_2 -> xml_apis_1_4_01;
+}

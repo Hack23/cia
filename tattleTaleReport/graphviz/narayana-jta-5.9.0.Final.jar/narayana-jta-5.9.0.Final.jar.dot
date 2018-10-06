@@ -1,0 +1,11 @@
+digraph narayana_jta_5_9_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  narayana_jta_5_9_0_Final -> artemis_journal_2_7_0_SNAPSHOT;
+  narayana_jta_5_9_0_Final -> geronimo_jms_2_0_spec_1_0_alpha_2;
+  narayana_jta_5_9_0_Final -> geronimo_jta_1_1_spec_1_1_1;
+  narayana_jta_5_9_0_Final -> javax_interceptor_api_1_2;
+  narayana_jta_5_9_0_Final -> jboss_logging_3_3_2_Final;
+  narayana_jta_5_9_0_Final -> jboss_transaction_api_1_2_spec_1_1_1_Final;
+  narayana_jta_5_9_0_Final -> jboss_transaction_spi_7_6_0_Final_redhat_1;
+  narayana_jta_5_9_0_Final -> xml_apis_1_4_01;
+}

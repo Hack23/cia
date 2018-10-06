@@ -1,0 +1,32 @@
+digraph jsoup_1_11_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jsoup -> org_jsoup_helper;
+  org_jsoup -> org_jsoup_nodes;
+  org_jsoup -> org_jsoup_parser;
+  org_jsoup -> org_jsoup_safety;
+  org_jsoup_helper -> org_jsoup;
+  org_jsoup_helper -> org_jsoup_internal;
+  org_jsoup_helper -> org_jsoup_nodes;
+  org_jsoup_helper -> org_jsoup_parser;
+  org_jsoup_helper -> org_jsoup_select;
+  org_jsoup_internal -> org_jsoup_helper;
+  org_jsoup_nodes -> org_jsoup;
+  org_jsoup_nodes -> org_jsoup_helper;
+  org_jsoup_nodes -> org_jsoup_internal;
+  org_jsoup_nodes -> org_jsoup_parser;
+  org_jsoup_nodes -> org_jsoup_select;
+  org_jsoup_parser -> org_jsoup;
+  org_jsoup_parser -> org_jsoup_helper;
+  org_jsoup_parser -> org_jsoup_internal;
+  org_jsoup_parser -> org_jsoup_nodes;
+  org_jsoup_parser -> org_jsoup_select;
+  org_jsoup_safety -> org_jsoup_helper;
+  org_jsoup_safety -> org_jsoup_internal;
+  org_jsoup_safety -> org_jsoup_nodes;
+  org_jsoup_safety -> org_jsoup_parser;
+  org_jsoup_safety -> org_jsoup_select;
+  org_jsoup_select -> org_jsoup_helper;
+  org_jsoup_select -> org_jsoup_internal;
+  org_jsoup_select -> org_jsoup_nodes;
+  org_jsoup_select -> org_jsoup_parser;
+}

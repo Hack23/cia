@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: Apache License 2.0
+Implementation-Title: responsive-layout
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.jarektoro.responsive-layout
+Implementation-Version: 2.1.1
+Built-By: jarek
+Bnd-LastModified: 1510668783666
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: com.jarektoro
+Bundle-Vendor: Jarek Toro
+Class-Path: vaadin-server-8.0.5.jar vaadin-sass-compiler-0.9.13.jar sa
+ c-1.3.jar flute-1.3.0.gg2.jar vaadin-shared-8.0.5.jar jsoup-1.8.3.jar
+  gentyref-1.2.0.jar
+Import-Package: com.jarektoro.responsivelayout;version="[2.1,3)",com.j
+ arektoro.responsivelayout.Styleable;version="[2.1,3)",com.vaadin.anno
+ tations;version="[8.0,9)",com.vaadin.shared;version="[8.0,9)",com.vaa
+ din.ui;version="[8.0,9)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: Jarek Toro
+Export-Package: com.jarektoro.responsivelayout;version="2.1.1";uses:="
+ com.jarektoro.responsivelayout.Styleable,com.vaadin.annotations,com.v
+ aadin.shared,com.vaadin.ui",com.jarektoro.responsivelayout.Styleable;
+ version="2.1.1";uses:="com.jarektoro.responsivelayout,com.vaadin.ui",
+ com.jarektoro.responsivelayout.styles;version="2.1.1"
+Bundle-Name: responsive-layout
+Bundle-Version: 2.1.1
+Vaadin-Addon: responsive-layout-2.1.1.jar
+Vaadin-Package-Version: 1
+Build-Jdk: 1.8.0_144
+Created-By: Apache Maven Bundle Plugin
+

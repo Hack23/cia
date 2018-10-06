@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentDataPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentDataPageModContentFactoryImpl.java</span></div><h1>DocumentDataPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document.OutputSettings;
+import org.jsoup.safety.Whitelist;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
+import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class DocumentDataPageModContentFactoryImpl.
+ */
+@Component
+public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
+
+	/** The Constant END_FONT_SIZE. */
+	private static final String END_FONT_SIZE = &quot;)\&quot;&gt;&quot;;
+
+	/** The Constant END_FONT. */
+	private static final String END_FONT = &quot;&lt;/font&gt; &quot;;
+
+	/** The Constant START_FONT_SIZE. */
+	private static final String START_FONT_SIZE = &quot;&lt;font size=\&quot;&quot;;
+
+	/** The Constant END_PARAGRAPH. */
+	private static final String END_PARAGRAPH = &quot;&lt;/p&gt;&quot;;
+
+	/** The Constant START_PARAGRAPH. */
+	private static final String START_PARAGRAPH = &quot;&lt;p&gt;&quot;;
+
+	/** The Constant MAX_RESULTS. */
+	private static final int MAX_RESULTS = 30;
+
+	/** The Constant DOCUMENT_DATA. */
+	private static final String DOCUMENT_DATA = &quot;Document Data&quot;;
+
+	/**
+	 * Instantiates a new document data page mod content factory impl.
+	 */
+	public DocumentDataPageModContentFactoryImpl() {
+<span class="fc" id="L82">		super();</span>
+<span class="fc" id="L83">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L87" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDATA.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L93">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L95">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L97">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+
+<span class="fc" id="L99">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DATA);</span>
+
+<span class="fc" id="L101">		final DataContainer&lt;DocumentContentData, String&gt; documentContentDataDataContainer = getApplicationManager()</span>
+<span class="fc" id="L102">				.getDataContainer(DocumentContentData.class);</span>
+
+<span class="fc" id="L104">		final List&lt;DocumentContentData&gt; documentContentlist = documentContentDataDataContainer</span>
+<span class="fc" id="L105">				.getAllBy(DocumentContentData_.id, pageId);</span>
+
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">		if (!documentContentlist.isEmpty()) {</span>
+
+<span class="fc" id="L109">			final Panel formPanel = new Panel();</span>
+<span class="fc" id="L110">			formPanel.setSizeFull();</span>
+
+<span class="fc" id="L112">			panelContent.addComponent(formPanel);</span>
+
+<span class="fc" id="L114">			final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L115">			formPanel.setContent(formContent);</span>
+
+<span class="fc" id="L117">			final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(), &quot;&quot;, Whitelist.simpleText(),</span>
+<span class="fc" id="L118">					new OutputSettings().indentAmount(4));</span>
+
+<span class="fc" id="L120">			final Label htmlContent = new Label(cleanContent, ContentMode.HTML);</span>
+
+<span class="fc" id="L122">			formContent.addComponent(htmlContent);</span>
+
+<span class="fc" id="L124">			final DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();</span>
+<span class="fc" id="L125">			documentWordCountRequest.setDocumentId(pageId);</span>
+<span class="fc" id="L126">			documentWordCountRequest.setMaxResults(MAX_RESULTS);</span>
+<span class="fc" id="L127">			documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L128">			final DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager()</span>
+<span class="fc" id="L129">					.service(documentWordCountRequest);</span>
+
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">			if (resp.getWordCountMap() != null) {</span>
+<span class="fc" id="L132">				final Label wordCloud = new Label(createWordCloud(resp.getWordCountMap()), ContentMode.HTML);</span>
+<span class="fc" id="L133">				formContent.addComponent(wordCloud);</span>
+			}
+
+<span class="fc" id="L136">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
+
+		}
+
+<span class="fc" id="L140">		panel.setContent(panelContent);</span>
+<span class="fc" id="L141">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L144">		return panelContent;</span>
+
+	}
+
+	private static String createWordCloud(final Map&lt;String, Integer&gt; wordMap) {
+<span class="fc" id="L149">		final StringBuilder builder = new StringBuilder();</span>
+<span class="fc" id="L150">		builder.append(START_PARAGRAPH);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">		for (final Entry&lt;String, Integer&gt; entry : wordMap.entrySet()) {</span>
+<span class="fc" id="L152">			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey())</span>
+<span class="fc" id="L153">					.append(END_FONT);</span>
+<span class="fc" id="L154">		}</span>
+<span class="fc" id="L155">		builder.append(END_PARAGRAPH);</span>
+<span class="fc" id="L156">		return builder.toString();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

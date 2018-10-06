@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Created-By: 1.2.2 (Blackdown Java-Linux Team)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.w3c.css.sac
+Bundle-Description: sac-1.3
+Bundle-Name: sac-1.3
+Bundle-Version: 0.0.0
+Export-Package: org.w3c.css.sac,org.w3c.css.sac.helpers
+Import-Package: java.io,java.lang,java.util

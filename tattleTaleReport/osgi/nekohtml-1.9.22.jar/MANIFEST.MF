@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Built-By: Andy Clark, Marc Guillemot
+Created-By: 1.7.0_65-b17 (Oracle Corporation)
+
+Name: org/cyberneko/html/
+Implementation-Title: CyberNeko HTML Parser
+Implementation-Version: 1.9.22
+Specification-Vendor: World Wide Web Consortium (W3C)
+Specification-Title: Hyper-Text Markup Language (HTML)
+Specification-Version: 4.01
+Implementation-URL: http://nekohtml.sourceforge.net/index.html
+Implementation-Vendor: Andy Clark, Marc Guillemot
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.cyberneko.html
+Bundle-Description: nekohtml-1.9.22
+Bundle-Name: nekohtml-1.9.22
+Bundle-Version: 4.01
+Export-Package: org.cyberneko.html,org.cyberneko.html.filters,org.cybe
+ rneko.html.parsers,org.cyberneko.html.xercesbridge
+Import-Package: java.io,java.lang,java.lang.reflect,java.net,java.secu
+ rity,java.text,java.util,org.apache.xerces.impl;version="2.12.0.SP02"
+ ,org.apache.xerces.parsers;version="2.12.0.SP02",org.apache.xerces.ut
+ il;version="2.12.0.SP02",org.apache.xerces.xni;version="2.12.0.SP02",
+ org.apache.xerces.xni.parser;version="2.12.0.SP02",org.w3c.dom;versio
+ n="1.0",org.xml.sax;version="1.0"

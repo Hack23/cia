@@ -1,0 +1,34 @@
+digraph spring_aspects_5_1_0_RELEASE_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_springframework_beans_factory_aspectj -> org_aspectj_internal_lang_annotation;
+  org_springframework_beans_factory_aspectj -> org_aspectj_lang;
+  org_springframework_beans_factory_aspectj -> org_aspectj_lang_annotation;
+  org_springframework_cache_aspectj -> java_util_function;
+  org_springframework_cache_aspectj -> org_aspectj_lang;
+  org_springframework_cache_aspectj -> org_aspectj_lang_annotation;
+  org_springframework_cache_aspectj -> org_aspectj_lang_reflect;
+  org_springframework_cache_aspectj -> org_aspectj_runtime_internal;
+  org_springframework_cache_aspectj -> org_springframework_cache_annotation;
+  org_springframework_cache_aspectj -> org_springframework_cache_interceptor;
+  org_springframework_cache_aspectj -> org_springframework_cache_jcache_config;
+  org_springframework_cache_aspectj -> org_springframework_cache_jcache_interceptor;
+  org_springframework_cache_aspectj -> org_springframework_context_annotation;
+  org_springframework_context_annotation_aspectj -> org_springframework_context_annotation;
+  org_springframework_scheduling_aspectj -> java_util_function;
+  org_springframework_scheduling_aspectj -> org_aspectj_internal_lang_annotation;
+  org_springframework_scheduling_aspectj -> org_aspectj_lang;
+  org_springframework_scheduling_aspectj -> org_aspectj_lang_annotation;
+  org_springframework_scheduling_aspectj -> org_aspectj_lang_reflect;
+  org_springframework_scheduling_aspectj -> org_aspectj_runtime_internal;
+  org_springframework_scheduling_aspectj -> org_springframework_aop_interceptor;
+  org_springframework_scheduling_aspectj -> org_springframework_context_annotation;
+  org_springframework_scheduling_aspectj -> org_springframework_core_annotation;
+  org_springframework_scheduling_aspectj -> org_springframework_scheduling_annotation;
+  org_springframework_transaction_aspectj -> org_aspectj_lang;
+  org_springframework_transaction_aspectj -> org_aspectj_lang_annotation;
+  org_springframework_transaction_aspectj -> org_aspectj_lang_reflect;
+  org_springframework_transaction_aspectj -> org_aspectj_runtime_internal;
+  org_springframework_transaction_aspectj -> org_springframework_context_annotation;
+  org_springframework_transaction_aspectj -> org_springframework_transaction_annotation;
+  org_springframework_transaction_aspectj -> org_springframework_transaction_interceptor;
+}

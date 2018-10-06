@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-expression
+Automatic-Module-Name: spring.expression
+Implementation-Version: 5.1.0.RELEASE
+Created-By: 1.8.0_144 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.expression.spel.ast
+Bundle-Description: spring-expression-5.1.0.RELEASE
+Bundle-Name: spring-expression-5.1.0.RELEASE
+Bundle-Version: 5.1.0.RELEASE
+Export-Package: org.springframework.expression;uses:="java.lang,org.sp
+ ringframework.lang",org.springframework.expression.common;uses:="org.
+ springframework.lang",org.springframework.expression.spel;uses:="java
+ .lang,org.springframework.core,org.springframework.lang",org.springfr
+ amework.expression.spel.ast;uses:="java.lang.invoke,org.springframewo
+ rk.expression,org.springframework.expression.spel,org.springframework
+ .lang",org.springframework.expression.spel.standard;uses:="org.spring
+ framework.expression.spel,org.springframework.expression.spel.ast,org
+ .springframework.lang,org.springframework.util",org.springframework.e
+ xpression.spel.support;uses:="java.lang.invoke,java.lang.reflect,java
+ .util.function,org.springframework.core.convert,org.springframework.c
+ ore.convert.support,org.springframework.expression,org.springframewor
+ k.expression.spel,org.springframework.lang"
+Import-Package: java.lang,java.lang.invoke,java.lang.reflect,java.math
+ ,java.net,java.text,java.util,java.util.concurrent,java.util.concurre
+ nt.atomic,java.util.function,java.util.regex,org.apache.commons.loggi
+ ng;version="0.0.0",org.springframework.asm;version="5.1.0.RELEASE",or
+ g.springframework.core;version="5.1.0.RELEASE",org.springframework.co
+ re.convert;version="5.1.0.RELEASE",org.springframework.core.convert.s
+ upport;version="5.1.0.RELEASE",org.springframework.lang;version="5.1.
+ 0.RELEASE",org.springframework.util;version="5.1.0.RELEASE"

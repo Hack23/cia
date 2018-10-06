@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: pierredavidbelanger
+Created-By: Apache Maven 3.5.0
+Build-Jdk: 1.8.0_101
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: ca.pjer.logback
+Bundle-Description: logback-awslogs-appender-1.0.0
+Bundle-Name: logback-awslogs-appender-1.0.0
+Bundle-Version: 0.0.0
+Export-Package: ca.pjer.logback;uses:="ch.qos.logback.classic,ch.qos.l
+ ogback.classic.spi,ch.qos.logback.core,ch.qos.logback.core.layout,ch.
+ qos.logback.core.status,com.amazonaws.regions,com.amazonaws.services.
+ logs,com.amazonaws.services.logs.model"
+Import-Package: ch.qos.logback.classic;version="0.0.0",ch.qos.logback.
+ classic.spi;version="0.0.0",ch.qos.logback.core;version="0.0.0",ch.qo
+ s.logback.core.layout;version="0.0.0",ch.qos.logback.core.status;vers
+ ion="0.0.0",com.amazonaws.regions;version="0.0.0",com.amazonaws.servi
+ ces.logs;version="0.0.0",com.amazonaws.services.logs.model;version="0
+ .0.0",java.lang,java.nio.charset,java.text,java.util,java.util.concur
+ rent,java.util.concurrent.atomic

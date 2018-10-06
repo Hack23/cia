@@ -1,0 +1,69 @@
+Manifest-Version: 1.0
+Bundle-License: http://x-stream.github.io/license.html
+Bundle-SymbolicName: xstream
+Archiver-Version: Plexus Archiver
+Built-By: joehni
+Bnd-LastModified: 1495549723435
+Specification-Title: XStream Core
+Implementation-Vendor-Id: com.thoughtworks.xstream
+Bundle-DocURL: http://x-stream.github.io
+Import-Package: com.bea.xml.stream;resolution:=optional,com.ctc.wstx.s
+ tax;resolution:=optional,javax.activation,javax.security.auth,javax.s
+ wing,javax.swing.plaf,javax.xml.datatype,javax.xml.namespace;resoluti
+ on:=optional,javax.xml.parsers,javax.xml.stream;resolution:=optional,
+ javax.xml.transform,javax.xml.transform.sax,javax.xml.transform.strea
+ m,net.sf.cglib.proxy;resolution:=optional,nu.xom;resolution:=optional
+ ,org.codehaus.jettison;version="[1.2,2)";resolution:=optional,org.cod
+ ehaus.jettison.mapped;version="[1.2,2)";resolution:=optional,org.dom4
+ j;resolution:=optional,org.dom4j.io;resolution:=optional,org.dom4j.tr
+ ee;resolution:=optional,org.jdom;resolution:=optional,org.jdom.input;
+ resolution:=optional,org.jdom2;resolution:=optional,org.jdom2.input;r
+ esolution:=optional,org.joda.time;version="[1.6,2)";resolution:=optio
+ nal,org.joda.time.format;version="[1.6,2)";resolution:=optional,org.k
+ xml2.io;resolution:=optional,org.w3c.dom;resolution:=optional,org.xml
+ .sax,org.xml.sax.helpers,org.xmlpull.mxp1,org.xmlpull.v1,sun.misc
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Export-Package: com.thoughtworks.xstream;version="1.4.10",com.thoughtw
+ orks.xstream.annotations;version="1.4.10",com.thoughtworks.xstream.co
+ nverters;version="1.4.10",com.thoughtworks.xstream.converters.basic;v
+ ersion="1.4.10",com.thoughtworks.xstream.converters.collections;versi
+ on="1.4.10",com.thoughtworks.xstream.converters.enums;version="1.4.10
+ ",com.thoughtworks.xstream.converters.extended;version="1.4.10",com.t
+ houghtworks.xstream.converters.javabean;version="1.4.10",com.thoughtw
+ orks.xstream.converters.reflection;version="1.4.10",com.thoughtworks.
+ xstream.converters.time;version="1.4.10",com.thoughtworks.xstream.cor
+ e;version="1.4.10",com.thoughtworks.xstream.io;version="1.4.10",com.t
+ houghtworks.xstream.io.binary;version="1.4.10",com.thoughtworks.xstre
+ am.io.copy;version="1.4.10",com.thoughtworks.xstream.io.json;version=
+ "1.4.10",com.thoughtworks.xstream.io.naming;version="1.4.10",com.thou
+ ghtworks.xstream.io.path;version="1.4.10",com.thoughtworks.xstream.io
+ .xml;version="1.4.10",com.thoughtworks.xstream.io.xml.xppdom;version=
+ "1.4.10",com.thoughtworks.xstream.mapper;version="1.4.10",com.thought
+ works.xstream.persistence;version="1.4.10",com.thoughtworks.xstream.s
+ ecurity;version="1.4.10"
+Bundle-Name: XStream Core
+JAVA_1_6_HOME: /opt/sun-jdk-1.6.0.45
+JAVA_1_9_HOME: /opt/oracle-jdk-bin-1.9.0.0_beta167
+Implementation-Title: XStream Core
+Bundle-Description: XStream is a serialization library from Java objec
+ ts to XML and back.
+X-Compile-Target: 1.5
+Implementation-Version: 1.4.10
+Specification-Vendor: XStream
+Bundle-ManifestVersion: 2
+Bundle-Vendor: XStream
+JAVA_1_8_HOME: /opt/oracle-jdk-bin-1.8.0.131
+X-Builder: Maven 3.3.9
+JAVA_1_5_HOME: /opt/sun-jdk-1.5.0.22
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: XStream
+X-Build-Time: 2017-05-23T14:28:02Z
+JAVA_1_4_HOME: /opt/blackdown-jdk-1.4.2.03
+JAVA_1_7_HOME: /opt/oracle-jdk-bin-1.7.0.80
+Bundle-Version: 1.4.10
+X-Build-Os: Linux
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_131
+Specification-Version: 1.4
+X-Compile-Source: 1.5
+

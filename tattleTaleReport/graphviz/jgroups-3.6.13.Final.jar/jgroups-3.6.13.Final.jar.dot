@@ -1,0 +1,5 @@
+digraph jgroups_3_6_13_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jgroups_3_6_13_Final -> jaxb_api_2_4_0;
+  jgroups_3_6_13_Final -> xml_apis_1_4_01;
+}

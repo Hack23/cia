@@ -1,0 +1,33 @@
+digraph polyjdbc_0_7_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_polyjdbc_core -> org_polyjdbc_core_dialect;
+  org_polyjdbc_core -> org_polyjdbc_core_key;
+  org_polyjdbc_core -> org_polyjdbc_core_query;
+  org_polyjdbc_core -> org_polyjdbc_core_schema;
+  org_polyjdbc_core -> org_polyjdbc_core_transaction;
+  org_polyjdbc_core -> org_polyjdbc_core_type;
+  org_polyjdbc_core -> org_polyjdbc_core_util;
+  org_polyjdbc_core_dialect -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_dialect -> org_polyjdbc_core_query;
+  org_polyjdbc_core_dialect -> org_polyjdbc_core_util;
+  org_polyjdbc_core_key -> org_polyjdbc_core_dialect;
+  org_polyjdbc_core_key -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_key -> org_polyjdbc_core_transaction;
+  org_polyjdbc_core_query -> org_polyjdbc_core_dialect;
+  org_polyjdbc_core_query -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_query -> org_polyjdbc_core_key;
+  org_polyjdbc_core_query -> org_polyjdbc_core_query_mapper;
+  org_polyjdbc_core_query -> org_polyjdbc_core_transaction;
+  org_polyjdbc_core_query -> org_polyjdbc_core_type;
+  org_polyjdbc_core_query -> org_polyjdbc_core_util;
+  org_polyjdbc_core_query_loader -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_schema -> org_polyjdbc_core_dialect;
+  org_polyjdbc_core_schema -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_schema -> org_polyjdbc_core_schema_model;
+  org_polyjdbc_core_schema -> org_polyjdbc_core_transaction;
+  org_polyjdbc_core_schema_model -> org_polyjdbc_core_dialect;
+  org_polyjdbc_core_schema_model -> org_polyjdbc_core_util;
+  org_polyjdbc_core_transaction -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_type -> org_polyjdbc_core_exception;
+  org_polyjdbc_core_util -> org_polyjdbc_core_query;
+}

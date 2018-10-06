@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: Apache License 2.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.whitestein.vaadin.widgets.wt-pdf-viewer
+Built-By: mna
+Bnd-LastModified: 1507898653337
+Implementation-Vendor-Id: com.whitestein.vaadin.widgets
+Import-Package: com.vaadin.annotations;version="[7.7,8)",com.vaadin.se
+ rver;version="[7.7,8)",com.vaadin.shared;version="[7.7,8)",com.vaadin
+ .shared.communication;version="[7.7,8)",com.vaadin.shared.ui;version=
+ "[7.7,8)",com.vaadin.ui;version="[7.7,8)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Export-Package: com.whitestein.vaadin.widgets.wtpdfviewer;version="1.0
+ .4";uses:="com.vaadin.annotations,com.vaadin.server,com.vaadin.shared
+ ,com.vaadin.shared.communication,com.vaadin.ui"
+Bundle-Name: WT PDF Viewer
+Vaadin-Addon: wt-pdf-viewer-1.0.4.jar
+Vaadin-Package-Version: 1
+Vaadin-Stylesheets: VAADIN/themes/wtpdfviewer/wtpdfviewer.scss
+Bundle-Description: PDF viewer component for Vaadin applications based
+  on pdf.js web viewer. Features:    * Sidebar with thumbnails, docume
+ nt outline and attachments* Text search in PDF text* Previous page, n
+ ext page and jump to arbitrary page* Zooming out up to 10%, automatic
+  zoom, zoom to actual size, fit page, full width* Full-screen present
+ ation Mode* Document print* Document download* Rotation clockwise and
+  counterclockwise* Hand tool for comfortable scrolling* Document prop
+ erties
+Implementation-Title: WT PDF Viewer
+Implementation-Version: 1.0.4
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Whitestein Technologies
+Class-Path: vaadin-server-7.7.8.jar vaadin-sass-compiler-0.9.13.jar sa
+ c-1.3.jar flute-1.3.0.gg2.jar vaadin-shared-7.7.8.jar jsoup-1.8.3.jar
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: Whitestein Technologies
+Bundle-Version: 1.0.4
+Vaadin-Widgetsets: com.whitestein.vaadin.widgets.wtpdfviewer.Widgetset
+Build-Jdk: 1.8.0_111
+Created-By: Apache Maven Bundle Plugin
+

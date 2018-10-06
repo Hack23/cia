@@ -1,0 +1,9 @@
+digraph confirmdialog_3_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_vaadin_dialogs -> com_vaadin_event;
+  org_vaadin_dialogs -> com_vaadin_server;
+  org_vaadin_dialogs -> com_vaadin_shared;
+  org_vaadin_dialogs -> com_vaadin_shared_ui;
+  org_vaadin_dialogs -> com_vaadin_ui;
+  org_vaadin_dialogs -> com_vaadin_ui_themes;
+}

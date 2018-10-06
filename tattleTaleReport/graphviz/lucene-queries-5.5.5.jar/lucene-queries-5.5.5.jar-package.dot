@@ -1,0 +1,37 @@
+digraph lucene_queries_5_5_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_lucene_queries -> java_util;
+  org_apache_lucene_queries -> org_apache_lucene_index;
+  org_apache_lucene_queries -> org_apache_lucene_queries_function;
+  org_apache_lucene_queries -> org_apache_lucene_search;
+  org_apache_lucene_queries -> org_apache_lucene_util;
+  org_apache_lucene_queries_function -> java_util;
+  org_apache_lucene_queries_function -> org_apache_lucene_index;
+  org_apache_lucene_queries_function -> org_apache_lucene_search;
+  org_apache_lucene_queries_function -> org_apache_lucene_util;
+  org_apache_lucene_queries_function -> org_apache_lucene_util_mutable;
+  org_apache_lucene_queries_function_docvalues -> org_apache_lucene_index;
+  org_apache_lucene_queries_function_docvalues -> org_apache_lucene_queries_function;
+  org_apache_lucene_queries_function_docvalues -> org_apache_lucene_util;
+  org_apache_lucene_queries_function_docvalues -> org_apache_lucene_util_mutable;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_index;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_queries_function;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_queries_function_docvalues;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_search;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_search_similarities;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_util;
+  org_apache_lucene_queries_function_valuesource -> org_apache_lucene_util_mutable;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_analysis;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_analysis_tokenattributes;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_document;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_index;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_search;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_search_similarities;
+  org_apache_lucene_queries_mlt -> org_apache_lucene_util;
+  org_apache_lucene_queries_payloads -> java_util;
+  org_apache_lucene_queries_payloads -> org_apache_lucene_index;
+  org_apache_lucene_queries_payloads -> org_apache_lucene_search;
+  org_apache_lucene_queries_payloads -> org_apache_lucene_search_similarities;
+  org_apache_lucene_queries_payloads -> org_apache_lucene_search_spans;
+  org_apache_lucene_queries_payloads -> org_apache_lucene_util;
+}

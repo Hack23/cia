@@ -1,0 +1,4 @@
+digraph gwt_elemental_2_8_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  gwt_elemental_2_8_2 -> gwt_user_2_8_2;
+}

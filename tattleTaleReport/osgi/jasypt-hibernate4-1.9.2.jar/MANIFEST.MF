@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: releases
+Build-Jdk: 1.6.0_45
+Created-By: Apache Maven 3.2.1
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jasypt.hibernate4.type
+Bundle-Description: jasypt-hibernate4-1.9.2
+Bundle-Name: jasypt-hibernate4-1.9.2
+Bundle-Version: 0.0.0
+Export-Package: org.jasypt.hibernate4.connectionprovider;uses:="org.hi
+ bernate.service.jdbc.connections.internal,org.jasypt.encryption,org.j
+ asypt.encryption.pbe,org.jasypt.exceptions,org.jasypt.hibernate4.encr
+ yptor,org.jasypt.properties",org.jasypt.hibernate4.encryptor;uses:="o
+ rg.jasypt.encryption.pbe,org.jasypt.encryption.pbe.config,org.jasypt.
+ exceptions,org.jasypt.salt",org.jasypt.hibernate4.type;uses:="org.jas
+ ypt.commons,org.jasypt.encryption.pbe,org.jasypt.exceptions,org.jasyp
+ t.hibernate4.encryptor"
+Import-Package: java.io,java.lang,java.math,java.security,java.sql,jav
+ a.util,org.hibernate;version="0.0.0",org.hibernate.cfg;version="0.0.0
+ ",org.hibernate.engine.spi;version="0.0.0",org.hibernate.service.jdbc
+ .connections.internal,org.hibernate.usertype;version="0.0.0",org.jasy
+ pt.commons;version="0.0.0",org.jasypt.encryption;version="0.0.0",org.
+ jasypt.encryption.pbe;version="0.0.0",org.jasypt.encryption.pbe.confi
+ g;version="0.0.0",org.jasypt.exceptions;version="0.0.0",org.jasypt.pr
+ operties;version="0.0.0",org.jasypt.salt;version="0.0.0"

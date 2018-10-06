@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryGhantChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">MinistryGhantChartManagerImpl.java</span></div><h1>MinistryGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager;
+
+/**
+ * The Class MinistryGhantChartManagerImpl.
+ */
+@Service
+public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManagerImpl&lt;ViewRiksdagenGovermentRoleMember&gt;
+		implements MinistryGhantChartManager {
+
+	/**
+	 * Instantiates a new ministry ghant chart manager impl.
+	 */
+	public MinistryGhantChartManagerImpl() {
+<span class="fc" id="L43">		super();</span>
+<span class="fc" id="L44">	}</span>
+
+	@Override
+	protected Comparator&lt;ViewRiksdagenGovermentRoleMember&gt; getComparator() {
+<span class="fc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+	}
+
+	@Override
+	protected Function&lt;ViewRiksdagenGovermentRoleMember, String&gt; getRoleMapping() {
+<span class="fc" id="L53">		return new RoleMapping();</span>
+	}
+
+	@Override
+	protected StepMapping&lt;ViewRiksdagenGovermentRoleMember&gt; getStepMapping() {
+<span class="fc" id="L58">		return new StepMapping&lt;ViewRiksdagenGovermentRoleMember&gt;() {</span>
+
+			@Override
+			public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L62">				return t.getFromDate();</span>
+			}
+
+			@Override
+			public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L67">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
+			}
+
+			@Override
+			public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L72">				return t.getRoleCode();</span>
+			}
+
+			@Override
+			public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L77">				return t.getDetail();</span>
+			}
+
+			@Override
+			public String getParty(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L82">				return t.getParty();</span>
+			}
+
+			@Override
+			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
+				String color;
+
+<span class="fc bfc" id="L89" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsråd&quot;)) {</span>
+<span class="fc" id="L90">					color = &quot;ded858&quot;;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsminister&quot;)) {</span>
+<span class="fc" id="L92">					color = &quot;3271c8&quot;;</span>
+				} else {
+<span class="fc" id="L94">					color = &quot;0eab76&quot;;</span>
+				}
+
+<span class="fc" id="L97">				return color;</span>
+			}
+
+			@Override
+			public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L102">				return t.getFirstName();</span>
+			}
+
+			@Override
+			public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L107">				return t.getLastName();</span>
+			}
+
+		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function&lt;ViewRiksdagenGovermentRoleMember, String&gt; {
+
+		@Override
+		public String apply(final ViewRiksdagenGovermentRoleMember t) {
+<span class="fc" id="L120">			return t.getRoleCode()+ &quot;.[&quot;+ t.getPersonId() +&quot;].&quot; + t.getDetail();</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

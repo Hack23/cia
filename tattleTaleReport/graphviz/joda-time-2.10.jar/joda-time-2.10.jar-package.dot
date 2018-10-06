@@ -1,0 +1,7 @@
+digraph joda_time_2_10_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_joda_time -> org_joda_convert;
+  org_joda_time_base -> org_joda_convert;
+  org_joda_time_chrono -> org_joda_time;
+  org_joda_time_format -> org_joda_time;
+}

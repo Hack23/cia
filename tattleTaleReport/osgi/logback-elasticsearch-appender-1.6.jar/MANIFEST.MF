@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: abatkin
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_111
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.internetitem.logback.elasticsearch.config
+Bundle-Description: logback-elasticsearch-appender-1.6
+Bundle-Name: logback-elasticsearch-appender-1.6
+Bundle-Version: 0.0.0
+Export-Package: com.internetitem.logback.elasticsearch;uses:="ch.qos.l
+ ogback.access.spi,ch.qos.logback.classic.spi,ch.qos.logback.core,com.
+ fasterxml.jackson.core,com.internetitem.logback.elasticsearch.config,
+ com.internetitem.logback.elasticsearch.util,com.internetitem.logback.
+ elasticsearch.writer",com.internetitem.logback.elasticsearch.config;u
+ ses:="com.amazonaws,com.amazonaws.auth,com.amazonaws.http,com.amazona
+ ws.regions,com.amazonaws.util,com.internetitem.logback.elasticsearch.
+ util",com.internetitem.logback.elasticsearch.util;uses:="ch.qos.logba
+ ck.access,ch.qos.logback.classic,ch.qos.logback.core,ch.qos.logback.c
+ ore.pattern,ch.qos.logback.core.spi,com.internetitem.logback.elastics
+ earch.config",com.internetitem.logback.elasticsearch.writer;uses:="co
+ m.internetitem.logback.elasticsearch.config,com.internetitem.logback.
+ elasticsearch.util"
+Import-Package: ch.qos.logback.access,ch.qos.logback.access.spi,ch.qos
+ .logback.classic;version="0.0.0",ch.qos.logback.classic.spi;version="
+ 0.0.0",ch.qos.logback.core;version="0.0.0",ch.qos.logback.core.patter
+ n;version="0.0.0",ch.qos.logback.core.spi;version="0.0.0",com.amazona
+ ws;version="0.0.0",com.amazonaws.auth;version="0.0.0",com.amazonaws.h
+ ttp;version="0.0.0",com.amazonaws.regions;version="0.0.0",com.amazona
+ ws.util;version="0.0.0",com.fasterxml.jackson.core;version="2.9.7",ja
+ va.io,java.lang,java.net,java.text,java.util,java.util.concurrent.ato
+ mic,org.slf4j;version="0.0.0"

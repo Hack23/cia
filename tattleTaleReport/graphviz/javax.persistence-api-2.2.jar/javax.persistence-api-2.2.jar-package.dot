@@ -1,0 +1,6 @@
+digraph javax_persistence_api_2_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_persistence -> java_lang_annotation;
+  javax_persistence -> java_util_stream;
+  javax_persistence -> javax_persistence_criteria;
+}

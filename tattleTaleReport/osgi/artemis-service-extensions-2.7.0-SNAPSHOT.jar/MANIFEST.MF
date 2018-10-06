@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis Service Extensions
+Implementation-Version: 2.7.0-SNAPSHOT
+Archiver-Version: Plexus Archiver
+Built-By: jenkins
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis Service Extensions
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_172
+Specification-Version: 2.7.0-SNAPSHOT
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.service.extensions.xa
+ .recovery
+Bundle-Description: artemis-service-extensions-2.7.0-SNAPSHOT
+Bundle-Name: artemis-service-extensions-2.7.0-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: org.apache.activemq.artemis.service.extensions;uses:="
+ org.apache.activemq.artemis.service.extensions.transactions,org.apach
+ e.activemq.artemis.service.extensions.xa,org.jboss.logging.annotation
+ s",org.apache.activemq.artemis.service.extensions.transactions,org.ap
+ ache.activemq.artemis.service.extensions.xa,org.apache.activemq.artem
+ is.service.extensions.xa.recovery;uses:="org.apache.activemq.artemis.
+ api.core,org.apache.activemq.artemis.api.core.client,org.apache.activ
+ emq.artemis.jms.client,org.apache.activemq.artemis.spi.core.remoting,
+ org.jboss.logging.annotations"
+Import-Package: java.io,java.lang,java.security,java.util,javax.transa
+ ction;version="1.1.1",javax.transaction.xa;version="1.1.1",org.apache
+ .activemq.artemis.api.core;version="0.0.0",org.apache.activemq.artemi
+ s.api.core.client;version="0.0.0",org.apache.activemq.artemis.jms.cli
+ ent;version="0.0.0",org.apache.activemq.artemis.spi.core.remoting;ver
+ sion="0.0.0",org.jboss.logging;version="3.3.2.Final",org.jboss.loggin
+ g.annotations,org.w3c.dom;version="1.0"

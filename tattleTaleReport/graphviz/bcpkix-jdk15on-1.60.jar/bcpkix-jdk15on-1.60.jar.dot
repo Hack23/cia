@@ -1,0 +1,4 @@
+digraph bcpkix_jdk15on_1_60_dependencies {
+  node [shape = box, fontsize=10.0];
+  bcpkix_jdk15on_1_60 -> bcprov_jdk15on_1_60;
+}

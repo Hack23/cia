@@ -1,0 +1,55 @@
+Manifest-Version: 1.0
+Implementation-Title: Chart.js Add-on
+Bundle-Description: Chart.js Add-on
+Bundle-SymbolicName: com.byteowls.vaadin-chartjs
+Implementation-Version: 1.3.0
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1521454960948
+Bundle-DocURL: https://github.com/moberwasserlechner/vaadin-chartjs
+Bundle-Vendor: Michael Oberwasserlechner
+Import-Package: com.byteowls.vaadin.chartjs.config;version="[1.3,2)",c
+ om.byteowls.vaadin.chartjs.data;version="[1.3,2)",com.byteowls.vaadin
+ .chartjs.options;version="[1.3,2)",com.byteowls.vaadin.chartjs.option
+ s.annotation;version="[1.3,2)",com.byteowls.vaadin.chartjs.options.el
+ ements;version="[1.3,2)",com.byteowls.vaadin.chartjs.options.scale;ve
+ rsion="[1.3,2)",com.byteowls.vaadin.chartjs.options.types;version="[1
+ .3,2)",com.byteowls.vaadin.chartjs.options.zoom;version="[1.3,2)",com
+ .byteowls.vaadin.chartjs.utils;version="[1.3,2)",com.vaadin.annotatio
+ ns;version="[8.4,9)",com.vaadin.shared;version="[8.4,9)",com.vaadin.s
+ hared.communication;version="[8.4,9)",com.vaadin.shared.ui;version="[
+ 8.4,9)",com.vaadin.ui;version="[8.4,9)",elemental.json;version="[8.4,
+ 9)",elemental.json.impl;version="[8.4,9)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: Michael Oberwasserlechner
+Export-Package: com.byteowls.vaadin.chartjs;version="1.3.0";uses:="com
+ .byteowls.vaadin.chartjs.config,com.vaadin.annotations,com.vaadin.sha
+ red,com.vaadin.shared.communication,com.vaadin.shared.ui,com.vaadin.u
+ i,elemental.json",com.byteowls.vaadin.chartjs.config;version="1.3.0";
+ uses:="com.byteowls.vaadin.chartjs.data,com.byteowls.vaadin.chartjs.o
+ ptions.types,com.byteowls.vaadin.chartjs.utils,elemental.json",com.by
+ teowls.vaadin.chartjs.data;version="1.3.0";uses:="com.byteowls.vaadin
+ .chartjs.options,com.byteowls.vaadin.chartjs.utils,elemental.json",co
+ m.byteowls.vaadin.chartjs.options;version="1.3.0";uses:="com.byteowls
+ .vaadin.chartjs.config,com.byteowls.vaadin.chartjs.options.annotation
+ ,com.byteowls.vaadin.chartjs.options.elements,com.byteowls.vaadin.cha
+ rtjs.options.scale,com.byteowls.vaadin.chartjs.options.zoom,com.byteo
+ wls.vaadin.chartjs.utils,elemental.json",com.byteowls.vaadin.chartjs.
+ options.annotation;version="1.3.0";uses:="com.byteowls.vaadin.chartjs
+ .options,com.byteowls.vaadin.chartjs.utils,elemental.json",com.byteow
+ ls.vaadin.chartjs.options.elements;version="1.3.0";uses:="com.byteowl
+ s.vaadin.chartjs.data,com.byteowls.vaadin.chartjs.options,com.byteowl
+ s.vaadin.chartjs.utils,elemental.json",com.byteowls.vaadin.chartjs.op
+ tions.scale;version="1.3.0";uses:="com.byteowls.vaadin.chartjs.option
+ s,com.byteowls.vaadin.chartjs.utils,elemental.json",com.byteowls.vaad
+ in.chartjs.options.types;version="1.3.0";uses:="com.byteowls.vaadin.c
+ hartjs.config,com.byteowls.vaadin.chartjs.options,com.byteowls.vaadin
+ .chartjs.options.scale,elemental.json",com.byteowls.vaadin.chartjs.op
+ tions.zoom;version="1.3.0";uses:="com.byteowls.vaadin.chartjs.options
+ ,com.byteowls.vaadin.chartjs.utils,elemental.json",com.byteowls.vaadi
+ n.chartjs.utils;version="1.3.0";uses:="elemental.json"
+Bundle-Name: vaadin-chartjs
+Bundle-Version: 1.3.0
+Vaadin-Package-Version: 1
+Created-By: 1.8.0_121 (Oracle Corporation)
+

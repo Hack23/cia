@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">GovernmentBodyRankingMenuItemFactoryImpl.java</span></div><h1>GovernmentBodyRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class GovernmentBodyRankingMenuItemFactoryImpl.
+ */
+@Service
+public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements GovernmentBodyRankingMenuItemFactory {
+
+	private static final String EXPENDITURE = &quot;Expenditure&quot;;
+
+	private static final String INCOME = &quot;Income&quot;;
+
+	private static final String HEADCOUNT = &quot;Headcount&quot;;
+
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = &quot;Government bodies&quot;;
+
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+<span class="fc" id="L54">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAN_OVERVIEW. */
+<span class="fc" id="L58">	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
+	
+<span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.DATAGRID);
+
+<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L65">			GovernmentBodyPageMode.HEADCOUNT.toString());</span>
+
+<span class="fc" id="L67">	private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L68">			GovernmentBodyPageMode.INCOME.toString());</span>
+
+<span class="fc" id="L70">	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L71">			GovernmentBodyPageMode.EXPENDITURE.toString());</span>
+
+	
+	/** The Constant GOVERNMENT_BODY_RANKING. */
+	private static final String GOVERNMENT_BODY_RANKING = &quot;GovernmentBody Ranking&quot;;
+
+	/** The Constant OVERVIEW_TEXT. */
+	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
+
+	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
+	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
+
+	/** The application menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
+	/**
+	 * Instantiates a new government body ranking menu item factory impl.
+	 */
+	public GovernmentBodyRankingMenuItemFactoryImpl() {
+<span class="fc" id="L91">		super();</span>
+<span class="fc" id="L92">	}</span>
+
+	@Override
+	public void createGovernmentBodyRankingMenuBar(final MenuBar menuBar) {
+<span class="fc" id="L96">		initApplicationMenuBar(menuBar);</span>
+
+<span class="fc" id="L98">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+
+<span class="fc" id="L100">		createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, null, null));</span>
+
+<span class="fc" id="L102">	}</span>
+
+	@Override
+	public void createGovernmentBodyRankingTopics(final MenuItem ministryMenuItem) {
+
+<span class="fc" id="L107">		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAN_OVERVIEW);</span>
+
+<span class="fc" id="L109">		ministryMenuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID);</span>
+
+<span class="fc" id="L111">		ministryMenuItem.addItem(HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT);</span>
+<span class="fc" id="L112">		ministryMenuItem.addItem(INCOME, VaadinIcons.GROUP, COMMAND_INCOME);</span>
+<span class="fc" id="L113">		ministryMenuItem.addItem(EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE);</span>
+		
+<span class="fc" id="L115">		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);</span>
+
+<span class="fc" id="L117">	}</span>
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+<span class="fc" id="L121">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+
+<span class="fc" id="L123">		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, &quot;Current government bodies&quot;);</span>
+		
+<span class="fc" id="L125">		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, &quot;Desc&quot;);</span>
+<span class="fc" id="L126">		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, &quot;Desc&quot;);</span>
+<span class="fc" id="L127">		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , &quot;Desc&quot;);		</span>
+		
+<span class="fc" id="L129">		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);</span>
+
+<span class="fc" id="L131">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

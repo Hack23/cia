@@ -1,0 +1,55 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Implementation-Title: org.apache.lucene
+Implementation-Version: 5.5.5 b3441673c21c83762035dc21d3827ad16aa17b68
+  - sarowe - 2017-10-20 08:57:52
+X-Compile-Target-JDK: 1.7
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Lucene Search Engine: sandbox
+Extension-Name: org.apache.lucene
+X-Compile-Source-JDK: 1.7
+Created-By: 1.7.0_151-b01 (Oracle Corporation)
+Specification-Version: 5.5.5
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.search
+Bundle-Description: lucene-sandbox-5.5.5
+Bundle-Name: lucene-sandbox-5.5.5
+Bundle-Version: 5.5.5
+Export-Package: org.apache.lucene.bkdtree;uses:="java.nio.file,java.ni
+ o.file.attribute,org.apache.lucene.codecs,org.apache.lucene.codecs.lu
+ cene54,org.apache.lucene.document,org.apache.lucene.index,org.apache.
+ lucene.search,org.apache.lucene.spatial.util,org.apache.lucene.store,
+ org.apache.lucene.util",org.apache.lucene.codecs.idversion;uses:="org
+ .apache.lucene.codecs,org.apache.lucene.codecs.blocktree,org.apache.l
+ ucene.index,org.apache.lucene.store,org.apache.lucene.util,org.apache
+ .lucene.util.fst",org.apache.lucene.payloads;uses:="org.apache.lucene
+ .index,org.apache.lucene.search,org.apache.lucene.search.spans,org.ap
+ ache.lucene.util",org.apache.lucene.rangetree;uses:="java.nio.file,ja
+ va.nio.file.attribute,org.apache.lucene.codecs,org.apache.lucene.code
+ cs.lucene54,org.apache.lucene.index,org.apache.lucene.search,org.apac
+ he.lucene.store,org.apache.lucene.util",org.apache.lucene.sandbox.que
+ ries;uses:="org.apache.lucene.analysis,org.apache.lucene.analysis.tok
+ enattributes,org.apache.lucene.index,org.apache.lucene.search,org.apa
+ che.lucene.search.similarities,org.apache.lucene.util",org.apache.luc
+ ene.sandbox.queries.regex;uses:="org.apache.lucene.index,org.apache.l
+ ucene.search,org.apache.lucene.util",org.apache.lucene.search;uses:="
+ java.util,org.apache.lucene.analysis,org.apache.lucene.analysis.token
+ attributes,org.apache.lucene.index,org.apache.lucene.search.similarit
+ ies,org.apache.lucene.util,org.apache.lucene.util.automaton"
+Import-Package: java.io,java.lang,java.lang.reflect,java.nio.file,java
+ .nio.file.attribute,java.security,java.util,java.util.concurrent.atom
+ ic,java.util.regex,org.apache.lucene.analysis;version="5.5.5",org.apa
+ che.lucene.analysis.tokenattributes;version="5.5.5",org.apache.lucene
+ .codecs;version="5.5.5",org.apache.lucene.codecs.blocktree;version="5
+ .5.5",org.apache.lucene.codecs.lucene54;version="5.5.5",org.apache.lu
+ cene.document;version="5.5.5",org.apache.lucene.index;version="5.5.5"
+ ,org.apache.lucene.search;version="5.5.5",org.apache.lucene.search.si
+ milarities;version="5.5.5",org.apache.lucene.search.spans;version="5.
+ 5.5",org.apache.lucene.spatial.util,org.apache.lucene.store;version="
+ 5.5.5",org.apache.lucene.util;version="5.5.5",org.apache.lucene.util.
+ automaton;version="5.5.5",org.apache.lucene.util.fst;version="5.5.5",
+ org.apache.regexp

@@ -1,0 +1,5 @@
+digraph hibernate_jcache_5_4_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_jcache_5_4_0_SNAPSHOT -> cache_api_1_0_0;
+  hibernate_jcache_5_4_0_SNAPSHOT -> hibernate_core_5_4_0_SNAPSHOT;
+}

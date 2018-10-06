@@ -1,0 +1,29 @@
+digraph service_component_agent_impl_2018_9_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> commons_lang3_3_8_1;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> geronimo_jms_2_0_spec_1_0_alpha_2;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> javax_persistence_api_2_2;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> joda_time_2_10;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_documentcontent_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_dokumentlista_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_dokumentstatus_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_person_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_personlista_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_utskottsforslag_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_votering_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_riksdagen_voteringlista_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_external_worldbank_indicators_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> model_internal_application_user_impl_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_component_agent_api_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_data_api_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_external_common_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_external_riksdagen_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_external_val_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> service_external_worldbank_2018_9_24_SNAPSHOT;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> spring_beans_5_1_0_RELEASE;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> spring_context_5_1_0_RELEASE;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> spring_jms_5_1_0_RELEASE;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> spring_security_core_5_1_0_RELEASE;
+  service_component_agent_impl_2018_9_24_SNAPSHOT -> spring_tx_5_1_0_RELEASE;
+}

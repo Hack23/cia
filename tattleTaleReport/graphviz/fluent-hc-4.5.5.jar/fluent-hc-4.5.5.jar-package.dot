@@ -1,0 +1,16 @@
+digraph fluent_hc_4_5_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_http_client_fluent -> org_apache_http;
+  org_apache_http_client_fluent -> org_apache_http_client_config;
+  org_apache_http_client_fluent -> org_apache_http_client_methods;
+  org_apache_http_client_fluent -> org_apache_http_client_protocol;
+  org_apache_http_client_fluent -> org_apache_http_concurrent;
+  org_apache_http_client_fluent -> org_apache_http_config;
+  org_apache_http_client_fluent -> org_apache_http_conn;
+  org_apache_http_client_fluent -> org_apache_http_conn_socket;
+  org_apache_http_client_fluent -> org_apache_http_conn_ssl;
+  org_apache_http_client_fluent -> org_apache_http_entity;
+  org_apache_http_client_fluent -> org_apache_http_impl_client;
+  org_apache_http_client_fluent -> org_apache_http_impl_conn;
+  org_apache_http_client_fluent -> org_apache_http_util;
+}

@@ -1,0 +1,6 @@
+digraph args4j_2_33_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_kohsuke_args4j -> org_kohsuke_args4j_spi;
+  org_kohsuke_args4j_spi -> java_nio_file;
+  org_kohsuke_args4j_spi -> org_kohsuke_args4j;
+}

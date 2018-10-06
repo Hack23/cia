@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: mockbuild
+Build-Jdk: 1.7.0_85
+Created-By: Apache Maven 3.1.1
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jasypt.spring31.xml.encryption
+Bundle-Description: jasypt-spring31-1.9.3.redhat_3
+Bundle-Name: jasypt-spring31-1.9.3.redhat_3
+Bundle-Version: 0.0.0
+Export-Package: org.jasypt.spring31.properties;uses:="org.jasypt.commo
+ ns,org.jasypt.encryption,org.jasypt.properties,org.jasypt.util.text,o
+ rg.springframework.context.support,org.springframework.core.env",org.
+ jasypt.spring31.xml.encryption;uses:="org.jasypt.digest,org.jasypt.di
+ gest.config,org.jasypt.encryption,org.jasypt.encryption.pbe,org.jasyp
+ t.encryption.pbe.config,org.jasypt.properties,org.jasypt.salt,org.jas
+ ypt.spring31.properties,org.jasypt.util.password,org.jasypt.util.text
+ "
+Import-Package: java.beans,java.io,java.lang,java.security,java.util,j
+ ava.util.prefs,org.jasypt.commons;version="0.0.0",org.jasypt.digest;v
+ ersion="0.0.0",org.jasypt.digest.config;version="0.0.0",org.jasypt.en
+ cryption;version="0.0.0",org.jasypt.encryption.pbe;version="0.0.0",or
+ g.jasypt.encryption.pbe.config;version="0.0.0",org.jasypt.properties;
+ version="0.0.0",org.jasypt.salt;version="0.0.0",org.jasypt.util.passw
+ ord;version="0.0.0",org.jasypt.util.text;version="0.0.0",org.springfr
+ amework.beans.factory;version="5.1.0.RELEASE",org.springframework.bea
+ ns.factory.config;version="5.1.0.RELEASE",org.springframework.beans.f
+ actory.support;version="5.1.0.RELEASE",org.springframework.beans.fact
+ ory.xml;version="5.1.0.RELEASE",org.springframework.context.support;v
+ ersion="5.1.0.RELEASE",org.springframework.core.env;version="5.1.0.RE
+ LEASE",org.springframework.core.io.support;version="5.1.0.RELEASE",or
+ g.springframework.util;version="5.1.0.RELEASE",org.springframework.we
+ b.context.support,org.w3c.dom;version="1.0"

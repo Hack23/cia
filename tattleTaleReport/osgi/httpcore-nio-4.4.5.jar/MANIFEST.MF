@@ -1,0 +1,74 @@
+Manifest-Version: 1.0
+Implementation-Title: HttpComponents Apache HttpCore NIO
+Implementation-Version: 4.4.5
+Archiver-Version: Plexus Archiver
+Built-By: oleg
+Specification-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Specification-Title: HttpComponents Apache HttpCore NIO
+url: http://hc.apache.org/httpcomponents-core-ga
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Target-JDK: 1.6
+Implementation-Build: tags/4.4.5-RC1/httpcore-nio@r1747417; 2016-06-08
+  18:38:23+0200
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven 3.0.5
+Build-Jdk: 1.7.0_75
+Specification-Version: 4.4.5
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.http.nio.protocol
+Bundle-Description: httpcore-nio-4.4.5
+Bundle-Name: httpcore-nio-4.4.5
+Bundle-Version: 4.4.5
+Export-Package: org.apache.http.impl.nio;uses:="org.apache.http,org.ap
+ ache.http.annotation,org.apache.http.config,org.apache.http.impl,org.
+ apache.http.impl.entity,org.apache.http.impl.nio.codecs,org.apache.ht
+ tp.impl.nio.reactor,org.apache.http.nio,org.apache.http.nio.reactor,o
+ rg.apache.http.nio.reactor.ssl,org.apache.http.nio.util,org.apache.ht
+ tp.params,org.apache.http.ssl,org.apache.http.util",org.apache.http.i
+ mpl.nio.bootstrap;uses:="org.apache.http,org.apache.http.config,org.a
+ pache.http.impl.nio,org.apache.http.impl.nio.reactor,org.apache.http.
+ nio,org.apache.http.nio.protocol,org.apache.http.nio.reactor,org.apac
+ he.http.nio.reactor.ssl,org.apache.http.protocol",org.apache.http.imp
+ l.nio.codecs;uses:="org.apache.http,org.apache.http.annotation,org.ap
+ ache.http.config,org.apache.http.nio,org.apache.http.nio.reactor,org.
+ apache.http.params,org.apache.http.util",org.apache.http.impl.nio.poo
+ l;uses:="org.apache.http.annotation,org.apache.http.concurrent,org.ap
+ ache.http.config,org.apache.http.impl.nio,org.apache.http.nio,org.apa
+ che.http.nio.pool,org.apache.http.nio.reactor,org.apache.http.nio.rea
+ ctor.ssl,org.apache.http.nio.util,org.apache.http.pool,org.apache.htt
+ p.util",org.apache.http.impl.nio.reactor;uses:="org.apache.http,org.a
+ pache.http.annotation,org.apache.http.config,org.apache.http.nio.reac
+ tor,org.apache.http.nio.reactor.ssl,org.apache.http.nio.util,org.apac
+ he.http.util",org.apache.http.impl.nio.ssl;uses:="org.apache.http.imp
+ l.nio,org.apache.http.impl.nio.reactor,org.apache.http.nio,org.apache
+ .http.nio.reactor,org.apache.http.util",org.apache.http.nio;uses:="or
+ g.apache.http.config,org.apache.http.nio.reactor",org.apache.http.nio
+ .entity;uses:="org.apache.http.entity,org.apache.http.nio,org.apache.
+ http.nio.util,org.apache.http.util",org.apache.http.nio.params;uses:=
+ "org.apache.http.util",org.apache.http.nio.pool;uses:="org.apache.htt
+ p.annotation,org.apache.http.concurrent,org.apache.http.nio.reactor,o
+ rg.apache.http.pool,org.apache.http.util",org.apache.http.nio.protoco
+ l;uses:="org.apache.http,org.apache.http.annotation,org.apache.http.c
+ oncurrent,org.apache.http.entity,org.apache.http.nio,org.apache.http.
+ nio.entity,org.apache.http.nio.reactor,org.apache.http.nio.util,org.a
+ pache.http.pool,org.apache.http.util",org.apache.http.nio.reactor,org
+ .apache.http.nio.reactor.ssl;uses:="org.apache.http.annotation,org.ap
+ ache.http.nio.reactor,org.apache.http.util",org.apache.http.nio.util;
+ uses:="org.apache.http.annotation,org.apache.http.nio,org.apache.http
+ .util"
+Import-Package: java.io,java.lang,java.lang.annotation,java.net,java.n
+ io,java.nio.channels,java.nio.charset,java.security,java.util,java.ut
+ il.concurrent,java.util.concurrent.atomic,java.util.concurrent.locks,
+ javax.net.ssl,org.apache.http;version="4.4.10",org.apache.http.annota
+ tion;version="4.4.10",org.apache.http.concurrent;version="4.4.10",org
+ .apache.http.config;version="4.4.10",org.apache.http.entity;version="
+ 4.4.10",org.apache.http.impl;version="4.4.10",org.apache.http.impl.en
+ tity;version="4.4.10",org.apache.http.impl.io;version="4.4.10",org.ap
+ ache.http.io;version="4.4.10",org.apache.http.message;version="4.4.10
+ ",org.apache.http.params;version="4.4.10",org.apache.http.pool;versio
+ n="4.4.10",org.apache.http.protocol;version="4.4.10",org.apache.http.
+ ssl;version="4.4.10",org.apache.http.util;version="4.4.10"

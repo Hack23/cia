@@ -1,0 +1,10 @@
+digraph spring_aspects_5_1_0_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_aspects_5_1_0_RELEASE -> aspectjweaver_1_9_2_RC2;
+  spring_aspects_5_1_0_RELEASE -> spring_aop_5_1_0_RELEASE;
+  spring_aspects_5_1_0_RELEASE -> spring_beans_5_1_0_RELEASE;
+  spring_aspects_5_1_0_RELEASE -> spring_context_5_1_0_RELEASE;
+  spring_aspects_5_1_0_RELEASE -> spring_context_support_5_1_0_RELEASE;
+  spring_aspects_5_1_0_RELEASE -> spring_core_5_1_0_RELEASE;
+  spring_aspects_5_1_0_RELEASE -> spring_tx_5_1_0_RELEASE;
+}

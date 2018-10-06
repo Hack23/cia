@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-imageio-core
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/imageio/i
+ mageio-core
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.imageio.color
+Bundle-Description: imageio-core-3.4.1
+Bundle-Name: imageio-core-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.imageio;uses:="com.twelvemonkeys.ima
+ ge,com.twelvemonkeys.imageio.util",com.twelvemonkeys.imageio.color;us
+ es:="com.twelvemonkeys.io,com.twelvemonkeys.lang,com.twelvemonkeys.ut
+ il",com.twelvemonkeys.imageio.spi;uses:="com.twelvemonkeys.lang",com.
+ twelvemonkeys.imageio.stream;uses:="com.twelvemonkeys.lang",com.twelv
+ emonkeys.imageio.util;uses:="com.twelvemonkeys.image,com.twelvemonkey
+ s.imageio.color,com.twelvemonkeys.io,com.twelvemonkeys.lang"
+Import-Package: com.twelvemonkeys.image;version="3.4.1",com.twelvemonk
+ eys.io;version="3.4.1",com.twelvemonkeys.lang;version="3.4.1",com.twe
+ lvemonkeys.util;version="3.4.1",java.awt,java.awt.color,java.awt.data
+ transfer,java.awt.event,java.awt.geom,java.awt.image,java.io,java.lan
+ g,java.lang.ref,java.lang.reflect,java.net,java.nio,java.security,jav
+ a.util,javax.imageio,javax.imageio.event,javax.imageio.metadata,javax
+ .imageio.spi,javax.imageio.stream,javax.swing,javax.swing.border,java
+ x.swing.filechooser,org.w3c.dom;version="1.0"

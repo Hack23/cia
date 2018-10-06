@@ -1,0 +1,12 @@
+digraph hyperjaxb3_ejb_roundtrip_0_6_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> commons_io_2_6;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> commons_lang3_3_8_1;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> hyperjaxb3_ejb_runtime_0_6_2;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> javax_persistence_api_2_2;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> jaxb_api_2_4_0;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> jaxb2_basics_runtime_0_12_0;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> jaxb2_basics_testing_0_10_0;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> jcl_over_slf4j_1_8_0_beta2;
+  hyperjaxb3_ejb_roundtrip_0_6_2 -> xml_apis_1_4_01;
+}

@@ -1,0 +1,5 @@
+digraph jsr305_3_0_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_annotation -> javax_annotation_meta;
+  javax_annotation_meta -> javax_annotation;
+}

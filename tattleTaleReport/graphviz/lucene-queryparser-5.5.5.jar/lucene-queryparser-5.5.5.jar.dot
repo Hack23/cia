@@ -1,0 +1,7 @@
+digraph lucene_queryparser_5_5_5_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_queryparser_5_5_5 -> lucene_core_5_5_5;
+  lucene_queryparser_5_5_5 -> lucene_queries_5_5_5;
+  lucene_queryparser_5_5_5 -> lucene_sandbox_5_5_5;
+  lucene_queryparser_5_5_5 -> xml_apis_1_4_01;
+}

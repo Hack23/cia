@@ -1,0 +1,92 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: 1.7.0_75-b13 (Oracle Corporation)
+
+Name: org/jdom2/filter/
+Specification-Title: JDOM Filter Classes
+Implementation-Title: org.jdom2.filter
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/adapters/
+Specification-Title: JDOM Adapter Classes
+Implementation-Title: org.jdom2.adapters
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/
+Specification-Title: JDOM Classes
+Implementation-Title: org.jdom2
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/input/
+Specification-Title: JDOM Input Classes
+Implementation-Title: org.jdom2.input
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org2
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/output/
+Specification-Title: JDOM Output Classes
+Implementation-Title: org.jdom2.output
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/transform/
+Specification-Title: JDOM Transformation Classes
+Implementation-Title: org.jdom2.transform
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+Name: org/jdom2/xpath/
+Specification-Title: JDOM XPath Classes
+Implementation-Title: org.jdom2.xpath
+Implementation-Version: 2.0.6
+Specification-Version: 2.0.0
+Specification-Vendor: jdom.org
+Implementation-Vendor: jdom.org
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jdom2
+Bundle-Description: jdom2-2.0.6
+Bundle-Name: jdom2-2.0.6
+Bundle-Version: 2.0.0
+Export-Package: org.jdom2;uses:="org.jdom2.filter,org.jdom2.internal,o
+ rg.jdom2.output,org.jdom2.util",org.jdom2.adapters;uses:="org.jdom2",
+ org.jdom2.filter;uses:="org.jdom2",org.jdom2.input;uses:="org.jdom2,o
+ rg.jdom2.input.sax,org.jdom2.input.stax",org.jdom2.input.sax;uses:="o
+ rg.jdom2,org.jdom2.input,org.jdom2.internal",org.jdom2.input.stax;use
+ s:="org.jdom2",org.jdom2.internal,org.jdom2.located;uses:="org.jdom2"
+ ,org.jdom2.output;uses:="org.jdom2,org.jdom2.adapters,org.jdom2.inter
+ nal,org.jdom2.output.support",org.jdom2.output.support;uses:="org.jdo
+ m2,org.jdom2.internal,org.jdom2.output,org.jdom2.util",org.jdom2.tran
+ sform;uses:="org.jdom2,org.jdom2.input.sax,org.jdom2.output",org.jdom
+ 2.util;uses:="org.jdom2,org.jdom2.internal",org.jdom2.xpath;uses:="or
+ g.jdom2,org.jdom2.filter,org.jdom2.internal,org.jdom2.xpath.jaxen",or
+ g.jdom2.xpath.jaxen;uses:="org.jdom2,org.jdom2.filter,org.jdom2.input
+ ,org.jdom2.xpath,org.jdom2.xpath.util",org.jdom2.xpath.util;uses:="or
+ g.jdom2,org.jdom2.filter,org.jdom2.xpath"
+Import-Package: java.io,java.lang,java.lang.reflect,java.net,java.nio.
+ charset,java.util,java.util.concurrent,java.util.concurrent.atomic,ja
+ va.util.regex,javax.xml.namespace;version="1.0",javax.xml.parsers;ver
+ sion="1.0",javax.xml.stream;version="1.0",javax.xml.stream.events;ver
+ sion="1.0",javax.xml.stream.util;version="1.0",javax.xml.transform;ve
+ rsion="1.0",javax.xml.transform.sax;version="1.0",javax.xml.transform
+ .stream;version="1.0",javax.xml.validation;version="1.0",org.jaxen,or
+ g.jaxen.saxpath,org.jaxen.util,org.w3c.dom;version="1.0",org.xml.sax;
+ version="1.0",org.xml.sax.ext;version="1.0",org.xml.sax.helpers;versi
+ on="1.0"

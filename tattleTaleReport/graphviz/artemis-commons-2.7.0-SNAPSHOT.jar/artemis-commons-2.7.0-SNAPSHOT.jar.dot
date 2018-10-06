@@ -1,0 +1,9 @@
+digraph artemis_commons_2_7_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_commons_2_7_0_SNAPSHOT -> commons_beanutils_1_9_3_redhat_1;
+  artemis_commons_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+  artemis_commons_2_7_0_SNAPSHOT -> netty_buffer_4_1_30_Final;
+  artemis_commons_2_7_0_SNAPSHOT -> netty_common_4_1_30_Final;
+  artemis_commons_2_7_0_SNAPSHOT -> netty_handler_4_1_30_Final;
+  artemis_commons_2_7_0_SNAPSHOT -> netty_transport_4_1_30_Final;
+}

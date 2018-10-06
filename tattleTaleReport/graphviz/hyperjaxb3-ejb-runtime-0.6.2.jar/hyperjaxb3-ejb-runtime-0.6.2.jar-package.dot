@@ -1,0 +1,8 @@
+digraph hyperjaxb3_ejb_runtime_0_6_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jvnet_hyperjaxb3_transform -> org_jvnet_hyperjaxb3_item;
+  org_jvnet_hyperjaxb3_transform -> org_jvnet_hyperjaxb3_xml_bind_annotation_adapters;
+  org_jvnet_hyperjaxb3_xml_bind -> org_jvnet_hyperjaxb3_xml_bind_annotation_adapters;
+  org_jvnet_hyperjaxb3_xml_bind_annotation_adapters -> org_apache_commons_lang3;
+  org_jvnet_hyperjaxb3_xml_bind_annotation_adapters -> org_jvnet_hyperjaxb3_item;
+}

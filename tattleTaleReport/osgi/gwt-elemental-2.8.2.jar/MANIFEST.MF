@@ -1,0 +1,60 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.3
+Created-By: 1.8.0_112-google-v7-169763474-169682997 (Oracle Corporatio
+ n)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: elemental.html
+Bundle-Description: gwt-elemental-2.8.2
+Bundle-Name: gwt-elemental-2.8.2
+Bundle-Version: 0.0.0
+Export-Package: elemental.client;uses:="elemental.dom,elemental.html,e
+ lemental.js,elemental.js.dom,elemental.js.html",elemental.css;uses:="
+ elemental.stylesheets",elemental.dom;uses:="elemental.css,elemental.e
+ vents,elemental.html,elemental.ranges,elemental.stylesheets,elemental
+ .svg,elemental.traversal,elemental.util,elemental.xpath",elemental.ev
+ ents;uses:="elemental.dom,elemental.html,elemental.util",elemental.ht
+ ml;uses:="elemental.css,elemental.dom,elemental.events,elemental.rang
+ es,elemental.stylesheets,elemental.svg,elemental.util,elemental.xml,e
+ lemental.xpath",elemental.js;uses:="com.google.gwt.core.client,elemen
+ tal.client,elemental.html,elemental.js.dom,elemental.js.html",element
+ al.js.css;uses:="elemental.css,elemental.js.dom,elemental.js.styleshe
+ ets,elemental.stylesheets",elemental.js.dom;uses:="com.google.gwt.cor
+ e.client,elemental.css,elemental.dom,elemental.events,elemental.html,
+ elemental.js.css,elemental.js.events,elemental.js.html,elemental.js.r
+ anges,elemental.js.stylesheets,elemental.js.svg,elemental.js.traversa
+ l,elemental.js.util,elemental.js.xpath,elemental.ranges,elemental.sty
+ lesheets,elemental.svg,elemental.traversal,elemental.util,elemental.x
+ path",elemental.js.events;uses:="elemental.dom,elemental.events,eleme
+ ntal.html,elemental.js.dom,elemental.js.html,elemental.js.util,elemen
+ tal.util",elemental.js.html;uses:="elemental.css,elemental.dom,elemen
+ tal.events,elemental.html,elemental.js.css,elemental.js.dom,elemental
+ .js.events,elemental.js.ranges,elemental.js.stylesheets,elemental.js.
+ svg,elemental.js.util,elemental.js.xml,elemental.js.xpath,elemental.r
+ anges,elemental.stylesheets,elemental.svg,elemental.util,elemental.xm
+ l,elemental.xpath",elemental.js.json;uses:="com.google.gwt.core.clien
+ t,elemental.js.util,elemental.json",elemental.js.ranges;uses:="elemen
+ tal.dom,elemental.html,elemental.js.dom,elemental.js.html,elemental.r
+ anges",elemental.js.stylesheets;uses:="elemental.dom,elemental.js.dom
+ ,elemental.js.util,elemental.stylesheets,elemental.util",elemental.js
+ .svg;uses:="elemental.css,elemental.dom,elemental.events,elemental.js
+ .css,elemental.js.dom,elemental.js.events,elemental.svg",elemental.js
+ .traversal;uses:="elemental.dom,elemental.js.dom,elemental.traversal"
+ ,elemental.js.util;uses:="com.google.gwt.core.client,com.google.gwt.x
+ hr.client,elemental.client,elemental.html,elemental.util",elemental.j
+ s.xml;uses:="elemental.dom,elemental.events,elemental.html,elemental.
+ js.dom,elemental.js.html,elemental.xml",elemental.js.xpath;uses:="ele
+ mental.dom,elemental.js.dom,elemental.xpath",elemental.json;uses:="el
+ emental.json.impl",elemental.json.impl;uses:="com.google.gwt.core.sha
+ red,elemental.json",elemental.ranges;uses:="elemental.dom,elemental.h
+ tml",elemental.stylesheets;uses:="elemental.dom,elemental.util",eleme
+ ntal.svg;uses:="elemental.css,elemental.dom,elemental.events",element
+ al.traversal;uses:="elemental.dom",elemental.util;uses:="elemental.cl
+ ient,elemental.dom,elemental.html,elemental.util.impl",elemental.util
+ .impl;uses:="elemental.util",elemental.xml;uses:="elemental.dom,eleme
+ ntal.events,elemental.html",elemental.xpath;uses:="elemental.dom"
+Import-Package: com.google.gwt.core.client;version="0.0.0",com.google.
+ gwt.core.shared;version="0.0.0",com.google.gwt.xhr.client;version="0.
+ 0.0",java.io,java.lang,java.util

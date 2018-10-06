@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: tball
+Created-By: Apache Maven 3.1.1
+Build-Jdk: 1.8.0_112
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.google.j2objc.annotations
+Bundle-Description: j2objc-annotations-1.1
+Bundle-Name: j2objc-annotations-1.1
+Bundle-Version: 0.0.0
+Export-Package: com.google.j2objc.annotations
+Import-Package: java.lang,java.lang.annotation

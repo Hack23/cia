@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: fommil
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_45-internal
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: no.uib.cipr.matrix
+Bundle-Description: mtj-1.0.4
+Bundle-Name: mtj-1.0.4
+Bundle-Version: 0.0.0
+Export-Package: no.uib.cipr.matrix;uses:="com.github.fommil.netlib,no.
+ uib.cipr.matrix.io,org.netlib.util",no.uib.cipr.matrix.io,no.uib.cipr
+ .matrix.sparse;uses:="com.github.fommil.netlib,no.uib.cipr.matrix,no.
+ uib.cipr.matrix.io,org.netlib.util"
+Import-Package: com.github.fommil.netlib;version="0.0.0",java.beans,ja
+ va.io,java.lang,java.text,java.util,java.util.logging,org.netlib.util
+ ;version="0.0.0"

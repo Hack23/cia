@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.collections
+Archiver-Version: Plexus Archiver
+Built-By: mockbuild
+Bnd-LastModified: 1448491863519
+Implementation-Vendor-Id: commons-collections
+Specification-Title: Apache Commons Collections
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=
+ LICENSE.txt
+Bundle-DocURL: http://commons.apache.org/collections/
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Scm-Url: https://github.com/apache/commons-collections
+Export-Package: org.apache.commons.collections;version="3.2.2.redhat-2
+ ",org.apache.commons.collections.bag;version="3.2.2.redhat-2",org.apa
+ che.commons.collections.bidimap;version="3.2.2.redhat-2",org.apache.c
+ ommons.collections.buffer;version="3.2.2.redhat-2",org.apache.commons
+ .collections.collection;version="3.2.2.redhat-2",org.apache.commons.c
+ ollections.comparators;version="3.2.2.redhat-2",org.apache.commons.co
+ llections.functors;version="3.2.2.redhat-2",org.apache.commons.collec
+ tions.iterators;version="3.2.2.redhat-2",org.apache.commons.collectio
+ ns.keyvalue;version="3.2.2.redhat-2",org.apache.commons.collections.l
+ ist;version="3.2.2.redhat-2",org.apache.commons.collections.map;versi
+ on="3.2.2.redhat-2",org.apache.commons.collections.set;version="3.2.2
+ .redhat-2"
+Bundle-Name: Apache Commons Collections
+Implementation-Title: Apache Commons Collections
+Bundle-Description: Types that extend and augment the Java Collections
+  Framework.
+Implementation-Version: 3.2.2.redhat-2
+Java-Version: 1.7.0_91
+Scm-Connection: scm:git:git@github.com:apache/commons-collections.git
+Specification-Vendor: The Apache Software Foundation
+Os-Arch: amd64
+Bundle-ManifestVersion: 2
+Java-Vendor: Oracle Corporation
+Bundle-Vendor: The Apache Software Foundation
+Os-Name: Linux
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Apache Software Foundation
+Os-Version: 2.6.32-573.7.1.el6.x86_64
+Scm-Revision: e3070e8b41af0ec5f243b1c6e8ff89e517dc4e37
+Bundle-Version: 3.2.2.redhat-2
+X-Compile-Target-JDK: 1.6
+Implementation-Build: master@re3070e8b41af0ec5f243b1c6e8ff89e517dc4e37
+ ; 2015-11-25 22:50:28+0000
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://commons.apache.org/collections/
+Build-Jdk: 1.7.0_91
+Specification-Version: 3.2.2.redhat-2
+

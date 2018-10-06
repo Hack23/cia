@@ -1,0 +1,18 @@
+digraph elasticsearch_rest_client_5_6_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_elasticsearch_client -> java_nio_charset;
+  org_elasticsearch_client -> java_util;
+  org_elasticsearch_client -> org_apache_http;
+  org_elasticsearch_client -> org_apache_http_client_config;
+  org_elasticsearch_client -> org_apache_http_client_methods;
+  org_elasticsearch_client -> org_apache_http_client_protocol;
+  org_elasticsearch_client -> org_apache_http_client_utils;
+  org_elasticsearch_client -> org_apache_http_concurrent;
+  org_elasticsearch_client -> org_apache_http_entity;
+  org_elasticsearch_client -> org_apache_http_impl_nio_client;
+  org_elasticsearch_client -> org_apache_http_nio;
+  org_elasticsearch_client -> org_apache_http_nio_client_methods;
+  org_elasticsearch_client -> org_apache_http_nio_entity;
+  org_elasticsearch_client -> org_apache_http_nio_protocol;
+  org_elasticsearch_client -> org_apache_http_nio_util;
+}

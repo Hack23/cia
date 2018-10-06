@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.jboss.logging.jboss-logging
+Archiver-Version: Plexus Archiver
+Built-By: jperkins
+Bnd-LastModified: 1518643408971
+Implementation-Vendor-Id: org.jboss.logging
+Specification-Title: JBoss Logging 3
+Bundle-DocURL: http://www.jboss.org
+Import-Package: org.apache.log4j;resolution:=optional,org.apache.log4j
+ .config;resolution:=optional,org.apache.logging.log4j;resolution:=opt
+ ional;version="[2.0,3)",org.apache.logging.log4j.message;resolution:=
+ optional;version="[2.0,3)",org.apache.logging.log4j.spi;resolution:=o
+ ptional;version="[2.0,3)",org.jboss.logmanager;resolution:=optional;v
+ ersion="[1.5,2)",org.slf4j;resolution:=optional;version="[1.7,2)",org
+ .slf4j.spi;resolution:=optional;version="[1.7,2)"
+Scm-Url: https://github.com/jboss-logging/jboss-logging
+Export-Package: org.jboss.logging;uses:="org.jboss.logmanager,org.apac
+ he.logging.log4j.message,org.apache.logging.log4j,org.apache.logging.
+ log4j.spi,org.apache.log4j,org.slf4j.spi,org.slf4j";version="3.3.2.Fi
+ nal"
+Bundle-Name: JBoss Logging 3
+Implementation-Title: JBoss Logging 3
+Bundle-Description: The JBoss Logging Framework
+Automatic-Module-Name: org.jboss.logging
+Build-Timestamp: Wed, 14 Feb 2018 13:23:27 -0800
+Implementation-Version: 3.3.2.Final
+Java-Version: 1.6.0_45
+Scm-Connection: scm:git:git://github.com/jboss-logging/jboss-logging.g
+ it
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Bundle-ManifestVersion: 2
+Java-Vendor: Sun Microsystems Inc.
+Bundle-Vendor: JBoss by Red Hat
+Os-Name: Linux
+Tool: Bnd-1.50.0
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.14.18-300.fc27.x86_64
+Scm-Revision: 526f45a6eff90ed3db7c0a0092f2c9cc987cb7cc
+Bundle-Version: 3.3.2.Final
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org
+Build-Jdk: 1.6.0_45
+Specification-Version: 3.3.2.Final
+

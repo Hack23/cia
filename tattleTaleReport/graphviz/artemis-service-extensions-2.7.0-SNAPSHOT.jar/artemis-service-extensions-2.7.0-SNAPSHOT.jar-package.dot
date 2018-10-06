@@ -1,0 +1,11 @@
+digraph artemis_service_extensions_2_7_0_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_activemq_artemis_service_extensions -> org_apache_activemq_artemis_service_extensions_transactions;
+  org_apache_activemq_artemis_service_extensions -> org_apache_activemq_artemis_service_extensions_xa;
+  org_apache_activemq_artemis_service_extensions -> org_jboss_logging_annotations;
+  org_apache_activemq_artemis_service_extensions_xa_recovery -> org_apache_activemq_artemis_api_core;
+  org_apache_activemq_artemis_service_extensions_xa_recovery -> org_apache_activemq_artemis_api_core_client;
+  org_apache_activemq_artemis_service_extensions_xa_recovery -> org_apache_activemq_artemis_jms_client;
+  org_apache_activemq_artemis_service_extensions_xa_recovery -> org_apache_activemq_artemis_spi_core_remoting;
+  org_apache_activemq_artemis_service_extensions_xa_recovery -> org_jboss_logging_annotations;
+}

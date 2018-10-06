@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common</a> &gt; <span class="el_source">AbstractView.java</span></div><h1>AbstractView.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common;
+
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.service.api.action.application.LogoutRequest;
+import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class AbstractView.
+ */
+public abstract class AbstractView extends Panel implements View {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L65">	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);</span>
+
+	/** The Constant LOGOUT. */
+	private static final String LOGOUT = &quot;Logout&quot;;
+
+	/** The Constant ROLE_USER. */
+	private static final String ROLE_USER = &quot;ROLE_USER&quot;;
+
+	/** The Constant ROLE_ADMIN. */
+	private static final String ROLE_ADMIN = &quot;ROLE_ADMIN&quot;;
+
+	/** The page mode content factory map. */
+	private transient Map&lt;String, PageModeContentFactory&gt; pageModeContentFactoryMap;
+
+	/** The page name. */
+	private final String pageName;
+
+	/** The barmenu. */
+<span class="fc" id="L83">	private final MenuBar barmenu = new MenuBar();</span>
+
+	/** The top header right panel. */
+<span class="fc" id="L86">	private final HorizontalLayout topHeaderRightPanel = new HorizontalLayout();</span>
+
+	/** The panel. */
+	private Panel panel;
+
+	/** The page link factory. */
+	@Autowired
+	protected transient PageLinkFactory pageLinkFactory;
+
+	/** The page action event helper. */
+	@Autowired
+	protected transient PageActionEventHelper pageActionEventHelper;
+	
+	/** The menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory menuItemFactory;
+
+
+	/**
+	 * Instantiates a new abstract view.
+	 */
+	protected AbstractView(final Map&lt;String, PageModeContentFactory&gt; pageModeContentFactoryMap, final String pageName) {
+<span class="fc" id="L108">		super();</span>
+<span class="fc" id="L109">		this.pageModeContentFactoryMap = pageModeContentFactoryMap;</span>
+<span class="fc" id="L110">		this.pageName = pageName;</span>
+<span class="fc" id="L111">	}</span>
+
+	/**
+	 * Post construct.
+	 */
+	@PostConstruct
+	public final void postConstruct() {
+<span class="fc" id="L118">		setSizeFull();</span>
+<span class="fc" id="L119">		createBasicLayoutWithPanelAndFooter(pageName);</span>
+<span class="fc" id="L120">	}</span>
+
+
+	@Override
+	public final void enter(final ViewChangeEvent event) {
+		try {
+
+<span class="fc" id="L127">			String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());</span>
+			
+<span class="fc bfc" id="L129" title="All 2 branches covered.">			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {</span>
+<span class="fc bfc" id="L130" title="All 4 branches covered.">				if (pageModeContentFactory.matches(pageName, parameters) &amp;&amp; pageModeContentFactory.validReference(parameters)) {					</span>
+<span class="fc" id="L131">					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));</span>
+<span class="fc" id="L132">					return;</span>
+				} 
+<span class="fc" id="L134">			}</span>
+
+<span class="fc" id="L136">			LOGGER.warn(&quot;Invalid reference, content not found:{}/{}&quot;,pageName, parameters);</span>
+<span class="fc" id="L137">			final VerticalLayout panelContent = createFullSizeVerticalLayout();</span>
+			
+<span class="fc" id="L139">			menuItemFactory.createMainPageMenuBar(getBarmenu());</span>
+
+<span class="fc" id="L141">			LabelFactory.createHeader2Label(panelContent,&quot;Invalid reference, content not found:&quot; +pageName+ &quot;/&quot;+ parameters);</span>
+			
+<span class="fc" id="L143">			getPanel().setContent(panelContent);</span>
+<span class="fc" id="L144">			getPanel().setCaption(&quot;Invalid Reference&quot;);</span>
+<span class="fc" id="L145">		} catch (final AccessDeniedException e ) {</span>
+<span class="fc" id="L146">			LOGGER.warn(&quot;Access denided:&quot; +pageName,e);</span>
+<span class="fc" id="L147">			final VerticalLayout panelContent = createFullSizeVerticalLayout();</span>
+<span class="fc" id="L148">			LabelFactory.createHeader2Label(panelContent,&quot;Access denided:&quot; +pageName);</span>
+<span class="fc" id="L149">			getPanel().setContent(panelContent);</span>
+<span class="fc" id="L150">			getPanel().setCaption(&quot;Access denied&quot;);</span>
+<span class="fc" id="L151">		}</span>
+<span class="fc" id="L152">	}</span>
+
+	/**
+	 * Creates the basic layout with panel and footer.
+	 *
+	 * @param panelName
+	 *            the panel name
+	 */
+	protected final void createBasicLayoutWithPanelAndFooter(final String panelName) {
+<span class="fc" id="L161">		final VerticalLayout layout = createFullSizeVerticalLayout();</span>
+<span class="fc" id="L162">		final VerticalLayout pageModeContent = createFullSizeVerticalLayout(false,false);</span>
+<span class="fc" id="L163">		layout.addComponent(pageModeContent);</span>
+
+<span class="fc" id="L165">		final HorizontalLayout topHeader = new HorizontalLayout();</span>
+
+<span class="fc" id="L167">		addLogoToHeader(topHeader);</span>
+<span class="fc" id="L168">		createTopTitleHeader(topHeader);</span>
+
+<span class="fc" id="L170">		topHeaderRightPanel.removeAllComponents();</span>
+<span class="fc" id="L171">		topHeader.addComponent(topHeaderRightPanel);</span>
+<span class="fc" id="L172">		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);</span>
+<span class="fc" id="L173">		topHeader.setExpandRatio(topHeaderRightPanel, ContentRatio.LARGE);</span>
+
+<span class="fc" id="L175">		createTopHeaderActionsForUserContext();</span>
+
+<span class="fc" id="L177">		topHeaderRightPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L178">		topHeaderRightPanel.setHeight(&quot;50px&quot;);</span>
+
+<span class="fc" id="L180">		topHeader.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L181">		topHeader.setHeight(&quot;50px&quot;);</span>
+
+<span class="fc" id="L183">		pageModeContent.addComponent(topHeader);</span>
+<span class="fc" id="L184">		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);</span>
+
+<span class="fc" id="L186">		pageModeContent.addComponent(getBarmenu());</span>
+<span class="fc" id="L187">		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);</span>
+
+<span class="fc" id="L189">		panel = new Panel(panelName);</span>
+<span class="fc" id="L190">		panel.addStyleName(&quot;v-panel-page-panel&quot;);</span>
+
+<span class="fc" id="L192">		panel.setSizeFull();</span>
+<span class="fc" id="L193">		pageModeContent.addComponent(panel);</span>
+<span class="fc" id="L194">		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);</span>
+
+<span class="fc" id="L196">		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());</span>
+<span class="fc" id="L197">		setContent(layout);</span>
+
+<span class="fc" id="L199">		setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L200">		setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L201">		setSizeFull();</span>
+
+<span class="fc" id="L203">	}</span>
+
+	/**
+	 * Creates the top header actions for user context.
+	 */
+	private void createTopHeaderActionsForUserContext() {
+<span class="fc bfc" id="L209" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="fc" id="L210">			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();</span>
+<span class="fc" id="L211">			topHeaderRightPanel.addComponent(userHomePageLink);</span>
+<span class="fc" id="L212">			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);</span>
+
+<span class="fc" id="L214">			final Button logoutButton = new Button(LOGOUT,VaadinIcons.SIGN_OUT);</span>
+
+<span class="fc" id="L216">			final LogoutRequest logoutRequest = new LogoutRequest();</span>
+<span class="fc" id="L217">			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L218">			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));</span>
+
+<span class="fc" id="L220">			topHeaderRightPanel.addComponent(logoutButton);</span>
+<span class="fc" id="L221">			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);</span>
+
+<span class="fc" id="L223">		} else {</span>
+<span class="fc" id="L224">			final Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();</span>
+<span class="fc" id="L225">			topHeaderRightPanel.addComponent(createRegisterPageLink);</span>
+<span class="fc" id="L226">			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);</span>
+
+<span class="fc" id="L228">			final Link createLoginPageLink = pageLinkFactory.createLoginPageLink();</span>
+<span class="fc" id="L229">			topHeaderRightPanel.addComponent(createLoginPageLink);</span>
+<span class="fc" id="L230">			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);</span>
+		}
+<span class="fc" id="L232">	}</span>
+
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @param margin
+	 *            the margin
+	 * @param spacing
+	 *            the spacing
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout(final boolean margin, final boolean spacing) {
+<span class="fc" id="L244">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="fc" id="L245">		layout.setMargin(margin);</span>
+<span class="fc" id="L246">		layout.setSpacing(spacing);</span>
+<span class="fc" id="L247">		layout.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L248">		layout.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L249">		return layout;</span>
+	}
+	
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout() {
+<span class="fc" id="L258">		return createFullSizeVerticalLayout(true,true);</span>
+	}
+
+	/**
+	 * Adds the logo to header.
+	 *
+	 * @param topHeader
+	 *            the top header
+	 */
+	private static void addLogoToHeader(final HorizontalLayout topHeader) {
+<span class="fc" id="L268">		final ThemeResource ciaLogoResource = new ThemeResource(&quot;cia-logo.png&quot;);</span>
+<span class="fc" id="L269">		final Image ciaLogoImage = new Image(null,ciaLogoResource);</span>
+<span class="fc" id="L270">		topHeader.addComponent(ciaLogoImage);</span>
+<span class="fc" id="L271">		ciaLogoImage.setWidth(&quot;60px&quot;);</span>
+<span class="fc" id="L272">		ciaLogoImage.setHeight(&quot;60px&quot;);</span>
+<span class="fc" id="L273">		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);</span>
+<span class="fc" id="L274">		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);</span>
+<span class="fc" id="L275">	}</span>
+
+	/**
+	 * Creates the top title header.
+	 *
+	 * @param topHeader
+	 *            the top header
+	 */
+	private static void createTopTitleHeader(final HorizontalLayout topHeader) {
+<span class="fc" id="L284">		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();</span>
+
+
+<span class="fc" id="L287">		final Label titleLabel = new Label(&quot;Citizen Intelligence Agency&quot;);</span>
+<span class="fc" id="L288">		titleLabel.setStyleName(&quot;Header&quot;);</span>
+<span class="fc" id="L289">		topTitleHeadertPanel.addComponent(titleLabel);</span>
+<span class="fc" id="L290">		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);</span>
+
+<span class="fc" id="L292">		final Label sloganLabel = new Label(&quot;// Tracking politicians like bugs!&quot;);</span>
+<span class="fc" id="L293">		sloganLabel.setStyleName(&quot;HeaderSlogan&quot;);</span>
+<span class="fc" id="L294">		topTitleHeadertPanel.addComponent(sloganLabel);</span>
+<span class="fc" id="L295">		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);</span>
+
+<span class="fc" id="L297">		topHeader.addComponent(topTitleHeadertPanel);</span>
+<span class="fc" id="L298">		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);</span>
+<span class="fc" id="L299">		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);</span>
+<span class="fc" id="L300">	}</span>
+
+	/**
+	 * Gets the barmenu.
+	 *
+	 * @return the barmenu
+	 */
+	public final MenuBar getBarmenu() {
+<span class="fc" id="L308">		return barmenu;</span>
+	}
+
+	/**
+	 * Gets the panel.
+	 *
+	 * @return the panel
+	 */
+	protected final Panel getPanel() {
+<span class="fc" id="L317">		return panel;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

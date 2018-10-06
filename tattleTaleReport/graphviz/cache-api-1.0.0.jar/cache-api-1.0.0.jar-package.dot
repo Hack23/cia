@@ -1,0 +1,15 @@
+digraph cache_api_1_0_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_cache -> javax_cache_configuration;
+  javax_cache -> javax_cache_integration;
+  javax_cache -> javax_cache_processor;
+  javax_cache -> javax_cache_spi;
+  javax_cache_annotation -> javax_cache;
+  javax_cache_configuration -> javax_cache_expiry;
+  javax_cache_event -> javax_cache;
+  javax_cache_expiry -> javax_cache_configuration;
+  javax_cache_integration -> javax_cache;
+  javax_cache_processor -> javax_cache;
+  javax_cache_spi -> javax_cache;
+  javax_cache_spi -> javax_cache_configuration;
+}

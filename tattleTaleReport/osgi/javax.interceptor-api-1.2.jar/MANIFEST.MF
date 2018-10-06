@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-Description: Java(TM) Interceptor 1.2 API Design Specification
+Bundle-License: https://glassfish.dev.java.net/nonav/public/CDDL+GPL.h
+ tml
+Bundle-SymbolicName: javax.interceptor-api
+Implementation-Version: 1.2
+Archiver-Version: Plexus Archiver
+Built-By: romano
+Specification-Vendor: Oracle Corporation
+Bnd-LastModified: 1366985440758
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: org.glassfish}
+Bundle-Vendor: GlassFish Community
+Bundle-DocURL: https://glassfish.java.net
+Import-Package: javax.interceptor;version="1.2"
+Tool: Bnd-0.0.255
+Implementation-Vendor: GlassFish Community
+Export-Package: javax.interceptor;version="1.2"
+Bundle-Name: javax.interceptor API
+Bundle-Version: 1.2
+Extension-Name: javax.interceptor
+Created-By: 1.7.0_09 (Oracle Corporation)
+Build-Jdk: 1.7.0_09
+Specification-Version: 1.2
+

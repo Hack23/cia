@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: mockbuild
+Build-Jdk: 1.7.0_85
+Created-By: Apache Maven 3.1.1
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jasypt.encryption.pbe
+Bundle-Description: jasypt-1.9.3.redhat_3
+Bundle-Name: jasypt-1.9.3.redhat_3
+Bundle-Version: 0.0.0
+Export-Package: org.jasypt.commons;uses:="org.jasypt.exceptions",org.j
+ asypt.contrib.org.apache.commons.codec_1_3,org.jasypt.contrib.org.apa
+ che.commons.codec_1_3.binary;uses:="org.jasypt.contrib.org.apache.com
+ mons.codec_1_3",org.jasypt.digest;uses:="org.jasypt.commons,org.jasyp
+ t.contrib.org.apache.commons.codec_1_3.binary,org.jasypt.digest.confi
+ g,org.jasypt.exceptions,org.jasypt.normalization,org.jasypt.salt",org
+ .jasypt.digest.config;uses:="org.jasypt.commons,org.jasypt.exceptions
+ ,org.jasypt.salt",org.jasypt.encryption,org.jasypt.encryption.pbe;use
+ s:="org.jasypt.commons,org.jasypt.contrib.org.apache.commons.codec_1_
+ 3.binary,org.jasypt.encryption,org.jasypt.encryption.pbe.config,org.j
+ asypt.exceptions,org.jasypt.normalization,org.jasypt.salt",org.jasypt
+ .encryption.pbe.config;uses:="org.jasypt.commons,org.jasypt.exception
+ s,org.jasypt.salt,org.jasypt.web.pbeconfig",org.jasypt.exceptions,org
+ .jasypt.intf.cli;uses:="org.jasypt.commons,org.jasypt.exceptions,org.
+ jasypt.intf.service,org.jasypt.registry",org.jasypt.intf.service;uses
+ :="org.jasypt.commons,org.jasypt.digest,org.jasypt.digest.config,org.
+ jasypt.encryption.pbe,org.jasypt.encryption.pbe.config",org.jasypt.no
+ rmalization;uses:="com.ibm.icu.text,org.jasypt.exceptions",org.jasypt
+ .properties;uses:="org.jasypt.commons,org.jasypt.encryption,org.jasyp
+ t.exceptions,org.jasypt.util.text",org.jasypt.registry,org.jasypt.sal
+ t;uses:="org.jasypt.commons,org.jasypt.exceptions",org.jasypt.util.bi
+ nary;uses:="org.jasypt.encryption.pbe",org.jasypt.util.digest;uses:="
+ org.jasypt.digest",org.jasypt.util.numeric;uses:="org.jasypt.encrypti
+ on.pbe",org.jasypt.util.password;uses:="org.jasypt.digest,org.jasypt.
+ digest.config",org.jasypt.util.password.rfc2307;uses:="org.jasypt.dig
+ est,org.jasypt.util.password",org.jasypt.util.text;uses:="org.jasypt.
+ encryption.pbe",org.jasypt.web.pbeconfig;uses:="org.jasypt.commons,or
+ g.jasypt.encryption.pbe.config,org.jasypt.exceptions"
+Import-Package: com.ibm.icu.text;version="62",java.io,java.lang,java.l
+ ang.reflect,java.math,java.security,java.security.spec,java.text,java
+ .util,javax.crypto,javax.crypto.spec,javax.servlet,javax.servlet.http

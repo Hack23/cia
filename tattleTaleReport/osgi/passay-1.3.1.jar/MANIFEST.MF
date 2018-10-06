@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-Description: Library for checking that a password complies with
+  a custom set of rules
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt, http:/
+ /www.gnu.org/licenses/lgpl-3.0.txt
+Bundle-SymbolicName: org.passay
+Built-By: dfisher
+Bnd-LastModified: 1519315847355
+Bundle-ManifestVersion: 2
+Import-Package: javax.sql,org.cryptacular.bean;version="[1.2,2)";resol
+ ution:=optional,org.passay,org.passay.dictionary,org.passay.dictionar
+ y.sort,org.passay.entropy,org.springframework.context;resolution:=opt
+ ional,org.springframework.context.support;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849
+Export-Package: org.passay;uses:="org.cryptacular.bean,org.passay.dict
+ ionary";version="1.3.1",org.passay.entropy;uses:="org.passay";version
+ ="1.3.1",org.passay.dictionary;uses:="javax.sql,org.passay.dictionary
+ .sort";version="1.3.1",org.passay.dictionary.sort;version="1.3.1",org
+ .passay.spring;uses:="org.passay,org.springframework.context";version
+ ="1.3.1"
+Bundle-Name: Passay Library
+Bundle-Version: 1.3.1
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_161
+

@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.io
+Archiver-Version: Plexus Archiver
+Built-By: britter
+Bnd-LastModified: 1508061500775
+Specification-Title: Apache Commons IO
+Implementation-Vendor-Id: commons-io
+Bundle-DocURL: http://commons.apache.org/proper/commons-io/
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=
+ LICENSE.txt
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Export-Package: org.apache.commons.io;version="1.4.9999",org.apache.co
+ mmons.io.comparator;version="1.4.9999",org.apache.commons.io.filefilt
+ er;version="1.4.9999",org.apache.commons.io.input;version="1.4.9999",
+ org.apache.commons.io.output;version="1.4.9999",org.apache.commons.io
+ .monitor;version="2.6",org.apache.commons.io.serialization;version="2
+ .6",org.apache.commons.io;version="2.6",org.apache.commons.io.compara
+ tor;version="2.6",org.apache.commons.io.filefilter;version="2.6",org.
+ apache.commons.io.input;version="2.6",org.apache.commons.io.output;ve
+ rsion="2.6"
+Bundle-Name: Apache Commons IO
+Implementation-Title: Apache Commons IO
+Bundle-Description: The Apache Commons IO library contains utility cla
+ sses, stream implementations, file filters,file comparators, endian t
+ ransformation classes, and much more.
+Automatic-Module-Name: org.apache.commons.io
+Implementation-Version: 2.6
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.0.0.201509101326
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 2.6.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_144
+Specification-Version: 2.6
+Implementation-URL: http://commons.apache.org/proper/commons-io/
+

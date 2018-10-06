@@ -1,0 +1,17 @@
+digraph hibernate_core_5_4_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_core_5_4_0_SNAPSHOT -> ant_1_10_5;
+  hibernate_core_5_4_0_SNAPSHOT -> antlr_2_7_7_redhat_7;
+  hibernate_core_5_4_0_SNAPSHOT -> byte_buddy_1_9_1;
+  hibernate_core_5_4_0_SNAPSHOT -> classmate_1_4_0;
+  hibernate_core_5_4_0_SNAPSHOT -> dom4j_2_1_1;
+  hibernate_core_5_4_0_SNAPSHOT -> geronimo_jta_1_1_spec_1_1_1;
+  hibernate_core_5_4_0_SNAPSHOT -> hibernate_commons_annotations_5_0_4_Final;
+  hibernate_core_5_4_0_SNAPSHOT -> jandex_2_1_0_Beta1;
+  hibernate_core_5_4_0_SNAPSHOT -> javassist_3_23_1_GA;
+  hibernate_core_5_4_0_SNAPSHOT -> javax_persistence_api_2_2;
+  hibernate_core_5_4_0_SNAPSHOT -> jaxb_api_2_4_0;
+  hibernate_core_5_4_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+  hibernate_core_5_4_0_SNAPSHOT -> validation_api_2_0_1_Final;
+  hibernate_core_5_4_0_SNAPSHOT -> xml_apis_1_4_01;
+}

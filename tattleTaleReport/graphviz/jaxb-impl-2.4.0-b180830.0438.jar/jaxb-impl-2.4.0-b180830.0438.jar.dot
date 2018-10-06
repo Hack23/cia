@@ -1,0 +1,7 @@
+digraph jaxb_impl_2_4_0_b180830_0438_dependencies {
+  node [shape = box, fontsize=10.0];
+  jaxb_impl_2_4_0_b180830_0438 -> activation_1_1;
+  jaxb_impl_2_4_0_b180830_0438 -> jaxb_api_2_4_0;
+  jaxb_impl_2_4_0_b180830_0438 -> jaxb_core_2_3_0_1;
+  jaxb_impl_2_4_0_b180830_0438 -> xml_apis_1_4_01;
+}

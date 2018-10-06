@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0 (Sun Microsystems Inc.)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.netlib.lapack
+Bundle-Description: arpack_combined_all-0.1
+Bundle-Name: arpack_combined_all-0.1
+Bundle-Version: 0.0.0
+Export-Package: org.j_paine.formatter,org.netlib.arpack;uses:="org.net
+ lib.blas,org.netlib.lapack,org.netlib.util",org.netlib.blas;uses:="or
+ g.netlib.err,org.netlib.util",org.netlib.err;uses:="org.netlib.util",
+ org.netlib.lapack;uses:="org.netlib.blas,org.netlib.err,org.netlib.ut
+ il",org.netlib.util;uses:="org.j_paine.formatter"
+Import-Package: java.io,java.lang,java.lang.reflect,java.util

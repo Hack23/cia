@@ -1,0 +1,15 @@
+digraph hyperjaxb3_ejb_roundtrip_0_6_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jvnet_hyperjaxb3_ejb_test -> org_apache_commons_lang3;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_hyperjaxb3_ejb_util;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_hyperjaxb3_lang_builder;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_jaxb2_commons_lang;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_jaxb2_commons_locator;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_jaxb2_commons_test;
+  org_jvnet_hyperjaxb3_ejb_test -> org_jvnet_jaxb2_commons_xml_bind;
+  org_jvnet_hyperjaxb3_lang_builder -> org_apache_commons_lang3;
+  org_jvnet_hyperjaxb3_lang_builder -> org_custommonkey_xmlunit;
+  org_jvnet_hyperjaxb3_lang_builder -> org_jvnet_hyperjaxb3_xml_datatype_util;
+  org_jvnet_hyperjaxb3_lang_builder -> org_jvnet_jaxb2_commons_lang;
+  org_jvnet_hyperjaxb3_lang_builder -> org_jvnet_jaxb2_commons_locator;
+}

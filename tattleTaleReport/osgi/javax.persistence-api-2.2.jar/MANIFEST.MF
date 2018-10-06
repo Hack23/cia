@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-Description: Java(TM) Persistence 2.2 API jar
+Automatic-Module-Name: java.persistence
+Bundle-License: http://www.eclipse.org/legal/epl-v10.html, http://www.
+ eclipse.org/org/documents/edl-v10.php
+Bundle-SymbolicName: javax.persistence-api
+Implementation-Version: 2.2
+Built-By: lukas
+Bnd-LastModified: 1503327550179
+Bundle-ManifestVersion: 2
+Specification-Vendor: Oracle Corporation
+Implementation-Vendor-Id: com.oracle
+Import-Package: javax.persistence,javax.persistence.criteria,javax.per
+ sistence.metamodel,javax.persistence.spi,javax.sql
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.3.0.201609221906
+Export-Package: javax.persistence;uses:="javax.persistence.criteria,ja
+ vax.persistence.metamodel,javax.persistence.spi";version="2.2.0",java
+ x.persistence.criteria;uses:="javax.persistence,javax.persistence.met
+ amodel";version="2.2.0",javax.persistence.metamodel;version="2.2.0",j
+ avax.persistence.spi;uses:="javax.persistence,javax.sql";version="2.2
+ .0"
+Bundle-Name: Java(TM) Persistence API jar
+Bundle-Version: 2.2
+Extension-Name: javax.persistence
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_141
+Specification-Version: 2.2
+

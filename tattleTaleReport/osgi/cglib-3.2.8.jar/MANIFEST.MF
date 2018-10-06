@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: sameb
+Created-By: Apache Maven 3.5.0
+Build-Jdk: 1.8.0_151-google-v7
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: net.sf.cglib.core
+Bundle-Description: cglib-3.2.8
+Bundle-Name: cglib-3.2.8
+Bundle-Version: 0.0.0
+Export-Package: net.sf.cglib.beans;uses:="net.sf.cglib.core",net.sf.cg
+ lib.core;uses:="net.sf.cglib.core.internal,net.sf.cglib.transform",ne
+ t.sf.cglib.core.internal;uses:="net.sf.cglib.core",net.sf.cglib.proxy
+ ;uses:="net.sf.cglib.core,net.sf.cglib.reflect",net.sf.cglib.reflect;
+ uses:="net.sf.cglib.core",net.sf.cglib.transform;uses:="net.sf.cglib.
+ core,org.apache.tools.ant,org.apache.tools.ant.types,org.objectweb.as
+ m",net.sf.cglib.transform.impl;uses:="net.sf.cglib.core,net.sf.cglib.
+ transform",net.sf.cglib.util;uses:="net.sf.cglib.core"
+Import-Package: java.beans,java.io,java.lang,java.lang.ref,java.lang.r
+ eflect,java.math,java.net,java.security,java.util,java.util.concurren
+ t,java.util.zip,org.apache.tools.ant;version="1.10.5",org.apache.tool
+ s.ant.types;version="1.10.5",org.objectweb.asm;version="0.0.0"

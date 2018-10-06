@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: graywatson
+Created-By: Apache Maven 3.2.1
+Build-Jdk: 1.8.0_151
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.j256.cloudwatchlogbackappender
+Bundle-Description: cloudwatchlogbackappender-1.11
+Bundle-Name: cloudwatchlogbackappender-1.11
+Bundle-Version: 0.0.0
+Export-Package: com.j256.cloudwatchlogbackappender;uses:="ch.qos.logba
+ ck.classic,ch.qos.logback.classic.pattern,ch.qos.logback.classic.spi,
+ ch.qos.logback.core,ch.qos.logback.core.spi,com.amazonaws,com.amazona
+ ws.auth,com.amazonaws.internal,com.amazonaws.regions,com.amazonaws.se
+ rvices.ec2,com.amazonaws.services.ec2.model,com.amazonaws.services.lo
+ gs,com.amazonaws.services.logs.model,com.amazonaws.util"
+Import-Package: ch.qos.logback.classic;version="0.0.0",ch.qos.logback.
+ classic.pattern;version="0.0.0",ch.qos.logback.classic.spi;version="0
+ .0.0",ch.qos.logback.core;version="0.0.0",ch.qos.logback.core.spi;ver
+ sion="0.0.0",com.amazonaws;version="0.0.0",com.amazonaws.auth;version
+ ="0.0.0",com.amazonaws.internal;version="0.0.0",com.amazonaws.regions
+ ;version="0.0.0",com.amazonaws.services.ec2;version="0.0.0",com.amazo
+ naws.services.ec2.model;version="0.0.0",com.amazonaws.services.logs;v
+ ersion="0.0.0",com.amazonaws.services.logs.model;version="0.0.0",com.
+ amazonaws.util;version="0.0.0",java.io,java.lang,java.lang.reflect,ja
+ va.util,java.util.concurrent

@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-common-io
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/common/co
+ mmon-io
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.io
+Bundle-Description: common-io-3.4.1
+Bundle-Name: common-io-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.io;uses:="com.twelvemonkeys.lang,com
+ .twelvemonkeys.util,com.twelvemonkeys.util.regex",com.twelvemonkeys.i
+ o.enc,com.twelvemonkeys.io.ole2;uses:="com.twelvemonkeys.io,com.twelv
+ emonkeys.lang",com.twelvemonkeys.net;uses:="com.twelvemonkeys.lang",c
+ om.twelvemonkeys.xml;uses:="com.twelvemonkeys.lang"
+Import-Package: com.twelvemonkeys.lang;version="3.4.1",com.twelvemonke
+ ys.util;version="3.4.1",com.twelvemonkeys.util.regex;version="3.4.1",
+ java.io,java.lang,java.lang.reflect,java.net,java.nio,java.nio.channe
+ ls,java.nio.charset,java.text,java.util,javax.imageio.stream,javax.xm
+ l.parsers;version="1.0",org.w3c.dom;version="1.0",org.w3c.dom.bootstr
+ ap;version="1.0",org.w3c.dom.ls;version="1.0",org.xml.sax;version="1.
+ 0"

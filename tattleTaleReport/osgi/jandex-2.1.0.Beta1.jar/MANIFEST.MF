@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.jboss.jandex
+Built-By: jason
+Bnd-LastModified: 1535745601020
+Implementation-Vendor-Id: org.jboss
+Specification-Title: Java Annotation Indexer
+Bundle-DocURL: http://www.jboss.org
+Import-Package: org.apache.tools.ant;resolution:=optional,org.apache.t
+ ools.ant.types;resolution:=optional
+Scm-Url: http://github.com/jboss/jboss-parent-pom/jandex
+Main-Class: org.jboss.jandex.Main
+Export-Package: org.jboss.jandex;version="2.1.0.Beta1"
+Bundle-Name: Java Annotation Indexer
+Bundle-Description: Parent POM for JBoss projects. Provides default pr
+ oject build configuration.
+Implementation-Title: Java Annotation Indexer
+Build-Timestamp: Fri, 31 Aug 2018 14:59:56 -0500
+Implementation-Version: 2.1.0.Beta1
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:git@github.com:jboss/jboss-parent-pom.git/jand
+ ex
+Bundle-ManifestVersion: 2
+Os-Arch: x86_64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Mac OS X
+Tool: Bnd-1.50.0
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 10.12.6
+Bundle-Version: 2.1.0.Beta1
+Scm-Revision: 4057a2673e0e02ca7b03584391e5a4b937da1d81
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org/jandex
+Specification-Version: 2.1.0.Beta1
+

@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-Description: Provides open-source implementations of Sun specif
+ ications.
+Implementation-Title: Apache Geronimo
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.geronimo.specs.geronimo-jta_1.1_spec
+Implementation-Version: 1.1.1
+Archiver-Version: Plexus Archiver
+Built-By: gnodet
+Bnd-LastModified: 1201862199581
+Bundle-ManifestVersion: 2
+Bundle-DocURL: http://www.apache.org
+Bundle-Vendor: Apache Software Foundation
+Import-Package: javax.transaction;version="1.1",javax.transaction.xa;v
+ ersion="1.1"
+Tool: Bnd-0.0.227
+Export-Package: javax.transaction.xa;version="1.1",javax.transaction;u
+ ses:="javax.transaction.xa";version="1.1"
+Bundle-Version: 1.1.1
+Bundle-Name: geronimo-jta_1.1_spec
+Created-By: 1.5.0_13 (Apple Computer, Inc.)
+Build-Jdk: 1.5.0_13
+

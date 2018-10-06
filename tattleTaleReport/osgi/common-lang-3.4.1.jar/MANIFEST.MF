@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-common-lang
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/common/co
+ mmon-lang
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.util
+Bundle-Description: common-lang-3.4.1
+Bundle-Name: common-lang-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.lang;uses:="com.twelvemonkeys.util,c
+ om.twelvemonkeys.util.convert",com.twelvemonkeys.util;uses:="com.twel
+ vemonkeys.lang",com.twelvemonkeys.util.convert;uses:="com.twelvemonke
+ ys.lang,com.twelvemonkeys.util",com.twelvemonkeys.util.regex;uses:="c
+ om.twelvemonkeys.util",com.twelvemonkeys.util.service;uses:="com.twel
+ vemonkeys.lang,com.twelvemonkeys.util"
+Import-Package: java.awt,java.beans,java.io,java.lang,java.lang.ref,ja
+ va.lang.reflect,java.math,java.net,java.nio.channels.spi,java.nio.cha
+ rset,java.nio.charset.spi,java.security,java.sql,java.text,java.util,
+ java.util.regex,javax.imageio.spi

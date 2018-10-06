@@ -1,0 +1,17 @@
+digraph cloudwatchlogbackappender_1_11_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_j256_cloudwatchlogbackappender -> ch_qos_logback_classic;
+  com_j256_cloudwatchlogbackappender -> ch_qos_logback_classic_pattern;
+  com_j256_cloudwatchlogbackappender -> ch_qos_logback_classic_spi;
+  com_j256_cloudwatchlogbackappender -> ch_qos_logback_core;
+  com_j256_cloudwatchlogbackappender -> ch_qos_logback_core_spi;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_auth;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_internal;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_regions;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_services_ec2;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_services_ec2_model;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_services_logs;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_services_logs_model;
+  com_j256_cloudwatchlogbackappender -> com_amazonaws_util;
+}

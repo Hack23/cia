@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.commons-text
+Built-By: chtompki
+Bnd-LastModified: 1538398315802
+Specification-Title: Apache Commons Text
+Implementation-Vendor-Id: org.apache.commons
+Bundle-DocURL: http://commons.apache.org/proper/commons-text
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=
+ LICENSE.txt
+Import-Package: javax.script,javax.xml.xpath,org.apache.commons.lang3,
+ org.apache.commons.lang3.time,org.xml.sax
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Export-Package: org.apache.commons.text;version="1.5",org.apache.commo
+ ns.text.diff;version="1.5",org.apache.commons.text.lookup;version="1.
+ 5",org.apache.commons.text.matcher;version="1.5",org.apache.commons.t
+ ext.similarity;version="1.5",org.apache.commons.text.translate;versio
+ n="1.5"
+Bundle-Name: Apache Commons Text
+Implementation-Title: Apache Commons Text
+Bundle-Description: Apache Commons Text is a library focused on algori
+ thms working on strings.
+Automatic-Module-Name: org.apache.commons.text
+Implementation-Version: 1.5
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 1.5.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 10.0.2
+Specification-Version: 1.5
+Implementation-URL: http://commons.apache.org/proper/commons-text
+

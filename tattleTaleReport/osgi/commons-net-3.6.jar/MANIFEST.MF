@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.net
+Archiver-Version: Plexus Archiver
+Built-By: sebb
+Bnd-LastModified: 1486826192005
+Implementation-Vendor-Id: org.apache
+Specification-Title: Apache Commons Net
+Bundle-DocURL: http://commons.apache.org/proper/commons-net/
+Include-Resource: examples/examples.properties=src/main/resources/exam
+ ples/examples.properties,META-INF/LICENSE.txt=LICENSE.txt,META-INF/NO
+ TICE.txt=NOTICE.txt
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Import-Package: javax.crypto,javax.crypto.spec,javax.net,javax.net.ssl
+Export-Package: org.apache.commons.net;version="3.6",org.apache.common
+ s.net.bsd;version="3.6",org.apache.commons.net.chargen;version="3.6",
+ org.apache.commons.net.daytime;version="3.6",org.apache.commons.net.d
+ iscard;version="3.6",org.apache.commons.net.echo;version="3.6",org.ap
+ ache.commons.net.finger;version="3.6",org.apache.commons.net.ftp;vers
+ ion="3.6",org.apache.commons.net.ftp.parser;version="3.6",org.apache.
+ commons.net.imap;version="3.6",org.apache.commons.net.io;version="3.6
+ ",org.apache.commons.net.nntp;version="3.6",org.apache.commons.net.nt
+ p;version="3.6",org.apache.commons.net.pop3;version="3.6",org.apache.
+ commons.net.smtp;version="3.6",org.apache.commons.net.telnet;version=
+ "3.6",org.apache.commons.net.tftp;version="3.6",org.apache.commons.ne
+ t.time;version="3.6",org.apache.commons.net.util;version="3.6",org.ap
+ ache.commons.net.whois;version="3.6"
+Bundle-Name: Apache Commons Net
+Implementation-Title: Apache Commons Net
+Bundle-Description: Apache Commons Net library contains a collection o
+ f network utilities and protocol implementations.Supported protocols 
+ include: Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whoi
+ s
+Implementation-Version: 3.6
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.0.0.201509101326
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 3.6.0
+X-Compile-Target-JDK: 1.6
+Private-Package: examples,examples.cidr,examples.ftp,examples.mail,exa
+ mples.nntp,examples.ntp,examples.telnet,examples.unix,examples.util
+Implementation-Build: tags/NET_3_6_RC1@r1782607; 2017-02-11 15:16:26+0
+ 000
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://commons.apache.org/proper/commons-net/
+Build-Jdk: 1.7.0_79
+Specification-Version: 3.6
+

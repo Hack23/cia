@@ -1,0 +1,9 @@
+digraph responsive_layout_2_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com -> com;
+  com -> com_vaadin_annotations;
+  com -> com_vaadin_shared;
+  com -> com_vaadin_ui;
+  com -> com;
+  com -> com_vaadin_ui;
+}

@@ -1,0 +1,5 @@
+digraph googleauth_1_2_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_warrenstrange_googleauth -> org_apache_commons_codec_binary;
+  com_warrenstrange_googleauth -> org_apache_http_client_utils;
+}

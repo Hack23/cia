@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParliamentRiskPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode</a> &gt; <span class="el_source">ParliamentRiskPageModContentFactoryImpl.java</span></div><h1>ParliamentRiskPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
+
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.github.markash.ui.component.card.CounterStatisticModel;
+import com.github.markash.ui.component.card.CounterStatisticsCard;
+import com.github.markash.ui.component.card.StatisticShow;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
+import com.hack23.cia.service.api.action.kpi.ResourceType;
+import com.hack23.cia.service.api.action.kpi.RuleViolation;
+import com.hack23.cia.service.api.action.kpi.Status;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ComplianceCheckPageItemRendererClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class ParliamentRiskPageModContentFactoryImpl.
+ */
+@Component
+public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+
+<span class="fc" id="L56">	private static final ComplianceCheckPageItemRendererClickListener CLICK_LISTENER = new ComplianceCheckPageItemRendererClickListener();</span>
+	/** The Constant PARLIAMENT_DECISION_FLOW. */
+	private static final String PARLIAMENT_RISK_SUMMARY = &quot;Parliament Risk Summary&quot;;
+
+	/**
+	 * Instantiates a new parliament risk page mod content factory impl.
+	 */
+	public ParliamentRiskPageModContentFactoryImpl() {
+<span class="fc" id="L64">		super();</span>
+<span class="fc" id="L65">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="pc bpc" id="L69" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.RULES.toString())</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">				&amp;&amp; parameters.contains(RiskIndicators.RISK_SUMMARY.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L77">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+
+<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L81">		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();</span>
+<span class="fc" id="L82">		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L83">		final ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()</span>
+<span class="fc" id="L84">				.service(serviceRequest);</span>
+		
+<span class="fc" id="L86">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : serviceResponse.getStatusMap().entrySet()) {</span>
+<span class="fc" id="L89">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L90">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
+<span class="fc" id="L91">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
+<span class="fc" id="L92">		}</span>
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {</span>
+<span class="fc" id="L95">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L96">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
+<span class="fc" id="L97">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
+<span class="fc" id="L98">		}</span>
+
+		
+<span class="fc" id="L101">		panelContent.addComponent(horizontalLayout);		</span>
+		
+<span class="fc" id="L103">		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, serviceResponse.getList(), &quot;Risk&quot;,</span>
+				new String[] { &quot;name&quot;, &quot;resourceType&quot;, &quot;numberRuleViolations&quot;, &quot;ruleSummary&quot; }, new String[] { &quot;id&quot;, &quot;ruleViolations&quot; }, CLICK_LISTENER, null, null);
+
+<span class="fc" id="L106">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+				NAME, parameters, pageId);
+<span class="fc" id="L108">		panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(PARLIAMENT_RISK_SUMMARY).toString());</span>
+
+<span class="fc" id="L110">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

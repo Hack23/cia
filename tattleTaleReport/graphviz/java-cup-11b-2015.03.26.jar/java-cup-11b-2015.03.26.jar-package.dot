@@ -1,0 +1,6 @@
+digraph java_cup_11b_2015_03_26_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  java_cup -> java_cup_runtime;
+  java_cup_anttask -> java_cup;
+  java_cup_anttask -> org_apache_tools_ant;
+}

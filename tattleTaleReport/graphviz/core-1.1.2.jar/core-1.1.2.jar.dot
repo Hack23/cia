@@ -1,0 +1,4 @@
+digraph core_1_1_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  core_1_1_2 -> arpack_combined_all_0_1;
+}

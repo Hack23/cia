@@ -1,0 +1,14 @@
+digraph bounce_0_18_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_bounce -> org_bounce_event;
+  org_bounce -> org_bounce_plaf;
+  org_bounce_event -> org_bounce;
+  org_bounce_net -> org_bounce;
+  org_bounce_plaf -> org_bounce;
+  org_bounce_preferences -> org_bounce;
+  org_bounce_text_xml -> org_bounce_text;
+  org_bounce_text_xml -> org_bounce_xml;
+  org_bounce_viewer_xml -> org_bounce;
+  org_bounce_viewer_xml -> org_bounce_xml;
+  org_bounce_wizard -> org_bounce;
+}

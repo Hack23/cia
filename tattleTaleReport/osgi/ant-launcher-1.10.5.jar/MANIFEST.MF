@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_171-b11 (Oracle Corporation)
+Main-Class: org.apache.tools.ant.launch.Launcher
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.tools.ant.launch
+Bundle-Description: ant-launcher-1.10.5
+Bundle-Name: ant-launcher-1.10.5
+Bundle-Version: 0.0.0
+Export-Package: org.apache.tools.ant.launch;uses:="java.lang.invoke,ja
+ va.nio.charset,java.util.function,java.util.stream"
+Import-Package: java.io,java.lang,java.lang.invoke,java.net,java.nio.c
+ harset,java.text,java.util,java.util.function,java.util.stream

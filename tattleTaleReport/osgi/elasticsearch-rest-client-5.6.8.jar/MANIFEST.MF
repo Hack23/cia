@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+X-Compile-Elasticsearch-Version: 5.6.8
+Implementation-Title: org.elasticsearch.client#rest;5.6.8
+Module-Origin: git@github.com:elastic/elasticsearch.git
+Build-Date: 2018-02-16T16:47:18.355Z
+Implementation-Version: 5.6.8
+Built-By: vagrant
+Change: 688ecce
+Module-Source: /client/rest
+Branch: 688ecce2a28eb6e1e1a357c538200e375c536471
+Built-Status: integration
+Gradle-Version: 4.3
+Built-OS: Linux
+X-Compile-Target-JDK: 1.7
+X-Compile-Elasticsearch-Snapshot: false
+X-Compile-Lucene-Version: 6.6.1
+X-Compile-Source-JDK: 1.7
+Created-By: 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12 (Oracle Corporati
+ on)
+Build-Java-Version: 1.8
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.elasticsearch.client
+Bundle-Description: elasticsearch-rest-client-5.6.8
+Bundle-Name: elasticsearch-rest-client-5.6.8
+Bundle-Version: 5.6.8
+Export-Package: org.elasticsearch.client;uses:="java.nio.charset,java.
+ util,org.apache.http,org.apache.http.client.config,org.apache.http.cl
+ ient.methods,org.apache.http.client.protocol,org.apache.http.client.u
+ tils,org.apache.http.concurrent,org.apache.http.entity,org.apache.htt
+ p.impl.nio.client,org.apache.http.nio,org.apache.http.nio.client.meth
+ ods,org.apache.http.nio.entity,org.apache.http.nio.protocol,org.apach
+ e.http.nio.util"
+Import-Package: java.io,java.lang,java.net,java.nio.charset,java.secur
+ ity,java.util,java.util.concurrent,java.util.concurrent.atomic,javax.
+ net.ssl,org.apache.commons.logging;version="0.0.0",org.apache.http;ve
+ rsion="4.4.10",org.apache.http.auth;version="4.5.5",org.apache.http.c
+ lient;version="4.5.5",org.apache.http.client.config;version="4.5.5",o
+ rg.apache.http.client.methods;version="4.5.5",org.apache.http.client.
+ protocol;version="4.5.5",org.apache.http.client.utils;version="4.5.5"
+ ,org.apache.http.concurrent;version="4.4.10",org.apache.http.entity;v
+ ersion="4.4.10",org.apache.http.impl.auth;version="4.5.5",org.apache.
+ http.impl.client;version="4.5.5",org.apache.http.impl.nio.client;vers
+ ion="4.1.2",org.apache.http.nio;version="4.4.5",org.apache.http.nio.c
+ lient.methods;version="4.1.2",org.apache.http.nio.entity;version="4.4
+ .5",org.apache.http.nio.protocol;version="4.4.5",org.apache.http.nio.
+ util;version="4.4.5",org.apache.http.protocol;version="4.4.10",org.ap
+ ache.http.util;version="4.4.10"

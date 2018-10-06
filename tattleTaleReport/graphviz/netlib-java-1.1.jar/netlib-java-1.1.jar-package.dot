@@ -1,0 +1,9 @@
+digraph netlib_java_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_netlib_arpack -> com_github_fommil_netlib;
+  org_netlib_arpack -> org_netlib_util;
+  org_netlib_blas -> com_github_fommil_netlib;
+  org_netlib_blas -> org_netlib_util;
+  org_netlib_lapack -> com_github_fommil_netlib;
+  org_netlib_lapack -> org_netlib_util;
+}

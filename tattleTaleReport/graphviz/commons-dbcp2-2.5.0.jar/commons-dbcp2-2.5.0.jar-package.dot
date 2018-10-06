@@ -1,0 +1,21 @@
+digraph commons_dbcp2_2_5_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_dbcp2 -> java_lang;
+  org_apache_commons_dbcp2 -> java_nio_charset;
+  org_apache_commons_dbcp2 -> java_sql;
+  org_apache_commons_dbcp2 -> java_util;
+  org_apache_commons_dbcp2 -> org_apache_commons_pool2;
+  org_apache_commons_dbcp2 -> org_apache_commons_pool2_impl;
+  org_apache_commons_dbcp2_cpdsadapter -> org_apache_commons_dbcp2;
+  org_apache_commons_dbcp2_cpdsadapter -> org_apache_commons_pool2;
+  org_apache_commons_dbcp2_cpdsadapter -> org_apache_commons_pool2_impl;
+  org_apache_commons_dbcp2_datasources -> java_lang;
+  org_apache_commons_dbcp2_datasources -> java_nio_charset;
+  org_apache_commons_dbcp2_datasources -> org_apache_commons_dbcp2;
+  org_apache_commons_dbcp2_datasources -> org_apache_commons_pool2;
+  org_apache_commons_dbcp2_datasources -> org_apache_commons_pool2_impl;
+  org_apache_commons_dbcp2_managed -> java_util;
+  org_apache_commons_dbcp2_managed -> org_apache_commons_dbcp2;
+  org_apache_commons_dbcp2_managed -> org_apache_commons_pool2;
+  org_apache_commons_dbcp2_managed -> org_apache_commons_pool2_impl;
+}

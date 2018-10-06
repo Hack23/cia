@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRoleListPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRoleListPageModContentFactoryImpl.java</span></div><h1>PoliticianRoleListPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class RoleListPageModContentFactoryImpl.
+ */
+@Component
+public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+
+<span class="fc" id="L44">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;intressentId&quot;, &quot;orderNumber&quot;, &quot;orgCode&quot; };</span>
+<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = new String[] { &quot;roleCode&quot;, &quot;assignmentType&quot;, &quot;status&quot;, &quot;detail&quot;,</span>
+			&quot;orgCode&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
+	private static final String ASSIGNMENTS = &quot;Assignments&quot;;
+
+	/**
+	 * Instantiates a new politician role list page mod content factory impl.
+	 */
+	public PoliticianRoleListPageModContentFactoryImpl() {
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L58" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLELIST.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L67">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L68">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());</span>
+
+<span class="fc" id="L71">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="fc" id="L72">				.load(viewRiksdagenPolitician.getPersonId());</span>
+
+<span class="fc" id="L74">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+
+<span class="fc" id="L76">		createRoleList(panelContent, assignmentList);</span>
+
+<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="fc" id="L79">		return panelContent;</span>
+
+	}
+
+	/**
+	 * Creates the role list.
+	 *
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList the assignment list
+	 */
+	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet,
+			final List&lt;AssignmentData&gt; assignmentList) {
+
+<span class="fc" id="L92">		final Comparator&lt;AssignmentData&gt; compare = (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+
+<span class="fc" id="L94">		Collections.sort(assignmentList, compare);</span>
+
+<span class="fc" id="L96">		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,</span>
+				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
+
+<span class="fc" id="L99">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

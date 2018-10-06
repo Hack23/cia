@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Bundle-Description: Javassist (JAVA programming ASSISTant) makes Java 
+ bytecode manipulation    simple.  It is a class library for editing b
+ ytecodes in Java.
+Bundle-License: http://www.mozilla.org/MPL/MPL-1.1.html, http://www.gn
+ u.org/licenses/lgpl-2.1.html, http://www.apache.org/licenses/
+Bundle-SymbolicName: javassist
+Built-By: smarlow
+Bnd-LastModified: 1530468141359
+Bundle-ManifestVersion: 2
+Specification-Vendor: Shigeru Chiba, www.javassist.org
+Specification-Title: Javassist
+Bundle-Vendor: Shigeru Chiba, www.javassist.org
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-3.3.0.201609221906
+Main-Class: javassist.CtClass
+Export-Package: javassist;version="3.23.1.GA";uses:="javassist.bytecod
+ e,javassist.compiler,javassist.compiler.ast,javassist.convert,javassi
+ st.expr",javassist.bytecode;version="3.23.1.GA";uses:="javassist,java
+ ssist.bytecode.annotation",javassist.bytecode.analysis;version="3.23.
+ 1.GA";uses:="javassist,javassist.bytecode,javassist.bytecode.stackmap
+ ",javassist.bytecode.annotation;version="3.23.1.GA";uses:="javassist,
+ javassist.bytecode",javassist.bytecode.stackmap;version="3.23.1.GA";u
+ ses:="javassist,javassist.bytecode",javassist.compiler;version="3.23.
+ 1.GA";uses:="javassist,javassist.bytecode,javassist.compiler.ast",jav
+ assist.compiler.ast;version="3.23.1.GA";uses:="javassist,javassist.co
+ mpiler",javassist.convert;version="3.23.1.GA";uses:="javassist,javass
+ ist.bytecode",javassist.expr;version="3.23.1.GA";uses:="javassist,jav
+ assist.bytecode",javassist.runtime;version="3.23.1.GA",javassist.scop
+ edpool;version="3.23.1.GA";uses:=javassist,javassist.tools;version="3
+ .23.1.GA";uses:=javassist,javassist.tools.reflect;version="3.23.1.GA"
+ ;uses:="javassist,javassist.bytecode",javassist.tools.rmi;version="3.
+ 23.1.GA";uses:="javassist,javassist.tools.web",javassist.tools.web;ve
+ rsion="3.23.1.GA";uses:=javassist,javassist.util;version="3.23.1.GA";
+ uses:=javassist,javassist.util.proxy;version="3.23.1.GA";uses:="javas
+ sist,javassist.bytecode"
+Bundle-Name: Javassist
+Bundle-Version: 3.23.1.GA
+Build-Jdk: 9
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 3.23.1-GA
+

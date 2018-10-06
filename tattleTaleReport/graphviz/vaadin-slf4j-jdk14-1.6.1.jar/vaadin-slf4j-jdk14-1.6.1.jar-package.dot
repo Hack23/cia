@@ -1,0 +1,12 @@
+digraph vaadin_slf4j_jdk14_1_6_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_vaadin_external_org_slf4j -> com_vaadin_external_org_slf4j_helpers;
+  com_vaadin_external_org_slf4j -> com_vaadin_external_org_slf4j_impl;
+  com_vaadin_external_org_slf4j -> com_vaadin_external_org_slf4j_spi;
+  com_vaadin_external_org_slf4j_helpers -> com_vaadin_external_org_slf4j;
+  com_vaadin_external_org_slf4j_helpers -> com_vaadin_external_org_slf4j_spi;
+  com_vaadin_external_org_slf4j_impl -> com_vaadin_external_org_slf4j;
+  com_vaadin_external_org_slf4j_impl -> com_vaadin_external_org_slf4j_helpers;
+  com_vaadin_external_org_slf4j_impl -> com_vaadin_external_org_slf4j_spi;
+  com_vaadin_external_org_slf4j_spi -> com_vaadin_external_org_slf4j;
+}

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: enrico
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_151
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.warrenstrange.googleauth
+Bundle-Description: googleauth-1.2.0
+Bundle-Name: googleauth-1.2.0
+Bundle-Version: 0.0.0
+Export-Package: com.warrenstrange.googleauth;uses:="org.apache.commons
+ .codec.binary,org.apache.http.client.utils"
+Import-Package: java.io,java.lang,java.net,java.security,java.util,jav
+ a.util.concurrent,java.util.concurrent.atomic,java.util.logging,javax
+ .crypto,javax.crypto.spec,org.apache.commons.codec.binary;version="1.
+ 11",org.apache.http.client.utils;version="4.5.5"

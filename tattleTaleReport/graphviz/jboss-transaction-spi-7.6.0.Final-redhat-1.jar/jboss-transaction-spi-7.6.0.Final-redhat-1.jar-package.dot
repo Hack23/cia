@@ -1,0 +1,4 @@
+digraph jboss_transaction_spi_7_6_0_Final_redhat_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jboss_tm_usertx_client -> org_jboss_tm_usertx;
+}

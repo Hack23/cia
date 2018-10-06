@@ -1,0 +1,5 @@
+digraph commons_lang_2_6_0_redhat_7_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_lang -> org_apache_commons_lang_exception;
+  org_apache_commons_lang -> org_apache_commons_lang_reflect;
+}

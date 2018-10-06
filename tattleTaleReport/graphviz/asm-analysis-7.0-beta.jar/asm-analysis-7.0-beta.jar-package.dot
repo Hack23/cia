@@ -1,0 +1,5 @@
+digraph asm_analysis_7_0_beta_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_objectweb_asm_tree_analysis -> org_objectweb_asm;
+  org_objectweb_asm_tree_analysis -> org_objectweb_asm_tree;
+}

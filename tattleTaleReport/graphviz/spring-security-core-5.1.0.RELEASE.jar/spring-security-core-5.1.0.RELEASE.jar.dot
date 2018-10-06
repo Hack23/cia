@@ -1,0 +1,16 @@
+digraph spring_security_core_5_1_0_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_security_core_5_1_0_RELEASE -> aspectjweaver_1_9_2_RC2;
+  spring_security_core_5_1_0_RELEASE -> bcprov_jdk15on_1_60;
+  spring_security_core_5_1_0_RELEASE -> jackson_annotations_2_9_0;
+  spring_security_core_5_1_0_RELEASE -> jackson_core_2_9_7;
+  spring_security_core_5_1_0_RELEASE -> jackson_databind_2_9_7;
+  spring_security_core_5_1_0_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_security_core_5_1_0_RELEASE -> spring_aop_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_beans_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_context_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_core_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_expression_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_jdbc_5_1_0_RELEASE;
+  spring_security_core_5_1_0_RELEASE -> spring_tx_5_1_0_RELEASE;
+}

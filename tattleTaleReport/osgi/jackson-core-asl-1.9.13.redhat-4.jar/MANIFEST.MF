@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Implementation-Title: Jackson JSON processor
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: jackson-core-asl
+Implementation-Version: 1.9.13.redhat-4
+Built-By: mockbuild
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1470664965805
+Specification-Vendor: http://www.ietf.org/rfc/rfc4627.txt
+Bundle-RequiredExecutionEnvironment: J2SE-1.5, JavaSE-1.6
+Specification-Title: JSON - JavaScript Object Notation
+Bundle-Vendor: http://fasterxml.com
+Import-Package: org.codehaus.jackson;version="1.9.13.redhat-4",org.cod
+ ehaus.jackson.annotate;version="1.9.13.redhat-4",org.codehaus.jackson
+ .format;version="1.9.13.redhat-4",org.codehaus.jackson.impl;version="
+ 1.9.13.redhat-4",org.codehaus.jackson.io;version="1.9.13.redhat-4",or
+ g.codehaus.jackson.sym;version="1.9.13.redhat-4",org.codehaus.jackson
+ .type;version="1.9.13.redhat-4",org.codehaus.jackson.util;version="1.
+ 9.13.redhat-4"
+Tool: Bnd-unknown version
+Implementation-Vendor: http://fasterxml.com
+Export-Package: org.codehaus.jackson.impl;uses:="org.codehaus.jackson.
+ io,org.codehaus.jackson,org.codehaus.jackson.format,org.codehaus.jack
+ son.sym,org.codehaus.jackson.util";version="1.9.13.redhat-4",org.code
+ haus.jackson.io;uses:="org.codehaus.jackson,org.codehaus.jackson.util
+ ";version="1.9.13.redhat-4",org.codehaus.jackson.type;version="1.9.13
+ .redhat-4",org.codehaus.jackson;uses:="org.codehaus.jackson.io,org.co
+ dehaus.jackson.type,org.codehaus.jackson.sym,org.codehaus.jackson.ann
+ otate,org.codehaus.jackson.util,org.codehaus.jackson.impl,org.codehau
+ s.jackson.format";version="1.9.13.redhat-4",org.codehaus.jackson.form
+ at;uses:="org.codehaus.jackson.io,org.codehaus.jackson";version="1.9.
+ 13.redhat-4",org.codehaus.jackson.sym;uses:="org.codehaus.jackson.uti
+ l";version="1.9.13.redhat-4",org.codehaus.jackson.annotate;version="1
+ .9.13.redhat-4",org.codehaus.jackson.util;uses:="org.codehaus.jackson
+ .io,org.codehaus.jackson.impl,org.codehaus.jackson";version="1.9.13.r
+ edhat-4"
+Bundle-Version: 1.9.13.redhat-4
+Bundle-Name: Jackson JSON processor
+Created-By: 1.8.0_101 (Oracle Corporation)
+Specification-Version: 1.0
+

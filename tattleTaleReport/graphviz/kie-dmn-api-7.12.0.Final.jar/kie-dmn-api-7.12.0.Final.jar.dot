@@ -1,0 +1,6 @@
+digraph kie_dmn_api_7_12_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_dmn_api_7_12_0_Final -> kie_api_7_12_0_Final;
+  kie_dmn_api_7_12_0_Final -> kie_dmn_model_7_12_0_Final;
+  kie_dmn_api_7_12_0_Final -> xstream_1_4_10;
+}

@@ -1,0 +1,4 @@
+digraph javax_activation_api_1_2_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_activation_api_1_2_0 -> activation_1_1;
+}

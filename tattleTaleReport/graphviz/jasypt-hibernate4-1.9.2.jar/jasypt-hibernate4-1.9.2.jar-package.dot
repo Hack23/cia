@@ -1,0 +1,17 @@
+digraph jasypt_hibernate4_1_9_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jasypt_hibernate4_connectionprovider -> org_hibernate_service_jdbc_connections_internal;
+  org_jasypt_hibernate4_connectionprovider -> org_jasypt_encryption;
+  org_jasypt_hibernate4_connectionprovider -> org_jasypt_encryption_pbe;
+  org_jasypt_hibernate4_connectionprovider -> org_jasypt_exceptions;
+  org_jasypt_hibernate4_connectionprovider -> org_jasypt_hibernate4_encryptor;
+  org_jasypt_hibernate4_connectionprovider -> org_jasypt_properties;
+  org_jasypt_hibernate4_encryptor -> org_jasypt_encryption_pbe;
+  org_jasypt_hibernate4_encryptor -> org_jasypt_encryption_pbe_config;
+  org_jasypt_hibernate4_encryptor -> org_jasypt_exceptions;
+  org_jasypt_hibernate4_encryptor -> org_jasypt_salt;
+  org_jasypt_hibernate4_type -> org_jasypt_commons;
+  org_jasypt_hibernate4_type -> org_jasypt_encryption_pbe;
+  org_jasypt_hibernate4_type -> org_jasypt_exceptions;
+  org_jasypt_hibernate4_type -> org_jasypt_hibernate4_encryptor;
+}

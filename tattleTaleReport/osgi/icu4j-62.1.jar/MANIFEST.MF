@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Implementation-Title: International Components for Unicode for Java
+Bundle-Description: International Components for Unicode for Java
+Bundle-SymbolicName: com.ibm.icu
+Implementation-Version: 62.1
+Specification-Vendor: Unicode, Inc.
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Specification-Title: International Components for Unicode for Java
+Implementation-Vendor-Id: org.unicode
+Bundle-Copyright: © 2016 and later: Unicode, Inc. and others. License
+  & terms of use: http://www.unicode.org/copyright.html#License
+Bundle-Vendor: Unicode, Inc.
+Implementation-Vendor: Unicode, Inc.
+Main-Class: com.ibm.icu.util.VersionInfo
+Ant-Version: Apache Ant 1.10.3
+Export-Package: com.ibm.icu.lang,com.ibm.icu.math,com.ibm.icu.text,com
+ .ibm.icu.util
+Bundle-Name: ICU4J
+Bundle-Version: 62.1
+Created-By: 1.8.0_162-b12 (Oracle Corporation)
+Specification-Version: 62
+

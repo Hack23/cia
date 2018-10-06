@@ -1,0 +1,10 @@
+digraph service_external_val_2018_9_24_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_external_val_api -> com_hack23_cia_model_external_val_partier_impl;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_model_external_val_kommunvalkrets_impl;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_model_external_val_landstingvalkrets_impl;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_model_external_val_partier_impl;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_model_external_val_riksdagsvalkrets_impl;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_service_external_common_api;
+  com_hack23_cia_service_external_val_impl -> com_hack23_cia_service_external_val_api;
+}

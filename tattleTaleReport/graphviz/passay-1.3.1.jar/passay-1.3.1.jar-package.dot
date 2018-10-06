@@ -1,0 +1,21 @@
+digraph passay_1_3_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_passay -> java_lang_invoke;
+  org_passay -> java_nio_charset;
+  org_passay -> java_util;
+  org_passay -> java_util_function;
+  org_passay -> java_util_stream;
+  org_passay -> org_cryptacular_bean;
+  org_passay -> org_passay_dictionary;
+  org_passay -> org_passay_entropy;
+  org_passay_dictionary -> java_lang_invoke;
+  org_passay_dictionary -> java_nio_charset;
+  org_passay_dictionary -> org_passay_dictionary_sort;
+  org_passay_dictionary_sort -> org_passay_dictionary;
+  org_passay_entropy -> java_lang_invoke;
+  org_passay_entropy -> java_util_function;
+  org_passay_entropy -> java_util_stream;
+  org_passay_entropy -> org_passay;
+  org_passay_entropy -> org_passay_dictionary;
+  org_passay_spring -> org_passay;
+}

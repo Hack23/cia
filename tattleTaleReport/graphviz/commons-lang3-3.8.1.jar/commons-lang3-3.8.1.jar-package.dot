@@ -1,0 +1,36 @@
+digraph commons_lang3_3_8_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_lang3 -> java_lang;
+  org_apache_commons_lang3 -> java_util;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_arch;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_builder;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_exception;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_math;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_mutable;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_text;
+  org_apache_commons_lang3 -> org_apache_commons_lang3_text_translate;
+  org_apache_commons_lang3_builder -> org_apache_commons_lang3;
+  org_apache_commons_lang3_builder -> org_apache_commons_lang3_reflect;
+  org_apache_commons_lang3_builder -> org_apache_commons_lang3_tuple;
+  org_apache_commons_lang3_concurrent -> java_util;
+  org_apache_commons_lang3_concurrent -> org_apache_commons_lang3;
+  org_apache_commons_lang3_concurrent -> org_apache_commons_lang3_builder;
+  org_apache_commons_lang3_event -> org_apache_commons_lang3;
+  org_apache_commons_lang3_event -> org_apache_commons_lang3_reflect;
+  org_apache_commons_lang3_exception -> org_apache_commons_lang3;
+  org_apache_commons_lang3_exception -> org_apache_commons_lang3_tuple;
+  org_apache_commons_lang3_math -> org_apache_commons_lang3;
+  org_apache_commons_lang3_mutable -> org_apache_commons_lang3;
+  org_apache_commons_lang3_mutable -> org_apache_commons_lang3_math;
+  org_apache_commons_lang3_reflect -> java_util;
+  org_apache_commons_lang3_reflect -> org_apache_commons_lang3;
+  org_apache_commons_lang3_reflect -> org_apache_commons_lang3_builder;
+  org_apache_commons_lang3_text -> java_util;
+  org_apache_commons_lang3_text -> org_apache_commons_lang3;
+  org_apache_commons_lang3_text -> org_apache_commons_lang3_builder;
+  org_apache_commons_lang3_text_translate -> org_apache_commons_lang3;
+  org_apache_commons_lang3_time -> org_apache_commons_lang3;
+  org_apache_commons_lang3_time -> org_apache_commons_lang3_exception;
+  org_apache_commons_lang3_tuple -> java_util;
+  org_apache_commons_lang3_tuple -> org_apache_commons_lang3_builder;
+}

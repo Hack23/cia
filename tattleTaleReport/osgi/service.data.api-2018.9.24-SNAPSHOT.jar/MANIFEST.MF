@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.data.api
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.data.api
+Bundle-Description: service.data.api-2018.9.24-SNAPSHOT
+Bundle-Name: service.data.api-2018.9.24-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.data.api;uses:="com.hack23.cia.
+ model.internal.application.system.impl,java.lang"
+Import-Package: com.hack23.cia.model.internal.application.system.impl;
+ version="0.0.0",java.io,java.lang,java.util,javax.persistence.metamod
+ el;version="2.2"

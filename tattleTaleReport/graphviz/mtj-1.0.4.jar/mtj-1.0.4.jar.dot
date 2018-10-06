@@ -1,0 +1,5 @@
+digraph mtj_1_0_4_dependencies {
+  node [shape = box, fontsize=10.0];
+  mtj_1_0_4 -> arpack_combined_all_0_1;
+  mtj_1_0_4 -> core_1_1_2;
+}

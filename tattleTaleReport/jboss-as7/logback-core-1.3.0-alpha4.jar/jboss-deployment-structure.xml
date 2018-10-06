@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javaee.api"/>
+        <module name="javax.mail.api"/>
+        <module name="javax.servlet.api"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

@@ -1,0 +1,18 @@
+digraph jaxb_impl_2_4_0_b180830_0438_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_sun_xml_bind_marshaller -> com_sun_xml_bind_v2_util;
+  com_sun_xml_bind_v2_model_core -> com_sun_xml_bind_v2_model_impl;
+  com_sun_xml_bind_v2_model_impl -> com_sun_xml_bind_v2_model_util;
+  com_sun_xml_bind_v2_runtime -> com_sun_xml_bind_v2_util;
+  com_sun_xml_bind_v2_runtime_output -> com_sun_xml_bind_marshaller;
+  com_sun_xml_bind_v2_runtime_output -> com_sun_xml_fastinfoset;
+  com_sun_xml_bind_v2_runtime_output -> com_sun_xml_fastinfoset_stax;
+  com_sun_xml_bind_v2_runtime_output -> org_jvnet_fastinfoset;
+  com_sun_xml_bind_v2_runtime_output -> org_jvnet_staxex;
+  com_sun_xml_bind_v2_runtime_unmarshaller -> com_sun_xml_bind_v2_util;
+  com_sun_xml_bind_v2_runtime_unmarshaller -> com_sun_xml_fastinfoset_sax;
+  com_sun_xml_bind_v2_runtime_unmarshaller -> com_sun_xml_fastinfoset_stax;
+  com_sun_xml_bind_v2_runtime_unmarshaller -> org_jvnet_fastinfoset;
+  com_sun_xml_bind_v2_runtime_unmarshaller -> org_jvnet_staxex;
+  com_sun_xml_bind_v2_schemagen -> java_util;
+}

@@ -1,0 +1,4 @@
+digraph asm_tree_7_0_beta_dependencies {
+  node [shape = box, fontsize=10.0];
+  asm_tree_7_0_beta -> asm_7_0_beta;
+}

@@ -1,0 +1,101 @@
+Manifest-Version: 1.0
+Bundle-License: https://jdbc.postgresql.org/about/license.html
+Bundle-SymbolicName: org.postgresql.jdbc42
+Built-By: travis
+Bnd-LastModified: 1535384500808
+Bundle-Copyright: Copyright (c) 2003-2015, PostgreSQL Global Developme
+ nt Group
+Implementation-Vendor-Id: org.postgresql
+Specification-Title: JDBC
+Bundle-DocURL: https://jdbc.postgresql.org/
+Import-Package: javax.sql,javax.transaction.xa,javax.naming,com.ongres
+ .scram.client;resolution:=optional,com.ongres.scram.common;resolution
+ :=optional,com.ongres.scram.common.exception;resolution:=optional,com
+ .ongres.scram.common.message;resolution:=optional,com.ongres.scram.co
+ mmon.stringprep;resolution:=optional,com.sun.jna;resolution:=optional
+ ,com.sun.jna.platform.win32;resolution:=optional,com.sun.jna.ptr;reso
+ lution:=optional,com.sun.jna.win32;resolution:=optional,javax.crypto;
+ resolution:=optional,javax.crypto.spec;resolution:=optional,javax.nam
+ ing.ldap;resolution:=optional,javax.naming.spi;resolution:=optional,j
+ avax.net;resolution:=optional,javax.net.ssl;resolution:=optional,java
+ x.security.auth;resolution:=optional,javax.security.auth.callback;res
+ olution:=optional,javax.security.auth.login;resolution:=optional,java
+ x.security.auth.x500;resolution:=optional,javax.xml.parsers;resolutio
+ n:=optional,javax.xml.stream;resolution:=optional,javax.xml.transform
+ ;resolution:=optional,javax.xml.transform.dom;resolution:=optional,ja
+ vax.xml.transform.sax;resolution:=optional,javax.xml.transform.stax;r
+ esolution:=optional,javax.xml.transform.stream;resolution:=optional,o
+ rg.ietf.jgss;resolution:=optional,org.osgi.framework;resolution:=opti
+ onal;version="[1.6,2)",org.osgi.service.jdbc;resolution:=optional;ver
+ sion="[1.0,2)",org.w3c.dom;resolution:=optional,org.xml.sax;resolutio
+ n:=optional,waffle.windows.auth;resolution:=optional,waffle.windows.a
+ uth.impl;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(|(osgi.ee=J2SE)(osgi.ee=JavaSE
+ ))(version>=1.8))"
+Main-Class: org.postgresql.util.PGJDBCMain
+Provide-Capability: osgi.service;effective:=active;objectClass="org.os
+ gi.service.jdbc.DataSourceFactory"
+Export-Package: org.postgresql;version="42.2.5";uses:="org.postgresql.
+ copy,org.postgresql.fastpath,org.postgresql.jdbc,org.postgresql.large
+ object,org.postgresql.replication,org.postgresql.util",org.postgresql
+ .copy;version="42.2.5";uses:="org.postgresql,org.postgresql.core",org
+ .postgresql.core;version="42.2.5";uses:="javax.net,javax.net.ssl,org.
+ postgresql,org.postgresql.copy,org.postgresql.core.v3,org.postgresql.
+ jdbc,org.postgresql.replication,org.postgresql.replication.fluent.log
+ ical,org.postgresql.replication.fluent.physical,org.postgresql.util",
+ org.postgresql.core.v3;version="42.2.5";uses:="org.postgresql.copy,or
+ g.postgresql.core,org.postgresql.jdbc,org.postgresql.util",org.postgr
+ esql.core.v3.replication;version="42.2.5";uses:="org.postgresql.copy,
+ org.postgresql.core,org.postgresql.replication,org.postgresql.replica
+ tion.fluent.logical,org.postgresql.replication.fluent.physical",org.p
+ ostgresql.ds;version="42.2.5";uses:="javax.naming,javax.sql,org.postg
+ resql.ds.common",org.postgresql.ds.common;version="42.2.5";uses:="jav
+ ax.naming,javax.naming.spi,javax.sql,org.postgresql,org.postgresql.jd
+ bc",org.postgresql.fastpath;version="42.2.5";uses:="org.postgresql.co
+ re",org.postgresql.geometric;version="42.2.5";uses:="org.postgresql.u
+ til",org.postgresql.gss;version="42.2.5";uses:="javax.security.auth.c
+ allback,org.postgresql.core",org.postgresql.hostchooser;version="42.2
+ .5";uses:="org.postgresql.util",org.postgresql.jdbc;version="42.2.5";
+ uses:="javax.xml.transform,org.postgresql,org.postgresql.copy,org.pos
+ tgresql.core,org.postgresql.fastpath,org.postgresql.jdbc2,org.postgre
+ sql.largeobject,org.postgresql.replication,org.postgresql.util",org.p
+ ostgresql.jdbc2;version="42.2.5",org.postgresql.jdbc2.optional;versio
+ n="42.2.5";uses:="org.postgresql.ds",org.postgresql.jdbc3;version="42
+ .2.5";uses:="org.postgresql.ds",org.postgresql.jre8.sasl;version="42.
+ 2.5";uses:="org.postgresql.core,org.postgresql.util",org.postgresql.l
+ argeobject;version="42.2.5";uses:="org.postgresql.core,org.postgresql
+ .fastpath",org.postgresql.osgi;version="42.2.5";uses:="javax.sql,org.
+ osgi.framework,org.osgi.service.jdbc",org.postgresql.replication;vers
+ ion="42.2.5";uses:="org.postgresql.core,org.postgresql.replication.fl
+ uent",org.postgresql.replication.fluent;version="42.2.5";uses:="org.p
+ ostgresql.core,org.postgresql.replication,org.postgresql.replication.
+ fluent.logical,org.postgresql.replication.fluent.physical",org.postgr
+ esql.replication.fluent.logical;version="42.2.5";uses:="org.postgresq
+ l.core,org.postgresql.replication,org.postgresql.replication.fluent",
+ org.postgresql.replication.fluent.physical;version="42.2.5";uses:="or
+ g.postgresql.core,org.postgresql.replication,org.postgresql.replicati
+ on.fluent",org.postgresql.ssl;version="42.2.5";uses:="javax.net.ssl,j
+ avax.security.auth.callback,org.postgresql.core,org.postgresql.util",
+ org.postgresql.ssl.jdbc4;version="42.2.5";uses:="javax.net.ssl,org.po
+ stgresql.ssl,org.postgresql.util",org.postgresql.sspi;version="42.2.5
+ ";uses:="com.sun.jna,org.postgresql.core",org.postgresql.translation;
+ version="42.2.5",org.postgresql.util;version="42.2.5";uses:="org.post
+ gresql.core",org.postgresql.xa;version="42.2.5";uses:="javax.naming,j
+ avax.sql,javax.transaction.xa,org.postgresql.core,org.postgresql.ds,o
+ rg.postgresql.ds.common"
+Bundle-Name: PostgreSQL JDBC Driver JDBC42
+Bundle-Activator: org.postgresql.osgi.PGBundleActivator
+Bundle-Description: Java JDBC 4.2 (JRE 8+) driver for PostgreSQL datab
+ ase
+Implementation-Title: PostgreSQL JDBC Driver - JDBC 4.2
+Implementation-Version: 42.2.5
+Bundle-ManifestVersion: 2
+Specification-Vendor: Oracle Corporation
+Bundle-Vendor: PostgreSQL Global Development Group
+Tool: Bnd-2.4.0.201411031534
+Implementation-Vendor: PostgreSQL Global Development Group
+Bundle-Version: 42.2.5
+Build-Jdk: 1.8.0_151
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 4.2
+

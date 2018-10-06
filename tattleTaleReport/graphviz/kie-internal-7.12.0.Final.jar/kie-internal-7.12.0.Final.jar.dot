@@ -1,0 +1,8 @@
+digraph kie_internal_7_12_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_internal_7_12_0_Final -> jaxb_api_2_4_0;
+  kie_internal_7_12_0_Final -> jaxb_xjc_2_4_0_b180830_0438;
+  kie_internal_7_12_0_Final -> kie_api_7_12_0_Final;
+  kie_internal_7_12_0_Final -> slf4j_api_1_8_0_beta2;
+  kie_internal_7_12_0_Final -> xstream_1_4_10;
+}

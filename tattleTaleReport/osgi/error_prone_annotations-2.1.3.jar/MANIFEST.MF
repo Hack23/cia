@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: glorioso
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_112-google-v7
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.google.errorprone.annotations
+Bundle-Description: error_prone_annotations-2.1.3
+Bundle-Name: error_prone_annotations-2.1.3
+Bundle-Version: 0.0.0
+Export-Package: com.google.errorprone.annotations,com.google.errorpron
+ e.annotations.concurrent
+Import-Package: java.lang,java.lang.annotation,javax.lang.model.elemen
+ t

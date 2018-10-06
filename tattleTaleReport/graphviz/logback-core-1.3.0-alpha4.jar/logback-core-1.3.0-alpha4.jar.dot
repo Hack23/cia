@@ -1,0 +1,5 @@
+digraph logback_core_1_3_0_alpha4_dependencies {
+  node [shape = box, fontsize=10.0];
+  logback_core_1_3_0_alpha4 -> javax_mail_1_6_2;
+  logback_core_1_3_0_alpha4 -> xml_apis_1_4_01;
+}

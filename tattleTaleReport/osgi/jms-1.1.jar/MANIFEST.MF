@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.5.3 
+Created-By: 1.3.0-C (Sun Microsystems Inc.)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: javax.jms
+Bundle-Description: jms-1.1
+Bundle-Name: jms-1.1
+Bundle-Version: 0.0.0
+Export-Package: javax.jms
+Import-Package: java.io,java.lang,java.util,javax.transaction.xa;versi
+ on="1.1.1"

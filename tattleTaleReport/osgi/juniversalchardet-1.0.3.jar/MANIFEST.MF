@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: Michi
+Created-By: Apache Maven
+Build-Jdk: 1.5.0_06
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.mozilla.universalchardet.prober
+Bundle-Description: juniversalchardet-1.0.3
+Bundle-Name: juniversalchardet-1.0.3
+Bundle-Version: 0.0.0
+Export-Package: org.mozilla.universalchardet;uses:="org.mozilla.univer
+ salchardet.prober",org.mozilla.universalchardet.prober;uses:="org.moz
+ illa.universalchardet,org.mozilla.universalchardet.prober.contextanal
+ ysis,org.mozilla.universalchardet.prober.distributionanalysis,org.moz
+ illa.universalchardet.prober.sequence,org.mozilla.universalchardet.pr
+ ober.statemachine",org.mozilla.universalchardet.prober.contextanalysi
+ s,org.mozilla.universalchardet.prober.distributionanalysis,org.mozill
+ a.universalchardet.prober.sequence;uses:="org.mozilla.universalcharde
+ t",org.mozilla.universalchardet.prober.statemachine;uses:="org.mozill
+ a.universalchardet"
+Import-Package: java.io,java.lang,java.nio,java.util

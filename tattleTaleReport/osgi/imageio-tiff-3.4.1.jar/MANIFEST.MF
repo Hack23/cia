@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-imageio-tiff
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/imageio/i
+ mageio-tiff
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.imageio.plugins.tiff
+Bundle-Description: imageio-tiff-3.4.1
+Bundle-Name: imageio-tiff-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.imageio.plugins.tiff;uses:="com.twel
+ vemonkeys.image,com.twelvemonkeys.imageio,com.twelvemonkeys.imageio.c
+ olor,com.twelvemonkeys.imageio.metadata,com.twelvemonkeys.imageio.met
+ adata.iptc,com.twelvemonkeys.imageio.metadata.jpeg,com.twelvemonkeys.
+ imageio.metadata.psd,com.twelvemonkeys.imageio.metadata.tiff,com.twel
+ vemonkeys.imageio.metadata.xmp,com.twelvemonkeys.imageio.spi,com.twel
+ vemonkeys.imageio.stream,com.twelvemonkeys.imageio.util,com.twelvemon
+ keys.io,com.twelvemonkeys.io.enc,com.twelvemonkeys.lang,java.nio.char
+ set"
+Import-Package: com.twelvemonkeys.image;version="3.4.1",com.twelvemonk
+ eys.imageio;version="3.4.1",com.twelvemonkeys.imageio.color;version="
+ 3.4.1",com.twelvemonkeys.imageio.metadata;version="3.4.1",com.twelvem
+ onkeys.imageio.metadata.iptc;version="3.4.1",com.twelvemonkeys.imagei
+ o.metadata.jpeg;version="3.4.1",com.twelvemonkeys.imageio.metadata.ps
+ d;version="3.4.1",com.twelvemonkeys.imageio.metadata.tiff;version="3.
+ 4.1",com.twelvemonkeys.imageio.metadata.xmp;version="3.4.1",com.twelv
+ emonkeys.imageio.spi;version="3.4.1",com.twelvemonkeys.imageio.stream
+ ;version="3.4.1",com.twelvemonkeys.imageio.util;version="3.4.1",com.t
+ welvemonkeys.io;version="3.4.1",com.twelvemonkeys.io.enc;version="3.4
+ .1",com.twelvemonkeys.lang;version="3.4.1",java.awt,java.awt.color,ja
+ va.awt.image,java.io,java.lang,java.lang.reflect,java.nio,java.nio.ch
+ annels,java.nio.charset,java.text,java.util,java.util.zip,javax.image
+ io,javax.imageio.event,javax.imageio.metadata,javax.imageio.plugins.j
+ peg,javax.imageio.spi,javax.imageio.stream,org.w3c.dom;version="1.0"

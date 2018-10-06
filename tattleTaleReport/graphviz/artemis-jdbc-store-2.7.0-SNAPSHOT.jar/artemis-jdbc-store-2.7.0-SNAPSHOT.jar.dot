@@ -1,0 +1,8 @@
+digraph artemis_jdbc_store_2_7_0_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_jdbc_store_2_7_0_SNAPSHOT -> artemis_commons_2_7_0_SNAPSHOT;
+  artemis_jdbc_store_2_7_0_SNAPSHOT -> artemis_core_client_2_7_0_SNAPSHOT;
+  artemis_jdbc_store_2_7_0_SNAPSHOT -> artemis_journal_2_7_0_SNAPSHOT;
+  artemis_jdbc_store_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
+  artemis_jdbc_store_2_7_0_SNAPSHOT -> postgresql_42_2_5;
+}

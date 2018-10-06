@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Vaadin-License-Title: Apache 2.0
+Implementation-Title: QRCode
+Implementation-Version: 2.1
+Vaadin-Widgetsets: fi.jasoft.qrcode.QrcodeWidgetset
+Vaadin-Package-Version: 1
+Built-By: Gradle Vaadin Plugin 1.0.1
+Implementation-Vendor: John Ahlroos
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: fi.jasoft.qrcode.zxing
+Bundle-Description: qrcode-2.1
+Bundle-Name: qrcode-2.1
+Bundle-Version: 2.1
+Export-Package: fi.jasoft.qrcode;uses:="com.vaadin.server,com.vaadin.s
+ hared.communication,com.vaadin.ui,fi.jasoft.qrcode.client.ui,fi.jasof
+ t.qrcode.zxing",fi.jasoft.qrcode.client.ui;uses:="com.google.gwt.even
+ t.shared,com.google.gwt.user.client.ui,com.vaadin.client,com.vaadin.c
+ lient.communication,com.vaadin.client.ui,com.vaadin.shared.communicat
+ ion,com.vaadin.shared.ui,fi.jasoft.qrcode",fi.jasoft.qrcode.data,fi.j
+ asoft.qrcode.zxing
+Import-Package: com.google.gwt.event.shared;version="0.0.0",com.google
+ .gwt.user.client.ui;version="0.0.0",com.vaadin.client;version="8.6.0.
+ beta1",com.vaadin.client.communication;version="8.6.0.beta1",com.vaad
+ in.client.ui;version="8.6.0.beta1",com.vaadin.server;version="8.6.0.b
+ eta1",com.vaadin.shared.communication;version="8.6.0.beta1",com.vaadi
+ n.shared.ui;version="8.6.0.beta1",com.vaadin.ui;version="8.6.0.beta1"
+ ,java.awt,java.awt.image,java.io,java.lang,java.util,java.util.loggin
+ g,javax.imageio

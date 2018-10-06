@@ -1,0 +1,147 @@
+/*
+ * JBoss Tattletale
+ * Copyright (C) 2009 Red Hat Middleware LLC.
+ * All rights reserved.
+ * 
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * as indicated by the @author tags. See the copyright.txt file in the
+ * distribution for a full listing of individual contributors.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
+
+html {
+    height: 100%;
+    min-height: 100%;
+    background-color : #ffffff;
+    color : #454545;
+    border-collapse : collapse; 
+    border-style: none;
+    margin : 0px auto; 
+    padding: 0px;
+}
+
+body {
+    background-color : #ffffff;
+    color : #454545;
+    margin : 0px auto; 
+    text-align : left;
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    border-collapse : collapse; 
+    border-style: none;
+    padding: 5px;
+}
+
+p {
+    margin: 5px;
+}
+
+a {
+    color: #527fa8;
+}
+
+hr {
+    border-top: 1px solid #a4b2b9;
+    border-right: 0px solid #a4b2b9;
+    border-left: 0px solid #a4b2b9;
+    border-bottom: 0px solid #a4b2b9;
+    margin-bottom: 3px;
+}
+
+img {
+    border: 0px;
+}
+
+h1 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 14pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+h2 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 11pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+h3 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 11pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+h4 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 10pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+h5 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 10pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+h6 {
+    font-family : "Lucida Grand", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 10pt; 
+    font-weight : bold; 
+    background-color: white;
+    color: #50667c;
+}
+
+table {
+    width: 100%;
+    border-collapse : collapse; 
+    border-style: none;
+}
+
+tr th {
+    background-color: #d9e0e3;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #5f6a6f;
+    text-align: left;
+    padding: 3px;
+}
+
+tr td {
+    font-size: 10pt;
+    font-weight: bold;
+    vertical-align: top;
+    text-align: left;
+    padding: 3px;
+}
+
+.roweven {
+    background-color: white;
+}
+
+.rowodd {
+    background-color: #eff4f7;
+}

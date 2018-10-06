@@ -1,0 +1,75 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis JMS Client
+Implementation-Version: 2.7.0-SNAPSHOT
+Archiver-Version: Plexus Archiver
+Built-By: jenkins
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis JMS Client
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_172
+Specification-Version: 2.7.0-SNAPSHOT
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.jms.client
+Bundle-Description: artemis-jms-client-2.7.0-SNAPSHOT
+Bundle-Name: artemis-jms-client-2.7.0-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: org.apache.activemq.artemis.api.jms;uses:="org.apache.
+ activemq.artemis.api.core,org.apache.activemq.artemis.core.protocol.c
+ ore.impl,org.apache.activemq.artemis.jms.client,org.apache.activemq.a
+ rtemis.uri,org.apache.activemq.artemis.utils",org.apache.activemq.art
+ emis.api.jms.management;uses:="org.apache.activemq.artemis.api.core,o
+ rg.apache.activemq.artemis.api.core.client,org.apache.activemq.artemi
+ s.api.core.management,org.apache.activemq.artemis.jms.client",org.apa
+ che.activemq.artemis.jms.client;uses:="java.lang,java.lang.invoke,jav
+ a.util,java.util.function,javax.jms,org.apache.activemq.artemis.api.c
+ ore,org.apache.activemq.artemis.api.core.client,org.apache.activemq.a
+ rtemis.api.jms,org.apache.activemq.artemis.core.client,org.apache.act
+ ivemq.artemis.core.client.impl,org.apache.activemq.artemis.core.messa
+ ge.impl,org.apache.activemq.artemis.core.protocol.core.impl,org.apach
+ e.activemq.artemis.core.version,org.apache.activemq.artemis.jms.clien
+ t.compatible1X,org.apache.activemq.artemis.jndi,org.apache.activemq.a
+ rtemis.reader,org.apache.activemq.artemis.selector.filter,org.apache.
+ activemq.artemis.selector.impl,org.apache.activemq.artemis.spi.core.r
+ emoting,org.apache.activemq.artemis.uri,org.apache.activemq.artemis.u
+ tils,org.apache.activemq.artemis.utils.collections,org.apache.activem
+ q.artemis.utils.uri,org.jboss.logging.annotations",org.apache.activem
+ q.artemis.jms.client.compatible1X;uses:="javax.jms,org.apache.activem
+ q.artemis.api.core,org.apache.activemq.artemis.api.core.client,org.ap
+ ache.activemq.artemis.core.protocol.core.impl,org.apache.activemq.art
+ emis.jms.client,org.apache.activemq.artemis.reader",org.apache.active
+ mq.artemis.jndi;uses:="org.apache.activemq.artemis.api.jms,org.apache
+ .activemq.artemis.core.client,org.apache.activemq.artemis.uri,org.apa
+ che.activemq.artemis.utils.uri",org.apache.activemq.artemis.uri;uses:
+ ="org.apache.activemq.artemis.api.core,org.apache.activemq.artemis.ap
+ i.core.client,org.apache.activemq.artemis.api.jms,org.apache.activemq
+ .artemis.core.client,org.apache.activemq.artemis.core.remoting.impl.n
+ etty,org.apache.activemq.artemis.jms.client,org.apache.activemq.artem
+ is.uri.schema.connector,org.apache.activemq.artemis.uri.schema.server
+ Locator,org.apache.activemq.artemis.utils.uri"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.ref,java.
+ lang.reflect,java.net,java.security,java.text,java.util,java.util.con
+ current,java.util.concurrent.atomic,java.util.function,javax.jms;vers
+ ion="0.0.0",javax.management.openmbean,javax.naming,javax.naming.spi,
+ javax.transaction.xa;version="1.1.1",org.apache.activemq.artemis.api.
+ core;version="0.0.0",org.apache.activemq.artemis.api.core.client;vers
+ ion="0.0.0",org.apache.activemq.artemis.api.core.management;version="
+ 0.0.0",org.apache.activemq.artemis.core.client;version="0.0.0",org.ap
+ ache.activemq.artemis.core.client.impl;version="0.0.0",org.apache.act
+ ivemq.artemis.core.message.impl;version="0.0.0",org.apache.activemq.a
+ rtemis.core.protocol.core.impl;version="0.0.0",org.apache.activemq.ar
+ temis.core.remoting.impl.netty;version="0.0.0",org.apache.activemq.ar
+ temis.core.version;version="0.0.0",org.apache.activemq.artemis.reader
+ ;version="0.0.0",org.apache.activemq.artemis.selector.filter;version=
+ "0.0.0",org.apache.activemq.artemis.selector.impl;version="0.0.0",org
+ .apache.activemq.artemis.spi.core.remoting;version="0.0.0",org.apache
+ .activemq.artemis.uri;version="0.0.0",org.apache.activemq.artemis.uri
+ .schema.connector;version="0.0.0",org.apache.activemq.artemis.uri.sch
+ ema.serverLocator;version="0.0.0",org.apache.activemq.artemis.utils;v
+ ersion="0.0.0",org.apache.activemq.artemis.utils.collections;version=
+ "0.0.0",org.apache.activemq.artemis.utils.uri;version="0.0.0",org.jbo
+ ss.logging;version="3.3.2.Final",org.jboss.logging.annotations

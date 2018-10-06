@@ -1,0 +1,22 @@
+digraph kie_dmn_model_7_12_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_kie_dmn_model_api -> java_util;
+  org_kie_dmn_model_api -> org_kie_dmn_model_api_dmndi;
+  org_kie_dmn_model_api_dmndi -> org_kie_dmn_model_api;
+  org_kie_dmn_model_v1_1 -> java_lang_invoke;
+  org_kie_dmn_model_v1_1 -> java_util;
+  org_kie_dmn_model_v1_1 -> java_util_function;
+  org_kie_dmn_model_v1_1 -> java_util_stream;
+  org_kie_dmn_model_v1_1 -> org_kie_dmn_model_api;
+  org_kie_dmn_model_v1_1 -> org_kie_dmn_model_api_dmndi;
+  org_kie_dmn_model_v1_1 -> org_kie_dmn_model_v1_1_extensions;
+  org_kie_dmn_model_v1_1_extensions -> org_kie_dmn_model_v1_1;
+  org_kie_dmn_model_v1_2 -> java_lang_invoke;
+  org_kie_dmn_model_v1_2 -> java_util;
+  org_kie_dmn_model_v1_2 -> java_util_function;
+  org_kie_dmn_model_v1_2 -> java_util_stream;
+  org_kie_dmn_model_v1_2 -> org_kie_dmn_model_api;
+  org_kie_dmn_model_v1_2 -> org_kie_dmn_model_api_dmndi;
+  org_kie_dmn_model_v1_2_dmndi -> org_kie_dmn_model_api_dmndi;
+  org_kie_dmn_model_v1_2_dmndi -> org_kie_dmn_model_v1_2;
+}

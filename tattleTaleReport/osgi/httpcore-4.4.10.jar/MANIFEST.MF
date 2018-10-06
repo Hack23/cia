@@ -1,0 +1,55 @@
+Manifest-Version: 1.0
+Implementation-Title: HttpComponents Apache HttpCore
+Automatic-Module-Name: org.apache.httpcomponents.httpcore
+Implementation-Version: 4.4.10
+Built-By: oleg
+Specification-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Specification-Title: HttpComponents Apache HttpCore
+url: http://hc.apache.org/httpcomponents-core-ga
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Target-JDK: 1.6
+Implementation-Build: ${scmBranch}@r${buildNumber}; 2018-06-26 18:36:0
+ 3+0000
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven 3.3.9
+Implementation-URL: http://hc.apache.org/httpcomponents-core-ga
+Build-Jdk: 1.7.0_75
+Specification-Version: 4.4.10
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.http
+Bundle-Description: httpcore-4.4.10
+Bundle-Name: httpcore-4.4.10
+Bundle-Version: 4.4.10
+Export-Package: org.apache.http;uses:="org.apache.http.annotation,org.
+ apache.http.util",org.apache.http.annotation,org.apache.http.concurre
+ nt;uses:="org.apache.http.util",org.apache.http.config;uses:="org.apa
+ che.http,org.apache.http.annotation,org.apache.http.util",org.apache.
+ http.entity;uses:="org.apache.http,org.apache.http.annotation,org.apa
+ che.http.impl.io,org.apache.http.util",org.apache.http.impl;uses:="or
+ g.apache.http,org.apache.http.annotation,org.apache.http.config,org.a
+ pache.http.impl.entity,org.apache.http.impl.io,org.apache.http.io,org
+ .apache.http.util",org.apache.http.impl.bootstrap;uses:="org.apache.h
+ ttp,org.apache.http.config,org.apache.http.impl,org.apache.http.proto
+ col",org.apache.http.impl.entity;uses:="org.apache.http.annotation,or
+ g.apache.http.util",org.apache.http.impl.io;uses:="org.apache.http,or
+ g.apache.http.annotation,org.apache.http.config,org.apache.http.io,or
+ g.apache.http.params,org.apache.http.util",org.apache.http.impl.pool;
+ uses:="org.apache.http,org.apache.http.annotation,org.apache.http.con
+ fig,org.apache.http.impl,org.apache.http.params,org.apache.http.pool,
+ org.apache.http.util",org.apache.http.io;uses:="org.apache.http.confi
+ g",org.apache.http.message;uses:="org.apache.http.annotation,org.apac
+ he.http.util",org.apache.http.params;uses:="org.apache.http.annotatio
+ n,org.apache.http.config,org.apache.http.util",org.apache.http.pool;u
+ ses:="org.apache.http.annotation,org.apache.http.concurrent,org.apach
+ e.http.util",org.apache.http.protocol;uses:="org.apache.http,org.apac
+ he.http.annotation,org.apache.http.util",org.apache.http.ssl;uses:="o
+ rg.apache.http.util",org.apache.http.util;uses:="org.apache.http,org.
+ apache.http.entity"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.refle
+ ct,java.net,java.nio,java.nio.charset,java.security,java.security.cer
+ t,java.text,java.util,java.util.concurrent,java.util.concurrent.atomi
+ c,java.util.concurrent.locks,javax.net,javax.net.ssl

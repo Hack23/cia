@@ -1,0 +1,34 @@
+digraph easybinder_0_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_vaadin_easybinder_data -> com_googlecode_gentyref;
+  org_vaadin_easybinder_data -> com_vaadin_annotations;
+  org_vaadin_easybinder_data -> com_vaadin_data;
+  org_vaadin_easybinder_data -> com_vaadin_data_converter;
+  org_vaadin_easybinder_data -> com_vaadin_data_provider;
+  org_vaadin_easybinder_data -> com_vaadin_event;
+  org_vaadin_easybinder_data -> com_vaadin_server;
+  org_vaadin_easybinder_data -> com_vaadin_shared;
+  org_vaadin_easybinder_data -> com_vaadin_shared_util;
+  org_vaadin_easybinder_data -> com_vaadin_ui;
+  org_vaadin_easybinder_data -> com_vaadin_util;
+  org_vaadin_easybinder_data -> java_lang;
+  org_vaadin_easybinder_data -> java_lang_invoke;
+  org_vaadin_easybinder_data -> java_time;
+  org_vaadin_easybinder_data -> java_util;
+  org_vaadin_easybinder_data -> java_util_function;
+  org_vaadin_easybinder_data -> java_util_stream;
+  org_vaadin_easybinder_data -> org_vaadin_easybinder_data_converters;
+  org_vaadin_easybinder_data -> org_vaadin_easybinder_ui;
+  org_vaadin_easybinder_data_converters -> com_vaadin_data;
+  org_vaadin_easybinder_ui -> com_vaadin_data;
+  org_vaadin_easybinder_ui -> com_vaadin_data_provider;
+  org_vaadin_easybinder_ui -> com_vaadin_shared;
+  org_vaadin_easybinder_ui -> com_vaadin_shared_util;
+  org_vaadin_easybinder_ui -> com_vaadin_ui;
+  org_vaadin_easybinder_ui -> com_vaadin_ui_components_grid;
+  org_vaadin_easybinder_ui -> java_lang_invoke;
+  org_vaadin_easybinder_ui -> java_util;
+  org_vaadin_easybinder_ui -> java_util_function;
+  org_vaadin_easybinder_ui -> java_util_stream;
+  org_vaadin_easybinder_ui -> org_vaadin_easybinder_data;
+}

@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.dmn.backend
+Built-By: jenkins
+Bnd-LastModified: 1537950872393
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Decision Model Notation :: Backend
+Bundle-DocURL: http://www.jboss.org/
+Import-Package: com.thoughtworks.xstream,com.thoughtworks.xstream.conv
+ erters,com.thoughtworks.xstream.converters.collections,com.thoughtwor
+ ks.xstream.io,com.thoughtworks.xstream.io.naming,com.thoughtworks.xst
+ ream.io.xml,com.thoughtworks.xstream.mapper,javax.xml.namespace,javax
+ .xml.stream,javax.xml.transform,javax.xml.transform.sax,javax.xml.tra
+ nsform.stream,org.kie.dmn.api.marshalling,org.kie.dmn.api.marshalling
+ .v1_1,org.kie.dmn.backend.marshalling,org.kie.dmn.backend.marshalling
+ .v1_1.xstream,org.kie.dmn.backend.marshalling.v1_2.xstream,org.kie.dm
+ n.model.api,org.kie.dmn.model.api.dmndi,org.kie.dmn.model.v1_1,org.ki
+ e.dmn.model.v1_1.extensions,org.kie.dmn.model.v1_2,org.kie.dmn.model.
+ v1_2.dmndi,org.kie.soup.commons.xstream,org.slf4j,org.xml.sax
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-backend
+Export-Package: org.kie.dmn.backend.marshalling;version="7.12.0",org.k
+ ie.dmn.backend.marshalling.v1_1.xstream;version="7.12.0",org.kie.dmn.
+ backend.marshalling.v1_1.xstream.extensions;version="7.12.0",org.kie.
+ dmn.backend.marshalling.v1_2.xstream;version="7.12.0",org.kie.dmn.bac
+ kend.marshalling.v1x;version="7.12.0"
+Bundle-Name: KIE :: Decision Model Notation :: Backend
+Bundle-Description: Top level pom for the KIE DMN support implementati
+ on
+Implementation-Title: KIE :: Decision Model Notation :: Backend
+Automatic-Module-Name: org.kie.dmn.backend
+Implementation-Version: 7.12.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn
+ /kie-dmn-backend
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.12.0.201809260832
+Scm-Revision: ad4b20e7242e08abab773c1da4e4d86ae2d4f4db
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-bac
+ kend
+Specification-Version: 7.12.0.Final
+

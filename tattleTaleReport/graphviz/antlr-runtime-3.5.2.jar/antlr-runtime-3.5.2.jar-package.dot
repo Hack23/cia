@@ -1,0 +1,11 @@
+digraph antlr_runtime_3_5_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_antlr_runtime -> org_antlr_runtime_misc;
+  org_antlr_runtime -> org_antlr_runtime_tree;
+  org_antlr_runtime_debug -> org_antlr_runtime;
+  org_antlr_runtime_debug -> org_antlr_runtime_misc;
+  org_antlr_runtime_debug -> org_antlr_runtime_tree;
+  org_antlr_runtime_tree -> org_antlr_runtime;
+  org_antlr_runtime_tree -> org_antlr_runtime_misc;
+  org_antlr_runtime_tree -> org_antlr_stringtemplate;
+}

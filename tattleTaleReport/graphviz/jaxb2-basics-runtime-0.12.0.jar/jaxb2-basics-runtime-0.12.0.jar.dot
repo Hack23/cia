@@ -1,0 +1,7 @@
+digraph jaxb2_basics_runtime_0_12_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  jaxb2_basics_runtime_0_12_0 -> activation_1_1;
+  jaxb2_basics_runtime_0_12_0 -> jaxb_api_2_4_0;
+  jaxb2_basics_runtime_0_12_0 -> jaxb_core_2_3_0_1;
+  jaxb2_basics_runtime_0_12_0 -> xml_apis_1_4_01;
+}

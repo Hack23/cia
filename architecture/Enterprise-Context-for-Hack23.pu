@@ -1,0 +1,46 @@
+@startuml(id="Enterprise")
+scale max 16384x16384
+title System Landscape for Hack23
+caption "Enterprise"
+
+skinparam {
+  shadowing false
+  arrowColor #707070
+  actorBorderColor #707070
+  componentBorderColor #707070
+  rectangleBorderColor #707070
+  noteBackgroundColor #ffffff
+  noteBorderColor #707070
+}
+rectangle 4 <<Software System>> #1168bd [
+  data.riksdagen.se
+  --
+  Public API Swedish Parliament
+  data
+]
+rectangle 5 <<Software System>> #1168bd [
+  data.worldbank.org
+  --
+  Public API Country indicators
+]
+rectangle 7 <<Software System>> #1168bd [
+  www.esv.se
+  --
+  Public Data Swedish public
+  sector spending data
+]
+rectangle 6 <<Software System>> #1168bd [
+  www.val.se
+  --
+  Public API Swedish Election
+  data
+]
+package "Hack23" {
+}
+2 .[#707070].> 3 : Manages
+3 .[#707070].> 4 : Loads data
+3 .[#707070].> 5 : Loads data
+3 .[#707070].> 7 : Loads data
+3 .[#707070].> 6 : Loads data
+1 .[#707070].> 3 : Uses
+@enduml

@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Implementation-Title: twelvemonkeys-imageio-metadata
+Implementation-Version: 3.4.1
+Archiver-Version: Plexus Archiver
+Built-By: harald.kuhr
+Build-Jdk: 1.7.0_71
+Created-By: Apache Maven 3.3.3
+Implementation-URL: https://github.com/haraldk/TwelveMonkeys/imageio/i
+ mageio-metadata
+Implementation-Vendor: TwelveMonkeys
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.twelvemonkeys.imageio.metadata.xmp
+Bundle-Description: imageio-metadata-3.4.1
+Bundle-Name: imageio-metadata-3.4.1
+Bundle-Version: 3.4.1
+Export-Package: com.twelvemonkeys.imageio.metadata;uses:="com.twelvemo
+ nkeys.lang,com.twelvemonkeys.util",com.twelvemonkeys.imageio.metadata
+ .exif;uses:="com.twelvemonkeys.imageio.metadata,com.twelvemonkeys.ima
+ geio.metadata.tiff",com.twelvemonkeys.imageio.metadata.iptc;uses:="co
+ m.twelvemonkeys.imageio.metadata,com.twelvemonkeys.lang,java.nio.char
+ set",com.twelvemonkeys.imageio.metadata.jpeg;uses:="com.twelvemonkeys
+ .imageio.metadata,com.twelvemonkeys.imageio.metadata.psd,com.twelvemo
+ nkeys.imageio.metadata.tiff,com.twelvemonkeys.imageio.metadata.xmp,co
+ m.twelvemonkeys.imageio.stream,com.twelvemonkeys.lang",com.twelvemonk
+ eys.imageio.metadata.psd;uses:="com.twelvemonkeys.imageio.metadata,co
+ m.twelvemonkeys.imageio.stream,com.twelvemonkeys.lang",com.twelvemonk
+ eys.imageio.metadata.tiff;uses:="com.twelvemonkeys.imageio.metadata,c
+ om.twelvemonkeys.lang,java.nio.charset",com.twelvemonkeys.imageio.met
+ adata.xmp;uses:="com.twelvemonkeys.imageio.metadata,com.twelvemonkeys
+ .imageio.stream,com.twelvemonkeys.imageio.util,com.twelvemonkeys.lang
+ "
+Import-Package: com.twelvemonkeys.imageio.stream;version="3.4.1",com.t
+ welvemonkeys.imageio.util;version="3.4.1",com.twelvemonkeys.lang;vers
+ ion="3.4.1",com.twelvemonkeys.util;version="3.4.1",java.awt.color,jav
+ a.io,java.lang,java.lang.reflect,java.nio,java.nio.charset,java.util,
+ javax.imageio,javax.imageio.plugins.jpeg,javax.imageio.stream,javax.x
+ ml.parsers;version="1.0",org.w3c.dom;version="1.0",org.xml.sax;versio
+ n="1.0",org.xml.sax.helpers;version="1.0"

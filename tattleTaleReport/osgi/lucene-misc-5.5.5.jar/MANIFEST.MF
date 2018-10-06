@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Implementation-Title: org.apache.lucene
+Implementation-Version: 5.5.5 b3441673c21c83762035dc21d3827ad16aa17b68
+  - sarowe - 2017-10-20 08:57:49
+X-Compile-Target-JDK: 1.7
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Lucene Search Engine: misc
+Extension-Name: org.apache.lucene
+X-Compile-Source-JDK: 1.7
+Created-By: 1.7.0_151-b01 (Oracle Corporation)
+Specification-Version: 5.5.5
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.uninverting
+Bundle-Description: lucene-misc-5.5.5
+Bundle-Name: lucene-misc-5.5.5
+Bundle-Version: 5.5.5
+Export-Package: org.apache.lucene.document;uses:="org.apache.lucene.an
+ alysis,org.apache.lucene.index,org.apache.lucene.util",org.apache.luc
+ ene.index;uses:="java.nio.file,java.nio.file.attribute,org.apache.luc
+ ene.analysis,org.apache.lucene.codecs,org.apache.lucene.search,org.ap
+ ache.lucene.store,org.apache.lucene.util,org.apache.lucene.util.autom
+ aton,org.apache.lucene.util.packed",org.apache.lucene.misc;uses:="jav
+ a.nio.file,org.apache.lucene.analysis,org.apache.lucene.index,org.apa
+ che.lucene.search.similarities,org.apache.lucene.store,org.apache.luc
+ ene.util",org.apache.lucene.search;uses:="org.apache.lucene.index,org
+ .apache.lucene.util",org.apache.lucene.store;uses:="java.nio.file,org
+ .apache.lucene.util",org.apache.lucene.uninverting;uses:="org.apache.
+ lucene.index,org.apache.lucene.store,org.apache.lucene.util,org.apach
+ e.lucene.util.packed",org.apache.lucene.util.fst;uses:="org.apache.lu
+ cene.store,org.apache.lucene.util"
+Import-Package: java.io,java.lang,java.nio,java.nio.channels,java.nio.
+ file,java.nio.file.attribute,java.text,java.util,java.util.concurrent
+ .atomic,org.apache.lucene.analysis;version="5.5.5",org.apache.lucene.
+ codecs;version="5.5.5",org.apache.lucene.document;version="5.5.5",org
+ .apache.lucene.index;version="5.5.5",org.apache.lucene.search;version
+ ="5.5.5",org.apache.lucene.search.similarities;version="5.5.5",org.ap
+ ache.lucene.store;version="5.5.5",org.apache.lucene.util;version="5.5
+ .5",org.apache.lucene.util.automaton;version="5.5.5",org.apache.lucen
+ e.util.fst;version="5.5.5",org.apache.lucene.util.packed;version="5.5
+ .5"

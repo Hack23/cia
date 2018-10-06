@@ -1,0 +1,5 @@
+digraph encrypt_properties_2018_9_24_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_encryption_properties -> org_bouncycastle_jce_provider;
+  com_hack23_cia_encryption_properties -> org_jasypt_encryption_pbe;
+}

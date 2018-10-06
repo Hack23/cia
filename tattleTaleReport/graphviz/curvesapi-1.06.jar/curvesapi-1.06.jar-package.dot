@@ -1,0 +1,11 @@
+digraph curvesapi_1_06_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_graphbuilder_curve -> com_graphbuilder_geom;
+  com_graphbuilder_curve -> com_graphbuilder_math;
+  com_graphbuilder_curve -> com_graphbuilder_org_apache_harmony_awt_gl;
+  com_graphbuilder_curve -> com_graphbuilder_struc;
+  com_graphbuilder_geom -> com_graphbuilder_curve;
+  com_graphbuilder_math -> com_graphbuilder_math_func;
+  com_graphbuilder_math -> com_graphbuilder_struc;
+  com_graphbuilder_math_func -> com_graphbuilder_math;
+}

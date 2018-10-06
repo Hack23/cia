@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: virtuald
+Created-By: Apache Maven 3.5.0
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.graphbuilder.curve
+Bundle-Description: curvesapi-1.06
+Bundle-Name: curvesapi-1.06
+Bundle-Version: 0.0.0
+Export-Package: com.graphbuilder.curve;uses:="com.graphbuilder.geom,co
+ m.graphbuilder.math,com.graphbuilder.org.apache.harmony.awt.gl,com.gr
+ aphbuilder.struc",com.graphbuilder.geom;uses:="com.graphbuilder.curve
+ ",com.graphbuilder.math;uses:="com.graphbuilder.math.func,com.graphbu
+ ilder.struc",com.graphbuilder.math.func;uses:="com.graphbuilder.math"
+ ,com.graphbuilder.org.apache.harmony.awt.gl,com.graphbuilder.struc
+Import-Package: java.awt,java.awt.geom,java.io,java.lang

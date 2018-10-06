@@ -1,0 +1,22 @@
+digraph kinesis_logback_appender_1_4_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_gu_logback_appender_kinesis -> ch_qos_logback_core;
+  com_gu_logback_appender_kinesis -> ch_qos_logback_core_spi;
+  com_gu_logback_appender_kinesis -> com_amazonaws;
+  com_gu_logback_appender_kinesis -> com_amazonaws_auth;
+  com_gu_logback_appender_kinesis -> com_amazonaws_handlers;
+  com_gu_logback_appender_kinesis -> com_amazonaws_regions;
+  com_gu_logback_appender_kinesis -> com_amazonaws_retry;
+  com_gu_logback_appender_kinesis -> com_amazonaws_services_kinesis;
+  com_gu_logback_appender_kinesis -> com_amazonaws_services_kinesis_model;
+  com_gu_logback_appender_kinesis -> com_amazonaws_services_kinesisfirehose;
+  com_gu_logback_appender_kinesis -> com_amazonaws_services_kinesisfirehose_model;
+  com_gu_logback_appender_kinesis -> com_gu_logback_appender_kinesis_helpers;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws_auth;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws_auth_profile;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws_handlers;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws_services_kinesis_model;
+  com_gu_logback_appender_kinesis_helpers -> com_amazonaws_services_kinesisfirehose_model;
+  com_gu_logback_appender_kinesis_helpers -> com_gu_logback_appender_kinesis;
+}

@@ -1,0 +1,23 @@
+digraph classgraph_4_2_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  io_github_classgraph -> io_github_classgraph_classloaderhandler;
+  io_github_classgraph -> io_github_classgraph_json;
+  io_github_classgraph -> io_github_classgraph_utils;
+  io_github_classgraph -> java_lang;
+  io_github_classgraph -> java_nio_file;
+  io_github_classgraph -> java_util;
+  io_github_classgraph_classloaderhandler -> io_github_classgraph;
+  io_github_classgraph_classloaderhandler -> io_github_classgraph_utils;
+  io_github_classgraph_classloaderhandler -> java_nio_file;
+  io_github_classgraph_json -> io_github_classgraph_utils;
+  io_github_classgraph_json -> java_util;
+  io_github_classgraph_json -> java_util_concurrent;
+  io_github_classgraph_utils -> io_github_classgraph;
+  io_github_classgraph_utils -> io_github_classgraph_classloaderhandler;
+  io_github_classgraph_utils -> io_github_classgraph_json;
+  io_github_classgraph_utils -> java_lang;
+  io_github_classgraph_utils -> java_lang_invoke;
+  io_github_classgraph_utils -> java_nio_charset;
+  io_github_classgraph_utils -> java_nio_file;
+  io_github_classgraph_utils -> java_util_concurrent;
+}

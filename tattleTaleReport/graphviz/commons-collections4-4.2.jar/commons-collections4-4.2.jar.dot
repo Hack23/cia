@@ -1,0 +1,4 @@
+digraph commons_collections4_4_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  commons_collections4_4_2 -> xml_apis_1_4_01;
+}

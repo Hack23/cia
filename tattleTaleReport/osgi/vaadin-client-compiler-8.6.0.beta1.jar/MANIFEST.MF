@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Implementation-Title: vaadin-client-compiler
+Bundle-Description: Vaadin client compiler
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: com.vaadin.client-compiler
+Implementation-Version: 8.6.0.beta1
+Archiver-Version: Plexus Archiver
+Built-By: root
+Bnd-LastModified: 1538043921996
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Implementation-Vendor-Id: com.vaadin
+Bundle-Vendor: Vaadin Ltd
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Vaadin Ltd
+Export-Package: com.vaadin.sass.linker;version="8.6.0",com.vaadin.serv
+ er.widgetsetutils;version="8.6.0",com.vaadin.server.widgetsetutils.me
+ tadata;version="8.6.0",com.vaadin.tools;version="8.6.0"
+Bundle-Name: vaadin-client-compiler
+Bundle-Version: 8.6.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://vaadin.com/
+

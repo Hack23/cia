@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: tomcat
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_111
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amazonaws.services.logs.model.transform
+Bundle-Description: aws-java-sdk-logs-1.11.422
+Bundle-Name: aws-java-sdk-logs-1.11.422
+Bundle-Version: 0.0.0
+Export-Package: com.amazonaws.services.logs;uses:="com.amazonaws,com.a
+ mazonaws.annotation,com.amazonaws.auth,com.amazonaws.client,com.amazo
+ naws.client.builder,com.amazonaws.handlers,com.amazonaws.http,com.ama
+ zonaws.internal,com.amazonaws.metrics,com.amazonaws.protocol.json,com
+ .amazonaws.regions,com.amazonaws.services.logs.model,com.amazonaws.se
+ rvices.logs.model.transform,com.amazonaws.transform,com.amazonaws.uti
+ l",com.amazonaws.services.logs.internal;uses:="com.amazonaws,com.amaz
+ onaws.handlers",com.amazonaws.services.logs.model;uses:="com.amazonaw
+ s,com.amazonaws.annotation,com.amazonaws.internal,com.amazonaws.proto
+ col,com.amazonaws.services.logs.model.transform,com.fasterxml.jackson
+ .annotation",com.amazonaws.services.logs.model.transform;uses:="com.a
+ mazonaws,com.amazonaws.annotation,com.amazonaws.http,com.amazonaws.pr
+ otocol,com.amazonaws.protocol.json,com.amazonaws.services.logs.model,
+ com.amazonaws.transform,com.fasterxml.jackson.core"
+Import-Package: com.amazonaws;version="0.0.0",com.amazonaws.annotation
+ ;version="0.0.0",com.amazonaws.auth;version="0.0.0",com.amazonaws.cli
+ ent;version="0.0.0",com.amazonaws.client.builder;version="0.0.0",com.
+ amazonaws.handlers;version="0.0.0",com.amazonaws.http;version="0.0.0"
+ ,com.amazonaws.internal;version="0.0.0",com.amazonaws.metrics;version
+ ="0.0.0",com.amazonaws.protocol;version="0.0.0",com.amazonaws.protoco
+ l.json;version="0.0.0",com.amazonaws.regions;version="0.0.0",com.amaz
+ onaws.transform;version="0.0.0",com.amazonaws.util;version="0.0.0",co
+ m.fasterxml.jackson.annotation;version="2.9.0",com.fasterxml.jackson.
+ core;version="2.9.7",java.io,java.lang,java.net,java.util,java.util.c
+ oncurrent,org.apache.commons.logging;version="0.0.0"

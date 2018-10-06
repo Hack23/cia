@@ -1,0 +1,10 @@
+digraph model_internal_application_user_impl_2018_9_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> javax_persistence_api_2_2;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> javers_core_3_11_6;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> jaxb_api_2_4_0;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> jaxb2_basics_runtime_0_12_0;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> model_common_api_2018_9_24_SNAPSHOT;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> model_common_impl_2018_9_24_SNAPSHOT;
+  model_internal_application_user_impl_2018_9_24_SNAPSHOT -> xml_apis_1_4_01;
+}

@@ -1,0 +1,81 @@
+Manifest-Version: 1.0
+Bundle-License: http://glassfish.java.net/public/CDDL+GPL_1_1.html
+Bundle-SymbolicName: com.sun.xml.bind.jaxb-core
+Built-By: build
+Bnd-LastModified: 1526643856361
+Implementation-Vendor-Id: com.oracle
+Specification-Title: Java Architecture for XML Binding
+Bundle-DocURL: http://www.oracle.com/
+Import-Package: com.sun.istack;version="[3.0,4)";resolution:=optional,
+ com.sun.xml.bind;resolution:=optional,com.sun.xml.bind.util;resolutio
+ n:=optional,com.sun.xml.bind.v2;resolution:=optional,com.sun.xml.bind
+ .v2.model.annotation;resolution:=optional,com.sun.xml.bind.v2.model.c
+ ore;resolution:=optional,com.sun.xml.bind.v2.model.impl;resolution:=o
+ ptional,com.sun.xml.bind.v2.model.nav;resolution:=optional,com.sun.xm
+ l.bind.v2.runtime;resolution:=optional,com.sun.xml.bind.v2.runtime.un
+ marshaller;resolution:=optional,com.sun.xml.bind.v2.util;resolution:=
+ optional,com.sun.xml.txw2;resolution:=optional,com.sun.xml.txw2.annot
+ ation;resolution:=optional,com.sun.xml.txw2.output;resolution:=option
+ al,javax.activation,javax.lang.model,javax.xml.bind;version="[2.3,3)"
+ ;resolution:=optional,javax.xml.bind.annotation;version="[2.3,3)";res
+ olution:=optional,javax.xml.bind.annotation.adapters;version="[2.3,3)
+ ";resolution:=optional,javax.xml.bind.helpers;version="[2.3,3)";resol
+ ution:=optional,javax.xml.namespace,javax.xml.parsers,javax.xml.strea
+ m,javax.xml.transform,javax.xml.transform.dom,javax.xml.transform.sax
+ ,javax.xml.transform.stream,javax.xml.validation,javax.xml.xpath,org.
+ w3c.dom,org.xml.sax,org.xml.sax.ext,org.xml.sax.helpers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Export-Package: com.sun.istack;version="3.0.5";uses:="javax.activation
+ ,javax.xml.stream,org.xml.sax,org.xml.sax.helpers",com.sun.istack.loc
+ alization;version="3.0.5",com.sun.istack.logging;version="3.0.5",com.
+ sun.xml.bind;uses:="org.xml.sax";version="2.3.0",com.sun.xml.bind.ann
+ otation;version="2.3.0",com.sun.xml.bind.api;uses:="org.xml.sax";vers
+ ion="2.3.0",com.sun.xml.bind.api.impl;version="2.3.0",com.sun.xml.bin
+ d.marshaller;uses:="javax.xml.parsers,org.w3c.dom,org.xml.sax,org.xml
+ .sax.helpers";version="2.3.0",com.sun.xml.bind.unmarshaller;uses:="co
+ m.sun.xml.bind.v2.runtime.unmarshaller,javax.xml.bind,org.w3c.dom,org
+ .xml.sax";version="2.3.0",com.sun.xml.bind.util;version="2.3.0",com.s
+ un.xml.bind.v2;version="2.3.0",com.sun.xml.bind.v2.model.annotation;u
+ ses:="com.sun.xml.bind.v2.model.core,com.sun.xml.bind.v2.runtime";ver
+ sion="2.3.0",com.sun.xml.bind.v2.model.core;uses:="com.sun.xml.bind.v
+ 2.model.annotation,com.sun.xml.bind.v2.model.impl,com.sun.xml.bind.v2
+ .model.nav,com.sun.xml.bind.v2.runtime,javax.activation,javax.xml.bin
+ d,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.
+ xml.namespace,javax.xml.transform";version="2.3.0",com.sun.xml.bind.v
+ 2.model.impl;uses:="com.sun.xml.bind.v2.model.annotation,com.sun.xml.
+ bind.v2.model.nav";version="2.3.0",com.sun.xml.bind.v2.model.nav;uses
+ :="com.sun.xml.bind.v2.runtime";version="2.3.0",com.sun.xml.bind.v2.m
+ odel.util;uses:="javax.xml.namespace";version="2.3.0",com.sun.xml.bin
+ d.v2.runtime;uses:="com.sun.xml.bind.v2.model.annotation,javax.activa
+ tion,javax.xml.bind,javax.xml.bind.annotation.adapters";version="2.3.
+ 0",com.sun.xml.bind.v2.runtime.unmarshaller;uses:="javax.xml.bind,org
+ .w3c.dom,org.xml.sax";version="2.3.0",com.sun.xml.bind.v2.schemagen.e
+ pisode;uses:="com.sun.xml.txw2,com.sun.xml.txw2.annotation";version="
+ 2.3.0",com.sun.xml.bind.v2.util;uses:="javax.xml.parsers,javax.xml.tr
+ ansform,javax.xml.validation,javax.xml.xpath";version="2.3.0",com.sun
+ .xml.txw2;uses:="com.sun.xml.txw2.output,javax.xml.namespace";version
+ ="2.3.0",com.sun.xml.txw2.annotation;version="2.3.0",com.sun.xml.txw2
+ .output;uses:="com.sun.xml.txw2,javax.xml.namespace,javax.xml.stream,
+ javax.xml.transform,javax.xml.transform.dom,javax.xml.transform.sax,j
+ avax.xml.transform.stream,org.w3c.dom,org.xml.sax,org.xml.sax.ext,org
+ .xml.sax.helpers";version="2.3.0"
+Bundle-Name: Old JAXB Core
+Build-Version: JAXB RI 2.3.0.1
+Implementation-Title: JAXB Implementation
+Bundle-Description: Old JAXB Core module. Contains sources required by
+  XJC, JXC and Runtime modules with dependencies.
+Major-Version: 2.3.0
+Build-Id: 2.3.0.1
+Implementation-Version: 2.3.0.1
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Oracle Corporation
+Class-Path: jaxb-api.jar
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Oracle
+Git-Url: scm:git:git://java.net/jaxb~v2/jaxb-bundles/jaxb-core
+Bundle-Version: 2.3.0.1
+Git-Revision: b05407bdffb3dc82e6d25ee551fc1f632ef51433
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 9.0.4
+Specification-Version: 2.3
+

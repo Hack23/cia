@@ -1,0 +1,11 @@
+digraph dom4j_2_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_dom4j_datatype -> com_sun_msv_datatype;
+  org_dom4j_datatype -> com_sun_msv_datatype_xsd;
+  org_dom4j_io -> org_dom4j_dtd;
+  org_dom4j_io -> org_dom4j_util;
+  org_dom4j_io -> org_gjt_xpp;
+  org_dom4j_io -> org_xmlpull_v1;
+  org_dom4j_tree -> org_dom4j_dtd;
+  org_dom4j_xpp -> org_gjt_xpp;
+}

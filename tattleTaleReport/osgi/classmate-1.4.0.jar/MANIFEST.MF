@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.fasterxml.classmate
+Built-By: tatu
+Bnd-LastModified: 1522200935431
+Implementation-Vendor-Id: com.fasterxml
+Specification-Title: ClassMate
+Bundle-DocURL: http://github.com/FasterXML/java-classmate
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Implementation-Build-Date: 2018-03-28 01:35:30+0000
+Export-Package: com.fasterxml.classmate;version="1.4.0",com.fasterxml.
+ classmate.members;version="1.4.0",com.fasterxml.classmate.types;versi
+ on="1.4.0",com.fasterxml.classmate.util;version="1.4.0"
+Bundle-Name: ClassMate
+Bundle-Description: Library for introspecting types with full generic 
+ informationincluding resolving of field and method types.
+Implementation-Title: ClassMate
+Automatic-Module-Name: com.fasterxml.classmate
+Implementation-Version: 1.4.0
+Bundle-ManifestVersion: 2
+Specification-Vendor: fasterxml.com
+Bundle-Vendor: fasterxml.com
+Tool: Bnd-2.3.0.201405100607
+Implementation-Vendor: fasterxml.com
+Bundle-Version: 1.4.0
+X-Compile-Target-JDK: 1.6
+Private-Package: com.fasterxml.classmate.util.*
+X-Compile-Source-JDK: 1.6
+Build-Jdk: 1.8.0_162
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 1.4.0
+

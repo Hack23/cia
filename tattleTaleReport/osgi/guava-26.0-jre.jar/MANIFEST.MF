@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bundle-Description: Guava is a suite of core and expanded libraries th
+ at include    utility classes, google's collections, io classes, and 
+ much    much more.
+Automatic-Module-Name: com.google.common
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.google.guava
+Built-By: cgdecker
+Bnd-LastModified: 1533160135108
+Bundle-ManifestVersion: 2
+Bundle-DocURL: https://github.com/google/guava/
+Import-Package: javax.annotation;resolution:=optional;version="[3.0,4)
+ ",javax.crypto;resolution:=optional,javax.crypto.spec;resolution:=opt
+ ional,sun.misc;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-2.3.0.201405100607
+Export-Package: com.google.common.annotations;version="26.0.0",com.goo
+ gle.common.base;version="26.0.0",com.google.common.cache;version="26.
+ 0.0";uses:="com.google.common.base,com.google.common.collect,com.goog
+ le.common.util.concurrent",com.google.common.collect;version="26.0.0"
+ ;uses:="com.google.common.base",com.google.common.escape;version="26.
+ 0.0";uses:="com.google.common.base",com.google.common.eventbus;versio
+ n="26.0.0",com.google.common.graph;version="26.0.0";uses:="com.google
+ .common.collect",com.google.common.hash;version="26.0.0";uses:="com.g
+ oogle.common.base",com.google.common.html;version="26.0.0";uses:="com
+ .google.common.escape",com.google.common.io;version="26.0.0";uses:="c
+ om.google.common.base,com.google.common.collect,com.google.common.gra
+ ph,com.google.common.hash",com.google.common.math;version="26.0.0",co
+ m.google.common.net;version="26.0.0";uses:="com.google.common.base,co
+ m.google.common.collect,com.google.common.escape",com.google.common.p
+ rimitives;version="26.0.0";uses:="com.google.common.base",com.google.
+ common.reflect;version="26.0.0";uses:="com.google.common.collect,com.
+ google.common.io",com.google.common.util.concurrent;version="26.0.0";
+ uses:="com.google.common.base,com.google.common.collect",com.google.c
+ ommon.xml;version="26.0.0";uses:="com.google.common.escape"
+Bundle-Name: Guava: Google Core Libraries for Java
+Bundle-Version: 26.0.0.jre
+Build-Jdk: 1.8.0_151-google-v7
+Created-By: Apache Maven Bundle Plugin
+

@@ -1,0 +1,10 @@
+digraph common_io_3_4_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_twelvemonkeys_io -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_io -> com_twelvemonkeys_util;
+  com_twelvemonkeys_io -> com_twelvemonkeys_util_regex;
+  com_twelvemonkeys_io_ole2 -> com_twelvemonkeys_io;
+  com_twelvemonkeys_io_ole2 -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_net -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_xml -> com_twelvemonkeys_lang;
+}

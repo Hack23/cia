@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Implementation-Title: vaadin-push
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: com.vaadin.push
+Implementation-Version: 8.6.0.beta1
+Archiver-Version: Plexus Archiver
+Built-By: root
+Bnd-LastModified: 1538043800947
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Implementation-Vendor-Id: com.vaadin
+Import-Package: com.vaadin.osgi.resources;version="[8.6.0,8.6.0]"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.vaadin.osgi.push.PushResourcesContribu
+ tion.xml
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Vaadin Ltd
+Provide-Capability: osgi.service;objectClass:List<String>="com.vaadin.
+ osgi.resources.OsgiVaadinContributor"
+Export-Package: com.vaadin.osgi.push;uses:="com.vaadin.osgi.resources"
+ ;version="8.6.0"
+Bundle-Name: Vaadin Push
+Bundle-Version: 8.6.0.beta1
+Private-Package: VAADIN
+Created-By: 1.8.0_171 (Oracle Corporation)
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://vaadin.com/
+

@@ -1,0 +1,10 @@
+digraph mtj_1_0_4_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  no_uib_cipr_matrix -> com_github_fommil_netlib;
+  no_uib_cipr_matrix -> no_uib_cipr_matrix_io;
+  no_uib_cipr_matrix -> org_netlib_util;
+  no_uib_cipr_matrix_sparse -> com_github_fommil_netlib;
+  no_uib_cipr_matrix_sparse -> no_uib_cipr_matrix;
+  no_uib_cipr_matrix_sparse -> no_uib_cipr_matrix_io;
+  no_uib_cipr_matrix_sparse -> org_netlib_util;
+}

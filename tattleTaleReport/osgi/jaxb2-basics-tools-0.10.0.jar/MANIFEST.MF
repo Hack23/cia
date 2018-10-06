@@ -1,0 +1,68 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: Alexey Valikov
+Build-Jdk: 1.7.0_51
+Created-By: Apache Maven 3.2.1
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jvnet.jaxb2_commons.codemodel
+Bundle-Description: jaxb2-basics-tools-0.10.0
+Bundle-Name: jaxb2-basics-tools-0.10.0
+Bundle-Version: 0.0.0
+Export-Package: org.hisrc.xml.xsom;uses:="org.apache.commons.lang3",or
+ g.jvnet.jaxb2_commons.codemodel;uses:="org.apache.commons.lang3",org.
+ jvnet.jaxb2_commons.plugin,org.jvnet.jaxb2_commons.plugin.spring;uses
+ :="org.apache.commons.lang3,org.jvnet.jaxb2_commons.plugin",org.jvnet
+ .jaxb2_commons.reflection.util;uses:="org.apache.commons.lang3",org.j
+ vnet.jaxb2_commons.strategy,org.jvnet.jaxb2_commons.strategy.impl;use
+ s:="org.jvnet.jaxb2_commons.strategy",org.jvnet.jaxb2_commons.util;us
+ es:="com.sun.tools.xjc.model,org.apache.commons.lang3,org.jvnet.jaxb2
+ _commons.xjc.outline,org.jvnet.jaxb2_commons.xml.bind",org.jvnet.jaxb
+ 2_commons.xjc.generator;uses:="org.jvnet.jaxb2_commons.xjc.outline,or
+ g.jvnet.jaxb2_commons.xml.bind.model",org.jvnet.jaxb2_commons.xjc.gen
+ erator.artificial;uses:="org.jvnet.jaxb2_commons.xjc.generator,org.jv
+ net.jaxb2_commons.xjc.outline,org.jvnet.jaxb2_commons.xjc.outline.con
+ crete,org.jvnet.jaxb2_commons.xml.bind.model",org.jvnet.jaxb2_commons
+ .xjc.generator.concrete;uses:="org.apache.commons.lang3,org.jvnet.jax
+ b2_commons.util,org.jvnet.jaxb2_commons.xjc.generator,org.jvnet.jaxb2
+ _commons.xjc.outline,org.jvnet.jaxb2_commons.xjc.outline.concrete,org
+ .jvnet.jaxb2_commons.xml.bind.model",org.jvnet.jaxb2_commons.xjc.mode
+ l.concrete;uses:="com.sun.tools.xjc.model,org.jvnet.jaxb2_commons.xjc
+ .model.concrete.origin,org.jvnet.jaxb2_commons.xml.bind.model,org.jvn
+ et.jaxb2_commons.xml.bind.model.concrete,org.jvnet.jaxb2_commons.xml.
+ bind.model.concrete.origin,org.jvnet.jaxb2_commons.xml.bind.model.ori
+ gin",org.jvnet.jaxb2_commons.xjc.model.concrete.origin;uses:="org.apa
+ che.commons.lang3,org.hisrc.xml.xsom,org.jvnet.jaxb2_commons.lang,org
+ .jvnet.jaxb2_commons.xjc.generator,org.jvnet.jaxb2_commons.xjc.genera
+ tor.concrete,org.jvnet.jaxb2_commons.xml.bind.model,org.jvnet.jaxb2_c
+ ommons.xml.bind.model.concrete.origin,org.jvnet.jaxb2_commons.xml.bin
+ d.model.origin",org.jvnet.jaxb2_commons.xjc.outline;uses:="org.jvnet.
+ jaxb2_commons.xml.bind.model",org.jvnet.jaxb2_commons.xjc.outline.art
+ ificial;uses:="org.apache.commons.lang3,org.jvnet.jaxb2_commons.xjc.o
+ utline,org.jvnet.jaxb2_commons.xml.bind.model",org.jvnet.jaxb2_common
+ s.xjc.outline.concrete;uses:="org.apache.commons.lang3,org.jvnet.jaxb
+ 2_commons.util,org.jvnet.jaxb2_commons.xjc.outline,org.jvnet.jaxb2_co
+ mmons.xml.bind.model"
+Import-Package: com.sun.codemodel;version="2.4",com.sun.codemodel.fmt;
+ version="2.4",com.sun.tools.xjc;version="2.4",com.sun.tools.xjc.gener
+ ator.bean;version="2.4",com.sun.tools.xjc.generator.bean.field;versio
+ n="2.4",com.sun.tools.xjc.model;version="2.4",com.sun.tools.xjc.model
+ .nav;version="2.4",com.sun.tools.xjc.outline;version="2.4",com.sun.xm
+ l.bind.api.impl;version="2.3",com.sun.xml.bind.v2.model.core;version=
+ "2.3",com.sun.xml.xsom;version="2.4",com.sun.xml.xsom.visitor;version
+ ="2.4",java.io,java.lang,java.lang.reflect,java.text,java.util,javax.
+ xml.bind;version="2.4.0",javax.xml.bind.annotation;version="2.4.0",ja
+ vax.xml.namespace;version="1.0",javax.xml.parsers;version="1.0",javax
+ .xml.transform;version="1.0",javax.xml.transform.dom;version="1.0",or
+ g.apache.commons.beanutils;version="1.9.3.redhat-1",org.apache.common
+ s.lang3;version="3.8",org.apache.commons.logging;version="0.0.0",org.
+ jvnet.jaxb2_commons.lang;version="0.0.0",org.jvnet.jaxb2_commons.xml.
+ bind;version="0.0.0",org.jvnet.jaxb2_commons.xml.bind.model;version="
+ 0.0.0",org.jvnet.jaxb2_commons.xml.bind.model.concrete;version="0.0.0
+ ",org.jvnet.jaxb2_commons.xml.bind.model.concrete.origin;version="0.0
+ .0",org.jvnet.jaxb2_commons.xml.bind.model.origin;version="0.0.0",org
+ .springframework.beans.factory.config;version="5.1.0.RELEASE",org.spr
+ ingframework.context.support;version="5.1.0.RELEASE",org.w3c.dom;vers
+ ion="1.0",org.xml.sax;version="1.0"

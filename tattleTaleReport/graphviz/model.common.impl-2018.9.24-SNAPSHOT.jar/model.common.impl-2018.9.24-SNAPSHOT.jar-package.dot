@@ -1,0 +1,5 @@
+digraph model_common_impl_2018_9_24_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_model_common_impl -> com_hack23_cia_model_common_api;
+  com_hack23_cia_model_common_impl -> org_apache_commons_lang3_builder;
+}

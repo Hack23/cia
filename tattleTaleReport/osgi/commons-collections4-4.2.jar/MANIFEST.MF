@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.commons-collections4
+Built-By: ggregory
+Bnd-LastModified: 1531056410785
+Specification-Title: Apache Commons Collections
+Implementation-Vendor-Id: org.apache.commons
+Bundle-DocURL: http://commons.apache.org/proper/commons-collections/
+Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt
+ =NOTICE.txt
+Import-Package: org.w3c.dom
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Export-Package: org.apache.commons.collections4;version="4.2",org.apac
+ he.commons.collections4.bag;version="4.2",org.apache.commons.collecti
+ ons4.bidimap;version="4.2",org.apache.commons.collections4.collection
+ ;version="4.2",org.apache.commons.collections4.comparators;version="4
+ .2",org.apache.commons.collections4.functors;version="4.2",org.apache
+ .commons.collections4.iterators;version="4.2",org.apache.commons.coll
+ ections4.keyvalue;version="4.2",org.apache.commons.collections4.list;
+ version="4.2",org.apache.commons.collections4.map;version="4.2",org.a
+ pache.commons.collections4.multimap;version="4.2",org.apache.commons.
+ collections4.multiset;version="4.2",org.apache.commons.collections4.p
+ roperties;version="4.2",org.apache.commons.collections4.queue;version
+ ="4.2",org.apache.commons.collections4.sequence;version="4.2",org.apa
+ che.commons.collections4.set;version="4.2",org.apache.commons.collect
+ ions4.splitmap;version="4.2",org.apache.commons.collections4.trie;ver
+ sion="4.2",org.apache.commons.collections4.trie.analyzer;version="4.2
+ "
+Bundle-Name: Apache Commons Collections
+Implementation-Title: Apache Commons Collections
+Bundle-Description: The Apache Commons Collections package contains ty
+ pes that extend and augment the Java Collections Framework.
+Automatic-Module-Name: org.apache.commons.collections4
+Implementation-Version: 4.2
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 4.2.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_172
+Specification-Version: 4.2
+Implementation-URL: http://commons.apache.org/proper/commons-collectio
+ ns/
+

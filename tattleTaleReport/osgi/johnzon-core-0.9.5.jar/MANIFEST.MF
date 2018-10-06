@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-Description: Apache Johnzon is an implementation of JSR-353 (Ja
+ vaTM API for JSON Processing).
+Implementation-Title: Johnzon :: Core
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.johnzon.core
+Implementation-Version: 0.9.5
+Bundle-ManifestVersion: 2
+Specification-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.johnzon
+Specification-Title: Johnzon :: Core
+Bundle-DocURL: http://johnzon.apache.org/
+Bundle-Vendor: The Apache Software Foundation
+Import-Package: javax.json;version="[1.0,2)",javax.json.spi;version="[
+ 1.0,2)",javax.json.stream;version="[1.0,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Implementation-Vendor: The Apache Software Foundation
+Export-Package: org.apache.johnzon.core;uses:="javax.json,javax.json.s
+ pi,javax.json.stream";version="0.9.5"
+Bundle-Name: Johnzon :: Core
+Bundle-Version: 0.9.5
+Build-Jdk: 1.8.0_66
+Specification-Version: 0.9.5
+

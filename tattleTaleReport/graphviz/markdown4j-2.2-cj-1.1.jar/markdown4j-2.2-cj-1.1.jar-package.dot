@@ -1,0 +1,5 @@
+digraph markdown4j_2_2_cj_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_github_rjeschke_txtmark -> org_markdown4j;
+  org_markdown4j -> com_github_rjeschke_txtmark;
+}

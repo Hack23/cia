@@ -1,0 +1,7 @@
+digraph hibernate_commons_annotations_5_0_4_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_hibernate_annotations_common_reflection_java -> org_hibernate_annotations_common_reflection;
+  org_hibernate_annotations_common_reflection_java -> org_hibernate_annotations_common_util;
+  org_hibernate_annotations_common_util -> org_hibernate_annotations_common_reflection;
+  org_hibernate_annotations_common_util_impl -> org_jboss_logging_annotations;
+}

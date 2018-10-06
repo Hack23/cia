@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: paul
+Created-By: Apache Maven
+Build-Jdk: 1.7.0_09
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.picocontainer.injectors
+Bundle-Description: picocontainer-2.15
+Bundle-Name: picocontainer-2.15
+Bundle-Version: 0.0.0
+Export-Package: org.picocontainer;uses:="org.picocontainer.adapters,or
+ g.picocontainer.behaviors,org.picocontainer.containers,org.picocontai
+ ner.converters,org.picocontainer.injectors,org.picocontainer.lifecycl
+ e,org.picocontainer.monitors,org.picocontainer.parameters",org.picoco
+ ntainer.adapters;uses:="org.picocontainer,org.picocontainer.injectors
+ ,org.picocontainer.lifecycle,org.picocontainer.monitors",org.picocont
+ ainer.annotations,org.picocontainer.behaviors;uses:="org.picocontaine
+ r,org.picocontainer.annotations,org.picocontainer.injectors,org.picoc
+ ontainer.references",org.picocontainer.classname;uses:="org.picoconta
+ iner,org.picocontainer.behaviors,org.picocontainer.containers,org.pic
+ ocontainer.lifecycle,org.picocontainer.security",org.picocontainer.co
+ mposers;uses:="org.picocontainer,org.picocontainer.monitors",org.pico
+ container.containers;uses:="org.picocontainer,org.picocontainer.behav
+ iors,org.picocontainer.converters,org.picocontainer.injectors,org.pic
+ ocontainer.lifecycle,org.picocontainer.monitors",org.picocontainer.co
+ nverters;uses:="org.picocontainer",org.picocontainer.injectors;uses:=
+ "org.picocontainer,org.picocontainer.adapters,org.picocontainer.annot
+ ations,org.picocontainer.behaviors,org.picocontainer.lifecycle,org.pi
+ cocontainer.monitors,org.picocontainer.parameters,org.picocontainer.p
+ aranamer",org.picocontainer.lifecycle;uses:="org.picocontainer",org.p
+ icocontainer.monitors;uses:="org.picocontainer",org.picocontainer.par
+ ameters;uses:="org.picocontainer,org.picocontainer.adapters,org.picoc
+ ontainer.injectors",org.picocontainer.paranamer,org.picocontainer.ref
+ erences;uses:="org.picocontainer",org.picocontainer.security,org.pico
+ container.visitors;uses:="org.picocontainer"
+Import-Package: java.beans,java.io,java.lang,java.lang.annotation,java
+ .lang.ref,java.lang.reflect,java.net,java.security,java.text,java.uti
+ l,java.util.concurrent.locks,java.util.regex,java.util.zip,javax.anno
+ tation,javax.inject,org.picocontainer.paranamer

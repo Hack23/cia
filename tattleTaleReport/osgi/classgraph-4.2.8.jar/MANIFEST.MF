@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Implementation-Title: ClassGraph
+Bundle-Description: Uber-fast, ultra-lightweight Java classpath and mo
+ dule path scanner (formerly named FastClasspathScanner). https://gith
+ ub.com/classgraph/classgraph
+Bundle-License: http://opensource.org/licenses/MIT
+Bundle-SymbolicName: io.github.classgraph.classgraph
+Implementation-Version: 4.2.8
+Bundle-Category: Utilities
+Built-By: luke
+Bnd-LastModified: 1538683411369
+Bundle-ManifestVersion: 2
+Specification-Title: ClassGraph
+Implementation-Vendor-Id: io.github.classgraph
+Bundle-Vendor: Luke Hutchison
+Import-Package: io.github.classgraph,io.github.classgraph.classloaderh
+ andler,io.github.classgraph.json,io.github.classgraph.utils,javax.xml
+ .namespace,javax.xml.parsers,javax.xml.xpath,org.w3c.dom
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-3.5.0.201709291849
+Export-Package: io.github.classgraph;uses:="io.github.classgraph.class
+ loaderhandler,io.github.classgraph.utils";version="4.2.8",io.github.c
+ lassgraph.classloaderhandler;uses:="io.github.classgraph,io.github.cl
+ assgraph.utils";version="4.2.8",io.github.classgraph.json;version="4.
+ 2.8",io.github.classgraph.utils;uses:="io.github.classgraph";version=
+ "4.2.8"
+Bundle-Name: ClassGraph
+Bundle-Version: 4.2.8
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 11
+Specification-Version: 4.2.8
+Implementation-URL: https://github.com/classgraph/classgraph
+

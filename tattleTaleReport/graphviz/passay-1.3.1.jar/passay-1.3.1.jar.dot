@@ -1,0 +1,4 @@
+digraph passay_1_3_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  passay_1_3_1 -> spring_context_5_1_0_RELEASE;
+}

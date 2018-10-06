@@ -1,0 +1,11 @@
+digraph logback_awslogs_appender_1_0_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  ca_pjer_logback -> ch_qos_logback_classic;
+  ca_pjer_logback -> ch_qos_logback_classic_spi;
+  ca_pjer_logback -> ch_qos_logback_core;
+  ca_pjer_logback -> ch_qos_logback_core_layout;
+  ca_pjer_logback -> ch_qos_logback_core_status;
+  ca_pjer_logback -> com_amazonaws_regions;
+  ca_pjer_logback -> com_amazonaws_services_logs;
+  ca_pjer_logback -> com_amazonaws_services_logs_model;
+}

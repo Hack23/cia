@@ -1,0 +1,31 @@
+digraph lucene_misc_5_5_5_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_lucene_document -> org_apache_lucene_analysis;
+  org_apache_lucene_document -> org_apache_lucene_index;
+  org_apache_lucene_document -> org_apache_lucene_util;
+  org_apache_lucene_index -> java_nio_file;
+  org_apache_lucene_index -> java_nio_file_attribute;
+  org_apache_lucene_index -> org_apache_lucene_analysis;
+  org_apache_lucene_index -> org_apache_lucene_codecs;
+  org_apache_lucene_index -> org_apache_lucene_search;
+  org_apache_lucene_index -> org_apache_lucene_store;
+  org_apache_lucene_index -> org_apache_lucene_util;
+  org_apache_lucene_index -> org_apache_lucene_util_automaton;
+  org_apache_lucene_index -> org_apache_lucene_util_packed;
+  org_apache_lucene_misc -> java_nio_file;
+  org_apache_lucene_misc -> org_apache_lucene_analysis;
+  org_apache_lucene_misc -> org_apache_lucene_index;
+  org_apache_lucene_misc -> org_apache_lucene_search_similarities;
+  org_apache_lucene_misc -> org_apache_lucene_store;
+  org_apache_lucene_misc -> org_apache_lucene_util;
+  org_apache_lucene_search -> org_apache_lucene_index;
+  org_apache_lucene_search -> org_apache_lucene_util;
+  org_apache_lucene_store -> java_nio_file;
+  org_apache_lucene_store -> org_apache_lucene_util;
+  org_apache_lucene_uninverting -> org_apache_lucene_index;
+  org_apache_lucene_uninverting -> org_apache_lucene_store;
+  org_apache_lucene_uninverting -> org_apache_lucene_util;
+  org_apache_lucene_uninverting -> org_apache_lucene_util_packed;
+  org_apache_lucene_util_fst -> org_apache_lucene_store;
+  org_apache_lucene_util_fst -> org_apache_lucene_util;
+}

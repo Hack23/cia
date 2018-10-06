@@ -1,0 +1,6 @@
+digraph jna_4_5_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_sun_jna -> com_sun_jna_win32;
+  com_sun_jna_ptr -> com_sun_jna;
+  com_sun_jna_win32 -> com_sun_jna;
+}

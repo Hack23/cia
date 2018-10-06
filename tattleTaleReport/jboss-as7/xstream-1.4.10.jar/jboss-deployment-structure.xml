@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javaee.api"/>
+        <module name="javax.activation.api"/>
+        <module name="nu.xom"/>
+        <module name="org.codehaus.jettison"/>
+        <module name="org.codehaus.woodstox"/>
+        <module name="org.dom4j"/>
+        <module name="org.jdom"/>
+        <module name="org.joda.time"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

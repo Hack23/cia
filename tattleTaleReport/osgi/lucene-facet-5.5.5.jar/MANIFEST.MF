@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Implementation-Title: org.apache.lucene
+Implementation-Version: 5.5.5 b3441673c21c83762035dc21d3827ad16aa17b68
+  - sarowe - 2017-10-20 08:57:46
+X-Compile-Target-JDK: 1.7
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Lucene Search Engine: facet
+Extension-Name: org.apache.lucene
+X-Compile-Source-JDK: 1.7
+Created-By: 1.7.0_151-b01 (Oracle Corporation)
+Specification-Version: 5.5.5
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.facet.taxonomy
+Bundle-Description: lucene-facet-5.5.5
+Bundle-Name: lucene-facet-5.5.5
+Bundle-Version: 5.5.5
+Export-Package: org.apache.lucene.facet;uses:="java.util,org.apache.lu
+ cene.document,org.apache.lucene.facet.sortedset,org.apache.lucene.fac
+ et.taxonomy,org.apache.lucene.index,org.apache.lucene.search,org.apac
+ he.lucene.util",org.apache.lucene.facet.range;uses:="java.util,org.ap
+ ache.lucene.facet,org.apache.lucene.index,org.apache.lucene.queries.f
+ unction,org.apache.lucene.queries.function.valuesource,org.apache.luc
+ ene.search,org.apache.lucene.util",org.apache.lucene.facet.sortedset;
+ uses:="org.apache.lucene.document,org.apache.lucene.facet,org.apache.
+ lucene.index,org.apache.lucene.search,org.apache.lucene.util",org.apa
+ che.lucene.facet.taxonomy;uses:="java.nio.file,org.apache.lucene.docu
+ ment,org.apache.lucene.facet,org.apache.lucene.facet.taxonomy.directo
+ ry,org.apache.lucene.index,org.apache.lucene.queries.function,org.apa
+ che.lucene.queries.function.docvalues,org.apache.lucene.search,org.ap
+ ache.lucene.store,org.apache.lucene.util",org.apache.lucene.facet.tax
+ onomy.directory;uses:="java.nio.file,org.apache.lucene.analysis,org.a
+ pache.lucene.analysis.tokenattributes,org.apache.lucene.document,org.
+ apache.lucene.facet,org.apache.lucene.facet.taxonomy,org.apache.lucen
+ e.facet.taxonomy.writercache,org.apache.lucene.index,org.apache.lucen
+ e.store,org.apache.lucene.util",org.apache.lucene.facet.taxonomy.writ
+ ercache;uses:="java.nio.file,org.apache.lucene.facet.taxonomy"
+Import-Package: java.io,java.lang,java.nio.file,java.util,java.util.co
+ ncurrent,java.util.concurrent.atomic,java.util.concurrent.locks,java.
+ util.logging,org.apache.lucene.analysis;version="5.5.5",org.apache.lu
+ cene.analysis.tokenattributes;version="5.5.5",org.apache.lucene.docum
+ ent;version="5.5.5",org.apache.lucene.index;version="5.5.5",org.apach
+ e.lucene.queries.function;version="5.5.5",org.apache.lucene.queries.f
+ unction.docvalues;version="5.5.5",org.apache.lucene.queries.function.
+ valuesource;version="5.5.5",org.apache.lucene.search;version="5.5.5",
+ org.apache.lucene.store;version="5.5.5",org.apache.lucene.util;versio
+ n="5.5.5"

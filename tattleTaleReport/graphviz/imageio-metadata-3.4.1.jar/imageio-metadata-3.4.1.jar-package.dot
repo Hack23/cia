@@ -1,0 +1,26 @@
+digraph imageio_metadata_3_4_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_twelvemonkeys_imageio_metadata -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_imageio_metadata -> com_twelvemonkeys_util;
+  com_twelvemonkeys_imageio_metadata_exif -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_exif -> com_twelvemonkeys_imageio_metadata_tiff;
+  com_twelvemonkeys_imageio_metadata_iptc -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_iptc -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_imageio_metadata_iptc -> java_nio_charset;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_imageio_metadata_psd;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_imageio_metadata_tiff;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_imageio_metadata_xmp;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_imageio_stream;
+  com_twelvemonkeys_imageio_metadata_jpeg -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_imageio_metadata_psd -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_psd -> com_twelvemonkeys_imageio_stream;
+  com_twelvemonkeys_imageio_metadata_psd -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_imageio_metadata_tiff -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_tiff -> com_twelvemonkeys_lang;
+  com_twelvemonkeys_imageio_metadata_tiff -> java_nio_charset;
+  com_twelvemonkeys_imageio_metadata_xmp -> com_twelvemonkeys_imageio_metadata;
+  com_twelvemonkeys_imageio_metadata_xmp -> com_twelvemonkeys_imageio_stream;
+  com_twelvemonkeys_imageio_metadata_xmp -> com_twelvemonkeys_imageio_util;
+  com_twelvemonkeys_imageio_metadata_xmp -> com_twelvemonkeys_lang;
+}

@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-Description: Log4j implemented over SLF4J
+Implementation-Title: log4j-over-slf4j
+Bundle-SymbolicName: log4j.over.slf4j
+Implementation-Version: 1.8.0-beta2
+Archiver-Version: Plexus Archiver
+Built-By: ceki
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: SLF4J.ORG
+Import-Package: org.slf4j;version=1.6.0,org.slf4j.helpers;version=1.6.
+ 0,org.slf4j.spi;version=1.6.0
+Export-Package: org.apache.log4j;version=1.2.17,org.apache.log4j.helpe
+ rs;version=1.2.17,org.apache.log4j.spi;version=1.2.17,org.apache.log4
+ j.xml;version=1.2.17
+Bundle-Version: 1.8.0.beta2
+Bundle-Name: log4j-over-slf4j
+X-Compile-Target-JDK: 1.6
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven
+Build-Jdk: 1.8.0_121
+

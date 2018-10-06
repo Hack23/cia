@@ -1,0 +1,6 @@
+digraph jboss_logging_3_3_2_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jboss_logging -> org_apache_logging_log4j;
+  org_jboss_logging -> org_apache_logging_log4j_message;
+  org_jboss_logging -> org_apache_logging_log4j_spi;
+}

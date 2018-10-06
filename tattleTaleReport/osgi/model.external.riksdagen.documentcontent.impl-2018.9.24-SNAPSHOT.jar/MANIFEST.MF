@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.documen
+ tcontent.impl
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.documentc
+ ontent.impl
+Bundle-Description: model.external.riksdagen.documentcontent.impl-2018
+ .9.24-SNAPSHOT
+Bundle-Name: model.external.riksdagen.documentcontent.impl-2018.9.24-S
+ NAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.documentconten
+ t.impl;uses:="com.hack23.cia.model.common.api,org.jvnet.hyperjaxb3.ej
+ b.test,org.jvnet.jaxb2_commons.lang,org.jvnet.jaxb2_commons.locator,o
+ rg.jvnet.jaxb2_commons.locator.util,org.jvnet.jaxb2_commons.xml.bind"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.i
+ o,java.lang,javax.persistence;version="2.2",javax.persistence.metamod
+ el;version="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annota
+ tion;version="2.4.0",javax.xml.namespace;version="1.0",org.jvnet.hype
+ rjaxb3.ejb.test;version="0.0.0",org.jvnet.jaxb2_commons.lang;version=
+ "0.0.0",org.jvnet.jaxb2_commons.locator;version="0.0.0",org.jvnet.jax
+ b2_commons.locator.util;version="0.0.0",org.jvnet.jaxb2_commons.xml.b
+ ind;version="0.0.0"

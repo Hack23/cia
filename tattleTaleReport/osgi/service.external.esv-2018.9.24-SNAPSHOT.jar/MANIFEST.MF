@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.external.esv
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.external.esv.impl
+Bundle-Description: service.external.esv-2018.9.24-SNAPSHOT
+Bundle-Name: service.external.esv-2018.9.24-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.external.esv.api;uses:="org.apa
+ che.commons.lang3.builder",com.hack23.cia.service.external.esv.impl;u
+ ses:="com.hack23.cia.service.external.esv.api,java.lang.invoke,java.t
+ ime,java.util.function,java.util.stream,org.apache.commons.codec,org.
+ apache.commons.csv,org.apache.http.client.fluent,org.apache.poi.hssf.
+ usermodel,org.apache.poi.ss.usermodel,org.apache.poi.xssf.usermodel"
+Import-Package: java.io,java.lang,java.lang.invoke,java.nio.charset,ja
+ va.time,java.util,java.util.function,java.util.stream,java.util.zip,o
+ rg.apache.commons.codec;version="1.11",org.apache.commons.csv;version
+ ="1.6",org.apache.commons.lang3.builder;version="3.8",org.apache.http
+ .client.fluent;version="4.5.5",org.apache.poi.hssf.usermodel;version=
+ "4.0.0",org.apache.poi.ss.usermodel;version="4.0.0",org.apache.poi.xs
+ sf.usermodel;version="4.0.0",org.slf4j;version="0.0.0",org.springfram
+ ework.beans.factory.annotation;version="5.1.0.RELEASE",org.springfram
+ ework.stereotype;version="5.1.0.RELEASE"
