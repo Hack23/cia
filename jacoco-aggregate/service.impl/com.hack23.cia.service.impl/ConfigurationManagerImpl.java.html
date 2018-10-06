@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ConfigurationManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="../index.html" class="el_bundle">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">ConfigurationManagerImpl.java</span></div><h1>ConfigurationManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
+import com.hack23.cia.model.internal.application.system.impl.Portal;
+import com.hack23.cia.model.internal.application.system.impl.PortalType;
+import com.hack23.cia.service.api.ConfigurationManager;
+import com.hack23.cia.service.api.UserConfiguration;
+import com.hack23.cia.service.data.api.AgencyDAO;
+import com.hack23.cia.service.data.api.LanguageDataDAO;
+
+/**
+ * The Class ConfigurationManagerImpl.
+ */
+@Service(&quot;ConfigurationManager&quot;)
+@Transactional
+final class ConfigurationManagerImpl implements ConfigurationManager {
+
+	/** The Constant EXPECTED_LOCALE_LENGTH. */
+	private static final int EXPECTED_LOCALE_LENGTH = 2;
+
+	/** The agency dao. */
+	@Autowired
+	private AgencyDAO agencyDAO;
+
+	/** The language data dao. */
+	@Autowired
+	private LanguageDataDAO languageDataDAO;
+
+	/**
+	 * Instantiates a new configuration manager impl.
+	 */
+	public ConfigurationManagerImpl() {
+<span class="nc" id="L64">		super();</span>
+<span class="nc" id="L65">	}</span>
+
+	@Secured({&quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public UserConfiguration getUserConfiguration(final String url,final String locale) {
+<span class="nc" id="L70">		final Agency agency = agencyDAO.getAll().get(0);</span>
+<span class="nc" id="L71">		Portal usePortal = null;</span>
+<span class="nc" id="L72">		final LanguageData languageData = findLanguage(locale);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		for (final Portal portal : agency.getPortals()) {</span>
+<span class="nc bnc" id="L74" title="All 6 branches missed.">			if (usePortal == null &amp;&amp; PortalType.DEFAULT == portal.getPortalType() || url.contains(portal.getPortalName())) {</span>
+<span class="nc" id="L75">				usePortal = portal;</span>
+			}
+<span class="nc" id="L77">		}</span>
+
+<span class="nc" id="L79">		return new UserConfigurationImpl(agency, usePortal,languageData);</span>
+	}
+
+	/**
+	 * Find language.
+	 *
+	 * @param locale
+	 *            the locale
+	 * @return the language data
+	 */
+	private LanguageData findLanguage(final String locale) {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		for (final LanguageData languageData : languageDataDAO.getAll()) {</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">			if (languageData.getLanguageCode().equalsIgnoreCase(locale)) {</span>
+<span class="nc" id="L92">				return languageData;</span>
+			}
+<span class="nc" id="L94">		}</span>
+<span class="nc" id="L95">		return null;</span>
+	}
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public void createDefaultConfigIfEmpty() {
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		if (agencyDAO.getAll().isEmpty()) {</span>
+<span class="nc" id="L102">			final List&lt;Portal&gt; portals = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L103">			final Portal defaulPortal = new Portal().withPortalType(PortalType.DEFAULT).withDescription(&quot;Global Portal&quot;)</span>
+<span class="nc" id="L104">					.withPortalName(&quot;Default&quot;);</span>
+<span class="nc" id="L105">			portals.add(defaulPortal);</span>
+
+<span class="nc" id="L107">			final Portal domainPortal = new Portal().withPortalType(PortalType.DOMAIN).withDescription(&quot;Hack23.com&quot;)</span>
+<span class="nc" id="L108">					.withPortalName(&quot;www.hack23.com&quot;);</span>
+<span class="nc" id="L109">			portals.add(domainPortal);</span>
+
+<span class="nc" id="L111">			final Agency agency = new Agency().withAgencyName(&quot;Citizen Intelligence Agency&quot;)</span>
+<span class="nc" id="L112">					.withDescription(&quot;Tracking politicians like bugs&quot;);</span>
+<span class="nc" id="L113">			agency.setPortals(portals);</span>
+<span class="nc" id="L114">			agencyDAO.persist(agency);</span>
+		}
+<span class="nc" id="L116">	}</span>
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public void createDefaultLanguagesIfEmpty() {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		if (languageDataDAO.getAll().isEmpty()) {</span>
+<span class="nc" id="L122">			languageDataDAO.persist(getSupportedLocalesLanguageData());</span>
+
+		}
+<span class="nc" id="L125">	}</span>
+
+	/**
+	 * Gets the supported locales language data.
+	 *
+	 * @return the supported locales language data
+	 */
+	private static List&lt;LanguageData&gt; getSupportedLocalesLanguageData() {
+<span class="nc" id="L133">		final List&lt;LanguageData&gt; languages = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L135" title="All 2 branches missed.">		for (final Locale locale : DateFormat.getAvailableLocales()) {</span>
+<span class="nc" id="L136">			final String localeString = locale.toString().trim();</span>
+<span class="nc bnc" id="L137" title="All 4 branches missed.">			if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 &amp;&amp; !StringUtils.isEmpty(localeString)</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">					&amp;&amp; localeString.length() == EXPECTED_LOCALE_LENGTH) {</span>
+<span class="nc" id="L139">				languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(localeString)</span>
+<span class="nc" id="L140">						.withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(Boolean.FALSE));</span>
+
+			}
+		}
+
+<span class="nc" id="L145">		return languages;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

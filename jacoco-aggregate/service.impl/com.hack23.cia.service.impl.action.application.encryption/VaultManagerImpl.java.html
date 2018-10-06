@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>VaultManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="../index.html" class="el_bundle">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application.encryption</a> &gt; <span class="el_source">VaultManagerImpl.java</span></div><h1>VaultManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.application.encryption;
+
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.Security;
+import java.util.Arrays;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.bouncycastle.jcajce.provider.digest.SHA3;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue;
+import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue_;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.service.data.api.EncryptedValueDAO;
+
+/**
+ * The Class VaultManagerImpl.
+ */
+@Service
+@Transactional(propagation = Propagation.REQUIRED)
+public final class VaultManagerImpl implements VaultManager {
+
+	/** The Constant IV_BYTE_SIZE. */
+	private static final int IV_BYTE_SIZE = 12;
+
+	/** The Constant TAG_BIT_LENGTH. */
+	private static final int TAG_BIT_LENGTH = 128;
+
+	/** The Constant KEY_SIZE_IN_BYTES. */
+	private static final int KEY_SIZE_IN_BYTES = 32;
+	
+	/** The Constant ENCRYPT_VALUE. */
+	private static final String ENCRYPT_VALUE = &quot;encryptValue&quot;;
+
+	/** The Constant DECRYPT_VALUE. */
+	private static final String DECRYPT_VALUE = &quot;decryptValue&quot;;
+
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L77">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="nc" id="L78">			.getLogger(VaultManagerImpl.class);</span>
+
+	/** The Constant AES_GCM_NO_PADDING. */
+	private static final String AES_GCM_NO_PADDING = &quot;AES/GCM/NoPadding&quot;;
+
+	/** The algorithm. */
+	private static final String ALGORITHM = &quot;AES&quot;;
+
+
+	/** The encrypted value DAO. */
+	private final EncryptedValueDAO encryptedValueDAO;
+
+	/**
+	 * Instantiates a new vault manager impl.
+	 *
+	 * @param encryptedValueDAO the encrypted value DAO
+	 */
+	@Autowired
+	public VaultManagerImpl(final EncryptedValueDAO encryptedValueDAO) {
+<span class="nc" id="L97">		super();</span>
+<span class="nc" id="L98">		this.encryptedValueDAO = encryptedValueDAO;</span>
+<span class="nc" id="L99">	}</span>
+
+	static {
+<span class="nc" id="L102">		Security.setProperty(&quot;crypto.policy&quot;, &quot;unlimited&quot;);</span>
+<span class="nc" id="L103">		Security.addProvider(new BouncyCastleProvider());</span>
+<span class="nc" id="L104">	}</span>
+
+	@Override
+	public String getEncryptedValue(final String password, final UserAccount userExist) {
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		if (userExist != null) {</span>
+<span class="nc" id="L109">			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId,</span>
+<span class="nc" id="L110">					userExist.getUserId());</span>
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">			if (encryptedValue != null) {</span>
+<span class="nc" id="L113">				return decryptValue(password, userExist.getUserId(), encryptedValue.getStorage());</span>
+			}
+		}
+<span class="nc" id="L116">		return null;</span>
+	}
+
+	@Override
+	public String encryptValue(final String password, final String userId, final String value) {
+<span class="nc bnc" id="L121" title="All 6 branches missed.">		if (password != null &amp;&amp; userId != null &amp;&amp; value!=null) {</span>
+		
+			try {
+<span class="nc" id="L124">				final Key buildKey = buildKey(userId, password);			</span>
+<span class="nc" id="L125">				final SecureRandom secureRandom = new SecureRandom();</span>
+<span class="nc" id="L126">				final byte[] iv = new byte[IV_BYTE_SIZE]; </span>
+<span class="nc" id="L127">				secureRandom.nextBytes(iv);			</span>
+<span class="nc" id="L128">				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);</span>
+<span class="nc" id="L129">				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv); </span>
+<span class="nc" id="L130">				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);</span>
+	
+<span class="nc" id="L132">				final byte[] cipherText = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc" id="L133">				final ByteBuffer byteBuffer = ByteBuffer.allocate(4 + iv.length + cipherText.length);</span>
+<span class="nc" id="L134">				byteBuffer.putInt(iv.length);</span>
+<span class="nc" id="L135">				byteBuffer.put(iv);</span>
+<span class="nc" id="L136">				byteBuffer.put(cipherText);</span>
+<span class="nc" id="L137">				return Hex.toHexString(byteBuffer.array());</span>
+<span class="nc" id="L138">			} catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {</span>
+<span class="nc" id="L139">				LOGGER.error(ENCRYPT_VALUE,e);</span>
+<span class="nc" id="L140">				return null;</span>
+			}
+		} else {
+<span class="nc" id="L143">			return null;</span>
+		}
+			
+	}
+
+	@Override
+	public String decryptValue(final String password, final String userId, final String value) {
+<span class="nc bnc" id="L150" title="All 6 branches missed.">		if (password != null &amp;&amp; userId != null &amp;&amp; value!=null) {</span>
+			try {			
+<span class="nc" id="L152">				final Key buildKey = buildKey(userId, password);</span>
+<span class="nc" id="L153">				final ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(value.getBytes(StandardCharsets.UTF_8)));</span>
+<span class="nc" id="L154">				final int ivLength = byteBuffer.getInt();</span>
+<span class="nc" id="L155">				final byte[] iv = new byte[ivLength];</span>
+<span class="nc" id="L156">				byteBuffer.get(iv);</span>
+<span class="nc" id="L157">				final byte[] cipherText = new byte[byteBuffer.remaining()];</span>
+<span class="nc" id="L158">				byteBuffer.get(cipherText);</span>
+				
+<span class="nc" id="L160">				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);</span>
+<span class="nc" id="L161">				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));</span>
+<span class="nc" id="L162">				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);</span>
+<span class="nc" id="L163">			} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException</span>
+					| IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+<span class="nc" id="L165">				LOGGER.error(DECRYPT_VALUE,e);</span>
+<span class="nc" id="L166">				return null;</span>
+			}		
+		} else {
+<span class="nc" id="L169">			return null;</span>
+		}
+
+	}
+
+	/**
+	 * Builds the key.
+	 *
+	 * @param userid
+	 *            the userid
+	 * @param password
+	 *            the password
+	 * @return the key
+	 */
+	private static Key buildKey(final String userid, final String password) {
+<span class="nc" id="L184">		return new SecretKeySpec(Arrays.copyOf(</span>
+<span class="nc" id="L185">				new SHA3.Digest512().digest((userid + &quot;.uuid&quot; + password).getBytes(StandardCharsets.UTF_8)), KEY_SIZE_IN_BYTES),</span>
+				ALGORITHM);
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

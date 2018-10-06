@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PartyComplianceCheckImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="../index.html" class="el_bundle">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">PartyComplianceCheckImpl.java</span></div><h1>PartyComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.rules;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.service.api.action.kpi.ResourceType;
+
+/**
+ * The Class PartyComplianceCheckImpl.
+ */
+public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
+	/** The party. */
+	private final ViewRiksdagenPartySummary party;
+	
+	/** The name. */
+	private final String name;
+	
+	/** The ballot decisions. */
+<span class="nc" id="L47">	private List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions = new ArrayList&lt;&gt;();</span>
+	
+	/** The daily summary. */
+	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
+	
+	/** The monthly summary. */
+	private final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
+	
+	/** The annual summary. */
+	private final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
+
+	/**
+	 * Instantiates a new party compliance check impl.
+	 *
+	 * @param party           the party
+	 * @param annualSummary   the annual summary
+	 * @param monthlySummary  the monthly summary
+	 * @param dailySummary    the daily summary
+	 * @param ballotDecisions the ballot decisions
+	 */
+	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary,final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions) {
+<span class="nc" id="L68">		super(ResourceType.PARTY);</span>
+<span class="nc" id="L69">		this.party = party;</span>
+<span class="nc" id="L70">		this.annualSummary = annualSummary;</span>
+<span class="nc" id="L71">		this.monthlySummary = monthlySummary;</span>
+<span class="nc" id="L72">		this.dailySummary = dailySummary;</span>
+<span class="nc" id="L73">		this.name = party.getParty();</span>
+<span class="nc" id="L74">		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);</span>
+<span class="nc" id="L75">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public ViewRiksdagenPartySummary getParty() {
+<span class="nc" id="L83">		return party;</span>
+	}
+
+	@Override
+	public String getName() {
+<span class="nc" id="L88">		return name;</span>
+	}
+
+	@Override
+	public String getId() {
+<span class="nc" id="L93">		return party.getParty();</span>
+	}
+
+	/**
+	 * Supports.
+	 *
+	 * @param committeeReport the committee report
+	 * @param rm              the rm
+	 * @return true, if successful
+	 */
+	public boolean supports(final String committeeReport,final String rm) {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		for (ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
+<span class="nc" id="L106">				return summary.isPartyApproved();</span>
+			}			
+<span class="nc" id="L108">		}</span>
+<span class="nc" id="L109">		return false;</span>
+	}
+
+	/**
+	 * Against.
+	 *
+	 * @param committeeReport the committee report
+	 * @param rm              the rm
+	 * @return true, if successful
+	 */
+	public boolean against(final String committeeReport,final String rm) {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">		for (ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">				return !summary.isPartyApproved();</span>
+			}			
+<span class="nc" id="L124">		}</span>
+<span class="nc" id="L125">		return false;</span>
+	}
+
+	/**
+	 * Gets the daily summary.
+	 *
+	 * @return the daily summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryDaily getDailySummary() {
+<span class="nc" id="L134">		return dailySummary;</span>
+	}
+
+	/**
+	 * Gets the monthly summary.
+	 *
+	 * @return the monthly summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryMonthly getMonthlySummary() {
+<span class="nc" id="L143">		return monthlySummary;</span>
+	}
+
+
+	/**
+	 * Gets the annual summary.
+	 *
+	 * @return the annual summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryAnnual getAnnualSummary() {
+<span class="nc" id="L153">		return annualSummary;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

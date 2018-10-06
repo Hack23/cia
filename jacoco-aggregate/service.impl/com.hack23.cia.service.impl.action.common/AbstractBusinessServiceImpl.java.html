@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractBusinessServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="../index.html" class="el_bundle">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.common</a> &gt; <span class="el_source">AbstractBusinessServiceImpl.java</span></div><h1>AbstractBusinessServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.common;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
+import com.hack23.cia.service.api.action.common.AbstractResponse;
+import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.data.api.UserDAO;
+
+/**
+ * The Class AbstractBusinessServiceImpl.
+ *
+ * @param &lt;T&gt;
+ *            the generic type
+ * @param &lt;V&gt;
+ *            the value type
+ */
+public abstract class AbstractBusinessServiceImpl&lt;T extends ServiceRequest, V extends ServiceResponse&gt;
+		implements BusinessService&lt;T, V&gt; {
+
+	/** The user dao. */
+	@Autowired
+	private UserDAO userDAO;
+
+
+	/** The create application event service. */
+	@Autowired
+	protected BusinessService&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt; createApplicationEventService;
+
+	
+	/** The clazz. */
+	private final Class&lt;T&gt; clazz;
+
+
+	/**
+	 * Instantiates a new abstract business service impl.
+	 *
+	 * @param clazz
+	 *            the clazz
+	 */
+<span class="nc" id="L73">	public AbstractBusinessServiceImpl(final Class&lt;T&gt; clazz) {</span>
+<span class="nc" id="L74">		this.clazz = clazz;</span>
+<span class="nc" id="L75">	}</span>
+
+	@Override
+	public final Class&lt;? extends ServiceRequest&gt; getSupportedService() {
+<span class="nc" id="L79">		return clazz;</span>
+	}
+
+	/**
+	 * Gets the create application event service.
+	 *
+	 * @return the create application event service
+	 */
+	protected final BusinessService&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt; getCreateApplicationEventService() {
+<span class="nc" id="L88">		return createApplicationEventService;</span>
+	}
+	
+	/**
+	 * Gets the user account from security context.
+	 *
+	 * @return the user account from security context
+	 */
+	protected final UserAccount getUserAccountFromSecurityContext() {
+<span class="nc" id="L97">		final SecurityContext context = SecurityContextHolder.getContext();</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if (context != null) {</span>
+<span class="nc" id="L99">			final Authentication authentication = context.getAuthentication();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">			if (authentication != null) {</span>
+<span class="nc" id="L101">				return userDAO.findFirstByProperty(UserAccount_.userId, authentication.getPrincipal().toString());</span>
+			}
+		}
+
+<span class="nc" id="L105">		return null;</span>
+	}
+		
+	/**
+	 * Input validation.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @return the v
+	 */
+	protected final V inputValidation(final T serviceRequest) {
+<span class="nc" id="L116">		final Set&lt;ConstraintViolation&lt;T&gt;&gt; validateRequest = validateRequest(serviceRequest);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">		if (!validateRequest.isEmpty()) {</span>
+<span class="nc" id="L118">			final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
+<span class="nc" id="L119">			V response = createErrorResponse();</span>
+<span class="nc" id="L120">			handleInputViolations(eventRequest, validateRequest, response);</span>
+<span class="nc" id="L121">			createApplicationEventService.processService(eventRequest);</span>
+<span class="nc" id="L122">			return response;</span>
+		} else {
+<span class="nc" id="L124">			return null;</span>
+		}
+	}
+	
+	/**
+	 * Creates the base application event request.
+	 *
+	 * @return the creates the application event request
+	 */
+	protected final CreateApplicationEventRequest createBaseApplicationEventRequest() {
+<span class="nc" id="L134">		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();</span>
+<span class="nc" id="L135">		final UserAccount userAccount = getUserAccountFromSecurityContext();</span>
+		
+<span class="nc bnc" id="L137" title="All 2 branches missed.">		if (userAccount != null) {			</span>
+<span class="nc" id="L138">			eventRequest.setUserId(userAccount.getUserId());</span>
+		}
+<span class="nc" id="L140">		return eventRequest;</span>
+	}
+
+	
+	/**
+	 * Creates the application event for service.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @return the creates the application event request
+	 */
+	protected abstract CreateApplicationEventRequest createApplicationEventForService(final T serviceRequest);
+	
+	/**
+	 * Creates the error response.
+	 *
+	 * @return the v
+	 */
+	protected abstract V createErrorResponse();
+	
+	/**
+	 * Validate request.
+	 *
+	 * @param request
+	 *            the request
+	 * @return the sets the
+	 */
+	private Set&lt;ConstraintViolation&lt;T&gt;&gt; validateRequest(final T request) {
+<span class="nc" id="L168">        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();</span>
+<span class="nc" id="L169">        return factory.getValidator().validate( request );</span>
+	}
+
+	/**
+	 * Gets the human message.
+	 *
+	 * @param requestConstraintViolations
+	 *            the request constraint violations
+	 * @return the human message
+	 */
+	private String getHumanMessage(final Set&lt;ConstraintViolation&lt;T&gt;&gt; requestConstraintViolations) {
+<span class="nc" id="L180">		return requestConstraintViolations.stream()</span>
+<span class="nc" id="L181">				.sorted((p1, p2) -&gt; p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))</span>
+<span class="nc" id="L182">				.map(p -&gt; p.getPropertyPath().toString() + &quot; &quot; + p.getMessage()).collect(Collectors.joining(&quot;, &quot;));</span>
+	}
+
+	/**
+	 * Handle input violations.
+	 *
+	 * @param eventRequest
+	 *            the event request
+	 * @param requestConstraintViolations
+	 *            the request constraint violations
+	 * @param response
+	 *            the response
+	 * @return the v
+	 */
+	private void handleInputViolations(final CreateApplicationEventRequest eventRequest,
+			final Set&lt;ConstraintViolation&lt;T&gt;&gt; requestConstraintViolations,final V response) {
+<span class="nc" id="L198">		final String errorMessage = getHumanMessage(requestConstraintViolations);</span>
+<span class="nc" id="L199">		((AbstractResponse) response).setErrorMessage(errorMessage);</span>
+<span class="nc" id="L200">		eventRequest.setErrorMessage(errorMessage);</span>
+<span class="nc" id="L201">	}</span>
+
+	/**
+	 * Gets the user dao.
+	 *
+	 * @return the user dao
+	 */
+	protected final UserDAO getUserDAO() {
+<span class="nc" id="L209">		return userDAO;</span>
+	}
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
