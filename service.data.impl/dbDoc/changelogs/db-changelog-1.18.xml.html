@@ -1,0 +1,49 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="encryptedValueTableAddColumns" id="1414872417007-302" failOnError="true"&gt;
+		
+		&lt;addColumn tableName="encrypted_value"&gt;
+			&lt;column name="user_id" type="VARCHAR(255)" /&gt;
+		&lt;/addColumn&gt;
+		
+		&lt;addColumn tableName="encrypted_value"&gt;
+			&lt;column name="vault_name" type="VARCHAR(255)" /&gt;
+		&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+
+	&lt;changeSet author="deleteUserAccountGoogleMFAColumns" id="1414872417007-303" failOnError="true"&gt;
+		 &lt;dropForeignKeyConstraint baseTableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0" constraintName="fk_8931ymg13vy6vfkrichdsd4"/&gt;		
+		 &lt;dropPrimaryKey constraintName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey" tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0"/&gt;		 
+		 &lt;dropTable cascadeConstraints="true" tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0"/&gt;
+		 
+		 &lt;dropColumn columnName="GOOGLE_AUTH_KEY" tableName="user_account"/&gt;
+		 &lt;dropColumn columnName="GOOGLE_AUTH_VERIFICATION_CODE" tableName="user_account"/&gt;		  
+	&lt;/changeSet&gt;
+	
+
+	&lt;changeSet author="gdpr-classification-update-account" id="1414872417007-304" failOnError="true"&gt;
+		 &lt;sql&gt; COMMENT ON COLUMN public.encrypted_value.storage IS 'DATA.Confidential GDPR.Personal_Sensitive' &lt;/sql&gt;
+		 &lt;sql&gt; COMMENT ON COLUMN public.encrypted_value.vault_name IS 'DATA.Sensitive GDPR.na' &lt;/sql&gt;
+		 &lt;sql&gt; COMMENT ON COLUMN public.encrypted_value.user_id IS 'DATA.Sensitive GDPR.Personal_Identifier' &lt;/sql&gt;
+		 &lt;sql&gt; COMMENT ON COLUMN public.encrypted_value.id IS 'DATA.Confidential GDPR.Personal_Sensitive' &lt;/sql&gt;
+		 		 
+		 &lt;sql&gt; COMMENT ON COLUMN public.user_account.user_lock_status IS 'DATA.Sensitive GDPR.Personal_Sensitive' &lt;/sql&gt;
+		 &lt;sql&gt; COMMENT ON COLUMN public.user_account.user_email_status IS 'DATA.Sensitive GDPR.Personal_Sensitive' &lt;/sql&gt;
+	&lt;/changeSet&gt;
+
+
+	&lt;changeSet author="encryptedValueTableChangeStorageType" id="1414872417007-305" failOnError="true"&gt;
+		&lt;modifyDataType
+            columnName="storage"
+            newDataType="VARCHAR(4096)"
+            tableName="encrypted_value"/&gt;            
+    &lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

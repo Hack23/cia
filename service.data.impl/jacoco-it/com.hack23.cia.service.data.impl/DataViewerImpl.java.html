@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataViewerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DataViewerImpl.java</span></div><h1>DataViewerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.data.impl;
+
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SingularAttribute;
+
+import org.hibernate.CacheMode;
+import org.springframework.stereotype.Repository;
+
+import com.hack23.cia.service.data.api.DataViewer;
+import com.hack23.cia.service.data.impl.util.LoadHelper;
+
+/**
+ * The Class DataViewerImpl.
+ */
+
+@Repository(&quot;DataViewer&quot;)
+final class DataViewerImpl implements DataViewer {
+
+	/** The entity manager. */
+	@PersistenceContext(name = &quot;ciaPersistenceUnit&quot;)
+	private EntityManager entityManager;
+
+	/** The criteria builder. */
+	private CriteriaBuilder criteriaBuilder;
+
+	/**
+	 * Instantiates a new data viewer impl.
+	 */
+	public DataViewerImpl() {
+<span class="fc" id="L61">		super();</span>
+<span class="fc" id="L62">	}</span>
+
+	/**
+	 * Adds the cache hints.
+	 *
+	 * @param typedQuery
+	 *            the typed query
+	 * @param comment
+	 *            the comment
+	 */
+	private static void addCacheHints(final TypedQuery&lt;?&gt; typedQuery, final String comment) {
+<span class="fc" id="L73">		typedQuery.setHint(&quot;org.hibernate.cacheMode&quot;, CacheMode.NORMAL);</span>
+<span class="fc" id="L74">		typedQuery.setHint(&quot;org.hibernate.cacheable&quot;, Boolean.TRUE);</span>
+<span class="fc" id="L75">		typedQuery.setHint(&quot;org.hibernate.comment&quot;, comment);</span>
+<span class="fc" id="L76">	}</span>
+
+	@Override
+	public &lt;T,V&gt; T findByQueryProperty(final Class&lt;T&gt; clazz,
+			final SingularAttribute&lt;T, ? extends Object&gt; property,final Class&lt;V&gt; clazz2,
+			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
+
+<span class="fc" id="L83">		final CriteriaQuery&lt;V&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L84">				.createQuery(clazz2);</span>
+<span class="fc" id="L85">		final Root&lt;V&gt; root = criteriaQuery.from(clazz2);</span>
+<span class="fc" id="L86">		criteriaQuery.select(root);</span>
+
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (value instanceof String) {</span>
+<span class="fc" id="L89">			final Expression&lt;String&gt; propertyObject = (Expression&lt;String&gt;) root.get(property2);</span>
+<span class="fc" id="L90">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));</span>
+<span class="fc" id="L91">			criteriaQuery.where(condition);</span>
+<span class="fc" id="L92">		} else {</span>
+<span class="nc" id="L93">			final Predicate condition = criteriaBuilder.equal(root.get(property2), value);</span>
+<span class="nc" id="L94">			criteriaQuery.where(condition);</span>
+		}
+
+<span class="fc" id="L97">		final TypedQuery&lt;V&gt; typedQuery = entityManager</span>
+<span class="fc" id="L98">				.createQuery(criteriaQuery);</span>
+
+<span class="fc" id="L100">		addCacheHints(typedQuery, &quot;findByQueryProperty.&quot; + clazz.getSimpleName());</span>
+
+
+<span class="fc" id="L103">		final List&lt;V&gt; resultList = typedQuery.getResultList();</span>
+
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">		if (!resultList.isEmpty()) {</span>
+<span class="fc" id="L106">			final List&lt;T&gt; findListByProperty = findListByProperty(clazz,property,resultList.get(0));</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">			if (!findListByProperty.isEmpty()) {</span>
+<span class="fc" id="L108">				return LoadHelper.recursiveInitialize(findListByProperty.get(0));</span>
+			}
+		}
+
+<span class="nc" id="L112">		return null;</span>
+
+	}
+
+	@Override
+	public &lt;T&gt; T findFirstByProperty(final Class&lt;T&gt; clazz,
+			final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
+<span class="fc" id="L119">		final List&lt;T&gt; resultList = findListByProperty(clazz,property,value);</span>
+
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">		if (resultList.isEmpty()) {</span>
+<span class="nc" id="L122">			return null;</span>
+		} else {
+<span class="fc" id="L124">			return LoadHelper.recursiveInitialize(resultList.get(0));</span>
+		}
+	}
+
+
+	@Override
+	public &lt;T, V&gt; List&lt;T&gt; findListByEmbeddedProperty(final Class&lt;T&gt; clazz,
+			final SingularAttribute&lt;T, V&gt; property, final Class&lt;V&gt; clazz2,
+			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
+<span class="fc" id="L133">		return findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,null);</span>
+
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; findListByProperty(final Class&lt;T&gt; clazz, final Object[] values,
+			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
+
+<span class="fc" id="L141">		return findOrderedListByProperty(clazz,null,values,properties);</span>
+	}
+
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; findListByProperty(final Class&lt;T&gt; clazz,
+			final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
+
+<span class="fc" id="L149">		return findOrderedListByProperty(clazz,property,value,null);</span>
+	}
+
+	@Override
+	public &lt;T, V&gt; List&lt;T&gt; findOrderedByPropertyListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
+			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
+			final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
+<span class="fc" id="L156">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L157">				.createQuery(clazz);</span>
+<span class="fc" id="L158">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
+<span class="fc" id="L159">		criteriaQuery.select(root);</span>
+
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="fc" id="L162">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
+		}
+
+
+<span class="fc" id="L166">		final Join&lt;T, V&gt; join = root.join(property);</span>
+
+<span class="fc" id="L168">		final Path&lt;? extends Object&gt; path = join.get(property2);</span>
+
+<span class="fc" id="L170">		final Predicate condition = criteriaBuilder.equal(path, value);</span>
+
+<span class="fc" id="L172">		criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L174">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L175">				.createQuery(criteriaQuery);</span>
+
+<span class="fc" id="L177">		addCacheHints(typedQuery, &quot;findListByEmbeddedProperty.&quot; + clazz.getSimpleName());</span>
+
+
+<span class="fc" id="L180">		return typedQuery.getResultList();</span>
+	}
+
+
+
+	@Override
+	public &lt;T, V&gt; List&lt;T&gt; findOrderedListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
+			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
+			final SingularAttribute&lt;V, ? extends Object&gt; orderByProperty) {
+<span class="fc" id="L189">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L190">				.createQuery(clazz);</span>
+<span class="fc" id="L191">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
+<span class="fc" id="L192">		criteriaQuery.select(root);</span>
+
+<span class="fc" id="L194">		final Join&lt;T, V&gt; join = root.join(property);</span>
+
+<span class="fc" id="L196">		final Path&lt;? extends Object&gt; path = join.get(property2);</span>
+
+<span class="fc bfc" id="L198" title="All 2 branches covered.">		if (orderByProperty != null) {</span>
+<span class="fc" id="L199">			criteriaQuery.orderBy(criteriaBuilder.desc(join.get(orderByProperty)));</span>
+		}
+
+<span class="fc" id="L202">		final Predicate condition = criteriaBuilder.equal(path, value);</span>
+
+<span class="fc" id="L204">		criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L206">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L207">				.createQuery(criteriaQuery);</span>
+
+<span class="fc" id="L209">		addCacheHints(typedQuery, &quot;findListByEmbeddedProperty.&quot; + clazz.getSimpleName());</span>
+
+
+<span class="fc" id="L212">		return typedQuery.getResultList();</span>
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; findOrderedListByProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; property,
+			final Object value, final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
+<span class="fc" id="L218">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L219">				.createQuery(clazz);</span>
+<span class="fc" id="L220">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
+<span class="fc" id="L221">		criteriaQuery.select(root);</span>
+
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="nc" id="L224">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
+		}
+
+<span class="fc bfc" id="L227" title="All 2 branches covered.">		if (value instanceof String) {</span>
+<span class="fc" id="L228">			final Expression&lt;String&gt; propertyObject = (Expression&lt;String&gt;) root.get(property);</span>
+<span class="fc" id="L229">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));</span>
+<span class="fc" id="L230">			criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L232">		} else {</span>
+<span class="fc" id="L233">			final Predicate condition = criteriaBuilder.equal(root.get(property), value);</span>
+<span class="fc" id="L234">			criteriaQuery.where(condition);</span>
+
+		}
+
+<span class="fc" id="L238">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L239">				.createQuery(criteriaQuery);</span>
+<span class="fc" id="L240">		addCacheHints(typedQuery, &quot;findListByProperty.&quot; + clazz.getSimpleName());</span>
+
+<span class="fc" id="L242">		return typedQuery.getResultList();</span>
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; findOrderedListByProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty,
+			final Object[] values, final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
+<span class="fc" id="L248">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L249">				.createQuery(clazz);</span>
+<span class="fc" id="L250">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
+<span class="fc" id="L251">		criteriaQuery.select(root);</span>
+
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="nc" id="L254">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
+		}
+
+
+<span class="fc" id="L258">		final Object value=values[0];</span>
+<span class="fc" id="L259">		final SingularAttribute&lt;T, ? extends Object&gt; property = properties[0];</span>
+		Predicate condition;
+
+<span class="fc" id="L262">		condition = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder,root, value, property);</span>
+
+<span class="pc bpc" id="L264" title="1 of 2 branches missed.">		if (values.length &gt; 1) {</span>
+<span class="fc bfc" id="L265" title="All 2 branches covered.">			for (int i = 1; i &lt; properties.length; i++) {</span>
+<span class="fc" id="L266">				final SingularAttribute&lt;T, ? extends Object&gt; property2 = properties[i];</span>
+<span class="fc" id="L267">				final Object value2=values[i];</span>
+<span class="fc" id="L268">				final Predicate condition2 = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder,root, value2, property2);</span>
+
+<span class="fc" id="L270">				condition = criteriaBuilder.and(condition,condition2);</span>
+			}
+		}
+
+
+<span class="fc" id="L275">		criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L277">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L278">				.createQuery(criteriaQuery);</span>
+<span class="fc" id="L279">		addCacheHints(typedQuery, &quot;findListByProperty.&quot; + clazz.getSimpleName());</span>
+
+<span class="fc" id="L281">		return typedQuery.getResultList();</span>
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; getAll(final Class&lt;T&gt; clazz) {
+<span class="fc" id="L286">		return getAllOrderBy(clazz,null);</span>
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; getAllOrderBy(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; property) {
+<span class="fc" id="L291">		return getInternalPageOrderBy(clazz, null, null, property);</span>
+	}
+
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; getPage(final Class&lt;T&gt; clazz, final int pageNr, final int resultPerPage) {
+<span class="fc" id="L297">		return getPageOrderBy(clazz, pageNr, resultPerPage, null);</span>
+	}
+
+	@Override
+	public &lt;T&gt; List&lt;T&gt; getPageOrderBy(final Class&lt;T&gt; clazz, final int pageNr, final int resultPerPage,
+			final SingularAttribute&lt;T, ? extends Object&gt; property) {
+<span class="fc" id="L303">		return getInternalPageOrderBy(clazz, pageNr, resultPerPage, property);</span>
+	}
+
+	private &lt;T&gt; List&lt;T&gt; getInternalPageOrderBy(final Class&lt;T&gt; clazz, final Integer pageNr,final Integer resultPerPage,final SingularAttribute&lt;T, ? extends Object&gt; property) {
+<span class="fc" id="L307">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L308">				.createQuery(clazz);</span>
+<span class="fc" id="L309">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
+
+<span class="fc" id="L311">		criteriaQuery.select(root);</span>
+
+<span class="fc bfc" id="L313" title="All 2 branches covered.">		if (property != null) {</span>
+<span class="fc" id="L314">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(property)));</span>
+		}
+
+<span class="fc" id="L317">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L318">				.createQuery(criteriaQuery);</span>
+<span class="fc" id="L319">		addCacheHints(typedQuery, &quot;getAll.&quot; + clazz.getSimpleName());</span>
+
+<span class="pc bpc" id="L321" title="1 of 4 branches missed.">		if (pageNr != null &amp;&amp; resultPerPage != null) {</span>
+<span class="fc" id="L322">			typedQuery.setFirstResult((pageNr-1) * resultPerPage);</span>
+<span class="fc" id="L323">			typedQuery.setMaxResults(resultPerPage);</span>
+
+		}
+
+<span class="fc" id="L327">		return typedQuery.getResultList();</span>
+	}
+
+	@Override
+	public &lt;T&gt; Long getSize(final Class&lt;T&gt; clazz) {
+<span class="fc" id="L332">		final CriteriaQuery&lt;Long&gt; countQuery = criteriaBuilder.createQuery(Long.class);</span>
+<span class="fc" id="L333">		countQuery.select(criteriaBuilder.count(countQuery.from(clazz)));</span>
+<span class="fc" id="L334">		return entityManager.createQuery(countQuery).getSingleResult();</span>
+	}
+
+	/**
+	 * Inits the.
+	 */
+	@PostConstruct
+	private void init() {
+<span class="fc" id="L342">		criteriaBuilder = entityManager.getCriteriaBuilder();</span>
+<span class="fc" id="L343">	}</span>
+
+	@Override
+	public &lt;T&gt; T load(final Class&lt;T&gt; clazz,final Object id) {
+<span class="fc" id="L347">		return LoadHelper.recursiveInitialize(entityManager.find(clazz, id));</span>
+	}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

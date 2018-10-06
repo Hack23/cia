@@ -1,0 +1,29 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-285"&gt;
+		 &lt;addColumn tableName="language_data"&gt;
+			&lt;column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" /&gt;
+			&lt;column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE" /&gt;
+			&lt;column name="language_enabled" type="boolean" /&gt;
+			&lt;column name="auto_translation_enabled" type="boolean" /&gt;
+			&lt;column name="language_code" type="varchar(255)"/&gt;
+			&lt;column name="translation_status" type="varchar(255)"/&gt;
+    	&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-286"&gt;
+		 &lt;addColumn tableName="language_content_data"&gt;
+		 	&lt;column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE" /&gt;
+			&lt;column name="key_group" type="varchar(255)"/&gt;
+			&lt;column name="location_context" type="varchar(255)"/&gt;
+    	&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

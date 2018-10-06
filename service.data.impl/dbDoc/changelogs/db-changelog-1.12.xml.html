@@ -1,0 +1,17 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+  &lt;changeSet author="add-column-application-session" id="1414872417007-292"&gt;
+		 &lt;addColumn tableName="application_session"&gt;
+        	&lt;column name="screen_size" type="varchar(255)"/&gt;
+        	&lt;column name="time_zone" type="varchar(255)"/&gt;
+    	&lt;/addColumn&gt;  
+  &lt;/changeSet&gt;
+ 
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

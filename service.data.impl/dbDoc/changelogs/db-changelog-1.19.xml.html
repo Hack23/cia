@@ -1,0 +1,76 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"&gt;
+
+	&lt;changeSet author="auditViews" id="1414872417007-312" failOnError="true"&gt;		
+		&lt;createSequence sequenceName="jv_commit_pk_seq"/&gt;
+		&lt;createSequence sequenceName="jv_global_id_pk_seq"/&gt;
+		&lt;createSequence sequenceName="jv_snapshot_pk_seq"/&gt;
+        &lt;createTable tableName="jv_commit"&gt;
+            &lt;column name="commit_pk" type="BIGINT"&gt;
+                &lt;constraints primaryKey="true" primaryKeyName="jv_commit_pk"/&gt;
+            &lt;/column&gt;
+            &lt;column name="author" type="VARCHAR(200)"/&gt;
+            &lt;column name="commit_date" type="TIMESTAMP WITHOUT TIME ZONE"/&gt;
+            &lt;column name="commit_id" type="numeric(22, 2)"/&gt;
+        &lt;/createTable&gt;
+        &lt;createTable tableName="jv_commit_property"&gt;
+            &lt;column name="property_name" type="VARCHAR(191)"&gt;
+                &lt;constraints primaryKey="true" primaryKeyName="jv_commit_property_pk"/&gt;
+            &lt;/column&gt;
+            &lt;column name="property_value" type="VARCHAR(600)"/&gt;
+            &lt;column name="commit_fk" type="BIGINT"&gt;
+                &lt;constraints primaryKey="true" primaryKeyName="jv_commit_property_pk"/&gt;
+            &lt;/column&gt;
+        &lt;/createTable&gt;
+        &lt;createTable tableName="jv_global_id"&gt;
+            &lt;column name="global_id_pk" type="BIGINT"&gt;
+                &lt;constraints primaryKey="true" primaryKeyName="jv_global_id_pk"/&gt;
+            &lt;/column&gt;
+            &lt;column name="local_id" type="VARCHAR(191)"/&gt;
+            &lt;column name="fragment" type="VARCHAR(200)"/&gt;
+            &lt;column name="type_name" type="VARCHAR(200)"/&gt;
+            &lt;column name="owner_id_fk" type="BIGINT"/&gt;
+        &lt;/createTable&gt;
+        &lt;createTable tableName="jv_snapshot"&gt;
+            &lt;column name="snapshot_pk" type="BIGINT"&gt;
+                &lt;constraints primaryKey="true" primaryKeyName="jv_snapshot_pk"/&gt;
+            &lt;/column&gt;
+            &lt;column name="type" type="VARCHAR(200)"/&gt;
+            &lt;column name="version" type="BIGINT"/&gt;
+            &lt;column name="state" type="TEXT"/&gt;
+            &lt;column name="changed_properties" type="TEXT"/&gt;
+            &lt;column name="managed_type" type="VARCHAR(200)"/&gt;
+            &lt;column name="global_id_fk" type="BIGINT"/&gt;
+            &lt;column name="commit_fk" type="BIGINT"/&gt;
+        &lt;/createTable&gt;
+        &lt;createIndex indexName="jv_commit_commit_id_idx" tableName="jv_commit"&gt;
+            &lt;column name="commit_id"/&gt;
+        &lt;/createIndex&gt;
+        &lt;createIndex indexName="jv_commit_property_commit_fk_idx" tableName="jv_commit_property"&gt;
+            &lt;column name="commit_fk"/&gt;
+        &lt;/createIndex&gt;
+        &lt;createIndex indexName="jv_commit_property_property_name_property_value_idx" tableName="jv_commit_property"&gt;
+            &lt;column name="property_name"/&gt;
+            &lt;column name="property_value"/&gt;
+        &lt;/createIndex&gt;
+        &lt;createIndex indexName="jv_global_id_local_id_idx" tableName="jv_global_id"&gt;
+            &lt;column name="local_id"/&gt;
+        &lt;/createIndex&gt;
+        &lt;createIndex indexName="jv_snapshot_commit_fk_idx" tableName="jv_snapshot"&gt;
+            &lt;column name="commit_fk"/&gt;
+        &lt;/createIndex&gt;
+        &lt;createIndex indexName="jv_snapshot_global_id_fk_idx" tableName="jv_snapshot"&gt;
+            &lt;column name="global_id_fk"/&gt;
+        &lt;/createIndex&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="commit_fk" baseTableName="jv_commit_property" constraintName="jv_commit_property_commit_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="commit_pk" referencedTableName="jv_commit" validate="true"/&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="owner_id_fk" baseTableName="jv_global_id" constraintName="jv_global_id_owner_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="global_id_pk" referencedTableName="jv_global_id" validate="true"/&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="commit_fk" baseTableName="jv_snapshot" constraintName="jv_snapshot_commit_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="commit_pk" referencedTableName="jv_commit" validate="true"/&gt;
+        &lt;addForeignKeyConstraint baseColumnNames="global_id_fk" baseTableName="jv_snapshot" constraintName="jv_snapshot_global_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="global_id_pk" referencedTableName="jv_global_id" validate="true"/&gt;
+    &lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

@@ -1,0 +1,26 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"&gt;
+
+	&lt;changeSet author="documentSummaryViews" id="1414872417007-315" failOnError="true"&gt;
+		
+	&lt;createView replaceIfExists="true"
+			viewName="view_riksdagen_person_signed_document_summary"&gt;select person_reference_id as person_id,reference_name as person_name,max(party_short_code) as party,count(*) as total from document_person_reference_da_0 group by person_reference_id,reference_name order by total&lt;/createView&gt;
+
+	&lt;createView replaceIfExists="true"
+			viewName="view_riksdagen_party_signatures_document_summary"&gt;select upper(party_short_code) as party,count(*) as total from document_person_reference_da_0 where not party_short_code='' group by upper(party_short_code) order by total&lt;/createView&gt;
+	&lt;/changeSet&gt;
+	
+	&lt;changeSet author="auditViews3" id="1414872417007-316" failOnError="true"&gt;
+		
+	&lt;createView replaceIfExists="true"
+			viewName="view_audit_data_summary"&gt;SELECT ROW_NUMBER () OVER (ORDER BY relname) as id,relname as data_type ,n_live_tup as data_size FROM pg_stat_user_tables ORDER BY relname&lt;/createView&gt;
+
+	&lt;/changeSet&gt;
+	
+	
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

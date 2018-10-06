@@ -1,0 +1,31 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="adduseraccountcolumns" id="1414872417007-296"&gt;
+		&lt;addColumn tableName="user_account"&gt;
+			&lt;column name="user_lock_status" type="VARCHAR(255)" /&gt;
+		&lt;/addColumn&gt;
+		&lt;update tableName="user_account"&gt;
+	         &lt;column name="user_lock_status" value="UNLOCKED" /&gt;
+	    &lt;/update&gt;
+	    
+		&lt;addColumn tableName="user_account"&gt;
+			&lt;column name="user_email_status" type="VARCHAR(255)" /&gt;
+		&lt;/addColumn&gt;
+		&lt;update tableName="user_account"&gt;
+	         &lt;column name="user_email_status" value="UNKNOWN" /&gt;
+	    &lt;/update&gt;				
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="adduseraccountcolumns" id="1414872417007-297"&gt;
+		&lt;update tableName="user_account"&gt;
+	         &lt;column name="user_type" value="PRIVATE" /&gt;
+	    &lt;/update&gt;				
+	&lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

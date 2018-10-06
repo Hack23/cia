@@ -1,0 +1,15 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="createextenions-only-works-if-superuser-so-create-before" id="1414872417007-300" failOnError="false"&gt;
+		&lt;sql&gt;CREATE EXTENSION pgcrypto&lt;/sql&gt;
+		&lt;sql&gt;CREATE EXTENSION pgaudit&lt;/sql&gt;
+		&lt;sql&gt;CREATE EXTENSION pg_stat_statements&lt;/sql&gt;		
+	&lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

@@ -1,0 +1,37 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+  &lt;changeSet author="fix-missing-value-for-model-object-version" id="1414872417007-295"&gt;
+    &lt;update tableName="agency"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="portal"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="language_data"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="language_content_data"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="application_action_event"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="application_configuration"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="application_session"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+    &lt;update tableName="user_account"&gt;
+         &lt;column name="model_object_version" value="0" /&gt;
+    &lt;/update&gt;
+  &lt;/changeSet&gt;
+ 
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

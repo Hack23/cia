@@ -1,0 +1,66 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-279"&gt;
+		 &lt;addColumn tableName="document_element"&gt;
+			&lt;column name="domain_org" type="varchar(255)"/&gt;
+			&lt;column name="database_source" type="varchar(255)"/&gt;
+			&lt;column name="origin" type="varchar(255)"/&gt;
+			&lt;column name="lang" type="varchar(255)"/&gt;
+			&lt;column name="summary" type="varchar(8192)"/&gt;
+			&lt;column name="note" type="varchar(8192)"/&gt;
+			&lt;column name="note_title" type="varchar(8192)"/&gt;
+			&lt;column name="debate_name" type="varchar(255)"/&gt;
+			&lt;column name="document_name" type="varchar(255)"/&gt;
+    	&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-280"&gt;
+		 &lt;addColumn tableName="document_element"&gt;
+			&lt;column name="doc_type" type="varchar(255)"/&gt;
+    	&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-281"&gt;
+		&lt;createTable tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0"&gt;
+			&lt;column name="hjid" type="INT8"&gt;
+				&lt;constraints nullable="false" /&gt;
+			&lt;/column&gt;
+			&lt;column name="hjvalue" type="INT4" /&gt;
+			&lt;column name="hjindex" type="INT4"&gt;
+				&lt;constraints nullable="false" /&gt;
+			&lt;/column&gt;
+		&lt;/createTable&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-282"&gt;
+		&lt;addPrimaryKey columnNames="hjid, hjindex"
+			constraintName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey" tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0" /&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-283"&gt;
+		&lt;addForeignKeyConstraint baseColumnNames="hjid"
+			baseTableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0" constraintName="fk_8931ymg13vy6vfkrichdsd4"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="hjid"
+			referencedTableName="user_account" /&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-284"&gt;
+		 &lt;addColumn tableName="user_account"&gt;
+			&lt;column name="GOOGLE_AUTH_KEY" type="varchar(1024)"/&gt;
+    	&lt;/addColumn&gt;
+    	 &lt;addColumn tableName="user_account"&gt;
+			&lt;column name="GOOGLE_AUTH_VERIFICATION_CODE" type="INT4"/&gt;
+    	&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

@@ -1,0 +1,15 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"&gt;
+
+	&lt;changeSet author="pether" id="1414872417007-291"&gt;
+		 &lt;renameTable newTableName="QRTZ_BLOB_TRIGGERS"
+            oldTableName="QRTZ_bytea_TRIGGERS"
+            schemaName="public"/&gt;          
+	&lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+</pre></body></html>
