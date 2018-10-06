@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentTypeNames.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.riksdagen</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.riksdagen.api</a> &gt; <span class="el_source">DocumentTypeNames.java</span></div><h1>DocumentTypeNames.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.riksdagen.api;
+
+/**
+ * The Enum DocumentTypeNames.
+ */
+<span class="fc" id="L24">public enum DocumentTypeNames {</span>
+
+	/** The account and report. */
+<span class="fc" id="L27">	ACCOUNT_AND_REPORT(&quot;frsrdg&quot;,&quot;Framställning och redogörelse&quot;),</span>
+
+	/** The agenda. */
+<span class="fc" id="L30">	AGENDA(&quot;f-lista&quot;,&quot;Föredragningslista&quot;),</span>
+
+	/** The answer to question. */
+<span class="fc" id="L33">	ANSWER_TO_QUESTION(&quot;frs&quot;,&quot;Svar på skriftlig fråga&quot;),</span>
+
+	/** The attachement. */
+<span class="fc" id="L36">	ATTACHEMENT(&quot;bilaga&quot;,&quot;Bilaga&quot;),</span>
+
+	/** The bill. */
+<span class="fc" id="L39">	BILL(&quot;mot&quot;,&quot;Motion&quot;),</span>
+
+	/** The committee document. */
+<span class="fc" id="L42">	COMMITTEE_DOCUMENT(&quot;utskottsdokument&quot;,&quot;Utskottsdokument&quot;),</span>
+
+	/** The committee report. */
+<span class="fc" id="L45">	COMMITTEE_REPORT(&quot;bet&quot;,&quot;Betänkande&quot;),</span>
+
+	/** The committee story. */
+<span class="fc" id="L48">	COMMITTEE_STORY(&quot;komm&quot;,&quot;Kommittéberättelser&quot;),</span>
+
+	/** The communication. */
+<span class="fc" id="L51">	COMMUNICATION(&quot;skr&quot;,&quot;Skrivelse&quot;),</span>
+
+	/** The department serie. */
+<span class="fc" id="L54">	DEPARTMENT_SERIE(&quot;ds&quot;,&quot;Departementsserien (Ds)&quot;),</span>
+
+	/** The directive. */
+<span class="fc" id="L57">	DIRECTIVE(&quot;dir&quot;,&quot;Direktiv&quot;),</span>
+
+	/** The eu committee. */
+<span class="fc" id="L60">	EU_COMMITTEE(&quot;eundok&quot;,&quot;EU-nämndsdokument&quot;),</span>
+
+	/** The eu committee attachement. */
+<span class="fc" id="L63">	EU_COMMITTEE_ATTACHEMENT(&quot;eunbil&quot;,&quot;Bilaga till EU-nämndsdokument&quot;),</span>
+
+	/** The eu committee notes. */
+<span class="fc" id="L66">	EU_COMMITTEE_NOTES(&quot;eunprot&quot;,&quot;EU-nämndens stenografiska uppteckningar&quot;),</span>
+
+	/** The eu committee summons and agenda. */
+<span class="fc" id="L69">	EU_COMMITTEE_SUMMONS_AND_AGENDA(&quot;kf-lista&quot;,&quot;EU-nämndens kallelser och föredragningslistor&quot;),</span>
+
+	/** The fact memorandum. */
+<span class="fc" id="L72">	FACT_MEMORANDUM(&quot;fpm&quot;,&quot;Faktapromemoria&quot;),</span>
+
+	/** The inspection report. */
+<span class="fc" id="L75">	INSPECTION_REPORT(&quot;rir&quot;,&quot;Granskningsrapport&quot;),</span>
+
+	/** The interpellation. */
+<span class="fc" id="L78">	INTERPELLATION(&quot;ip&quot;,&quot;Interpellation&quot;),</span>
+
+	/** The minister memorandum. */
+<span class="fc" id="L81">	MINISTER_MEMORANDUM(&quot;minråd&quot;,&quot;Ministerrådspromemoria&quot;),</span>
+
+	/** The parliament communication. */
+<span class="fc" id="L84">	PARLIAMENT_COMMUNICATION(&quot;rskr&quot;,&quot;Riksdagsskrivelse&quot;),</span>
+
+	/** The parliament report. */
+<span class="fc" id="L87">	PARLIAMENT_REPORT(&quot;rfr&quot;,&quot;Rapport från riksdagen&quot;),</span>
+
+	/** The proposition. */
+<span class="fc" id="L90">	PROPOSITION(&quot;prop&quot;,&quot;Propositioner&quot;),</span>
+
+	/** The protocol. */
+<span class="fc" id="L93">	PROTOCOL(&quot;prot&quot;,&quot;Protokoll&quot;),</span>
+
+	/** The public investigation. */
+<span class="fc" id="L96">	PUBLIC_INVESTIGATION(&quot;sou&quot;,&quot;Statens offentliga utredningar (SOU)&quot;),</span>
+
+	/** The question. */
+<span class="fc" id="L99">	QUESTION(&quot;fr&quot;,&quot;Skriftlig fråga&quot;),</span>
+
+	/** The speaker list. */
+<span class="fc" id="L102">	SPEAKER_LIST(&quot;t-lista&quot;,&quot;Talarlista&quot;),</span>
+
+	/** The swedish code of statutes. */
+<span class="fc" id="L105">	SWEDISH_CODE_OF_STATUTES(&quot;sfs&quot;,&quot;Svensk författningssamling&quot;),</span>
+
+	/** The statement. */
+<span class="fc" id="L108">	STATEMENT(&quot;yttr&quot;,&quot;Yttrande&quot;);</span>
+
+	/** The description. */
+	private final String description;
+
+	/** The short code. */
+	private final String shortCode;
+
+	/**
+	 * Instantiates a new document type names.
+	 *
+	 * @param shortCode
+	 *            the short code
+	 * @param description
+	 *            the description
+	 */
+<span class="fc" id="L124">	DocumentTypeNames(final String shortCode,final String description) {</span>
+<span class="fc" id="L125">		this.shortCode = shortCode;</span>
+<span class="fc" id="L126">		this.description = description;</span>
+<span class="fc" id="L127">	}</span>
+
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
+	public String getDescription() {
+<span class="fc" id="L135">		return description;</span>
+	}
+
+	/**
+	 * Gets the short code.
+	 *
+	 * @return the short code
+	 */
+	public String getShortCode() {
+<span class="fc" id="L144">		return shortCode;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

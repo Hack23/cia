@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenCommitteeProposalApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.riksdagen</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.riksdagen.impl</a> &gt; <span class="el_source">RiksdagenCommitteeProposalApiImpl.java</span></div><h1>RiksdagenCommitteeProposalApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.riksdagen.impl;
+
+import javax.xml.bind.JAXBElement;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.oxm.Unmarshaller;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
+import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi;
+
+/**
+ * The Class RiksdagenCommitteeProposalApiImpl.
+ */
+@Component
+final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteeProposalApi {
+
+	/** The Constant COMMITTE_PROPOSAL. */
+	private static final String COMMITTE_PROPOSAL = &quot;https://data.riksdagen.se/utskottsforslag/${ID_KEY}/xml&quot;;
+
+	/**
+	 * The Constant
+	 * HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 */
+	private static final String HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = &quot;http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl&quot;;
+
+	/** The Constant ID_KEY. */
+	private static final String ID_KEY = &quot;${ID_KEY}&quot;;
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L55">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenCommitteeProposalApiImpl.class);</span>
+
+	/**
+	 * The Constant
+	 * PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE.
+	 */
+	private static final String PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE = &quot;Problem getting committee proposal for id:{} from data.riksdagen.se&quot;;
+
+	/** The riksdagen committee proposal marshaller. */
+	@Autowired
+	@Qualifier(&quot;riksdagenCommitteeProposalMarshaller&quot;)
+	private Unmarshaller riksdagenCommitteeProposalMarshaller;
+
+	/** The xml agent. */
+	private final XmlAgent xmlAgent;
+
+	/**
+	 * Instantiates a new riksdagen committee proposal api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
+	 */
+	@Autowired
+	public RiksdagenCommitteeProposalApiImpl(final XmlAgent xmlAgent) {
+<span class="fc" id="L79">		super();</span>
+<span class="fc" id="L80">		this.xmlAgent = xmlAgent;</span>
+<span class="fc" id="L81">	}</span>
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi#getCommitteeProposal(java.lang.String)
+	 */
+	@Override
+	public CommitteeProposalComponentData getCommitteeProposal(final String id) throws DataFailureException {
+		try {
+<span class="fc" id="L89">			final String url = COMMITTE_PROPOSAL.replace(ID_KEY, id);</span>
+<span class="fc" id="L90">			return ((JAXBElement&lt;CommitteeProposalComponentData&gt;) xmlAgent.unmarshallXml(</span>
+					riksdagenCommitteeProposalMarshaller, url,
+<span class="fc" id="L92">					HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
+<span class="fc" id="L93">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L94">			LOGGER.warn(PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);</span>
+<span class="fc" id="L95">			throw new DataFailureException(e);</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
