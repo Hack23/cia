@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentContainerElement_,3,0,0,0,1,0,1,0,1,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentType,384,0,4,0,40,0,6,0,4,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,RoundtripTest,0,7,0,0,0,3,0,3,0,3
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentElement,1871,0,70,0,438,0,139,0,104,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentSubType,120,0,4,0,16,0,6,0,4,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentContainerElement,836,0,54,0,190,0,75,0,48,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,DocumentElement_,3,0,0,0,1,0,1,0,1,0
+model.external.riksdagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.dokumentlista.impl,ObjectFactory,26,0,0,0,6,0,5,0,5,0

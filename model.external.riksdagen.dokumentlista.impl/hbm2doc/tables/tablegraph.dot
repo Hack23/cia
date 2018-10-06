@@ -1,0 +1,40 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node DOCUMENT_CONTAINER_ELEMENT */
+  DOCUMENT_CONTAINER_ELEMENT [ label = "{ DOCUMENT_CONTAINER_ELEMENT| <HJID>HJID\l | <CREATED>CREATED\l | <DATUM>DATUM\l | <DEBUG>DEBUG\l | <DOCUMENT_VERSION>DOCUMENT_VERSION\l | <HITS>HITS\l | <HITS_FROM>HITS_FROM\l | <HITS_TO>HITS_TO\l | <NEXT_PAGE>NEXT_PAGE\l | <PAGE>PAGE\l | <TOTAL_PAGES>TOTAL_PAGES\l | <WARNING>WARNING\l }" ]  
+  
+  /* edges/nodes for DOCUMENT_CONTAINER_ELEMENT */
+  /* Node DOCUMENT_ELEMENT */
+  DOCUMENT_ELEMENT [ label = "{ DOCUMENT_ELEMENT| <ID>ID\l | <COMMITTEE_REPORT_URL_XML>COMMITTEE_REPORT_URL_XML\l | <CREATED_DATE>CREATED_DATE\l | <DATABASE_SOURCE>DATABASE_SOURCE\l | <DEBATE_NAME>DEBATE_NAME\l | <DOC_TYPE>DOC_TYPE\l | <DOCUMENT_FORMAT>DOCUMENT_FORMAT\l | <DOCUMENT_NAME>DOCUMENT_NAME\l | <DOCUMENT_STATUS_URL_XML>DOCUMENT_STATUS_URL_XML\l | <DOCUMENT_TYPE>DOCUMENT_TYPE\l | <DOCUMENT_URL_HTML>DOCUMENT_URL_HTML\l | <DOCUMENT_URL_TEXT>DOCUMENT_URL_TEXT\l | <DOMAIN_ORG>DOMAIN_ORG\l | <HIT>HIT\l | <KALL_ID>KALL_ID\l | <LABEL>LABEL\l | <LANG>LANG\l | <MADE_PUBLIC_DATE>MADE_PUBLIC_DATE\l | <NOTE>NOTE\l | <NOTE_TITLE>NOTE_TITLE\l | <NUMBER_VALUE>NUMBER_VALUE\l | <ORG>ORG\l | <ORIGIN>ORIGIN\l | <RELATED_ID>RELATED_ID\l | <RM>RM\l | <STATUS>STATUS\l | <SUB_TITLE>SUB_TITLE\l | <SUB_TYPE>SUB_TYPE\l | <SUMMARY>SUMMARY\l | <SYSTEM_DATE>SYSTEM_DATE\l | <TEMP_LABEL>TEMP_LABEL\l | <TITLE>TITLE\l | <DOKUMENT_DOCUMENT_CONTAINER__0>DOKUMENT_DOCUMENT_CONTAINER__0\l }" ]  
+  
+  /* edges/nodes for DOCUMENT_ELEMENT */
+     DOCUMENT_ELEMENT -> DOCUMENT_CONTAINER_ELEMENT [ 
+        label="FK86m6a302xfuxpgc09kfpap41b" 
+        ]
+
+}
+
