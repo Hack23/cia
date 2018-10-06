@@ -1,0 +1,98 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountriesElement| page\l pages\l perPage\l total\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountriesElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement [ 
+        label="country" 
+        ]
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountryElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountryElement| adminregion\l capitalCity\l countryName\l id\l incomeLevel\l iso2Code\l latitude\l lendingType\l longitude\l region\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountryElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.countries.impl.CountryElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion [ 
+        label="adminregion" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.Adminregion| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion */
+     
+     
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel [ 
+        label="incomeLevel" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.IncomeLevel| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel */
+     
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType [ 
+        label="lendingType" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.LendingType| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType */
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region [ 
+        label="region" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.Region| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region */
+     
+     
+     
+
+}
+
