@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SankeyChart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Web-Widgets</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.widgets.charts</a> &gt; <span class="el_source">SankeyChart.java</span></div><h1>SankeyChart.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.widgets.charts;
+
+import java.util.UUID;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.vaadin.annotations.JavaScript;
+import com.vaadin.ui.AbstractJavaScriptComponent;
+
+/**
+ * The Class SankeyChart.
+ */
+@JavaScript({ &quot;https://www.gstatic.com/charts/loader.js&quot;, &quot;SankeyChart.js&quot; })
+public final class SankeyChart extends AbstractJavaScriptComponent {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The my id. */
+	private String myId;
+
+	/**
+	 * Instantiates a new sankey chart.
+	 */
+<span class="fc" id="L44">	public SankeyChart() {</span>
+<span class="fc" id="L45">		myId = &quot;gBarChartComponent&quot; + UUID.randomUUID().toString();</span>
+<span class="fc" id="L46">		callFunction(&quot;setId&quot;, myId);</span>
+<span class="fc" id="L47">		setSizeFull();</span>
+<span class="fc" id="L48">		setHeight(&quot;100%&quot;);</span>
+<span class="fc" id="L49">		setId(myId);</span>
+<span class="fc" id="L50">		getState().myId=myId;</span>
+<span class="fc" id="L51">	}</span>
+
+	@Override
+	protected SankeyChartState getState() {
+<span class="fc" id="L55">		return (SankeyChartState) super.getState();</span>
+	}
+
+	/**
+	 * Adds the data row.
+	 *
+	 * @param from
+	 *            the from
+	 * @param to
+	 *            the to
+	 * @param weight
+	 *            the weight
+	 */
+	public void addDataRow(final String from, final String to, int weight) {
+<span class="nc" id="L69">		getState().addDataRow(from, to, weight);</span>
+<span class="nc" id="L70">	}</span>
+
+	/**
+	 * Draw chart.
+	 */
+	public void drawChart() {
+<span class="nc" id="L76">		callFunction(&quot;doDraw&quot;);</span>
+<span class="nc" id="L77">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L81">		return HashCodeBuilder.reflectionHashCode(this, false);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc" id="L86">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
