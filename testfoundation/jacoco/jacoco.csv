@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+testfoundation,com.hack23.cia.testfoundation,AbstractSystemIntegrationTest,0,3,0,0,0,2,0,1,0,1
+testfoundation,com.hack23.cia.testfoundation,AbstractUnitTest,0,3,0,0,0,2,0,1,0,1
+testfoundation,com.hack23.cia.testfoundation,Parallelized,0,10,0,0,0,3,0,1,0,1
+testfoundation,com.hack23.cia.testfoundation,AbstractFunctionalIntegrationTest,0,3,0,0,0,2,0,1,0,1
+testfoundation,com.hack23.cia.testfoundation,AbstractUnmarshallXmlTest,0,31,0,0,0,6,0,2,0,2
+testfoundation,com.hack23.cia.testfoundation,AbstractTest,0,3,0,0,0,2,0,1,0,1
+testfoundation,com.hack23.cia.testfoundation,AbstractTestInstance,0,10,0,0,0,5,0,2,0,2
