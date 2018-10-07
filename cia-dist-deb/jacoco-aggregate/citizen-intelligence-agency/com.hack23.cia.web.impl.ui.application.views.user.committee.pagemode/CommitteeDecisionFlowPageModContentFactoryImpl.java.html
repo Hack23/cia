@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeDecisionFlowPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeDecisionFlowPageModContentFactoryImpl.java</span></div><h1>CommitteeDecisionFlowPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DecisionFlowValueChangeListener;
+import com.hack23.cia.web.widgets.charts.SankeyChart;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
+ */
+@Component
+public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+
+	/** The Constant PARLIAMENT_DECISION_FLOW. */
+	private static final String COMMITTEE_DECISION_FLOW = &quot;Committee decision flow&quot;;
+
+	@Autowired
+	private DecisionFlowChartManager decisionFlowChartManager;
+
+	/**
+	 * Instantiates a new parliament decision flow page mod content factory
+	 * impl.
+	 */
+	public CommitteeDecisionFlowPageModContentFactoryImpl() {
+<span class="nc" id="L65">		super();</span>
+<span class="nc" id="L66">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L70" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L77">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L78">		final String pageId = getPageId(parameters);</span>
+
+<span class="nc" id="L80">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="nc" id="L81">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+
+<span class="nc" id="L83">		String selectedYear = &quot;2017/18&quot;;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L85">			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));</span>
+		}
+
+<span class="nc" id="L88">		final ComboBox&lt;String&gt; comboBox = new ComboBox&lt;&gt;(&quot;Select year&quot;, Collections.unmodifiableList(</span>
+<span class="nc" id="L89">				Arrays.asList(&quot;2017/18&quot;, &quot;2016/17&quot;, &quot;2015/16&quot;, &quot;2014/15&quot;, &quot;2013/14&quot;, &quot;2012/13&quot;, &quot;2011/12&quot;, &quot;2010/11&quot;)));</span>
+<span class="nc" id="L90">		panelContent.addComponent(comboBox);</span>
+<span class="nc" id="L91">		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);</span>
+<span class="nc" id="L92">		comboBox.setSelectedItem(selectedYear);</span>
+		
+<span class="nc" id="L94">		comboBox.addValueChangeListener(new DecisionFlowValueChangeListener(NAME,pageId));</span>
+
+<span class="nc" id="L96">		final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap = getApplicationManager()</span>
+<span class="nc" id="L97">				.getDataContainer(ViewRiksdagenCommittee.class).getAll().stream()</span>
+<span class="nc" id="L98">				.collect(Collectors.groupingBy(c -&gt; c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));</span>
+
+<span class="nc" id="L100">		final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee,</span>
+<span class="nc" id="L101">				committeeMap, comboBox.getSelectedItem().orElse(selectedYear));</span>
+<span class="nc" id="L102">		panelContent.addComponent(chart);</span>
+<span class="nc" id="L103">		panelContent.setExpandRatio(chart, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="nc" id="L107">		panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(COMMITTEE_DECISION_FLOW).toString());</span>
+
+<span class="nc" id="L109">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

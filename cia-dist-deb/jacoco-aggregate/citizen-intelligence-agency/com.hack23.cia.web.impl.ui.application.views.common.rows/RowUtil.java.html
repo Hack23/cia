@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RowUtil.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.rows</a> &gt; <span class="el_source">RowUtil.java</span></div><h1>RowUtil.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.rows;
+
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.jarektoro.responsivelayout.ResponsiveLayout;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.server.Responsive;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Label;
+
+/**
+ * The Class RowUtil.
+ */
+<span class="nc" id="L35">public final class RowUtil {</span>
+
+	/** The Constant TITLE. */
+	private static final String TITLE = &quot;title&quot;;
+
+	/** The Constant ITEMBOX. */
+	private static final String ITEMBOX = &quot;itembox&quot;;
+
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/**
+	 * Creates the row item.
+	 *
+	 * @param row         the row
+	 * @param button      the button
+	 * @param description the description
+	 */
+	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
+<span class="nc" id="L63">		final CssLayout layout = new CssLayout();</span>
+<span class="nc" id="L64">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="nc" id="L65">		Responsive.makeResponsive(layout);</span>
+<span class="nc" id="L66">		layout.setSizeUndefined();</span>
+
+<span class="nc" id="L68">		button.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L69">		button.addStyleName(TITLE);</span>
+<span class="nc" id="L70">		Responsive.makeResponsive(button);</span>
+<span class="nc" id="L71">		button.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L72">		layout.addComponent(button);</span>
+
+<span class="nc" id="L74">		final Label descriptionLabel = new Label(description);</span>
+<span class="nc" id="L75">		descriptionLabel.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L76">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="nc" id="L77">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L78">		layout.addComponent(descriptionLabel);</span>
+
+<span class="nc" id="L80">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="nc" id="L81">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="nc" id="L82">	}</span>
+
+	/**
+	 * Creates the row component.
+	 *
+	 * @param row         the row
+	 * @param component   the component
+	 * @param description the description
+	 */
+	public static void createRowComponent(final ResponsiveRow row, final Component component,
+			final String description) {
+<span class="nc" id="L93">		final CssLayout layout = new CssLayout();</span>
+<span class="nc" id="L94">		layout.addStyleName(&quot;.v-layout-content-pagemode-panel-level2&quot;);</span>
+<span class="nc" id="L95">		Responsive.makeResponsive(layout);</span>
+<span class="nc" id="L96">		layout.setSizeUndefined();</span>
+
+<span class="nc" id="L98">		final Label descriptionLabel = new Label(description);</span>
+<span class="nc" id="L99">		descriptionLabel.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L100">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="nc" id="L101">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L102">		layout.addComponent(descriptionLabel);</span>
+
+<span class="nc" id="L104">		component.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L105">		component.addStyleName(TITLE);</span>
+<span class="nc" id="L106">		Responsive.makeResponsive(component);</span>
+<span class="nc" id="L107">		component.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L108">		layout.addComponent(component);</span>
+
+<span class="nc" id="L110">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="nc" id="L111">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="nc" id="L112">	}</span>
+
+	/**
+	 * Creates the grid layout.
+	 *
+	 * @param panelContent the panel content
+	 * @return the responsive row
+	 */
+	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
+<span class="nc" id="L121">		final ResponsiveLayout layout = new ResponsiveLayout();</span>
+<span class="nc" id="L122">		Responsive.makeResponsive(layout);</span>
+<span class="nc" id="L123">		layout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+<span class="nc" id="L124">		layout.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L125">		layout.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L126">		panelContent.addComponent(layout);</span>
+<span class="nc" id="L127">		panelContent.setExpandRatio(layout, ContentRatio.LARGE);</span>
+<span class="nc" id="L128">		return layout.addRow();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

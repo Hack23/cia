@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianGhantChartManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PoliticianGhantChartManagerImpl.java</span></div><h1>PoliticianGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Optional;
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianGhantChartManager;
+
+/**
+ * The Class PoliticianGhantChartManagerImpl.
+ */
+@Service
+public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartManagerImpl&lt;AssignmentData&gt;
+		implements PoliticianGhantChartManager {
+
+	/** The Constant DEPARTEMENT. */
+	private static final String DEPARTEMENT = &quot;Departement&quot;;
+
+	/** The Constant LEDIG. */
+	private static final String LEDIG = &quot;LEDIG&quot;;
+
+	/** The Constant KAMMARUPPDRAG. */
+	private static final String KAMMARUPPDRAG = &quot;kammaruppdrag&quot;;
+
+	/**
+	 * Instantiates a new politician ghant chart manager impl.
+	 */
+	public PoliticianGhantChartManagerImpl() {
+<span class="nc" id="L51">		super();</span>
+<span class="nc" id="L52">	}</span>
+
+	@Override
+	protected Comparator&lt;AssignmentData&gt; getComparator() {
+<span class="nc" id="L56">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+	}
+
+	@Override
+	protected Function&lt;AssignmentData, String&gt; getRoleMapping() {
+<span class="nc" id="L61">		return new RoleMapping();</span>
+	}
+
+	@Override
+	protected StepMapping&lt;AssignmentData&gt; getStepMapping() {
+<span class="nc" id="L66">		return new StepMapping&lt;AssignmentData&gt;() {</span>
+
+			@Override
+			public Date getFromDate(final AssignmentData t) {
+<span class="nc" id="L70">				return t.getFromDate();</span>
+			}
+
+			@Override
+			public Date getToDate(final AssignmentData t) {
+<span class="nc" id="L75">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
+			}
+
+			@Override
+			public String getRoleCode(final AssignmentData t) {
+<span class="nc" id="L80">				return t.getRoleCode();</span>
+			}
+
+			@Override
+			public String getOrg(final AssignmentData t) {
+<span class="nc" id="L85">				return t.getDetail();</span>
+			}
+
+			@Override
+			public String getParty(final AssignmentData t) {
+<span class="nc" id="L90">				return t.getOrgCode();</span>
+			}
+
+			@Override
+			public String getBackgroundColor(final AssignmentData t) {
+				String color;
+
+<span class="nc" id="L97">				final String parliamentType = KAMMARUPPDRAG;</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">				if (LEDIG.equalsIgnoreCase(t.getStatus())) {</span>
+<span class="nc" id="L100">					color = &quot;e3e3e3&quot;;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">				} else if (parliamentType.equalsIgnoreCase(t.getAssignmentType())) {</span>
+<span class="nc" id="L102">					color = &quot;0eab76&quot;;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">				} else if (DEPARTEMENT.equalsIgnoreCase(t.getAssignmentType())) {</span>
+
+<span class="nc" id="L105">					color = &quot;ded858&quot;;</span>
+				} else {
+<span class="nc" id="L107">					color = &quot;3271c8&quot;;</span>
+				}
+
+<span class="nc" id="L110">				return color;</span>
+			}
+
+			@Override
+			public Object getFirstName(final AssignmentData t) {
+<span class="nc" id="L115">				return &quot;&quot;;</span>
+			}
+
+			@Override
+			public Object getLastName(final AssignmentData t) {
+<span class="nc" id="L120">				return &quot;&quot;;</span>
+			}
+
+		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function&lt;AssignmentData, String&gt; {
+
+		/** The Constant RIKSDAGSLEDAMOT. */
+		private static final String RIKSDAGSLEDAMOT = &quot;Riksdagsledamot&quot;;
+
+		@Override
+		public String apply(final AssignmentData t) {
+<span class="nc bnc" id="L136" title="All 2 branches missed.">			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {</span>
+<span class="nc" id="L137">				return RIKSDAGSLEDAMOT;</span>
+			} else {
+<span class="nc" id="L139">				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();</span>
+			}
+
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

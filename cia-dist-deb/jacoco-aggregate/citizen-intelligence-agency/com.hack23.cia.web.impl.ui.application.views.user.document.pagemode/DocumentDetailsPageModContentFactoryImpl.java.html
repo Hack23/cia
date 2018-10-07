@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DocumentDetailsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentDetailsPageModContentFactoryImpl.java</span></div><h1>DocumentDetailsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class DocumentDetailsPageModContentFactoryImpl.
+ */
+@Component
+public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
+
+<span class="nc" id="L46">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot; };</span>
+<span class="nc" id="L47">	private static final String[] COLUMN_ORDER = new String[] { &quot;code&quot;, &quot;detailName&quot;, &quot;text&quot; };</span>
+	private static final String DOCUMENT_DETAILS2 = &quot;Document details&quot;;
+	/** The Constant DOCUMENT_DETAILS. */
+	private static final String DOCUMENT_DETAILS = &quot;Document Details&quot;;
+
+	/**
+	 * Instantiates a new document details page mod content factory impl.
+	 */
+	public DocumentDetailsPageModContentFactoryImpl() {
+<span class="nc" id="L56">		super();</span>
+<span class="nc" id="L57">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L61" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDETAILS.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="nc" id="L69">		final String pageId = getPageId(parameters);</span>
+
+<span class="nc" id="L71">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+
+<span class="nc" id="L73">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="nc" id="L74">				.getDataContainer(DocumentStatusContainer.class);</span>
+
+<span class="nc" id="L76">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="nc" id="L77">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+						DocumentData.class, DocumentData_.id, pageId);
+
+<span class="nc" id="L80">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DETAILS);</span>
+
+<span class="nc bnc" id="L82" title="All 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentDetailContainer() != null</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {</span>
+
+<span class="nc" id="L85">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentDetailData.class,</span>
+<span class="nc" id="L86">					documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList(), DOCUMENT_DETAILS2,</span>
+					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
+		}
+
+<span class="nc" id="L90">		panel.setContent(panelContent);</span>
+<span class="nc" id="L91">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="nc" id="L93">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

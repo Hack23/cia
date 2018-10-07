@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentOutcomeChartDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">GovernmentOutcomeChartDataManagerImpl.java</span></div><h1>GovernmentOutcomeChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class GovernmentOutcomeChartDataManagerImpl.
+ */
+@Service
+public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements GovernmentOutcomeChartDataManager {
+
+	/** The esv api. */
+	@Autowired
+	private EsvApi esvApi;
+
+	/**
+	 * Instantiates a new government outcome chart data manager impl.
+	 */
+	public GovernmentOutcomeChartDataManagerImpl() {
+<span class="nc" id="L52">		super();</span>
+<span class="nc" id="L53">	}</span>
+
+	@Override
+	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
+<span class="nc" id="L57">		final Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map = esvApi.getReport();</span>
+<span class="nc" id="L58">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="nc" id="L59">		final Series series = new Series();</span>
+
+<span class="nc" id="L61">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);</span>
+<span class="nc" id="L62">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		</span>
+
+<span class="nc" id="L64">		addChart(content, &quot;GovernmentOperationPeriodOutcome&quot;,</span>
+<span class="nc" id="L65">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L66">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+				true);
+
+<span class="nc" id="L69">	}</span>
+
+	private static void createPeriodData(final Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
+			final Series series) {
+<span class="nc" id="L73">		series.addSeries(new XYseries().setLabel(variables.toString()));</span>
+<span class="nc" id="L74">		dataSeries.newSeries();</span>
+		
+<span class="nc" id="L76">		final List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		</span>
+<span class="nc" id="L77">		Collections.sort(list);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		for (final GovernmentOperationPeriodOutcome entry : list) {</span>
+
+<span class="nc" id="L80">			dataSeries.add(entry.getPeriod() + &quot;-01&quot;, entry.getValue());</span>
+<span class="nc" id="L81">		}</span>
+<span class="nc" id="L82">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

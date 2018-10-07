@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractGhantChartManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">AbstractGhantChartManagerImpl.java</span></div><h1>AbstractGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.joda.time.DateTime;
+import org.tltv.gantt.Gantt;
+import org.tltv.gantt.client.shared.AbstractStep.CaptionMode;
+import org.tltv.gantt.client.shared.Resolution;
+import org.tltv.gantt.client.shared.Step;
+import org.tltv.gantt.client.shared.SubStep;
+
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class AbstractGhantChartManagerImpl.
+ *
+ * @param &lt;T&gt;
+ *            the generic type
+ */
+public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
+
+	/** The Constant PARTY_END_TAG. */
+	private static final char PARTY_END_TAG = ')';
+
+	/** The Constant PARTY_START_TAG. */
+	private static final String PARTY_START_TAG = &quot; (&quot;;
+
+	/** The Constant CONTENT_SEPARATOR. */
+	private static final char CONTENT_SEPARATOR = ' ';
+
+	/** The Constant FILTER_DATA_BEFORE_YEAR. */
+	private static final int FILTER_DATA_BEFORE_YEAR = 2000;
+
+	/**
+	 * Instantiates a new abstract ghant chart manager impl.
+	 */
+	public AbstractGhantChartManagerImpl() {
+<span class="nc" id="L69">		super();</span>
+<span class="nc" id="L70">	}</span>
+
+	/**
+	 * Creates the role ghant.
+	 *
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList            the assignment list
+	 */
+	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection&lt;T&gt; assignmentList) {
+
+<span class="nc" id="L80">		final Comparator&lt;T&gt; compare = getComparator();</span>
+
+<span class="nc" id="L82">		final List&lt;T&gt; list = assignmentList.stream().filter(</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">				(final T x) -&gt; new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() &gt; FILTER_DATA_BEFORE_YEAR)</span>
+<span class="nc" id="L84">				.collect(Collectors.toList());</span>
+
+<span class="nc" id="L86">		Collections.sort(list, compare);</span>
+
+<span class="nc" id="L88">		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());</span>
+<span class="nc" id="L89">		roleSummaryLayoutTabsheet.addComponent(createGantt);</span>
+<span class="nc" id="L90">		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);</span>
+
+<span class="nc" id="L92">	}</span>
+
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
+	protected abstract Comparator&lt;T&gt; getComparator();
+
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
+	protected abstract Function&lt;T, String&gt; getRoleMapping();
+
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
+	protected abstract StepMapping&lt;T&gt; getStepMapping();
+	
+
+	/**
+	 * Creates the generic gantt.
+	 *
+	 * @param assignmentList
+	 *            the assignment list
+	 * @param roleMapping
+	 *            the role mapping
+	 * @param stepMapping
+	 *            the step mapping
+	 * @return the gantt
+	 */
+	private Gantt createGenericGantt(final List&lt;T&gt; assignmentList, final Function&lt;T, String&gt; roleMapping,
+			final StepMapping&lt;T&gt; stepMapping) {
+
+<span class="nc" id="L130">		final Map&lt;String, List&lt;T&gt;&gt; assignmentListMap = assignmentList.stream()</span>
+<span class="nc" id="L131">				.collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));</span>
+
+<span class="nc" id="L133">		final Gantt gantt = createGantt();</span>
+
+<span class="nc bnc" id="L135" title="All 2 branches missed.">		if (!assignmentList.isEmpty()) {</span>
+
+<span class="nc" id="L137">			gantt.setStartDate(stepMapping.getFromDate(assignmentList.get(0)));</span>
+<span class="nc" id="L138">			gantt.setEndDate(</span>
+<span class="nc" id="L139">					stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentList.get(assignmentList.size() - 1))));</span>
+
+<span class="nc bnc" id="L141" title="All 2 branches missed.">			for (final Entry&lt;String, List&lt;T&gt;&gt; entry : entriesSortedByValues(assignmentListMap, stepMapping)) {</span>
+
+<span class="nc" id="L143">				final String stepName = entry.getKey();</span>
+
+<span class="nc" id="L145">				final Step step = new Step(stepName,CaptionMode.HTML);</span>
+<span class="nc" id="L146">				step.setDescription(stepName);</span>
+
+<span class="nc" id="L148">				final List&lt;T&gt; assignments = entry.getValue();</span>
+
+<span class="nc" id="L150">				Collections.sort(assignments, getComparator());</span>
+
+<span class="nc" id="L152">				addViewGenericRoleMemberToStep(stepName, step, assignments, stepMapping);</span>
+
+<span class="nc" id="L154">				gantt.addStep(step);</span>
+<span class="nc" id="L155">			}</span>
+		}
+
+<span class="nc" id="L158">		return gantt;</span>
+	}
+
+	/**
+	 * Entries sorted by values.
+	 *
+	 * @param map
+	 *            the map
+	 * @param stepMapping
+	 *            the step mapping
+	 * @return the sorted set
+	 */
+	private SortedSet&lt;Map.Entry&lt;String, List&lt;T&gt;&gt;&gt; entriesSortedByValues(final Map&lt;String, List&lt;T&gt;&gt; map,
+			final StepMapping&lt;T&gt; stepMapping) {
+<span class="nc" id="L172">		final Comparator&lt;? super Entry&lt;String, List&lt;T&gt;&gt;&gt; compare = (o1, o2) -&gt; {</span>
+
+<span class="nc" id="L174">			final Comparator&lt;T&gt; compare1 = (o11, o21) -&gt; {</span>
+<span class="nc" id="L175">				final int compareDate = stepMapping.getFromDate(o11).compareTo(stepMapping.getFromDate(o21));</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">				if (compareDate == 0) {</span>
+<span class="nc" id="L177">					final int compareType = stepMapping.getRoleCode(o11).compareTo(stepMapping.getRoleCode(o21));</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">					if (compareType == 0) {</span>
+<span class="nc" id="L179">						return stepMapping.getOrg(o11).compareTo(stepMapping.getOrg(o21));</span>
+					} else {
+<span class="nc" id="L181">						return compareType;</span>
+					}
+				}
+
+<span class="nc" id="L185">				return compareDate;</span>
+			};
+
+<span class="nc" id="L188">			Collections.sort(o1.getValue(), compare1);</span>
+<span class="nc" id="L189">			Collections.sort(o2.getValue(), compare1);</span>
+
+<span class="nc" id="L191">			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));</span>
+		};
+
+<span class="nc" id="L194">		final SortedSet&lt;Map.Entry&lt;String, List&lt;T&gt;&gt;&gt; sortedEntries = new TreeSet&lt;&gt;(compare);</span>
+<span class="nc" id="L195">		sortedEntries.addAll(map.entrySet());</span>
+<span class="nc" id="L196">		return sortedEntries;</span>
+	}
+
+	/**
+	 * Adds the view generic role member to step.
+	 *
+	 * @param stepName
+	 *            the step name
+	 * @param step
+	 *            the step
+	 * @param assignments
+	 *            the assignments
+	 * @param stepMapping
+	 *            the step mapping
+	 */
+	private void addViewGenericRoleMemberToStep(final String stepName, final Step step, final List&lt;T&gt; assignments,
+			final StepMapping&lt;T&gt; stepMapping) {
+
+<span class="nc bnc" id="L214" title="All 2 branches missed.">		for (final T assignmentData : assignments) {</span>
+
+<span class="nc" id="L216">			String subStepName = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L218" title="All 2 branches missed.">			if (stepMapping.getRoleCode(assignmentData) != null) {</span>
+<span class="nc" id="L219">				subStepName = new StringBuilder().append(stepMapping.getFirstName(assignmentData))</span>
+<span class="nc" id="L220">						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(assignmentData))</span>
+<span class="nc" id="L221">						.append(PARTY_START_TAG).append(stepMapping.getParty(assignmentData)).append(PARTY_END_TAG)</span>
+<span class="nc" id="L222">						.toString();</span>
+			}
+
+<span class="nc" id="L225">			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);</span>
+<span class="nc" id="L226">			sameRoleSubStep.setDescription(stepName + '.' + subStepName);			</span>
+<span class="nc" id="L227">			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));</span>
+
+<span class="nc" id="L229">			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());</span>
+<span class="nc" id="L230">			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());</span>
+
+<span class="nc" id="L232">			step.addSubStep(sameRoleSubStep);</span>
+<span class="nc" id="L233">		}</span>
+<span class="nc" id="L234">	}</span>
+
+	/**
+	 * Strip dates after current date.
+	 *
+	 * @param toDate
+	 *            the to date
+	 * @return the date
+	 */
+	private static final Date stripDatesAfterCurrentDate(final Date toDate) {
+<span class="nc" id="L244">		final DateTime currentTime = new DateTime();</span>
+
+<span class="nc bnc" id="L246" title="All 2 branches missed.">		if (currentTime.isBefore(toDate.getTime())) {</span>
+<span class="nc" id="L247">			return currentTime.plusDays(1).toDate();</span>
+		} else {
+<span class="nc" id="L249">			return toDate;</span>
+		}
+	}
+
+	/**
+	 * Creates the gantt.
+	 *
+	 * @return the gantt
+	 */
+	private static final Gantt createGantt() {
+<span class="nc" id="L259">		final Gantt gantt = new Gantt();</span>
+<span class="nc" id="L260">		gantt.setSizeFull();</span>
+<span class="nc" id="L261">		gantt.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L262">		gantt.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L263">		gantt.setResizableSteps(false);</span>
+<span class="nc" id="L264">		gantt.setMovableSteps(false);</span>
+<span class="nc" id="L265">		gantt.setResolution(Resolution.Week);</span>
+<span class="nc" id="L266">		return gantt;</span>
+	}
+
+	/**
+	 * The Interface StepMapping.
+	 *
+	 * @param &lt;T&gt;
+	 *            the generic type
+	 */
+	public interface StepMapping&lt;T&gt; {
+
+		/**
+		 * Gets the from date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the from date
+		 */
+		Date getFromDate(T t);
+
+		/**
+		 * Gets the to date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the to date
+		 */
+		Date getToDate(T t);
+
+		/**
+		 * Gets the role code.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the role code
+		 */
+		String getRoleCode(T t);
+
+		/**
+		 * Gets the org.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the org
+		 */
+		String getOrg(T t);
+
+		/**
+		 * Gets the party.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the party
+		 */
+		String getParty(T t);
+
+		/**
+		 * Gets the background color.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the background color
+		 */
+		String getBackgroundColor(T t);
+
+		/**
+		 * Gets the first name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the first name
+		 */
+		Object getFirstName(T assignmentData);
+
+		/**
+		 * Gets the last name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the last name
+		 */
+		Object getLastName(T assignmentData);
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

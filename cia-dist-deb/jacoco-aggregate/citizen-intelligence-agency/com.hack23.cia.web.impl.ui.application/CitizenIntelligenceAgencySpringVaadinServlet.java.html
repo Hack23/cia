@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CitizenIntelligenceAgencySpringVaadinServlet.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">CitizenIntelligenceAgencySpringVaadinServlet.java</span></div><h1>CitizenIntelligenceAgencySpringVaadinServlet.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.server.DefaultUIProvider;
+import com.vaadin.server.ServiceException;
+import com.vaadin.server.SessionInitEvent;
+import com.vaadin.server.SessionInitListener;
+import com.vaadin.server.UICreateEvent;
+import com.vaadin.server.UIProvider;
+import com.vaadin.server.VaadinServletService;
+import com.vaadin.server.VaadinSession;
+import com.vaadin.spring.internal.SpringViewDisplayRegistrationBean;
+import com.vaadin.spring.internal.UIID;
+import com.vaadin.spring.internal.UIScopeImpl;
+import com.vaadin.spring.internal.VaadinSessionScope;
+import com.vaadin.spring.server.SpringUIProvider;
+import com.vaadin.spring.server.SpringVaadinServlet;
+import com.vaadin.ui.UI;
+import com.vaadin.util.CurrentInstance;
+
+/**
+ * The Class CitizenIntelligenceAgencySpringVaadinServlet.
+ */
+@WebServlet(value = &quot;/*&quot;, loadOnStartup = 2, asyncSupported = true)
+@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = &quot;com.hack23.cia.web.widgets.WebWidgetSet&quot;)
+<span class="nc" id="L47">public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {</span>
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void servletInitialized() throws ServletException {
+<span class="nc" id="L54">		VaadinServletService service = getService();</span>
+<span class="nc" id="L55">		service.addSessionInitListener(new SessionInitListener() {</span>
+
+			private static final long serialVersionUID = -6307820453486668084L;
+
+			@Override
+			public void sessionInit(SessionInitEvent sessionInitEvent) throws ServiceException {
+<span class="nc" id="L61">				final VaadinSession session = sessionInitEvent.getSession();</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">				for (UIProvider provider : session.getUIProviders()) {</span>
+					// use canonical names as these may have been loaded with
+					// different classloaders
+<span class="nc bnc" id="L65" title="All 2 branches missed.">					if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
+<span class="nc" id="L66">						session.removeUIProvider(provider);</span>
+					}
+<span class="nc" id="L68">				}</span>
+
+<span class="nc" id="L70">				session.addUIProvider(new CustomSpringUIProvider(session));</span>
+<span class="nc" id="L71">			}</span>
+		});
+<span class="nc" id="L73">		service.addSessionDestroyListener(event -&gt; {</span>
+<span class="nc" id="L74">			VaadinSession session = event.getSession();</span>
+<span class="nc" id="L75">			UIScopeImpl.cleanupSession(session);</span>
+<span class="nc" id="L76">			VaadinSessionScope.cleanupSession(session);</span>
+<span class="nc" id="L77">		});</span>
+<span class="nc" id="L78">	}</span>
+
+	/**
+	 * The Class CustomSpringUIProvider.
+	 */
+	private static class CustomSpringUIProvider extends SpringUIProvider {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The spring view display registration bean. */
+<span class="nc" id="L89">		private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();</span>
+
+		/**
+		 * Instantiates a new custom spring UI provider.
+		 *
+		 * @param vaadinSession the vaadin session
+		 */
+		public CustomSpringUIProvider(VaadinSession vaadinSession) {
+<span class="nc" id="L97">			super(vaadinSession);</span>
+<span class="nc" id="L98">		}</span>
+
+		@Override
+		public UI createInstance(UICreateEvent event) {
+<span class="nc" id="L102">			final Class&lt;UIID&gt; key = UIID.class;</span>
+<span class="nc" id="L103">			final UIID identifier = new UIID(event);</span>
+<span class="nc" id="L104">			CurrentInstance.set(key, identifier);</span>
+			try {
+<span class="nc" id="L106">				logger.debug(&quot;Creating a new UI bean of class [{}] with identifier [{}]&quot;,</span>
+<span class="nc" id="L107">						event.getUIClass().getCanonicalName(), identifier);</span>
+<span class="nc" id="L108">				UI ui = getWebApplicationContext().getBean(event.getUIClass());</span>
+
+<span class="nc" id="L110">				getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());</span>
+
+<span class="nc" id="L112">				configureNavigator(ui);</span>
+<span class="nc" id="L113">				return ui;</span>
+			} finally {
+<span class="nc" id="L115">				CurrentInstance.set(key, null);</span>
+			}
+		}
+
+		@Override
+		protected Object findSpringViewDisplay(UI ui) {
+<span class="nc" id="L121">			return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());</span>
+		}
+
+		/**
+		 * Gets the spring view display registration bean.
+		 *
+		 * @return the spring view display registration bean
+		 */
+		private SpringViewDisplayRegistrationBean getSpringViewDisplayRegistrationBean() {
+<span class="nc" id="L130">			return springViewDisplayRegistrationBean;</span>
+
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

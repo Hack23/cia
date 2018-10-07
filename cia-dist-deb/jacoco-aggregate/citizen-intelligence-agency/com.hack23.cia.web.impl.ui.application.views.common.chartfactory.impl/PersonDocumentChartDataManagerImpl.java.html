@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PersonDocumentChartDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PersonDocumentChartDataManagerImpl.java</span></div><h1>PersonDocumentChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang.StringUtils;
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class PersonDocumentChartDataManagerImpl.
+ */
+@Service
+public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements PersonDocumentChartDataManager {
+
+	private static final String DOCUMENT_HISTORY = &quot;Document history&quot;;
+
+	/** The Constant NO_INFO. */
+	private static final String NO_INFO = &quot;NoInfo&quot;;
+
+	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
+	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = &quot;missing data for key:{}&quot;;
+
+	/** The Constant EMPTY_STRING. */
+	private static final String EMPTY_STRING = &quot;&quot;;
+
+	/** The Constant UNDER_SCORE. */
+	private static final String UNDER_SCORE = &quot;_&quot;;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L66">	private static final Logger LOGGER = LoggerFactory.getLogger(PersonDocumentChartDataManagerImpl.class);</span>
+
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = &quot;dd-MMM-yyyy&quot;;
+
+	/**
+	 * Instantiates a new person document chart data manager impl.
+	 */
+	public PersonDocumentChartDataManagerImpl() {
+<span class="nc" id="L75">		super();</span>
+<span class="nc" id="L76">	}</span>
+
+	/**
+	 * Gets the view riksdagen politician document daily summary map.
+	 *
+	 * @return the view riksdagen politician document daily summary map
+	 */
+	private Map&lt;String, List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt;&gt; getViewRiksdagenPoliticianDocumentDailySummaryMap() {
+<span class="nc" id="L84">		final DataContainer&lt;ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId&gt; politicianBallotSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L85">				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);</span>
+
+<span class="nc" id="L87">		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
+<span class="nc" id="L88">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPersonId()));</span>
+	}
+
+	@Override
+	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout content, final String personId) {
+
+<span class="nc" id="L94">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+
+<span class="nc" id="L96">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L98">		final Series series = new Series();</span>
+
+<span class="nc" id="L100">		final Map&lt;String, List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt;&gt; allMap = getViewRiksdagenPoliticianDocumentDailySummaryMap();</span>
+
+<span class="nc" id="L102">		final List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt; itemList = allMap</span>
+<span class="nc" id="L103">				.get(personId.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());</span>
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">		if (itemList != null) {</span>
+
+<span class="nc" id="L107">			final Map&lt;String, List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt;&gt; map = itemList.parallelStream()</span>
+<span class="nc" id="L108">					.filter(Objects::nonNull).collect(Collectors</span>
+<span class="nc" id="L109">							.groupingBy(t -&gt; StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));</span>
+
+<span class="nc" id="L111">			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);</span>
+		}
+
+<span class="nc" id="L114">		addChart(content, DOCUMENT_HISTORY,</span>
+<span class="nc" id="L115">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L116">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
+				true);
+<span class="nc" id="L118">	}</span>
+
+	/**
+	 * Adds the document history by person data.
+	 *
+	 * @param simpleDateFormat the simple date format
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
+	 */
+	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat,
+			final DataSeries dataSeries, final Series series,
+			final Map&lt;String, List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt;&gt; map) {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewRiksdagenPoliticianDocumentDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+
+<span class="nc" id="L133">			series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+
+<span class="nc" id="L135">			dataSeries.newSeries();</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">			if (entry.getValue() != null) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {</span>
+<span class="nc" id="L138">					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());</span>
+<span class="nc" id="L139">				}</span>
+			} else {
+<span class="nc" id="L141">				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);</span>
+			}
+
+<span class="nc" id="L144">		}</span>
+<span class="nc" id="L145">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

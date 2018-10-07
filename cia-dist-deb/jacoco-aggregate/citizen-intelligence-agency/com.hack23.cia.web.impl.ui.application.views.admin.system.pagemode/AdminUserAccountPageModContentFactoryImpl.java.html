@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AdminUserAccountPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminUserAccountPageModContentFactoryImpl.java</span></div><h1>AdminUserAccountPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
+
+import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
+import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ManageUserAccountClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+
+
+/**
+ * The Class AdminUserAccountPageModContentFactoryImpl.
+ */
+@Component
+public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
+
+<span class="nc" id="L59">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;,</span>
+			&quot;numberOfVisits&quot; );
+
+<span class="nc" id="L62">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
+
+<span class="nc" id="L64">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
+
+<span class="nc" id="L66">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
+			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
+
+	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;
+
+	/** The Constant ADMIN_USERACCOUNT. */
+	private static final String ADMIN_USERACCOUNT = &quot;Admin Useraccount&quot;;
+
+	/** The Constant BUTTON_ID_PATTERN. */
+	private static final String BUTTON_ID_PATTERN = &quot;{0}.{1}&quot;;
+
+	/** The Constant BUTTON_PATTERN. */
+	private static final String BUTTON_PATTERN = &quot;Perform {0}&quot;;
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
+	
+	/**
+	 * Instantiates a new admin user account page mod content factory impl.
+	 */
+	public AdminUserAccountPageModContentFactoryImpl() {
+<span class="nc" id="L87">		super(NAME);</span>
+<span class="nc" id="L88">	}</span>
+
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L94">		final VerticalLayout content = createPanelContent();</span>
+
+<span class="nc" id="L96">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L97">		final int pageNr= getPageNr(parameters);</span>
+
+<span class="nc" id="L99">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+
+<span class="nc" id="L101">		LabelFactory.createHeader2Label(content,ADMIN_USERACCOUNT);</span>
+
+<span class="nc" id="L103">		final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L104">				.getDataContainer(UserAccount.class);</span>
+
+<span class="nc" id="L106">		final List&lt;UserAccount&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);</span>
+
+<span class="nc" id="L108">		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+
+<span class="nc" id="L110">		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,</span>
+				pageOrderBy,
+				USER_ACCOUNT,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
+
+
+<span class="nc bnc" id="L117" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+
+<span class="nc" id="L119">			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));</span>
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">			if (userAccount != null) {</span>
+
+<span class="nc" id="L123">				getFormFactory()</span>
+<span class="nc" id="L124">						.addFormPanelTextFields(content, userAccount, UserAccount.class,</span>
+								AS_LIST);
+		
+<span class="nc" id="L127">				final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L128">				overviewLayout.setSizeFull();</span>
+<span class="nc" id="L129">				content.addComponent(overviewLayout);</span>
+<span class="nc" id="L130">				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L132">				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+			
+<span class="nc bnc" id="L134" title="All 2 branches missed.">				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
+<span class="nc" id="L135">					final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
+<span class="nc" id="L136">					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="nc" id="L137">					request.setAccountOperation(accountOperation);</span>
+<span class="nc" id="L138">					request.setUserAcountId(userAccount.getUserId());</span>
+<span class="nc" id="L139">					final Button accountOperationButton = new Button(MessageFormat.format(BUTTON_PATTERN, accountOperation) , VaadinIcons.BULLSEYE);</span>
+<span class="nc" id="L140">					accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));</span>
+<span class="nc" id="L141">					accountOperationButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));</span>
+<span class="nc" id="L142">					RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
+				}
+
+				
+			}
+		}
+		
+<span class="nc" id="L149">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
+				NAME, null, pageId);
+
+<span class="nc" id="L152">		return content;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

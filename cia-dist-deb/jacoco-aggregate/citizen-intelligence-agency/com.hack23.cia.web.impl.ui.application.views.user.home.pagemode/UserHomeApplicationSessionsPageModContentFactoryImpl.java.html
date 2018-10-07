@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UserHomeApplicationSessionsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.home.pagemode</a> &gt; <span class="el_source">UserHomeApplicationSessionsPageModContentFactoryImpl.java</span></div><h1>UserHomeApplicationSessionsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class UserHomeApplicationSessionsPageModContentFactoryImpl.
+ */
+@Component
+public final class UserHomeApplicationSessionsPageModContentFactoryImpl
+		extends AbstractUserHomePageModContentFactoryImpl {
+
+<span class="nc" id="L55">	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] {</span>
+			new ListPropertyConverter(&quot;page&quot;, &quot;events&quot;, &quot;actionName&quot;) };
+
+<span class="nc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;hjid&quot;);
+
+<span class="nc" id="L61">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,</span>
+			&quot;sessionId&quot;, &quot;sessionType&quot;, &quot;userId&quot;, &quot;locale&quot; };
+
+<span class="nc" id="L64">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;operatingSystem&quot;,</span>
+			&quot;ipInformation&quot;, &quot;events&quot;, &quot;userAgentInformation&quot; };
+
+	private static final String APPLICATION_SESSION = &quot;ApplicationSession&quot;;
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = &quot;Userhome:&quot;;
+
+	/** The Constant SECURITY_SETTINGS. */
+	private static final String USER_VISITS = &quot;User Visits&quot;;
+
+	/** The user home menu item factory. */
+	@Autowired
+	private UserHomeMenuItemFactory userHomeMenuItemFactory;
+
+	/**
+	 * Instantiates a new user home security settings page mod content factory impl.
+	 */
+	public UserHomeApplicationSessionsPageModContentFactoryImpl() {
+<span class="nc" id="L83">		super();</span>
+<span class="nc" id="L84">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L88" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.USER_VISITS.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L94">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="nc" id="L96">		final String pageId = getPageId(parameters);</span>
+
+<span class="nc" id="L98">		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+
+<span class="nc" id="L100">		LabelFactory.createHeader2Label(panelContent, USER_VISITS);</span>
+
+<span class="nc" id="L102">		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		if (userIdFromSecurityContext == null) {</span>
+<span class="nc" id="L105">			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);</span>
+		} else {
+<span class="nc" id="L107">			final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L108">					.getDataContainer(UserAccount.class);</span>
+<span class="nc" id="L109">			final Optional&lt;UserAccount&gt; userAccount = dataContainer</span>
+<span class="nc" id="L110">					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();</span>
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">			if (userAccount.isPresent()) {</span>
+<span class="nc" id="L113">				final DataContainer&lt;ApplicationSession, Long&gt; sessionDataContainer = getApplicationManager()</span>
+<span class="nc" id="L114">						.getDataContainer(ApplicationSession.class);</span>
+
+<span class="nc" id="L116">				getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,</span>
+<span class="nc" id="L117">						sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,</span>
+<span class="nc" id="L118">								userAccount.get().getUserId(), ApplicationSession_.createdDate),</span>
+						APPLICATION_SESSION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null,
+						COLLECTION_PROPERTY_CONVERTERS);
+			}
+		}
+
+<span class="nc" id="L124">		panel.setCaption(NAME + &quot;::&quot; + USERHOME + USER_VISITS);</span>
+
+<span class="nc" id="L126">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="nc" id="L129">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

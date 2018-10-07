@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationLoginListener.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">ApplicationLoginListener.java</span></div><h1>ApplicationLoginListener.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.hack23.cia.service.api.action.application.LoginRequest;
+import com.hack23.cia.service.api.action.application.LoginResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+
+/**
+ * The Class ApplicationLoginListener.
+ */
+public final class ApplicationLoginListener extends AbstractClickListener implements ClickListener {
+
+	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
+	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = &quot;LoginRequest {} failure&quot;;
+
+	/** The Constant LOGIN_FAILED. */
+	private static final String LOGIN_FAILED = &quot;Login failed:&quot;;
+
+	/** The Constant LOG_MSG_LOGIN_REQUEST. */
+	private static final String LOG_MSG_LOGIN_REQUEST = &quot;LoginRequest {}&quot;;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L51">	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);</span>
+
+	/** The login request. */
+	private final LoginRequest loginRequest;
+
+	/**
+	 * Instantiates a new application login listener.
+	 *
+	 * @param loginRequest
+	 *            the login request
+	 */
+<span class="nc" id="L62">	public ApplicationLoginListener(final LoginRequest loginRequest) {</span>
+<span class="nc" id="L63">		this.loginRequest = loginRequest;</span>
+<span class="nc" id="L64">	}</span>
+
+
+
+	@Override
+	public void buttonClick(final ClickEvent event) {
+<span class="nc" id="L70">		final LoginResponse response = (LoginResponse) getApplicationManager().service(loginRequest);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L72">			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());</span>
+
+<span class="nc" id="L74">			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);</span>
+		} else {
+<span class="nc" id="L76">			showNotification(LOGIN_FAILED,</span>
+<span class="nc" id="L77">					response.getErrorMessage(),</span>
+	                  Notification.Type.WARNING_MESSAGE);
+<span class="nc" id="L79">			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,loginRequest.getEmail());</span>
+		}		
+<span class="nc" id="L81">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

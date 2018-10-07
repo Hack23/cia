@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PartyDataSeriesFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl</a> &gt; <span class="el_source">PartyDataSeriesFactoryImpl.java</span></div><h1>PartyDataSeriesFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl;
+
+import java.util.Optional;
+
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+
+/**
+ * The Class DataSeriesFactoryImpl.
+ */
+@Service
+@Transactional(propagation=Propagation.REQUIRED)
+public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory {
+
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	/**
+	 * Instantiates a new party data series factory impl.
+	 */
+	public PartyDataSeriesFactoryImpl() {
+<span class="nc" id="L51">		super();</span>
+<span class="nc" id="L52">	}</span>
+
+	@Override
+	public DataSeries createPartyChartTimeSeriesAll() {
+<span class="nc" id="L56">		DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L58">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L59">				.getDataContainer(ViewRiksdagenParty.class);</span>
+
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L62">			dataSeries = dataSeries.newSeries().add(data.getPartyName(),</span>
+<span class="nc" id="L63">					data.getHeadCount());</span>
+<span class="nc" id="L64">		}</span>
+<span class="nc" id="L65">		return dataSeries;</span>
+	}
+
+	@Override
+	public DataSeries createPartyChartTimeSeriesCurrent() {
+<span class="nc" id="L70">		DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L72">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L73">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">			if (data != null &amp;&amp; data.isActiveParliament()) {</span>
+
+<span class="nc" id="L78">				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),</span>
+<span class="nc" id="L79">						data.getTotalActiveParliament());</span>
+			}
+<span class="nc" id="L81">		}</span>
+<span class="nc" id="L82">		return dataSeries;</span>
+	}
+
+	@Override
+	public DataSeries createChartTimeSeriesCurrentCommitteeByParty() {
+<span class="nc" id="L87">		DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L89">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L90">				.getDataContainer(ViewRiksdagenParty.class);</span>
+
+<span class="nc" id="L92">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partySummarydataContainer = applicationManager</span>
+<span class="nc" id="L93">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
+
+<span class="nc" id="L95">		partySummarydataContainer.getAll();</span>
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L98">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
+
+<span class="nc" id="L101">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveCommittee());</span>
+			}
+<span class="nc" id="L103">		}</span>
+<span class="nc" id="L104">		return dataSeries;</span>
+	}
+
+
+	@Override
+	public DataSeries createChartTimeSeriesCurrentGovernmentByParty() {
+<span class="nc" id="L110">		DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L112">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L113">				.getDataContainer(ViewRiksdagenParty.class);</span>
+
+<span class="nc" id="L115">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partySummarydataContainer = applicationManager</span>
+<span class="nc" id="L116">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
+
+<span class="nc" id="L118">		partySummarydataContainer.getAll();</span>
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L121">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
+
+<span class="nc" id="L124">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveGovernment());</span>
+			}
+<span class="nc" id="L126">		}</span>
+<span class="nc" id="L127">		return dataSeries;</span>
+	}
+
+	/**
+	 * Gets the party name.
+	 *
+	 * @param party
+	 *            the party
+	 * @return the party name
+	 */
+	private String getPartyName(final String party) {
+<span class="nc" id="L138">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L139">				.getDataContainer(ViewRiksdagenParty.class);</span>
+
+<span class="nc" id="L141">		final Optional&lt;ViewRiksdagenParty&gt; matchingObjects =dataContainer.getAll().stream().</span>
+<span class="nc" id="L142">			    filter(p -&gt; p.getPartyId().equalsIgnoreCase(party)).</span>
+<span class="nc" id="L143">			    findFirst();</span>
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">		if (matchingObjects.isPresent()) {</span>
+<span class="nc" id="L146">			return matchingObjects.get().getPartyName();</span>
+
+		} else {
+<span class="nc" id="L149">			return party;</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">AbstractPageModContentFactoryImpl.java</span></div><h1>AbstractPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TabSheet.Tab;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class AbstractPageModContentFactoryImpl.
+ */
+public abstract class AbstractPageModContentFactoryImpl implements PageModeContentFactory {
+
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
+	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = &quot;General Page Mode Page Visit&quot;;
+
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
+	public static final String CURRENT_PAGE_VISIT_HISTORY = &quot;Current Page Visit History&quot;;
+
+	/** The Constant DEFAULT_RESULTS_PER_PAGE. */
+	public static final int DEFAULT_RESULTS_PER_PAGE = 250;
+
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	/** The menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory menuItemFactory;
+
+	/** The grid factory. */
+	@Autowired
+	private GridFactory gridFactory;
+
+	/** The form factory. */
+	@Autowired
+	private FormFactory formFactory;
+
+	/** The page link factory. */
+	@Autowired
+	private PageLinkFactory pageLinkFactory;
+
+	/** The page action event helper. */
+	@Autowired
+	private PageActionEventHelper pageActionEventHelper;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private AdminChartDataManager adminChartDataManager;
+
+	/**
+	 * Instantiates a new abstract page mod content factory impl.
+	 */
+	protected AbstractPageModContentFactoryImpl() {
+<span class="nc" id="L83">		super();</span>
+<span class="nc" id="L84">	}</span>
+
+	/**
+	 * Gets the page id.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @return the page id
+	 */
+	protected final String getPageId(final String parameters) {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (parameters != null) {</span>
+<span class="nc" id="L95">			String cleanedString = parameters;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">			if (parameters.contains(&quot;[&quot;)) {</span>
+<span class="nc" id="L97">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
+			} 
+			
+<span class="nc" id="L100">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length(), cleanedString.length());</span>
+		} else {
+<span class="nc" id="L102">			return &quot;&quot;;</span>
+		}
+	}
+
+	/**
+	 * Gets the page nr.
+	 *
+	 * @param parameters the parameters
+	 * @return the page nr
+	 */
+	protected final int getPageNr(final String parameters) {
+<span class="nc" id="L113">		String cleanedString = parameters;</span>
+		String pageNrValue;
+<span class="nc bnc" id="L115" title="All 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L116">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
+		} else {
+<span class="nc" id="L118">			pageNrValue = &quot;&quot;;</span>
+		}
+
+<span class="nc" id="L121">		int pageNr = 1;</span>
+
+<span class="nc bnc" id="L123" title="All 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
+<span class="nc" id="L124">			pageNr = Integer.parseInt(pageNrValue);</span>
+		}
+<span class="nc" id="L126">		return pageNr;</span>
+	}
+
+	/**
+	 * Gets the application manager.
+	 *
+	 * @return the application manager
+	 */
+	protected final ApplicationManager getApplicationManager() {
+<span class="nc" id="L135">		return applicationManager;</span>
+	}
+
+	/**
+	 * Gets the menu item factory.
+	 *
+	 * @return the menu item factory
+	 */
+	protected final ApplicationMenuItemFactory getMenuItemFactory() {
+<span class="nc" id="L144">		return menuItemFactory;</span>
+	}
+
+	/**
+	 * Gets the grid factory.
+	 *
+	 * @return the grid factory
+	 */
+	protected final GridFactory getGridFactory() {
+<span class="nc" id="L153">		return gridFactory;</span>
+	}
+
+	/**
+	 * Gets the form factory.
+	 *
+	 * @return the form factory
+	 */
+	protected final FormFactory getFormFactory() {
+<span class="nc" id="L162">		return formFactory;</span>
+	}
+
+	/**
+	 * Gets the page link factory.
+	 *
+	 * @return the page link factory
+	 */
+	protected final PageLinkFactory getPageLinkFactory() {
+<span class="nc" id="L171">		return pageLinkFactory;</span>
+	}
+
+	protected final AdminChartDataManager getAdminChartDataManager() {
+<span class="nc" id="L175">		return adminChartDataManager;</span>
+	}
+
+	/**
+	 * Gets the page action event helper.
+	 *
+	 * @return the page action event helper
+	 */
+	protected final PageActionEventHelper getPageActionEventHelper() {
+<span class="nc" id="L184">		return pageActionEventHelper;</span>
+	}
+
+	/**
+	 * Creates the panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected final VerticalLayout createPanelContent() {
+<span class="nc" id="L193">		final VerticalLayout panelContent = new VerticalLayout();</span>
+<span class="nc" id="L194">		panelContent.setMargin(true);</span>
+<span class="nc" id="L195">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L196">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L197">		panelContent.setStyleName(&quot;Header&quot;);</span>
+<span class="nc" id="L198">		return panelContent;</span>
+	}
+
+	/**
+	 * Creates the page visit history.
+	 *
+	 * @param pageName
+	 *            the page name
+	 * @param pageId
+	 *            the page id
+	 * @param panelContent
+	 *            the panel content
+	 */
+	protected final void createPageVisitHistory(final String pageName, final String pageId,
+			final VerticalLayout panelContent) {
+
+<span class="nc" id="L214">		final TabSheet tabsheet = new TabSheet();</span>
+<span class="nc" id="L215">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L216">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
+
+<span class="nc" id="L218">		panelContent.addComponent(tabsheet);</span>
+<span class="nc" id="L219">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L221">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
+<span class="nc" id="L222">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L223">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L224">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
+
+<span class="nc" id="L226">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
+<span class="nc" id="L227">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
+				pageName, pageId);
+
+<span class="nc" id="L230">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
+<span class="nc" id="L231">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L232">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L233">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
+<span class="nc" id="L234">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
+
+<span class="nc" id="L236">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
+				pageName);
+
+<span class="nc" id="L239">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

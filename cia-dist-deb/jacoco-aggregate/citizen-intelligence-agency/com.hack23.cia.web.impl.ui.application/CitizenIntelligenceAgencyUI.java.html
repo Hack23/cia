@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CitizenIntelligenceAgencyUI.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">CitizenIntelligenceAgencyUI.java</span></div><h1>CitizenIntelligenceAgencyUI.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.ConfigurationManager;
+import com.hack23.cia.service.api.UserConfiguration;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.MainView;
+import com.vaadin.annotations.Push;
+import com.vaadin.annotations.StyleSheet;
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Viewport;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
+import com.vaadin.server.WebBrowser;
+import com.vaadin.shared.ui.ui.Transport;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.annotation.SpringViewDisplay;
+import com.vaadin.spring.navigator.SpringNavigator;
+import com.vaadin.ui.UI;
+
+
+/**
+ * The Class CitizenIntelligenceAgencyUI.
+ */
+@SpringUI
+@SpringViewDisplay
+@Theme(&quot;cia&quot;)
+@Push(transport = Transport.WEBSOCKET_XHR)
+@StyleSheet({&quot;https://fonts.googleapis.com/css?family=Inconsolata&quot;})
+@Viewport(&quot;width=device-width, initial-scale=1&quot;)
+public final class CitizenIntelligenceAgencyUI extends UI {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The Constant CRLF_REPLACEMENT. */
+	private static final String CRLF_REPLACEMENT = &quot;&quot;;
+	
+	/** The Constant CRLF. */
+	private static final String CRLF = &quot;[\r\n]&quot;;
+	
+	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
+	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = &quot;Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}&quot;;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L73">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="nc" id="L74">			.getLogger(CitizenIntelligenceAgencyUI.class);</span>
+
+	/** The main view. */
+	@Autowired
+	private MainView mainView;
+
+	/** The application manager. */
+	@Autowired
+	private transient ApplicationManager applicationManager;
+
+	@Autowired
+	private transient ConfigurationManager configurationManager;
+
+	@Autowired
+	private SpringNavigator springNavigator;
+
+	/**
+	 * Instantiates a new citizen intelligence agency ui.
+	 */
+	public CitizenIntelligenceAgencyUI() {
+<span class="nc" id="L94">		super();</span>
+<span class="nc" id="L95">	}</span>
+
+
+	@Override
+	protected void init(final VaadinRequest request) {
+<span class="nc" id="L100">		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));</span>
+<span class="nc" id="L101">		setSizeFull();</span>
+<span class="nc" id="L102">		springNavigator.addView(CRLF_REPLACEMENT, mainView);</span>
+<span class="nc" id="L103">		setNavigator(springNavigator);</span>
+
+
+<span class="nc" id="L106">		final Page currentPage = Page.getCurrent();</span>
+<span class="nc" id="L107">		final String requestUrl = currentPage.getLocation().toString();</span>
+<span class="nc" id="L108">		final String language = request.getLocale().getLanguage();</span>
+<span class="nc" id="L109">		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);</span>
+
+<span class="nc" id="L111">		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + &quot;:&quot; + userConfiguration.getPortal().getPortalName() + &quot;:&quot; + userConfiguration.getLanguage().getLanguageName());</span>
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">		if (getSession().getUIs().isEmpty()) {</span>
+<span class="nc" id="L114">			final WebBrowser webBrowser = currentPage.getWebBrowser();</span>
+
+<span class="nc" id="L116">			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();</span>
+<span class="nc" id="L117">			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+
+<span class="nc" id="L119">			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);</span>
+<span class="nc" id="L120">			serviceRequest.setIpInformation(ipInformation);</span>
+<span class="nc" id="L121">			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());</span>
+<span class="nc" id="L122">			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + &quot;x&quot; + webBrowser.getScreenHeight());</span>
+<span class="nc" id="L123">			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());</span>
+<span class="nc" id="L124">			serviceRequest.setLocale(webBrowser.getLocale().toString());</span>
+<span class="nc" id="L125">			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));</span>
+<span class="nc" id="L126">			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);</span>
+
+<span class="nc" id="L128">			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);</span>
+<span class="nc" id="L129">			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));</span>
+		}
+<span class="nc" id="L131">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

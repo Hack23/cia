@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>OrgDocumentChartDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">OrgDocumentChartDataManagerImpl.java</span></div><h1>OrgDocumentChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class OrgDocumentChartDataManagerImpl.
+ */
+@Service
+public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements OrgDocumentChartDataManager {
+
+	private static final String DOCUMENT_HISTORY_BY_ORG = &quot;Document History by Org&quot;;
+
+	/** The Constant NO_INFO. */
+	private static final String NO_INFO = &quot;NoInfo&quot;;
+
+	/** The Constant YEAR_PREFIX. */
+	private static final String YEAR_PREFIX = &quot;19&quot;;
+
+	/** The Constant MINUS_SIGN. */
+	private static final String MINUS_SIGN = &quot;-&quot;;
+
+	/** The Constant EMPTY_STRING. */
+	private static final String EMPTY_STRING = &quot;&quot;;
+
+	/** The Constant UNDER_SCORE. */
+	private static final String UNDER_SCORE = &quot;_&quot;;
+
+	private static final String DD_MMM_YYYY = &quot;dd-MMM-yyyy&quot;;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L73">	private static final Logger LOGGER = LoggerFactory.getLogger(OrgDocumentChartDataManagerImpl.class);</span>
+
+	/**
+	 * Instantiates a new org document chart data manager impl.
+	 */
+	public OrgDocumentChartDataManagerImpl() {
+<span class="nc" id="L79">		super();</span>
+<span class="nc" id="L80">	}</span>
+
+	/**
+	 * Gets the view riksdagen org document daily summary map.
+	 *
+	 * @return the view riksdagen org document daily summary map
+	 */
+	private Map&lt;String, List&lt;ViewRiksdagenOrgDocumentDailySummary&gt;&gt; getViewRiksdagenOrgDocumentDailySummaryMap() {
+<span class="nc" id="L88">		final DataContainer&lt;ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId&gt; politicianBallotSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L89">				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);</span>
+
+<span class="nc" id="L91">		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))</span>
+<span class="nc" id="L93">				.collect(Collectors.groupingBy(</span>
+<span class="nc" id="L94">						t -&gt; StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH)</span>
+<span class="nc" id="L95">								.replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));</span>
+	}
+
+	@Override
+	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content, final String org) {
+<span class="nc" id="L100">		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING)</span>
+<span class="nc" id="L101">				.replace(MINUS_SIGN, EMPTY_STRING).trim();</span>
+
+<span class="nc" id="L103">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="nc" id="L104">		final Series series = new Series();</span>
+
+<span class="nc" id="L106">		final Map&lt;String, List&lt;ViewRiksdagenOrgDocumentDailySummary&gt;&gt; allMap = getViewRiksdagenOrgDocumentDailySummaryMap();</span>
+
+<span class="nc" id="L108">		final List&lt;ViewRiksdagenOrgDocumentDailySummary&gt; itemList = allMap.get(searchOrg);</span>
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		if (itemList != null) {</span>
+<span class="nc" id="L111">			addDocumentHistoryByOrgData(dataSeries, series, itemList);</span>
+		}
+
+<span class="nc" id="L114">		addChart(content, DOCUMENT_HISTORY_BY_ORG,</span>
+<span class="nc" id="L115">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L116">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
+				true);
+<span class="nc" id="L118">	}</span>
+
+	/**
+	 * Adds the document history by org data.
+	 *
+	 * @param dataSeries
+	 *            the data series
+	 * @param series
+	 *            the series
+	 * @param itemList
+	 *            the item list
+	 */
+	private static void addDocumentHistoryByOrgData(final DataSeries dataSeries, final Series series,
+			final List&lt;ViewRiksdagenOrgDocumentDailySummary&gt; itemList) {
+<span class="nc" id="L132">		final Map&lt;String, List&lt;ViewRiksdagenOrgDocumentDailySummary&gt;&gt; map = itemList.parallelStream()</span>
+<span class="nc" id="L133">				.filter(Objects::nonNull)</span>
+<span class="nc" id="L134">				.collect(Collectors.groupingBy(t -&gt; StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));</span>
+<span class="nc" id="L135">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="nc" id="L136">		final SimpleDateFormat parseIncomingDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;,Locale.ENGLISH);</span>
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewRiksdagenOrgDocumentDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="nc" id="L139">			addNewDataSerie(dataSeries, series, simpleDateFormat, parseIncomingDateFormat, entry);</span>
+<span class="nc" id="L140">		}</span>
+<span class="nc" id="L141">	}</span>
+
+	/**
+	 * Adds the new data serie.
+	 *
+	 * @param dataSeries              the data series
+	 * @param series                  the series
+	 * @param simpleDateFormat        the simple date format
+	 * @param parseIncomingDateFormat the parse incoming date format
+	 * @param entry                   the entry
+	 */
+	private static void addNewDataSerie(final DataSeries dataSeries, final Series series,
+			final SimpleDateFormat simpleDateFormat, final SimpleDateFormat parseIncomingDateFormat,
+			final Entry&lt;String, List&lt;ViewRiksdagenOrgDocumentDailySummary&gt;&gt; entry) {
+
+<span class="nc" id="L156">		series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="nc" id="L157">		dataSeries.newSeries();</span>
+
+<span class="nc bnc" id="L159" title="All 2 branches missed.">		if (entry.getValue() != null) {</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">			for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {</span>
+<span class="nc" id="L161">				addDataItem(dataSeries, simpleDateFormat, parseIncomingDateFormat, item);</span>
+<span class="nc" id="L162">			}</span>
+		}
+<span class="nc" id="L164">	}</span>
+
+	/**
+	 * Adds the data item.
+	 *
+	 * @param dataSeries              the data series
+	 * @param simpleDateFormat        the simple date format
+	 * @param parseIncomingDateFormat the parse incoming date format
+	 * @param item                    the item
+	 */
+	private static void addDataItem(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
+			final SimpleDateFormat parseIncomingDateFormat, final ViewRiksdagenOrgDocumentDailySummary item) {
+<span class="nc bnc" id="L176" title="All 4 branches missed.">		if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
+
+			try {
+<span class="nc" id="L179">				dataSeries.add(</span>
+						simpleDateFormat
+<span class="nc" id="L181">								.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),</span>
+<span class="nc" id="L182">						item.getTotal());</span>
+<span class="nc" id="L183">			} catch (final ParseException e) {</span>
+<span class="nc" id="L184">				LOGGER.warn(&quot;Problem parsing date:{}&quot;, item.getEmbeddedId().getPublicDate());</span>
+<span class="nc" id="L185">			}</span>
+		}
+<span class="nc" id="L187">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

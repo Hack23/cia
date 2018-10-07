@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AgentOperationsOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode</a> &gt; <span class="el_source">AgentOperationsOverviewPageModContentFactoryImpl.java</span></div><h1>AgentOperationsOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
+
+import java.text.MessageFormat;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
+import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgentClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class AgentOperationsOverviewPageModContentFactoryImpl.
+ */
+@Component
+public final class AgentOperationsOverviewPageModContentFactoryImpl
+		extends AbstractAgentOperationsPageModContentFactoryImpl {
+
+	/** The Constant WILL_FETCH_DATA_FROM_SOURCE. */
+	private static final String WILL_FETCH_DATA_FROM_SOURCE = &quot;Will fetch data from source&quot;;
+
+	/** The Constant BUTTON_ID_PATTERN. */
+	private static final String BUTTON_ID_PATTERN = &quot;{0}.{1}.{2}&quot;;
+
+	/** The Constant BUTTON_PATTERN. */
+	private static final String BUTTON_PATTERN = &quot;Start {0} {1}&quot;;
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
+
+	/** The Constant ADMIN_AGENT_OPERATION. */
+	private static final String ADMIN_AGENT_OPERATION = &quot;Admin Agent Operation&quot;;
+
+	/**
+	 * Instantiates a new agent operations overview page mod content factory
+	 * impl.
+	 */
+	public AgentOperationsOverviewPageModContentFactoryImpl() {
+<span class="nc" id="L70">		super();</span>
+<span class="nc" id="L71">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc" id="L75">		return NAME.equals(page);</span>
+	}
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L81">		final VerticalLayout content = createPanelContent();</span>
+
+<span class="nc" id="L83">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+
+<span class="nc" id="L85">		LabelFactory.createHeader2Label(content,ADMIN_AGENT_OPERATION);</span>
+				
+<span class="nc" id="L87">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L88">		overviewLayout.setSizeFull();</span>
+<span class="nc" id="L89">		content.addComponent(overviewLayout);</span>
+<span class="nc" id="L90">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L92">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+	
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		for (final DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {</span>
+<span class="nc" id="L95">			final Button importDataButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);</span>
+<span class="nc" id="L96">			importDataButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));</span>
+<span class="nc" id="L97">			importDataButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));</span>
+<span class="nc" id="L98">			RowUtil.createRowItem(grid, importDataButton, WILL_FETCH_DATA_FROM_SOURCE);</span>
+		}
+		
+<span class="nc" id="L101">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L102">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,</span>
+				NAME, null, pageId);
+
+
+<span class="nc" id="L106">		return content;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

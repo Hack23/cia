@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DataSummaryOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode</a> &gt; <span class="el_source">DataSummaryOverviewPageModContentFactoryImpl.java</span></div><h1>DataSummaryOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+
+import com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
+import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RemoveDataClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class DataSummaryOverviewPageModContentFactoryImpl.
+ */
+@Component
+public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
+
+<span class="nc" id="L54">	private static final String[] HIDE_COLUMNS = new String[] { &quot;id&quot; };</span>
+
+<span class="nc" id="L56">	private static final String[] COLUMN_ORDER = new String[] { &quot;dataType&quot;, &quot;dataSize&quot; };</span>
+
+	/** The Constant REMOVE_DOCUMENTS. */
+	private static final String REMOVE_DOCUMENTS = &quot;Remove Documents&quot;;
+
+	/** The Constant REMOVE_POLITICIANS. */
+	private static final String REMOVE_POLITICIANS = &quot;Remove Politicians&quot;;
+
+	/** The Constant REFRESH_ALL_VIEWS. */
+	private static final String REFRESH_ALL_VIEWS = &quot;Refresh all views&quot;;
+
+	/** The Constant UPDATE_DOCUMENT_SEARCH_INDEX. */
+	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = &quot;Update document search index&quot;;
+
+	/** The Constant REMOVE_APPLICATION_HISTORY. */
+	private static final String REMOVE_APPLICATION_HISTORY = &quot;Remove Application History&quot;;
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
+
+	/** The Constant UPDATE_SEARCH_INDEX. */
+	private static final String UPDATE_SEARCH_INDEX = &quot;Update Search Index&quot;;
+
+	/** The Constant REFRESH_VIEWS. */
+	private static final String REFRESH_VIEWS = &quot;Refresh Views&quot;;
+
+	/** The Constant ADMIN_DATA_SUMMARY. */
+	private static final String ADMIN_DATA_SUMMARY = &quot;Admin Data Summary&quot;;
+
+	/**
+	 * Instantiates a new data summary overview page mod content factory impl.
+	 */
+	public DataSummaryOverviewPageModContentFactoryImpl() {
+<span class="nc" id="L89">		super();</span>
+<span class="nc" id="L90">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		return NAME.equals(page)</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+	}
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L101">		final VerticalLayout content = createPanelContent();</span>
+
+<span class="nc" id="L103">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+
+<span class="nc" id="L105">		LabelFactory.createHeader2Label(content, ADMIN_DATA_SUMMARY);</span>
+
+<span class="nc" id="L107">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L108">		horizontalLayout.setSizeFull();</span>
+
+<span class="nc" id="L110">		content.addComponent(horizontalLayout);</span>
+<span class="nc" id="L111">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L113">		final DataContainer&lt;ViewAuditDataSummary, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L114">				.getDataContainer(ViewAuditDataSummary.class);</span>
+
+<span class="nc" id="L116">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class,</span>
+<span class="nc" id="L117">				dataContainer.getAll(), ADMIN_DATA_SUMMARY, null, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);</span>
+
+<span class="nc" id="L119">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L120">		overviewLayout.setSizeFull();</span>
+<span class="nc" id="L121">		content.addComponent(overviewLayout);</span>
+<span class="nc" id="L122">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L124">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+
+<span class="nc" id="L126">		final RefreshDataViewsRequest refreshRequest = new RefreshDataViewsRequest();</span>
+<span class="nc" id="L127">		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+
+<span class="nc" id="L129">		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);</span>
+<span class="nc" id="L130">		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(refreshRequest));</span>
+<span class="nc" id="L131">		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);</span>
+
+<span class="nc" id="L133">		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);</span>
+
+<span class="nc" id="L135">		final UpdateSearchIndexRequest updateIndexRequest = new UpdateSearchIndexRequest();</span>
+<span class="nc" id="L136">		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+
+<span class="nc" id="L138">		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(updateIndexRequest));</span>
+<span class="nc" id="L139">		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);</span>
+
+<span class="nc" id="L141">		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);</span>
+
+<span class="nc" id="L143">		final RemoveDataRequest removePoliticianRequest = new RemoveDataRequest();</span>
+<span class="nc" id="L144">		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="nc" id="L145">		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);</span>
+
+<span class="nc" id="L147">		removeDataButton.addClickListener(new RemoveDataClickListener(removePoliticianRequest));</span>
+<span class="nc" id="L148">		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);</span>
+
+<span class="nc" id="L150">		final RemoveDataRequest removeDocumentsRequest = new RemoveDataRequest();</span>
+<span class="nc" id="L151">		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="nc" id="L152">		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);</span>
+
+<span class="nc" id="L154">		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);</span>
+<span class="nc" id="L155">		removeDocumentsButton.addClickListener(new RemoveDataClickListener(removeDocumentsRequest));</span>
+<span class="nc" id="L156">		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);</span>
+
+<span class="nc" id="L158">		final RemoveDataRequest removeApplicationHistoryRequest = new RemoveDataRequest();</span>
+<span class="nc" id="L159">		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="nc" id="L160">		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);</span>
+
+<span class="nc" id="L162">		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);</span>
+<span class="nc" id="L163">		removeApplicationHistoryButton.addClickListener(new RemoveDataClickListener(removeApplicationHistoryRequest));</span>
+<span class="nc" id="L164">		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);</span>
+
+<span class="nc" id="L166">		return content;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

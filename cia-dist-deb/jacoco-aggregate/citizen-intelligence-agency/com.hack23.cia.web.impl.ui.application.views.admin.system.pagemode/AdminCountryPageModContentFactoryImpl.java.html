@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AdminCountryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminCountryPageModContentFactoryImpl.java</span></div><h1>AdminCountryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+
+
+/**
+ * The Class AdminCountryPageModContentFactoryImpl.
+ */
+@Component
+public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
+
+<span class="nc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
+
+<span class="nc" id="L51">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
+
+<span class="nc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
+			&quot;longitude&quot;, &quot;latitude&quot; );
+
+<span class="nc" id="L56">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
+			&quot;latitude&quot; };
+
+	private static final String COUNTRY2 = &quot;Country&quot;;
+
+	/** The Constant ADMIN_COUNTRY. */
+	private static final String ADMIN_COUNTRY = &quot;Admin Country&quot;;
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_COUNTRY_VIEW_NAME;
+
+	/**
+	 * Instantiates a new admin country page mod content factory impl.
+	 */
+	public AdminCountryPageModContentFactoryImpl() {
+<span class="nc" id="L71">		super(NAME);</span>
+<span class="nc" id="L72">	}</span>
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L77">		final VerticalLayout content = createPanelContent();</span>
+
+<span class="nc" id="L79">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L80">		final int pageNr= getPageNr(parameters);</span>
+
+<span class="nc" id="L82">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+
+<span class="nc" id="L84">		LabelFactory.createHeader2Label(content,ADMIN_COUNTRY);</span>
+
+<span class="nc" id="L86">		final DataContainer&lt;CountryElement, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L87">				.getDataContainer(CountryElement.class);</span>
+
+<span class="nc" id="L89">		final List&lt;CountryElement&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);</span>
+
+<span class="nc" id="L91">		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+
+<span class="nc" id="L93">		getGridFactory()</span>
+<span class="nc" id="L94">				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,</span>
+						COUNTRY2,null,
+						COLUMN_ORDER, HIDE_COLUMNS,
+						LISTENER, null, null);
+
+<span class="nc bnc" id="L99" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+
+<span class="nc" id="L101">			final CountryElement country = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if (country != null) {</span>
+
+<span class="nc" id="L104">				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,</span>
+						AS_LIST);
+			}
+		}
+
+<span class="nc" id="L109">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_COUNTRY_VIEW, ApplicationEventGroup.ADMIN,</span>
+				NAME, null, pageId);
+
+<span class="nc" id="L112">		return content;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRoleSummaryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRoleSummaryPageModContentFactoryImpl.java</span></div><h1>PoliticianRoleSummaryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
+
+import java.util.List;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class RoleSummaryPageModContentFactoryImpl.
+ */
+@Component
+public final class PoliticianRoleSummaryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+
+	/** The Constant GOVERNMENT_EXPERIENCE. */
+	private static final String GOVERNMENT_EXPERIENCE = &quot;Government experience:&quot;;
+
+	/** The Constant EU_EXPERIENCE. */
+	private static final String EU_EXPERIENCE = &quot;EU experience:&quot;;
+
+	/** The Constant TOTAL_ASSIGNMENTS. */
+	private static final String TOTAL_ASSIGNMENTS = &quot;Total Assignments:&quot;;
+
+	/** The Constant SPEAKER_EXPERIENCE. */
+	private static final String SPEAKER_EXPERIENCE = &quot;Speaker experience:&quot;;
+
+	/** The Constant PARTY_EXPERIENCE. */
+	private static final String PARTY_EXPERIENCE = &quot;Party experience:&quot;;
+
+	/** The Constant COMMITTEE_EXPERIENCE. */
+	private static final String COMMITTEE_EXPERIENCE = &quot;Committee experience:&quot;;
+
+	/** The Constant PARLIAMENT_EXPERIENCE. */
+	private static final String PARLIAMENT_EXPERIENCE = &quot;Parliament experience:&quot;;
+
+	/**
+	 * Instantiates a new politician role summary page mod content factory impl.
+	 */
+	public PoliticianRoleSummaryPageModContentFactoryImpl() {
+<span class="nc" id="L69">		super();</span>
+<span class="nc" id="L70">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L74" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLESUMMARY.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L80">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="nc" id="L82">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L83">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="nc" id="L84">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+
+<span class="nc" id="L86">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLESUMMARY.toString());</span>
+
+<span class="nc" id="L88">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="nc" id="L89">				.load(viewRiksdagenPolitician.getPersonId());</span>
+
+<span class="nc" id="L91">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+
+<span class="nc" id="L93">		createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);</span>
+
+<span class="nc" id="L95">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="nc" id="L96">		return panelContent;</span>
+
+	}
+
+	/**
+	 * Creates the role summary.
+	 *
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList the assignment list
+	 * @param viewRiksdagenPolitician the view riksdagen politician
+	 */
+	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
+			final List&lt;AssignmentData&gt; assignmentList, final ViewRiksdagenPolitician viewRiksdagenPolitician) {
+
+<span class="nc" id="L110">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="nc" id="L111">		layout.setSizeFull();</span>
+
+<span class="nc" id="L113">		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));</span>
+
+<span class="nc bnc" id="L115" title="All 2 branches missed.">		if (viewRiksdagenPolitician != null) {</span>
+
+<span class="nc" id="L117">			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE</span>
+<span class="nc" id="L118">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));</span>
+<span class="nc" id="L119">			layout.addComponent(new Label(</span>
+<span class="nc" id="L120">					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));</span>
+<span class="nc" id="L121">			layout.addComponent(new Label(COMMITTEE_EXPERIENCE</span>
+<span class="nc" id="L122">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));</span>
+<span class="nc" id="L123">			layout.addComponent(</span>
+<span class="nc" id="L124">					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));</span>
+<span class="nc" id="L125">			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE</span>
+<span class="nc" id="L126">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));</span>
+<span class="nc" id="L127">			layout.addComponent(new Label(</span>
+<span class="nc" id="L128">					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));</span>
+		}
+
+<span class="nc" id="L131">		roleSummaryLayoutTabsheet.addComponent(layout);</span>
+<span class="nc" id="L132">		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);</span>
+
+<span class="nc" id="L134">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

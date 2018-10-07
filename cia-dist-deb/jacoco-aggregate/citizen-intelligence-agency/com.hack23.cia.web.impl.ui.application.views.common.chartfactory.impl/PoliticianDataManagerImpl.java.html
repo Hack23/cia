@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PoliticianDataManagerImpl.java</span></div><h1>PoliticianDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
+import java.util.function.Function;
+
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class ChartDataManagerImpl.
+ */
+@Service
+public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImpl implements PoliticianChartDataManager {
+
+	/** The Constant ABSENT. */
+	private static final String ABSENT = &quot;Absent&quot;;
+
+	/** The Constant PARTY_REBEL. */
+	private static final String PARTY_REBEL = &quot;Party Rebel&quot;;
+
+	/** The Constant WON. */
+	private static final String WON = &quot;Won&quot;;
+
+	/** The Constant NUMBER_BALLOTS. */
+	private static final String NUMBER_BALLOTS = &quot;Number ballots&quot;;
+
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = &quot;dd-MMM-yyyy&quot;;
+
+	/** The data chart manager. */
+	@Autowired
+	private GenericChartDataManager&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; dataChartManager;
+
+	/**
+	 * Instantiates a new politician data manager impl.
+	 */
+	public PoliticianDataManagerImpl() {
+<span class="nc" id="L67">		super();</span>
+<span class="nc" id="L68">	}</span>
+
+
+
+	@Override
+	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
+
+<span class="nc" id="L75">		final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list = dataChartManager.findByValue(personId);</span>
+
+<span class="nc" id="L77">		final Series series = new Series().addSeries(new XYseries().setLabel(WON))</span>
+<span class="nc" id="L78">				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))</span>
+<span class="nc" id="L79">				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));</span>
+
+<span class="nc" id="L81">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L83">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		if (list != null) {</span>
+<span class="nc" id="L86">			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);</span>
+		}
+
+<span class="nc" id="L89">		addChart(content,&quot;Ballot indicators&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);</span>
+<span class="nc" id="L90">	}</span>
+
+
+
+	/**
+	 * Adds the politician indicator data.
+	 *
+	 * @param list
+	 *            the list
+	 * @param dataSeries
+	 *            the data series
+	 * @param simpleDateFormat
+	 *            the simple date format
+	 */
+	private static void addPoliticianIndicatorData(final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list,
+			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
+<span class="nc" id="L106">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);</span>
+<span class="nc" id="L107">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);</span>
+<span class="nc" id="L108">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);</span>
+<span class="nc" id="L109">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);</span>
+<span class="nc" id="L110">	}</span>
+
+
+
+	
+	/**
+	 * Adds the politican data.
+	 *
+	 * @param list             the list
+	 * @param dataSeries       the data series
+	 * @param simpleDateFormat the simple date format
+	 * @param t                the t
+	 */
+	private static void addPoliticanData(final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list,
+			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object&gt; t) {
+<span class="nc" id="L125">		dataSeries.newSeries();</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {</span>
+<span class="nc" id="L128">				dataSeries.add(</span>
+<span class="nc" id="L129">						simpleDateFormat.format(</span>
+<span class="nc" id="L130">								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),</span>
+<span class="nc" id="L131">						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));</span>
+			}
+<span class="nc" id="L133">		}</span>
+<span class="nc" id="L134">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

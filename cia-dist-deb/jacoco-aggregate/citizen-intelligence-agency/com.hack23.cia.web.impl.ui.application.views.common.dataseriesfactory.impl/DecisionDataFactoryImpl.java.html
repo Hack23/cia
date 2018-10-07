@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DecisionDataFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl</a> &gt; <span class="el_source">DecisionDataFactoryImpl.java</span></div><h1>DecisionDataFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.ProposalCommitteeeSummary;
+
+/**
+ * The Class DecisionDataFactoryImpl.
+ */
+@Service
+@Transactional(propagation=Propagation.REQUIRED)
+public final class DecisionDataFactoryImpl implements DecisionDataFactory {
+	
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	/**
+	 * Instantiates a new decision data factory impl.
+	 */
+	public DecisionDataFactoryImpl() {
+<span class="nc" id="L52">		super();</span>
+<span class="nc" id="L53">	}</span>
+	
+	@Override
+	public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
+<span class="nc" id="L57">		final List&lt;ProposalCommitteeeSummary&gt; summary = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L59">		final DataContainer&lt;DocumentStatusContainer, Long&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L60">				.getDataContainer(DocumentStatusContainer.class);</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		for (final DocumentStatusContainer document : dataContainer.getAll()) {</span>
+
+<span class="nc" id="L64">			addProposalCommitteeeSummary(processedIn, summary, document);</span>
+<span class="nc" id="L65">		}</span>
+<span class="nc" id="L66">		return summary;</span>
+	}
+
+	/**
+	 * Adds the proposal committeee summary.
+	 *
+	 * @param processedIn
+	 *            the processed in
+	 * @param summary
+	 *            the summary
+	 * @param document
+	 *            the document
+	 */
+	private static void addProposalCommitteeeSummary(final String processedIn, final List&lt;ProposalCommitteeeSummary&gt; summary,
+			final DocumentStatusContainer document) {
+<span class="nc bnc" id="L81" title="All 4 branches missed.">		if (document.getDocumentProposal() != null &amp;&amp; document.getDocumentProposal().getProposal() != null) {</span>
+
+<span class="nc" id="L83">			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+
+<span class="nc bnc" id="L85" title="All 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
+<span class="nc bnc" id="L87" title="All 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+				
+<span class="nc" id="L89">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
+
+			}
+		}
+<span class="nc" id="L93">	}</span>
+
+	/**
+	 * Cleanup decision.
+	 *
+	 * @param chamber
+	 *            the chamber
+	 * @return the string
+	 */
+	private static String cleanupDecision(final String chamber) {
+<span class="nc" id="L103">		return chamber.toUpperCase(Locale.ENGLISH).replace(&quot;(UTSKOTTET)&quot;, &quot;&quot;).replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UTBSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UBTSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;(&quot;, &quot;&quot;).replace(&quot;)&quot;,&quot;&quot;);</span>
+	}
+
+	/**
+	 * Gets the document name.
+	 *
+	 * @param document
+	 *            the document
+	 * @return the document name
+	 */
+	private static String getDocumentName(final DocumentStatusContainer document) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		if (&quot;prop&quot;.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
+<span class="nc" id="L115">			return &quot;Proposition&quot;;</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">		} else if (document.getDocument().getSubType() != null &amp;&amp; document.getDocument().getSubType().length() &gt; &quot;motion&quot;.length()) {</span>
+<span class="nc" id="L117">			return document.getDocument().getSubType();</span>
+		} else {
+<span class="nc" id="L119">			return &quot;Motion&quot;;</span>
+		}
+		
+	}
+
+	/**
+	 * Gets the committtee short name.
+	 *
+	 * @param proposal
+	 *            the proposal
+	 * @return the committtee short name
+	 */
+	private static String getCommittteeShortName(final DocumentProposalData proposal) {
+<span class="nc" id="L132">		final String upperCase = proposal.getProcessedIn().replaceAll(&quot;\\d&quot;,&quot;&quot;).replace(&quot;/:&quot;,&quot;&quot;).toUpperCase(Locale.ENGLISH);</span>
+				
+<span class="nc bnc" id="L134" title="All 2 branches missed.">		if (upperCase.contains(&quot;,&quot;)) {</span>
+<span class="nc" id="L135">			return upperCase.substring(0, upperCase.indexOf(','));</span>
+		} else {
+<span class="nc" id="L137">			return upperCase;</span>
+		}
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

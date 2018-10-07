@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PageModeMenuCommand.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api</a> &gt; <span class="el_source">PageModeMenuCommand.java</span></div><h1>PageModeMenuCommand.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api;
+
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.MenuBar.Command;
+import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.UI;
+
+/**
+ * The Class PageModeMenuCommand.
+ */
+public final class PageModeMenuCommand implements Command, ClickListener {
+
+	/** The Constant PAGE_SEPARATOR. */
+<span class="nc" id="L34">	private static final Character PAGE_SEPARATOR = '/';</span>
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The page reference. */
+	private final String pageReference;
+
+	/** The page. */
+	private final String page;
+
+
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param pageMode
+	 *            the page mode
+	 */
+	public PageModeMenuCommand(final String page, final PageMode pageMode) {
+<span class="nc" id="L55">		super();</span>
+<span class="nc" id="L56">		this.page = page;</span>
+<span class="nc" id="L57">		pageReference = pageMode.toString();</span>
+<span class="nc" id="L58">	}</span>
+
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param part
+	 *            the part
+	 */
+	public PageModeMenuCommand(final String page, final String part) {
+<span class="nc" id="L69">		super();</span>
+<span class="nc" id="L70">		this.page = page;</span>
+<span class="nc" id="L71">		pageReference = part;</span>
+<span class="nc" id="L72">	}</span>
+
+
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param pageMode
+	 *            the page mode
+	 * @param part
+	 *            the part
+	 */
+	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
+<span class="nc" id="L86">		super();</span>
+<span class="nc" id="L87">		this.page = page;</span>
+<span class="nc" id="L88">		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();</span>
+<span class="nc" id="L89">	}</span>
+
+
+
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param pageMode
+	 *            the page mode
+	 * @param part
+	 *            the part
+	 */
+<span class="nc" id="L103">	public PageModeMenuCommand(final String page, final String pageMode, final String part) {</span>
+<span class="nc" id="L104">		this.page = page;</span>
+<span class="nc" id="L105">		pageReference = pageMode + PAGE_SEPARATOR + part;</span>
+<span class="nc" id="L106">	}</span>
+
+	/**
+	 * Gets the page path.
+	 *
+	 * @return the page path
+	 */
+	public String getPagePath() {
+<span class="nc bnc" id="L114" title="All 4 branches missed.">		if (pageReference != null &amp;&amp; !pageReference.isEmpty()) {</span>
+<span class="nc" id="L115">			return page + PAGE_SEPARATOR + pageReference;</span>
+		} else {
+<span class="nc" id="L117">			return page;</span>
+		}
+	}
+
+	@Override
+	public void menuSelected(final MenuItem selectedItem) {
+<span class="nc" id="L123">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
+<span class="nc" id="L124">	}</span>
+
+	@Override
+	public void buttonClick(final ClickEvent event) {
+<span class="nc" id="L128">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
+<span class="nc" id="L129">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

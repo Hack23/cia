@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CountryMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">CountryMenuItemFactoryImpl.java</span></div><h1>CountryMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
+
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary_;
+import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId_;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class CountryMenuItemFactoryImpl.
+ */
+@Service
+public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
+
+	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
+	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
+
+	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
+	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
+
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+<span class="nc" id="L64">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
+
+
+	/** The Constant COMMAND_OVERVIEW. */
+<span class="nc" id="L68">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);</span>
+
+	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
+	private static final String COUNTRY_INDICATORS_SWEDEN = &quot;Country Indicators, Sweden&quot;;
+
+	/** The Constant COUNTRY_RANKING_TEXT. */
+	private static final String COUNTRY_RANKING_TEXT = &quot;Counry Ranking&quot;;
+
+	/** The Constant OVERVIEW_TEXT. */
+	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
+
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
+	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
+
+	/** The application menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
+	/**
+	 * Instantiates a new country menu item factory impl.
+	 */
+	public CountryMenuItemFactoryImpl() {
+<span class="nc" id="L94">		super();</span>
+<span class="nc" id="L95">	}</span>
+
+	@Override
+	public void createCountryTopicMenu(final MenuBar menuBar) {
+<span class="nc" id="L99">		initApplicationMenuBar(menuBar);</span>
+
+<span class="nc" id="L101">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+
+
+<span class="nc" id="L104">		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.SERVER, null));</span>
+
+<span class="nc" id="L106">	}</span>
+
+	@Override
+	public void createCountryTopicMenu(final MenuItem charts) {
+<span class="nc" id="L110">		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,</span>
+				COMMAND_OVERVIEW);
+
+<span class="nc" id="L113">		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);</span>
+
+<span class="nc" id="L115">		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());</span>
+
+<span class="nc" id="L117">		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_PAGEVISITHISTORY);</span>
+
+<span class="nc" id="L119">	}</span>
+
+	/**
+	 * Adds the sources and indicators to menu.
+	 *
+	 * @param countryIndicators
+	 *            the country indicators
+	 * @param sourceIndicatorMap
+	 *            the source indicator map
+	 */
+	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
+			final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sourceIndicatorMap) {
+		
+<span class="nc" id="L132">		final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sortedIndicatorMap = sourceIndicatorMap</span>
+<span class="nc" id="L133">				.entrySet().stream().sorted((e1, e2) -&gt; e1.getKey().compareTo(e2.getKey()))</span>
+<span class="nc" id="L134">				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -&gt; e1, LinkedHashMap::new));</span>
+
+<span class="nc bnc" id="L136" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; entry : sortedIndicatorMap</span>
+<span class="nc" id="L137">				.entrySet()) {</span>
+
+<span class="nc" id="L139">			final MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), null, null);</span>
+			
+<span class="nc" id="L141">			final List&lt;ViewWorldbankIndicatorDataCountrySummary&gt; sortedEntries = entry.getValue().stream()</span>
+<span class="nc" id="L142">					.sorted((e1, e2) -&gt; e1.getIndicatorName().compareTo(e2.getIndicatorName()))</span>
+<span class="nc" id="L143">					.collect(Collectors.toList());</span>
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {</span>
+<span class="nc" id="L146">				final MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),</span>
+						new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS,
+<span class="nc" id="L148">								indciatorSummary.getEmbeddedId().getIndicatorId()));</span>
+<span class="nc" id="L149">				addItem.setStyleName(&quot;RestrictedHeader&quot;);</span>
+<span class="nc" id="L150">			}</span>
+<span class="nc" id="L151">		}</span>
+
+<span class="nc" id="L153">	}</span>
+
+	/**
+	 * Gets the topic indicator map.
+	 *
+	 * @return the topic indicator map
+	 */
+	private Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; getTopicIndicatorMap() {
+<span class="nc" id="L161">		final DataContainer&lt;ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId&gt; indicatorDataCountrSummaryDailyDataContainer = applicationManager</span>
+<span class="nc" id="L162">				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);</span>
+
+<span class="nc" id="L164">		return indicatorDataCountrSummaryDailyDataContainer</span>
+<span class="nc" id="L165">				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,&quot;SE&quot;).parallelStream()</span>
+<span class="nc bnc" id="L166" title="All 8 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getSourceValue() != null &amp;&amp; t.getEndYear() &gt; DATA_POINTS_FOR_YEAR_ABOVE &amp;&amp; t.getDataPoint() &gt; MINIMUM_NUMBER_DATA_POINTS)</span>
+<span class="nc" id="L167">				.flatMap(t -&gt; Arrays.asList(t.getTopics().split(&quot;;&quot;)).stream()</span>
+<span class="nc" id="L168">						.map(topic -&gt; new AbstractMap.SimpleEntry&lt;&gt;(topic, t)))</span>
+
+<span class="nc" id="L170">				.collect(Collectors.groupingBy(SimpleEntry::getKey,</span>
+<span class="nc" id="L171">						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));</span>
+	}
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+<span class="nc" id="L176">		final MenuBar menuBar = new MenuBar();</span>
+<span class="nc" id="L177">		panelContent.addComponent(menuBar);</span>
+<span class="nc" id="L178">		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);</span>
+<span class="nc" id="L179">		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L181">		addSourcesAndIndicatorsToMenu(menuBar.addItem(&quot;By Topic&quot;,VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());</span>
+<span class="nc" id="L182">		menuBar.setAutoOpen(true);</span>
+<span class="nc" id="L183">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

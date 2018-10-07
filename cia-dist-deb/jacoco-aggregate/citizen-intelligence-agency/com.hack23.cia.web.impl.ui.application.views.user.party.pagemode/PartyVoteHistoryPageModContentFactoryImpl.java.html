@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PartyVoteHistoryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">cia-dist-deb</a> &gt; <a href="../index.html" class="el_bundle">citizen-intelligence-agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.party.pagemode</a> &gt; <span class="el_source">PartyVoteHistoryPageModContentFactoryImpl.java</span></div><h1>PartyVoteHistoryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class VoteHistoryPageModContentFactoryImpl.
+ */
+@Component
+public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+
+	private static final String EMBEDDED_ID_BALLOT_ID = &quot;embeddedId.ballotId&quot;;
+
+<span class="nc" id="L45">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
+
+<span class="nc" id="L48">	private static final String[] HIDE_COLUMNS = new String[] { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
+			&quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
+			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;ballotType&quot;, &quot;embeddedId.party&quot;, EMBEDDED_ID_BALLOT_ID,
+			&quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;, &quot;percentageMale&quot;, &quot;noWinner&quot; };
+
+<span class="nc" id="L53">	private static final String[] COLUMN_ORDER = new String[] { &quot;embeddedId.party&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;,</span>
+			&quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,
+			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,
+			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,
+			&quot;percentageMale&quot;, &quot;ballotType&quot;, EMBEDDED_ID_BALLOT_ID };
+
+	private static final String BALLOTS = &quot;Ballots&quot;;
+
+<span class="nc" id="L61">	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
+			&quot;embeddedId.issue&quot;, &quot;embeddedId.party&quot; };
+
+	/** The Constant VOTE_HISTORY. */
+	private static final String VOTE_HISTORY = &quot;VoteHistory&quot;;
+
+	/** The view riksdagen vote data ballot party summary chart data manager. */
+	@Autowired
+	private GenericChartDataManager&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
+
+	/**
+	 * Instantiates a new party vote history page mod content factory impl.
+	 */
+	public PartyVoteHistoryPageModContentFactoryImpl() {
+<span class="nc" id="L75">		super();</span>
+<span class="nc" id="L76">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="nc bnc" id="L80" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.VOTEHISTORY.toString());</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="nc" id="L88">		final String pageId = getPageId(parameters);</span>
+
+<span class="nc" id="L90">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L91">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+
+<span class="nc" id="L93">		LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);</span>
+
+<span class="nc" id="L95">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+				ViewRiksdagenVoteDataBallotPartySummary.class,
+<span class="nc" id="L97">				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,</span>
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
+
+<span class="nc" id="L100">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L101">		return panelContent;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
