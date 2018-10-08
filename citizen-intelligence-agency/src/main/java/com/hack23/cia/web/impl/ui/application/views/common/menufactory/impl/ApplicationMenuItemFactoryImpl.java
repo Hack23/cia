@@ -232,7 +232,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
-		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_LINK_TEXT,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem("Government body Ranking",VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
 
 		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);
 
@@ -268,7 +268,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
 		
-		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
+		createButtonLink(grid,"Government body Ranking",VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
 		
 		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");	
 
