@@ -567,7 +567,7 @@
     <dependency>
       <groupId>org.hibernate.common</groupId>
       <artifactId>hibernate-commons-annotations</artifactId>
-      <version>5.0.4.Final</version>
+      <version>5.0.5.Final</version>
     </dependency>
     <dependency>
       <groupId>net.bytebuddy</groupId>
