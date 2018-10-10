@@ -1055,6 +1055,36 @@
              ]
          }
       },
+      "GatherSoftwareInventory":{
+         "Type":"AWS::SSM::Association",
+         "Properties":{
+            "AssociationName":"GatherSoftwareInventory",
+            "Name":"AWS-GatherSoftwareInventory",
+            "Parameters":{
+               "windowsUpdates":[
+                  "false"
+               ],
+               "windowsRegistry":[
+                  "false"
+               ],
+               "windowsRoles":[
+                  "false"
+               ],
+               "services":[
+                  "false"
+               ]
+               },
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
+                {
+                   "Key":"tag:UpdateSSMAgent",
+                   "Values":[
+                      "true"
+                   ]
+                }
+             ]
+         }
+      },      
       "PublicSubnet":{
          "Type":"AWS::EC2::Subnet",
          "Properties":{
