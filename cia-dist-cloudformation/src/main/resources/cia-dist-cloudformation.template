@@ -1062,16 +1062,16 @@
             "Name":"AWS-GatherSoftwareInventory",
             "Parameters":{
                "windowsUpdates":[
-                  "false"
+                  "Disabled"
                ],
                "windowsRegistry":[
-                  "false"
+                  "Disabled"
                ],
                "windowsRoles":[
-                  "false"
+                  "Disabled"
                ],
                "services":[
-                  "false"
+                  "Disabled"
                ]
                },
             "ScheduleExpression":"rate(30 minutes)",
