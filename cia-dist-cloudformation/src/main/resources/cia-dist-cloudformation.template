@@ -1077,7 +1077,7 @@
             "ScheduleExpression":"rate(60 minutes)",
             "Targets":[
                 {
-                   "Key":"GatherSoftwareInventory",
+                   "Key":"tag:GatherSoftwareInventory",
                    "Values":[
                       "true"
                    ]
