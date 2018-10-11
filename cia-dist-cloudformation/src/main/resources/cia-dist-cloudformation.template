@@ -1004,7 +1004,7 @@
                "Operation":[
                   "Scan"
              ]},
-            "ScheduleExpression":"rate(60 minutes)",
+            "ScheduleExpression":"rate(30 minutes)",
             "Targets":[
                 {
                    "Key":"tag:PatchBaselineScan",
@@ -1024,7 +1024,7 @@
                "Operation":[
                   "Install"
                ]},
-            "ScheduleExpression":"rate(20 minutes)",
+            "ScheduleExpression":"rate(60 minutes)",
             "Targets":[
                   {
                    "Key":"tag:PatchBaselineInstall",
@@ -1044,7 +1044,7 @@
                "allowDowngrade":[
                   "false"
                ]},
-            "ScheduleExpression":"rate(10 minutes)",
+            "ScheduleExpression":"rate(30 minutes)",
             "Targets":[
                 {
                    "Key":"tag:UpdateSSMAgent",
@@ -1074,7 +1074,7 @@
                   "Disabled"
                ]
                },
-            "ScheduleExpression":"rate(30 minutes)",
+            "ScheduleExpression":"rate(60 minutes)",
             "Targets":[
                 {
                    "Key":"GatherSoftwareInventory",
