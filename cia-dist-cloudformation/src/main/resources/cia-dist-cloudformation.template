@@ -1004,12 +1004,12 @@
                "Operation":[
                   "Scan"
              ]},
-            "ScheduleExpression":"rate(30 minutes)",
+            "ScheduleExpression":"rate(60 minutes)",
             "Targets":[
                 {
-                   "Key":"tag:PatchBaseline",
+                   "Key":"tag:PatchBaselineScan",
                    "Values":[
-                      "scan"
+                      "true"
                    ]
                 }
             ]
@@ -1024,12 +1024,12 @@
                "Operation":[
                   "Install"
                ]},
-            "ScheduleExpression":"rate(30 minutes)",
+            "ScheduleExpression":"rate(20 minutes)",
             "Targets":[
                   {
-                   "Key":"tag:PatchBaseline",
+                   "Key":"tag:PatchBaselineInstall",
                    "Values":[
-                      "install"
+                      "true"
                    ]
                 }
              ]
@@ -1044,7 +1044,7 @@
                "allowDowngrade":[
                   "false"
                ]},
-            "ScheduleExpression":"rate(30 minutes)",
+            "ScheduleExpression":"rate(10 minutes)",
             "Targets":[
                 {
                    "Key":"tag:UpdateSSMAgent",
@@ -1077,7 +1077,7 @@
             "ScheduleExpression":"rate(30 minutes)",
             "Targets":[
                 {
-                   "Key":"tag:UpdateSSMAgent",
+                   "Key":"GatherSoftwareInventory",
                    "Values":[
                       "true"
                    ]
@@ -2250,8 +2250,18 @@
                   "PropagateAtLaunch":"true"
                },
                {
-                  "Key":"PatchBaseline",
-                  "Value":"scan",
+                  "Key":"PatchBaselineScan",
+                  "Value":"true",
+                  "PropagateAtLaunch":"true"
+               },
+               {
+                  "Key":"PatchBaselineInstall",
+                  "Value":"true",
+                  "PropagateAtLaunch":"true"
+               },
+               {
+                  "Key":"GatherSoftwareInventory",
+                  "Value":"true",
                   "PropagateAtLaunch":"true"
                }
             ],
@@ -2729,6 +2739,8 @@
                         "echo 'net.ipv4.tcp_max_tw_buckets = 1440000' >> /etc/sysctl.conf \n",
                         "echo 'net.ipv4.tcp_tw_reuse = 1' >> /etc/sysctl.conf \n",
                         "sysctl -p\n",
+                        "apt-get update\n",
+                        "apt-get -y install apt-transport-https\n",
                         "apt-get update\n",
                         "apt-get -y upgrade\n",
                         "apt-get -y install python-pip unattended-upgrades\n",
