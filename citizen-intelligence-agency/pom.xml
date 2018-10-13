@@ -381,7 +381,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.426</version>
+      <version>1.11.428</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -413,7 +413,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.426</version>
+      <version>1.11.428</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -1020,7 +1020,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
-      <version>1.5</version>
+      <version>1.6</version>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
