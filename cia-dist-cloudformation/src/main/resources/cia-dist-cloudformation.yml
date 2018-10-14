@@ -414,6 +414,7 @@ Resources:
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd
+        - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-sJBhCr0F
       UserAttributesForFindings:
         - Key: Service
           Value: cia
@@ -702,9 +703,9 @@ Resources:
           - Scan
       ScheduleExpression: rate(30 minutes)
       Targets:
-        - Key: tag:PatchBaseline
+        - Key: tag:PatchBaselineScan
           Values:
-            - scan
+            - 'true'
   PatchBaselineInstall:
     Type: AWS::SSM::Association
     Properties:
@@ -713,11 +714,11 @@ Resources:
       Parameters:
         Operation:
           - Install
-      ScheduleExpression: rate(30 minutes)
+      ScheduleExpression: rate(60 minutes)
       Targets:
-        - Key: tag:PatchBaseline
+        - Key: tag:PatchBaselineInstall
           Values:
-            - install
+            - 'true'
   UpdateSSMAgent:
     Type: AWS::SSM::Association
     Properties:
@@ -729,6 +730,25 @@ Resources:
       ScheduleExpression: rate(30 minutes)
       Targets:
         - Key: tag:UpdateSSMAgent
+          Values:
+            - 'true'
+  GatherSoftwareInventory:
+    Type: AWS::SSM::Association
+    Properties:
+      AssociationName: GatherSoftwareInventory
+      Name: AWS-GatherSoftwareInventory
+      Parameters:
+        windowsUpdates:
+          - Disabled
+        windowsRegistry:
+          - Disabled
+        windowsRoles:
+          - Disabled
+        services:
+          - Disabled
+      ScheduleExpression: rate(60 minutes)
+      Targets:
+        - Key: tag:GatherSoftwareInventory
           Values:
             - 'true'
   PublicSubnet:
@@ -1325,8 +1345,14 @@ Resources:
         - Key: UpdateSSMAgent
           Value: 'true'
           PropagateAtLaunch: 'true'
-        - Key: PatchBaseline
-          Value: scan
+        - Key: PatchBaselineScan
+          Value: 'true'
+          PropagateAtLaunch: 'true'
+        - Key: PatchBaselineInstall
+          Value: 'true'
+          PropagateAtLaunch: 'true'
+        - Key: GatherSoftwareInventory
+          Value: 'true'
           PropagateAtLaunch: 'true'
       NotificationConfiguration:
         TopicARN: !Ref 'NotificationTopic'
@@ -1606,80 +1632,8 @@ Resources:
             - "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n"
             - "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n"
             - "dpkg-reconfigure --frontend=noninteractive locales \n"
-            - "#Ignore ICMP broadcast requests\n"
-            - "echo 'net.ipv4.icmp_echo_ignore_broadcasts = 1' >> /etc/sysctl.conf\
-              \ \n"
-            - "# Disable source packet routing\n"
-            - "echo 'net.ipv4.conf.all.accept_source_route = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv6.conf.all.accept_source_route = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv4.conf.default.accept_source_route = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv6.conf.default.accept_source_route = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "# Ignore send redirects\n"
-            - "echo 'net.ipv4.conf.all.send_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.conf.default.send_redirects = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "# Block SYN attacks\n"
-            - "echo 'net.ipv4.tcp_max_syn_backlog = 2048' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.tcp_synack_retries = 2' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.tcp_syn_retries = 5' >> /etc/sysctl.conf \n"
-            - "# Log Martians\n"
-            - "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.icmp_ignore_bogus_error_responses = 1' >> /etc/sysctl.conf\
-              \ \n"
-            - "# Ignore ICMP redirects\n"
-            - "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv6.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
-              \ \n"
-            - "# Ignore Directed pings\n"
-            - "echo 'net.ipv4.icmp_echo_ignore_all = 1' >> /etc/sysctl.conf \n"
-            - "echo 'vm.swappiness = 40' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.ctrl-alt-del = 0' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.randomize_va_space = 2' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n"
-            - "echo 'fs.suid_dumpable = 0' >> /etc/sysctl.conf \n"
-            - "echo 'kernel.dmesg_restrict = 1' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.conf.default.log_martians = 1' >> /etc/sysctl.conf \n"
-            - "### TUNING NETWORK PERFORMANCE ###\n"
-            - "# Default Socket Receive Buffer\n"
-            - "echo 'net.core.rmem_default = 31457280' >> /etc/sysctl.conf \n"
-            - "# Maximum Socket Receive Buffer\n"
-            - "echo 'net.core.rmem_max = 12582912' >> /etc/sysctl.conf \n"
-            - "# Default Socket Send Buffer\n"
-            - "echo 'net.core.wmem_default = 31457280' >> /etc/sysctl.conf \n"
-            - "# Maximum Socket Send Buffer\n"
-            - "echo 'net.core.wmem_max = 12582912' >> /etc/sysctl.conf \n"
-            - "# Increase number of incoming connections\n"
-            - "echo 'net.core.somaxconn = 4096' >> /etc/sysctl.conf \n"
-            - "# Increase number of incoming connections backlog\n"
-            - "echo 'net.core.netdev_max_backlog = 65536' >> /etc/sysctl.conf \n"
-            - "# Increase the maximum amount of option memory buffers\n"
-            - "echo 'net.core.optmem_max = 25165824' >> /etc/sysctl.conf \n"
-            - "# Increase the maximum total buffer-space allocatable\n"
-            - "# This is measured in units of pages (4096 bytes)\n"
-            - "echo 'net.ipv4.tcp_mem = 65536 131072 262144' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.udp_mem = 65536 131072 262144' >> /etc/sysctl.conf \n"
-            - "# Increase the read-buffer space allocatable\n"
-            - "echo 'net.ipv4.tcp_rmem = 8192 87380 16777216' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv4.udp_rmem_min = 16384' >> /etc/sysctl.conf \n"
-            - "# Increase the write-buffer-space allocatable\n"
-            - "echo 'net.ipv4.tcp_wmem = 8192 65536 16777216' >> /etc/sysctl.conf\
-              \ \n"
-            - "echo 'net.ipv4.udp_wmem_min = 16384' >> /etc/sysctl.conf \n"
-            - "# Increase the tcp-time-wait buckets pool size to prevent simple DOS\
-              \ attacks\n"
-            - "echo 'net.ipv4.tcp_max_tw_buckets = 1440000' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.tcp_tw_reuse = 1' >> /etc/sysctl.conf \n"
-            - "sysctl -p\n"
+            - "apt-get update\n"
+            - "apt-get -y install apt-transport-https\n"
             - "apt-get update\n"
             - "apt-get -y upgrade\n"
             - "apt-get -y install python-pip unattended-upgrades\n"
@@ -1703,7 +1657,8 @@ Resources:
             - "ufw allow 8443/tcp\n"
             - "ufw allow 53\n"
             - "ufw allow 123/udp\n"
-            - "ufw enable\n"
+            - "#ufw enable\n"
+            - "ufw disable\n"
             - "ufw status verbose\n"
             - "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n"
             - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
@@ -1725,10 +1680,10 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://download.java.net/java/early_access/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz\n"
-            - "tar xvfz openjdk-11+28_linux-x64_bin.tar.gz\n"
+            - "wget https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-11_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n"
-            - "rm openjdk-11+28_linux-x64_bin.tar.gz\n"
+            - "rm openjdk-11_linux-x64_bin.tar.gz\n"
             - "sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n"
             - "# INSTALL ORACLE JDK\n"
             - "#sudo add-apt-repository ppa:webupd8team/java \n"
@@ -1771,6 +1726,7 @@ Resources:
             - "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem\
               \ -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - "/etc/init.d/cia restart\n"
+            - "update-rc.d cia defaults\n"
             - "# TODO setup  cron jobs for security auditing, intrusion detection,\
               \ system hardening#\n"
             - "sudo apt-get -y install lsb-invalid-mta\n"
