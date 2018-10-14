@@ -995,6 +995,119 @@
 
          }
       },
+      "MaintenanceWindowServiceRole": {
+            "Type": "AWS::IAM::Role", 
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17", 
+                    "Statement": [
+                        {
+                            "Effect": "Allow", 
+                            "Principal": {
+                                "Service": [
+                                    "ssm.amazonaws.com"
+                                ]
+                            }, 
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                }, 
+                "Path": "/", 
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole"
+                ], 
+                "Policies": [
+                    {
+                        "PolicyName": "PassRole", 
+                        "PolicyDocument": {
+                            "Version": "2012-10-17", 
+                            "Statement": [
+                                {
+                                    "Effect": "Allow", 
+                                    "Action": [
+                                        "iam:PassRole"
+                                    ], 
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }, 
+        "MaintenanceWindow": {
+            "Type": "AWS::SSM::MaintenanceWindow", 
+            "Properties": {
+                "Description": "Daily Maintenance Window", 
+                "AllowUnassociatedTargets": false, 
+                "Cutoff": 1, 
+                "Schedule": "rate(1 days)", 
+                "Duration": 2, 
+                "Name": "daily-patching"
+            }
+        }, 
+        "MaintenanceWindowTarget": {
+            "Type": "AWS::SSM::MaintenanceWindowTarget", 
+            "Properties": {
+                "Description": "Server Fleet Management Solution Instances", 
+                "WindowId": {
+                    "Ref": "MaintenanceWindow"
+                }, 
+                "ResourceType": "INSTANCE", 
+                "Targets": [
+                    {
+                        "Key": "tag:MaintenanceWindowTarget", 
+                        "Values": [ "true"
+                        ]
+                    }
+                ]
+            }
+        }, 
+        "MaintenanceWindowTask": {
+            "Type": "AWS::SSM::MaintenanceWindowTask", 
+            "Properties": {
+                "Description": "Runs Server Fleet Management Solution patch baseline", 
+                "ServiceRoleArn": {
+                    "Fn::GetAtt": [
+                        "MaintenanceWindowServiceRole", 
+                        "Arn"
+                    ]
+                }, 
+                "MaxErrors": 1, 
+                "TaskArn": "AWS-RunPatchBaseline", 
+                "MaxConcurrency": "100%", 
+                "WindowId": {
+                    "Ref": "MaintenanceWindow"
+                }, 
+                "Priority": 1, 
+                "TaskType": "RUN_COMMAND", 
+                "TaskInvocationParameters": {
+                    "MaintenanceWindowRunCommandParameters": {
+                        "Comment": "Runs patch baseline", 
+                        "TimeoutSeconds": 600, 
+                        "Parameters": {
+                            "Operation": [
+                                "Install"
+                            ]
+                        }
+                    }
+                }, 
+                "Targets": [
+                    {
+                        "Values": [
+                            {
+                                "Ref": "MaintenanceWindowTarget"
+                            }
+                        ], 
+                        "Key": "WindowTargetIds"
+                    }
+                ]
+            }
+        }, 	
       "PatchBaselineScan":{
          "Type":"AWS::SSM::Association",
          "Properties":{
@@ -2261,6 +2374,11 @@
                },
                {
                   "Key":"GatherSoftwareInventory",
+                  "Value":"true",
+                  "PropagateAtLaunch":"true"
+               },
+               {
+                  "Key":"MaintenanceWindowTarget",
                   "Value":"true",
                   "PropagateAtLaunch":"true"
                }
