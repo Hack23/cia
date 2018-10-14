@@ -1861,6 +1861,9 @@ Resources:
             - / -DUSE_LOG_APPENDER=
             - !Ref 'WebServerAppLogAppender'
             - "/' /opt/cia/start.ini\n"
+            - sed -i -e 's/# -Djavamelody.cloudwatch-namespace=Hack23
+            - / -Djavamelody.cloudwatch-namespace=Hack23
+            - "/' /opt/cia/start.ini\n"
             - "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n"
             - "mkdir /opt/cia/.postgresql\n"
             - "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n"
