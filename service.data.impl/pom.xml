@@ -209,7 +209,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.2.12</version>
+      <version>4.4.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
