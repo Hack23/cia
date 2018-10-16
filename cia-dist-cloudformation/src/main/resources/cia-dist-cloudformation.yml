@@ -390,26 +390,26 @@ Resources:
       ResourceId: !Ref 'VPC'
       ResourceType: VPC
       TrafficType: ALL
-  PublicNetworkResourceGroup:
+  InspectorTargetResourceGroup:
     Type: AWS::Inspector::ResourceGroup
     Properties:
       ResourceGroupTags:
-        - Key: Network
-          Value: Public
-  PublicNetworkTarget:
+        - Key: SecurityBaselineCheck
+          Value: 'true'
+  InspectorTarget:
     Type: AWS::Inspector::AssessmentTarget
     Properties:
       AssessmentTargetName: !Join
         - '-'
         - - !Ref 'AWS::StackId'
-          - MyAssessmentTarget
-      ResourceGroupArn: !Ref 'PublicNetworkResourceGroup'
-  PublicNetworkTemplate:
+          - SecurityAssessmentTarget
+      ResourceGroupArn: !Ref 'InspectorTargetResourceGroup'
+  SecurityBaseLineAssesmentTemplate:
     Type: AWS::Inspector::AssessmentTemplate
     Properties:
-      AssessmentTargetArn: !Ref 'PublicNetworkTarget'
+      AssessmentTargetArn: !Ref 'InspectorTarget'
       DurationInSeconds: 3600
-      AssessmentTemplateName: PublicNetworkTemplate
+      AssessmentTemplateName: SecurityBaseLineAssesmentTemplate
       RulesPackageArns:
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6
@@ -473,7 +473,7 @@ Resources:
             - '    inspector = boto3.client(''inspector'',region)'
             - "\n"
             - '    existingTemplates = inspector.list_assessment_templates(filter={''namePattern'':
-              ''PublicNetworkTemplate''})'
+              ''SecurityBaseLineAssesmentTemplate''})'
             - "\n"
             - '    print(''Total templates found:''+str(len(existingTemplates[''assessmentTemplateArns''])))'
             - "\n"
@@ -734,10 +734,10 @@ Resources:
       WindowId: !Ref 'MaintenanceWindow'
       ResourceType: INSTANCE
       Targets:
-        - Key: tag:MaintenanceWindowTarget
+        - Key: tag:SystemPatchComplianceMaintenanceWindowActive
           Values:
             - 'true'
-  MaintenanceWindowTask:
+  MaintenanceWindowTaskPatchBaselineInstall:
     Type: AWS::SSM::MaintenanceWindowTask
     Properties:
       Description: Runs Server Fleet Management Solution patch baseline
@@ -759,32 +759,28 @@ Resources:
         - Values:
             - !Ref 'MaintenanceWindowTarget'
           Key: WindowTargetIds
-  PatchBaselineScan:
-    Type: AWS::SSM::Association
+  MaintenanceWindowTaskPatchBaselineScan:
+    Type: AWS::SSM::MaintenanceWindowTask
     Properties:
-      AssociationName: PatchBaselineScan
-      Name: AWS-RunPatchBaseline
-      Parameters:
-        Operation:
-          - Scan
-      ScheduleExpression: rate(30 minutes)
+      Description: Runs Server Fleet Management Solution patch baseline
+      ServiceRoleArn: !GetAtt 'MaintenanceWindowServiceRole.Arn'
+      MaxErrors: 1
+      TaskArn: AWS-RunPatchBaseline
+      MaxConcurrency: 100%
+      WindowId: !Ref 'MaintenanceWindow'
+      Priority: 2
+      TaskType: RUN_COMMAND
+      TaskInvocationParameters:
+        MaintenanceWindowRunCommandParameters:
+          Comment: Runs patch baseline
+          TimeoutSeconds: 600
+          Parameters:
+            Operation:
+              - Scan
       Targets:
-        - Key: tag:PatchBaselineScan
-          Values:
-            - 'true'
-  PatchBaselineInstall:
-    Type: AWS::SSM::Association
-    Properties:
-      AssociationName: PatchBaselineInstall
-      Name: AWS-RunPatchBaseline
-      Parameters:
-        Operation:
-          - Install
-      ScheduleExpression: rate(60 minutes)
-      Targets:
-        - Key: tag:PatchBaselineInstall
-          Values:
-            - 'true'
+        - Values:
+            - !Ref 'MaintenanceWindowTarget'
+          Key: WindowTargetIds
   UpdateSSMAgent:
     Type: AWS::SSM::Association
     Properties:
@@ -1408,19 +1404,16 @@ Resources:
         - Key: Network
           Value: Public
           PropagateAtLaunch: 'true'
+        - Key: SecurityBaselineCheck
+          Value: 'true'
+          PropagateAtLaunch: 'true'
         - Key: UpdateSSMAgent
-          Value: 'true'
-          PropagateAtLaunch: 'true'
-        - Key: PatchBaselineScan
-          Value: 'true'
-          PropagateAtLaunch: 'true'
-        - Key: PatchBaselineInstall
           Value: 'true'
           PropagateAtLaunch: 'true'
         - Key: GatherSoftwareInventory
           Value: 'true'
           PropagateAtLaunch: 'true'
-        - Key: MaintenanceWindowTarget
+        - Key: SystemPatchComplianceMaintenanceWindowActive
           Value: 'true'
           PropagateAtLaunch: 'true'
       NotificationConfiguration:
@@ -1704,7 +1697,7 @@ Resources:
             - "apt-get update\n"
             - "apt-get -y install apt-transport-https\n"
             - "apt-get update\n"
-            - "apt-get -y upgrade\n"
+            - "apt-get -y dist-upgrade\n"
             - "apt-get -y install python-pip unattended-upgrades\n"
             - "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n"
             - "cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n"

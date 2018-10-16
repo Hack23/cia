@@ -543,18 +543,18 @@
             "TrafficType":"ALL"
          }
       },
-      "PublicNetworkResourceGroup":{
+      "InspectorTargetResourceGroup":{
          "Type":"AWS::Inspector::ResourceGroup",
          "Properties":{
             "ResourceGroupTags":[
                {
-                  "Key":"Network",
-                  "Value":"Public"
+                  "Key":"SecurityBaselineCheck",
+                  "Value":"true"
                }
             ]
          }
       },
-      "PublicNetworkTarget":{
+      "InspectorTarget":{
          "Type":"AWS::Inspector::AssessmentTarget",
          "Properties":{
             "AssessmentTargetName":{
@@ -564,23 +564,23 @@
                      {
                         "Ref":"AWS::StackId"
                      },
-                     "MyAssessmentTarget"
+                     "SecurityAssessmentTarget"
                   ]
                ]
             },
             "ResourceGroupArn":{
-               "Ref":"PublicNetworkResourceGroup"
+               "Ref":"InspectorTargetResourceGroup"
             }
          }
       },
-      "PublicNetworkTemplate":{
+      "SecurityBaseLineAssesmentTemplate":{
          "Type":"AWS::Inspector::AssessmentTemplate",
          "Properties":{
             "AssessmentTargetArn":{
-               "Ref":"PublicNetworkTarget"
+               "Ref":"InspectorTarget"
             },
             "DurationInSeconds":3600,
-            "AssessmentTemplateName":"PublicNetworkTemplate",
+            "AssessmentTemplateName":"SecurityBaseLineAssesmentTemplate",
             "RulesPackageArns":[
                "arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh",
                "arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6",
@@ -675,7 +675,7 @@
                         "\n",
                         "    inspector = boto3.client('inspector',region)",
                         "\n",
-                        "    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'PublicNetworkTemplate'})",
+                        "    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'SecurityBaseLineAssesmentTemplate'})",
                         "\n",
                         "    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))",
                         "\n",
@@ -1060,7 +1060,7 @@
                 "ResourceType": "INSTANCE", 
                 "Targets": [
                     {
-                        "Key": "tag:MaintenanceWindowTarget", 
+                        "Key": "tag:SystemPatchComplianceMaintenanceWindowActive", 
                         "Values": [ "true"
                         ]
                     }
@@ -2359,17 +2359,12 @@
                   "PropagateAtLaunch":"true"
                },
                {
+                  "Key":"SecurityBaselineCheck",
+                  "Value":"true",
+                  "PropagateAtLaunch":"true"
+               },
+               {
                   "Key":"UpdateSSMAgent",
-                  "Value":"true",
-                  "PropagateAtLaunch":"true"
-               },
-               {
-                  "Key":"PatchBaselineScan",
-                  "Value":"true",
-                  "PropagateAtLaunch":"true"
-               },
-               {
-                  "Key":"PatchBaselineInstall",
                   "Value":"true",
                   "PropagateAtLaunch":"true"
                },
@@ -2379,7 +2374,7 @@
                   "PropagateAtLaunch":"true"
                },
                {
-                  "Key":"MaintenanceWindowTarget",
+                  "Key":"SystemPatchComplianceMaintenanceWindowActive",
                   "Value":"true",
                   "PropagateAtLaunch":"true"
                }
