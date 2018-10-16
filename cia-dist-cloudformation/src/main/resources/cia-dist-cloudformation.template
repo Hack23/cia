@@ -995,159 +995,275 @@
 
          }
       },
-      "MaintenanceWindowServiceRole": {
-            "Type": "AWS::IAM::Role", 
-            "Properties": {
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17", 
-                    "Statement": [
-                        {
-                            "Effect": "Allow", 
-                            "Principal": {
-                                "Service": [
-                                    "ssm.amazonaws.com"
-                                ]
-                            }, 
-                            "Action": [
-                                "sts:AssumeRole"
-                            ]
-                        }
-                    ]
-                }, 
-                "Path": "/", 
-                "ManagedPolicyArns": [
-                    "arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole"
-                ], 
-                "Policies": [
-                    {
-                        "PolicyName": "PassRole", 
-                        "PolicyDocument": {
-                            "Version": "2012-10-17", 
-                            "Statement": [
-                                {
-                                    "Effect": "Allow", 
-                                    "Action": [
-                                        "iam:PassRole"
-                                    ], 
-                                    "Resource": [
-                                        "*"
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                ]
+      "ArtifactBucket":{
+         "Type":"AWS::S3::Bucket",
+         "DeletionPolicy":"Retain",
+         "Properties":{
+            "AccessControl":"Private",
+            "BucketEncryption":{
+               "ServerSideEncryptionConfiguration":[
+                  {
+                     "ServerSideEncryptionByDefault":{
+                        "KMSMasterKeyID":{
+                           "Ref":"ArtifactBucketEncryptionKey"
+                        },
+                        "SSEAlgorithm":"aws:kms"
+                     }
+                  }
+               ]
             }
-        }, 
-        "MaintenanceWindow": {
-            "Type": "AWS::SSM::MaintenanceWindow", 
-            "Properties": {
-                "Description": "Daily Maintenance Window", 
-                "AllowUnassociatedTargets": false, 
-                "Cutoff": 1, 
-                "Schedule": "rate(1 days)", 
-                "Duration": 2, 
-                "Name": "daily-patching"
-            }
-        }, 
-        "MaintenanceWindowTarget": {
-            "Type": "AWS::SSM::MaintenanceWindowTarget", 
-            "Properties": {
-                "Description": "Server Fleet Management Solution Instances", 
-                "WindowId": {
-                    "Ref": "MaintenanceWindow"
-                }, 
-                "ResourceType": "INSTANCE", 
-                "Targets": [
-                    {
-                        "Key": "tag:SystemPatchComplianceMaintenanceWindowActive", 
-                        "Values": [ "true"
-                        ]
-                    }
-                ]
-            }
-        }, 
-        "MaintenanceWindowTaskPatchBaselineInstall": {
-            "Type": "AWS::SSM::MaintenanceWindowTask", 
-            "Properties": {
-                "Description": "Runs Server Fleet Management Solution patch baseline", 
-                "ServiceRoleArn": {
-                    "Fn::GetAtt": [
-                        "MaintenanceWindowServiceRole", 
-                        "Arn"
-                    ]
-                }, 
-                "MaxErrors": 1, 
-                "TaskArn": "AWS-RunPatchBaseline", 
-                "MaxConcurrency": "100%", 
-                "WindowId": {
-                    "Ref": "MaintenanceWindow"
-                }, 
-                "Priority": 1, 
-                "TaskType": "RUN_COMMAND", 
-                "TaskInvocationParameters": {
-                    "MaintenanceWindowRunCommandParameters": {
-                        "Comment": "Runs patch baseline", 
-                        "TimeoutSeconds": 600, 
-                        "Parameters": {
-                            "Operation": [
-                                "Install"
-                            ]
-                        }
-                    }
-                }, 
-                "Targets": [
-                    {
-                        "Values": [
-                            {
-                                "Ref": "MaintenanceWindowTarget"
-                            }
-                        ], 
-                        "Key": "WindowTargetIds"
-                    }
-                ]
-            }
+         }
       },
-      "MaintenanceWindowTaskPatchBaselineScan": {
-            "Type": "AWS::SSM::MaintenanceWindowTask", 
-            "Properties": {
-                "Description": "Runs Server Fleet Management Solution patch baseline", 
-                "ServiceRoleArn": {
-                    "Fn::GetAtt": [
-                        "MaintenanceWindowServiceRole", 
-                        "Arn"
-                    ]
-                }, 
-                "MaxErrors": 1, 
-                "TaskArn": "AWS-RunPatchBaseline", 
-                "MaxConcurrency": "100%", 
-                "WindowId": {
-                    "Ref": "MaintenanceWindow"
-                }, 
-                "Priority": 2, 
-                "TaskType": "RUN_COMMAND", 
-                "TaskInvocationParameters": {
-                    "MaintenanceWindowRunCommandParameters": {
-                        "Comment": "Runs patch baseline", 
-                        "TimeoutSeconds": 600, 
-                        "Parameters": {
-                            "Operation": [
-                                "Scan"
-                            ]
+      "ArtifactBucketEncryptionKey":{
+         "Type":"AWS::KMS::Key",
+         "Properties":{
+            "Description":"Key used for Server Fleet Management Solution artifact bucket",
+            "Enabled":true,
+            "EnableKeyRotation":true,
+            "KeyPolicy":{
+               "Statement":[
+                  {
+                     "Sid":"manage-key",
+                     "Action":[
+                        "kms:*"
+                     ],
+                     "Effect":"Allow",
+                     "Principal":{
+                        "AWS":{
+                           "Fn::Sub":"arn:aws:iam::${AWS::AccountId}:root"
                         }
-                    }
-                }, 
-                "Targets": [
-                    {
-                        "Values": [
-                            {
-                                "Ref": "MaintenanceWindowTarget"
-                            }
-                        ], 
-                        "Key": "WindowTargetIds"
-                    }
-                ]
+                     },
+                     "Resource":"*"
+                  },
+                  {
+                     "Sid":"ssm-access-policy-statement",
+                     "Action":[
+                        "kms:GenerateDataKey"
+                     ],
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":"ssm.amazonaws.com"
+                     },
+                     "Resource":"*"
+                  }
+               ]
             }
+         }
+      },
+      "ArtifactBucketEncryptionKeyAlias":{
+         "Type":"AWS::KMS::Alias",
+         "Properties":{
+            "AliasName":"alias/ssm-bucket-encryption-key",
+            "TargetKeyId":{
+               "Ref":"ArtifactBucketEncryptionKey"
+            }
+         }
+      },
+      "ArtifactBucketPolicy":{
+         "Type":"AWS::S3::BucketPolicy",
+         "DeletionPolicy":"Retain",
+         "Properties":{
+            "Bucket":{
+               "Ref":"ArtifactBucket"
+            },
+            "PolicyDocument":{
+               "Version":"2008-10-17",
+               "Statement":[
+                  {
+                     "Sid":"ArtifactBucketPermissionsCheck",
+                     "Effect":"Allow",
+                     "Resource":{
+                        "Fn::Sub":"${ArtifactBucket.Arn}"
+                     },
+                     "Principal":{
+                        "Service":"ssm.amazonaws.com"
+                     },
+                     "Action":[
+                        "s3:GetBucketAcl"
+                     ]
+                  },
+                  {
+                     "Sid":"ArtifactBucketDelivery",
+                     "Effect":"Allow",
+                     "Resource":{
+                        "Fn::Sub":"${ArtifactBucket.Arn}/*"
+                     },
+                     "Principal":{
+                        "Service":"ssm.amazonaws.com"
+                     },
+                     "Action":[
+                        "s3:PutObject"
+                     ],
+                     "Condition":{
+                        "StringEquals":{
+                           "s3:x-amz-acl":"bucket-owner-full-control"
+                        }
+                     }
+                  }
+               ]
+            }
+         }
+      },
+      "MaintenanceWindowServiceRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "ssm.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AmazonSSMMaintenanceWindowRole"
+            ],
+            "Policies":[
+               {
+                  "PolicyName":"PassRole",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                        {
+                           "Effect":"Allow",
+                           "Action":[
+                              "iam:PassRole"
+                           ],
+                           "Resource":[
+                              "*"
+                           ]
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "MaintenanceWindow":{
+         "Type":"AWS::SSM::MaintenanceWindow",
+         "Properties":{
+            "Description":"Daily Maintenance Window",
+            "AllowUnassociatedTargets":false,
+            "Cutoff":1,
+            "Schedule":"rate(1 days)",
+            "Duration":2,
+            "Name":"daily-patching"
+         }
+      },
+      "MaintenanceWindowTarget":{
+         "Type":"AWS::SSM::MaintenanceWindowTarget",
+         "Properties":{
+            "Description":"Server Fleet Management Solution Instances",
+            "WindowId":{
+               "Ref":"MaintenanceWindow"
+            },
+            "ResourceType":"INSTANCE",
+            "Targets":[
+               {
+                  "Key":"tag:SystemPatchComplianceMaintenanceWindowActive",
+                  "Values":[
+                     "true"
+                  ]
+               }
+            ]
+         }
+      },
+      "MaintenanceWindowTaskPatchBaselineInstall":{
+         "Type":"AWS::SSM::MaintenanceWindowTask",
+         "Properties":{
+            "Description":"Runs Server Fleet Management Solution patch baseline",
+            "ServiceRoleArn":{
+               "Fn::GetAtt":[
+                  "MaintenanceWindowServiceRole",
+                  "Arn"
+               ]
+            },
+            "MaxErrors":1,
+            "TaskArn":"AWS-RunPatchBaseline",
+            "MaxConcurrency":"100%",
+            "WindowId":{
+               "Ref":"MaintenanceWindow"
+            },
+            "Priority":1,
+            "TaskType":"RUN_COMMAND",
+            "TaskInvocationParameters":{
+               "MaintenanceWindowRunCommandParameters":{
+                  "Comment":"Runs patch baseline",
+                  "TimeoutSeconds":600,
+                  "Parameters":{
+                     "Operation":[
+                        "Install"
+                     ]
+                  },
+                  "OutputS3BucketName":{
+                     "Ref":"ArtifactBucket"
+                  }
+               }
+            },
+            "Targets":[
+               {
+                  "Values":[
+                     {
+                        "Ref":"MaintenanceWindowTarget"
+                     }
+                  ],
+                  "Key":"WindowTargetIds"
+               }
+            ]
+         }
+      },
+      "MaintenanceWindowTaskPatchBaselineScan":{
+         "Type":"AWS::SSM::MaintenanceWindowTask",
+         "Properties":{
+            "Description":"Runs Server Fleet Management Solution patch baseline",
+            "ServiceRoleArn":{
+               "Fn::GetAtt":[
+                  "MaintenanceWindowServiceRole",
+                  "Arn"
+               ]
+            },
+            "MaxErrors":1,
+            "TaskArn":"AWS-RunPatchBaseline",
+            "MaxConcurrency":"100%",
+            "WindowId":{
+               "Ref":"MaintenanceWindow"
+            },
+            "Priority":2,
+            "TaskType":"RUN_COMMAND",
+            "TaskInvocationParameters":{
+               "MaintenanceWindowRunCommandParameters":{
+                  "Comment":"Runs patch baseline",
+                  "TimeoutSeconds":600,
+                  "Parameters":{
+                     "Operation":[
+                        "Scan"
+                     ]
+                  },
+                  "OutputS3BucketName":{
+                     "Ref":"ArtifactBucket"
+                  }
+               }
+            },
+            "Targets":[
+               {
+                  "Values":[
+                     {
+                        "Ref":"MaintenanceWindowTarget"
+                     }
+                  ],
+                  "Key":"WindowTargetIds"
+               }
+            ]
+         }
       },
       "UpdateSSMAgent":{
          "Type":"AWS::SSM::Association",
@@ -1157,16 +1273,20 @@
             "Parameters":{
                "allowDowngrade":[
                   "false"
-               ]},
+               ]
+            },
+            "OutputLocation":{
+               "Ref":"ArtifactBucket"
+            },
             "ScheduleExpression":"rate(30 minutes)",
             "Targets":[
-                {
-                   "Key":"tag:UpdateSSMAgent",
-                   "Values":[
-                      "true"
-                   ]
-                }
-             ]
+               {
+                  "Key":"tag:UpdateSSMAgent",
+                  "Values":[
+                     "true"
+                  ]
+               }
+            ]
          }
       },
       "GatherSoftwareInventory":{
@@ -1187,18 +1307,21 @@
                "services":[
                   "Disabled"
                ]
-               },
+            },
+            "OutputLocation":{
+               "Ref":"ArtifactBucket"
+            },
             "ScheduleExpression":"rate(60 minutes)",
             "Targets":[
-                {
-                   "Key":"tag:GatherSoftwareInventory",
-                   "Values":[
-                      "true"
-                   ]
-                }
-             ]
+               {
+                  "Key":"tag:GatherSoftwareInventory",
+                  "Values":[
+                     "true"
+                  ]
+               }
+            ]
          }
-      },      
+      },
       "PublicSubnet":{
          "Type":"AWS::EC2::Subnet",
          "Properties":{
@@ -2790,7 +2913,7 @@
                         "dpkg-reconfigure -f noninteractive tzdata \n",
                         "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
                         "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
-                        "dpkg-reconfigure --frontend=noninteractive locales \n",                        
+                        "dpkg-reconfigure --frontend=noninteractive locales \n",
                         "apt-get update\n",
                         "apt-get -y install apt-transport-https\n",
                         "apt-get update\n",
@@ -2821,7 +2944,7 @@
                         "ufw allow 53\n",
                         "ufw allow 123/udp\n",
                         "ufw enable\n",
-                        "#ufw disable\n",                        
+                        "#ufw disable\n",
                         "ufw status verbose\n",
                         "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n",
                         "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
@@ -2885,7 +3008,7 @@
                         "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n",
                         "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
                         "let JAVAMEMSIZE=$TOTAL_MEM_KB-1536*1024\n",
-                        "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",                        
+                        "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",
                         "# sed -i -e 's/# -DUSE_LOG_APPENDER=",
                         {
                            "Ref":"WebServerAppLogAppender"

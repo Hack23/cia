@@ -693,6 +693,68 @@ Resources:
   InspectorResultActionTopic:
     Type: AWS::SNS::Topic
     Properties: {}
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: Private
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              KMSMasterKeyID: !Ref 'ArtifactBucketEncryptionKey'
+              SSEAlgorithm: aws:kms
+  ArtifactBucketEncryptionKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Key used for Server Fleet Management Solution artifact bucket
+      Enabled: true
+      EnableKeyRotation: true
+      KeyPolicy:
+        Statement:
+          - Sid: manage-key
+            Action:
+              - kms:*
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Resource: '*'
+          - Sid: ssm-access-policy-statement
+            Action:
+              - kms:GenerateDataKey
+            Effect: Allow
+            Principal:
+              Service: ssm.amazonaws.com
+            Resource: '*'
+  ArtifactBucketEncryptionKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: alias/ssm-bucket-encryption-key
+      TargetKeyId: !Ref 'ArtifactBucketEncryptionKey'
+  ArtifactBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    DeletionPolicy: Retain
+    Properties:
+      Bucket: !Ref 'ArtifactBucket'
+      PolicyDocument:
+        Version: '2008-10-17'
+        Statement:
+          - Sid: ArtifactBucketPermissionsCheck
+            Effect: Allow
+            Resource: !Sub '${ArtifactBucket.Arn}'
+            Principal:
+              Service: ssm.amazonaws.com
+            Action:
+              - s3:GetBucketAcl
+          - Sid: ArtifactBucketDelivery
+            Effect: Allow
+            Resource: !Sub '${ArtifactBucket.Arn}/*'
+            Principal:
+              Service: ssm.amazonaws.com
+            Action:
+              - s3:PutObject
+            Condition:
+              StringEquals:
+                s3:x-amz-acl: bucket-owner-full-control
   MaintenanceWindowServiceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -755,6 +817,7 @@ Resources:
           Parameters:
             Operation:
               - Install
+          OutputS3BucketName: !Ref 'ArtifactBucket'
       Targets:
         - Values:
             - !Ref 'MaintenanceWindowTarget'
@@ -777,6 +840,7 @@ Resources:
           Parameters:
             Operation:
               - Scan
+          OutputS3BucketName: !Ref 'ArtifactBucket'
       Targets:
         - Values:
             - !Ref 'MaintenanceWindowTarget'
@@ -789,6 +853,7 @@ Resources:
       Parameters:
         allowDowngrade:
           - 'false'
+      OutputLocation: !Ref 'ArtifactBucket'
       ScheduleExpression: rate(30 minutes)
       Targets:
         - Key: tag:UpdateSSMAgent
@@ -808,6 +873,7 @@ Resources:
           - Disabled
         services:
           - Disabled
+      OutputLocation: !Ref 'ArtifactBucket'
       ScheduleExpression: rate(60 minutes)
       Targets:
         - Key: tag:GatherSoftwareInventory
