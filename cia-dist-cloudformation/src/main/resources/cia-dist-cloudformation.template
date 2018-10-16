@@ -1067,7 +1067,7 @@
                 ]
             }
         }, 
-        "MaintenanceWindowTask": {
+        "MaintenanceWindowTaskPatchBaselineInstall": {
             "Type": "AWS::SSM::MaintenanceWindowTask", 
             "Properties": {
                 "Description": "Runs Server Fleet Management Solution patch baseline", 
@@ -1107,46 +1107,47 @@
                     }
                 ]
             }
-        }, 	
-      "PatchBaselineScan":{
-         "Type":"AWS::SSM::Association",
-         "Properties":{
-            "AssociationName":"PatchBaselineScan",
-            "Name":"AWS-RunPatchBaseline",
-            "Parameters":{
-               "Operation":[
-                  "Scan"
-             ]},
-            "ScheduleExpression":"rate(30 minutes)",
-            "Targets":[
-                {
-                   "Key":"tag:PatchBaselineScan",
-                   "Values":[
-                      "true"
-                   ]
-                }
-            ]
-         }
       },
-      "PatchBaselineInstall":{
-         "Type":"AWS::SSM::Association",
-         "Properties":{
-            "AssociationName":"PatchBaselineInstall",
-            "Name":"AWS-RunPatchBaseline",
-            "Parameters":{
-               "Operation":[
-                  "Install"
-               ]},
-            "ScheduleExpression":"rate(60 minutes)",
-            "Targets":[
-                  {
-                   "Key":"tag:PatchBaselineInstall",
-                   "Values":[
-                      "true"
-                   ]
-                }
-             ]
-         }
+      "MaintenanceWindowTaskPatchBaselineScan": {
+            "Type": "AWS::SSM::MaintenanceWindowTask", 
+            "Properties": {
+                "Description": "Runs Server Fleet Management Solution patch baseline", 
+                "ServiceRoleArn": {
+                    "Fn::GetAtt": [
+                        "MaintenanceWindowServiceRole", 
+                        "Arn"
+                    ]
+                }, 
+                "MaxErrors": 1, 
+                "TaskArn": "AWS-RunPatchBaseline", 
+                "MaxConcurrency": "100%", 
+                "WindowId": {
+                    "Ref": "MaintenanceWindow"
+                }, 
+                "Priority": 2, 
+                "TaskType": "RUN_COMMAND", 
+                "TaskInvocationParameters": {
+                    "MaintenanceWindowRunCommandParameters": {
+                        "Comment": "Runs patch baseline", 
+                        "TimeoutSeconds": 600, 
+                        "Parameters": {
+                            "Operation": [
+                                "Scan"
+                            ]
+                        }
+                    }
+                }, 
+                "Targets": [
+                    {
+                        "Values": [
+                            {
+                                "Ref": "MaintenanceWindowTarget"
+                            }
+                        ], 
+                        "Key": "WindowTargetIds"
+                    }
+                ]
+            }
       },
       "UpdateSSMAgent":{
          "Type":"AWS::SSM::Association",
