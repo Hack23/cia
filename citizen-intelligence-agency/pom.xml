@@ -1515,7 +1515,7 @@
               <alias>jetty</alias>
               <dname>cn=127.0.0.1, ou=None, L=None, ST=None, o=None, c=SE</dname>
               <sigalg>SHA256withRSA</sigalg>
-              <ext />
+              <ext></ext>
               <validity>365</validity>
               <keyalg>RSA</keyalg>
               <keysize>4096</keysize>
@@ -1760,7 +1760,7 @@
             </goals>
             <configuration>
               <rules>
-                <banVulnerable implementation="org.sonatype.ossindex.maven.enforcer.BanVulnerableDependencies" />
+                <banVulnerable implementation="org.sonatype.ossindex.maven.enforcer.BanVulnerableDependencies"></banVulnerable>
               </rules>
             </configuration>
           </execution>
