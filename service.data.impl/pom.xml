@@ -209,7 +209,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.4.1</version>
+      <version>4.4.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -511,7 +511,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.3.6.Final</version>
+      <version>5.3.7.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
