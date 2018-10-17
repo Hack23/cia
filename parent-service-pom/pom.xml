@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>2018.10.17</version>
+    <version>2018.10.18-SNAPSHOT</version>
     <relativePath>../parent-pom/pom.xml</relativePath>
   </parent>
   <artifactId>parent-service-pom</artifactId>
@@ -40,7 +40,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2018.10.17</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-service-pom</url>
   </scm>
   <distributionManagement>
@@ -202,10 +202,10 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions></extensions>
+    <extensions />
     <pluginManagement>
-      <plugins></plugins>
+      <plugins />
     </pluginManagement>
-    <plugins></plugins>
+    <plugins />
   </build>
 </project>
