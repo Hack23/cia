@@ -148,7 +148,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2018.9.23/cia-dist-deb-2018.9.23.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2018.10.17/cia-dist-deb-2018.10.17.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -853,7 +853,9 @@ Resources:
       Parameters:
         allowDowngrade:
           - 'false'
-      OutputLocation: !Ref 'ArtifactBucket'
+      OutputLocation:
+        S3Location:
+          OutputS3BucketName: !Ref 'ArtifactBucket'
       ScheduleExpression: rate(30 minutes)
       Targets:
         - Key: tag:UpdateSSMAgent
@@ -873,7 +875,9 @@ Resources:
           - Disabled
         services:
           - Disabled
-      OutputLocation: !Ref 'ArtifactBucket'
+      OutputLocation:
+        S3Location:
+          OutputS3BucketName: !Ref 'ArtifactBucket'
       ScheduleExpression: rate(60 minutes)
       Targets:
         - Key: tag:GatherSoftwareInventory
