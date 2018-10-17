@@ -1,0 +1,13 @@
+digraph artemis_jms_server_2_6_3_redhat_00004_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_commons_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_core_client_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_jms_client_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_journal_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_server_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> artemis_service_extensions_2_6_3_redhat_00004;
+  artemis_jms_server_2_6_3_redhat_00004 -> geronimo_jms_2_0_spec_1_0_0_alpha_2_redhat_2;
+  artemis_jms_server_2_6_3_redhat_00004 -> geronimo_jta_1_1_spec_1_1_1_redhat_2;
+  artemis_jms_server_2_6_3_redhat_00004 -> jboss_logging_3_3_2_Final;
+  artemis_jms_server_2_6_3_redhat_00004 -> xml_apis_1_4_01;
+}

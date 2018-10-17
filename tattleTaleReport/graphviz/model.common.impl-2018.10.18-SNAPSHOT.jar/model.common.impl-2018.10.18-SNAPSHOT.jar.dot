@@ -1,0 +1,7 @@
+digraph model_common_impl_2018_10_18_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  model_common_impl_2018_10_18_SNAPSHOT -> commons_lang3_3_8_1;
+  model_common_impl_2018_10_18_SNAPSHOT -> jaxb_api_2_4_0;
+  model_common_impl_2018_10_18_SNAPSHOT -> model_common_api_2018_10_18_SNAPSHOT;
+  model_common_impl_2018_10_18_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+}

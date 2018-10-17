@@ -44,16 +44,16 @@ Import-Package: com.vaadin.navigator;version="8.6.0.beta1",com.vaadin.
  otation,java.lang.invoke,java.lang.reflect,java.net,java.nio.charset,
  java.util,java.util.concurrent,java.util.function,java.util.stream,ja
  vax.annotation,javax.servlet,javax.servlet.http,org.slf4j;version="0.
- 0.0",org.springframework.beans;version="5.1.0.RELEASE",org.springfram
- ework.beans.factory;version="5.1.0.RELEASE",org.springframework.beans
- .factory.annotation;version="5.1.0.RELEASE",org.springframework.beans
- .factory.config;version="5.1.0.RELEASE",org.springframework.beans.fac
- tory.support;version="5.1.0.RELEASE",org.springframework.context;vers
- ion="5.1.0.RELEASE",org.springframework.context.annotation;version="5
- .1.0.RELEASE",org.springframework.core.annotation;version="5.1.0.RELE
- ASE",org.springframework.core.env;version="5.1.0.RELEASE",org.springf
- ramework.core.type;version="5.1.0.RELEASE",org.springframework.stereo
- type;version="5.1.0.RELEASE",org.springframework.util;version="5.1.0.
- RELEASE",org.springframework.web.context;version="5.1.0.RELEASE",org.
- springframework.web.context.support;version="5.1.0.RELEASE",org.sprin
- gframework.web.util;version="5.1.0.RELEASE"
+ 0.0",org.springframework.beans;version="5.1.1.RELEASE",org.springfram
+ ework.beans.factory;version="5.1.1.RELEASE",org.springframework.beans
+ .factory.annotation;version="5.1.1.RELEASE",org.springframework.beans
+ .factory.config;version="5.1.1.RELEASE",org.springframework.beans.fac
+ tory.support;version="5.1.1.RELEASE",org.springframework.context;vers
+ ion="5.1.1.RELEASE",org.springframework.context.annotation;version="5
+ .1.1.RELEASE",org.springframework.core.annotation;version="5.1.1.RELE
+ ASE",org.springframework.core.env;version="5.1.1.RELEASE",org.springf
+ ramework.core.type;version="5.1.1.RELEASE",org.springframework.stereo
+ type;version="5.1.1.RELEASE",org.springframework.util;version="5.1.1.
+ RELEASE",org.springframework.web.context;version="5.1.1.RELEASE",org.
+ springframework.web.context.support;version="5.1.1.RELEASE",org.sprin
+ gframework.web.util;version="5.1.1.RELEASE"

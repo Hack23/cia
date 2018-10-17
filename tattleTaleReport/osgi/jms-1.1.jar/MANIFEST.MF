@@ -11,4 +11,4 @@ Bundle-Name: jms-1.1
 Bundle-Version: 0.0.0
 Export-Package: javax.jms
 Import-Package: java.io,java.lang,java.util,javax.transaction.xa;versi
- on="1.1.1"
+ on="1.1.1.redhat-2"

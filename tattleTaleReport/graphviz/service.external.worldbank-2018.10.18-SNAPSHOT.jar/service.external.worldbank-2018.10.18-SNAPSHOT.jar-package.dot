@@ -1,0 +1,13 @@
+digraph service_external_worldbank_2018_10_18_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_external_worldbank_api -> java_lang;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_model_external_worldbank_countries_impl;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_model_external_worldbank_data_impl;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_model_external_worldbank_indicators_impl;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_model_external_worldbank_topic_impl;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_service_external_common_api;
+  com_hack23_cia_service_external_worldbank_impl -> com_hack23_cia_service_external_worldbank_api;
+  com_hack23_cia_service_external_worldbank_impl -> org_apache_commons_codec;
+  com_hack23_cia_service_external_worldbank_impl -> org_apache_commons_csv;
+  com_hack23_cia_service_external_worldbank_impl -> org_apache_http_client_fluent;
+}

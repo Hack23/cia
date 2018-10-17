@@ -1,0 +1,17 @@
+digraph commons_text_1_6_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_text -> java_util;
+  org_apache_commons_text -> java_util_concurrent;
+  org_apache_commons_text -> org_apache_commons_lang3;
+  org_apache_commons_text -> org_apache_commons_text_lookup;
+  org_apache_commons_text -> org_apache_commons_text_matcher;
+  org_apache_commons_text -> org_apache_commons_text_translate;
+  org_apache_commons_text_lookup -> java_nio_charset;
+  org_apache_commons_text_lookup -> java_nio_file;
+  org_apache_commons_text_lookup -> java_util;
+  org_apache_commons_text_lookup -> org_apache_commons_lang3;
+  org_apache_commons_text_lookup -> org_apache_commons_lang3_time;
+  org_apache_commons_text_similarity -> java_util;
+  org_apache_commons_text_similarity -> org_apache_commons_lang3;
+  org_apache_commons_text_translate -> org_apache_commons_lang3;
+}

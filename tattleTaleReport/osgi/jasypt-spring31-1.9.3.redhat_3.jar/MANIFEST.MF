@@ -26,11 +26,11 @@ Import-Package: java.beans,java.io,java.lang,java.security,java.util,j
  g.jasypt.encryption.pbe.config;version="0.0.0",org.jasypt.properties;
  version="0.0.0",org.jasypt.salt;version="0.0.0",org.jasypt.util.passw
  ord;version="0.0.0",org.jasypt.util.text;version="0.0.0",org.springfr
- amework.beans.factory;version="5.1.0.RELEASE",org.springframework.bea
- ns.factory.config;version="5.1.0.RELEASE",org.springframework.beans.f
- actory.support;version="5.1.0.RELEASE",org.springframework.beans.fact
- ory.xml;version="5.1.0.RELEASE",org.springframework.context.support;v
- ersion="5.1.0.RELEASE",org.springframework.core.env;version="5.1.0.RE
- LEASE",org.springframework.core.io.support;version="5.1.0.RELEASE",or
- g.springframework.util;version="5.1.0.RELEASE",org.springframework.we
+ amework.beans.factory;version="5.1.1.RELEASE",org.springframework.bea
+ ns.factory.config;version="5.1.1.RELEASE",org.springframework.beans.f
+ actory.support;version="5.1.1.RELEASE",org.springframework.beans.fact
+ ory.xml;version="5.1.1.RELEASE",org.springframework.context.support;v
+ ersion="5.1.1.RELEASE",org.springframework.core.env;version="5.1.1.RE
+ LEASE",org.springframework.core.io.support;version="5.1.1.RELEASE",or
+ g.springframework.util;version="5.1.1.RELEASE",org.springframework.we
  b.context.support,org.w3c.dom;version="1.0"

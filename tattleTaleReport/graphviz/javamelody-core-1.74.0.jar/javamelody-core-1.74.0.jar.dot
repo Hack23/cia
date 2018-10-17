@@ -1,6 +1,7 @@
 digraph javamelody_core_1_74_0_dependencies {
   node [shape = box, fontsize=10.0];
   javamelody_core_1_74_0 -> activation_1_1;
+  javamelody_core_1_74_0 -> aws_java_sdk_cloudwatch_1_11_430;
   javamelody_core_1_74_0 -> commons_dbcp2_2_5_0;
   javamelody_core_1_74_0 -> javax_interceptor_api_1_2;
   javamelody_core_1_74_0 -> javax_mail_1_6_2;
@@ -12,11 +13,11 @@ digraph javamelody_core_1_74_0_dependencies {
   javamelody_core_1_74_0 -> openpdf_1_2_4;
   javamelody_core_1_74_0 -> quartz_2_3_0;
   javamelody_core_1_74_0 -> slf4j_api_1_8_0_beta2;
-  javamelody_core_1_74_0 -> spring_aop_5_1_0_RELEASE;
-  javamelody_core_1_74_0 -> spring_beans_5_1_0_RELEASE;
-  javamelody_core_1_74_0 -> spring_context_5_1_0_RELEASE;
-  javamelody_core_1_74_0 -> spring_core_5_1_0_RELEASE;
-  javamelody_core_1_74_0 -> spring_web_5_1_0_RELEASE;
+  javamelody_core_1_74_0 -> spring_aop_5_1_1_RELEASE;
+  javamelody_core_1_74_0 -> spring_beans_5_1_1_RELEASE;
+  javamelody_core_1_74_0 -> spring_context_5_1_1_RELEASE;
+  javamelody_core_1_74_0 -> spring_core_5_1_1_RELEASE;
+  javamelody_core_1_74_0 -> spring_web_5_1_1_RELEASE;
   javamelody_core_1_74_0 -> xml_apis_1_4_01;
   javamelody_core_1_74_0 -> xstream_1_4_10;
 }

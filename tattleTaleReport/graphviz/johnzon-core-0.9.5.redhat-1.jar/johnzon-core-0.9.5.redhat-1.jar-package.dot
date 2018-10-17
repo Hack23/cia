@@ -1,0 +1,6 @@
+digraph johnzon_core_0_9_5_redhat_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_johnzon_core -> javax_json;
+  org_apache_johnzon_core -> javax_json_spi;
+  org_apache_johnzon_core -> javax_json_stream;
+}

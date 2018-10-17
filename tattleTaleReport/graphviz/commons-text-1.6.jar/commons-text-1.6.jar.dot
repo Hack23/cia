@@ -1,0 +1,5 @@
+digraph commons_text_1_6_dependencies {
+  node [shape = box, fontsize=10.0];
+  commons_text_1_6 -> commons_lang3_3_8_1;
+  commons_text_1_6 -> xml_apis_1_4_01;
+}

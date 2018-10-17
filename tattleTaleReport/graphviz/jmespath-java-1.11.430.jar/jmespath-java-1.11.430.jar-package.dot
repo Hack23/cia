@@ -1,0 +1,5 @@
+digraph jmespath_java_1_11_430_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_amazonaws_jmespath -> com_fasterxml_jackson_databind;
+  com_amazonaws_jmespath -> com_fasterxml_jackson_databind_node;
+}

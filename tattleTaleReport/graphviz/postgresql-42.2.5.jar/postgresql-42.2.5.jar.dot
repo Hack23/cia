@@ -1,7 +1,7 @@
 digraph postgresql_42_2_5_dependencies {
   node [shape = box, fontsize=10.0];
-  postgresql_42_2_5 -> geronimo_jta_1_1_spec_1_1_1;
-  postgresql_42_2_5 -> jna_4_5_2;
-  postgresql_42_2_5 -> jna_platform_4_5_2;
+  postgresql_42_2_5 -> geronimo_jta_1_1_spec_1_1_1_redhat_2;
+  postgresql_42_2_5 -> jna_5_0_0;
+  postgresql_42_2_5 -> jna_platform_5_0_0;
   postgresql_42_2_5 -> xml_apis_1_4_01;
 }

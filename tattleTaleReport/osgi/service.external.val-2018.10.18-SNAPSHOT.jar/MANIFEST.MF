@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.external.val
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_161
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.external.val.api
+Bundle-Description: service.external.val-2018.10.18-SNAPSHOT
+Bundle-Name: service.external.val-2018.10.18-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.external.val.api;uses:="com.hac
+ k23.cia.model.external.val.partier.impl",com.hack23.cia.service.exter
+ nal.val.impl;uses:="com.hack23.cia.model.external.val.kommunvalkrets.
+ impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,com.hac
+ k23.cia.model.external.val.partier.impl,com.hack23.cia.model.external
+ .val.riksdagsvalkrets.impl,com.hack23.cia.service.external.common.api
+ ,com.hack23.cia.service.external.val.api"
+Import-Package: com.hack23.cia.model.external.val.kommunvalkrets.impl;
+ version="0.0.0",com.hack23.cia.model.external.val.landstingvalkrets.i
+ mpl;version="0.0.0",com.hack23.cia.model.external.val.partier.impl;ve
+ rsion="0.0.0",com.hack23.cia.model.external.val.riksdagsvalkrets.impl
+ ;version="0.0.0",com.hack23.cia.service.external.common.api;version="
+ 0.0.0",java.lang,java.net,java.util,javax.xml.bind;version="2.4.0",or
+ g.slf4j;version="0.0.0",org.springframework.beans.factory.annotation;
+ version="5.1.1.RELEASE",org.springframework.oxm;version="5.1.1.RELEAS
+ E",org.springframework.stereotype;version="5.1.1.RELEASE"

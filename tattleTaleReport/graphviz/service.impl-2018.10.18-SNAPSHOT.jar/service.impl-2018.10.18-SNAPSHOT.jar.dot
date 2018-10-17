@@ -1,0 +1,25 @@
+digraph service_impl_2018_10_18_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_impl_2018_10_18_SNAPSHOT -> bcprov_jdk15on_1_60;
+  service_impl_2018_10_18_SNAPSHOT -> commons_lang_2_6_0_redhat_7;
+  service_impl_2018_10_18_SNAPSHOT -> commons_lang3_3_8_1;
+  service_impl_2018_10_18_SNAPSHOT -> drools_core_7_12_0_Final;
+  service_impl_2018_10_18_SNAPSHOT -> googleauth_1_2_0;
+  service_impl_2018_10_18_SNAPSHOT -> javax_persistence_api_2_2;
+  service_impl_2018_10_18_SNAPSHOT -> kie_api_7_12_0_Final;
+  service_impl_2018_10_18_SNAPSHOT -> model_external_riksdagen_documentcontent_impl_2018_10_18_SNAPSHOT;
+  service_impl_2018_10_18_SNAPSHOT -> model_internal_application_user_impl_2018_10_18_SNAPSHOT;
+  service_impl_2018_10_18_SNAPSHOT -> passay_1_3_1;
+  service_impl_2018_10_18_SNAPSHOT -> quartz_2_3_0;
+  service_impl_2018_10_18_SNAPSHOT -> service_api_2018_10_18_SNAPSHOT;
+  service_impl_2018_10_18_SNAPSHOT -> service_component_agent_api_2018_10_18_SNAPSHOT;
+  service_impl_2018_10_18_SNAPSHOT -> service_data_api_2018_10_18_SNAPSHOT;
+  service_impl_2018_10_18_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+  service_impl_2018_10_18_SNAPSHOT -> spring_beans_5_1_1_RELEASE;
+  service_impl_2018_10_18_SNAPSHOT -> spring_context_5_1_1_RELEASE;
+  service_impl_2018_10_18_SNAPSHOT -> spring_context_support_5_1_1_RELEASE;
+  service_impl_2018_10_18_SNAPSHOT -> spring_security_core_5_1_1_RELEASE;
+  service_impl_2018_10_18_SNAPSHOT -> spring_tx_5_1_1_RELEASE;
+  service_impl_2018_10_18_SNAPSHOT -> validation_api_2_0_1_Final;
+  service_impl_2018_10_18_SNAPSHOT -> weka_dev_3_9_3;
+}

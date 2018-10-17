@@ -39,6 +39,6 @@ Export-Package: org.jasypt.commons;uses:="org.jasypt.exceptions",org.j
  est,org.jasypt.util.password",org.jasypt.util.text;uses:="org.jasypt.
  encryption.pbe",org.jasypt.web.pbeconfig;uses:="org.jasypt.commons,or
  g.jasypt.encryption.pbe.config,org.jasypt.exceptions"
-Import-Package: com.ibm.icu.text;version="62",java.io,java.lang,java.l
+Import-Package: com.ibm.icu.text;version="63",java.io,java.lang,java.l
  ang.reflect,java.math,java.security,java.security.spec,java.text,java
  .util,javax.crypto,javax.crypto.spec,javax.servlet,javax.servlet.http

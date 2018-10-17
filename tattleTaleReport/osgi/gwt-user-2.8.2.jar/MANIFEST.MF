@@ -587,7 +587,7 @@ Import-Package: com.gargoylesoftware.htmlunit,com.gargoylesoftware.htm
  rsion="0.0.0",com.google.gwt.thirdparty.json;version="0.0.0",com.goog
  le.gwt.util.regexfilter;version="0.0.0",com.google.gwt.util.tools;ver
  sion="0.0.0",com.google.gwt.util.tools.shared;version="0.0.0",com.ibm
- .icu.text;version="62",com.ibm.icu.util;version="62",com.thoughtworks
+ .icu.text;version="63",com.ibm.icu.util;version="63",com.thoughtworks
  .selenium,java.awt,java.awt.geom,java.awt.image,java.beans,java.io,ja
  va.lang,java.lang.annotation,java.lang.ref,java.lang.reflect,java.mat
  h,java.net,java.nio,java.nio.charset,java.security,java.sql,java.text
@@ -606,7 +606,7 @@ Import-Package: com.gargoylesoftware.htmlunit,com.gargoylesoftware.htm
  ng;version="0.0.0",org.apache.tapestry.util.text,org.eclipse.jetty.se
  rver,org.eclipse.jetty.servlet,org.eclipse.jetty.webapp,org.hibernate
  .validator.engine,org.hibernate.validator.metadata,org.kohsuke.args4j
- ;version="0.0.0",org.objectweb.asm;version="0.0.0",org.objectweb.asm.
- commons,org.w3c.css.sac;version="0.0.0",org.w3c.dom;version="1.0",org
- .xml.sax;version="1.0",org.xml.sax.ext;version="1.0",org.xml.sax.help
- ers;version="1.0"
+ ,org.objectweb.asm;version="0.0.0",org.objectweb.asm.commons,org.w3c.
+ css.sac;version="0.0.0",org.w3c.dom;version="1.0",org.xml.sax;version
+ ="1.0",org.xml.sax.ext;version="1.0",org.xml.sax.helpers;version="1.0
+ "

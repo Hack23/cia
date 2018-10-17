@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-Description: Apache Geronimo implementation of the JSR-353
+Implementation-Title: Apache Geronimo JSon Spec 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.geronimo.specs.geronimo-json_1.0_spec
+Implementation-Version: 1.0.0.alpha-1-redhat-1
+Built-By: mockbuild
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1469719796452
+Bundle-DocURL: http://geronimo.apache.org/maven/specs/geronimo-json_1.
+ 0_spec/1.0.0.alpha-1-redhat-1
+Bundle-Vendor: The Apache Software Foundation
+Import-Package: javax.json;version="1.0",javax.json.spi;version="1.0",
+ javax.json.stream;version="1.0"
+Tool: Bnd-0.0.357
+Export-Package: javax.json.stream;uses:="javax.json";version="1.0",jav
+ ax.json.spi;uses:="javax.json.stream,javax.json";version="1.0",javax.
+ json;uses:="javax.json.stream,javax.json.spi";version="1.0"
+Bundle-Version: 1.0.0.alpha-1-redhat-1
+Bundle-Name: Apache Geronimo JSon Spec 1.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_101
+

@@ -1,5 +1,5 @@
 digraph jboss_transaction_api_1_2_spec_1_1_1_Final_dependencies {
   node [shape = box, fontsize=10.0];
-  jboss_transaction_api_1_2_spec_1_1_1_Final -> geronimo_jta_1_1_spec_1_1_1;
+  jboss_transaction_api_1_2_spec_1_1_1_Final -> geronimo_jta_1_1_spec_1_1_1_redhat_2;
   jboss_transaction_api_1_2_spec_1_1_1_Final -> javax_interceptor_api_1_2;
 }

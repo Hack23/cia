@@ -1,0 +1,11 @@
+digraph service_external_common_2018_10_18_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_external_common_api -> java_lang;
+  com_hack23_cia_service_external_common_impl -> com_hack23_cia_service_external_common_api;
+  com_hack23_cia_service_external_common_impl -> java_nio_charset;
+  com_hack23_cia_service_external_common_impl -> org_apache_http_client_fluent;
+  com_hack23_cia_service_external_common_impl -> org_jdom2;
+  com_hack23_cia_service_external_common_impl -> org_jdom2_input;
+  com_hack23_cia_service_external_common_impl -> org_jdom2_input_sax;
+  com_hack23_cia_service_external_common_impl -> org_jdom2_transform;
+}

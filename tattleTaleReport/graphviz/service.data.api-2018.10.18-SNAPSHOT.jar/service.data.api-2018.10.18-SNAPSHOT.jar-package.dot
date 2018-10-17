@@ -1,0 +1,5 @@
+digraph service_data_api_2018_10_18_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_data_api -> com_hack23_cia_model_internal_application_system_impl;
+  com_hack23_cia_service_data_api -> java_lang;
+}

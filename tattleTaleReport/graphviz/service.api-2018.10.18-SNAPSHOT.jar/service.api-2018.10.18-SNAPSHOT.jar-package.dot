@@ -1,0 +1,19 @@
+digraph service_api_2018_10_18_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_api -> com_hack23_cia_model_internal_application_data_impl;
+  com_hack23_cia_service_api -> com_hack23_cia_model_internal_application_system_impl;
+  com_hack23_cia_service_api -> com_hack23_cia_service_api_action_common;
+  com_hack23_cia_service_api -> java_lang;
+  com_hack23_cia_service_api_action_admin -> com_hack23_cia_service_api_action_common;
+  com_hack23_cia_service_api_action_admin -> javax_validation_constraints;
+  com_hack23_cia_service_api_action_application -> com_hack23_cia_model_internal_application_system_impl;
+  com_hack23_cia_service_api_action_application -> com_hack23_cia_model_internal_application_user_impl;
+  com_hack23_cia_service_api_action_application -> com_hack23_cia_service_api_action_common;
+  com_hack23_cia_service_api_action_application -> javax_validation_constraints;
+  com_hack23_cia_service_api_action_common -> org_apache_commons_lang3_builder;
+  com_hack23_cia_service_api_action_kpi -> com_hack23_cia_service_api_action_common;
+  com_hack23_cia_service_api_action_kpi -> org_apache_commons_collections4;
+  com_hack23_cia_service_api_action_kpi -> org_apache_commons_lang3_builder;
+  com_hack23_cia_service_api_action_user -> com_hack23_cia_service_api_action_common;
+  com_hack23_cia_service_api_action_user -> java_util_stream;
+}

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-Description: Java Message Service 2.0 API
+Implementation-Title: Apache Geronimo JMS Spec 2.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.geronimo.specs.geronimo-jms_2.0_spec
+Implementation-Version: 1.0.0.alpha-2-redhat-2
+Built-By: mockbuild
+Bnd-LastModified: 1460564690490
+Bundle-ManifestVersion: 2
+Bundle-DocURL: http://geronimo.apache.org/maven/specs/geronimo-jms_2.0
+ _spec/1.0.0.alpha-2-redhat-2
+Bundle-Vendor: The Apache Software Foundation
+Import-Package: javax.transaction.xa
+Tool: Bnd-1.50.0
+Export-Package: javax.jms;uses:="javax.transaction.xa";version="2.0"
+Bundle-Name: Apache Geronimo JMS Spec 2.0
+Bundle-Version: 1.0.0.alpha-2-redhat-2
+Build-Jdk: 1.8.0_77
+Created-By: Apache Maven Bundle Plugin
+

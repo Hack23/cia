@@ -1,0 +1,9 @@
+digraph artemis_selector_2_6_3_redhat_00004_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_activemq_artemis_selector_filter -> org_apache_activemq_artemis_api_core;
+  org_apache_activemq_artemis_selector_hyphenated -> org_apache_activemq_artemis_selector_filter;
+  org_apache_activemq_artemis_selector_impl -> org_apache_activemq_artemis_selector_filter;
+  org_apache_activemq_artemis_selector_impl -> org_apache_activemq_artemis_selector_hyphenated;
+  org_apache_activemq_artemis_selector_impl -> org_apache_activemq_artemis_selector_strict;
+  org_apache_activemq_artemis_selector_strict -> org_apache_activemq_artemis_selector_filter;
+}

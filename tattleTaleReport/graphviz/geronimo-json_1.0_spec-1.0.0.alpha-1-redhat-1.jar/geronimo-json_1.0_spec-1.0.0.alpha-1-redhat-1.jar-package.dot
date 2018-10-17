@@ -1,0 +1,8 @@
+digraph geronimo_json_1_0_spec_1_0_0_alpha_1_redhat_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_json -> javax_json_spi;
+  javax_json -> javax_json_stream;
+  javax_json_spi -> javax_json;
+  javax_json_spi -> javax_json_stream;
+  javax_json_stream -> javax_json;
+}

@@ -1,0 +1,8 @@
+digraph artemis_jdbc_store_2_6_3_redhat_00004_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_jdbc_store_2_6_3_redhat_00004 -> artemis_commons_2_6_3_redhat_00004;
+  artemis_jdbc_store_2_6_3_redhat_00004 -> artemis_core_client_2_6_3_redhat_00004;
+  artemis_jdbc_store_2_6_3_redhat_00004 -> artemis_journal_2_6_3_redhat_00004;
+  artemis_jdbc_store_2_6_3_redhat_00004 -> jboss_logging_3_3_2_Final;
+  artemis_jdbc_store_2_6_3_redhat_00004 -> postgresql_42_2_5;
+}

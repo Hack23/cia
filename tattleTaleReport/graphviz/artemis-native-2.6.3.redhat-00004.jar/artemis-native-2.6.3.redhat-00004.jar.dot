@@ -1,0 +1,4 @@
+digraph artemis_native_2_6_3_redhat_00004_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_native_2_6_3_redhat_00004 -> jboss_logging_3_3_2_Final;
+}

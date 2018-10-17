@@ -7,10 +7,10 @@ digraph kie_spring_7_12_0_Final_dependencies {
   kie_spring_7_12_0_Final -> kie_api_7_12_0_Final;
   kie_spring_7_12_0_Final -> kie_internal_7_12_0_Final;
   kie_spring_7_12_0_Final -> slf4j_api_1_8_0_beta2;
-  kie_spring_7_12_0_Final -> spring_beans_5_1_0_RELEASE;
-  kie_spring_7_12_0_Final -> spring_context_5_1_0_RELEASE;
-  kie_spring_7_12_0_Final -> spring_core_5_1_0_RELEASE;
-  kie_spring_7_12_0_Final -> spring_orm_5_1_0_RELEASE;
-  kie_spring_7_12_0_Final -> spring_tx_5_1_0_RELEASE;
+  kie_spring_7_12_0_Final -> spring_beans_5_1_1_RELEASE;
+  kie_spring_7_12_0_Final -> spring_context_5_1_1_RELEASE;
+  kie_spring_7_12_0_Final -> spring_core_5_1_1_RELEASE;
+  kie_spring_7_12_0_Final -> spring_orm_5_1_1_RELEASE;
+  kie_spring_7_12_0_Final -> spring_tx_5_1_1_RELEASE;
   kie_spring_7_12_0_Final -> xml_apis_1_4_01;
 }

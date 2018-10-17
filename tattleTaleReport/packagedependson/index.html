@@ -21,7 +21,7 @@
   </tr>
   <tr class="roweven">
      <td>ca.pjer.logback</a></td>
-     <td>ch.qos.logback.classic, ch.qos.logback.classic.spi, ch.qos.logback.core, ch.qos.logback.core.layout, ch.qos.logback.core.status, com.amazonaws.regions, com.amazonaws.services.logs, com.amazonaws.services.logs.model</td>
+     <td>ch.qos.logback.classic, ch.qos.logback.classic.spi, ch.qos.logback.core, ch.qos.logback.core.layout, ch.qos.logback.core.status, com.amazonaws.services.logs, com.amazonaws.services.logs.model, java.lang.invoke, java.util, java.util.function</td>
   </tr>
   <tr class="rowodd">
      <td>cern.colt</a></td>
@@ -401,7 +401,7 @@
   </tr>
   <tr class="rowodd">
      <td>com.amazonaws.http</a></td>
-     <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.auth, com.amazonaws.event, com.amazonaws.handlers, com.amazonaws.http.apache.client.impl, com.amazonaws.http.apache.request.impl, com.amazonaws.http.apache.utils, com.amazonaws.http.client, com.amazonaws.http.exception, com.amazonaws.http.request, com.amazonaws.http.response, com.amazonaws.http.settings, com.amazonaws.http.timers.client, com.amazonaws.http.timers.request, com.amazonaws.internal, com.amazonaws.internal.auth, com.amazonaws.internal.http, com.amazonaws.metrics, com.amazonaws.metrics.internal, com.amazonaws.protocol.json, com.amazonaws.retry, com.amazonaws.retry.internal, com.amazonaws.retry.v2, com.amazonaws.transform, com.amazonaws.util, com.fasterxml.jackson.core, com.fasterxml.jackson.databind, org.apache.http.client.protocol, org.apache.http.conn, org.apache.http.pool</td>
+     <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.auth, com.amazonaws.event, com.amazonaws.handlers, com.amazonaws.http.apache.client.impl, com.amazonaws.http.apache.request.impl, com.amazonaws.http.apache.utils, com.amazonaws.http.client, com.amazonaws.http.exception, com.amazonaws.http.request, com.amazonaws.http.response, com.amazonaws.http.settings, com.amazonaws.http.timers.client, com.amazonaws.http.timers.request, com.amazonaws.internal, com.amazonaws.internal.auth, com.amazonaws.internal.http, com.amazonaws.metrics, com.amazonaws.metrics.internal, com.amazonaws.monitoring.internal, com.amazonaws.protocol.json, com.amazonaws.retry, com.amazonaws.retry.internal, com.amazonaws.retry.v2, com.amazonaws.transform, com.amazonaws.util, com.fasterxml.jackson.core, com.fasterxml.jackson.databind, org.apache.http.client.protocol, org.apache.http.conn, org.apache.http.pool</td>
   </tr>
   <tr class="roweven">
      <td>com.amazonaws.http.apache</a></td>
@@ -509,7 +509,7 @@
   </tr>
   <tr class="roweven">
      <td>com.amazonaws.monitoring.internal</a></td>
-     <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.auth, com.amazonaws.auth.internal, com.amazonaws.handlers, com.amazonaws.http, com.amazonaws.monitoring, com.amazonaws.util, com.fasterxml.jackson.annotation, com.fasterxml.jackson.databind</td>
+     <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.auth, com.amazonaws.auth.internal, com.amazonaws.handlers, com.amazonaws.http, com.amazonaws.http.timers.client, com.amazonaws.metrics, com.amazonaws.monitoring, com.amazonaws.util, com.fasterxml.jackson.annotation, com.fasterxml.jackson.databind</td>
   </tr>
   <tr class="rowodd">
      <td>com.amazonaws.partitions</a></td>
@@ -558,6 +558,22 @@
   <tr class="roweven">
      <td>com.amazonaws.retry.v2</a></td>
      <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.util</td>
+  </tr>
+  <tr class="rowodd">
+     <td>com.amazonaws.services.cloudwatch</a></td>
+     <td>com.amazonaws, com.amazonaws.annotation, com.amazonaws.auth, com.amazonaws.client, com.amazonaws.client.builder, com.amazonaws.handlers, com.amazonaws.http, com.amazonaws.internal, com.amazonaws.metrics, com.amazonaws.regions, com.amazonaws.services.cloudwatch.model, com.amazonaws.services.cloudwatch.model.transform, com.amazonaws.services.cloudwatch.waiters, com.amazonaws.transform, com.amazonaws.util</td>
+  </tr>
+  <tr class="roweven">
+     <td>com.amazonaws.services.cloudwatch.model</a></td>
+     <td>com.amazonaws, com.amazonaws.internal</td>
+  </tr>
+  <tr class="rowodd">
+     <td>com.amazonaws.services.cloudwatch.model.transform</a></td>
+     <td>com.amazonaws, com.amazonaws.http, com.amazonaws.internal, com.amazonaws.services.cloudwatch.model, com.amazonaws.transform, com.amazonaws.util</td>
+  </tr>
+  <tr class="roweven">
+     <td>com.amazonaws.services.cloudwatch.waiters</a></td>
+     <td>com.amazonaws.annotation, com.amazonaws.jmespath, com.amazonaws.services.cloudwatch, com.amazonaws.services.cloudwatch.model, com.amazonaws.waiters, com.fasterxml.jackson.databind</td>
   </tr>
   <tr class="rowodd">
      <td>com.amazonaws.services.ec2</a></td>
@@ -2517,7 +2533,7 @@
   </tr>
   <tr class="roweven">
      <td>com.ibm.icu.impl</a></td>
-     <td>com.ibm.icu.impl.locale, com.ibm.icu.impl.number.parse, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.text, com.ibm.icu.util</td>
+     <td>com.ibm.icu.impl.locale, com.ibm.icu.impl.number.parse, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.text, com.ibm.icu.util, java.lang, java.util</td>
   </tr>
   <tr class="rowodd">
      <td>com.ibm.icu.impl.coll</a></td>
@@ -2537,235 +2553,243 @@
   </tr>
   <tr class="rowodd">
      <td>com.ibm.icu.impl.locale</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.text, com.ibm.icu.util</td>
+     <td>com.ibm.icu.impl, com.ibm.icu.text, com.ibm.icu.util, java.lang, java.util</td>
   </tr>
   <tr class="roweven">
      <td>com.ibm.icu.impl.number</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.math, com.ibm.icu.number, com.ibm.icu.text, com.ibm.icu.util</td>
+     <td>com.ibm.icu.impl, com.ibm.icu.impl.number.range, com.ibm.icu.math, com.ibm.icu.number, com.ibm.icu.text, com.ibm.icu.util, java.util</td>
   </tr>
   <tr class="rowodd">
      <td>com.ibm.icu.impl.number.parse</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.impl.number, com.ibm.icu.lang, com.ibm.icu.number, com.ibm.icu.text, com.ibm.icu.util</td>
+     <td>com.ibm.icu.impl, com.ibm.icu.impl.number, com.ibm.icu.lang, com.ibm.icu.number, com.ibm.icu.text, com.ibm.icu.util, java.util</td>
   </tr>
   <tr class="roweven">
+     <td>com.ibm.icu.impl.number.range</a></td>
+     <td>com.ibm.icu.impl, com.ibm.icu.number, com.ibm.icu.util, java.util</td>
+  </tr>
+  <tr class="rowodd">
      <td>com.ibm.icu.impl.text</a></td>
      <td>com.ibm.icu.impl, com.ibm.icu.text, com.ibm.icu.util</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.ibm.icu.lang</a></td>
      <td>com.ibm.icu.impl, com.ibm.icu.text, com.ibm.icu.util</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.ibm.icu.math</a></td>
      <td>com.ibm.icu.lang</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.ibm.icu.number</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.impl.number, com.ibm.icu.text, com.ibm.icu.util</td>
-  </tr>
-  <tr class="roweven">
-     <td>com.ibm.icu.text</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.impl.coll, com.ibm.icu.impl.duration, com.ibm.icu.impl.number, com.ibm.icu.impl.number.parse, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.number, com.ibm.icu.util</td>
+     <td>com.ibm.icu.impl, com.ibm.icu.impl.number, com.ibm.icu.impl.number.range, com.ibm.icu.text, com.ibm.icu.util, java.util</td>
   </tr>
   <tr class="rowodd">
-     <td>com.ibm.icu.util</a></td>
-     <td>com.ibm.icu.impl, com.ibm.icu.impl.locale, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.text</td>
+     <td>com.ibm.icu.text</a></td>
+     <td>com.ibm.icu.impl, com.ibm.icu.impl.coll, com.ibm.icu.impl.duration, com.ibm.icu.impl.number, com.ibm.icu.impl.number.parse, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.number, com.ibm.icu.util, java.util</td>
   </tr>
   <tr class="roweven">
+     <td>com.ibm.icu.util</a></td>
+     <td>com.ibm.icu.impl, com.ibm.icu.impl.locale, com.ibm.icu.lang, com.ibm.icu.math, com.ibm.icu.text, java.util</td>
+  </tr>
+  <tr class="rowodd">
      <td>com.internetitem.logback.elasticsearch</a></td>
      <td>ch.qos.logback.access.spi, ch.qos.logback.classic.spi, ch.qos.logback.core, com.fasterxml.jackson.core, com.internetitem.logback.elasticsearch.config, com.internetitem.logback.elasticsearch.util, com.internetitem.logback.elasticsearch.writer</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.internetitem.logback.elasticsearch.config</a></td>
      <td>com.amazonaws, com.amazonaws.auth, com.amazonaws.http, com.amazonaws.regions, com.amazonaws.util, com.internetitem.logback.elasticsearch.util</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.internetitem.logback.elasticsearch.util</a></td>
      <td>ch.qos.logback.access, ch.qos.logback.classic, ch.qos.logback.core, ch.qos.logback.core.pattern, ch.qos.logback.core.spi, com.internetitem.logback.elasticsearch.config</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.internetitem.logback.elasticsearch.writer</a></td>
      <td>com.internetitem.logback.elasticsearch.config, com.internetitem.logback.elasticsearch.util</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.j256.cloudwatchlogbackappender</a></td>
      <td>ch.qos.logback.classic, ch.qos.logback.classic.pattern, ch.qos.logback.classic.spi, ch.qos.logback.core, ch.qos.logback.core.spi, com.amazonaws, com.amazonaws.auth, com.amazonaws.internal, com.amazonaws.regions, com.amazonaws.services.ec2, com.amazonaws.services.ec2.model, com.amazonaws.services.logs, com.amazonaws.services.logs.model, com.amazonaws.util</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.jarektoro.responsivelayout</a></td>
      <td>com.jarektoro.responsivelayout.Styleable, com.vaadin.annotations, com.vaadin.shared, com.vaadin.ui</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.jarektoro.responsivelayout.Styleable</a></td>
      <td>com.jarektoro.responsivelayout, com.vaadin.ui</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.bouncycastle</a></td>
      <td>com.lowagie.text, com.lowagie.text.pdf, org.bouncycastle.cert, org.bouncycastle.cms, org.bouncycastle.cms.jcajce</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text</a></td>
      <td>com.lowagie.text.error_messages, com.lowagie.text.factories, com.lowagie.text.html, com.lowagie.text.pdf, com.lowagie.text.pdf.codec, com.lowagie.text.pdf.codec.wmf, com.lowagie.text.pdf.draw, java.nio.charset</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.error_messages</a></td>
      <td>com.lowagie.text.pdf, java.nio.charset</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.factories</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.html</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.html</a></td>
      <td>com.lowagie.text.error_messages</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf</a></td>
      <td>com.lowagie.bouncycastle, com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.exceptions, com.lowagie.text.factories, com.lowagie.text.pdf.codec, com.lowagie.text.pdf.collection, com.lowagie.text.pdf.crypto, com.lowagie.text.pdf.draw, com.lowagie.text.pdf.events, com.lowagie.text.pdf.fonts, com.lowagie.text.pdf.fonts.cmaps, com.lowagie.text.pdf.hyphenation, com.lowagie.text.pdf.interfaces, com.lowagie.text.pdf.internal, com.lowagie.text.xml, com.lowagie.text.xml.simpleparser, com.lowagie.text.xml.xmp, java.nio.charset, org.apache.commons.compress.compressors.z, org.apache.commons.text, org.bouncycastle.asn1, org.bouncycastle.asn1.cmp, org.bouncycastle.asn1.cms, org.bouncycastle.asn1.ocsp, org.bouncycastle.asn1.pkcs, org.bouncycastle.asn1.tsp, org.bouncycastle.asn1.x500, org.bouncycastle.asn1.x509, org.bouncycastle.cert, org.bouncycastle.cert.jcajce, org.bouncycastle.cert.ocsp, org.bouncycastle.jce.provider, org.bouncycastle.operator, org.bouncycastle.operator.jcajce, org.bouncycastle.tsp</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.codec</a></td>
      <td>com.lowagie.text.pdf</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf.codec.wmf</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.pdf</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.collection</a></td>
      <td>com.lowagie.text.error_messages, com.lowagie.text.pdf</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf.crypto</a></td>
      <td>org.bouncycastle.crypto, org.bouncycastle.crypto.engines, org.bouncycastle.crypto.modes, org.bouncycastle.crypto.paddings, org.bouncycastle.crypto.params</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.draw</a></td>
      <td>com.lowagie.text, com.lowagie.text.pdf</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf.events</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.pdf</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.fonts.cmaps</a></td>
      <td>com.lowagie.text.error_messages, java.nio.charset</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf.hyphenation</a></td>
      <td>com.lowagie.text, com.lowagie.text.pdf, com.lowagie.text.xml.simpleparser</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.interfaces</a></td>
      <td>com.lowagie.text, com.lowagie.text.pdf</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.pdf.internal</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.pdf, com.lowagie.text.pdf.interfaces</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.pdf.parser</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, com.lowagie.text.pdf, java.nio.charset</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.lowagie.text.xml.simpleparser</a></td>
      <td>com.lowagie.text, com.lowagie.text.error_messages, org.mozilla.universalchardet</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.lowagie.text.xml.xmp</a></td>
      <td>com.lowagie.text, com.lowagie.text.pdf, com.lowagie.text.xml, java.nio.charset</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.compatibility</a></td>
      <td>org.apache.xmlbeans</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.compatibility.impl</a></td>
      <td>com.microsoft.schemas.compatibility, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.excel</a></td>
      <td>org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.excel.impl</a></td>
      <td>com.microsoft.schemas.office.excel, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.office</a></td>
      <td>com.microsoft.schemas.vml, org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.office.impl</a></td>
      <td>com.microsoft.schemas.office.office, com.microsoft.schemas.vml, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.visio.x2012.main</a></td>
      <td>org.apache.xmlbeans, org.apache.xmlbeans.xml.stream, org.openxmlformats.schemas.officeDocument.x2006.relationships</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.visio.x2012.main.impl</a></td>
      <td>com.microsoft.schemas.office.visio.x2012.main, org.apache.xmlbeans, org.apache.xmlbeans.impl.values, org.openxmlformats.schemas.officeDocument.x2006.relationships</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.x2006.digsig</a></td>
      <td>org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.x2006.digsig.impl</a></td>
      <td>com.microsoft.schemas.office.x2006.digsig, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.x2006.encryption</a></td>
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.certificate, com.microsoft.schemas.office.x2006.keyEncryptor.password, org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.x2006.encryption.impl</a></td>
      <td>com.microsoft.schemas.office.x2006.encryption, com.microsoft.schemas.office.x2006.keyEncryptor.certificate, com.microsoft.schemas.office.x2006.keyEncryptor.password, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.certificate</a></td>
      <td>org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.certificate.impl</a></td>
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.certificate, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.password</a></td>
      <td>com.microsoft.schemas.office.x2006.encryption, org.apache.xmlbeans, org.apache.xmlbeans.xml.stream</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.office.x2006.keyEncryptor.password.impl</a></td>
      <td>com.microsoft.schemas.office.x2006.encryption, com.microsoft.schemas.office.x2006.keyEncryptor.password, org.apache.xmlbeans, org.apache.xmlbeans.impl.values</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.microsoft.schemas.vml</a></td>
      <td>com.microsoft.schemas.office.excel, com.microsoft.schemas.office.office, com.microsoft.schemas.office.powerpoint, com.microsoft.schemas.office.word, org.apache.xmlbeans, org.apache.xmlbeans.xml.stream, org.openxmlformats.schemas.officeDocument.x2006.relationships, org.openxmlformats.schemas.wordprocessingml.x2006.main</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.microsoft.schemas.vml.impl</a></td>
      <td>com.microsoft.schemas.office.excel, com.microsoft.schemas.office.office, com.microsoft.schemas.office.powerpoint, com.microsoft.schemas.office.word, com.microsoft.schemas.vml, org.apache.xmlbeans, org.apache.xmlbeans.impl.values, org.openxmlformats.schemas.officeDocument.x2006.relationships, org.openxmlformats.schemas.wordprocessingml.x2006.main</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.sun.codemodel.fmt</a></td>
      <td>java.lang</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.sun.istack.tools</a></td>
      <td>org.apache.tools.ant</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.sun.jna</a></td>
      <td>com.sun.jna.win32</td>
   </tr>
-  <tr class="rowodd">
+  <tr class="roweven">
      <td>com.sun.jna.platform</a></td>
      <td>com.sun.jna, com.sun.jna.platform.mac, com.sun.jna.platform.unix, com.sun.jna.platform.win32, com.sun.jna.ptr</td>
   </tr>
-  <tr class="roweven">
+  <tr class="rowodd">
      <td>com.sun.jna.platform.dnd</a></td>
      <td>com.sun.jna.platform</td>
+  </tr>
+  <tr class="roweven">
+     <td>com.sun.jna.platform.linux</a></td>
+     <td>com.sun.jna, com.sun.jna.platform.unix</td>
   </tr>
   <tr class="rowodd">
      <td>com.sun.jna.platform.mac</a></td>
@@ -5197,7 +5221,7 @@
   </tr>
   <tr class="roweven">
      <td>nl.basjes.parse.useragent</a></td>
-     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, nl.basjes.parse.useragent.analyze, nl.basjes.parse.useragent.parse, nl.basjes.parse.useragent.parser, nl.basjes.parse.useragent.utils, nl.basjes.shaded.com.google.common.collect, nl.basjes.shaded.com.google.common.net, nl.basjes.shaded.org.antlr.v4.runtime, nl.basjes.shaded.org.antlr.v4.runtime.atn, nl.basjes.shaded.org.antlr.v4.runtime.dfa, nl.basjes.shaded.org.antlr.v4.runtime.tree, nl.basjes.shaded.org.springframework.core.io, nl.basjes.shaded.org.springframework.core.io.support, nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.nodes, nl.basjes.shaded.org.yaml.snakeyaml.reader, org.apache.commons.collections4.map, org.apache.commons.lang3</td>
+     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, nl.basjes.parse.useragent.analyze, nl.basjes.parse.useragent.parse, nl.basjes.parse.useragent.parser, nl.basjes.parse.useragent.utils, nl.basjes.shaded.com.google.common.collect, nl.basjes.shaded.com.google.common.net, nl.basjes.shaded.org.antlr.v4.runtime, nl.basjes.shaded.org.antlr.v4.runtime.atn, nl.basjes.shaded.org.antlr.v4.runtime.dfa, nl.basjes.shaded.org.antlr.v4.runtime.tree, nl.basjes.shaded.org.springframework.core.io, nl.basjes.shaded.org.springframework.core.io.support, nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.nodes, nl.basjes.shaded.org.yaml.snakeyaml.reader, org.apache.commons.collections4.map, org.apache.commons.text</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.parse.useragent.analyze</a></td>
@@ -5257,23 +5281,23 @@
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.com.google.common.base</a></td>
-     <td>java.lang, java.util, java.util.function, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.errorprone.annotations.concurrent, org.checkerframework.checker.nullness.compatqual</td>
+     <td>java.lang, java.util, java.util.function, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.errorprone.annotations.concurrent, org.checkerframework.checker.nullness.qual</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.com.google.common.collect</a></td>
-     <td>java.lang, java.lang.invoke, java.util, java.util.function, java.util.stream, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.math, nl.basjes.shaded.com.google.common.primitives, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.errorprone.annotations.concurrent, nl.basjes.shaded.com.google.j2objc.annotations, org.checkerframework.checker.nullness.compatqual</td>
+     <td>java.lang, java.lang.invoke, java.util, java.util.function, java.util.stream, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.math, nl.basjes.shaded.com.google.common.primitives, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.errorprone.annotations.concurrent, nl.basjes.shaded.com.google.j2objc.annotations, org.checkerframework.checker.nullness.qual</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.com.google.common.math</a></td>
-     <td>javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.primitives, nl.basjes.shaded.com.google.errorprone.annotations, org.checkerframework.checker.nullness.compatqual</td>
+     <td>javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.primitives, nl.basjes.shaded.com.google.errorprone.annotations, org.checkerframework.checker.nullness.qual</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.com.google.common.net</a></td>
-     <td>javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.collect, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.thirdparty.publicsuffix, org.checkerframework.checker.nullness.compatqual</td>
+     <td>javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.common.collect, nl.basjes.shaded.com.google.errorprone.annotations, nl.basjes.shaded.com.google.thirdparty.publicsuffix, org.checkerframework.checker.nullness.qual</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.com.google.common.primitives</a></td>
-     <td>java.util, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.errorprone.annotations, org.checkerframework.checker.nullness.compatqual</td>
+     <td>java.util, javax.annotation, nl.basjes.shaded.com.google.common.annotations, nl.basjes.shaded.com.google.common.base, nl.basjes.shaded.com.google.errorprone.annotations, org.checkerframework.checker.nullness.qual</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.com.google.thirdparty.publicsuffix</a></td>
@@ -5309,15 +5333,23 @@
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.springframework.core</a></td>
-     <td>nl.basjes.shaded.org.springframework.util</td>
+     <td>java.lang.invoke, java.lang.reflect, java.util, java.util.function, java.util.stream, kotlin.reflect, kotlin.reflect.jvm, nl.basjes.shaded.org.springframework.lang, nl.basjes.shaded.org.springframework.util</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.springframework.core.io</a></td>
-     <td>nl.basjes.shaded.org.springframework.core, nl.basjes.shaded.org.springframework.util</td>
+     <td>java.lang, java.lang.invoke, java.nio.file, java.util.function, nl.basjes.shaded.org.springframework.core, nl.basjes.shaded.org.springframework.lang, nl.basjes.shaded.org.springframework.util</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.springframework.core.io.support</a></td>
-     <td>nl.basjes.shaded.org.springframework.core.io, nl.basjes.shaded.org.springframework.util</td>
+     <td>java.lang.invoke, java.util.function, nl.basjes.shaded.org.springframework.core.io, nl.basjes.shaded.org.springframework.lang, nl.basjes.shaded.org.springframework.util</td>
+  </tr>
+  <tr class="rowodd">
+     <td>nl.basjes.shaded.org.springframework.lang</a></td>
+     <td>javax.annotation, javax.annotation.meta</td>
+  </tr>
+  <tr class="roweven">
+     <td>nl.basjes.shaded.org.springframework.util</a></td>
+     <td>java.lang, java.lang.invoke, java.util, java.util.function, nl.basjes.shaded.org.springframework.lang</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml</a></td>
@@ -5325,7 +5357,7 @@
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.composer</a></td>
-     <td>nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.events, nl.basjes.shaded.org.yaml.snakeyaml.nodes, nl.basjes.shaded.org.yaml.snakeyaml.parser, nl.basjes.shaded.org.yaml.snakeyaml.resolver</td>
+     <td>nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.events, nl.basjes.shaded.org.yaml.snakeyaml.nodes, nl.basjes.shaded.org.yaml.snakeyaml.parser, nl.basjes.shaded.org.yaml.snakeyaml.resolver</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.constructor</a></td>
@@ -5345,11 +5377,11 @@
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.introspector</a></td>
-     <td>nl.basjes.shaded.org.yaml.snakeyaml.error</td>
+     <td>nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.util</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.nodes</a></td>
-     <td>nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.util</td>
+     <td>nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.util</td>
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.parser</a></td>
@@ -5369,7 +5401,7 @@
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.scanner</a></td>
-     <td>nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.reader, nl.basjes.shaded.org.yaml.snakeyaml.tokens, nl.basjes.shaded.org.yaml.snakeyaml.util</td>
+     <td>nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error, nl.basjes.shaded.org.yaml.snakeyaml.reader, nl.basjes.shaded.org.yaml.snakeyaml.tokens, nl.basjes.shaded.org.yaml.snakeyaml.util</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.serializer</a></td>
@@ -5377,7 +5409,7 @@
   </tr>
   <tr class="rowodd">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.tokens</a></td>
-     <td>nl.basjes.shaded.org.yaml.snakeyaml.error</td>
+     <td>nl.basjes.shaded.org.yaml.snakeyaml, nl.basjes.shaded.org.yaml.snakeyaml.error</td>
   </tr>
   <tr class="roweven">
      <td>nl.basjes.shaded.org.yaml.snakeyaml.util</a></td>
@@ -5457,7 +5489,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.api.core.management</a></td>
-     <td>javax.json, org.apache.activemq.artemis.api.config, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.message.impl, org.apache.activemq.artemis.utils</td>
+     <td>javax.json, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.messagecounter, org.apache.activemq.artemis.utils</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.api.jms</a></td>
@@ -5493,7 +5525,7 @@
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.config.impl</a></td>
-     <td>java.lang.invoke, java.nio.file, java.util.function, org.apache.activemq.artemis.api.config, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.config.ha, org.apache.activemq.artemis.core.config.storage, org.apache.activemq.artemis.core.deployers, org.apache.activemq.artemis.core.deployers.impl, org.apache.activemq.artemis.core.security, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster.impl, org.apache.activemq.artemis.core.server.group.impl, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.plugin, org.apache.activemq.artemis.core.settings.impl, org.apache.activemq.artemis.spi.core.security, org.apache.activemq.artemis.spi.core.security.jaas, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.critical, org.apache.activemq.artemis.utils.uri</td>
+     <td>java.nio.file, org.apache.activemq.artemis.api.config, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.config.ha, org.apache.activemq.artemis.core.config.storage, org.apache.activemq.artemis.core.deployers, org.apache.activemq.artemis.core.deployers.impl, org.apache.activemq.artemis.core.security, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster.impl, org.apache.activemq.artemis.core.server.group.impl, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.plugin, org.apache.activemq.artemis.core.settings.impl, org.apache.activemq.artemis.spi.core.security, org.apache.activemq.artemis.spi.core.security.jaas, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.critical, org.apache.activemq.artemis.utils.uri</td>
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.config.storage</a></td>
@@ -5577,7 +5609,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.messagecounter</a></td>
-     <td>javax.json, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.utils</td>
+     <td>org.apache.activemq.artemis.core.server</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.messagecounter.impl</a></td>
@@ -5665,7 +5697,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.remoting.impl.ssl</a></td>
-     <td>io.netty.handler.ssl, io.netty.handler.ssl.util, org.apache.activemq.artemis.core.remoting.impl.netty, org.apache.activemq.artemis.utils</td>
+     <td>io.netty.handler.ssl, io.netty.handler.ssl.util, org.apache.activemq.artemis.utils</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.remoting.server</a></td>
@@ -5701,7 +5733,7 @@
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.server.cluster.impl</a></td>
-     <td>java.lang.invoke, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.client, org.apache.activemq.artemis.api.core.management, org.apache.activemq.artemis.core.client.impl, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.config.impl, org.apache.activemq.artemis.core.filter, org.apache.activemq.artemis.core.filter.impl, org.apache.activemq.artemis.core.io, org.apache.activemq.artemis.core.persistence, org.apache.activemq.artemis.core.postoffice, org.apache.activemq.artemis.core.postoffice.impl, org.apache.activemq.artemis.core.remoting, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster, org.apache.activemq.artemis.core.server.group, org.apache.activemq.artemis.core.server.group.impl, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.management, org.apache.activemq.artemis.core.server.plugin, org.apache.activemq.artemis.core.server.transformer, org.apache.activemq.artemis.core.transaction, org.apache.activemq.artemis.core.transaction.impl, org.apache.activemq.artemis.spi.core.protocol, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.actors, org.apache.activemq.artemis.utils.collections, org.apache.activemq.artemis.utils.uri</td>
+     <td>org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.client, org.apache.activemq.artemis.api.core.management, org.apache.activemq.artemis.core.client.impl, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.config.impl, org.apache.activemq.artemis.core.filter, org.apache.activemq.artemis.core.filter.impl, org.apache.activemq.artemis.core.io, org.apache.activemq.artemis.core.persistence, org.apache.activemq.artemis.core.postoffice, org.apache.activemq.artemis.core.postoffice.impl, org.apache.activemq.artemis.core.remoting, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster, org.apache.activemq.artemis.core.server.group, org.apache.activemq.artemis.core.server.group.impl, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.management, org.apache.activemq.artemis.core.server.transformer, org.apache.activemq.artemis.core.transaction, org.apache.activemq.artemis.core.transaction.impl, org.apache.activemq.artemis.spi.core.protocol, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.actors, org.apache.activemq.artemis.utils.collections, org.apache.activemq.artemis.utils.uri</td>
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.server.cluster.qourum</a></td>
@@ -5737,7 +5769,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.server.management.impl</a></td>
-     <td>java.lang.invoke, java.util, java.util.function, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.management, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.management.impl, org.apache.activemq.artemis.core.message.impl, org.apache.activemq.artemis.core.messagecounter, org.apache.activemq.artemis.core.messagecounter.impl, org.apache.activemq.artemis.core.paging, org.apache.activemq.artemis.core.persistence, org.apache.activemq.artemis.core.postoffice, org.apache.activemq.artemis.core.remoting.server, org.apache.activemq.artemis.core.security, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.management, org.apache.activemq.artemis.core.settings, org.apache.activemq.artemis.core.transaction, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.actors, org.apache.activemq.artemis.utils.collections</td>
+     <td>org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.management, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.management.impl, org.apache.activemq.artemis.core.message.impl, org.apache.activemq.artemis.core.messagecounter, org.apache.activemq.artemis.core.messagecounter.impl, org.apache.activemq.artemis.core.paging, org.apache.activemq.artemis.core.persistence, org.apache.activemq.artemis.core.postoffice, org.apache.activemq.artemis.core.remoting.server, org.apache.activemq.artemis.core.security, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.server.cluster, org.apache.activemq.artemis.core.server.impl, org.apache.activemq.artemis.core.server.management, org.apache.activemq.artemis.core.settings, org.apache.activemq.artemis.core.transaction, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.actors, org.apache.activemq.artemis.utils.collections</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.server.plugin</a></td>
@@ -5761,7 +5793,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.core.settings.impl</a></td>
-     <td>org.apache.activemq.artemis.api.config, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.client, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.journal, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.settings, org.apache.activemq.artemis.utils</td>
+     <td>org.apache.activemq.artemis.api.config, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.core.config, org.apache.activemq.artemis.core.journal, org.apache.activemq.artemis.core.server, org.apache.activemq.artemis.core.settings, org.apache.activemq.artemis.utils</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.core.transaction</a></td>
@@ -5817,7 +5849,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.apache.activemq.artemis.jms.client</a></td>
-     <td>java.lang, java.lang.invoke, java.util, java.util.function, javax.jms, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.client, org.apache.activemq.artemis.api.jms, org.apache.activemq.artemis.core.client, org.apache.activemq.artemis.core.client.impl, org.apache.activemq.artemis.core.message.impl, org.apache.activemq.artemis.core.protocol.core.impl, org.apache.activemq.artemis.core.version, org.apache.activemq.artemis.jms.client.compatible1X, org.apache.activemq.artemis.jndi, org.apache.activemq.artemis.reader, org.apache.activemq.artemis.selector.filter, org.apache.activemq.artemis.selector.impl, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.uri, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.collections, org.apache.activemq.artemis.utils.uri, org.jboss.logging.annotations</td>
+     <td>java.lang, java.util, javax.jms, org.apache.activemq.artemis.api.core, org.apache.activemq.artemis.api.core.client, org.apache.activemq.artemis.api.jms, org.apache.activemq.artemis.core.client, org.apache.activemq.artemis.core.client.impl, org.apache.activemq.artemis.core.message.impl, org.apache.activemq.artemis.core.protocol.core.impl, org.apache.activemq.artemis.core.version, org.apache.activemq.artemis.jms.client.compatible1X, org.apache.activemq.artemis.jndi, org.apache.activemq.artemis.reader, org.apache.activemq.artemis.selector.filter, org.apache.activemq.artemis.selector.impl, org.apache.activemq.artemis.spi.core.remoting, org.apache.activemq.artemis.uri, org.apache.activemq.artemis.utils, org.apache.activemq.artemis.utils.collections, org.apache.activemq.artemis.utils.uri, org.jboss.logging.annotations</td>
   </tr>
   <tr class="roweven">
      <td>org.apache.activemq.artemis.jms.client.compatible1X</a></td>
@@ -10685,7 +10717,7 @@
   </tr>
   <tr class="roweven">
      <td>org.hibernate.boot.internal</a></td>
-     <td>com.fasterxml.classmate, java.lang, java.lang.invoke, java.time, java.util.function, javax.persistence, org.hibernate, org.hibernate.annotations.common.reflection, org.hibernate.annotations.common.util, org.hibernate.boot, org.hibernate.boot.archive.scan.internal, org.hibernate.boot.archive.scan.spi, org.hibernate.boot.archive.spi, org.hibernate.boot.cfgxml.spi, org.hibernate.boot.jaxb, org.hibernate.boot.model, org.hibernate.boot.model.convert.internal, org.hibernate.boot.model.convert.spi, org.hibernate.boot.model.naming, org.hibernate.boot.model.process.spi, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.internal, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.registry.selector.spi, org.hibernate.boot.spi, org.hibernate.cache.internal, org.hibernate.cache.spi, org.hibernate.cfg, org.hibernate.cfg.annotations, org.hibernate.context.spi, org.hibernate.engine.config.internal, org.hibernate.engine.config.spi, org.hibernate.engine.jdbc.env.spi, org.hibernate.hql.spi.id, org.hibernate.id.uuid, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.jpa, org.hibernate.jpa.internal, org.hibernate.jpa.spi, org.hibernate.loader, org.hibernate.procedure, org.hibernate.query, org.hibernate.query.criteria, org.hibernate.query.spi, org.hibernate.resource.jdbc.spi, org.hibernate.resource.transaction.spi, org.hibernate.type.descriptor.java.spi, org.hibernate.type.descriptor.sql.spi, org.hibernate.type.spi, org.jboss.jandex</td>
+     <td>com.fasterxml.classmate, java.lang, java.lang.invoke, java.time, java.util.function, javax.persistence, org.hibernate, org.hibernate.annotations.common.reflection, org.hibernate.annotations.common.util, org.hibernate.boot, org.hibernate.boot.archive.scan.internal, org.hibernate.boot.archive.scan.spi, org.hibernate.boot.archive.spi, org.hibernate.boot.cfgxml.spi, org.hibernate.boot.jaxb, org.hibernate.boot.model, org.hibernate.boot.model.convert.internal, org.hibernate.boot.model.convert.spi, org.hibernate.boot.model.naming, org.hibernate.boot.model.process.spi, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.internal, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.registry.selector.spi, org.hibernate.boot.spi, org.hibernate.cache.cfg.internal, org.hibernate.cache.internal, org.hibernate.cache.spi, org.hibernate.cfg, org.hibernate.cfg.annotations, org.hibernate.context.spi, org.hibernate.engine.config.internal, org.hibernate.engine.config.spi, org.hibernate.engine.jdbc.env.spi, org.hibernate.hql.spi.id, org.hibernate.id.uuid, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.jpa, org.hibernate.jpa.internal, org.hibernate.jpa.spi, org.hibernate.loader, org.hibernate.procedure, org.hibernate.query, org.hibernate.query.criteria, org.hibernate.query.spi, org.hibernate.resource.jdbc.spi, org.hibernate.resource.transaction.spi, org.hibernate.type.descriptor.java.spi, org.hibernate.type.descriptor.sql.spi, org.hibernate.type.spi, org.jboss.jandex</td>
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.boot.jaxb</a></td>
@@ -10749,7 +10781,7 @@
   </tr>
   <tr class="roweven">
      <td>org.hibernate.boot.model.source.internal.hbm</a></td>
-     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, org.hibernate.boot, org.hibernate.boot.jaxb, org.hibernate.boot.jaxb.hbm.internal, org.hibernate.boot.jaxb.hbm.spi, org.hibernate.boot.jaxb.spi, org.hibernate.boot.model, org.hibernate.boot.model.naming, org.hibernate.boot.model.process.spi, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.internal, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.spi, org.hibernate.id, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.mapping, org.hibernate.tuple, org.hibernate.type</td>
+     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, org.hibernate.boot, org.hibernate.boot.jaxb, org.hibernate.boot.jaxb.hbm.internal, org.hibernate.boot.jaxb.hbm.spi, org.hibernate.boot.jaxb.spi, org.hibernate.boot.model, org.hibernate.boot.model.naming, org.hibernate.boot.model.process.spi, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.internal, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.engine.config.spi, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.spi, org.hibernate.id, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.mapping, org.hibernate.tuple, org.hibernate.type</td>
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.boot.model.source.spi</a></td>
@@ -10853,7 +10885,7 @@
   </tr>
   <tr class="roweven">
      <td>org.hibernate.cfg.annotations</a></td>
-     <td>javax.persistence, org.hibernate.annotations, org.hibernate.annotations.common.reflection, org.hibernate.boot.model, org.hibernate.boot.model.convert.spi, org.hibernate.boot.model.naming, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.cfg, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.query.spi.sql, org.hibernate.engine.spi, org.hibernate.internal, org.hibernate.internal.util, org.hibernate.jpa.spi, org.hibernate.procedure, org.hibernate.procedure.internal, org.hibernate.procedure.spi, org.hibernate.tuple, org.hibernate.type, org.hibernate.usertype</td>
+     <td>javax.persistence, org.hibernate.annotations, org.hibernate.annotations.common.reflection, org.hibernate.boot.model, org.hibernate.boot.model.convert.spi, org.hibernate.boot.model.naming, org.hibernate.boot.model.relational, org.hibernate.boot.model.source.spi, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.cfg, org.hibernate.engine.config.spi, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.query.spi.sql, org.hibernate.engine.spi, org.hibernate.internal, org.hibernate.internal.util, org.hibernate.jpa.spi, org.hibernate.procedure, org.hibernate.procedure.internal, org.hibernate.procedure.spi, org.hibernate.tuple, org.hibernate.type, org.hibernate.usertype</td>
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.cfg.annotations.reflection</a></td>
@@ -10925,7 +10957,7 @@
   </tr>
   <tr class="roweven">
      <td>org.hibernate.engine.jdbc.connections.internal</a></td>
-     <td>java.lang, java.lang.invoke, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.registry.selector.spi, org.hibernate.engine.jdbc.connections.spi, org.hibernate.engine.jndi.spi, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.internal.util</td>
+     <td>java.lang, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.registry.selector.spi, org.hibernate.engine.jdbc.connections.spi, org.hibernate.engine.jndi.spi, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.internal.util</td>
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.engine.jdbc.connections.spi</a></td>
@@ -11017,7 +11049,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.hql.internal.ast</a></td>
-     <td>java.lang.invoke, java.util.function, java.util.stream, org.hibernate, org.hibernate.boot.spi, org.hibernate.engine.query.spi, org.hibernate.engine.spi, org.hibernate.hql.internal.ast.exec, org.hibernate.hql.internal.ast.tree, org.hibernate.hql.internal.ast.util, org.hibernate.hql.spi, org.hibernate.internal, org.hibernate.internal.build, org.hibernate.internal.log, org.hibernate.query.spi</td>
+     <td>java.lang.invoke, java.util.function, org.hibernate, org.hibernate.boot.spi, org.hibernate.engine.query.spi, org.hibernate.engine.spi, org.hibernate.hql.internal.ast.exec, org.hibernate.hql.internal.ast.tree, org.hibernate.hql.internal.ast.util, org.hibernate.hql.spi, org.hibernate.internal, org.hibernate.internal.build, org.hibernate.internal.log, org.hibernate.query.spi</td>
   </tr>
   <tr class="roweven">
      <td>org.hibernate.hql.internal.ast.exec</a></td>
@@ -11065,7 +11097,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.id</a></td>
-     <td>org.hibernate.boot.model.naming, org.hibernate.boot.model.relational, org.hibernate.boot.registry.classloading.spi, org.hibernate.dialect.identity, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.jdbc.spi, org.hibernate.engine.spi, org.hibernate.id.enhanced, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.metamodel.spi, org.hibernate.resource.jdbc, org.hibernate.resource.jdbc.spi, org.hibernate.resource.transaction.spi</td>
+     <td>org.hibernate.boot.model.naming, org.hibernate.boot.model.relational, org.hibernate.boot.registry, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.dialect.identity, org.hibernate.engine.jdbc.env.spi, org.hibernate.engine.jdbc.spi, org.hibernate.engine.spi, org.hibernate.id.enhanced, org.hibernate.internal, org.hibernate.internal.log, org.hibernate.metamodel.spi, org.hibernate.resource.jdbc, org.hibernate.resource.jdbc.spi, org.hibernate.resource.transaction.spi</td>
   </tr>
   <tr class="roweven">
      <td>org.hibernate.id.enhanced</a></td>
@@ -11133,7 +11165,7 @@
   </tr>
   <tr class="roweven">
      <td>org.hibernate.jpa.boot.spi</a></td>
-     <td>org.hibernate.boot.registry.classloading.spi, org.hibernate.bytecode.enhance.spi, org.hibernate.jpa, org.hibernate.jpa.boot.internal</td>
+     <td>org.hibernate.boot.registry.classloading.spi, org.hibernate.bytecode.enhance.spi, org.hibernate.internal, org.hibernate.jpa, org.hibernate.jpa.boot.internal</td>
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.jpa.event.internal</a></td>
@@ -11977,7 +12009,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.hibernate.stat.internal</a></td>
-     <td>java.lang.invoke, java.util.concurrent.atomic, java.util.function, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.cache.spi, org.hibernate.cache.spi.access, org.hibernate.engine.config.spi, org.hibernate.internal, org.hibernate.internal.util.collections, org.hibernate.metamodel.model.domain, org.hibernate.metamodel.spi, org.hibernate.service.spi, org.hibernate.stat</td>
+     <td>java.lang.invoke, java.util.concurrent.atomic, java.util.function, org.hibernate.boot.registry.classloading.spi, org.hibernate.boot.spi, org.hibernate.cache.spi, org.hibernate.cache.spi.access, org.hibernate.engine.config.spi, org.hibernate.internal, org.hibernate.metamodel.model.domain, org.hibernate.metamodel.spi, org.hibernate.service.spi, org.hibernate.stat</td>
   </tr>
   <tr class="roweven">
      <td>org.hibernate.stat.spi</a></td>
@@ -12517,7 +12549,7 @@
   </tr>
   <tr class="roweven">
      <td>org.javers.core.metamodel.object</a></td>
-     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, org.javers.common.collections, org.javers.common.exception, org.javers.common.validation, org.javers.core.commit, org.javers.core.graph, org.javers.core.metamodel.property, org.javers.core.metamodel.type, org.javers.core.snapshot, org.javers.repository.jql, org.picocontainer</td>
+     <td>java.lang.invoke, java.util, java.util.function, java.util.stream, org.javers.common.collections, org.javers.common.exception, org.javers.common.string, org.javers.common.validation, org.javers.core.commit, org.javers.core.graph, org.javers.core.metamodel.property, org.javers.core.metamodel.type, org.javers.core.snapshot, org.javers.repository.jql, org.picocontainer</td>
   </tr>
   <tr class="rowodd">
      <td>org.javers.core.metamodel.property</a></td>
@@ -12925,7 +12957,7 @@
   </tr>
   <tr class="roweven">
      <td>org.jgroups.protocols</a></td>
-     <td>java.util, org.jgroups.annotations, org.jgroups.auth.sasl, org.jgroups.blocks.cs, org.jgroups.conf, org.jgroups.fork, org.jgroups.stack, org.jgroups.util</td>
+     <td>java.util, java.util.concurrent, org.jgroups.annotations, org.jgroups.auth.sasl, org.jgroups.blocks.cs, org.jgroups.conf, org.jgroups.fork, org.jgroups.stack, org.jgroups.util</td>
   </tr>
   <tr class="rowodd">
      <td>org.jgroups.protocols.pbcast</a></td>
@@ -12949,7 +12981,7 @@
   </tr>
   <tr class="roweven">
      <td>org.jgroups.tests</a></td>
-     <td>java.net, org.jgroups, org.jgroups.fork, org.jgroups.protocols, org.jgroups.protocols.pbcast, org.jgroups.protocols.relay, org.jgroups.stack, org.jgroups.tests.rt, org.jgroups.tests.rt.transports, org.jgroups.util</td>
+     <td>java.net, org.jgroups, org.jgroups.protocols, org.jgroups.protocols.pbcast, org.jgroups.protocols.relay, org.jgroups.stack, org.jgroups.tests.rt, org.jgroups.tests.rt.transports, org.jgroups.util</td>
   </tr>
   <tr class="rowodd">
      <td>org.jgroups.tests.perf</a></td>
@@ -13650,14 +13682,6 @@
   <tr class="rowodd">
      <td>org.kie.spring.persistence</a></td>
      <td>org.drools.persistence.api, org.drools.persistence.jpa, org.jbpm.persistence, org.jbpm.persistence.api, org.jbpm.services.task.persistence, org.kie.api.runtime, org.kie.internal.task.api</td>
-  </tr>
-  <tr class="roweven">
-     <td>org.kohsuke.args4j</a></td>
-     <td>org.kohsuke.args4j.spi</td>
-  </tr>
-  <tr class="rowodd">
-     <td>org.kohsuke.args4j.spi</a></td>
-     <td>java.nio.file, org.kohsuke.args4j</td>
   </tr>
   <tr class="roweven">
      <td>org.markdown4j</a></td>
@@ -14381,7 +14405,7 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.beans.factory.groovy</a></td>
-     <td>groovy.lang, groovy.xml, org.codehaus.groovy.reflection, org.codehaus.groovy.runtime, org.codehaus.groovy.runtime.callsite, org.codehaus.groovy.runtime.typehandling</td>
+     <td>groovy.lang, groovy.transform, groovy.xml, org.codehaus.groovy.reflection, org.codehaus.groovy.runtime, org.codehaus.groovy.runtime.callsite, org.codehaus.groovy.runtime.typehandling</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.beans.factory.parsing</a></td>
@@ -14765,7 +14789,7 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.http.server.reactive</a></td>
-     <td>io.netty.buffer, io.netty.channel, io.netty.handler.codec.http, io.netty.handler.codec.http.cookie, io.netty.handler.ssl, io.netty.util, io.undertow.connector, io.undertow.server, io.undertow.server.handlers, io.undertow.util, java.lang.invoke, java.nio.file, java.time, java.util, java.util.function, java.util.stream, javax.servlet, org.eclipse.jetty.server, org.reactivestreams, org.springframework.core.io.buffer, org.springframework.core.log, org.springframework.http, org.springframework.http.server, org.springframework.lang, reactor.core, reactor.core.publisher, reactor.netty, reactor.netty.http.server, reactor.util.context</td>
+     <td>io.netty.buffer, io.netty.channel, io.netty.handler.codec.http, io.netty.handler.codec.http.cookie, io.netty.handler.ssl, io.netty.util, io.undertow.connector, io.undertow.server, io.undertow.server.handlers, io.undertow.util, java.lang.invoke, java.nio.file, java.time, java.util, java.util.function, java.util.stream, javax.servlet, org.eclipse.jetty.http, org.eclipse.jetty.server, org.reactivestreams, org.springframework.core.io.buffer, org.springframework.core.log, org.springframework.http, org.springframework.http.server, org.springframework.lang, reactor.core, reactor.core.publisher, reactor.netty, reactor.netty.http.server, reactor.util.context</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.instrument.classloading</a></td>
@@ -15057,7 +15081,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.springframework.messaging.support</a></td>
-     <td>java.lang.invoke, java.nio.charset, java.time, java.util.function, org.springframework.lang, org.springframework.messaging, org.springframework.util, org.springframework.util.concurrent, reactor.core.publisher</td>
+     <td>java.lang.invoke, java.nio.charset, java.util.function, org.springframework.lang, org.springframework.messaging, org.springframework.util</td>
   </tr>
   <tr class="roweven">
      <td>org.springframework.messaging.tcp</a></td>
@@ -15065,7 +15089,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.springframework.messaging.tcp.reactor</a></td>
-     <td>io.netty.buffer, io.netty.channel, io.netty.channel.group, io.netty.handler.codec, io.netty.util.concurrent, java.lang.invoke, java.time, java.util, java.util.function, org.reactivestreams, org.springframework.lang, org.springframework.messaging, org.springframework.messaging.support, org.springframework.messaging.tcp, org.springframework.util.concurrent, reactor.core, reactor.core.publisher, reactor.core.scheduler, reactor.netty, reactor.netty.resources, reactor.netty.tcp</td>
+     <td>io.netty.buffer, io.netty.channel, io.netty.channel.group, io.netty.handler.codec, io.netty.util.concurrent, java.lang.invoke, java.time, java.util, java.util.function, org.reactivestreams, org.springframework.lang, org.springframework.messaging, org.springframework.messaging.tcp, org.springframework.util.concurrent, reactor.core, reactor.core.publisher, reactor.core.scheduler, reactor.netty, reactor.netty.resources, reactor.netty.tcp</td>
   </tr>
   <tr class="roweven">
      <td>org.springframework.objenesis</a></td>
@@ -15073,7 +15097,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.springframework.objenesis.instantiator.android</a></td>
-     <td>org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.annotations</td>
+     <td>java.lang, org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.annotations</td>
   </tr>
   <tr class="roweven">
      <td>org.springframework.objenesis.instantiator.basic</a></td>
@@ -15085,7 +15109,7 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.objenesis.instantiator.perc</a></td>
-     <td>org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.annotations</td>
+     <td>java.lang, org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.annotations</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.objenesis.instantiator.sun</a></td>
@@ -15093,11 +15117,11 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.objenesis.instantiator.util</a></td>
-     <td>org.springframework.objenesis</td>
+     <td>java.lang, java.lang.invoke, org.springframework.objenesis, org.springframework.objenesis.strategy</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.objenesis.strategy</a></td>
-     <td>org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.android, org.springframework.objenesis.instantiator.basic, org.springframework.objenesis.instantiator.gcj, org.springframework.objenesis.instantiator.perc, org.springframework.objenesis.instantiator.sun</td>
+     <td>java.lang, org.springframework.objenesis, org.springframework.objenesis.instantiator, org.springframework.objenesis.instantiator.android, org.springframework.objenesis.instantiator.basic, org.springframework.objenesis.instantiator.gcj, org.springframework.objenesis.instantiator.perc, org.springframework.objenesis.instantiator.sun</td>
   </tr>
   <tr class="roweven">
      <td>org.springframework.orm</a></td>
@@ -15389,7 +15413,7 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.security.config.annotation.web.configurers.oauth2.client</a></td>
-     <td>java.lang.invoke, java.util.function, org.springframework.beans.factory, org.springframework.core, org.springframework.security.authentication, org.springframework.security.config.annotation, org.springframework.security.config.annotation.web, org.springframework.security.config.annotation.web.configurers, org.springframework.security.core, org.springframework.security.core.authority.mapping, org.springframework.security.oauth2.client, org.springframework.security.oauth2.client.authentication, org.springframework.security.oauth2.client.endpoint, org.springframework.security.oauth2.client.oidc.authentication, org.springframework.security.oauth2.client.oidc.userinfo, org.springframework.security.oauth2.client.registration, org.springframework.security.oauth2.client.userinfo, org.springframework.security.oauth2.client.web, org.springframework.security.oauth2.core, org.springframework.security.oauth2.core.endpoint, org.springframework.security.oauth2.core.oidc, org.springframework.security.web, org.springframework.security.web.authentication, org.springframework.security.web.authentication.ui, org.springframework.security.web.savedrequest, org.springframework.security.web.util.matcher</td>
+     <td>java.lang.invoke, java.util.function, org.springframework.beans.factory, org.springframework.core, org.springframework.security.authentication, org.springframework.security.config.annotation, org.springframework.security.config.annotation.web, org.springframework.security.config.annotation.web.configurers, org.springframework.security.core, org.springframework.security.core.authority.mapping, org.springframework.security.core.context, org.springframework.security.oauth2.client, org.springframework.security.oauth2.client.authentication, org.springframework.security.oauth2.client.endpoint, org.springframework.security.oauth2.client.oidc.authentication, org.springframework.security.oauth2.client.oidc.userinfo, org.springframework.security.oauth2.client.registration, org.springframework.security.oauth2.client.userinfo, org.springframework.security.oauth2.client.web, org.springframework.security.oauth2.core, org.springframework.security.oauth2.core.endpoint, org.springframework.security.oauth2.core.oidc, org.springframework.security.web, org.springframework.security.web.authentication, org.springframework.security.web.authentication.ui, org.springframework.security.web.savedrequest, org.springframework.security.web.util.matcher</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.security.config.annotation.web.configurers.oauth2.server.resource</a></td>
@@ -15805,7 +15829,7 @@
   </tr>
   <tr class="roweven">
      <td>org.springframework.util.concurrent</a></td>
-     <td>java.lang, java.lang.invoke, java.util.concurrent, java.util.function, org.springframework.lang</td>
+     <td>java.lang, java.lang.invoke, java.time, java.util.concurrent, java.util.function, org.springframework.lang, reactor.core.publisher</td>
   </tr>
   <tr class="rowodd">
      <td>org.springframework.util.function</a></td>
@@ -15937,7 +15961,7 @@
   </tr>
   <tr class="rowodd">
      <td>org.springframework.web.server.adapter</a></td>
-     <td>java.lang.invoke, java.time, java.time.temporal, java.util, java.util.function, java.util.stream, org.springframework.core, org.springframework.core.codec, org.springframework.core.log, org.springframework.http, org.springframework.http.codec, org.springframework.http.codec.multipart, org.springframework.http.server, org.springframework.http.server.reactive, org.springframework.lang, org.springframework.web, org.springframework.web.server, org.springframework.web.server.handler, org.springframework.web.server.i18n, org.springframework.web.server.session, org.springframework.web.util, reactor.core.publisher</td>
+     <td>java.lang.invoke, java.time, java.time.temporal, java.util, java.util.function, java.util.stream, org.springframework.beans.factory, org.springframework.core, org.springframework.core.codec, org.springframework.core.log, org.springframework.http, org.springframework.http.codec, org.springframework.http.codec.multipart, org.springframework.http.server, org.springframework.http.server.reactive, org.springframework.lang, org.springframework.web, org.springframework.web.server, org.springframework.web.server.handler, org.springframework.web.server.i18n, org.springframework.web.server.session, org.springframework.web.util, reactor.core.publisher</td>
   </tr>
   <tr class="roweven">
      <td>org.springframework.web.server.handler</a></td>

@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis Spring Integration
+Implementation-Version: 2.6.3.redhat-00004
+Archiver-Version: Plexus Archiver
+Built-By: mockbuild
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis Spring Integration
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.2.3
+Build-Jdk: 1.8.0_181
+Specification-Version: 2.6.3.redhat-00004
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.integration.spring
+Bundle-Description: artemis-spring-integration-2.6.3.redhat-00004
+Bundle-Name: artemis-spring-integration-2.6.3.redhat-00004
+Bundle-Version: 2.6.3.redhat-00004
+Export-Package: org.apache.activemq.artemis.integration.spring;uses:="
+ org.apache.activemq.artemis.jms.server.embedded,org.apache.activemq.a
+ rtemis.spi.core.naming"
+Import-Package: java.lang,org.apache.activemq.artemis.jms.server.embed
+ ded;version="2.6.3.redhat-00004",org.apache.activemq.artemis.spi.core
+ .naming;version="2.6.3.redhat-00004",org.springframework.beans;versio
+ n="5.1.1.RELEASE",org.springframework.beans.factory;version="5.1.1.RE
+ LEASE",org.springframework.beans.factory.config;version="5.1.1.RELEAS
+ E"

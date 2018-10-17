@@ -1,7 +1,7 @@
 digraph hibernate_search_engine_5_10_4_Final_dependencies {
   node [shape = box, fontsize=10.0];
-  hibernate_search_engine_5_10_4_Final -> geronimo_jta_1_1_spec_1_1_1;
-  hibernate_search_engine_5_10_4_Final -> hibernate_commons_annotations_5_0_4_Final;
+  hibernate_search_engine_5_10_4_Final -> geronimo_jta_1_1_spec_1_1_1_redhat_2;
+  hibernate_search_engine_5_10_4_Final -> hibernate_commons_annotations_5_0_5_Final;
   hibernate_search_engine_5_10_4_Final -> jboss_logging_3_3_2_Final;
   hibernate_search_engine_5_10_4_Final -> lucene_analyzers_common_5_5_5;
   hibernate_search_engine_5_10_4_Final -> lucene_core_5_5_5;

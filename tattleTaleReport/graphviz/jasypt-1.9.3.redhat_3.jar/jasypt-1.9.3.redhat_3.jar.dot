@@ -1,4 +1,4 @@
 digraph jasypt_1_9_3_redhat_3_dependencies {
   node [shape = box, fontsize=10.0];
-  jasypt_1_9_3_redhat_3 -> icu4j_62_1;
+  jasypt_1_9_3_redhat_3 -> icu4j_63_1;
 }

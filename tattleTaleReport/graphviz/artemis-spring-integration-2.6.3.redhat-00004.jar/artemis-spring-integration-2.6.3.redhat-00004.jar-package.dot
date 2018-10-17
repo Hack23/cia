@@ -1,0 +1,5 @@
+digraph artemis_spring_integration_2_6_3_redhat_00004_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_activemq_artemis_integration_spring -> org_apache_activemq_artemis_jms_server_embedded;
+  org_apache_activemq_artemis_integration_spring -> org_apache_activemq_artemis_spi_core_naming;
+}

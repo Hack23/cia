@@ -1,0 +1,6 @@
+digraph artemis_native_2_6_3_redhat_00004_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_activemq_artemis_jlibaio -> java_lang;
+  org_apache_activemq_artemis_jlibaio -> org_jboss_logging_annotations;
+  org_apache_activemq_artemis_jlibaio_util -> org_apache_activemq_artemis_jlibaio;
+}
