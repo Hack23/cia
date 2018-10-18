@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.6.0.beta1";
+	content: "8.6.0.rc1";
 }
 
 .v-widget {
@@ -7105,6 +7105,10 @@ div.v-layout.v-horizontal.v-widget {
 	left: 0;
 }
 
+.cia .v-grid-body .v-grid-header > .v-grid-row {
+	position: relative;
+}
+
 .cia .v-grid-row {
 	display: block;
 }
@@ -11647,6 +11651,10 @@ div.v-layout.v-horizontal.v-widget {
 	left: 0;
 }
 
+.cia .v-tree8-body .v-tree8-header > .v-tree8-row {
+	position: relative;
+}
+
 .cia .v-tree8-row {
 	display: block;
 }
@@ -12708,6 +12716,10 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+.cia .v-treegrid-body .v-treegrid-header > .v-treegrid-row {
+	position: relative;
 }
 
 .cia .v-treegrid-row {
@@ -15019,6 +15031,14 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tabsheet-right-aligned-tabs  > .v-tabsheet-tabcontainer {
 	text-align: right;
+}
+
+.cia .v-tabsheet-right-aligned-tabs .v-tabsheet-spacertd {
+	display: inline-block !important;
+}
+
+.cia .v-tabsheet-right-aligned-tabs .v-tabsheet-scroller {
+	padding-left: 9px;
 }
 
 .cia .v-tabsheet-padded-tabbar  > .v-tabsheet-tabcontainer .v-tabsheet-tabs {
