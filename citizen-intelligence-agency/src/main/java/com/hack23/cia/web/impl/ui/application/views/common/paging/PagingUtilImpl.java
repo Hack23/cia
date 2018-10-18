@@ -19,11 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.common.paging;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.PageLinkFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.structurizr.annotation.Component;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
