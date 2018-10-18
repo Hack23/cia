@@ -20,9 +20,13 @@ package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.jms.Destination;
@@ -37,6 +41,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenCommitteeProposalWorkGeneratorImplITest.
@@ -62,6 +67,16 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 
+		final RiksdagenImportService riksdagenImportService = mock(RiksdagenImportService.class);
+
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
+
+		String committeId = "committeId";
+		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
+		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<String, String>() {{
+		    put(committeId,committeId);
+		}});
+		
 		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
@@ -73,8 +88,42 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();
 
-		assertNotNull(capturedStrings);
-		assertNotNull(capturedDestinations);
+		assertTrue(capturedStrings.isEmpty());
+		assertTrue(capturedDestinations.isEmpty());
+	}
+
+	/**
+	 * Generate work orders when not exist success test.
+	 *
+	 * @throws JMSException the JMS exception
+	 */
+	@Test
+	public void generateWorkOrdersWhenNotExistSuccessTest() throws JMSException {
+		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+
+		final RiksdagenImportService riksdagenImportService = mock(RiksdagenImportService.class);
+
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
+		
+		String committeId = "committeId";
+		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
+		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<>());
+		
+		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
+
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
+
+		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
+
+		verify(jmsSenderMock, times(1)).send(destCaptor.capture(), stringCaptor.capture());
+
+		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
+		final List<Destination> capturedDestinations = destCaptor.getAllValues();
+
+		assertFalse(capturedStrings.isEmpty());
+		assertFalse(capturedDestinations.isEmpty());
 	}
 
 }
