@@ -110,7 +110,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	 * @param exist  the exist
 	 * @param update the update
 	 */
-	private void updatePersonAssignmentData(final PersonAssignmentData exist, final PersonAssignmentData update) {
+	private static void updatePersonAssignmentData(final PersonAssignmentData exist, final PersonAssignmentData update) {
 
 		List<AssignmentData> assignmentList = update.getAssignmentList();
 
@@ -125,7 +125,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	 * @param assignmentList the assignment list
 	 * @param assignmentData the assignment data
 	 */
-	private void updateAssignmentData(final List<AssignmentData> assignmentList, final AssignmentData assignmentData) {
+	private static void updateAssignmentData(final List<AssignmentData> assignmentList, final AssignmentData assignmentData) {
 		for (AssignmentData matchAssignmentData : assignmentList) {
 			if (matchAssignmentData.getFromDate().equals(assignmentData.getFromDate())
 					&& matchAssignmentData.getOrgCode().equals(assignmentData.getOrgCode()) && matchAssignmentData.getRoleCode().equals(assignmentData.getRoleCode())) {

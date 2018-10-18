@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.jta.JtaTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -68,7 +68,7 @@ public class AuditableAspectConfiguration {
 	 * @return the javers
 	 */
 	@Bean
-	public Javers getJavers(final JtaTransactionManager txManager) {
+	public Javers getJavers(final PlatformTransactionManager txManager) {
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 
