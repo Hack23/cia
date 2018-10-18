@@ -2,7 +2,7 @@ digraph javers_core_3_11_7_dependencies {
   node [shape = box, fontsize=10.0];
   javers_core_3_11_7 -> classgraph_4_4_2;
   javers_core_3_11_7 -> gson_2_8_5;
-  javers_core_3_11_7 -> guava_26_0_jre;
+  javers_core_3_11_7 -> guava_27_0_jre;
   javers_core_3_11_7 -> joda_time_2_10;
   javers_core_3_11_7 -> picocontainer_2_15;
   javers_core_3_11_7 -> slf4j_api_1_8_0_beta2;

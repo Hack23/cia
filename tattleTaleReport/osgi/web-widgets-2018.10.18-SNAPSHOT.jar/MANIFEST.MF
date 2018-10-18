@@ -33,7 +33,7 @@ Implementation-Vendor: www.hack23.com
 Vaadin-Widgetsets: com.hack23.cia.web.widgets.WebWidgetSet
 Vaadin-Package-Version: 1
 Created-By: Apache Maven 3.5.4
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_191
 Implementation-URL: github:https://hack23.github.io/web-widgets/
 
 

@@ -4,7 +4,7 @@ Automatic-Module-Name: com.hack23.cia.model.external.val.landstingvalk
 Built-By: pether
 Sealed: true
 Created-By: Apache Maven 3.5.4
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_191
 
 
 ### OSGi information

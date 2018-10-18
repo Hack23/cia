@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.system.impl.LanguageContentData
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -46,16 +45,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguageContentPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L48">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, &quot;hjid&quot;);</span>
 
-<span class="fc" id="L51">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
 
-<span class="fc" id="L53">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;languageContentType&quot;, &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
+<span class="fc" id="L52">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;languageContentType&quot;, &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
 			&quot;languageValue&quot; };
 
 	private static final String LANGUAGE_CONTENT_DATA = &quot;LanguageContentData&quot;;
 
-<span class="fc" id="L58">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
+<span class="fc" id="L57">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
 			&quot;languageValue&quot;);
 
 	/** The Constant ADMIN_LANGUAGE_CONTENT. */
@@ -68,49 +67,49 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 	 * Instantiates a new admin language content page mod content factory impl.
 	 */
 	public AdminLanguageContentPageModContentFactoryImpl() {
-<span class="fc" id="L71">		super(NAME);</span>
-<span class="fc" id="L72">	}</span>
+<span class="fc" id="L70">		super(NAME);</span>
+<span class="fc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L77">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L76">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L80">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L79">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L82">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L81">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE_CONTENT);</span>
+<span class="fc" id="L83">		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE_CONTENT);</span>
 
-<span class="fc" id="L86">		final DataContainer&lt;LanguageContentData, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L87">				.getDataContainer(LanguageContentData.class);</span>
+<span class="fc" id="L85">		final DataContainer&lt;LanguageContentData, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L86">				.getDataContainer(LanguageContentData.class);</span>
 
-<span class="fc" id="L89">		final List&lt;LanguageContentData&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage);</span>
+<span class="fc" id="L88">		final List&lt;LanguageContentData&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage);</span>
 
-<span class="fc" id="L91">		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L90">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="fc" id="L93">		getGridFactory().createBasicBeanItemGrid(content,</span>
+<span class="fc" id="L92">		getGridFactory().createBasicBeanItemGrid(content,</span>
 				LanguageContentData.class,pageOrderBy,
 				LANGUAGE_CONTENT_DATA,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-<span class="pc bpc" id="L99" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L101">			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L100">			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L103" title="1 of 2 branches missed.">			if (languageContentData != null) {</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">			if (languageContentData != null) {</span>
 
-<span class="fc" id="L105">				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,</span>
+<span class="fc" id="L104">				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,</span>
 						AS_LIST);
 			}
 		}
 
-<span class="fc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,</span>
+<span class="fc" id="L109">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L113">		return content;</span>
+<span class="fc" id="L112">		return content;</span>
 
 	}
 

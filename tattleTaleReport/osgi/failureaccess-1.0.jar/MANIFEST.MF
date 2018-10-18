@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Built-By: cpovirk
+Created-By: Apache Maven 3.5.0
+Build-Jdk: 1.8.0_151-google-v7
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.google.common.util.concurrent.internal
+Bundle-Description: failureaccess-1.0
+Bundle-Name: failureaccess-1.0
+Bundle-Version: 0.0.0
+Export-Package: com.google.common.util.concurrent.internal
+Import-Package: java.lang

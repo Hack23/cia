@@ -3,7 +3,7 @@ digraph service_data_impl_2018_10_18_SNAPSHOT_dependencies {
   service_data_impl_2018_10_18_SNAPSHOT -> cache_api_1_0_0;
   service_data_impl_2018_10_18_SNAPSHOT -> commons_lang_2_6_0_redhat_7;
   service_data_impl_2018_10_18_SNAPSHOT -> ehcache_3_6_1;
-  service_data_impl_2018_10_18_SNAPSHOT -> guava_26_0_jre;
+  service_data_impl_2018_10_18_SNAPSHOT -> guava_27_0_jre;
   service_data_impl_2018_10_18_SNAPSHOT -> hibernate_core_5_3_7_Final;
   service_data_impl_2018_10_18_SNAPSHOT -> hibernate_search_engine_5_10_4_Final;
   service_data_impl_2018_10_18_SNAPSHOT -> hibernate_search_orm_5_10_4_Final;

@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -46,14 +45,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L48">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
 
-<span class="fc" id="L51">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
+<span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
 
-<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
+<span class="fc" id="L52">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
 			&quot;longitude&quot;, &quot;latitude&quot; );
 
-<span class="fc" id="L56">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
+<span class="fc" id="L55">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
 			&quot;latitude&quot; };
 
 	private static final String COUNTRY2 = &quot;Country&quot;;
@@ -68,48 +67,48 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	 * Instantiates a new admin country page mod content factory impl.
 	 */
 	public AdminCountryPageModContentFactoryImpl() {
-<span class="fc" id="L71">		super(NAME);</span>
-<span class="fc" id="L72">	}</span>
+<span class="fc" id="L70">		super(NAME);</span>
+<span class="fc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L77">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L76">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L80">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L79">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L82">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L81">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(content,ADMIN_COUNTRY);</span>
+<span class="fc" id="L83">		LabelFactory.createHeader2Label(content,ADMIN_COUNTRY);</span>
 
-<span class="fc" id="L86">		final DataContainer&lt;CountryElement, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L87">				.getDataContainer(CountryElement.class);</span>
+<span class="fc" id="L85">		final DataContainer&lt;CountryElement, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L86">				.getDataContainer(CountryElement.class);</span>
 
-<span class="fc" id="L89">		final List&lt;CountryElement&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);</span>
+<span class="fc" id="L88">		final List&lt;CountryElement&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);</span>
 
-<span class="fc" id="L91">		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L90">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="fc" id="L93">		getGridFactory()</span>
-<span class="fc" id="L94">				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,</span>
+<span class="fc" id="L92">		getGridFactory()</span>
+<span class="fc" id="L93">				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,</span>
 						COUNTRY2,null,
 						COLUMN_ORDER, HIDE_COLUMNS,
 						LISTENER, null, null);
 
-<span class="pc bpc" id="L99" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L101">			final CountryElement country = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">			if (country != null) {</span>
+<span class="fc" id="L100">			final CountryElement country = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">			if (country != null) {</span>
 
-<span class="fc" id="L104">				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,</span>
+<span class="fc" id="L103">				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,</span>
 						AS_LIST);
 			}
 		}
 
-<span class="fc" id="L109">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_COUNTRY_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L108">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_COUNTRY_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L112">		return content;</span>
+<span class="fc" id="L111">		return content;</span>
 
 	}
 
