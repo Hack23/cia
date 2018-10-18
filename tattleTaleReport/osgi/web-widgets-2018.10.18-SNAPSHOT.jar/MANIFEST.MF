@@ -14,21 +14,21 @@ Class-Path: spring-beans-5.1.1.RELEASE.jar spring-core-5.1.1.RELEASE.j
  own4j-2.2-cj-1.1.jar commons-beanutils-1.9.3.redhat-1.jar jackson-dat
  atype-jdk8-2.9.7.jar easybinder-0.5.jar vaadin-grid-util-2.1.1.jar dc
  harts-2.0.0.hack23.jar gantt-addon-1.0.4.jar vaadin-chartjs-1.3.0.jar
-  wt-pdf-viewer-1.0.4.jar vaadin-server-8.6.0.beta1.jar vaadin-sass-co
- mpiler-0.9.13.jar flute-1.3.0.gg2.jar vaadin-shared-8.6.0.beta1.jar g
- entyref-1.2.0.vaadin1.jar jsoup-1.11.3.jar jcl-over-slf4j-1.8.0-beta2
- .jar vaadin-client-compiled-8.6.0.beta1.jar vaadin-client-8.6.0.beta1
- .jar vaadin-compatibility-server-8.6.0.beta1.jar vaadin-compatibility
- -client-8.6.0.beta1.jar vaadin-compatibility-shared-8.6.0.beta1.jar v
- aadin-client-compiler-8.6.0.beta1.jar gwt-dev-2.8.2.jar jsr305-1.3.9.
- jar colt-1.2.0.jar ant-1.6.5.jar commons-collections-3.2.2.redhat-2.j
- ar commons-io-2.6.jar icu4j-63.1.jar tapestry-4.0.2.jar gwt-user-2.8.
- 2.jar jsinterop-annotations-1.0.2.jar jsinterop-annotations-1.0.2-sou
- rces.jar validation-api-1.0.0.GA.jar validation-api-1.0.0.GA-sources.
- jar sac-1.3.jar gwt-elemental-2.8.2.jar gson-2.8.5.jar asm-7.0-beta.j
- ar asm-util-7.0-beta.jar asm-analysis-7.0-beta.jar asm-commons-7.0-be
- ta.jar vaadin-push-8.6.0.beta1.jar atmosphere-runtime-2.4.30.vaadin1.
- jar vaadin-slf4j-jdk14-1.6.1.jar vaadin-themes-8.6.0.beta1.jar
+  wt-pdf-viewer-1.0.4.jar vaadin-server-8.6.0.rc1.jar vaadin-sass-comp
+ iler-0.9.13.jar flute-1.3.0.gg2.jar vaadin-shared-8.6.0.rc1.jar genty
+ ref-1.2.0.vaadin1.jar jsoup-1.11.3.jar jcl-over-slf4j-1.8.0-beta2.jar
+  vaadin-client-compiled-8.6.0.rc1.jar vaadin-client-8.6.0.rc1.jar vaa
+ din-compatibility-server-8.6.0.rc1.jar vaadin-compatibility-client-8.
+ 6.0.rc1.jar vaadin-compatibility-shared-8.6.0.rc1.jar vaadin-client-c
+ ompiler-8.6.0.rc1.jar gwt-dev-2.8.2.jar jsr305-1.3.9.jar colt-1.2.0.j
+ ar ant-1.6.5.jar commons-collections-3.2.2.redhat-2.jar commons-io-2.
+ 6.jar icu4j-63.1.jar tapestry-4.0.2.jar gwt-user-2.8.2.jar jsinterop-
+ annotations-1.0.2.jar jsinterop-annotations-1.0.2-sources.jar validat
+ ion-api-1.0.0.GA.jar validation-api-1.0.0.GA-sources.jar sac-1.3.jar 
+ gwt-elemental-2.8.2.jar gson-2.8.5.jar asm-7.0-beta.jar asm-util-7.0-
+ beta.jar asm-analysis-7.0-beta.jar asm-commons-7.0-beta.jar vaadin-pu
+ sh-8.6.0.rc1.jar atmosphere-runtime-2.4.30.vaadin1.jar vaadin-slf4j-j
+ dk14-1.6.1.jar vaadin-themes-8.6.0.rc1.jar
 Implementation-Vendor: www.hack23.com
 Vaadin-Widgetsets: com.hack23.cia.web.widgets.WebWidgetSet
 Vaadin-Package-Version: 1
@@ -46,8 +46,8 @@ Bundle-Version: 0.0.0
 Export-Package: com.hack23.cia.web.widgets.charts;uses:="com.vaadin.an
  notations,com.vaadin.shared,com.vaadin.shared.communication,com.vaadi
  n.shared.ui,com.vaadin.ui,org.apache.commons.lang3.builder"
-Import-Package: com.vaadin.annotations;version="8.6.0.beta1",com.vaadi
- n.shared;version="8.6.0.beta1",com.vaadin.shared.communication;versio
- n="8.6.0.beta1",com.vaadin.shared.ui;version="8.6.0.beta1",com.vaadin
- .ui;version="8.6.0.beta1",java.lang,java.util,org.apache.commons.lang
- 3.builder;version="3.8"
+Import-Package: com.vaadin.annotations;version="8.6.0.rc1",com.vaadin.
+ shared;version="8.6.0.rc1",com.vaadin.shared.communication;version="8
+ .6.0.rc1",com.vaadin.shared.ui;version="8.6.0.rc1",com.vaadin.ui;vers
+ ion="8.6.0.rc1",java.lang,java.util,org.apache.commons.lang3.builder;
+ version="3.8"

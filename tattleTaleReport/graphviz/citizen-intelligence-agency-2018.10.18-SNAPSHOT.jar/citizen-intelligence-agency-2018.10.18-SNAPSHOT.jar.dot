@@ -29,8 +29,8 @@ digraph citizen_intelligence_agency_2018_10_18_SNAPSHOT_dependencies {
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> spring_web_5_1_1_RELEASE;
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> statistics_card_0_3_2;
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_grid_util_2_1_1;
-  citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_server_8_6_0_beta1;
-  citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_shared_8_6_0_beta1;
+  citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_server_8_6_0_rc1;
+  citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_shared_8_6_0_rc1;
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> vaadin_spring_3_1_1;
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> web_widgets_2018_10_18_SNAPSHOT;
   citizen_intelligence_agency_2018_10_18_SNAPSHOT -> wt_pdf_viewer_1_0_4;

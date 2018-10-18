@@ -1,6 +1,6 @@
 digraph logback_elasticsearch_appender_1_6_dependencies {
   node [shape = box, fontsize=10.0];
-  logback_elasticsearch_appender_1_6 -> aws_java_sdk_core_1_11_430;
+  logback_elasticsearch_appender_1_6 -> aws_java_sdk_core_1_11_431;
   logback_elasticsearch_appender_1_6 -> jackson_core_2_9_7;
   logback_elasticsearch_appender_1_6 -> logback_classic_1_3_0_alpha4;
   logback_elasticsearch_appender_1_6 -> logback_core_1_3_0_alpha4;

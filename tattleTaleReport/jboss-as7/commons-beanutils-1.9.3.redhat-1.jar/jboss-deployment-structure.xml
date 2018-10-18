@@ -2,7 +2,6 @@
 <jboss-deployment-structure>
   <deployment>
      <dependencies>
-        <module name="org.apache.commons.beanutils"/>
         <module name="org.apache.commons.collections"/>
         <module name="org.slf4j.jcl-over-slf4j"/>
         <module name="system"/>

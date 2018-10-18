@@ -162,12 +162,12 @@ Import-Package: com.google.gwt.core.client;version="0.0.0",com.google.
  gwt.resources.client;version="0.0.0",com.google.gwt.user.client;versi
  on="0.0.0",com.google.gwt.user.client.ui;version="0.0.0",com.google.w
  eb.bindery.event.shared;version="0.0.0",com.vaadin.client;version="8.
- 6.0.beta1",com.vaadin.client.communication;version="8.6.0.beta1",com.
- vaadin.client.ui;version="8.6.0.beta1",com.vaadin.client.ui.layout;ve
- rsion="8.6.0.beta1",com.vaadin.server;version="8.6.0.beta1",com.vaadi
- n.shared;version="8.6.0.beta1",com.vaadin.shared.communication;versio
- n="8.6.0.beta1",com.vaadin.shared.ui;version="8.6.0.beta1",com.vaadin
- .ui;version="8.6.0.beta1",java.awt.image,java.io,java.lang,java.lang.
- reflect,java.net,java.text,java.util,java.util.jar,javax.imageio,org.
- apache.commons.codec.binary;version="1.11",org.apache.commons.lang3;v
- ersion="3.8",org.apache.commons.lang3.math;version="3.8"
+ 6.0.rc1",com.vaadin.client.communication;version="8.6.0.rc1",com.vaad
+ in.client.ui;version="8.6.0.rc1",com.vaadin.client.ui.layout;version=
+ "8.6.0.rc1",com.vaadin.server;version="8.6.0.rc1",com.vaadin.shared;v
+ ersion="8.6.0.rc1",com.vaadin.shared.communication;version="8.6.0.rc1
+ ",com.vaadin.shared.ui;version="8.6.0.rc1",com.vaadin.ui;version="8.6
+ .0.rc1",java.awt.image,java.io,java.lang,java.lang.reflect,java.net,j
+ ava.text,java.util,java.util.jar,javax.imageio,org.apache.commons.cod
+ ec.binary;version="1.11",org.apache.commons.lang3;version="3.8",org.a
+ pache.commons.lang3.math;version="3.8"

@@ -1,7 +1,7 @@
 digraph javamelody_core_1_74_0_dependencies {
   node [shape = box, fontsize=10.0];
   javamelody_core_1_74_0 -> activation_1_1;
-  javamelody_core_1_74_0 -> aws_java_sdk_cloudwatch_1_11_430;
+  javamelody_core_1_74_0 -> aws_java_sdk_cloudwatch_1_11_431;
   javamelody_core_1_74_0 -> commons_dbcp2_2_5_0;
   javamelody_core_1_74_0 -> javax_interceptor_api_1_2;
   javamelody_core_1_74_0 -> javax_mail_1_6_2;

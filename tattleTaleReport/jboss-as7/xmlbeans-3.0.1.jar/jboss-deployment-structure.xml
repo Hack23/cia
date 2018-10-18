@@ -3,7 +3,7 @@
   <deployment>
      <dependencies>
         <module name="javaee.api"/>
-        <module name="org.jaxen"/>
+        <module name="nu.xom"/>
         <module name="system"/>
      </dependencies>
   </deployment>

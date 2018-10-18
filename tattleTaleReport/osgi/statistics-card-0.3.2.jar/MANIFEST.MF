@@ -41,16 +41,16 @@ Export-Package: com.github.markash.ui.component.card;uses:="com.github
  .util.stream"
 Import-Package: com.fasterxml.jackson.annotation;version="2.9.0",com.f
  asterxml.jackson.databind;version="2.9.7",com.fasterxml.jackson.datat
- ype.jdk8;version="2.9.7",com.vaadin.annotations;version="8.6.0.beta1"
- ,com.vaadin.data;version="8.6.0.beta1",com.vaadin.icons;version="8.6.
- 0.beta1",com.vaadin.navigator;version="8.6.0.beta1",com.vaadin.server
- ;version="8.6.0.beta1",com.vaadin.shared;version="8.6.0.beta1",com.va
- adin.shared.communication;version="8.6.0.beta1",com.vaadin.shared.ui;
- version="8.6.0.beta1",com.vaadin.shared.ui.colorpicker;version="8.6.0
- .beta1",com.vaadin.ui;version="8.6.0.beta1",com.vaadin.ui.themes;vers
- ion="8.6.0.beta1",java.io,java.lang,java.lang.invoke,java.math,java.t
- ext,java.time,java.util,java.util.function,java.util.stream,org.apach
- e.commons.lang3;version="3.8",org.vaadin.viritin.button;version="2.1"
- ,org.vaadin.viritin.fluency.server;version="2.1",org.vaadin.viritin.f
- luency.ui;version="2.1",org.vaadin.viritin.label;version="2.1",org.va
- adin.viritin.layouts;version="2.1"
+ ype.jdk8;version="2.9.7",com.vaadin.annotations;version="8.6.0.rc1",c
+ om.vaadin.data;version="8.6.0.rc1",com.vaadin.icons;version="8.6.0.rc
+ 1",com.vaadin.navigator;version="8.6.0.rc1",com.vaadin.server;version
+ ="8.6.0.rc1",com.vaadin.shared;version="8.6.0.rc1",com.vaadin.shared.
+ communication;version="8.6.0.rc1",com.vaadin.shared.ui;version="8.6.0
+ .rc1",com.vaadin.shared.ui.colorpicker;version="8.6.0.rc1",com.vaadin
+ .ui;version="8.6.0.rc1",com.vaadin.ui.themes;version="8.6.0.rc1",java
+ .io,java.lang,java.lang.invoke,java.math,java.text,java.time,java.uti
+ l,java.util.function,java.util.stream,org.apache.commons.lang3;versio
+ n="3.8",org.vaadin.viritin.button;version="2.1",org.vaadin.viritin.fl
+ uency.server;version="2.1",org.vaadin.viritin.fluency.ui;version="2.1
+ ",org.vaadin.viritin.label;version="2.1",org.vaadin.viritin.layouts;v
+ ersion="2.1"
