@@ -18,7 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
@@ -27,6 +30,9 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 
 	private final String viewName;
 
+	@Autowired
+	private PagingUtil pagingUtil;
+	
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.
 	 *
@@ -40,6 +46,15 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return viewName.equals(page);
+	}
+
+	/**
+	 * Gets the paging util.
+	 *
+	 * @return the paging util
+	 */
+	protected final PagingUtil getPagingUtil() {
+		return pagingUtil;
 	}
 
 }

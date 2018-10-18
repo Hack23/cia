@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +58,9 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
+	@Autowired
+	private PagingUtil pagingUtil;
+
 	/**
 	 * Instantiates a new documents overview page mod content factory impl.
 	 */
@@ -86,7 +90,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
-		PagingUtil.createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		pagingUtil.createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,
 				COLUMN_ORDER,
