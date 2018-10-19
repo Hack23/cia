@@ -50,14 +50,17 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 	private Destination countryElementWorkdestination;
 
 	/** The worldbank country api. */
-	@Autowired
-	private WorldBankCountryApi worldbankCountryApi;
+	private final WorldBankCountryApi worldbankCountryApi;
 
 	/**
 	 * Instantiates a new world bank country work generator impl.
+	 *
+	 * @param worldbankCountryApi the worldbank country api
 	 */
-	public WorldBankCountryWorkGeneratorImpl() {
+	@Autowired
+	public WorldBankCountryWorkGeneratorImpl(final WorldBankCountryApi worldbankCountryApi) {
 		super(WorldBankDataSources.COUNTRIES);
+		this.worldbankCountryApi = worldbankCountryApi;
 	}
 
 	@Override
