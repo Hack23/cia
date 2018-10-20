@@ -166,7 +166,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>3.12.0</version>
+      <version>3.12.1</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
@@ -209,7 +209,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.4.3</version>
+      <version>4.4.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
