@@ -20,6 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.paging;
 
 import com.vaadin.ui.AbstractOrderedLayout;
 
+/**
+ * The Interface PagingUtil.
+ */
 public interface PagingUtil {
 
 	/**

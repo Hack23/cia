@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.PageLinkFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -70,7 +69,7 @@ public final class PagingUtilImpl implements PagingUtil {
 
 	/** The page link factory. */
 	@Autowired
-	private final PageLinkFactory pageLinkFactory = new PageLinkFactoryImpl();
+	private PageLinkFactory pageLinkFactory;
 	
 	/**
 	 * Creates the paging controls.

@@ -46,6 +46,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODY_RANKING. */
+	private static final String GOVERNMENT_BODY_RANKING = "Government body Ranking";
+
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = "Government bodies";
 
@@ -140,9 +143,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant MINISTRIES_LINK_TEXT. */
 	private static final String MINISTRIES_LINK_TEXT = "Ministries";
 
-	/** The Constant GOVERNMENT_BODY_LINK_TEXT. */
-	private static final String GOVERNMENT_BODY_LINK_TEXT = GOVERNMENT_BODIES;
-
 	/** The Constant COMMITTEES_LINK_TEXT. */
 	private static final String COMMITTEES_LINK_TEXT = "Committees";
 
@@ -232,7 +232,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
-		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem("Government body Ranking",VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
 
 		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);
 
@@ -268,7 +268,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
 		
-		createButtonLink(grid,"Government body Ranking",VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
+		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
 		
 		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");	
 
