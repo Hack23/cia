@@ -220,7 +220,7 @@
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>
         <artifactId>xstream</artifactId>
-        <version>1.4.11</version>
+        <version>1.4.11-java7</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
