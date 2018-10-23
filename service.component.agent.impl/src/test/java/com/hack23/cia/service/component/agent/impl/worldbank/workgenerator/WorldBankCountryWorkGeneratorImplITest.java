@@ -85,12 +85,8 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 
 		verify(jmsSenderMock, never()).send(destCaptor.capture(),stringCaptor.capture());
 
-		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
-		final List<Destination> capturedDestinations = destCaptor.getAllValues();
-
-		assertTrue(capturedStrings.isEmpty());
-		assertTrue(capturedDestinations.isEmpty());
-
+		assertTrue(stringCaptor.getAllValues().isEmpty());
+		assertTrue(destCaptor.getAllValues().isEmpty());
 	}
 	
 
@@ -142,8 +138,19 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 		final WorldBankCountryApi worldBankCountryApi = mock(WorldBankCountryApi.class);        
 		when(worldBankCountryApi.getCountries()).thenThrow(new DataFailureException(new RuntimeException()));
 		WorldBankCountryWorkGeneratorImpl worldBankCountryWorkGeneratorImpl = new WorldBankCountryWorkGeneratorImpl(worldBankCountryApi);		
+		
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+        ReflectionTestUtils.setField(worldBankCountryWorkGeneratorImpl, "jmsSender", jmsSenderMock);
+
 		worldBankCountryWorkGeneratorImpl.generateWorkOrders();
 
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
+		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
+
+		verify(jmsSenderMock, never()).send(destCaptor.capture(),stringCaptor.capture());
+
+		assertTrue(stringCaptor.getAllValues().isEmpty());
+		assertTrue(destCaptor.getAllValues().isEmpty());
 	}
 
 
