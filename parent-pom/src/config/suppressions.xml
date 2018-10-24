@@ -54,5 +54,10 @@
 		<cve>CVE-2008-7220</cve>
 		<cve>CVE-2015-9251</cve>
 		<cve>CVE-2018-13525</cve>
+		<cve>CVE-2018-12432</cve>
+		<cve>CVE-2016-7048</cve>
+		<cve>CVE-2018-14040</cve>
+		<cve>CVE-2018-14041</cve>
+		<cve>CVE-2018-14042</cve>		
     </suppress>
 </suppressions>
