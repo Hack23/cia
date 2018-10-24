@@ -26,6 +26,9 @@
       <url>github:http://hack23.github.io/cia/</url>
     </site>
   </distributionManagement>
+  <properties>
+  	<sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.structurizr</groupId>
