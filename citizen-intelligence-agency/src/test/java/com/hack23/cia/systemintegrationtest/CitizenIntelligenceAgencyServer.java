@@ -214,7 +214,7 @@ public final class CitizenIntelligenceAgencyServer {
 		sslContextFactory.setKeyManagerPassword("changeit");
 		sslContextFactory.setCertAlias("jetty");
 		sslContextFactory.setIncludeCipherSuites("TLS_AES_256_GCM_SHA384","TLS_CHACHA20_POLY1305_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-				"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256");
+				"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256","TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256");
 		sslContextFactory.setExcludeProtocols("SSL","SSLv2","SSLv2Hello","SSLv3","TLSv1","TLSv1.1");
 		sslContextFactory.setIncludeProtocols("TLSv1.2","TLSv1.3");		
 		

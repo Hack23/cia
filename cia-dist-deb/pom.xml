@@ -140,7 +140,7 @@
                 <exclude>**/demo-base/**</exclude>
                 <exclude>**/start.ini</exclude>
                 <exclude>**/etc/jetty-gzip.xml</exclude>
-                <exclude>**/etc/jetty-ssl-context.xml</exclude>                
+                <exclude>**/etc/jetty-ssl-context.xml</exclude>
               </excludes>
             </extract-artifact>
             <extract-artifact>
@@ -170,7 +170,7 @@
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-ssl-context.xml</path>
               <toFile>/opt/cia/etc/jetty-ssl-context.xml</toFile>
-            </copyFile>            
+            </copyFile>
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-cia.policy</path>
               <toFile>/opt/cia/etc/jetty-cia.policy</toFile>
