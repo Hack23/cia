@@ -140,20 +140,9 @@
                 <exclude>**/demo-base/**</exclude>
                 <exclude>**/start.ini</exclude>
                 <exclude>**/etc/jetty-gzip.xml</exclude>
-                <!--  <exclude>**/lib/annotations/asm-5.1.jar</exclude>
-                <exclude>**/lib/annotations/asm-commons-5.1.jar</exclude>-->
+                <exclude>**/etc/jetty-ssl-context.xml</exclude>                
               </excludes>
             </extract-artifact>
-            <!-- 
-            <copyArtifact>
-              <artifact>org.ow2.asm:asm:jar</artifact>
-              <toFile>/opt/cia/lib/annotations/asm-5.1.jar</toFile>
-            </copyArtifact>
-            <copyArtifact>
-              <artifact>org.ow2.asm:asm-commons:jar</artifact>
-              <toFile>/opt/cia/lib/annotations/asm-commons-5.1.jar</toFile>
-            </copyArtifact>
-            -->
             <extract-artifact>
               <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
               <to>/opt/cia/webapps/cia</to>
@@ -178,6 +167,10 @@
               <path>src/main/config/jetty/etc/jetty-gzip.xml</path>
               <toFile>/opt/cia/etc/jetty-gzip.xml</toFile>
             </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/etc/jetty-ssl-context.xml</path>
+              <toFile>/opt/cia/etc/jetty-ssl-context.xml</toFile>
+            </copyFile>            
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-cia.policy</path>
               <toFile>/opt/cia/etc/jetty-cia.policy</toFile>
