@@ -324,13 +324,6 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptionsXYDateFloatLegendOutside(final Series series) {
-		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
-				.addOption(createDefaultGrid()).addOption(createCursor());
-	}
-
-	@Override
 	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series series) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutsideOneColumn())

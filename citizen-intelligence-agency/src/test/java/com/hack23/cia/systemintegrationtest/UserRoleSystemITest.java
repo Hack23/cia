@@ -2918,8 +2918,41 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 				PoliticianPageMode.ROLEGHANT.toString(), "0980681611418"));
-
 	}
+
+	
+	/**
+	 * Site politican role ghant minister test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePoliticanRoleGhantMinisterTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), "0473783431010"));
+	}
+	
+	/**
+	 * Site politican role ghant prime minister test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePoliticanRoleGhantPrimeMinisterTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), "0218878014918"));
+	}
+
 
 	/**
 	 * Site politican document history test.
