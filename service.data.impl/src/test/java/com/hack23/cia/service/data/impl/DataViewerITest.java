@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.service.data.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.junit.Test;
@@ -193,7 +194,7 @@ public final class DataViewerITest extends
 			}
 		}
 
-		final List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findListByProperty(ViewRiksdagenPolitician.class, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
+		final List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findOrderedListByProperty(ViewRiksdagenPolitician.class,ViewRiksdagenPolitician_.firstAssignmentDate, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
 
 		assertEquals(SHOULD_ALWAYS_BE_349_IN_PARLIAMENT, 349, parliamentSum + activeWithNoParty.size());
 //		assertEquals(
@@ -252,6 +253,27 @@ public final class DataViewerITest extends
 				DocumentData.class, DocumentData_.id, "H501NU6");
 		assertNotNull(findByQueryProperty);
 	}
+
+	/**
+	 * Find by query property failure test.
+	 */
+	@Test
+	public void findByQueryPropertyFailureTest() {
+		final DocumentStatusContainer findByQueryProperty = dataViewer.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+				DocumentData.class, DocumentData_.id, "NONEXISTING");
+		assertNull(findByQueryProperty);
+	}
+
+	/**
+	 * Find by query property non string failure test.
+	 */
+	@Test
+	public void findByQueryPropertyNonStringFailureTest() {
+		final DocumentStatusContainer findByQueryProperty = dataViewer.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+				DocumentData.class, DocumentData_.numberValue, BigInteger.valueOf(-1L));
+		assertNull(findByQueryProperty);
+	}
+
 
 	/**
 	 * Find list by embedded property test.

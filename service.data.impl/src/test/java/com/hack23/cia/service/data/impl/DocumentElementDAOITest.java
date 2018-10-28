@@ -93,4 +93,16 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 		assertFalse(idList.isEmpty());
 	}
 
+	/**
+	 * Gets the missing document start from year before any documents test.
+	 *
+	 * @return the missing document start from year before any documents test
+	 */
+	@Test
+	public void getMissingDocumentStartFromYearBeforeAnyDocumentsTest() {
+		int startFromYear = 1900;
+		final int loadFromYear  = documentElementDAO.getMissingDocumentStartFromYear(startFromYear);		
+		assertEquals(startFromYear,loadFromYear);
+	}
+	
 }
