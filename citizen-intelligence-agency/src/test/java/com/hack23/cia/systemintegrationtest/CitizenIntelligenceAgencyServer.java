@@ -199,6 +199,7 @@ public final class CitizenIntelligenceAgencyServer {
 	   final HttpConfiguration http_config = new HttpConfiguration();
 	   http_config.setSecureScheme("https");
 	   http_config.setSecurePort(28443);
+	   http_config.setSendServerVersion(false);
 	     
 	   final HttpConfiguration https_config = new HttpConfiguration(http_config);
 	   https_config.addCustomizer(new SecureRequestCustomizer());

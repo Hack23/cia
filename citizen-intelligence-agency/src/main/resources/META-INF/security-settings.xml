@@ -21,8 +21,8 @@
 		<anonymous />
 		<logout />
 		<headers>
-
 			<frame-options policy="SAMEORIGIN" />
+			<hsts include-subdomains="true"	max-age-seconds="31536000" />
 		</headers>
 	</http>
 

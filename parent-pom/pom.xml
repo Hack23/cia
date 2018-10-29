@@ -101,7 +101,7 @@
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.0.8.RELEASE/5.1.0.RC2/5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.1.1.RELEASE</cia.project.versions.spring>
+    <cia.project.versions.spring>5.1.2.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.0.7.RELEASE/5.1.0.M2</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.1.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.2</cia.project.versions.aspectj>
@@ -120,7 +120,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.13.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.13.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.9.2</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.9.3</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
@@ -129,7 +129,7 @@
     <cia.project.versions.ant>1.10.5</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.easymock>4.0</cia.project.versions.easymock>
-    <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
+    <cia.project.versions.dbunit>2.6.0</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>3.0.2</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
@@ -616,7 +616,7 @@
             <dependency>
               <groupId>org.jacoco</groupId>
               <artifactId>org.jacoco.report</artifactId>
-              <version>0.8.2</version>
+              <version>0.8.3-SNAPSHOT</version>
               <exclusions>
                 <exclusion>
                   <artifactId>asm-debug-all</artifactId>
@@ -627,17 +627,17 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>6.2.1</version>
+              <version>7.0</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-tree</artifactId>
-              <version>6.2.1</version>
+              <version>7.0</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-commons</artifactId>
-              <version>6.2.1</version>
+              <version>7.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -770,7 +770,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.5.2</version>
+          <version>3.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1403,7 +1403,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.1</surefire.version>
       </properties>
@@ -1427,7 +1427,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.1</surefire.version>
       </properties>
@@ -1452,7 +1452,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.1</surefire.version>
       </properties>
@@ -1477,7 +1477,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.1</surefire.version>
       </properties>
@@ -1493,7 +1493,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.20.1</surefire.version>
       </properties>
@@ -1910,7 +1910,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.2</version>
+            <version>0.8.3-SNAPSHOT</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
