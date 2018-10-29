@@ -25,6 +25,8 @@
 		<headers>
 			<frame-options policy="SAMEORIGIN" />
 			<hsts include-subdomains="true"	max-age-seconds="31536000" />
+			<referrer-policy policy="no-referrer"/>
+			<feature-policy policy-directives="vibrate 'none'; geolocation 'none'; camera 'none'; microphone 'none'"/>
 		</headers>
 	</http>
 
