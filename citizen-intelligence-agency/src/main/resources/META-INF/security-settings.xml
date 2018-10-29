@@ -7,7 +7,9 @@
 
 
 	<http pattern="/healthcheck/*" security="none" create-session="stateless"/>
+	
 	<http pattern="/robots.txt" security="none" create-session="stateless"/>
+	
 	<http pattern="/sitemap.xml" security="none" create-session="stateless"/>
 
 	<http use-expressions="false">
