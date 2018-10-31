@@ -99,6 +99,8 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
+    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
+    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>        
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.0.8.RELEASE/5.1.0.RC2/5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.1.2.RELEASE</cia.project.versions.spring>

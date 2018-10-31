@@ -23,5 +23,7 @@
   <properties>
     <sonar.dependencyCheck.htmlReportPath>${project.basedir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath>${project.basedir}/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+    <sonar.zaproxy.htmlReportPath>${project.basedir}/testreport.html</sonar.zaproxy.htmlReportPath>
+    <sonar.zaproxy.reportPath>${project.basedir}/testreport.xml</sonar.zaproxy.reportPath>    
   </properties>
 </project>
