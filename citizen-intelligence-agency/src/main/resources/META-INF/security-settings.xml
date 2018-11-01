@@ -8,17 +8,12 @@
 
 	<http pattern="/healthcheck/*" security="none" create-session="stateless"/>
 	
-	<http pattern="/robots.txt" security="none" create-session="stateless"/>
-	
-	<http pattern="/sitemap.xml" security="none" create-session="stateless"/>
-
 	<http use-expressions="false">
 
 		<intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
 		<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
 
 		<csrf disabled="true" />
-		<!-- <http-basic /> -->
 		<form-login />
 		<anonymous />
 		<logout />
@@ -27,7 +22,7 @@
 			<hsts include-subdomains="true"	max-age-seconds="31536000" />
 			<referrer-policy policy="no-referrer"/>
 			<feature-policy policy-directives="vibrate 'none'; geolocation 'none'; camera 'none'; microphone 'none'"/>
-			<content-security-policy policy-directives="default-src 'self'; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://www.gstatic.com; style-src 'unsafe-inline' 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' https://data.riksdagen.se https://www.gstatic.com"/>
+			<content-security-policy policy-directives="default-src 'self'; connect-src 'unsafe-inline' 'unsafe-eval' 'self' wss:; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://www.gstatic.com; style-src 'unsafe-inline' 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' https://data.riksdagen.se https://www.gstatic.com"/>
 		</headers>
 	</http>
 
