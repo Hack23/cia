@@ -18,8 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DefaultUIProvider;
@@ -76,6 +80,15 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 			VaadinSessionScope.cleanupSession(session);
 		});
 	}
+	
+	 @Override
+	  protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		 
+		 response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+		 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, private");
+		 response.setHeader("Pragma", "no-cache");
+		 response.setHeader("X-Content-Type-Options","nosniff");
+	     super.service(request, response);
+	  }
 
 	/**
 	 * The Class CustomSpringUIProvider.

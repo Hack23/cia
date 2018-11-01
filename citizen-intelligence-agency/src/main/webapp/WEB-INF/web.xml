@@ -11,7 +11,6 @@
 	  <url-pattern>/*</url-pattern>
 	  <http-method>PUT</http-method>
 	  <http-method>DELETE</http-method>
-	  <http-method>OPTIONS</http-method>
 	  <http-method>TRACE</http-method>
 	 </web-resource-collection>
 	 <auth-constraint/>
