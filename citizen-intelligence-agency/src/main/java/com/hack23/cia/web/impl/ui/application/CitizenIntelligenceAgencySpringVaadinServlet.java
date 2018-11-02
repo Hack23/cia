@@ -84,7 +84,6 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 	 @Override
 	  protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		 
 		 response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-		 response.setHeader("X-Content-Type-Options","nosniff");
 	     super.service(request, response);
 	  }
 

@@ -141,7 +141,7 @@
                 <exclude>**/start.ini</exclude>
                 <exclude>**/etc/jetty-gzip.xml</exclude>
                 <exclude>**/etc/jetty-ssl-context.xml</exclude>
-                <exclude>**/etc/webdefault.xml</exclude>                
+                <exclude>**/etc/webdefault.xml</exclude>
               </excludes>
             </extract-artifact>
             <extract-artifact>
@@ -175,7 +175,7 @@
             <copyFile>
               <path>src/main/config/jetty/etc/webdefault.xml</path>
               <toFile>/opt/cia/etc/webdefault.xml</toFile>
-            </copyFile>            
+            </copyFile>
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-cia.policy</path>
               <toFile>/opt/cia/etc/jetty-cia.policy</toFile>
