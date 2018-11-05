@@ -103,9 +103,9 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.0.8.RELEASE/5.1.0.RC2/5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.1.2.RELEASE</cia.project.versions.spring>
+    <cia.project.versions.spring>5.1.3.BUILD-SNAPSHOT</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.0.7.RELEASE/5.1.0.M2</cia.project.versions.spring.security> -->
-    <cia.project.versions.spring.security>5.1.1.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>5.1.2.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.2</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>7.0</cia.project.versions.asm>
@@ -115,9 +115,9 @@
     <cia.project.versions.slf4j>1.8.0-beta2</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.3.0-alpha4</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.3.7.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.3.7.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.3.7.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.4.0-SNAPSHOT</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.4.0-SNAPSHOT</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.build>5.4.0-SNAPSHOT</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.3.7.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.13.Final</cia.project.versions.hibernate.validator>
@@ -155,13 +155,13 @@
     <cia.project.versions.jackson>2.9.7</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.12.0.SP02</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.12.v20180830</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.13-SNAPSHOT</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.74.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.6.0</cia.project.versions.vaadin>
-    <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
+    <cia.project.versions.vaadin>8.7-SNAPSHOT</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin.gwt.user>HEAD-SNAPSHOT</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.26</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <walkmod.chains>pmd</walkmod.chains>
