@@ -656,6 +656,7 @@
           <persistentunitcachedir>${project.build.directory}/classes/</persistentunitcachedir>
           <deploy>${project.build.directory}/classes/WEB-INF/deploy</deploy>
           <compileReport>false</compileReport>
+          <optimizationLevel>9</optimizationLevel>
           <noServer>true</noServer>
           <draftCompile>false</draftCompile>
           <style>OBF</style>
