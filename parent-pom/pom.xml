@@ -155,7 +155,7 @@
     <cia.project.versions.jackson>2.9.7</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.12.0.SP02</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.13-SNAPSHOT</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.13.v20181106</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
