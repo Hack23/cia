@@ -21,10 +21,9 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
+[![Anchore Image Overview](https://anchore.io/service/badges/image/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939)](https://anchore.io/image/dockerhub/hack23%2Fcia%3A2018.10.17)	
+[![Anchore Image Policy](https://anchore.io/service/badges/policy/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939?registry=dockerhub&repository=hack23/cia&tag=2018.10.17)](https://anchore.io)
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
-
-	
-
 
 # Runtime
 
