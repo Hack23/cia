@@ -5,7 +5,7 @@ module com.hack23.cia.service.impl {
 
 	requires java.validation;
 	requires java.xml.bind;
-	requires java.xml.ws.annotation;
+	requires java.annotation;
 	requires org.slf4j;
 	requires spring.context;
 	requires spring.beans;

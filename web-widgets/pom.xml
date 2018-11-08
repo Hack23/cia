@@ -620,6 +620,8 @@
             <manifestEntries>
               <Vaadin-Package-Version>1</Vaadin-Package-Version>
               <Vaadin-Widgetsets>com.hack23.cia.web.widgets.WebWidgetSet</Vaadin-Widgetsets>
+              <Automatic-Module-Name>com.hack23.cia.web.widgets</Automatic-Module-Name>
+              <Sealed>true</Sealed>
             </manifestEntries>
           </archive>
         </configuration>

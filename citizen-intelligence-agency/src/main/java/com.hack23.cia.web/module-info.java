@@ -8,29 +8,49 @@ module com.hack23.cia.web {
 	requires responsive.layout;
 	
 	requires java.xml.bind;
-	requires java.xml.ws.annotation;
+	requires java.annotation;
 	requires org.slf4j;
 	requires spring.context;
 	requires spring.beans;
 	requires spring.tx;
-	requires spring.jms;
 	requires spring.messaging;
 	requires spring.context.support;
 	requires quartz;
 	requires commons.lang;
 
 	requires spring.security.core;
+	requires spring.security.web;
 	requires org.apache.commons.lang3;
 
 	requires weka.dev;
 	requires passay;
+	requires wt.pdf.viewer;
+	requires spring.aop;
+	requires statistics.card;
+	requires org.eclipse.jetty.servlet;
+	requires vaadin.grid.util;
+	requires yauaa;
+	requires qrcode;
 
-	requires joda.time;
+	requires java.desktop;
+	requires org.apache.commons.text;
+	requires gantt.addon;
+//	requires joda.time;
 
-	requires jms;
+//	requires jms;
+//	requires java.bean;
 
+	requires com.hack23.cia.web.widgets;
+	requires dcharts;
+	requires commons.beanutils;
+	requires org.jsoup;
+	requires javax.servlet.api;
+	requires vaadin.spring;
+	requires spring.web;
+	
 	requires com.hack23.cia.service.api;
 	requires com.hack23.cia.service.impl;
+	requires com.hack23.cia.service.external.esv;
 
 	requires com.hack23.cia.service.component.agent.api;
 	requires com.hack23.cia.service.component.agent.impl;

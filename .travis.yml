@@ -10,7 +10,6 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
-      - oracle-java9-installer
       - graphviz
       - build-essential
       - fakeroot
@@ -28,6 +27,7 @@ addons:
 
 jdk:
   - oraclejdk8
+  - openjdk11
 
 env:
   global:

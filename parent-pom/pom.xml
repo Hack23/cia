@@ -953,6 +953,26 @@
               <artifactId>plexus-java</artifactId>
               <version>0.9.10</version>
             </dependency>
+            <dependency>
+              <groupId>javax.xml.bind</groupId>
+              <artifactId>jaxb-api</artifactId>
+              <version>2.4.0-b180725.0427</version>
+            </dependency>
+            <dependency>
+              <groupId>org.glassfish.jaxb</groupId>
+              <artifactId>jaxb-runtime</artifactId>
+              <version>2.4.0-b180725.0644</version>
+            </dependency>
+            <dependency>
+              <groupId>com.sun.activation</groupId>
+              <artifactId>javax.activation</artifactId>
+              <version>1.2.0</version>
+            </dependency>
+            <dependency>
+              <groupId>com.google.code.findbugs</groupId>
+              <artifactId>jsr305</artifactId>
+              <version>3.0.2</version>
+            </dependency>
           </dependencies>
         </plugin>
         <plugin>
@@ -1268,7 +1288,7 @@
               <version>1.8</version>
             </jdk>
             <jdk>
-              <version>9</version>
+              <version>11</version>
             </jdk>
           </toolchains>
         </configuration>
@@ -1283,15 +1303,10 @@
               <!-- compile everything to ensure module-info contains right entries -->
               <!-- required when JAVA_HOME is JDK 8 or below -->
               <jdkToolchain>
-                <version>9</version>
+                <version>11</version>
               </jdkToolchain>
-              <release>9</release>
               <source>9</source>
               <target>9</target>
-              <compilerArgs>
-                <arg>--add-modules</arg>
-                <arg>java.activation,java.xml.bind,java.xml,java.se.ee,java.xml.ws.annotation</arg>
-              </compilerArgs>
             </configuration>
           </execution>
           <execution>
@@ -1426,56 +1441,6 @@
 					java.base/java.lang=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-11-oracle/bin/java</test.jvm.path>
-        <jdk.src.version>1.8</jdk.src.version>
-        <jdk.target.version>1.8</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.22.1</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java10</id>
-      <activation>
-        <jdk>10</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-modules
-					java.xml.bind,ALL-MODULE-PATH --add-exports
-					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
-					java.base/jdk.internal.ref=ALL-UNNAMED --add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED
-					--add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
-					java.base/java.lang=ALL-UNNAMED --add-opens
-					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/java-10-oracle/bin/java</test.jvm.path>
-        <jdk.src.version>1.8</jdk.src.version>
-        <jdk.target.version>1.8</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.22.1</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java9</id>
-      <activation>
-        <jdk>9</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-modules
-					java.xml.bind,ALL-MODULE-PATH --add-exports
-					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
-					java.base/jdk.internal.ref=ALL-UNNAMED --add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED
-					--add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
-					java.base/java.lang=ALL-UNNAMED --add-opens
-					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/java-9-oracle/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
