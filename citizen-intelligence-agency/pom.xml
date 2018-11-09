@@ -957,8 +957,8 @@
           <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>javax.annotation</groupId>
-        	<artifactId>javax.annotation-api</artifactId>
+          <artifactId>javax.annotation-api</artifactId>
+          <groupId>javax.annotation</groupId>
         </exclusion>
       </exclusions>
     </dependency>
