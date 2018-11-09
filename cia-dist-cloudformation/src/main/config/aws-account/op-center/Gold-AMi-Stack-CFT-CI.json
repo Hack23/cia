@@ -1,0 +1,2849 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": " This cloudformation template creates resources required to set up a golden ami pipeline.(fdp-1o82smtoh)",
+    "Parameters": {
+    
+   "productName": {
+      "Type": "String",
+      "Default": "ProductName-ProductVersion",
+      "Description": "ProductName-ProductVersion combination of the product for which you intend to use the pipeline. You get to override this later when you trigger automation workflow. "
+    },
+    "productOSAndVersion": {
+      "Type": "String",
+      "Default": "OperatingSystemName-OperatingSystemVersion",
+      "Description": "Operating system name and OS version. You get to override this later when you trigger automation workflow."
+    },
+     "buildVersion": {
+      "Type": "String",
+      "Default": "1",
+      "Description": "Build-Version corresponding to your product. Note - This is just a default value, you get to override this later when you trigger automation workflow."
+    },
+    "cidrVPC" : {
+      "Description" : "An available CIDR block for creating a new VPC. The size of the VPC should be big enough to hold instances of all your golden AMIs at a time",
+      "Type": "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "Default": "10.0.0.0/16",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    },
+     "cidrPrivateSubnet" : {
+      "Description" : "An available CIDR block for creating a new VPC. The size of the VPC should be big enough to hold instances of all your golden AMIs at a time",
+      "Type": "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "Default": "10.0.1.0/24",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    },
+     "cidrPublicSubnet" : {
+      "Description" : "An available CIDR block for creating a new VPC. The size of the VPC should be big enough to hold instances of all your golden AMIs at a time",
+      "Type": "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "Default": "10.0.2.0/24",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    },
+    "ApproverUserIAMARN": {
+      "Type": "String",
+      "Default": "",
+      "Description": "IAM ARN of the Golden AMI approver. The approver must have AmazonSSMAutomationApproverAccess policy associated with it's IAM Profile ."
+  },
+  "EmailID": {
+      "Type": "String",
+      "Default": "myemail@mycompany.com",
+      "AllowedPattern": "([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)",
+      "Description": "Your email ID for receiving Inspector assessment results and golden AMI creation notification."
+
+    },
+    "instanceType":
+    {
+         "Type": "String",
+      "Default": "t2.large",
+      "Description": "Specify the the InstanceType compatible with all your golden AMIs. This InstanceType will be used for launching continuous vulnerability assessment of golden AMIs."
+    },
+  
+    "continuousInspectionFrequency": {
+      "Type": "String",
+      "Default": "rate(1 day)",
+      "Description": "Frequency for setting up continuous inspection of your AMIs. For syntax, check - https://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html"
+    },
+     "MetadataJSON":{
+         "Type":"String",
+         "Default":"{\"Account_ID_1\":\"region_1,region_2\"}",
+      "Description": "Metadata of accounts and regions for distributing the golden AMI."
+      },
+       "roleName":{
+         "Type":"String",
+         "Default":"goldenAMICrossAccountRole",
+         "Description": "Cross account role suffix for managing Golden AMI metadata Parameters in child account(s). This role needs to exist in each account specified in MetadataJSON parameter."
+      }
+    },
+    "Resources": {
+
+    "VPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "true",
+        "CidrBlock": {"Ref":"cidrVPC"}
+      } 
+    },
+    "subnetPrivate": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": {"Ref":"cidrPrivateSubnet"},
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      } 
+    },
+      "subnetPublic": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "MapPublicIpOnLaunch" : true,
+        "CidrBlock": {"Ref":"cidrPublicSubnet"},
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      } 
+    },
+     "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway" 
+    },
+    "PublicVPCGatewayAttachment": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "InternetGatewayId": {
+          "Ref": "InternetGateway"
+        }
+      }
+    },
+    "PublicRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      } 
+    },
+    "PublicRoute": {
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "PublicVPCGatewayAttachment",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "PublicRouteTable"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      } 
+    },
+    "PublicSubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "subnetPublic"
+        },
+        "RouteTableId": {
+          "Ref": "PublicRouteTable"
+        }
+      } 
+    },  
+    "NAT" : {
+      "DependsOn" : "PublicVPCGatewayAttachment",
+      "Type" : "AWS::EC2::NatGateway",
+      "Properties" : {
+        "AllocationId" : { "Fn::GetAtt" : ["EIP", "AllocationId"]},
+        "SubnetId" : { "Ref" : "subnetPublic"}
+      }
+    },  
+    "PrivateRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      } 
+    },
+    "EIP" : {
+      "Type" : "AWS::EC2::EIP",
+      "Properties" : {
+        "Domain" : "vpc"
+      }
+    },
+    "PrivateRoute": {
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "PublicVPCGatewayAttachment",
+      "Properties" : 
+      {
+        "RouteTableId" : { "Ref" : "PrivateRouteTable" },
+        "DestinationCidrBlock" : "0.0.0.0/0",
+        "NatGatewayId" : { "Ref" : "NAT" } 
+    }
+    },
+    "PrivateSubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "subnetPrivate"
+        },
+        "RouteTableId": {
+          "Ref": "PrivateRouteTable"
+        }
+      } 
+    }, 
+
+ "secGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "GroupDescription": "Allow HTTP traffic",
+        "SecurityGroupIngress": []
+      } 
+    },
+        "GoldenAMIConfigBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "VersioningConfiguration": {
+                    "Status": "Enabled"
+                },
+                "BucketEncryption":
+                {
+                  "ServerSideEncryptionConfiguration" : [{
+                  "ServerSideEncryptionByDefault" : {"SSEAlgorithm":"AES256"}
+              }]
+              }
+
+            }
+        },
+        "GoldenAmiConfigBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "DependsOn": "ManagedInstanceRole",
+            "Properties": {
+                "Bucket": {
+                    "Ref": "GoldenAMIConfigBucket"
+                },
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": [
+                                "s3:*"
+                            ],
+                            "Effect": "Allow",
+                            "Resource": [
+                                {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "arn:aws:s3:::",
+                                            {
+                                                "Ref": "GoldenAMIConfigBucket"
+                                            },
+                                            "/*"
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "arn:aws:s3:::",
+                                            {
+                                                "Ref": "GoldenAMIConfigBucket"
+                                            }
+                                        ]
+                                    ]
+                                }
+                            ],
+                            "Principal": {
+                                "AWS": [
+                                    {
+                                        "Fn::GetAtt": [
+                                            "ManagedInstanceRole",
+                                            "Arn"
+                                        ]
+                                    },
+                                    {
+                                        "Fn::GetAtt": [
+                                            "AutomationServiceRole",
+                                            "Arn"
+                                        ]
+                                    },
+                                    {
+                                         "Fn::GetAtt": [
+                                            "PublishAMILambdaRole",
+                                            "Arn"
+                                        ] 
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+    "PublishAMILambdaRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/", 
+                "Policies": [
+                    {
+                        "PolicyName": "PublishAMILambdaPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:GetParameter*"
+                                    ],
+                                    "Resource": { "Fn::Join": 
+                                      [
+                                          "",
+                                          [
+                                              "arn:aws:ssm:", "*",
+                                              ":",
+                                              {
+                                                  "Ref":"AWS::AccountId"
+                                              },
+                                              ":parameter/GoldenAMI/*"
+                                          ]
+                                      ]} 
+                                },
+                                {
+                          "Effect": "Allow",
+                          "Action": [  
+                              "s3:GetObject*",
+                              "s3:PutObject*"],
+                          "Resource": [
+                          { "Fn::Join":["",["arn:aws:s3:::",{"Ref": "GoldenAMIConfigBucket"},"/*"]]
+                          }]
+                    },
+                    {
+                          "Effect": "Allow",
+                          "Action": [   
+                              "servicecatalog:SearchProductsAsAdmin",
+                              "servicecatalog:CreateProvisioningArtifact",
+                              "servicecatalog:CreateProduct",
+                              "cloudformation:ValidateTemplate"                      
+                              ],
+                          "Resource": "*"
+                    }
+        
+                            ]
+                        }
+                    }
+                    
+                ]
+            }
+        },
+ "PublishAMILambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "PublishAMILambdaRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "import boto3",
+                                "import json",
+                                "from dateutil import parser",
+                                "import dateutil",
+                                "import datetime",
+                                "import collections",
+                                "import os",
+                                "import time",
+                                "def lambda_handler(event, context):",
+                                "    sourceRegion = os.environ['AWS_DEFAULT_REGION']",
+                                "    s3 = boto3.resource('s3')",
+                                "    prodName=event['productNameAndVersion']",
+                                "    prodOS=event['productOSAndVersion']",
+                                "    bucket =event['bucketName']",
+                                "    s3FilePrefix=event['templateFileName']",
+                                "    version=event['versionToBeCreated']",
+                                "    amiRegionMappingParamName =event['amiRegionMappingParamName']", 
+                                "    filepath='/tmp/'+s3FilePrefix",
+                                "    object=s3.Object(bucket,s3FilePrefix)",
+                                "    text=object.get()[\"Body\"].read().decode('utf-8') ",
+                                "    amiIDParamPath = '/GoldenAMI/'+prodOS+'/'+prodName+'/'+event['versionToBeCreated']",
+                                "    text=text.replace('AMI_ID_TO_REPLACE', amiIDParamPath)",
+                                "    with open(filepath, mode='w',encoding='utf-8') as file:",
+                                "        file.write(text)",
+                                "    s3.meta.client.upload_file(filepath,bucket,s3FilePrefix+'/versions/'+version)",
+                                "    ssm = boto3.client('ssm',os.environ['AWS_DEFAULT_REGION'])",
+                                "    amiIDRegionMapping =  ssm.get_parameter(Name=amiRegionMappingParamName)['Parameter']['Value']",
+                                "    mappingJSON = json.loads(amiIDRegionMapping)",
+                                "    for region, amiID in mappingJSON.items():",
+                                "        sc = boto3.client('servicecatalog',region)",
+                                "        scProduct=''",
+                                "        products = sc.search_products_as_admin(ProductSource='ACCOUNT')",
+                                "        for product in products['ProductViewDetails']:",
+                                "            productName = product['ProductViewSummary']['Name']",
+                                "            if productName == prodName+'-'+prodOS:    ",
+                                "                scProduct=product['ProductViewSummary']['ProductId']",
+                                "                sc.create_provisioning_artifact(ProductId=scProduct,Parameters={'Name': version,'Description': 'This is version '+version,'Info': {'LoadTemplateFromURL': 'https://s3.amazonaws.com/'+bucket+'/'+s3FilePrefix+'/versions/'+version},'Type': 'CLOUD_FORMATION_TEMPLATE'},IdempotencyToken=str(round(time.time() * 1000)))",
+                                "        if scProduct == '':",
+                                "            print('SC product not found, creating a product')",
+                                "            result = sc.create_product(Name=prodName+'-'+prodOS,Owner='CCOE',ProductType='CLOUD_FORMATION_TEMPLATE', Description='This product can be used to launch '+prodName+' in '+prodOS+' environment.', Tags=[{'Key': 'ProductName','Value': prodName+'-'+prodOS}],ProvisioningArtifactParameters={'Name':version,'Description': 'This is version '+version,'Info': {'LoadTemplateFromURL': 'https://s3.amazonaws.com/'+bucket+'/'+s3FilePrefix+'/versions/'+version},'Type': 'CLOUD_FORMATION_TEMPLATE'},IdempotencyToken=str(round(time.time() * 1000)))",
+                                "    return 'Done';"
+                            ]
+                        ]
+                    }
+                },
+                "Runtime": "python3.6", 
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        }, 
+        "DecommissionAMIVersionLambdaRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole" 
+                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/", 
+                "Policies": [
+                    {
+                        "PolicyName": "DecommissionAMIVersionLambdaPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:GetParameter*",
+                                        "ssm:PutParameter*", 
+                                        "ssm:delete*"
+                                    ],
+                                    "Resource": { "Fn::Join": 
+                                                [
+                                                    "",
+                                                    [
+                                                        "arn:aws:ssm:", "*",
+                                                        ":",
+                                                        {
+                                                            "Ref":"AWS::AccountId"
+                                                        },
+                                                        ":parameter/GoldenAMI/*"
+                                                    ]
+                                                ]} 
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": ["s3:delete*",
+                                        "s3:get*"],
+                                    "Resource": [
+                                        {
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:s3:::",
+                                                    {
+                                                        "Ref": "GoldenAMIConfigBucket"
+                                                    },
+                                                    "/*"
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:s3:::",
+                                                    {
+                                                        "Ref": "GoldenAMIConfigBucket"
+                                                    }
+                                                ]
+                                            ]
+                                        }
+                                      ]
+                                },
+                                 {
+
+                                    "Effect": "Allow",
+                                    "Action": "sts:AssumeRole",
+                                   "Resource": { "Fn::Join": ["",["arn:aws:iam::*:role/",{"Ref":"roleName"}] ]},
+                                  },
+                                 {
+                                    "Effect": "Allow",
+                                    "Action": [ 
+                                        "ec2:DeregisterImage",
+                                        "ec2:DescribeSnapshots",
+                                        "ec2:DeleteSnapshot", 
+                                        "sc:list*",
+                                        "sc:search*",
+                                        "servicecatalog:SearchProductsAsAdmin",
+                                        "servicecatalog:ListProvisioningArtifacts",
+                                        "servicecatalog:DeleteProduct",
+                                        "servicecatalog:DeleteProvisioningArtifact"                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+ "DecommissionAMIVersionLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "DecommissionAMIVersionLambdaRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "\n","import boto3",
+                                "\n","import json",
+                                "\n","from dateutil import parser",
+                                "\n","import dateutil",
+                                "\n","import datetime",
+                                "\n","import collections",
+                                "\n","import os",
+                                "\n","import time",
+                                "\n","import botocore",
+
+                                "\n","def lambda_handler(event, context):",
+                                "\n","    sourceRegion = os.environ['AWS_DEFAULT_REGION']",
+                                "\n","    s3 = boto3.resource('s3')",
+                                "\n","    prodName=event['productNameAndVersion']",
+                                "\n","    prodOS=event['productOSAndVersion']",
+                                "\n","    bucketName =event['bucketName']",
+                                "\n","    s3FilePrefix=event['templateFileName']",
+                                "\n","    version=event['versionToBeDeleted']",
+                                "\n","    amiRegionMappingParamName =event['amiRegionMappingParamName']",
+                                "\n","    prefix='/GoldenAMI/'+prodOS+'/'+prodName+'/'+version", 
+                                "\n","    s3 = boto3.resource('s3')",
+                                "\n","    masterAmis='/GoldenAMI/latest'",
+                                "\n","    bucket = s3.Bucket(bucketName)",
+                                "\n","    bucket.delete_objects(Delete={'Objects': [{'Key': s3FilePrefix+'/versions/'+version } ] })",
+                                "\n","    ssm = boto3.client('ssm',sourceRegion)",
+                                "\n","    amiIDRegionMapping=''",
+                                "\n","    params= [prefix+'/latestInstance',prefix+'/LatestAssessmentRunARN',prefix+'/NumCVEs',prefix+'/assessmentLink',prefix+'/assessmentTemplateARN']",
+                                "\n","    try:",
+                                "\n","        amiIDRegionMapping =  ssm.get_parameter(Name=amiRegionMappingParamName)['Parameter']['Value']",
+                                "\n","    except botocore.exceptions.ClientError as e:",
+                                "\n","        if e.response['Error']['Code'] == 'ParameterNotFound':",
+                                "\n","            amiID= ssm.get_parameter(Name=prefix)['Parameter']['Value']",
+                                "\n","            ec2 = boto3.client('ec2')",
+                                "\n","            ec2.deregister_image(ImageId=amiID)",
+                                "\n","            time.sleep(5)",
+                                "\n","            snaps = ec2.describe_snapshots()",
+                                "\n","            for snap in snaps['Snapshots']: ", 
+                                "\n","                if amiID in snap['Description']:",
+                                "\n","                    ec2.delete_snapshot(SnapshotId=snap['SnapshotId'])",
+                                "\n","            ssm.delete_parameters(Names=params)",
+                                "\n","            try:",
+                                "\n","                temp =  ssm.get_parameter(Name=masterAmis)['Parameter']['Value']",
+                                "\n","                temp= temp.replace(amiID+',','').replace(','+amiID,'').replace(amiID,'')",
+                                "\n","                if len(temp) == 0:",
+                                "\n","                    ssm.delete_parameters(Names=[masterAmis])",
+                                "\n","                else:",
+                                "\n","                    ssm.put_parameter(Name=masterAmis,Type='String', Value=temp,Overwrite=True)",
+                                "\n","                return 'Done'",
+                                "\n","            except botocore.exceptions.ClientError as e:",
+                                "\n","                if e.response['Error']['Code'] == 'ParameterNotFound':",     
+                                "\n","                    print('This indicates that the active amis are not present')",   
+                                "\n","            return 'Done'",
+                                "\n","    mappingJSON = json.loads(amiIDRegionMapping)",
+                                "\n","    for region,amiID in mappingJSON.items():",
+                                "\n","        sc = boto3.client('servicecatalog',region)",
+                                "\n","        products = sc.search_products_as_admin(ProductSource='ACCOUNT')",
+                                "\n","        for product in products['ProductViewDetails']:",
+                                "\n","            productName = product['ProductViewSummary']['Name']",
+                                "\n","            if productName == prodName+'-'+prodOS:",    
+                                "\n","                productID=product['ProductViewSummary']['ProductId']",
+                                "\n","                provisioningArtifacts = sc.list_provisioning_artifacts(ProductId=productID)['ProvisioningArtifactDetails']",
+                                "\n","                if len(provisioningArtifacts) == 1:",
+                                "\n","                    sc.delete_product(Id=productID)",
+                                "\n","                else:",
+                                "\n","                    for artifact in provisioningArtifacts:",
+                                "\n","                        if artifact['Name'] == version:",
+                                "\n","                            sc.delete_provisioning_artifact(ProductId=productID,ProvisioningArtifactId=artifact['Id'])",
+                                "\n","        ec2 = boto3.client('ec2',region)",
+                                "\n","        ec2.deregister_image(ImageId=amiID)", 
+                                "\n","        time.sleep(5)",
+                                "\n","        snaps = ec2.describe_snapshots()",
+                                "\n","        for snap in snaps['Snapshots']:", 
+                                "\n","            if amiID in snap['Description']:", 
+                                "\n","                ec2.delete_snapshot(SnapshotId=snap['SnapshotId'])",
+                                "\n","        ssm = boto3.client('ssm',region)",
+                                "\n","        ssm.delete_parameters(Names=[prefix])", 
+                                "\n","        temp =  ssm.get_parameter(Name=masterAmis)['Parameter']['Value']",
+                                "\n","        temp= temp.replace(amiID+',','').replace(','+amiID,'').replace(amiID,'')",
+                                "\n","        if len(temp) == 0:",
+                                "\n","            ssm.delete_parameters(Names=[masterAmis])",
+                                "\n","        else:",
+                                "\n","            ssm.put_parameter(Name=masterAmis,Type='String', Value=temp,Overwrite=True)",
+                                "\n","        if region == sourceRegion:", 
+                                "\n","            ssm.delete_parameters(Names=params)",                            
+                                "\n","    return 'Done';"
+                            ]
+                        ]
+                    }
+                },
+                "Runtime": "python3.6", 
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        },
+
+         "DecommissionAMIVersionFromAccountsLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "DecommissionAMIVersionLambdaRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "\n","import boto3",
+                                "\n","import json",
+                                "\n","from dateutil import parser",
+                                "\n","import dateutil",
+                                "\n","import datetime",
+                                "\n","import collections",
+                                "\n","import os",
+                                "\n","import time",
+                                "\n","import botocore",
+
+                                "\n","def lambda_handler(event, context):",
+                                "\n","    sourceRegion = os.environ['AWS_DEFAULT_REGION']",
+                                "\n","    s3 = boto3.resource('s3')",
+                                "\n","    prodName=event['productNameAndVersion']",
+                                "\n","    prodOS=event['productOSAndVersion']",
+                                "\n","    bucketName =event['bucketName']",
+                                "\n","    s3FilePrefix=event['templateFileName']",
+                                "\n","    version=event['versionToBeDeleted']",
+                                "\n","    masterAmis='/GoldenAMI/latest'",
+                                "\n","    amiRegionMappingParamName =event['amiRegionMappingParamName']",
+                                "\n","    prefix='/GoldenAMI/'+prodOS+'/'+prodName+'/'+version", 
+                                "\n","    ssm = boto3.client('ssm',sourceRegion)",
+                                "\n","    SELF_ACCOUNT_ID = context.invoked_function_arn.split(':')[4]",
+                                "\n","    try:",
+                                "\n","        copyMetadata= ssm.get_parameter(Name=prefix+'/copyMetadata')['Parameter']['Value']",
+                                "\n","        jsonMetadata = json.loads(copyMetadata)",
+                                "\n","        for accountID, regions in jsonMetadata.items():",
+                                "\n","            if accountID != SELF_ACCOUNT_ID:",
+                                "\n","                roleArn ='arn:aws:iam::'+accountID+':role/",{"Ref":"roleName"},"' ",
+                                "\n","                regionList = regions.split(',')",
+                                "\n","                for region in regionList:",
+                                "\n","                    sts_client = boto3.client('sts')",
+                                "\n","                    roleOP=sts_client.assume_role(RoleArn=roleArn,RoleSessionName='ARS1')",
+                                "\n","                    creds = roleOP['Credentials']",
+                                "\n","                    ssm = boto3.client('ssm',region,aws_access_key_id = creds['AccessKeyId'],aws_secret_access_key = creds['SecretAccessKey'],aws_session_token = creds['SessionToken'])",
+                                "\n","                    amiID=ssm.get_parameter(Name=prefix)['Parameter']['Value']",
+                                "\n","                    temp =  ssm.get_parameter(Name=masterAmis)['Parameter']['Value']",
+                                "\n","                    temp= temp.replace(amiID+',','').replace(','+amiID,'').replace(amiID,'')",
+                                "\n","                    ssm.put_parameter(Name=masterAmis,Type='String', Value=temp,Overwrite=True)",
+                                "\n","                    ssm.delete_parameter(Name=prefix)",
+                                "\n","        ssm = boto3.client('ssm',sourceRegion)",
+                                "\n","        ssm.delete_parameters(Names=[amiRegionMappingParamName,prefix+'/copyMetadata'])", 
+                                "\n","    except botocore.exceptions.ClientError as e:",
+                                "\n","        if e.response['Error']['Code'] == 'ParameterNotFound':",
+                                "\n","            print('AMI not shared.')",
+                                "\n","            ssm = boto3.client('ssm',sourceRegion)",
+                                "\n","            ssm.delete_parameter(Name=prefix)",
+                                "\n","    return 'Done';"
+                            ]
+                        ]
+                    }
+                },
+                "Runtime": "python3.6", 
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        },
+
+
+  "AppendParamLambdaRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole" 
+                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/", 
+                "Policies": [
+                    {
+                        "PolicyName": "AppendSsmParamLambdaPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:GetParameter*", 
+                                        "ssm:PutParameter*"
+                                    ],
+                                    "Resource": { "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} 
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+ "AppendParamLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "AppendParamLambdaRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                
+                                "\n","import json",
+                                "\n","import boto3", 
+                                "\n","import botocore",
+                                "\n","def lambda_handler(event, context):",
+                                "\n","    paramName =event['parameterName'];",
+                                "\n","    amiIDVal=event['valueToBeCreatedOrAppended']",
+                                "\n","    print(amiIDVal)",
+                                "\n","    amiID=amiIDVal.replace(\"",  "\\\\r\\\\n",    "\",\"\\n\")",
+                                "\n","    print(amiID)",
+                                "\n","    ssm = boto3.client('ssm')",
+                                "\n","    try:",
+                                "\n","        AMIIdsParam =ssm.get_parameter(Name=paramName)",
+                                "\n","        AMIIds=AMIIdsParam['Parameter']['Value']",
+                                "\n","        AMIIds= AMIIds+','+ amiID",
+                                "\n","        ssm.put_parameter(Name=paramName,Type='String', Value=AMIIds,Overwrite=True)",
+                                "\n","    except botocore.exceptions.ClientError as e:",
+                                "\n","        if e.response['Error']['Code'] == 'ParameterNotFound':",
+                                "\n","            ssm.put_parameter(Name=paramName,Type='String', Value=amiID,Overwrite=True)",
+                                "\n","    return 'appended parameter %s with value %s.' % (paramName,amiID)"
+                            ]
+                        ]
+                    }
+                },
+                "Runtime": "python3.6", 
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        },
+ 
+        "RunInspectorLambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",               
+                    "arn:aws:iam::aws:policy/AmazonInspectorFullAccess"
+                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            }, 
+                                       
+
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "RunInspectorLambdaExecutionPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": "ssm:PutParameter",
+                                    "Resource": { "Fn::Join": [
+                                        "",
+                                        [
+                                            "arn:aws:ssm:", {
+                                                "Ref" : "AWS::Region"
+                                            },
+                                            ":",
+                                            {
+                                                "Ref":"AWS::AccountId"
+                                            },
+                                            ":parameter/GoldenAMI/*"
+                                        ]
+                                    ]}
+                                } 
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "RunInspectorLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "RunInspectorLambdaExecutionRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "import json",
+                                "import urllib.parse",
+                                "import boto3",
+                                "import time",
+                                "import os",
+                                "def lambda_handler(event, context):",
+                                "    amiId = event['AMI-ID']",
+                                "    instanceId = event['instanceId']",
+                                "    productOS = event.get('productOS')",
+                                "    productName = event.get('productName')",
+                                "    productVersion = event.get('productVersion')",
+                                "    topicArn=event['topicArn']",
+                                "    fullName = amiId+'-'+productOS+'/'+productName+'/'+productVersion",
+                                "    region = os.environ[\"AWS_DEFAULT_REGION\"]",
+                                "    ",
+                                "    assessmentTemplateArn=\"\";",
+                                "    ",
+                                "    ec2Source =boto3.resource('ec2',region)",
+                                "    inspector = boto3.client('inspector',region) ",
+                                "    ssm = boto3.client('ssm',region) ",
+                                "    rules = inspector.list_rules_packages();",
+                                "    ParamName='/GoldenAMI/'+productOS+'/'+productName+'/'+productVersion+'/latestInstance'",
+                                "    ssm.put_parameter(Name=ParamName,Value=instanceId,Type='String',Overwrite=True) ",
+                                "    millis = int(round(time.time() * 1000))",
+                                "    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': amiId+'-'+productOS+'/'+productName+'/'+productVersion})",
+                                "    print(\"Total length found:\"+str(len(existingTemplates['assessmentTemplateArns'])))",
+                                "    if len(existingTemplates['assessmentTemplateArns'])==0:",
+                                "        resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'Type','value': amiId+'-'+productOS+'/'+productName+'/'+productVersion}])",
+                                "        target = inspector.create_assessment_target(assessmentTargetName=fullName,resourceGroupArn=resGroup['resourceGroupArn'])",
+                                "        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName=amiId+'/'+productOS+'/'+productName+'/'+productVersion, durationInSeconds=900,rulesPackageArns=rules['rulesPackageArns'])",
+                                "        assessmentTemplateArn=template['assessmentTemplateArn']",
+                                "        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=topicArn)",
+                                "        print(\"Template Created:\"+template['assessmentTemplateArn'])",
+                                "        ParamName='/GoldenAMI/'+productOS+'/'+productName+'/'+productVersion+'/assessmentTemplateARN'",
+                                "        ssm.put_parameter(Name=ParamName,Value=template['assessmentTemplateArn'],Type='String',Overwrite=True)",
+                                "    else:",
+                                "         assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]",
+                                "   ",
+                                "    time.sleep(10)",
+                                "    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName=fullName+\"-\"+str(millis))",
+                                "    ParamName='/GoldenAMI/'+productOS+'/'+productName+'/'+productVersion+'/LatestAssessmentRunARN'",
+                                "    ssm.put_parameter(Name=ParamName,Value=run['assessmentRunArn'],Type='String',Overwrite=True) ",
+                                "    return \"Done\""
+                            ]
+                        ]
+                    }
+                }, 
+                "Runtime": "python3.6",
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        },
+        "AssessAssessmentLambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                ],
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            }, 
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "AssessAssessmentLambdaExecutionPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": "ssm:PutParameter",
+                                    "Resource": { "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} 
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "inspector:DescribeAssessmentTemplates",
+                                        "inspector:DescribeFindings",
+                                        "inspector:ListFindings"
+                                    ],
+                                    "Resource": "*"
+                                } 
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "AssessAssessmentLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Role": {
+                    "Fn::GetAtt": [
+                        "AssessAssessmentLambdaExecutionRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "import json ",
+                                "import os",
+                                "import boto3", 
+                                "def lambda_handler(event, context): ",
+                                "    message = event['Records'][0]['Sns']['Message']", 
+                                "    print(message)",
+                                "    jsonVal = json.loads(message);",
+                                "    print(jsonVal)",
+                                "    assessmentArn =jsonVal['run']", 
+                                "    template =jsonVal['template']", 
+                                "    region = os.environ[\"AWS_DEFAULT_REGION\"]", 
+                                "    inspector = boto3.client('inspector',region) ", 
+                                "    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=500)", 
+                                "    countInfo=0",
+                                "    countHigh=0",
+                                "    countMedium=0",
+                                "    countLow=0",
+                                "    for findingArn in findingArns['findingArns']:",
+                                "        finding = inspector.describe_findings(findingArns=[findingArn]) ",
+                                "        for result in finding['findings']:",
+                                "            if result['severity'] =='Informational':",
+                                "                countInfo=countInfo+1",
+                                "            if result['severity'] =='Low':",
+                                "                countLow=countLow+1",
+                                "            if result['severity'] =='Medium':",
+                                "                countMedium=countMedium+1",
+                                "            if result['severity'] =='High':",
+                                "                countHigh=countHigh+1",
+                                "    print(\"Total CVEs found:\"+str(countHigh))",
+                                "    existingTemplates = inspector.describe_assessment_templates( assessmentTemplateArns=[template])",
+                                "    print( existingTemplates['assessmentTemplates'][0]['name'])",
+                                "    amiIdOriginal = existingTemplates['assessmentTemplates'][0]['name'];",
+                                "    index=int(amiIdOriginal.find('/'))",
+                                "    suffix= amiIdOriginal[index+1:]",
+                                "    ", 
+                                "    ssm = boto3.client('ssm',region) ",
+                                "    counts = \"Inspector findings found: High[\"+str(countHigh)+\"]\"+\", Medium[\"+str(countMedium)+\"]\"+\", Low[\"+str(countLow)+\"]\"+\", Info[\"+str(countInfo)+\"]\"",
+                                "    ",
+                                "    ParamName='/GoldenAMI/'+suffix+'/NumCVEs'  ",
+                                "    ssm.put_parameter(Name=ParamName,Value=counts,Type='String',Overwrite=True) ",
+                                "    ",
+                                "    ParamName='/GoldenAMI/'+suffix+'/assessmentLink'  ", 
+                                "    link=  \"Link - https://\"+region+\".console.aws.amazon.com/inspector/home?region=\"+region+\"#/run?filter={\\\"assessmentRunArns\\\":\\\"\"+assessmentArn+\"\\\"}\"",
+                                "    ssm.put_parameter(Name=ParamName,Value=link,Type='String',Overwrite=True) ",
+                                "    return jsonVal['run']"
+                            ]
+                        ]
+                    }
+                }, 
+                "Runtime": "python3.6",
+                "Timeout": 300,
+                "Handler": "index.lambda_handler",
+                "MemorySize": 512
+            }
+        },
+
+        "LambdaInvokePermissionForAssessAssessment":{
+         "Type":"AWS::Lambda::Permission",
+         "Properties":{
+            "Action":"lambda:InvokeFunction",
+            "Principal":"sns.amazonaws.com",
+            "SourceArn":{
+               "Ref":"InspectorCompleteTopic"
+            },
+            "FunctionName":{
+               "Fn::GetAtt":[
+                  "AssessAssessmentLambdaFunction",
+                  "Arn"
+               ]
+            }
+         }
+      },
+        "InspectorCompleteTopicPolicy": {
+            "Type": "AWS::SNS::TopicPolicy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Id": "MyTopicPolicy",
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "My-statement-id",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": [
+                                    "arn:aws:iam::162588757376:root",
+                                    "arn:aws:iam::526946625049:root",
+                                    "arn:aws:iam::454640832652:root",
+                                    "arn:aws:iam::406045910587:root",
+                                    "arn:aws:iam::537503971621:root",
+                                    "arn:aws:iam::357557129151:root",
+                                    "arn:aws:iam::316112463485:root",
+                                    "arn:aws:iam::646659390643:root",
+                                    "arn:aws:iam::166987590008:root",
+                                    "arn:aws:iam::758058086616:root"
+                                ]
+                            },
+                            "Action": "sns:Publish",
+                            "Resource": {
+                        "Ref": "InspectorCompleteTopic"
+                    }
+                        }
+                    ]
+                },
+                "Topics": [
+                    {
+                        "Ref": "InspectorCompleteTopic"
+                    }
+                ]
+            }
+        },
+         
+        "ApproverTopicPolicy": {
+            "Type": "AWS::SNS::TopicPolicy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Id": "ApproverTopicPolicy",
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ApproverTopicPolicySID",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": [
+                                    {
+                                        "Fn::GetAtt": [
+                                            "AutomationServiceRole",
+                                            "Arn"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "Action": "sns:Publish",
+                            "Resource": {
+                        "Ref": "ApproverNotification"
+                    }
+                        }
+                    ]
+                },
+                "Topics": [
+                    {
+                        "Ref": "ApproverNotification"
+                    }
+                ]
+            }
+        },
+        "ApproverNotification": {
+            "Type": "AWS::SNS::Topic"
+        },
+        "ApproverNotificationSubscription" : {
+          "Type" : "AWS::SNS::Subscription",
+          "Properties" : {
+            "Endpoint" : {"Ref":"EmailID"},
+            "Protocol" : "email",
+            "TopicArn" : {"Ref" : "ApproverNotification"}
+          }
+        },
+        "InspectorCompleteTopic": {
+            "Type": "AWS::SNS::Topic",
+            "Properties": {
+                "Subscription": [
+                    {
+                        "Endpoint": {
+                            "Fn::GetAtt": [
+                                "AssessAssessmentLambdaFunction",
+                                "Arn"
+                            ]
+                        },
+                        "Protocol": "lambda"
+                    }
+                ]
+            },
+            "DependsOn": [
+                "AssessAssessmentLambdaFunction"
+            ]
+        },
+        "ManagedInstanceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ssm.amazonaws.com",
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+                ],
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "SamplePolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": {
+                                "Action": [
+                                    "s3:*"
+                                ],
+                                "Effect": "Allow",
+                                "Resource": [
+                                    {
+                                        "Fn::Join": [
+                                            "",
+                                            [
+                                                "arn:aws:s3:::",
+                                                {
+                                                    "Ref": "GoldenAMIConfigBucket"
+                                                }
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "Fn::Join": [
+                                            "",
+                                            [
+                                                "arn:aws:s3:::",
+                                                {
+                                                    "Ref": "GoldenAMIConfigBucket"
+                                                },
+                                                "/*"
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "ManagedInstanceProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "ManagedInstanceRole"
+                    }
+                ]
+            }
+        },
+        "AutomationServiceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ssm.amazonaws.com",
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AmazonSSMAutomationRole"
+                ],
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "passrole",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "iam:PassRole"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::GetAtt": [
+                                                "ManagedInstanceRole",
+                                                "Arn"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "invokeLambdaFunction",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": "lambda:InvokeFunction",
+                                    "Resource": [
+                                       {
+                                            "Fn::GetAtt": [
+                                                "RunInspectorLambdaFunction",
+                                                "Arn"
+                                            ]
+                                        },
+                                       { "Fn::GetAtt": [ "AppendParamLambda","Arn"]},
+                                    { "Fn::GetAtt": [ "CopyToMultipleRegionsLambdaFunction" ,"Arn"]},{ "Fn::GetAtt": [ "CopyToMultipleAccountsLambdaFunction","Arn"] },
+                                    { "Fn::GetAtt": ["PublishAMILambda","Arn"] },{ "Fn::GetAtt": ["DecommissionAMIVersionLambda","Arn"]},
+                                    { "Fn::GetAtt": [ "DecommissionAMIVersionFromAccountsLambda","Arn"]},{ "Fn::GetAtt": ["InitiateAssessmentLambda","Arn"]}]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }, 
+        "GoldenAMIAutomationDoc": {
+            "Type": "AWS::SSM::Document",
+            "DependsOn": [
+                "InspectorCompleteTopic"
+            ],
+            "Properties": {
+                "DocumentType": "Automation",
+                "Content": {
+                    "description": "This automation document triggers Golden AMI creation workflow.",
+                    "schemaVersion": "0.3",
+                    "assumeRole": {
+                        "Fn::GetAtt": [
+                            "AutomationServiceRole",
+                            "Arn"
+                        ]
+                    },
+                    "parameters": {
+                        "sourceAMIid": {
+                            "type": "String",
+                            "description": "Source/Base AMI to be used for generating your golden AMI",
+                            "default": ""
+                        },
+                      
+                        "productName": {
+                            "type": "String",
+                            "description": "The syntax of this parameter is ProductName-ProductVersion.",
+                            "default": {
+                                "Ref": "productName"
+                            }
+                        },
+                         "productOSAndVersion": {
+                            "type": "String",
+                            "description": "The syntax of this parameter is OSName-OSVersion",
+                            "default": {
+                                "Ref": "productOSAndVersion"
+                            }
+                        },
+                          "AMIVersion": {
+                            "type": "String",
+                            "description": "Golden AMI Build version number to be created.",
+                            "default": {
+                                "Ref": "buildVersion"
+                            }
+                        },
+
+                        "subnetId": {
+                            "type": "String",
+                            "default":{
+                                "Ref": "subnetPrivate"
+                            },
+                            "description": "Subnet in which instances will be launched."
+                        },
+                        "securityGroupId": {
+                            "type": "String",
+                            "default":{
+                                "Ref": "secGroup"
+                            },
+                            "description": "Security Group that will be attached to the instance. By Default a security group without any inbound access is attached"
+                        },
+                        "instanceType": {
+                            "type": "String",
+                            "description": "A compatible instance-type for launching an instance",
+                            "default": {
+                                "Ref": "instanceType"
+                            }
+                        },
+                        "targetAMIname": {
+                            "type": "String",
+                            "description": "Name for the golden AMI to be created",
+                            "default": "{{productName}}-{{productOSAndVersion}}-{{AMIVersion}}"
+                        }, 
+                        "ApproverUserIAMARN": {
+                            "type": "String",
+                            "description": "IAM ARN of the user who has SSM approval permissions.",
+                            "default": {
+                                "Ref": "ApproverUserIAMARN"
+                            }
+                        },
+                        "ApproverNotificationArn": {
+                            "type": "String",
+                            "description": "SNS Topic ARN on which a notification would be published once the golden AMI candidate is ready for validation.",
+                            "default": {
+                                "Ref": "ApproverNotification"
+                            }
+                        },
+                        "ManagedInstanceProfile": {
+                            "type": "String",
+                            "description": "Instance Profile. Do not change the default value.",
+                            "default": {
+                                "Ref": "ManagedInstanceProfile"
+                            }
+                        },
+                         "SSMInstallationUserData": {
+                            "type": "String",
+                            "description": "Base64 encoded SSM installation user-data.",
+                            "default": "IyEvYmluL2Jhc2gNCg0KZnVuY3Rpb24gZ2V0X2NvbnRlbnRzKCkgew0KICAgIGlmIFsgLXggIiQod2hpY2ggY3VybCkiIF07IHRoZW4NCiAgICAgICAgY3VybCAtcyAtZiAiJDEiDQogICAgZWxpZiBbIC14ICIkKHdoaWNoIHdnZXQpIiBdOyB0aGVuDQogICAgICAgIHdnZXQgIiQxIiAtTyAtDQogICAgZWxzZQ0KICAgICAgICBkaWUgIk5vIGRvd25sb2FkIHV0aWxpdHkgKGN1cmwsIHdnZXQpIg0KICAgIGZpDQp9DQoNCnJlYWRvbmx5IElERU5USVRZX1VSTD0iaHR0cDovLzE2OS4yNTQuMTY5LjI1NC8yMDE2LTA2LTMwL2R5bmFtaWMvaW5zdGFuY2UtaWRlbnRpdHkvZG9jdW1lbnQvIg0KcmVhZG9ubHkgVFJVRV9SRUdJT049JChnZXRfY29udGVudHMgIiRJREVOVElUWV9VUkwiIHwgYXdrIC1GXCIgJy9yZWdpb24vIHsgcHJpbnQgJDQgfScpDQpyZWFkb25seSBERUZBVUxUX1JFR0lPTj0idXMtZWFzdC0xIg0KcmVhZG9ubHkgUkVHSU9OPSIke1RSVUVfUkVHSU9OOi0kREVGQVVMVF9SRUdJT059Ig0KDQpyZWFkb25seSBTQ1JJUFRfTkFNRT0iYXdzLWluc3RhbGwtc3NtLWFnZW50Ig0KIFNDUklQVF9VUkw9Imh0dHBzOi8vYXdzLXNzbS1kb3dubG9hZHMtJFJFR0lPTi5zMy5hbWF6b25hd3MuY29tL3NjcmlwdHMvJFNDUklQVF9OQU1FIg0KDQppZiBbICIkUkVHSU9OIiA9ICJjbi1ub3J0aC0xIiBdOyB0aGVuDQogIFNDUklQVF9VUkw9Imh0dHBzOi8vYXdzLXNzbS1kb3dubG9hZHMtJFJFR0lPTi5zMy5jbi1ub3J0aC0xLmFtYXpvbmF3cy5jb20uY24vc2NyaXB0cy8kU0NSSVBUX05BTUUiDQpmaQ0KDQppZiBbICIkUkVHSU9OIiA9ICJ1cy1nb3Ytd2VzdC0xIiBdOyB0aGVuDQogIFNDUklQVF9VUkw9Imh0dHBzOi8vYXdzLXNzbS1kb3dubG9hZHMtJFJFR0lPTi5zMy11cy1nb3Ytd2VzdC0xLmFtYXpvbmF3cy5jb20vc2NyaXB0cy8kU0NSSVBUX05BTUUiDQpmaQ0KDQpjZCAvdG1wDQpGSUxFX1NJWkU9MA0KTUFYX1JFVFJZX0NPVU5UPTMNClJFVFJZX0NPVU5UPTANCg0Kd2hpbGUgWyAkUkVUUllfQ09VTlQgLWx0ICRNQVhfUkVUUllfQ09VTlQgXSA7IGRvDQogIGVjaG8gQVdTLVVwZGF0ZUxpbnV4QW1pOiBEb3dubG9hZGluZyBzY3JpcHQgZnJvbSAkU0NSSVBUX1VSTA0KICBnZXRfY29udGVudHMgIiRTQ1JJUFRfVVJMIiA+ICIkU0NSSVBUX05BTUUiDQogIEZJTEVfU0laRT0kKGR1IC1rIC90bXAvJFNDUklQVF9OQU1FIHwgY3V0IC1mMSkNCiAgZWNobyBBV1MtVXBkYXRlTGludXhBbWk6IEZpbmlzaGVkIGRvd25sb2FkaW5nIHNjcmlwdCwgc2l6ZTogJEZJTEVfU0laRQ0KICBpZiBbICRGSUxFX1NJWkUgLWd0IDAgXTsgdGhlbg0KICAgIGJyZWFrDQogIGVsc2UNCiAgICBpZiBbWyAkUkVUUllfQ09VTlQgLWx0IE1BWF9SRVRSWV9DT1VOVCBdXTsgdGhlbg0KICAgICAgUkVUUllfQ09VTlQ9JCgoUkVUUllfQ09VTlQrMSkpOw0KICAgICAgZWNobyBBV1MtVXBkYXRlTGludXhBbWk6IEZpbGVTaXplIGlzIDAsIHJldHJ5Q291bnQ6ICRSRVRSWV9DT1VOVA0KICAgIGZpDQogIGZpIA0KZG9uZQ0KDQppZiBbICRGSUxFX1NJWkUgLWd0IDAgXTsgdGhlbg0KICBjaG1vZCAreCAiJFNDUklQVF9OQU1FIg0KICBlY2hvIEFXUy1VcGRhdGVMaW51eEFtaTogUnVubmluZyBVcGRhdGVTU01BZ2VudCBzY3JpcHQgbm93IC4uLi4NCiAgLi8iJFNDUklQVF9OQU1FIiAtLXJlZ2lvbiAiJFJFR0lPTiINCmVsc2UNCiAgZWNobyBBV1MtVXBkYXRlTGludXhBbWk6IFVuYWJsZSB0byBkb3dubG9hZCBzY3JpcHQsIHF1aXR0aW5nIC4uLi4NCmZp"
+                        },
+                        "PreUpdateScript": {
+                            "type": "String",
+                            "description": "(Optional) URL of a script to run before updates are applied. Default (\"none\") is to not run a script.",
+                            "default": "none"
+                        },
+                        "PostUpdateScript": {
+                            "type": "String",
+                            "description": "(Optional) URL of a script to run after package updates are applied. Default (\"none\") is to not run a script.",
+                            "default": "none"
+                        },
+                        "IncludePackages": {
+                            "type": "String",
+                            "description": "(Optional) Only update these named packages. By default (\"all\"), all available updates are applied.",
+                            "default": "all"
+                        },
+                        "ExcludePackages": {
+                            "type": "String",
+                            "description": "(Optional) Names of packages to hold back from updates, under all conditions. By default (\"none\"), no package is excluded.",
+                            "default": "none"
+                        } 
+
+                    },
+                    "mainSteps": [
+                        {
+                            "name": "startInstances",
+                            "action": "aws:runInstances",
+                            "timeoutSeconds": 3600,
+                            "maxAttempts": 1,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "ImageId": "{{ sourceAMIid }}",
+                                "InstanceType": "{{instanceType}}",
+                                "MinInstanceCount": 1,
+                                "MaxInstanceCount": 1,
+                                "SubnetId": "{{ subnetId }}",
+                                "SecurityGroupIds": [
+                                    "{{ securityGroupId }}"
+                                ],
+                                "UserData": "{{SSMInstallationUserData}}",
+                                "IamInstanceProfileName": "{{ ManagedInstanceProfile }}"
+                            }
+                        },
+                        {
+                            "name": "updateOSSoftware",
+                            "action": "aws:runCommand",
+                            "maxAttempts": 3,
+                            "timeoutSeconds": 3600,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "DocumentName": "AWS-RunShellScript",
+                                "InstanceIds": [
+                                    "{{startInstances.InstanceIds}}"
+                                ],
+                                "Parameters": {
+                                    "commands": [
+                                        "set -e",
+                                        "[ -x \"$(which wget)\" ] && get_contents='wget $1 -O -'",
+                                        "[ -x \"$(which curl)\" ] && get_contents='curl -s -f $1'",
+                                        "eval $get_contents https://aws-ssm-downloads-{{global:REGION}}.s3.amazonaws.com/scripts/aws-update-linux-instance > /tmp/aws-update-linux-instance",
+                                        "chmod +x /tmp/aws-update-linux-instance",
+                                        "/tmp/aws-update-linux-instance --pre-update-script '{{PreUpdateScript}}' --post-update-script '{{PostUpdateScript}}' --include-packages '{{IncludePackages}}' --exclude-packages '{{ExcludePackages}}' 2>&1 | tee /tmp/aws-update-linux-instance.log"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "stopInstance",
+                            "action": "aws:changeInstanceState",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "InstanceIds": [
+                                    "{{ startInstances.InstanceIds }}"
+                                ],
+                                "DesiredState": "stopped"
+                            }
+                        },
+                        {
+                            "name": "createImage",
+                            "action": "aws:createImage",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Continue",
+                            "inputs": {
+                                "InstanceId": "{{ startInstances.InstanceIds }}",
+                                "ImageName": "{{ targetAMIname }}",
+                                "NoReboot": true,
+                                "ImageDescription": "AMI created by EC2 Automation"
+                            }
+                        },
+                        {
+                            "name": "TagTheAMI",
+                            "action": "aws:createTags",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Continue",
+                            "inputs": {
+                                "ResourceType": "EC2",
+                                "ResourceIds": [
+                                    "{{ createImage.ImageId }}"
+                                ],
+                                "Tags": [
+                                    {
+                                        "Key": "ProductOSAndVersion",
+                                        "Value": "{{productOSAndVersion}}"
+                                    },
+                                    {
+                                        "Key": "ProductName",
+                                        "Value": "{{productName}}"
+                                    },
+                                    {
+                                        "Key": "version",
+                                        "Value": "{{AMIVersion}}"
+                                    },
+                                    {
+                                        "Key": "AMI-Type",
+                                        "Value": "Golden"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "terminateFirstInstance",
+                            "action": "aws:changeInstanceState",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Continue",
+                            "inputs": {
+                                "InstanceIds": [
+                                    "{{ startInstances.InstanceIds }}"
+                                ],
+                                "DesiredState": "terminated"
+                            }
+                        },
+                        {
+                            "name": "createInstanceFromNewImage",
+                            "action": "aws:runInstances",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "ImageId": "{{ createImage.ImageId }}",
+                                "InstanceType": "{{instanceType}}",
+                                "MinInstanceCount": 1,
+                                "MaxInstanceCount": 1,
+                                "SubnetId": "{{ subnetId }}",
+                                "SecurityGroupIds": [
+                                    "{{ securityGroupId }}"
+                                ],
+                                "IamInstanceProfileName": "{{ ManagedInstanceProfile }}"
+                            }
+                        },
+                        {
+                            "name": "InstallInspector",
+                            "action": "aws:runCommand",
+                            "maxAttempts": 3,
+                            "timeoutSeconds": 3600,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "DocumentName": "AmazonInspector-ManageAWSAgent",
+                                "InstanceIds": [
+                                    "{{ createInstanceFromNewImage.InstanceIds }}"
+                                ],
+                                "Parameters": {
+                                    "Operation": "Install"
+                                }
+                            }
+                        },
+                        {
+                            "name": "TagNewinstance",
+                            "action": "aws:createTags",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Continue",
+                            "inputs": {
+                                "ResourceType": "EC2",
+                                "ResourceIds": [
+                                    "{{ createInstanceFromNewImage.InstanceIds }}"
+                                ],
+                                "Tags": [
+                                    {
+                                        "Key": "Type",
+                                        "Value": "{{createImage.ImageId}}-{{productOSAndVersion}}/{{productName}}/{{AMIVersion}}"
+                                    },
+                                     {
+                                        "Key": "Automation-Instance-Type",
+                                        "Value": "Golden"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "InspectBaseInstance",
+                            "action": "aws:invokeLambdaFunction",
+                            "maxAttempts": 3,
+                            "timeoutSeconds": 120,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "FunctionName": { "Ref": "RunInspectorLambdaFunction"},
+                                "Payload": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "{\"AMI-ID\": \"{{createImage.ImageId}}\",\"topicArn\":\"",
+                                            {
+                                                "Ref": "InspectorCompleteTopic"
+                                            },
+                                            "\",\"instanceId\": \"{{ createInstanceFromNewImage.InstanceIds }}\",\"productOS\": \"{{productOSAndVersion}}\",\"productName\": \"{{productName}}\",\"productVersion\": \"{{AMIVersion}}\"}"
+                                        ]
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "sleep",
+                            "action": "aws:sleep",
+                            "inputs": {
+                                "Duration": "PT18M"
+                            }
+                        },
+                        {
+                            "name": "terminateInspectorInstance",
+                            "action": "aws:changeInstanceState",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Continue",
+                            "inputs": {
+                                "InstanceIds": [
+                                    "{{ createInstanceFromNewImage.InstanceIds }}"
+                                ],
+                                "DesiredState": "terminated"
+                            }
+                        },
+                        {
+                            "name": "addNewVersionParameter",
+                            "action": "aws:invokeLambdaFunction",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "FunctionName":{ "Ref": "AppendParamLambda"},
+
+                                "Payload": "{\"parameterName\":\"/GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{AMIVersion}}\", \"valueToBeCreatedOrAppended\":\"{{createImage.ImageId}}\"}"
+                            }
+                        },
+                        {
+                            "name": "approve",
+                            "action": "aws:approve",
+                            "timeoutSeconds": 172800,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "NotificationArn": "{{ ApproverNotificationArn }}",
+                                "Message": "Please check contents of SSM Parameter : /GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{AMIVersion}}/NumCVEs and approve/deny the build.",
+                                "MinRequiredApprovals": 1,
+                                "Approvers": [
+                                    "{{ ApproverUserIAMARN }}"
+                                ]
+                            }
+                        },
+                         {
+                            "name": "updateLatestVersionValue",
+                            "action": "aws:invokeLambdaFunction",
+                            "timeoutSeconds": 1200,
+                            "maxAttempts": 1,
+                            "onFailure": "Abort",
+                            "inputs": {
+                                "FunctionName":{ "Ref": "AppendParamLambda"},
+                                "Payload": "{\"parameterName\":\"/GoldenAMI/latest\", \"valueToBeCreatedOrAppended\":\"{{createImage.ImageId}}\"}"
+                            }
+                        } 
+                    ],
+                    "outputs": [
+                        "createImage.ImageId"
+                    ]
+                }
+            }
+        },
+ 
+      "CopyToMultipleRegionsLambdaExecutionRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            ],
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                      "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "Policies":[
+               {
+                  "PolicyName":"CopyToMultipleRegionsLambdaExecutionPolicy",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                        {
+                           "Effect":"Allow",
+                           "Action":["ssm:PutParameter","ssm:GetParameter"],
+                           "Resource":{ "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} 
+                        },
+                        {      
+                            "Effect":"Allow",
+                            "Action":["ec2:CopyImage","ec2:DescribeImages"],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect":"Allow",
+                            "Action":["ec2:CreateTags"],
+                            "Resource": "*",
+                            "Condition": {
+                              "ForAllValues:StringEquals": {
+                                "aws:TagKeys": ["AMI-Type","ProductName","continuous-assessment-instance","ProductOSAndVersion","version","Copied_From:(owner-id/ami-id)"]
+                              }
+                            }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "CopyToMultipleRegionsLambdaFunction":{
+         "Type":"AWS::Lambda::Function",
+         "Properties":{
+            "Role":{
+               "Fn::GetAtt":[
+                  "CopyToMultipleRegionsLambdaExecutionRole",
+                  "Arn"
+               ]
+            },
+            "Code":{
+               "ZipFile":{
+                  "Fn::Join":[
+                     "\n",
+                     [
+                        "import boto3",
+                        "import json",
+                        "from dateutil import parser",
+                        "import dateutil",
+                        "import datetime",
+                        "import collections",
+                        "import os", 
+                        "import botocore",
+                        "def lambda_handler(event, context):",
+                        "    sourceRegion = os.environ['AWS_DEFAULT_REGION']",
+                        "    ssm = boto3.client('ssm',sourceRegion)",
+                        "    allRegions = set();",
+                        "    accountMetadata=json.loads(event['MetadataJSON'])",
+                        "    metadataParamName=event['MetadataParamName']",
+                        "    amiIDParamName=event['AmiIDParamName']",
+                        "    AMIId =ssm.get_parameter(Name=amiIDParamName)['Parameter']['Value']", 
+                        "    ",
+                        "    for accountID, regions in accountMetadata.items():",
+                        "        regionList = regions.split(',')",
+                        "        for region in regionList:",
+                        "            allRegions.add(region)",
+                        "    if sourceRegion in allRegions:",
+                        "        allRegions.remove(sourceRegion)",
+                        "    print(allRegions) ",                       
+                        "    ec2Source =boto3.resource('ec2',sourceRegion)",
+                        "    originalAMI = ec2Source.Image(AMIId)",
+                        "    ownerId =originalAMI.owner_id",
+                        "    ",
+                        "    outputJson=\"{\"",
+                        "    for region in allRegions: ",
+                        "        ec2 = boto3.client('ec2',region)",
+                        "        ec2Res  = boto3.resource('ec2',region)",
+                        "        print (\"Copying Image {id} to {aws_region}\".format(aws_region=region, id=AMIId))",
+                        "        new_ami = ec2.copy_image(",
+                        "            DryRun=False,",
+                        "            SourceRegion=sourceRegion,",
+                        "            SourceImageId=AMIId,",
+                        "            Name=\"copied from \"+originalAMI.name",
+                        "        )  ",
+                        "        copiedAMIId=new_ami['ImageId']",
+                        "        ssm = boto3.client('ssm',region)",
+                        "        ssm.put_parameter(Name=amiIDParamName,Value=copiedAMIId,Type='String',Overwrite=True)",
+                        "        response = ec2.create_tags(Resources=[copiedAMIId],Tags=[{'Key': 'Copied_From:(owner-id/ami-id)', 'Value': ownerId+'/'+AMIId,}, {'Key': 'version', 'Value': event['version']}, {'Key': 'ProductOSAndVersion', 'Value': event['ProductOSAndVersion']}, {'Key': 'ProductName', 'Value': event['ProductName']}, {'Key': 'AMI-Type','Value':'Golden'}])",
+                        "        outputJson+=\"\\\"\"+region+\"\\\":\"+\"\\\"\"+copiedAMIId+\"\\\",\"",
+                        "        try:",
+                        "            AMIIdsParam =ssm.get_parameter(Name='/GoldenAMI/latest')",
+                        "            AMIIds=AMIIdsParam['Parameter']['Value']",
+                        "            AMIIds= AMIIds+','+ copiedAMIId",
+                        "            ssm.put_parameter(Name='/GoldenAMI/latest',Type='String', Value=AMIIds,Overwrite=True)",
+                        "        except botocore.exceptions.ClientError as e:",
+                        "            if e.response['Error']['Code'] == 'ParameterNotFound':",
+                        "                ssm.put_parameter(Name='/GoldenAMI/latest',Type='String', Value=copiedAMIId,Overwrite=True)",
+                        "    outputJson+=\"\\\"\"+sourceRegion+\"\\\":\"+\"\\\"\"+AMIId+\"\\\"}\"",
+                        "    ssm = boto3.client('ssm',sourceRegion)",
+                        "    print (\"Here is the output:\"+outputJson)",
+                        "    ssm.put_parameter(Name=metadataParamName,Value=outputJson,Type='String',Overwrite=True)",
+                        "    return 'Done';" 
+                     ]
+                  ]
+               }
+            },
+            "Runtime":"python3.6", 
+            "Timeout":300,
+            "Handler":"index.lambda_handler",
+            "MemorySize":512
+         }
+      },
+      "CopyToMultipleAccountsLambdaExecutionRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            ],
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "Policies":[
+               {
+                  "PolicyName":"CopyToMultipleAccountsLambdaExecutionPolicy",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                        {
+                           "Effect":"Allow",
+                           "Action":["ssm:GetParameter*","ssm:PutParameter*"],
+                           "Resource":{ "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} 
+                        },
+                        {
+                           "Effect":"Allow",
+                           "Action":["sts:AssumeRole"],
+                           "Resource": { "Fn::Join": ["",["arn:aws:iam::*:role/",{"Ref":"roleName"}] ]},
+                        },
+                        
+                        {
+                           "Effect":"Allow",
+                           "Action":["ec2:ModifyImageAttribute"],
+                           "Resource":"*"
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "CopyToMultipleAccountsLambdaFunction":{
+         "Type":"AWS::Lambda::Function",
+         "Properties":{
+            "Role":{
+               "Fn::GetAtt":[
+                  "CopyToMultipleAccountsLambdaExecutionRole",
+                  "Arn"
+               ]
+            },
+            "Code":{
+               "ZipFile":{
+                  "Fn::Join":[
+                     "",
+                     [
+                        "import boto3",
+                        "\n","import json",
+                        "\n","from dateutil import parser",
+                        "\n","import dateutil",
+                        "\n","import datetime",
+                        "\n","import collections",
+                        "\n","import os",
+                        "\n","import botocore",
+                        "\n","def lambda_handler(event, context):",
+                        "\n","    ssm = boto3.client('ssm',os.environ['AWS_DEFAULT_REGION'])",
+                        "\n","    accountMetadata=json.loads(event['MetadataJSON'])",
+                        "\n","    amiRegionMappingParamName=event['MetadataParamName']", 
+                        "\n","    #Load the AMI-ID to region mapping in memory.",
+                        "\n","    amiIDRegionMapping =  ssm.get_parameter(Name=amiRegionMappingParamName)['Parameter']['Value']",
+                        "\n","    mappingJSON = json.loads(amiIDRegionMapping)",
+                        "\n","    print(mappingJSON)",
+                        "\n","    roleArnPrefix='arn:aws:iam::';",
+                        "\n","    roleArnSuffix=':role/",{"Ref":"roleName"},"';",
+                        "\n","    amiIDParamNameToCreate=event['AmiIDParamName'] ",
+                        "\n","    # loop over account details.",
+                        "\n","    ssm = boto3.client('ssm')",
+                        "\n","    ssm.put_parameter(Name=amiIDParamNameToCreate+'/copyMetadata',Value=event['MetadataJSON'],Type='String',Overwrite=True)", 
+                        "\n","    SELF_ACCOUNT_ID = context.invoked_function_arn.split(':')[4]",
+                        "\n","    for accountID, regions in accountMetadata.items():",
+                        "\n","        if accountID != SELF_ACCOUNT_ID:",
+                        "\n","            roleArn =roleArnPrefix+accountID+roleArnSuffix ",
+                        "\n","            regionList = regions.split(',')",
+                        "\n","            for region in regionList:",
+                        "\n","                amiId=mappingJSON[region]",
+                        "\n","                ec2Client = boto3.client('ec2',region)",
+                        "\n","                ec2Client.modify_image_attribute(ImageId=amiId,LaunchPermission={'Add': [{ 'UserId': accountID }]},",
+                        "\n","                OperationType='add', UserIds=[accountID],Value='string',DryRun=False)",
+                        "\n","                sts_client = boto3.client('sts')",
+                        "\n","                assumeRoleOutput = sts_client.assume_role(RoleArn=roleArn,RoleSessionName='AssumeRoleSession1');",
+                        "\n","                credentials = assumeRoleOutput['Credentials']",
+                        "\n","                ssm = boto3.client('ssm',region,",
+                        "\n","                aws_access_key_id = credentials['AccessKeyId'],",
+                        "\n","                aws_secret_access_key = credentials['SecretAccessKey'],",
+                        "\n","                aws_session_token = credentials['SessionToken'])",
+                        "\n","                try:",
+                        "\n","                    AMIIdsParam =ssm.get_parameter(Name='/GoldenAMI/latest')",
+                        "\n","                    AMIIds=AMIIdsParam['Parameter']['Value']",
+                        "\n","                    AMIIds= AMIIds+','+ amiId",
+                        "\n","                    ssm.put_parameter(Name='/GoldenAMI/latest',Type='String', Value=AMIIds,Overwrite=True)",
+                        "\n","                except botocore.exceptions.ClientError as e:",
+                        "\n","                    if e.response['Error']['Code'] == 'ParameterNotFound':",
+                        "\n","                        ssm.put_parameter(Name='/GoldenAMI/latest',Type='String', Value=amiId,Overwrite=True)",
+                        "\n","                response = ssm.put_parameter(Name=amiIDParamNameToCreate,Value=amiId,Type='String',Overwrite=True)",
+                        "\n","    return 'Done'"
+                     ]
+                  ]
+               }
+            },
+            "Runtime":"python3.6", 
+            "Timeout":300,
+            "Handler":"index.lambda_handler",
+            "MemorySize":512
+         }
+      }, 
+ 
+      "CopyAndShareAMI":{
+         "Type":"AWS::SSM::Document",
+         "Properties":{
+            "DocumentType":"Automation",
+            "Content":{
+               "description":"This automation document triggers a workflow to copy and share the golden AMI with other regions/accounts",
+               "schemaVersion":"0.3",
+               "assumeRole":{
+                        "Fn::GetAtt": [
+                            "AutomationServiceRole",
+                            "Arn"
+                        ]
+                    },
+               "parameters":{
+               
+                  "MetadataJSON":{
+                     "type":"String",
+                     "description":"This parameter contains details of accounts and regions with which AMI needs to be shared. Kindly do not change the structure of the JSON",
+                     "default":{"Ref":"MetadataJSON"}
+                  },
+                    "bucketName":{
+                     "type":"String",
+                     "description":"This parameter contains name of the bucket in which template file is stored",
+                     "default":{"Ref":"GoldenAMIConfigBucket"}
+                  },
+                  "templateFileName":{
+                     "type":"String",
+                     "description":"This parameter contains name of the template file",
+                     "default":"simpleEC2-SSMParamInput.json"
+                  },
+                  "productName":{
+                     "type":"String",
+                     "description":"The syntax of this parameter is ProductName-ProductVersion",
+                     "default":{ "Ref": "productName" }
+                  },
+                  "productOSAndVersion":{
+                     "type":"String",
+                     "description":"The syntax of this parameter is OSName-OSVersion",
+                     "default":{ "Ref": "productOSAndVersion" }
+                  },
+                  "buildVersion":{
+                     "type":"String",
+                     "description":"This is the build number of the golden AMI to be distributed",
+                     "default":{ "Ref": "buildVersion" }
+                  },
+                  "MetadataParamName":{
+                     "type":"String",
+                     "description":"This parameter points to an SSM parameter used for storing some process specific metadata. Kindly Do not change the default value.",
+                     "default": "/GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{buildVersion}}/temp"
+                  }
+               },
+               "mainSteps":[
+                  {
+                     "name":"copyamitoregions",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "CopyToMultipleRegionsLambdaFunction" },
+                        "Payload":"{\"MetadataJSON\":\"{{ MetadataJSON }}\",\"ProductName\":\"{{ productName }}\",\"ProductOSAndVersion\":\"{{ productOSAndVersion }}\",\"version\":\"{{ buildVersion }}\",\"AmiIDParamName\":\"/GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{buildVersion}}\", \"MetadataParamName\":\"{{ MetadataParamName }}\"}"
+                     }
+                  },
+                  {
+                     "name":"sleep",
+                     "action":"aws:sleep",
+                     "inputs":{
+                        "Duration":"PT15M"
+                     }
+                  },
+                  {
+                     "name":"shareAmiWithAccounts",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "CopyToMultipleAccountsLambdaFunction" },
+                        "Payload":"{\"MetadataJSON\":\"{{ MetadataJSON }}\",\"AmiIDParamName\":\"/GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{buildVersion}}\", \"MetadataParamName\":\"{{ MetadataParamName }}\"}"
+                     }
+                  },
+                  {
+                     "name":"publishToSC",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "PublishAMILambda" },
+                        "Payload":"{\"bucketName\":\"{{ bucketName }}\", \"amiRegionMappingParamName\":\"{{ MetadataParamName }}\", \"templateFileName\":\"{{templateFileName}}\", \"versionToBeCreated\":\"{{ buildVersion }}\", \"productOSAndVersion\":\"{{ productOSAndVersion }}\", \"productNameAndVersion\":\"{{ productName }}\"}"
+                     }
+                  }
+               ],
+               "outputs":[
+                  "shareAmiWithAccounts.LogResult",
+                  "copyamitoregions.LogResult"
+               ]
+            }
+         }
+      },
+
+
+
+      "DecommissionAMIVersion":{
+         "Type":"AWS::SSM::Document",
+         "Properties":{
+            "DocumentType":"Automation",
+            "Content":{
+               "description":"This automation document triggers golden AMI build decommissioning workflow",
+               "schemaVersion":"0.3",
+               "assumeRole":{
+                        "Fn::GetAtt": [
+                            "AutomationServiceRole",
+                            "Arn"
+                        ]
+                    },
+               "parameters":{
+                
+                    "bucketName":{
+                     "type":"String",
+                     "description":"This parameter contains name of the bucket in which CFT template file is stored",
+                     "default":{"Ref":"GoldenAMIConfigBucket"}
+                  },
+                  "templateFileName":{
+                     "type":"String",
+                     "description":"The CFT template file-name used for creating the Service Catalog product",
+                     "default":"simpleEC2-SSMParamInput.json"
+                  },
+                  "productName":{
+                     "type":"String",
+                     "description":"The syntax of this parameter is ProductName-ProductVersion",
+                     "default":{ "Ref": "productName" }
+                  },
+                  "productOSAndVersion":{
+                     "type":"String",
+                     "description":"The syntax of this parameter is OSName-OSVersion",
+                     "default":{ "Ref": "productOSAndVersion" }
+                  },
+                  "buildVersion":{
+                     "type":"String",
+                     "description":"Golden AMI build number to be decommissioned.",
+                     "default":{ "Ref": "buildVersion" }
+                  },
+                  "MetadataParamName":{
+                     "type":"String",
+                     "description":"This parameter points to an SSM parameter used for storing some process specific metadata. Do not change the default value.",
+                     "default": "/GoldenAMI/{{productOSAndVersion}}/{{productName}}/{{buildVersion}}/temp"
+                  }
+               },
+               "mainSteps":[
+                  {
+                     "name":"DecommissionAMIVersionLambda",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "DecommissionAMIVersionLambda"},
+                        "Payload":"{\"bucketName\":\"{{ bucketName }}\", \"amiRegionMappingParamName\":\"{{ MetadataParamName }}\", \"templateFileName\":\"{{templateFileName}}\", \"versionToBeDeleted\":\"{{ buildVersion }}\", \"productOSAndVersion\":\"{{ productOSAndVersion }}\", \"productNameAndVersion\":\"{{ productName }}\"}"
+                     }
+                  }, 
+                 {
+                     "name":"DecommissionAMIVersionFromAccountsLambda",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "DecommissionAMIVersionFromAccountsLambda"},
+                        "Payload":"{\"bucketName\":\"{{ bucketName }}\", \"amiRegionMappingParamName\":\"{{ MetadataParamName }}\", \"templateFileName\":\"{{templateFileName}}\", \"versionToBeDeleted\":\"{{ buildVersion }}\", \"productOSAndVersion\":\"{{ productOSAndVersion }}\", \"productNameAndVersion\":\"{{ productName }}\"}"
+                     }
+                  }
+                   
+               ] 
+            }
+         }
+      },
+ 
+ "InitiateAssessmentLambdaRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+               "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+            ],
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "Policies":[
+               {
+                  "PolicyName":"InitiateAssessmentLambdaPolicy",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                        {
+                           "Effect":"Allow",
+                           "Action":["ssm:GetParameter*", 
+                           "ssm:PutParameter*"
+                           ],
+                           "Resource":{ "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} 
+                        },
+                        {
+                           "Action":"ssm:SendCommand",
+                           "Effect":"Allow",
+                           "Resource": [{
+                           "Fn::Join": 
+                            [
+                                "",
+                                [
+                                         "arn:aws:ssm:", {
+                                        "Ref":"AWS::Region"
+                                    }, "::document/AmazonInspector-ManageAWSAgent"]]
+                           },
+                           {
+                           "Fn::Join": 
+                            [ "", [  "arn:aws:ec2:", {"Ref":"AWS::Region"  }, ":",{"Ref":"AWS::AccountId" },":instance/*"]]
+                           }]
+                        },
+                         
+                        {
+                           "Effect":"Allow",
+                           "Action":[  
+                           "inspector:ListAssessmentTemplates",
+                           "inspector:StartAssessmentRun"],
+                           "Resource":"*"
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "InitiateAssessmentLambda":{
+         "Type":"AWS::Lambda::Function",
+         "Properties":{
+            "Role":{
+               "Fn::GetAtt":[
+                  "InitiateAssessmentLambdaRole",
+                  "Arn"
+               ]
+            },
+            "Code":{
+               "ZipFile":{
+                  "Fn::Join":[
+                     "",
+                     [
+                        "import boto3",
+                        "\n","import json",
+                        "\n","from dateutil import parser",
+                        "\n","import dateutil",
+                        "\n","import datetime",
+                        "\n","import collections",
+                        "\n","import os",
+                        "\n","import time",
+                        "\n","import botocore",
+                        "\n","def lambda_handler(event, context):",
+                        "\n","    region=os.environ['AWS_DEFAULT_REGION']",
+                        "\n","    ssm = boto3.client('ssm',region)", 
+                        "\n","    instanceIDsVal = event['instanceIDs']", 
+                        "\n","    instanceIDs = instanceIDsVal.split(',')", 
+                        "\n","    for id in instanceIDs:", 
+                        "\n","        ssm.send_command(InstanceIds=[id], DocumentName='AmazonInspector-ManageAWSAgent',Parameters={'Operation': [ 'Install']})",
+                        "\n","    inspector = boto3.client('inspector',region)", 
+                        "\n","    time.sleep(120)", 
+                        "\n","    millis = int(round(time.time() * 1000))",
+                        "\n","    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})",
+                        "\n","    assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]",
+                        "\n","    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))",
+                        "\n","    return 'Done'"  
+                     ]
+                  ]
+               }
+            },
+            "Runtime":"python3.6", 
+            "Timeout":300,
+            "Handler":"index.lambda_handler",
+            "MemorySize":512
+         }
+      }, 
+ 
+
+  "RunContinuousInspection":{
+         "Type":"AWS::SSM::Document",
+         "Properties":{
+            "DocumentType":"Automation",
+            "Content":{
+               "description":"This automation document is triggered as part of the continuous vulnerability assessment on all active golden AMIs.",
+               "schemaVersion":"0.3",
+               "assumeRole":{
+                        "Fn::GetAtt": [
+                            "AutomationServiceRole",
+                            "Arn"
+                        ]
+                    },
+                     "parameters":{
+                    "instanceIDs":{
+                     "type":"String",
+                     "description":"This parameter contains list of instance-ids on which continuous vulnerability assessment is  performed."
+                  }
+                  },
+                 
+               "mainSteps":[ 
+                  {
+                     "name":"sleep",
+                     "action":"aws:sleep",
+                     "inputs":{
+                        "Duration":"PT6M"
+                     }
+                   }, 
+                    {
+                     "name":"InitiateAssessmentLambdaFunction",
+                     "action":"aws:invokeLambdaFunction",
+                     "timeoutSeconds":1200,
+                     "maxAttempts":1,
+                     "onFailure":"Abort",
+                     "inputs":{
+                        "FunctionName":{ "Ref": "InitiateAssessmentLambda"},
+                        "Payload":"{\"instanceIDs\":\"{{ instanceIDs }}\"}"
+                     }
+                  }
+                   
+               ] 
+            }
+         }
+      },
+
+        "ContinuousAssessmentResourceGroup": {
+        "Type": "AWS::Inspector::ResourceGroup",
+            "Properties": {
+                "ResourceGroupTags": [
+                    {
+                        "Key": "continuous-assessment-instance",
+                        "Value": "true"
+                    }
+                ]
+            }
+    },
+
+
+    "ContinuousAssessmentTarget": {
+      "Type": "AWS::Inspector::AssessmentTarget",
+      "Properties": { 
+        "ResourceGroupArn" : {"Ref":"ContinuousAssessmentResourceGroup"}
+      }
+    },
+
+ 
+  "ScheduledRule": {
+  "Type": "AWS::Events::Rule",
+  "Properties": {
+    "Description": "ScheduledRule",
+    "ScheduleExpression": {"Ref":"continuousInspectionFrequency"},
+    "State": "ENABLED",
+    "Targets": [{
+      "Arn": { "Fn::GetAtt": ["SetupContinuousAssessmentLambdaFunction", "Arn"] },
+      "Id": "TargetFunctionV1",
+      "Input" :
+            {"Fn::Join":[
+            "",
+            [
+             "{\"AMIsParamName\":\"/GoldenAMI/",
+                      
+                     "latest", 
+                     "\", \"instanceType\":\"",
+                     {"Ref":"instanceType"},
+                     "\"}"
+                     ]]}
+    }]
+  }
+},
+"PermissionForEventsToInvokeLambda": {
+  "Type": "AWS::Lambda::Permission",
+  "Properties": {
+    "FunctionName": { "Ref": "SetupContinuousAssessmentLambdaFunction" },
+    "Action": "lambda:InvokeFunction",
+    "Principal": "events.amazonaws.com",
+    "SourceArn": { "Fn::GetAtt": ["ScheduledRule", "Arn"] }
+  }
+},
+
+  "StartContinuousAssessmentLambdaRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+               "arn:aws:iam::aws:policy/AmazonInspectorFullAccess"
+            ],
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "Policies":[
+               {
+                  "PolicyName":"StartContinuousAssessmentLambdaPolicy",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[{  
+                     "Sid": "StartContinuousAssessmentLambdaPolicyStmt",
+                     "Effect": "Allow",
+                     "Action":["ssm:GetParameter"],
+                     "Resource": [{ "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/*"
+                                ]
+                            ]} ]
+                     }]
+                  }
+               },
+                 {
+                  "PolicyName":"StartContinuousAssessmentLambdaPolicy2",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                     {  
+                     "Sid": "StartContinuousAssessmentLambdaPolicyStmt2",
+                     "Effect": "Allow",
+                     "Action":[ 
+                     "ec2:DescribeImages", ],
+                     "Resource": ["*"]
+                     },  
+                     {
+                      "Effect": "Allow",
+                     "Action":"iam:PassRole",
+                     "Resource":[{"Fn::GetAtt" : ["ManagedInstanceRole", "Arn"] }]
+                      },
+                       {  
+                     "Effect": "Allow",
+                     "Action":"ssm:StartAutomationExecution",
+                     "Resource":
+                     { 
+                      "Fn::Join": [
+                            "",
+                            [
+                                "arn:aws:ssm:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":automation-definition/",{"Ref": "RunContinuousInspection"},":*"
+                            ]
+                            ]
+                          }
+                          },   
+                        {      
+                            "Effect":"Allow",
+                            "Action":["ec2:CopyImage","ec2:DescribeImages"],
+                            "Resource": "*"
+                        },  
+                        {
+                            "Effect":"Allow",
+                            "Action":["ec2:createTags"],
+                            "Resource": "*",
+                            "Condition": {
+                              "ForAllValues:StringEquals": {
+                                "aws:TagKeys": ["AMI-Type","ProductName","continuous-assessment-instance","ProductOSAndVersion","version",]
+                              }
+                            }
+                        },
+                        {      
+                            "Effect":"Allow",
+                            "Action":["ec2:AssociateIamInstanceProfile"],
+                            "Resource":  [{"Fn::GetAtt" : ["ManagedInstanceProfile", "Arn"] }]
+                        },
+                          {
+                            "Effect": "Allow",
+                            "Action": "ec2:RunInstances",
+                            "Resource": [
+                                { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },"::image/ami-*"]]}
+                            ],
+                            "Condition": {
+                                "StringEquals": {
+                                    "ec2:ResourceTag/AMI-Type": "Golden"
+                                }
+                            }
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": "ec2:RunInstances",
+                          "Resource": [
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":instance/*"]]},
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":subnet/*"]]},
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":volume/*"]]},
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":network-interface/*"]]},
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":key-pair/*"]]},
+                          { "Fn::Join": ["",["arn:aws:ec2:", {"Ref":"AWS::Region" },":", {"Ref":"AWS::AccountId"},":security-group/*"]]}
+                          ]
+                      }
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "SetupContinuousAssessmentLambdaFunction":{
+         "Type":"AWS::Lambda::Function",
+         "Properties":{
+            "Role":{
+               "Fn::GetAtt":[
+                  "StartContinuousAssessmentLambdaRole",
+                  "Arn"
+               ]
+            },
+            "Code":{
+               "ZipFile":{
+                  "Fn::Join":[
+                     "",
+                     [
+                  "\n","import json",
+                  "\n","import urllib.parse",
+                  "\n","import boto3",
+                  "\n","import time",
+                  "\n","import os", 
+                  "\n","def lambda_handler(event, context):",
+                  "\n","    amisParamName = event['AMIsParamName'];", 
+                  "\n","    instanceType = event['instanceType'];",
+                  "\n","    region=os.environ['AWS_DEFAULT_REGION']",
+                  "\n","    ec2 = boto3.client('ec2',region)",
+                  "\n","    ssm = boto3.client('ssm',region)",
+                  "\n","    inspector = boto3.client('inspector',region)",
+                  "\n","    amisJson =  ssm.get_parameter(Name=amisParamName)['Parameter']['Value']",
+                  "\n","    items = amisJson.split(',')",
+                  "\n","    instanceIDs = ''",
+                  "\n","    for entry in items:",
+                  "\n","        images= ec2.describe_images(ImageIds=[entry],DryRun=False)",
+                  "\n","        if 'Tags' in images['Images'][0]:",
+                  "\n","            tags = images['Images'][0]['Tags']",
+                  "\n","            tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})",
+                  "\n","            response = ec2.run_instances(ImageId=entry,SubnetId='",{"Ref":"subnetPrivate"},"',IamInstanceProfile={'Arn':'", {"Fn::GetAtt" : ["ManagedInstanceProfile", "Arn"] }, "'},SecurityGroupIds=['",{"Ref":"secGroup"},"'],InstanceType=instanceType,DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])",
+                  "\n","        else:",
+                  "\n","            response = ec2.run_instances(ImageId=entry,SubnetId='",{"Ref":"subnetPrivate"},"',IamInstanceProfile={'Arn':'", {"Fn::GetAtt" : ["ManagedInstanceProfile", "Arn"] }, "'}, SecurityGroupIds=['",{"Ref":"secGroup"},"'],InstanceType=instanceType,DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': [{'Key': 'continuous-assessment-instance', 'Value': 'true'},{'Key': 'AMI-Type', 'Value': 'Golden'}]}])",
+                  "\n","        if len(instanceIDs)==0:",
+                  "\n","            instanceIDs=response['Instances'][0]['InstanceId']", 
+                  "\n","        else:",
+                  "\n","            instanceIDs=instanceIDs+','+response['Instances'][0]['InstanceId']", 
+                  "\n","    assessmentTemplateArn='';", 
+                  "\n","    rules = inspector.list_rules_packages();",
+                  "\n","    ",
+                  "\n","    millis = int(round(time.time() * 1000))",
+                  "\n","    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})",
+                  "\n","    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))",                      
+                  "\n","    if len(existingTemplates['assessmentTemplateArns'])==0:",
+                  "\n","        template = inspector.create_assessment_template(assessmentTargetArn='",{"Ref":"ContinuousAssessmentTarget"},"',assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])",
+                  "\n","        assessmentTemplateArn=template['assessmentTemplateArn']",
+                  "\n","        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn='",{"Ref":"ContinuousAssessmentCompleteTopic"},"') ",
+                  "\n","        print('Template Created:'+template['assessmentTemplateArn'])",      
+                  "\n","        time.sleep(20)",  
+                  "\n","    ssm.start_automation_execution(DocumentName='",{"Ref":"RunContinuousInspection"},"', Parameters={'instanceIDs': [instanceIDs]})",             
+                  "\n","    return 'Assessment started'"
+ 
+ ]
+                  ]
+               }
+            },
+            "Runtime":"python3.6", 
+            "Timeout":300, 
+            "Handler":"index.lambda_handler",
+            "MemorySize":512
+         }
+      },  
+      "ContinuousAssessmentResultsTopic":{
+         "Type":"AWS::SNS::Topic"
+      }, 
+
+      "ContinuousAssessmentResultsTopicSubscription" : {
+      "Type" : "AWS::SNS::Subscription",
+      "Properties" : {
+        "Endpoint" : {"Ref":"EmailID"},
+        "Protocol" : "email",
+        "TopicArn" : {"Ref" : "ContinuousAssessmentResultsTopic"}
+      }
+    },
+       
+      "ContinuousAssessmentCompleteTopicSubscription":{
+         "Type":"AWS::SNS::Subscription",
+         "Properties": {
+            "Endpoint":{
+               "Fn::GetAtt":[
+                  "AnalyzeInspectorFindingsLambdaFunction",
+                  "Arn"
+               ]
+            },
+            "Protocol":"lambda",
+            "TopicArn": { "Ref":"ContinuousAssessmentCompleteTopic"}
+         }
+      },
+      
+
+      "ContinuousAssessmentCompleteTopic":{
+         "Type":"AWS::SNS::Topic"
+      },
+      "ContinuousAssessmentCompleteTopicPolicy":{
+         "Type":"AWS::SNS::TopicPolicy",
+         "Properties":{
+            "PolicyDocument":{
+               "Id":"MyTopicPolicy",
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Sid":"My-statement-id",
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service": "inspector.amazonaws.com"
+                     },
+                     "Action":"sns:Publish",
+                     "Resource":{"Ref":"ContinuousAssessmentCompleteTopic"}
+                  }
+               ]
+            },
+            "Topics":[
+               {
+                  "Ref":"ContinuousAssessmentCompleteTopic"
+               }
+            ]
+         }
+      },  
+      "LambdaInvokePermission":{
+         "Type":"AWS::Lambda::Permission",
+         "Properties":{
+            "Action":"lambda:InvokeFunction",
+            "Principal":"sns.amazonaws.com",
+            "SourceArn":{
+               "Ref":"ContinuousAssessmentCompleteTopic"
+            },
+            "FunctionName":{
+               "Fn::GetAtt":[
+                  "AnalyzeInspectorFindingsLambdaFunction",
+                  "Arn"
+               ]
+            }
+         }
+      },
+     
+       "AnalyzeInspectorFindingsLambdaRole":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "ManagedPolicyArns":[
+               "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            ],
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/",
+            "Policies":[
+               {
+                  "PolicyName":"AnalyzeInspectorFindingsLambdaPolicy",
+                  "PolicyDocument":{
+                     "Version":"2012-10-17",
+                     "Statement":[
+                     {  
+                     "Sid": "AnalyzeInspectorFindingsLambdaPolicyStmt",
+                     "Effect": "Allow",
+                     "Action":[
+                     "inspector:AddAttributesToFindings",
+                     "inspector:DescribeFindings", "ec2:DescribeInstances",
+                     "inspector:ListFindings"],
+                     "Resource": ["*"]
+                     },
+                     {  
+                     "Sid": "AnalyzeInspectorFindingsLambdaPolicyStmt2",
+                     "Effect": "Allow",
+                     "Action": "sns:Publish",
+                     "Resource": {"Ref":"ContinuousAssessmentResultsTopic"}
+                     },
+                     {  
+                     "Sid": "AnalyzeInspectorFindingsLambdaPolicyStmt3",
+                     "Effect": "Allow",
+                     "Action":
+                     [  
+                       "ec2:TerminateInstances" 
+                     ],
+                     "Resource": ["*"],
+                     "Condition": {
+                       "StringEquals": {
+                          "ec2:ResourceTag/continuous-assessment-instance": "true"
+                       }
+                    }
+                     }
+                     ]
+                  }
+               }
+            ]
+         }
+      }, 
+       "AnalyzeInspectorFindingsLambdaFunction":{
+         "Type":"AWS::Lambda::Function",
+         "Properties":{
+            "Role":{
+               "Fn::GetAtt":[
+                  "AnalyzeInspectorFindingsLambdaRole",
+                  "Arn"
+               ]
+            },
+            "Code":{
+               "ZipFile":{
+                  "Fn::Join":[
+                     "",
+                     [ 
+                        "\n","import json ",
+                        "\n","import os",
+                        "\n","import boto3",
+                        "\n","import collections",
+                        "\n","import ast",
+                        "\n","def lambda_handler(event, context): ",
+                        "\n","    message = event['Records'][0]['Sns']['Message'] ",
+                        "\n","    jsonVal = json.loads(message);",
+                        "\n","    assessmentArn =jsonVal['run']  ",
+                        "\n","    region=os.environ['AWS_DEFAULT_REGION']",     
+                        "\n","    ec2 = boto3.client('ec2',region) ",
+                        "\n","    sns = boto3.client('sns',region) ",
+                        "\n","    inspector = boto3.client('inspector',region) ",   
+                        "\n","    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)",
+                        "\n","    aggregateData={}",
+                        "\n","    for findingArn in findingArns['findingArns']:",
+                        "\n","        finding = inspector.describe_findings(findingArns=[findingArn]) ",
+                        "\n","        for result in finding['findings']: ",
+                        "\n","            instanceId =result['assetAttributes']['agentId']",
+                        "\n","            severity =result['severity']",
+                        "\n","            cveName=result['id']",
+                        "\n","            if not (instanceId) in aggregateData:",
+                        "\n","                aggregateData[instanceId]={}",
+                        "\n","                aggregateData[instanceId]['findings']={}",
+                        "\n","                aggregateData[instanceId]['findings'][severity]=0",
+                        "\n","                instance=ec2.describe_instances(InstanceIds=[instanceId]);",
+                        "\n","                tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) ",
+                        "\n","                tagsStr =tagsStr.replace('Key','key').replace('Value','value')  ",
+                        "\n","                aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)",
+                        "\n","            elif not (severity) in aggregateData[instanceId]['findings']:",
+                        "\n","                aggregateData[instanceId]['findings'][severity]=0",
+                        "\n","            aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; ",
+                        "\n","            inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])",
+                        "\n","    tagsList=[]",  
+                        "\n","    for key  in aggregateData: ",
+                        "\n","        outputJson=[] ",
+                        "\n","        for tag in aggregateData[key]['tags']:",
+                        "\n","            if tag['key'] != 'continuous-assessment-instance':",
+                        "\n","                outputJson.append(\"\\\"\"+tag['key']+\"\\\"\"+\":\"+\"\\\"\"+tag['value']+\"\\\"\")",
+                        "\n","        for sev in aggregateData[key]['findings']:",
+                        "\n","            outputJson.append(\"\\\"Finding-Severity-\"+sev+\"-Count\\\"\"+\":\"+\"\\\"\"+str(aggregateData[key]['findings'][sev])+\"\\\"\")",
+                        "\n","        outputJson.sort()",
+                        "\n","        print(outputJson)",
+                        "\n","        tagsList.append('{'+', '.join(outputJson)+'}')",
+                        "\n","        print('Terminating:'+key)",
+                        "\n","        ec2.terminate_instances(InstanceIds=[key],DryRun=False)",
+                        "\n","    sns.publish(TopicArn='", {"Ref":"ContinuousAssessmentResultsTopic"}, "',Message='['+', '.join(tagsList)+']')",
+                        "\n","    return jsonVal['run']",
+                     ]
+                  ]
+               }
+            },
+            "Runtime":"python3.6", 
+            "Timeout":300,
+            "Handler":"index.lambda_handler",
+            "MemorySize":512
+         }
+      } 
+    },
+    "Outputs": {
+        "BucketName": {
+            "Description": "The Name of the bucket created. Please upload template file in this bucket.",
+            "Value": {
+                "Ref": "GoldenAMIConfigBucket"
+            }
+        },
+        "GoldenAMIAutomationDoc": {
+            "Description": "The Name of the document that creates Golden AMI and executes Inspector.",
+            "Value": {
+                "Ref": "GoldenAMIAutomationDoc"
+            }
+        },
+         "CopyAndShareAMIAutomationDoc": {
+            "Description": "The Name of the document that copies and shares AMIs.",
+            "Value": {
+                "Ref": "CopyAndShareAMI"
+            }
+        },
+        "SetupContinuousAssessmentLambdaFunction":{
+         "Description":"The Lambda function that initiates the vulnerability assessment.",
+         "Value":{
+            "Ref":"SetupContinuousAssessmentLambdaFunction"
+         }
+      },
+      "DecommissionAMIVersionDoc":{
+         "Description":"The Name of the document that decomissions a golden AMI version.",
+         "Value":{
+            "Ref":"DecommissionAMIVersion"
+         }
+      },
+    "ContinuousInspectionScheduledRule":{
+         "Description":"The Cloudwatch rule that executes the continuous inspection at the rate you specified.",
+         "Value":{
+            "Ref":"ScheduledRule"
+         }
+      },
+
+      "ContinuousAssessmentResultsTopic":{
+         "Description":"The SNS topic on which consolidated results are published",
+         "Value":{
+            "Ref":"ContinuousAssessmentResultsTopic"
+         }
+      }
+    }
+}

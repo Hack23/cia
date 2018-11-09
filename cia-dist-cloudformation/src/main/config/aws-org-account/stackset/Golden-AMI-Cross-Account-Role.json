@@ -1,0 +1,76 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": " This cloudformation template creates Cross-account role for creating Golden AMI metadata in child accounts.(fdp-1o82td9bk)",
+  "Parameters": {
+    "roleName": {
+      "Type": "String",
+      "Default": "goldenAMICrossAccountRole"
+    },
+    "parentAWSAccountID": {
+      "Type": "String",
+      "Default": ""
+    }
+  },
+  "Resources": {
+
+    "CrossAccountRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Ref": "roleName"
+        },
+        
+        "Path": "/",
+        "Policies": [{
+          "PolicyName": "CrossAccountPolicy",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{
+              "Effect": "Allow",
+              "Action": [
+                "ssm:DescribeParameters",
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:DeleteParameter",
+                "ssm:PutParameter"
+              ],
+              "Resource": { "Fn::Join": [
+                                        "",
+                                        [
+                                            "arn:aws:ssm:", "*",
+                                            ":",
+                                            {
+                                                "Ref":"AWS::AccountId"
+                                            },
+                                            ":parameter/GoldenAMI/*"
+                                        ]
+                                    ]}
+            }]
+          }
+        }],
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": [{
+                "Fn::Join": [
+                  "", [
+                    "arn:aws:iam::",
+                    {
+                      "Ref": "parentAWSAccountID"
+                    },
+                    ":root"
+                  ]
+                ]
+              }]
+            },
+            "Action": [
+              "sts:AssumeRole"
+            ]
+          }]
+        }
+      }
+    }
+  }
+}

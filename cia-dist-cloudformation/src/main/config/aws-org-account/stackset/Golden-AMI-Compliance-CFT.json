@@ -1,0 +1,191 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": " This cloudformation template creates Config rule for checking whether all instances are created from golden AMI.(fdp-1o82td9bp)",
+  "Parameters": {
+   
+     "PathToSSMParameter": {
+      "Type": "String",
+      "Default": "/GoldenAMI/latest"
+    }
+  },
+  "Resources": {
+
+  "ConfigPermissionToCallLambda": {
+  "Type": "AWS::Lambda::Permission",
+  "Properties": {
+    "FunctionName": {"Fn::GetAtt": ["CheckIfNonGoldenAMIInstancesExist", "Arn"]},
+    "Action": "lambda:InvokeFunction",
+    "Principal": "config.amazonaws.com"
+  }
+},
+"CheckIfNonGoldenAMIInstancesExist": {
+  "Type": "AWS::Lambda::Function",
+  "Properties": {
+    "Code": {
+      "ZipFile":  {"Fn::Join": ["\n", [
+        "'use strict';",
+        "const aws = require('aws-sdk');",
+        "const config = new aws.ConfigService();",
+        "const ssm = new aws.SSM();",
+        "function check(reference, referenceName) {",
+        "    if (!reference) { throw new Error(`Error: ${referenceName} is not defined`);}",
+        "    return reference;",
+        "}",
+        "function isOverSized(messageType) {",
+        "    check(messageType, 'messageType');",
+        "    return messageType === 'OversizedConfigurationItemChangeNotification';",
+        "}",
+        "function getConfiguration(resourceType, resourceId, captureTime, callback) {",
+        "    config.getResourceConfigHistory({ resourceType, resourceId, laterTime: new Date(captureTime), limit: 1 }, (err, data) => {",
+        "        if (err) {callback(err, null);}",
+        "        const cfgItem = data.configurationItems[0];",
+        "        callback(null, cfgItem);",
+        "    });}",
+        "function convertApiConfiguration(apiCFG) {",
+        "    apiCFG.awsAccountId = apiCFG.accountId;",
+        "    apiCFG.ARN = apiCFG.arn;",
+        "    apiCFG.configurationStateMd5Hash = apiCFG.configurationItemMD5Hash;",
+        "    apiCFG.configurationItemVersion = apiCFG.version;",
+        "    apiCFG.configuration = JSON.parse(apiCFG.configuration);",
+        "    if ({}.hasOwnProperty.call(apiCFG, 'relationships')) {",
+        "        for (let i = 0; i < apiCFG.relationships.length; i++) {",
+        "            apiCFG.relationships[i].name = apiCFG.relationships[i].relationshipName;",
+        "        }}",
+        "    return apiCFG;",
+        "}",
+        "function getConfigurationItem(invokingEvent, callback) {",
+        "    check(invokingEvent, 'invokingEvent');",
+        "    if (isOverSized(invokingEvent.messageType)) {",
+        "        const configurationItemSummary = check(invokingEvent.configurationItemSummary, 'configurationItemSummary');",
+        "        getConfiguration(configurationItemSummary.resourceType, configurationItemSummary.resourceId, configurationItemSummary.configurationItemCaptureTime, (err, apiConfigurationItem) => {",
+        "            if (err) {callback(err);}",
+        "            const configurationItem = convertApiConfiguration(apiConfigurationItem);",
+        "            callback(null, configurationItem);",
+        "        });} else {",
+        "        check(invokingEvent.configurationItem, 'configurationItem');",
+        "        callback(null, invokingEvent.configurationItem);",
+        "    }",
+        "}",
+        "function isApplicable(cfgItem, event) {",
+        "    check(cfgItem, 'configurationItem');",
+        "    check(event, 'event');",
+        "    const status = cfgItem.configurationItemStatus;",
+        "    const eventLeftScope = event.eventLeftScope;",
+        "    return (status === 'OK' || status === 'ResourceDiscovered') && eventLeftScope === false;",
+        "}",
+        "function checkCompliance(cfgItem, amiIDsApproved) {",
+        "    check(cfgItem, 'configurationItem');",
+        "    check(cfgItem.configuration, 'configurationItem.configuration');",
+        "    check(amiIDsApproved, 'amiIDsApproved');",
+        "    if (cfgItem.resourceType !== 'AWS::EC2::Instance') {return 'NOT_APPLICABLE';} else if (amiIDsApproved.indexOf(cfgItem.configuration.imageId) !== -1) {return 'COMPLIANT';}",
+        "    return 'NON_COMPLIANT';",
+        "}",
+        "exports.handler = (event, context, callback) => {",
+        "    check(event, 'event');",
+        "    const invokingEvent = JSON.parse(event.invokingEvent);",
+        "    const ruleParameters = JSON.parse(event.ruleParameters);",
+        "    const params = { Names: [ruleParameters.parameterName ],WithDecryption:false };",
+        "    ssm.getParameters(params, function(err, data) {",
+        "    if (err) console.log(err, err.stack);",
+        "    else{",
+        "        var amiIDsApproved =data.Parameters[0].Value;",
+        "        getConfigurationItem(invokingEvent, (err, cfgItem) => {",
+        "        if (err) {callback(err);}",
+        "        let compliance = 'NOT_APPLICABLE';",
+        "        const putEvaluationsRequest = {};",
+        "        if (isApplicable(cfgItem, event)) {compliance = checkCompliance(cfgItem, amiIDsApproved);}",
+        "        putEvaluationsRequest.Evaluations = [{ComplianceResourceType: cfgItem.resourceType,ComplianceResourceId: cfgItem.resourceId,ComplianceType: compliance,OrderingTimestamp: cfgItem.configurationItemCaptureTime,},];",
+        "        putEvaluationsRequest.ResultToken = event.resultToken;",
+        "        config.putEvaluations(putEvaluationsRequest, (error, data) => {",
+        "            if (error) { callback(error, null);}",
+        "            else if (data.FailedEvaluations.length > 0) {callback(JSON.stringify(data), null);}",
+        "            else {callback(null, data);}",
+        "        });});}});};",
+      ]]}
+    },
+    "Handler": "index.handler",
+    "Runtime": "nodejs4.3",
+    "Timeout": "30",
+    "Role": {"Fn::GetAtt": ["LambdaExecutionRole", "Arn"]}
+  }
+},
+
+"LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          "arn:aws:iam::aws:policy/service-role/AWSConfigRulesExecutionRole"
+        ],
+        "Path": "/",
+        "Policies": [
+                {
+                  "PolicyName": "ReadSSMParams",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": {
+                        "Action": ["ssm:Get*"],
+                        "Effect": "Allow",
+                        "Resource": 
+                          { "Fn::Join": 
+                            [
+                                "",
+                                [
+                                    "arn:aws:ssm:", "*",
+                                    ":",
+                                    {
+                                        "Ref":"AWS::AccountId"
+                                    },
+                                    ":parameter/GoldenAMI/latest"
+                                ]
+                            ]}                    
+                      } 
+              }
+              }],
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        } 
+      }
+    },
+ 
+"ConfigRuleForNonGoldenAMIInstanceExistenceVerification": {
+  "Type": "AWS::Config::ConfigRule",
+  "Description":"This Config rule checks whether all instances are created from golden AMI",
+  "Properties": {
+    "ConfigRuleName": "ConfigRuleForNonGoldenAMIInstanceExistenceVerification",
+     "InputParameters": {"parameterName":  {  "Ref": "PathToSSMParameter"}
+     },
+    "Scope": { 
+      "ComplianceResourceTypes": ["AWS::EC2::Instance"]
+    },
+    "Source": {
+      "Owner": "CUSTOM_LAMBDA",
+      "SourceDetails": [{
+          "EventSource": "aws.config",
+          "MessageType": "ConfigurationItemChangeNotification", 
+      },
+      {
+          "EventSource": "aws.config",
+          "MessageType": "ScheduledNotification",
+          "MaximumExecutionFrequency" : "One_Hour"
+      }],
+      "SourceIdentifier": {"Fn::GetAtt": ["CheckIfNonGoldenAMIInstancesExist", "Arn"]}
+    }
+  },
+  "DependsOn": "ConfigPermissionToCallLambda"
+}, 
+}
+}
