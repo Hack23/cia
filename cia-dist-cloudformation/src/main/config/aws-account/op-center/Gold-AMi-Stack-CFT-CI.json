@@ -74,6 +74,12 @@
          "Default":"{\"Account_ID_1\":\"region_1,region_2\"}",
       "Description": "Metadata of accounts and regions for distributing the golden AMI."
       },
+     "MetadataKmsJSON":{
+         "Type":"String",
+         "Default":"{\"Account_ID_1\":\"kms_key\"}",
+      "Description": "Metadata of accounts and kms_keys for encrypting the distributed the golden AMI."
+      },      
+      
        "roleName":{
          "Type":"String",
          "Default":"goldenAMICrossAccountRole",
