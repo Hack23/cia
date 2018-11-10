@@ -23,8 +23,6 @@ import java.util.List;
 
 import javax.xml.bind.JAXBElement;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.oxm.Unmarshaller;
@@ -50,9 +48,6 @@ import com.hack23.cia.service.external.val.api.ValApiException;
  */
 @Component
 final class ValApiImpl implements ValApi {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ValApiImpl.class);
 
 	/** The xml agent. */
 	@Autowired
@@ -99,8 +94,7 @@ final class ValApiImpl implements ValApi {
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn("Problem getElectionTypes", e);
-			throw new ValApiException(e);
+			throw new ValApiException("Problem getElectionTypes",e);
 		}
 	}
 
@@ -113,8 +107,7 @@ final class ValApiImpl implements ValApi {
 					resource.toString(), "http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getParliamentElectoralRegions();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn("Problem getParliamentElectoralRegions", e);
-			throw new ValApiException(e);
+			throw new ValApiException("Problem getParliamentElectoralRegions",e);
 		}
 
 	}
@@ -128,8 +121,7 @@ final class ValApiImpl implements ValApi {
 					resource.toString(), "http://landstingvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyElectoralRegions();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn("Problem getCountyElectoralRegions", e);
-			throw new ValApiException(e);
+			throw new ValApiException("Problem getCountyElectoralRegions",e);
 		}
 
 	}
@@ -143,8 +135,7 @@ final class ValApiImpl implements ValApi {
 					resource.toString(), "http://kommunvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyRegions();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn("Problem getCountyRegions", e);
-			throw new ValApiException(e);
+			throw new ValApiException("Problem getCountyRegions",e);
 		}
 	}
 
@@ -157,8 +148,7 @@ final class ValApiImpl implements ValApi {
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes().get(0).getRegion();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn("Problem getSwedenElectionRegion", e);
-			throw new ValApiException(e);
+			throw new ValApiException("Problem getSwedenElectionRegion",e);
 		}
 
 	}

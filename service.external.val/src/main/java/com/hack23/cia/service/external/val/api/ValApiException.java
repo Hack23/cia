@@ -30,11 +30,11 @@ public class ValApiException extends Exception {
 	/**
 	 * Instantiates a new val api exception.
 	 *
-	 * @param e
-	 *            the e
+	 * @param message the message
+	 * @param cause   the cause
 	 */
-	public ValApiException(final Exception e) {
-		super(e);
-	}
+	public ValApiException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
 }
