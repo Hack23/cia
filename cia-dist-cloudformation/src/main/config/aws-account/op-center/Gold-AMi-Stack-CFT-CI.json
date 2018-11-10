@@ -1824,6 +1824,8 @@
                         "        print (\"Copying Image {id} to {aws_region}\".format(aws_region=region, id=AMIId))",
                         "        new_ami = ec2.copy_image(",
                         "            DryRun=False,",
+                        "            Encrypted=True,",
+                        "            KmsKeyId=TODO_ADD_KMS_KEY_PER_ACCOUNT,",                        
                         "            SourceRegion=sourceRegion,",
                         "            SourceImageId=AMIId,",
                         "            Name=\"copied from \"+originalAMI.name",

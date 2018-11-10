@@ -94,7 +94,7 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 		final ValApi valApi = mock(ValApi.class);
 		final ValImportServiceImpl valImportService = new ValImportServiceImpl(valApi,swedenPoliticalPartyDAO);
 
-		when(valApi.getSwedenPoliticalParties()).thenThrow(new ValApiException(new RuntimeException()));		
+		when(valApi.getSwedenPoliticalParties()).thenThrow(new ValApiException("",new RuntimeException()));		
 		valImportService.loadPoliticalParties();
 		verify(valApi, atLeastOnce()).getSwedenPoliticalParties();
 
