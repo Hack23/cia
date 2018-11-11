@@ -1,0 +1,150 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "(SO0015s) - Cross-Account Manager Solution: Sub Account template ",
+  "Parameters" : {
+    "MasterAccountID" : {
+      "Description" : "Account ID of the master account.",
+      "Type" : "String",
+      "ConstraintDescription" : "Must be a valid AWS Account ID without hyphens.",
+      "AllowedPattern" : "\\d{12}",
+      "MinLength" : "12",
+      "MaxLength" : "12"
+    }
+  },
+  "Resources" : {
+    "InitSubAccountExecRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "lambda.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        },
+        "Policies" : [ {
+          "PolicyName" : "Cloudwatch_Logs_SNS_Permissions",
+          "PolicyDocument" : {
+            "Version" : "2012-10-17",
+            "Statement" : [ {
+              "Effect" : "Allow",
+              "Action" : [ "logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents" ],
+              "Resource" : {
+                "Fn::Join" : [ "", [ "arn:aws:logs:", {
+                  "Ref" : "AWS::Region"
+                }, ":", {
+                  "Ref" : "AWS::AccountId"
+                }, ":log-group:/aws/lambda/*" ] ]
+              }
+            }, {
+              "Effect" : "Allow",
+              "Action" : [ "sns:Publish" ],
+              "Resource" : {
+                "Fn::Join" : [ "", [ "arn:aws:sns:", {
+                  "Ref" : "AWS::Region"
+                }, ":", {
+                  "Ref" : "MasterAccountID"
+                }, ":CrossAccountManager-AccountTopic" ] ]
+              }
+            } ]
+          }
+        } ]
+      }
+    },
+    "InitSubAccount" : {
+      "Type" : "AWS::Lambda::Function",
+      "Properties" : {
+        "Code" : {
+          "S3Bucket" : {
+            "Fn::Join" : [ "", [ "solutions-", {
+              "Ref" : "AWS::Region"
+            } ] ]
+          },
+          "S3Key" : "cross-account-manager/v1/cross-account-handler.zip"
+        },
+        "Description" : "This Lambda function subscribes SNS topic from Master Account",
+        "Handler" : "index.handleSubAccountInit",
+        "Role" : {
+          "Fn::GetAtt" : [ "InitSubAccountExecRole", "Arn" ]
+        },
+        "Runtime" : "nodejs4.3",
+        "Timeout" : "60"
+      }
+    },
+    "InitSubAccountCustomResource" : {
+      "Type" : "Custom::InitSubAccountCustomResource",
+      "DependsOn" : "CAMAdmin",
+      "Properties" : {
+        "ServiceToken" : {
+          "Fn::GetAtt" : [ "InitSubAccount", "Arn" ]
+        },
+        "MasterAccountID" : {
+          "Ref" : "MasterAccountID"
+        }
+      }
+    },
+    "CAMAdmin" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "Path" : "/",
+        "RoleName" : "CrossAccountManager-Admin-DO-NOT-DELETE",
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "AWS" : {
+                "Fn::Join" : [ "", [ "arn:aws:iam::", {
+                  "Ref" : "MasterAccountID"
+                }, ":role/CrossAccountManager-Admin-DO-NOT-DELETE" ] ]
+              }
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        }
+      }
+    },
+    "IAMPermissionsPolicy" : {
+      "Type" : "AWS::IAM::Policy",
+      "Properties" : {
+        "Roles" : [ {
+          "Ref" : "CAMAdmin"
+        }, {
+          "Ref" : "InitSubAccountExecRole"
+        } ],
+        "PolicyName" : "IAM_Permissions",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Action" : [ "iam:CreateRole", "iam:DeleteRole", "iam:GetRole", "iam:PutRolePolicy", "iam:DeleteRolePolicy" ],
+            "Resource" : {
+              "Fn::Join" : [ "", [ "arn:aws:iam:", ":", {
+                "Ref" : "AWS::AccountId"
+              }, ":role/CrossAccountManager-*" ] ]
+            }
+          },{
+            "Effect" : "Allow",
+            "Action" : [ "iam:ListRoles" ],
+            "Resource" : {
+              "Fn::Join" : [ "", [ "arn:aws:iam:", ":", {
+                "Ref" : "AWS::AccountId"
+              }, ":role/" ] ]
+            }
+          } ]
+        }
+      }
+    }
+  },
+  "Outputs" : {
+    "CAMConfigBucket" : {
+      "Description" : "CrossAccountManager Admin role for the solution",
+      "Value" : {
+        "Ref" : "CAMAdmin"
+      }
+    }  
+  }
+}
