@@ -62,7 +62,7 @@
     <dependency>
       <groupId>nl.basjes.parse.useragent</groupId>
       <artifactId>yauaa</artifactId>
-      <version>5.3</version>
+      <version>5.4</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-text</artifactId>
