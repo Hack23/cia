@@ -112,9 +112,12 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 		if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation) {
 			final ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent
 					.getSource();
-			if (methodInvocation != null && methodInvocation.getMethod() != null && methodInvocation.getThis() != null) {
-				methodInfo = methodInvocation.getThis().getClass().getSimpleName() + "."
-						+ methodInvocation.getMethod().getName();
+			if (methodInvocation != null && methodInvocation.getThis() != null) {
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(methodInvocation.getThis().getClass().getSimpleName());
+				stringBuilder.append('.');
+				stringBuilder.append(methodInvocation.getMethod().getName());
+				methodInfo = stringBuilder.toString();
 			}
 		}
 

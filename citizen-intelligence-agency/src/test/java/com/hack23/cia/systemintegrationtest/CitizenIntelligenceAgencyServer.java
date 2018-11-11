@@ -81,8 +81,7 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * The main method.
 	 *
-	 * @param args
-	 *            the arguments
+	 * @param args the arguments
 	 */
 	public static void main(final String[] args) {
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
@@ -94,10 +93,8 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * Sets the env.
 	 *
-	 * @param key
-	 *            the key
-	 * @param value
-	 *            the value
+	 * @param key the key
+	 * @param value the value
 	 */
 	public static void setEnv(final String key, final String value) {
 		try {
@@ -115,8 +112,7 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * Start test server.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	public static final synchronized void startTestServer() throws Exception {
 		serverStarted++;
@@ -129,8 +125,7 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * Stop test server.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	public static final synchronized void stopTestServer() throws Exception {
 		serverStarted--;
@@ -163,9 +158,8 @@ public final class CitizenIntelligenceAgencyServer {
 		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
-		//System.setProperty("javax.net.debug", "all");
-		
-		
+		// System.setProperty("javax.net.debug", "all");
+
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
@@ -174,8 +168,7 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * Inits the.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	public final void init() throws Exception {
 		initialised = true;
@@ -193,35 +186,35 @@ public final class CitizenIntelligenceAgencyServer {
 		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
 				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
-		
-		
-		
-	   final HttpConfiguration http_config = new HttpConfiguration();
-	   http_config.setSecureScheme("https");
-	   http_config.setSecurePort(28443);
-	   http_config.setSendServerVersion(false);
-	     
-	   final HttpConfiguration https_config = new HttpConfiguration(http_config);
-	   https_config.addCustomizer(new SecureRequestCustomizer());
-	
+		final HttpConfiguration http_config = new HttpConfiguration();
+		http_config.setSecureScheme("https");
+		http_config.setSecurePort(28443);
+		http_config.setSendServerVersion(false);
+
+		final HttpConfiguration https_config = new HttpConfiguration(http_config);
+		https_config.addCustomizer(new SecureRequestCustomizer());
+
 		final SslContextFactory sslContextFactory = new SslContextFactory();
 		sslContextFactory.setKeyStoreType("PKCS12");
 		sslContextFactory.setKeyStorePath("target/keystore.p12");
 		sslContextFactory.setTrustStorePath("target/keystore.p12");
 		sslContextFactory.setTrustStoreType("PKCS12");
-		
+
 		sslContextFactory.setKeyStorePassword("changeit");
 		sslContextFactory.setTrustStorePassword("changeit");
 		sslContextFactory.setKeyManagerPassword("changeit");
 		sslContextFactory.setCertAlias("jetty");
-		sslContextFactory.setIncludeCipherSuites("TLS_AES_256_GCM_SHA384","TLS_CHACHA20_POLY1305_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-				"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256","TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256");
-		sslContextFactory.setExcludeProtocols("SSL","SSLv2","SSLv2Hello","SSLv3","TLSv1","TLSv1.1");
-		sslContextFactory.setIncludeProtocols("TLSv1.2","TLSv1.3");		
-		
-		final ServerConnector sslConnector = new ServerConnector(server, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https_config),new HTTP2CServerConnectionFactory(https_config));
+		sslContextFactory.setIncludeCipherSuites("TLS_AES_256_GCM_SHA384", "TLS_CHACHA20_POLY1305_SHA256",
+				"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+				"TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256");
+		sslContextFactory.setExcludeProtocols("SSL", "SSLv2", "SSLv2Hello", "SSLv3", "TLSv1", "TLSv1.1");
+		sslContextFactory.setIncludeProtocols("TLSv1.2", "TLSv1.3");
+
+		final ServerConnector sslConnector = new ServerConnector(server,
+				new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https_config),
+				new HTTP2CServerConnectionFactory(https_config));
 		sslConnector.setPort(PORT);
-		
+
 		server.setConnectors(new ServerConnector[] { sslConnector });
 		final WebAppContext handler = new WebAppContext("src/main/webapp", "/");
 		handler.setExtraClasspath("target/classes");
@@ -233,19 +226,16 @@ public final class CitizenIntelligenceAgencyServer {
 		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
 
 		server.setHandler(handlers);
-
-
 	}
 
 	/**
 	 * Start.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	public final void start() throws Exception {
 		if (!initialised) {
-			LOGGER.info("Exiting init not called before start"); //$NON-NLS-1$
+			LOGGER.info("Exiting init not called before start");
 			System.exit(-1);
 		}
 
@@ -259,14 +249,11 @@ public final class CitizenIntelligenceAgencyServer {
 	/**
 	 * Stop.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	public final void stop() throws Exception {
-		Thread.sleep(8000);
 		server.stop();
 		while (!server.isStopped())
 			;
-
 	}
 }

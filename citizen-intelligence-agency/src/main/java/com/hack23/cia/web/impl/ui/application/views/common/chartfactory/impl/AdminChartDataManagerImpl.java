@@ -24,7 +24,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 import org.dussan.vaadin.dcharts.DCharts;
@@ -228,12 +228,12 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	private static void addViewApplicationActionEventPageElementDailySummaryValues(final String label,
 			final Series series, final List<ViewApplicationActionEventPageElementDailySummary> list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
-			Function<ViewApplicationActionEventPageElementDailySummary, Long> t) {
+			ToLongFunction<ViewApplicationActionEventPageElementDailySummary> t) {
 		series.addSeries(new XYseries().setLabel(label));
 		dataSeries.newSeries();
 
 		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
-			dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), t.apply(item));
+			dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), t.applyAsLong(item));
 		}
 	}
 

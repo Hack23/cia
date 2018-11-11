@@ -193,7 +193,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @return the converter for type
 	 */
 	private static Converter getConverterForType(final Class<?> typeOfProperty) {
-		Converter converter = null;
+		Converter converter;
 		
 		if (Date.class.equals(typeOfProperty)) {
 			converter = new StringToDateConverter();
@@ -209,6 +209,8 @@ public final class FormFactoryImpl implements FormFactory {
 			converter = new StringToBooleanConverter("Input value should be an boolean");
 		} else if (typeOfProperty.isEnum()) {
 			converter = new StringToEnumConverter();
+		} else {
+			converter = null;
 		}
 		
 		return converter;

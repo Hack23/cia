@@ -98,7 +98,7 @@ public abstract class AbstractView extends Panel implements View {
 	
 	/** The menu item factory. */
 	@Autowired
-	private ApplicationMenuItemFactory menuItemFactory;
+	private transient ApplicationMenuItemFactory menuItemFactory;
 
 
 	/**
