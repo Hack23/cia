@@ -117,9 +117,8 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
 		final String url = BALLOT.replace(ID_KEY, id);
 
-		final BallotContainer ballotContainer;
 		try {
-			ballotContainer = ((JAXBElement<BallotContainer>) xmlAgent.unmarshallXml(
+			final BallotContainer ballotContainer = ((JAXBElement<BallotContainer>) xmlAgent.unmarshallXml(
 					riksdagenBallotMarshaller, url,
 					HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 					.getValue();

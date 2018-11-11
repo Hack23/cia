@@ -35,7 +35,7 @@ public class UpdateSearchIndexClickListener extends AbstractClickListener implem
 	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
 
 	/** The service request. */
-	private UpdateSearchIndexRequest serviceRequest;
+	private final UpdateSearchIndexRequest serviceRequest;
 
 	/**
 	 * Instantiates a new update search index click listener.

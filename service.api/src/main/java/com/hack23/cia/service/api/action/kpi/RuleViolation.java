@@ -52,7 +52,7 @@ public final class RuleViolation implements Serializable {
 	private final String ruleGroup;
 
 	/** The status. */
-	private Status status = Status.OK;
+	private final Status status;
 
 	/** The positive. */
 	private final String positive;

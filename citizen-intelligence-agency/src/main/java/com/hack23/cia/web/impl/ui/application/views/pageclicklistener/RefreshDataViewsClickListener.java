@@ -35,7 +35,7 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
 
 	/** The service request. */
-	private RefreshDataViewsRequest serviceRequest;
+	private final RefreshDataViewsRequest serviceRequest;
 
 	/**
 	 * Instantiates a new refresh data views click listener.

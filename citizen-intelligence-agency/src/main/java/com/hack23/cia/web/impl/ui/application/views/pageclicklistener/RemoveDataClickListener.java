@@ -35,7 +35,7 @@ public class RemoveDataClickListener extends AbstractClickListener implements Cl
 	private static final String DATA_REMOVED = "Data removed";
 	
 	/** The service request. */
-	private RemoveDataRequest serviceRequest;
+	private final RemoveDataRequest serviceRequest;
 	
 	/**
 	 * Instantiates a new removes the data click listener.

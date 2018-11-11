@@ -83,15 +83,8 @@ public final class FormFactoryImpl implements FormFactory {
 
 		for (final String property : displayProperties) {
 
-			final AbstractField buildAndBind;
-			if (property.contains(HIDDEN_FIELD_NAME)) {
-				buildAndBind = new PasswordField();
-				binder.bind(buildAndBind, property);
-			} else {
-				buildAndBind = new TextField();
-				binder.bind(buildAndBind,property);
-			}
-
+			final AbstractField buildAndBind = createField(property);
+			binder.bind(buildAndBind,property);
 			buildAndBind.setCaption(property);
 			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
 			buildAndBind.setReadOnly(false);
@@ -116,6 +109,22 @@ public final class FormFactoryImpl implements FormFactory {
 
 		panelContent.addComponent(verticalLayout);
 	}
+
+
+	/**
+	 * Creates the field.
+	 *
+	 * @param property the property
+	 * @return the abstract field
+	 */
+	private AbstractField createField(final String property) {
+		if (property.contains(HIDDEN_FIELD_NAME)) {
+			return new PasswordField();
+		} else {
+			return new TextField();
+		}
+	}
+	
 
 	@Override
 	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final T item,

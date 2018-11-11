@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	private final String name;
 	
 	/** The ballot decisions. */
-	private List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions = new ArrayList<>();
+	private final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions;
 	
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
