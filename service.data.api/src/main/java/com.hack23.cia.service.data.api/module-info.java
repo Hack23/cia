@@ -1,7 +1,6 @@
 module com.hack23.cia.service.data.api {
 	exports com.hack23.cia.service.data.api;
 
-//	requires java.se.ee;
 	requires java.persistence;
 
 	requires com.hack23.cia.model.internal.application.user.impl;
