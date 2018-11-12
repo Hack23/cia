@@ -1416,7 +1416,7 @@
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine2>
-		<testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
+        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
@@ -1441,7 +1441,7 @@
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine2>
-		<testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
+        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>

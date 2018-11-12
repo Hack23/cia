@@ -21,5 +21,5 @@ module com.hack23.cia.service.data.api {
 	requires com.hack23.cia.model.external.riksdagen.personlista.impl;
 	requires com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	requires com.hack23.cia.model.external.riksdagen.votering.impl;
-
+	requires com.hack23.cia.model.external.worldbank.countries.impl;
 }

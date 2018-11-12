@@ -23,10 +23,6 @@
 		node="/xsd:schema">
 	</jaxb:bindings>
 
-	<jaxb:bindings schemaLocation="../xsd/view.xsd"
-		node="/xsd:schema">
-	</jaxb:bindings>
-
 	<jaxb:bindings schemaLocation="../xsd/data.xsd"
 		node="/xsd:schema">
 	</jaxb:bindings>
@@ -56,14 +52,6 @@
 	</jaxb:bindings>
 	
 
-	<jaxb:bindings schemaLocation="../../../target/dependency/countries.xsd"
-		node="/xsd:schema">
-		<jaxb:schemaBindings map="true">
-			<jaxb:nameXmlTransform>
-            	<jaxb:elementName suffix="Element"/>
-        	</jaxb:nameXmlTransform>
-		</jaxb:schemaBindings>
-	</jaxb:bindings>
 <!--
 	<jaxb:bindings schemaLocation="../../../target/dependency/person.xsd"
 		node="/xsd:schema">

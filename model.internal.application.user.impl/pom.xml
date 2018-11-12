@@ -92,7 +92,7 @@
       <artifactId>model.external.worldbank.countries.impl</artifactId>
       <version>${project.version}</version>
       <scope>compile</scope>
-      <optional>true</optional>
+      <optional>false</optional>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -201,6 +201,7 @@
   </dependencies>
   <build>
     <plugins>
+      <!-- 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -216,7 +217,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.jvnet.hyperjaxb3</groupId>
         <artifactId>maven-hyperjaxb3-plugin</artifactId>
