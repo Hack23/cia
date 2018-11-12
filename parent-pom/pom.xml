@@ -1419,7 +1419,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.21.0</surefire.version>
+        <surefire.version>3.0.0-M1</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1440,7 +1440,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.21.0</surefire.version>
+        <surefire.version>3.0.0-M1</surefire.version>
       </properties>
     </profile>
     <profile>
