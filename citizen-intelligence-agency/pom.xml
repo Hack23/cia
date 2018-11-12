@@ -1364,10 +1364,6 @@
           <artifactId>ecj</artifactId>
           <groupId>org.eclipse.jdt</groupId>
         </exclusion>
-        <exclusion>
-          <artifactId>jms</artifactId>
-          <groupId>javax.jms</groupId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
