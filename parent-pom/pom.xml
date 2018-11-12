@@ -1409,10 +1409,7 @@
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
-					java.base/jdk.internal.ref=ALL-UNNAMED --add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED
-					--add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED
+					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine>
@@ -1422,7 +1419,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.22.1</surefire.version>
+        <surefire.version>2.20.1</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1433,10 +1430,7 @@
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
-					java.base/jdk.internal.ref=ALL-UNNAMED --add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED
-					--add-exports
-					java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED
+					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED</testAdditionalRuntimeArgLine>
@@ -1446,7 +1440,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.22.1</surefire.version>
+        <surefire.version>2.20.1</surefire.version>
       </properties>
     </profile>
     <profile>
