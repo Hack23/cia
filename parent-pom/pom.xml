@@ -1407,7 +1407,7 @@
         <jdk>12</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--add-exports
+        <testAdditionalRuntimeArgLine>--illegal-access=permit --add-exports
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
 					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
@@ -1419,7 +1419,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.20.1</surefire.version>
+        <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1428,7 +1428,7 @@
         <jdk>11</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--add-exports
+        <testAdditionalRuntimeArgLine>--illegal-access=permit --add-exports
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
 					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
@@ -1440,7 +1440,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0</compiler.plugin.version>
-        <surefire.version>2.20.1</surefire.version>
+        <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
     <profile>
