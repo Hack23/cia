@@ -2,6 +2,7 @@ module com.hack23.cia.service.impl {
 
 
 	exports com.hack23.cia.service.impl;
+	exports com.hack23.cia.service.impl.rules;
 
 	requires java.validation;
 	requires java.xml.bind;
