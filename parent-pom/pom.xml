@@ -161,7 +161,7 @@
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.74.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.7-SNAPSHOT</cia.project.versions.vaadin>
-    <cia.project.versions.vaadin.gwt.user>HEAD-SNAPSHOT</cia.project.versions.vaadin.gwt.user>
+    <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.26</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <walkmod.chains>pmd</walkmod.chains>
