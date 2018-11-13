@@ -18,15 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -129,9 +123,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
 				wtPdfViewer.setSizeFull();
 
-				final StreamResource.StreamSource source = new StreamSourceImplementation(documentAttachment);
-
-				wtPdfViewer.setResource(new StreamResource(source, documentAttachment.getFileName()));
+				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment), documentAttachment.getFileName()));
 
 				panelContent.addComponent(wtPdfViewer);
 				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);
@@ -143,39 +135,6 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 						documentAttachment.getFileName(), documentAttachment.getFileType(),
 						documentAttachment.getFileUrl());
 				verticalLayout.addComponent(link);
-			}
-		}
-	}
-
-	/**
-	 * The Class StreamSourceImplementation.
-	 */
-	private static final class StreamSourceImplementation implements StreamResource.StreamSource {
-
-		/** The Constant LOGGER. */
-		private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);
-
-		/** The document attachment. */
-		private final DocumentAttachment documentAttachment;
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-
-		/**
-		 * Instantiates a new stream source implementation.
-		 *
-		 * @param documentAttachment the document attachment
-		 */
-		private StreamSourceImplementation(final DocumentAttachment documentAttachment) {
-			this.documentAttachment = documentAttachment;
-		}
-
-		@Override
-		public InputStream getStream() {
-			try {
-				return new URL(documentAttachment.getFileUrl()).openStream();
-			} catch (final IOException e) {
-				LOGGER.warn(documentAttachment.getFileUrl(), e);
-				return new ByteArrayInputStream(new byte[0]);
 			}
 		}
 	}

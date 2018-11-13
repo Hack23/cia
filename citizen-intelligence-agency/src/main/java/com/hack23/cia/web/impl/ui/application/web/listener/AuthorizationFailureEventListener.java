@@ -57,7 +57,7 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 
 	/** The Constant CRLF_REPLACEMENT. */
 	private static final String CRLF_REPLACEMENT = "";
-	
+
 	/** The Constant CRLF. */
 	private static final String CRLF = "[\r\n]";
 
@@ -69,7 +69,6 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 
 	/** The Constant ERROR_MESSAGE_FORMAT. */
 	private static final String ERROR_MESSAGE_FORMAT = "Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
-
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationFailureEventListener.class);
@@ -113,26 +112,24 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 			final ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent
 					.getSource();
 			if (methodInvocation != null && methodInvocation.getThis() != null) {
-				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(methodInvocation.getThis().getClass().getSimpleName());
-				stringBuilder.append('.');
-				stringBuilder.append(methodInvocation.getMethod().getName());
-				methodInfo = stringBuilder.toString();
+				methodInfo = new StringBuilder().append(methodInvocation.getThis().getClass().getSimpleName())
+						.append('.').append(methodInvocation.getMethod().getName()).toString();
 			}
 		}
 
-		final Collection<? extends GrantedAuthority> authorities = authorizationFailureEvent.getAuthentication().getAuthorities();
+		final Collection<? extends GrantedAuthority> authorities = authorizationFailureEvent.getAuthentication()
+				.getAuthorities();
 		final Collection<ConfigAttribute> configAttributes = authorizationFailureEvent.getConfigAttributes();
 
-		serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, requestUrl, methodInfo, AUTHORITIES, authorities,
-				REQUIRED_AUTHORITIES, configAttributes, authorizationFailureEvent.getSource()));
+		serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, requestUrl, methodInfo, AUTHORITIES,
+				authorities, REQUIRED_AUTHORITIES, configAttributes, authorizationFailureEvent.getSource()));
 		serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 		applicationManager.service(serviceRequest);
 
-		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT), methodInfo.replaceAll(CRLF,CRLF_REPLACEMENT),
-				sessionId.replaceAll(CRLF,CRLF_REPLACEMENT), authorities,
-				configAttributes);
+		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,
+				requestUrl.replaceAll(CRLF, CRLF_REPLACEMENT), methodInfo.replaceAll(CRLF, CRLF_REPLACEMENT),
+				sessionId.replaceAll(CRLF, CRLF_REPLACEMENT), authorities, configAttributes);
 	}
 
 }
