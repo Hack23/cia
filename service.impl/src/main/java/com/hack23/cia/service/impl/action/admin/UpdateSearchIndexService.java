@@ -50,14 +50,17 @@ public final class UpdateSearchIndexService extends
 			.getLogger(UpdateSearchIndexService.class);
 
 	/** The search indexer. */
-	@Autowired
-	private SearchIndexer searchIndexer;
+	private final SearchIndexer searchIndexer;
 
 	/**
 	 * Instantiates a new update search index service.
+	 *
+	 * @param searchIndexer the search indexer
 	 */
-	public UpdateSearchIndexService() {
+	@Autowired
+	public UpdateSearchIndexService(final SearchIndexer searchIndexer) {
 		super(UpdateSearchIndexRequest.class);
+		this.searchIndexer = searchIndexer;
 	}
 
 	@Override
@@ -69,8 +72,6 @@ public final class UpdateSearchIndexService extends
 			return inputValidation;
 		}
 
-		
-
 		UpdateSearchIndexResponse response;
 		try {
 			searchIndexer.updateSearchIndex();
@@ -78,7 +79,7 @@ public final class UpdateSearchIndexService extends
 		} catch (final InterruptedException e) {
 			LOGGER.warn("Update Index failed",e);
 		    Thread.currentThread().interrupt();
-		    response = new UpdateSearchIndexResponse(ServiceResult.FAILURE);
+		    response = createErrorResponse();
 		}
 
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
