@@ -28,8 +28,8 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 # Runtime
 
 [![JDK-8 or higher](https://img.shields.io/badge/jdk-8-green.svg)]
-[![JDK-9](https://img.shields.io/badge/jdk-9-orange.svg)]
-[![JDK-10](https://img.shields.io/badge/jdk-10-orange.svg)]
+[![JDK-9](https://img.shields.io/badge/jdk-9-red.svg)]
+[![JDK-10](https://img.shields.io/badge/jdk-10-red.svg)]
 [![JDK-11](https://img.shields.io/badge/jdk-11-green.svg)]
 [![JDK-12](https://img.shields.io/badge/jdk-12-orange.svg)]
 
