@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -32,7 +31,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -70,7 +68,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (parameters.contains(PageMode.OVERVIEW.toString()) || (StringUtils.isEmpty(parameters)));
+		return NAME.equals(page);
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
