@@ -119,4 +119,33 @@ public final class UpdateApplicationConfigurationServiceITest extends AbstractSe
 		assertEquals("sessionId must not be null", response.getErrorMessage());
 	}
 
+	/**
+	 * Failure config do not exist test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void failureConfigDoNotExistTest() throws Exception {
+
+		setAuthenticatedAdminuser();
+		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
+
+	
+		final UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
+		serviceRequest.setApplicationConfigurationId(-1L);
+		serviceRequest.setSessionId(createTestApplicationSession.getSessionId());
+
+		serviceRequest.setComponentDescription("componentDescription");
+		serviceRequest.setConfigDescription("configDescription");
+		serviceRequest.setConfigTitle("configTitle");
+		serviceRequest.setComponentTitle("componentTitle");
+		serviceRequest.setPropertyValue("false");
+
+		final UpdateApplicationConfigurationResponse  response = (UpdateApplicationConfigurationResponse) applicationManager.service(serviceRequest);
+
+
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE,response.getResult());
+	}
+
 }
