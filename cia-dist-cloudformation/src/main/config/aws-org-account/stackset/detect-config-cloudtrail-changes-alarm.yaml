@@ -1,6 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  EventRulezCHsT:
+  defaulttopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      Subscription:
+        - Endpoint: pether@hack23.com
+          Protocol: email
+      TopicName: default-topic
+  EventRuleCloudTrailChanges:
     Type: 'AWS::Events::Rule'
     Properties:
       Name: detect-cloudtrail-changes
@@ -22,14 +29,7 @@ Resources:
         - Arn:
             Ref: defaulttopic
           Id: target-id1
-  defaulttopic:
-    Type: 'AWS::SNS::Topic'
-    Properties:
-      Subscription:
-        - Endpoint: pether@hack23.com
-          Protocol: email
-      TopicName: default-topic
-  EventRuleNtrab:
+  EventRuleConfigChanges:
     Type: 'AWS::Events::Rule'
     Properties:
       Name: detect-config-changes
@@ -52,6 +52,46 @@ Resources:
         - Arn:
             Ref: defaulttopic
           Id: target-id1
+  EventRuleGuardDuty:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      Name: detect-guardduty-finding
+      Description: >-
+        A CloudWatch Event Rule that triggers on Amazon GuardDuty findings. The
+        Event Rule can be used to trigger notifications or remediative actions
+        using AWS Lambda.
+      State: ENABLED
+      EventPattern:
+        detail-type:
+          - GuardDuty Finding
+        detail:
+          eventSource:
+            - aws.guardduty
+          eventName: []
+      Targets:
+        - Arn:
+            Ref: defaulttopic
+          Id: target-id1
+  EventRuleMacie:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      Name: detect-macie-alert
+      Description: >-
+        A Macie Event Rule that triggers on Macie alerts. The
+        Event Rule can be used to trigger notifications or remediative actions
+        using AWS Lambda.
+      State: ENABLED
+      EventPattern:
+        detail-type:
+          - Macie Alert
+        detail:
+          eventSource:
+            - aws.macie
+          eventName: []
+      Targets:
+        - Arn:
+            Ref: defaulttopic
+          Id: target-id1          
 Parameters: {}
 Metadata: {}
 Conditions: {}
