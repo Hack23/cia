@@ -77,6 +77,7 @@ public final class UpdateSearchIndexService extends
 			searchIndexer.updateSearchIndex();
 			response = new UpdateSearchIndexResponse(ServiceResult.SUCCESS);
 		} catch (final InterruptedException e) {
+			Thread.interrupted();
 			LOGGER.warn("Update Index failed",e);
 			response = createErrorResponse();
 		}

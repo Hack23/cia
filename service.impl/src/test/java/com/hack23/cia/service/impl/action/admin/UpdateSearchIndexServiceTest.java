@@ -25,6 +25,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
@@ -47,7 +48,8 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void serviceRequestInteruptExceptionFailureTest() throws Exception {		
+	public void serviceRequestInteruptExceptionFailureTest() throws Exception {	
+		SecurityContextHolder.clearContext();
 		final SearchIndexer searchIndexer = mock(SearchIndexer.class);
 		doThrow(new InterruptedException("test exception")).when(searchIndexer).updateSearchIndex();
 		
