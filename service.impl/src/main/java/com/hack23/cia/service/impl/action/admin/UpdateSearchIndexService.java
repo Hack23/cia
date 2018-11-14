@@ -78,7 +78,7 @@ public final class UpdateSearchIndexService extends
 			response = new UpdateSearchIndexResponse(ServiceResult.SUCCESS);
 		} catch (final InterruptedException e) {
 			LOGGER.warn("Update Index failed",e);
-		    response = createErrorResponse();
+			response = createErrorResponse();
 		}
 
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);

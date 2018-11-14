@@ -47,17 +47,17 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void serviceRequestInteruptExceptionFailureTest() throws Exception {
-		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
-		serviceRequest.setSessionId(UUID.randomUUID().toString());
-		
+	public void serviceRequestInteruptExceptionFailureTest() throws Exception {		
 		final SearchIndexer searchIndexer = mock(SearchIndexer.class);
-		final UpdateSearchIndexService updateSearchIndexService = new UpdateSearchIndexService(searchIndexer);
+		doThrow(new InterruptedException("test exception")).when(searchIndexer).updateSearchIndex();
 		
-		doThrow(InterruptedException.class).when(searchIndexer).updateSearchIndex();
+		final UpdateSearchIndexService updateSearchIndexService = new UpdateSearchIndexService(searchIndexer);
 		
 		BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = (BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>) mock(BusinessService.class);
 		ReflectionTestUtils.setField(updateSearchIndexService, "createApplicationEventService", createApplicationEventService);
+		
+		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
+		serviceRequest.setSessionId(UUID.randomUUID().toString());
 		
 		UpdateSearchIndexResponse response = updateSearchIndexService.processService(serviceRequest);		
 				
