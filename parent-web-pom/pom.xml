@@ -226,7 +226,7 @@
             <dependency>
               <groupId>com.vaadin</groupId>
               <artifactId>vaadin-compatibility-server</artifactId>
-              <version>8.7-SNAPSHOT</version>
+              <version>8.6.1</version>
             </dependency>
           </dependencies>
         </plugin>
