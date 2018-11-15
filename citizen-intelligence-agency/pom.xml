@@ -381,7 +381,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-cloudwatch</artifactId>
-      <version>1.11.449</version>
+      <version>1.11.450</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -408,7 +408,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.449</version>
+      <version>1.11.450</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -440,7 +440,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.449</version>
+      <version>1.11.450</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -755,7 +755,7 @@
     <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna-platform</artifactId>
-      <version>5.0.0</version>
+      <version>5.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
