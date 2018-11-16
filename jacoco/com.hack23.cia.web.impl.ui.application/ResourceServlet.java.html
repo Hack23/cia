@@ -18,25 +18,37 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.servlet.DefaultServlet;
 /**
  * The Class ResourceServlet.
  */
 @WebServlet(urlPatterns = { &quot;/favicon.ico&quot;, &quot;/robots.txt&quot;, &quot;/sitemap.xml&quot;, &quot;*.cache.js&quot;,
-		&quot;*.woff&quot; }, loadOnStartup = 1, initParams = {
+		&quot;*.woff&quot;, &quot;*.css&quot;,&quot;/VAADIN/themes/valo/fonts/themeicons-webfont/*&quot;,&quot;/VAADIN/themes/valo/fonts/vaadin-icons/*&quot;,&quot;/VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dcharts/*&quot;,
+		&quot;/VAADIN/themes/cia/*&quot;,&quot;/VAADIN/themes/valo/shared/img/*&quot; }, loadOnStartup = 1, initParams = {
                 @WebInitParam(name = &quot;gzip&quot;, value = &quot;true&quot;),
                 @WebInitParam(name = &quot;etags&quot;, value = &quot;true&quot;),
-                @WebInitParam(name = &quot;cacheControl&quot;, value = &quot;max-age=86400, public&quot;),
+                @WebInitParam(name = &quot;cacheControl&quot;, value = &quot;public, max-age=31536000&quot;),
                 @WebInitParam(name = &quot;precompressed&quot;, value = &quot;true&quot;)
         }, asyncSupported = true)
-<span class="fc" id="L35">public class ResourceServlet extends DefaultServlet {</span>
+<span class="fc" id="L41">public class ResourceServlet extends DefaultServlet {</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	 @Override
+	  protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		 
+<span class="fc" id="L48">		 response.setHeader(&quot;Pragma&quot;, &quot;cache&quot;);</span>
+<span class="fc" id="L49">	     super.service(request, response);</span>
+<span class="fc" id="L50">	  }</span>
+
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

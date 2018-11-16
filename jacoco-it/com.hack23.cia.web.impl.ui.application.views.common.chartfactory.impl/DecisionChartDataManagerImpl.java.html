@@ -166,7 +166,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
 			final Series series, final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; map) {
 <span class="fc bfc" id="L168" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; entry : map.entrySet()) {</span>
-<span class="fc bfc" id="L169" title="All 2 branches covered.">			if (!EMPTY_STRING.equals(entry.getKey())) {</span>
+<span class="pc bpc" id="L169" title="1 of 2 branches missed.">			if (!EMPTY_STRING.equals(entry.getKey())) {</span>
 
 <span class="fc" id="L171">				final XYseries label = new XYseries();</span>
 <span class="fc" id="L172">				label.setLabel(entry.getKey());</span>
@@ -183,4 +183,4 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 <span class="fc" id="L183">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

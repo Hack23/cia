@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.model.common.impl
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_191
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.common.impl.xml
+Bundle-Description: model.common.impl-2018.11.17-SNAPSHOT
+Bundle-Name: model.common.impl-2018.11.17-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.common.impl;uses:="com.hack23.cia
+ .model.common.api,org.apache.commons.lang3.builder",com.hack23.cia.mo
+ del.common.impl.xml
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
+ ang,java.text,java.util,javax.xml.bind;version="2.4.0",javax.xml.bind
+ .annotation.adapters;version="2.4.0",org.apache.commons.lang3.builder
+ ;version="3.8",org.slf4j;version="0.0.0"

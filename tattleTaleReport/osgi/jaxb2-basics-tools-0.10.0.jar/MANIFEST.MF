@@ -63,6 +63,6 @@ Import-Package: com.sun.codemodel;version="2.4",com.sun.codemodel.fmt;
  0.0.0",org.jvnet.jaxb2_commons.xml.bind.model.concrete;version="0.0.0
  ",org.jvnet.jaxb2_commons.xml.bind.model.concrete.origin;version="0.0
  .0",org.jvnet.jaxb2_commons.xml.bind.model.origin;version="0.0.0",org
- .springframework.beans.factory.config;version="5.1.1.RELEASE",org.spr
- ingframework.context.support;version="5.1.1.RELEASE",org.w3c.dom;vers
+ .springframework.beans.factory.config;version="5.1.2.RELEASE",org.spr
+ ingframework.context.support;version="5.1.2.RELEASE",org.w3c.dom;vers
  ion="1.0",org.xml.sax;version="1.0"

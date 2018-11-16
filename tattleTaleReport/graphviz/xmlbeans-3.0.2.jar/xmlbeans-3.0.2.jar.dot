@@ -1,0 +1,5 @@
+digraph xmlbeans_3_0_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  xmlbeans_3_0_2 -> ant_1_10_5;
+  xmlbeans_3_0_2 -> xml_apis_1_4_01;
+}

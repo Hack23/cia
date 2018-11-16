@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.PageLinkFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -33,7 +32,7 @@ import com.vaadin.ui.Link;
  * The Class PagingUtil.
  */
 @Component
-<span class="fc" id="L36">public final class PagingUtilImpl implements PagingUtil {</span>
+<span class="fc" id="L35">public final class PagingUtilImpl implements PagingUtil {</span>
 
 	/** The limit for displaying start end links. */
 	private static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
@@ -69,8 +68,8 @@ import com.vaadin.ui.Link;
 	private static final String PREVIOUS_PAGE = &quot;previous page&quot;;
 
 	/** The page link factory. */
-<span class="fc" id="L72">	@Autowired</span>
-	private final PageLinkFactory pageLinkFactory = new PageLinkFactoryImpl();
+	@Autowired
+	private PageLinkFactory pageLinkFactory;
 	
 	/**
 	 * Creates the paging controls.
@@ -85,47 +84,47 @@ import com.vaadin.ui.Link;
 	@Override
 	public void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final Long size, final int pageNr,
 			final int resultPerPage) {
-<span class="fc" id="L88">				final HorizontalLayout pagingControls = new HorizontalLayout();</span>
-<span class="fc" id="L89">				pagingControls.setSpacing(true);</span>
-<span class="fc" id="L90">				pagingControls.setMargin(true);</span>
+<span class="fc" id="L87">				final HorizontalLayout pagingControls = new HorizontalLayout();</span>
+<span class="fc" id="L88">				pagingControls.setSpacing(true);</span>
+<span class="fc" id="L89">				pagingControls.setMargin(true);</span>
 
-<span class="fc" id="L92">				final long maxPages = (size +resultPerPage-1) / resultPerPage;</span>
+<span class="fc" id="L91">				final long maxPages = (size +resultPerPage-1) / resultPerPage;</span>
 
-<span class="fc" id="L94">				final StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="fc" id="L95">				stringBuilder.append(PAGE_HEADER)</span>
-<span class="fc" id="L96">				.append(pageNr)</span>
-<span class="fc" id="L97">				.append(PAGE_SEPARATOR)</span>
-<span class="fc" id="L98">				.append(maxPages)</span>
-<span class="fc" id="L99">				.append(PAGES_TOTAL_RESULTS)</span>
-<span class="fc" id="L100">				.append(size)</span>
-<span class="fc" id="L101">				.append(RESULTS_PER_PAGE)</span>
-<span class="fc" id="L102">				.append(resultPerPage)</span>
-<span class="fc" id="L103">				.append(SHOW);</span>
-<span class="fc" id="L104">				final Label pageInfo = new Label(stringBuilder.toString());</span>
-<span class="fc" id="L105">				pagingControls.addComponent(pageInfo);</span>
-<span class="fc" id="L106">				pagingControls.setExpandRatio(pageInfo, ContentRatio.SMALL);</span>
+<span class="fc" id="L93">				final StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="fc" id="L94">				stringBuilder.append(PAGE_HEADER)</span>
+<span class="fc" id="L95">				.append(pageNr)</span>
+<span class="fc" id="L96">				.append(PAGE_SEPARATOR)</span>
+<span class="fc" id="L97">				.append(maxPages)</span>
+<span class="fc" id="L98">				.append(PAGES_TOTAL_RESULTS)</span>
+<span class="fc" id="L99">				.append(size)</span>
+<span class="fc" id="L100">				.append(RESULTS_PER_PAGE)</span>
+<span class="fc" id="L101">				.append(resultPerPage)</span>
+<span class="fc" id="L102">				.append(SHOW);</span>
+<span class="fc" id="L103">				final Label pageInfo = new Label(stringBuilder.toString());</span>
+<span class="fc" id="L104">				pagingControls.addComponent(pageInfo);</span>
+<span class="fc" id="L105">				pagingControls.setExpandRatio(pageInfo, ContentRatio.SMALL);</span>
 
 
-<span class="fc bfc" id="L109" title="All 2 branches covered.">				if (pageNr &gt; PAGE_ONE) {</span>
-<span class="fc" id="L110">					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">				if (pageNr &gt; PAGE_ONE) {</span>
+<span class="fc" id="L109">					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L113" title="All 4 branches covered.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
-<span class="fc" id="L114">					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);</span>
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="fc" id="L113">					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L117" title="All 4 branches covered.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
-<span class="fc" id="L118">					addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);</span>
+<span class="pc bpc" id="L116" title="1 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
+<span class="fc" id="L117">					addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L121" title="All 4 branches covered.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
-<span class="fc" id="L122">					addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);</span>
+<span class="pc bpc" id="L120" title="1 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="fc" id="L121">					addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);</span>
 				}
 
-<span class="fc" id="L125">				content.addComponent(pagingControls);</span>
-<span class="fc" id="L126">				content.setExpandRatio(pagingControls, ContentRatio.SMALL2);</span>
+<span class="fc" id="L124">				content.addComponent(pagingControls);</span>
+<span class="fc" id="L125">				content.setExpandRatio(pagingControls, ContentRatio.SMALL2);</span>
 
-<span class="fc" id="L128">			}</span>
+<span class="fc" id="L127">			}</span>
 
 	/**
 	 * Adds the paging link.
@@ -137,10 +136,10 @@ import com.vaadin.ui.Link;
 	 * @param pagingControls the paging controls
 	 */
 	private void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
-<span class="fc" id="L140">		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));</span>
-<span class="fc" id="L141">		pagingControls.addComponent(previousPageLink);</span>
-<span class="fc" id="L142">		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);</span>
-<span class="fc" id="L143">	}</span>
+<span class="fc" id="L139">		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));</span>
+<span class="fc" id="L140">		pagingControls.addComponent(previousPageLink);</span>
+<span class="fc" id="L141">		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);</span>
+<span class="fc" id="L142">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

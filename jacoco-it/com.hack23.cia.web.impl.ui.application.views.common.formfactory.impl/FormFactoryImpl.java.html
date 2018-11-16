@@ -83,76 +83,85 @@ import com.vaadin.ui.VerticalLayout;
 
 <span class="fc bfc" id="L84" title="All 2 branches covered.">		for (final String property : displayProperties) {</span>
 
-			final AbstractField buildAndBind;
-<span class="fc bfc" id="L87" title="All 2 branches covered.">			if (property.contains(HIDDEN_FIELD_NAME)) {</span>
-<span class="fc" id="L88">				buildAndBind = new PasswordField();</span>
-<span class="fc" id="L89">				binder.bind(buildAndBind, property);</span>
-			} else {
-<span class="fc" id="L91">				buildAndBind = new TextField();</span>
-<span class="fc" id="L92">				binder.bind(buildAndBind,property);</span>
-			}
+<span class="fc" id="L86">			final AbstractField buildAndBind = createField(property);</span>
+<span class="fc" id="L87">			binder.bind(buildAndBind,property);</span>
+<span class="fc" id="L88">			buildAndBind.setCaption(property);</span>
+<span class="fc" id="L89">			buildAndBind.setId(MessageFormat.format(&quot;{0}.{1}&quot;, buttonLabel, property));</span>
+<span class="fc" id="L90">			buildAndBind.setReadOnly(false);</span>
+<span class="fc" id="L91">			buildAndBind.setWidth(ContentSize.HALF_SIZE);</span>
 
-<span class="fc" id="L95">			buildAndBind.setCaption(property);</span>
-<span class="fc" id="L96">			buildAndBind.setId(MessageFormat.format(&quot;{0}.{1}&quot;, buttonLabel, property));</span>
-<span class="fc" id="L97">			buildAndBind.setReadOnly(false);</span>
-<span class="fc" id="L98">			buildAndBind.setWidth(ContentSize.HALF_SIZE);</span>
+<span class="fc" id="L93">			panelContent.addComponent(buildAndBind);</span>
+<span class="fc" id="L94">		}</span>
 
-<span class="fc" id="L100">			panelContent.addComponent(buildAndBind);</span>
-<span class="fc" id="L101">		}</span>
+<span class="fc" id="L96">		final VerticalLayout verticalLayout = new VerticalLayout();</span>
+<span class="fc" id="L97">		verticalLayout.setWidth(&quot;50%&quot;);</span>
 
-<span class="fc" id="L103">		final VerticalLayout verticalLayout = new VerticalLayout();</span>
-<span class="fc" id="L104">		verticalLayout.setWidth(&quot;50%&quot;);</span>
-
-<span class="fc" id="L106">		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(binder,buttonListener));</span>
-<span class="fc" id="L107">		button.setId(buttonLabel);</span>
-<span class="fc" id="L108">		button.setWidth(&quot;25%&quot;);</span>
-<span class="fc" id="L109">		button.setIcon(VaadinIcons.BULLSEYE);</span>
-<span class="fc" id="L110">		button.setEnabled(false);</span>
-<span class="fc" id="L111">		binder.addStatusChangeListener(event -&gt; button.setEnabled(event.getBinder().isValid()));</span>
+<span class="fc" id="L99">		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(binder,buttonListener));</span>
+<span class="fc" id="L100">		button.setId(buttonLabel);</span>
+<span class="fc" id="L101">		button.setWidth(&quot;25%&quot;);</span>
+<span class="fc" id="L102">		button.setIcon(VaadinIcons.BULLSEYE);</span>
+<span class="fc" id="L103">		button.setEnabled(false);</span>
+<span class="fc" id="L104">		binder.addStatusChangeListener(event -&gt; button.setEnabled(event.getBinder().isValid()));</span>
 		
 		
-<span class="fc" id="L114">		verticalLayout.addComponent(button);</span>
-<span class="fc" id="L115">		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);</span>
+<span class="fc" id="L107">		verticalLayout.addComponent(button);</span>
+<span class="fc" id="L108">		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);</span>
 
-<span class="fc" id="L117">		panelContent.addComponent(verticalLayout);</span>
-<span class="fc" id="L118">	}</span>
+<span class="fc" id="L110">		panelContent.addComponent(verticalLayout);</span>
+<span class="fc" id="L111">	}</span>
+
+
+	/**
+	 * Creates the field.
+	 *
+	 * @param property the property
+	 * @return the abstract field
+	 */
+	private AbstractField createField(final String property) {
+<span class="fc bfc" id="L121" title="All 2 branches covered.">		if (property.contains(HIDDEN_FIELD_NAME)) {</span>
+<span class="fc" id="L122">			return new PasswordField();</span>
+		} else {
+<span class="fc" id="L124">			return new TextField();</span>
+		}
+	}
+	
 
 	@Override
 	public &lt;T extends Serializable&gt; void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final T item,
 			final Class&lt;T&gt; beanType, final List&lt;String&gt; displayProperties) {
 
 
-<span class="fc" id="L125">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L126">		formPanel.setSizeFull();</span>
+<span class="fc" id="L134">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L135">		formPanel.setSizeFull();</span>
 
 
-<span class="fc" id="L129">		panelContent.addComponent(formPanel);</span>
-<span class="fc bfc" id="L130" title="All 2 branches covered.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
-<span class="fc" id="L131">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
+<span class="fc" id="L138">		panelContent.addComponent(formPanel);</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
+<span class="fc" id="L140">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
 		}
 		else {
-<span class="fc" id="L134">			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);</span>
+<span class="fc" id="L143">			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);</span>
 		}
 
 
-<span class="fc" id="L138">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L139">		formPanel.setContent(formContent);</span>
-<span class="fc" id="L140">		formContent.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="fc" id="L147">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L148">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L149">		formContent.setWidth(ContentSize.FULL_SIZE);</span>
 
-<span class="fc" id="L142">		final Binder&lt;T&gt; binder = new Binder&lt;&gt;(beanType);</span>
-<span class="fc" id="L143">		binder.setBean(item);</span>
-<span class="fc" id="L144">		binder.setReadOnly(true);</span>
+<span class="fc" id="L151">		final Binder&lt;T&gt; binder = new Binder&lt;&gt;(beanType);</span>
+<span class="fc" id="L152">		binder.setBean(item);</span>
+<span class="fc" id="L153">		binder.setReadOnly(true);</span>
 
-<span class="fc" id="L146">		PropertyDescriptor[] propertyDescriptors=null;</span>
+<span class="fc" id="L155">		PropertyDescriptor[] propertyDescriptors=null;</span>
 		try {
-<span class="fc" id="L148">			final BeanInfo info = Introspector.getBeanInfo(item.getClass());</span>
-<span class="fc" id="L149">			propertyDescriptors = info.getPropertyDescriptors();</span>
-<span class="nc" id="L150">		} catch (final IntrospectionException exception) {</span>
-<span class="nc" id="L151">			LOGGER.error(&quot;No able to getfieldtypes for type:+ item.getClass()&quot;, exception);</span>
-<span class="fc" id="L152">		}</span>
+<span class="fc" id="L157">			final BeanInfo info = Introspector.getBeanInfo(item.getClass());</span>
+<span class="fc" id="L158">			propertyDescriptors = info.getPropertyDescriptors();</span>
+<span class="nc" id="L159">		} catch (final IntrospectionException exception) {</span>
+<span class="nc" id="L160">			LOGGER.error(&quot;No able to getfieldtypes for type:+ item.getClass()&quot;, exception);</span>
+<span class="fc" id="L161">		}</span>
 
-<span class="fc" id="L154">		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);</span>
-<span class="fc" id="L155">	}</span>
+<span class="fc" id="L163">		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);</span>
+<span class="fc" id="L164">	}</span>
 
 	/**
 	 * Creates the display property converters.
@@ -165,25 +174,25 @@ import com.vaadin.ui.VerticalLayout;
 	 */
 	private static &lt;T extends Serializable&gt; void createDisplayPropertyConverters(final List&lt;String&gt; displayProperties,
 			final ComponentContainer formContent, final Binder&lt;T&gt; binder, final PropertyDescriptor[] propertyDescriptors) {
-<span class="fc bfc" id="L168" title="All 2 branches covered.">		for (final String property : displayProperties) {</span>
-<span class="fc" id="L169">			final Class&lt;?&gt; typeOfProperty = getTypeOfProperty(propertyDescriptors, property);</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">		for (final String property : displayProperties) {</span>
+<span class="fc" id="L178">			final Class&lt;?&gt; typeOfProperty = getTypeOfProperty(propertyDescriptors, property);</span>
 
-<span class="fc bfc" id="L171" title="All 2 branches covered.">			if (typeOfProperty != null) {</span>
-<span class="fc" id="L172">				final AbstractField&lt;?&gt; field = new TextField();</span>
-<span class="fc" id="L173">				field.setReadOnly(true);</span>
-<span class="fc" id="L174">				field.setCaption(property);</span>
-<span class="fc" id="L175">				field.setWidth(ContentSize.FULL_SIZE);</span>
-<span class="fc" id="L176">				formContent.addComponent(field);</span>
-<span class="fc" id="L177">				final Converter converter = getConverterForType(typeOfProperty);</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">			if (typeOfProperty != null) {</span>
+<span class="fc" id="L181">				final AbstractField&lt;?&gt; field = new TextField();</span>
+<span class="fc" id="L182">				field.setReadOnly(true);</span>
+<span class="fc" id="L183">				field.setCaption(property);</span>
+<span class="fc" id="L184">				field.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="fc" id="L185">				formContent.addComponent(field);</span>
+<span class="fc" id="L186">				final Converter converter = getConverterForType(typeOfProperty);</span>
 
-<span class="fc bfc" id="L179" title="All 2 branches covered.">				if (converter != null) {</span>
-<span class="fc" id="L180">					binder.forField(field).withConverter(converter).bind(property);</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">				if (converter != null) {</span>
+<span class="fc" id="L189">					binder.forField(field).withConverter(converter).bind(property);</span>
 				} else {
-<span class="fc" id="L182">					binder.forField(field).bind(property);</span>
+<span class="fc" id="L191">					binder.forField(field).bind(property);</span>
 				} 
 			}
-<span class="fc" id="L185">		}</span>
-<span class="fc" id="L186">	}</span>
+<span class="fc" id="L194">		}</span>
+<span class="fc" id="L195">	}</span>
 
 	/**
 	 * Gets the converter for type.
@@ -193,25 +202,27 @@ import com.vaadin.ui.VerticalLayout;
 	 * @return the converter for type
 	 */
 	private static Converter getConverterForType(final Class&lt;?&gt; typeOfProperty) {
-<span class="fc" id="L196">		Converter converter = null;</span>
+		Converter converter;
 		
-<span class="fc bfc" id="L198" title="All 2 branches covered.">		if (Date.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L199">			converter = new StringToDateConverter();</span>
-<span class="fc bfc" id="L200" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L201">			converter = new StringToIntegerConverter(&quot;Input value should be an integer&quot;);</span>
-<span class="fc bfc" id="L202" title="All 4 branches covered.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L203">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
-<span class="fc bfc" id="L204" title="All 2 branches covered.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L205">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
-<span class="fc bfc" id="L206" title="All 2 branches covered.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L207">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
-<span class="pc bpc" id="L208" title="1 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L209">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
-<span class="fc bfc" id="L210" title="All 2 branches covered.">		} else if (typeOfProperty.isEnum()) {</span>
-<span class="fc" id="L211">			converter = new StringToEnumConverter();</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">		if (Date.class.equals(typeOfProperty)) {</span>
+<span class="fc" id="L208">			converter = new StringToDateConverter();</span>
+<span class="fc bfc" id="L209" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="fc" id="L210">			converter = new StringToIntegerConverter(&quot;Input value should be an integer&quot;);</span>
+<span class="pc bpc" id="L211" title="1 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="fc" id="L212">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
+<span class="fc" id="L214">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
+<span class="fc" id="L216">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
+<span class="pc bpc" id="L217" title="1 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="fc" id="L218">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">		} else if (typeOfProperty.isEnum()) {</span>
+<span class="fc" id="L220">			converter = new StringToEnumConverter();</span>
+		} else {
+<span class="fc" id="L222">			converter = null;</span>
 		}
 		
-<span class="fc" id="L214">		return converter;</span>
+<span class="fc" id="L225">		return converter;</span>
 	}
 
 	/**
@@ -225,13 +236,13 @@ import com.vaadin.ui.VerticalLayout;
 	 */
 	private static Class&lt;?&gt; getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
 
-<span class="fc bfc" id="L228" title="All 2 branches covered.">		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {</span>
-<span class="fc bfc" id="L229" title="All 2 branches covered.">			if (propertyDescriptor.getName().equalsIgnoreCase(property)) {</span>
-<span class="fc" id="L230">				return propertyDescriptor.getPropertyType();</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">			if (propertyDescriptor.getName().equalsIgnoreCase(property)) {</span>
+<span class="fc" id="L241">				return propertyDescriptor.getPropertyType();</span>
 			}
 		}
-<span class="fc" id="L233">		return null;</span>
+<span class="fc" id="L244">		return null;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

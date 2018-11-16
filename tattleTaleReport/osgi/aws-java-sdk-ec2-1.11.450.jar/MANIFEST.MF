@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: tomcat
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_111
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amazonaws.services.ec2.model
+Bundle-Description: aws-java-sdk-ec2-1.11.450
+Bundle-Name: aws-java-sdk-ec2-1.11.450
+Bundle-Version: 0.0.0
+Export-Package: com.amazonaws.auth.policy.actions;uses:="com.amazonaws
+ .auth.policy",com.amazonaws.services.ec2;uses:="com.amazonaws,com.ama
+ zonaws.annotation,com.amazonaws.auth,com.amazonaws.client,com.amazona
+ ws.client.builder,com.amazonaws.handlers,com.amazonaws.http,com.amazo
+ naws.internal,com.amazonaws.metrics,com.amazonaws.regions,com.amazona
+ ws.services.ec2.model,com.amazonaws.services.ec2.model.transform,com.
+ amazonaws.services.ec2.waiters,com.amazonaws.transform,com.amazonaws.
+ util",com.amazonaws.services.ec2.model;uses:="com.amazonaws,com.amazo
+ naws.internal,com.amazonaws.services.ec2.model.transform,com.amazonaw
+ s.util",com.amazonaws.services.ec2.model.transform;uses:="com.amazona
+ ws,com.amazonaws.auth,com.amazonaws.handlers,com.amazonaws.http,com.a
+ mazonaws.internal,com.amazonaws.regions,com.amazonaws.services.ec2.mo
+ del,com.amazonaws.transform,com.amazonaws.util",com.amazonaws.service
+ s.ec2.util;uses:="com.amazonaws,com.amazonaws.services.ec2,com.amazon
+ aws.services.ec2.model,com.amazonaws.util",com.amazonaws.services.ec2
+ .waiters;uses:="com.amazonaws,com.amazonaws.annotation,com.amazonaws.
+ jmespath,com.amazonaws.services.ec2,com.amazonaws.services.ec2.model,
+ com.amazonaws.waiters,com.fasterxml.jackson.databind"
+Import-Package: com.amazonaws;version="0.0.0",com.amazonaws.annotation
+ ;version="0.0.0",com.amazonaws.auth;version="0.0.0",com.amazonaws.aut
+ h.policy;version="0.0.0",com.amazonaws.client;version="0.0.0",com.ama
+ zonaws.client.builder;version="0.0.0",com.amazonaws.handlers;version=
+ "0.0.0",com.amazonaws.http;version="0.0.0",com.amazonaws.internal;ver
+ sion="0.0.0",com.amazonaws.jmespath;version="0.0.0",com.amazonaws.met
+ rics;version="0.0.0",com.amazonaws.regions;version="0.0.0",com.amazon
+ aws.transform;version="0.0.0",com.amazonaws.util;version="0.0.0",com.
+ amazonaws.waiters;version="0.0.0",com.fasterxml.jackson.databind;vers
+ ion="2.9.7",java.io,java.lang,java.net,java.nio.charset,java.security
+ ,java.text,java.util,java.util.concurrent,java.util.regex,javax.crypt
+ o,javax.crypto.spec,javax.xml.stream.events;version="1.0",org.apache.
+ commons.logging;version="0.0.0"

@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.soup.commons
+Built-By: jenkins
+Bnd-LastModified: 1541570818180
+Implementation-Vendor-Id: org.kie.soup
+Specification-Title: KIE Soup Commons
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: org/kie/soup/commons/KIESoupCommons.gwt.xml=src/main
+ /resources/org/kie/soup/commons/KIESoupCommons.gwt.xml
+Import-Package: com.thoughtworks.xstream;resolution:=optional,com.thou
+ ghtworks.xstream.annotations;resolution:=optional,com.thoughtworks.xs
+ tream.converters;resolution:=optional,com.thoughtworks.xstream.conver
+ ters.reflection;resolution:=optional,com.thoughtworks.xstream.core;re
+ solution:=optional,com.thoughtworks.xstream.io;resolution:=optional,c
+ om.thoughtworks.xstream.mapper;resolution:=optional,com.thoughtworks.
+ xstream.security;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-commons
+Export-Package: org.kie.soup.commons;version="7.14.0.osgisnapshotquali
+ fier",org.kie.soup.commons.util;version="7.14.0.osgisnapshotqualifier
+ ",org.kie.soup.commons.validation;version="7.14.0.osgisnapshotqualifi
+ er",org.kie.soup.commons.xstream;version="7.14.0.osgisnapshotqualifie
+ r"
+Bundle-Name: KIE Soup Commons
+Bundle-Description: Collection of reusable (not depending on any other
+  KIE Soup module) components for KIE Soup.
+Implementation-Title: KIE Soup Commons
+Implementation-Version: 7.14.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-
+ commons
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.14.0.osgisnapshotqualifier
+Scm-Revision: 669fc6eb0593c3d9dd82a3ea90bcb8c0eb2b1574
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bo
+ m/kie-soup-parent/kie-soup-commons
+Specification-Version: 7.14.0.Final
+

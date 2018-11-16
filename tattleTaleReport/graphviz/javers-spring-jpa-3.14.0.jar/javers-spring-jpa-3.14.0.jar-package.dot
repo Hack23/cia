@@ -1,0 +1,29 @@
+digraph javers_spring_jpa_3_14_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_javers_hibernate_integration -> java_lang_invoke;
+  org_javers_hibernate_integration -> java_util;
+  org_javers_hibernate_integration -> java_util_function;
+  org_javers_hibernate_integration -> org_javers_core_graph;
+  org_javers_spring_auditable_aspect_springdatajpa -> org_aspectj_lang;
+  org_javers_spring_auditable_aspect_springdatajpa -> org_aspectj_lang_annotation;
+  org_javers_spring_auditable_aspect_springdatajpa -> org_javers_core;
+  org_javers_spring_auditable_aspect_springdatajpa -> org_javers_spring_auditable;
+  org_javers_spring_auditable_aspect_springdatajpa -> org_javers_spring_auditable_aspect_springdata;
+  org_javers_spring_jpa -> java_time;
+  org_javers_spring_jpa -> java_util;
+  org_javers_spring_jpa -> java_util_concurrent;
+  org_javers_spring_jpa -> java_util_stream;
+  org_javers_spring_jpa -> javax_transaction;
+  org_javers_spring_jpa -> org_javers_common_exception;
+  org_javers_spring_jpa -> org_javers_common_validation;
+  org_javers_spring_jpa -> org_javers_core;
+  org_javers_spring_jpa -> org_javers_core_changelog;
+  org_javers_spring_jpa -> org_javers_core_commit;
+  org_javers_spring_jpa -> org_javers_core_diff;
+  org_javers_spring_jpa -> org_javers_core_diff_changetype;
+  org_javers_spring_jpa -> org_javers_core_json;
+  org_javers_spring_jpa -> org_javers_core_metamodel_property;
+  org_javers_spring_jpa -> org_javers_core_metamodel_type;
+  org_javers_spring_jpa -> org_javers_repository_jql;
+  org_javers_spring_jpa -> org_javers_repository_sql;
+}

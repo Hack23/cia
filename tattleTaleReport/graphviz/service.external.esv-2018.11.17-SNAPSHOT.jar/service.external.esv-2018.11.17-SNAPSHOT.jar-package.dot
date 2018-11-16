@@ -1,0 +1,15 @@
+digraph service_external_esv_2018_11_17_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_external_esv_api -> org_apache_commons_lang3_builder;
+  com_hack23_cia_service_external_esv_impl -> com_hack23_cia_service_external_esv_api;
+  com_hack23_cia_service_external_esv_impl -> java_lang_invoke;
+  com_hack23_cia_service_external_esv_impl -> java_time;
+  com_hack23_cia_service_external_esv_impl -> java_util_function;
+  com_hack23_cia_service_external_esv_impl -> java_util_stream;
+  com_hack23_cia_service_external_esv_impl -> org_apache_commons_codec;
+  com_hack23_cia_service_external_esv_impl -> org_apache_commons_csv;
+  com_hack23_cia_service_external_esv_impl -> org_apache_http_client_fluent;
+  com_hack23_cia_service_external_esv_impl -> org_apache_poi_hssf_usermodel;
+  com_hack23_cia_service_external_esv_impl -> org_apache_poi_ss_usermodel;
+  com_hack23_cia_service_external_esv_impl -> org_apache_poi_xssf_usermodel;
+}

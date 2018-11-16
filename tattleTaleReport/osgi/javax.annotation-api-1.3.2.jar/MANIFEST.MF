@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-Description: Java(TM) Common Annotations 1.3 API Design Specifi
+ cation
+Automatic-Module-Name: java.annotation
+Bundle-License: https://github.com/javaee/javax.annotation/blob/master
+ /LICENSE
+Bundle-SymbolicName: javax.annotation-api
+Implementation-Version: 1.3.2
+Archiver-Version: Plexus Archiver
+Built-By: jayaskum
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1519208655595
+Specification-Vendor: Oracle Corporation
+Implementation-Vendor-Id: org.glassfish
+Bundle-DocURL: https://javaee.github.io/glassfish
+Bundle-Vendor: GlassFish Community
+Import-Package: javax.annotation;version="1.3.2",javax.annotation.secu
+ rity;version="1.3.2",javax.annotation.sql;version="1.3.2"
+Tool: Bnd-0.0.255
+Implementation-Vendor: GlassFish Community
+Export-Package: javax.annotation;version="1.3.2",javax.annotation.secu
+ rity;version="1.3.2",javax.annotation.sql;version="1.3.2"
+Bundle-Version: 1.3.2
+Bundle-Name: javax.annotation API
+Extension-Name: javax.annotation
+Created-By: 1.8.0_60 (Oracle Corporation)
+Build-Jdk: 1.8.0_60
+Specification-Version: 1.3
+

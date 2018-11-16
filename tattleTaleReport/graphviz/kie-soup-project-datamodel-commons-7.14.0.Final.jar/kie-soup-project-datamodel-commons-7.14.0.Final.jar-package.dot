@@ -1,0 +1,10 @@
+digraph kie_soup_project_datamodel_commons_7_14_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_kie_soup_project_datamodel_commons_imports -> org_kie_soup_project_datamodel_imports;
+  org_kie_soup_project_datamodel_commons_oracle -> java_lang_invoke;
+  org_kie_soup_project_datamodel_commons_oracle -> java_util_function;
+  org_kie_soup_project_datamodel_commons_oracle -> org_kie_soup_project_datamodel_oracle;
+  org_kie_soup_project_datamodel_commons_packages -> org_kie_soup_project_datamodel_packages;
+  org_kie_soup_project_datamodel_commons_util -> org_mvel2;
+  org_kie_soup_project_datamodel_commons_util -> org_mvel2_integration;
+}

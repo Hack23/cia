@@ -10,5 +10,5 @@ digraph poi_ooxml_4_0_0_dependencies {
   poi_ooxml_4_0_0 -> poi_ooxml_schemas_4_0_0;
   poi_ooxml_4_0_0 -> poi_scratchpad_4_0_0;
   poi_ooxml_4_0_0 -> xml_apis_1_4_01;
-  poi_ooxml_4_0_0 -> xmlbeans_3_0_1;
+  poi_ooxml_4_0_0 -> xmlbeans_3_0_2;
 }

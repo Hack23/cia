@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.person.
+ impl
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_191
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.person.im
+ pl
+Bundle-Description: model.external.riksdagen.person.impl-2018.11.17-SN
+ APSHOT
+Bundle-Name: model.external.riksdagen.person.impl-2018.11.17-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.person.impl;us
+ es:="com.hack23.cia.model.common.api,com.hack23.cia.model.common.impl
+ .xml,org.jvnet.hyperjaxb3.ejb.test,org.jvnet.jaxb2_commons.lang,org.j
+ vnet.jaxb2_commons.locator,org.jvnet.jaxb2_commons.locator.util,org.j
+ vnet.jaxb2_commons.xml.bind"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",com.ha
+ ck23.cia.model.common.impl.xml;version="0.0.0",java.io,java.lang,java
+ .util,javax.persistence;version="2.2",javax.persistence.metamodel;ver
+ sion="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation;v
+ ersion="2.4.0",javax.xml.bind.annotation.adapters;version="2.4.0",jav
+ ax.xml.namespace;version="1.0",org.jvnet.hyperjaxb3.ejb.test;version=
+ "0.0.0",org.jvnet.jaxb2_commons.lang;version="0.0.0",org.jvnet.jaxb2_
+ commons.locator;version="0.0.0",org.jvnet.jaxb2_commons.locator.util;
+ version="0.0.0",org.jvnet.jaxb2_commons.xml.bind;version="0.0.0"

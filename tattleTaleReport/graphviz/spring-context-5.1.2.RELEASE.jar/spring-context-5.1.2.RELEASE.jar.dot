@@ -1,0 +1,14 @@
+digraph spring_context_5_1_2_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_context_5_1_2_RELEASE -> aspectjweaver_1_9_2;
+  spring_context_5_1_2_RELEASE -> hibernate_validator_6_0_13_Final;
+  spring_context_5_1_2_RELEASE -> javax_annotation_api_1_3_2;
+  spring_context_5_1_2_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_context_5_1_2_RELEASE -> joda_time_2_10_1;
+  spring_context_5_1_2_RELEASE -> spring_aop_5_1_2_RELEASE;
+  spring_context_5_1_2_RELEASE -> spring_beans_5_1_2_RELEASE;
+  spring_context_5_1_2_RELEASE -> spring_core_5_1_2_RELEASE;
+  spring_context_5_1_2_RELEASE -> spring_expression_5_1_2_RELEASE;
+  spring_context_5_1_2_RELEASE -> validation_api_2_0_1_Final;
+  spring_context_5_1_2_RELEASE -> xml_apis_1_4_01;
+}

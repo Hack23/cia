@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Implementation-Title: org.joda.time
+Automatic-Module-Name: org.joda.time
+Bundle-License: Apache 2.0
+Package: org.joda.time
+Bundle-SymbolicName: joda-time
+Implementation-Version: 2.10.1
+Built-By: stephen-user
+Specification-Vendor: Joda.org
+Bundle-ManifestVersion: 2
+Specification-Title: Joda-Time
+Implementation-Vendor-Id: org.joda
+Bundle-Vendor: Joda.org
+Bundle-DocURL: https://www.joda.org/joda-time/
+Time-Zone-Database-Version: 2018g
+Implementation-Vendor: Joda.org
+Export-Package: org.joda.time;version=2.10.1,org.joda.time.base;versio
+ n=2.10.1,org.joda.time.chrono;version=2.10.1,org.joda.time.convert;ve
+ rsion=2.10.1,org.joda.time.field;version=2.10.1,org.joda.time.format;
+ version=2.10.1,org.joda.time.tz;version=2.10.1
+Bundle-Name: Joda-Time
+Bundle-Version: 2.10.1
+Extension-Name: joda-time
+Created-By: Apache Maven 3.5.0
+Build-Jdk: 1.8.0_181
+Specification-Version: 2.10
+Implementation-URL: https://www.joda.org/joda-time/
+

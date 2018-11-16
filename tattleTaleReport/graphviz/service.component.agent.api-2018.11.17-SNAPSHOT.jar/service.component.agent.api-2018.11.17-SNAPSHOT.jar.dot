@@ -1,0 +1,4 @@
+digraph service_component_agent_api_2018_11_17_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_component_agent_api_2018_11_17_SNAPSHOT -> model_internal_application_user_impl_2018_11_17_SNAPSHOT;
+}

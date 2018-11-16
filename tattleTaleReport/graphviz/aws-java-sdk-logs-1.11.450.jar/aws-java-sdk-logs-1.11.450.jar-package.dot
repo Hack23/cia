@@ -1,0 +1,34 @@
+digraph aws_java_sdk_logs_1_11_450_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_amazonaws_services_logs -> com_amazonaws;
+  com_amazonaws_services_logs -> com_amazonaws_annotation;
+  com_amazonaws_services_logs -> com_amazonaws_auth;
+  com_amazonaws_services_logs -> com_amazonaws_client;
+  com_amazonaws_services_logs -> com_amazonaws_client_builder;
+  com_amazonaws_services_logs -> com_amazonaws_handlers;
+  com_amazonaws_services_logs -> com_amazonaws_http;
+  com_amazonaws_services_logs -> com_amazonaws_internal;
+  com_amazonaws_services_logs -> com_amazonaws_metrics;
+  com_amazonaws_services_logs -> com_amazonaws_protocol_json;
+  com_amazonaws_services_logs -> com_amazonaws_regions;
+  com_amazonaws_services_logs -> com_amazonaws_services_logs_model;
+  com_amazonaws_services_logs -> com_amazonaws_services_logs_model_transform;
+  com_amazonaws_services_logs -> com_amazonaws_transform;
+  com_amazonaws_services_logs -> com_amazonaws_util;
+  com_amazonaws_services_logs_internal -> com_amazonaws;
+  com_amazonaws_services_logs_internal -> com_amazonaws_handlers;
+  com_amazonaws_services_logs_model -> com_amazonaws;
+  com_amazonaws_services_logs_model -> com_amazonaws_annotation;
+  com_amazonaws_services_logs_model -> com_amazonaws_internal;
+  com_amazonaws_services_logs_model -> com_amazonaws_protocol;
+  com_amazonaws_services_logs_model -> com_amazonaws_services_logs_model_transform;
+  com_amazonaws_services_logs_model -> com_fasterxml_jackson_annotation;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_annotation;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_http;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_protocol;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_protocol_json;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_services_logs_model;
+  com_amazonaws_services_logs_model_transform -> com_amazonaws_transform;
+  com_amazonaws_services_logs_model_transform -> com_fasterxml_jackson_core;
+}

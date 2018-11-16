@@ -2926,191 +2926,224 @@
 <a class="jxr_linenumber" name="L2918" href="#L2918">2918</a> 
 <a class="jxr_linenumber" name="L2919" href="#L2919">2919</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 <a class="jxr_linenumber" name="L2920" href="#L2920">2920</a> 				PoliticianPageMode.ROLEGHANT.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L2921" href="#L2921">2921</a> 
-<a class="jxr_linenumber" name="L2922" href="#L2922">2922</a> 	}
-<a class="jxr_linenumber" name="L2923" href="#L2923">2923</a> 
+<a class="jxr_linenumber" name="L2921" href="#L2921">2921</a> 	}
+<a class="jxr_linenumber" name="L2922" href="#L2922">2922</a> 
+<a class="jxr_linenumber" name="L2923" href="#L2923">2923</a> 	
 <a class="jxr_linenumber" name="L2924" href="#L2924">2924</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2925" href="#L2925">2925</a> <em class="jxr_javadoccomment">	 * Site politican document history test.</em>
+<a class="jxr_linenumber" name="L2925" href="#L2925">2925</a> <em class="jxr_javadoccomment">	 * Site politican role ghant minister test.</em>
 <a class="jxr_linenumber" name="L2926" href="#L2926">2926</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L2927" href="#L2927">2927</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L2928" href="#L2928">2928</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L2929" href="#L2929">2929</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L2930" href="#L2930">2930</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L2931" href="#L2931">2931</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentHistoryTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L2932" href="#L2932">2932</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L2933" href="#L2933">2933</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L2934" href="#L2934">2934</a> 
-<a class="jxr_linenumber" name="L2935" href="#L2935">2935</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L2936" href="#L2936">2936</a> 
-<a class="jxr_linenumber" name="L2937" href="#L2937">2937</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L2938" href="#L2938">2938</a> 				PoliticianPageMode.DOCUMENTHISTORY.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L2939" href="#L2939">2939</a> 
-<a class="jxr_linenumber" name="L2940" href="#L2940">2940</a> 	}
-<a class="jxr_linenumber" name="L2941" href="#L2941">2941</a> 
-<a class="jxr_linenumber" name="L2942" href="#L2942">2942</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2943" href="#L2943">2943</a> <em class="jxr_javadoccomment">	 * Site politican document history missing test.</em>
-<a class="jxr_linenumber" name="L2944" href="#L2944">2944</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L2945" href="#L2945">2945</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L2946" href="#L2946">2946</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L2947" href="#L2947">2947</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L2948" href="#L2948">2948</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentHistoryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L2949" href="#L2949">2949</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L2950" href="#L2950">2950</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L2927" href="#L2927">2927</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L2928" href="#L2928">2928</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L2929" href="#L2929">2929</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L2930" href="#L2930">2930</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanRoleGhantMinisterTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L2931" href="#L2931">2931</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L2932" href="#L2932">2932</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L2933" href="#L2933">2933</a> 
+<a class="jxr_linenumber" name="L2934" href="#L2934">2934</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2935" href="#L2935">2935</a> 
+<a class="jxr_linenumber" name="L2936" href="#L2936">2936</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L2937" href="#L2937">2937</a> 				PoliticianPageMode.ROLEGHANT.toString(), <span class="jxr_string">"0473783431010"</span>));
+<a class="jxr_linenumber" name="L2938" href="#L2938">2938</a> 	}
+<a class="jxr_linenumber" name="L2939" href="#L2939">2939</a> 	
+<a class="jxr_linenumber" name="L2940" href="#L2940">2940</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2941" href="#L2941">2941</a> <em class="jxr_javadoccomment">	 * Site politican role ghant prime minister test.</em>
+<a class="jxr_linenumber" name="L2942" href="#L2942">2942</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L2943" href="#L2943">2943</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L2944" href="#L2944">2944</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L2945" href="#L2945">2945</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L2946" href="#L2946">2946</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanRoleGhantPrimeMinisterTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L2947" href="#L2947">2947</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L2948" href="#L2948">2948</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L2949" href="#L2949">2949</a> 
+<a class="jxr_linenumber" name="L2950" href="#L2950">2950</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
 <a class="jxr_linenumber" name="L2951" href="#L2951">2951</a> 
-<a class="jxr_linenumber" name="L2952" href="#L2952">2952</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L2953" href="#L2953">2953</a> 
-<a class="jxr_linenumber" name="L2954" href="#L2954">2954</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L2955" href="#L2955">2955</a> 				PoliticianPageMode.DOCUMENTHISTORY.toString(), <span class="jxr_string">"0885771106404"</span>));
+<a class="jxr_linenumber" name="L2952" href="#L2952">2952</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L2953" href="#L2953">2953</a> 				PoliticianPageMode.ROLEGHANT.toString(), <span class="jxr_string">"0218878014918"</span>));
+<a class="jxr_linenumber" name="L2954" href="#L2954">2954</a> 	}
+<a class="jxr_linenumber" name="L2955" href="#L2955">2955</a> 
 <a class="jxr_linenumber" name="L2956" href="#L2956">2956</a> 
-<a class="jxr_linenumber" name="L2957" href="#L2957">2957</a> 	}
-<a class="jxr_linenumber" name="L2958" href="#L2958">2958</a> 
-<a class="jxr_linenumber" name="L2959" href="#L2959">2959</a> 	
-<a class="jxr_linenumber" name="L2960" href="#L2960">2960</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2961" href="#L2961">2961</a> <em class="jxr_javadoccomment">	 * Site politican vote history test.</em>
-<a class="jxr_linenumber" name="L2962" href="#L2962">2962</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L2963" href="#L2963">2963</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L2964" href="#L2964">2964</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L2965" href="#L2965">2965</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L2966" href="#L2966">2966</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L2967" href="#L2967">2967</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanVoteHistoryTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L2968" href="#L2968">2968</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L2969" href="#L2969">2969</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L2970" href="#L2970">2970</a> 
-<a class="jxr_linenumber" name="L2971" href="#L2971">2971</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2957" href="#L2957">2957</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2958" href="#L2958">2958</a> <em class="jxr_javadoccomment">	 * Site politican document history test.</em>
+<a class="jxr_linenumber" name="L2959" href="#L2959">2959</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L2960" href="#L2960">2960</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L2961" href="#L2961">2961</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L2962" href="#L2962">2962</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L2963" href="#L2963">2963</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L2964" href="#L2964">2964</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentHistoryTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L2965" href="#L2965">2965</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L2966" href="#L2966">2966</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L2967" href="#L2967">2967</a> 
+<a class="jxr_linenumber" name="L2968" href="#L2968">2968</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2969" href="#L2969">2969</a> 
+<a class="jxr_linenumber" name="L2970" href="#L2970">2970</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L2971" href="#L2971">2971</a> 				PoliticianPageMode.DOCUMENTHISTORY.toString(), <span class="jxr_string">"0980681611418"</span>));
 <a class="jxr_linenumber" name="L2972" href="#L2972">2972</a> 
-<a class="jxr_linenumber" name="L2973" href="#L2973">2973</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L2974" href="#L2974">2974</a> 				PoliticianPageMode.VOTEHISTORY.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L2975" href="#L2975">2975</a> 
-<a class="jxr_linenumber" name="L2976" href="#L2976">2976</a> 	}
-<a class="jxr_linenumber" name="L2977" href="#L2977">2977</a> 
-<a class="jxr_linenumber" name="L2978" href="#L2978">2978</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2979" href="#L2979">2979</a> <em class="jxr_javadoccomment">	 * Site politican vote history missing test.</em>
-<a class="jxr_linenumber" name="L2980" href="#L2980">2980</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L2981" href="#L2981">2981</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L2982" href="#L2982">2982</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L2983" href="#L2983">2983</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L2984" href="#L2984">2984</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanVoteHistoryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L2985" href="#L2985">2985</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L2986" href="#L2986">2986</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L2987" href="#L2987">2987</a> 
-<a class="jxr_linenumber" name="L2988" href="#L2988">2988</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2973" href="#L2973">2973</a> 	}
+<a class="jxr_linenumber" name="L2974" href="#L2974">2974</a> 
+<a class="jxr_linenumber" name="L2975" href="#L2975">2975</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2976" href="#L2976">2976</a> <em class="jxr_javadoccomment">	 * Site politican document history missing test.</em>
+<a class="jxr_linenumber" name="L2977" href="#L2977">2977</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L2978" href="#L2978">2978</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L2979" href="#L2979">2979</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L2980" href="#L2980">2980</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L2981" href="#L2981">2981</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentHistoryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L2982" href="#L2982">2982</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L2983" href="#L2983">2983</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L2984" href="#L2984">2984</a> 
+<a class="jxr_linenumber" name="L2985" href="#L2985">2985</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2986" href="#L2986">2986</a> 
+<a class="jxr_linenumber" name="L2987" href="#L2987">2987</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L2988" href="#L2988">2988</a> 				PoliticianPageMode.DOCUMENTHISTORY.toString(), <span class="jxr_string">"0885771106404"</span>));
 <a class="jxr_linenumber" name="L2989" href="#L2989">2989</a> 
-<a class="jxr_linenumber" name="L2990" href="#L2990">2990</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L2991" href="#L2991">2991</a> 				PoliticianPageMode.VOTEHISTORY.toString(), <span class="jxr_string">"0885771106404"</span>));
-<a class="jxr_linenumber" name="L2992" href="#L2992">2992</a> 
-<a class="jxr_linenumber" name="L2993" href="#L2993">2993</a> 	}
-<a class="jxr_linenumber" name="L2994" href="#L2994">2994</a> 
-<a class="jxr_linenumber" name="L2995" href="#L2995">2995</a> 	
-<a class="jxr_linenumber" name="L2996" href="#L2996">2996</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2997" href="#L2997">2997</a> <em class="jxr_javadoccomment">	 * Site politican ballot decision summary test.</em>
-<a class="jxr_linenumber" name="L2998" href="#L2998">2998</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L2999" href="#L2999">2999</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L3000" href="#L3000">3000</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L3001" href="#L3001">3001</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3002" href="#L3002">3002</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3003" href="#L3003">3003</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanBallotDecisionSummaryTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3004" href="#L3004">3004</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3005" href="#L3005">3005</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3006" href="#L3006">3006</a> 
-<a class="jxr_linenumber" name="L3007" href="#L3007">3007</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L2990" href="#L2990">2990</a> 	}
+<a class="jxr_linenumber" name="L2991" href="#L2991">2991</a> 
+<a class="jxr_linenumber" name="L2992" href="#L2992">2992</a> 	
+<a class="jxr_linenumber" name="L2993" href="#L2993">2993</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2994" href="#L2994">2994</a> <em class="jxr_javadoccomment">	 * Site politican vote history test.</em>
+<a class="jxr_linenumber" name="L2995" href="#L2995">2995</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L2996" href="#L2996">2996</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L2997" href="#L2997">2997</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L2998" href="#L2998">2998</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L2999" href="#L2999">2999</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3000" href="#L3000">3000</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanVoteHistoryTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3001" href="#L3001">3001</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3002" href="#L3002">3002</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3003" href="#L3003">3003</a> 
+<a class="jxr_linenumber" name="L3004" href="#L3004">3004</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3005" href="#L3005">3005</a> 
+<a class="jxr_linenumber" name="L3006" href="#L3006">3006</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3007" href="#L3007">3007</a> 				PoliticianPageMode.VOTEHISTORY.toString(), <span class="jxr_string">"0980681611418"</span>));
 <a class="jxr_linenumber" name="L3008" href="#L3008">3008</a> 
-<a class="jxr_linenumber" name="L3009" href="#L3009">3009</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3010" href="#L3010">3010</a> 				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L3011" href="#L3011">3011</a> 
-<a class="jxr_linenumber" name="L3012" href="#L3012">3012</a> 	}
-<a class="jxr_linenumber" name="L3013" href="#L3013">3013</a> 
-<a class="jxr_linenumber" name="L3014" href="#L3014">3014</a> 	
-<a class="jxr_linenumber" name="L3015" href="#L3015">3015</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3016" href="#L3016">3016</a> <em class="jxr_javadoccomment">	 * Site politican ballot decision summary missing test.</em>
-<a class="jxr_linenumber" name="L3017" href="#L3017">3017</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L3018" href="#L3018">3018</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L3019" href="#L3019">3019</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3020" href="#L3020">3020</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3021" href="#L3021">3021</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanBallotDecisionSummaryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3022" href="#L3022">3022</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3023" href="#L3023">3023</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3024" href="#L3024">3024</a> 
-<a class="jxr_linenumber" name="L3025" href="#L3025">3025</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L3026" href="#L3026">3026</a> 
-<a class="jxr_linenumber" name="L3027" href="#L3027">3027</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3028" href="#L3028">3028</a> 				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), <span class="jxr_string">"0885771106404"</span>));
-<a class="jxr_linenumber" name="L3029" href="#L3029">3029</a> 
-<a class="jxr_linenumber" name="L3030" href="#L3030">3030</a> 	}
-<a class="jxr_linenumber" name="L3031" href="#L3031">3031</a> 
-<a class="jxr_linenumber" name="L3032" href="#L3032">3032</a> 	
-<a class="jxr_linenumber" name="L3033" href="#L3033">3033</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3034" href="#L3034">3034</a> <em class="jxr_javadoccomment">	 * Site politican document activity test.</em>
-<a class="jxr_linenumber" name="L3035" href="#L3035">3035</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L3036" href="#L3036">3036</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L3037" href="#L3037">3037</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L3038" href="#L3038">3038</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3039" href="#L3039">3039</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3040" href="#L3040">3040</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentActivityTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3041" href="#L3041">3041</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3042" href="#L3042">3042</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3043" href="#L3043">3043</a> 
-<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a> 
-<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a> 				PoliticianPageMode.DOCUMENTACTIVITY.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a> 
-<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a> 	}
-<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a> 
-<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a> 	
-<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3053" href="#L3053">3053</a> <em class="jxr_javadoccomment">	 * Site politican document activity missing test.</em>
-<a class="jxr_linenumber" name="L3054" href="#L3054">3054</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L3055" href="#L3055">3055</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L3056" href="#L3056">3056</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3057" href="#L3057">3057</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3058" href="#L3058">3058</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentActivityMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3059" href="#L3059">3059</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3060" href="#L3060">3060</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3061" href="#L3061">3061</a> 
-<a class="jxr_linenumber" name="L3062" href="#L3062">3062</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L3063" href="#L3063">3063</a> 
-<a class="jxr_linenumber" name="L3064" href="#L3064">3064</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3065" href="#L3065">3065</a> 				PoliticianPageMode.DOCUMENTACTIVITY.toString(), <span class="jxr_string">"0885771106404"</span>));
-<a class="jxr_linenumber" name="L3066" href="#L3066">3066</a> 
-<a class="jxr_linenumber" name="L3067" href="#L3067">3067</a> 	}
-<a class="jxr_linenumber" name="L3068" href="#L3068">3068</a> 
-<a class="jxr_linenumber" name="L3069" href="#L3069">3069</a> 	
-<a class="jxr_linenumber" name="L3070" href="#L3070">3070</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3071" href="#L3071">3071</a> <em class="jxr_javadoccomment">	 * Site politican indicator test.</em>
-<a class="jxr_linenumber" name="L3072" href="#L3072">3072</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L3073" href="#L3073">3073</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L3074" href="#L3074">3074</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L3075" href="#L3075">3075</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3076" href="#L3076">3076</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3077" href="#L3077">3077</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanIndicatorTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3078" href="#L3078">3078</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3079" href="#L3079">3079</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3080" href="#L3080">3080</a> 
-<a class="jxr_linenumber" name="L3081" href="#L3081">3081</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
-<a class="jxr_linenumber" name="L3082" href="#L3082">3082</a> 
-<a class="jxr_linenumber" name="L3083" href="#L3083">3083</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3084" href="#L3084">3084</a> 				PageMode.INDICATORS.toString(), <span class="jxr_string">"0980681611418"</span>));
-<a class="jxr_linenumber" name="L3085" href="#L3085">3085</a> 
-<a class="jxr_linenumber" name="L3086" href="#L3086">3086</a> 	}
-<a class="jxr_linenumber" name="L3087" href="#L3087">3087</a> 
-<a class="jxr_linenumber" name="L3088" href="#L3088">3088</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L3089" href="#L3089">3089</a> <em class="jxr_javadoccomment">	 * Site politican indicator missing test.</em>
-<a class="jxr_linenumber" name="L3090" href="#L3090">3090</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L3091" href="#L3091">3091</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L3092" href="#L3092">3092</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L3093" href="#L3093">3093</a> 	@Test(timeout = 60000)
-<a class="jxr_linenumber" name="L3094" href="#L3094">3094</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanIndicatorMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L3095" href="#L3095">3095</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
-<a class="jxr_linenumber" name="L3096" href="#L3096">3096</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-<a class="jxr_linenumber" name="L3097" href="#L3097">3097</a> 
-<a class="jxr_linenumber" name="L3098" href="#L3098">3098</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3009" href="#L3009">3009</a> 	}
+<a class="jxr_linenumber" name="L3010" href="#L3010">3010</a> 
+<a class="jxr_linenumber" name="L3011" href="#L3011">3011</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3012" href="#L3012">3012</a> <em class="jxr_javadoccomment">	 * Site politican vote history missing test.</em>
+<a class="jxr_linenumber" name="L3013" href="#L3013">3013</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3014" href="#L3014">3014</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L3015" href="#L3015">3015</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3016" href="#L3016">3016</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3017" href="#L3017">3017</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanVoteHistoryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3018" href="#L3018">3018</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3019" href="#L3019">3019</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3020" href="#L3020">3020</a> 
+<a class="jxr_linenumber" name="L3021" href="#L3021">3021</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3022" href="#L3022">3022</a> 
+<a class="jxr_linenumber" name="L3023" href="#L3023">3023</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3024" href="#L3024">3024</a> 				PoliticianPageMode.VOTEHISTORY.toString(), <span class="jxr_string">"0885771106404"</span>));
+<a class="jxr_linenumber" name="L3025" href="#L3025">3025</a> 
+<a class="jxr_linenumber" name="L3026" href="#L3026">3026</a> 	}
+<a class="jxr_linenumber" name="L3027" href="#L3027">3027</a> 
+<a class="jxr_linenumber" name="L3028" href="#L3028">3028</a> 	
+<a class="jxr_linenumber" name="L3029" href="#L3029">3029</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3030" href="#L3030">3030</a> <em class="jxr_javadoccomment">	 * Site politican ballot decision summary test.</em>
+<a class="jxr_linenumber" name="L3031" href="#L3031">3031</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3032" href="#L3032">3032</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L3033" href="#L3033">3033</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L3034" href="#L3034">3034</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3035" href="#L3035">3035</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3036" href="#L3036">3036</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanBallotDecisionSummaryTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3037" href="#L3037">3037</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3038" href="#L3038">3038</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3039" href="#L3039">3039</a> 
+<a class="jxr_linenumber" name="L3040" href="#L3040">3040</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3041" href="#L3041">3041</a> 
+<a class="jxr_linenumber" name="L3042" href="#L3042">3042</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3043" href="#L3043">3043</a> 				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), <span class="jxr_string">"0980681611418"</span>));
+<a class="jxr_linenumber" name="L3044" href="#L3044">3044</a> 
+<a class="jxr_linenumber" name="L3045" href="#L3045">3045</a> 	}
+<a class="jxr_linenumber" name="L3046" href="#L3046">3046</a> 
+<a class="jxr_linenumber" name="L3047" href="#L3047">3047</a> 	
+<a class="jxr_linenumber" name="L3048" href="#L3048">3048</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3049" href="#L3049">3049</a> <em class="jxr_javadoccomment">	 * Site politican ballot decision summary missing test.</em>
+<a class="jxr_linenumber" name="L3050" href="#L3050">3050</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3051" href="#L3051">3051</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L3052" href="#L3052">3052</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3053" href="#L3053">3053</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3054" href="#L3054">3054</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanBallotDecisionSummaryMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3055" href="#L3055">3055</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3056" href="#L3056">3056</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3057" href="#L3057">3057</a> 
+<a class="jxr_linenumber" name="L3058" href="#L3058">3058</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3059" href="#L3059">3059</a> 
+<a class="jxr_linenumber" name="L3060" href="#L3060">3060</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3061" href="#L3061">3061</a> 				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), <span class="jxr_string">"0885771106404"</span>));
+<a class="jxr_linenumber" name="L3062" href="#L3062">3062</a> 
+<a class="jxr_linenumber" name="L3063" href="#L3063">3063</a> 	}
+<a class="jxr_linenumber" name="L3064" href="#L3064">3064</a> 
+<a class="jxr_linenumber" name="L3065" href="#L3065">3065</a> 	
+<a class="jxr_linenumber" name="L3066" href="#L3066">3066</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3067" href="#L3067">3067</a> <em class="jxr_javadoccomment">	 * Site politican document activity test.</em>
+<a class="jxr_linenumber" name="L3068" href="#L3068">3068</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3069" href="#L3069">3069</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L3070" href="#L3070">3070</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L3071" href="#L3071">3071</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3072" href="#L3072">3072</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3073" href="#L3073">3073</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentActivityTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3074" href="#L3074">3074</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3075" href="#L3075">3075</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3076" href="#L3076">3076</a> 
+<a class="jxr_linenumber" name="L3077" href="#L3077">3077</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3078" href="#L3078">3078</a> 
+<a class="jxr_linenumber" name="L3079" href="#L3079">3079</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3080" href="#L3080">3080</a> 				PoliticianPageMode.DOCUMENTACTIVITY.toString(), <span class="jxr_string">"0980681611418"</span>));
+<a class="jxr_linenumber" name="L3081" href="#L3081">3081</a> 
+<a class="jxr_linenumber" name="L3082" href="#L3082">3082</a> 	}
+<a class="jxr_linenumber" name="L3083" href="#L3083">3083</a> 
+<a class="jxr_linenumber" name="L3084" href="#L3084">3084</a> 	
+<a class="jxr_linenumber" name="L3085" href="#L3085">3085</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3086" href="#L3086">3086</a> <em class="jxr_javadoccomment">	 * Site politican document activity missing test.</em>
+<a class="jxr_linenumber" name="L3087" href="#L3087">3087</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3088" href="#L3088">3088</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L3089" href="#L3089">3089</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3090" href="#L3090">3090</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3091" href="#L3091">3091</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanDocumentActivityMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3092" href="#L3092">3092</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3093" href="#L3093">3093</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3094" href="#L3094">3094</a> 
+<a class="jxr_linenumber" name="L3095" href="#L3095">3095</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3096" href="#L3096">3096</a> 
+<a class="jxr_linenumber" name="L3097" href="#L3097">3097</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3098" href="#L3098">3098</a> 				PoliticianPageMode.DOCUMENTACTIVITY.toString(), <span class="jxr_string">"0885771106404"</span>));
 <a class="jxr_linenumber" name="L3099" href="#L3099">3099</a> 
-<a class="jxr_linenumber" name="L3100" href="#L3100">3100</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L3101" href="#L3101">3101</a> 				PageMode.INDICATORS.toString(), <span class="jxr_string">"0885771106404"</span>));
-<a class="jxr_linenumber" name="L3102" href="#L3102">3102</a> 
-<a class="jxr_linenumber" name="L3103" href="#L3103">3103</a> 	}
-<a class="jxr_linenumber" name="L3104" href="#L3104">3104</a> 
-<a class="jxr_linenumber" name="L3105" href="#L3105">3105</a> }
+<a class="jxr_linenumber" name="L3100" href="#L3100">3100</a> 	}
+<a class="jxr_linenumber" name="L3101" href="#L3101">3101</a> 
+<a class="jxr_linenumber" name="L3102" href="#L3102">3102</a> 	
+<a class="jxr_linenumber" name="L3103" href="#L3103">3103</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3104" href="#L3104">3104</a> <em class="jxr_javadoccomment">	 * Site politican indicator test.</em>
+<a class="jxr_linenumber" name="L3105" href="#L3105">3105</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3106" href="#L3106">3106</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L3107" href="#L3107">3107</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L3108" href="#L3108">3108</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3109" href="#L3109">3109</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3110" href="#L3110">3110</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanIndicatorTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3111" href="#L3111">3111</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3112" href="#L3112">3112</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3113" href="#L3113">3113</a> 
+<a class="jxr_linenumber" name="L3114" href="#L3114">3114</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3115" href="#L3115">3115</a> 
+<a class="jxr_linenumber" name="L3116" href="#L3116">3116</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3117" href="#L3117">3117</a> 				PageMode.INDICATORS.toString(), <span class="jxr_string">"0980681611418"</span>));
+<a class="jxr_linenumber" name="L3118" href="#L3118">3118</a> 
+<a class="jxr_linenumber" name="L3119" href="#L3119">3119</a> 	}
+<a class="jxr_linenumber" name="L3120" href="#L3120">3120</a> 
+<a class="jxr_linenumber" name="L3121" href="#L3121">3121</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L3122" href="#L3122">3122</a> <em class="jxr_javadoccomment">	 * Site politican indicator missing test.</em>
+<a class="jxr_linenumber" name="L3123" href="#L3123">3123</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L3124" href="#L3124">3124</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L3125" href="#L3125">3125</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L3126" href="#L3126">3126</a> 	@Test(timeout = 60000)
+<a class="jxr_linenumber" name="L3127" href="#L3127">3127</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> sitePoliticanIndicatorMissingTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L3128" href="#L3128">3128</a> 		<strong class="jxr_keyword">final</strong> WebDriver driver = getWebDriver();
+<a class="jxr_linenumber" name="L3129" href="#L3129">3129</a> 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+<a class="jxr_linenumber" name="L3130" href="#L3130">3130</a> 
+<a class="jxr_linenumber" name="L3131" href="#L3131">3131</a> 		<strong class="jxr_keyword">final</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrat<a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>ageVisit.html#UserPageVisit">UserPageVisit</a> userPageVisit = <strong class="jxr_keyword">new</strong> <a name="UserPageVisit" href="../../../../com/hack23/cia/systemintegrationtest/UserPageVisit.html#UserPageVisit">UserPageVisit</a>(driver, browser);
+<a class="jxr_linenumber" name="L3132" href="#L3132">3132</a> 
+<a class="jxr_linenumber" name="L3133" href="#L3133">3133</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<a class="jxr_linenumber" name="L3134" href="#L3134">3134</a> 				PageMode.INDICATORS.toString(), <span class="jxr_string">"0885771106404"</span>));
+<a class="jxr_linenumber" name="L3135" href="#L3135">3135</a> 
+<a class="jxr_linenumber" name="L3136" href="#L3136">3136</a> 	}
+<a class="jxr_linenumber" name="L3137" href="#L3137">3137</a> 
+<a class="jxr_linenumber" name="L3138" href="#L3138">3138</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>

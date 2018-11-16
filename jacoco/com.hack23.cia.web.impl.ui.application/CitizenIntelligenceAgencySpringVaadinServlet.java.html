@@ -18,8 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DefaultUIProvider;
@@ -44,38 +48,44 @@ import com.vaadin.util.CurrentInstance;
  */
 @WebServlet(value = &quot;/*&quot;, loadOnStartup = 2, asyncSupported = true)
 @VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = &quot;com.hack23.cia.web.widgets.WebWidgetSet&quot;)
-<span class="fc" id="L47">public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {</span>
+<span class="fc" id="L51">public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void servletInitialized() throws ServletException {
-<span class="fc" id="L54">		VaadinServletService service = getService();</span>
-<span class="fc" id="L55">		service.addSessionInitListener(new SessionInitListener() {</span>
+<span class="fc" id="L58">		VaadinServletService service = getService();</span>
+<span class="fc" id="L59">		service.addSessionInitListener(new SessionInitListener() {</span>
 
 			private static final long serialVersionUID = -6307820453486668084L;
 
 			@Override
 			public void sessionInit(SessionInitEvent sessionInitEvent) throws ServiceException {
-<span class="fc" id="L61">				final VaadinSession session = sessionInitEvent.getSession();</span>
-<span class="fc bfc" id="L62" title="All 2 branches covered.">				for (UIProvider provider : session.getUIProviders()) {</span>
+<span class="fc" id="L65">				final VaadinSession session = sessionInitEvent.getSession();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">				for (UIProvider provider : session.getUIProviders()) {</span>
 					// use canonical names as these may have been loaded with
 					// different classloaders
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">					if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
-<span class="fc" id="L66">						session.removeUIProvider(provider);</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">					if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
+<span class="fc" id="L70">						session.removeUIProvider(provider);</span>
 					}
-<span class="fc" id="L68">				}</span>
+<span class="fc" id="L72">				}</span>
 
-<span class="fc" id="L70">				session.addUIProvider(new CustomSpringUIProvider(session));</span>
-<span class="fc" id="L71">			}</span>
+<span class="fc" id="L74">				session.addUIProvider(new CustomSpringUIProvider(session));</span>
+<span class="fc" id="L75">			}</span>
 		});
-<span class="fc" id="L73">		service.addSessionDestroyListener(event -&gt; {</span>
-<span class="fc" id="L74">			VaadinSession session = event.getSession();</span>
-<span class="fc" id="L75">			UIScopeImpl.cleanupSession(session);</span>
-<span class="fc" id="L76">			VaadinSessionScope.cleanupSession(session);</span>
-<span class="fc" id="L77">		});</span>
-<span class="fc" id="L78">	}</span>
+<span class="fc" id="L77">		service.addSessionDestroyListener(event -&gt; {</span>
+<span class="fc" id="L78">			VaadinSession session = event.getSession();</span>
+<span class="fc" id="L79">			UIScopeImpl.cleanupSession(session);</span>
+<span class="fc" id="L80">			VaadinSessionScope.cleanupSession(session);</span>
+<span class="fc" id="L81">		});</span>
+<span class="fc" id="L82">	}</span>
+	
+	 @Override
+	  protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		 
+<span class="fc" id="L86">		 response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
+<span class="fc" id="L87">	     super.service(request, response);</span>
+<span class="fc" id="L88">	  }</span>
 
 	/**
 	 * The Class CustomSpringUIProvider.
@@ -86,7 +96,7 @@ import com.vaadin.util.CurrentInstance;
 		private static final long serialVersionUID = 1L;
 
 		/** The spring view display registration bean. */
-<span class="fc" id="L89">		private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();</span>
+<span class="fc" id="L99">		private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();</span>
 
 		/**
 		 * Instantiates a new custom spring UI provider.
@@ -94,31 +104,31 @@ import com.vaadin.util.CurrentInstance;
 		 * @param vaadinSession the vaadin session
 		 */
 		public CustomSpringUIProvider(VaadinSession vaadinSession) {
-<span class="fc" id="L97">			super(vaadinSession);</span>
-<span class="fc" id="L98">		}</span>
+<span class="fc" id="L107">			super(vaadinSession);</span>
+<span class="fc" id="L108">		}</span>
 
 		@Override
 		public UI createInstance(UICreateEvent event) {
-<span class="fc" id="L102">			final Class&lt;UIID&gt; key = UIID.class;</span>
-<span class="fc" id="L103">			final UIID identifier = new UIID(event);</span>
-<span class="fc" id="L104">			CurrentInstance.set(key, identifier);</span>
+<span class="fc" id="L112">			final Class&lt;UIID&gt; key = UIID.class;</span>
+<span class="fc" id="L113">			final UIID identifier = new UIID(event);</span>
+<span class="fc" id="L114">			CurrentInstance.set(key, identifier);</span>
 			try {
-<span class="fc" id="L106">				logger.debug(&quot;Creating a new UI bean of class [{}] with identifier [{}]&quot;,</span>
-<span class="fc" id="L107">						event.getUIClass().getCanonicalName(), identifier);</span>
-<span class="fc" id="L108">				UI ui = getWebApplicationContext().getBean(event.getUIClass());</span>
+<span class="fc" id="L116">				logger.debug(&quot;Creating a new UI bean of class [{}] with identifier [{}]&quot;,</span>
+<span class="fc" id="L117">						event.getUIClass().getCanonicalName(), identifier);</span>
+<span class="fc" id="L118">				UI ui = getWebApplicationContext().getBean(event.getUIClass());</span>
 
-<span class="fc" id="L110">				getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());</span>
+<span class="fc" id="L120">				getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());</span>
 
-<span class="fc" id="L112">				configureNavigator(ui);</span>
-<span class="fc" id="L113">				return ui;</span>
+<span class="fc" id="L122">				configureNavigator(ui);</span>
+<span class="fc" id="L123">				return ui;</span>
 			} finally {
-<span class="fc" id="L115">				CurrentInstance.set(key, null);</span>
+<span class="fc" id="L125">				CurrentInstance.set(key, null);</span>
 			}
 		}
 
 		@Override
 		protected Object findSpringViewDisplay(UI ui) {
-<span class="fc" id="L121">			return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());</span>
+<span class="fc" id="L131">			return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());</span>
 		}
 
 		/**
@@ -127,10 +137,10 @@ import com.vaadin.util.CurrentInstance;
 		 * @return the spring view display registration bean
 		 */
 		private SpringViewDisplayRegistrationBean getSpringViewDisplayRegistrationBean() {
-<span class="fc" id="L130">			return springViewDisplayRegistrationBean;</span>
+<span class="fc" id="L140">			return springViewDisplayRegistrationBean;</span>
 
 		}
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

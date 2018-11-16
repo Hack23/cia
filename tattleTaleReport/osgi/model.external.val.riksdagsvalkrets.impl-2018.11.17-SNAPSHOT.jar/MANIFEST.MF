@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.model.external.val.riksdagsvalkr
+ ets.impl
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_191
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.val.riksdagsvalkret
+ s.impl
+Bundle-Description: model.external.val.riksdagsvalkrets.impl-2018.11.1
+ 7-SNAPSHOT
+Bundle-Name: model.external.val.riksdagsvalkrets.impl-2018.11.17-SNAPS
+ HOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.val.riksdagsvalkrets.imp
+ l;uses:="com.hack23.cia.model.common.api,org.jvnet.hyperjaxb3.ejb.tes
+ t,org.jvnet.jaxb2_commons.lang,org.jvnet.jaxb2_commons.locator,org.jv
+ net.jaxb2_commons.locator.util,org.jvnet.jaxb2_commons.xml.bind"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.i
+ o,java.lang,java.math,java.util,javax.persistence;version="2.2",javax
+ .persistence.metamodel;version="2.2",javax.xml.bind;version="2.4.0",j
+ avax.xml.bind.annotation;version="2.4.0",javax.xml.namespace;version=
+ "1.0",org.jvnet.hyperjaxb3.ejb.test;version="0.0.0",org.jvnet.jaxb2_c
+ ommons.lang;version="0.0.0",org.jvnet.jaxb2_commons.locator;version="
+ 0.0.0",org.jvnet.jaxb2_commons.locator.util;version="0.0.0",org.jvnet
+ .jaxb2_commons.xml.bind;version="0.0.0"

@@ -2,7 +2,7 @@ digraph gwt_dev_2_8_2_dependencies {
   node [shape = box, fontsize=10.0];
   gwt_dev_2_8_2 -> animal_sniffer_annotations_1_17;
   gwt_dev_2_8_2 -> ant_1_10_5;
-  gwt_dev_2_8_2 -> asm_7_0_beta;
+  gwt_dev_2_8_2 -> asm_7_0;
   gwt_dev_2_8_2 -> colt_2_1_4;
   gwt_dev_2_8_2 -> gson_2_8_5;
   gwt_dev_2_8_2 -> j2objc_annotations_1_1;

@@ -1,0 +1,5 @@
+digraph vaadin_push_8_6_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_vaadin_osgi_push -> com_vaadin_osgi_resources;
+  com_vaadin_osgi_push -> org_osgi_service_component_annotations;
+}

@@ -111,20 +111,21 @@ Import-Package: java.awt,java.awt.event,java.io,java.lang,java.lang.an
  .net,java.nio,java.nio.channels,java.nio.charset,java.security,java.s
  ql,java.text,java.util,java.util.concurrent,java.util.concurrent.atom
  ic,java.util.concurrent.locks,java.util.jar,java.util.logging,javax.a
- nnotation,javax.enterprise.context,javax.enterprise.context.spi,javax
- .enterprise.event,javax.enterprise.inject,javax.enterprise.inject.spi
- ,javax.inject,javax.interceptor;version="1.2",javax.jms;version="1.0.
- 0.alpha-2-redhat-2",javax.management,javax.management.remote,javax.na
- ming,javax.naming.spi,javax.resource.spi,javax.resource.spi.work,java
- x.sql,javax.swing,javax.swing.tree,javax.transaction;version="1.1.1.r
- edhat-2",javax.transaction.xa;version="1.1.1.redhat-2",javax.xml.pars
- ers;version="1.0",javax.xml.stream;version="1.0",org.apache.activemq.
- artemis.core.io;version="2.6.3.redhat-00004",org.apache.activemq.arte
- mis.core.io.aio;version="2.6.3.redhat-00004",org.apache.activemq.arte
- mis.core.io.nio;version="2.6.3.redhat-00004",org.apache.activemq.arte
- mis.core.journal;version="2.6.3.redhat-00004",org.apache.activemq.art
- emis.core.journal.impl;version="2.6.3.redhat-00004",org.jboss.logging
- ;version="3.3.2.Final",org.jboss.logging.annotations,org.jboss.tm;ver
- sion="7.6.0.Final-redhat-1",org.jboss.tm.usertx;version="7.6.0.Final-
- redhat-1",org.jboss.tm.usertx.client;version="7.6.0.Final-redhat-1",o
- rg.xml.sax;version="1.0",org.xml.sax.helpers;version="1.0"
+ nnotation;version="1.3",javax.enterprise.context,javax.enterprise.con
+ text.spi,javax.enterprise.event,javax.enterprise.inject,javax.enterpr
+ ise.inject.spi,javax.inject,javax.interceptor;version="1.2",javax.jms
+ ;version="1.0.0.alpha-2-redhat-2",javax.management,javax.management.r
+ emote,javax.naming,javax.naming.spi,javax.resource.spi,javax.resource
+ .spi.work,javax.sql,javax.swing,javax.swing.tree,javax.transaction;ve
+ rsion="1.1.1.redhat-2",javax.transaction.xa;version="1.1.1.redhat-2",
+ javax.xml.parsers;version="1.0",javax.xml.stream;version="1.0",org.ap
+ ache.activemq.artemis.core.io;version="2.6.3.redhat-00004",org.apache
+ .activemq.artemis.core.io.aio;version="2.6.3.redhat-00004",org.apache
+ .activemq.artemis.core.io.nio;version="2.6.3.redhat-00004",org.apache
+ .activemq.artemis.core.journal;version="2.6.3.redhat-00004",org.apach
+ e.activemq.artemis.core.journal.impl;version="2.6.3.redhat-00004",org
+ .jboss.logging;version="3.3.2.Final",org.jboss.logging.annotations,or
+ g.jboss.tm;version="7.6.0.Final-redhat-1",org.jboss.tm.usertx;version
+ ="7.6.0.Final-redhat-1",org.jboss.tm.usertx.client;version="7.6.0.Fin
+ al-redhat-1",org.xml.sax;version="1.0",org.xml.sax.helpers;version="1
+ .0"

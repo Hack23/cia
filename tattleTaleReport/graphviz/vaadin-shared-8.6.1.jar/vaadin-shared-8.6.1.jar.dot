@@ -1,0 +1,4 @@
+digraph vaadin_shared_8_6_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_shared_8_6_1 -> gwt_user_2_8_2;
+}

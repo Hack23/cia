@@ -259,7 +259,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 <span class="fc" id="L259">		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);</span>
 
 
-<span class="fc bfc" id="L262" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="pc bpc" id="L262" title="1 of 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
 <span class="fc" id="L263">			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);</span>
 <span class="fc" id="L264">			createAdminMenu(mainViewItem);</span>
 <span class="fc" id="L265">			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);</span>
@@ -277,7 +277,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the main view item
 	 */
 	private static void createAdminMenu(final MenuItem mainViewItem) {
-<span class="fc bfc" id="L280" title="All 2 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
+<span class="pc bpc" id="L280" title="1 of 2 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
 <span class="fc" id="L281">			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);</span>
 
 <span class="fc" id="L283">			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);</span>
@@ -354,4 +354,4 @@ public abstract class AbstractMenuItemFactoryImpl {
 <span class="fc" id="L354">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

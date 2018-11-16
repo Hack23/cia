@@ -1,0 +1,5 @@
+digraph javax_annotation_api_1_3_2_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javax_annotation -> java_lang_annotation;
+  javax_annotation_sql -> java_lang_annotation;
+}

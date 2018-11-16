@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.dmn.model
+Built-By: jenkins
+Bnd-LastModified: 1541573876666
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Decision Model Notation :: Model
+Bundle-DocURL: http://www.jboss.org/
+Import-Package: javax.xml.stream,javax.xml.namespace,javax.xml,com.tho
+ ughtworks.xstream.mapper;resolution:=optional,com.thoughtworks.xstrea
+ m.converters;resolution:=optional,com.thoughtworks.xstream.converters
+ .basic;resolution:=optional,com.thoughtworks.xstream.converters.colle
+ ctions;resolution:=optional,com.thoughtworks.xstream.converters.exten
+ ded;resolution:=optional,com.thoughtworks.xstream.converters.enums;re
+ solution:=optional,com.thoughtworks.xstream.converters.javabean;resol
+ ution:=optional,com.thoughtworks.xstream.converters.reflection;resolu
+ tion:=optional,com.thoughtworks.xstream.converters.time;resolution:=o
+ ptional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-model
+Export-Package: org.kie.dmn.model.api;version="7.14.0",org.kie.dmn.mod
+ el.api.dmndi;version="7.14.0",org.kie.dmn.model.v1_1;version="7.14.0"
+ ,org.kie.dmn.model.v1_1.extensions;version="7.14.0",org.kie.dmn.model
+ .v1_2;version="7.14.0",org.kie.dmn.model.v1_2.dmndi;version="7.14.0"
+Bundle-Name: KIE :: Decision Model Notation :: Model
+Bundle-Description: Top level pom for the KIE DMN support implementati
+ on
+Implementation-Title: KIE :: Decision Model Notation :: Model
+Automatic-Module-Name: org.kie.dmn.model
+Implementation-Version: 7.14.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn
+ /kie-dmn-model
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.14.0.201811070642
+Scm-Revision: 6d901856890771d6e85e4f6d8b994111cf997f4c
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-mod
+ el
+Specification-Version: 7.14.0.Final
+

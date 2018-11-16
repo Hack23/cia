@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+Implementation-Title: vaadin-compatibility-shared
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: com.vaadin.compatibility-shared
+Implementation-Version: 8.6.1
+Archiver-Version: Plexus Archiver
+Built-By: root
+Bnd-LastModified: 1542197321581
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Implementation-Vendor-Id: com.vaadin
+Import-Package: com.vaadin.shared;version="[8.6.1,8.6.1]",com.vaadin.s
+ hared.communication;version="[8.6.1,8.6.1]",com.vaadin.shared.data.so
+ rt;version="[8.6.1,8.6.1]",com.vaadin.shared.ui;version="[8.6.1,8.6.1
+ ]"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Vaadin Ltd
+Export-Package: com.vaadin.v7.shared;uses:="com.vaadin.shared";version
+ ="8.6.1",com.vaadin.v7.shared.form;uses:="com.vaadin.shared,com.vaadi
+ n.v7.shared";version="8.6.1",com.vaadin.v7.shared.ui.calendar;uses:="
+ com.vaadin.shared.communication,com.vaadin.v7.shared";version="8.6.1"
+ ,com.vaadin.v7.shared.ui.checkbox;uses:="com.vaadin.shared,com.vaadin
+ .shared.communication,com.vaadin.v7.shared";version="8.6.1",com.vaadi
+ n.v7.shared.ui.colorpicker;uses:="com.vaadin.shared.communication,com
+ .vaadin.v7.shared";version="8.6.1",com.vaadin.v7.shared.ui.combobox;u
+ ses:="com.vaadin.v7.shared.ui.select";version="8.6.1",com.vaadin.v7.s
+ hared.ui.datefield;uses:="com.vaadin.v7.shared";version="8.6.1",com.v
+ aadin.v7.shared.ui.grid;uses:="com.vaadin.shared,com.vaadin.shared.co
+ mmunication,com.vaadin.shared.data.sort,com.vaadin.shared.ui";version
+ ="8.6.1",com.vaadin.v7.shared.ui.grid.renderers;uses:="com.vaadin.sha
+ red,com.vaadin.shared.communication";version="8.6.1",com.vaadin.v7.sh
+ ared.ui.grid.selection;uses:="com.vaadin.shared.communication";versio
+ n="8.6.1",com.vaadin.v7.shared.ui.label;uses:="com.vaadin.v7.shared";
+ version="8.6.1",com.vaadin.v7.shared.ui.optiongroup;uses:="com.vaadin
+ .v7.shared.ui.select";version="8.6.1",com.vaadin.v7.shared.ui.progres
+ sindicator;uses:="com.vaadin.shared.communication,com.vaadin.v7.share
+ d";version="8.6.1",com.vaadin.v7.shared.ui.select;uses:="com.vaadin.v
+ 7.shared";version="8.6.1",com.vaadin.v7.shared.ui.slider;uses:="com.v
+ aadin.shared.communication,com.vaadin.v7.shared";version="8.6.1",com.
+ vaadin.v7.shared.ui.table;uses:="com.vaadin.shared,com.vaadin.shared.
+ communication,com.vaadin.v7.shared.ui.select";version="8.6.1",com.vaa
+ din.v7.shared.ui.textarea;uses:="com.vaadin.v7.shared.ui.textfield";v
+ ersion="8.6.1",com.vaadin.v7.shared.ui.textfield;uses:="com.vaadin.v7
+ .shared";version="8.6.1",com.vaadin.v7.shared.ui.tree;uses:="com.vaad
+ in.shared,com.vaadin.shared.communication,com.vaadin.v7.shared.ui.sel
+ ect";version="8.6.1",com.vaadin.v7.shared.ui.treetable;uses:="com.vaa
+ din.v7.shared.ui.table";version="8.6.1",com.vaadin.v7.shared.ui.twinc
+ olselect;uses:="com.vaadin.v7.shared.ui.select";version="8.6.1",com.v
+ aadin.v7.shared.ui.upload;uses:="com.vaadin.shared.communication,com.
+ vaadin.v7.shared";version="8.6.1"
+Bundle-Name: Vaadin Compatibility Shared
+Bundle-Version: 8.6.1
+Created-By: 1.8.0_181 (Oracle Corporation)
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://vaadin.com/
+

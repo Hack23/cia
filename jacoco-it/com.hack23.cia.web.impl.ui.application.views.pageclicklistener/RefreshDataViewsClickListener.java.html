@@ -35,7 +35,7 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	private static final String REFRESH_VIEWS_STARTED = &quot;Refresh Views Started&quot;;
 
 	/** The service request. */
-	private RefreshDataViewsRequest serviceRequest;
+	private final RefreshDataViewsRequest serviceRequest;
 
 	/**
 	 * Instantiates a new refresh data views click listener.
@@ -43,9 +43,9 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	 * @param serviceRequest the service request
 	 */
 	public RefreshDataViewsClickListener(final RefreshDataViewsRequest serviceRequest) {
-<span class="fc" id="L46">		super();</span>
-<span class="fc" id="L47">		this.serviceRequest = serviceRequest;</span>
-<span class="fc" id="L48">	}</span>
+<span class="nc" id="L46">		super();</span>
+<span class="nc" id="L47">		this.serviceRequest = serviceRequest;</span>
+<span class="nc" id="L48">	}</span>
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
@@ -53,4 +53,4 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 <span class="nc" id="L53">		showNotification(REFRESH_VIEWS_STARTED, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
 <span class="nc" id="L54">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

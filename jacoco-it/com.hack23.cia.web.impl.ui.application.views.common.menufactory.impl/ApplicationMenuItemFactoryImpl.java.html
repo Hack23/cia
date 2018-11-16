@@ -46,62 +46,65 @@ import com.vaadin.ui.VerticalLayout;
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODY_RANKING. */
+	private static final String GOVERNMENT_BODY_RANKING = &quot;Government body Ranking&quot;;
+
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = &quot;Government bodies&quot;;
 
 	/** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
-<span class="fc" id="L53">	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L56">	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_COUNTRY_RANKING_OVERVIEW. */
-<span class="fc" id="L57">	private static final PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L60">	private static final PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_MINISTRY_RANKING_OVERVIEW. */
-<span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
-<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L67">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 	
 	/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
-<span class="fc" id="L68">	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L71">	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID. */
-<span class="fc" id="L72">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L75">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
-<span class="fc" id="L76">	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L79">	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
-<span class="fc" id="L80">	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L83">	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_PARTY_RANKING_OVERVIEW. */
-<span class="fc" id="L84">	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L87">	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_PARTY_RANKING_DATAGRID. */
-<span class="fc" id="L88">	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L91">	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
 
 
 	/** The Constant COMMAND_POLITICIAN_RANKING_OVERVIEW. */
-<span class="fc" id="L93">	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L96">	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
-<span class="fc" id="L97">	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L100">	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_SEARCH_DOCUMENT. */
-<span class="fc" id="L101">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
+<span class="fc" id="L104">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
 
 	/** The Constant COMMAND_DOCUMENTS. */
-<span class="fc" id="L104">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
+<span class="fc" id="L107">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
 
 
 	/** The Constant POLITICIAN_RANKING. */
@@ -139,9 +142,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	/** The Constant MINISTRIES_LINK_TEXT. */
 	private static final String MINISTRIES_LINK_TEXT = &quot;Ministries&quot;;
-
-	/** The Constant GOVERNMENT_BODY_LINK_TEXT. */
-	private static final String GOVERNMENT_BODY_LINK_TEXT = GOVERNMENT_BODIES;
 
 	/** The Constant COMMITTEES_LINK_TEXT. */
 	private static final String COMMITTEES_LINK_TEXT = &quot;Committees&quot;;
@@ -232,7 +232,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 <span class="fc" id="L233">		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);</span>
 
-<span class="fc" id="L235">		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(&quot;Government body Ranking&quot;,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);</span>
+<span class="fc" id="L235">		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);</span>
 
 <span class="fc" id="L237">		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);</span>
 
@@ -268,7 +268,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 <span class="fc" id="L269">		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,&quot;All ministries, scoreboard assignments and days served in committees&quot;);</span>
 		
-<span class="fc" id="L271">		createButtonLink(grid,&quot;Government body Ranking&quot;,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,&quot;All government bodies overview&quot;);</span>
+<span class="fc" id="L271">		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,&quot;All government bodies overview&quot;);</span>
 		
 <span class="fc" id="L273">		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,&quot;All government bodies, current headcount&quot;);	</span>
 
@@ -279,4 +279,4 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 <span class="fc" id="L279">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

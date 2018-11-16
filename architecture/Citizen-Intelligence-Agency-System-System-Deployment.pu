@@ -60,8 +60,8 @@ node "Audit Account" <<Aws Account>> as 175 {
   }
 }
 node "Dev Network" <<Dev Network>> as 233 {
-  rectangle "Jenkins" <<Container>> as 243 #1168bd
   rectangle "Sonarqube" <<Container>> as 237 #1168bd
+  rectangle "Jenkins" <<Container>> as 243 #1168bd
   rectangle "Nexus" <<Container>> as 235 #1168bd
 }
 node "Github Org" <<Github Org>> as 228 {
@@ -74,8 +74,8 @@ node "Security Account" <<Sumologic Account>> as 248 {
     rectangle "AwsConfigLogs" <<Container>> as 263 #1168bd
   }
   node "Server Security Dashboard" <<Server Security Dashboard>> as 250 {
-    rectangle "Ec2SystemLogs" <<Container>> as 267 #1168bd
     rectangle "AwsInspectorResults" <<Container>> as 275 #1168bd
+    rectangle "Ec2SystemLogs" <<Container>> as 267 #1168bd
   }
   node "Nework Security Dashboard" <<Nework Security Dashboard>> as 249 {
     rectangle "AwsLoadbalancerAccessLogs" <<Container>> as 279 #1168bd
@@ -85,23 +85,23 @@ node "Security Account" <<Sumologic Account>> as 248 {
     rectangle "Ec2ApplicationLogs" <<Container>> as 271 #1168bd
   }
 }
-173 .[#707070].> 210 : Protects/Filter
 210 .[#707070].> 207 : Write logs
-210 .[#707070].> 216 : HTTPS/H2
+173 .[#707070].> 210 : Protects/Filter
+181 .[#707070].> 216 : Inspects
 263 .[#707070].> 178 : Recieve logs
 255 .[#707070].> 199 : Recieve logs
-243 .[#707070].> 232 : <<https>>\npublish Documentation
 243 .[#707070].> 237 : <<https>>\nPublish QA metrics
+243 .[#707070].> 230 : builds
 275 .[#707070].> 181 : Recieve reports
 243 .[#707070].> 235 : <<https>>\npublish artifacts
-189 .[#707070].> 223 : Loads Data
-267 .[#707070].> 199 : Recieve logs
-243 .[#707070].> 230 : builds
-216 .[#707070].> 199 : Write logs
 216 .[#707070].> 223 : JDBC
-185 .[#707070].> 216 : Run Commands
+267 .[#707070].> 199 : Recieve logs
+243 .[#707070].> 232 : <<https>>\npublish Documentation
+216 .[#707070].> 199 : Write logs
+189 .[#707070].> 223 : Loads Data
+210 .[#707070].> 216 : HTTPS/H2
 223 .[#707070].> 199 : Write logs
-181 .[#707070].> 216 : Inspects
+185 .[#707070].> 216 : Run Commands
 279 .[#707070].> 207 : Recieve logs
 259 .[#707070].> 204 : Recieve logs
 271 .[#707070].> 199 : Recieve logs

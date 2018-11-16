@@ -31,17 +31,17 @@ node "Operation Center Account" <<Aws Account>> as 8 {
   rectangle "Operation Center Account" <<Container>> as 28 #1168bd
 }
 36 .[#707070].> 30 : publish event/audit
-41 .[#707070].> 34 : create/restrict
-41 .[#707070].> 28 : create/restrict
-28 .[#707070].> 30 : Monitor event/audit
-28 .[#707070].> 30 : publish event/audit
-36 .[#707070].> 34 : manage access
-34 .[#707070].> 30 : publish event/audit
-29 .[#707070].> 30 : publish event/audit
 41 .[#707070].> 29 : create/restrict
+41 .[#707070].> 34 : create/restrict
+28 .[#707070].> 30 : publish event/audit
+29 .[#707070].> 30 : publish event/audit
+36 .[#707070].> 29 : manage access
+34 .[#707070].> 30 : publish event/audit
+28 .[#707070].> 30 : Monitor event/audit
 41 .[#707070].> 36 : create/restrict
+41 .[#707070].> 28 : create/restrict
 41 .[#707070].> 30 : create/restrict
 41 .[#707070].> 30 : publish event/audit
+36 .[#707070].> 34 : manage access
 36 .[#707070].> 28 : manage access
-36 .[#707070].> 29 : manage access
 @enduml

@@ -24,6 +24,6 @@ Export-Package: org.apache.activemq.artemis.integration.spring;uses:="
 Import-Package: java.lang,org.apache.activemq.artemis.jms.server.embed
  ded;version="2.6.3.redhat-00004",org.apache.activemq.artemis.spi.core
  .naming;version="2.6.3.redhat-00004",org.springframework.beans;versio
- n="5.1.1.RELEASE",org.springframework.beans.factory;version="5.1.1.RE
- LEASE",org.springframework.beans.factory.config;version="5.1.1.RELEAS
+ n="5.1.2.RELEASE",org.springframework.beans.factory;version="5.1.2.RE
+ LEASE",org.springframework.beans.factory.config;version="5.1.2.RELEAS
  E"

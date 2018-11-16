@@ -162,17 +162,17 @@ Export-Package: org.apache.activemq.artemis.api.config;uses:="org.apac
  ,org.apache.activemq.artemis.core.security,org.apache.activemq.artemi
  s.core.transaction.impl,org.apache.activemq.artemis.core.version,org.
  apache.activemq.artemis.core.version.impl"
-Import-Package: io.netty.bootstrap;version="4.1.30.Final",io.netty.buf
- fer;version="4.1.30.Final",io.netty.channel;version="4.1.30.Final",io
- .netty.channel.epoll;version="4.1.30.Final",io.netty.channel.group;ve
- rsion="4.1.30.Final",io.netty.channel.kqueue;version="4.1.30.Final",i
- o.netty.channel.nio;version="4.1.30.Final",io.netty.channel.socket.ni
- o;version="4.1.30.Final",io.netty.handler.codec;version="4.1.30.Final
- ",io.netty.handler.codec.base64;version="4.1.30.Final",io.netty.handl
- er.codec.http;version="4.1.30.Final",io.netty.handler.codec.http.cook
- ie;version="4.1.30.Final",io.netty.handler.ssl;version="4.1.30.Final"
- ,io.netty.handler.ssl.util;version="4.1.30.Final",io.netty.util;versi
- on="4.1.30.Final",io.netty.util.concurrent;version="4.1.30.Final",jav
+Import-Package: io.netty.bootstrap;version="4.1.31.Final",io.netty.buf
+ fer;version="4.1.31.Final",io.netty.channel;version="4.1.31.Final",io
+ .netty.channel.epoll;version="4.1.31.Final",io.netty.channel.group;ve
+ rsion="4.1.31.Final",io.netty.channel.kqueue;version="4.1.31.Final",i
+ o.netty.channel.nio;version="4.1.31.Final",io.netty.channel.socket.ni
+ o;version="4.1.31.Final",io.netty.handler.codec;version="4.1.31.Final
+ ",io.netty.handler.codec.base64;version="4.1.31.Final",io.netty.handl
+ er.codec.http;version="4.1.31.Final",io.netty.handler.codec.http.cook
+ ie;version="4.1.31.Final",io.netty.handler.ssl;version="4.1.31.Final"
+ ,io.netty.handler.ssl.util;version="4.1.31.Final",io.netty.util;versi
+ on="4.1.31.Final",io.netty.util.concurrent;version="4.1.31.Final",jav
  a.io,java.lang,java.lang.annotation,java.lang.invoke,java.lang.ref,ja
  va.lang.reflect,java.net,java.nio,java.nio.channels,java.nio.charset,
  java.security,java.security.cert,java.text,java.util,java.util.concur

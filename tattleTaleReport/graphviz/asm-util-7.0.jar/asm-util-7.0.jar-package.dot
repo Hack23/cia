@@ -1,0 +1,6 @@
+digraph asm_util_7_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_objectweb_asm_util -> org_objectweb_asm;
+  org_objectweb_asm_util -> org_objectweb_asm_tree;
+  org_objectweb_asm_util -> org_objectweb_asm_tree_analysis;
+}

@@ -20,11 +20,11 @@ Export-Package: org.jasypt.hibernate4.connectionprovider;uses:="org.hi
  ypt.commons,org.jasypt.encryption.pbe,org.jasypt.exceptions,org.jasyp
  t.hibernate4.encryptor"
 Import-Package: java.io,java.lang,java.math,java.security,java.sql,jav
- a.util,org.hibernate;version="5.3.7.Final",org.hibernate.cfg;version=
- "5.3.7.Final",org.hibernate.engine.spi;version="5.3.7.Final",org.hibe
- rnate.service.jdbc.connections.internal,org.hibernate.usertype;versio
- n="5.3.7.Final",org.jasypt.commons;version="0.0.0",org.jasypt.encrypt
- ion;version="0.0.0",org.jasypt.encryption.pbe;version="0.0.0",org.jas
- ypt.encryption.pbe.config;version="0.0.0",org.jasypt.exceptions;versi
- on="0.0.0",org.jasypt.properties;version="0.0.0",org.jasypt.salt;vers
- ion="0.0.0"
+ a.util,org.hibernate;version="5.4.0.CR1",org.hibernate.cfg;version="5
+ .4.0.CR1",org.hibernate.engine.spi;version="5.4.0.CR1",org.hibernate.
+ service.jdbc.connections.internal,org.hibernate.usertype;version="5.4
+ .0.CR1",org.jasypt.commons;version="0.0.0",org.jasypt.encryption;vers
+ ion="0.0.0",org.jasypt.encryption.pbe;version="0.0.0",org.jasypt.encr
+ yption.pbe.config;version="0.0.0",org.jasypt.exceptions;version="0.0.
+ 0",org.jasypt.properties;version="0.0.0",org.jasypt.salt;version="0.0
+ .0"

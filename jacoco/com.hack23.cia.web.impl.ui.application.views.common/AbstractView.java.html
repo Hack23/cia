@@ -98,7 +98,7 @@ public abstract class AbstractView extends Panel implements View {
 	
 	/** The menu item factory. */
 	@Autowired
-	private ApplicationMenuItemFactory menuItemFactory;
+	private transient ApplicationMenuItemFactory menuItemFactory;
 
 
 	/**
@@ -206,7 +206,7 @@ public abstract class AbstractView extends Panel implements View {
 	 * Creates the top header actions for user context.
 	 */
 	private void createTopHeaderActionsForUserContext() {
-<span class="fc bfc" id="L209" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="pc bpc" id="L209" title="1 of 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
 <span class="fc" id="L210">			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();</span>
 <span class="fc" id="L211">			topHeaderRightPanel.addComponent(userHomePageLink);</span>
 <span class="fc" id="L212">			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);</span>
@@ -318,4 +318,4 @@ public abstract class AbstractView extends Panel implements View {
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

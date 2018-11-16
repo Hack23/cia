@@ -47,9 +47,9 @@ Export-Package: org.apache.activemq.artemis,org.apache.activemq.artemi
  mq.artemis.utils.uri;uses:="org.apache.activemq.artemis.api.core,org.
  apache.activemq.artemis.utils.collections,org.apache.commons.beanutil
  s"
-Import-Package: io.netty.buffer;version="4.1.30.Final",io.netty.channe
- l;version="4.1.30.Final",io.netty.handler.ssl;version="4.1.30.Final",
- io.netty.util.internal;version="4.1.30.Final",java.beans,java.io,java
+Import-Package: io.netty.buffer;version="4.1.31.Final",io.netty.channe
+ l;version="4.1.31.Final",io.netty.handler.ssl;version="4.1.31.Final",
+ io.netty.util.internal;version="4.1.31.Final",java.beans,java.io,java
  .lang,java.lang.invoke,java.lang.management,java.lang.ref,java.lang.r
  eflect,java.math,java.net,java.nio,java.nio.charset,java.nio.file,jav
  a.nio.file.attribute,java.security,java.security.spec,java.text,java.

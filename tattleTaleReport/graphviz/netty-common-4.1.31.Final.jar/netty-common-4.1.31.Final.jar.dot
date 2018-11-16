@@ -1,0 +1,6 @@
+digraph netty_common_4_1_31_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  netty_common_4_1_31_Final -> jcl_over_slf4j_1_8_0_beta2;
+  netty_common_4_1_31_Final -> log4j_over_slf4j_1_8_0_beta2;
+  netty_common_4_1_31_Final -> slf4j_api_1_8_0_beta2;
+}

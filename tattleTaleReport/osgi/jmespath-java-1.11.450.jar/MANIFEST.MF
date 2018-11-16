@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: tomcat
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_111
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amazonaws.jmespath
+Bundle-Description: jmespath-java-1.11.450
+Bundle-Name: jmespath-java-1.11.450
+Bundle-Version: 0.0.0
+Export-Package: com.amazonaws.jmespath;uses:="com.fasterxml.jackson.da
+ tabind,com.fasterxml.jackson.databind.node"
+Import-Package: com.fasterxml.jackson.databind;version="2.9.7",com.fas
+ terxml.jackson.databind.node;version="2.9.7",java.io,java.lang,java.m
+ ath,java.util

@@ -540,7 +540,7 @@ Import-Package: cern.colt.list;version="0.0.0",cern.colt.map;version="
  ,org.eclipse.jetty.util.log,org.eclipse.jetty.util.ssl,org.eclipse.je
  tty.util.thread,org.eclipse.jetty.webapp,org.eclipse.jface.text,org.e
  clipse.osgi.service.debug,org.eclipse.osgi.util,org.eclipse.text.edit
- s,org.objectweb.asm;version="0.0.0",org.objectweb.asm.commons,org.obj
- ectweb.asm.signature;version="0.0.0",org.osgi.framework,org.osgi.serv
- ice.prefs,org.w3c.dom;version="1.0",org.xml.sax;version="1.0",org.xml
- .sax.helpers;version="1.0",sun.misc,sun.net.www.protocol.jar
+ s,org.objectweb.asm;version="7.0",org.objectweb.asm.commons,org.objec
+ tweb.asm.signature;version="7.0",org.osgi.framework,org.osgi.service.
+ prefs,org.w3c.dom;version="1.0",org.xml.sax;version="1.0",org.xml.sax
+ .helpers;version="1.0",sun.misc,sun.net.www.protocol.jar

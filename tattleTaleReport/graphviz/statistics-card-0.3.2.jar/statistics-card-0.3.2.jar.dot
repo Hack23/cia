@@ -4,7 +4,7 @@ digraph statistics_card_0_3_2_dependencies {
   statistics_card_0_3_2 -> jackson_annotations_2_9_0;
   statistics_card_0_3_2 -> jackson_databind_2_9_7;
   statistics_card_0_3_2 -> jackson_datatype_jdk8_2_9_7;
-  statistics_card_0_3_2 -> vaadin_server_8_6_0_rc1;
-  statistics_card_0_3_2 -> vaadin_shared_8_6_0_rc1;
+  statistics_card_0_3_2 -> vaadin_server_8_6_1;
+  statistics_card_0_3_2 -> vaadin_shared_8_6_1;
   statistics_card_0_3_2 -> viritin_2_1;
 }

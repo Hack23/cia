@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Implementation-Title: Tree API of ASM, a very small and fast Java byte
+ code manipulation framework
+Bundle-SymbolicName: org.objectweb.asm.tree
+Export-Package: org.objectweb.asm.tree;version="7.0";uses:="org.object
+ web.asm"
+Bundle-Name: org.objectweb.asm.tree
+Bundle-Version: 7.0.0
+Implementation-Version: 7.0
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-DocURL: http://asm.ow2.org
+Import-Package: org.objectweb.asm;version="[7.0,8)"
+Module-Requires: org.objectweb.asm;transitive=true
+

@@ -1,0 +1,34 @@
+digraph service_data_impl_2018_11_17_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_data_impl_2018_11_17_SNAPSHOT -> commons_lang_2_6_0_redhat_7;
+  service_data_impl_2018_11_17_SNAPSHOT -> guava_27_0_jre;
+  service_data_impl_2018_11_17_SNAPSHOT -> hibernate_core_5_4_0_CR1;
+  service_data_impl_2018_11_17_SNAPSHOT -> hibernate_search_engine_5_10_4_Final;
+  service_data_impl_2018_11_17_SNAPSHOT -> hibernate_search_orm_5_10_4_Final;
+  service_data_impl_2018_11_17_SNAPSHOT -> javax_annotation_api_1_3_2;
+  service_data_impl_2018_11_17_SNAPSHOT -> javax_persistence_api_2_2;
+  service_data_impl_2018_11_17_SNAPSHOT -> javers_core_3_14_0;
+  service_data_impl_2018_11_17_SNAPSHOT -> javers_persistence_sql_3_14_0;
+  service_data_impl_2018_11_17_SNAPSHOT -> javers_spring_3_14_0;
+  service_data_impl_2018_11_17_SNAPSHOT -> javers_spring_jpa_3_14_0;
+  service_data_impl_2018_11_17_SNAPSHOT -> lucene_analyzers_common_5_5_5;
+  service_data_impl_2018_11_17_SNAPSHOT -> lucene_core_5_5_5;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_documentcontent_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_dokumentlista_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_dokumentstatus_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_person_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_utskottsforslag_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_riksdagen_votering_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_val_partier_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_worldbank_countries_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_worldbank_data_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_external_worldbank_indicators_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> model_internal_application_user_impl_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> service_data_api_2018_11_17_SNAPSHOT;
+  service_data_impl_2018_11_17_SNAPSHOT -> slf4j_api_1_8_0_beta2;
+  service_data_impl_2018_11_17_SNAPSHOT -> spring_beans_5_1_2_RELEASE;
+  service_data_impl_2018_11_17_SNAPSHOT -> spring_context_5_1_2_RELEASE;
+  service_data_impl_2018_11_17_SNAPSHOT -> spring_jdbc_5_1_2_RELEASE;
+  service_data_impl_2018_11_17_SNAPSHOT -> spring_security_core_5_1_1_RELEASE;
+  service_data_impl_2018_11_17_SNAPSHOT -> spring_tx_5_1_2_RELEASE;
+}

@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -32,7 +31,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -47,13 +45,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
-<span class="fc" id="L50">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, &quot;id&quot;);</span>
-<span class="fc" id="L51">	private static final String[] HIDE_COLUMNS = new String[] { &quot;rm&quot;, &quot;lang&quot;, &quot;noteTitle&quot;, &quot;origin&quot;, &quot;subType&quot;, &quot;note&quot;, &quot;subTitle&quot;, &quot;status&quot;, &quot;label&quot;,</span>
+<span class="fc" id="L48">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, &quot;id&quot;);</span>
+<span class="fc" id="L49">	private static final String[] HIDE_COLUMNS = new String[] { &quot;rm&quot;, &quot;lang&quot;, &quot;noteTitle&quot;, &quot;origin&quot;, &quot;subType&quot;, &quot;note&quot;, &quot;subTitle&quot;, &quot;status&quot;, &quot;label&quot;,</span>
 			&quot;id&quot;, &quot;hit&quot;, &quot;madePublicDate&quot;, &quot;databaseSource&quot;, &quot;domainOrg&quot;, &quot;relatedId&quot;, &quot;org&quot;,
 			&quot;documentType&quot;, &quot;docType&quot;, &quot;debateName&quot;, &quot;tempLabel&quot;, &quot;numberValue&quot;, &quot;systemDate&quot;, &quot;kallId&quot;,
 			&quot;documentFormat&quot;, &quot;documentUrlText&quot;, &quot;documentUrlHtml&quot;, &quot;documentStatusUrlXml&quot;,
 			&quot;committeeReportUrlXml&quot; };
-<span class="fc" id="L56">	private static final String[] COLUMN_ORDER = new String[] { &quot;rm&quot;, &quot;createdDate&quot;, &quot;documentName&quot;, &quot;subType&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;status&quot; };</span>
+<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = new String[] { &quot;rm&quot;, &quot;createdDate&quot;, &quot;documentName&quot;, &quot;subType&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;status&quot; };</span>
 	private static final String DOCUMENT = &quot;Document&quot;;
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = &quot;overview&quot;;
@@ -65,45 +63,45 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 	 * Instantiates a new documents overview page mod content factory impl.
 	 */
 	public DocumentsOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L68">		super();</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L66">		super();</span>
+<span class="fc" id="L67">	}</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L73" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (parameters.contains(PageMode.OVERVIEW.toString()) || (StringUtils.isEmpty(parameters)));</span>
+<span class="fc" id="L71">		return NAME.equals(page);</span>
 	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L77">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L82">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L80">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L84">		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);</span>
+<span class="fc" id="L82">		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);</span>
 
-<span class="fc" id="L86">		LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
+<span class="fc" id="L84">		LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
 
-<span class="fc" id="L88">		final DataContainer&lt;DocumentElement, String&gt; documentElementDataContainer = getApplicationManager()</span>
-<span class="fc" id="L89">				.getDataContainer(DocumentElement.class);</span>
+<span class="fc" id="L86">		final DataContainer&lt;DocumentElement, String&gt; documentElementDataContainer = getApplicationManager()</span>
+<span class="fc" id="L87">				.getDataContainer(DocumentElement.class);</span>
 
-<span class="fc" id="L91">		final List&lt;DocumentElement&gt; pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);</span>
+<span class="fc" id="L89">		final List&lt;DocumentElement&gt; pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);</span>
 
-<span class="fc" id="L93">		pagingUtil.createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L91">		pagingUtil.createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="fc" id="L95">		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,</span>
+<span class="fc" id="L93">		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,</span>
 				COLUMN_ORDER,
 				HIDE_COLUMNS,
 				LISTENER, null, null);
 
-<span class="fc" id="L100">		panel.setContent(panelContent);</span>
-<span class="fc" id="L101">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENTS_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L98">		panel.setContent(panelContent);</span>
+<span class="fc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENTS_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L104">		return panelContent;</span>
+<span class="fc" id="L102">		return panelContent;</span>
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

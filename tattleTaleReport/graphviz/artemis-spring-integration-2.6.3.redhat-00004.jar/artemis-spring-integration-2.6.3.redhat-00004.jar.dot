@@ -2,5 +2,5 @@ digraph artemis_spring_integration_2_6_3_redhat_00004_dependencies {
   node [shape = box, fontsize=10.0];
   artemis_spring_integration_2_6_3_redhat_00004 -> artemis_jms_server_2_6_3_redhat_00004;
   artemis_spring_integration_2_6_3_redhat_00004 -> artemis_server_2_6_3_redhat_00004;
-  artemis_spring_integration_2_6_3_redhat_00004 -> spring_beans_5_1_1_RELEASE;
+  artemis_spring_integration_2_6_3_redhat_00004 -> spring_beans_5_1_2_RELEASE;
 }

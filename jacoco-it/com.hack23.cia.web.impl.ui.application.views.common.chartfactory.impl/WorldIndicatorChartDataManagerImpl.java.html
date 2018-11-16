@@ -61,7 +61,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 <span class="fc" id="L61">		final DataSeries dataSeries = new DataSeries();</span>
 
 
-<span class="fc bfc" id="L64" title="All 2 branches covered.">		for (final Entry&lt;Country, List&lt;WorldBankData&gt;&gt; entry : countryIndicatorsMap.entrySet() ) {</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		for (final Entry&lt;Country, List&lt;WorldBankData&gt;&gt; entry : countryIndicatorsMap.entrySet() ) {</span>
 <span class="fc" id="L65">			series.addSeries(new XYseries().setLabel(entry.getKey().getValue()));</span>
 
 <span class="fc" id="L67">			dataSeries.newSeries();</span>
@@ -74,9 +74,9 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 <span class="fc" id="L74">			}</span>
 <span class="fc" id="L75">		}</span>
 
-<span class="fc" id="L77">		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), false);</span>
-<span class="fc" id="L78">	}</span>
+<span class="nc" id="L77">		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), false);</span>
+<span class="nc" id="L78">	}</span>
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

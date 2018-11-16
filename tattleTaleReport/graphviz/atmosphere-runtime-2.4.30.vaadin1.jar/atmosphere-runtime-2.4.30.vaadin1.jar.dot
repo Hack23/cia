@@ -1,6 +1,7 @@
 digraph atmosphere_runtime_2_4_30_vaadin1_dependencies {
   node [shape = box, fontsize=10.0];
   atmosphere_runtime_2_4_30_vaadin1 -> commons_pool2_2_6_1;
+  atmosphere_runtime_2_4_30_vaadin1 -> javax_annotation_api_1_3_2;
   atmosphere_runtime_2_4_30_vaadin1 -> jaxb_api_2_4_0;
   atmosphere_runtime_2_4_30_vaadin1 -> json_20180813;
   atmosphere_runtime_2_4_30_vaadin1 -> vaadin_slf4j_jdk14_1_6_1;

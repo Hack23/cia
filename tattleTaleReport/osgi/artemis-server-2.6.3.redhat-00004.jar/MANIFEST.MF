@@ -604,17 +604,17 @@ Export-Package: org.apache.activemq.artemis.api.core.management;uses:=
  terConnection;uses:="org.apache.activemq.artemis.core.config,org.apac
  he.activemq.artemis.utils.uri",org.apache.activemq.artemis.utils;uses
  :="org.apache.activemq.artemis.core.config.impl"
-Import-Package: io.netty.bootstrap;version="4.1.30.Final",io.netty.buf
- fer;version="4.1.30.Final",io.netty.channel;version="4.1.30.Final",io
- .netty.channel.epoll;version="4.1.30.Final",io.netty.channel.group;ve
- rsion="4.1.30.Final",io.netty.channel.kqueue;version="4.1.30.Final",i
- o.netty.channel.local;version="4.1.30.Final",io.netty.channel.nio;ver
- sion="4.1.30.Final",io.netty.channel.socket.nio;version="4.1.30.Final
- ",io.netty.handler.codec;version="4.1.30.Final",io.netty.handler.code
- c.http;version="4.1.30.Final",io.netty.handler.codec.http.websocketx;
- version="4.1.30.Final",io.netty.handler.ssl;version="4.1.30.Final",io
- .netty.util;version="4.1.30.Final",io.netty.util.concurrent;version="
- 4.1.30.Final",io.netty.util.internal;version="4.1.30.Final",java.io,j
+Import-Package: io.netty.bootstrap;version="4.1.31.Final",io.netty.buf
+ fer;version="4.1.31.Final",io.netty.channel;version="4.1.31.Final",io
+ .netty.channel.epoll;version="4.1.31.Final",io.netty.channel.group;ve
+ rsion="4.1.31.Final",io.netty.channel.kqueue;version="4.1.31.Final",i
+ o.netty.channel.local;version="4.1.31.Final",io.netty.channel.nio;ver
+ sion="4.1.31.Final",io.netty.channel.socket.nio;version="4.1.31.Final
+ ",io.netty.handler.codec;version="4.1.31.Final",io.netty.handler.code
+ c.http;version="4.1.31.Final",io.netty.handler.codec.http.websocketx;
+ version="4.1.31.Final",io.netty.handler.ssl;version="4.1.31.Final",io
+ .netty.util;version="4.1.31.Final",io.netty.util.concurrent;version="
+ 4.1.31.Final",io.netty.util.internal;version="4.1.31.Final",java.io,j
  ava.lang,java.lang.annotation,java.lang.invoke,java.lang.management,j
  ava.lang.ref,java.lang.reflect,java.math,java.net,java.nio,java.nio.c
  hannels,java.nio.charset,java.nio.file,java.rmi,java.rmi.registry,jav

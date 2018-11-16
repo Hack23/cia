@@ -85,12 +85,12 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 <span class="fc" id="L86">		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+&quot;/&quot;.length(), parameters.length());</span>
 
-<span class="fc" id="L88">		createDataIndicatorSummaryChartPanel(panelContent,indicator);</span>
+<span class="nc" id="L88">		createDataIndicatorSummaryChartPanel(panelContent,indicator);</span>
 
-<span class="fc" id="L90">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
-<span class="fc" id="L91">		panel.setCaption(NAME + &quot;::&quot; + WORLD_INDICATORS);</span>
+<span class="nc" id="L90">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
+<span class="nc" id="L91">		panel.setCaption(NAME + &quot;::&quot; + WORLD_INDICATORS);</span>
 
-<span class="fc" id="L93">		return panelContent;</span>
+<span class="nc" id="L93">		return panelContent;</span>
 
 	}
 
@@ -111,14 +111,14 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 <span class="fc" id="L111">		final Optional&lt;ViewWorldbankIndicatorDataCountrySummary&gt; indicatorSummary = indicatorDataCountrSummaryDailyDataContainer</span>
 <span class="fc" id="L112">				.getAll()</span>
 <span class="fc" id="L113">				.parallelStream()</span>
-<span class="pc bpc" id="L114" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
+<span class="pc bpc" id="L114" title="2 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
 
 
 <span class="fc" id="L117">		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;</span>
 <span class="pc bpc" id="L118" title="1 of 2 branches missed.">		if (indicatorSummary.isPresent()) {</span>
-<span class="fc" id="L119">			indicatorSummaryValue = indicatorSummary.get();</span>
+<span class="nc" id="L119">			indicatorSummaryValue = indicatorSummary.get();</span>
 
-<span class="fc" id="L121">			getFormFactory().addFormPanelTextFields(verticalLayout,</span>
+<span class="nc" id="L121">			getFormFactory().addFormPanelTextFields(verticalLayout,</span>
 					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							AS_LIST);
@@ -130,9 +130,9 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 <span class="fc" id="L131">		final List&lt;WorldBankData&gt; dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);</span>
 
-<span class="fc" id="L133">		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);</span>
+<span class="nc" id="L133">		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);</span>
 
-<span class="fc" id="L135">	}</span>
+<span class="nc" id="L135">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

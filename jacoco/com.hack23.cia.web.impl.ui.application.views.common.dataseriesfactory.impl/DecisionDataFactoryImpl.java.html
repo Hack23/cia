@@ -84,7 +84,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 <span class="pc bpc" id="L85" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
 <span class="pc bpc" id="L86" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
-<span class="pc bpc" id="L87" title="1 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+<span class="pc bpc" id="L87" title="2 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
 				
 <span class="fc" id="L89">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
 
@@ -139,4 +139,4 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	}
 	
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>

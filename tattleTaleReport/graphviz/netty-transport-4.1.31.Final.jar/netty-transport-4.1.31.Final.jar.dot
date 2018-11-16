@@ -1,0 +1,6 @@
+digraph netty_transport_4_1_31_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  netty_transport_4_1_31_Final -> netty_buffer_4_1_31_Final;
+  netty_transport_4_1_31_Final -> netty_common_4_1_31_Final;
+  netty_transport_4_1_31_Final -> netty_resolver_4_1_31_Final;
+}

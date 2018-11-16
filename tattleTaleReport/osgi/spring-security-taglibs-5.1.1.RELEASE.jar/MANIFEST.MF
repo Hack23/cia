@@ -22,10 +22,10 @@ Export-Package: org.springframework.security.taglibs,org.springframewo
  mework.security.web.csrf"
 Import-Package: java.io,java.lang,java.util,javax.servlet,javax.servle
  t.http,javax.servlet.jsp,javax.servlet.jsp.tagext,org.apache.commons.
- logging;version="0.0.0",org.springframework.beans;version="5.1.1.RELE
- ASE",org.springframework.context;version="5.1.1.RELEASE",org.springfr
- amework.core;version="5.1.1.RELEASE",org.springframework.expression;v
- ersion="5.1.1.RELEASE",org.springframework.security.access;version="5
+ logging;version="0.0.0",org.springframework.beans;version="5.1.2.RELE
+ ASE",org.springframework.context;version="5.1.2.RELEASE",org.springfr
+ amework.core;version="5.1.2.RELEASE",org.springframework.expression;v
+ ersion="5.1.2.RELEASE",org.springframework.security.access;version="5
  .1.1.RELEASE",org.springframework.security.access.expression;version=
  "5.1.1.RELEASE",org.springframework.security.core;version="5.1.1.RELE
  ASE",org.springframework.security.core.context;version="5.1.1.RELEASE
@@ -34,5 +34,5 @@ Import-Package: java.io,java.lang,java.util,javax.servlet,javax.servle
  work.security.web.context.support;version="5.1.1.RELEASE",org.springf
  ramework.security.web.csrf;version="5.1.1.RELEASE",org.springframewor
  k.security.web.util;version="5.1.1.RELEASE",org.springframework.util;
- version="5.1.1.RELEASE",org.springframework.web.context;version="5.1.
- 1.RELEASE",org.springframework.web.util;version="5.1.1.RELEASE"
+ version="5.1.2.RELEASE",org.springframework.web.context;version="5.1.
+ 2.RELEASE",org.springframework.web.util;version="5.1.2.RELEASE"
