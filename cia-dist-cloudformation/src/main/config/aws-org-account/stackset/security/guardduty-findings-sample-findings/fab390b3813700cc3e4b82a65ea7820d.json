@@ -1,0 +1,63 @@
+{
+    "Findings": [
+        {
+            "AccountId": "172017021075",
+            "Arn": "arn:aws:guardduty:eu-west-1:172017021075:detector/88b056f84ddb6562d3c890d2f66c3ce0/finding/fab390b3813700cc3e4b82a65ea7820d",
+            "CreatedAt": "2018-11-17T11:20:58.222Z",
+            "Description": "API GeneratedFindingAPIName was invoked from a remote host with IP address 198.51.100.0 that is potentially running the penetration testing tool Kali Linux.",
+            "Id": "fab390b3813700cc3e4b82a65ea7820d",
+            "Partition": "aws",
+            "Region": "eu-west-1",
+            "Resource": {
+                "AccessKeyDetails": {
+                    "AccessKeyId": "GeneratedFindingAccessKeyId",
+                    "PrincipalId": "GeneratedFindingPrincipalId",
+                    "UserName": "GeneratedFindingUserName",
+                    "UserType": "IAMUser"
+                },
+                "ResourceType": "AccessKey"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "AWS_API_CALL",
+                    "AwsApiCallAction": {
+                        "Api": "GeneratedFindingAPIName",
+                        "CallerType": "Remote IP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "GeneratedFindingCityName"
+                            },
+                            "Country": {
+                                "CountryName": "GeneratedFindingCountryName"
+                            },
+                            "GeoLocation": {
+                                "Lat": 0,
+                                "Lon": 0
+                            },
+                            "IpAddressV4": "198.51.100.0",
+                            "Organization": {
+                                "Asn": "11030",
+                                "AsnOrg": "GeneratedFindingASNOrg",
+                                "Isp": "GeneratedFindingISP",
+                                "Org": "GeneratedFindingORG"
+                            }
+                        },
+                        "ServiceName": "GeneratedFindingAPIServiceName"
+                    }
+                },
+                "Archived": false,
+                "Count": 1,
+                "DetectorId": "88b056f84ddb6562d3c890d2f66c3ce0",
+                "EventFirstSeen": "2018-11-17T11:20:58.222Z",
+                "EventLastSeen": "2018-11-17T11:20:58.222Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty"
+            },
+            "Severity": 5,
+            "Title": "API GeneratedFindingAPIName was invoked from a Kali Linux computer.",
+            "Type": "PenTest:IAMUser/KaliLinux",
+            "UpdatedAt": "2018-11-17T11:20:58.222Z"
+        }
+    ]
+}

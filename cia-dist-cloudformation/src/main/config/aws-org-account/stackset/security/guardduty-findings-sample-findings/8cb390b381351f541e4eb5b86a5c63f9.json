@@ -1,0 +1,63 @@
+{
+    "Findings": [
+        {
+            "AccountId": "172017021075",
+            "Arn": "arn:aws:guardduty:eu-west-1:172017021075:detector/88b056f84ddb6562d3c890d2f66c3ce0/finding/8cb390b381351f541e4eb5b86a5c63f9",
+            "CreatedAt": "2018-11-17T11:20:58.218Z",
+            "Description": "APIs commonly used to change the network access permissions for security groups, routes and ACLs, was invoked by IAM principal GeneratedFindingUserName. Such activity is not typically seen from this principal.",
+            "Id": "8cb390b381351f541e4eb5b86a5c63f9",
+            "Partition": "aws",
+            "Region": "eu-west-1",
+            "Resource": {
+                "AccessKeyDetails": {
+                    "AccessKeyId": "GeneratedFindingAccessKeyId",
+                    "PrincipalId": "GeneratedFindingPrincipalId",
+                    "UserName": "GeneratedFindingUserName",
+                    "UserType": "IAMUser"
+                },
+                "ResourceType": "AccessKey"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "AWS_API_CALL",
+                    "AwsApiCallAction": {
+                        "Api": "GeneratedFindingAPIName",
+                        "CallerType": "Remote IP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "GeneratedFindingCityName"
+                            },
+                            "Country": {
+                                "CountryName": "GeneratedFindingCountryName"
+                            },
+                            "GeoLocation": {
+                                "Lat": 0,
+                                "Lon": 0
+                            },
+                            "IpAddressV4": "198.51.100.0",
+                            "Organization": {
+                                "Asn": "-1",
+                                "AsnOrg": "GeneratedFindingASNOrg",
+                                "Isp": "GeneratedFindingISP",
+                                "Org": "GeneratedFindingORG"
+                            }
+                        },
+                        "ServiceName": "GeneratedFindingAPIServiceName"
+                    }
+                },
+                "Archived": false,
+                "Count": 1,
+                "DetectorId": "88b056f84ddb6562d3c890d2f66c3ce0",
+                "EventFirstSeen": "2018-11-17T11:20:58.218Z",
+                "EventLastSeen": "2018-11-17T11:20:58.218Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty"
+            },
+            "Severity": 5,
+            "Title": "Unusual changes to network permissions by GeneratedFindingUserName.",
+            "Type": "Persistence:IAMUser/NetworkPermissions",
+            "UpdatedAt": "2018-11-17T11:20:58.218Z"
+        }
+    ]
+}

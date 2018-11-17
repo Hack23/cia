@@ -1,0 +1,143 @@
+{
+    "Findings": [
+        {
+            "AccountId": "172017021075",
+            "Arn": "arn:aws:guardduty:eu-west-1:172017021075:detector/88b056f84ddb6562d3c890d2f66c3ce0/finding/c0b390b381362231946190e57b9f7a92",
+            "CreatedAt": "2018-11-17T11:20:58.220Z",
+            "Description": "EC2 instance i-99999999 is communicating on an unusual port 25 with a remote host. This port is commonly used to send email.",
+            "Id": "c0b390b381362231946190e57b9f7a92",
+            "Partition": "aws",
+            "Region": "eu-west-1",
+            "Resource": {
+                "InstanceDetails": {
+                    "AvailabilityZone": "GeneratedFindingInstaceAvailabilityZone",
+                    "IamInstanceProfile": {
+                        "Arn": "GeneratedFindingInstanceProfileArn",
+                        "Id": "GeneratedFindingInstanceProfileId"
+                    },
+                    "ImageDescription": "GeneratedFindingInstaceImageDescription",
+                    "ImageId": "ami-99999999",
+                    "InstanceId": "i-99999999",
+                    "InstanceState": "running",
+                    "InstanceType": "m3.xlarge",
+                    "LaunchTime": "2016-08-02T02:05:06Z",
+                    "NetworkInterfaces": [
+                        {
+                            "Ipv6Addresses": [],
+                            "NetworkInterfaceId": "eni-bfcffe88",
+                            "PrivateDnsName": "GeneratedFindingPrivateDnsName",
+                            "PrivateIpAddress": "10.0.0.1",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "GeneratedFindingPrivateName",
+                                    "PrivateIpAddress": "10.0.0.1"
+                                }
+                            ],
+                            "PublicDnsName": "GeneratedFindingPublicDNSName",
+                            "PublicIp": "198.51.100.0",
+                            "SecurityGroups": [
+                                {
+                                    "GroupId": "GeneratedFindingSecurityId",
+                                    "GroupName": "GeneratedFindingSecurityGroupName"
+                                }
+                            ],
+                            "SubnetId": "GeneratedFindingSubnetId",
+                            "VpcId": "GeneratedFindingVPCId"
+                        }
+                    ],
+                    "ProductCodes": [
+                        {}
+                    ],
+                    "Tags": [
+                        {
+                            "Key": "GeneratedFindingInstaceTag1",
+                            "Value": "GeneratedFindingInstaceValue1"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag2",
+                            "Value": "GeneratedFindingInstaceTagValue2"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag3",
+                            "Value": "GeneratedFindingInstaceTagValue3"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag4",
+                            "Value": "GeneratedFindingInstaceTagValue4"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag5",
+                            "Value": "GeneratedFindingInstaceTagValue5"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag6",
+                            "Value": "GeneratedFindingInstaceTagValue6"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag7",
+                            "Value": "GeneratedFindingInstaceTagValue7"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag8",
+                            "Value": "GeneratedFindingInstaceTagValue8"
+                        },
+                        {
+                            "Key": "GeneratedFindingInstaceTag9",
+                            "Value": "GeneratedFindingInstaceTagValue9"
+                        }
+                    ]
+                },
+                "ResourceType": "Instance"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "NETWORK_CONNECTION",
+                    "NetworkConnectionAction": {
+                        "Blocked": false,
+                        "ConnectionDirection": "OUTBOUND",
+                        "LocalPortDetails": {
+                            "Port": 2000,
+                            "PortName": "Unknown"
+                        },
+                        "Protocol": "TCP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "GeneratedFindingCityName"
+                            },
+                            "Country": {
+                                "CountryName": "GeneratedFindingCountryName"
+                            },
+                            "GeoLocation": {
+                                "Lat": 0,
+                                "Lon": 0
+                            },
+                            "IpAddressV4": "198.51.100.0",
+                            "Organization": {
+                                "Asn": "-1",
+                                "AsnOrg": "GeneratedFindingASNOrg",
+                                "Isp": "GeneratedFindingISP",
+                                "Org": "GeneratedFindingORG"
+                            }
+                        },
+                        "RemotePortDetails": {
+                            "Port": 22,
+                            "PortName": "SSH"
+                        }
+                    }
+                },
+                "Archived": false,
+                "Count": 1,
+                "DetectorId": "88b056f84ddb6562d3c890d2f66c3ce0",
+                "EventFirstSeen": "2018-11-17T11:20:58.220Z",
+                "EventLastSeen": "2018-11-17T11:20:58.220Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty"
+            },
+            "Severity": 5,
+            "Title": "Unusual outbound communication on port 25 from EC2 instance i-99999999.",
+            "Type": "Backdoor:EC2/Spambot",
+            "UpdatedAt": "2018-11-17T11:20:58.220Z"
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+{
+    "Findings": [
+        {
+            "AccountId": "172017021075",
+            "Arn": "arn:aws:guardduty:eu-west-1:172017021075:detector/88b056f84ddb6562d3c890d2f66c3ce0/finding/d6b390b3813c93c2a2748c5150e3ab68",
+            "CreatedAt": "2018-11-17T11:20:58.233Z",
+            "Description": "APIs commonly used to discover the users, groups, policies and permissions in an account, was invoked by IAM principal GeneratedFindingUserName under unusual circumstances. Such activity is not typically seen from this principal.",
+            "Id": "d6b390b3813c93c2a2748c5150e3ab68",
+            "Partition": "aws",
+            "Region": "eu-west-1",
+            "Resource": {
+                "AccessKeyDetails": {
+                    "AccessKeyId": "GeneratedFindingAccessKeyId",
+                    "PrincipalId": "GeneratedFindingPrincipalId",
+                    "UserName": "GeneratedFindingUserName",
+                    "UserType": "IAMUser"
+                },
+                "ResourceType": "AccessKey"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "AWS_API_CALL",
+                    "AwsApiCallAction": {
+                        "Api": "GeneratedFindingAPIName",
+                        "CallerType": "Remote IP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "GeneratedFindingCityName"
+                            },
+                            "Country": {
+                                "CountryName": "GeneratedFindingCountryName"
+                            },
+                            "GeoLocation": {
+                                "Lat": 0,
+                                "Lon": 0
+                            },
+                            "IpAddressV4": "198.51.100.0",
+                            "Organization": {
+                                "Asn": "-1",
+                                "AsnOrg": "GeneratedFindingASNOrg",
+                                "Isp": "GeneratedFindingISP",
+                                "Org": "GeneratedFindingORG"
+                            }
+                        },
+                        "ServiceName": "GeneratedFindingAPIServiceName"
+                    }
+                },
+                "Archived": false,
+                "Count": 1,
+                "DetectorId": "88b056f84ddb6562d3c890d2f66c3ce0",
+                "EventFirstSeen": "2018-11-17T11:20:58.233Z",
+                "EventLastSeen": "2018-11-17T11:20:58.233Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty"
+            },
+            "Severity": 5,
+            "Title": "Unusual user permission reconnaissance activity by GeneratedFindingUserName.",
+            "Type": "Recon:IAMUser/UserPermissions",
+            "UpdatedAt": "2018-11-17T11:20:58.233Z"
+        }
+    ]
+}

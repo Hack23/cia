@@ -1,0 +1,63 @@
+{
+    "Findings": [
+        {
+            "AccountId": "172017021075",
+            "Arn": "arn:aws:guardduty:eu-west-1:172017021075:detector/88b056f84ddb6562d3c890d2f66c3ce0/finding/deb390b3813b068c7f34020a5c3149a6",
+            "CreatedAt": "2018-11-17T11:20:58.230Z",
+            "Description": "Successful logins to the AWS Console were seen from multiple countries recently, using the credentials of principal GeneratedFindingUserName. This could be an indication of the unauthorized use of this users password.",
+            "Id": "deb390b3813b068c7f34020a5c3149a6",
+            "Partition": "aws",
+            "Region": "eu-west-1",
+            "Resource": {
+                "AccessKeyDetails": {
+                    "AccessKeyId": "GeneratedFindingAccessKeyId",
+                    "PrincipalId": "GeneratedFindingPrincipalId",
+                    "UserName": "GeneratedFindingUserName",
+                    "UserType": "IAMUser"
+                },
+                "ResourceType": "AccessKey"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "AWS_API_CALL",
+                    "AwsApiCallAction": {
+                        "Api": "GeneratedFindingAPIName",
+                        "CallerType": "Remote IP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "GeneratedFindingCityName"
+                            },
+                            "Country": {
+                                "CountryName": "GeneratedFindingCountryName"
+                            },
+                            "GeoLocation": {
+                                "Lat": 0,
+                                "Lon": 0
+                            },
+                            "IpAddressV4": "198.51.100.0",
+                            "Organization": {
+                                "Asn": "-1",
+                                "AsnOrg": "GeneratedFindingASNOrg",
+                                "Isp": "GeneratedFindingISP",
+                                "Org": "GeneratedFindingORG"
+                            }
+                        },
+                        "ServiceName": "GeneratedFindingAPIServiceName"
+                    }
+                },
+                "Archived": false,
+                "Count": 1,
+                "DetectorId": "88b056f84ddb6562d3c890d2f66c3ce0",
+                "EventFirstSeen": "2018-11-17T11:20:58.230Z",
+                "EventLastSeen": "2018-11-17T11:20:58.230Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty"
+            },
+            "Severity": 5,
+            "Title": "Principal GeneratedFindingUserName logged into the AWS Console from multiple countries recently.",
+            "Type": "UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B",
+            "UpdatedAt": "2018-11-17T11:20:58.230Z"
+        }
+    ]
+}
