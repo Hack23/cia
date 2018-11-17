@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists></mailingLists>
+  <mailingLists/>
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
@@ -97,10 +97,10 @@
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
-    <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
-    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
-    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
+    <sonar.dependencyCheck.htmlReportPath/>
+    <sonar.dependencyCheck.reportPath/>
+    <sonar.zaproxy.htmlReportPath/>
+    <sonar.zaproxy.reportPath/>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.1.2.RELEASE/5.1.3.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.1.2.RELEASE</cia.project.versions.spring>
@@ -110,7 +110,7 @@
     <cia.project.versions.javassist>3.24.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>7.0</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.9</cia.project.versions.cglib>
-    <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
+    <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.8.0-beta2</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.3.0-alpha4</cia.project.versions.logback>
@@ -1181,7 +1181,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence></DependencyConvergence>
+                <DependencyConvergence/>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1449,7 +1449,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
+        <testAdditionalRuntimeArgLine/>
         <test.jvm.path>/usr/lib/jvm/java-8-oracle/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
@@ -1616,7 +1616,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
+                    <mkdir dir="${project.build.directory}/dependency"/>
                   </target>
                 </configuration>
               </execution>
