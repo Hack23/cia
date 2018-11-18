@@ -415,6 +415,7 @@ Resources:
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-sJBhCr0F
+        - arn:aws:inspector:us-west-1:166987590008:rulespackage/0-TxmXimXF
       UserAttributesForFindings:
         - Key: Service
           Value: cia
@@ -998,6 +999,16 @@ Resources:
     Properties:
       VpcId: !Ref 'VPC'
       InternetGatewayId: !Ref 'InternetGateway'
+  EIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  NAT:
+    DependsOn: GatewayToInternet
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt 'EIP.AllocationId'
+      SubnetId: !Ref 'PublicSubnet'
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -1013,7 +1024,7 @@ Resources:
     Properties:
       RouteTableId: !Ref 'PublicRouteTable'
       DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref 'InternetGateway'
+      NatGatewayId: !Ref 'NAT'
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -1047,7 +1058,7 @@ Resources:
         - QuickSightRegionSubnet
         - !Ref 'AWS::Region'
         - CIDR
-      GatewayId: !Ref 'InternetGateway'
+      NatGatewayId: !Ref 'NAT'
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -1746,7 +1757,7 @@ Resources:
         - !Ref 'WebServerSecurityGroup'
       InstanceType: !Ref 'WebServerInstanceType'
       KeyName: !Ref 'KeyName'
-      AssociatePublicIpAddress: 'true'
+      AssociatePublicIpAddress: 'false'
       UserData: !Base64
         Fn::Join:
           - ''
