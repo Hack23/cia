@@ -1702,10 +1702,6 @@
                "Ref":"PublicRouteTable"
             },
             "DestinationCidrBlock":"0.0.0.0/0",
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            },
-            
             "NatGatewayId" : { "Ref" : "NAT" }
          }
       },

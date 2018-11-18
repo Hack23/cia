@@ -1065,7 +1065,6 @@ Resources:
     Properties:
       RouteTableId: !Ref 'PublicRouteTable'
       DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref 'InternetGateway'
       NatGatewayId: !Ref 'NAT'
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
