@@ -67,7 +67,6 @@ Resources:
         detail:
           eventSource:
             - aws.guardduty
-          eventName: []
       Targets:
         - Arn:
             Ref: defaulttopic
@@ -87,7 +86,6 @@ Resources:
         detail:
           eventSource:
             - aws.macie
-          eventName: []
       Targets:
         - Arn:
             Ref: defaulttopic
