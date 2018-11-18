@@ -246,9 +246,6 @@
          },
          "Private3":{
             "CIDR":"10.40.22.0/24"
-         }
-         "PrivateNat":{
-            "CIDR":"10.40.23.0/24"
          }         
       },
       "QuickSightRegionSubnet":{
