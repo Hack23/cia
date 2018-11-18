@@ -1045,10 +1045,10 @@ Resources:
       RouteTableId: !Ref 'NatPublicRouteTable'
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref 'InternetGateway'
-  NatPublicSubnetRouteTableAssociation:
+  NatSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref 'NatPublicSubnet'
+      SubnetId: !Ref 'NatSubnet'
       RouteTableId: !Ref 'NatPublicRouteTable'
   PublicRouteTable:
     Type: AWS::EC2::RouteTable

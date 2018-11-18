@@ -1663,11 +1663,11 @@
             }
          }
       },
-      "NatPublicSubnetRouteTableAssociation":{
+      "NatSubnetRouteTableAssociation":{
          "Type":"AWS::EC2::SubnetRouteTableAssociation",
          "Properties":{
             "SubnetId":{
-               "Ref":"NatPublicSubnet"
+               "Ref":"NatSubnet"
             },
             "RouteTableId":{
                "Ref":"NatPublicRouteTable"
