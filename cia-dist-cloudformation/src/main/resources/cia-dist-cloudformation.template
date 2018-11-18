@@ -1574,6 +1574,20 @@
             }
          }
       },
+	   "EIP" : {
+	      "Type" : "AWS::EC2::EIP",
+	      "Properties" : {
+	        "Domain" : "vpc"
+	      }
+	    },      
+	   "NAT" : {
+	      "DependsOn" : "GatewayToInternet",
+	      "Type" : "AWS::EC2::NatGateway",
+	      "Properties" : {
+	        "AllocationId" : { "Fn::GetAtt" : ["EIP", "AllocationId"]},
+	        "SubnetId" : { "Ref" : "PublicSubnet"}
+	      }
+	    },
       "PublicRouteTable":{
          "Type":"AWS::EC2::RouteTable",
          "Properties":{
@@ -1602,9 +1616,7 @@
                "Ref":"PublicRouteTable"
             },
             "DestinationCidrBlock":"0.0.0.0/0",
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            }
+            "NatGatewayId" : { "Ref" : "NAT" }            
          }
       },
       "PublicSubnetRouteTableAssociation":{
@@ -1676,9 +1688,7 @@
                   "CIDR"
                ]
             },
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            }
+            "NatGatewayId" : { "Ref" : "NAT" }
          }
       },
       "PrivateSubnetRouteTableAssociation":{
@@ -2902,7 +2912,7 @@
             "KeyName":{
                "Ref":"KeyName"
             },
-            "AssociatePublicIpAddress":"true",
+            "AssociatePublicIpAddress":"false",
             "UserData":{
                "Fn::Base64":{
                   "Fn::Join":[
