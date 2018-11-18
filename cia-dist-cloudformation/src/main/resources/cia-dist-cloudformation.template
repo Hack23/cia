@@ -235,9 +235,6 @@
          "Public3":{
             "CIDR":"10.40.12.0/24"
          },
-         "PublicNat":{
-            "CIDR":"10.40.13.0/24"
-         },         
          "Private":{
             "CIDR":"10.40.20.0/24"
          },
@@ -246,7 +243,7 @@
          },
          "Private3":{
             "CIDR":"10.40.22.0/24"
-         }         
+         }
       },
       "QuickSightRegionSubnet":{
          "us-east-1":{
@@ -299,8 +296,7 @@
          "eu-west-1":{
             "FIRST":"eu-west-1a",
             "SECOND":"eu-west-1b",
-            "THIRD":"eu-west-1c",
-            "NAT":"eu-west-1a"            
+            "THIRD":"eu-west-1c"
          },
          "eu-central-1":{
             "FIRST":"eu-central-1a",
@@ -1335,42 +1331,6 @@
             ]
          }
       },
-      "NatSubnet":{
-         "Type":"AWS::EC2::Subnet",
-         "Properties":{
-            "VpcId":{
-               "Ref":"VPC"
-            },
-            "AvailabilityZone":{
-               "Fn::FindInMap":[
-                  "AWSRegionAvailabilityZone",
-                  {
-                     "Ref":"AWS::Region"
-                  },
-                  "NAT"
-               ]
-            },
-            "CidrBlock":{
-               "Fn::FindInMap":[
-                  "SubnetConfig",
-                  "PublicNat",
-                  "CIDR"
-               ]
-            },
-            "Tags":[
-               {
-                  "Key":"Application",
-                  "Value":{
-                     "Ref":"AWS::StackId"
-                  }
-               },
-               {
-                  "Key":"Network",
-                  "Value":"Public"
-               }
-            ]
-         }
-      },
       "PublicSubnet":{
          "Type":"AWS::EC2::Subnet",
          "Properties":{
@@ -1615,65 +1575,6 @@
             }
          }
       },
-	   "EIP" : {
-	      "Type" : "AWS::EC2::EIP",
-	      "Properties" : {
-	        "Domain" : "vpc"
-	      }
-	    },      
-	   "NAT" : {
-	      "DependsOn" : "GatewayToInternet",
-	      "Type" : "AWS::EC2::NatGateway",
-	      "Properties" : {
-	        "AllocationId" : { "Fn::GetAtt" : ["EIP", "AllocationId"]},
-	        "SubnetId" : { "Ref" : "NatSubnet"}
-	      }
-	    },
-	    	    
-	    "NatPublicRouteTable":{
-         "Type":"AWS::EC2::RouteTable",
-         "Properties":{
-            "VpcId":{
-               "Ref":"VPC"
-            },
-            "Tags":[
-               {
-                  "Key":"Application",
-                  "Value":{
-                     "Ref":"AWS::StackId"
-                  }
-               },
-               {
-                  "Key":"Network",
-                  "Value":"Public"
-               }
-            ]
-         }
-      },
-      "NatPublicRoute":{
-         "Type":"AWS::EC2::Route",
-         "DependsOn":"GatewayToInternet",
-         "Properties":{
-            "RouteTableId":{
-               "Ref":"NatPublicRouteTable"
-            },
-            "DestinationCidrBlock":"0.0.0.0/0",
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            }
-         }
-      },
-      "NatSubnetRouteTableAssociation":{
-         "Type":"AWS::EC2::SubnetRouteTableAssociation",
-         "Properties":{
-            "SubnetId":{
-               "Ref":"NatSubnet"
-            },
-            "RouteTableId":{
-               "Ref":"NatPublicRouteTable"
-            }
-         }
-      },
       "PublicRouteTable":{
          "Type":"AWS::EC2::RouteTable",
          "Properties":{
@@ -1702,7 +1603,9 @@
                "Ref":"PublicRouteTable"
             },
             "DestinationCidrBlock":"0.0.0.0/0",
-            "NatGatewayId" : { "Ref" : "NAT" }
+            "GatewayId":{
+               "Ref":"InternetGateway"
+            }
          }
       },
       "PublicSubnetRouteTableAssociation":{
@@ -1774,7 +1677,9 @@
                   "CIDR"
                ]
             },
-            "NatGatewayId" : { "Ref" : "NAT" }
+            "GatewayId":{
+               "Ref":"InternetGateway"
+            }
          }
       },
       "PrivateSubnetRouteTableAssociation":{
@@ -1810,28 +1715,6 @@
             }
          }
       },
-      
-      "NatNetworkAcl":{
-         "Type":"AWS::EC2::NetworkAcl",
-         "Properties":{
-            "VpcId":{
-               "Ref":"VPC"
-            },
-            "Tags":[
-               {
-                  "Key":"Application",
-                  "Value":{
-                     "Ref":"AWS::StackId"
-                  }
-               },
-               {
-                  "Key":"Network",
-                  "Value":"Public"
-               }
-            ]
-         }
-      },
-      
       "PublicNetworkAcl":{
          "Type":"AWS::EC2::NetworkAcl",
          "Properties":{
@@ -1852,7 +1735,6 @@
             ]
          }
       },
-      
       "PrivateNetworkAcl":{
          "Type":"AWS::EC2::NetworkAcl",
          "Properties":{
@@ -2042,52 +1924,7 @@
             }
          }
       },
-      "OutboundNatNetworkAclEntry":{
-         "Type":"AWS::EC2::NetworkAclEntry",
-         "Properties":{
-            "NetworkAclId":{
-               "Ref":"NatNetworkAcl"
-            },
-            "RuleNumber":"100",
-            "Protocol":"6",
-            "RuleAction":"allow",
-            "Egress":"true",
-            "CidrBlock":"0.0.0.0/0",
-            "PortRange":{
-               "From":"0",
-               "To":"65535"
-            }
-         }
-      },
-      "InboundDynamicPortNatNetworkAclEntry":{
-         "Type":"AWS::EC2::NetworkAclEntry",
-         "Properties":{
-            "NetworkAclId":{
-               "Ref":"NatNetworkAcl"
-            },
-            "RuleNumber":"100",
-            "Protocol":"6",
-            "RuleAction":"allow",
-            "Egress":"false",
-            "CidrBlock":"0.0.0.0/0",
-            "PortRange":{
-               "From":"1024",
-               "To":"65535"
-            }
-         }
-      },
-     "PublicSubnetNetworkAclAssociation":{
-         "Type":"AWS::EC2::SubnetNetworkAclAssociation",
-         "Properties":{
-            "SubnetId":{
-               "Ref":"NatSubnet"
-            },
-            "NetworkAclId":{
-               "Ref":"NatNetworkAcl"
-            }
-         }
-      },
-       "PublicSubnetNetworkAclAssociation":{
+      "PublicSubnetNetworkAclAssociation":{
          "Type":"AWS::EC2::SubnetNetworkAclAssociation",
          "Properties":{
             "SubnetId":{
@@ -3066,7 +2903,7 @@
             "KeyName":{
                "Ref":"KeyName"
             },
-            "AssociatePublicIpAddress":"false",
+            "AssociatePublicIpAddress":"true",
             "UserData":{
                "Fn::Base64":{
                   "Fn::Join":[
