@@ -45,7 +45,12 @@
 								"kms:ScheduleKeyDeletion",
 								"kms:CancelKeyDeletion"
 							],
-							"Resource": "*"
+							"Resource": "*",
+							"Condition": {
+								"NumericLessThan": {
+									"aws:MultiFactorAuthAge": "300"
+								}
+							}
 						},
 						{
 							"Sid": "Allow use of the key",
@@ -81,6 +86,9 @@
 												".amazonaws.com"
 											]
 										]
+									},
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
 									}
 								}
 							}
@@ -107,6 +115,11 @@
 							"Condition": {
 								"Bool": {
 									"kms:GrantIsForAWSResource": true
+								},
+								"StringEquals": {
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
+									}
 								}
 							}
 						},
@@ -141,6 +154,9 @@
 											]
 										]
 									}
+								},
+								"kms:CallerAccount": {
+									"Ref": "AWS::AccountId"
 								}
 							}
 						},
@@ -175,6 +191,9 @@
 												".amazonaws.com"
 											]
 										]
+									},
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
 									}
 								}
 							}
