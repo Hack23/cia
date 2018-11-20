@@ -1,0 +1,303 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Creates a KMS key and attaches a policy similar to the default policy",
+	"Metadata": {
+		"Notes": [
+			"EncryptKmsRole and DecryptKmsRole will",
+			""
+		]
+	},
+	"Resources": {
+		"BucketKey": {
+			"Type": "AWS::KMS::Key",
+			"Properties": {
+				"Description": "Key used for s3 default bucket encryption",
+				"Enabled": true,
+				"EnableKeyRotation": true,
+				"KeyPolicy": {
+					"Id": "DefaultKmsPolicy",
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Sid": "Enable IAM User Permissions",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::Join": [
+											":",
+											[
+												"arn:aws:iam:",
+												{
+													"Ref": "AWS::AccountId"
+												},
+												"root"
+											]
+										]
+									}
+								]
+							},
+							"Action": "kms:*",
+							"Resource": "*"
+						},
+						{
+							"Sid": "Allow access for Key Administrators",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::GetAtt": [
+											"AdminKmsRole",
+											"Arn"
+										]
+									}
+								]
+							},
+							"Action": [
+								"kms:Create*",
+								"kms:Describe*",
+								"kms:Enable*",
+								"kms:List*",
+								"kms:Put*",
+								"kms:Update*",
+								"kms:Revoke*",
+								"kms:Disable*",
+								"kms:Get*",
+								"kms:Delete*",
+								"kms:ScheduleKeyDeletion",
+								"kms:CancelKeyDeletion"
+							],
+							"Resource": "*"
+						},
+						{
+							"Sid": "Allow use of the key",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::GetAtt": [
+											"UseKmsRole",
+											"Arn"
+										]
+									}
+								]
+							},
+							"Action": [
+								"kms:Encrypt",
+								"kms:Decrypt",
+								"kms:ReEncrypt*",
+								"kms:GenerateDataKey*",
+								"kms:DescribeKey"
+							],
+							"Resource": "*"
+						},
+						{
+							"Sid": "Allow attachment of persistent resources",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::GetAtt": [
+											"AttachKmsRole",
+											"Arn"
+										]
+									}
+								]
+							},
+							"Action": [
+								"kms:CreateGrant",
+								"kms:ListGrants",
+								"kms:RevokeGrant"
+							],
+							"Resource": "*",
+							"Condition": {
+								"Bool": {
+									"kms:GrantIsForAWSResource": true
+								}
+							}
+						},
+						{
+							"Sid": "Allow decrypting of any value encrypted under this key.",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::GetAtt": [
+											"DecryptKmsRole",
+											"Arn"
+										]
+									}
+								]
+							},
+							"Action": [
+								"kms:Decrypt"
+							],
+							"Resource": "*"
+						},
+						{
+							"Sid": "Allow encrypting under this key.",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": [
+									{
+										"Fn::GetAtt": [
+											"EncryptKmsRole",
+											"Arn"
+										]
+									}
+								]
+							},
+							"Action": [
+								"kms:Encrypt",
+								"kms:GenerateDataKey"
+							],
+							"Resource": "*"
+						}
+					]
+				}
+			}
+		},
+		"BucketKeyAlias": {
+			"Type": "AWS::KMS::Alias",
+			"Properties": {
+				"AliasName": "alias/s3-bucket-encryption-key",
+				"TargetKeyId": {
+					"Ref": "BucketKey"
+				}
+			}
+		},
+		"AdminKmsRole": {
+			"Type": "AWS::IAM::Role",
+			"Metadata": {
+				"Comment": "AdminKmsRole permits management of KMS key without any restrictions."
+			},
+			"Properties": {
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+		"UseKmsRole": {
+			"Type": "AWS::IAM::Role",
+			"Metadata": {
+				"Comment": "UseKmsRole permits use of KMS key without any restrictions."
+			},
+			"Properties": {
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+		"AttachKmsRole": {
+			"Type": "AWS::IAM::Role",
+			"Metadata": {
+				"Comment": "AttachKmsRole permits attach of KMS key without any restrictions."
+			},
+			"Properties": {
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+		"DecryptKmsRole": {
+			"Type": "AWS::IAM::Role",
+			"Metadata": {
+				"Comment": "DecryptKmsRole permits decryption of values encrypted under a KMS key without any restrictions."
+			},
+			"Properties": {
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		},
+		"EncryptKmsRole": {
+			"Type": "AWS::IAM::Role",
+			"Metadata": {
+				"Comment": "EncryptKmsRole permits encryption of values under a KMS key without any restrictions."
+			},
+			"Properties": {
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": [
+									"ec2.amazonaws.com"
+								]
+							},
+							"Action": [
+								"sts:AssumeRole"
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"Outputs": {
+		"BucketKey": {
+			"Description": "BucketKey",
+			"Value": {
+				"Ref": "BucketKey"
+			},
+			"Export": {
+				"Name": {
+					"Ref": "BucketKey"
+				}
+			}
+		}
+	}
+}
