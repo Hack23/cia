@@ -15,31 +15,9 @@
 				"Enabled": true,
 				"EnableKeyRotation": true,
 				"KeyPolicy": {
-					"Id": "DefaultKmsPolicy",
+					"Id": "BucketKmsPolicy",
 					"Version": "2012-10-17",
 					"Statement": [
-						{
-							"Sid": "Enable IAM User Permissions",
-							"Effect": "Allow",
-							"Principal": {
-								"AWS": [
-									{
-										"Fn::Join": [
-											":",
-											[
-												"arn:aws:iam:",
-												{
-													"Ref": "AWS::AccountId"
-												},
-												"root"
-											]
-										]
-									}
-								]
-							},
-							"Action": "kms:*",
-							"Resource": "*"
-						},
 						{
 							"Sid": "Allow access for Key Administrators",
 							"Effect": "Allow",
@@ -89,7 +67,23 @@
 								"kms:GenerateDataKey*",
 								"kms:DescribeKey"
 							],
-							"Resource": "*"
+							"Resource": "*",
+							"Condition": {
+								"StringEquals": {
+									"kms:ViaService": {
+										"Fn::Join": [
+											"",
+											[
+												"s3.",
+												{
+													"Ref": "AWS::Region"
+												},
+												".amazonaws.com"
+											]
+										]
+									}
+								}
+							}
 						},
 						{
 							"Sid": "Allow attachment of persistent resources",
@@ -132,7 +126,23 @@
 							"Action": [
 								"kms:Decrypt"
 							],
-							"Resource": "*"
+							"Resource": "*",
+							"Condition": {
+								"StringEquals": {
+									"kms:ViaService": {
+										"Fn::Join": [
+											"",
+											[
+												"s3.",
+												{
+													"Ref": "AWS::Region"
+												},
+												".amazonaws.com"
+											]
+										]
+									}
+								}
+							}
 						},
 						{
 							"Sid": "Allow encrypting under this key.",
@@ -151,7 +161,23 @@
 								"kms:Encrypt",
 								"kms:GenerateDataKey"
 							],
-							"Resource": "*"
+							"Resource": "*",
+							"Condition": {
+								"StringEquals": {
+									"kms:ViaService": {
+										"Fn::Join": [
+											"",
+											[
+												"s3.",
+												{
+													"Ref": "AWS::Region"
+												},
+												".amazonaws.com"
+											]
+										]
+									}
+								}
+							}
 						}
 					]
 				}
@@ -296,6 +322,17 @@
 			"Export": {
 				"Name": {
 					"Ref": "BucketKey"
+				}
+			}
+		},
+		"AdminKmsRole": {
+			"Description": "AdminKmsRole",
+			"Value": {
+				"Ref": "AdminKmsRole"
+			},
+			"Export": {
+				"Name": {
+					"Ref": "AdminKmsRole"
 				}
 			}
 		}
