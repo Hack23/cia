@@ -126,7 +126,7 @@
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
-    <cia.project.versions.poi>4.0.0</cia.project.versions.poi>
+    <cia.project.versions.poi>4.0.1</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.5</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
@@ -896,7 +896,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.10</version>
+              <version>1.0.0</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -918,7 +918,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.10</version>
+              <version>1.0.0</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -1418,7 +1418,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
         <surefire.version>3.0.0-M1</surefire.version>
       </properties>
     </profile>
@@ -1439,7 +1439,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
         <surefire.version>3.0.0-M1</surefire.version>
       </properties>
     </profile>
@@ -1455,7 +1455,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
         <surefire.version>2.20.1</surefire.version>
       </properties>
     </profile>

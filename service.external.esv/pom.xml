@@ -49,7 +49,7 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -68,7 +68,7 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-scratchpad</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -83,7 +83,7 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
