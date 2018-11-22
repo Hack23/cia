@@ -161,6 +161,9 @@
 							"Resource": "*",
 							"Condition": {
 								"StringEquals": {
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
+									},
 									"kms:ViaService": {
 										"Fn::Join": [
 											"",
@@ -172,9 +175,6 @@
 												".amazonaws.com"
 											]
 										]
-									},
-									"kms:CallerAccount": {
-										"Ref": "AWS::AccountId"
 									}
 								}
 							}
@@ -192,12 +192,21 @@
 							],
 							"Resource": "*",
 							"Condition": {
-								"Bool": {
-									"kms:GrantIsForAWSResource": true
-								},
 								"StringEquals": {
 									"kms:CallerAccount": {
 										"Ref": "AWS::AccountId"
+									},
+									"kms:ViaService": {
+										"Fn::Join": [
+											"",
+											[
+												"s3-",
+												{
+													"Ref": "AWS::Region"
+												},
+												".amazonaws.com"
+											]
+										]
 									}
 								}
 							}
@@ -214,6 +223,9 @@
 							"Resource": "*",
 							"Condition": {
 								"StringEquals": {
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
+									},
 									"kms:ViaService": {
 										"Fn::Join": [
 											"",
@@ -226,9 +238,6 @@
 											]
 										]
 									}
-								},
-								"kms:CallerAccount": {
-									"Ref": "AWS::AccountId"
 								}
 							}
 						},
@@ -245,6 +254,9 @@
 							"Resource": "*",
 							"Condition": {
 								"StringEquals": {
+									"kms:CallerAccount": {
+										"Ref": "AWS::AccountId"
+									},
 									"kms:ViaService": {
 										"Fn::Join": [
 											"",
@@ -256,9 +268,6 @@
 												".amazonaws.com"
 											]
 										]
-									},
-									"kms:CallerAccount": {
-										"Ref": "AWS::AccountId"
 									}
 								}
 							}
