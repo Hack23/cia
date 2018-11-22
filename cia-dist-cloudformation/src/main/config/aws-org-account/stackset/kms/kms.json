@@ -19,17 +19,39 @@
 					"Version": "2012-10-17",
 					"Statement": [
 						{
-							"Sid": "Allow access for Key Administrators",
+							"Sid": "Enable IAM User Permissions",
 							"Effect": "Allow",
 							"Principal": {
 								"AWS": [
 									{
-										"Fn::GetAtt": [
-											"AdminKmsRole",
-											"Arn"
+										"Fn::Join": [
+											"",
+											[
+												"arn:aws:iam::",
+												{
+													"Ref": "AWS::AccountId"
+												},
+												":root"
+											]
 										]
 									}
 								]
+							},
+							"Action": [
+								"kms:*"
+							],
+							"Resource": "*"
+						},
+						{
+							"Sid": "Allow access for Key Administrators",
+							"Effect": "Allow",
+							"Principal": {
+								"AWS": {
+									"Fn::GetAtt": [
+										"AdminKmsRole",
+										"Arn"
+									]
+								}
 							},
 							"Action": [
 								"kms:Create*",
@@ -56,14 +78,12 @@
 							"Sid": "Allow use of the key with role",
 							"Effect": "Allow",
 							"Principal": {
-								"AWS": [
-									{
-										"Fn::GetAtt": [
-											"UseKmsRole",
-											"Arn"
-										]
-									}
-								]
+								"AWS": {
+									"Fn::GetAtt": [
+										"UseKmsRole",
+										"Arn"
+									]
+								}
 							},
 							"Action": [
 								"kms:Encrypt",
@@ -78,14 +98,12 @@
 							"Sid": "Allow attachment of persistent resources with role",
 							"Effect": "Allow",
 							"Principal": {
-								"AWS": [
-									{
-										"Fn::GetAtt": [
-											"AttachKmsRole",
-											"Arn"
-										]
-									}
-								]
+								"AWS": {
+									"Fn::GetAtt": [
+										"AttachKmsRole",
+										"Arn"
+									]
+								}
 							},
 							"Action": [
 								"kms:CreateGrant",
@@ -98,14 +116,12 @@
 							"Sid": "Allow decrypting of any value encrypted under this key with role.",
 							"Effect": "Allow",
 							"Principal": {
-								"AWS": [
-									{
-										"Fn::GetAtt": [
-											"DecryptKmsRole",
-											"Arn"
-										]
-									}
-								]
+								"AWS": {
+									"Fn::GetAtt": [
+										"DecryptKmsRole",
+										"Arn"
+									]
+								}
 							},
 							"Action": [
 								"kms:Decrypt"
@@ -116,14 +132,12 @@
 							"Sid": "Allow encrypting under this key with role.",
 							"Effect": "Allow",
 							"Principal": {
-								"AWS": [
-									{
-										"Fn::GetAtt": [
-											"EncryptKmsRole",
-											"Arn"
-										]
-									}
-								]
+								"AWS": {
+									"Fn::GetAtt": [
+										"EncryptKmsRole",
+										"Arn"
+									]
+								}
 							},
 							"Action": [
 								"kms:Encrypt",
@@ -151,7 +165,7 @@
 										"Fn::Join": [
 											"",
 											[
-												"s3.",
+												"s3-",
 												{
 													"Ref": "AWS::Region"
 												},
@@ -204,7 +218,7 @@
 										"Fn::Join": [
 											"",
 											[
-												"s3.",
+												"s3-",
 												{
 													"Ref": "AWS::Region"
 												},
@@ -235,7 +249,7 @@
 										"Fn::Join": [
 											"",
 											[
-												"s3.",
+												"s3-",
 												{
 													"Ref": "AWS::Region"
 												},
@@ -400,6 +414,27 @@
 			},
 			"Export": {
 				"Name": "AdminKmsRole"
+			}
+		},
+		"AccountId": {
+			"Description": "AccountId",
+			"Value": {
+				"Ref": "AWS::AccountId"
+			}
+		},
+		"Url": {
+			"Description": "Url",
+			"Value": {
+				"Fn::Join": [
+					"",
+					[
+						"s3-",
+						{
+							"Ref": "AWS::Region"
+						},
+						".amazonaws.com"
+					]
+				]
 			}
 		}
 	}
