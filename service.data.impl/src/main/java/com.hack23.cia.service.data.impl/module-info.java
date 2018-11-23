@@ -24,7 +24,10 @@ module com.hack23.cia.service.data.impl {
 
 	requires org.hibernate.search.orm;
 	requires org.hibernate.search.engine;
-
+	requires com.fasterxml.jackson.databind;
+	requires aws.java.sdk.secretsmanager;
+	requires aws.java.sdk.core;
+	
 	requires liquibase.core;
 	requires commons.lang;
 	requires org.apache.commons.lang3;
