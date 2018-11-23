@@ -1614,6 +1614,8 @@ Resources:
                 - ec2.amazonaws.com
             Action:
               - sts:AssumeRole
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
       RoleName: EC2SSMRole
