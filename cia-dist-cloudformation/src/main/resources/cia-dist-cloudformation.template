@@ -147,12 +147,17 @@
          "Description":"The database admin account password",
          "Type":"String",
          "MinLength":"8"
-      },
+      },     
+      "RotationLambda":{
+         "Description":"arn of RotationLambda used to rotate password",
+         "Default":"",
+         "Type":"String"
+      },      
       "DBSnapshotName":{
          "Description":"The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170711 supplied DBUsername,DBPassword need to eris,discord23)",
          "Default":"",
          "Type":"String"
-      },
+      },      
       "DebPackageUrl":{
          "Default":"https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2018.11.16/cia-dist-deb-2018.11.16.deb",
          "Description":"The debian package url",
@@ -405,6 +410,18 @@
                "Fn::Equals":[
                   {
                      "Ref":"DomainName"
+                  },
+                  ""
+               ]
+            }
+         ]
+      },
+      "useRotationLambda":{
+         "Fn::Not":[
+            {
+               "Fn::Equals":[
+                  {
+                     "Ref":"RotationLambda"
                   },
                   ""
                ]
@@ -2083,6 +2100,50 @@
             ]
          }
       },
+      "RDSInstanceRotationSecret": {
+            "Type": "AWS::SecretsManager::Secret", 
+            "Properties": {
+                "Description": "This is the secret for my RDS instance", 
+                 "SecretString":  {
+           			"Fn::Join": [
+                        "", 
+                        ["{\"username\":\"", { "Ref": "DBUsername"}, "\",\"password\":\"", { "Ref": "DBPassword"}, "\"}"]
+                        ]
+                  },                  
+			      "Tags": [
+			        {
+			          "Key": "SecretGroup",
+			          "Value": "RDS"
+			        }
+			      ]
+            }
+        },       
+       "SecretRDSInstanceAttachment": {
+            "Type": "AWS::SecretsManager::SecretTargetAttachment", 
+            "Properties": {
+                "SecretId": {
+                    "Ref": "RDSInstanceRotationSecret"
+                }, 
+                "TargetId": {
+                    "Ref": "pgDB"
+                }, 
+                "TargetType": "AWS::RDS::DBInstance"
+            }
+        }, 
+       	"MySecretRotationSchedule": {
+            "Type": "AWS::SecretsManager::RotationSchedule", 
+            "DependsOn": "SecretRDSInstanceAttachment",
+            "Condition":"useRotationLambda",
+            "Properties": {
+                "SecretId": {
+                    "Ref": "RDSInstanceRotationSecret"
+                }, 
+                "RotationLambdaARN": { "Ref": "RotationLambda"}, 
+                "RotationRules": {
+                    "AutomaticallyAfterDays": 1
+                }
+            }
+       },            
       "pgDB":{
          "Type":"AWS::RDS::DBInstance",
          "DependsOn":"PrivateRoute",
@@ -2128,6 +2189,7 @@
             "PubliclyAccessible":"true",
             "BackupRetentionPeriod":"7",
             "StorageType":"gp2",
+            "DBInstanceIdentifier": "rotation-instance",
             "MasterUsername":{
                "Fn::If":[
                   "useDBSnapshot",
@@ -2135,8 +2197,17 @@
                      "Ref":"AWS::NoValue"
                   },
                   {
-                     "Ref":"DBUsername"
-                  }
+                    "Fn::Join": [
+                        "", 
+                        [
+                            "{{resolve:secretsmanager:", 
+                            {
+                                "Ref": "RDSInstanceRotationSecret"
+                            }, 
+                            ":SecretString:username}}"
+                        ]
+                    ]
+                }
                ]
             },
             "MasterUserPassword":{
@@ -2146,8 +2217,17 @@
                      "Ref":"AWS::NoValue"
                   },
                   {
-                     "Ref":"DBPassword"
-                  }
+                    "Fn::Join": [
+                        "", 
+                        [
+                            "{{resolve:secretsmanager:", 
+                            {
+                                "Ref": "RDSInstanceRotationSecret"
+                            }, 
+                            ":SecretString:password}}"
+                        ]
+                    ]
+                }
                ]
             },
             "DBSnapshotIdentifier":{
