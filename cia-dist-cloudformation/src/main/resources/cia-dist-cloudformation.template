@@ -3081,6 +3081,13 @@
                            "Ref":"DBPassword"
                         },
                         "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                        "echo 'database.aws.secret.arn=",
+                        {
+                           "Ref":"RDSInstanceRotationSecret"
+                        },
+                        "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",                        
+                        "echo 'database.aws.secret=true",
+                        "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
                         "echo 'database.hostname=",
                         {
                            "Fn::GetAtt":[
