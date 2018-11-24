@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl.util;
 
 import java.io.IOException;
 
-import org.springframework.stereotype.Service;
-
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
@@ -33,20 +31,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * The Class SecretCredentialsManager.
  */
-@Service
 public final class SecretCredentialsManager {
 
 	/** The secret name. */
 	private final String secretName;
 	
+	/** The secret enabled. */
+	private final String secretEnabled;
+
+	/** The username. */
+	private final String username;
+
+	/** The password. */
+	private final String password;
+	
 	/**
 	 * Instantiates a new secret credentials manager.
 	 *
-	 * @param secretName the secret name
+	 * @param secretName    the secret name
+	 * @param secretEnabled the secret enabled
+	 * @param username      the username
+	 * @param password      the password
 	 */
-	public SecretCredentialsManager(String secretName) {
+	public SecretCredentialsManager(String secretName, String secretEnabled,String username, String password) {
 		super();
 		this.secretName = secretName;
+		this.secretEnabled = secretEnabled;
+		this.username = username;
+		this.password = password;
 	}
 
 	/**
@@ -55,7 +67,10 @@ public final class SecretCredentialsManager {
 	 * @return the password
 	 * @throws Exception the exception
 	 */
-	public String getPassword() throws Exception {	    
+	public String getPassword() {	   
+		if ("false".equalsIgnoreCase(secretEnabled)) {
+			return password;
+		}
 	    try {
 	    	final AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
                     .withRegion("eu-west-1")
@@ -63,7 +78,7 @@ public final class SecretCredentialsManager {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).password;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	throw e;
+	    	return password;
 	    }
 	}
 
@@ -73,7 +88,11 @@ public final class SecretCredentialsManager {
 	 * @return the username
 	 * @throws Exception the exception
 	 */
-	public String getUsername() throws Exception {	    
+	public String getUsername() {	    
+		if ("false".equalsIgnoreCase(secretEnabled)) {
+			return username;
+		}
+
 	    try {
 	    	final AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
                     .withRegion("eu-west-1")
@@ -81,8 +100,9 @@ public final class SecretCredentialsManager {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).username;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	throw e;
+	    	return username;
 	    }
+	    
 	}
 
 	/**
