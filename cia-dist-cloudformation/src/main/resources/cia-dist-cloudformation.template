@@ -3063,7 +3063,7 @@
                         "ufw enable\n",
                         "#ufw disable\n",
                         "ufw status verbose\n",                       
-                        "echo 'Sysctl hardening'\n"
+                        "echo 'Sysctl hardening'\n",
 						"echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n",
 						"echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n",
 						"echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n",

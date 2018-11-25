@@ -1614,8 +1614,16 @@ Resources:
                 - ec2.amazonaws.com
             Action:
               - sts:AssumeRole
-              - secretsmanager:GetSecretValue
-              - secretsmanager:DescribeSecret
+      Policies:
+        - PolicyName: rdssecretaccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:DescribeSecret
+                  - secretsmanager:GetSecretValue
+                Resource: !Ref 'RDSInstanceRotationSecret'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
       RoleName: EC2SSMRole
@@ -1841,6 +1849,28 @@ Resources:
             - "ufw enable\n"
             - "#ufw disable\n"
             - "ufw status verbose\n"
+            - "echo 'Sysctl hardening'\n"
+            - "echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n"
+            - "echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n"
+            - "echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.all.rp_filter = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.default = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
+              \ \n"
+            - "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.default.log_martians = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.all.send_redirects = 0' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.conf.default.accept_source_route = 0' >> /etc/sysctl.conf\
+              \ \n"
+            - "echo 'net.ipv4.tcp_syncookies = 1' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv4.tcp_timestamps = 0' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv6.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
+            - "echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
+              \ \n"
+            - "sysctl -p\n"
             - "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n"
             - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
             - "sudo bash install\n"
@@ -1872,11 +1902,9 @@ Resources:
             - echo 'database.name=
             - !Ref 'DBName'
             - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
-            - echo 'database.username=
-            - !Ref 'DBUsername'
+            - echo 'database.username=allhaildiscordia
             - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
-            - echo 'database.password=
-            - !Ref 'DBPassword'
+            - echo 'database.password=legalizeit
             - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.aws.secret.arn=
             - !Ref 'RDSInstanceRotationSecret'
