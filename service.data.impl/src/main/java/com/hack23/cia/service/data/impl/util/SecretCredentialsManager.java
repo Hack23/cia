@@ -74,7 +74,6 @@ public final class SecretCredentialsManager {
 	 * Gets the password.
 	 *
 	 * @return the password
-	 * @throws Exception the exception
 	 */
 	public String getPassword() {	   
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
@@ -96,7 +95,6 @@ public final class SecretCredentialsManager {
 	 * Gets the username.
 	 *
 	 * @return the username
-	 * @throws Exception the exception
 	 */
 	public String getUsername() {	    
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
@@ -126,21 +124,121 @@ public final class SecretCredentialsManager {
 		
 		/** The password. */
 		private String password;
+		
+		/** The engine. */
+		private String engine;
+		
+		/** The port. */
+		private String port;
+		
+		/** The host. */
+		private String host;
+		
+		/** The dbname. */
+		private String dbname;	
 
+
+		/**
+		 * Instantiates a new username password.
+		 */
 		public UsernamePassword() {
 			super();
 		}
 
+				
 		/**
 		 * Instantiates a new username password.
 		 *
 		 * @param username the username
 		 * @param password the password
+		 * @param engine   the engine
+		 * @param port     the port
+		 * @param host     the host
+		 * @param dbname   the dbname
 		 */
-		public UsernamePassword(final String username, final String password) {
+		public UsernamePassword(String username, String password, String engine, String port, String host,
+				String dbname) {
 			super();
 			this.username = username;
 			this.password = password;
+			this.engine = engine;
+			this.port = port;
+			this.host = host;
+			this.dbname = dbname;
+		}
+
+
+
+		/**
+		 * Gets the engine.
+		 *
+		 * @return the engine
+		 */
+		public String getEngine() {
+			return engine;
+		}
+
+		/**
+		 * Sets the engine.
+		 *
+		 * @param engine the new engine
+		 */
+		public void setEngine(String engine) {
+			this.engine = engine;
+		}
+
+		/**
+		 * Gets the port.
+		 *
+		 * @return the port
+		 */
+		public String getPort() {
+			return port;
+		}
+
+		/**
+		 * Sets the port.
+		 *
+		 * @param port the new port
+		 */
+		public void setPort(String port) {
+			this.port = port;
+		}
+
+		/**
+		 * Gets the host.
+		 *
+		 * @return the host
+		 */
+		public String getHost() {
+			return host;
+		}
+
+		/**
+		 * Sets the host.
+		 *
+		 * @param host the new host
+		 */
+		public void setHost(String host) {
+			this.host = host;
+		}
+
+		/**
+		 * Gets the dbname.
+		 *
+		 * @return the dbname
+		 */
+		public String getDbname() {
+			return dbname;
+		}
+
+		/**
+		 * Sets the dbname.
+		 *
+		 * @param dbname the new dbname
+		 */
+		public void setDbname(String dbname) {
+			this.dbname = dbname;
 		}
 
 		/**
