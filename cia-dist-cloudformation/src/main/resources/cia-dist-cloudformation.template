@@ -2142,7 +2142,7 @@
       },
       "MySecretRotationSchedule":{
          "Type":"AWS::SecretsManager::RotationSchedule",
-         "DependsOn":"SecretRDSInstanceAttachment",
+         "DependsOn":"SecretRotationLambdaInvokePermission",
          "Condition":"useRotationLambda",
          "Properties":{
             "SecretId":{
@@ -2156,6 +2156,16 @@
             }
          }
       },
+      "SecretRotationLambdaInvokePermission": {
+	    "Type": "AWS::Lambda::Permission",
+	    "DependsOn":"SecretRDSInstanceAttachment",
+	    "Condition":"useRotationLambda",
+	    "Properties": {
+	      "FunctionName": "MySecretsManagerRotationFunction",
+	      "Action": "lambda:InvokeFunction",
+	      "Principal": "secretsmanager.amazonaws.com"
+	    }
+	  },      
       "pgDB":{
          "Type":"AWS::RDS::DBInstance",
          "DependsOn":"PrivateRoute",
