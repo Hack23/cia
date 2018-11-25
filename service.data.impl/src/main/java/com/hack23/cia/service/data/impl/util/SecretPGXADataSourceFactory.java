@@ -26,6 +26,8 @@ import javax.naming.Reference;
 
 import org.postgresql.xa.PGXADataSourceFactory;
 
+import com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReference;
+
 /**
  * A factory for creating SecretPGXADataSource objects.
  */
@@ -41,9 +43,10 @@ public class SecretPGXADataSourceFactory extends PGXADataSourceFactory {
 	 * Load XA data source.
 	 *
 	 * @param ref the ref
+	 * 
 	 * @return the object
 	 */
 	private Object loadXADataSource(Reference ref) {
-		return loadBaseDataSource(new SecretPGXADataSource(), ref);
+		return loadBaseDataSource(new SecretPGXADataSource(((SecretReference)ref).getSecretCredentialsManager()), ref);
 	}
 }

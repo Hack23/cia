@@ -29,6 +29,7 @@ module com.hack23.cia.service.data.impl {
 	requires com.fasterxml.jackson.databind;
 	requires aws.java.sdk.secretsmanager;
 	requires aws.java.sdk.core;
+	requires aws.secretsmanager.caching.java;
 	
 	requires liquibase.core;
 	requires commons.lang;

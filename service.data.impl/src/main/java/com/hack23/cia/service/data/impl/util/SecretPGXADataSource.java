@@ -44,6 +44,25 @@ public class SecretPGXADataSource extends PGXADataSource {
 
 	@Override
 	protected Reference createReference() {
-		return new Reference(getClass().getName(), SecretPGXADataSourceFactory.class.getName(), null);
+		return new SecretReference(secretCredentialsManager,getClass().getName(), SecretPGXADataSourceFactory.class.getName(), null);
+	}
+	
+	
+	public static class SecretReference extends Reference {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private SecretCredentialsManager secretCredentialsManager;
+
+		public SecretReference(SecretCredentialsManager secretCredentialsManager,String className, String factory, String factoryLocation) {
+			super(className,factory, factoryLocation);
+			this.secretCredentialsManager = secretCredentialsManager;
+		}
+
+		public SecretCredentialsManager getSecretCredentialsManager() {
+			return secretCredentialsManager;
+		}		
 	}
 }
