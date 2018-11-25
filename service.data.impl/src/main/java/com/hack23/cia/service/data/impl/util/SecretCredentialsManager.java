@@ -119,13 +119,17 @@ public final class SecretCredentialsManager {
 	/**
 	 * The Class UsernamePassword.
 	 */
-	class UsernamePassword {
+	public static class UsernamePassword {
 		
 		/** The username. */
 		private String username;
 		
 		/** The password. */
 		private String password;
+
+		public UsernamePassword() {
+			super();
+		}
 
 		/**
 		 * Instantiates a new username password.
