@@ -48,16 +48,15 @@
 		</property>
 	</bean>
 	
-
 	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManager">
 		<constructor-arg name="secretName" value="${database.aws.secret.arn}"/>
 		<constructor-arg name="secretEnabled" value="${database.aws.secret}"/>
 		<constructor-arg name="username" value="${database.username}"/>
 		<constructor-arg name="password" value="${database.password}"/>	
-	</bean>
-		
+	</bean>		
 
 	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource" depends-on="secretCredentialsManager">
+		<constructor-arg index="0" ref="secretCredentialsManager"/>
 		<property name="user" value="#{ secretCredentialsManager.username }" />
 		<property name="password" value="#{ secretCredentialsManager.password }" />
 		<property name="serverName" value="${database.hostname}" />

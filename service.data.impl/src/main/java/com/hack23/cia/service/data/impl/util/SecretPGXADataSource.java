@@ -30,9 +30,16 @@ import org.postgresql.xa.PGXADataSource;
  */
 public class SecretPGXADataSource extends PGXADataSource {
 
+	private SecretCredentialsManager secretCredentialsManager;
+	
+	public SecretPGXADataSource(SecretCredentialsManager secretCredentialsManager) {
+		super();
+		this.secretCredentialsManager = secretCredentialsManager;
+	}
+
 	@Override
 	public XAConnection getXAConnection() throws SQLException {
-		return getXAConnection(getUser(), getPassword());
+		return getXAConnection(secretCredentialsManager.getUsername(), secretCredentialsManager.getPassword());
 	}
 
 	@Override
