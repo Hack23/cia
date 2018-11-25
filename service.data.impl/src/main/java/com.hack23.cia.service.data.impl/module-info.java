@@ -13,6 +13,8 @@ module com.hack23.cia.service.data.impl {
 	requires spring.beans;
 	requires spring.jdbc;
 	requires spring.tx;
+	requires postgresql;
+	requires java.naming;
 	
 	requires java.persistence;
 	requires org.hibernate.orm.core;

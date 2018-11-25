@@ -57,7 +57,7 @@
 	</bean>
 		
 
-	<bean id="xADataSource" class="org.postgresql.xa.PGXADataSource" depends-on="secretCredentialsManager">
+	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource" depends-on="secretCredentialsManager">
 		<property name="user" value="#{ secretCredentialsManager.username }" />
 		<property name="password" value="#{ secretCredentialsManager.password }" />
 		<property name="serverName" value="${database.hostname}" />
