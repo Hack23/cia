@@ -3092,15 +3092,9 @@
                            "Ref":"DBName"
                         },
                         "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
-                        "echo 'database.username=",
-                        {
-                           "Ref":"DBUsername"
-                        },
+                        "echo 'database.username=allhaildiscordia",
                         "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
-                        "echo 'database.password=",
-                        {
-                           "Ref":"DBPassword"
-                        },
+                        "echo 'database.password=legalizeit",
                         "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
                         "echo 'database.aws.secret.arn=",
                         {
