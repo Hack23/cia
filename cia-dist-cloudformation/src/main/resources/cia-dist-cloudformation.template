@@ -2737,13 +2737,18 @@
                ]
             },
     		"Policies": [ {
-               "PolicyName": "root",
+               "PolicyName": "rdssecretaccess",
                "PolicyDocument": {
                   "Version" : "2012-10-17",
                   "Statement": [ {
                      "Effect": "Allow",
-                     "Action": "*",
-                     "Resource": "*"
+                      "Action": [
+				        "secretsmanager:DescribeSecret",
+				        "secretsmanager:GetSecretValue"
+				      ],
+                     "Resource": {
+                           "Ref":"RDSInstanceRotationSecret"
+                        }
                   } ]
                }
                } ],
