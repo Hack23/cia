@@ -2736,28 +2736,18 @@
                   }
                ]
             },
-            "Policies":[
-               {
-                  "PolicyName":"AWSSecretsManagerRotationPolicy",
-                  "PolicyDocument":{
-                     "Version":"2012-10-17",
-                     "Statement":[
-                        {
-                           "Effect":"Allow",
-                           "Action":[
-                              "kms:Decrypt",
-                              "kms:DescribeKey",
-                              "kms:GenerateDataKey",
-                              "secretsmanager:DescribeSecret",
-                              "secretsmanager:GetSecretValue"
-                           ],
-                           "Resource":"*"
-                        }
-                     ]
-                  }
+    		"Policies": [ {
+               "PolicyName": "root",
+               "PolicyDocument": {
+                  "Version" : "2012-10-17",
+                  "Statement": [ {
+                     "Effect": "Allow",
+                     "Action": "*",
+                     "Resource": "*"
+                  } ]
                }
-            ],
-            "ManagedPolicyArns":[
+               } ],
+               "ManagedPolicyArns":[
                "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
             ],
             "RoleName":"EC2SSMRole"
