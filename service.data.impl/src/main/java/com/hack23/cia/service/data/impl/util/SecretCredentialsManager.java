@@ -20,6 +20,9 @@ package com.hack23.cia.service.data.impl.util;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
@@ -32,6 +35,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * The Class SecretCredentialsManager.
  */
 public final class SecretCredentialsManager {
+
+	/** The Constant FALSE. */
+	private static final String FALSE = "false";
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(SecretCredentialsManager.class);
 
 	/** The secret name. */
 	private final String secretName;
@@ -68,7 +77,7 @@ public final class SecretCredentialsManager {
 	 * @throws Exception the exception
 	 */
 	public String getPassword() {	   
-		if ("false".equalsIgnoreCase(secretEnabled)) {
+		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return password;
 		}
 	    try {
@@ -78,7 +87,8 @@ public final class SecretCredentialsManager {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).password;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	return password;
+	    	LOGGER.error("Problem getting password from secretsmanager using secret:" + secretName, e);
+	    	throw new RuntimeException(e);
 	    }
 	}
 
@@ -89,7 +99,7 @@ public final class SecretCredentialsManager {
 	 * @throws Exception the exception
 	 */
 	public String getUsername() {	    
-		if ("false".equalsIgnoreCase(secretEnabled)) {
+		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return username;
 		}
 
@@ -100,7 +110,8 @@ public final class SecretCredentialsManager {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).username;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	return username;
+	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
+	    	throw new RuntimeException(e);
 	    }
 	    
 	}
