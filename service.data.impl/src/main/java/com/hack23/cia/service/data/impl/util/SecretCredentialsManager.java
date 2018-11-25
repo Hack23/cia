@@ -23,6 +23,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.amazonaws.secretsmanager.caching.SecretCache;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
@@ -80,11 +81,10 @@ public final class SecretCredentialsManager {
 			return password;
 		}
 	    try {
-	    	final AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
-                    .withRegion("eu-west-1")
-                    .build();	    	
+	    	final SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard()
+                    .withRegion("eu-west-1"));
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).password;	    	
+	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).password;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
 	    	LOGGER.error("Problem getting password from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
@@ -102,11 +102,10 @@ public final class SecretCredentialsManager {
 		}
 
 	    try {
-	    	final AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
-                    .withRegion("eu-west-1")
-                    .build();	    	
+	    	final SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard()
+                    .withRegion("eu-west-1"));
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return mapper.readValue(client.getSecretValue(new GetSecretValueRequest().withSecretId(secretName)).getSecretString(), UsernamePassword.class).username;	    	
+	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).username;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
 	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
