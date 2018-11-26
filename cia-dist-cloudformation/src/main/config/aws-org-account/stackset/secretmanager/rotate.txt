@@ -1,4 +1,4 @@
-aws serverlessrepo create-cloud-formation-change-set --application-id arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSPostgreSQLRotationSingleUser      --stack-name PostgresqlRotatePassword           --parameter-overrides '[{"Name":"endpoint","Value":"https://secretsmanager.region.amazonaws.com"},{"Name":"functionName","Value":"MySecretsManagerRotationFunction"}]' --region eu-west-1
+aws serverlessrepo create-cloud-formation-change-set --application-id arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSPostgreSQLRotationSingleUser      --stack-name PostgresqlRotatePassword           --parameter-overrides '[{"Name":"endpoint","Value":"https://secretsmanager.eu-west-1.amazonaws.com"},{"Name":"functionName","Value":"MySecretsManagerRotationFunction"}]' --region eu-west-1
 
 {
     "ApplicationId": "arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSPostgreSQLRotationSingleUser",
