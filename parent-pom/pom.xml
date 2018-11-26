@@ -129,7 +129,7 @@
     <cia.project.versions.poi>4.0.1</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.5</cia.project.versions.ant>
-    <cia.project.versions.junit>4.12</cia.project.versions.junit>
+    <cia.project.versions.junit>4.13-beta-1</cia.project.versions.junit>
     <cia.project.versions.easymock>4.0.1</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.6.0</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
@@ -740,7 +740,7 @@
             <dependency>
               <groupId>com.jcraft</groupId>
               <artifactId>jsch</artifactId>
-              <version>0.1.54</version>
+              <version>0.1.55</version>
             </dependency>
           </dependencies>
         </plugin>
