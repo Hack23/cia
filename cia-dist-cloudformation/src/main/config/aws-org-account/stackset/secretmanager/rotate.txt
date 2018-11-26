@@ -9,3 +9,9 @@ aws serverlessrepo create-cloud-formation-change-set --application-id arn:aws:se
 
 
 aws cloudformation execute-change-set --change-set-name arn:aws:cloudformation:eu-west-1:172017021075:changeSet/ab084abb2-e9a9-46b2-a116-e06e1e526712/7c54fe28-5fd8-4e1b-acb4-2ec8e77e0300
+
+
+# add subnet config for vpc.
+$ aws lambda update-function-configuration \
+          --function-name arn:aws:lambda:us-west-2:123456789012:function:MySecretsManagerRotationFunction \
+          --vpc-config SubnetIds=<COMMA SEPARATED LIST OF VPC SUBNET IDS>,SecurityGroupIds=<COMMA SEPARATED LIST OF SECURITY GROUP IDs> \
