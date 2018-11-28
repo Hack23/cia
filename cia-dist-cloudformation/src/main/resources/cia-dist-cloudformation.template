@@ -1742,6 +1742,26 @@
                "Ref":"PublicRouteTable"
             }
          }
+      },      
+      "PrivateRouteTable":{
+         "Type":"AWS::EC2::RouteTable",
+         "Properties":{
+            "VpcId":{
+               "Ref":"VPC"
+            },
+            "Tags":[
+               {
+                  "Key":"Application",
+                  "Value":{
+                     "Ref":"AWS::StackId"
+                  }
+               },
+               {
+                  "Key":"Network",
+                  "Value":"Private"
+               }
+            ]
+         }
       },
       "PrivateAppRoute":{
          "Type":"AWS::EC2::Route",
