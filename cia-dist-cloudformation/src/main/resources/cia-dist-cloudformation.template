@@ -239,7 +239,16 @@
          },
          "Public3":{
             "CIDR":"10.40.12.0/24"
+         },         
+         "PrivateApp":{
+            "CIDR":"10.40.30.0/24"
          },
+         "PrivateApp2":{
+            "CIDR":"10.40.31.0/24"
+         },
+         "PrivateApp3":{
+            "CIDR":"10.40.32.0/24"
+         },         
          "Private":{
             "CIDR":"10.40.20.0/24"
          },
@@ -1456,6 +1465,114 @@
             ]
          }
       },
+      "PrivateAppSubnet":{
+         "Type":"AWS::EC2::Subnet",
+         "Properties":{
+            "VpcId":{
+               "Ref":"VPC"
+            },
+            "AvailabilityZone":{
+               "Fn::FindInMap":[
+                  "AWSRegionAvailabilityZone",
+                  {
+                     "Ref":"AWS::Region"
+                  },
+                  "FIRST"
+               ]
+            },
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp",
+                  "CIDR"
+               ]
+            },
+            "Tags":[
+               {
+                  "Key":"Application",
+                  "Value":{
+                     "Ref":"AWS::StackId"
+                  }
+               },
+               {
+                  "Key":"Network",
+                  "Value":"PrivateApp"
+               }
+            ]
+         }
+      },
+      "PrivateAppSubnet2":{
+         "Type":"AWS::EC2::Subnet",
+         "Properties":{
+            "VpcId":{
+               "Ref":"VPC"
+            },
+            "AvailabilityZone":{
+               "Fn::FindInMap":[
+                  "AWSRegionAvailabilityZone",
+                  {
+                     "Ref":"AWS::Region"
+                  },
+                  "SECOND"
+               ]
+            },
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp2",
+                  "CIDR"
+               ]
+            },
+            "Tags":[
+               {
+                  "Key":"Application",
+                  "Value":{
+                     "Ref":"AWS::StackId"
+                  }
+               },
+               {
+                  "Key":"Network",
+                  "Value":"PrivateApp"
+               }
+            ]
+         }
+      },
+      "PrivateAppSubnet3":{
+         "Type":"AWS::EC2::Subnet",
+         "Properties":{
+            "VpcId":{
+               "Ref":"VPC"
+            },
+            "AvailabilityZone":{
+               "Fn::FindInMap":[
+                  "AWSRegionAvailabilityZone",
+                  {
+                     "Ref":"AWS::Region"
+                  },
+                  "THIRD"
+               ]
+            },
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp3",
+                  "CIDR"
+               ]
+            },
+            "Tags":[
+               {
+                  "Key":"Application",
+                  "Value":{
+                     "Ref":"AWS::StackId"
+                  }
+               },
+               {
+                  "Key":"Network",
+                  "Value":"PrivateApp"
+               }
+            ]
+         }
+      },      
       "PrivateSubnet":{
          "Type":"AWS::EC2::Subnet",
          "Properties":{
@@ -1658,6 +1775,52 @@
             }
          }
       },
+      "PrivateAppRoute":{
+         "Type":"AWS::EC2::Route",
+         "DependsOn":"GatewayToInternet",
+         "Properties":{
+            "RouteTableId":{
+               "Ref":"PrivateAppRouteTable"
+            },
+            "DestinationCidrBlock":"0.0.0.0/0",
+            "GatewayId":{
+               "Ref":"InternetGateway"
+            }
+         }
+      },
+      "PrivateAppSubnetRouteTableAssociation":{
+         "Type":"AWS::EC2::SubnetRouteTableAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet"
+            },
+            "RouteTableId":{
+               "Ref":"PrivateAppRouteTable"
+            }
+         }
+      },
+      "PrivateApp2SubnetRouteTableAssociation":{
+         "Type":"AWS::EC2::SubnetRouteTableAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet2"
+            },
+            "RouteTableId":{
+               "Ref":"PrivateAppRouteTable"
+            }
+         }
+      },
+      "PrivateApp3SubnetRouteTableAssociation":{
+         "Type":"AWS::EC2::SubnetRouteTableAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet3"
+            },
+            "RouteTableId":{
+               "Ref":"PrivateAppRouteTable"
+            }
+         }
+      },
       "PrivateRouteTable":{
          "Type":"AWS::EC2::RouteTable",
          "Properties":{
@@ -1733,6 +1896,26 @@
          }
       },
       "PublicNetworkAcl":{
+         "Type":"AWS::EC2::NetworkAcl",
+         "Properties":{
+            "VpcId":{
+               "Ref":"VPC"
+            },
+            "Tags":[
+               {
+                  "Key":"Application",
+                  "Value":{
+                     "Ref":"AWS::StackId"
+                  }
+               },
+               {
+                  "Key":"Network",
+                  "Value":"Public"
+               }
+            ]
+         }
+      },      
+      "PrivateAppNetworkAcl":{
          "Type":"AWS::EC2::NetworkAcl",
          "Properties":{
             "VpcId":{
@@ -1971,6 +2154,39 @@
             },
             "NetworkAclId":{
                "Ref":"PublicNetworkAcl"
+            }
+         }
+      },      
+      "PrivateAppSubnetNetworkAclAssociation":{
+         "Type":"AWS::EC2::SubnetNetworkAclAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet"
+            },
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
+            }
+         }
+      },
+      "PrivateApp2SubnetNetworkAclAssociation":{
+         "Type":"AWS::EC2::SubnetNetworkAclAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet2"
+            },
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
+            }
+         }
+      },
+      "PrivateApp3SubnetNetworkAclAssociation":{
+         "Type":"AWS::EC2::SubnetNetworkAclAssociation",
+         "Properties":{
+            "SubnetId":{
+               "Ref":"PrivateAppSubnet3"
+            },
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
             }
          }
       },
