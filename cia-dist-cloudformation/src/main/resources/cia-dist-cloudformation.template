@@ -2742,32 +2742,32 @@
             "AvailabilityZones":[
                {
                   "Fn::GetAtt":[
-                     "PublicSubnet",
+                     "PrivateAppSubnet",
                      "AvailabilityZone"
                   ]
                },
                {
                   "Fn::GetAtt":[
-                     "PublicSubnet2",
+                     "PrivateAppSubnet2",
                      "AvailabilityZone"
                   ]
                },
                {
                   "Fn::GetAtt":[
-                     "PublicSubnet3",
+                     "PrivateAppSubnet3",
                      "AvailabilityZone"
                   ]
                }
             ],
             "VPCZoneIdentifier":[
                {
-                  "Ref":"PublicSubnet"
+                  "Ref":"PrivateAppSubnet"
                },
                {
-                  "Ref":"PublicSubnet2"
+                  "Ref":"PrivateAppSubnet2"
                },
                {
-                  "Ref":"PublicSubnet3"
+                  "Ref":"PrivateAppSubnet3"
                }
             ],
             "LaunchConfigurationName":{
