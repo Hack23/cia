@@ -1293,9 +1293,9 @@ Resources:
       Description: This is the secret for my RDS instance
       SecretString: !Join
         - ''
-        - - '{"username":"'
+        - - '{"username" : "'
           - !Ref 'DBUsername'
-          - '","password":"'
+          - '","password" : "'
           - !Ref 'DBPassword'
           - '"}'
       Tags:

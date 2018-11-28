@@ -2108,11 +2108,11 @@
                "Fn::Join":[
                   "",
                   [
-                     "{\"username\":\"",
+                     "{\"username\" : \"",
                      {
                         "Ref":"DBUsername"
                      },
-                     "\",\"password\":\"",
+                     "\",\"password\" : \"",
                      {
                         "Ref":"DBPassword"
                      },

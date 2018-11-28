@@ -15,3 +15,16 @@ aws cloudformation execute-change-set --change-set-name arn:aws:cloudformation:e
 $ aws lambda update-function-configuration \
           --function-name arn:aws:lambda:us-west-2:123456789012:function:MySecretsManagerRotationFunction \
           --vpc-config SubnetIds=<COMMA SEPARATED LIST OF VPC SUBNET IDS>,SecurityGroupIds=<COMMA SEPARATED LIST OF SECURITY GROUP IDs> \
+ 
+ 
+ Cleaned up failed rotations.         
+          
+ aws secretsmanager list-secrets --region eu-west-1
+          
+ aws secretsmanager list-secret-version-ids --secret-id arn:aws:secretsmanager:eu-west-1:172017021075:secret:RDSInstanceRotationSecret-rpIG8aIlKVu1-PJ8BzJ --region eu-west-1
+
+ aws secretsmanager get-secret-value --secret-id  arn:aws:secretsmanager:eu-west-1:172017021075:secret:RDSInstanceRotationSecret-rpIG8aIlKVu1-PJ8BzJ --version-stage AWSPENDING --region eu-west-1
+
+ aws secretsmanager update-secret-version-stage --secret-id arn:aws:secretsmanager:eu-west-1:172017021075:secret:RDSInstanceRotationSecret-rpIG8aIlKVu1-PJ8BzJ --version-stage AWSPENDING --remove-from-version-id 94d45cbf-ed59-4fc1-a204-fbcdb8611aa0 --region eu-west-1
+
+ 
