@@ -259,38 +259,6 @@
             "CIDR":"10.40.22.0/24"
          }
       },
-      "QuickSightRegionSubnet":{
-         "us-east-1":{
-            "CIDR":"52.23.63.224/27"
-         },
-         "us-west-2":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "us-west-1":{
-            "CIDR":"54.70.204.128/27"
-         },
-         "eu-west-1":{
-            "CIDR":"52.210.255.224/27"
-         },
-         "eu-central-1":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "ap-northeast-1":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "ap-southeast-1":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "ap-southeast-2":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "sa-east-1":{
-            "CIDR":"10.40.0.0/16"
-         },
-         "cn-north-1":{
-            "CIDR":"10.40.0.0/16"
-         }
-      },
       "AWSRegionAvailabilityZone":{
          "us-east-1":{
             "FIRST":"us-east-1a",
@@ -1782,10 +1750,8 @@
             "RouteTableId":{
                "Ref":"PrivateAppRouteTable"
             },
-            "DestinationCidrBlock":"0.0.0.0/0",
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            }
+		    "DestinationCidrBlock" : "0.0.0.0/0",
+		    "NatGatewayId" : { "Ref" : "NAT" }
          }
       },
       "PrivateAppSubnetRouteTableAssociation":{
@@ -1843,23 +1809,13 @@
       },
       "PrivateRoute":{
          "Type":"AWS::EC2::Route",
-         "DependsOn":"GatewayToInternet",
+         "DependsOn":"NAT",
          "Properties":{
             "RouteTableId":{
                "Ref":"PrivateRouteTable"
             },
-            "DestinationCidrBlock":{
-               "Fn::FindInMap":[
-                  "QuickSightRegionSubnet",
-                  {
-                     "Ref":"AWS::Region"
-                  },
-                  "CIDR"
-               ]
-            },
-            "GatewayId":{
-               "Ref":"InternetGateway"
-            }
+		    "DestinationCidrBlock" : "0.0.0.0/0",
+		    "NatGatewayId" : { "Ref" : "NAT" }
          }
       },
       "PrivateSubnetRouteTableAssociation":{
@@ -1989,50 +1945,68 @@
             }
          }
       },
-      "InboundQuickSightPostgresqlPrivateNetworkAclEntry":{
+      "InboundHttpsPrivateAppNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
-               "Ref":"PrivateNetworkAcl"
+               "Ref":"PrivateAppNetworkAcl"
             },
-            "RuleNumber":"200",
+            "RuleNumber":"100",
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"false",
-            "CidrBlock":{
-               "Fn::FindInMap":[
-                  "QuickSightRegionSubnet",
-                  {
-                     "Ref":"AWS::Region"
-                  },
-                  "CIDR"
-               ]
-            },
+            "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"5432",
-               "To":"5432"
+               "From":"1",
+               "To":"65535"
             }
          }
       },
-      "OutboundQuickSightPostgresqlPrivateNetworkAclEntry":{
+      "OutboundHttpsPrivateAppNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
-               "Ref":"PrivateNetworkAcl"
+               "Ref":"PrivateAppNetworkAcl"
             },
-            "RuleNumber":"200",
+            "RuleNumber":"100",
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"true",
-            "CidrBlock":{
-               "Fn::FindInMap":[
-                  "QuickSightRegionSubnet",
-                  {
-                     "Ref":"AWS::Region"
-                  },
-                  "CIDR"
-               ]
+            "CidrBlock":"0.0.0.0/0",
+            "PortRange":{
+               "From":"1",
+               "To":"65535"
+            }
+         }
+      },     
+      "InboundUdpPrivateAppNetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
             },
+            "RuleNumber":"200",
+            "Protocol":"17",
+            "RuleAction":"allow",
+            "Egress":"false",
+            "CidrBlock":"0.0.0.0/0",
+            "PortRange":{
+               "From":"1",
+               "To":"65535"
+            }
+         }
+      },
+      "OutboundUdpPrivateAppNetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
+            },
+            "RuleNumber":"200",
+            "Protocol":"17",
+            "RuleAction":"allow",
+            "Egress":"true",
+            "CidrBlock":"0.0.0.0/0",
             "PortRange":{
                "From":"1",
                "To":"65535"
@@ -2238,20 +2212,6 @@
                   "SourceSecurityGroupId":{
                      "Ref":"WebServerSecurityGroup"
                   }
-               },
-               {
-                  "IpProtocol":"tcp",
-                  "FromPort":"5432",
-                  "ToPort":"5432",
-                  "CidrIp":{
-                     "Fn::FindInMap":[
-                        "QuickSightRegionSubnet",
-                        {
-                           "Ref":"AWS::Region"
-                        },
-                        "CIDR"
-                     ]
-                  }
                }
             ],
             "SecurityGroupEgress":[
@@ -2261,20 +2221,6 @@
                   "ToPort":"5432",
                   "SourceSecurityGroupId":{
                      "Ref":"WebServerSecurityGroup"
-                  }
-               },
-               {
-                  "IpProtocol":"tcp",
-                  "FromPort":"5432",
-                  "ToPort":"5432",
-                  "CidrIp":{
-                     "Fn::FindInMap":[
-                        "QuickSightRegionSubnet",
-                        {
-                           "Ref":"AWS::Region"
-                        },
-                        "CIDR"
-                     ]
                   }
                }
             ]
@@ -2424,7 +2370,7 @@
             "Engine":"postgres",
             "EngineVersion":"10.5",
             "MultiAZ":"false",
-            "PubliclyAccessible":"true",
+            "PubliclyAccessible":"false",
             "BackupRetentionPeriod":"7",
             "StorageType":"gp2",
             "DBInstanceIdentifier":"rotation-instance",
@@ -3260,7 +3206,7 @@
             "KeyName":{
                "Ref":"KeyName"
             },
-            "AssociatePublicIpAddress":"true",
+            "AssociatePublicIpAddress":"false",
             "UserData":{
                "Fn::Base64":{
                   "Fn::Join":[
