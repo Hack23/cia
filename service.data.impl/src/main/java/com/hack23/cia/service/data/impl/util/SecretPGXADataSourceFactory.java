@@ -36,17 +36,16 @@ public class SecretPGXADataSourceFactory extends PGXADataSourceFactory {
 	@Override
 	public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
 			throws Exception {
-		return loadXADataSource((Reference) obj);
+		return loadSecretXADataSource((Reference) obj);
 	}
 
 	/**
-	 * Load XA data source.
+	 * Load secret XA data source.
 	 *
 	 * @param ref the ref
-	 * 
 	 * @return the object
 	 */
-	private Object loadXADataSource(Reference ref) {
+	private Object loadSecretXADataSource(Reference ref) {
 		return loadBaseDataSource(new SecretPGXADataSource(((SecretReference)ref).getSecretCredentialsManager()), ref);
 	}
 }

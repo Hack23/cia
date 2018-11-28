@@ -19,6 +19,7 @@
 package com.hack23.cia.service.data.impl.util;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * The Class SecretCredentialsManager.
  */
-public final class SecretCredentialsManager {
+public final class SecretCredentialsManager implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The Constant FALSE. */
 	private static final String FALSE = "false";
@@ -78,11 +82,10 @@ public final class SecretCredentialsManager {
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return password;
 		}
-	    try {
-	    	final SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard()
-                    .withRegion("eu-west-1"));
+		
+	    try (SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"))) {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).password;	    	
+	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).password;	    
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
 	    	LOGGER.error("Problem getting password from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
@@ -99,9 +102,7 @@ public final class SecretCredentialsManager {
 			return username;
 		}
 
-	    try {
-	    	final SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard()
-                    .withRegion("eu-west-1"));
+		try (SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"))) {
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).username;	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
