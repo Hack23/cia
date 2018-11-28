@@ -20,6 +20,7 @@ package com.hack23.cia.service.data.impl.util;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +58,8 @@ public final class SecretCredentialsManager implements Serializable {
 	/** The password. */
 	private final String password;
 	
+	private SecretCache secretCache;
+	
 	/**
 	 * Instantiates a new secret credentials manager.
 	 *
@@ -79,17 +82,7 @@ public final class SecretCredentialsManager implements Serializable {
 	 * @return the password
 	 */
 	public String getPassword() {	   
-		if (FALSE.equalsIgnoreCase(secretEnabled)) {
-			return password;
-		}
-		
-	    try (SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"))) {
-	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).password;	    
-	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	LOGGER.error("Problem getting password from secretsmanager using secret:" + secretName, e);
-	    	throw new RuntimeException(e);
-	    }
+		return getSecretField(UsernamePassword::getPassword,password);			
 	}
 
 	/**
@@ -98,18 +91,25 @@ public final class SecretCredentialsManager implements Serializable {
 	 * @return the username
 	 */
 	public String getUsername() {	    
-		if (FALSE.equalsIgnoreCase(secretEnabled)) {
-			return username;
-		}
+		return getSecretField(UsernamePassword::getUsername,username);	    			
+	}
 
-		try (SecretCache secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"))) {
+	private String getSecretField(final Function<UsernamePassword, String> t, String defaultStr) {
+		if (FALSE.equalsIgnoreCase(secretEnabled)) {
+			return defaultStr;
+		} 
+
+		try {
+			if (secretCache == null) {
+				secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"));
+			}
+			
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class).username;	    	
+	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class));	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
 	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
 	    }
-	    
 	}
 
 	/**
