@@ -2518,14 +2518,6 @@
 		    "Domain" : "vpc"
 		  }
 		},		
-	   "NatRoute" : {
-		  "Type" : "AWS::EC2::Route",
-		  "Properties" : {
-		    "RouteTableId" : { "Ref" : "PublicRouteTable" },
-		    "DestinationCidrBlock" : "0.0.0.0/0",
-		    "NatGatewayId" : { "Ref" : "NAT" }
-		  }
-	   },			
       "PublicElasticLoadBalancerV2":{
          "Type":"AWS::ElasticLoadBalancingV2::LoadBalancer",
          "Properties":{
