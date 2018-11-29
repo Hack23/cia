@@ -239,7 +239,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.0.0-RC1</version>
+      <version>5.0.0-RC2</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
