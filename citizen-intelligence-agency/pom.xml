@@ -381,7 +381,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-cloudwatch</artifactId>
-      <version>1.11.458</version>
+      <version>1.11.460</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -408,7 +408,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.458</version>
+      <version>1.11.460</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -440,7 +440,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.458</version>
+      <version>1.11.460</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -909,7 +909,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.31.Final</version>
+      <version>4.1.32.Final</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1032,7 +1032,7 @@
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf</artifactId>
-      <version>1.2.5</version>
+      <version>1.2.6</version>
       <exclusions>
         <exclusion>
           <artifactId>bcpkix-jdk15on</artifactId>

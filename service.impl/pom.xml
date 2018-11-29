@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-core</artifactId>
-      <version>7.14.0.Final</version>
+      <version>7.15.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>mvel2</artifactId>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
-      <version>7.14.0.Final</version>
+      <version>7.15.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-tx</artifactId>
