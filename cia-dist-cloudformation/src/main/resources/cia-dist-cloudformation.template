@@ -1995,7 +1995,7 @@
                ]
             },
             "PortRange":{
-               "From":"1024",
+               "From":"1",
                "To":"65535"
             }
          }
@@ -2010,13 +2010,7 @@
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"true",
-            "CidrBlock": {
-               "Fn::FindInMap":[
-                  "SubnetConfig",
-                  "VPC",
-                  "CIDR"
-               ]
-            },
+            "CidrBlock": "0.0.0.0/0",
             "PortRange":{
                "From":"1",
                "To":"65535"
@@ -3409,8 +3403,31 @@
                   "SourceSecurityGroupId":{
                      "Ref":"PublicLoadBalancerSecurityGroup"
                   }
+               },
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"1024",
+                  "ToPort":"65535",
+                  "SourceSecurityGroupId":{
+                     "Ref":"PublicLoadBalancerSecurityGroup"
+                  }
+               }               
+            ],
+            "SecurityGroupEgress":[
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"1",
+                  "ToPort":"65535",
+                  "CidrIp":"0.0.0.0/0"                                 
+               },
+               {
+                  "IpProtocol":"udp",
+                  "FromPort":"1",
+                  "ToPort":"65535",
+                  "CidrIp": "0.0.0.0/0"                                  
                }
             ]
+            
          }
       },
       "ElasticsearchDomain":{
