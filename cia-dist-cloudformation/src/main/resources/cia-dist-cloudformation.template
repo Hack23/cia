@@ -1941,7 +1941,13 @@
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"false",
-            "CidrBlock":"0.0.0.0/0",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "VPC",
+                  "CIDR"
+               ]
+            },
             "PortRange":{
                "From":"5432",
                "To":"5432"
@@ -1958,14 +1964,20 @@
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"true",
-            "CidrBlock":"0.0.0.0/0",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "VPC",
+                  "CIDR"
+               ]
+            },
             "PortRange":{
                "From":"1",
                "To":"65535"
             }
          }
       },
-      "InboundHttpsPrivateAppNetworkAclEntry":{
+      "InboundPrivateAppNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -1975,14 +1987,20 @@
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"false",
-            "CidrBlock":"0.0.0.0/0",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "VPC",
+                  "CIDR"
+               ]
+            },
             "PortRange":{
-               "From":"1",
+               "From":"1024",
                "To":"65535"
             }
          }
       },
-      "OutboundHttpsPrivateAppNetworkAclEntry":{
+      "OutboundPrivateAppNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -1992,47 +2010,19 @@
             "Protocol":"6",
             "RuleAction":"allow",
             "Egress":"true",
-            "CidrBlock":"0.0.0.0/0",
+            "CidrBlock": {
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "VPC",
+                  "CIDR"
+               ]
+            },
             "PortRange":{
                "From":"1",
                "To":"65535"
             }
          }
       },     
-      "InboundUdpPrivateAppNetworkAclEntry":{
-         "Type":"AWS::EC2::NetworkAclEntry",
-         "Properties":{
-            "NetworkAclId":{
-               "Ref":"PrivateAppNetworkAcl"
-            },
-            "RuleNumber":"200",
-            "Protocol":"17",
-            "RuleAction":"allow",
-            "Egress":"false",
-            "CidrBlock":"0.0.0.0/0",
-            "PortRange":{
-               "From":"1",
-               "To":"65535"
-            }
-         }
-      },
-      "OutboundUdpPrivateAppNetworkAclEntry":{
-         "Type":"AWS::EC2::NetworkAclEntry",
-         "Properties":{
-            "NetworkAclId":{
-               "Ref":"PrivateAppNetworkAcl"
-            },
-            "RuleNumber":"200",
-            "Protocol":"17",
-            "RuleAction":"allow",
-            "Egress":"true",
-            "CidrBlock":"0.0.0.0/0",
-            "PortRange":{
-               "From":"1",
-               "To":"65535"
-            }
-         }
-      },
       "InboundHTTPSPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
@@ -2050,24 +2040,7 @@
             }
          }
       },
-      "InboundHTTPPublicNetworkAclEntry":{
-         "Type":"AWS::EC2::NetworkAclEntry",
-         "Properties":{
-            "NetworkAclId":{
-               "Ref":"PublicNetworkAcl"
-            },
-            "RuleNumber":"101",
-            "Protocol":"6",
-            "RuleAction":"allow",
-            "Egress":"false",
-            "CidrBlock":"0.0.0.0/0",
-            "PortRange":{
-               "From":"80",
-               "To":"80"
-            }
-         }
-      },     
-      "InboundDynamicPortPublicNetworkAclEntry":{
+      "InboundTcpPortPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -2084,7 +2057,7 @@
             }
          }
       },
-      "InboundDynamicPortNtpPublicNetworkAclEntry":{
+      "InboundUdpPortPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -2096,12 +2069,12 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"1024",
                "To":"65535"
             }
          }
       },
-      "OutboundPublicNetworkAclEntry":{
+      "OutboundTcpPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -2113,12 +2086,12 @@
             "Egress":"true",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"0",
+               "From":"1",
                "To":"65535"
             }
          }
       },
-      "OutboundNtpPublicNetworkAclEntry":{
+      "OutboundUdpPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
             "NetworkAclId":{
@@ -2130,8 +2103,8 @@
             "Egress":"true",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"123",
-               "To":"123"
+               "From":"1",
+               "To":"65535"
             }
          }
       },
@@ -2234,8 +2207,9 @@
             }
          }
       },
-      "myDBEC2SecurityGroup":{
+      "DatabaseSecurityGroup":{
          "Type":"AWS::EC2::SecurityGroup",
+         "DependsOn":"WebServerSecurityGroup",
          "Properties":{
             "GroupDescription":"Frontend Access",
             "VpcId":{
@@ -2263,7 +2237,7 @@
             ]
          }
       },
-      "myDBParamGroup":{
+      "DatabaseParamGroup":{
          "Type":"AWS::RDS::DBParameterGroup",
          "Properties":{
             "Description":"Database Parameter Group + pg_stat_statements",
@@ -2334,7 +2308,7 @@
                "Ref":"RDSInstanceRotationSecret"
             },
             "TargetId":{
-               "Ref":"pgDB"
+               "Ref":"Database"
             },
             "TargetType":"AWS::RDS::DBInstance"
          }
@@ -2365,9 +2339,9 @@
 	      "Principal": "secretsmanager.amazonaws.com"
 	    }
 	  },      
-      "pgDB":{
+      "Database":{
          "Type":"AWS::RDS::DBInstance",
-         "DependsOn":"PrivateRoute",
+         "DependsOn": ["PrivateRoute", "DatabaseSecurityGroup"],
          "Properties":{
             "DBName":{
                "Fn::If":[
@@ -2466,12 +2440,12 @@
                "Ref":"myDBSubnetGroup"
             },
             "DBParameterGroupName":{
-               "Ref":"myDBParamGroup"
+               "Ref":"DatabaseParamGroup"
             },
             "VPCSecurityGroups":[
                {
                   "Fn::GetAtt":[
-                     "myDBEC2SecurityGroup",
+                     "DatabaseSecurityGroup",
                      "GroupId"
                   ]
                }
@@ -2744,7 +2718,13 @@
                   "IpProtocol":"tcp",
                   "FromPort":"8443",
                   "ToPort":"8443",
-                  "CidrIp":"0.0.0.0/0"
+                  "CidrIp":{
+		               "Fn::FindInMap":[
+		                  "SubnetConfig",
+		                  "VPC",
+		                  "CIDR"
+		               ]
+		            }                                    
                }
             ]
          }
@@ -2753,7 +2733,7 @@
          "Type":"AWS::AutoScaling::AutoScalingGroup",
          "DependsOn":[
             "PublicRoute",
-            "pgDB"
+            "Database"
          ],
          "Properties":{
             "AvailabilityZones":[
@@ -3354,7 +3334,7 @@
                         "echo 'database.hostname=",
                         {
                            "Fn::GetAtt":[
-                              "pgDB",
+                              "Database",
                               "Endpoint.Address"
                            ]
                         },
@@ -3415,6 +3395,7 @@
       },
       "WebServerSecurityGroup":{
          "Type":"AWS::EC2::SecurityGroup",
+         "DependsOn":"PublicLoadBalancerSecurityGroup",
          "Properties":{
             "GroupDescription":"Allow access from load balancer and bastion as well as outbound HTTP and HTTPS traffic",
             "VpcId":{
@@ -3495,14 +3476,14 @@
                   "jdbc:postgresql://",
                   {
                      "Fn::GetAtt":[
-                        "pgDB",
+                        "Database",
                         "Endpoint.Address"
                      ]
                   },
                   ":",
                   {
                      "Fn::GetAtt":[
-                        "pgDB",
+                        "Database",
                         "Endpoint.Port"
                      ]
                   },
