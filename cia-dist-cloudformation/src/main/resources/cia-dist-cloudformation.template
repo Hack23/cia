@@ -2710,16 +2710,16 @@
             "SecurityGroupEgress":[
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"8443",
-                  "ToPort":"8443",
-                  "CidrIp":{
-		               "Fn::FindInMap":[
-		                  "SubnetConfig",
-		                  "VPC",
-		                  "CIDR"
-		               ]
-		            }                                    
-               }
+                  "FromPort":"1",
+                  "ToPort":"65535",
+                  "CidrIp": "0.0.0.0/0"                                    
+               },
+               {
+                  "IpProtocol":"udp",
+                  "FromPort":"1",
+                  "ToPort":"65535",
+                  "CidrIp": "0.0.0.0/0"                                    
+               }              
             ]
          }
       },
@@ -3406,11 +3406,15 @@
                },
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1024",
+                  "FromPort":"1",
                   "ToPort":"65535",
-                  "SourceSecurityGroupId":{
-                     "Ref":"PublicLoadBalancerSecurityGroup"
-                  }
+                  "CidrIp": "0.0.0.0/0"
+               },
+               {
+                  "IpProtocol":"udp",
+                  "FromPort":"1",
+                  "ToPort":"65535",
+                  "CidrIp": "0.0.0.0/0"
                }               
             ],
             "SecurityGroupEgress":[
