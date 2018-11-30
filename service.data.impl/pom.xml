@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.460</version>
+      <version>1.11.461</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
