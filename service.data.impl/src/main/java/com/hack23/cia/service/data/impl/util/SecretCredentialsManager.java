@@ -82,7 +82,7 @@ public final class SecretCredentialsManager implements Serializable {
 	 * @return the password
 	 */
 	public String getPassword() {	   
-		return getSecretField(UsernamePassword::getPassword,password);			
+		return getSecretField(SecretData::getPassword,password);			
 	}
 
 	/**
@@ -91,10 +91,10 @@ public final class SecretCredentialsManager implements Serializable {
 	 * @return the username
 	 */
 	public String getUsername() {	    
-		return getSecretField(UsernamePassword::getUsername,username);	    			
+		return getSecretField(SecretData::getUsername,username);	    			
 	}
 
-	private String getSecretField(final Function<UsernamePassword, String> t, String defaultStr) {
+	private String getSecretField(final Function<SecretData, String> t, String defaultStr) {
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return defaultStr;
 		} 
@@ -105,174 +105,11 @@ public final class SecretCredentialsManager implements Serializable {
 			}
 			
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),UsernamePassword.class));	    	
+	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),SecretData.class));	    	
 	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
 	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
 	    }
 	}
 
-	/**
-	 * The Class UsernamePassword.
-	 */
-	public static class UsernamePassword {
-		
-		/** The username. */
-		private String username;
-		
-		/** The password. */
-		private String password;
-		
-		/** The engine. */
-		private String engine;
-		
-		/** The port. */
-		private String port;
-		
-		/** The host. */
-		private String host;
-		
-		/** The dbname. */
-		private String dbname;	
-
-
-		/**
-		 * Instantiates a new username password.
-		 */
-		public UsernamePassword() {
-			super();
-		}
-
-				
-		/**
-		 * Instantiates a new username password.
-		 *
-		 * @param username the username
-		 * @param password the password
-		 * @param engine   the engine
-		 * @param port     the port
-		 * @param host     the host
-		 * @param dbname   the dbname
-		 */
-		public UsernamePassword(String username, String password, String engine, String port, String host,
-				String dbname) {
-			super();
-			this.username = username;
-			this.password = password;
-			this.engine = engine;
-			this.port = port;
-			this.host = host;
-			this.dbname = dbname;
-		}
-
-
-
-		/**
-		 * Gets the engine.
-		 *
-		 * @return the engine
-		 */
-		public String getEngine() {
-			return engine;
-		}
-
-		/**
-		 * Sets the engine.
-		 *
-		 * @param engine the new engine
-		 */
-		public void setEngine(String engine) {
-			this.engine = engine;
-		}
-
-		/**
-		 * Gets the port.
-		 *
-		 * @return the port
-		 */
-		public String getPort() {
-			return port;
-		}
-
-		/**
-		 * Sets the port.
-		 *
-		 * @param port the new port
-		 */
-		public void setPort(String port) {
-			this.port = port;
-		}
-
-		/**
-		 * Gets the host.
-		 *
-		 * @return the host
-		 */
-		public String getHost() {
-			return host;
-		}
-
-		/**
-		 * Sets the host.
-		 *
-		 * @param host the new host
-		 */
-		public void setHost(String host) {
-			this.host = host;
-		}
-
-		/**
-		 * Gets the dbname.
-		 *
-		 * @return the dbname
-		 */
-		public String getDbname() {
-			return dbname;
-		}
-
-		/**
-		 * Sets the dbname.
-		 *
-		 * @param dbname the new dbname
-		 */
-		public void setDbname(String dbname) {
-			this.dbname = dbname;
-		}
-
-		/**
-		 * Gets the username.
-		 *
-		 * @return the username
-		 */
-		public String getUsername() {
-			return username;
-		}
-
-		/**
-		 * Sets the username.
-		 *
-		 * @param username the new username
-		 */
-		public void setUsername(String username) {
-			this.username = username;
-		}
-
-		/**
-		 * Gets the password.
-		 *
-		 * @return the password
-		 */
-		public String getPassword() {
-			return password;
-		}
-
-		/**
-		 * Sets the password.
-		 *
-		 * @param password the new password
-		 */
-		public void setPassword(String password) {
-			this.password = password;
-		}
-	}
 }
