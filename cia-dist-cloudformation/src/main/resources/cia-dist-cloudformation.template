@@ -1989,7 +1989,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1024",
+               "From":"80",
                "To":"65535"
             }
          }
@@ -2023,7 +2023,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1024",
+               "From":"53",
                "To":"65535"
             }
          }
@@ -2040,7 +2040,7 @@
             "Egress":"true",
             "CidrBlock": "0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"53",
                "To":"65535"
             }
          }
@@ -2057,7 +2057,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"443",
+               "From":"80",
                "To":"65535"
             }
          }
@@ -2074,7 +2074,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1024",
+               "From":"53",
                "To":"65535"
             }
          }
@@ -2108,7 +2108,7 @@
             "Egress":"true",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"53",
                "To":"65535"
             }
          }

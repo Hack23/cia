@@ -1203,7 +1203,7 @@ Resources:
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1024'
+        From: '80'
         To: '65535'
   OutboundPrivateAppNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
@@ -1227,7 +1227,7 @@ Resources:
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1024'
+        From: '53'
         To: '65535'
   OutboundUdpPrivateAppNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
@@ -1239,7 +1239,7 @@ Resources:
       Egress: 'true'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1'
+        From: '53'
         To: '65535'
   InboundTcpPortPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
@@ -1251,7 +1251,7 @@ Resources:
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '443'
+        From: '80'
         To: '65535'
   InboundUdpPortPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
@@ -1263,7 +1263,7 @@ Resources:
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1024'
+        From: '53'
         To: '65535'
   OutboundTcpPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
@@ -1287,7 +1287,7 @@ Resources:
       Egress: 'true'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1'
+        From: '53'
         To: '65535'
   PublicSubnetNetworkAclAssociation:
     Type: AWS::EC2::SubnetNetworkAclAssociation
