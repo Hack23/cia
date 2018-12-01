@@ -1972,7 +1972,7 @@
                ]
             },
             "PortRange":{
-               "From":"1",
+               "From":"1024",
                "To":"65535"
             }
          }
@@ -1989,7 +1989,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"1024",
                "To":"65535"
             }
          }
@@ -2006,11 +2006,45 @@
             "Egress":"true",
             "CidrBlock": "0.0.0.0/0",
             "PortRange":{
+               "From":"80",
+               "To":"65535"
+            }
+         }
+      },
+      "InboundUdpPrivateAppNetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
+            },
+            "RuleNumber":"200",
+            "Protocol":"17",
+            "RuleAction":"allow",
+            "Egress":"false",
+            "CidrBlock":"0.0.0.0/0",
+            "PortRange":{
+               "From":"1024",
+               "To":"65535"
+            }
+         }
+      },
+      "OutboundUdpPrivateAppNetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateAppNetworkAcl"
+            },
+            "RuleNumber":"200",
+            "Protocol":"17",
+            "RuleAction":"allow",
+            "Egress":"true",
+            "CidrBlock": "0.0.0.0/0",
+            "PortRange":{
                "From":"1",
                "To":"65535"
             }
          }
-      },     
+      },
       "InboundTcpPortPublicNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
@@ -2023,7 +2057,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"443",
                "To":"65535"
             }
          }
@@ -2040,7 +2074,7 @@
             "Egress":"false",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"1024",
                "To":"65535"
             }
          }
@@ -2057,7 +2091,7 @@
             "Egress":"true",
             "CidrBlock":"0.0.0.0/0",
             "PortRange":{
-               "From":"1",
+               "From":"80",
                "To":"65535"
             }
          }
@@ -2199,8 +2233,8 @@
             "SecurityGroupEgress":[
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
+                  "FromPort":"5432",
+                  "ToPort":"5432",
                   "SourceSecurityGroupId":{
                      "Ref":"WebServerSecurityGroup"
                   }
@@ -2679,30 +2713,24 @@
             "SecurityGroupIngress":[
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
+                  "FromPort":"443",
+                  "ToPort":"443",
                   "CidrIp":"0.0.0.0/0"
-               },
-               {
-                  "IpProtocol":"udp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp":"0.0.0.0/0"
-               }              
+               }            
             ],
             "SecurityGroupEgress":[
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp": "0.0.0.0/0"                                    
-               },
-               {
-                  "IpProtocol":"udp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp": "0.0.0.0/0"                                    
-               }              
+                  "FromPort":"8443",
+                  "ToPort":"8443",
+                  "CidrIp": {
+		               "Fn::FindInMap":[
+		                  "SubnetConfig",
+		                  "VPC",
+		                  "CIDR"
+		               ]
+		          }                            
+               }             
             ]
          }
       },
@@ -3389,30 +3417,74 @@
                },
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp": "0.0.0.0/0"
+                  "FromPort":"80",
+                  "ToPort":"80",
+                  "CidrIp":"0.0.0.0/0"
                },
                {
+                  "IpProtocol":"tcp",
+                  "FromPort":"443",
+                  "ToPort":"443",
+                  "CidrIp":"0.0.0.0/0"
+               },              
+               {
                   "IpProtocol":"udp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp": "0.0.0.0/0"
-               }               
+                  "FromPort":"123",
+                  "ToPort":"123",
+                  "CidrIp":"0.0.0.0/0"
+               }, 
+               {
+                  "IpProtocol":"udp",
+                  "FromPort":"53",
+                  "ToPort":"53",
+                  "CidrIp":"0.0.0.0/0"
+               }, 
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"53",
+                  "ToPort":"53",
+                  "CidrIp":"0.0.0.0/0"
+               } 
             ],
             "SecurityGroupEgress":[
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp":"0.0.0.0/0"                                 
+                  "FromPort":"8443",
+                  "ToPort":"8443",
+                  "SourceSecurityGroupId":{
+                     "Ref":"PublicLoadBalancerSecurityGroup"
+                  }
+               },
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"80",
+                  "ToPort":"80",
+                  "CidrIp":"0.0.0.0/0"
+               },
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"443",
+                  "ToPort":"443",
+                  "CidrIp":"0.0.0.0/0"
+               },              
+               {
+                  "IpProtocol":"udp",
+                  "FromPort":"123",
+                  "ToPort":"123",
+                  "CidrIp":"0.0.0.0/0"
                },
                {
                   "IpProtocol":"udp",
-                  "FromPort":"1",
-                  "ToPort":"65535",
-                  "CidrIp": "0.0.0.0/0"                                  
-               }
+                  "FromPort":"53",
+                  "ToPort":"53",
+                  "CidrIp":"0.0.0.0/0"
+               }, 
+               {
+                  "IpProtocol":"tcp",
+                  "FromPort":"53",
+                  "ToPort":"53",
+                  "CidrIp":"0.0.0.0/0"
+               } 
             ]
             
          }
