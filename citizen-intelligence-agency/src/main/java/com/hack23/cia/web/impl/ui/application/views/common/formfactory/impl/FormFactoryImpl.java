@@ -117,7 +117,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @param property the property
 	 * @return the abstract field
 	 */
-	private AbstractField createField(final String property) {
+	private static AbstractField<?> createField(final String property) {
 		if (property.contains(HIDDEN_FIELD_NAME)) {
 			return new PasswordField();
 		} else {
