@@ -441,7 +441,8 @@ Resources:
                   - ec2:RunInstances
                   - ec2:CreateTags
                 Resource:
-                  - '*'
+                  - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
+                  - !Sub 'arn:aws:ssm:eu-west-1:${AWS::AccountId}:*'
   StartContinuousAssessmentLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -512,7 +513,7 @@ Resources:
             Principal:
               Service: inspector.amazonaws.com
             Action: sns:Publish
-            Resource: '*'
+            Resource: !Ref 'ContinuousAssessmentCompleteTopic'
       Topics:
         - !Ref 'ContinuousAssessmentCompleteTopic'
   LambdaInvokePermission:
@@ -552,7 +553,9 @@ Resources:
                   - inspector:DescribeFindings
                   - inspector:ListFindings
                 Resource:
-                  - '*'
+                  - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
+                  - !Sub 'arn:aws:inspector:eu-west-1:${AWS::AccountId}:*'
+                  - !Sub 'arn:aws:sns:eu-west-1:${AWS::AccountId}:*'
   AnalyzeInspectorFindingsLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -1173,7 +1176,37 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp
+        - CIDR
+      PortRange:
+        From: '5432'
+        To: '5432'
+  InboundPostgresqlPrivate2NetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - PrivateApp2
+        - CIDR
+      PortRange:
+        From: '5432'
+        To: '5432'
+  InboundPostgresqlPrivate3NetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '300'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - PrivateApp3
         - CIDR
       PortRange:
         From: '5432'
@@ -1188,7 +1221,37 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp
+        - CIDR
+      PortRange:
+        From: '1024'
+        To: '65535'
+  OutboundPostgresqlPrivate2NetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - PrivateApp2
+        - CIDR
+      PortRange:
+        From: '1024'
+        To: '65535'
+  OutboundPostgresqlPrivate3NetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '300'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - PrivateApp3
         - CIDR
       PortRange:
         From: '1024'
@@ -1482,9 +1545,10 @@ Resources:
                 - !Ref 'LogsBucket'
                 - /*
             Principal:
-              AWS: '*'
+              AWS:
+                - '156460612806'
             Action:
-              - '*'
+              - s3:PutObject
   NAT:
     DependsOn: GatewayToInternet
     Type: AWS::EC2::NatGateway

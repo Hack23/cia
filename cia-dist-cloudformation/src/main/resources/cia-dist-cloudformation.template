@@ -133,7 +133,7 @@
       },
       "DBUsername":{
          "Default":"root",
-         "NoEcho":"true",
+         "NoEcho": "true",
          "Description":"The database admin account username",
          "Type":"String",
          "MinLength":"1",
@@ -630,7 +630,8 @@
                               "ec2:CreateTags"
                            ],
                            "Resource":[
-                              "*"
+                              { "Fn::Sub":"arn:aws:ec2:eu-west-1:${AWS::AccountId}:*" },
+                              { "Fn::Sub":"arn:aws:ssm:eu-west-1:${AWS::AccountId}:*" }                              
                            ]
                         }
                      ]
@@ -736,7 +737,7 @@
                         "Service":"inspector.amazonaws.com"
                      },
                      "Action":"sns:Publish",
-                     "Resource":"*"
+                     "Resource": { "Ref":"ContinuousAssessmentCompleteTopic" }
                   }
                ]
             },
@@ -804,7 +805,9 @@
                               "inspector:ListFindings"
                            ],
                            "Resource":[
-                              "*"
+                              { "Fn::Sub":"arn:aws:ec2:eu-west-1:${AWS::AccountId}:*" },
+                              { "Fn::Sub":"arn:aws:inspector:eu-west-1:${AWS::AccountId}:*" },
+                              { "Fn::Sub":"arn:aws:sns:eu-west-1:${AWS::AccountId}:*" }                                                           
                            ]
                         }
                      ]
@@ -1944,7 +1947,7 @@
             "CidrBlock":{
                "Fn::FindInMap":[
                   "SubnetConfig",
-                  "VPC",
+                  "PrivateApp",
                   "CIDR"
                ]
             },
@@ -1954,6 +1957,52 @@
             }
          }
       },
+      "InboundPostgresqlPrivate2NetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateNetworkAcl"
+            },
+            "RuleNumber":"200",
+            "Protocol":"6",
+            "RuleAction":"allow",
+            "Egress":"false",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp2",
+                  "CIDR"
+               ]
+            },
+            "PortRange":{
+               "From":"5432",
+               "To":"5432"
+            }
+         }
+      },
+      "InboundPostgresqlPrivate3NetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateNetworkAcl"
+            },
+            "RuleNumber":"300",
+            "Protocol":"6",
+            "RuleAction":"allow",
+            "Egress":"false",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp3",
+                  "CIDR"
+               ]
+            },
+            "PortRange":{
+               "From":"5432",
+               "To":"5432"
+            }
+         }
+      },    
       "OutboundPostgresqlPrivateNetworkAclEntry":{
          "Type":"AWS::EC2::NetworkAclEntry",
          "Properties":{
@@ -1967,7 +2016,53 @@
             "CidrBlock":{
                "Fn::FindInMap":[
                   "SubnetConfig",
-                  "VPC",
+                  "PrivateApp",
+                  "CIDR"
+               ]
+            },
+            "PortRange":{
+               "From":"1024",
+               "To":"65535"
+            }
+         }
+      },
+      "OutboundPostgresqlPrivate2NetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateNetworkAcl"
+            },
+            "RuleNumber":"200",
+            "Protocol":"6",
+            "RuleAction":"allow",
+            "Egress":"true",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp2",
+                  "CIDR"
+               ]
+            },
+            "PortRange":{
+               "From":"1024",
+               "To":"65535"
+            }
+         }
+      },
+      "OutboundPostgresqlPrivate3NetworkAclEntry":{
+         "Type":"AWS::EC2::NetworkAclEntry",
+         "Properties":{
+            "NetworkAclId":{
+               "Ref":"PrivateNetworkAcl"
+            },
+            "RuleNumber":"300",
+            "Protocol":"6",
+            "RuleAction":"allow",
+            "Egress":"true",
+            "CidrBlock":{
+               "Fn::FindInMap":[
+                  "SubnetConfig",
+                  "PrivateApp3",
                   "CIDR"
                ]
             },
@@ -2488,11 +2583,13 @@
                            ]
                         ]
                      },
-                     "Principal":{
-                        "AWS":"*"
-                     },
+                     "Principal": {
+				        "AWS": [
+				          "156460612806"
+				        ]
+				      },                                          
                      "Action":[
-                        "*"
+                        "s3:PutObject"
                      ]
                   }
                ]
