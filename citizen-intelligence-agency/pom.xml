@@ -1032,7 +1032,7 @@
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf</artifactId>
-      <version>1.2.6</version>
+      <version>1.2.7</version>
       <exclusions>
         <exclusion>
           <artifactId>bcpkix-jdk15on</artifactId>
