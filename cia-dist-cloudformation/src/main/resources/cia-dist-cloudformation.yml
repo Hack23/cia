@@ -2145,26 +2145,6 @@ Resources:
           FromPort: '8443'
           ToPort: '8443'
           SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
-        - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: udp
-          FromPort: '123'
-          ToPort: '123'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: udp
-          FromPort: '53'
-          ToPort: '53'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: '53'
-          ToPort: '53'
-          CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '8443'
