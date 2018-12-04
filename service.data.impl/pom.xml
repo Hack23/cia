@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.461</version>
+      <version>1.11.462</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -103,7 +103,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.10.5.Final</version>
+      <version>5.11.0.CR1</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -184,7 +184,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.10.5.Final</version>
+      <version>5.11.0.CR1</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -306,7 +306,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.6.1</version>
+      <version>4.6.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
