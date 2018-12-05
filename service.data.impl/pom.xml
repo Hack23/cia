@@ -745,8 +745,8 @@
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
-      <artifactId>narayana-jta</artifactId>
-      <version>5.9.0.Final</version>
+      <artifactId>jta</artifactId>
+      <version>5.9.1.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>jboss-transaction-spi</artifactId>
