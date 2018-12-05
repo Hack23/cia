@@ -62,7 +62,7 @@
     <dependency>
       <groupId>com.amazonaws.secretsmanager</groupId>
       <artifactId>aws-secretsmanager-jdbc</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <exclusions>
         <exclusion>
           <artifactId>aws-java-sdk-secretsmanager</artifactId>
