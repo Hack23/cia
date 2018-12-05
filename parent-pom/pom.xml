@@ -1146,6 +1146,7 @@
         <configuration>
           <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine}</argLine>
           <jvm>${test.jvm.path}</jvm>
+          <disableModules>true</disableModules>
         </configuration>
       </plugin>
       <plugin>
@@ -1413,7 +1414,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
-        <surefire.version>3.0.0-M1</surefire.version>
+        <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1434,7 +1435,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
-        <surefire.version>3.0.0-M1</surefire.version>
+        <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1450,7 +1451,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
-        <surefire.version>2.20.1</surefire.version>
+        <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
     <profile>
