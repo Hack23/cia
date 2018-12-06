@@ -37,15 +37,21 @@
 			value="test, production" /> -->
 	</bean>
 
-	<bean id="transactionManagerImpl" class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+
+	<bean id="CoreEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoreEnvironmentBean">
+		<property name="nodeIdentifier" value="nodeIdentifier"/>
+	</bean>
+	
+	<bean id="CoordinatorEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean"/>
+	<bean id="JTAEnvironmentBean" class="com.arjuna.ats.jta.common.JTAEnvironmentBean">
+		<property name="supportSubtransactions" value="true"/>
+	</bean>
+	<bean id="RecoveryEnvironmentBean" class="com.arjuna.ats.arjuna.common.RecoveryEnvironmentBean"/>	
 				
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager">
-		<property name="transactionManager" ref="transactionManagerImpl"/>
-		<property name="userTransaction">
-			<bean
-				class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" />
-		</property>
+		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }"/>
+		<property name="userTransaction" value="#{ JTAEnvironmentBean.userTransaction }"/>
 	</bean>
 	
 	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManager">
@@ -68,7 +74,7 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource" destroy-method="close">
 		<property name="XaDataSourceInstance" ref="xADataSource" />
-		<property name="transactionManager" ref="transactionManagerImpl"/>
+		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }"/>
 		<property name="validationQuery" value="select 1" />
 		<property name="testOnBorrow" value="true"/>
 		<property name="testOnReturn" value="true"/>
@@ -198,8 +204,7 @@
 		<property name="locateExistingServerIfPossible" value="true" />
 	</bean>
 
-	<tx:annotation-driven mode="proxy"
-		transaction-manager="transactionManager" />
+	<tx:annotation-driven mode="proxy" transaction-manager="transactionManager" />
 
 	<context:annotation-config />
 	<context:spring-configured />

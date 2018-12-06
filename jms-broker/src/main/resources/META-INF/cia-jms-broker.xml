@@ -39,14 +39,17 @@
 		<constructor-arg ref="jmsFactory" />
 		<constructor-arg ref="transactionHelper" />
 	</bean>
-
-	<bean name="senderConnectionFactory" class="org.jboss.narayana.jta.jms.ConnectionFactoryProxy">
-		<constructor-arg ref="jmsFactory" />
-		<constructor-arg ref="transactionHelper" />
-	</bean>
 	
-	<bean name="transactionHelper" class="org.jboss.narayana.jta.jms.TransactionHelperImpl">
-		<constructor-arg ref="transactionManagerImpl"/>
+	
+   <bean id="TransactionSynchronizationRegistry" class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionSynchronizationRegistryImple"/>
+	
+   <bean id="RecoveryManager" class="com.arjuna.ats.arjuna.recovery.RecoveryManager" factory-method="manager" init-method="initialize" destroy-method="terminate"/>
+
+   <bean id="RecoveryManagerService" class="com.arjuna.ats.jbossatx.jta.RecoveryManagerService" init-method="create" destroy-method="stop"/>
+   
+
+	<bean name="transactionHelper" class="org.jboss.narayana.jta.jms.TransactionHelperImpl" depends-on="TransactionSynchronizationRegistry,RecoveryManager,RecoveryManagerService">
+		<constructor-arg value="#{ JTAEnvironmentBean.transactionManager }"/>
 	</bean> 	
    
 </beans>

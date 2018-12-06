@@ -244,7 +244,7 @@
 	</bean>
 
 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="senderConnectionFactory" />
+		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="receiveTimeout" value="500" />
 		<property name="sessionTransacted" value="true" />
 	</bean>
