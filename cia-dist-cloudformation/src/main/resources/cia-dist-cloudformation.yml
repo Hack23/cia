@@ -2102,7 +2102,7 @@ Resources:
               C=SE'' -keystore /opt/cia/etc/keystore.p12 '
             - " -storepass $KEY_PWD -keypass $KEY_PWD\n"
             - "chown cia:cia /opt/cia/etc/keystore.p12\n"
-            - "chmod 600 /opt/cia/etc/keystore.p12\n"
+            - "chmod 700 /opt/cia/etc/keystore.p12\n"
             - " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_'\
               \ /opt/cia/start.ini\n"
             - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_'\
@@ -2122,7 +2122,7 @@ Resources:
             - "mkdir /opt/cia/.postgresql\n"
             - "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n"
             - "chown -R cia:cia /opt/cia/.postgresql\n"
-            - "chmod -R 600 /opt/cia/.postgresql\n"
+            - "chmod -R 700 /opt/cia/.postgresql\n"
             - "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem\
               \ -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - "/etc/init.d/cia restart\n"
