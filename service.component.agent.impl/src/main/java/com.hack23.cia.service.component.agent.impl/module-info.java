@@ -10,6 +10,7 @@ module com.hack23.cia.service.component.agent.impl {
 	opens com.hack23.cia.service.component.agent.impl.riksdagen to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.component.agent.impl.val to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.component.agent.impl.worldbank to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.common.jms to spring.core, spring.beans, spring.context;
 		
 	requires java.xml.bind;
 	requires java.annotation;
