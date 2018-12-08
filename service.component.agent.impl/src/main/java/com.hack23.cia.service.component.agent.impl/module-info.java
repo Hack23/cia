@@ -6,10 +6,10 @@ module com.hack23.cia.service.component.agent.impl {
 	exports com.hack23.cia.service.component.agent.impl.val;
 	exports com.hack23.cia.service.component.agent.impl.worldbank;
 
-	open com.hack23.cia.service.component.agent.impl.command to spring.core, spring.beans, spring.context;
-	open com.hack23.cia.service.component.agent.impl.riksdagen to spring.core, spring.beans, spring.context;
-	open com.hack23.cia.service.component.agent.impl.val to spring.core, spring.beans, spring.context;
-	open com.hack23.cia.service.component.agent.impl.worldbank to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.command to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.riksdagen to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.val to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.worldbank to spring.core, spring.beans, spring.context;
 		
 	requires java.xml.bind;
 	requires java.annotation;
