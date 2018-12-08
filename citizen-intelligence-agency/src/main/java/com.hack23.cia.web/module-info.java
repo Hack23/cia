@@ -47,6 +47,7 @@ module com.hack23.cia.web {
 	requires javax.servlet.api;
 	requires vaadin.spring;
 	requires spring.web;
+	requires java.logging;
 	
 	requires com.hack23.cia.service.api;
 	requires com.hack23.cia.service.impl;
