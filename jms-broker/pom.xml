@@ -84,6 +84,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jms_2.0_spec</artifactId>
+      <version>1.0-alpha-2-patched-auto-name</version>
+    </dependency>
+    <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jms</artifactId>
       <version>5.9.1.Final</version>
@@ -129,11 +134,6 @@
       <groupId>io.netty</groupId>
       <artifactId>netty-codec</artifactId>
       <version>4.1.32.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jms_2.0_spec</artifactId>
-      <version>1.0.0.alpha-2-redhat-2</version>
     </dependency>
     <dependency>
       <groupId>org.jasypt</groupId>

@@ -38,9 +38,9 @@
       <version>2.7.7.redhat-7</version>
     </dependency>
     <dependency>
-      <groupId>javax.jms</groupId>
-      <artifactId>jms</artifactId>
-      <version>1.1</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jms_2.0_spec</artifactId>
+      <version>1.0-alpha-2-patched-auto-name</version>
     </dependency>
     <dependency>
       <groupId>javax.annotation</groupId>
