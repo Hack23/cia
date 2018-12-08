@@ -7,9 +7,12 @@ module com.hack23.cia.service.impl {
 	opens com.hack23.cia.service.impl to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.impl.action.admin to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.impl.action.application to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.impl.action.application.access to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.impl.action.application.encryption to spring.core, spring.beans, spring.context;	
 	opens com.hack23.cia.service.impl.action.common to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.impl.action.kpi to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.impl.action.user to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.impl.action.user.wordcount to spring.core, spring.beans, spring.context;
 	
 	opens com.hack23.cia.service.impl.email to spring.core, spring.beans, spring.context;
 	opens com.hack23.cia.service.impl.rules to spring.core, spring.beans, spring.context;
