@@ -7,9 +7,21 @@ module com.hack23.cia.service.component.agent.impl {
 	exports com.hack23.cia.service.component.agent.impl.worldbank;
 
 	opens com.hack23.cia.service.component.agent.impl.command to spring.core, spring.beans, spring.context;
+	
 	opens com.hack23.cia.service.component.agent.impl.riksdagen to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.riksdagen.workers to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.riksdagen.workers.data to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data to spring.core, spring.beans, spring.context;
+	
 	opens com.hack23.cia.service.component.agent.impl.val to spring.core, spring.beans, spring.context;
+	
 	opens com.hack23.cia.service.component.agent.impl.worldbank to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.worldbank.workers to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.worldbank.workers.data to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.worldbank.workgenerator to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data to spring.core, spring.beans, spring.context;
+	
 	opens com.hack23.cia.service.component.agent.impl.common.jms to spring.core, spring.beans, spring.context;
 		
 	requires java.xml.bind;
