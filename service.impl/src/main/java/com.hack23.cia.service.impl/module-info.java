@@ -3,7 +3,10 @@ module com.hack23.cia.service.impl {
 
 	exports com.hack23.cia.service.impl;
 	exports com.hack23.cia.service.impl.rules;
-
+	
+	opens com.hack23.cia.service.impl to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.impl.rules to spring.core, spring.beans, spring.context;
+	
 	requires java.validation;
 	requires java.xml.bind;
 	requires java.annotation;
