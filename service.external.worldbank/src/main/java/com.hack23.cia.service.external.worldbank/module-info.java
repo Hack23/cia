@@ -1,6 +1,9 @@
 module com.hack23.cia.service.external.worldbank {
 	exports com.hack23.cia.service.external.worldbank.api;
 	exports com.hack23.cia.service.external.worldbank.impl;
+	
+	opens com.hack23.cia.service.external.worldbank.api to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.external.worldbank.impl to spring.core, spring.beans, spring.context;
 
 	requires java.xml.bind;
 	requires spring.beans;
