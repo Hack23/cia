@@ -21,6 +21,7 @@ module com.hack23.cia.service.impl {
 	requires googleauth;
 
 	requires spring.security.core;
+	requires spring.core;
 	requires org.apache.commons.lang3;
 
 	requires weka.dev;
@@ -36,7 +37,7 @@ module com.hack23.cia.service.impl {
 	requires org.bouncycastle.provider;
 
 	requires com.hack23.cia.service.api;
-
+	
 	requires com.hack23.cia.service.component.agent.api;
 	requires com.hack23.cia.service.component.agent.impl;
 
