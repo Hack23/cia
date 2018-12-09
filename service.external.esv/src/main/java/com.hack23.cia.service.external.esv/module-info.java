@@ -2,8 +2,8 @@ module com.hack23.cia.service.external.esv {
 	exports com.hack23.cia.service.external.esv.api;
 	exports com.hack23.cia.service.external.esv.impl;
 
-	opens com.hack23.cia.service.external.esv.api to spring.core, spring.beans, spring.context;
-	opens com.hack23.cia.service.external.esv.impl to spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.external.esv.api to spring.aop, spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.external.esv.impl to spring.aop, spring.core, spring.beans, spring.context;
 	
 	requires org.slf4j;
 	requires java.xml.bind;
