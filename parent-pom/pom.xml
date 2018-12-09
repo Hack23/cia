@@ -1407,8 +1407,8 @@
 					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
-					java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=com.hack23.cia.web
-					--add-opens=com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+					java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=com.hack23.cia.web
+					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
@@ -1429,8 +1429,8 @@
 					java.base/jdk.internal.ref=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
 					java.base/java.lang=ALL-UNNAMED --add-opens
-					java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=com.hack23.cia.web
-				    --add-opens=com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+					java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=com.hack23.cia.web
+				    --add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
