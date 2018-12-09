@@ -2,8 +2,8 @@ module com.hack23.cia.service.external.val {
 	exports com.hack23.cia.service.external.val.api;
 	exports com.hack23.cia.service.external.val.impl;
 	
-	opens com.hack23.cia.service.external.val.api to spring.aop, spring.core, spring.beans, spring.context;
-	opens com.hack23.cia.service.external.val.impl to spring.aop, spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.external.val.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
+	opens com.hack23.cia.service.external.val.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 
 	requires java.xml.bind;
 	requires spring.beans;

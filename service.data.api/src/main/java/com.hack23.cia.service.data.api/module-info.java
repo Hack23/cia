@@ -1,7 +1,7 @@
 module com.hack23.cia.service.data.api {
 	exports com.hack23.cia.service.data.api;
 
-	opens com.hack23.cia.service.data.api to spring.aop, spring.core, spring.beans, spring.context;
+	opens com.hack23.cia.service.data.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 
 	
 	requires java.persistence;
