@@ -1,6 +1,7 @@
 module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;
 	
+	opens com.hack23.cia.web.impl.ui.application to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;	
 	opens com.hack23.cia.web.impl.ui.application.action to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.util to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.web.listener to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
