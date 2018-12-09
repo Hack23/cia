@@ -36,7 +36,6 @@ module com.hack23.cia.web {
 	opens com.hack23.cia.web.impl.ui.application.views.user.govermentbody to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.web.impl.ui.application.views.pageclicklistener to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.views.common.labelfactory to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 	opens com.hack23.cia.web.impl.ui.application.views.common.formfactory.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
