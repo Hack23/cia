@@ -309,7 +309,7 @@
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
-      <artifactId>jms-broker</artifactId>
+      <artifactId>jms.broker</artifactId>
       <version>${project.version}</version>
       <exclusions>
         <exclusion>

@@ -7,10 +7,10 @@
     <version>2018.11.17-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
-  <artifactId>jms-broker</artifactId>
+  <artifactId>jms.broker</artifactId>
   <packaging>jar</packaging>
-  <name>jms-broker</name>
-  <description>jms-broker</description>
+  <name>jms.broker</name>
+  <description>jms.broker</description>
   <url>github:https://hack23.github.io/cia/jms-broker</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
