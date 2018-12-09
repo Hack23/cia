@@ -1146,7 +1146,7 @@
         <configuration>
           <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine}</argLine>
           <jvm>${test.jvm.path}</jvm>
-          <disableModules>true</disableModules>
+          <disableModules>false</disableModules>
         </configuration>
       </plugin>
       <plugin>
