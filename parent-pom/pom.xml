@@ -1406,7 +1406,7 @@
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
 					java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=org.drools.core --add-opens java.base/java.lang=spring.core,javassist --add-opens java.base/java.lang.reflect=spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
-					java.base/java.lang=ALL-UNNAMED --add-opens
+					java.base/java.lang=ALL-UNNAMED --add-reads com.hack23.cia.web=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=com.hack23.cia.web
 					--add-opens vaadin.spring/com.vaadin.spring.annotation=spring.core,javassist --add-opens vaadin.spring/com.vaadin.spring.internal=spring.core,javassist --add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
@@ -1428,7 +1428,7 @@
 					java.base/sun.nio.ch=ALL-UNNAMED --add-exports
 					java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=org.drools.core --add-opens java.base/java.lang=spring.core,javassist --add-opens java.base/java.lang.reflect=spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED --add-opens
-					java.base/java.lang=ALL-UNNAMED --add-opens
+					java.base/java.lang=ALL-UNNAMED  --add-reads com.hack23.cia.web=ALL-UNNAMED --add-opens
 					java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=com.hack23.cia.web
 				    --add-opens vaadin.spring/com.vaadin.spring.annotation=spring.core,javassist --add-opens vaadin.spring/com.vaadin.spring.internal=spring.core,javassist --add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
