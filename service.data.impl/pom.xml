@@ -277,7 +277,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.6.6</version>
+      <version>4.6.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>

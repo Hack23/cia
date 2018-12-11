@@ -120,8 +120,8 @@
     <cia.project.versions.hibernate.build>5.4.0.CR2</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.4.0.CR2</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.0.13.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>6.0.13.Final</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.validator>6.1.0.Alpha1</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.build.validator>6.1.0.Alpha1</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.9.5</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
@@ -1413,7 +1413,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
@@ -1434,7 +1434,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
@@ -1450,7 +1450,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
-        <compiler.plugin.version>3.8.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
     </profile>
