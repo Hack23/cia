@@ -10,6 +10,7 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
+      - openjdk-11-jdk-headless
       - graphviz
       - build-essential
       - fakeroot
