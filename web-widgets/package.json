@@ -15,6 +15,6 @@
     "phantomjs-prebuilt": "2.1.16"
   },
   "dependencies": {
-    "ncu": "^0.2.1"
+    "ncu": "0.2.1"
   }
 }
