@@ -5,5 +5,6 @@ extraction:
         - graphviz
         - openjdk-11-jdk-headless
         - oracle-java8-installer
+        - oracle-java8-set-default
     index:
       build_command: mvn clean package -f "pom.xml" -B -e -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -t /opt/work/.m2/toolchains.xml -pl '!cia-dist-deb,!cia-dist-cloudformation'

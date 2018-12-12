@@ -85,6 +85,7 @@ before_script:
 script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - export MAVEN_OPTS="-Duser.timezone=CET"
   - xvfb-run --server-args="-screen 0 1280x800x24" mvn install -Prelease-site -Dmaven.test.failure.ignore=true -DfailIfNoTests=false -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -q '-Dtest=!**.*ITest*'
   - mvn sonar:sonar
  
