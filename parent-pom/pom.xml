@@ -109,7 +109,7 @@
     <cia.project.versions.aspectj>1.9.2</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>7.0</cia.project.versions.asm>
-    <cia.project.versions.cglib>3.2.9</cia.project.versions.cglib>
+    <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.8.0-beta2</cia.project.versions.slf4j>
