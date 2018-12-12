@@ -69,8 +69,8 @@ before_script:
   - echo "ssl_cert_file = '/var/lib/postgresql/10/main/server.crt'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "ssl_key_file = '/var/lib/postgresql/10/main/server.key'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "max_prepared_transactions = 100" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
-  - echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
-  - echo "pgaudit.log = ddl" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
+  - echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
+  - #echo "pgaudit.log = ddl" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
   - echo "pg_stat_statements.track = all" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
   - echo "pg_stat_statements.max = 10000" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "listen_addresses = '*'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
@@ -79,7 +79,7 @@ before_script:
   - sudo -u postgres psql -c "create database cia_dev" -U postgres
   - sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;" -U postgres
   - sudo -u postgres psql -U postgres -c "create extension pgcrypto" cia_dev
-  - sudo -u postgres psql -U postgres -c "create extension pgaudit" cia_dev
+  - #sudo -u postgres psql -U postgres -c "create extension pgaudit" cia_dev
   - sudo -u postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
 
 script:
