@@ -20,6 +20,7 @@ addons:
       - bzr-builddeb
       - postgresql-10
       - postgresql-client-10
+      - postgresql-contrib-10
       - postgresql-10-pgaudit
       - openssl
       - locales
