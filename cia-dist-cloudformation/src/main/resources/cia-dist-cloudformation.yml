@@ -250,6 +250,10 @@ Mappings:
       FIRST: eu-west-1a
       SECOND: eu-west-1b
       THIRD: eu-west-1c
+    eu-north-1:
+      FIRST: eu-north-1a
+      SECOND: eu-north-1b
+      THIRD: eu-north-1c
     eu-central-1:
       FIRST: eu-central-1a
       SECOND: eu-central-1b
@@ -282,6 +286,8 @@ Mappings:
     us-west-2:
       ARNPrefix: 'arn:aws:'
     eu-west-1:
+      ARNPrefix: 'arn:aws:'
+    eu-north-1:
       ARNPrefix: 'arn:aws:'
     ap-northeast-1:
       ARNPrefix: 'arn:aws:'
