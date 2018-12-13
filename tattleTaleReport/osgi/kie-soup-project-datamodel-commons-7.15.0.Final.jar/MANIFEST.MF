@@ -1,0 +1,81 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.soup.kie-soup-project-datamodel-commons
+Built-By: jenkins
+Bnd-LastModified: 1543400887635
+Implementation-Vendor-Id: org.kie.soup
+Specification-Title: Project DataModel - Commons
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: org/kie/soup/project/datamodel/commons/IUpgradeHelpe
+ r.java=src/main/java/org/kie/soup/project/datamodel/commons/IUpgradeH
+ elper.java,org/kie/soup/project/datamodel/commons/imports/ImportsPars
+ er.java=src/main/java/org/kie/soup/project/datamodel/commons/imports/
+ ImportsParser.java,org/kie/soup/project/datamodel/commons/imports/Imp
+ ortsWriter.java=src/main/java/org/kie/soup/project/datamodel/commons/
+ imports/ImportsWriter.java,org/kie/soup/project/datamodel/commons/ora
+ cle/ModuleDataModelOracleImpl.java=src/main/java/org/kie/soup/project
+ /datamodel/commons/oracle/ModuleDataModelOracleImpl.java,org/kie/soup
+ /project/datamodel/commons/oracle/ModuleDataModelOracleUtils.java=src
+ /main/java/org/kie/soup/project/datamodel/commons/oracle/ModuleDataMo
+ delOracleUtils.java,org/kie/soup/project/datamodel/commons/oracle/Pac
+ kageDataModelOracleImpl.java=src/main/java/org/kie/soup/project/datam
+ odel/commons/oracle/PackageDataModelOracleImpl.java,org/kie/soup/proj
+ ect/datamodel/commons/packages/PackageNameParser.java=src/main/java/o
+ rg/kie/soup/project/datamodel/commons/packages/PackageNameParser.java
+ ,org/kie/soup/project/datamodel/commons/packages/PackageNameWriter.ja
+ va=src/main/java/org/kie/soup/project/datamodel/commons/packages/Pack
+ ageNameWriter.java,org/kie/soup/project/datamodel/commons/types/Class
+ TypeResolver.java=src/main/java/org/kie/soup/project/datamodel/common
+ s/types/ClassTypeResolver.java,org/kie/soup/project/datamodel/commons
+ /types/TypeResolver.java=src/main/java/org/kie/soup/project/datamodel
+ /commons/types/TypeResolver.java,org/kie/soup/project/datamodel/commo
+ ns/util/MVELEvaluator.java=src/main/java/org/kie/soup/project/datamod
+ el/commons/util/MVELEvaluator.java,org/kie/soup/project/datamodel/com
+ mons/util/RawMVELEvaluator.java=src/main/java/org/kie/soup/project/da
+ tamodel/commons/util/RawMVELEvaluator.java,META-INF/ErraiApp.properti
+ es=src/main/resources/META-INF/ErraiApp.properties,org/kie/soup/proje
+ ct/datamodel/commons/ProjectDataModelCommons.gwt.xml=src/main/resourc
+ es/org/kie/soup/project/datamodel/commons/ProjectDataModelCommons.gwt
+ .xml
+Import-Package: org.kie.soup.project.datamodel.imports,org.kie.soup.pr
+ oject.datamodel.oracle,org.kie.soup.project.datamodel.packages,org.mv
+ el2,org.mvel2.compiler,org.mvel2.integration
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-project-datamod
+ el/kie-soup-project-datamodel-commons
+Export-Package: org.kie.soup.project.datamodel.commons;version="7.15.0
+ .osgisnapshotqualifier",org.kie.soup.project.datamodel.commons.import
+ s;version="7.15.0.osgisnapshotqualifier",org.kie.soup.project.datamod
+ el.commons.oracle;version="7.15.0.osgisnapshotqualifier",org.kie.soup
+ .project.datamodel.commons.packages;version="7.15.0.osgisnapshotquali
+ fier",org.kie.soup.project.datamodel.commons.types;version="7.15.0.os
+ gisnapshotqualifier",org.kie.soup.project.datamodel.commons.util;vers
+ ion="7.15.0.osgisnapshotqualifier"
+Bundle-Name: Project DataModel - Commons
+Bundle-Description: The parent contains all metadata (including plugin
+ s) and also dependency versions. All KIE Soup modules    (except for 
+ user BOMs like 'kie-soup-bom') should (transitively) inherit from thi
+ s POM.
+Implementation-Title: Project DataModel - Commons
+Implementation-Version: 7.15.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-
+ project-datamodel/kie-soup-project-datamodel-commons
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.15.0.osgisnapshotqualifier
+Scm-Revision: d7bc2d1faabb972a92dd77e590624a6c67f7f92f
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bo
+ m/kie-soup-parent/kie-soup-project-datamodel/kie-soup-project-datamod
+ el-commons
+Specification-Version: 7.15.0.Final
+

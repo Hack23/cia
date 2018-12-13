@@ -117,7 +117,7 @@ import com.vaadin.ui.VerticalLayout;
 	 * @param property the property
 	 * @return the abstract field
 	 */
-	private AbstractField createField(final String property) {
+	private static AbstractField&lt;?&gt; createField(final String property) {
 <span class="fc bfc" id="L121" title="All 2 branches covered.">		if (property.contains(HIDDEN_FIELD_NAME)) {</span>
 <span class="fc" id="L122">			return new PasswordField();</span>
 		} else {
@@ -245,4 +245,4 @@ import com.vaadin.ui.VerticalLayout;
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201812121002</span></div></body></html>

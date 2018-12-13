@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-aspects
+Automatic-Module-Name: spring.aspects
+Implementation-Version: 5.1.3.RELEASE
+Created-By: 1.8.0_144 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.cache.aspectj
+Bundle-Description: spring-aspects-5.1.3.RELEASE
+Bundle-Name: spring-aspects-5.1.3.RELEASE
+Bundle-Version: 5.1.3.RELEASE
+Export-Package: org.springframework.beans.factory.aspectj;uses:="org.a
+ spectj.internal.lang.annotation,org.aspectj.lang,org.aspectj.lang.ann
+ otation",org.springframework.cache.aspectj;uses:="java.util.function,
+ org.aspectj.lang,org.aspectj.lang.annotation,org.aspectj.lang.reflect
+ ,org.aspectj.runtime.internal,org.springframework.cache.annotation,or
+ g.springframework.cache.interceptor,org.springframework.cache.jcache.
+ config,org.springframework.cache.jcache.interceptor,org.springframewo
+ rk.context.annotation",org.springframework.context.annotation.aspectj
+ ;uses:="org.springframework.context.annotation",org.springframework.s
+ cheduling.aspectj;uses:="java.util.function,org.aspectj.internal.lang
+ .annotation,org.aspectj.lang,org.aspectj.lang.annotation,org.aspectj.
+ lang.reflect,org.aspectj.runtime.internal,org.springframework.aop.int
+ erceptor,org.springframework.context.annotation,org.springframework.c
+ ore.annotation,org.springframework.scheduling.annotation",org.springf
+ ramework.transaction.aspectj;uses:="org.aspectj.lang,org.aspectj.lang
+ .annotation,org.aspectj.lang.reflect,org.aspectj.runtime.internal,org
+ .springframework.context.annotation,org.springframework.transaction.a
+ nnotation,org.springframework.transaction.interceptor"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.refle
+ ct,java.util.concurrent,java.util.function,org.aspectj.internal.lang.
+ annotation;version="1.9.2",org.aspectj.lang;version="1.9.2",org.aspec
+ tj.lang.annotation;version="1.9.2",org.aspectj.lang.reflect;version="
+ 1.9.2",org.aspectj.runtime.internal;version="1.9.2",org.springframewo
+ rk.aop.interceptor;version="5.1.3.RELEASE",org.springframework.beans.
+ factory;version="5.1.3.RELEASE",org.springframework.beans.factory.ann
+ otation;version="5.1.3.RELEASE",org.springframework.beans.factory.wir
+ ing;version="5.1.3.RELEASE",org.springframework.cache.annotation;vers
+ ion="5.1.3.RELEASE",org.springframework.cache.interceptor;version="5.
+ 1.3.RELEASE",org.springframework.cache.jcache.config;version="5.1.3.R
+ ELEASE",org.springframework.cache.jcache.interceptor;version="5.1.3.R
+ ELEASE",org.springframework.context.annotation;version="5.1.3.RELEASE
+ ",org.springframework.core.annotation;version="5.1.3.RELEASE",org.spr
+ ingframework.core.task;version="5.1.3.RELEASE",org.springframework.sc
+ heduling.annotation;version="5.1.3.RELEASE",org.springframework.trans
+ action;version="5.1.3.RELEASE",org.springframework.transaction.annota
+ tion;version="5.1.3.RELEASE",org.springframework.transaction.intercep
+ tor;version="5.1.3.RELEASE"

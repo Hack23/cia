@@ -1,0 +1,5 @@
+digraph spring_expression_5_1_3_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_expression_5_1_3_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_expression_5_1_3_RELEASE -> spring_core_5_1_3_RELEASE;
+}

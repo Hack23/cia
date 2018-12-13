@@ -1,0 +1,7 @@
+digraph netty_buffer_4_1_32_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  io_netty_buffer -> io_netty_util;
+  io_netty_buffer -> io_netty_util_concurrent;
+  io_netty_buffer -> io_netty_util_internal;
+  io_netty_buffer -> io_netty_util_internal_logging;
+}

@@ -1,0 +1,23 @@
+digraph jta_5_9_1_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_arjuna_ats_internal_jta -> com_arjuna_ats_internal_jta_resources_arjunacore;
+  com_arjuna_ats_internal_jta_recovery_arjunacore -> com_arjuna_ats_arjuna_recovery;
+  com_arjuna_ats_internal_jta_recovery_arjunacore -> com_arjuna_ats_internal_jta_resources_arjunacore;
+  com_arjuna_ats_internal_jta_recovery_arjunacore -> com_arjuna_ats_jta_utils;
+  com_arjuna_ats_internal_jta_resources_arjunacore -> com_arjuna_ats_arjuna_coordinator;
+  com_arjuna_ats_internal_jta_resources_arjunacore -> com_arjuna_ats_internal_jta_recovery_arjunacore;
+  com_arjuna_ats_internal_jta_resources_arjunacore -> com_arjuna_common_internal_util;
+  com_arjuna_ats_internal_jta_resources_arjunacore -> org_jboss_tm;
+  com_arjuna_ats_internal_jta_tools_osb_mbean_jta -> com_arjuna_ats_arjuna_tools_osb_mbean;
+  com_arjuna_ats_internal_jta_tools_osb_mbean_jta -> com_arjuna_ats_internal_jta_recovery_arjunacore;
+  com_arjuna_ats_internal_jta_tools_osb_mbean_jta -> com_arjuna_ats_internal_jta_resources_arjunacore;
+  com_arjuna_ats_internal_jta_transaction_arjunacore -> com_arjuna_ats_internal_jta_resources_arjunacore;
+  com_arjuna_ats_internal_jta_transaction_arjunacore -> org_jboss_tm;
+  com_arjuna_ats_internal_jta_transaction_arjunacore_jca -> org_jboss_tm;
+  com_arjuna_ats_jta_common -> com_arjuna_common_internal_util;
+  com_arjuna_ats_jta_common -> org_jboss_tm_usertx;
+  com_arjuna_ats_jta_common -> org_jboss_tm_usertx_client;
+  com_arjuna_ats_jta_logging -> org_jboss_logging_annotations;
+  com_arjuna_ats_jta_xa -> com_arjuna_ats_internal_arjuna;
+  com_arjuna_ats_jta_xa -> java_nio_charset;
+}

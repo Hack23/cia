@@ -1,0 +1,13 @@
+digraph big_math_2_0_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  ch_obermuhlner_math_big -> ch_obermuhlner_math_big_internal;
+  ch_obermuhlner_math_big -> java_lang_invoke;
+  ch_obermuhlner_math_big -> java_util;
+  ch_obermuhlner_math_big -> java_util_function;
+  ch_obermuhlner_math_big -> java_util_stream;
+  ch_obermuhlner_math_big_internal -> ch_obermuhlner_math_big;
+  ch_obermuhlner_math_big_stream -> ch_obermuhlner_math_big;
+  ch_obermuhlner_math_big_stream -> java_util;
+  ch_obermuhlner_math_big_stream -> java_util_function;
+  ch_obermuhlner_math_big_stream -> java_util_stream;
+}

@@ -32,5 +32,5 @@ Export-Package: org.jboss.tm,org.jboss.tm.listener,org.jboss.tm.usertx
 Import-Package: java.io,java.lang,java.lang.reflect,java.util,java.uti
  l.concurrent,java.util.concurrent.atomic,java.util.concurrent.locks,j
  avax.naming,javax.naming.spi,javax.resource.spi,javax.resource.spi.wo
- rk,javax.transaction;version="1.1.1.redhat-2",javax.transaction.xa;ve
- rsion="1.1.1.redhat-2",org.jboss.logging;version="3.3.2.Final"
+ rk,javax.transaction;version="1.1.1",javax.transaction.xa;version="1.
+ 1.1",org.jboss.logging;version="3.3.2.Final"

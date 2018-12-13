@@ -1,0 +1,7 @@
+digraph arjuna_5_9_1_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  arjuna_5_9_1_Final -> artemis_journal_2_7_0_SNAPSHOT;
+  arjuna_5_9_1_Final -> common_5_9_1_Final;
+  arjuna_5_9_1_Final -> geronimo_jta_1_1_spec_1_1_1;
+  arjuna_5_9_1_Final -> jboss_logging_3_3_2_Final;
+}

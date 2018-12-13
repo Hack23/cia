@@ -1,0 +1,7 @@
+digraph netty_transport_native_kqueue_4_1_32_Final_osx_x86_64_dependencies {
+  node [shape = box, fontsize=10.0];
+  netty_transport_native_kqueue_4_1_32_Final_osx_x86_64 -> netty_buffer_4_1_32_Final;
+  netty_transport_native_kqueue_4_1_32_Final_osx_x86_64 -> netty_common_4_1_32_Final;
+  netty_transport_native_kqueue_4_1_32_Final_osx_x86_64 -> netty_transport_4_1_32_Final;
+  netty_transport_native_kqueue_4_1_32_Final_osx_x86_64 -> netty_transport_native_unix_common_4_1_32_Final;
+}

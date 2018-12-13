@@ -23,7 +23,7 @@ Import-Package: java.io,java.lang,java.lang.invoke,java.nio.charset,ja
  rg.apache.commons.codec;version="1.11",org.apache.commons.csv;version
  ="1.6",org.apache.commons.lang3.builder;version="3.8",org.apache.http
  .client.fluent;version="4.5.5",org.apache.poi.hssf.usermodel;version=
- "4.0.0",org.apache.poi.ss.usermodel;version="4.0.0",org.apache.poi.xs
- sf.usermodel;version="4.0.0",org.slf4j;version="0.0.0",org.springfram
- ework.beans.factory.annotation;version="5.1.2.RELEASE",org.springfram
- ework.stereotype;version="5.1.2.RELEASE"
+ "4.0.1",org.apache.poi.ss.usermodel;version="4.0.1",org.apache.poi.xs
+ sf.usermodel;version="4.0.1",org.slf4j;version="0.0.0",org.springfram
+ ework.beans.factory.annotation;version="5.1.3.RELEASE",org.springfram
+ ework.stereotype;version="5.1.3.RELEASE"

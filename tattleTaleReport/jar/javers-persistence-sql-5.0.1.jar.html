@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>JBoss Tattletale 1.2.0.Beta2: javers-persistence-sql-5.0.1.jar</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<h1>javers-persistence-sql-5.0.1.jar</h1>
+<a href="../index.html">Main</a>
+<p>
+<table>
+  <tr class="rowodd">
+     <td>Name</td>
+     <td>javers-persistence-sql-5.0.1.jar</td>
+  </tr>
+  <tr class="roweven">
+     <td>Class Version</td>
+     <td></td>
+  </tr>
+  <tr class="rowodd">
+     <td>Locations</td>
+     <td>       <table>
+      <tr>
+        <td>/home/pether/git/cia/citizen-intelligence-agency/target/citizen-intelligence-agency-2018.11.17-SNAPSHOT/WEB-INF/lib/javers-persistence-sql-5.0.1.jar</td>
+        <td><i>Not listed</i></td>
+      </tr>
+       </table>
+</td>
+  </tr>
+  <tr class="roweven">
+     <td>Profiles</td>
+     <td>JBoss AS 7<br>Sun Java 5  <tr class="rowodd">
+     <td>Manifest</td>
+     <td>Manifest-Version: 1.0<br></td>
+  </tr>
+  <tr class="roweven">
+     <td>Signing information</td>
+     <td></td>
+  </tr>
+  <tr class="rowodd">
+     <td>Requires</td>
+     <td>com.google.common.base.Joiner<br>com.google.common.cache.Cache<br>com.google.common.cache.CacheBuilder<br>java.io.Closeable<br>java.lang.AutoCloseable<br>java.lang.Boolean<br>java.lang.CharSequence<br>java.lang.Class<br>java.lang.Deprecated<br>java.lang.Enum<br>java.lang.FunctionalInterface<br>java.lang.Integer<br>java.lang.Iterable<br>java.lang.Long<br>java.lang.Object<br>java.lang.RuntimeException<br>java.lang.String<br>java.lang.StringBuilder<br>java.lang.System<br>java.lang.ThreadLocal<br>java.lang.Throwable<br>java.lang.invoke.CallSite<br>java.lang.invoke.LambdaMetafactory<br>java.lang.invoke.MethodHandle<br>java.lang.invoke.MethodHandles<br>java.lang.invoke.MethodHandles$Lookup<br>java.lang.invoke.MethodType<br>java.math.BigDecimal<br>java.sql.Connection<br>java.sql.PreparedStatement<br>java.sql.ResultSet<br>java.sql.ResultSetMetaData<br>java.sql.SQLException<br>java.sql.Statement<br>java.sql.Timestamp<br>java.time.LocalDateTime<br>java.util.ArrayList<br>java.util.Arrays<br>java.util.Collection<br>java.util.Collections<br>java.util.Comparator<br>java.util.Date<br>java.util.HashMap<br>java.util.Iterator<br>java.util.List<br>java.util.Map<br>java.util.Map$Entry<br>java.util.Optional<br>java.util.Set<br>java.util.TreeMap<br>java.util.concurrent.ConcurrentHashMap<br>java.util.function.Consumer<br>java.util.function.Function<br>java.util.function.Predicate<br>java.util.function.Supplier<br>java.util.function.ToIntFunction<br>java.util.function.ToLongFunction<br>java.util.regex.Pattern<br>java.util.stream.Collector<br>java.util.stream.Collectors<br>java.util.stream.IntStream<br>java.util.stream.LongStream<br>java.util.stream.Stream<br>org.javers.common.collections.Lists<br>org.javers.common.collections.Sets<br>org.javers.common.exception.JaversException<br>org.javers.common.exception.JaversExceptionCode<br>org.javers.common.string.ToStringBuilder<br>org.javers.common.validation.Validate<br>org.javers.core.AbstractContainerBuilder<br>org.javers.core.commit.Commit<br>org.javers.core.commit.CommitId<br>org.javers.core.json.CdoSnapshotSerialized<br>org.javers.core.json.JsonConverter<br>org.javers.core.json.typeadapter.util.UtilTypeCoreAdapters<br>org.javers.core.metamodel.object.CdoSnapshot<br>org.javers.core.metamodel.object.CdoSnapshotState<br>org.javers.core.metamodel.object.GlobalId<br>org.javers.core.metamodel.object.InstanceId<br>org.javers.core.metamodel.object.SnapshotType<br>org.javers.core.metamodel.object.UnboundedValueObjectId<br>org.javers.core.metamodel.object.ValueObjectId<br>org.javers.core.metamodel.type.EntityType<br>org.javers.core.metamodel.type.ManagedType<br>org.javers.core.pico.JaversModule<br>org.javers.repository.api.JaversRepository<br>org.javers.repository.api.QueryParams<br>org.javers.repository.api.QueryParamsBuilder<br>org.javers.repository.api.SnapshotIdentifier<br>org.polyjdbc.core.PolyJDBC<br>org.polyjdbc.core.PolyJDBCBuilder<br>org.polyjdbc.core.dialect.DB2400Dialect<br>org.polyjdbc.core.dialect.DB2Dialect<br>org.polyjdbc.core.dialect.Dialect<br>org.polyjdbc.core.dialect.DialectRegistry<br>org.polyjdbc.core.dialect.DialectTypes<br>org.polyjdbc.core.dialect.H2Dialect<br>org.polyjdbc.core.dialect.MsSqlDialect<br>org.polyjdbc.core.dialect.MysqlDialect<br>org.polyjdbc.core.dialect.OracleDialect<br>org.polyjdbc.core.dialect.PostgresDialect<br>org.polyjdbc.core.exception.SequenceLimitReachedException<br>org.polyjdbc.core.query.QueryRunnerFactory<br>org.polyjdbc.core.schema.SchemaInspector<br>org.polyjdbc.core.schema.SchemaManager<br>org.polyjdbc.core.schema.model.ForeignKeyConstraintBuilder<br>org.polyjdbc.core.schema.model.Index<br>org.polyjdbc.core.schema.model.IndexBuilder<br>org.polyjdbc.core.schema.model.LongAttributeBuilder<br>org.polyjdbc.core.schema.model.NumberAttribute<br>org.polyjdbc.core.schema.model.NumberAttribute$NumberAttributeBuilder<br>org.polyjdbc.core.schema.model.PrimaryKeyConstraintBuilder<br>org.polyjdbc.core.schema.model.Relation<br>org.polyjdbc.core.schema.model.RelationBuilder<br>org.polyjdbc.core.schema.model.Schema<br>org.polyjdbc.core.schema.model.Sequence<br>org.polyjdbc.core.schema.model.SequenceBuilder<br>org.polyjdbc.core.schema.model.StringAttributeBuilder<br>org.polyjdbc.core.schema.model.TextAttributeBuilder<br>org.polyjdbc.core.schema.model.TimestampAttributeBuilder<br>org.polyjdbc.core.transaction.ConnectionProvider<br>org.polyjdbc.core.type.ColumnTypeMapper<br>org.polyjdbc.core.type.Timestamp<br>org.polyjdbc.core.util.StringUtils<br>org.polyjdbc.core.util.TheCloser<br>org.slf4j.Logger<br>org.slf4j.LoggerFactory</td>
+  </tr>
+  <tr class="roweven">
+     <td>Provides</td>
+     <td>       <table>         <tr>
+           <td>org.javers.repository.sql.ConnectionProvider</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.DialectName</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.JaversSqlRepository</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.SqlRepositoryBuilder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.SqlRepositoryConfiguration</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.CdoSnapshotFinder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.CdoSnapshotsEnricher</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.CommitPropertyDTO</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.CommitPropertyFinder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.SnapshotQuery</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.SnapshotQuery$1</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.SnapshotQuery$CdoSnapshotMapper</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.finders.SnapshotQuery$SnapshotDbIdentifier</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.pico.JaversSqlModule</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.repositories.CdoSnapshotRepository</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.repositories.CommitMetadataRepository</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.repositories.GlobalIdRepository</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.DBObjectName</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.FixedSchemaFactory</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.FixedSchemaFactory$IndexedCols</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.JaversSchemaManager</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.JaversSchemaManager$ColumnType</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.SchemaNameAware</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.schema.TableNameProvider</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialect</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects$H2</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects$MsSqlDialect</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects$MysqlDialect</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects$OracleDialect</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Dialects$PostgresDialect</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Insert</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.InsertBuilder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGenerator</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGenerator$AutoincrementGenerator</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGenerator$SequenceAllocation</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGeneratorDefinition</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGeneratorDefinition$AutoincrementDefinition</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.KeyGeneratorDefinition$SequenceDefinition</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.ObjectMapper</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$BigDecimalParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$IntParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$LocalDateTimeParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$LongParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$SqlLiteralParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Parameter$StringParameter</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.PreparedStatementExecutor</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.PreparedStatementExecutor$SqlAction</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.PreparedStatementExecutor$SqlVoidAction</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Query</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.QueryBuilder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Select</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.SelectBuilder</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Sequence</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.Session</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.SessionFactory</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td>org.javers.repository.sql.session.SqlUncheckedException</td>
+           <td>&nbsp;</td>
+         </tr>
+       </table></td>
+  </tr>
+</table>
+
+<p/>
+<hr/>
+Generated by: <a href="http://www.jboss.org/tattletale">JBoss Tattletale 1.2.0.Beta2</a>
+
+</body>
+</html>

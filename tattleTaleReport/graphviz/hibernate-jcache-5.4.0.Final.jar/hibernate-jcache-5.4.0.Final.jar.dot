@@ -1,0 +1,5 @@
+digraph hibernate_jcache_5_4_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_jcache_5_4_0_Final -> cache_api_1_0_0;
+  hibernate_jcache_5_4_0_Final -> hibernate_core_5_4_0_Final;
+}

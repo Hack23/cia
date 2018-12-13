@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: willtong
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_181
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amazonaws.secretsmanager.sql
+Bundle-Description: aws-secretsmanager-jdbc-1.0.1
+Bundle-Name: aws-secretsmanager-jdbc-1.0.1
+Bundle-Version: 0.0.0
+Export-Package: com.amazonaws.secretsmanager.sql;uses:="com.amazonaws.
+ secretsmanager.caching,com.amazonaws.secretsmanager.util,com.amazonaw
+ s.services.secretsmanager,com.amazonaws.util,com.fasterxml.jackson.da
+ tabind,java.lang.invoke,java.sql",com.amazonaws.secretsmanager.util
+Import-Package: com.amazonaws.secretsmanager.caching;version="0.0.0",c
+ om.amazonaws.services.secretsmanager;version="0.0.0",com.amazonaws.ut
+ il;version="0.0.0",com.fasterxml.jackson.databind;version="2.9.7",jav
+ a.io,java.lang,java.lang.invoke,java.sql,java.util,java.util.logging

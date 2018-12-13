@@ -315,6 +315,7 @@ digraph artemis_server_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_paging;
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_persistence;
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_postoffice;
+  org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_security;
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_server;
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_server_cluster;
   org_apache_activemq_artemis_core_postoffice_impl -> org_apache_activemq_artemis_core_server_cluster_impl;
@@ -511,6 +512,8 @@ digraph artemis_server_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_core_security_impl -> org_apache_activemq_artemis_spi_core_security;
   org_apache_activemq_artemis_core_security_impl -> org_apache_activemq_artemis_utils_collections;
   org_apache_activemq_artemis_core_server -> io_netty_channel;
+  org_apache_activemq_artemis_core_server -> java_nio_charset;
+  org_apache_activemq_artemis_core_server -> java_util;
   org_apache_activemq_artemis_core_server -> javax_json;
   org_apache_activemq_artemis_core_server -> org_apache_activemq_artemis;
   org_apache_activemq_artemis_core_server -> org_apache_activemq_artemis_api_config;
@@ -554,6 +557,7 @@ digraph artemis_server_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_core_server -> org_apache_activemq_artemis_utils_collections;
   org_apache_activemq_artemis_core_server -> org_apache_activemq_artemis_utils_critical;
   org_apache_activemq_artemis_core_server -> org_jboss_logging_annotations;
+  org_apache_activemq_artemis_core_server -> org_jboss_logmanager_config;
   org_apache_activemq_artemis_core_server_cluster -> java_lang;
   org_apache_activemq_artemis_core_server_cluster -> java_lang_invoke;
   org_apache_activemq_artemis_core_server_cluster -> org_apache_activemq_artemis_api_core;
@@ -851,6 +855,7 @@ digraph artemis_server_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_spi_core_protocol -> org_apache_activemq_artemis_core_persistence;
   org_apache_activemq_artemis_spi_core_protocol -> org_apache_activemq_artemis_core_remoting_impl_netty;
   org_apache_activemq_artemis_spi_core_protocol -> org_apache_activemq_artemis_core_server;
+  org_apache_activemq_artemis_spi_core_protocol -> org_apache_activemq_artemis_core_transaction;
   org_apache_activemq_artemis_spi_core_protocol -> org_apache_activemq_artemis_spi_core_remoting;
   org_apache_activemq_artemis_spi_core_remoting -> org_apache_activemq_artemis_core_security;
   org_apache_activemq_artemis_spi_core_remoting -> org_apache_activemq_artemis_core_server;

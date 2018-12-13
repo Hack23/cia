@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Implementation-Title: juniversalchardet
+Automatic-Module-Name: com.github.albfernandez.juniversalchardet
+Implementation-Version: 2.3.0
+Built-By: alberto
+Specification-Title: juniversalchardet
+Implementation-Vendor-Id: com.github.albfernandez
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_181
+Specification-Version: 2.3
+Implementation-URL: https://github.com/albfernandez/juniversalchardet
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.mozilla.universalchardet.prober.sequence
+Bundle-Description: juniversalchardet-2.3.0
+Bundle-Name: juniversalchardet-2.3.0
+Bundle-Version: 2.3
+Export-Package: org.mozilla.universalchardet;uses:="java.nio.file,java
+ .util,org.mozilla.universalchardet.prober",org.mozilla.universalchard
+ et.prober;uses:="org.mozilla.universalchardet,org.mozilla.universalch
+ ardet.prober.contextanalysis,org.mozilla.universalchardet.prober.dist
+ ributionanalysis,org.mozilla.universalchardet.prober.sequence,org.moz
+ illa.universalchardet.prober.statemachine",org.mozilla.universalchard
+ et.prober.contextanalysis,org.mozilla.universalchardet.prober.distrib
+ utionanalysis,org.mozilla.universalchardet.prober.sequence;uses:="org
+ .mozilla.universalchardet",org.mozilla.universalchardet.prober.statem
+ achine;uses:="org.mozilla.universalchardet"
+Import-Package: java.io,java.lang,java.nio,java.nio.charset,java.nio.f
+ ile,java.util

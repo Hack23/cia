@@ -1,0 +1,74 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.dmn.core
+Built-By: jenkins
+Bnd-LastModified: 1543404356604
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Decision Model Notation :: Core
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/kie.conf=src/main/resources/META-INF/kie.co
+ nf
+Import-Package: javax.xml.namespace,javax.xml.stream,org.antlr.v4.runt
+ ime,org.drools.compiler.builder.impl,org.drools.compiler.commons.jci.
+ compilers,org.drools.compiler.commons.jci.readers,org.drools.compiler
+ .commons.jci.stores,org.drools.compiler.compiler,org.drools.compiler.
+ compiler.io.memory,org.drools.compiler.kie.builder.impl,org.drools.co
+ mpiler.lang.descr,org.drools.core.common,org.drools.core.definitions,
+ org.drools.core.impl,org.drools.core.util,org.drools.javaparser.ast,o
+ rg.drools.javaparser.ast.body,org.drools.model,org.drools.model.impl,
+ org.drools.modelcompiler.builder,org.kie.api,org.kie.api.builder,org.
+ kie.api.conf,org.kie.api.definition,org.kie.api.internal.assembler,or
+ g.kie.api.internal.io,org.kie.api.internal.runtime,org.kie.api.intern
+ al.weaver,org.kie.api.io,org.kie.api.runtime,org.kie.api.runtime.rule
+ ,org.kie.dmn.api.core,org.kie.dmn.api.core.ast,org.kie.dmn.api.core.e
+ vent,org.kie.dmn.api.feel.runtime.events,org.kie.dmn.api.marshalling,
+ org.kie.dmn.backend.marshalling.v1_1.xstream.extensions,org.kie.dmn.b
+ ackend.marshalling.v1x,org.kie.dmn.core.api,org.kie.dmn.core.ast,org.
+ kie.dmn.core.compiler,org.kie.dmn.core.compiler.execmodelbased,org.ki
+ e.dmn.core.compiler.profiles,org.kie.dmn.core.impl,org.kie.dmn.core.u
+ til,org.kie.dmn.feel,org.kie.dmn.feel.codegen.feel11,org.kie.dmn.feel
+ .lang,org.kie.dmn.feel.lang.impl,org.kie.dmn.feel.lang.types,org.kie.
+ dmn.feel.parser.feel11,org.kie.dmn.feel.parser.feel11.profiles,org.ki
+ e.dmn.feel.runtime,org.kie.dmn.feel.runtime.decisiontables,org.kie.dm
+ n.feel.runtime.events,org.kie.dmn.feel.runtime.functions,org.kie.dmn.
+ feel.util,org.kie.dmn.model.api,org.kie.dmn.model.v1_1,org.kie.dmn.mo
+ del.v1_1.extensions,org.kie.dmn.model.v1_2,org.kie.internal.builder,o
+ rg.kie.internal.jci,org.kie.internal.osgi,org.kie.internal.utils,org.
+ slf4j
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-core
+Export-Package: org.kie.dmn.core.api;version="7.15.0",org.kie.dmn.core
+ .api.event;version="7.15.0",org.kie.dmn.core.assembler;version="7.15.
+ 0",org.kie.dmn.core.ast;version="7.15.0",org.kie.dmn.core.compiler;ve
+ rsion="7.15.0",org.kie.dmn.core.compiler.execmodelbased;version="7.15
+ .0",org.kie.dmn.core.compiler.profiles;version="7.15.0",org.kie.dmn.c
+ ore.impl;version="7.15.0",org.kie.dmn.core.osgi;version="7.15.0",org.
+ kie.dmn.core.runtime;version="7.15.0",org.kie.dmn.core.util;version="
+ 7.15.0",org.kie.dmn.core.weaver;version="7.15.0"
+Bundle-Name: KIE :: Decision Model Notation :: Core
+Bundle-Activator: org.kie.dmn.core.osgi.Activator
+Bundle-Description: Top level pom for the KIE DMN support implementati
+ on
+Implementation-Title: KIE :: Decision Model Notation :: Core
+Automatic-Module-Name: org.kie.dmn.core
+Implementation-Version: 7.15.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn
+ /kie-dmn-core
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.15.0.201811281105
+Scm-Revision: cf32de51b858c3f53652099e11a347c039ac217f
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-cor
+ e
+Specification-Version: 7.15.0.Final
+

@@ -1,0 +1,21 @@
+digraph kie_dmn_api_7_15_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_kie_dmn_api_core -> java_util;
+  org_kie_dmn_api_core -> org_kie_api_internal_io;
+  org_kie_dmn_api_core -> org_kie_api_io;
+  org_kie_dmn_api_core -> org_kie_dmn_api_core_ast;
+  org_kie_dmn_api_core -> org_kie_dmn_api_core_event;
+  org_kie_dmn_api_core -> org_kie_dmn_api_feel_runtime_events;
+  org_kie_dmn_api_core -> org_kie_dmn_api_marshalling;
+  org_kie_dmn_api_core -> org_kie_dmn_model_api;
+  org_kie_dmn_api_core_ast -> java_util;
+  org_kie_dmn_api_core_ast -> org_kie_dmn_api_core;
+  org_kie_dmn_api_core_ast -> org_kie_dmn_model_api;
+  org_kie_dmn_api_core_event -> org_kie_dmn_api_core;
+  org_kie_dmn_api_core_event -> org_kie_dmn_api_core_ast;
+  org_kie_dmn_api_feel_runtime_events -> java_lang;
+  org_kie_dmn_api_marshalling -> com_thoughtworks_xstream;
+  org_kie_dmn_api_marshalling -> com_thoughtworks_xstream_io_xml;
+  org_kie_dmn_api_marshalling -> org_kie_dmn_model_api;
+  org_kie_dmn_api_marshalling_v1_1 -> org_kie_dmn_api_marshalling;
+}

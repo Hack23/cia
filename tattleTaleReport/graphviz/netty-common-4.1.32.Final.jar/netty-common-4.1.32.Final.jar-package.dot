@@ -1,0 +1,27 @@
+digraph netty_common_4_1_32_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  io_netty_util -> io_netty_util_concurrent;
+  io_netty_util -> io_netty_util_internal;
+  io_netty_util -> io_netty_util_internal_logging;
+  io_netty_util_collection -> io_netty_util_internal;
+  io_netty_util_concurrent -> io_netty_util_internal;
+  io_netty_util_concurrent -> io_netty_util_internal_logging;
+  io_netty_util_concurrent -> java_lang;
+  io_netty_util_internal -> io_netty_util;
+  io_netty_util_internal -> io_netty_util_concurrent;
+  io_netty_util_internal -> io_netty_util_internal_logging;
+  io_netty_util_internal -> io_netty_util_internal_shaded_org_jctools_queues;
+  io_netty_util_internal -> io_netty_util_internal_shaded_org_jctools_queues_atomic;
+  io_netty_util_internal -> io_netty_util_internal_shaded_org_jctools_util;
+  io_netty_util_internal -> java_nio_file;
+  io_netty_util_internal -> java_nio_file_attribute;
+  io_netty_util_internal -> java_util_concurrent;
+  io_netty_util_internal -> java_util_concurrent_atomic;
+  io_netty_util_internal_logging -> io_netty_util_internal;
+  io_netty_util_internal_logging -> org_apache_logging_log4j;
+  io_netty_util_internal_logging -> org_apache_logging_log4j_message;
+  io_netty_util_internal_logging -> org_apache_logging_log4j_spi;
+  io_netty_util_internal_shaded_org_jctools_queues -> io_netty_util_internal_shaded_org_jctools_util;
+  io_netty_util_internal_shaded_org_jctools_queues_atomic -> io_netty_util_internal_shaded_org_jctools_queues;
+  io_netty_util_internal_shaded_org_jctools_queues_atomic -> io_netty_util_internal_shaded_org_jctools_util;
+}

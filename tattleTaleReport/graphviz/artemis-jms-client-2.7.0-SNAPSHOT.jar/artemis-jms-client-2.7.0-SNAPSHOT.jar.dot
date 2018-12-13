@@ -3,7 +3,7 @@ digraph artemis_jms_client_2_7_0_SNAPSHOT_dependencies {
   artemis_jms_client_2_7_0_SNAPSHOT -> artemis_commons_2_7_0_SNAPSHOT;
   artemis_jms_client_2_7_0_SNAPSHOT -> artemis_core_client_2_7_0_SNAPSHOT;
   artemis_jms_client_2_7_0_SNAPSHOT -> artemis_selector_2_7_0_SNAPSHOT;
-  artemis_jms_client_2_7_0_SNAPSHOT -> geronimo_jms_2_0_spec_1_0_alpha_2;
+  artemis_jms_client_2_7_0_SNAPSHOT -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
   artemis_jms_client_2_7_0_SNAPSHOT -> geronimo_jta_1_1_spec_1_1_1;
   artemis_jms_client_2_7_0_SNAPSHOT -> jboss_logging_3_3_2_Final;
 }

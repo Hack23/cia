@@ -1,0 +1,14 @@
+digraph javassist_3_24_1_GA_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  javassist -> java_lang_invoke;
+  javassist -> javassist_util_proxy;
+  javassist_bytecode -> javassist_bytecode_annotation;
+  javassist_util -> com_sun_jdi;
+  javassist_util -> com_sun_jdi_connect;
+  javassist_util -> com_sun_jdi_event;
+  javassist_util -> com_sun_jdi_request;
+  javassist_util -> com_sun_tools_attach;
+  javassist_util_proxy -> java_lang;
+  javassist_util_proxy -> java_lang_invoke;
+  javassist_util_proxy -> java_util;
+}

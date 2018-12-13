@@ -1,0 +1,9 @@
+digraph hibernate_search_orm_5_11_0_CR1_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_search_orm_5_11_0_CR1 -> geronimo_jta_1_1_spec_1_1_1;
+  hibernate_search_orm_5_11_0_CR1 -> hibernate_commons_annotations_5_1_0_Final;
+  hibernate_search_orm_5_11_0_CR1 -> hibernate_core_5_4_0_Final;
+  hibernate_search_orm_5_11_0_CR1 -> hibernate_search_engine_5_11_0_CR1;
+  hibernate_search_orm_5_11_0_CR1 -> javax_persistence_api_2_2;
+  hibernate_search_orm_5_11_0_CR1 -> lucene_core_5_5_5;
+}

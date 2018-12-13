@@ -22,9 +22,10 @@ Export-Package: fi.jasoft.qrcode;uses:="com.vaadin.server,com.vaadin.s
  ion,com.vaadin.shared.ui,fi.jasoft.qrcode",fi.jasoft.qrcode.data,fi.j
  asoft.qrcode.zxing
 Import-Package: com.google.gwt.event.shared;version="0.0.0",com.google
- .gwt.user.client.ui;version="0.0.0",com.vaadin.client;version="8.6.1"
- ,com.vaadin.client.communication;version="8.6.1",com.vaadin.client.ui
- ;version="8.6.1",com.vaadin.server;version="8.6.1",com.vaadin.shared.
- communication;version="8.6.1",com.vaadin.shared.ui;version="8.6.1",co
- m.vaadin.ui;version="8.6.1",java.awt,java.awt.image,java.io,java.lang
- ,java.util,java.util.logging,javax.imageio
+ .gwt.user.client.ui;version="0.0.0",com.vaadin.client;version="8.7.0.
+ alpha1",com.vaadin.client.communication;version="8.7.0.alpha1",com.va
+ adin.client.ui;version="8.7.0.alpha1",com.vaadin.server;version="8.7.
+ 0.alpha1",com.vaadin.shared.communication;version="8.7.0.alpha1",com.
+ vaadin.shared.ui;version="8.7.0.alpha1",com.vaadin.ui;version="8.7.0.
+ alpha1",java.awt,java.awt.image,java.io,java.lang,java.util,java.util
+ .logging,javax.imageio

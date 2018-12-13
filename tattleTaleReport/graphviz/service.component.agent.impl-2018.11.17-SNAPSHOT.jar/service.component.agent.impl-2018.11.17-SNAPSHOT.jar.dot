@@ -1,7 +1,7 @@
 digraph service_component_agent_impl_2018_11_17_SNAPSHOT_dependencies {
   node [shape = box, fontsize=10.0];
   service_component_agent_impl_2018_11_17_SNAPSHOT -> commons_lang3_3_8_1;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> geronimo_jms_2_0_spec_1_0_0_alpha_2_redhat_2;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
   service_component_agent_impl_2018_11_17_SNAPSHOT -> javax_annotation_api_1_3_2;
   service_component_agent_impl_2018_11_17_SNAPSHOT -> javax_persistence_api_2_2;
   service_component_agent_impl_2018_11_17_SNAPSHOT -> joda_time_2_10_1;
@@ -23,9 +23,9 @@ digraph service_component_agent_impl_2018_11_17_SNAPSHOT_dependencies {
   service_component_agent_impl_2018_11_17_SNAPSHOT -> service_external_val_2018_11_17_SNAPSHOT;
   service_component_agent_impl_2018_11_17_SNAPSHOT -> service_external_worldbank_2018_11_17_SNAPSHOT;
   service_component_agent_impl_2018_11_17_SNAPSHOT -> slf4j_api_1_8_0_beta2;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_beans_5_1_2_RELEASE;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_context_5_1_2_RELEASE;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_jms_5_1_2_RELEASE;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_security_core_5_1_1_RELEASE;
-  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_tx_5_1_2_RELEASE;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_beans_5_1_3_RELEASE;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_context_5_1_3_RELEASE;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_jms_5_1_3_RELEASE;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_security_core_5_1_2_RELEASE;
+  service_component_agent_impl_2018_11_17_SNAPSHOT -> spring_tx_5_1_3_RELEASE;
 }

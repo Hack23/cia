@@ -7,7 +7,7 @@ Specification-Vendor: The Apache Software Foundation
 Specification-Title: ActiveMQ Artemis Core Client
 Implementation-Vendor-Id: org.apache.activemq
 Created-By: Apache Maven 3.2.5
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_191
 Specification-Version: 2.7.0-SNAPSHOT
 Implementation-Vendor: The Apache Software Foundation
 
@@ -137,45 +137,45 @@ Export-Package: org.apache.activemq.artemis.api.config;uses:="org.apac
  nsaction.impl;uses:="org.apache.activemq.artemis.utils",org.apache.ac
  tivemq.artemis.core.version,org.apache.activemq.artemis.core.version.
  impl;uses:="org.apache.activemq.artemis.core.version",org.apache.acti
- vemq.artemis.reader;uses:="io.netty.buffer,org.apache.activemq.artemi
- s.api.core,org.apache.activemq.artemis.utils,org.apache.activemq.arte
- mis.utils.collections",org.apache.activemq.artemis.spi.core.protocol;
- uses:="org.apache.activemq.artemis.api.core,org.apache.activemq.artem
- is.core.client,org.apache.activemq.artemis.core.remoting,org.apache.a
- ctivemq.artemis.spi.core.remoting",org.apache.activemq.artemis.spi.co
- re.remoting;uses:="io.netty.channel,org.apache.activemq.artemis.api.c
- ore,org.apache.activemq.artemis.api.core.client,org.apache.activemq.a
- rtemis.core.client.impl,org.apache.activemq.artemis.core.protocol.cor
- e.impl.wireformat,org.apache.activemq.artemis.core.security,org.apach
- e.activemq.artemis.core.server,org.apache.activemq.artemis.spi.core.p
- rotocol,org.apache.activemq.artemis.utils",org.apache.activemq.artemi
- s.uri;uses:="org.apache.activemq.artemis.core.remoting.impl.netty,org
- .apache.activemq.artemis.uri.schema.connector,org.apache.activemq.art
- emis.uri.schema.serverLocator,org.apache.activemq.artemis.utils.uri",
- org.apache.activemq.artemis.uri.schema.connector;uses:="org.apache.ac
- tivemq.artemis.api.core,org.apache.activemq.artemis.core.remoting.imp
- l.netty,org.apache.activemq.artemis.utils.uri",org.apache.activemq.ar
- temis.uri.schema.serverLocator;uses:="org.apache.activemq.artemis.api
- .core,org.apache.activemq.artemis.api.core.client,org.apache.activemq
- .artemis.core.remoting.impl.netty,org.apache.activemq.artemis.uri.sch
- ema.connector,org.apache.activemq.artemis.utils,org.apache.activemq.a
- rtemis.utils.uri",org.apache.activemq.artemis.utils;uses:="javax.json
- ,javax.json.spi,javax.json.stream,org.apache.activemq.artemis.api.cor
- e,org.apache.activemq.artemis.core.client,org.apache.activemq.artemis
- .core.security,org.apache.activemq.artemis.core.transaction.impl,org.
- apache.activemq.artemis.core.version,org.apache.activemq.artemis.core
- .version.impl"
-Import-Package: io.netty.bootstrap;version="4.1.30.Final",io.netty.buf
- fer;version="4.1.30.Final",io.netty.channel;version="4.1.30.Final",io
- .netty.channel.epoll;version="4.1.30.Final",io.netty.channel.group;ve
- rsion="4.1.30.Final",io.netty.channel.kqueue;version="4.1.30.Final",i
- o.netty.channel.nio;version="4.1.30.Final",io.netty.channel.socket.ni
- o;version="4.1.30.Final",io.netty.handler.codec;version="4.1.30.Final
- ",io.netty.handler.codec.base64;version="4.1.30.Final",io.netty.handl
- er.codec.http;version="4.1.30.Final",io.netty.handler.codec.http.cook
- ie;version="4.1.30.Final",io.netty.handler.ssl;version="4.1.30.Final"
- ,io.netty.handler.ssl.util;version="4.1.30.Final",io.netty.util;versi
- on="4.1.30.Final",io.netty.util.concurrent;version="4.1.30.Final",jav
+ vemq.artemis.reader;uses:="io.netty.buffer,java.util,org.apache.activ
+ emq.artemis.api.core,org.apache.activemq.artemis.utils,org.apache.act
+ ivemq.artemis.utils.collections",org.apache.activemq.artemis.spi.core
+ .protocol;uses:="org.apache.activemq.artemis.api.core,org.apache.acti
+ vemq.artemis.core.client,org.apache.activemq.artemis.core.remoting,or
+ g.apache.activemq.artemis.spi.core.remoting",org.apache.activemq.arte
+ mis.spi.core.remoting;uses:="io.netty.channel,org.apache.activemq.art
+ emis.api.core,org.apache.activemq.artemis.api.core.client,org.apache.
+ activemq.artemis.core.client.impl,org.apache.activemq.artemis.core.pr
+ otocol.core.impl.wireformat,org.apache.activemq.artemis.core.security
+ ,org.apache.activemq.artemis.core.server,org.apache.activemq.artemis.
+ spi.core.protocol,org.apache.activemq.artemis.utils",org.apache.activ
+ emq.artemis.uri;uses:="org.apache.activemq.artemis.core.remoting.impl
+ .netty,org.apache.activemq.artemis.uri.schema.connector,org.apache.ac
+ tivemq.artemis.uri.schema.serverLocator,org.apache.activemq.artemis.u
+ tils.uri",org.apache.activemq.artemis.uri.schema.connector;uses:="org
+ .apache.activemq.artemis.api.core,org.apache.activemq.artemis.core.re
+ moting.impl.netty,org.apache.activemq.artemis.utils.uri",org.apache.a
+ ctivemq.artemis.uri.schema.serverLocator;uses:="org.apache.activemq.a
+ rtemis.api.core,org.apache.activemq.artemis.api.core.client,org.apach
+ e.activemq.artemis.core.remoting.impl.netty,org.apache.activemq.artem
+ is.uri.schema.connector,org.apache.activemq.artemis.utils,org.apache.
+ activemq.artemis.utils.uri",org.apache.activemq.artemis.utils;uses:="
+ javax.json,javax.json.spi,javax.json.stream,org.apache.activemq.artem
+ is.api.core,org.apache.activemq.artemis.core.client,org.apache.active
+ mq.artemis.core.security,org.apache.activemq.artemis.core.transaction
+ .impl,org.apache.activemq.artemis.core.version,org.apache.activemq.ar
+ temis.core.version.impl"
+Import-Package: io.netty.bootstrap;version="4.1.32.Final",io.netty.buf
+ fer;version="4.1.32.Final",io.netty.channel;version="4.1.32.Final",io
+ .netty.channel.epoll;version="4.1.32.Final",io.netty.channel.group;ve
+ rsion="4.1.32.Final",io.netty.channel.kqueue;version="4.1.32.Final",i
+ o.netty.channel.nio;version="4.1.32.Final",io.netty.channel.socket.ni
+ o;version="4.1.32.Final",io.netty.handler.codec;version="4.1.32.Final
+ ",io.netty.handler.codec.base64;version="4.1.32.Final",io.netty.handl
+ er.codec.http;version="4.1.32.Final",io.netty.handler.codec.http.cook
+ ie;version="4.1.32.Final",io.netty.handler.ssl;version="4.1.32.Final"
+ ,io.netty.handler.ssl.util;version="4.1.32.Final",io.netty.util;versi
+ on="4.1.32.Final",io.netty.util.concurrent;version="4.1.32.Final",jav
  a.io,java.lang,java.lang.annotation,java.lang.invoke,java.lang.ref,ja
  va.lang.reflect,java.net,java.nio,java.nio.channels,java.nio.charset,
  java.security,java.security.cert,java.text,java.util,java.util.concur

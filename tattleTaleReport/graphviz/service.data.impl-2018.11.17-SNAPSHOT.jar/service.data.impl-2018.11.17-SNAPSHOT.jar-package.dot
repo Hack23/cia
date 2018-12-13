@@ -42,4 +42,14 @@ digraph service_data_impl_2018_11_17_SNAPSHOT_package_dependencies {
   com_hack23_cia_service_data_impl -> org_javers_spring_jpa;
   com_hack23_cia_service_data_impl -> org_springframework_security_core;
   com_hack23_cia_service_data_impl -> org_springframework_security_core_context;
+  com_hack23_cia_service_data_impl_util -> com_amazonaws_client_builder;
+  com_hack23_cia_service_data_impl_util -> com_amazonaws_secretsmanager_caching;
+  com_hack23_cia_service_data_impl_util -> com_amazonaws_services_secretsmanager;
+  com_hack23_cia_service_data_impl_util -> com_amazonaws_services_secretsmanager_model;
+  com_hack23_cia_service_data_impl_util -> com_fasterxml_jackson_databind;
+  com_hack23_cia_service_data_impl_util -> java_lang_invoke;
+  com_hack23_cia_service_data_impl_util -> java_util_function;
+  com_hack23_cia_service_data_impl_util -> org_apache_commons_lang3_builder;
+  com_hack23_cia_service_data_impl_util -> org_postgresql_ds_common;
+  com_hack23_cia_service_data_impl_util -> org_postgresql_xa;
 }

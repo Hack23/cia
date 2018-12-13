@@ -1,0 +1,29 @@
+digraph drools_decisiontables_7_15_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_drools_decisiontable -> org_drools_compiler_compiler;
+  org_drools_decisiontable -> org_drools_core_io_impl;
+  org_drools_decisiontable -> org_drools_core_util;
+  org_drools_decisiontable -> org_drools_decisiontable_parser;
+  org_drools_decisiontable -> org_drools_decisiontable_parser_csv;
+  org_drools_decisiontable -> org_drools_decisiontable_parser_xls;
+  org_drools_decisiontable -> org_drools_template_model;
+  org_drools_decisiontable -> org_drools_template_parser;
+  org_drools_decisiontable -> org_kie_api_io;
+  org_drools_decisiontable -> org_kie_internal_builder;
+  org_drools_decisiontable -> org_kie_internal_io;
+  org_drools_decisiontable_osgi -> org_kie_internal_osgi;
+  org_drools_decisiontable_parser -> java_lang_invoke;
+  org_drools_decisiontable_parser -> java_util_function;
+  org_drools_decisiontable_parser -> org_drools_core_util;
+  org_drools_decisiontable_parser -> org_drools_decisiontable_parser_xls;
+  org_drools_decisiontable_parser -> org_drools_template_model;
+  org_drools_decisiontable_parser -> org_drools_template_parser;
+  org_drools_decisiontable_parser_csv -> org_drools_core_util;
+  org_drools_decisiontable_parser_csv -> org_drools_decisiontable_parser;
+  org_drools_decisiontable_parser_csv -> org_drools_template_parser;
+  org_drools_decisiontable_parser_xls -> org_apache_poi_openxml4j_exceptions;
+  org_drools_decisiontable_parser_xls -> org_apache_poi_ss_usermodel;
+  org_drools_decisiontable_parser_xls -> org_apache_poi_ss_util;
+  org_drools_decisiontable_parser_xls -> org_drools_decisiontable_parser;
+  org_drools_decisiontable_parser_xls -> org_drools_template_parser;
+}

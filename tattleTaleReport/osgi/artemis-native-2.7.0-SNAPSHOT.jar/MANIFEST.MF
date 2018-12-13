@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-SymbolicName: org.apache.activemq.artemis-native
 Built-By: jenkins
-Bnd-LastModified: 1538738717485
+Bnd-LastModified: 1544716263165
 ActiveMQ-Version: 2.7.0-SNAPSHOT(130,129,128,127,126,125,124,123,122)
 Implementation-Vendor-Id: org.apache.activemq
 Specification-Title: ActiveMQ Artemis Native POM
@@ -30,7 +30,7 @@ Bundle-Vendor: The Apache Software Foundation
 Tool: Bnd-3.0.0.201509101326
 Implementation-Vendor: The Apache Software Foundation
 Bundle-Version: 2.7.0.SNAPSHOT
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_191
 Created-By: Apache Maven Bundle Plugin
 Specification-Version: 2.7.0-SNAPSHOT
 

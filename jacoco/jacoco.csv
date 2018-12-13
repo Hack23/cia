@@ -2,17 +2,17 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,AbstractDocumentPageModContentFactoryImpl,0,16,0,0,0,4,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,AbstractDocumentsPageModContentFactoryImpl,0,6,0,0,0,3,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,SearchDocumentPageModContentFactoryImpl,0,104,0,0,0,27,0,4,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentOverviewPageModContentFactoryImpl,15,232,3,7,2,27,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentOverviewPageModContentFactoryImpl,0,247,3,7,0,29,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentPageVisitHistoryPageModContentFactoryImpl,0,46,0,4,0,10,0,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDataPageModContentFactoryImpl,0,176,2,8,0,42,2,7,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDecisionPageModContentFactoryImpl,16,105,5,5,3,16,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDecisionPageModContentFactoryImpl,0,121,3,7,0,19,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentsOverviewPageModContentFactoryImpl,0,224,0,0,0,19,0,4,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentPersonReferencesPageModContentFactoryImpl,21,101,5,5,4,18,3,6,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,StreamSourceImplementation,31,0,0,0,8,0,3,0,3,0
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDetailsPageModContentFactoryImpl,21,83,5,5,3,17,3,6,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentActivityPageModContentFactoryImpl,21,95,5,5,3,17,3,6,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentAttachementsPageModContentFactoryImpl,92,87,9,5,22,17,6,6,1,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentReferencesPageModContentFactoryImpl,21,83,6,4,3,17,4,5,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentPersonReferencesPageModContentFactoryImpl,0,122,3,7,0,22,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,StreamSourceImplementation,13,18,0,0,3,5,0,3,0,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDetailsPageModContentFactoryImpl,0,104,3,7,0,20,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentActivityPageModContentFactoryImpl,0,116,3,7,0,20,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentAttachementsPageModContentFactoryImpl,0,179,3,11,0,39,3,9,0,5
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentReferencesPageModContentFactoryImpl,0,104,3,7,0,20,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl.BeanNestedPropertyValueProvider,21,11,0,0,3,4,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl,0,210,3,19,0,47,3,17,0,9
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.common,AbstractAdminView,0,5,0,0,0,2,0,1,0,1
@@ -25,7 +25,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,MinistryGhantChartManagerImpl,0,21,0,0,0,5,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PartyGhantChartManagerImpl.RoleMapping,0,3,0,0,0,1,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,MinistryGhantChartManagerImpl.new AbstractGhantChartManagerImpl.StepMapping() {...},0,55,0,4,0,14,0,11,0,9
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,DecisionChartDataManagerImpl,2,309,8,16,0,58,8,15,0,11
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,DecisionChartDataManagerImpl,2,309,7,17,0,58,7,16,0,11
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PoliticianDataManagerImpl,0,126,2,4,0,26,2,5,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,GovernmentOutcomeChartDataManagerImpl,0,97,0,2,0,19,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PartyGhantChartManagerImpl,0,21,0,0,0,5,0,5,0,5
@@ -62,8 +62,8 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.co
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.country.pagemode,WorldIndicatorsPageModContentFactoryImpl,37,104,4,6,8,19,4,7,0,6
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.country.pagemode,CountryRankingOverviewPageModContentFactoryImpl,0,61,2,6,0,13,2,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,PageLinkFactoryImpl,0,332,0,0,0,49,0,11,0,11
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,ExternalAttachmentDownloadLink.new StreamResource.StreamSource() {...},34,0,0,0,5,0,2,0,2,0
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,ExternalAttachmentDownloadLink,79,0,0,0,17,0,3,0,3,0
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,ExternalAttachmentDownloadLink.new StreamResource.StreamSource() {...},20,14,0,0,3,2,0,2,0,2
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,ExternalAttachmentDownloadLink,0,79,0,0,0,17,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.web.listener,HttpSessionDestroyedEventListener,0,51,0,0,0,14,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.web.listener,AuthorizationFailureEventListener,0,171,7,7,0,34,7,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.web.listener,HttpSessionCreatedEventListener,0,14,0,0,0,5,0,3,0,3
@@ -101,15 +101,14 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.a
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode,AgentOperationsOverviewPageModContentFactoryImpl,104,7,2,0,16,3,2,2,1,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament,ParliamentRankingView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl,StringToEnumConverter,3,6,0,0,1,2,1,2,1,2
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl,FormFactoryImpl,5,352,2,34,2,81,2,25,0,9
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl,FormFactoryImpl,5,351,2,34,2,81,2,25,0,9
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,UiInstanceErrorHandler,16,21,1,1,4,7,1,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencyUI,0,176,0,2,0,28,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencyHealthCheckServlet,0,11,0,0,0,4,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,ResourceServlet,0,12,0,0,0,4,0,2,0,2
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencySpringVaadinServlet.new SessionInitListener() {...},0,38,1,3,0,8,1,3,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,VaadinSpringConfig,0,3,0,0,0,1,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencySpringVaadinServlet,0,35,0,0,0,12,0,4,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencySpringVaadinServlet.CustomSpringUIProvider,0,60,0,0,0,15,0,4,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CitizenIntelligenceAgencySpringVaadinServlet,0,64,1,3,0,19,1,6,0,5
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application,CustomSpringUIProvider,0,60,0,0,0,15,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl,DecisionDataFactoryImpl,2,158,7,21,1,25,7,13,0,6
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl,PartyDataSeriesFactoryImpl,2,243,3,19,1,50,3,15,0,7
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl,CommitteeDataSeriesFactoryImpl,0,153,1,11,0,29,1,9,0,4
@@ -125,7 +124,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,BallotMenuItemFactoryImpl,0,45,0,0,0,9,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,MinistryRankingMenuItemFactoryImpl,0,274,0,0,0,56,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,UserHomeMenuItemFactoryImpl,0,105,0,0,0,21,0,3,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,CountryMenuItemFactoryImpl,101,127,11,1,11,34,12,7,6,7
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,CountryMenuItemFactoryImpl,2,226,2,10,0,45,3,16,1,12
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,AbstractMenuItemFactoryImpl,0,399,2,4,0,81,2,6,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,PartyRankingMenuItemFactoryImpl,0,173,0,0,0,32,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,DocumentMenuItemFactoryImpl,0,253,0,0,0,45,0,5,0,5

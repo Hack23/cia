@@ -1,0 +1,9 @@
+digraph kie_dmn_backend_7_15_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_dmn_backend_7_15_0_Final -> kie_dmn_api_7_15_0_Final;
+  kie_dmn_backend_7_15_0_Final -> kie_dmn_model_7_15_0_Final;
+  kie_dmn_backend_7_15_0_Final -> kie_soup_commons_7_15_0_Final;
+  kie_dmn_backend_7_15_0_Final -> slf4j_api_1_8_0_beta2;
+  kie_dmn_backend_7_15_0_Final -> xml_apis_1_4_01;
+  kie_dmn_backend_7_15_0_Final -> xstream_1_4_11_1;
+}

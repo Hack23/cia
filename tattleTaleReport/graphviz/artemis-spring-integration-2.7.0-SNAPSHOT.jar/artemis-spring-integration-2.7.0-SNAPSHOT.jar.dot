@@ -2,5 +2,5 @@ digraph artemis_spring_integration_2_7_0_SNAPSHOT_dependencies {
   node [shape = box, fontsize=10.0];
   artemis_spring_integration_2_7_0_SNAPSHOT -> artemis_jms_server_2_7_0_SNAPSHOT;
   artemis_spring_integration_2_7_0_SNAPSHOT -> artemis_server_2_7_0_SNAPSHOT;
-  artemis_spring_integration_2_7_0_SNAPSHOT -> spring_beans_5_1_0_RELEASE;
+  artemis_spring_integration_2_7_0_SNAPSHOT -> spring_beans_5_1_3_RELEASE;
 }

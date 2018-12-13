@@ -7,7 +7,7 @@ Specification-Vendor: The Apache Software Foundation
 Specification-Title: ActiveMQ Artemis Service Extensions
 Implementation-Vendor-Id: org.apache.activemq
 Created-By: Apache Maven 3.2.5
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_191
 Specification-Version: 2.7.0-SNAPSHOT
 Implementation-Vendor: The Apache Software Foundation
 

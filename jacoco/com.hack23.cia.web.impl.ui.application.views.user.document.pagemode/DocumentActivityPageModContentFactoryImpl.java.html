@@ -80,11 +80,11 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 <span class="fc" id="L81">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
 
-<span class="pc bpc" id="L83" title="3 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
+<span class="pc bpc" id="L83" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
 
-<span class="nc" id="L86">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
-<span class="nc" id="L87">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
+<span class="fc" id="L86">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
+<span class="fc" id="L87">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
 					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 		}
@@ -97,4 +97,4 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201812121002</span></div></body></html>

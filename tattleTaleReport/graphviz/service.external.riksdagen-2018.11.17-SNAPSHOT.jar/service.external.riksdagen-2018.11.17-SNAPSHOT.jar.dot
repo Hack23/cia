@@ -11,7 +11,7 @@ digraph service_external_riksdagen_2018_11_17_SNAPSHOT_dependencies {
   service_external_riksdagen_2018_11_17_SNAPSHOT -> model_external_riksdagen_voteringlista_impl_2018_11_17_SNAPSHOT;
   service_external_riksdagen_2018_11_17_SNAPSHOT -> service_external_common_2018_11_17_SNAPSHOT;
   service_external_riksdagen_2018_11_17_SNAPSHOT -> slf4j_api_1_8_0_beta2;
-  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_beans_5_1_2_RELEASE;
-  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_context_5_1_2_RELEASE;
-  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_oxm_5_1_2_RELEASE;
+  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_beans_5_1_3_RELEASE;
+  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_context_5_1_3_RELEASE;
+  service_external_riksdagen_2018_11_17_SNAPSHOT -> spring_oxm_5_1_3_RELEASE;
 }

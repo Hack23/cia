@@ -7,7 +7,7 @@ Specification-Vendor: The Apache Software Foundation
 Specification-Title: ActiveMQ Artemis Journal
 Implementation-Vendor-Id: org.apache.activemq
 Created-By: Apache Maven 3.2.5
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_191
 Specification-Version: 2.7.0-SNAPSHOT
 Implementation-Vendor: The Apache Software Foundation
 
@@ -51,31 +51,31 @@ Export-Package: org.apache.activemq.artemis.core.io;uses:="org.apache.
  .artemis.api.core,org.apache.activemq.artemis.core.io,org.apache.acti
  vemq.artemis.core.journal.impl,org.apache.activemq.artemis.core.persi
  stence,org.apache.activemq.artemis.core.server",org.apache.activemq.a
- rtemis.core.journal.impl;uses:="io.netty.buffer,java.lang.invoke,org.
- apache.activemq.artemis,org.apache.activemq.artemis.api.core,org.apac
- he.activemq.artemis.core.io,org.apache.activemq.artemis.core.journal,
- org.apache.activemq.artemis.core.journal.impl.dataformat,org.apache.a
- ctivemq.artemis.core.persistence,org.apache.activemq.artemis.journal,
- org.apache.activemq.artemis.utils,org.apache.activemq.artemis.utils.a
- ctors,org.apache.activemq.artemis.utils.collections",org.apache.activ
- emq.artemis.core.journal.impl.dataformat;uses:="org.apache.activemq.a
- rtemis.api.core,org.apache.activemq.artemis.core.journal,org.apache.a
- ctivemq.artemis.core.journal.impl,org.apache.activemq.artemis.core.pe
- rsistence",org.apache.activemq.artemis.journal;uses:="org.apache.acti
- vemq.artemis.api.core,org.apache.activemq.artemis.core.journal.impl,o
- rg.jboss.logging.annotations"
-Import-Package: io.netty.buffer;version="4.1.30.Final",io.netty.util.i
- nternal;version="4.1.30.Final",java.io,java.lang,java.lang.invoke,jav
+ rtemis.core.journal.impl;uses:="io.netty.buffer,java.lang.invoke,java
+ .util.function,org.apache.activemq.artemis,org.apache.activemq.artemi
+ s.api.core,org.apache.activemq.artemis.core.io,org.apache.activemq.ar
+ temis.core.journal,org.apache.activemq.artemis.core.journal.impl.data
+ format,org.apache.activemq.artemis.core.persistence,org.apache.active
+ mq.artemis.journal,org.apache.activemq.artemis.utils,org.apache.activ
+ emq.artemis.utils.actors,org.apache.activemq.artemis.utils.collection
+ s",org.apache.activemq.artemis.core.journal.impl.dataformat;uses:="or
+ g.apache.activemq.artemis.api.core,org.apache.activemq.artemis.core.j
+ ournal,org.apache.activemq.artemis.core.journal.impl,org.apache.activ
+ emq.artemis.core.persistence",org.apache.activemq.artemis.journal;use
+ s:="org.apache.activemq.artemis.api.core,org.apache.activemq.artemis.
+ core.journal.impl,org.jboss.logging.annotations"
+Import-Package: io.netty.buffer;version="4.1.32.Final",io.netty.util.i
+ nternal;version="4.1.32.Final",java.io,java.lang,java.lang.invoke,jav
  a.lang.management,java.lang.ref,java.nio,java.nio.channels,java.nio.f
  ile,java.security,java.text,java.util,java.util.concurrent,java.util.
- concurrent.atomic,java.util.concurrent.locks,org.apache.activemq.arte
- mis;version="0.0.0",org.apache.activemq.artemis.api.core;version="0.0
- .0",org.apache.activemq.artemis.core.buffers.impl;version="0.0.0",org
- .apache.activemq.artemis.core.persistence;version="0.0.0",org.apache.
- activemq.artemis.core.server;version="0.0.0",org.apache.activemq.arte
- mis.jlibaio;version="0.0.0",org.apache.activemq.artemis.jlibaio.util;
- version="0.0.0",org.apache.activemq.artemis.utils;version="0.0.0",org
- .apache.activemq.artemis.utils.actors;version="0.0.0",org.apache.acti
- vemq.artemis.utils.collections;version="0.0.0",org.apache.activemq.ar
- temis.utils.critical;version="0.0.0",org.jboss.logging;version="3.3.2
- .Final",org.jboss.logging.annotations
+ concurrent.atomic,java.util.concurrent.locks,java.util.function,org.a
+ pache.activemq.artemis;version="0.0.0",org.apache.activemq.artemis.ap
+ i.core;version="0.0.0",org.apache.activemq.artemis.core.buffers.impl;
+ version="0.0.0",org.apache.activemq.artemis.core.persistence;version=
+ "0.0.0",org.apache.activemq.artemis.core.server;version="0.0.0",org.a
+ pache.activemq.artemis.jlibaio;version="0.0.0",org.apache.activemq.ar
+ temis.jlibaio.util;version="0.0.0",org.apache.activemq.artemis.utils;
+ version="0.0.0",org.apache.activemq.artemis.utils.actors;version="0.0
+ .0",org.apache.activemq.artemis.utils.collections;version="0.0.0",org
+ .apache.activemq.artemis.utils.critical;version="0.0.0",org.jboss.log
+ ging;version="3.3.2.Final",org.jboss.logging.annotations

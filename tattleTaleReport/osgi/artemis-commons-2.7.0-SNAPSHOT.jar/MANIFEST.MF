@@ -7,7 +7,7 @@ Specification-Vendor: The Apache Software Foundation
 Specification-Title: ActiveMQ Artemis Commons
 Implementation-Vendor-Id: org.apache.activemq
 Created-By: Apache Maven 3.2.5
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_191
 Specification-Version: 2.7.0-SNAPSHOT
 Implementation-Vendor: The Apache Software Foundation
 
@@ -47,9 +47,9 @@ Export-Package: org.apache.activemq.artemis,org.apache.activemq.artemi
  mq.artemis.utils.uri;uses:="org.apache.activemq.artemis.api.core,org.
  apache.activemq.artemis.utils.collections,org.apache.commons.beanutil
  s"
-Import-Package: io.netty.buffer;version="4.1.30.Final",io.netty.channe
- l;version="4.1.30.Final",io.netty.handler.ssl;version="4.1.30.Final",
- io.netty.util.internal;version="4.1.30.Final",java.beans,java.io,java
+Import-Package: io.netty.buffer;version="4.1.32.Final",io.netty.channe
+ l;version="4.1.32.Final",io.netty.handler.ssl;version="4.1.32.Final",
+ io.netty.util.internal;version="4.1.32.Final",java.beans,java.io,java
  .lang,java.lang.invoke,java.lang.management,java.lang.ref,java.lang.r
  eflect,java.math,java.net,java.nio,java.nio.charset,java.nio.file,jav
  a.nio.file.attribute,java.security,java.security.spec,java.text,java.
@@ -58,4 +58,4 @@ Import-Package: io.netty.buffer;version="4.1.30.Final",io.netty.channe
  .util.zip,javax.crypto,javax.crypto.spec,javax.net.ssl,javax.security
  .cert,org.apache.commons.beanutils;version="1.9.3.redhat-1",org.jboss
  .logging;version="3.3.2.Final",org.jboss.logging.annotations,org.jbos
- s.logmanager,sun.misc
+ s.logmanager;version="2.0.3.Final",sun.misc

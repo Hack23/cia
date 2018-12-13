@@ -1,0 +1,28 @@
+digraph spring_web_5_1_3_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_web_5_1_3_RELEASE -> gson_2_8_5;
+  spring_web_5_1_3_RELEASE -> httpasyncclient_4_1_2;
+  spring_web_5_1_3_RELEASE -> httpclient_4_5_5;
+  spring_web_5_1_3_RELEASE -> httpcore_4_4_10;
+  spring_web_5_1_3_RELEASE -> httpcore_nio_4_4_5;
+  spring_web_5_1_3_RELEASE -> jackson_annotations_2_9_0;
+  spring_web_5_1_3_RELEASE -> jackson_core_2_9_7;
+  spring_web_5_1_3_RELEASE -> jackson_databind_2_9_7;
+  spring_web_5_1_3_RELEASE -> jackson_dataformat_cbor_2_9_7;
+  spring_web_5_1_3_RELEASE -> javax_mail_1_6_2;
+  spring_web_5_1_3_RELEASE -> jaxb_api_2_4_0;
+  spring_web_5_1_3_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_web_5_1_3_RELEASE -> netty_buffer_4_1_32_Final;
+  spring_web_5_1_3_RELEASE -> netty_codec_http_4_1_32_Final;
+  spring_web_5_1_3_RELEASE -> netty_common_4_1_32_Final;
+  spring_web_5_1_3_RELEASE -> netty_handler_4_1_32_Final;
+  spring_web_5_1_3_RELEASE -> netty_transport_4_1_32_Final;
+  spring_web_5_1_3_RELEASE -> protobuf_java_3_6_1;
+  spring_web_5_1_3_RELEASE -> spring_aop_5_1_3_RELEASE;
+  spring_web_5_1_3_RELEASE -> spring_beans_5_1_3_RELEASE;
+  spring_web_5_1_3_RELEASE -> spring_context_5_1_3_RELEASE;
+  spring_web_5_1_3_RELEASE -> spring_core_5_1_3_RELEASE;
+  spring_web_5_1_3_RELEASE -> spring_oxm_5_1_3_RELEASE;
+  spring_web_5_1_3_RELEASE -> validation_api_2_0_1_Final;
+  spring_web_5_1_3_RELEASE -> xml_apis_1_4_01;
+}

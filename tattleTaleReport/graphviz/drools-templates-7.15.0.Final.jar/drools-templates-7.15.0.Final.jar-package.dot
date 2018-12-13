@@ -1,0 +1,19 @@
+digraph drools_templates_7_15_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_drools_template -> org_drools_template_objects;
+  org_drools_template -> org_drools_template_parser;
+  org_drools_template_jdbc -> org_drools_template_parser;
+  org_drools_template_objects -> org_drools_template;
+  org_drools_template_objects -> org_drools_template_parser;
+  org_drools_template_parser -> org_drools_compiler_builder_impl;
+  org_drools_template_parser -> org_drools_core_definitions;
+  org_drools_template_parser -> org_drools_core_impl;
+  org_drools_template_parser -> org_drools_core_util;
+  org_drools_template_parser -> org_drools_template_model;
+  org_drools_template_parser -> org_kie_api_definition;
+  org_drools_template_parser -> org_kie_api_runtime;
+  org_drools_template_parser -> org_kie_api_runtime_rule;
+  org_drools_template_parser -> org_mvel2_integration;
+  org_drools_template_parser -> org_mvel2_integration_impl;
+  org_drools_template_parser -> org_mvel2_templates;
+}

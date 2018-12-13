@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Implementation-Title: Netty/Common
+Bundle-Description: Netty is an asynchronous event-driven network appl
+ ication framework for    rapid development of maintainable high perfo
+ rmance protocol servers and    clients.
+Automatic-Module-Name: io.netty.common
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: io.netty.common
+Implementation-Version: 4.1.32.Final
+Built-By: root
+Bnd-LastModified: 1543493607880
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: io.netty
+Bundle-DocURL: http://netty.io/
+Bundle-Vendor: The Netty Project
+Import-Package: sun.misc;resolution:=optional,javax.security.cert;reso
+ lution:=optional,org.apache.commons.logging;resolution:=optional;vers
+ ion="[1.2,2)",org.apache.log4j;resolution:=optional;version="[1.2,2)"
+ ,org.apache.logging.log4j;resolution:=optional;version="[2.6,3)",org.
+ apache.logging.log4j.message;resolution:=optional;version="[2.6,3)",o
+ rg.apache.logging.log4j.spi;resolution:=optional;version="[2.6,3)",or
+ g.slf4j;resolution:=optional;version="[1.7,2)",org.slf4j.helpers;reso
+ lution:=optional;version="[1.7,2)",org.slf4j.spi;resolution:=optional
+ ;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+DynamicImport-Package: *
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Netty Project
+Export-Package: io.netty.util;uses:="io.netty.util.concurrent";version
+ ="4.1.32",io.netty.util.collection;version="4.1.32",io.netty.util.con
+ current;uses:="io.netty.util.internal";version="4.1.32",io.netty.util
+ .internal;uses:="io.netty.util,io.netty.util.concurrent,io.netty.util
+ .internal.logging,javax.security.cert";version="4.1.32",io.netty.util
+ .internal.logging;version="4.1.32"
+Bundle-Name: Netty/Common
+Bundle-Version: 4.1.32.Final
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_192
+Implementation-URL: http://netty.io/netty-common/
+

@@ -1,0 +1,10 @@
+digraph spring_oxm_5_1_3_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_oxm_5_1_3_RELEASE -> activation_1_1;
+  spring_oxm_5_1_3_RELEASE -> jaxb_api_2_4_0;
+  spring_oxm_5_1_3_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_oxm_5_1_3_RELEASE -> spring_beans_5_1_3_RELEASE;
+  spring_oxm_5_1_3_RELEASE -> spring_core_5_1_3_RELEASE;
+  spring_oxm_5_1_3_RELEASE -> xml_apis_1_4_01;
+  spring_oxm_5_1_3_RELEASE -> xstream_1_4_11_1;
+}

@@ -1,0 +1,7 @@
+digraph jms_5_9_1_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jms_5_9_1_Final -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
+  jms_5_9_1_Final -> geronimo_jta_1_1_spec_1_1_1;
+  jms_5_9_1_Final -> jboss_logging_3_3_2_Final;
+  jms_5_9_1_Final -> jta_5_9_1_Final;
+}

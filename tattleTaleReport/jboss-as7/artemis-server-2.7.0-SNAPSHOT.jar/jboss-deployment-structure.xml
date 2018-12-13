@@ -5,6 +5,7 @@
         <module name="javax.transaction.api"/>
         <module name="org.apache.commons.beanutils"/>
         <module name="org.jboss.logging"/>
+        <module name="org.jboss.logmanager"/>
         <module name="system"/>
      </dependencies>
   </deployment>

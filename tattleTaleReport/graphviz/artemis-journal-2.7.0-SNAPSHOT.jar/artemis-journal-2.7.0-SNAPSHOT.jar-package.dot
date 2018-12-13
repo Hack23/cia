@@ -54,6 +54,7 @@ digraph artemis_journal_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_core_journal -> org_apache_activemq_artemis_core_server;
   org_apache_activemq_artemis_core_journal_impl -> io_netty_buffer;
   org_apache_activemq_artemis_core_journal_impl -> java_lang_invoke;
+  org_apache_activemq_artemis_core_journal_impl -> java_util_function;
   org_apache_activemq_artemis_core_journal_impl -> org_apache_activemq_artemis;
   org_apache_activemq_artemis_core_journal_impl -> org_apache_activemq_artemis_api_core;
   org_apache_activemq_artemis_core_journal_impl -> org_apache_activemq_artemis_core_io;

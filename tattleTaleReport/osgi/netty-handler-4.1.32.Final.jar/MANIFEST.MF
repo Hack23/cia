@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Implementation-Title: Netty/Handler
+Bundle-Description: Netty is an asynchronous event-driven network appl
+ ication framework for    rapid development of maintainable high perfo
+ rmance protocol servers and    clients.
+Automatic-Module-Name: io.netty.handler
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: io.netty.handler
+Implementation-Version: 4.1.32.Final
+Built-By: root
+Bnd-LastModified: 1543494298593
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: io.netty
+Bundle-DocURL: http://netty.io/
+Bundle-Vendor: The Netty Project
+Import-Package: sun.security.util;resolution:=optional,sun.security.x5
+ 09;resolution:=optional,org.eclipse.jetty.npn;version="[1,2)";resolut
+ ion:=optional,org.eclipse.jetty.alpn;version="[1,2)";resolution:=opti
+ onal,io.netty.buffer;version="[4.1,5)",io.netty.channel;version="[4.1
+ ,5)",io.netty.handler.codec;version="[4.1,5)",io.netty.handler.codec.
+ base64;version="[4.1,5)",io.netty.internal.tcnative;version="[2.0,3)"
+ ;resolution:=optional,io.netty.util;version="[4.1,5)",io.netty.util.c
+ oncurrent;version="[4.1,5)",io.netty.util.internal;version="[4.1,5)",
+ io.netty.util.internal.logging;version="[4.1,5)",javax.crypto,javax.c
+ rypto.spec,javax.net.ssl,javax.security.auth.x500,javax.security.cert
+ ,org.bouncycastle.asn1.x500;version="[1.54,2)";resolution:=optional,o
+ rg.bouncycastle.cert;version="[1.54,2)";resolution:=optional,org.boun
+ cycastle.cert.jcajce;version="[1.54,2)";resolution:=optional,org.boun
+ cycastle.jce.provider;version="[1.54,2)";resolution:=optional,org.bou
+ ncycastle.operator;version="[1.54,2)";resolution:=optional,org.bouncy
+ castle.operator.jcajce;version="[1.54,2)";resolution:=optional,org.co
+ nscrypt;resolution:=optional,sun.nio.ch;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Netty Project
+Export-Package: io.netty.handler.flow;uses:="io.netty.channel";version
+ ="4.1.32",io.netty.handler.flush;uses:="io.netty.channel";version="4.
+ 1.32",io.netty.handler.ipfilter;uses:="io.netty.channel";version="4.1
+ .32",io.netty.handler.logging;uses:="io.netty.channel,io.netty.util.i
+ nternal.logging";version="4.1.32",io.netty.handler.ssl;uses:="io.nett
+ y.buffer,io.netty.channel,io.netty.handler.codec,io.netty.util,io.net
+ ty.util.concurrent,javax.crypto,javax.net.ssl";version="4.1.32",io.ne
+ tty.handler.ssl.ocsp;uses:="io.netty.channel,io.netty.handler.ssl";ve
+ rsion="4.1.32",io.netty.handler.ssl.util;uses:="javax.net.ssl";versio
+ n="4.1.32",io.netty.handler.stream;uses:="io.netty.buffer,io.netty.ch
+ annel";version="4.1.32",io.netty.handler.timeout;uses:="io.netty.chan
+ nel";version="4.1.32",io.netty.handler.traffic;uses:="io.netty.channe
+ l,io.netty.util.concurrent";version="4.1.32"
+Bundle-Name: Netty/Handler
+Bundle-Version: 4.1.32.Final
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_192
+Implementation-URL: http://netty.io/netty-handler/
+

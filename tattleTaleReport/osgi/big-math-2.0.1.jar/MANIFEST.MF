@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: ch.obermuhlner.math.big
+Bundle-SymbolicName: ch.obermuhlner.math.big
+Export-Package: ch.obermuhlner.math.big, ch.obermuhlner.math.big.strea
+ m
+Bundle-Name: big-math
+Bundle-Version: 2.0.1
+Bundle-ManifestVersion: 2
+

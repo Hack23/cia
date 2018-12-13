@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: ArjunaJTA JMS
+Implementation-Version: 5.9.1.Final
+Java-Version: 1.8.0_144
+Built-By: still
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/narayana-j
+ ta-all/jms
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: ArjunaJTA JMS
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Windows 10
+Scm-Url: https://github.com/jbosstm/narayana/narayana-jta-all/jms
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 10.0
+Scm-Revision: 0eaa6372467826e5b5ec6e01960e888d8504d160
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_144
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jboss.narayana.jta.jms
+Bundle-Description: jms-5.9.1.Final
+Bundle-Name: jms-5.9.1.Final
+Bundle-Version: 5.9
+Export-Package: org.jboss.narayana.jta.jms;uses:="java.lang,java.lang.
+ invoke"
+Import-Package: com.arjuna.ats.jta.logging;version="5.9",com.arjuna.at
+ s.jta.recovery;version="5.9",java.io,java.lang,java.lang.invoke,javax
+ .jms;version="0.0.0",javax.transaction;version="1.1.1",javax.transact
+ ion.xa;version="1.1.1",org.jboss.logging;version="3.3.2.Final"

@@ -1,0 +1,13 @@
+digraph juniversalchardet_2_3_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_mozilla_universalchardet -> java_nio_file;
+  org_mozilla_universalchardet -> java_util;
+  org_mozilla_universalchardet -> org_mozilla_universalchardet_prober;
+  org_mozilla_universalchardet_prober -> org_mozilla_universalchardet;
+  org_mozilla_universalchardet_prober -> org_mozilla_universalchardet_prober_contextanalysis;
+  org_mozilla_universalchardet_prober -> org_mozilla_universalchardet_prober_distributionanalysis;
+  org_mozilla_universalchardet_prober -> org_mozilla_universalchardet_prober_sequence;
+  org_mozilla_universalchardet_prober -> org_mozilla_universalchardet_prober_statemachine;
+  org_mozilla_universalchardet_prober_sequence -> org_mozilla_universalchardet;
+  org_mozilla_universalchardet_prober_statemachine -> org_mozilla_universalchardet;
+}

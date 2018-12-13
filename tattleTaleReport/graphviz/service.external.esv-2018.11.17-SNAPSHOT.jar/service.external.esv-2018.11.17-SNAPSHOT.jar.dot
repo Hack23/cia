@@ -4,9 +4,9 @@ digraph service_external_esv_2018_11_17_SNAPSHOT_dependencies {
   service_external_esv_2018_11_17_SNAPSHOT -> commons_csv_1_6;
   service_external_esv_2018_11_17_SNAPSHOT -> commons_lang3_3_8_1;
   service_external_esv_2018_11_17_SNAPSHOT -> fluent_hc_4_5_5;
-  service_external_esv_2018_11_17_SNAPSHOT -> poi_4_0_0;
-  service_external_esv_2018_11_17_SNAPSHOT -> poi_ooxml_4_0_0;
+  service_external_esv_2018_11_17_SNAPSHOT -> poi_4_0_1;
+  service_external_esv_2018_11_17_SNAPSHOT -> poi_ooxml_4_0_1;
   service_external_esv_2018_11_17_SNAPSHOT -> slf4j_api_1_8_0_beta2;
-  service_external_esv_2018_11_17_SNAPSHOT -> spring_beans_5_1_2_RELEASE;
-  service_external_esv_2018_11_17_SNAPSHOT -> spring_context_5_1_2_RELEASE;
+  service_external_esv_2018_11_17_SNAPSHOT -> spring_beans_5_1_3_RELEASE;
+  service_external_esv_2018_11_17_SNAPSHOT -> spring_context_5_1_3_RELEASE;
 }

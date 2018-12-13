@@ -180,6 +180,7 @@ digraph artemis_core_client_2_7_0_SNAPSHOT_package_dependencies {
   org_apache_activemq_artemis_core_transaction_impl -> org_apache_activemq_artemis_utils;
   org_apache_activemq_artemis_core_version_impl -> org_apache_activemq_artemis_core_version;
   org_apache_activemq_artemis_reader -> io_netty_buffer;
+  org_apache_activemq_artemis_reader -> java_util;
   org_apache_activemq_artemis_reader -> org_apache_activemq_artemis_api_core;
   org_apache_activemq_artemis_reader -> org_apache_activemq_artemis_utils;
   org_apache_activemq_artemis_reader -> org_apache_activemq_artemis_utils_collections;

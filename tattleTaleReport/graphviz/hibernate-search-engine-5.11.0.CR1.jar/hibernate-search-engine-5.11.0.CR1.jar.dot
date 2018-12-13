@@ -1,0 +1,13 @@
+digraph hibernate_search_engine_5_11_0_CR1_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_search_engine_5_11_0_CR1 -> geronimo_jta_1_1_spec_1_1_1;
+  hibernate_search_engine_5_11_0_CR1 -> hibernate_commons_annotations_5_1_0_Final;
+  hibernate_search_engine_5_11_0_CR1 -> jboss_logging_3_3_2_Final;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_analyzers_common_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_core_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_facet_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_misc_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_queries_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> lucene_queryparser_5_5_5;
+  hibernate_search_engine_5_11_0_CR1 -> xml_apis_1_4_01;
+}

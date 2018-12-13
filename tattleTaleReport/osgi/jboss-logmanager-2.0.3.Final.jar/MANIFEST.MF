@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Bundle-License: http://repository.jboss.org/licenses/apache-2.0.txt
+Bundle-SymbolicName: org.jboss.logmanager.jboss-logmanager
+Archiver-Version: Plexus Archiver
+Built-By: jperkins
+Bnd-LastModified: 1444350586685
+Implementation-Vendor-Id: org.jboss.logmanager
+Specification-Title: JBoss Log Manager
+Bundle-DocURL: http://www.jboss.org
+Import-Package: javax.net,javax.net.ssl,org.jboss.logmanager;version="
+ 2.0",org.jboss.logmanager.config;version="2.0",org.jboss.logmanager.e
+ rrormanager;version="2.0",org.jboss.logmanager.filters;version="2.0",
+ org.jboss.logmanager.formatters;version="2.0",org.jboss.logmanager.ha
+ ndlers;version="2.0",org.jboss.modules
+Scm-Url: http://github.com/jboss/jboss-parent-pom/jboss-logmanager
+Export-Package: org.jboss.logmanager.handlers;uses:="org.jboss.logmana
+ ger,org.jboss.logmanager.formatters,javax.net,javax.net.ssl";version=
+ "2.0.3.Final",org.jboss.logmanager.formatters;uses:="org.jboss.logman
+ ager";version="2.0.3.Final",org.jboss.logmanager;uses:="org.jboss.log
+ manager.handlers,org.jboss.logmanager.errormanager,org.jboss.logmanag
+ er.config";version="2.0.3.Final",org.jboss.logmanager.config;uses:="o
+ rg.jboss.modules,org.jboss.logmanager,org.jboss.logmanager.filters";v
+ ersion="2.0.3.Final",org.jboss.logmanager.errormanager;version="2.0.3
+ .Final",org.jboss.logmanager.filters;uses:="org.jboss.logmanager";ver
+ sion="2.0.3.Final"
+Bundle-Name: JBoss Log Manager
+Implementation-Title: JBoss Log Manager
+Bundle-Description: An implementation of java.util.logging.LogManager
+Build-Timestamp: Thu, 8 Oct 2015 17:29:35 -0700
+Implementation-Version: 2.0.3.Final
+Java-Version: 1.7.0_71
+Scm-Connection: scm:git:git@github.com:jboss/jboss-parent-pom.git/jbos
+ s-logmanager
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Bundle-ManifestVersion: 2
+Java-Vendor: Oracle Corporation
+Bundle-Vendor: JBoss by Red Hat
+Os-Name: Linux
+Tool: Bnd-0.0.357
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.1.8-200.fc22.x86_64
+Originally-Created-By: 1.7.0_71 (Oracle Corporation)
+Scm-Revision: ca67479168e8312d0a021cb76f435a1ee6bbd615
+Bundle-Version: 2.0.3.Final
+Created-By: 1.7.0_71 (Oracle Corporation)
+Implementation-URL: http://www.jboss.org/jboss-logmanager
+Build-Jdk: 1.7.0_71
+Specification-Version: 2.0.3.Final
+

@@ -1,0 +1,6 @@
+digraph jboss_logmanager_2_0_3_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jboss_logmanager -> java_nio_charset;
+  org_jboss_logmanager -> org_jboss_logmanager_config;
+  org_jboss_logmanager_config -> org_jboss_modules;
+}

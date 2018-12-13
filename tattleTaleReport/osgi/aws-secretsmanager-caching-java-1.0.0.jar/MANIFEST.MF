@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: willtong
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_181
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amazonaws.secretsmanager.caching.cache
+Bundle-Description: aws-secretsmanager-caching-java-1.0.0
+Bundle-Name: aws-secretsmanager-caching-java-1.0.0
+Bundle-Version: 0.0.0
+Export-Package: com.amazonaws.secretsmanager.caching;uses:="com.amazon
+ aws.secretsmanager.caching.cache,com.amazonaws.services.secretsmanage
+ r,com.amazonaws.services.secretsmanager.model,java.lang",com.amazonaw
+ s.secretsmanager.caching.cache;uses:="com.amazonaws,com.amazonaws.sec
+ retsmanager.caching,com.amazonaws.secretsmanager.caching.cache.intern
+ al,com.amazonaws.services.secretsmanager,com.amazonaws.services.secre
+ tsmanager.model,java.lang.invoke,java.util,java.util.concurrent,java.
+ util.function,java.util.stream",com.amazonaws.secretsmanager.caching.
+ cache.internal
+Import-Package: com.amazonaws;version="0.0.0",com.amazonaws.services.s
+ ecretsmanager;version="0.0.0",com.amazonaws.services.secretsmanager.m
+ odel;version="0.0.0",java.lang,java.lang.invoke,java.nio,java.util,ja
+ va.util.concurrent,java.util.function,java.util.stream

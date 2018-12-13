@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.soup.kie-soup-maven-support
+Built-By: jenkins
+Bnd-LastModified: 1543400889006
+Implementation-Vendor-Id: org.kie.soup
+Specification-Title: Maven-support
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/ErraiApp.properties=src/main/resources/META
+ -INF/ErraiApp.properties,org/appformer/maven/support/AFMavenSupportAP
+ I.gwt.xml=src/main/resources/org/appformer/maven/support/AFMavenSuppo
+ rtAPI.gwt.xml
+Import-Package: javax.xml.parsers,org.slf4j,org.xml.sax,org.xml.sax.he
+ lpers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-maven-utils/kie
+ -soup-maven-support
+Export-Package: org.appformer.maven.support;version="7.15.0.osgisnapsh
+ otqualifier"
+Bundle-Name: Maven-support
+Bundle-Description: The parent contains all metadata (including plugin
+ s) and also dependency versions. All KIE Soup modules    (except for 
+ user BOMs like 'kie-soup-bom') should (transitively) inherit from thi
+ s POM.
+Implementation-Title: Maven-support
+Implementation-Version: 7.15.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-
+ maven-utils/kie-soup-maven-support
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.15.0.osgisnapshotqualifier
+Scm-Revision: d7bc2d1faabb972a92dd77e590624a6c67f7f92f
+Private-Package: org.appformer.maven.support
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bo
+ m/kie-soup-parent/kie-soup-maven-utils/kie-soup-maven-support
+Specification-Version: 7.15.0.Final
+

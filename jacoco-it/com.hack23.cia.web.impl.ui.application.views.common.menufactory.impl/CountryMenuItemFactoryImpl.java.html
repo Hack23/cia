@@ -130,25 +130,25 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 			final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sourceIndicatorMap) {
 		
 <span class="fc" id="L132">		final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sortedIndicatorMap = sourceIndicatorMap</span>
-<span class="pc" id="L133">				.entrySet().stream().sorted((e1, e2) -&gt; e1.getKey().compareTo(e2.getKey()))</span>
+<span class="fc" id="L133">				.entrySet().stream().sorted((e1, e2) -&gt; e1.getKey().compareTo(e2.getKey()))</span>
 <span class="pc" id="L134">				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -&gt; e1, LinkedHashMap::new));</span>
 
-<span class="pc bpc" id="L136" title="1 of 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; entry : sortedIndicatorMap</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; entry : sortedIndicatorMap</span>
 <span class="fc" id="L137">				.entrySet()) {</span>
 
-<span class="nc" id="L139">			final MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), null, null);</span>
+<span class="fc" id="L139">			final MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), null, null);</span>
 			
-<span class="nc" id="L141">			final List&lt;ViewWorldbankIndicatorDataCountrySummary&gt; sortedEntries = entry.getValue().stream()</span>
-<span class="nc" id="L142">					.sorted((e1, e2) -&gt; e1.getIndicatorName().compareTo(e2.getIndicatorName()))</span>
-<span class="nc" id="L143">					.collect(Collectors.toList());</span>
+<span class="fc" id="L141">			final List&lt;ViewWorldbankIndicatorDataCountrySummary&gt; sortedEntries = entry.getValue().stream()</span>
+<span class="fc" id="L142">					.sorted((e1, e2) -&gt; e1.getIndicatorName().compareTo(e2.getIndicatorName()))</span>
+<span class="fc" id="L143">					.collect(Collectors.toList());</span>
 
-<span class="nc bnc" id="L145" title="All 2 branches missed.">			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {</span>
-<span class="nc" id="L146">				final MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {</span>
+<span class="fc" id="L146">				final MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),</span>
 						new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS,
-<span class="nc" id="L148">								indciatorSummary.getEmbeddedId().getIndicatorId()));</span>
-<span class="nc" id="L149">				addItem.setStyleName(&quot;RestrictedHeader&quot;);</span>
-<span class="nc" id="L150">			}</span>
-<span class="nc" id="L151">		}</span>
+<span class="fc" id="L148">								indciatorSummary.getEmbeddedId().getIndicatorId()));</span>
+<span class="fc" id="L149">				addItem.setStyleName(&quot;RestrictedHeader&quot;);</span>
+<span class="fc" id="L150">			}</span>
+<span class="fc" id="L151">		}</span>
 
 <span class="fc" id="L153">	}</span>
 
@@ -163,9 +163,9 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 <span class="fc" id="L164">		return indicatorDataCountrSummaryDailyDataContainer</span>
 <span class="fc" id="L165">				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,&quot;SE&quot;).parallelStream()</span>
-<span class="pc bnc" id="L166" title="All 8 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getSourceValue() != null &amp;&amp; t.getEndYear() &gt; DATA_POINTS_FOR_YEAR_ABOVE &amp;&amp; t.getDataPoint() &gt; MINIMUM_NUMBER_DATA_POINTS)</span>
-<span class="pc" id="L167">				.flatMap(t -&gt; Arrays.asList(t.getTopics().split(&quot;;&quot;)).stream()</span>
-<span class="nc" id="L168">						.map(topic -&gt; new AbstractMap.SimpleEntry&lt;&gt;(topic, t)))</span>
+<span class="pc bpc" id="L166" title="2 of 8 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getSourceValue() != null &amp;&amp; t.getEndYear() &gt; DATA_POINTS_FOR_YEAR_ABOVE &amp;&amp; t.getDataPoint() &gt; MINIMUM_NUMBER_DATA_POINTS)</span>
+<span class="fc" id="L167">				.flatMap(t -&gt; Arrays.asList(t.getTopics().split(&quot;;&quot;)).stream()</span>
+<span class="fc" id="L168">						.map(topic -&gt; new AbstractMap.SimpleEntry&lt;&gt;(topic, t)))</span>
 
 <span class="fc" id="L170">				.collect(Collectors.groupingBy(SimpleEntry::getKey,</span>
 <span class="fc" id="L171">						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));</span>
@@ -182,4 +182,4 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 <span class="fc" id="L182">		menuBar.setAutoOpen(true);</span>
 <span class="fc" id="L183">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201811161249</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201812121002</span></div></body></html>

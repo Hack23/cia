@@ -1,0 +1,4 @@
+digraph kie_soup_commons_7_15_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_soup_commons_7_15_0_Final -> xstream_1_4_11_1;
+}

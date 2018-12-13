@@ -1,0 +1,5 @@
+digraph jms_5_9_1_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jboss_narayana_jta_jms -> java_lang;
+  org_jboss_narayana_jta_jms -> java_lang_invoke;
+}

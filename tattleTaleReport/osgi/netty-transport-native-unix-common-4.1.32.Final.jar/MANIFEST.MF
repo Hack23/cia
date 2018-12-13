@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Implementation-Title: Netty/Transport/Native/Unix/Common
+Bundle-Description: Static library which contains common unix utilitie
+ s.
+Automatic-Module-Name: io.netty.transport.unix.common
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: io.netty.transport-native-unix-common
+Implementation-Version: 4.1.32.Final
+Built-By: norman
+Bnd-LastModified: 1543498385573
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: io.netty
+Bundle-DocURL: http://netty.io/
+Bundle-Vendor: The Netty Project
+Import-Package: io.netty.buffer;version="[4.1,5)",io.netty.channel,io.
+ netty.channel.socket;version="[4.1,5)",io.netty.util;version="[4.1,5)
+ ",io.netty.util.internal;version="[4.1,5)",sun.nio.ch;resolution:=opt
+ ional,org.eclipse.jetty.npn;version="[1,2)";resolution:=optional,org.
+ eclipse.jetty.alpn;version="[1,2)";resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Netty Project
+Export-Package: io.netty.channel.unix;uses:="io.netty.buffer,io.netty.
+ channel,io.netty.channel.socket";version="4.1.32"
+Bundle-Name: Netty/Transport/Native/Unix/Common
+Bundle-Version: 4.1.32.Final
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://netty.io/netty-transport-native-unix-common
+ /
+

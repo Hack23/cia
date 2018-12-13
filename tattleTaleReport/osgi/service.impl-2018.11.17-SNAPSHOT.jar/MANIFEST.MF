@@ -118,28 +118,28 @@ Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
  ersion="3.8",org.apache.commons.lang3.math;version="3.8",org.bouncyca
  stle.jcajce.provider.digest;version="1.1",org.bouncycastle.jce.provid
  er;version="1.1",org.bouncycastle.util.encoders;version="1.1",org.dro
- ols.core.common;version="7.14.0.Final",org.kie.api;version="7.14.0.Fi
- nal",org.kie.api.builder;version="7.14.0.Final",org.kie.api.definitio
- n;version="7.14.0.Final",org.kie.api.definition.rule;version="7.14.0.
- Final",org.kie.api.event.rule;version="7.14.0.Final",org.kie.api.runt
- ime;version="7.14.0.Final",org.kie.api.runtime.rule;version="7.14.0.F
+ ols.core.common;version="7.15.0.Final",org.kie.api;version="7.15.0.Fi
+ nal",org.kie.api.builder;version="7.15.0.Final",org.kie.api.definitio
+ n;version="7.15.0.Final",org.kie.api.definition.rule;version="7.15.0.
+ Final",org.kie.api.event.rule;version="7.15.0.Final",org.kie.api.runt
+ ime;version="7.15.0.Final",org.kie.api.runtime.rule;version="7.15.0.F
  inal",org.passay;version="0.0.0",org.quartz;version="0.0.0",org.slf4j
  ;version="0.0.0",org.springframework.beans.factory.annotation;version
- ="5.1.2.RELEASE",org.springframework.cache.annotation;version="5.1.2.
- RELEASE",org.springframework.context;version="5.1.2.RELEASE",org.spri
- ngframework.context.annotation;version="5.1.2.RELEASE",org.springfram
- ework.mail;version="5.1.2.RELEASE",org.springframework.mail.javamail;
- version="5.1.2.RELEASE",org.springframework.scheduling.annotation;ver
- sion="5.1.2.RELEASE",org.springframework.scheduling.quartz;version="5
- .1.2.RELEASE",org.springframework.security.access.annotation;version=
- "5.1.1.RELEASE",org.springframework.security.authentication;version="
- 5.1.1.RELEASE",org.springframework.security.core;version="5.1.1.RELEA
- SE",org.springframework.security.core.authority;version="5.1.1.RELEAS
- E",org.springframework.security.core.context;version="5.1.1.RELEASE",
- org.springframework.security.crypto.bcrypt;version="5.1.1.RELEASE",or
- g.springframework.security.crypto.password;version="5.1.1.RELEASE",or
- g.springframework.stereotype;version="5.1.2.RELEASE",org.springframew
- ork.transaction.annotation;version="5.1.2.RELEASE",weka.core;version=
+ ="5.1.3.RELEASE",org.springframework.cache.annotation;version="5.1.3.
+ RELEASE",org.springframework.context;version="5.1.3.RELEASE",org.spri
+ ngframework.context.annotation;version="5.1.3.RELEASE",org.springfram
+ ework.mail;version="5.1.3.RELEASE",org.springframework.mail.javamail;
+ version="5.1.3.RELEASE",org.springframework.scheduling.annotation;ver
+ sion="5.1.3.RELEASE",org.springframework.scheduling.quartz;version="5
+ .1.3.RELEASE",org.springframework.security.access.annotation;version=
+ "5.1.2.RELEASE",org.springframework.security.authentication;version="
+ 5.1.2.RELEASE",org.springframework.security.core;version="5.1.2.RELEA
+ SE",org.springframework.security.core.authority;version="5.1.2.RELEAS
+ E",org.springframework.security.core.context;version="5.1.2.RELEASE",
+ org.springframework.security.crypto.bcrypt;version="5.1.2.RELEASE",or
+ g.springframework.security.crypto.password;version="5.1.2.RELEASE",or
+ g.springframework.stereotype;version="5.1.3.RELEASE",org.springframew
+ ork.transaction.annotation;version="5.1.3.RELEASE",weka.core;version=
  "0.0.0",weka.core.stopwords;version="0.0.0",weka.core.tokenizers;vers
  ion="0.0.0",weka.filters;version="0.0.0",weka.filters.unsupervised.at
  tribute;version="0.0.0"

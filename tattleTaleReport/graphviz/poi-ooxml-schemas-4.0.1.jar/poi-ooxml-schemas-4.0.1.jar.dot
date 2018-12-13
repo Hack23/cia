@@ -1,0 +1,5 @@
+digraph poi_ooxml_schemas_4_0_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  poi_ooxml_schemas_4_0_1 -> xml_apis_1_4_01;
+  poi_ooxml_schemas_4_0_1 -> xmlbeans_3_0_2;
+}

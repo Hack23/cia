@@ -1,0 +1,15 @@
+digraph hibernate_search_elasticsearch_5_11_0_CR1_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_search_elasticsearch_5_11_0_CR1 -> elasticsearch_rest_client_5_6_8;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> elasticsearch_rest_client_sniffer_5_6_8;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> gson_2_8_5;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> hibernate_search_engine_5_11_0_CR1;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> httpasyncclient_4_1_2;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> httpclient_4_5_5;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> httpcore_4_4_10;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> httpcore_nio_4_4_5;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> jboss_logging_3_3_2_Final;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> lucene_analyzers_common_5_5_5;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> lucene_core_5_5_5;
+  hibernate_search_elasticsearch_5_11_0_CR1 -> lucene_facet_5_5_5;
+}
