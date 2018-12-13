@@ -152,63 +152,6 @@
       <artifactId>javax.annotation-api</artifactId>
       <version>1.3.2</version>
     </dependency>
-    <!-- tmp disable, not used
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.11.0.CR1</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>hibernate-entitymanager</artifactId>
-          <groupId>org.hibernate</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>hibernate-core</artifactId>
-          <groupId>org.hibernate</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-backward-codecs</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-misc</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-facet</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-core</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-analyzers-common</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>gson</artifactId>
-          <groupId>com.google.code.gson</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jackson-core</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-     -->
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
