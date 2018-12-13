@@ -2487,10 +2487,11 @@
                "Ref":"DBClass"
             },
             "Engine":"postgres",
-            "EngineVersion":"10.5",
+            "EngineVersion":"10.6",
             "MultiAZ":"false",
             "PubliclyAccessible":"false",
             "BackupRetentionPeriod":"7",
+            "EnableCloudwatchLogsExports": ["Postgresql log","Upgrade log"],
             "StorageType":"gp2",
             "DBInstanceIdentifier":"rotation-instance",
             "MasterUsername":{
