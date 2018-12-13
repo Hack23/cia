@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>service.data.api</name>
-	<comment></comment>
+	<comment>service.data.api. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
+		<project>model.internal.application.user.impl</project>
+		<project>model.common.impl</project>
+		<project>model.common.api</project>
+		<project>model.external.worldbank.countries.impl</project>
+		<project>model.external.worldbank.data.impl</project>
+		<project>model.external.worldbank.indicators.impl</project>
+		<project>model.external.worldbank.topic.impl</project>
+		<project>model.external.val.partier.impl</project>
+		<project>model.external.val.riksdagsvalkrets.impl</project>
+		<project>model.external.val.landstingvalkrets.impl</project>
+		<project>model.external.val.kommunvalkrets.impl</project>
+		<project>model.external.riksdagen.person.impl</project>
+		<project>model.external.riksdagen.personlista.impl</project>
+		<project>model.external.riksdagen.dokumentlista.impl</project>
+		<project>model.external.riksdagen.documentcontent.impl</project>
+		<project>model.external.riksdagen.dokumentstatus.impl</project>
+		<project>model.external.riksdagen.utskottsforslag.impl</project>
+		<project>model.external.riksdagen.votering.impl</project>
+		<project>model.external.riksdagen.voteringlista.impl</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -16,17 +35,17 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.sonarlint.eclipse.core.sonarlintBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.wst.common.project.facet.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

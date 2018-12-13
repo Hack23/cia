@@ -1,31 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
+	<classpathentry excluding="**/module-info.java" kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+	<classpathentry kind="var" path="M2_REPO/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar" sourcepath="M2_REPO/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" sourcepath="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/javax/xml/bind/jaxb-api/2.4.0/jaxb-api-2.4.0.jar" sourcepath="M2_REPO/javax/xml/bind/jaxb-api/2.4.0/jaxb-api-2.4.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/javax/xml/bind/jaxb-api/2.4.0/jaxb-api-2.4.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="/model.internal.application.user.impl"/>
+	<classpathentry kind="src" path="/model.common.impl"/>
+	<classpathentry kind="src" path="/model.common.api"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.8.0-beta2/slf4j-api-1.8.0-beta2.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.8.0-beta2/slf4j-api-1.8.0-beta2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/slf4j/slf4j-api/1.8.0-beta2/slf4j-api-1.8.0-beta2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" sourcepath="M2_REPO/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.1.1.Final/jboss-transaction-api_1.2_spec-1.1.1.Final.jar" sourcepath="M2_REPO/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.1.1.Final/jboss-transaction-api_1.2_spec-1.1.1.Final-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.1.1.Final/jboss-transaction-api_1.2_spec-1.1.1.Final-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/5.1.3.BUILD-SNAPSHOT/spring-context-5.1.3.BUILD-SNAPSHOT.jar" sourcepath="M2_REPO/org/springframework/spring-context/5.1.3.BUILD-SNAPSHOT/spring-context-5.1.3.BUILD-SNAPSHOT-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/springframework/spring-context/5.1.3.BUILD-SNAPSHOT/spring-context-5.1.3.BUILD-SNAPSHOT-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.6.0.redhat-7/commons-lang-2.6.0.redhat-7.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.6.0.redhat-7/commons-lang-2.6.0.redhat-7-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/commons-lang/commons-lang/2.6.0.redhat-7/commons-lang-2.6.0.redhat-7-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/5.4.0.CR1/hibernate-core-5.4.0.CR1.jar" sourcepath="M2_REPO/org/hibernate/hibernate-core/5.4.0.CR1/hibernate-core-5.4.0.CR1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/hibernate/hibernate-core/5.4.0.CR1/hibernate-core-5.4.0.CR1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar" sourcepath="M2_REPO/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.24.0-GA/javassist-3.24.0-GA.jar" sourcepath="M2_REPO/org/javassist/javassist/3.24.0-GA/javassist-3.24.0-GA-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/javassist/javassist/3.24.0-GA/javassist-3.24.0-GA-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/jandex/2.0.5.Final/jandex-2.0.5.Final.jar" sourcepath="M2_REPO/org/jboss/jandex/2.0.5.Final/jandex-2.0.5.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/dom4j/dom4j/2.1.1/dom4j-2.1.1.jar" sourcepath="M2_REPO/org/dom4j/dom4j/2.1.1/dom4j-2.1.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/dom4j/dom4j/2.1.1/dom4j-2.1.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jaxb/jaxb-runtime/2.2.11/jaxb-runtime-2.2.11.jar" sourcepath="M2_REPO/org/glassfish/jaxb/jaxb-runtime/2.2.11/jaxb-runtime-2.2.11-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.2.11/jaxb-runtime-2.2.11-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jaxb/jaxb-core/2.2.11/jaxb-core-2.2.11.jar" sourcepath="M2_REPO/org/glassfish/jaxb/jaxb-core/2.2.11/jaxb-core-2.2.11-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/glassfish/jaxb/jaxb-core/2.2.11/jaxb-core-2.2.11-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jaxb/txw2/2.2.11/txw2-2.2.11.jar" sourcepath="M2_REPO/org/glassfish/jaxb/txw2/2.2.11/txw2-2.2.11-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/glassfish/jaxb/txw2/2.2.11/txw2-2.2.11-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21.jar" sourcepath="M2_REPO/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/staxex/stax-ex/1.7.7/stax-ex-1.7.7.jar" sourcepath="M2_REPO/org/jvnet/staxex/stax-ex/1.7.7/stax-ex-1.7.7-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/staxex/stax-ex/1.7.7/stax-ex-1.7.7-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13.jar" sourcepath="M2_REPO/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/javers/javers-core/5.0.0-RC1/javers-core-5.0.0-RC1.jar" sourcepath="M2_REPO/org/javers/javers-core/5.0.0-RC1/javers-core-5.0.0-RC1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/javers/javers-core/5.0.0-RC1/javers-core-5.0.0-RC1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/picocontainer/picocontainer/2.15/picocontainer-2.15.jar" sourcepath="M2_REPO/org/picocontainer/picocontainer/2.15/picocontainer-2.15-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/picocontainer/picocontainer/2.15/picocontainer-2.15-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="/model.external.worldbank.countries.impl"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.8.0-beta2/jcl-over-slf4j-1.8.0-beta2.jar" sourcepath="M2_REPO/org/slf4j/jcl-over-slf4j/1.8.0-beta2/jcl-over-slf4j-1.8.0-beta2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/slf4j/jcl-over-slf4j/1.8.0-beta2/jcl-over-slf4j-1.8.0-beta2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.12.0/jaxb2-basics-runtime-0.12.0.jar" sourcepath="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.12.0/jaxb2-basics-runtime-0.12.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.12.0/jaxb2-basics-runtime-0.12.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/net/bytebuddy/byte-buddy/1.9.5/byte-buddy-1.9.5.jar" sourcepath="M2_REPO/net/bytebuddy/byte-buddy/1.9.5/byte-buddy-1.9.5-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/net/bytebuddy/byte-buddy/1.9.5/byte-buddy-1.9.5-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-testing/0.10.0/jaxb2-basics-testing-0.10.0.jar" sourcepath="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-testing/0.10.0/jaxb2-basics-testing-0.10.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-testing/0.10.0/jaxb2-basics-testing-0.10.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.10.0/jaxb2-basics-tools-0.10.0.jar" sourcepath="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.10.0/jaxb2-basics-tools-0.10.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.10.0/jaxb2-basics-tools-0.10.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.6/commons-io-2.6.jar" sourcepath="M2_REPO/commons-io/commons-io/2.6/commons-io-2.6-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/pether/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="/model.external.worldbank.data.impl"/>
+	<classpathentry kind="src" path="/model.external.worldbank.indicators.impl"/>
+	<classpathentry kind="src" path="/model.external.worldbank.topic.impl"/>
+	<classpathentry kind="src" path="/model.external.val.partier.impl"/>
+	<classpathentry kind="src" path="/model.external.val.riksdagsvalkrets.impl"/>
+	<classpathentry kind="src" path="/model.external.val.landstingvalkrets.impl"/>
+	<classpathentry kind="src" path="/model.external.val.kommunvalkrets.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.person.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.personlista.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.dokumentlista.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.documentcontent.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.dokumentstatus.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.utskottsforslag.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.votering.impl"/>
+	<classpathentry kind="src" path="/model.external.riksdagen.voteringlista.impl"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
