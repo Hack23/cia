@@ -54,7 +54,7 @@
 		<property name="userTransaction" value="#{ JTAEnvironmentBean.userTransaction }"/>
 	</bean>
 	
-	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManager">
+	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManagerImpl">
 		<constructor-arg name="secretName" value="${database.aws.secret.arn}"/>
 		<constructor-arg name="secretEnabled" value="${database.aws.secret}"/>
 		<constructor-arg name="username" value="${database.username}"/>

@@ -18,98 +18,23 @@
 */
 package com.hack23.cia.service.data.impl.util;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.function.Function;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.amazonaws.secretsmanager.caching.SecretCache;
-import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
-import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
-import com.amazonaws.services.secretsmanager.model.InternalServiceErrorException;
-import com.amazonaws.services.secretsmanager.model.InvalidParameterException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /**
- * The Class SecretCredentialsManager.
+ * The Interface SecretCredentialsManager.
  */
-public final class SecretCredentialsManager implements Serializable {
-
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** The Constant FALSE. */
-	private static final String FALSE = "false";
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecretCredentialsManager.class);
-
-	/** The secret name. */
-	private final String secretName;
-	
-	/** The secret enabled. */
-	private final String secretEnabled;
-
-	/** The username. */
-	private final String username;
-
-	/** The password. */
-	private final String password;
-	
-	private SecretCache secretCache;
-	
-	/**
-	 * Instantiates a new secret credentials manager.
-	 *
-	 * @param secretName    the secret name
-	 * @param secretEnabled the secret enabled
-	 * @param username      the username
-	 * @param password      the password
-	 */
-	public SecretCredentialsManager(String secretName, String secretEnabled,String username, String password) {
-		super();
-		this.secretName = secretName;
-		this.secretEnabled = secretEnabled;
-		this.username = username;
-		this.password = password;
-	}
+public interface SecretCredentialsManager {
 
 	/**
 	 * Gets the password.
 	 *
 	 * @return the password
 	 */
-	public String getPassword() {	   
-		return getSecretField(SecretData::getPassword,password);			
-	}
+	String getPassword();
 
 	/**
 	 * Gets the username.
 	 *
 	 * @return the username
 	 */
-	public String getUsername() {	    
-		return getSecretField(SecretData::getUsername,username);	    			
-	}
-
-	private String getSecretField(final Function<SecretData, String> t, String defaultStr) {
-		if (FALSE.equalsIgnoreCase(secretEnabled)) {
-			return defaultStr;
-		} 
-
-		try {
-			if (secretCache == null) {
-				secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"));
-			}
-			
-	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),SecretData.class));	    	
-	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
-	    	throw new RuntimeException(e);
-	    }
-	}
+	String getUsername();
 
 }
