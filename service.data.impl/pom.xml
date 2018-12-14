@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.468</version>
+      <version>1.11.469</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -652,27 +652,27 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jta</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jdbc</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jms</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jts</groupId>
       <artifactId>narayana-jts-integration</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.arjunacore</groupId>
       <artifactId>arjuna</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>jconsole</artifactId>
@@ -683,7 +683,7 @@
     <dependency>
       <groupId>org.jboss.narayana.arjunacore</groupId>
       <artifactId>txoj</artifactId>
-      <version>5.9.1.Final</version>
+      <version>5.9.2.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>jconsole</artifactId>
