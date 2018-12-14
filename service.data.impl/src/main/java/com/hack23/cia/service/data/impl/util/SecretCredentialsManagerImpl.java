@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * The Class SecretCredentialsManager.
  */
-public final class SecretCredentialsManagerImpl implements SecretCredentialsManager {
+public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 
 
 	/** The Constant FALSE. */
@@ -74,23 +74,23 @@ public final class SecretCredentialsManagerImpl implements SecretCredentialsMana
 	}
 
 	@Override
-	public String getPassword() {	   
+	public final String getPassword() {	   
 		return getSecretField(SecretData::getPassword,password);			
 	}
 
 	@Override
-	public String getUsername() {	    
+	public final String getUsername() {	    
 		return getSecretField(SecretData::getUsername,username);	    			
 	}
 
-	private String getSecretField(final Function<SecretData, String> t, String defaultStr) {
+	private String getSecretField(final Function<SecretData, String> t, final String defaultStr) {
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return defaultStr;
 		} 
 
 		try {
 			if (secretCache == null) {
-				secretCache = new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"));
+				secretCache = getSecretCache();
 			}
 			
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
@@ -99,6 +99,15 @@ public final class SecretCredentialsManagerImpl implements SecretCredentialsMana
 	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
 	    	throw new RuntimeException(e);
 	    }
+	}
+
+	/**
+	 * Gets the secret cache.
+	 *
+	 * @return the secret cache
+	 */
+	protected SecretCache getSecretCache() {
+		return new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"));
 	}
 
 }
