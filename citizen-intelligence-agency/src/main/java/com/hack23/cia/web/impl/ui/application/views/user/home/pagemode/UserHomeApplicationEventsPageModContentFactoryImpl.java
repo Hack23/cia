@@ -28,20 +28,16 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -74,7 +70,8 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
 
 	/**
-	 * Instantiates a new user home security settings page mod content factory impl.
+	 * Instantiates a new user home security settings page mod content factory
+	 * impl.
 	 */
 	public UserHomeApplicationEventsPageModContentFactoryImpl() {
 		super();
@@ -89,35 +86,25 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
 		final String pageId = getPageId(parameters);
+		final Optional<UserAccount> userAccount = getActiveUserAccount();
 
-		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
+		if (userAccount.isPresent()) {
 
-		LabelFactory.createHeader2Label(panelContent, USER_EVENTS);
+			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
+			LabelFactory.createHeader2Label(panelContent, USER_EVENTS);
 
-		if (userIdFromSecurityContext == null) {
-			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-		} else {
-
-			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
-					.getDataContainer(UserAccount.class);
-			final Optional<UserAccount> userAccount = dataContainer
-					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationActionEvent.class);
 
-			if (userAccount.isPresent()) {
-				getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class,
-						eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,
-								userAccount.get().getUserId(), ApplicationActionEvent_.createdDate),
-						APPLICATION_ACTION_EVENT, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
-			}
-		}
+			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class,
+					eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,
+							userAccount.get().getUserId(), ApplicationActionEvent_.createdDate),
+					APPLICATION_ACTION_EVENT, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + USERHOME + USER_EVENTS);
+			panel.setCaption(NAME + "::" + USERHOME + USER_EVENTS);
+		}
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

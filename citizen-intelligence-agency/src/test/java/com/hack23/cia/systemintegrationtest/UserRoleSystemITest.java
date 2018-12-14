@@ -45,6 +45,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
@@ -1218,6 +1219,48 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userLoginPageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 
+	}
+	
+	/**
+	 * Site user home security setting no access not login sec test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteUserHomeSecuritySettingNoAccessNotLoginSecTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString()));
+		assertTrue("Should be denied",userPageVisit.checkHtmlBodyContainsText("Access denied:userhome"));
+	}
+
+	/**
+	 * Site user home events no access not login sec test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteUserHomeEventsNoAccessNotLoginSecTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()));
+		assertTrue("Should be denied",userPageVisit.checkHtmlBodyContainsText("Access denied:userhome"));
+	}
+
+	/**
+	 * Site user home visits no access not login sec test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteUserHomeVisitsNoAccessNotLoginSecTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()));
+		assertTrue("Should be denied",userPageVisit.checkHtmlBodyContainsText("Access denied:userhome"));
 	}
 
 

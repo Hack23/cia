@@ -30,12 +30,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
@@ -45,7 +43,6 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -53,16 +50,15 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
-	
+
 	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
 	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
-	
-	private static final List<String> AS_LIST = Collections.singletonList( "userpassword" );
 
-	
+	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
+
 	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome:";
 
@@ -97,22 +93,15 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		LabelFactory.createHeader2Label(panelContent, SECURITY_SETTINGS);
 
-		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-		if (userIdFromSecurityContext == null) {
-			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-		} else {
-			
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);
-			
-			final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-			
-			RowUtil.createRowComponent(grid,createEnableGoogleAuthButton(),"Enable MFA using google authenticator");
-			RowUtil.createRowComponent(grid,createDisableGoogleAuthButton(),"Disable MFA using google authenticator");			
-		}
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
+
+		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), "Enable MFA using google authenticator");
+		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), "Disable MFA using google authenticator");
 
 		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);
 
@@ -139,16 +128,14 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		request.setUserpassword("");
 		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);
-		getFormFactory().addRequestInputFormFields(formContent, request,
-				SetGoogleAuthenticatorCredentialRequest.class,
-				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR,
-				listener);
-		
+		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,
+				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR, listener);
+
 		return formLayout;
 	}
 
 	private VerticalLayout createDisableGoogleAuthButton() {
-		
+
 		final VerticalLayout formLayout = new VerticalLayout();
 		formLayout.setSizeFull();
 
@@ -165,10 +152,8 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setUserpassword("");
 		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request,
-				DisableGoogleAuthenticatorCredentialRequest.class,
-				AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR,
-				listener);
-		
+				DisableGoogleAuthenticatorCredentialRequest.class, AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR, listener);
+
 		return formLayout;
 	}
 

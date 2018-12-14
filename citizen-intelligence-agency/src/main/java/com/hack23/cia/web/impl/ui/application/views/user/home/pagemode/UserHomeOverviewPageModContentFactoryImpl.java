@@ -30,15 +30,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.icons.VaadinIcons;
@@ -46,7 +42,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -80,60 +75,48 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page)
+				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
 		final String pageId = getPageId(parameters);
+		final Optional<UserAccount> userAccount = getActiveUserAccount();
+		
+		if (userAccount.isPresent()) {
 
-		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
+			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-		final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
+			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
 
-		final LogoutRequest logoutRequest = new LogoutRequest();
-		logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		logoutButton.addClickListener(new LogoutClickListener(logoutRequest));
+			final LogoutRequest logoutRequest = new LogoutRequest();
+			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));
 
-		panelContent.addComponent(logoutButton);
+			panelContent.addComponent(logoutButton);
 
-		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
-				.getDataContainer(UserAccount.class);
+			getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);
 
-		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
+			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
-		if (userIdFromSecurityContext == null) {
-			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-		} else {
-			final Optional<UserAccount> userAccount = dataContainer
-					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
 
-			if (userAccount.isPresent()) {
-				getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
-				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
+			userHomeMenuItemFactory.createOverviewPage(overviewLayout);
 
-				final VerticalLayout overviewLayout = new VerticalLayout();
-				overviewLayout.setSizeFull();
-
-				panelContent.addComponent(overviewLayout);
-				panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-				userHomeMenuItemFactory.createOverviewPage(overviewLayout);
-			}
+			panel.setCaption(NAME + "::" + USERHOME);
 		}
-
-		panel.setCaption(NAME + "::" + USERHOME);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+		
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 

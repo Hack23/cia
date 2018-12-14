@@ -143,7 +143,7 @@ public abstract class AbstractView extends Panel implements View {
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Invalid Reference");
 		} catch (final AccessDeniedException e ) {
-			LOGGER.warn("Access denided:" +pageName,e);
+			LOGGER.warn("Authorization Failure:: {} : {}  exception : {}",e.getMessage(),pageName,e.getClass().getName());
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();
 			LabelFactory.createHeader2Label(panelContent,"Access denided:" +pageName);
 			getPanel().setContent(panelContent);
