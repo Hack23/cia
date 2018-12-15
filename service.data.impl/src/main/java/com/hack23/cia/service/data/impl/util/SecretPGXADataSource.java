@@ -28,10 +28,16 @@ import org.postgresql.xa.PGXADataSource;
 /**
  * The Class SecretPGXADataSource.
  */
-public class SecretPGXADataSource extends PGXADataSource {
+public final class SecretPGXADataSource extends PGXADataSource {
 
+	/** The secret credentials manager. */
 	private final SecretCredentialsManager secretCredentialsManager;
 	
+	/**
+	 * Instantiates a new secret PGXA data source.
+	 *
+	 * @param secretCredentialsManager the secret credentials manager
+	 */
 	public SecretPGXADataSource(final SecretCredentialsManager secretCredentialsManager) {
 		super();
 		this.secretCredentialsManager = secretCredentialsManager;
@@ -57,7 +63,7 @@ public class SecretPGXADataSource extends PGXADataSource {
 		private static final long serialVersionUID = 1L;
 		
 		/** The secret credentials manager. */
-		private SecretCredentialsManager secretCredentialsManager;
+		private final SecretCredentialsManager secretCredentialsManager;
 
 		/**
 		 * Instantiates a new secret reference.
@@ -67,7 +73,7 @@ public class SecretPGXADataSource extends PGXADataSource {
 		 * @param factory                  the factory
 		 * @param factoryLocation          the factory location
 		 */
-		public SecretReference(SecretCredentialsManager secretCredentialsManager,String className, String factory, String factoryLocation) {
+		public SecretReference(final SecretCredentialsManager secretCredentialsManager,final String className, final String factory, final String factoryLocation) {
 			super(className,factory, factoryLocation);
 			this.secretCredentialsManager = secretCredentialsManager;
 		}
@@ -77,7 +83,7 @@ public class SecretPGXADataSource extends PGXADataSource {
 		 *
 		 * @return the secret credentials manager
 		 */
-		public SecretCredentialsManager getSecretCredentialsManager() {
+		public final SecretCredentialsManager getSecretCredentialsManager() {
 			return secretCredentialsManager;
 		}		
 	}

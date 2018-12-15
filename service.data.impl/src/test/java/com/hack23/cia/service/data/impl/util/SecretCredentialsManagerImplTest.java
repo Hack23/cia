@@ -56,7 +56,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getPasswordSuccessTest() throws Exception {
-		assertNotNull(new SecretCredentialsManagerImpl(null, "true", null, null) {
+		SecretCredentialsManagerImpl secretCredentialsManagerImpl = new SecretCredentialsManagerImpl(null, "true", null, null) {
 			
 			@Override
 			protected SecretCache getSecretCache() {
@@ -68,7 +68,9 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 					}
 				};
 			}
-		}.getPassword());
+		};
+		assertNotNull(secretCredentialsManagerImpl.getUsername());
+		assertNotNull(secretCredentialsManagerImpl.getPassword());
 	}
 
 	/**
@@ -88,6 +90,29 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 					@Override
 					public String getSecretString(final String secretId) {
 						return "{ \"username\" : \"username\" }";
+					}
+				};
+			}
+		}.getUsername());
+	}
+
+	/**
+	 * Gets the username failure invalid content test.
+	 *
+	 * @return the username failure invalid content test
+	 * @throws Exception the exception
+	 */
+	@Test(expected=RuntimeException.class)
+	public void getUsernameFailureInvalidContentTest() throws Exception {
+		assertNotNull(new SecretCredentialsManagerImpl(null, "true", null, null) {
+			
+			@Override
+			protected SecretCache getSecretCache() {
+				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
+									 
+					@Override
+					public String getSecretString(final String secretId) {
+						return "{ \"wrongusernamefield\" : \"username\" }";
 					}
 				};
 			}

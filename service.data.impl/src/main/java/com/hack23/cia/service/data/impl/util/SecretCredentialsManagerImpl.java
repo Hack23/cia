@@ -26,9 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.amazonaws.secretsmanager.caching.SecretCache;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
-import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
-import com.amazonaws.services.secretsmanager.model.InternalServiceErrorException;
-import com.amazonaws.services.secretsmanager.model.InvalidParameterException;
+import com.amazonaws.services.secretsmanager.model.AWSSecretsManagerException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -95,8 +93,8 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 			
 	    	final ObjectMapper mapper = new ObjectMapper();	   	 
 	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),SecretData.class));	    	
-	    } catch (DecryptionFailureException | InternalServiceErrorException | InvalidParameterException | IOException e) {
-	    	LOGGER.error("Problem getting username from secretsmanager using secret:" + secretName, e);
+	    } catch (AWSSecretsManagerException | IOException e) {
+	    	LOGGER.error("Problem getting username from secretsmanager using secret:{} :{}:{}", secretName, e.getMessage(),e.getClass().getName());
 	    	throw new RuntimeException(e);
 	    }
 	}
