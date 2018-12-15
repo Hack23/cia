@@ -434,7 +434,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denided:adminmonitoring"));
+		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denied:adminmonitoring"));
 
 		// assertTrue("Expect this content",
 		// userPageVisit.getIframesHtmlBodyAsText().contains("Access
