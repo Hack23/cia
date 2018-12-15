@@ -28,7 +28,7 @@ import org.postgresql.xa.PGXADataSource;
 /**
  * The Class SecretPGXADataSource.
  */
-public final class SecretPGXADataSource extends PGXADataSource {
+public class SecretPGXADataSource extends PGXADataSource {
 
 	/** The secret credentials manager. */
 	private final SecretCredentialsManager secretCredentialsManager;
