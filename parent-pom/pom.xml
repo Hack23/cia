@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
@@ -97,10 +97,10 @@
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.dependencyCheck.htmlReportPath />
-    <sonar.dependencyCheck.reportPath />
-    <sonar.zaproxy.htmlReportPath />
-    <sonar.zaproxy.reportPath />
+    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
+    <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
+    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
+    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.1.3.RELEASE/5.1.4.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.1.3.RELEASE</cia.project.versions.spring>
@@ -612,7 +612,7 @@
             <dependency>
               <groupId>org.jacoco</groupId>
               <artifactId>org.jacoco.report</artifactId>
-              <version>0.8.2</version>
+              <version>0.8.3-SNAPSHOT</version>
               <exclusions>
                 <exclusion>
                   <artifactId>asm-debug-all</artifactId>
@@ -1176,7 +1176,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1412,7 +1412,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
@@ -1433,7 +1433,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
@@ -1444,12 +1444,12 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine />
+        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-8-oracle/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.2</jacoco.version>
+        <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
         <surefire.version>3.0.0-M2</surefire.version>
       </properties>
@@ -1611,7 +1611,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency" />
+                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
                   </target>
                 </configuration>
               </execution>
@@ -1866,7 +1866,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.2</version>
+            <version>0.8.3-SNAPSHOT</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>

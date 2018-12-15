@@ -202,10 +202,10 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions />
+    <extensions></extensions>
     <pluginManagement>
-      <plugins />
+      <plugins></plugins>
     </pluginManagement>
-    <plugins />
+    <plugins></plugins>
   </build>
 </project>
