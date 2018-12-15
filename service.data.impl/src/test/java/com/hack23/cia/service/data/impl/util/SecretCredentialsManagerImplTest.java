@@ -64,7 +64,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 									 
 					@Override
 					public String getSecretString(final String secretId) {
-						return "{ \"password\" : \"password\" }";
+						return "{ \"password\" : \"password\", \"username\" : \"username\" }";
 					}
 				};
 			}
