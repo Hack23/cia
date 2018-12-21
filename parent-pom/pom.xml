@@ -118,10 +118,10 @@
     <cia.project.versions.hibernate>5.4.0.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.4.0.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.4.0.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.4.0.CR2</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.4.0.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha2</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>6.1.0.Alpha1</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.build.validator>6.1.0.Alpha2</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.9.6</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
@@ -159,7 +159,7 @@
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.75.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.6.3</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.7.0.alpha1</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.26</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
@@ -1414,7 +1414,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
-        <surefire.version>3.0.0-M2</surefire.version>
+        <surefire.version>3.0.0-M3</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1435,7 +1435,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
-        <surefire.version>3.0.0-M2</surefire.version>
+        <surefire.version>3.0.0-M3</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1451,7 +1451,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.3-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.8.0-jboss-2</compiler.plugin.version>
-        <surefire.version>3.0.0-M2</surefire.version>
+        <surefire.version>3.0.0-M3</surefire.version>
       </properties>
     </profile>
     <profile>

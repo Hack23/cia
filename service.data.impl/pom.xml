@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.472</version>
+      <version>1.11.474</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -201,12 +201,16 @@
           <artifactId>spring-data-jpa</artifactId>
           <groupId>org.springframework.data</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>polyjdbc</artifactId>
+          <groupId>org.polyjdbc</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.polyjdbc</groupId>
       <artifactId>polyjdbc</artifactId>
-      <version>0.7.3</version>
+      <version>0.7.5</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
@@ -410,7 +414,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
-      <version>4.2</version>
+      <version>4.3</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
