@@ -20,18 +20,13 @@ package com.hack23.cia.service.impl.action.application.encryption;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
+import java.security.GeneralSecurityException;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Arrays;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -135,7 +130,7 @@ public final class VaultManagerImpl implements VaultManager {
 				byteBuffer.put(iv);
 				byteBuffer.put(cipherText);
 				return Hex.toHexString(byteBuffer.array());
-			} catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+			} catch (GeneralSecurityException e) {
 				LOGGER.error(ENCRYPT_VALUE,e);
 				return null;
 			}
@@ -160,8 +155,7 @@ public final class VaultManagerImpl implements VaultManager {
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
 				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));
 				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
-			} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
-					| IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+			} catch (GeneralSecurityException e) {
 				LOGGER.error(DECRYPT_VALUE,e);
 				return null;
 			}		
