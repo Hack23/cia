@@ -29,6 +29,7 @@ import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -118,7 +119,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @return the abstract field
 	 */
 	private static AbstractField<?> createField(final String property) {
-		if (property.contains(HIDDEN_FIELD_NAME)) {
+		if (StringUtils.containsIgnoreCase(property,HIDDEN_FIELD_NAME)) {
 			return new PasswordField();
 		} else {
 			return new TextField();

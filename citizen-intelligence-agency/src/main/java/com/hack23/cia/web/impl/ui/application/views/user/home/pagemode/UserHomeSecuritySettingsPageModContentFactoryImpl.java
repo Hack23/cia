@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.action.user.ChangePasswordRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -35,6 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserH
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ChangePasswordClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -57,6 +60,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
 
+	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
 
 	/** The Constant USERHOME. */
@@ -70,8 +74,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
 
 	/**
-	 * Instantiates a new user home security settings page mod content factory
-	 * impl.
+	 * Instantiates a new user home security settings page mod content factory impl.
 	 */
 	public UserHomeSecuritySettingsPageModContentFactoryImpl() {
 		super();
@@ -100,6 +103,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
+		RowUtil.createRowComponent(grid, createChangePasswordButton(), "Change password");
 		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), "Enable MFA using google authenticator");
 		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), "Disable MFA using google authenticator");
 
@@ -112,6 +116,11 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 	}
 
+	/**
+	 * Creates the enable google auth button.
+	 *
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createEnableGoogleAuthButton() {
 		final VerticalLayout formLayout = new VerticalLayout();
 		formLayout.setSizeFull();
@@ -134,6 +143,11 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		return formLayout;
 	}
 
+	/**
+	 * Creates the disable google auth button.
+	 *
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createDisableGoogleAuthButton() {
 
 		final VerticalLayout formLayout = new VerticalLayout();
@@ -153,6 +167,37 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request,
 				DisableGoogleAuthenticatorCredentialRequest.class, AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR, listener);
+
+		return formLayout;
+	}
+	
+	/**
+	 * Creates the change password button.
+	 *
+	 * @return the vertical layout
+	 */
+	private VerticalLayout createChangePasswordButton() {
+
+		final VerticalLayout formLayout = new VerticalLayout();
+		formLayout.setSizeFull();
+
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		formLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+
+		final ChangePasswordRequest request = new ChangePasswordRequest();
+		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		request.setCurrentPassword("");
+		request.setNewPassword("");
+		request.setRepeatNewPassword("");
+		
+		final ClickListener listener = new ChangePasswordClickListener(request);
+		getFormFactory().addRequestInputFormFields(formContent, request,
+				ChangePasswordRequest.class, Arrays.asList("currentPassword","newPassword","repeatNewPassword"), "Change password", listener);
 
 		return formLayout;
 	}

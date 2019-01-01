@@ -39,13 +39,12 @@ public final class DocumentWordCountServiceITest extends AbstractServiceFunction
 
 
 	/**
-	 * Test.
+	 * Service request success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
-	public void Test() throws Exception {
+	public void serviceRequestSuccessTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
@@ -58,9 +57,31 @@ public final class DocumentWordCountServiceITest extends AbstractServiceFunction
 		final DocumentWordCountResponse  response = (DocumentWordCountResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result",response);
 		assertTrue("Expect a result",response.getWordCountMap().size() > 0);
-
 	}
 
+	
+	/**
+	 * Service request failure no matching document test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void serviceRequestFailureNoMatchingDocumentTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		final DocumentWordCountRequest serviceRequest = new DocumentWordCountRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setMaxResults(100);
+		serviceRequest.setDocumentId("BAD_DOC_REF_GNB47");
+
+		final DocumentWordCountResponse  response = (DocumentWordCountResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result",response);
+		assertTrue("Expect no result",response.getWordCountMap().isEmpty());
+	}
+
+	
 	/**
 	 * Service request validation failure test.
 	 *

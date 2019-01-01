@@ -974,6 +974,20 @@ public final class UserPageVisit extends Assert {
 		performClickAction(enableGoogleAuthButton);
 	}
 
+	
+	public void changePassword(final String password,String newPassword, String repeatNewPassword) throws Exception {
+		setFieldValue("Change password.currentPassword",password);
+		setFieldValue("Change password.newPassword",newPassword);
+		setFieldValue("Change password.repeatNewPassword",repeatNewPassword);
+
+		final WebElement changePasswordButton = driver.findElement(By.id("Change password"));
+		assertNotNull("Expect to find a Change password Button",changePasswordButton);
+
+		performClickAction(changePasswordButton);
+	}
+
+	
+
 	/**
 	 * Close modal.
 	 *
