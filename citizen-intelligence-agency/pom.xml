@@ -463,7 +463,7 @@
     <dependency>
       <groupId>com.gu</groupId>
       <artifactId>kinesis-logback-appender</artifactId>
-      <version>1.4.3</version>
+      <version>1.4.4</version>
       <exclusions>
         <exclusion>
           <artifactId>aws-java-sdk-core</artifactId>
