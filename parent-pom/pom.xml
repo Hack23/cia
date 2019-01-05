@@ -1017,7 +1017,7 @@
             <dependency>
               <groupId>org.sonatype.ossindex.maven</groupId>
               <artifactId>ossindex-maven-enforcer-rules</artifactId>
-              <version>3.0.2</version>
+              <version>3.0.3</version>
             </dependency>
           </dependencies>
         </plugin>
