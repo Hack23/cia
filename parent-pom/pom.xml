@@ -1408,7 +1408,7 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
+        <test.jvm.path>/usr/lib/jvm/jdk-13/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
