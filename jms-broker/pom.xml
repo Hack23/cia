@@ -81,6 +81,10 @@
           <artifactId>geronimo-jms_2.0_spec</artifactId>
           <groupId>org.apache.geronimo.specs</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jgroups</artifactId>
+          <groupId>org.jgroups</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
