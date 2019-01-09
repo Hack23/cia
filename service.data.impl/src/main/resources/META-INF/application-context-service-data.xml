@@ -116,12 +116,9 @@
 				<prop key="hibernate.order_updates">true</prop>
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 				<prop key="hibernate.bytecode.provider">bytebuddy</prop>
-				<!--<prop key="hibernate.bytecode.provider">cglib</prop> -->
 				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<prop key="hibernate.connection.isolation">3</prop>
-				<!-- <prop key="hibernate.connection.release_mode">on_close</prop> <prop
-					key="hibernate.connection.acquisition_mode">immediate</prop> <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION</prop> -->
 				<prop key="hibernate.connection.release_mode">auto</prop>
 				<prop key="hibernate.connection.useUnicode">true</prop>
 				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
@@ -157,10 +154,6 @@
  				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
-<!--
-				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>				
-				<prop key="hibernate.javax.cache.uri">url:https://raw.githubusercontent.com/Hack23/cia/master/service.data.impl/src/main/resources/ehcache.xml</prop>				
- -->
 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
 				<!-- Elasticsearch integration
 				<prop key="hibernate.search.default.indexmanager">elasticsearch</prop>
@@ -187,11 +180,6 @@
 		</property>
 		<property name="beans">
 			<map>
-				<!-- temp disabled hibernate 4.3.1 <entry key="org.hibernate:name=cia-statistics">
-					<bean class="org.hibernate.jmx.spi.JmxService"> <property name="statisticsEnabled"
-					value="true" /> <property name="sessionFactory"> <bean id="entityManagerFactory.sessionFactory.statistics"
-					class="org.springframework.beans.factory.config.PropertyPathFactoryBean"
-					/> </property> </bean> </entry> -->
 			</map>
 		</property>
 		<property name="server">

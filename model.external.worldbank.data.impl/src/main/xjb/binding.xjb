@@ -18,7 +18,6 @@
 	<jaxb:bindings schemaLocation="../xsd/data.xsd"
 		node="/xsd:schema">
 		<jaxb:schemaBindings>
-			<!--<jaxb:package name="com.hack23.cia.model.external.worldbank.data.impl" />-->
 			<jaxb:nameXmlTransform>
           		<jaxb:elementName suffix="Element"/>
         	</jaxb:nameXmlTransform>

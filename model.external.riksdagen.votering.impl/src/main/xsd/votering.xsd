@@ -636,19 +636,6 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<!--
-			<xsd:element name="punkt" type="xsd:string" >
-				<xsd:annotation>
-					<xsd:documentation>
-						We have customized the generated property name
-						here.
-						</xsd:documentation>
-					<xsd:appinfo>
-						<jaxb:property name="issue" />
-						<hj:id />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>-->
 			<xsd:element name="rm" type="xsd:string" />
 			<xsd:element name="rost" type="ballot:VoteDecision" >
 				<xsd:annotation>
@@ -695,21 +682,6 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<!--
-			<xsd:element name="votering_id" type="xsd:string" >
-				<xsd:annotation>
-					<xsd:documentation>
-						We have customized the generated property name
-						here.
-						</xsd:documentation>
-					<xsd:appinfo>
-						<jaxb:property name="ballotId" />
-						<hj:id />
-					</xsd:appinfo>
-				</xsd:annotation>
-			</xsd:element>
-			-->
-
 			 <xsd:element name="embeddedId" type="ballot:VoteDataEmbeddedId">
                                 <xsd:annotation>
                                         <xsd:appinfo>
