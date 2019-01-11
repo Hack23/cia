@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.480</version>
+      <version>1.11.481</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -226,7 +226,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.6.12</version>
+      <version>4.6.13</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
