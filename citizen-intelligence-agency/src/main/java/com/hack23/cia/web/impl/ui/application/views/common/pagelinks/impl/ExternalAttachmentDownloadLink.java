@@ -18,14 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.vaadin.server.StreamResource;
 import com.vaadin.ui.Link;
 
@@ -36,9 +28,6 @@ public final class ExternalAttachmentDownloadLink extends Link {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExternalAttachmentDownloadLink.class);
 
 	/** The file name. */
 	private final String fileName;
@@ -73,23 +62,7 @@ public final class ExternalAttachmentDownloadLink extends Link {
 	public void attach() {
 		super.attach();
 
-		final StreamResource.StreamSource source = new StreamResource.StreamSource() {
-
-			/** The Constant serialVersionUID. */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public InputStream getStream() {
-
-				try {
-					return new URL(fileUrl).openStream();
-				} catch (final IOException e) {
-					LOGGER.warn("Problem opening url:"+ fileUrl,e);
-					return new ByteArrayInputStream(new byte[0]);
-				}
-			}
-		};
-
+		final StreamResource.StreamSource source = new StreamSourceImplementation(fileUrl);
 		final StreamResource resource = new StreamResource(source, fileName);
 
 		resource.getStream().setParameter("Content-Disposition", "attachment;filename=\"" + fileName + "\"");

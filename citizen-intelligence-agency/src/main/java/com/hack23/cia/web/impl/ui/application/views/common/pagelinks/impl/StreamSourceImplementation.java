@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,19 +26,18 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachment;
 import com.vaadin.server.StreamResource;
 
 /**
  * The Class StreamSourceImplementation.
  */
-final class StreamSourceImplementation implements StreamResource.StreamSource {
+public final class StreamSourceImplementation implements StreamResource.StreamSource {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);
 
-	/** The document attachment. */
-	private final DocumentAttachment documentAttachment;
+	/** The url. */
+	private final String url;
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -46,18 +45,18 @@ final class StreamSourceImplementation implements StreamResource.StreamSource {
 	/**
 	 * Instantiates a new stream source implementation.
 	 *
-	 * @param documentAttachment the document attachment
+	 * @param url the url
 	 */
-	StreamSourceImplementation(final DocumentAttachment documentAttachment) {
-		this.documentAttachment = documentAttachment;
+	public StreamSourceImplementation(final String url) {
+		this.url = url;
 	}
 
 	@Override
 	public InputStream getStream() {
 		try {
-			return new URL(documentAttachment.getFileUrl()).openStream();
+			return new URL(url).openStream();
 		} catch (final IOException e) {
-			LOGGER.warn(documentAttachment.getFileUrl(), e);
+			LOGGER.warn(url, e);
 			return new ByteArrayInputStream(new byte[0]);
 		}
 	}

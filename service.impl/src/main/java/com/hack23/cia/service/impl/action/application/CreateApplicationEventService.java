@@ -92,7 +92,7 @@ public final class CreateApplicationEventService
 			applicationSessionDAO.persist(applicationSession);
 			return new CreateApplicationEventResponse(ServiceResult.SUCCESS);
 		} else {
-			return new CreateApplicationEventResponse(ServiceResult.FAILURE);
+			return createErrorResponse();
 		}
 	}
 

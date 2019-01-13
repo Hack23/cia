@@ -34,6 +34,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.ExternalAttachmentDownloadLink;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.StreamSourceImplementation;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.server.StreamResource;
@@ -123,7 +124,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
 				wtPdfViewer.setSizeFull();
 
-				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment), documentAttachment.getFileName()));
+				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment.getFileUrl()), documentAttachment.getFileName()));
 
 				panelContent.addComponent(wtPdfViewer);
 				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);
