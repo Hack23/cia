@@ -105,11 +105,11 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
 
 		final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer
-				.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
+				.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
 						ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId,
-						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.issue);
+						ViewRiksdagenCommitteeBallotDecisionPartySummary_.voteDate);
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList,
