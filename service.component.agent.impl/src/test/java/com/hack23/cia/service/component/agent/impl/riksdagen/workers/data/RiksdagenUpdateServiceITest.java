@@ -256,7 +256,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
 		String docId = "notExist";
 		ArrayList<DocumentStatusContainer> list = new ArrayList<>();
-		list.add(new DocumentStatusContainer());
+		list.add(new DocumentStatusContainer().withDocument(new DocumentData().withStatus("publicerat")));
 		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,
 				DocumentData.class, DocumentData_.id, docId)).thenReturn(list);
 		DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
