@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
 /**
@@ -77,6 +78,17 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 		assertTrue("Expect at least default start year",riksdagenImportService.getStartYearForDocumentElement() >=DEFAULT_START_LOAD_YEAR);
 	}
 
-
+	/**
+	 * Gets the none completed document status committee reports test.
+	 *
+	 * @return the none completed document status committee reports test
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void getNoneCompletedDocumentStatusCommitteeReportsTest() throws Exception {
+		List<DocumentStatusContainer> reports = riksdagenImportService.getNoneCompletedDocumentStatusCommitteeReports();
+		assertNotNull(reports);
+		assertFalse(reports.isEmpty());
+	}
 
 }

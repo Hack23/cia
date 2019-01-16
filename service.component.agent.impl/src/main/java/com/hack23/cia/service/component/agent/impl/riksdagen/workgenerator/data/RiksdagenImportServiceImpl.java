@@ -36,6 +36,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
@@ -129,6 +133,12 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	public List<String> getAvaibleCommitteeProposal() {
 		return documentStatusContainerDAO.getAvaibleCommitteeProposal();
 	}
+
+	@Override
+	public List<DocumentStatusContainer> getNoneCompletedDocumentStatusCommitteeReports() {
+		return documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.documentType,"bet");
+	}
+
 
 	@Override
 	public List<String> getAvaibleDocumentContent() {

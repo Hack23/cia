@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 
 /**
  * The Interface RiksdagenImportService.
@@ -94,5 +95,12 @@ public interface RiksdagenImportService {
 	 * @return the loaded ballot id map
 	 */
 	Map<String, String> getLoadedBallotIdMap();
+
+	/**
+	 * Gets the none completed document status committee reports.
+	 *
+	 * @return the none completed document status committee reports
+	 */
+	List<DocumentStatusContainer> getNoneCompletedDocumentStatusCommitteeReports();
 
 }

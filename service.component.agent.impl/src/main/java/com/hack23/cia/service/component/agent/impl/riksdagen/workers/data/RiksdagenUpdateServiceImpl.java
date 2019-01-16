@@ -155,9 +155,23 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
-		if (documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
-				DocumentData_.id, documentData.getDocument().getId()).isEmpty()) {
+		List<DocumentStatusContainer> exist = documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
+				DocumentData_.id, documentData.getDocument().getId());
+		if (exist.isEmpty()) {		
 			documentStatusContainerDAO.persist(documentData);
+		} else {
+			DocumentStatusContainer existData = exist.get(0);
+						
+			mergeDocumentStatusContainer(existData,documentData);
+			
+			documentStatusContainerDAO.persist(existData);
+		}
+	}
+
+	private static void mergeDocumentStatusContainer(DocumentStatusContainer existData, DocumentStatusContainer documentData) {		
+		if (!"planerat".equals(documentData.getDocument().getStatus())) {
+			existData.getDocument().setStatus(documentData.getDocument().getStatus());
+			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());			
 		}
 	}
 

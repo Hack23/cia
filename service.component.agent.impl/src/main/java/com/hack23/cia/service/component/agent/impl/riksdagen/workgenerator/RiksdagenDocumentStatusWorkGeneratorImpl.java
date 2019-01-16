@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 
 /**
@@ -91,6 +92,13 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 							id);
 				}
 			}
+			
+			for (DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {
+				 if ("planerat".equals(container.getDocument().getStatus())) {
+					 getJmsSender().send(documentStatusContainerWorkdestination,
+							 container.getDocument().getId());
+				 }
+			}		
 
 		} catch (final ParseException e) {
 			LOGGER.warn("Loading document status ", e);
