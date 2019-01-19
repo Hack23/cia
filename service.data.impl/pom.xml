@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.485</version>
+      <version>1.11.486</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -527,7 +527,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.4.1-SNAPSHOT</version>
+      <version>5.4.1.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
