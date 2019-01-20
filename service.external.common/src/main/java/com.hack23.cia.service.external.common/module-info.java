@@ -8,8 +8,8 @@ module com.hack23.cia.service.external.common {
 	requires org.slf4j;
 	requires java.xml.bind;
 	requires jdom2;
-	requires fluent.hc;
 	requires spring.oxm;
 	requires spring.context;
-	requires httpclient;
+	requires org.apache.httpcomponents.httpclient;
+	requires org.apache.httpcomponents.httpclient.fluent;
 }
