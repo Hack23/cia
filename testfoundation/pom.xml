@@ -150,7 +150,7 @@
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
-      <version>3.3.2.Final</version>
+      <version>3.3.2.Final-redhat-00001</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
