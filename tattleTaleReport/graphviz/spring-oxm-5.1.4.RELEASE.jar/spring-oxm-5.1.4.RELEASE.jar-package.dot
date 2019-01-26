@@ -1,0 +1,33 @@
+digraph spring_oxm_5_1_4_RELEASE_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_springframework_oxm -> org_springframework_lang;
+  org_springframework_oxm_castor -> java_lang_invoke;
+  org_springframework_oxm_castor -> java_util_function;
+  org_springframework_oxm_castor -> org_exolab_castor_mapping;
+  org_springframework_oxm_castor -> org_exolab_castor_util;
+  org_springframework_oxm_castor -> org_exolab_castor_xml;
+  org_springframework_oxm_castor -> org_springframework_lang;
+  org_springframework_oxm_config -> org_springframework_lang;
+  org_springframework_oxm_jaxb -> java_lang_invoke;
+  org_springframework_oxm_jaxb -> java_util_function;
+  org_springframework_oxm_jaxb -> org_springframework_lang;
+  org_springframework_oxm_jaxb -> org_springframework_oxm;
+  org_springframework_oxm_jibx -> org_jibx_runtime;
+  org_springframework_oxm_jibx -> org_jibx_runtime_impl;
+  org_springframework_oxm_jibx -> org_springframework_lang;
+  org_springframework_oxm_mime -> org_springframework_lang;
+  org_springframework_oxm_support -> java_lang_invoke;
+  org_springframework_oxm_support -> org_springframework_lang;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_converters;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_converters_reflection;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_core;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_core_util;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_io;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_io_naming;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_io_xml;
+  org_springframework_oxm_xstream -> com_thoughtworks_xstream_mapper;
+  org_springframework_oxm_xstream -> java_lang_invoke;
+  org_springframework_oxm_xstream -> java_util_function;
+  org_springframework_oxm_xstream -> org_springframework_lang;
+}

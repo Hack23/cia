@@ -1,0 +1,79 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.soup.kie-soup-project-datamodel-api
+Built-By: mbiarnes
+Bnd-LastModified: 1546960907994
+Implementation-Vendor-Id: org.kie.soup
+Specification-Title: Project Datamodel API
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: org/kie/soup/project/datamodel/imports/Imports.java=
+ src/main/java/org/kie/soup/project/datamodel/imports/Imports.java,org
+ /kie/soup/project/datamodel/imports/HasImports.java=src/main/java/org
+ /kie/soup/project/datamodel/imports/HasImports.java,org/kie/soup/proj
+ ect/datamodel/imports/Import.java=src/main/java/org/kie/soup/project/
+ datamodel/imports/Import.java,org/kie/soup/project/datamodel/packages
+ /HasPackageName.java=src/main/java/org/kie/soup/project/datamodel/pac
+ kages/HasPackageName.java,org/kie/soup/project/datamodel/oracle/DateC
+ onverter.java=src/main/java/org/kie/soup/project/datamodel/oracle/Dat
+ eConverter.java,org/kie/soup/project/datamodel/oracle/Annotation.java
+ =src/main/java/org/kie/soup/project/datamodel/oracle/Annotation.java,
+ org/kie/soup/project/datamodel/oracle/FieldAccessorsAndMutators.java=
+ src/main/java/org/kie/soup/project/datamodel/oracle/FieldAccessorsAnd
+ Mutators.java,org/kie/soup/project/datamodel/oracle/PackageDataModelO
+ racle.java=src/main/java/org/kie/soup/project/datamodel/oracle/Packag
+ eDataModelOracle.java,org/kie/soup/project/datamodel/oracle/DataType.
+ java=src/main/java/org/kie/soup/project/datamodel/oracle/DataType.jav
+ a,org/kie/soup/project/datamodel/oracle/DropDownData.java=src/main/ja
+ va/org/kie/soup/project/datamodel/oracle/DropDownData.java,org/kie/so
+ up/project/datamodel/oracle/TypeSource.java=src/main/java/org/kie/sou
+ p/project/datamodel/oracle/TypeSource.java,org/kie/soup/project/datam
+ odel/oracle/ModuleDataModelOracle.java=src/main/java/org/kie/soup/pro
+ ject/datamodel/oracle/ModuleDataModelOracle.java,org/kie/soup/project
+ /datamodel/oracle/ModelField.java=src/main/java/org/kie/soup/project/
+ datamodel/oracle/ModelField.java,org/kie/soup/project/datamodel/oracl
+ e/ExtensionKind.java=src/main/java/org/kie/soup/project/datamodel/ora
+ cle/ExtensionKind.java,org/kie/soup/project/datamodel/oracle/Operator
+ sOracle.java=src/main/java/org/kie/soup/project/datamodel/oracle/Oper
+ atorsOracle.java,org/kie/soup/project/datamodel/oracle/MethodInfo.jav
+ a=src/main/java/org/kie/soup/project/datamodel/oracle/MethodInfo.java
+ ,META-INF/ErraiApp.properties=src/main/resources/META-INF/ErraiApp.pr
+ operties,org/kie/soup/project/datamodel/ProjectDataModelAPI.gwt.xml=s
+ rc/main/resources/org/kie/soup/project/datamodel/ProjectDataModelAPI.
+ gwt.xml
+Import-Package: org.kie.soup.commons.validation
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-project-datamod
+ el/kie-soup-project-datamodel-api
+Export-Package: org.kie.soup.project.datamodel;version="7.16.0.osgisna
+ pshotqualifier",org.kie.soup.project.datamodel.imports;version="7.16.
+ 0.osgisnapshotqualifier",org.kie.soup.project.datamodel.oracle;versio
+ n="7.16.0.osgisnapshotqualifier",org.kie.soup.project.datamodel.packa
+ ges;version="7.16.0.osgisnapshotqualifier"
+Bundle-Name: Project Datamodel API
+Bundle-Description: The parent contains all metadata (including plugin
+ s) and also dependency versions. All KIE Soup modules    (except for 
+ user BOMs like 'kie-soup-bom') should (transitively) inherit from thi
+ s POM.
+Implementation-Title: Project Datamodel API
+Implementation-Version: 7.16.0.Final
+Java-Version: 1.8.0_152
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-
+ project-datamodel/kie-soup-project-datamodel-api
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.18.19-100.fc27.x86_64
+Bundle-Version: 7.16.0.osgisnapshotqualifier
+Scm-Revision: a2f989b87457e0b2a3363dd5d58bc5de1cd2e7da
+Build-Jdk: 1.8.0_152
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bo
+ m/kie-soup-parent/kie-soup-project-datamodel/kie-soup-project-datamod
+ el-api
+Specification-Version: 7.16.0.Final
+

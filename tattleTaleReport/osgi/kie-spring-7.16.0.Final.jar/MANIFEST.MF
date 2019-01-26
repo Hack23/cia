@@ -1,0 +1,79 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.spring
+Built-By: mbiarnes
+Bnd-LastModified: 1546970873222
+Implementation-Vendor-Id: org.kie
+Specification-Title: Kie :: Spring
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/services/org.kie.internal.runtime.conf.Obje
+ ctModelResolver=src/main/resources/META-INF/services/org.kie.internal
+ .runtime.conf.ObjectModelResolver,META-INF/spring.handlers=src/main/r
+ esources/META-INF/spring.handlers,META-INF/spring.schemas=src/main/re
+ sources/META-INF/spring.schemas,org/kie/spring/kie-spring-6.0.0.xsd=s
+ rc/main/resources/org/kie/spring/kie-spring-6.0.0.xsd
+Import-Package: org.jbpm.shared.services.impl;resolution:=optional,jav
+ ax.persistence,org.drools.compiler.kie.builder.impl,org.drools.compil
+ er.kproject,org.drools.compiler.kproject.models,org.drools.core,org.d
+ rools.core.command.runtime,org.drools.core.command.runtime.process,or
+ g.drools.core.command.runtime.rule,org.drools.core.event,org.drools.c
+ ore.impl,org.drools.core.marshalling.impl,org.drools.core.util,org.dr
+ ools.persistence.api,org.drools.persistence.jpa,org.drools.persistenc
+ e.jpa.marshaller,org.jbpm.marshalling.impl,org.jbpm.persistence,org.j
+ bpm.persistence.api,org.jbpm.process.core.timer,org.jbpm.runtime.mana
+ ger.impl,org.jbpm.services.task,org.jbpm.services.task.impl,org.jbpm.
+ services.task.lifecycle.listeners,org.jbpm.services.task.persistence,
+ org.kie.api,org.kie.api.builder,org.kie.api.builder.model,org.kie.api
+ .cdi,org.kie.api.command,org.kie.api.conf,org.kie.api.event,org.kie.a
+ pi.event.process,org.kie.api.event.rule,org.kie.api.io,org.kie.api.lo
+ gger,org.kie.api.marshalling,org.kie.api.persistence.jpa,org.kie.api.
+ runtime,org.kie.api.runtime.conf,org.kie.api.runtime.manager,org.kie.
+ api.task,org.kie.internal.command,org.kie.internal.persistence.jpa,or
+ g.kie.internal.runtime,org.kie.internal.runtime.conf,org.kie.internal
+ .runtime.manager,org.kie.internal.task.api,org.slf4j,org.springframew
+ ork.beans,org.springframework.beans.factory,org.springframework.beans
+ .factory.annotation,org.springframework.beans.factory.config,org.spri
+ ngframework.beans.factory.support,org.springframework.beans.factory.x
+ ml,org.springframework.context,org.springframework.context.support,or
+ g.springframework.core,org.springframework.core.io,org.springframewor
+ k.orm.jpa,org.springframework.stereotype,org.springframework.transact
+ ion,org.springframework.transaction.support,org.springframework.util,
+ org.springframework.util.xml,org.w3c.dom,javax.persistence.criteria;r
+ esolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/droolsjbpm-integration/kie-spring
+Export-Package: org.kie.spring;version="7.16.0",org.kie.spring.annotat
+ ions;version="7.16.0",org.kie.spring.factorybeans;version="7.16.0",or
+ g.kie.spring.factorybeans.helper;version="7.16.0",org.kie.spring.jbpm
+ .services;version="7.16.0",org.kie.spring.manager;version="7.16.0",or
+ g.kie.spring.namespace;version="7.16.0",org.kie.spring.persistence;ve
+ rsion="7.16.0"
+Bundle-Name: Kie Spring
+Bundle-Description: Drools and jBPM integration for Spring.
+Implementation-Title: Kie :: Spring
+Automatic-Module-Name: org.kie.spring
+Implementation-Version: 7.16.0.Final
+Java-Version: 1.8.0_152
+Scm-Connection: scm:git:https://github.com:kiegroup/droolsjbpm-integra
+ tion.git/kie-spring
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.18.19-100.fc27.x86_64
+Bundle-Version: 7.16.0.201901081757
+Scm-Revision: 7816bbe7a44ebce8549e3fbc105b99a898c6a0d8
+Private-Package: org.kie.spring.annotations,org.kie.spring,org.kie.spr
+ ing.factorybeans,org.kie.spring.factorybeans.helper,org.kie.spring.pe
+ rsistence,org.kie.spring.manager,org.kie.spring.jbpm.services,org.kie
+ .spring.namespace
+Build-Jdk: 1.8.0_152
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/droolsjbpm-integration/kie
+ -spring
+Specification-Version: 7.16.0.Final
+

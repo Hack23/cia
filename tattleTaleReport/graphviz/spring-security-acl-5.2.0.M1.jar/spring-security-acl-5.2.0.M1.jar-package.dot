@@ -1,0 +1,33 @@
+digraph spring_security_acl_5_2_0_M1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_springframework_security_acls -> org_aopalliance_intercept;
+  org_springframework_security_acls -> org_springframework_security_access;
+  org_springframework_security_acls -> org_springframework_security_access_vote;
+  org_springframework_security_acls -> org_springframework_security_acls_domain;
+  org_springframework_security_acls -> org_springframework_security_acls_model;
+  org_springframework_security_acls -> org_springframework_security_core;
+  org_springframework_security_acls_afterinvocation -> org_springframework_security_access;
+  org_springframework_security_acls_afterinvocation -> org_springframework_security_acls_domain;
+  org_springframework_security_acls_afterinvocation -> org_springframework_security_acls_model;
+  org_springframework_security_acls_afterinvocation -> org_springframework_security_core;
+  org_springframework_security_acls_domain -> java_lang_invoke;
+  org_springframework_security_acls_domain -> java_util_function;
+  org_springframework_security_acls_domain -> net_sf_ehcache;
+  org_springframework_security_acls_domain -> org_springframework_cache;
+  org_springframework_security_acls_domain -> org_springframework_security_access;
+  org_springframework_security_acls_domain -> org_springframework_security_access_hierarchicalroles;
+  org_springframework_security_acls_domain -> org_springframework_security_acls_model;
+  org_springframework_security_acls_domain -> org_springframework_security_core;
+  org_springframework_security_acls_domain -> org_springframework_security_core_authority;
+  org_springframework_security_acls_domain -> org_springframework_security_core_context;
+  org_springframework_security_acls_domain -> org_springframework_security_core_userdetails;
+  org_springframework_security_acls_domain -> org_springframework_security_util;
+  org_springframework_security_acls_jdbc -> java_lang_invoke;
+  org_springframework_security_acls_jdbc -> java_util_function;
+  org_springframework_security_acls_jdbc -> org_springframework_security_acls_domain;
+  org_springframework_security_acls_jdbc -> org_springframework_security_acls_model;
+  org_springframework_security_acls_jdbc -> org_springframework_security_core;
+  org_springframework_security_acls_jdbc -> org_springframework_security_core_context;
+  org_springframework_security_acls_jdbc -> org_springframework_security_util;
+  org_springframework_security_acls_model -> org_springframework_security_core;
+}

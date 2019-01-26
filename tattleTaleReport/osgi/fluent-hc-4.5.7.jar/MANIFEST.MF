@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Implementation-Title: Apache HttpClient Fluent API
+Automatic-Module-Name: org.apache.httpcomponents.httpclient.fluent
+Implementation-Version: 4.5.7
+Built-By: oleg
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Apache HttpClient Fluent API
+Implementation-Vendor-Id: org.apache.httpcomponents
+Implementation-Vendor: The Apache Software Foundation
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 10.0.2
+Specification-Version: 4.5
+Implementation-URL: http://hc.apache.org/httpcomponents-client
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.http.client.fluent
+Bundle-Description: fluent-hc-4.5.7
+Bundle-Name: fluent-hc-4.5.7
+Bundle-Version: 4.5
+Export-Package: org.apache.http.client.fluent;uses:="org.apache.http,o
+ rg.apache.http.client.config,org.apache.http.client.methods,org.apach
+ e.http.client.protocol,org.apache.http.concurrent,org.apache.http.con
+ fig,org.apache.http.conn,org.apache.http.conn.socket,org.apache.http.
+ conn.ssl,org.apache.http.entity,org.apache.http.impl.client,org.apach
+ e.http.impl.conn,org.apache.http.util"
+Import-Package: java.io,java.lang,java.net,java.nio.charset,java.secur
+ ity,java.text,java.util,java.util.concurrent,java.util.concurrent.ato
+ mic,javax.net.ssl,org.apache.http;version="4.4.11",org.apache.http.au
+ th;version="4.5",org.apache.http.client;version="4.5",org.apache.http
+ .client.config;version="4.5",org.apache.http.client.methods;version="
+ 4.5",org.apache.http.client.protocol;version="4.5",org.apache.http.cl
+ ient.utils;version="4.5",org.apache.http.concurrent;version="4.4.11",
+ org.apache.http.config;version="4.4.11",org.apache.http.conn;version=
+ "4.5",org.apache.http.conn.scheme;version="4.5",org.apache.http.conn.
+ socket;version="4.5",org.apache.http.conn.ssl;version="4.5",org.apach
+ e.http.entity;version="4.4.11",org.apache.http.impl.auth;version="4.5
+ ",org.apache.http.impl.client;version="4.5",org.apache.http.impl.conn
+ ;version="4.5",org.apache.http.message;version="4.4.11",org.apache.ht
+ tp.protocol;version="4.4.11",org.apache.http.util;version="4.4.11"

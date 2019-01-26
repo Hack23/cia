@@ -1,0 +1,5 @@
+digraph service_component_agent_api_2019_1_27_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_service_component_agent_api -> com_hack23_cia_model_internal_application_data_impl;
+  com_hack23_cia_service_component_agent_api -> java_lang;
+}

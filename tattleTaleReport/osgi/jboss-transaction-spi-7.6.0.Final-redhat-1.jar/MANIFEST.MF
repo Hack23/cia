@@ -33,4 +33,4 @@ Import-Package: java.io,java.lang,java.lang.reflect,java.util,java.uti
  l.concurrent,java.util.concurrent.atomic,java.util.concurrent.locks,j
  avax.naming,javax.naming.spi,javax.resource.spi,javax.resource.spi.wo
  rk,javax.transaction;version="1.1.1",javax.transaction.xa;version="1.
- 1.1",org.jboss.logging;version="3.3.2.Final"
+ 1.1",org.jboss.logging;version="3.3.2.Final-redhat-00001"

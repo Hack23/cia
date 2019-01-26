@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis Selector Implementation
+Implementation-Version: 2.6.4
+Archiver-Version: Plexus Archiver
+Built-By: clebertsuconic
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis Selector Implementation
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_73
+Specification-Version: 2.6.4
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.selector.filter
+Bundle-Description: artemis-selector-2.6.4
+Bundle-Name: artemis-selector-2.6.4
+Bundle-Version: 2.6.4
+Export-Package: org.apache.activemq.artemis.selector.filter;uses:="org
+ .apache.activemq.artemis.api.core",org.apache.activemq.artemis.select
+ or.hyphenated;uses:="org.apache.activemq.artemis.selector.filter",org
+ .apache.activemq.artemis.selector.impl;uses:="org.apache.activemq.art
+ emis.selector.filter,org.apache.activemq.artemis.selector.hyphenated,
+ org.apache.activemq.artemis.selector.strict",org.apache.activemq.arte
+ mis.selector.strict;uses:="org.apache.activemq.artemis.selector.filte
+ r"
+Import-Package: java.io,java.lang,java.math,java.util,java.util.regex,
+ javax.xml.parsers;version="1.0",org.apache.activemq.artemis.api.core;
+ version="2.6.4",org.apache.xpath,org.apache.xpath.objects,org.w3c.dom
+ ;version="1.0",org.w3c.dom.traversal;version="1.0",org.xml.sax;versio
+ n="1.0"

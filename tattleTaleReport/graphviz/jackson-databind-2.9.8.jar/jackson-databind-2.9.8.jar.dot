@@ -1,0 +1,6 @@
+digraph jackson_databind_2_9_8_dependencies {
+  node [shape = box, fontsize=10.0];
+  jackson_databind_2_9_8 -> jackson_annotations_2_9_0;
+  jackson_databind_2_9_8 -> jackson_core_2_9_8;
+  jackson_databind_2_9_8 -> xml_apis_1_4_01;
+}

@@ -1,0 +1,7 @@
+digraph common_5_9_2_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_arjuna_common_internal_util -> com_arjuna_common_logging;
+  com_arjuna_common_logging -> org_jboss_logging_annotations;
+  com_arjuna_common_util -> com_arjuna_common_logging;
+  com_arjuna_common_util_propertyservice -> com_arjuna_common_logging;
+}

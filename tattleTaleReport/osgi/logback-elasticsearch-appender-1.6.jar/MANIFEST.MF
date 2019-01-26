@@ -30,6 +30,6 @@ Import-Package: ch.qos.logback.access,ch.qos.logback.access.spi,ch.qos
  n;version="0.0.0",ch.qos.logback.core.spi;version="0.0.0",com.amazona
  ws;version="0.0.0",com.amazonaws.auth;version="0.0.0",com.amazonaws.h
  ttp;version="0.0.0",com.amazonaws.regions;version="0.0.0",com.amazona
- ws.util;version="0.0.0",com.fasterxml.jackson.core;version="2.9.7",ja
+ ws.util;version="0.0.0",com.fasterxml.jackson.core;version="2.9.8",ja
  va.io,java.lang,java.net,java.text,java.util,java.util.concurrent.ato
  mic,org.slf4j;version="0.0.0"

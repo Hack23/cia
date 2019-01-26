@@ -1,0 +1,4 @@
+digraph netty_resolver_4_1_33_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  netty_resolver_4_1_33_Final -> netty_common_4_1_33_Final;
+}

@@ -1,5 +1,5 @@
 digraph jasypt_hibernate4_1_9_2_dependencies {
   node [shape = box, fontsize=10.0];
-  jasypt_hibernate4_1_9_2 -> hibernate_core_5_4_0_Final;
+  jasypt_hibernate4_1_9_2 -> hibernate_core_5_4_1_Final;
   jasypt_hibernate4_1_9_2 -> jasypt_1_9_3_redhat_3;
 }

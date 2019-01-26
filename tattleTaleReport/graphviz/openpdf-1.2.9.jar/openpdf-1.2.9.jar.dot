@@ -1,0 +1,7 @@
+digraph openpdf_1_2_9_dependencies {
+  node [shape = box, fontsize=10.0];
+  openpdf_1_2_9 -> bcpkix_jdk15on_1_60;
+  openpdf_1_2_9 -> bcprov_jdk15on_1_60;
+  openpdf_1_2_9 -> juniversalchardet_2_3_0;
+  openpdf_1_2_9 -> xml_apis_1_4_01;
+}

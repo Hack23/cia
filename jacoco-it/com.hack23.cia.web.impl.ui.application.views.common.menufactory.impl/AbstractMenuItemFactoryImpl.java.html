@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">AbstractMenuItemFactoryImpl.java</span></div><h1>AbstractMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2014 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -259,7 +259,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 <span class="fc" id="L259">		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);</span>
 
 
-<span class="pc bpc" id="L262" title="1 of 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="fc bfc" id="L262" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
 <span class="fc" id="L263">			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);</span>
 <span class="fc" id="L264">			createAdminMenu(mainViewItem);</span>
 <span class="fc" id="L265">			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);</span>
@@ -277,7 +277,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the main view item
 	 */
 	private static void createAdminMenu(final MenuItem mainViewItem) {
-<span class="pc bpc" id="L280" title="1 of 2 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
 <span class="fc" id="L281">			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);</span>
 
 <span class="fc" id="L283">			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);</span>
@@ -354,4 +354,4 @@ public abstract class AbstractMenuItemFactoryImpl {
 <span class="fc" id="L354">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201812121002</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

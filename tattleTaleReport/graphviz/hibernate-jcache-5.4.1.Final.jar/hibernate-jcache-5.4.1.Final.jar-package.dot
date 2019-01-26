@@ -1,0 +1,20 @@
+digraph hibernate_jcache_5_4_1_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_hibernate_cache_jcache -> javax_cache;
+  org_hibernate_cache_jcache -> javax_cache_spi;
+  org_hibernate_cache_jcache_internal -> java_lang;
+  org_hibernate_cache_jcache_internal -> javax_cache;
+  org_hibernate_cache_jcache_internal -> javax_cache_configuration;
+  org_hibernate_cache_jcache_internal -> javax_cache_spi;
+  org_hibernate_cache_jcache_internal -> org_hibernate_boot_registry;
+  org_hibernate_cache_jcache_internal -> org_hibernate_boot_registry_classloading_spi;
+  org_hibernate_cache_jcache_internal -> org_hibernate_boot_registry_selector;
+  org_hibernate_cache_jcache_internal -> org_hibernate_boot_spi;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_cfg_spi;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_internal;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_jcache;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_spi;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_spi_access;
+  org_hibernate_cache_jcache_internal -> org_hibernate_cache_spi_support;
+  org_hibernate_cache_jcache_internal -> org_hibernate_engine_spi;
+}

@@ -1,0 +1,29 @@
+digraph arjuna_5_9_2_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_arjuna_ats_arjuna -> com_arjuna_ats_internal_arjuna_objectstore;
+  com_arjuna_ats_arjuna_common -> com_arjuna_common_internal_util;
+  com_arjuna_ats_arjuna_common -> java_lang_invoke;
+  com_arjuna_ats_arjuna_common -> java_nio_charset;
+  com_arjuna_ats_arjuna_common -> java_util_function;
+  com_arjuna_ats_arjuna_coordinator -> com_arjuna_ats_arjuna_coordinator_internal;
+  com_arjuna_ats_arjuna_coordinator -> java_nio_charset;
+  com_arjuna_ats_arjuna_logging -> org_jboss_logging_annotations;
+  com_arjuna_ats_arjuna_objectstore -> com_arjuna_common_internal_util;
+  com_arjuna_ats_arjuna_recovery -> com_arjuna_ats_internal_arjuna_recovery;
+  com_arjuna_ats_arjuna_recovery -> com_arjuna_common_internal_util;
+  com_arjuna_ats_arjuna_recovery -> java_nio_charset;
+  com_arjuna_ats_arjuna_state -> java_nio_charset;
+  com_arjuna_ats_arjuna_tools -> java_nio_charset;
+  com_arjuna_ats_arjuna_tools_log -> java_nio_charset;
+  com_arjuna_ats_internal_arjuna_objectstore -> java_nio_charset;
+  com_arjuna_ats_internal_arjuna_objectstore_hornetq -> org_apache_activemq_artemis_core_io;
+  com_arjuna_ats_internal_arjuna_objectstore_hornetq -> org_apache_activemq_artemis_core_io_aio;
+  com_arjuna_ats_internal_arjuna_objectstore_hornetq -> org_apache_activemq_artemis_core_io_nio;
+  com_arjuna_ats_internal_arjuna_objectstore_hornetq -> org_apache_activemq_artemis_core_journal;
+  com_arjuna_ats_internal_arjuna_objectstore_hornetq -> org_apache_activemq_artemis_core_journal_impl;
+  com_arjuna_ats_internal_arjuna_objectstore_jdbc_drivers -> com_arjuna_ats_internal_arjuna_objectstore_jdbc;
+  com_arjuna_ats_internal_arjuna_recovery -> com_arjuna_ats_arjuna_recovery;
+  com_arjuna_ats_internal_arjuna_recovery -> com_arjuna_common_internal_util;
+  com_arjuna_ats_internal_arjuna_recovery -> java_nio_charset;
+  com_arjuna_ats_internal_arjuna_utils -> java_nio_charset;
+}

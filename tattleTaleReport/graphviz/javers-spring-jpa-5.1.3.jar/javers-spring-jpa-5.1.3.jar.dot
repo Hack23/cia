@@ -1,0 +1,13 @@
+digraph javers_spring_jpa_5_1_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  javers_spring_jpa_5_1_3 -> aspectjweaver_1_9_2;
+  javers_spring_jpa_5_1_3 -> hibernate_core_5_4_1_Final;
+  javers_spring_jpa_5_1_3 -> javax_persistence_api_2_2;
+  javers_spring_jpa_5_1_3 -> javers_core_5_1_3;
+  javers_spring_jpa_5_1_3 -> javers_persistence_sql_5_1_3;
+  javers_spring_jpa_5_1_3 -> javers_spring_5_1_3;
+  javers_spring_jpa_5_1_3 -> jboss_transaction_api_1_2_spec_1_1_1_Final;
+  javers_spring_jpa_5_1_3 -> slf4j_api_1_8_0_beta2;
+  javers_spring_jpa_5_1_3 -> spring_beans_5_1_4_RELEASE;
+  javers_spring_jpa_5_1_3 -> spring_tx_5_1_4_RELEASE;
+}

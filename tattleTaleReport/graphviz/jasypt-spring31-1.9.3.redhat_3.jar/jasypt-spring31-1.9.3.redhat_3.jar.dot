@@ -1,8 +1,8 @@
 digraph jasypt_spring31_1_9_3_redhat_3_dependencies {
   node [shape = box, fontsize=10.0];
   jasypt_spring31_1_9_3_redhat_3 -> jasypt_1_9_3_redhat_3;
-  jasypt_spring31_1_9_3_redhat_3 -> spring_beans_5_1_3_RELEASE;
-  jasypt_spring31_1_9_3_redhat_3 -> spring_context_5_1_3_RELEASE;
-  jasypt_spring31_1_9_3_redhat_3 -> spring_core_5_1_3_RELEASE;
+  jasypt_spring31_1_9_3_redhat_3 -> spring_beans_5_1_4_RELEASE;
+  jasypt_spring31_1_9_3_redhat_3 -> spring_context_5_1_4_RELEASE;
+  jasypt_spring31_1_9_3_redhat_3 -> spring_core_5_1_4_RELEASE;
   jasypt_spring31_1_9_3_redhat_3 -> xml_apis_1_4_01;
 }

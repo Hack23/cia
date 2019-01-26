@@ -1,4 +1,4 @@
 digraph picocontainer_2_15_dependencies {
   node [shape = box, fontsize=10.0];
-  picocontainer_2_15 -> javax_annotation_api_1_3_2;
+  picocontainer_2_15 -> drlx_parser_7_16_0_Final;
 }

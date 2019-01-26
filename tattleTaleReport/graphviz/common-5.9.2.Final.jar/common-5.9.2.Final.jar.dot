@@ -1,0 +1,5 @@
+digraph common_5_9_2_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  common_5_9_2_Final -> jboss_logging_3_3_2_Final_redhat_00001;
+  common_5_9_2_Final -> xml_apis_1_4_01;
+}

@@ -1,0 +1,81 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis Journal
+Implementation-Version: 2.6.4
+Archiver-Version: Plexus Archiver
+Built-By: clebertsuconic
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis Journal
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_73
+Specification-Version: 2.6.4
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.core.journal.impl
+Bundle-Description: artemis-journal-2.6.4
+Bundle-Name: artemis-journal-2.6.4
+Bundle-Version: 2.6.4
+Export-Package: org.apache.activemq.artemis.core.io;uses:="org.apache.
+ activemq.artemis.api.core,org.apache.activemq.artemis.core.io.buffer,
+ org.apache.activemq.artemis.core.io.util,org.apache.activemq.artemis.
+ core.journal,org.apache.activemq.artemis.core.journal.impl,org.apache
+ .activemq.artemis.journal,org.apache.activemq.artemis.utils,org.apach
+ e.activemq.artemis.utils.critical",org.apache.activemq.artemis.core.i
+ o.aio;uses:="org.apache.activemq.artemis,org.apache.activemq.artemis.
+ api.core,org.apache.activemq.artemis.core.io,org.apache.activemq.arte
+ mis.core.io.buffer,org.apache.activemq.artemis.core.journal.impl,org.
+ apache.activemq.artemis.jlibaio,org.apache.activemq.artemis.jlibaio.u
+ til,org.apache.activemq.artemis.journal,org.apache.activemq.artemis.u
+ tils,org.apache.activemq.artemis.utils.critical",org.apache.activemq.
+ artemis.core.io.buffer;uses:="io.netty.buffer,org.apache.activemq.art
+ emis.api.core,org.apache.activemq.artemis.core.buffers.impl,org.apach
+ e.activemq.artemis.core.io,org.apache.activemq.artemis.core.journal,o
+ rg.apache.activemq.artemis.journal,org.apache.activemq.artemis.utils.
+ critical",org.apache.activemq.artemis.core.io.mapped;uses:="io.netty.
+ buffer,io.netty.util.internal,java.lang,java.nio.file,org.apache.acti
+ vemq.artemis.api.core,org.apache.activemq.artemis.core.buffers.impl,o
+ rg.apache.activemq.artemis.core.io,org.apache.activemq.artemis.core.i
+ o.buffer,org.apache.activemq.artemis.core.journal,org.apache.activemq
+ .artemis.core.journal.impl,org.apache.activemq.artemis.journal,org.ap
+ ache.activemq.artemis.utils,org.apache.activemq.artemis.utils.critica
+ l",org.apache.activemq.artemis.core.io.nio;uses:="io.netty.util.inter
+ nal,org.apache.activemq.artemis,org.apache.activemq.artemis.api.core,
+ org.apache.activemq.artemis.core.io,org.apache.activemq.artemis.core.
+ io.buffer,org.apache.activemq.artemis.journal,org.apache.activemq.art
+ emis.utils,org.apache.activemq.artemis.utils.critical",org.apache.act
+ ivemq.artemis.core.io.util;uses:="org.apache.activemq.artemis.core.io
+ ",org.apache.activemq.artemis.core.journal;uses:="org.apache.activemq
+ .artemis.api.core,org.apache.activemq.artemis.core.io,org.apache.acti
+ vemq.artemis.core.journal.impl,org.apache.activemq.artemis.core.persi
+ stence,org.apache.activemq.artemis.core.server",org.apache.activemq.a
+ rtemis.core.journal.impl;uses:="io.netty.buffer,java.lang.invoke,java
+ .util.function,org.apache.activemq.artemis,org.apache.activemq.artemi
+ s.api.core,org.apache.activemq.artemis.core.io,org.apache.activemq.ar
+ temis.core.journal,org.apache.activemq.artemis.core.journal.impl.data
+ format,org.apache.activemq.artemis.core.persistence,org.apache.active
+ mq.artemis.journal,org.apache.activemq.artemis.utils,org.apache.activ
+ emq.artemis.utils.actors,org.apache.activemq.artemis.utils.collection
+ s",org.apache.activemq.artemis.core.journal.impl.dataformat;uses:="or
+ g.apache.activemq.artemis.api.core,org.apache.activemq.artemis.core.j
+ ournal,org.apache.activemq.artemis.core.journal.impl,org.apache.activ
+ emq.artemis.core.persistence",org.apache.activemq.artemis.journal;use
+ s:="org.apache.activemq.artemis.api.core,org.apache.activemq.artemis.
+ core.journal.impl,org.jboss.logging.annotations"
+Import-Package: io.netty.buffer;version="4.1.33.Final",io.netty.util.i
+ nternal;version="4.1.33.Final",java.io,java.lang,java.lang.invoke,jav
+ a.lang.management,java.lang.ref,java.nio,java.nio.channels,java.nio.f
+ ile,java.security,java.text,java.util,java.util.concurrent,java.util.
+ concurrent.atomic,java.util.concurrent.locks,java.util.function,org.a
+ pache.activemq.artemis;version="2.6.4",org.apache.activemq.artemis.ap
+ i.core;version="2.6.4",org.apache.activemq.artemis.core.buffers.impl;
+ version="2.6.4",org.apache.activemq.artemis.core.persistence;version=
+ "2.6.4",org.apache.activemq.artemis.core.server;version="2.6.4",org.a
+ pache.activemq.artemis.jlibaio;version="2.6.4",org.apache.activemq.ar
+ temis.jlibaio.util;version="2.6.4",org.apache.activemq.artemis.utils;
+ version="2.6.4",org.apache.activemq.artemis.utils.actors;version="2.6
+ .4",org.apache.activemq.artemis.utils.collections;version="2.6.4",org
+ .apache.activemq.artemis.utils.critical;version="2.6.4",org.jboss.log
+ ging;version="3.3.2.Final-redhat-00001",org.jboss.logging.annotations

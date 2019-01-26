@@ -1,0 +1,77 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.dmn.core
+Built-By: mbiarnes
+Bnd-LastModified: 1546963988360
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Decision Model Notation :: Core
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/kie.conf=src/main/resources/META-INF/kie.co
+ nf
+Import-Package: javax.xml.namespace,javax.xml.stream,org.antlr.v4.runt
+ ime,org.drools.compiler.builder.impl,org.drools.compiler.commons.jci.
+ compilers,org.drools.compiler.commons.jci.readers,org.drools.compiler
+ .commons.jci.stores,org.drools.compiler.compiler,org.drools.compiler.
+ compiler.io.memory,org.drools.compiler.kie.builder.impl,org.drools.co
+ mpiler.lang.descr,org.drools.core.common,org.drools.core.definitions,
+ org.drools.core.fluent.impl,org.drools.core.impl,org.drools.core.util
+ ,org.drools.javaparser,org.drools.javaparser.ast,org.drools.javaparse
+ r.ast.body,org.drools.javaparser.ast.expr,org.drools.javaparser.ast.t
+ ype,org.drools.model,org.drools.model.impl,org.drools.modelcompiler.b
+ uilder,org.kie.api,org.kie.api.builder,org.kie.api.command,org.kie.ap
+ i.conf,org.kie.api.definition,org.kie.api.internal.assembler,org.kie.
+ api.internal.io,org.kie.api.internal.runtime,org.kie.api.internal.wea
+ ver,org.kie.api.io,org.kie.api.runtime,org.kie.api.runtime.rule,org.k
+ ie.dmn.api.core,org.kie.dmn.api.core.ast,org.kie.dmn.api.core.event,o
+ rg.kie.dmn.api.feel.runtime.events,org.kie.dmn.api.marshalling,org.ki
+ e.dmn.backend.marshalling.v1_1.xstream.extensions,org.kie.dmn.backend
+ .marshalling.v1x,org.kie.dmn.core.api,org.kie.dmn.core.ast,org.kie.dm
+ n.core.compiler,org.kie.dmn.core.compiler.execmodelbased,org.kie.dmn.
+ core.compiler.profiles,org.kie.dmn.core.impl,org.kie.dmn.core.util,or
+ g.kie.dmn.feel,org.kie.dmn.feel.codegen.feel11,org.kie.dmn.feel.lang,
+ org.kie.dmn.feel.lang.impl,org.kie.dmn.feel.lang.types,org.kie.dmn.fe
+ el.parser.feel11,org.kie.dmn.feel.parser.feel11.profiles,org.kie.dmn.
+ feel.runtime,org.kie.dmn.feel.runtime.decisiontables,org.kie.dmn.feel
+ .runtime.events,org.kie.dmn.feel.runtime.functions,org.kie.dmn.feel.u
+ til,org.kie.dmn.model.api,org.kie.dmn.model.v1_1,org.kie.dmn.model.v1
+ _1.extensions,org.kie.dmn.model.v1_2,org.kie.internal.builder,org.kie
+ .internal.builder.fluent,org.kie.internal.command,org.kie.internal.jc
+ i,org.kie.internal.osgi,org.kie.internal.utils,org.slf4j
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-core
+Export-Package: org.kie.dmn.core.api;version="7.16.0",org.kie.dmn.core
+ .api.event;version="7.16.0",org.kie.dmn.core.assembler;version="7.16.
+ 0",org.kie.dmn.core.ast;version="7.16.0",org.kie.dmn.core.compiler;ve
+ rsion="7.16.0",org.kie.dmn.core.compiler.execmodelbased;version="7.16
+ .0",org.kie.dmn.core.compiler.profiles;version="7.16.0",org.kie.dmn.c
+ ore.fluent;version="7.16.0",org.kie.dmn.core.impl;version="7.16.0",or
+ g.kie.dmn.core.osgi;version="7.16.0",org.kie.dmn.core.runtime;version
+ ="7.16.0",org.kie.dmn.core.util;version="7.16.0",org.kie.dmn.core.wea
+ ver;version="7.16.0"
+Bundle-Name: KIE :: Decision Model Notation :: Core
+Bundle-Activator: org.kie.dmn.core.osgi.Activator
+Bundle-Description: Top level pom for the KIE DMN support implementati
+ on
+Implementation-Title: KIE :: Decision Model Notation :: Core
+Automatic-Module-Name: org.kie.dmn.core
+Implementation-Version: 7.16.0.Final
+Java-Version: 1.8.0_152
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn
+ /kie-dmn-core
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.18.19-100.fc27.x86_64
+Bundle-Version: 7.16.0.201901081553
+Scm-Revision: 12f5dd1561236a8c79cf4ccc84cb7c86a738b1d1
+Build-Jdk: 1.8.0_152
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-cor
+ e
+Specification-Version: 7.16.0.Final
+

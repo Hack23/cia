@@ -1,0 +1,8 @@
+digraph prefixmap_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  nl_basjes_collections -> java_lang_invoke;
+  nl_basjes_collections -> java_util_function;
+  nl_basjes_collections_prefixmap -> java_lang_invoke;
+  nl_basjes_collections_prefixmap -> java_util_function;
+  nl_basjes_collections_prefixmap -> nl_basjes_collections;
+}

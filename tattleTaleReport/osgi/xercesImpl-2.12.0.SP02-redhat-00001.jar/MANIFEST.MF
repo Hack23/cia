@@ -1,0 +1,183 @@
+Manifest-Version: 1.0
+Implementation-Title: Xerces-J
+Implementation-Version: 2.12.0.SP02-redhat-00001
+Archiver-Version: Plexus Archiver
+Java-Version: 1.8.0_181
+Built-By: mockbuild
+Scm-Connection: scm:git:https://github.com/jboss/xerces
+Specification-Vendor: Apache Software Foundation
+Os-Arch: amd64
+Specification-Title: Xerces-J
+Implementation-Vendor-Id: xerces
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jboss/xerces
+Implementation-Vendor: Apache Software Foundation
+Os-Version: 2.6.32-754.2.1.el6.x86_64
+Scm-Revision: 60d5a85d1d0b51d97c179ced8f36a1eb9c290d32
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_181
+Specification-Version: 2.12.0.SP02-redhat-00001
+Implementation-URL: http://xerces.apache.org/xerces2-j
+
+Name: org/w3c/dom/ls/
+Implementation-Title: org.w3c.dom.ls
+Implementation-Version: 1.0
+Specification-Vendor: World Wide Web Consortium
+Specification-Title: Document Object Model, Level 3 Load and Save
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.0
+Implementation-URL: http://www.w3c.org/DOM/
+Implementation-Vendor: World Wide Web Consortium
+
+Name: org/apache/xerces/xni/
+Implementation-Title: org.apache.xerces.xni
+Implementation-Version: 1.2
+Specification-Vendor: Apache Software Foundation
+Specification-Title: Xerces Native Interface
+Comment: Xerces Native Interface
+Specification-Version: 1.2
+Implementation-URL: http://xerces.apache.org/xerces2-j/
+Implementation-Vendor: Apache Software Foundation
+
+Name: org/apache/xerces/impl/
+Implementation-Title: org.apache.xerces.impl.Version
+Comment: Xerces-J 2.12.0.SP02-redhat-00001
+Implementation-Version: 2.12.0.SP02-redhat-00001
+Implementation-URL: http://xerces.apache.org/xerces2-j/
+Implementation-Vendor: Apache Software Foundation
+
+Name: javax/xml/datatype/
+Implementation-Title: javax.xml.datatype
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: javax/xml/transform/
+Implementation-Title: javax.xml.transform
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: javax/xml/validation/
+Implementation-Title: javax.xml.validation
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: org/w3c/dom/
+Implementation-Title: org.w3c.dom
+Implementation-Version: 1.0
+Specification-Vendor: World Wide Web Consortium
+Specification-Title: Document Object Model, Level 3 Core
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.0
+Implementation-URL: http://www.w3c.org/DOM/
+Implementation-Vendor: World Wide Web Consortium
+
+Name: javax/xml/parsers/
+Implementation-Title: javax.xml.parsers
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: javax/xml/stream/
+Implementation-Title: javax.xml.stream
+Implementation-Version: 1.4.01
+Specification-Vendor: BEA Systems, Inc.
+Specification-Title: Streaming API for XML
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.0
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: org/xml/sax/
+Implementation-Title: org.xml.sax
+Implementation-Version: 2.0.2
+Specification-Vendor: David Megginson
+Specification-Title: Simple API for XML
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 2.0.2
+Implementation-URL: http://www.saxproject.org/
+Implementation-Vendor: David Megginson
+
+Name: javax/xml/namespace/
+Implementation-Title: javax.xml.namespace
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+Name: javax/xml/xpath/
+Implementation-Title: javax.xml.xpath
+Implementation-Version: 1.4.01
+Specification-Vendor: Sun Microsystems Inc.
+Specification-Title: Java API for XML Processing
+Comment: based on xml-commons external 1.4.01
+Specification-Version: 1.4
+Implementation-URL: http://xml.apache.org/commons/
+Implementation-Vendor: Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.xerces.dom
+Bundle-Description: xercesImpl-2.12.0.SP02-redhat-00001
+Bundle-Name: xercesImpl-2.12.0.SP02-redhat-00001
+Bundle-Version: 2.12.0.SP02-redhat-00001
+Export-Package: org.apache.html.dom,org.apache.wml,org.apache.wml.dom,
+ org.apache.xerces.dom;uses:="org.apache.xerces.xs,org.w3c.dom",org.ap
+ ache.xerces.dom.events,org.apache.xerces.dom3.as,org.apache.xerces.im
+ pl;uses:="org.apache.xerces.impl.io",org.apache.xerces.impl.dtd,org.a
+ pache.xerces.impl.dtd.models,org.apache.xerces.impl.dv;uses:="org.apa
+ che.xerces.xs",org.apache.xerces.impl.dv.dtd,org.apache.xerces.impl.d
+ v.util,org.apache.xerces.impl.dv.xs;uses:="org.apache.xerces.impl.xs.
+ util",org.apache.xerces.impl.io,org.apache.xerces.impl.msg,org.apache
+ .xerces.impl.validation,org.apache.xerces.impl.xpath,org.apache.xerce
+ s.impl.xpath.regex,org.apache.xerces.impl.xs;uses:="org.apache.xerces
+ .impl.xs.util,org.apache.xerces.xs",org.apache.xerces.impl.xs.identit
+ y,org.apache.xerces.impl.xs.models,org.apache.xerces.impl.xs.opti,org
+ .apache.xerces.impl.xs.traversers;uses:="org.apache.xerces.impl.xs.ut
+ il,org.apache.xerces.util",org.apache.xerces.impl.xs.util,org.apache.
+ xerces.jaxp,org.apache.xerces.jaxp.datatype,org.apache.xerces.jaxp.va
+ lidation;uses:="org.apache.xerces.util",org.apache.xerces.parsers,org
+ .apache.xerces.stax;uses:="org.apache.xerces.stax.events",org.apache.
+ xerces.stax.events;uses:="org.apache.xerces.stax",org.apache.xerces.u
+ til,org.apache.xerces.xinclude;uses:="org.apache.xerces.impl.io",org.
+ apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xn
+ i.parser,org.apache.xerces.xpointer,org.apache.xerces.xs,org.apache.x
+ erces.xs.datatypes,org.apache.xml.serialize,org.w3c.dom,org.w3c.dom.h
+ tml
+Import-Package: java.io,java.lang,java.lang.ref,java.lang.reflect,java
+ .math,java.net,java.security,java.text,java.util,javax.xml;version="1
+ .0",javax.xml.datatype;version="1.0",javax.xml.namespace;version="1.0
+ ",javax.xml.parsers;version="1.0",javax.xml.stream;version="1.0",java
+ x.xml.stream.events;version="1.0",javax.xml.transform;version="1.0",j
+ avax.xml.transform.dom;version="1.0",javax.xml.transform.sax;version=
+ "1.0",javax.xml.transform.stax;version="1.0",javax.xml.transform.stre
+ am;version="1.0",javax.xml.validation;version="1.0",org.apache.xml.re
+ solver,org.apache.xml.resolver.readers,org.w3c.dom;version="1.0",org.
+ w3c.dom.events;version="1.0",org.w3c.dom.html;version="1.0",org.w3c.d
+ om.ls;version="1.0",org.w3c.dom.ranges;version="1.0",org.w3c.dom.trav
+ ersal;version="1.0",org.w3c.dom.views;version="1.0",org.xml.sax;versi
+ on="1.0",org.xml.sax.ext;version="1.0",org.xml.sax.helpers;version="1
+ .0"

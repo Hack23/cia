@@ -1,0 +1,6 @@
+digraph jdbc_5_9_2_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_arjuna_ats_internal_jdbc -> com_arjuna_common_internal_util;
+  com_arjuna_ats_internal_jdbc_drivers_modifiers -> com_arjuna_common_internal_util;
+  com_arjuna_ats_jdbc_logging -> org_jboss_logging_annotations;
+}

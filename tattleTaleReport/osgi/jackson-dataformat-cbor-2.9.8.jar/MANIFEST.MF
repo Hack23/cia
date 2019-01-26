@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.fasterxml.jackson.dataformat.jackson-dataform
+ at-cbor
+Built-By: tatu
+Bnd-LastModified: 1544914377305
+Implementation-Vendor-Id: com.fasterxml.jackson.dataformat
+Specification-Title: Jackson dataformat: CBOR
+Bundle-DocURL: http://github.com/FasterXML/jackson-dataformats-binary
+Import-Package: com.fasterxml.jackson.core;version="[2.9,3)",com.faste
+ rxml.jackson.core.base;version="[2.9,3)",com.fasterxml.jackson.core.f
+ ormat;version="[2.9,3)",com.fasterxml.jackson.core.io;version="[2.9,3
+ )",com.fasterxml.jackson.core.json;version="[2.9,3)",com.fasterxml.ja
+ ckson.core.sym;version="[2.9,3)",com.fasterxml.jackson.core.util;vers
+ ion="[2.9,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Implementation-Build-Date: 2018-12-15 22:52:36+0000
+Export-Package: com.fasterxml.jackson.dataformat.cbor;version="2.9.8";
+ uses:="com.fasterxml.jackson.core,com.fasterxml.jackson.core.base,com
+ .fasterxml.jackson.core.format,com.fasterxml.jackson.core.io,com.fast
+ erxml.jackson.core.json,com.fasterxml.jackson.core.sym,com.fasterxml.
+ jackson.core.util"
+Bundle-Name: Jackson dataformat: CBOR
+Bundle-Description: Support for reading and writing Concise Binary Obj
+ ect Representation([CBOR](https://www.rfc-editor.org/info/rfc7049)enc
+ oded data using Jackson abstractions (streaming API, data binding, tr
+ ee model)
+Implementation-Title: Jackson dataformat: CBOR
+Automatic-Module-Name: com.fasterxml.jackson.dataformat.cbor
+Implementation-Version: 2.9.8
+Bundle-ManifestVersion: 2
+Specification-Vendor: FasterXML
+Bundle-Vendor: FasterXML
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: FasterXML
+Bundle-Version: 2.9.8
+X-Compile-Target-JDK: 1.7
+X-Compile-Source-JDK: 1.7
+Build-Jdk: 1.8.0_162
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 2.9.8
+

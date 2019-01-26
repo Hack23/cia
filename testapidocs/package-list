@@ -4,4 +4,5 @@ com.hack23.cia.systemintegrationtest
 com.hack23.cia.web.impl.ui.application
 com.hack23.cia.web.impl.ui.application.util
 com.hack23.cia.web.impl.ui.application.views.common.converters
+com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl
 com.hack23.cia.web.impl.ui.application.views.pageclicklistener

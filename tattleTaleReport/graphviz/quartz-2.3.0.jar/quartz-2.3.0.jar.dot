@@ -2,7 +2,7 @@ digraph quartz_2_3_0_dependencies {
   node [shape = box, fontsize=10.0];
   quartz_2_3_0 -> geronimo_jta_1_1_spec_1_1_1;
   quartz_2_3_0 -> jaxb_api_2_4_0;
-  quartz_2_3_0 -> jboss_logging_3_3_2_Final;
+  quartz_2_3_0 -> jboss_logging_3_3_2_Final_redhat_00001;
   quartz_2_3_0 -> slf4j_api_1_8_0_beta2;
   quartz_2_3_0 -> xml_apis_1_4_01;
 }

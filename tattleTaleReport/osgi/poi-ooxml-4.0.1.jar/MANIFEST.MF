@@ -274,9 +274,9 @@ Import-Package: com.graphbuilder.curve;version="0.0.0",com.graphbuilde
  m;version="1.0",javax.xml.stream.events;version="1.0",javax.xml.trans
  form;version="1.0",javax.xml.transform.dom;version="1.0",javax.xml.tr
  ansform.stream;version="1.0",javax.xml.validation;version="1.0",javax
- .xml.xpath;version="1.0",org.apache.commons.collections4;version="4.2
- ",org.apache.commons.collections4.iterators;version="4.2",org.apache.
- commons.collections4.multimap;version="4.2",org.apache.commons.compre
+ .xml.xpath;version="1.0",org.apache.commons.collections4;version="4.3
+ ",org.apache.commons.collections4.iterators;version="4.3",org.apache.
+ commons.collections4.multimap;version="4.3",org.apache.commons.compre
  ss.archivers;version="1.18",org.apache.commons.compress.archivers.zip
  ;version="1.18",org.apache.commons.compress.utils;version="1.18",org.
  apache.jcp.xml.dsig.internal.dom,org.apache.poi;version="4.0.1",org.a

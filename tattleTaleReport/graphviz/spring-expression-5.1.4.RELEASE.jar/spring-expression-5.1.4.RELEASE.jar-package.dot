@@ -1,0 +1,25 @@
+digraph spring_expression_5_1_4_RELEASE_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_springframework_expression -> java_lang;
+  org_springframework_expression -> org_springframework_lang;
+  org_springframework_expression_common -> org_springframework_lang;
+  org_springframework_expression_spel -> java_lang;
+  org_springframework_expression_spel -> org_springframework_core;
+  org_springframework_expression_spel -> org_springframework_lang;
+  org_springframework_expression_spel_ast -> java_lang_invoke;
+  org_springframework_expression_spel_ast -> org_springframework_expression;
+  org_springframework_expression_spel_ast -> org_springframework_expression_spel;
+  org_springframework_expression_spel_ast -> org_springframework_lang;
+  org_springframework_expression_spel_standard -> org_springframework_expression_spel;
+  org_springframework_expression_spel_standard -> org_springframework_expression_spel_ast;
+  org_springframework_expression_spel_standard -> org_springframework_lang;
+  org_springframework_expression_spel_standard -> org_springframework_util;
+  org_springframework_expression_spel_support -> java_lang_invoke;
+  org_springframework_expression_spel_support -> java_lang_reflect;
+  org_springframework_expression_spel_support -> java_util_function;
+  org_springframework_expression_spel_support -> org_springframework_core_convert;
+  org_springframework_expression_spel_support -> org_springframework_core_convert_support;
+  org_springframework_expression_spel_support -> org_springframework_expression;
+  org_springframework_expression_spel_support -> org_springframework_expression_spel;
+  org_springframework_expression_spel_support -> org_springframework_lang;
+}

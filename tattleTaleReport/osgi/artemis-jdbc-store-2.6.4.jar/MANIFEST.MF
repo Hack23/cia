@@ -1,0 +1,56 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis JDBC Store
+Implementation-Version: 2.6.4
+Archiver-Version: Plexus Archiver
+Built-By: clebertsuconic
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis JDBC Store
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_73
+Specification-Version: 2.6.4
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.jdbc.store.sql
+Bundle-Description: artemis-jdbc-store-2.6.4
+Bundle-Name: artemis-jdbc-store-2.6.4
+Bundle-Version: 2.6.4
+Export-Package: org.apache.activemq.artemis.jdbc.store.drivers;uses:="
+ java.lang.invoke,java.util.function,java.util.stream,org.apache.activ
+ emq.artemis.jdbc.store.logging,org.apache.activemq.artemis.jdbc.store
+ .sql,org.apache.activemq.artemis.journal",org.apache.activemq.artemis
+ .jdbc.store.file;uses:="java.lang.invoke,java.util,org.apache.activem
+ q.artemis.api.core,org.apache.activemq.artemis.core.io,org.apache.act
+ ivemq.artemis.core.io.buffer,org.apache.activemq.artemis.core.io.nio,
+ org.apache.activemq.artemis.core.journal,org.apache.activemq.artemis.
+ core.journal.impl,org.apache.activemq.artemis.core.server,org.apache.
+ activemq.artemis.jdbc.store.drivers,org.apache.activemq.artemis.jdbc.
+ store.sql,org.apache.activemq.artemis.journal,org.apache.activemq.art
+ emis.utils.collections,org.postgresql,org.postgresql.largeobject",org
+ .apache.activemq.artemis.jdbc.store.journal;uses:="org.apache.activem
+ q.artemis.api.core,org.apache.activemq.artemis.core.io,org.apache.act
+ ivemq.artemis.core.journal,org.apache.activemq.artemis.core.journal.i
+ mpl,org.apache.activemq.artemis.core.persistence,org.apache.activemq.
+ artemis.core.server,org.apache.activemq.artemis.jdbc.store.drivers,or
+ g.apache.activemq.artemis.jdbc.store.sql,org.apache.activemq.artemis.
+ journal,org.apache.activemq.artemis.utils",org.apache.activemq.artemi
+ s.jdbc.store.logging;uses:="java.sql",org.apache.activemq.artemis.jdb
+ c.store.sql;uses:="java.lang.invoke,java.util,java.util.function,java
+ .util.stream,org.apache.activemq.artemis.jdbc.store.journal"
+Import-Package: java.io,java.lang,java.lang.invoke,java.math,java.net,
+ java.nio,java.sql,java.util,java.util.concurrent,java.util.concurrent
+ .atomic,java.util.function,java.util.stream,javax.sql,org.apache.acti
+ vemq.artemis.api.core;version="2.6.4",org.apache.activemq.artemis.cor
+ e.io;version="2.6.4",org.apache.activemq.artemis.core.io.buffer;versi
+ on="2.6.4",org.apache.activemq.artemis.core.io.nio;version="2.6.4",or
+ g.apache.activemq.artemis.core.journal;version="2.6.4",org.apache.act
+ ivemq.artemis.core.journal.impl;version="2.6.4",org.apache.activemq.a
+ rtemis.core.persistence;version="2.6.4",org.apache.activemq.artemis.c
+ ore.server;version="2.6.4",org.apache.activemq.artemis.journal;versio
+ n="2.6.4",org.apache.activemq.artemis.utils;version="2.6.4",org.apach
+ e.activemq.artemis.utils.collections;version="2.6.4",org.jboss.loggin
+ g;version="3.3.2.Final-redhat-00001",org.postgresql;version="4.2",org
+ .postgresql.largeobject;version="4.2"

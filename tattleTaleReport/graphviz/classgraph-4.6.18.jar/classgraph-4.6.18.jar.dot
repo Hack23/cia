@@ -1,0 +1,4 @@
+digraph classgraph_4_6_18_dependencies {
+  node [shape = box, fontsize=10.0];
+  classgraph_4_6_18 -> xml_apis_1_4_01;
+}

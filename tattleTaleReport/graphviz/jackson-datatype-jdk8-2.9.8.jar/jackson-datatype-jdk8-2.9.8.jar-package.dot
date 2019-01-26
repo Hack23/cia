@@ -1,0 +1,20 @@
+digraph jackson_datatype_jdk8_2_9_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_core;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_core_io;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_core_util;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_deser;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_deser_std;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_jsonFormatVisitors;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_jsontype;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_ser;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_ser_impl;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_ser_std;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_type;
+  com_fasterxml_jackson_datatype_jdk8 -> com_fasterxml_jackson_databind_util;
+  com_fasterxml_jackson_datatype_jdk8 -> java_lang_invoke;
+  com_fasterxml_jackson_datatype_jdk8 -> java_util;
+  com_fasterxml_jackson_datatype_jdk8 -> java_util_function;
+  com_fasterxml_jackson_datatype_jdk8 -> java_util_stream;
+}

@@ -1,0 +1,8 @@
+digraph jdbc_5_9_2_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jdbc_5_9_2_Final -> arjuna_5_9_2_Final;
+  jdbc_5_9_2_Final -> common_5_9_2_Final;
+  jdbc_5_9_2_Final -> geronimo_jta_1_1_spec_1_1_1;
+  jdbc_5_9_2_Final -> jboss_logging_3_3_2_Final_redhat_00001;
+  jdbc_5_9_2_Final -> jta_5_9_2_Final;
+}

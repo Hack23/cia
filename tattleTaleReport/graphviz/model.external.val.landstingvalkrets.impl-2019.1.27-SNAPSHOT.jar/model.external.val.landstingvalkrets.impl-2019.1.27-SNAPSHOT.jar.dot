@@ -1,0 +1,9 @@
+digraph model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> hyperjaxb3_ejb_roundtrip_0_6_2;
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> javax_persistence_api_2_2;
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> jaxb_api_2_4_0;
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> jaxb2_basics_runtime_0_12_0;
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> model_common_api_2019_1_27_SNAPSHOT;
+  model_external_val_landstingvalkrets_impl_2019_1_27_SNAPSHOT -> xml_apis_1_4_01;
+}

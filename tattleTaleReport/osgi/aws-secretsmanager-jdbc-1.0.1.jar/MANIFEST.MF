@@ -17,5 +17,5 @@ Export-Package: com.amazonaws.secretsmanager.sql;uses:="com.amazonaws.
  tabind,java.lang.invoke,java.sql",com.amazonaws.secretsmanager.util
 Import-Package: com.amazonaws.secretsmanager.caching;version="0.0.0",c
  om.amazonaws.services.secretsmanager;version="0.0.0",com.amazonaws.ut
- il;version="0.0.0",com.fasterxml.jackson.databind;version="2.9.7",jav
+ il;version="0.0.0",com.fasterxml.jackson.databind;version="2.9.8",jav
  a.io,java.lang,java.lang.invoke,java.sql,java.util,java.util.logging

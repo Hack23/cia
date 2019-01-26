@@ -1,0 +1,9 @@
+digraph javers_core_5_1_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  javers_core_5_1_3 -> classgraph_4_6_18;
+  javers_core_5_1_3 -> gson_2_8_5;
+  javers_core_5_1_3 -> guava_27_0_1_jre;
+  javers_core_5_1_3 -> joda_time_2_10_1;
+  javers_core_5_1_3 -> picocontainer_2_15;
+  javers_core_5_1_3 -> slf4j_api_1_8_0_beta2;
+}

@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../testapidocs/com/hack23/cia/systemintegrationtest/UserPageVisit.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2014 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -982,41 +982,55 @@
 <a class="jxr_linenumber" name="L974" href="#L974">974</a> 		performClickAction(enableGoogleAuthButton);
 <a class="jxr_linenumber" name="L975" href="#L975">975</a> 	}
 <a class="jxr_linenumber" name="L976" href="#L976">976</a> 
-<a class="jxr_linenumber" name="L977" href="#L977">977</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L978" href="#L978">978</a> <em class="jxr_javadoccomment">	 * Close modal.</em>
-<a class="jxr_linenumber" name="L979" href="#L979">979</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L980" href="#L980">980</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
-<a class="jxr_linenumber" name="L981" href="#L981">981</a> <em class="jxr_javadoccomment">	 *             the exception</em>
-<a class="jxr_linenumber" name="L982" href="#L982">982</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L983" href="#L983">983</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> closeModal() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L984" href="#L984">984</a> 		<strong class="jxr_keyword">final</strong> WebElement closeModalWindow = driver.findElement(By.className(<span class="jxr_string">"v-window-closebox"</span>));
-<a class="jxr_linenumber" name="L985" href="#L985">985</a> 		assertNotNull(<span class="jxr_string">"Expect to find a Window close Box"</span>,closeModalWindow);
-<a class="jxr_linenumber" name="L986" href="#L986">986</a> 
-<a class="jxr_linenumber" name="L987" href="#L987">987</a> 		performClickAction(closeModalWindow);
+<a class="jxr_linenumber" name="L977" href="#L977">977</a> 	
+<a class="jxr_linenumber" name="L978" href="#L978">978</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> changePassword(<strong class="jxr_keyword">final</strong> String password,String newPassword, String repeatNewPassword) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L979" href="#L979">979</a> 		setFieldValue(<span class="jxr_string">"Change password.currentPassword"</span>,password);
+<a class="jxr_linenumber" name="L980" href="#L980">980</a> 		setFieldValue(<span class="jxr_string">"Change password.newPassword"</span>,newPassword);
+<a class="jxr_linenumber" name="L981" href="#L981">981</a> 		setFieldValue(<span class="jxr_string">"Change password.repeatNewPassword"</span>,repeatNewPassword);
+<a class="jxr_linenumber" name="L982" href="#L982">982</a> 
+<a class="jxr_linenumber" name="L983" href="#L983">983</a> 		<strong class="jxr_keyword">final</strong> WebElement changePasswordButton = driver.findElement(By.id(<span class="jxr_string">"Change password"</span>));
+<a class="jxr_linenumber" name="L984" href="#L984">984</a> 		assertNotNull(<span class="jxr_string">"Expect to find a Change password Button"</span>,changePasswordButton);
+<a class="jxr_linenumber" name="L985" href="#L985">985</a> 
+<a class="jxr_linenumber" name="L986" href="#L986">986</a> 		performClickAction(changePasswordButton);
+<a class="jxr_linenumber" name="L987" href="#L987">987</a> 	}
 <a class="jxr_linenumber" name="L988" href="#L988">988</a> 
-<a class="jxr_linenumber" name="L989" href="#L989">989</a> 	}
+<a class="jxr_linenumber" name="L989" href="#L989">989</a> 	
 <a class="jxr_linenumber" name="L990" href="#L990">990</a> 
-<a class="jxr_linenumber" name="L991" href="#L991">991</a> 
-<a class="jxr_linenumber" name="L992" href="#L992">992</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L993" href="#L993">993</a> <em class="jxr_javadoccomment">	 * Grab screenshot.</em>
-<a class="jxr_linenumber" name="L994" href="#L994">994</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L995" href="#L995">995</a> <em class="jxr_javadoccomment">	 * @param webDriver</em>
-<a class="jxr_linenumber" name="L996" href="#L996">996</a> <em class="jxr_javadoccomment">	 *            the web driver</em>
-<a class="jxr_linenumber" name="L997" href="#L997">997</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L998" href="#L998">998</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> grabScreenshot(<strong class="jxr_keyword">final</strong> WebDriver webDriver)
-<a class="jxr_linenumber" name="L999" href="#L999">999</a> 	{
-<a class="jxr_linenumber" name="L1000" href="#L1000">1000</a> 	    <strong class="jxr_keyword">final</strong> File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
-<a class="jxr_linenumber" name="L1001" href="#L1001">1001</a> 	    <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L1002" href="#L1002">1002</a> 	    	screenShotNumber = screenShotNumber +1;
-<a class="jxr_linenumber" name="L1003" href="#L1003">1003</a> 	    	<strong class="jxr_keyword">final</strong> String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, <span class="jxr_string">""</span>).replaceAll(<span class="jxr_string">"#"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"!"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"/"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"--"</span>, <span class="jxr_string">"-"</span>);
-<a class="jxr_linenumber" name="L1004" href="#L1004">1004</a> 	        FileUtils.copyFile(scrFile, <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"target/site/screenshots/Page"</span>+screenShotName+ <span class="jxr_string">"-"</span> + screenShotNumber+ <span class="jxr_string">".png"</span>));
-<a class="jxr_linenumber" name="L1005" href="#L1005">1005</a> 	    } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException e) {
-<a class="jxr_linenumber" name="L1006" href="#L1006">1006</a> 	        e.printStackTrace();
-<a class="jxr_linenumber" name="L1007" href="#L1007">1007</a> 	    }
-<a class="jxr_linenumber" name="L1008" href="#L1008">1008</a> 	}
-<a class="jxr_linenumber" name="L1009" href="#L1009">1009</a> }
+<a class="jxr_linenumber" name="L991" href="#L991">991</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L992" href="#L992">992</a> <em class="jxr_javadoccomment">	 * Close modal.</em>
+<a class="jxr_linenumber" name="L993" href="#L993">993</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L994" href="#L994">994</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
+<a class="jxr_linenumber" name="L995" href="#L995">995</a> <em class="jxr_javadoccomment">	 *             the exception</em>
+<a class="jxr_linenumber" name="L996" href="#L996">996</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L997" href="#L997">997</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> closeModal() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L998" href="#L998">998</a> 		<strong class="jxr_keyword">final</strong> WebElement closeModalWindow = driver.findElement(By.className(<span class="jxr_string">"v-window-closebox"</span>));
+<a class="jxr_linenumber" name="L999" href="#L999">999</a> 		assertNotNull(<span class="jxr_string">"Expect to find a Window close Box"</span>,closeModalWindow);
+<a class="jxr_linenumber" name="L1000" href="#L1000">1000</a> 
+<a class="jxr_linenumber" name="L1001" href="#L1001">1001</a> 		performClickAction(closeModalWindow);
+<a class="jxr_linenumber" name="L1002" href="#L1002">1002</a> 
+<a class="jxr_linenumber" name="L1003" href="#L1003">1003</a> 	}
+<a class="jxr_linenumber" name="L1004" href="#L1004">1004</a> 
+<a class="jxr_linenumber" name="L1005" href="#L1005">1005</a> 
+<a class="jxr_linenumber" name="L1006" href="#L1006">1006</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L1007" href="#L1007">1007</a> <em class="jxr_javadoccomment">	 * Grab screenshot.</em>
+<a class="jxr_linenumber" name="L1008" href="#L1008">1008</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L1009" href="#L1009">1009</a> <em class="jxr_javadoccomment">	 * @param webDriver</em>
+<a class="jxr_linenumber" name="L1010" href="#L1010">1010</a> <em class="jxr_javadoccomment">	 *            the web driver</em>
+<a class="jxr_linenumber" name="L1011" href="#L1011">1011</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L1012" href="#L1012">1012</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> grabScreenshot(<strong class="jxr_keyword">final</strong> WebDriver webDriver)
+<a class="jxr_linenumber" name="L1013" href="#L1013">1013</a> 	{
+<a class="jxr_linenumber" name="L1014" href="#L1014">1014</a> 	    <strong class="jxr_keyword">final</strong> File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+<a class="jxr_linenumber" name="L1015" href="#L1015">1015</a> 	    <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L1016" href="#L1016">1016</a> 	    	screenShotNumber = screenShotNumber +1;
+<a class="jxr_linenumber" name="L1017" href="#L1017">1017</a> 	    	<strong class="jxr_keyword">final</strong> String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, <span class="jxr_string">""</span>).replaceAll(<span class="jxr_string">"#"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"!"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"/"</span>, <span class="jxr_string">"-"</span>).replaceAll(<span class="jxr_string">"--"</span>, <span class="jxr_string">"-"</span>);
+<a class="jxr_linenumber" name="L1018" href="#L1018">1018</a> 	        FileUtils.copyFile(scrFile, <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"target/site/screenshots/Page"</span>+screenShotName+ <span class="jxr_string">"-"</span> + screenShotNumber+ <span class="jxr_string">".png"</span>));
+<a class="jxr_linenumber" name="L1019" href="#L1019">1019</a> 	    } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException e) {
+<a class="jxr_linenumber" name="L1020" href="#L1020">1020</a> 	        e.printStackTrace();
+<a class="jxr_linenumber" name="L1021" href="#L1021">1021</a> 	    }
+<a class="jxr_linenumber" name="L1022" href="#L1022">1022</a> 	}
+<a class="jxr_linenumber" name="L1023" href="#L1023">1023</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

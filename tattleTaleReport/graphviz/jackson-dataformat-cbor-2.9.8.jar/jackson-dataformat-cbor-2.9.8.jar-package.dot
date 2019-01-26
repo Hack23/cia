@@ -1,0 +1,10 @@
+digraph jackson_dataformat_cbor_2_9_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_base;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_format;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_io;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_json;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_sym;
+  com_fasterxml_jackson_dataformat_cbor -> com_fasterxml_jackson_core_util;
+}

@@ -5,8 +5,8 @@ digraph liquibase_core_3_6_2_dependencies {
   liquibase_core_3_6_2 -> logback_core_1_3_0_alpha4;
   liquibase_core_3_6_2 -> slf4j_api_1_8_0_beta2;
   liquibase_core_3_6_2 -> snakeyaml_1_23;
-  liquibase_core_3_6_2 -> spring_beans_5_1_3_RELEASE;
-  liquibase_core_3_6_2 -> spring_context_5_1_3_RELEASE;
-  liquibase_core_3_6_2 -> spring_core_5_1_3_RELEASE;
+  liquibase_core_3_6_2 -> spring_beans_5_1_4_RELEASE;
+  liquibase_core_3_6_2 -> spring_context_5_1_4_RELEASE;
+  liquibase_core_3_6_2 -> spring_core_5_1_4_RELEASE;
   liquibase_core_3_6_2 -> xml_apis_1_4_01;
 }

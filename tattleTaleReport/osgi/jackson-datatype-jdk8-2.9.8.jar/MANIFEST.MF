@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: com.fasterxml.jackson.datatype.jackson-datatype-j
+ dk8
+Built-By: tatu
+Bnd-LastModified: 1544915174509
+Implementation-Vendor-Id: com.fasterxml.jackson.datatype
+Specification-Title: Jackson datatype: jdk8
+Bundle-DocURL: https://github.com/FasterXML/jackson-modules-java8/jack
+ son-datatype-jdk8
+Import-Package: com.fasterxml.jackson.core;version="[2.9,3)",com.faste
+ rxml.jackson.core.io;version="[2.9,3)",com.fasterxml.jackson.core.uti
+ l;version="[2.9,3)",com.fasterxml.jackson.databind;version="[2.9,3)",
+ com.fasterxml.jackson.databind.deser;version="[2.9,3)",com.fasterxml.
+ jackson.databind.deser.std;version="[2.9,3)",com.fasterxml.jackson.da
+ tabind.jsonFormatVisitors;version="[2.9,3)",com.fasterxml.jackson.dat
+ abind.jsontype;version="[2.9,3)",com.fasterxml.jackson.databind.ser;v
+ ersion="[2.9,3)",com.fasterxml.jackson.databind.ser.impl;version="[2.
+ 9,3)",com.fasterxml.jackson.databind.ser.std;version="[2.9,3)",com.fa
+ sterxml.jackson.databind.type;version="[2.9,3)",com.fasterxml.jackson
+ .databind.util;version="[2.9,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Implementation-Build-Date: 2018-12-15 23:05:52+0000
+Export-Package: com.fasterxml.jackson.datatype.jdk8;version="2.9.8";us
+ es:="com.fasterxml.jackson.core,com.fasterxml.jackson.core.io,com.fas
+ terxml.jackson.databind,com.fasterxml.jackson.databind.deser,com.fast
+ erxml.jackson.databind.deser.std,com.fasterxml.jackson.databind.jsonF
+ ormatVisitors,com.fasterxml.jackson.databind.jsontype,com.fasterxml.j
+ ackson.databind.ser,com.fasterxml.jackson.databind.ser.impl,com.faste
+ rxml.jackson.databind.ser.std,com.fasterxml.jackson.databind.type,com
+ .fasterxml.jackson.databind.util"
+Bundle-Name: Jackson datatype: jdk8
+Bundle-Description: Add-on module for Jackson (http://jackson.codehaus
+ .org) to supportJDK 8 data types.
+Implementation-Title: Jackson datatype: jdk8
+Automatic-Module-Name: com.fasterxml.jackson.datatype.jdk8
+Implementation-Version: 2.9.8
+Bundle-ManifestVersion: 2
+Specification-Vendor: FasterXML
+Bundle-Vendor: FasterXML
+Tool: Bnd-3.2.0.201605172007
+Implementation-Vendor: FasterXML
+Bundle-Version: 2.9.8
+X-Compile-Target-JDK: 1.8
+X-Compile-Source-JDK: 1.8
+Build-Jdk: 1.8.0_162
+Created-By: Apache Maven Bundle Plugin
+Specification-Version: 2.9.8
+

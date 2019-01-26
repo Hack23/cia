@@ -1,0 +1,109 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.kie.api
+Built-By: mbiarnes
+Bnd-LastModified: 1546962699407
+Implementation-Vendor-Id: org.kie
+Specification-Title: KIE :: Public API
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: META-INF/ErraiApp.properties=src/main/resources/META
+ -INF/ErraiApp.properties,org/kie/api/kmodule.xsd=src/main/resources/o
+ rg/kie/api/kmodule.xsd,org/kie/api/old-kmodule.xsd=src/main/resources
+ /org/kie/api/old-kmodule.xsd,org/kie/api/KieAPI.gwt.xml=src/main/reso
+ urces/org/kie/api/KieAPI.gwt.xml
+Import-Package: org.appformer.maven.support,javax.inject;resolution:=o
+ ptional,javax.management;resolution:=optional,javax.management.openmb
+ ean;resolution:=optional,javax.xml.bind.annotation;resolution:=option
+ al,org.kie.api;resolution:=optional,org.kie.api.builder;resolution:=o
+ ptional,org.kie.api.builder.model;resolution:=optional,org.kie.api.co
+ mmand;resolution:=optional,org.kie.api.conf;resolution:=optional,org.
+ kie.api.definition;resolution:=optional,org.kie.api.definition.proces
+ s;resolution:=optional,org.kie.api.definition.rule;resolution:=option
+ al,org.kie.api.definition.type;resolution:=optional,org.kie.api.event
+ ;resolution:=optional,org.kie.api.event.kiebase;resolution:=optional,
+ org.kie.api.event.kiescanner;resolution:=optional,org.kie.api.event.p
+ rocess;resolution:=optional,org.kie.api.event.rule;resolution:=option
+ al,org.kie.api.internal.io;resolution:=optional,org.kie.api.internal.
+ runtime;resolution:=optional,org.kie.api.internal.utils;resolution:=o
+ ptional,org.kie.api.io;resolution:=optional,org.kie.api.logger;resolu
+ tion:=optional,org.kie.api.marshalling;resolution:=optional,org.kie.a
+ pi.persistence.jpa;resolution:=optional,org.kie.api.runtime;resolutio
+ n:=optional,org.kie.api.runtime.conf;resolution:=optional,org.kie.api
+ .runtime.manager;resolution:=optional,org.kie.api.runtime.manager.aud
+ it;resolution:=optional,org.kie.api.runtime.process;resolution:=optio
+ nal,org.kie.api.runtime.query;resolution:=optional,org.kie.api.runtim
+ e.rule;resolution:=optional,org.kie.api.task;resolution:=optional,org
+ .kie.api.task.model;resolution:=optional,org.kie.api.time;resolution:
+ =optional,org.osgi.framework;resolution:=optional,org.slf4j;resolutio
+ n:=optional,org.kie.soup.project.datamodel,org.kie.soup.project.datam
+ odel.commons,org.jbpm.runtime.manager.impl;resolution:=optional,org.d
+ rools.compiler.kie.builder.impl,org.drools.core.fluent.impl,org.drool
+ s.core.builder.conf.impl;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/droolsjbpm-knowledge/kie-api
+Export-Package: org.kie.api;version="7.16.0",org.kie.api.builder;versi
+ on="7.16.0",org.kie.api.builder.model;version="7.16.0",org.kie.api.cd
+ i;version="7.16.0",org.kie.api.command;version="7.16.0",org.kie.api.c
+ oncurrent;version="7.16.0",org.kie.api.conf;version="7.16.0",org.kie.
+ api.definition;version="7.16.0",org.kie.api.definition.process;versio
+ n="7.16.0",org.kie.api.definition.rule;version="7.16.0",org.kie.api.d
+ efinition.type;version="7.16.0",org.kie.api.event;version="7.16.0",or
+ g.kie.api.event.kiebase;version="7.16.0",org.kie.api.event.kiescanner
+ ;version="7.16.0",org.kie.api.event.process;version="7.16.0",org.kie.
+ api.event.rule;version="7.16.0",org.kie.api.executor;version="7.16.0"
+ ,org.kie.api.internal.assembler;version="7.16.0",org.kie.api.internal
+ .io;version="7.16.0",org.kie.api.internal.runtime;version="7.16.0",or
+ g.kie.api.internal.runtime.beliefs;version="7.16.0",org.kie.api.inter
+ nal.utils;version="7.16.0",org.kie.api.internal.weaver;version="7.16.
+ 0",org.kie.api.io;version="7.16.0",org.kie.api.logger;version="7.16.0
+ ",org.kie.api.management;version="7.16.0",org.kie.api.marshalling;ver
+ sion="7.16.0",org.kie.api.persistence;version="7.16.0",org.kie.api.pe
+ rsistence.jpa;version="7.16.0",org.kie.api.pmml;version="7.16.0",org.
+ kie.api.remote;version="7.16.0",org.kie.api.runtime;version="7.16.0",
+ org.kie.api.runtime.conf;version="7.16.0",org.kie.api.runtime.manager
+ ;version="7.16.0",org.kie.api.runtime.manager.audit;version="7.16.0",
+ org.kie.api.runtime.process;version="7.16.0",org.kie.api.runtime.quer
+ y;version="7.16.0",org.kie.api.runtime.rule;version="7.16.0",org.kie.
+ api.task;version="7.16.0",org.kie.api.task.model;version="7.16.0",org
+ .kie.api.time;version="7.16.0"
+Bundle-Name: KIE :: Public API
+Bundle-Activator: org.kie.api.internal.utils.Activator
+Bundle-Description: The Drools and jBPM public API which is backwards 
+ compatible between releases.
+Implementation-Title: KIE :: Public API
+Automatic-Module-Name: org.kie.api
+Implementation-Version: 7.16.0.Final
+Java-Version: 1.8.0_152
+Scm-Connection: scm:git:https://github.com/kiegroup/droolsjbpm-knowled
+ ge.git/kie-api
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.18.19-100.fc27.x86_64
+Bundle-Version: 7.16.0.201901081551
+Scm-Revision: 274261a2d91660439b30a943cb7f234137a53e42
+Private-Package: org.kie.api.time,org.kie.api.builder,org.kie.api.buil
+ der.model,org.kie.api.command,org.kie.api.cdi,org.kie.api,org.kie.api
+ .marshalling,org.kie.api.internal.utils,org.kie.api.internal.assemble
+ r,org.kie.api.internal.weaver,org.kie.api.internal.runtime,org.kie.ap
+ i.internal.runtime.beliefs,org.kie.api.internal.io,org.kie.api.event.
+ kiescanner,org.kie.api.event,org.kie.api.event.kiebase,org.kie.api.ev
+ ent.rule,org.kie.api.event.process,org.kie.api.executor,org.kie.api.t
+ ask,org.kie.api.task.model,org.kie.api.definition,org.kie.api.definit
+ ion.type,org.kie.api.definition.rule,org.kie.api.definition.process,o
+ rg.kie.api.logger,org.kie.api.remote,org.kie.api.persistence,org.kie.
+ api.persistence.jpa,org.kie.api.conf,org.kie.api.runtime,org.kie.api.
+ runtime.query,org.kie.api.runtime.rule,org.kie.api.runtime.conf,org.k
+ ie.api.runtime.manager,org.kie.api.runtime.manager.audit,org.kie.api.
+ runtime.process,org.kie.api.io,org.kie.api.concurrent,org.kie.api.pmm
+ l,org.kie.api.management
+Build-Jdk: 1.8.0_152
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/kie-api-parent/kie-api
+Specification-Version: 7.16.0.Final
+

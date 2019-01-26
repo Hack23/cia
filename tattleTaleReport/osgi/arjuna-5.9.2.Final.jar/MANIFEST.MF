@@ -1,0 +1,76 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: ArjunaCore arjuna
+Implementation-Version: 5.9.2.Final
+Java-Version: 1.8.0_191
+Built-By: ochaloup
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/arjunacore
+ -all/arjuna
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: ArjunaCore arjuna
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/arjunacore-all/arjuna
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 4.19.7-200.fc28.x86_64
+Scm-Revision: 3f10bb3d1e10902d61b9162ba48064c5563322ab
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_191
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.ats.arjuna.coordinator
+Bundle-Description: arjuna-5.9.2.Final
+Bundle-Name: arjuna-5.9.2.Final
+Bundle-Version: 5.9
+Export-Package: com.arjuna.ats.arjuna;uses:="com.arjuna.ats.internal.a
+ rjuna.objectstore",com.arjuna.ats.arjuna.common;uses:="com.arjuna.com
+ mon.internal.util,java.lang.invoke,java.nio.charset,java.util.functio
+ n",com.arjuna.ats.arjuna.coordinator;uses:="com.arjuna.ats.arjuna.coo
+ rdinator.internal,java.nio.charset",com.arjuna.ats.arjuna.coordinator
+ .abstractrecord,com.arjuna.ats.arjuna.coordinator.internal,com.arjuna
+ .ats.arjuna.coordinator.listener,com.arjuna.ats.arjuna.exceptions,com
+ .arjuna.ats.arjuna.logging;uses:="org.jboss.logging.annotations",com.
+ arjuna.ats.arjuna.objectstore;uses:="com.arjuna.common.internal.util"
+ ,com.arjuna.ats.arjuna.objectstore.jdbc,com.arjuna.ats.arjuna.recover
+ y;uses:="com.arjuna.ats.internal.arjuna.recovery,com.arjuna.common.in
+ ternal.util,java.nio.charset",com.arjuna.ats.arjuna.state;uses:="java
+ .nio.charset",com.arjuna.ats.arjuna.tools;uses:="java.nio.charset",co
+ m.arjuna.ats.arjuna.tools.log;uses:="java.nio.charset",com.arjuna.ats
+ .arjuna.tools.osb.annotation,com.arjuna.ats.arjuna.tools.osb.api.mbea
+ ns,com.arjuna.ats.arjuna.tools.osb.api.proxy,com.arjuna.ats.arjuna.to
+ ols.osb.mbean,com.arjuna.ats.arjuna.tools.osb.util,com.arjuna.ats.arj
+ una.utils,com.arjuna.ats.internal.arjuna,com.arjuna.ats.internal.arju
+ na.abstractrecords,com.arjuna.ats.internal.arjuna.common,com.arjuna.a
+ ts.internal.arjuna.coordinator,com.arjuna.ats.internal.arjuna.objects
+ tore;uses:="java.nio.charset",com.arjuna.ats.internal.arjuna.objectst
+ ore.hornetq;uses:="org.apache.activemq.artemis.core.io,org.apache.act
+ ivemq.artemis.core.io.aio,org.apache.activemq.artemis.core.io.nio,org
+ .apache.activemq.artemis.core.journal,org.apache.activemq.artemis.cor
+ e.journal.impl",com.arjuna.ats.internal.arjuna.objectstore.jdbc,com.a
+ rjuna.ats.internal.arjuna.objectstore.jdbc.accessors,com.arjuna.ats.i
+ nternal.arjuna.objectstore.jdbc.drivers;uses:="com.arjuna.ats.interna
+ l.arjuna.objectstore.jdbc",com.arjuna.ats.internal.arjuna.recovery;us
+ es:="com.arjuna.ats.arjuna.recovery,com.arjuna.common.internal.util,j
+ ava.nio.charset",com.arjuna.ats.internal.arjuna.thread,com.arjuna.ats
+ .internal.arjuna.tools.log,com.arjuna.ats.internal.arjuna.utils;uses:
+ ="java.nio.charset"
+Import-Package: com.arjuna.common.internal.util;version="5.9",com.arju
+ na.common.internal.util.propertyservice;version="5.9",com.arjuna.comm
+ on.util;version="5.9",com.arjuna.common.util.propertyservice;version=
+ "5.9",java.awt,java.awt.event,java.io,java.lang,java.lang.annotation,
+ java.lang.invoke,java.lang.management,java.lang.reflect,java.net,java
+ .nio,java.nio.channels,java.nio.charset,java.security,java.sql,java.t
+ ext,java.util,java.util.concurrent,java.util.concurrent.atomic,java.u
+ til.concurrent.locks,java.util.function,javax.management,javax.manage
+ ment.remote,javax.naming,javax.sql,javax.swing,javax.swing.tree,javax
+ .transaction.xa;version="1.1.1",org.apache.activemq.artemis.core.io;v
+ ersion="2.6.4",org.apache.activemq.artemis.core.io.aio;version="2.6.4
+ ",org.apache.activemq.artemis.core.io.nio;version="2.6.4",org.apache.
+ activemq.artemis.core.journal;version="2.6.4",org.apache.activemq.art
+ emis.core.journal.impl;version="2.6.4",org.jboss.logging;version="3.3
+ .2.Final-redhat-00001",org.jboss.logging.annotations

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javaee.api"/>
+        <module name="nu.xom"/>
+        <module name="org.apache.xml-resolver"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

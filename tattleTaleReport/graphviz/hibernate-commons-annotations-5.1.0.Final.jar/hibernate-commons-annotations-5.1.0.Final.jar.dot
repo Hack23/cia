@@ -1,4 +1,4 @@
 digraph hibernate_commons_annotations_5_1_0_Final_dependencies {
   node [shape = box, fontsize=10.0];
-  hibernate_commons_annotations_5_1_0_Final -> jboss_logging_3_3_2_Final;
+  hibernate_commons_annotations_5_1_0_Final -> jboss_logging_3_3_2_Final_redhat_00001;
 }

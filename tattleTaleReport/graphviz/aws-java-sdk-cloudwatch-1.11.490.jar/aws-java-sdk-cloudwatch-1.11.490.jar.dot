@@ -1,0 +1,8 @@
+digraph aws_java_sdk_cloudwatch_1_11_490_dependencies {
+  node [shape = box, fontsize=10.0];
+  aws_java_sdk_cloudwatch_1_11_490 -> aws_java_sdk_core_1_11_490;
+  aws_java_sdk_cloudwatch_1_11_490 -> jackson_databind_2_9_8;
+  aws_java_sdk_cloudwatch_1_11_490 -> jcl_over_slf4j_1_8_0_beta2;
+  aws_java_sdk_cloudwatch_1_11_490 -> jmespath_java_1_11_490;
+  aws_java_sdk_cloudwatch_1_11_490 -> xml_apis_1_4_01;
+}

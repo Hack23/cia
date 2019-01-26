@@ -1,0 +1,15 @@
+digraph spring_jms_5_1_4_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_jms_5_1_4_RELEASE -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
+  spring_jms_5_1_4_RELEASE -> jackson_annotations_2_9_0;
+  spring_jms_5_1_4_RELEASE -> jackson_databind_2_9_8;
+  spring_jms_5_1_4_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_jms_5_1_4_RELEASE -> spring_aop_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_beans_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_context_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_core_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_messaging_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_oxm_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> spring_tx_5_1_4_RELEASE;
+  spring_jms_5_1_4_RELEASE -> xml_apis_1_4_01;
+}

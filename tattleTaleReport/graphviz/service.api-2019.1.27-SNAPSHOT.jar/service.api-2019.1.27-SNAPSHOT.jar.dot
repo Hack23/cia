@@ -1,0 +1,8 @@
+digraph service_api_2019_1_27_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_api_2019_1_27_SNAPSHOT -> commons_collections4_4_3;
+  service_api_2019_1_27_SNAPSHOT -> commons_lang3_3_8_1;
+  service_api_2019_1_27_SNAPSHOT -> javax_persistence_api_2_2;
+  service_api_2019_1_27_SNAPSHOT -> model_internal_application_user_impl_2019_1_27_SNAPSHOT;
+  service_api_2019_1_27_SNAPSHOT -> validation_api_2_0_1_Final;
+}

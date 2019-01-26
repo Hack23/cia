@@ -1,0 +1,17 @@
+digraph spring_security_config_5_2_0_M1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_security_config_5_2_0_M1 -> aspectjweaver_1_9_2;
+  spring_security_config_5_2_0_M1 -> jcl_over_slf4j_1_8_0_beta2;
+  spring_security_config_5_2_0_M1 -> spring_aop_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_beans_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_context_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_core_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_expression_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_jdbc_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_messaging_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_security_core_5_2_0_M1;
+  spring_security_config_5_2_0_M1 -> spring_security_web_5_2_0_M1;
+  spring_security_config_5_2_0_M1 -> spring_web_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> spring_webmvc_5_1_4_RELEASE;
+  spring_security_config_5_2_0_M1 -> xml_apis_1_4_01;
+}

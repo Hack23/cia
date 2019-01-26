@@ -1,0 +1,19 @@
+digraph jbpm_flow_7_16_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jbpm_flow_7_16_0_Final -> commons_lang3_3_8_1;
+  jbpm_flow_7_16_0_Final -> drools_core_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> jaxb_api_2_4_0;
+  jbpm_flow_7_16_0_Final -> kie_api_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_dmn_api_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_dmn_core_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_dmn_feel_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_internal_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_soup_commons_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> kie_soup_project_datamodel_commons_7_16_0_Final;
+  jbpm_flow_7_16_0_Final -> mvel2_2_4_3_Final;
+  jbpm_flow_7_16_0_Final -> protobuf_java_3_6_1;
+  jbpm_flow_7_16_0_Final -> quartz_2_3_0;
+  jbpm_flow_7_16_0_Final -> slf4j_api_1_8_0_beta2;
+  jbpm_flow_7_16_0_Final -> xml_apis_1_4_01;
+  jbpm_flow_7_16_0_Final -> xstream_1_4_11_1;
+}

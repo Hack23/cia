@@ -1,0 +1,7 @@
+digraph vaadin_client_8_7_0_rc1_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_client_8_7_0_rc1 -> gwt_elemental_2_8_2;
+  vaadin_client_8_7_0_rc1 -> gwt_user_2_8_2;
+  vaadin_client_8_7_0_rc1 -> vaadin_server_8_7_0_rc1;
+  vaadin_client_8_7_0_rc1 -> vaadin_shared_8_7_0_rc1;
+}

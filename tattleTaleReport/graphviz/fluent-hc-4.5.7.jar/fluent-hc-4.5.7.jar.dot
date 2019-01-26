@@ -1,0 +1,5 @@
+digraph fluent_hc_4_5_7_dependencies {
+  node [shape = box, fontsize=10.0];
+  fluent_hc_4_5_7 -> httpclient_4_5_7;
+  fluent_hc_4_5_7 -> httpcore_4_4_11;
+}

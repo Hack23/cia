@@ -22,8 +22,9 @@ Bundle-Version: 4.01
 Export-Package: org.cyberneko.html,org.cyberneko.html.filters,org.cybe
  rneko.html.parsers,org.cyberneko.html.xercesbridge
 Import-Package: java.io,java.lang,java.lang.reflect,java.net,java.secu
- rity,java.text,java.util,org.apache.xerces.impl;version="2.12.0.SP02"
- ,org.apache.xerces.parsers;version="2.12.0.SP02",org.apache.xerces.ut
- il;version="2.12.0.SP02",org.apache.xerces.xni;version="2.12.0.SP02",
- org.apache.xerces.xni.parser;version="2.12.0.SP02",org.w3c.dom;versio
- n="1.0",org.xml.sax;version="1.0"
+ rity,java.text,java.util,org.apache.xerces.impl;version="2.12.0.SP02-
+ redhat-00001",org.apache.xerces.parsers;version="2.12.0.SP02-redhat-0
+ 0001",org.apache.xerces.util;version="2.12.0.SP02-redhat-00001",org.a
+ pache.xerces.xni;version="2.12.0.SP02-redhat-00001",org.apache.xerces
+ .xni.parser;version="2.12.0.SP02-redhat-00001",org.w3c.dom;version="1
+ .0",org.xml.sax;version="1.0"

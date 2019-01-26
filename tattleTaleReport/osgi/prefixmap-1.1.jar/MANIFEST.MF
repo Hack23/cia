@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: nbasjes
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_181
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nl.basjes.collections.prefixmap
+Bundle-Description: prefixmap-1.1
+Bundle-Name: prefixmap-1.1
+Bundle-Version: 0.0.0
+Export-Package: nl.basjes.collections;uses:="java.lang.invoke,java.uti
+ l.function",nl.basjes.collections.prefixmap;uses:="java.lang.invoke,j
+ ava.util.function,nl.basjes.collections"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.util,java.util.function

@@ -1,0 +1,92 @@
+Manifest-Version: 1.0
+Implementation-Title: Apache HttpClient
+Automatic-Module-Name: org.apache.httpcomponents.httpclient
+Implementation-Version: 4.5.7
+Built-By: oleg
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Apache HttpClient
+Implementation-Vendor-Id: org.apache.httpcomponents
+Implementation-Vendor: The Apache Software Foundation
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 10.0.2
+Specification-Version: 4.5
+Implementation-URL: http://hc.apache.org/httpcomponents-client
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.http.impl.client
+Bundle-Description: httpclient-4.5.7
+Bundle-Name: httpclient-4.5.7
+Bundle-Version: 4.5
+Export-Package: org.apache.http.auth;uses:="org.apache.http.annotation
+ ,org.apache.http.config,org.apache.http.util",org.apache.http.auth.pa
+ rams;uses:="org.apache.http.annotation,org.apache.http.util",org.apac
+ he.http.client;uses:="org.apache.http.util",org.apache.http.client.co
+ nfig;uses:="org.apache.http.annotation",org.apache.http.client.entity
+ ;uses:="org.apache.http.annotation,org.apache.http.entity,org.apache.
+ http.util",org.apache.http.client.methods;uses:="org.apache.http,org.
+ apache.http.client.config,org.apache.http.client.utils,org.apache.htt
+ p.concurrent,org.apache.http.entity,org.apache.http.util",org.apache.
+ http.client.params;uses:="org.apache.http.client.config,org.apache.ht
+ tp.util",org.apache.http.client.protocol;uses:="org.apache.http.annot
+ ation,org.apache.http.auth,org.apache.http.client.config,org.apache.h
+ ttp.client.entity,org.apache.http.config,org.apache.http.cookie,org.a
+ pache.http.protocol,org.apache.http.util",org.apache.http.client.util
+ s;uses:="org.apache.http,org.apache.http.annotation,org.apache.http.c
+ lient.methods,org.apache.http.entity,org.apache.http.message,org.apac
+ he.http.util",org.apache.http.conn;uses:="org.apache.http.annotation,
+ org.apache.http.concurrent,org.apache.http.config,org.apache.http.uti
+ l",org.apache.http.conn.params;uses:="org.apache.http.annotation,org.
+ apache.http.util",org.apache.http.conn.routing;uses:="org.apache.http
+ .annotation,org.apache.http.util",org.apache.http.conn.scheme;uses:="
+ org.apache.http.annotation,org.apache.http.util",org.apache.http.conn
+ .socket;uses:="org.apache.http.annotation",org.apache.http.conn.ssl;u
+ ses:="org.apache.http.annotation,org.apache.http.conn,org.apache.http
+ .conn.scheme,org.apache.http.conn.socket,org.apache.http.conn.util,or
+ g.apache.http.ssl,org.apache.http.util",org.apache.http.conn.util;use
+ s:="org.apache.http,org.apache.http.annotation,org.apache.http.util",
+ org.apache.http.cookie;uses:="org.apache.http.annotation,org.apache.h
+ ttp.config,org.apache.http.util",org.apache.http.cookie.params,org.ap
+ ache.http.impl.auth;uses:="org.apache.http,org.apache.http.annotation
+ ,org.apache.http.auth,org.apache.http.client,org.apache.http.util",or
+ g.apache.http.impl.client;uses:="org.apache.http.annotation,org.apach
+ e.http.auth,org.apache.http.client,org.apache.http.client.config,org.
+ apache.http.client.methods,org.apache.http.client.params,org.apache.h
+ ttp.client.protocol,org.apache.http.client.utils,org.apache.http.conc
+ urrent,org.apache.http.config,org.apache.http.conn,org.apache.http.co
+ nn.socket,org.apache.http.conn.ssl,org.apache.http.conn.util,org.apac
+ he.http.impl.auth,org.apache.http.impl.conn,org.apache.http.impl.cook
+ ie,org.apache.http.impl.execchain,org.apache.http.params,org.apache.h
+ ttp.pool,org.apache.http.protocol,org.apache.http.ssl,org.apache.http
+ .util",org.apache.http.impl.conn;uses:="org.apache.http,org.apache.ht
+ tp.annotation,org.apache.http.client.config,org.apache.http.client.pr
+ otocol,org.apache.http.concurrent,org.apache.http.config,org.apache.h
+ ttp.conn,org.apache.http.conn.scheme,org.apache.http.conn.socket,org.
+ apache.http.conn.ssl,org.apache.http.impl,org.apache.http.impl.io,org
+ .apache.http.io,org.apache.http.pool,org.apache.http.util",org.apache
+ .http.impl.conn.tsccm;uses:="org.apache.http.annotation,org.apache.ht
+ tp.util",org.apache.http.impl.cookie;uses:="org.apache.http.annotatio
+ n,org.apache.http.client.utils,org.apache.http.conn.util,org.apache.h
+ ttp.cookie,org.apache.http.message,org.apache.http.util",org.apache.h
+ ttp.impl.execchain;uses:="org.apache.http.annotation,org.apache.http.
+ auth,org.apache.http.client,org.apache.http.client.config,org.apache.
+ http.client.methods,org.apache.http.client.protocol,org.apache.http.c
+ oncurrent,org.apache.http.conn,org.apache.http.impl.auth,org.apache.h
+ ttp.util"
+Import-Package: java.io,java.lang,java.lang.ref,java.lang.reflect,java
+ .net,java.nio,java.nio.charset,java.security,java.security.cert,java.
+ text,java.util,java.util.concurrent,java.util.concurrent.atomic,java.
+ util.concurrent.locks,java.util.regex,java.util.zip,javax.crypto,java
+ x.crypto.spec,javax.naming,javax.naming.directory,javax.naming.ldap,j
+ avax.net,javax.net.ssl,javax.security.auth.x500,org.apache.commons.co
+ dec.binary;version="1.11",org.apache.commons.logging;version="0.0.0",
+ org.apache.http;version="4.4.11",org.apache.http.annotation;version="
+ 4.4.11",org.apache.http.concurrent;version="4.4.11",org.apache.http.c
+ onfig;version="4.4.11",org.apache.http.entity;version="4.4.11",org.ap
+ ache.http.impl;version="4.4.11",org.apache.http.impl.entity;version="
+ 4.4.11",org.apache.http.impl.io;version="4.4.11",org.apache.http.io;v
+ ersion="4.4.11",org.apache.http.message;version="4.4.11",org.apache.h
+ ttp.params;version="4.4.11",org.apache.http.pool;version="4.4.11",org
+ .apache.http.protocol;version="4.4.11",org.apache.http.ssl;version="4
+ .4.11",org.apache.http.util;version="4.4.11",org.ietf.jgss

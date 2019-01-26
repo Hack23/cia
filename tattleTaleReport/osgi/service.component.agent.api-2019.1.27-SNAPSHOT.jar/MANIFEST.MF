@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.component.agent.api
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_201
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.component.agent.api
+Bundle-Description: service.component.agent.api-2019.1.27-SNAPSHOT
+Bundle-Name: service.component.agent.api-2019.1.27-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.component.agent.api;uses:="com.
+ hack23.cia.model.internal.application.data.impl,java.lang"
+Import-Package: com.hack23.cia.model.internal.application.data.impl;ve
+ rsion="0.0.0",java.lang

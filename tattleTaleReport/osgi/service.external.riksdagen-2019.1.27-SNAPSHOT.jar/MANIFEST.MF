@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.service.external.riksdagen
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_201
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.external.riksdagen.api
+Bundle-Description: service.external.riksdagen-2019.1.27-SNAPSHOT
+Bundle-Name: service.external.riksdagen-2019.1.27-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.external.riksdagen.api;uses:="c
+ om.hack23.cia.model.external.riksdagen.documentcontent.impl,com.hack2
+ 3.cia.model.external.riksdagen.dokumentstatus.impl,com.hack23.cia.mod
+ el.external.riksdagen.person.impl,com.hack23.cia.model.external.riksd
+ agen.personlista.impl,com.hack23.cia.model.external.riksdagen.utskott
+ sforslag.impl,com.hack23.cia.service.external.common.api",com.hack23.
+ cia.service.external.riksdagen.impl;uses:="com.hack23.cia.model.exter
+ nal.riksdagen.documentcontent.impl,com.hack23.cia.model.external.riks
+ dagen.dokumentlista.impl,com.hack23.cia.model.external.riksdagen.doku
+ mentstatus.impl,com.hack23.cia.model.external.riksdagen.person.impl,c
+ om.hack23.cia.model.external.riksdagen.personlista.impl,com.hack23.ci
+ a.model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.
+ external.riksdagen.votering.impl,com.hack23.cia.model.external.riksda
+ gen.voteringlista.impl,com.hack23.cia.service.external.common.api,com
+ .hack23.cia.service.external.riksdagen.api"
+Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
+ t.impl;version="0.0.0",com.hack23.cia.model.external.riksdagen.dokume
+ ntlista.impl;version="0.0.0",com.hack23.cia.model.external.riksdagen.
+ dokumentstatus.impl;version="0.0.0",com.hack23.cia.model.external.rik
+ sdagen.person.impl;version="0.0.0",com.hack23.cia.model.external.riks
+ dagen.personlista.impl;version="0.0.0",com.hack23.cia.model.external.
+ riksdagen.utskottsforslag.impl;version="0.0.0",com.hack23.cia.model.e
+ xternal.riksdagen.votering.impl;version="0.0.0",com.hack23.cia.model.
+ external.riksdagen.voteringlista.impl;version="0.0.0",com.hack23.cia.
+ service.external.common.api;version="0.0.0",java.lang,java.math,java.
+ text,java.util,javax.xml.bind;version="2.4.0",org.slf4j;version="0.0.
+ 0",org.springframework.beans.factory.annotation;version="5.1.4.RELEAS
+ E",org.springframework.oxm;version="5.1.4.RELEASE",org.springframewor
+ k.stereotype;version="5.1.4.RELEASE"

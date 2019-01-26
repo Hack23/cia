@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChartOptionsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">ChartOptionsImpl.java</span></div><h1>ChartOptionsImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2014 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -209,10 +209,10 @@ public final class ChartOptionsImpl implements ChartOptions {
 	 * @return the legend
 	 */
 	private static Legend createLegendInsideOneRow() {
-<span class="nc" id="L212">		return setLegendStyling(new Legend().setShow(true)</span>
-<span class="nc" id="L213">				.setRendererOptions(</span>
-<span class="nc" id="L214">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))</span>
-<span class="nc" id="L215">				.setPlacement(LegendPlacements.INSIDE_GRID));</span>
+<span class="fc" id="L212">		return setLegendStyling(new Legend().setShow(true)</span>
+<span class="fc" id="L213">				.setRendererOptions(</span>
+<span class="fc" id="L214">						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))</span>
+<span class="fc" id="L215">				.setPlacement(LegendPlacements.INSIDE_GRID));</span>
 	}
 
 	/**
@@ -270,13 +270,13 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	@Override
 	public Options createOptionsCountryLineChart(final Series series) {
-<span class="nc" id="L273">		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)</span>
-<span class="nc" id="L274">				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))</span>
-<span class="nc" id="L275">				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));</span>
+<span class="fc" id="L273">		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)</span>
+<span class="fc" id="L274">				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))</span>
+<span class="fc" id="L275">				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));</span>
 
-<span class="nc" id="L277">		return new Options().addOption(new SeriesDefaults()).addOption(axes)</span>
-<span class="nc" id="L278">				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())</span>
-<span class="nc" id="L279">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
+<span class="fc" id="L277">		return new Options().addOption(new SeriesDefaults()).addOption(axes)</span>
+<span class="fc" id="L278">				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())</span>
+<span class="fc" id="L279">				.addOption(createDefaultGrid()).addOption(createCursor());</span>
 	}
 
 	@Override
@@ -338,4 +338,4 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201812121002</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

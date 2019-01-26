@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: common
+Implementation-Version: 5.9.2.Final
+Java-Version: 1.8.0_191
+Built-By: ochaloup
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/common
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: common
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/common
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 4.19.7-200.fc28.x86_64
+Scm-Revision: 3f10bb3d1e10902d61b9162ba48064c5563322ab
+arjuna-properties-file: jbossts-properties.xml
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_191
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.common.util.propertyservice
+Bundle-Description: common-5.9.2.Final
+Bundle-Name: common-5.9.2.Final
+Bundle-Version: 5.9
+Export-Package: com.arjuna.common.internal.util;uses:="com.arjuna.comm
+ on.logging",com.arjuna.common.internal.util.propertyservice,com.arjun
+ a.common.logging;uses:="org.jboss.logging.annotations",com.arjuna.com
+ mon.util;uses:="com.arjuna.common.logging",com.arjuna.common.util.pro
+ pertyservice;uses:="com.arjuna.common.logging"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.refle
+ ct,java.net,java.util,java.util.concurrent,java.util.jar,javax.xml.pa
+ rsers;version="1.0",javax.xml.stream;version="1.0",org.jboss.logging;
+ version="3.3.2.Final-redhat-00001",org.jboss.logging.annotations,org.
+ xml.sax;version="1.0",org.xml.sax.helpers;version="1.0"

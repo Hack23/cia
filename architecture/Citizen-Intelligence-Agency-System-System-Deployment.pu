@@ -60,13 +60,13 @@ node "Audit Account" <<Aws Account>> as 175 {
   }
 }
 node "Dev Network" <<Dev Network>> as 233 {
+  rectangle "Nexus" <<Container>> as 235 #1168bd
   rectangle "Jenkins" <<Container>> as 243 #1168bd
   rectangle "Sonarqube" <<Container>> as 237 #1168bd
-  rectangle "Nexus" <<Container>> as 235 #1168bd
 }
 node "Github Org" <<Github Org>> as 228 {
-  rectangle "Documentation" <<Container>> as 232 #1168bd
   rectangle "SCM" <<Container>> as 230 #1168bd
+  rectangle "Documentation" <<Container>> as 232 #1168bd
 }
 node "Security Account" <<Sumologic Account>> as 248 {
   node "AWS Account Security Dashboard" <<AWS Account Security Dashboard>> as 251 {
@@ -85,23 +85,26 @@ node "Security Account" <<Sumologic Account>> as 248 {
     rectangle "Ec2ApplicationLogs" <<Container>> as 271 #1168bd
   }
 }
+209 .[#707070].> 214 : <<https>>\nUses
+214 .[#707070].> 222 : <<jdbc>>\nUses
+171 .[#707070].> 209 : <<filter rules>>\nProtects
 173 .[#707070].> 210 : Protects/Filter
 210 .[#707070].> 207 : Write logs
 181 .[#707070].> 216 : Inspects
 263 .[#707070].> 178 : Recieve logs
 255 .[#707070].> 199 : Recieve logs
-243 .[#707070].> 232 : <<https>>\npublish Documentation
 243 .[#707070].> 230 : builds
-275 .[#707070].> 181 : Recieve reports
 243 .[#707070].> 237 : <<https>>\nPublish QA metrics
-189 .[#707070].> 223 : Loads Data
+275 .[#707070].> 181 : Recieve reports
+243 .[#707070].> 232 : <<https>>\npublish Documentation
+223 .[#707070].> 199 : Write logs
 267 .[#707070].> 199 : Recieve logs
 243 .[#707070].> 235 : <<https>>\npublish artifacts
 185 .[#707070].> 216 : Run Commands
-223 .[#707070].> 199 : Write logs
-210 .[#707070].> 216 : HTTPS/H2
 216 .[#707070].> 223 : JDBC
 216 .[#707070].> 199 : Write logs
+189 .[#707070].> 223 : Loads Data
+210 .[#707070].> 216 : HTTPS/H2
 279 .[#707070].> 207 : Recieve logs
 259 .[#707070].> 204 : Recieve logs
 271 .[#707070].> 199 : Recieve logs

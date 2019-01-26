@@ -1,0 +1,5 @@
+digraph vaadin_client_compiled_8_7_0_rc1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_vaadin_osgi_widgetset -> com_vaadin_osgi_resources;
+  com_vaadin_osgi_widgetset -> org_osgi_service_component_annotations;
+}

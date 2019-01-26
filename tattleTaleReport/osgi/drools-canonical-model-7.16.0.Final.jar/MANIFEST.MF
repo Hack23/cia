@@ -1,0 +1,59 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.drools.canonical-model
+Built-By: mbiarnes
+Bnd-LastModified: 1546963668273
+Implementation-Vendor-Id: org.drools
+Specification-Title: drools-canonical-model
+Bundle-DocURL: http://www.jboss.org/
+Import-Package: org.drools.model,org.drools.model.bitmask,org.drools.m
+ odel.consequences,org.drools.model.constraints,org.drools.model.datas
+ ources,org.drools.model.datasources.impl,org.drools.model.functions,o
+ rg.drools.model.functions.accumulate,org.drools.model.functions.tempo
+ ral,org.drools.model.impl,org.drools.model.index,org.drools.model.ope
+ rators,org.drools.model.patterns,org.drools.model.view
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/drools-model/drools-canoni
+ cal-model
+Export-Package: org.drools.model;version="7.16.0",org.drools.model.bit
+ mask;version="7.16.0",org.drools.model.consequences;version="7.16.0",
+ org.drools.model.constraints;version="7.16.0",org.drools.model.dataso
+ urces;version="7.16.0",org.drools.model.datasources.impl;version="7.1
+ 6.0",org.drools.model.functions;version="7.16.0",org.drools.model.fun
+ ctions.accumulate;version="7.16.0",org.drools.model.functions.tempora
+ l;version="7.16.0",org.drools.model.impl;version="7.16.0",org.drools.
+ model.index;version="7.16.0",org.drools.model.operators;version="7.16
+ .0",org.drools.model.patterns;version="7.16.0",org.drools.model.view;
+ version="7.16.0"
+Bundle-Name: drools-canonical-model
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion
+  does complex event processing (CEP).
+Implementation-Title: drools-canonical-model
+Automatic-Module-Name: org.drools.canonical-model
+Implementation-Version: 7.16.0.Final
+Java-Version: 1.8.0_152
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-
+ model/drools-canonical-model
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 4.18.19-100.fc27.x86_64
+Bundle-Version: 7.16.0.201901081553
+Scm-Revision: 12f5dd1561236a8c79cf4ccc84cb7c86a738b1d1
+Private-Package: org.drools.model,org.drools.model.bitmask,org.drools.
+ model.patterns,org.drools.model.datasources,org.drools.model.datasour
+ ces.impl,org.drools.model.operators,org.drools.model.consequences,org
+ .drools.model.view,org.drools.model.impl,org.drools.model.index,org.d
+ rools.model.constraints,org.drools.model.functions,org.drools.model.f
+ unctions.accumulate,org.drools.model.functions.temporal
+Build-Jdk: 1.8.0_152
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/drools-model/drools
+ -canonical-model
+Specification-Version: 7.16.0.Final
+

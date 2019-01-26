@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: ArjunaJTA jdbc
+Implementation-Version: 5.9.2.Final
+Java-Version: 1.8.0_191
+Built-By: ochaloup
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/narayana-j
+ ta-all/jdbc
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: ArjunaJTA jdbc
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/narayana-jta-all/jdbc
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 4.19.7-200.fc28.x86_64
+Scm-Revision: 3f10bb3d1e10902d61b9162ba48064c5563322ab
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_191
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.ats.internal.jdbc
+Bundle-Description: jdbc-5.9.2.Final
+Bundle-Name: jdbc-5.9.2.Final
+Bundle-Version: 5.9
+Export-Package: com.arjuna.ats.internal.jdbc;uses:="com.arjuna.common.
+ internal.util",com.arjuna.ats.internal.jdbc.drivers,com.arjuna.ats.in
+ ternal.jdbc.drivers.modifiers;uses:="com.arjuna.common.internal.util"
+ ,com.arjuna.ats.internal.jdbc.recovery,com.arjuna.ats.jdbc,com.arjuna
+ .ats.jdbc.common,com.arjuna.ats.jdbc.logging;uses:="org.jboss.logging
+ .annotations"
+Import-Package: com.arjuna.ats.arjuna.state;version="5.9",com.arjuna.a
+ ts.jta;version="5.9",com.arjuna.ats.jta.common;version="5.9",com.arju
+ na.ats.jta.exceptions;version="5.9",com.arjuna.ats.jta.recovery;versi
+ on="5.9",com.arjuna.ats.jta.transaction;version="5.9",com.arjuna.ats.
+ jta.xa;version="5.9",com.arjuna.common.internal.util;version="5.9",co
+ m.arjuna.common.internal.util.propertyservice;version="5.9",com.arjun
+ a.common.util.propertyservice;version="5.9",java.io,java.lang,java.la
+ ng.reflect,java.sql,java.text,java.util,java.util.concurrent,java.uti
+ l.concurrent.atomic,java.util.logging,javax.naming,javax.sql,javax.tr
+ ansaction;version="1.1.1",javax.transaction.xa;version="1.1.1",org.jb
+ oss.logging;version="3.3.2.Final-redhat-00001",org.jboss.logging.anno
+ tations

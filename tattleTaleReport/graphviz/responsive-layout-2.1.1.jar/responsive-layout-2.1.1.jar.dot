@@ -1,5 +1,5 @@
 digraph responsive_layout_2_1_1_dependencies {
   node [shape = box, fontsize=10.0];
-  responsive_layout_2_1_1 -> vaadin_server_8_7_0_alpha1;
-  responsive_layout_2_1_1 -> vaadin_shared_8_7_0_alpha1;
+  responsive_layout_2_1_1 -> vaadin_server_8_7_0_rc1;
+  responsive_layout_2_1_1 -> vaadin_shared_8_7_0_rc1;
 }

@@ -1,0 +1,61 @@
+Manifest-Version: 1.0
+Implementation-Title: ActiveMQ Artemis Commons
+Implementation-Version: 2.6.4
+Archiver-Version: Plexus Archiver
+Built-By: clebertsuconic
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ Artemis Commons
+Implementation-Vendor-Id: org.apache.activemq
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_73
+Specification-Version: 2.6.4
+Implementation-Vendor: The Apache Software Foundation
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.activemq.artemis.api.core
+Bundle-Description: artemis-commons-2.6.4
+Bundle-Name: artemis-commons-2.6.4
+Bundle-Version: 2.6.4
+Export-Package: org.apache.activemq.artemis,org.apache.activemq.artemi
+ s.api.core;uses:="io.netty.buffer,java.lang.invoke,java.util,java.uti
+ l.function,org.apache.activemq.artemis.core.buffers.impl,org.apache.a
+ ctivemq.artemis.utils,org.apache.activemq.artemis.utils.uri",org.apac
+ he.activemq.artemis.core.buffers.impl;uses:="io.netty.buffer,org.apac
+ he.activemq.artemis.api.core,org.apache.activemq.artemis.utils",org.a
+ pache.activemq.artemis.core.persistence;uses:="org.apache.activemq.ar
+ temis.api.core",org.apache.activemq.artemis.core.server;uses:="org.ap
+ ache.activemq.artemis.logs,org.apache.activemq.artemis.utils,org.apac
+ he.activemq.artemis.utils.collections",org.apache.activemq.artemis.lo
+ gs;uses:="org.apache.activemq.artemis.api.core,org.jboss.logging.anno
+ tations",org.apache.activemq.artemis.utils;uses:="io.netty.buffer,io.
+ netty.channel,io.netty.handler.ssl,io.netty.util.internal,java.lang.i
+ nvoke,java.nio.charset,java.nio.file,java.nio.file.attribute,java.uti
+ l.function,org.apache.activemq.artemis.api.core,org.apache.activemq.a
+ rtemis.logs,org.apache.activemq.artemis.utils.actors,org.apache.activ
+ emq.artemis.utils.collections",org.apache.activemq.artemis.utils.acto
+ rs;uses:="java.lang.invoke,java.util,java.util.function,org.apache.ac
+ tivemq.artemis.api.core,org.apache.activemq.artemis.utils",org.apache
+ .activemq.artemis.utils.collections;uses:="io.netty.buffer,java.lang,
+ java.lang.invoke,java.util,java.util.concurrent.locks,java.util.funct
+ ion,org.apache.activemq.artemis.api.core,org.apache.activemq.artemis.
+ logs,org.apache.activemq.artemis.utils",org.apache.activemq.artemis.u
+ tils.critical;uses:="org.apache.activemq.artemis.core.server,org.apac
+ he.activemq.artemis.utils.collections,org.apache.activemq.artemis.uti
+ ls.uri",org.apache.activemq.artemis.utils.runnables,org.apache.active
+ mq.artemis.utils.uri;uses:="org.apache.activemq.artemis.api.core,org.
+ apache.activemq.artemis.utils.collections,org.apache.commons.beanutil
+ s"
+Import-Package: io.netty.buffer;version="4.1.33.Final",io.netty.channe
+ l;version="4.1.33.Final",io.netty.handler.ssl;version="4.1.33.Final",
+ io.netty.util.internal;version="4.1.33.Final",java.beans,java.io,java
+ .lang,java.lang.invoke,java.lang.management,java.lang.ref,java.lang.r
+ eflect,java.math,java.net,java.nio,java.nio.charset,java.nio.file,jav
+ a.nio.file.attribute,java.security,java.security.spec,java.text,java.
+ util,java.util.concurrent,java.util.concurrent.atomic,java.util.concu
+ rrent.locks,java.util.function,java.util.logging,java.util.regex,java
+ .util.zip,javax.crypto,javax.crypto.spec,javax.net.ssl,javax.security
+ .cert,org.apache.commons.beanutils;version="1.9.3.redhat-1",org.jboss
+ .logging;version="3.3.2.Final-redhat-00001",org.jboss.logging.annotat
+ ions,org.jboss.logmanager;version="2.0.3.Final",sun.misc

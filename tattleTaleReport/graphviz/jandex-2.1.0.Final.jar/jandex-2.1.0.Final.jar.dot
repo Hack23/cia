@@ -1,0 +1,4 @@
+digraph jandex_2_1_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jandex_2_1_0_Final -> ant_1_10_5;
+}

@@ -20,10 +20,10 @@ Export-Package: org.jasypt.hibernate4.connectionprovider;uses:="org.hi
  ypt.commons,org.jasypt.encryption.pbe,org.jasypt.exceptions,org.jasyp
  t.hibernate4.encryptor"
 Import-Package: java.io,java.lang,java.math,java.security,java.sql,jav
- a.util,org.hibernate;version="5.4.0.Final",org.hibernate.cfg;version=
- "5.4.0.Final",org.hibernate.engine.spi;version="5.4.0.Final",org.hibe
+ a.util,org.hibernate;version="5.4.1.Final",org.hibernate.cfg;version=
+ "5.4.1.Final",org.hibernate.engine.spi;version="5.4.1.Final",org.hibe
  rnate.service.jdbc.connections.internal,org.hibernate.usertype;versio
- n="5.4.0.Final",org.jasypt.commons;version="0.0.0",org.jasypt.encrypt
+ n="5.4.1.Final",org.jasypt.commons;version="0.0.0",org.jasypt.encrypt
  ion;version="0.0.0",org.jasypt.encryption.pbe;version="0.0.0",org.jas
  ypt.encryption.pbe.config;version="0.0.0",org.jasypt.exceptions;versi
  on="0.0.0",org.jasypt.properties;version="0.0.0",org.jasypt.salt;vers
