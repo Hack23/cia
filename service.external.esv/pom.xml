@@ -150,5 +150,5 @@
       </resource>
     </resources>
   </build>
-  <reporting />
+  <reporting></reporting>
 </project>
