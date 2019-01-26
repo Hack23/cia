@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-jpa2-pom</artifactId>
-    <version>2019.1.27-SNAPSHOT</version>
+    <version>2019.1.26</version>
     <relativePath>../parent-model-jpa2-pom/pom.xml</relativePath>
   </parent>
   <artifactId>parent-model-internal-pom</artifactId>
@@ -29,7 +29,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>cia-all-2019.1.26</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-model-internal-pom</url>
   </scm>
   <distributionManagement>
@@ -38,8 +38,8 @@
       <url>github:http://hack23.github.io/cia/parent-model-internal-pom</url>
     </site>
   </distributionManagement>
-  <properties />
-  <dependencyManagement />
+  <properties></properties>
+  <dependencyManagement></dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.hack23.cia</groupId>
