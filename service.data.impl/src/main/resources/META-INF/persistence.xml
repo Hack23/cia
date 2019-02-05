@@ -106,6 +106,10 @@
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
+		
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
+		
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 

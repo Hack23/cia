@@ -57,7 +57,13 @@ public enum PartyPageMode {
 PARTYWONDAILYSUMMARYCHART,
 
  /** The roleghant. */
- ROLEGHANT
+ ROLEGHANT,
+ 
+ /** The partyagainstcoalationssummary. */
+ PARTYAGAINSTCOALATIONSSUMMARY,
+
+ /** The partysupportsummary. */
+ PARTYSUPPORTSUMMARY;
 
 
 }

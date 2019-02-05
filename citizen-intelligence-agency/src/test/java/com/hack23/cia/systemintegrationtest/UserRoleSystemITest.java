@@ -2803,8 +2803,75 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), "PP"));
 	}
+	
+	/**
+	 * Site party against coalation summary chart test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePartyAgainstCoalationSummaryChartTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), "S"));
+	}
+
+	/**
+	 * Site party against coalation missing test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePartyAgainstCoalationMissingTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), "PP"));
+	}
 
 
+
+	/**
+	 * Site party support summary chart test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePartySupportSummaryChartTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), "S"));
+	}
+
+	/**
+	 * Site party support missing test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePartySupportMissingTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), "PP"));
+	}
+
+	
+	
 	/**
 	 * Site party document activity test.
 	 *
