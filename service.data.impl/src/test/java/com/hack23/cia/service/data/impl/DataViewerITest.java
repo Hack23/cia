@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
- */
+*/
 package com.hack23.cia.service.data.impl;
 
 import java.math.BigInteger;
@@ -37,6 +37,8 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty_;
@@ -93,6 +95,34 @@ public final class DataViewerITest extends
 		}
 	}
 
+	
+	/**
+	 * View riksdagen party ballot support annual summary.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void viewRiksdagenPartyBallotSupportAnnualSummary() throws Exception {
+
+		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataViewer
+				.getAll(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,list);
+	}
+
+	/**
+	 * View riksdagen party coalation against annual summary.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void viewRiksdagenPartyCoalationAgainstAnnualSummary() throws Exception {
+
+		final List<ViewRiksdagenPartyCoalationAgainstAnnualSummary> list = dataViewer
+				.getAll(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,list);
+	}
+
+	
 	/**
 	 * View riksdagen ministry.
 	 *

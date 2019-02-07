@@ -216,7 +216,7 @@
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="year" type="xsd:int" />
-			<xsd:element name="party_group_against" type="xsd:string" />
+			<xsd:element name="group_against" type="xsd:string" />
 		</xsd:sequence>
 	</xsd:complexType>
 	
