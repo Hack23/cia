@@ -26,18 +26,13 @@ import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
-import com.hack23.cia.service.data.api.UserDAO;
 
 /**
  * The Class AbstractBusinessServiceImpl.
@@ -48,21 +43,11 @@ import com.hack23.cia.service.data.api.UserDAO;
  *            the value type
  */
 public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse>
-		implements BusinessService<T, V> {
-
-	/** The user dao. */
-	@Autowired
-	private UserDAO userDAO;
-
+		extends AbstractCommonBusinessServiceImpl<T, V> implements BusinessService<T, V> {
 
 	/** The create application event service. */
 	@Autowired
 	protected BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
-
-	
-	/** The clazz. */
-	private final Class<T> clazz;
-
 
 	/**
 	 * Instantiates a new abstract business service impl.
@@ -71,12 +56,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 *            the clazz
 	 */
 	public AbstractBusinessServiceImpl(final Class<T> clazz) {
-		this.clazz = clazz;
-	}
-
-	@Override
-	public final Class<? extends ServiceRequest> getSupportedService() {
-		return clazz;
+		super(clazz);
 	}
 
 	/**
@@ -89,21 +69,12 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	}
 	
 	/**
-	 * Gets the user account from security context.
+	 * Creates the error response.
 	 *
-	 * @return the user account from security context
+	 * @return the v
 	 */
-	protected final UserAccount getUserAccountFromSecurityContext() {
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				return userDAO.findFirstByProperty(UserAccount_.userId, authentication.getPrincipal().toString());
-			}
-		}
+	protected abstract V createErrorResponse();
 
-		return null;
-	}
 		
 	/**
 	 * Input validation.
@@ -149,14 +120,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 * @return the creates the application event request
 	 */
 	protected abstract CreateApplicationEventRequest createApplicationEventForService(final T serviceRequest);
-	
-	/**
-	 * Creates the error response.
-	 *
-	 * @return the v
-	 */
-	protected abstract V createErrorResponse();
-	
+		
 	/**
 	 * Validate request.
 	 *
@@ -198,15 +162,6 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		final String errorMessage = getHumanMessage(requestConstraintViolations);
 		((AbstractResponse) response).setErrorMessage(errorMessage);
 		eventRequest.setErrorMessage(errorMessage);
-	}
-
-	/**
-	 * Gets the user dao.
-	 *
-	 * @return the user dao
-	 */
-	protected final UserDAO getUserDAO() {
-		return userDAO;
 	}
 
 	

@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
 import org.junit.Test;
 
 import com.hack23.cia.testfoundation.AbstractUnitTest;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.StreamSourceImplementation;
 
 /**
  * The Class StreamSourceImplementationTest.

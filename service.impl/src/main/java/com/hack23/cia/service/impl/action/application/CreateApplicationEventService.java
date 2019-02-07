@@ -34,7 +34,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
-import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
+import com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
@@ -44,7 +44,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Transactional(propagation = Propagation.REQUIRED)
 @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 public final class CreateApplicationEventService
-		extends AbstractBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
+		extends AbstractCommonBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
 		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
 
 	/** The application session dao. */
@@ -92,19 +92,9 @@ public final class CreateApplicationEventService
 			applicationSessionDAO.persist(applicationSession);
 			return new CreateApplicationEventResponse(ServiceResult.SUCCESS);
 		} else {
-			return createErrorResponse();
+			return new CreateApplicationEventResponse(ServiceResult.FAILURE);
 		}
 	}
 
-	@Override
-	protected CreateApplicationEventRequest createApplicationEventForService(
-			final CreateApplicationEventRequest serviceRequest) {
-		return new CreateApplicationEventRequest();
-	}
-
-	@Override
-	protected CreateApplicationEventResponse createErrorResponse() {
-		return new CreateApplicationEventResponse(ServiceResult.FAILURE);
-	}
 
 }
