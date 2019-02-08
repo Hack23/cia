@@ -173,7 +173,7 @@
 			</xsd:appinfo>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="year" type="xsd:int" />
+			<xsd:element name="date" type="xsd:string" />
 			<xsd:element name="party" type="xsd:string" />
 			<xsd:element name="other_party" type="xsd:string" />			
 		</xsd:sequence>

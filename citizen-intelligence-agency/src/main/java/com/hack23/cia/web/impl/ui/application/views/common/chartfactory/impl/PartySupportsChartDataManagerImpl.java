@@ -96,7 +96,7 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 			dataSeries.newSeries();
 			for (final ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {
 				if (data != null) {
-					dataSeries.add(data.getEmbeddedId().getYear() +"-01-01",
+					dataSeries.add(data.getEmbeddedId().getDate(),
 							100 - data.getDisagreePercentage());
 				}
 			}
