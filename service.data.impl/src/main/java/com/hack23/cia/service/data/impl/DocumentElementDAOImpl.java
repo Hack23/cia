@@ -95,7 +95,8 @@ DocumentElementDAO {
 			return startCheckYear;
 		} else {
 			int lastYear = Integer.parseInt(resultList.get(resultList.size()-1));
-			if(lastYear - startCheckYear ==  resultList.size()) {
+			
+			if(lastYear - startCheckYear ==  (resultList.size()-1)) {
 				return lastYear;
 			} else {
 				return startCheckYear;
