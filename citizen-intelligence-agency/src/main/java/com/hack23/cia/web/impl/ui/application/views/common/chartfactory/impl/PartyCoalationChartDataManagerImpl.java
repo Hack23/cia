@@ -43,6 +43,9 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PartyCoalationChartDataManager {
 
+	/** The Constant FILTER_LOW_VALUES. */
+	private static final int FILTER_LOW_VALUES = 2;
+
 	/**
 	 * Instantiates a new party coalation chart data manager impl.
 	 */
@@ -57,7 +60,7 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 				.getDataContainer(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);
 
 		Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream()
-				.filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > 2)
+				.filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > FILTER_LOW_VALUES)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getGroupAgainst()));
 
 		final Series series = new Series();

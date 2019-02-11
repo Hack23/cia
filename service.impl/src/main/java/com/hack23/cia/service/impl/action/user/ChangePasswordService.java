@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -114,17 +114,10 @@ public final class ChangePasswordService extends
 
 				if (passwordRuleResults.isValid()) {
 						
-					userAccount.setUserpassword(
-							passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getNewPassword()));
-					
+					userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getNewPassword()));				
 					getUserDAO().merge(userAccount);
 					
-					final String authKey= vaultManager.getEncryptedValue(serviceRequest.getCurrentPassword(), userAccount);
-					if (authKey != null) {
-						final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());					
-						encryptedValue.setStorage(vaultManager.encryptValue(serviceRequest.getNewPassword(), userAccount.getUserId(), authKey));
-						encryptedValueDAO.merge(encryptedValue);
-					}
+					reencryptVaultValues(serviceRequest, userAccount);
 					
 				} else {					
 					response = new ChangePasswordResponse(ServiceResult.FAILURE);
@@ -145,6 +138,21 @@ public final class ChangePasswordService extends
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
+	}
+
+	/**
+	 * Reencrypt vault values.
+	 *
+	 * @param serviceRequest the service request
+	 * @param userAccount    the user account
+	 */
+	private void reencryptVaultValues(final ChangePasswordRequest serviceRequest, final UserAccount userAccount) {
+		final String authKey= vaultManager.getEncryptedValue(serviceRequest.getCurrentPassword(), userAccount);
+		if (authKey != null) {
+			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());					
+			encryptedValue.setStorage(vaultManager.encryptValue(serviceRequest.getNewPassword(), userAccount.getUserId(), authKey));
+			encryptedValueDAO.merge(encryptedValue);
+		}
 	}
 
 	@Override
