@@ -66,17 +66,13 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 
 		Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
 		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
-		
-		if (list != null) {
+					
+		final Series series = new Series();
+		final DataSeries dataSeries = new DataSeries();
 			
-			final Series series = new Series();
-			final DataSeries dataSeries = new DataSeries();
+		addData(map, series, dataSeries);
 			
-			addData(map, series, dataSeries);
-			
-			addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
-		}
-
+		addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
 
 	/**
@@ -95,10 +91,8 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 			
 			dataSeries.newSeries();
 			for (final ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {
-				if (data != null) {
 					dataSeries.add(data.getEmbeddedId().getDate(),
 							100 - data.getDisagreePercentage());
-				}
 			}
 
 		}

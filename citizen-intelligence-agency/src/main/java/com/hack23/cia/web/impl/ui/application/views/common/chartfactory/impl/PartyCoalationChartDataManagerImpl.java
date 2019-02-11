@@ -56,43 +56,38 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 		final DataContainer<ViewRiksdagenPartyCoalationAgainstAnnualSummary, ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);
 
+		Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream()
+				.filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > 2)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getGroupAgainst()));
 
-		Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream().filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > 2)
-		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getGroupAgainst()));
-		
-		if (map != null) {
-			
-			final Series series = new Series();
-			final DataSeries dataSeries = new DataSeries();
-			
-			addData(map, series, dataSeries);
-			
-			addChart(content,"Part of coalations against committee proposal in ballot more than twice", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), true);
-		}
+		final Series series = new Series();
+		final DataSeries dataSeries = new DataSeries();
 
+		addData(map, series, dataSeries);
+
+		addChart(content, "Part of coalations against committee proposal in ballot more than twice", new DCharts()
+				.setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(),
+				true);
 	}
 
 	/**
 	 * Adds the data.
 	 *
-	 * @param map        the map
-	 * @param series     the series
+	 * @param map the map
+	 * @param series the series
 	 * @param dataSeries the data series
 	 */
-	private static void addData(Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map, final Series series,
-			final DataSeries dataSeries) {
+	private static void addData(Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map,
+			final Series series, final DataSeries dataSeries) {
 		Set<Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>>> entryMap = map.entrySet();
-		
+
 		for (Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> entry : entryMap) {
 			if (!entry.getValue().isEmpty()) {
 				series.addSeries(new XYseries().setLabel(entry.getKey()));
-				
+
 				dataSeries.newSeries();
 				for (final ViewRiksdagenPartyCoalationAgainstAnnualSummary data : entry.getValue()) {
-					if (data != null) {
-						dataSeries.add(data.getEmbeddedId().getYear() +"-01-01",
-								data.getTotal());
-					}
+					dataSeries.add(data.getEmbeddedId().getYear() + "-01-01", data.getTotal());
 				}
 			}
 		}
