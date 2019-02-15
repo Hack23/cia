@@ -24,6 +24,8 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![Anchore Image Overview](https://anchore.io/service/badges/image/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939)](https://anchore.io/image/dockerhub/hack23%2Fcia%3A2019.1.26)	
 [![Anchore Image Policy](https://anchore.io/service/badges/policy/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939?registry=dockerhub&repository=hack23/cia&tag=2019.1.26)](https://anchore.io)
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
+[![](https://codescene.io/projects/4166/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/4166/jobs/latest-successful/results)
+
 
 # Runtime
 
