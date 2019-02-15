@@ -760,17 +760,7 @@
 				      "sns:Publish"
 				    ],                   
                      "Resource": { "Ref":"ContinuousAssessmentCompleteTopic" }
-                  },
-                  {
-			      "Sid": "AllowSnsAccess",
-			      "Effect": "Allow",
-			      "Principal": {"Service": "sns.amazonaws.com"},
-			      "Action": [
-			        "kms:GenerateDataKey*",
-			        "kms:Decrypt"
-			      ],
-			      "Resource": "*"
-			    }                  
+                  }
                ]
             },
             "Topics":[
