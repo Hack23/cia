@@ -762,7 +762,7 @@
                      "Resource": { "Ref":"ContinuousAssessmentCompleteTopic" }
                   },
                   {
-			      "Sid": "Allow access for Key User (SNS Service Principal)",
+			      "Sid": "AllowSnsAccess",
 			      "Effect": "Allow",
 			      "Principal": {"Service": "sns.amazonaws.com"},
 			      "Action": [
@@ -843,7 +843,7 @@
                            ]
                         },
                   {
-			      "Sid": "Allow access for Key User (SNS Service Principal)",
+			      "Sid": "AllowSnsAccess",
 			      "Effect": "Allow",
 			      "Principal": {"Service": "sns.amazonaws.com"},
 			      "Action": [

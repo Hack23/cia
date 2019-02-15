@@ -531,7 +531,7 @@ Resources:
             Action:
               - sns:Publish
             Resource: !Ref 'ContinuousAssessmentCompleteTopic'
-          - Sid: Allow access for Key User (SNS Service Principal)
+          - Sid: AllowSnsAccess
             Effect: Allow
             Principal:
               Service: sns.amazonaws.com
@@ -581,7 +581,7 @@ Resources:
                   - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
                   - !Sub 'arn:aws:inspector:eu-west-1:${AWS::AccountId}:*'
                   - !Sub 'arn:aws:sns:eu-west-1:${AWS::AccountId}:*'
-              - Sid: Allow access for Key User (SNS Service Principal)
+              - Sid: AllowSnsAccess
                 Effect: Allow
                 Principal:
                   Service: sns.amazonaws.com
