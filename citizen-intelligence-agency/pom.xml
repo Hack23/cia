@@ -381,7 +381,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-cloudwatch</artifactId>
-      <version>1.11.498</version>
+      <version>1.11.499</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -408,7 +408,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.498</version>
+      <version>1.11.499</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -440,7 +440,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.498</version>
+      <version>1.11.499</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -892,7 +892,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-compress</artifactId>
-      <version>1.18</version>
+      <version>1.18.0.redhat-00001</version>
     </dependency>
     <dependency>
       <groupId>org.webbitserver</groupId>

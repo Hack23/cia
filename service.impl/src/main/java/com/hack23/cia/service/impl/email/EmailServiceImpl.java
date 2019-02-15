@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,6 +23,7 @@ import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,8 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 @Component("MailService")
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class EmailServiceImpl implements EmailService {
+
+	private static final String DEFAULT_SMTP_PORT = "587";
 
 	/** The Constant MAIL_SMTP_STARTTLS_ENABLE. */
 	private static final String MAIL_SMTP_STARTTLS_ENABLE = "mail.smtp.starttls.enable";
@@ -159,7 +162,7 @@ public final class EmailServiceImpl implements EmailService {
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SEND_EMAILS, SEND_EMAIL, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SEND_EMAIL, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SEND_EMAIL, "false"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_FROM_EMAIL, FROM_EMAIL, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SEND_EMAIL, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_FROM_EMAIL, "admin@hack23.com"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_HOST, SMTP_HOST, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_HOST, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_HOST, "localhost"));
-		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, "587"));
+		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, DEFAULT_SMTP_PORT));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_USERNAME, SMTP_USERNAME, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_USERNAME, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_USERNAME, "username"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_SECRET, SMTP_SECRET, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_SECRET, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_SECRET, "password"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_AUTH, SMTP_AUTH, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_AUTH, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_AUTH, "true"));
@@ -198,7 +201,7 @@ public final class EmailServiceImpl implements EmailService {
 		final JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
 		final ApplicationConfiguration smtpHostConfig = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_HOST, SMTP_HOST, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_HOST, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_HOST, "localhost");
-		final ApplicationConfiguration smtpPort = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, "587");
+		final ApplicationConfiguration smtpPort = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, DEFAULT_SMTP_PORT);
 		final ApplicationConfiguration smtpUsername = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_USERNAME, SMTP_USERNAME, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_USERNAME, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_USERNAME, "username");
 		final ApplicationConfiguration smtpPassword = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_SECRET, SMTP_SECRET, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_SECRET, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_SECRET, "password");
 		final ApplicationConfiguration smtpAuth = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_AUTH, SMTP_AUTH, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_AUTH, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_AUTH, "true");
@@ -206,7 +209,7 @@ public final class EmailServiceImpl implements EmailService {
 
 
 		javaMailSender.setHost(smtpHostConfig.getPropertyValue());
-		javaMailSender.setPort(Integer.parseInt(smtpPort.getPropertyValue()));
+		javaMailSender.setPort(getSmtpPort(smtpPort));
 		javaMailSender.setUsername(smtpUsername.getPropertyValue());
 		javaMailSender.setPassword(smtpPassword.getPropertyValue());
 
@@ -218,6 +221,21 @@ public final class EmailServiceImpl implements EmailService {
 		javaMailSender.setJavaMailProperties(javaMailProperties);
 
 		return javaMailSender;
+	}
+
+
+	/**
+	 * Gets the smtp port.
+	 *
+	 * @param smtpPort the smtp port
+	 * @return the smtp port
+	 */
+	private static int getSmtpPort(final ApplicationConfiguration smtpPort) {
+		if (StringUtils.isNumeric(smtpPort.getPropertyValue())) {
+			return Integer.parseInt(smtpPort.getPropertyValue());
+		} else {
+			return Integer.parseInt(DEFAULT_SMTP_PORT);
+		}
 	}
 
 }

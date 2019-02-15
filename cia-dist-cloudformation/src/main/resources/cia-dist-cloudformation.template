@@ -717,7 +717,10 @@
          }
       },
       "ContinuousAssessmentResultsTopic":{
-         "Type":"AWS::SNS::Topic"
+         "Type":"AWS::SNS::Topic",
+         "Properties" : {
+		    "KmsMasterKeyId" : "aws/sns"		  
+		}
       },
       "ContinuousAssessmentCompleteTopicSubscription":{
          "Type":"AWS::SNS::Subscription",
@@ -735,7 +738,10 @@
          }
       },
       "ContinuousAssessmentCompleteTopic":{
-         "Type":"AWS::SNS::Topic"
+         "Type":"AWS::SNS::Topic",
+         "Properties" : {
+		    "KmsMasterKeyId" : "aws/sns"		  
+		}         
       },
       "ContinuousAssessmentCompleteTopicPolicy":{
          "Type":"AWS::SNS::TopicPolicy",
@@ -750,9 +756,21 @@
                      "Principal":{
                         "Service":"inspector.amazonaws.com"
                      },
-                     "Action":"sns:Publish",
+				   "Action": [
+				      "sns:Publish"
+				    ],                   
                      "Resource": { "Ref":"ContinuousAssessmentCompleteTopic" }
-                  }
+                  },
+                  {
+			      "Sid": "Allow access for Key User (SNS Service Principal)",
+			      "Effect": "Allow",
+			      "Principal": {"Service": "sns.amazonaws.com"},
+			      "Action": [
+			        "kms:GenerateDataKey*",
+			        "kms:Decrypt"
+			      ],
+			      "Resource": "*"
+			    }                  
                ]
             },
             "Topics":[
@@ -823,7 +841,18 @@
                               { "Fn::Sub":"arn:aws:inspector:eu-west-1:${AWS::AccountId}:*" },
                               { "Fn::Sub":"arn:aws:sns:eu-west-1:${AWS::AccountId}:*" }                                                           
                            ]
-                        }
+                        },
+                  {
+			      "Sid": "Allow access for Key User (SNS Service Principal)",
+			      "Effect": "Allow",
+			      "Principal": {"Service": "sns.amazonaws.com"},
+			      "Action": [
+			        "kms:GenerateDataKey*",
+			        "kms:Decrypt"
+			      ],
+			      "Resource": "*"
+			    }                  
+                        
                      ]
                   }
                }
@@ -991,21 +1020,21 @@
       },
       "NotificationTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties":{
-
-         }
+         "Properties" : {
+		    "KmsMasterKeyId" : "aws/sns"		  
+		}
       },
       "InspectorScheduleTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties":{
-
-         }
+         "Properties" : {
+		    "KmsMasterKeyId" : "aws/sns"		  
+		}
       },
       "InspectorResultActionTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties":{
-
-         }
+         "Properties" : {
+		    "KmsMasterKeyId" : "aws/sns"		  
+		}
       },
       "ArtifactBucket":{
          "Type":"AWS::S3::Bucket",
