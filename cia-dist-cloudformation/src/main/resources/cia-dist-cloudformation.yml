@@ -583,8 +583,6 @@ Resources:
                   - !Sub 'arn:aws:sns:eu-west-1:${AWS::AccountId}:*'
               - Sid: AllowSnsAccess
                 Effect: Allow
-                Principal:
-                  Service: sns.amazonaws.com
                 Action:
                   - kms:GenerateDataKey*
                   - kms:Decrypt
