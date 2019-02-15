@@ -48,7 +48,7 @@ abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractItemPag
 	}
 
 	@Override
-	protected DocumentElement getItem(String parameters) {
+	protected DocumentElement getItem(final String parameters) {
 		return getApplicationManager().getDataContainer(DocumentElement.class).load(getPageId(parameters));
 	}
 

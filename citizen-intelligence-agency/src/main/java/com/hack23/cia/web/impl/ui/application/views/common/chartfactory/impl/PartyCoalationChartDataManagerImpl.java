@@ -59,7 +59,7 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 		final DataContainer<ViewRiksdagenPartyCoalationAgainstAnnualSummary, ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);
 
-		Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream()
+		final Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream()
 				.filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > FILTER_LOW_VALUES)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getGroupAgainst()));
 
@@ -80,11 +80,11 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 	 * @param series the series
 	 * @param dataSeries the data series
 	 */
-	private static void addData(Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map,
+	private static void addData(final Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map,
 			final Series series, final DataSeries dataSeries) {
-		Set<Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>>> entryMap = map.entrySet();
+		final Set<Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>>> entryMap = map.entrySet();
 
-		for (Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> entry : entryMap) {
+		for (final Entry<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> entry : entryMap) {
 			if (!entry.getValue().isEmpty()) {
 				series.addSeries(new XYseries().setLabel(entry.getKey()));
 

@@ -39,12 +39,12 @@ public class AbstractJobTest extends AbstractUnitTest {
 	 * @return the application context
 	 * @throws SchedulerException the scheduler exception
 	 */
-	protected  ApplicationContext prepareContextMock(JobExecutionContext jobContextMock) throws SchedulerException {
-		Scheduler scheduler = Mockito.mock(Scheduler.class);		
+	protected  ApplicationContext prepareContextMock(final JobExecutionContext jobContextMock) throws SchedulerException {
+		final Scheduler scheduler = Mockito.mock(Scheduler.class);		
 		Mockito.when(jobContextMock.getScheduler()).thenReturn(scheduler);
-		SchedulerContext schedulerContext = Mockito.mock(SchedulerContext.class);
+		final SchedulerContext schedulerContext = Mockito.mock(SchedulerContext.class);
 		Mockito.when(scheduler.getContext()).thenReturn(schedulerContext);		
-		ApplicationContext applicationContext = Mockito.mock(ApplicationContext.class);		
+		final ApplicationContext applicationContext = Mockito.mock(ApplicationContext.class);		
 		Mockito.when(schedulerContext.get(Mockito.any(String.class))).thenReturn(applicationContext);
 		return applicationContext;
 	}

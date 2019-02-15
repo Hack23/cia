@@ -124,7 +124,7 @@ public abstract class AbstractView extends Panel implements View {
 	public final void enter(final ViewChangeEvent event) {
 		try {
 
-			String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
+			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
 			
 			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
 				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {					

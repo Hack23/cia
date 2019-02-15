@@ -55,13 +55,13 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 		
 		final UpdateSearchIndexService updateSearchIndexService = new UpdateSearchIndexService(searchIndexer);
 		
-		BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = (BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>) mock(BusinessService.class);
+		final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = (BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>) mock(BusinessService.class);
 		ReflectionTestUtils.setField(updateSearchIndexService, "createApplicationEventService", createApplicationEventService);
 		
 		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
 		serviceRequest.setSessionId(UUID.randomUUID().toString());
 		
-		UpdateSearchIndexResponse response = updateSearchIndexService.processService(serviceRequest);		
+		final UpdateSearchIndexResponse response = updateSearchIndexService.processService(serviceRequest);		
 				
 		assertNotNull(response);
 		assertEquals(ServiceResult.FAILURE,response.getResult());

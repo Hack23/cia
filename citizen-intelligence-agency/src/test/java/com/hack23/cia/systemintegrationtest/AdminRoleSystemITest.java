@@ -348,7 +348,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
 
-		WebElement nextPageButton = userPageVisit.findButton("next page");
+		final WebElement nextPageButton = userPageVisit.findButton("next page");
 		userPageVisit.performClickAction(nextPageButton);
 
 	}
@@ -370,7 +370,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
 
-		WebElement nextPageButton = userPageVisit.findButton("last page");
+		final WebElement nextPageButton = userPageVisit.findButton("last page");
 		userPageVisit.performClickAction(nextPageButton);
 	}
 

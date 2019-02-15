@@ -69,9 +69,9 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	 */
 	@Test
 	public void AuditFindChangesTest() {
-		Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
+		final Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
 		assertTrue(findFirst.isPresent());
-		Changes changes = javers.findChanges(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
+		final Changes changes = javers.findChanges(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
 		
 		assertTrue(changes.groupByCommit().size() > 0);
 		assertNotNull(changes.groupByCommit().get(0).getCommit().getAuthor());
@@ -82,9 +82,9 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	 */
 	@Test
 	public void AuditFindSnapshotsTest() {
-		Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
+		final Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
 		assertTrue(findFirst.isPresent());
-		List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());		
+		final List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());		
 		assertTrue(snapshots.size()> 0);
 	}
 	

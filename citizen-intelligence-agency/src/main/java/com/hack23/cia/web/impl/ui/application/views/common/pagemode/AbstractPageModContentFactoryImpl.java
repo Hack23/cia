@@ -110,7 +110,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page nr
 	 */
 	protected final int getPageNr(final String parameters) {
-		String cleanedString = parameters;
+		final String cleanedString = parameters;
 		String pageNrValue;
 		if (cleanedString != null && cleanedString.contains("[") && cleanedString.contains("]")) {
 			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));

@@ -75,8 +75,8 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
-		String ballotId = UUID.randomUUID().toString();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final String ballotId = UUID.randomUUID().toString();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenReturn(value);
 						
@@ -107,8 +107,8 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
-		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenReturn(value);
 								
@@ -132,8 +132,8 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
-		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenThrow(new DataFailureException(new RuntimeException()));
 								

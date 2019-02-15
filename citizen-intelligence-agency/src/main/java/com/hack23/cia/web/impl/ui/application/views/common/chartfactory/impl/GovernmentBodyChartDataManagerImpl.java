@@ -368,12 +368,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 		
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
 		
-		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : reportByMinistry.entrySet()) {
+		for (final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : reportByMinistry.entrySet()) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
 			dataSeries.newSeries();			
-			Map<Integer, Double> annualSummaryMap = entry.getValue().stream().filter(t -> t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
+			final Map<Integer, Double> annualSummaryMap = entry.getValue().stream().filter(t -> t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
 
 			for (final Entry<Integer, Double> entryData : annualSummaryMap.entrySet()) {
 				if (entryData.getValue() != null && entryData.getValue().intValue() > 0) {

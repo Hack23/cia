@@ -46,10 +46,10 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 
 	@Override
 	protected void servletInitialized() throws ServletException {
-		VaadinServletService service = getService();
+		final VaadinServletService service = getService();
 		service.addSessionInitListener(event -> {
 			final VaadinSession session = event.getSession();
-			for (UIProvider provider : session.getUIProviders()) {
+			for (final UIProvider provider : session.getUIProviders()) {
 				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {
 					session.removeUIProvider(provider);
 				}
@@ -57,14 +57,14 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 			session.addUIProvider(new CustomSpringUIProvider(session));
 		});
 		service.addSessionDestroyListener(event -> {
-			VaadinSession session = event.getSession();
+			final VaadinSession session = event.getSession();
 			UIScopeImpl.cleanupSession(session);
 			VaadinSessionScope.cleanupSession(session);
 		});
 	}
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void service(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		super.service(request, response);

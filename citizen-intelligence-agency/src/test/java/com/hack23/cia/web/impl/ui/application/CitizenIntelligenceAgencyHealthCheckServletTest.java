@@ -43,10 +43,10 @@ public class CitizenIntelligenceAgencyHealthCheckServletTest extends AbstractUni
 	 */
 	@Test
 	public void checkHealthCheckTest() throws ServletException, IOException {
-		CitizenIntelligenceAgencyHealthCheckServlet healthCheckServlet = new CitizenIntelligenceAgencyHealthCheckServlet();
+		final CitizenIntelligenceAgencyHealthCheckServlet healthCheckServlet = new CitizenIntelligenceAgencyHealthCheckServlet();
 
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		MockHttpServletResponse response = new MockHttpServletResponse();
+		final MockHttpServletRequest request = new MockHttpServletRequest();
+		final MockHttpServletResponse response = new MockHttpServletResponse();
 		
 		healthCheckServlet.doGet(request, response);
 		assertEquals("OK\n", response.getContentAsString());

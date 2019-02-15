@@ -112,9 +112,9 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	 */
 	private static void updatePersonAssignmentData(final PersonAssignmentData exist, final PersonAssignmentData update) {
 
-		List<AssignmentData> assignmentList = update.getAssignmentList();
+		final List<AssignmentData> assignmentList = update.getAssignmentList();
 
-		for (AssignmentData assignmentData : assignmentList) {
+		for (final AssignmentData assignmentData : assignmentList) {
 			updateAssignmentData(exist.getAssignmentList(), assignmentData);
 		}
 	}
@@ -126,7 +126,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	 * @param assignmentData the assignment data
 	 */
 	private static void updateAssignmentData(final List<AssignmentData> assignmentList, final AssignmentData assignmentData) {
-		for (AssignmentData matchAssignmentData : assignmentList) {
+		for (final AssignmentData matchAssignmentData : assignmentList) {
 			if (matchAssignmentData.getFromDate().equals(assignmentData.getFromDate())
 					&& matchAssignmentData.getOrgCode().equals(assignmentData.getOrgCode()) && matchAssignmentData.getRoleCode().equals(assignmentData.getRoleCode())) {
 
@@ -155,12 +155,12 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
-		List<DocumentStatusContainer> exist = documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
+		final List<DocumentStatusContainer> exist = documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
 				DocumentData_.id, documentData.getDocument().getId());
 		if (exist.isEmpty()) {		
 			documentStatusContainerDAO.persist(documentData);
 		} else {
-			DocumentStatusContainer existData = exist.get(0);
+			final DocumentStatusContainer existData = exist.get(0);
 						
 			mergeDocumentStatusContainer(existData,documentData);
 			
@@ -168,7 +168,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		}
 	}
 
-	private static void mergeDocumentStatusContainer(DocumentStatusContainer existData, DocumentStatusContainer documentData) {		
+	private static void mergeDocumentStatusContainer(final DocumentStatusContainer existData, final DocumentStatusContainer documentData) {		
 		if (!"planerat".equals(documentData.getDocument().getStatus())) {
 			existData.getDocument().setStatus(documentData.getDocument().getStatus());
 			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());			
@@ -177,7 +177,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
-		DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());
+		final DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());
 		if (existDocumentElement == null) {
 			documentElementDAO.persist(documentData);
 		} else {			

@@ -143,7 +143,7 @@ public final class RulesEngineImpl implements RulesEngine {
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyList,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyList,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList,
-			List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
+			final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
 		if (politicianData.isActiveParliament() && dailyList != null && monthlyList != null && annualList != null) {
 			Collections.sort(dailyList,
 					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
@@ -225,7 +225,7 @@ public final class RulesEngineImpl implements RulesEngine {
 			final List<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyList,
 			final List<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyList,
 			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList,
-			List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions) {
+			final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions) {
 		if (partyData.isActiveParliament() && dailyList != null && monthlyList != null && annualList != null) {
 			Collections.sort(dailyList,
 					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));

@@ -87,7 +87,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		final Set<ConstraintViolation<T>> validateRequest = validateRequest(serviceRequest);
 		if (!validateRequest.isEmpty()) {
 			final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-			V response = createErrorResponse();
+			final V response = createErrorResponse();
 			handleInputViolations(eventRequest, validateRequest, response);
 			createApplicationEventService.processService(eventRequest);
 			return response;

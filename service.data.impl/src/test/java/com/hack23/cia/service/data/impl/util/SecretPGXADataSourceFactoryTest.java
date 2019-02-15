@@ -37,8 +37,8 @@ public class SecretPGXADataSourceFactoryTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getObjectInstanceTest() throws Exception {
-		SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
-		SecretReference ref = (SecretReference) secretPGXADataSource.createReference();		
+		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
+		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();		
 		assertNotNull(new SecretPGXADataSourceFactory().getObjectInstance(ref, null,null, null));
 	}
 

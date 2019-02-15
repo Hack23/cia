@@ -100,7 +100,7 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
         
-        WorldbankImportService importService = mock(WorldbankImportService.class);
+        final WorldbankImportService importService = mock(WorldbankImportService.class);
         when(importService.getWorldBankCountryMap()).thenReturn(new HashMap<>());
 
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "importService", importService);
@@ -137,7 +137,7 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 	public void generateWorkOrdersDataFailureTest() throws JMSException, DataFailureException {
 		final WorldBankCountryApi worldBankCountryApi = mock(WorldBankCountryApi.class);        
 		when(worldBankCountryApi.getCountries()).thenThrow(new DataFailureException(new RuntimeException()));
-		WorldBankCountryWorkGeneratorImpl worldBankCountryWorkGeneratorImpl = new WorldBankCountryWorkGeneratorImpl(worldBankCountryApi);		
+		final WorldBankCountryWorkGeneratorImpl worldBankCountryWorkGeneratorImpl = new WorldBankCountryWorkGeneratorImpl(worldBankCountryApi);		
 		
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankCountryWorkGeneratorImpl, "jmsSender", jmsSenderMock);

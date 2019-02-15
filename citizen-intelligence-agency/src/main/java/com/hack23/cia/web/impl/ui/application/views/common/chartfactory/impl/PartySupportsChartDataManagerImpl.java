@@ -59,12 +59,12 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 		final DataContainer<ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
 
-		List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				
+		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				
 				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
 
-		Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
+		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
 		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
 					
 		final Series series = new Series();
@@ -82,11 +82,11 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 	 * @param series     the series
 	 * @param dataSeries the data series
 	 */
-	private static void addData(Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map, final Series series,
+	private static void addData(final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map, final Series series,
 			final DataSeries dataSeries) {
-		Set<Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>>> entryMap = map.entrySet();
+		final Set<Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>>> entryMap = map.entrySet();
 		
-		for (Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> entry : entryMap) {
+		for (final Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> entry : entryMap) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
 			
 			dataSeries.newSeries();

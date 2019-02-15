@@ -63,7 +63,7 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 	 * @param username      the username
 	 * @param password      the password
 	 */
-	public SecretCredentialsManagerImpl(String secretName, String secretEnabled,String username, String password) {
+	public SecretCredentialsManagerImpl(final String secretName, final String secretEnabled,final String username, final String password) {
 		super();
 		this.secretName = secretName;
 		this.secretEnabled = secretEnabled;

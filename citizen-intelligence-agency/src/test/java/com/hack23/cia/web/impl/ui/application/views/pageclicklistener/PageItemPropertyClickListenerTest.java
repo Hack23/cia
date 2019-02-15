@@ -46,15 +46,15 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
 
 		final String personIdValue = "personId";
-		ViewRiksdagenPolitician riksdagenPolitician = new ViewRiksdagenPolitician().withPersonId(personIdValue);
+		final ViewRiksdagenPolitician riksdagenPolitician = new ViewRiksdagenPolitician().withPersonId(personIdValue);
 		final String pageId = pageItemPropertyClickListener.getPageId(riksdagenPolitician);
 
 		assertEquals(personIdValue, pageId);
 		
-		UI uiMock = Mockito.mock(UI.class);
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
 		pageItemPropertyClickListener.click(new RendererClickEvent(new Grid(), riksdagenPolitician, null, null) {});
@@ -81,7 +81,7 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	public void selectionChangeEmptyTest() {
 		final PageItemPropertyClickListener listener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");
 
-		SelectionEvent<Serializable> event = Mockito.mock(SelectionEvent.class);
+		final SelectionEvent<Serializable> event = Mockito.mock(SelectionEvent.class);
 		Mockito.when(event.getAllSelectedItems()).thenReturn(new HashSet());
 		listener.selectionChange(event);
 

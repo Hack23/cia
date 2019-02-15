@@ -56,7 +56,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getPasswordSuccessTest() throws Exception {
-		SecretCredentialsManagerImpl secretCredentialsManagerImpl = new SecretCredentialsManagerImpl(null, "true", null, null) {
+		final SecretCredentialsManagerImpl secretCredentialsManagerImpl = new SecretCredentialsManagerImpl(null, "true", null, null) {
 			
 			@Override
 			protected SecretCache getSecretCache() {

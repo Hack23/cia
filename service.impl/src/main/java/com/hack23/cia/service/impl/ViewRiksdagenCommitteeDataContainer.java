@@ -47,7 +47,7 @@ public final class ViewRiksdagenCommitteeDataContainer extends GenericDataContai
 	 * @param dataViewer the data viewer
 	 */
 	@Autowired
-	public ViewRiksdagenCommitteeDataContainer(@Qualifier("DataViewer") DataViewer dataViewer) {
+	public ViewRiksdagenCommitteeDataContainer(@Qualifier("DataViewer") final DataViewer dataViewer) {
 		super(ViewRiksdagenCommittee.class,dataViewer);
 	}
 

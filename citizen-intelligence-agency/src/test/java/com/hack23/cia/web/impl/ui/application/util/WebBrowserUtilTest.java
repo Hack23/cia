@@ -39,10 +39,10 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getIpInformationXForwardProxyTest() {
-	    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/path");
+	    final MockHttpServletRequest request = new MockHttpServletRequest("GET", "/path");
 	    request.addHeader(WebBrowserUtil.X_FORWARDED_FOR, "203.0.113.195, 70.41.3.18, 150.172.238.178");
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-	    WebBrowser webBrowser = new WebBrowser();
+	    final WebBrowser webBrowser = new WebBrowser();
 		assertEquals("203.0.113.195",WebBrowserUtil.getIpInformation(webBrowser));
 	}	
 
@@ -53,10 +53,10 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getIpInformationXForwardTest() {
-	    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/path");
+	    final MockHttpServletRequest request = new MockHttpServletRequest("GET", "/path");
 	    request.addHeader(WebBrowserUtil.X_FORWARDED_FOR, "203.0.113.195");
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-	    WebBrowser webBrowser = new WebBrowser();
+	    final WebBrowser webBrowser = new WebBrowser();
 		assertEquals("203.0.113.195",WebBrowserUtil.getIpInformation(webBrowser));
 	}	
 
@@ -68,7 +68,7 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 	@Test
 	public void getIpInformationNullTest() {
 	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest("GET", "/path")));
-	    WebBrowser webBrowser = new WebBrowser();
+	    final WebBrowser webBrowser = new WebBrowser();
 		assertNull(WebBrowserUtil.getIpInformation(webBrowser));
 	}	
 	

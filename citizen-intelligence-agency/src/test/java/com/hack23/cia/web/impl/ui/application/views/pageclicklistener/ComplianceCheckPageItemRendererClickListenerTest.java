@@ -43,14 +43,14 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	 */
 	@Test
 	public void clickPartyTest() {
-		ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
-		UI uiMock = Mockito.mock(UI.class);
+		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
-		RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
+		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new PartyComplianceCheckImpl(new ViewRiksdagenPartySummary().withParty("partyid"), null, null, null, new ArrayList<>()));
 			
 		listener.click(event);
@@ -63,14 +63,14 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	 */
 	@Test
 	public void clickPoliticianTest() {
-		ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
-		UI uiMock = Mockito.mock(UI.class);
+		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
-		RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
+		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new PoliticianComplianceCheckImpl(new ViewRiksdagenPolitician().withPersonId("personid"), null, null, null, new ArrayList<>()));
 			
 		listener.click(event);
@@ -84,9 +84,9 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	 */
 	@Test
 	public void selectionChangeEventSourceEmptyTest() {
-		ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
+		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
 		
-		SelectionEvent event = Mockito.mock(SelectionEvent.class);		
+		final SelectionEvent event = Mockito.mock(SelectionEvent.class);		
 		Mockito.when(event.getAllSelectedItems()).thenReturn(new HashSet<>());
 		
 		listener.selectionChange(event);

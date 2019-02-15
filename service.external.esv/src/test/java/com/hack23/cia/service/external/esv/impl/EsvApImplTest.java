@@ -45,10 +45,10 @@ public class EsvApImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getReportFailureTest() throws IOException {
-		EsvGovernmentOperationsExcelReader mock = Mockito.mock(EsvGovernmentOperationsExcelReader.class);
-		EsvApi esvApi = new EsvApiImpl(null, mock,null);
+		final EsvGovernmentOperationsExcelReader mock = Mockito.mock(EsvGovernmentOperationsExcelReader.class);
+		final EsvApi esvApi = new EsvApiImpl(null, mock,null);
 		Mockito.when(mock.getReport()).thenThrow(new IOException());
-		Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();		
+		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();		
 		assertTrue(report.isEmpty());
 		Mockito.verify(mock,times(1)).getReport();
 	}
@@ -61,10 +61,10 @@ public class EsvApImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getGovernmentBodyReportFailureTest() throws IOException {
-		EsvGovernmentBodyOperationOutcomeReader mock = Mockito.mock(EsvGovernmentBodyOperationOutcomeReader.class);
-		EsvApi esvApi = new EsvApiImpl(null, null, mock);
+		final EsvGovernmentBodyOperationOutcomeReader mock = Mockito.mock(EsvGovernmentBodyOperationOutcomeReader.class);
+		final EsvApi esvApi = new EsvApiImpl(null, null, mock);
 		Mockito.when(mock.readIncomeCsv()).thenThrow(new IOException());
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();		
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();		
 		assertTrue(report.isEmpty());
 		Mockito.verify(mock,times(1)).readIncomeCsv();
 	}

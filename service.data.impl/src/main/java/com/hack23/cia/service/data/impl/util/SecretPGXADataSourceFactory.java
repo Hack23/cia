@@ -34,7 +34,7 @@ import com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReferenc
 public class SecretPGXADataSourceFactory extends PGXADataSourceFactory {
 
 	@Override
-	public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
+	public Object getObjectInstance(final Object obj, final Name name, final Context nameCtx, final Hashtable<?, ?> environment)
 			throws Exception {
 		return loadSecretXADataSource((Reference) obj);
 	}
@@ -45,7 +45,7 @@ public class SecretPGXADataSourceFactory extends PGXADataSourceFactory {
 	 * @param ref the ref
 	 * @return the object
 	 */
-	private Object loadSecretXADataSource(Reference ref) {
+	private Object loadSecretXADataSource(final Reference ref) {
 		return loadBaseDataSource(new SecretPGXADataSource(((SecretReference)ref).getSecretCredentialsManager()), ref);
 	}
 }

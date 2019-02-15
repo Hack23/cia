@@ -178,7 +178,7 @@ public final class UserPageVisit extends Assert {
 		return new ExpectedCondition<Boolean>() {
 
 			@Override
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(final WebDriver driver) {
 				return getActionsAvailable().contains(value);
 			}
 
@@ -248,7 +248,7 @@ public final class UserPageVisit extends Assert {
 		return new ExpectedCondition<Boolean>() {
 
 			@Override
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(final WebDriver driver) {
 				return getHtmlBodyAsText().contains(value);
 			}
 
@@ -301,7 +301,7 @@ public final class UserPageVisit extends Assert {
 	public ExpectedCondition<Boolean> containsMenuItem(final WebElement element,final String... caption) {
 		return new ExpectedCondition<Boolean>() {
 			@Override
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(final WebDriver driver) {
 				return !ExpectedConditions.stalenessOf(element).apply(driver) && getMenuItem(element, 1,caption) != null;
 			}
 		};
@@ -354,7 +354,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
-		List<WebElement> result = getButtonElements();
+		final List<WebElement> result = getButtonElements();
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
 
@@ -362,7 +362,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	private List<WebElement> getButtonElements() {
-		List<WebElement> result = new ArrayList<>();
+		final List<WebElement> result = new ArrayList<>();
 		result.addAll(driver.findElements(By.className("v-nativebutton")));
 		result.addAll(driver.findElements(By.className("v-button")));
 		result.addAll(driver.findElements(By.className("v-button-caption")));
@@ -376,10 +376,10 @@ public final class UserPageVisit extends Assert {
 		return new ExpectedCondition<Boolean>() {
 
 			@Override
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(final WebDriver driver) {
 				for (final WebElement webElement : getButtons()) {
 
-					WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+					final WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
 					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && (value.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(value))) {
 						return true;
 					}
@@ -758,7 +758,7 @@ public final class UserPageVisit extends Assert {
 		}
 	}
 
-	private WebElement findClickable(String id) {
+	private WebElement findClickable(final String id) {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
 
@@ -905,7 +905,7 @@ public final class UserPageVisit extends Assert {
 		wait.until(containsButton(buttonLabel));
 
 		for (final WebElement webElement : getButtons()) {
-			WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+			final WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
 			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && (buttonLabel.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(buttonLabel))) {
 				return refreshElement;
 			}
@@ -975,7 +975,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	
-	public void changePassword(final String password,String newPassword, String repeatNewPassword) throws Exception {
+	public void changePassword(final String password,final String newPassword, final String repeatNewPassword) throws Exception {
 		setFieldValue("Change password.currentPassword",password);
 		setFieldValue("Change password.newPassword",newPassword);
 		setFieldValue("Change password.repeatNewPassword",repeatNewPassword);

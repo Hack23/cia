@@ -83,7 +83,7 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	}
 
 	@Override
-	protected ViewRiksdagenParty getItem(String parameters) {
+	protected ViewRiksdagenParty getItem(final String parameters) {
 		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));
 	}
 

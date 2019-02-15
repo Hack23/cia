@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import java.util.concurrent.Future;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -39,17 +40,17 @@ public class RemoveDataClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationSuccessTest() {
-		RemoveDataRequest request = new RemoveDataRequest();		
-		RemoveDataClickListener listener = Mockito.spy(new RemoveDataClickListener(request));
-		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
+		final RemoveDataRequest request = new RemoveDataRequest();		
+		final RemoveDataClickListener listener = Mockito.spy(new RemoveDataClickListener(request));
+		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 		
-		RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
+		final RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
 		Mockito.when(applicationManager.asyncService(request)).thenReturn(Mockito.mock(Future.class));
 		
-		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
-		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 	}
 
 }

@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -37,17 +38,17 @@ public class SendEmailClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationFailureTest() {
-		SendEmailRequest request = new SendEmailRequest();		
-		SendEmailClickListener listener = Mockito.spy(new SendEmailClickListener(request));
-		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
+		final SendEmailRequest request = new SendEmailRequest();		
+		final SendEmailClickListener listener = Mockito.spy(new SendEmailClickListener(request));
+		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 		
-		SendEmailResponse sendEmailResponse = new SendEmailResponse(ServiceResult.FAILURE);
+		final SendEmailResponse sendEmailResponse = new SendEmailResponse(ServiceResult.FAILURE);
 		sendEmailResponse.setErrorMessage("errorMessage");
 		Mockito.when(applicationManager.service(request)).thenReturn(sendEmailResponse);
 		
-		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
-		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 	}
 }

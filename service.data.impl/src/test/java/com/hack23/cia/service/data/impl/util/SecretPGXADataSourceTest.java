@@ -39,8 +39,8 @@ public class SecretPGXADataSourceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void createReferenceTest() {
-		SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
-		SecretReference ref = (SecretReference) secretPGXADataSource.createReference();
+		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
+		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();
 		assertNotNull(ref);
 	}
 	
@@ -53,19 +53,19 @@ public class SecretPGXADataSourceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getXAConnectionTest() throws SQLException {
-		String secretuser = UUID.randomUUID().toString();
-		String secretpassword = UUID.randomUUID().toString();
+		final String secretuser = UUID.randomUUID().toString();
+		final String secretpassword = UUID.randomUUID().toString();
 		
 		
-		SecretCredentialsManager secretCredentialsManager = Mockito.mock(SecretCredentialsManager.class);
+		final SecretCredentialsManager secretCredentialsManager = Mockito.mock(SecretCredentialsManager.class);
 		
 		Mockito.when(secretCredentialsManager.getUsername()).thenReturn(secretuser);
 		Mockito.when(secretCredentialsManager.getPassword()).thenReturn(secretpassword);
 		
-		SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(secretCredentialsManager) {
+		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(secretCredentialsManager) {
 			
 			@Override
-			public XAConnection getXAConnection(String user, String password) throws SQLException {
+			public XAConnection getXAConnection(final String user, final String password) throws SQLException {
 				assertEquals(secretuser,user);
 				assertEquals(secretpassword,password);				
 				return Mockito.mock(XAConnection.class);
@@ -73,7 +73,7 @@ public class SecretPGXADataSourceTest extends AbstractUnitTest {
 		};
 		
 	
-		XAConnection xaConnection = secretPGXADataSource.getXAConnection();
+		final XAConnection xaConnection = secretPGXADataSource.getXAConnection();
 		assertNotNull(xaConnection);
 	}
 

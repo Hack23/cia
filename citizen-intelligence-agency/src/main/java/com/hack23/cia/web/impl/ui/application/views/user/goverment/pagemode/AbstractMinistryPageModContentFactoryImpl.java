@@ -48,7 +48,7 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPag
 	}
 
 	@Override
-	protected ViewRiksdagenMinistry getItem(String parameters) {
+	protected ViewRiksdagenMinistry getItem(final String parameters) {
 		return getApplicationManager().getDataContainer(ViewRiksdagenMinistry.class).load(getPageId(parameters));
 	}
 

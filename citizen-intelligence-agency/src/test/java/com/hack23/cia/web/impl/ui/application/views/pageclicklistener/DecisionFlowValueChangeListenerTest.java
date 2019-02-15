@@ -36,23 +36,23 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void selectionValueChangeTest() {
-		String pageName = "pageName";
-		String pageId = "pageId";
-		DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
-		UI uiMock = Mockito.mock(UI.class);
+		final String pageName = "pageName";
+		final String pageId = "pageId";
+		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
-		ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
+		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
 		
-		HasValue hasValue = Mockito.mock(HasValue.class);
+		final HasValue hasValue = Mockito.mock(HasValue.class);
 		Mockito.when(hasValue.isEmpty()).thenReturn(false);
 		
 		Mockito.when(event.getSource()).thenReturn(hasValue);
 		
-		String value = "value";
+		final String value = "value";
 		Mockito.when(event.getValue()).thenReturn("value");
 			
 		listener.valueChange(event);
@@ -66,13 +66,13 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void selectionValueChangeEventSourceEmptyTest() {
-		String pageName = "pageName";
-		String pageId = "pageId";
-		DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
+		final String pageName = "pageName";
+		final String pageId = "pageId";
+		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
 		
-		ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
+		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
 		
-		HasValue hasValue = Mockito.mock(HasValue.class);
+		final HasValue hasValue = Mockito.mock(HasValue.class);
 		Mockito.when(hasValue.isEmpty()).thenReturn(true);
 		
 		Mockito.when(event.getSource()).thenReturn(hasValue);

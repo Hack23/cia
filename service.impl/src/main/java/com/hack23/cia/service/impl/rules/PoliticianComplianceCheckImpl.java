@@ -71,7 +71,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param annualSummary  the annual summary
 	 * @param decisionList   the decision list
 	 */
-	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
+	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
 		super(ResourceType.POLITICIAN);
 		this.politician = politician;
 		this.dailySummary = dailySummary;
@@ -108,7 +108,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return true, if successful
 	 */
 	public boolean supports(final String committeeReport,final String rm) {
-		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
+		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
 				return YES.equalsIgnoreCase(summary.getVote());
 			}			
@@ -124,7 +124,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return true, if successful
 	 */
 	public boolean against(final String committeeReport,final String rm) {
-		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
+		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
 				return NO.equalsIgnoreCase(summary.getVote());
 			}			

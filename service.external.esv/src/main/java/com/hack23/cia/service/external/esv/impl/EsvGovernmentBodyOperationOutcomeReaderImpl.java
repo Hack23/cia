@@ -180,7 +180,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 		
-		Map<Integer, Map<String,String>> orgMinistryMap = createOrgMinistryMap(esvExcelReader.getDataPerMinistry(null));
+		final Map<Integer, Map<String,String>> orgMinistryMap = createOrgMinistryMap(esvExcelReader.getDataPerMinistry(null));
 		
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
@@ -220,12 +220,12 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @return the map
 	 */
 	private static Map<Integer, Map<String, String>> createOrgMinistryMap(
-			Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
-		Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
+		final Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
 		
-		Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
+		final Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
 		
-		for (Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {		
+		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {		
 			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replaceAll("-","") ,Collectors.collectingAndThen(
                     Collectors.toList(), 
                     values -> values.get(0).getMinistry()))));

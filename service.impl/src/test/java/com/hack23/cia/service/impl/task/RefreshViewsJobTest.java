@@ -37,11 +37,11 @@ public class RefreshViewsJobTest extends AbstractJobTest {
 	 */
 	@Test
 	public void executeInternalTest() throws Exception {
-		JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		ApplicationContext applicationContext = prepareContextMock(jobContextMock);
+		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
+		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
-		ViewDataManager dataIndex = Mockito.mock(ViewDataManager.class);
-		JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, dataIndex);
+		final ViewDataManager dataIndex = Mockito.mock(ViewDataManager.class);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, dataIndex);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		new RefreshViewsJob().executeInternal(jobContextMock);

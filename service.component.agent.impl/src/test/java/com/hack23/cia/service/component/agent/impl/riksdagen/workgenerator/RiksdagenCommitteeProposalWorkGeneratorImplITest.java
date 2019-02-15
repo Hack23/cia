@@ -71,7 +71,7 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
 
-		String committeId = "committeId";
+		final String committeId = "committeId";
 		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
 		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<String, String>() {{
 		    put(committeId,committeId);
@@ -107,7 +107,7 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
 		
-		String committeId = "committeId";
+		final String committeId = "committeId";
 		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
 		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<>());
 		

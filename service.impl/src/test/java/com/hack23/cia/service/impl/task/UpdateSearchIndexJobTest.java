@@ -40,11 +40,11 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 	 */
 	@Test
 	public void executeInternalSuccessTest() throws Exception {
-		JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		ApplicationContext applicationContext = prepareContextMock(jobContextMock);
+		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
+		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
-		SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
-		JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
+		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);
@@ -58,11 +58,11 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 	 */
 	@Test(expected = JobExecutionException.class)
 	public void executeInternalFailureTest() throws Exception {
-		JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		ApplicationContext applicationContext = prepareContextMock(jobContextMock);
+		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
+		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
-		SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
-		JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
+		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		Mockito.doThrow(new InterruptedException()).when(searchIndex).updateSearchIndex();
@@ -72,8 +72,8 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 
 	@Test(expected = NullPointerException.class)
 	public void executeInternalFailureNoJobContextTest() throws Exception {
-		JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		Scheduler scheduler = Mockito.mock(Scheduler.class);		
+		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
+		final Scheduler scheduler = Mockito.mock(Scheduler.class);		
 		Mockito.when(jobContextMock.getScheduler()).thenReturn(scheduler);
 		Mockito.when(scheduler.getContext()).thenThrow(new SchedulerException());	
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);

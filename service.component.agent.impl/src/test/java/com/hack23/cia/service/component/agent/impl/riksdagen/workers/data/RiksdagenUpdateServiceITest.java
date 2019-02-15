@@ -79,18 +79,18 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
 
-		String personId = "0542160909628";
+		final String personId = "0542160909628";
 		
-		PersonData existPersonData = new PersonData();
-		List<AssignmentData> assignmentList = new ArrayList<>();
+		final PersonData existPersonData = new PersonData();
+		final List<AssignmentData> assignmentList = new ArrayList<>();
 		assignmentList.add(new AssignmentData().withOrgCode("OrgCode").withRoleCode("RoleCode").withFromDate(new Date())
 				.withToDate(new Date()).withIntressentId(personId));
 		existPersonData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(assignmentList));
 		existPersonData.setId(personId);
 		
 
-		PersonData personData = new PersonData();
-		List<AssignmentData> assignmentListNew = new ArrayList<>();
+		final PersonData personData = new PersonData();
+		final List<AssignmentData> assignmentListNew = new ArrayList<>();
 		assignmentListNew.add(new AssignmentData().withOrgCode("OrgCode").withRoleCode("RoleCode").withFromDate(new Date())
 				.withToDate(new Date()).withIntressentId(personId));
 		assignmentListNew.add(new AssignmentData().withOrgCode("OrgCodeNew").withRoleCode("RoleCodeNew").withFromDate(new Date())
@@ -114,9 +114,9 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updatePersonDataSuccessTest() throws Exception {
 		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
-		String personId = "notExist";
+		final String personId = "notExist";
 		when(personDataDAOMock.load(personId)).thenReturn(null);
-		PersonData personData = new PersonData();
+		final PersonData personData = new PersonData();
 		riksdagenUpdateService.update(personData);
 		verify(personDataDAOMock, times(1)).persist(personData);
 	}
@@ -132,7 +132,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentContentDataDAO", documentContentDataDAO);
 
 		final String docId = "GZ10190";
-		DocumentContentData documentContent = new DocumentContentData().withId(docId);
+		final DocumentContentData documentContent = new DocumentContentData().withId(docId);
 		when(documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, docId)).thenReturn(documentContent);
 
 		riksdagenUpdateService.updateDocumentContentData(documentContent);
@@ -150,9 +150,9 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateDocumentContentDataSuccessTest() throws Exception {
 		final DocumentContentDataDAO documentContentDataDAO = mock(DocumentContentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentContentDataDAO", documentContentDataDAO);
-		String docId = "notExist";
+		final String docId = "notExist";
 		when(documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, docId)).thenReturn(null);
-		DocumentContentData documentContent = new DocumentContentData().withId(docId);
+		final DocumentContentData documentContent = new DocumentContentData().withId(docId);
 		riksdagenUpdateService.updateDocumentContentData(documentContent);
 		verify(documentContentDataDAO, times(1)).persist(documentContent);
 	}
@@ -168,7 +168,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 				CommitteeProposalComponentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
 				committeeProposalComponentDataDAO);
-		CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData());
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(null);
@@ -187,7 +187,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 				CommitteeProposalComponentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
 				committeeProposalComponentDataDAO);
-		CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData());
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);
@@ -204,9 +204,9 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateDocumentElementSuccessTest() throws Exception {
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
-		String docId = "notExist";
+		final String docId = "notExist";
 		when(documentElementDAO.load(docId)).thenReturn(null);
-		DocumentElement documentElement = new DocumentElement().withId(docId);
+		final DocumentElement documentElement = new DocumentElement().withId(docId);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
 		verify(documentElementDAO, times(1)).persist(documentElement);
 	}
@@ -220,8 +220,8 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateDocumentElementAlreadyExistSuccessTest() throws Exception {
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
-		String docId = "notExist";
-		DocumentElement documentElement = new DocumentElement().withId(docId);
+		final String docId = "notExist";
+		final DocumentElement documentElement = new DocumentElement().withId(docId);
 		when(documentElementDAO.load(docId)).thenReturn(documentElement);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
 		verify(documentElementDAO, times(1)).persist(documentElement);
@@ -236,10 +236,10 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateDocumentDataSuccessTest() throws Exception {
 		final DocumentStatusContainerDAO documentStatusContainerDAO = mock(DocumentStatusContainerDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
-		String docId = "notExist";
+		final String docId = "notExist";
 		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,
 				DocumentData.class, DocumentData_.id, docId)).thenReturn(new ArrayList<>());
-		DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
+		final DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
 				.withDocument(new DocumentData().withId(docId));
 		riksdagenUpdateService.updateDocumentData(documentStatusContainer);
 		verify(documentStatusContainerDAO, times(1)).persist(documentStatusContainer);
@@ -254,12 +254,12 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateDocumentDataAlreadyExistIgnoreSuccessTest() throws Exception {
 		final DocumentStatusContainerDAO documentStatusContainerDAO = mock(DocumentStatusContainerDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
-		String docId = "notExist";
-		ArrayList<DocumentStatusContainer> list = new ArrayList<>();
+		final String docId = "notExist";
+		final ArrayList<DocumentStatusContainer> list = new ArrayList<>();
 		list.add(new DocumentStatusContainer().withDocument(new DocumentData().withStatus("publicerat")));
 		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,
 				DocumentData.class, DocumentData_.id, docId)).thenReturn(list);
-		DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
+		final DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
 				.withDocument(new DocumentData().withId(docId));
 		riksdagenUpdateService.updateDocumentData(documentStatusContainer);
 		verify(documentStatusContainerDAO, never()).persist(documentStatusContainer);
@@ -287,8 +287,8 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateVoteDataDataSuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
-		String ballotId = "notExist";
-		List<VoteData> ballotList = new ArrayList<>();
+		final String ballotId = "notExist";
+		final List<VoteData> ballotList = new ArrayList<>();
 		ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,
 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(new ArrayList<>());
@@ -305,8 +305,8 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateVoteDataDataAlreadyExistSuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
-		String ballotId = "exist";
-		List<VoteData> ballotList = new ArrayList<>();
+		final String ballotId = "exist";
+		final List<VoteData> ballotList = new ArrayList<>();
 		ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,
 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(ballotList);

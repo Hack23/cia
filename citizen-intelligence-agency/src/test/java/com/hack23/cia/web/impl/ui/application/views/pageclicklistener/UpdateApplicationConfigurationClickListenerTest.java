@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -42,15 +43,15 @@ public class UpdateApplicationConfigurationClickListenerTest extends AbstractUni
 	 */
 	@Test
 	public void showNotificationFailureTest() {
-		UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();		
-		UpdateApplicationConfigurationClickListener listener = Mockito.spy(new UpdateApplicationConfigurationClickListener(request));
-		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
+		final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();		
+		final UpdateApplicationConfigurationClickListener listener = Mockito.spy(new UpdateApplicationConfigurationClickListener(request));
+		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 		
 		Mockito.when(applicationManager.service(request)).thenReturn(new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE));
 		
-		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
-		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 	}
 }

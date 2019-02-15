@@ -100,7 +100,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return true, if successful
 	 */
 	public boolean supports(final String committeeReport,final String rm) {
-		for (ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
+		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
 				return summary.isPartyApproved();
 			}			
@@ -116,7 +116,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return true, if successful
 	 */
 	public boolean against(final String committeeReport,final String rm) {
-		for (ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
+		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
 				return !summary.isPartyApproved();
 			}			

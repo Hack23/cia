@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -37,18 +38,18 @@ public class ManageUserAccountClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationFailureTest() {
-		ManageUserAccountRequest request = new ManageUserAccountRequest();		
-		ManageUserAccountClickListener listener = Mockito.spy(new ManageUserAccountClickListener(request));
-		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
+		final ManageUserAccountRequest request = new ManageUserAccountRequest();		
+		final ManageUserAccountClickListener listener = Mockito.spy(new ManageUserAccountClickListener(request));
+		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 		
-		ManageUserAccountResponse response = new ManageUserAccountResponse(ServiceResult.FAILURE);
+		final ManageUserAccountResponse response = new ManageUserAccountResponse(ServiceResult.FAILURE);
 		response.setErrorMessage("errorMessage");
 		Mockito.when(applicationManager.service(request)).thenReturn(response);
 		
-		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
-		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 	}
 
 }

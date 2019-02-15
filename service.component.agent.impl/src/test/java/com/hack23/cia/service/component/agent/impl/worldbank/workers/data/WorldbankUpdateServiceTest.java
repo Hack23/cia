@@ -50,8 +50,8 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateIndicatorElementNullTest() throws Exception {
-		IndicatorElementDAO indicatorElementDAO = mock(IndicatorElementDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, null, indicatorElementDAO);
+		final IndicatorElementDAO indicatorElementDAO = mock(IndicatorElementDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, null, indicatorElementDAO);
 		worldbankUpdateService.updateIndicatorElement(null);
 		verify(indicatorElementDAO, never()).persist(any(IndicatorElement.class));
 	}
@@ -63,9 +63,9 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateIndicatorElementSuccessTest() throws Exception {
-		IndicatorElementDAO indicatorElementDAO = mock(IndicatorElementDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, null, indicatorElementDAO);
-		IndicatorElement indicatorElement = new IndicatorElement();
+		final IndicatorElementDAO indicatorElementDAO = mock(IndicatorElementDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, null, indicatorElementDAO);
+		final IndicatorElement indicatorElement = new IndicatorElement();
 		worldbankUpdateService.updateIndicatorElement(indicatorElement);
 		verify(indicatorElementDAO, times(1)).persist(indicatorElement);
 	}
@@ -78,8 +78,8 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateCountryElementNullTest() throws Exception {
-		CountryElementDAO countryElementDAO = mock(CountryElementDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(countryElementDAO, null, null);
+		final CountryElementDAO countryElementDAO = mock(CountryElementDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(countryElementDAO, null, null);
 		worldbankUpdateService.updateCountryElement(null);
 		verify(countryElementDAO, never()).persist(any(CountryElement.class));
 	}
@@ -91,9 +91,9 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateCountryElementSuccessTest() throws Exception {
-		CountryElementDAO countryElementDAO = mock(CountryElementDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(countryElementDAO, null, null);
-		CountryElement countryElement = new CountryElement();
+		final CountryElementDAO countryElementDAO = mock(CountryElementDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(countryElementDAO, null, null);
+		final CountryElement countryElement = new CountryElement();
 		worldbankUpdateService.updateCountryElement(countryElement);
 		verify(countryElementDAO, times(1)).persist(countryElement);
 	}
@@ -106,8 +106,8 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateDataNullOrEmptyTest() throws Exception {
-		DataDAO dataDAO = mock(DataDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, dataDAO, null);
+		final DataDAO dataDAO = mock(DataDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, dataDAO, null);
 		worldbankUpdateService.updateData(null);
 		worldbankUpdateService.updateData(new ArrayList<>());
 		verify(dataDAO, never()).persist(any(List.class));
@@ -120,9 +120,9 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateDataSuccessTest() throws Exception {
-		DataDAO dataDAO = mock(DataDAO.class);
-		WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, dataDAO, null);
-		ArrayList<WorldBankData> data = new ArrayList<>();
+		final DataDAO dataDAO = mock(DataDAO.class);
+		final WorldbankUpdateService worldbankUpdateService = new WorldbankUpdateServiceImpl(null, dataDAO, null);
+		final ArrayList<WorldBankData> data = new ArrayList<>();
 		data.add(new WorldBankData());
 		worldbankUpdateService.updateData(data);
 		verify(dataDAO, times(1)).persist(data);

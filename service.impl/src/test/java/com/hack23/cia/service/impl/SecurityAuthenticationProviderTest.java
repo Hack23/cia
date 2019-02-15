@@ -35,7 +35,7 @@ public class SecurityAuthenticationProviderTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void authenticateVerifyDummyImpl() throws Exception {
-		SecurityAuthenticationProvider provider = new SecurityAuthenticationProvider();
+		final SecurityAuthenticationProvider provider = new SecurityAuthenticationProvider();
 		assertTrue(provider.supports(UsernamePasswordAuthenticationToken.class));
 		assertNull(provider.authenticate(null));
 	}

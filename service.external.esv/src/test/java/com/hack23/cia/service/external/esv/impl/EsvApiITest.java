@@ -311,7 +311,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 		
-		GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = list.get(0);
+		final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = list.get(0);
 		assertEquals(0,governmentOperationPeriodOutcome.compareTo(governmentOperationPeriodOutcome));
 	}
 	
@@ -326,7 +326,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();
 		assertNotNull(report);
 		assertFalse(report.isEmpty());
-		GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
+		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
 		assertNotNull(summary.getYearTotal());
 		assertNotNull(summary.getValueMap());		
@@ -343,7 +343,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByMinistry();
 		assertNotNull(report);
 		assertFalse(report.isEmpty());
-		GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
+		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
 		assertNotNull(summary.getYearTotal());
 		assertNotNull(summary.getValueMap());		

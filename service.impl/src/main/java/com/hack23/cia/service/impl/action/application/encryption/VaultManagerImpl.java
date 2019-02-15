@@ -130,7 +130,7 @@ public final class VaultManagerImpl implements VaultManager {
 				byteBuffer.put(iv);
 				byteBuffer.put(cipherText);
 				return Hex.toHexString(byteBuffer.array());
-			} catch (GeneralSecurityException e) {
+			} catch (final GeneralSecurityException e) {
 				LOGGER.error(ENCRYPT_VALUE,e);
 				return null;
 			}
@@ -155,7 +155,7 @@ public final class VaultManagerImpl implements VaultManager {
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
 				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));
 				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
-			} catch (GeneralSecurityException e) {
+			} catch (final GeneralSecurityException e) {
 				LOGGER.error(DECRYPT_VALUE,e);
 				return null;
 			}		

@@ -165,7 +165,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	private static List<String> readCsvContent(final InputStream is) throws IOException {		
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
 		for (int i = 0; i < IGNORE_TOP_HEADERS_LINE; i++) {
-			String ignoreFirstLinesWithHeaders = reader.readLine();			
+			final String ignoreFirstLinesWithHeaders = reader.readLine();			
 		}
 		
 		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));

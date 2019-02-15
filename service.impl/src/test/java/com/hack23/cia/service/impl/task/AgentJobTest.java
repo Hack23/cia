@@ -40,11 +40,11 @@ public class AgentJobTest extends AbstractJobTest {
 	 */
 	@Test
 	public void executeInternalTest() throws Exception {
-		JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		ApplicationContext applicationContext = prepareContextMock(jobContextMock);
+		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
+		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
-		DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
-		JobContextHolder jobContextHolder = new JobContextHolderImpl(dataAgentApi, null, null);
+		final DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(dataAgentApi, null, null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		new AgentJob().executeInternal(jobContextMock);

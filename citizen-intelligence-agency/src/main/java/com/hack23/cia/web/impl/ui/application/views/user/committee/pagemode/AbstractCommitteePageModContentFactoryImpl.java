@@ -56,7 +56,7 @@ abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractItemPa
 
 
 	@Override
-	protected ViewRiksdagenCommittee getItem(String parameters) {
+	protected ViewRiksdagenCommittee getItem(final String parameters) {
 		return getApplicationManager().getDataContainer(ViewRiksdagenCommittee.class).load(getPageId(parameters));
 	}
 

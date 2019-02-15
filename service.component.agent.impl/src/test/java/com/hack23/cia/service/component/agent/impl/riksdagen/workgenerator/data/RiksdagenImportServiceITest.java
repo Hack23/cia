@@ -86,7 +86,7 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 	 */
 	@Test
 	public void getNoneCompletedDocumentStatusCommitteeReportsTest() throws Exception {
-		List<DocumentStatusContainer> reports = riksdagenImportService.getNoneCompletedDocumentStatusCommitteeReports();
+		final List<DocumentStatusContainer> reports = riksdagenImportService.getNoneCompletedDocumentStatusCommitteeReports();
 		assertNotNull(reports);
 		assertFalse(reports.isEmpty());
 	}

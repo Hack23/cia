@@ -38,9 +38,9 @@ public class DataAgentContainerImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void executeTest() {
-		DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
-		DataAgentContainerImpl dataAgentContainerImpl = new DataAgentContainerImpl(dataAgentApi);
-		DataAgentWorkOrder workOrder = new DataAgentWorkOrder().withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN).withOperation(DataAgentOperation.IMPORT);
+		final DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
+		final DataAgentContainerImpl dataAgentContainerImpl = new DataAgentContainerImpl(dataAgentApi);
+		final DataAgentWorkOrder workOrder = new DataAgentWorkOrder().withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN).withOperation(DataAgentOperation.IMPORT);
 		dataAgentContainerImpl.execute(workOrder);
 		Mockito.verify(dataAgentApi).execute(workOrder);
 	}

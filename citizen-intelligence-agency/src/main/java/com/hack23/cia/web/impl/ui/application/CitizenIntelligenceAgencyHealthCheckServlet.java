@@ -42,7 +42,7 @@ public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServl
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType(TEXT_HTML);
 		response.getWriter().println(OK);
 	}

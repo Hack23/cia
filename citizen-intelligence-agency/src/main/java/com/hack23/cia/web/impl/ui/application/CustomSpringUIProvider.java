@@ -42,19 +42,19 @@ public class CustomSpringUIProvider extends SpringUIProvider {
 	 *
 	 * @param vaadinSession the vaadin session
 	 */
-	public CustomSpringUIProvider(VaadinSession vaadinSession) {
+	public CustomSpringUIProvider(final VaadinSession vaadinSession) {
 		super(vaadinSession);
 	}
 
 	@Override
-	public UI createInstance(UICreateEvent event) {
+	public UI createInstance(final UICreateEvent event) {
 		final Class<UIID> key = UIID.class;
 		final UIID identifier = new UIID(event);
 		CurrentInstance.set(key, identifier);
 		try {
 			logger.debug("Creating a new UI bean of class [{}] with identifier [{}]",
 					event.getUIClass().getCanonicalName(), identifier);
-			UI ui = getWebApplicationContext().getBean(event.getUIClass());
+			final UI ui = getWebApplicationContext().getBean(event.getUIClass());
 
 			getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());
 
@@ -66,7 +66,7 @@ public class CustomSpringUIProvider extends SpringUIProvider {
 	}
 
 	@Override
-	protected Object findSpringViewDisplay(UI ui) {
+	protected Object findSpringViewDisplay(final UI ui) {
 		return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());
 	}
 

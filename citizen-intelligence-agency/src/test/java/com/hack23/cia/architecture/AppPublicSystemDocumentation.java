@@ -95,7 +95,7 @@ public class AppPublicSystemDocumentation {
 				"ALB/ELB/Apache/Nginx/HaProxy");
 
 		final Container ciaWebContainer = ciaSystem.addContainer("Web Application", "Web Application", "Jetty/Java");
-		SpringComponentFinderStrategy springComponentFinderStrategy = new SpringComponentFinderStrategy(new FirstImplementationOfInterfaceSupportingTypesStrategy()
+		final SpringComponentFinderStrategy springComponentFinderStrategy = new SpringComponentFinderStrategy(new FirstImplementationOfInterfaceSupportingTypesStrategy()
 				,new ReferencedTypesSupportingTypesStrategy(),new ReferencedTypesInSamePackageSupportingTypesStrategy());
 		springComponentFinderStrategy.setIncludePublicTypesOnly(false);
 		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",

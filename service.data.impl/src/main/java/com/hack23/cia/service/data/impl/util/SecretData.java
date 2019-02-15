@@ -68,7 +68,7 @@ final class SecretData {
 	 *
 	 * @param engine the new engine
 	 */
-	public void setEngine(String engine) {
+	public void setEngine(final String engine) {
 		this.engine = engine;
 	}
 
@@ -86,7 +86,7 @@ final class SecretData {
 	 *
 	 * @param port the new port
 	 */
-	public void setPort(String port) {
+	public void setPort(final String port) {
 		this.port = port;
 	}
 
@@ -104,7 +104,7 @@ final class SecretData {
 	 *
 	 * @param host the new host
 	 */
-	public void setHost(String host) {
+	public void setHost(final String host) {
 		this.host = host;
 	}
 
@@ -122,7 +122,7 @@ final class SecretData {
 	 *
 	 * @param dbname the new dbname
 	 */
-	public void setDbname(String dbname) {
+	public void setDbname(final String dbname) {
 		this.dbname = dbname;
 	}
 
@@ -140,7 +140,7 @@ final class SecretData {
 	 *
 	 * @param username the new username
 	 */
-	public void setUsername(String username) {
+	public void setUsername(final String username) {
 		this.username = username;
 	}
 
@@ -158,7 +158,7 @@ final class SecretData {
 	 *
 	 * @param password the new password
 	 */
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 	

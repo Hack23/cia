@@ -228,7 +228,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	private static void addViewApplicationActionEventPageElementDailySummaryValues(final String label,
 			final Series series, final List<ViewApplicationActionEventPageElementDailySummary> list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
-			ToLongFunction<ViewApplicationActionEventPageElementDailySummary> t) {
+			final ToLongFunction<ViewApplicationActionEventPageElementDailySummary> t) {
 		series.addSeries(new XYseries().setLabel(label));
 		dataSeries.newSeries();
 

@@ -74,9 +74,9 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 */
 	@Test
 	public void createDefaultConfigIfEmptyIgnoreWhenExistTest() throws Exception {
-		AgencyDAO agencyDAO = mock(AgencyDAO.class);
+		final AgencyDAO agencyDAO = mock(AgencyDAO.class);
 		ReflectionTestUtils.setField(configurationManager, "agencyDAO", agencyDAO);
-		ArrayList<Agency> list = new ArrayList<>();
+		final ArrayList<Agency> list = new ArrayList<>();
 		list.add(new Agency());
 		when(agencyDAO.getAll()).thenReturn(list);
 		setAuthenticatedAdminuser();
@@ -92,7 +92,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 */
 	@Test
 	public void createDefaultConfigIfEmptyIgnoreWhenEmptyTest() throws Exception {
-		AgencyDAO agencyDAO = mock(AgencyDAO.class);
+		final AgencyDAO agencyDAO = mock(AgencyDAO.class);
 		ReflectionTestUtils.setField(configurationManager, "agencyDAO", agencyDAO);
 		when(agencyDAO.getAll()).thenReturn(new ArrayList<>());
 		setAuthenticatedAdminuser();
@@ -108,9 +108,9 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 */
 	@Test
 	public void createDefaultLanguagesIfEmptyIgnoreWhenExistTest() throws Exception {
-		LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
+		final LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
 		ReflectionTestUtils.setField(configurationManager, "languageDataDAO", languageDataDAO);
-		ArrayList<LanguageData> list = new ArrayList<>();
+		final ArrayList<LanguageData> list = new ArrayList<>();
 		list.add(new LanguageData());
 		when(languageDataDAO.getAll()).thenReturn(list);
 		setAuthenticatedAdminuser();
@@ -126,7 +126,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 */
 	@Test
 	public void createDefaultLanguagesIfEmptyIgnoreWhenEmptyTest() throws Exception {
-		LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
+		final LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
 		ReflectionTestUtils.setField(configurationManager, "languageDataDAO", languageDataDAO);
 		when(languageDataDAO.getAll()).thenReturn(new ArrayList<>());
 		setAuthenticatedAdminuser();

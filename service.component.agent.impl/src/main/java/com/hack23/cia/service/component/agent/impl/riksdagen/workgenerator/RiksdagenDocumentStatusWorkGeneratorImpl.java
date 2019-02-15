@@ -93,7 +93,7 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 				}
 			}
 			
-			for (DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {
+			for (final DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {
 				 if ("planerat".equals(container.getDocument().getStatus())) {
 					 getJmsSender().send(documentStatusContainerWorkdestination,
 							 container.getDocument().getId());

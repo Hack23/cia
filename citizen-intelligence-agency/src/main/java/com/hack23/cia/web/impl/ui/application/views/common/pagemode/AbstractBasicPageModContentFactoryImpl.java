@@ -31,7 +31,7 @@ public abstract class AbstractBasicPageModContentFactoryImpl extends AbstractPag
 	}
 
 	@Override
-	public final boolean validReference(String parameters) {
+	public final boolean validReference(final String parameters) {
 		return true;
 	}
 

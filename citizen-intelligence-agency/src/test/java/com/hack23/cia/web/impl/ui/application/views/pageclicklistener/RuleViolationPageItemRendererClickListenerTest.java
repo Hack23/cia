@@ -40,14 +40,14 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	 */
 	@Test
 	public void clickPartyTest() {
-		RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
-		UI uiMock = Mockito.mock(UI.class);
+		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
-		RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
+		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new RuleViolation("partyid", null, ResourceType.PARTY, null, null, null, null, null));
 			
 		listener.click(event);
@@ -60,14 +60,14 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	 */
 	@Test
 	public void clickPoliticianTest() {
-		RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
-		UI uiMock = Mockito.mock(UI.class);
+		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
+		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
 		
-		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		final Navigator navigatorMock = Mockito.mock(Navigator.class);
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
-		RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
+		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new RuleViolation("personid", null, ResourceType.POLITICIAN, null, null, null, null, null));
 			
 		listener.click(event);
@@ -81,9 +81,9 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	 */
 	@Test
 	public void selectionChangeEventSourceEmptyTest() {
-		RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
+		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
 		
-		SelectionEvent event = Mockito.mock(SelectionEvent.class);		
+		final SelectionEvent event = Mockito.mock(SelectionEvent.class);		
 		Mockito.when(event.getAllSelectedItems()).thenReturn(new HashSet<>());
 		
 		listener.selectionChange(event);

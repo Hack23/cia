@@ -39,7 +39,7 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getDataAgentApiTest() throws Exception {
-		JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(Mockito.mock(DataAgentApi.class),null,null);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(Mockito.mock(DataAgentApi.class),null,null);
 		assertNotNull(jobContextHolderImpl.getDataAgentApi());
 	}
 	
@@ -50,8 +50,8 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void updateSearchIndexTest() throws Exception {
-		SearchIndexer searchIndexer = Mockito.mock(SearchIndexer.class);
-		JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,searchIndexer,null);
+		final SearchIndexer searchIndexer = Mockito.mock(SearchIndexer.class);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,searchIndexer,null);
 		jobContextHolderImpl.updateSearchIndex();
 		Mockito.verify(searchIndexer,Mockito.only()).updateSearchIndex();
 	}
@@ -63,8 +63,8 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void refreshViewsTest() throws Exception {
-		ViewDataManager viewDataManager = Mockito.mock(ViewDataManager.class);
-		JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,null,viewDataManager);
+		final ViewDataManager viewDataManager = Mockito.mock(ViewDataManager.class);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,null,viewDataManager);
 		jobContextHolderImpl.refreshViews();
 		Mockito.verify(viewDataManager,Mockito.only()).refreshViews();
 	}

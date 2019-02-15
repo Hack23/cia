@@ -100,7 +100,7 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	}
 
 	@Override
-	protected ViewRiksdagenPolitician getItem(String parameters) {
+	protected ViewRiksdagenPolitician getItem(final String parameters) {
 		final String pageId = getPageId(parameters);
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
 		if (personData != null) {

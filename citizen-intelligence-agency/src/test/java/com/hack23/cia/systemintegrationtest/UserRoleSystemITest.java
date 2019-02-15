@@ -2379,7 +2379,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW));
-		WebElement nextPageButton = userPageVisit.findButton("next page");
+		final WebElement nextPageButton = userPageVisit.findButton("next page");
 		userPageVisit.performClickAction(nextPageButton);
 		
 	}
@@ -2397,7 +2397,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW));
-		WebElement nextPageButton = userPageVisit.findButton("last page");
+		final WebElement nextPageButton = userPageVisit.findButton("last page");
 		userPageVisit.performClickAction(nextPageButton);
 	}
 

@@ -51,10 +51,10 @@ public class ViewDataDataContainerFactoryImplITest extends AbstractServiceFuncti
 	@Test
 	public void findFirstByPropertyTest() throws Exception {
 		setAuthenticatedAnonymousUser();
-		ViewRiksdagenPolitician findFirstByProperty = dataViewer.findFirstByProperty(ViewRiksdagenPolitician.class,
+		final ViewRiksdagenPolitician findFirstByProperty = dataViewer.findFirstByProperty(ViewRiksdagenPolitician.class,
 				ViewRiksdagenPolitician_.party, "s");
 		assertNotNull(findFirstByProperty);
-		ViewRiksdagenPolitician findFirstByPropertyNull = dataViewer.findFirstByProperty(ViewRiksdagenPolitician.class,
+		final ViewRiksdagenPolitician findFirstByPropertyNull = dataViewer.findFirstByProperty(ViewRiksdagenPolitician.class,
 				ViewRiksdagenPolitician_.party, "noParty");
 		assertNull(findFirstByPropertyNull);
 	}
@@ -67,15 +67,15 @@ public class ViewDataDataContainerFactoryImplITest extends AbstractServiceFuncti
 	@Test
 	public void findOrderedListByPropertyFromFactoryTest() throws Exception {
 		setAuthenticatedAnonymousUser();
-		DataContainer<ViewRiksdagenPolitician, Serializable> dataContainer = viewDataDataContainerFactory
+		final DataContainer<ViewRiksdagenPolitician, Serializable> dataContainer = viewDataDataContainerFactory
 				.createDataContainer(ViewRiksdagenPolitician.class);
 
-		List<ViewRiksdagenPolitician> listByProperty = dataContainer.findOrderedListByProperty(
+		final List<ViewRiksdagenPolitician> listByProperty = dataContainer.findOrderedListByProperty(
 				ViewRiksdagenPolitician_.party, "S" , ViewRiksdagenPolitician_.lastName);
 		assertNotNull(listByProperty);
 		assertFalse(listByProperty.isEmpty());
 
-		List<ViewRiksdagenPolitician> listByPropertyEmpty = dataContainer.findOrderedListByProperty(
+		final List<ViewRiksdagenPolitician> listByPropertyEmpty = dataContainer.findOrderedListByProperty(
 				ViewRiksdagenPolitician_.party, "noparty" , ViewRiksdagenPolitician_.lastName);
 		assertNotNull(listByPropertyEmpty);
 		assertTrue(listByPropertyEmpty.isEmpty());
@@ -89,7 +89,7 @@ public class ViewDataDataContainerFactoryImplITest extends AbstractServiceFuncti
 	@Test
 	public void findOrderedListByPropertyTest() throws Exception {
 		setAuthenticatedAnonymousUser();
-		List<ViewRiksdagenPolitician> orderedListByProperty = dataViewer.findOrderedListByProperty(
+		final List<ViewRiksdagenPolitician> orderedListByProperty = dataViewer.findOrderedListByProperty(
 				ViewRiksdagenPolitician.class, ViewRiksdagenPolitician_.party, "s", ViewRiksdagenPolitician_.lastName);
 		assertNotNull(orderedListByProperty);
 		assertFalse(orderedListByProperty.isEmpty());
@@ -103,10 +103,10 @@ public class ViewDataDataContainerFactoryImplITest extends AbstractServiceFuncti
 	 */
 	@Test
 	public void getPageTest() throws Exception {
-		DataContainer<ViewRiksdagenPolitician, Serializable> dataContainer = viewDataDataContainerFactory
+		final DataContainer<ViewRiksdagenPolitician, Serializable> dataContainer = viewDataDataContainerFactory
 				.createDataContainer(ViewRiksdagenPolitician.class);
 		setAuthenticatedAnonymousUser();
-		List<ViewRiksdagenPolitician> page = dataContainer.getPage(1, 20);
+		final List<ViewRiksdagenPolitician> page = dataContainer.getPage(1, 20);
 		assertNotNull(page);
 		assertEquals(20, page.size());
 	}
@@ -120,7 +120,7 @@ public class ViewDataDataContainerFactoryImplITest extends AbstractServiceFuncti
 	@Test
 	public void getPageFromFactoryTest() throws Exception {
 		setAuthenticatedAnonymousUser();
-		List<ViewRiksdagenPolitician> page = dataViewer.getPage(ViewRiksdagenPolitician.class, 1, 20);
+		final List<ViewRiksdagenPolitician> page = dataViewer.getPage(ViewRiksdagenPolitician.class, 1, 20);
 		assertNotNull(page);
 		assertEquals(20, page.size());
 	}

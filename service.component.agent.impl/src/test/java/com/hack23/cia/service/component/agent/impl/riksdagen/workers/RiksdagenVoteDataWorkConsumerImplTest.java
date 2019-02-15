@@ -51,14 +51,14 @@ public class RiksdagenVoteDataWorkConsumerImplTest extends AbstractUnitTest {
 	public void onMessageDataFailureExceptionTest() throws JMSException, DataFailureException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		String ballotId = "000561B4-3637-41D2-8A8C-5CE5DAED9F57";
+		final String ballotId = "000561B4-3637-41D2-8A8C-5CE5DAED9F57";
 		when(message.getObject()).thenReturn(ballotId);
 
-		RiksdagenBallotApi riksdagenBallotApi = mock(RiksdagenBallotApi.class);
+		final RiksdagenBallotApi riksdagenBallotApi = mock(RiksdagenBallotApi.class);
 		
 		when(riksdagenBallotApi.getBallot(ballotId)).thenThrow(new DataFailureException(new RuntimeException()));
 		
-		RiksdagenUpdateService riksdagenUpdateService = mock(RiksdagenUpdateService.class);
+		final RiksdagenUpdateService riksdagenUpdateService = mock(RiksdagenUpdateService.class);
 		new RiksdagenVoteDataWorkConsumerImpl(riksdagenUpdateService,riksdagenBallotApi).onMessage(message);
 
 		verify(message, atLeastOnce()).getObject();

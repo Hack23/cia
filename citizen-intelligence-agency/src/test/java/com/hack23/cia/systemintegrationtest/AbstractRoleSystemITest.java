@@ -48,6 +48,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.DriverManagerType;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
  * The Class AbstractRoleSystemITest.
@@ -116,7 +117,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
 		}
-		ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup();
+		WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
 	}
 
 	/**
