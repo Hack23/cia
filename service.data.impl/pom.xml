@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.1.4</version>
+      <version>5.2.0</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
