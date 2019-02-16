@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.499</version>
+      <version>1.11.500</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.1.3</version>
+      <version>5.1.4</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
