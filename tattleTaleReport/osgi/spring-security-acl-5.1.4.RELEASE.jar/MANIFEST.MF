@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-security-acl
+Automatic-Module-Name: spring.security.acl
+Implementation-Version: 5.1.4.RELEASE
+Created-By: 1.8.0_191 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.security.acls.domain
+Bundle-Description: spring-security-acl-5.1.4.RELEASE
+Bundle-Name: spring-security-acl-5.1.4.RELEASE
+Bundle-Version: 5.1.4.RELEASE
+Export-Package: org.springframework.security.acls;uses:="org.aopallian
+ ce.intercept,org.springframework.security.access,org.springframework.
+ security.access.vote,org.springframework.security.acls.domain,org.spr
+ ingframework.security.acls.model,org.springframework.security.core",o
+ rg.springframework.security.acls.afterinvocation;uses:="org.springfra
+ mework.security.access,org.springframework.security.acls.domain,org.s
+ pringframework.security.acls.model,org.springframework.security.core"
+ ,org.springframework.security.acls.domain;uses:="java.lang.invoke,jav
+ a.util.function,net.sf.ehcache,org.springframework.cache,org.springfr
+ amework.security.access,org.springframework.security.access.hierarchi
+ calroles,org.springframework.security.acls.model,org.springframework.
+ security.core,org.springframework.security.core.authority,org.springf
+ ramework.security.core.context,org.springframework.security.core.user
+ details,org.springframework.security.util",org.springframework.securi
+ ty.acls.jdbc;uses:="java.lang.invoke,java.util.function,org.springfra
+ mework.security.acls.domain,org.springframework.security.acls.model,o
+ rg.springframework.security.core,org.springframework.security.core.co
+ ntext,org.springframework.security.util",org.springframework.security
+ .acls.model;uses:="org.springframework.security.core"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.sql,java.util,java.util.function,javax.sql,net.sf.ehcache,org.aop
+ alliance.intercept;version="5.1.5.RELEASE",org.apache.commons.logging
+ ;version="0.0.0",org.springframework.cache;version="5.1.5.RELEASE",or
+ g.springframework.context;version="5.1.5.RELEASE",org.springframework
+ .context.support;version="5.1.5.RELEASE",org.springframework.core.con
+ vert;version="5.1.5.RELEASE",org.springframework.dao;version="5.1.5.R
+ ELEASE",org.springframework.jdbc.core;version="5.1.5.RELEASE",org.spr
+ ingframework.security.access;version="5.1.4.RELEASE",org.springframew
+ ork.security.access.hierarchicalroles;version="5.1.4.RELEASE",org.spr
+ ingframework.security.access.vote;version="5.1.4.RELEASE",org.springf
+ ramework.security.core;version="5.1.4.RELEASE",org.springframework.se
+ curity.core.authority;version="5.1.4.RELEASE",org.springframework.sec
+ urity.core.context;version="5.1.4.RELEASE",org.springframework.securi
+ ty.core.userdetails;version="5.1.4.RELEASE",org.springframework.secur
+ ity.util;version="5.1.4.RELEASE",org.springframework.transaction.supp
+ ort;version="5.1.5.RELEASE",org.springframework.util;version="5.1.5.R
+ ELEASE"

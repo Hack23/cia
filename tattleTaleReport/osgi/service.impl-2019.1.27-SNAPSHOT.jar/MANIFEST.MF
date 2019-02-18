@@ -78,21 +78,22 @@ Export-Package: com.hack23.cia.service.impl;uses:="com.hack23.cia.mode
  a.core,weka.core.stopwords,weka.core.tokenizers,weka.filters,weka.fil
  ters.unsupervised.attribute",com.hack23.cia.service.impl.email;uses:=
  "com.hack23.cia.model.internal.application.system.impl,com.hack23.cia
- .service.data.api,java.lang,org.springframework.security.access.annot
- ation,org.springframework.security.authentication,org.springframework
- .security.core,org.springframework.security.core.authority,org.spring
- framework.security.core.context",com.hack23.cia.service.impl.rules;us
- es:="com.hack23.cia.model.internal.application.data.committee.impl,co
- m.hack23.cia.model.internal.application.data.party.impl,com.hack23.ci
- a.model.internal.application.data.politician.impl,com.hack23.cia.serv
- ice.api.action.kpi,com.hack23.cia.service.data.api,java.lang.invoke,j
- ava.time,java.util,java.util.function,java.util.stream,org.apache.com
- mons.lang3.builder,org.drools.core.common,org.kie.api,org.kie.api.bui
- lder,org.kie.api.definition,org.kie.api.definition.rule,org.kie.api.e
- vent.rule,org.kie.api.runtime,org.kie.api.runtime.rule,org.springfram
- ework.cache.annotation",com.hack23.cia.service.impl.task;uses:="com.h
- ack23.cia.model.internal.application.data.impl,com.hack23.cia.service
- .component.agent.api,com.hack23.cia.service.data.api,org.quartz"
+ .service.data.api,java.lang,org.apache.commons.lang3,org.springframew
+ ork.security.access.annotation,org.springframework.security.authentic
+ ation,org.springframework.security.core,org.springframework.security.
+ core.authority,org.springframework.security.core.context",com.hack23.
+ cia.service.impl.rules;uses:="com.hack23.cia.model.internal.applicati
+ on.data.committee.impl,com.hack23.cia.model.internal.application.data
+ .party.impl,com.hack23.cia.model.internal.application.data.politician
+ .impl,com.hack23.cia.service.api.action.kpi,com.hack23.cia.service.da
+ ta.api,java.lang.invoke,java.time,java.util,java.util.function,java.u
+ til.stream,org.apache.commons.lang3.builder,org.drools.core.common,or
+ g.kie.api,org.kie.api.builder,org.kie.api.definition,org.kie.api.defi
+ nition.rule,org.kie.api.event.rule,org.kie.api.runtime,org.kie.api.ru
+ ntime.rule,org.springframework.cache.annotation",com.hack23.cia.servi
+ ce.impl.task;uses:="com.hack23.cia.model.internal.application.data.im
+ pl,com.hack23.cia.service.component.agent.api,com.hack23.cia.service.
+ data.api,org.quartz"
 Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
  t.impl;version="0.0.0",com.hack23.cia.model.internal.application.data
  .committee.impl;version="0.0.0",com.hack23.cia.model.internal.applica
@@ -111,34 +112,35 @@ Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
  m.warrenstrange.googleauth;version="0.0.0",java.io,java.lang,java.lan
  g.invoke,java.nio,java.nio.charset,java.security,java.security.spec,j
  ava.text,java.time,java.util,java.util.concurrent,java.util.function,
- java.util.stream,javax.annotation;version="7.16.0.Final",javax.crypto
- ,javax.crypto.spec,javax.persistence.metamodel;version="2.2",javax.va
- lidation;version="0.0.0",org.apache.commons.lang;version="2.6.0.redha
- t-7",org.apache.commons.lang3;version="3.8",org.apache.commons.lang3.
- builder;version="3.8",org.apache.commons.lang3.math;version="3.8",org
- .bouncycastle.jcajce.provider.digest;version="1.1",org.bouncycastle.j
- ce.provider;version="1.1",org.bouncycastle.util.encoders;version="1.1
- ",org.drools.core.common;version="7.16.0.Final",org.kie.api;version="
- 7.16.0.Final",org.kie.api.builder;version="7.16.0.Final",org.kie.api.
- definition;version="7.16.0.Final",org.kie.api.definition.rule;version
- ="7.16.0.Final",org.kie.api.event.rule;version="7.16.0.Final",org.kie
- .api.runtime;version="7.16.0.Final",org.kie.api.runtime.rule;version=
- "7.16.0.Final",org.passay;version="0.0.0",org.quartz;version="0.0.0",
- org.slf4j;version="0.0.0",org.springframework.beans.factory.annotatio
- n;version="5.1.4.RELEASE",org.springframework.cache.annotation;versio
- n="5.1.4.RELEASE",org.springframework.context;version="5.1.4.RELEASE"
- ,org.springframework.context.annotation;version="5.1.4.RELEASE",org.s
- pringframework.mail;version="5.1.4.RELEASE",org.springframework.mail.
- javamail;version="5.1.4.RELEASE",org.springframework.scheduling.annot
- ation;version="5.1.4.RELEASE",org.springframework.scheduling.quartz;v
- ersion="5.1.4.RELEASE",org.springframework.security.access.annotation
- ;version="5.2.0.M1",org.springframework.security.authentication;versi
- on="5.2.0.M1",org.springframework.security.core;version="5.2.0.M1",or
- g.springframework.security.core.authority;version="5.2.0.M1",org.spri
- ngframework.security.core.context;version="5.2.0.M1",org.springframew
- ork.security.crypto.bcrypt;version="5.2.0.M1",org.springframework.sec
- urity.crypto.password;version="5.2.0.M1",org.springframework.stereoty
- pe;version="5.1.4.RELEASE",org.springframework.transaction.annotation
- ;version="5.1.4.RELEASE",weka.core;version="0.0.0",weka.core.stopword
- s;version="0.0.0",weka.core.tokenizers;version="0.0.0",weka.filters;v
- ersion="0.0.0",weka.filters.unsupervised.attribute;version="0.0.0"
+ java.util.stream,javax.annotation;version="1.3",javax.crypto,javax.cr
+ ypto.spec,javax.persistence.metamodel;version="2.2",javax.validation;
+ version="0.0.0",org.apache.commons.lang;version="2.6.0.redhat-7",org.
+ apache.commons.lang3;version="3.8",org.apache.commons.lang3.builder;v
+ ersion="3.8",org.apache.commons.lang3.math;version="3.8",org.bouncyca
+ stle.jcajce.provider.digest;version="1.1",org.bouncycastle.jce.provid
+ er;version="1.1",org.bouncycastle.util.encoders;version="1.1",org.dro
+ ols.core.common;version="7.17.0.Final",org.kie.api;version="7.17.0.Fi
+ nal",org.kie.api.builder;version="7.17.0.Final",org.kie.api.definitio
+ n;version="7.17.0.Final",org.kie.api.definition.rule;version="7.17.0.
+ Final",org.kie.api.event.rule;version="7.17.0.Final",org.kie.api.runt
+ ime;version="7.17.0.Final",org.kie.api.runtime.rule;version="7.17.0.F
+ inal",org.passay;version="0.0.0",org.quartz;version="0.0.0",org.slf4j
+ ;version="0.0.0",org.springframework.beans.factory.annotation;version
+ ="5.1.5.RELEASE",org.springframework.cache.annotation;version="5.1.5.
+ RELEASE",org.springframework.context;version="5.1.5.RELEASE",org.spri
+ ngframework.context.annotation;version="5.1.5.RELEASE",org.springfram
+ ework.mail;version="5.1.5.RELEASE",org.springframework.mail.javamail;
+ version="5.1.5.RELEASE",org.springframework.scheduling.annotation;ver
+ sion="5.1.5.RELEASE",org.springframework.scheduling.quartz;version="5
+ .1.5.RELEASE",org.springframework.security.access.annotation;version=
+ "5.1.4.RELEASE",org.springframework.security.authentication;version="
+ 5.1.4.RELEASE",org.springframework.security.core;version="5.1.4.RELEA
+ SE",org.springframework.security.core.authority;version="5.1.4.RELEAS
+ E",org.springframework.security.core.context;version="5.1.4.RELEASE",
+ org.springframework.security.crypto.bcrypt;version="5.1.4.RELEASE",or
+ g.springframework.security.crypto.password;version="5.1.4.RELEASE",or
+ g.springframework.stereotype;version="5.1.5.RELEASE",org.springframew
+ ork.transaction.annotation;version="5.1.5.RELEASE",weka.core;version=
+ "0.0.0",weka.core.stopwords;version="0.0.0",weka.core.tokenizers;vers
+ ion="0.0.0",weka.filters;version="0.0.0",weka.filters.unsupervised.at
+ tribute;version="0.0.0"

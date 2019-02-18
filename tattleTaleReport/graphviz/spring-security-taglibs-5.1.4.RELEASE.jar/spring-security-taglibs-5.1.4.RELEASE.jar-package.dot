@@ -1,0 +1,14 @@
+digraph spring_security_taglibs_5_1_4_RELEASE_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_springframework_security_taglibs_authz -> org_springframework_expression;
+  org_springframework_security_taglibs_authz -> org_springframework_security_access;
+  org_springframework_security_taglibs_authz -> org_springframework_security_access_expression;
+  org_springframework_security_taglibs_authz -> org_springframework_security_core;
+  org_springframework_security_taglibs_authz -> org_springframework_security_core_context;
+  org_springframework_security_taglibs_authz -> org_springframework_security_taglibs;
+  org_springframework_security_taglibs_authz -> org_springframework_security_web;
+  org_springframework_security_taglibs_authz -> org_springframework_security_web_access;
+  org_springframework_security_taglibs_authz -> org_springframework_security_web_context_support;
+  org_springframework_security_taglibs_authz -> org_springframework_security_web_util;
+  org_springframework_security_taglibs_csrf -> org_springframework_security_web_csrf;
+}

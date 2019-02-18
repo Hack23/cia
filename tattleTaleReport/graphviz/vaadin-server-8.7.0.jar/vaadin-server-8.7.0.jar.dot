@@ -1,0 +1,10 @@
+digraph vaadin_server_8_7_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_server_8_7_0 -> atmosphere_runtime_2_4_30_vaadin1;
+  vaadin_server_8_7_0 -> gentyref_1_2_0_vaadin1;
+  vaadin_server_8_7_0 -> gwt_elemental_2_8_2;
+  vaadin_server_8_7_0 -> jsoup_1_11_3;
+  vaadin_server_8_7_0 -> vaadin_shared_8_7_0;
+  vaadin_server_8_7_0 -> validation_api_2_0_1_Final;
+  vaadin_server_8_7_0 -> xml_apis_1_4_01;
+}

@@ -1,7 +1,7 @@
 digraph qrcode_2_1_dependencies {
   node [shape = box, fontsize=10.0];
   qrcode_2_1 -> gwt_user_2_8_2;
-  qrcode_2_1 -> vaadin_client_8_7_0_rc1;
-  qrcode_2_1 -> vaadin_server_8_7_0_rc1;
-  qrcode_2_1 -> vaadin_shared_8_7_0_rc1;
+  qrcode_2_1 -> vaadin_client_8_7_0;
+  qrcode_2_1 -> vaadin_server_8_7_0;
+  qrcode_2_1 -> vaadin_shared_8_7_0;
 }

@@ -1,0 +1,21 @@
+digraph spring_data_commons_2_2_0_M1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_data_commons_2_2_0_M1 -> guava_27_0_1_jre;
+  spring_data_commons_2_2_0_M1 -> jackson_annotations_2_9_0;
+  spring_data_commons_2_2_0_M1 -> jackson_core_2_9_8;
+  spring_data_commons_2_2_0_M1 -> jackson_databind_2_9_8;
+  spring_data_commons_2_2_0_M1 -> jaxb_api_2_4_0;
+  spring_data_commons_2_2_0_M1 -> joda_time_2_10_1;
+  spring_data_commons_2_2_0_M1 -> jsr305_3_0_2;
+  spring_data_commons_2_2_0_M1 -> slf4j_api_1_8_0_beta2;
+  spring_data_commons_2_2_0_M1 -> spring_aop_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_beans_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_context_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_core_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_expression_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_oxm_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_tx_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_web_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> spring_webmvc_5_1_5_RELEASE;
+  spring_data_commons_2_2_0_M1 -> xml_apis_1_4_01;
+}

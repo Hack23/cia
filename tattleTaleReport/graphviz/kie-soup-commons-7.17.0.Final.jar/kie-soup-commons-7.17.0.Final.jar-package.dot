@@ -1,0 +1,15 @@
+digraph kie_soup_commons_7_17_0_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_annotations;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_converters;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_converters_reflection;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_core;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_io;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_mapper;
+  org_kie_soup_commons_xstream -> com_thoughtworks_xstream_security;
+  org_kie_soup_commons_xstream -> java_time;
+  org_kie_soup_commons_xstream -> java_time_format;
+  org_kie_soup_commons_xstream -> java_time_temporal;
+  org_kie_soup_commons_xstream -> java_util_function;
+}

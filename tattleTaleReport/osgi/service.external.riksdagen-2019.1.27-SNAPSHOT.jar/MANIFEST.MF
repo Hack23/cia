@@ -38,6 +38,6 @@ Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
  external.riksdagen.voteringlista.impl;version="0.0.0",com.hack23.cia.
  service.external.common.api;version="0.0.0",java.lang,java.math,java.
  text,java.util,javax.xml.bind;version="2.4.0",org.slf4j;version="0.0.
- 0",org.springframework.beans.factory.annotation;version="5.1.4.RELEAS
- E",org.springframework.oxm;version="5.1.4.RELEASE",org.springframewor
- k.stereotype;version="5.1.4.RELEASE"
+ 0",org.springframework.beans.factory.annotation;version="5.1.5.RELEAS
+ E",org.springframework.oxm;version="5.1.5.RELEASE",org.springframewor
+ k.stereotype;version="5.1.5.RELEASE"

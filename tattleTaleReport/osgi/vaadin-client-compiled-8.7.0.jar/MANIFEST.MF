@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Implementation-Title: vaadin-client-compiled
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: com.vaadin.client-compiled
+Implementation-Version: 8.7.0
+Archiver-Version: Plexus Archiver
+Built-By: root
+Bnd-LastModified: 1548937625420
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Implementation-Vendor-Id: com.vaadin
+Import-Package: com.vaadin.osgi.resources;version="[8.7.0,8.7.0]"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.vaadin.osgi.widgetset.DefaultWidgetset
+ Contribution.xml
+Tool: Bnd-3.3.0.201609221906
+Implementation-Vendor: Vaadin Ltd
+Provide-Capability: osgi.service;objectClass:List<String>="com.vaadin.
+ osgi.resources.OsgiVaadinWidgetset"
+Export-Package: com.vaadin.osgi.widgetset;uses:="com.vaadin.osgi.resou
+ rces";version="8.7.0"
+Bundle-Name: Default Widgetset
+Bundle-Version: 8.7.0
+Created-By: 1.8.0_181 (Oracle Corporation)
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://vaadin.com/
+

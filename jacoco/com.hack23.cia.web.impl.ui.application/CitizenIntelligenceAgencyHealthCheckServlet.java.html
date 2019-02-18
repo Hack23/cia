@@ -42,7 +42,7 @@ import javax.servlet.http.HttpServletResponse;
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 <span class="fc" id="L46">		response.setContentType(TEXT_HTML);</span>
 <span class="fc" id="L47">		response.getWriter().println(OK);</span>
 <span class="fc" id="L48">	}</span>

@@ -1,9 +1,9 @@
 digraph dcharts_2_0_0_hack23_dependencies {
   node [shape = box, fontsize=10.0];
-  dcharts_2_0_0_hack23 -> commons_codec_1_11;
+  dcharts_2_0_0_hack23 -> commons_codec_1_12;
   dcharts_2_0_0_hack23 -> commons_lang3_3_8_1;
   dcharts_2_0_0_hack23 -> gwt_user_2_8_2;
-  dcharts_2_0_0_hack23 -> vaadin_client_8_7_0_rc1;
-  dcharts_2_0_0_hack23 -> vaadin_server_8_7_0_rc1;
-  dcharts_2_0_0_hack23 -> vaadin_shared_8_7_0_rc1;
+  dcharts_2_0_0_hack23 -> vaadin_client_8_7_0;
+  dcharts_2_0_0_hack23 -> vaadin_server_8_7_0;
+  dcharts_2_0_0_hack23 -> vaadin_shared_8_7_0;
 }

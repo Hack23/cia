@@ -54,15 +54,15 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">final</strong> PageItemPropertyClickListener pageItemPropertyClickListener = <strong class="jxr_keyword">new</strong> PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,<span class="jxr_string">"personId"</span>);
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  		<strong class="jxr_keyword">final</strong> String personIdValue = <span class="jxr_string">"personId"</span>;
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		ViewRiksdagenPolitician riksdagenPolitician = <strong class="jxr_keyword">new</strong> ViewRiksdagenPolitician().withPersonId(personIdValue);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician riksdagenPolitician = <strong class="jxr_keyword">new</strong> ViewRiksdagenPolitician().withPersonId(personIdValue);
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">final</strong> String pageId = pageItemPropertyClickListener.getPageId(riksdagenPolitician);
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		assertEquals(personIdValue, pageId);
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  		
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  		UI uiMock = Mockito.mock(UI.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  		<strong class="jxr_keyword">final</strong> UI uiMock = Mockito.mock(UI.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  		UI.setCurrent(uiMock);
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  		
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		Navigator navigatorMock = Mockito.mock(Navigator.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">final</strong> Navigator navigatorMock = Mockito.mock(Navigator.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  				
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  		pageItemPropertyClickListener.click(<strong class="jxr_keyword">new</strong> RendererClickEvent(<strong class="jxr_keyword">new</strong> Grid(), riksdagenPolitician, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>) {});
@@ -89,7 +89,7 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> selectionChangeEmptyTest() {
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">final</strong> PageItemPropertyClickListener listener = <strong class="jxr_keyword">new</strong> PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,<span class="jxr_string">"wrongProperty"</span>);
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		SelectionEvent&lt;Serializable&gt; event = Mockito.mock(SelectionEvent.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		<strong class="jxr_keyword">final</strong> SelectionEvent&lt;Serializable&gt; event = Mockito.mock(SelectionEvent.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		Mockito.when(event.getAllSelectedItems()).thenReturn(<strong class="jxr_keyword">new</strong> HashSet());
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		listener.selectionChange(event);
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  

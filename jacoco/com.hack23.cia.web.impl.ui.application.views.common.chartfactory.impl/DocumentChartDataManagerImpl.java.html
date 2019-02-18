@@ -121,7 +121,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 <span class="fc" id="L121">		dataSeries.newSeries();</span>
 
 <span class="fc bfc" id="L123" title="All 2 branches covered.">		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {</span>
-<span class="pc bpc" id="L124" title="1 of 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
+<span class="pc bpc" id="L124" title="2 of 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
 				try {
 <span class="fc" id="L126">					dataSeries.add(simpleDateFormat.format(parseInputDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());</span>
 <span class="nc" id="L127">				} catch (final ParseException e) {</span>

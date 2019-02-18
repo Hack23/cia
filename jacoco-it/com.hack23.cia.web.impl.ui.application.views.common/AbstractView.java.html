@@ -124,7 +124,7 @@ public abstract class AbstractView extends Panel implements View {
 	public final void enter(final ViewChangeEvent event) {
 		try {
 
-<span class="fc" id="L127">			String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());</span>
+<span class="fc" id="L127">			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());</span>
 			
 <span class="fc bfc" id="L129" title="All 2 branches covered.">			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {</span>
 <span class="fc bfc" id="L130" title="All 4 branches covered.">				if (pageModeContentFactory.matches(pageName, parameters) &amp;&amp; pageModeContentFactory.validReference(parameters)) {					</span>
@@ -206,7 +206,7 @@ public abstract class AbstractView extends Panel implements View {
 	 * Creates the top header actions for user context.
 	 */
 	private void createTopHeaderActionsForUserContext() {
-<span class="fc bfc" id="L209" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="pc bpc" id="L209" title="1 of 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
 <span class="fc" id="L210">			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();</span>
 <span class="fc" id="L211">			topHeaderRightPanel.addComponent(userHomePageLink);</span>
 <span class="fc" id="L212">			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);</span>

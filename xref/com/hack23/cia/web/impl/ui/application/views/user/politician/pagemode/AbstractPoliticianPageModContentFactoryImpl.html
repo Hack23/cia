@@ -108,7 +108,7 @@
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 	}
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> 	@Override
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<strong class="jxr_keyword">protected</strong> ViewRiksdagenPolitician getItem(String parameters) {
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<strong class="jxr_keyword">protected</strong> ViewRiksdagenPolitician getItem(<strong class="jxr_keyword">final</strong> String parameters) {
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 		<strong class="jxr_keyword">final</strong> PersonData personData = getApplicationManager().getDataContainer(PersonData.<strong class="jxr_keyword">class</strong>).load(pageId);
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 		<strong class="jxr_keyword">if</strong> (personData != <strong class="jxr_keyword">null</strong>) {

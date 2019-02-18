@@ -1,0 +1,9 @@
+digraph spring_aop_5_1_5_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_aop_5_1_5_RELEASE -> aspectjweaver_1_9_2;
+  spring_aop_5_1_5_RELEASE -> commons_pool2_2_6_1;
+  spring_aop_5_1_5_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_aop_5_1_5_RELEASE -> spring_beans_5_1_5_RELEASE;
+  spring_aop_5_1_5_RELEASE -> spring_core_5_1_5_RELEASE;
+  spring_aop_5_1_5_RELEASE -> xml_apis_1_4_01;
+}

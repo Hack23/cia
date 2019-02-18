@@ -1,9 +1,9 @@
 digraph poi_ooxml_4_0_1_dependencies {
   node [shape = box, fontsize=10.0];
-  poi_ooxml_4_0_1 -> bcpkix_jdk15on_1_60;
-  poi_ooxml_4_0_1 -> bcprov_jdk15on_1_60;
+  poi_ooxml_4_0_1 -> bcpkix_jdk15on_1_61;
+  poi_ooxml_4_0_1 -> bcprov_jdk15on_1_61;
   poi_ooxml_4_0_1 -> commons_collections4_4_3;
-  poi_ooxml_4_0_1 -> commons_compress_1_18;
+  poi_ooxml_4_0_1 -> commons_compress_1_18_0_redhat_00001;
   poi_ooxml_4_0_1 -> curvesapi_1_06;
   poi_ooxml_4_0_1 -> jaxb_api_2_4_0;
   poi_ooxml_4_0_1 -> poi_4_0_1;

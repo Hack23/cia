@@ -1,7 +1,7 @@
 digraph model_internal_application_user_impl_2019_1_27_SNAPSHOT_dependencies {
   node [shape = box, fontsize=10.0];
   model_internal_application_user_impl_2019_1_27_SNAPSHOT -> javax_persistence_api_2_2;
-  model_internal_application_user_impl_2019_1_27_SNAPSHOT -> javers_core_5_1_3;
+  model_internal_application_user_impl_2019_1_27_SNAPSHOT -> javers_core_5_2_0;
   model_internal_application_user_impl_2019_1_27_SNAPSHOT -> jaxb_api_2_4_0;
   model_internal_application_user_impl_2019_1_27_SNAPSHOT -> jaxb2_basics_runtime_0_12_0;
   model_internal_application_user_impl_2019_1_27_SNAPSHOT -> model_common_api_2019_1_27_SNAPSHOT;

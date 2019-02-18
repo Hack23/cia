@@ -85,50 +85,50 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L88">		final VerticalLayout content = createPanelContent();</span>
+<span class="nc" id="L88">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L91">		final int pageNr= getPageNr(parameters);</span>
+<span class="nc" id="L90">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L91">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L93">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="nc" id="L93">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L95">		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_SESSION);</span>
+<span class="nc" id="L95">		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_SESSION);</span>
 
-<span class="fc" id="L97">		final DataContainer&lt;ApplicationSession, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L98">				.getDataContainer(ApplicationSession.class);</span>
+<span class="nc" id="L97">		final DataContainer&lt;ApplicationSession, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L98">				.getDataContainer(ApplicationSession.class);</span>
 
-<span class="fc" id="L100">		final List&lt;ApplicationSession&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate);</span>
+<span class="nc" id="L100">		final List&lt;ApplicationSession&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate);</span>
 
-<span class="fc" id="L102">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="nc" id="L102">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="fc" id="L104">		getGridFactory().createBasicBeanItemGrid(content, ApplicationSession.class, pageOrderBy,</span>
+<span class="nc" id="L104">		getGridFactory().createBasicBeanItemGrid(content, ApplicationSession.class, pageOrderBy,</span>
 				APPLICATION_SESSION,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;hjid&quot;), null, new ListPropertyConverter[] { new ListPropertyConverter(&quot;page&quot;, &quot;events&quot;, &quot;actionName&quot;)});
 
-<span class="pc bpc" id="L109" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L111">			final ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="nc" id="L111">			final ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">			if (applicationSession != null) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">			if (applicationSession != null) {</span>
 
-<span class="fc" id="L115">				final VerticalLayout rightLayout = new VerticalLayout();</span>
-<span class="fc" id="L116">				rightLayout.setSizeFull();</span>
-<span class="fc" id="L117">				final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L118">				horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
-<span class="fc" id="L119">				content.addComponent(horizontalLayout);</span>
-<span class="fc" id="L120">				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);</span>
+<span class="nc" id="L115">				final VerticalLayout rightLayout = new VerticalLayout();</span>
+<span class="nc" id="L116">				rightLayout.setSizeFull();</span>
+<span class="nc" id="L117">				final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L118">				horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="nc" id="L119">				content.addComponent(horizontalLayout);</span>
+<span class="nc" id="L120">				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);</span>
 
 
-<span class="fc" id="L123">				getFormFactory().addFormPanelTextFields(horizontalLayout, applicationSession,</span>
+<span class="nc" id="L123">				getFormFactory().addFormPanelTextFields(horizontalLayout, applicationSession,</span>
 						ApplicationSession.class,
 						AS_LIST);
 
-<span class="fc" id="L127">				horizontalLayout.addComponent(rightLayout);</span>
-<span class="fc" id="L128">				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);</span>
+<span class="nc" id="L127">				horizontalLayout.addComponent(rightLayout);</span>
+<span class="nc" id="L128">				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);</span>
 
-<span class="fc" id="L130">				getGridFactory().createBasicBeanItemGrid(rightLayout,</span>
-<span class="fc" id="L131">						ApplicationActionEvent.class,applicationSession.getEvents(),</span>
+<span class="nc" id="L130">				getGridFactory().createBasicBeanItemGrid(rightLayout,</span>
+<span class="nc" id="L131">						ApplicationActionEvent.class,applicationSession.getEvents(),</span>
 						APPLICATION_ACTION_EVENT,
 						COLUMN_ORDER2, HIDE_COLUMNS2,
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;hjid&quot;),
@@ -137,10 +137,10 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 		}
 
-<span class="fc" id="L140">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="nc" id="L140">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L143">		return content;</span>
+<span class="nc" id="L143">		return content;</span>
 
 	}
 

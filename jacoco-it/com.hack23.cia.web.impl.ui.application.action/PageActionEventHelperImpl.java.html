@@ -54,13 +54,13 @@ public final class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		String pageModeToUse;
 
-<span class="pc bpc" id="L57" title="1 of 6 branches missed.">		if (pageMode != null &amp;&amp; elementId != null &amp;&amp; pageMode.contains(elementId)) {</span>
+<span class="pc bpc" id="L57" title="2 of 6 branches missed.">		if (pageMode != null &amp;&amp; elementId != null &amp;&amp; pageMode.contains(elementId)) {</span>
 <span class="fc" id="L58">			pageModeToUse= pageMode.replace(elementId, &quot;&quot;).replace(&quot;/&quot;, &quot;&quot;);</span>
 		} else {
 <span class="fc" id="L60">			pageModeToUse = pageMode;</span>
 		}
 
-<span class="fc bfc" id="L63" title="All 6 branches covered.">		if ((pageModeToUse == null || &quot;&quot;.equals(pageModeToUse)) &amp;&amp; ApplicationEventGroup.USER == applicationEventGroup) {</span>
+<span class="pc bpc" id="L63" title="2 of 6 branches missed.">		if ((pageModeToUse == null || &quot;&quot;.equals(pageModeToUse)) &amp;&amp; ApplicationEventGroup.USER == applicationEventGroup) {</span>
 <span class="fc" id="L64">			pageModeToUse=&quot;Overview&quot;;</span>
 		}
 

@@ -80,7 +80,7 @@ Import-Package: java.io,java.lang,java.lang.ref,java.lang.reflect,java
  util.concurrent.locks,java.util.regex,java.util.zip,javax.crypto,java
  x.crypto.spec,javax.naming,javax.naming.directory,javax.naming.ldap,j
  avax.net,javax.net.ssl,javax.security.auth.x500,org.apache.commons.co
- dec.binary;version="1.11",org.apache.commons.logging;version="0.0.0",
+ dec.binary;version="1.12",org.apache.commons.logging;version="0.0.0",
  org.apache.http;version="4.4.11",org.apache.http.annotation;version="
  4.4.11",org.apache.http.concurrent;version="4.4.11",org.apache.http.c
  onfig;version="4.4.11",org.apache.http.entity;version="4.4.11",org.ap

@@ -54,7 +54,7 @@ abstract class AbstractBallotPageModContentFactoryImpl extends AbstractItemPageM
 	}
 
 	@Override
-	protected List&lt;ViewRiksdagenVoteDataBallotSummary&gt; getItem(String parameters) {
+	protected List&lt;ViewRiksdagenVoteDataBallotSummary&gt; getItem(final String parameters) {
 <span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
 
 <span class="fc" id="L60">		final DataContainer&lt;ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId&gt; dataContainer = getApplicationManager()</span>

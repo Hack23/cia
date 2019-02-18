@@ -1,21 +1,21 @@
 digraph service_data_impl_2019_1_27_SNAPSHOT_dependencies {
   node [shape = box, fontsize=10.0];
-  service_data_impl_2019_1_27_SNAPSHOT -> aws_java_sdk_core_1_11_490;
-  service_data_impl_2019_1_27_SNAPSHOT -> aws_java_sdk_secretsmanager_1_11_490;
+  service_data_impl_2019_1_27_SNAPSHOT -> aws_java_sdk_core_1_11_500;
+  service_data_impl_2019_1_27_SNAPSHOT -> aws_java_sdk_secretsmanager_1_11_500;
   service_data_impl_2019_1_27_SNAPSHOT -> aws_secretsmanager_caching_java_1_0_0;
   service_data_impl_2019_1_27_SNAPSHOT -> commons_lang_2_6_0_redhat_7;
   service_data_impl_2019_1_27_SNAPSHOT -> commons_lang3_3_8_1;
-  service_data_impl_2019_1_27_SNAPSHOT -> drlx_parser_7_16_0_Final;
   service_data_impl_2019_1_27_SNAPSHOT -> guava_27_0_1_jre;
   service_data_impl_2019_1_27_SNAPSHOT -> hibernate_core_5_4_1_Final;
-  service_data_impl_2019_1_27_SNAPSHOT -> hibernate_search_engine_5_11_0_Final;
-  service_data_impl_2019_1_27_SNAPSHOT -> hibernate_search_orm_5_11_0_Final;
+  service_data_impl_2019_1_27_SNAPSHOT -> hibernate_search_engine_5_11_1_Final;
+  service_data_impl_2019_1_27_SNAPSHOT -> hibernate_search_orm_5_11_1_Final;
   service_data_impl_2019_1_27_SNAPSHOT -> jackson_databind_2_9_8;
+  service_data_impl_2019_1_27_SNAPSHOT -> javax_annotation_api_1_3_2;
   service_data_impl_2019_1_27_SNAPSHOT -> javax_persistence_api_2_2;
-  service_data_impl_2019_1_27_SNAPSHOT -> javers_core_5_1_3;
-  service_data_impl_2019_1_27_SNAPSHOT -> javers_persistence_sql_5_1_3;
-  service_data_impl_2019_1_27_SNAPSHOT -> javers_spring_5_1_3;
-  service_data_impl_2019_1_27_SNAPSHOT -> javers_spring_jpa_5_1_3;
+  service_data_impl_2019_1_27_SNAPSHOT -> javers_core_5_2_0;
+  service_data_impl_2019_1_27_SNAPSHOT -> javers_persistence_sql_5_2_0;
+  service_data_impl_2019_1_27_SNAPSHOT -> javers_spring_5_2_0;
+  service_data_impl_2019_1_27_SNAPSHOT -> javers_spring_jpa_5_2_0;
   service_data_impl_2019_1_27_SNAPSHOT -> lucene_analyzers_common_5_5_5;
   service_data_impl_2019_1_27_SNAPSHOT -> lucene_core_5_5_5;
   service_data_impl_2019_1_27_SNAPSHOT -> model_external_riksdagen_documentcontent_impl_2019_1_27_SNAPSHOT;
@@ -32,9 +32,9 @@ digraph service_data_impl_2019_1_27_SNAPSHOT_dependencies {
   service_data_impl_2019_1_27_SNAPSHOT -> postgresql_42_2_5;
   service_data_impl_2019_1_27_SNAPSHOT -> service_data_api_2019_1_27_SNAPSHOT;
   service_data_impl_2019_1_27_SNAPSHOT -> slf4j_api_1_8_0_beta2;
-  service_data_impl_2019_1_27_SNAPSHOT -> spring_beans_5_1_4_RELEASE;
-  service_data_impl_2019_1_27_SNAPSHOT -> spring_context_5_1_4_RELEASE;
-  service_data_impl_2019_1_27_SNAPSHOT -> spring_jdbc_5_1_4_RELEASE;
-  service_data_impl_2019_1_27_SNAPSHOT -> spring_security_core_5_2_0_M1;
-  service_data_impl_2019_1_27_SNAPSHOT -> spring_tx_5_1_4_RELEASE;
+  service_data_impl_2019_1_27_SNAPSHOT -> spring_beans_5_1_5_RELEASE;
+  service_data_impl_2019_1_27_SNAPSHOT -> spring_context_5_1_5_RELEASE;
+  service_data_impl_2019_1_27_SNAPSHOT -> spring_jdbc_5_1_5_RELEASE;
+  service_data_impl_2019_1_27_SNAPSHOT -> spring_security_core_5_1_4_RELEASE;
+  service_data_impl_2019_1_27_SNAPSHOT -> spring_tx_5_1_5_RELEASE;
 }

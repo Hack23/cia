@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-Description: Java(TM) Interceptor 1.2 API Design Specification
+Bundle-License: https://oss.oracle.com/licenses/CDDL+GPL-1.1
+Bundle-SymbolicName: javax.interceptor-api
+Implementation-Version: 1.2.2
+Archiver-Version: Plexus Archiver
+Built-By: pranjal
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1521003107607
+Specification-Vendor: Oracle Corporation
+Implementation-Vendor-Id: org.glassfish}
+Bundle-DocURL: http://www.oracle.com/
+Bundle-Vendor: Oracle Corporation
+Import-Package: javax.interceptor;version="1.2.2"
+Tool: Bnd-0.0.255
+Implementation-Vendor: Oracle Corporation
+Export-Package: javax.interceptor;version="1.2.2"
+Bundle-Version: 1.2.2
+Bundle-Name: javax.interceptor API
+Extension-Name: javax.interceptor
+Created-By: 1.8.0_121 (Oracle Corporation)
+Build-Jdk: 1.8.0_121
+Specification-Version: 1.2
+

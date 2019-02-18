@@ -22,5 +22,5 @@ Import-Package: java.io,java.lang,java.net,java.nio.charset,java.util,
  "1.0",org.apache.http.client.fluent;version="4.5",org.jdom2;version="
  2.0.0",org.jdom2.input;version="2.0.0",org.jdom2.input.sax;version="2
  .0.0",org.jdom2.transform;version="2.0.0",org.slf4j;version="0.0.0",o
- rg.springframework.oxm;version="5.1.4.RELEASE",org.springframework.st
- ereotype;version="5.1.4.RELEASE"
+ rg.springframework.oxm;version="5.1.5.RELEASE",org.springframework.st
+ ereotype;version="5.1.5.RELEASE"

@@ -204,7 +204,7 @@ Import-Package: java.awt,java.awt.font,java.awt.geom,java.awt.image,ja
  notation;version="2.4.0",javax.xml.bind.annotation.adapters;version="
  2.4.0",javax.xml.namespace;version="1.0",javax.xml.parsers;version="1
  .0",javax.xml.stream;version="1.0",javax.xml.stream.events;version="1
- .0",org.apache.commons.codec.digest;version="1.11",org.apache.commons
+ .0",org.apache.commons.codec.digest;version="1.12",org.apache.commons
  .collections4;version="4.3",org.apache.commons.collections4.bidimap;v
  ersion="4.3",org.apache.commons.logging;version="0.0.0",org.apache.co
  mmons.math3.exception;version="3.6.1",org.apache.commons.math3.linear

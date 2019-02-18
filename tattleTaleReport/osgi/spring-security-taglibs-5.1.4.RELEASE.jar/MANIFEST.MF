@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-security-taglibs
+Automatic-Module-Name: spring.security.taglibs
+Implementation-Version: 5.1.4.RELEASE
+Created-By: 1.8.0_191 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.security.taglibs.authz
+Bundle-Description: spring-security-taglibs-5.1.4.RELEASE
+Bundle-Name: spring-security-taglibs-5.1.4.RELEASE
+Bundle-Version: 5.1.4.RELEASE
+Export-Package: org.springframework.security.taglibs,org.springframewo
+ rk.security.taglibs.authz;uses:="org.springframework.expression,org.s
+ pringframework.security.access,org.springframework.security.access.ex
+ pression,org.springframework.security.core,org.springframework.securi
+ ty.core.context,org.springframework.security.taglibs,org.springframew
+ ork.security.web,org.springframework.security.web.access,org.springfr
+ amework.security.web.context.support,org.springframework.security.web
+ .util",org.springframework.security.taglibs.csrf;uses:="org.springfra
+ mework.security.web.csrf"
+Import-Package: java.io,java.lang,java.util,javax.servlet,javax.servle
+ t.http,javax.servlet.jsp,javax.servlet.jsp.tagext,org.apache.commons.
+ logging;version="0.0.0",org.springframework.beans;version="5.1.5.RELE
+ ASE",org.springframework.context;version="5.1.5.RELEASE",org.springfr
+ amework.core;version="5.1.5.RELEASE",org.springframework.expression;v
+ ersion="5.1.5.RELEASE",org.springframework.security.access;version="5
+ .1.4.RELEASE",org.springframework.security.access.expression;version=
+ "5.1.4.RELEASE",org.springframework.security.core;version="5.1.4.RELE
+ ASE",org.springframework.security.core.context;version="5.1.4.RELEASE
+ ",org.springframework.security.web;version="5.1.4.RELEASE",org.spring
+ framework.security.web.access;version="5.1.4.RELEASE",org.springframe
+ work.security.web.context.support;version="5.1.4.RELEASE",org.springf
+ ramework.security.web.csrf;version="5.1.4.RELEASE",org.springframewor
+ k.security.web.util;version="5.1.4.RELEASE",org.springframework.util;
+ version="5.1.5.RELEASE",org.springframework.web.context;version="5.1.
+ 5.RELEASE",org.springframework.web.util;version="5.1.5.RELEASE"

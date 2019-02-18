@@ -1,6 +1,6 @@
 digraph poi_4_0_1_dependencies {
   node [shape = box, fontsize=10.0];
-  poi_4_0_1 -> commons_codec_1_11;
+  poi_4_0_1 -> commons_codec_1_12;
   poi_4_0_1 -> commons_collections4_4_3;
   poi_4_0_1 -> commons_math3_3_6_1;
   poi_4_0_1 -> jaxb_api_2_4_0;

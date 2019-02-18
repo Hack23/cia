@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.drools.templates
+Built-By: jenkins
+Bnd-LastModified: 1548690215491
+Implementation-Vendor-Id: org.drools
+Specification-Title: Drools :: Templates
+Bundle-DocURL: http://www.jboss.org/
+Include-Resource: org/drools/template/package.html=src/main/resources/
+ org/drools/template/package.html
+Import-Package: org.drools.compiler.builder.impl,org.drools.core.defin
+ itions,org.drools.core.impl,org.drools.core.util,org.drools.template,
+ org.drools.template.model,org.drools.template.objects,org.drools.temp
+ late.parser,org.kie.api.definition,org.kie.api.runtime,org.kie.api.ru
+ ntime.rule,org.mvel2.integration,org.mvel2.integration.impl,org.mvel2
+ .templates
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Url: https://github.com/kiegroup/drools/drools-templates
+Export-Package: org.drools.template;version="7.17.0",org.drools.templa
+ te.jdbc;version="7.17.0",org.drools.template.model;version="7.17.0",o
+ rg.drools.template.objects;version="7.17.0",org.drools.template.parse
+ r;version="7.17.0"
+Bundle-Name: Drools :: Templates
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion
+  does complex event processing (CEP).
+Implementation-Title: Drools :: Templates
+Automatic-Module-Name: org.drools.templates
+Implementation-Version: 7.17.0.Final
+Java-Version: 1.8.0_131
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-
+ templates
+Bundle-ManifestVersion: 2
+Os-Arch: amd64
+Specification-Vendor: JBoss by Red Hat
+Bundle-Vendor: JBoss by Red Hat
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: JBoss by Red Hat
+Os-Version: 3.10.0-514.el7.x86_64
+Bundle-Version: 7.17.0.201901281534
+Scm-Revision: 95066636118cd73d45e8a8275f3814bc910a5f5f
+Private-Package: org.drools.template.model,org.drools.template,org.dro
+ ols.template.parser,org.drools.template.jdbc,org.drools.template.obje
+ cts
+Build-Jdk: 1.8.0_131
+Created-By: Apache Maven Bundle Plugin
+Implementation-URL: http://www.kiegroup.org/drools/drools-templates
+Specification-Version: 7.17.0.Final
+

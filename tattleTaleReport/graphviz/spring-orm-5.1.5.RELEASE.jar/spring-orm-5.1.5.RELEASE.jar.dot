@@ -1,0 +1,15 @@
+digraph spring_orm_5_1_5_RELEASE_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_orm_5_1_5_RELEASE -> geronimo_jta_1_1_spec_1_1_1;
+  spring_orm_5_1_5_RELEASE -> hibernate_core_5_4_1_Final;
+  spring_orm_5_1_5_RELEASE -> javax_persistence_api_2_2;
+  spring_orm_5_1_5_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_orm_5_1_5_RELEASE -> spring_aop_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_beans_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_context_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_core_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_jdbc_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_tx_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> spring_web_5_1_5_RELEASE;
+  spring_orm_5_1_5_RELEASE -> xml_apis_1_4_01;
+}

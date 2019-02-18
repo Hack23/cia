@@ -209,7 +209,7 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L209">			converter = new StringToDateConverter();</span>
 <span class="fc bfc" id="L210" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="fc" id="L211">			converter = new StringToIntegerConverter(&quot;Input value should be an integer&quot;);</span>
-<span class="fc bfc" id="L212" title="All 4 branches covered.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="pc bpc" id="L212" title="1 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="fc" id="L213">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
 <span class="fc bfc" id="L214" title="All 2 branches covered.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
 <span class="fc" id="L215">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>

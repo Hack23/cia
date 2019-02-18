@@ -368,12 +368,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 <span class="fc" id="L368">		final DataSeries dataSeries = new DataSeries();</span>
 <span class="fc" id="L369">		final Series series = new Series();</span>
 		
-<span class="fc" id="L371">		Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();</span>
+<span class="fc" id="L371">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();</span>
 		
-<span class="fc bfc" id="L373" title="All 2 branches covered.">		for (Entry&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; entry : reportByMinistry.entrySet()) {</span>
+<span class="fc bfc" id="L373" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; entry : reportByMinistry.entrySet()) {</span>
 <span class="fc" id="L374">			series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
 <span class="fc" id="L375">			dataSeries.newSeries();			</span>
-<span class="fc bfc" id="L376" title="All 2 branches covered.">			Map&lt;Integer, Double&gt; annualSummaryMap = entry.getValue().stream().filter(t -&gt; t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			</span>
+<span class="fc bfc" id="L376" title="All 2 branches covered.">			final Map&lt;Integer, Double&gt; annualSummaryMap = entry.getValue().stream().filter(t -&gt; t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			</span>
 
 <span class="fc bfc" id="L378" title="All 2 branches covered.">			for (final Entry&lt;Integer, Double&gt; entryData : annualSummaryMap.entrySet()) {</span>
 <span class="pc bpc" id="L379" title="1 of 4 branches missed.">				if (entryData.getValue() != null &amp;&amp; entryData.getValue().intValue() &gt; 0) {</span>

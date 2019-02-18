@@ -1,0 +1,72 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.commons-compress
+Built-By: PNC-Builder-0.4.0
+Bnd-LastModified: 1544440397101
+Implementation-Vendor-Id: org.apache
+Specification-Title: Apache Commons Compress
+Bundle-DocURL: https://commons.apache.org/proper/commons-compress/
+Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt
+ =NOTICE.txt
+Import-Package: org.tukaani.xz;resolution:=optional,org.brotli.dec;res
+ olution:=optional,com.github.luben.zstd;resolution:=optional,javax.cr
+ ypto;resolution:=optional,javax.crypto.spec;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Main-Class: org.apache.commons.compress.archivers.Lister
+Export-Package: org.apache.commons.compress;version="1.18.0.redhat-000
+ 01",org.apache.commons.compress.archivers;version="1.18.0.redhat-0000
+ 1",org.apache.commons.compress.archivers.ar;version="1.18.0.redhat-00
+ 001",org.apache.commons.compress.archivers.arj;version="1.18.0.redhat
+ -00001",org.apache.commons.compress.archivers.cpio;version="1.18.0.re
+ dhat-00001",org.apache.commons.compress.archivers.dump;version="1.18.
+ 0.redhat-00001",org.apache.commons.compress.archivers.examples;versio
+ n="1.18.0.redhat-00001",org.apache.commons.compress.archivers.jar;ver
+ sion="1.18.0.redhat-00001",org.apache.commons.compress.archivers.seve
+ nz;version="1.18.0.redhat-00001",org.apache.commons.compress.archiver
+ s.tar;version="1.18.0.redhat-00001",org.apache.commons.compress.archi
+ vers.zip;version="1.18.0.redhat-00001",org.apache.commons.compress.ch
+ anges;version="1.18.0.redhat-00001",org.apache.commons.compress.compr
+ essors;version="1.18.0.redhat-00001",org.apache.commons.compress.comp
+ ressors.brotli;version="1.18.0.redhat-00001",org.apache.commons.compr
+ ess.compressors.bzip2;version="1.18.0.redhat-00001",org.apache.common
+ s.compress.compressors.deflate;version="1.18.0.redhat-00001",org.apac
+ he.commons.compress.compressors.deflate64;version="1.18.0.redhat-0000
+ 1",org.apache.commons.compress.compressors.gzip;version="1.18.0.redha
+ t-00001",org.apache.commons.compress.compressors.lz4;version="1.18.0.
+ redhat-00001",org.apache.commons.compress.compressors.lz77support;ver
+ sion="1.18.0.redhat-00001",org.apache.commons.compress.compressors.lz
+ ma;version="1.18.0.redhat-00001",org.apache.commons.compress.compress
+ ors.lzw;version="1.18.0.redhat-00001",org.apache.commons.compress.com
+ pressors.pack200;version="1.18.0.redhat-00001",org.apache.commons.com
+ press.compressors.snappy;version="1.18.0.redhat-00001",org.apache.com
+ mons.compress.compressors.xz;version="1.18.0.redhat-00001",org.apache
+ .commons.compress.compressors.z;version="1.18.0.redhat-00001",org.apa
+ che.commons.compress.compressors.zstandard;version="1.18.0.redhat-000
+ 01",org.apache.commons.compress.parallel;version="1.18.0.redhat-00001
+ ",org.apache.commons.compress.utils;version="1.18.0.redhat-00001"
+Bundle-Name: Apache Commons Compress
+Extension-Name: org.apache.commons.compress
+Implementation-Title: Apache Commons Compress
+Bundle-Description: Apache Commons Compress software defines an API fo
+ r working withcompression and archive formats.  These include: bzip2,
+  gzip, pack200,lzma, xz, Snappy, traditional Unix Compress, DEFLATE, 
+ DEFLATE64, LZ4,Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7
+ z, arj.
+Automatic-Module-Name: org.apache.commons.compress
+Implementation-Version: 1.18.0.redhat-00001
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 1.18.0.redhat-00001
+X-Compile-Target-JDK: 1.7
+Implementation-Build: master@r501853a170dfd55e14ffac7b487bbfbb3073285b
+ ; 2018-12-10 11:12:45+0000
+X-Compile-Source-JDK: 1.7
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_121
+Implementation-URL: https://commons.apache.org/proper/commons-compress
+ /
+Specification-Version: 1.18.0.redhat-00001
+

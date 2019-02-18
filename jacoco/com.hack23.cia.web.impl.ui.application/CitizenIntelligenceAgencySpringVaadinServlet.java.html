@@ -46,10 +46,10 @@ import com.vaadin.spring.server.SpringVaadinServlet;
 
 	@Override
 	protected void servletInitialized() throws ServletException {
-<span class="fc" id="L49">		VaadinServletService service = getService();</span>
+<span class="fc" id="L49">		final VaadinServletService service = getService();</span>
 <span class="fc" id="L50">		service.addSessionInitListener(event -&gt; {</span>
 <span class="fc" id="L51">			final VaadinSession session = event.getSession();</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">			for (UIProvider provider : session.getUIProviders()) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">			for (final UIProvider provider : session.getUIProviders()) {</span>
 <span class="pc bpc" id="L53" title="1 of 2 branches missed.">				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
 <span class="fc" id="L54">					session.removeUIProvider(provider);</span>
 				}
@@ -57,14 +57,14 @@ import com.vaadin.spring.server.SpringVaadinServlet;
 <span class="fc" id="L57">			session.addUIProvider(new CustomSpringUIProvider(session));</span>
 <span class="fc" id="L58">		});</span>
 <span class="fc" id="L59">		service.addSessionDestroyListener(event -&gt; {</span>
-<span class="fc" id="L60">			VaadinSession session = event.getSession();</span>
+<span class="fc" id="L60">			final VaadinSession session = event.getSession();</span>
 <span class="fc" id="L61">			UIScopeImpl.cleanupSession(session);</span>
 <span class="fc" id="L62">			VaadinSessionScope.cleanupSession(session);</span>
 <span class="fc" id="L63">		});</span>
 <span class="fc" id="L64">	}</span>
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void service(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
 <span class="fc" id="L69">		response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
 <span class="fc" id="L70">		super.service(request, response);</span>

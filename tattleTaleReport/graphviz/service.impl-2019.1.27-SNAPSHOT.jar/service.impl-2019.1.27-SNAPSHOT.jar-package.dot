@@ -107,6 +107,7 @@ digraph service_impl_2019_1_27_SNAPSHOT_package_dependencies {
   com_hack23_cia_service_impl_email -> com_hack23_cia_model_internal_application_system_impl;
   com_hack23_cia_service_impl_email -> com_hack23_cia_service_data_api;
   com_hack23_cia_service_impl_email -> java_lang;
+  com_hack23_cia_service_impl_email -> org_apache_commons_lang3;
   com_hack23_cia_service_impl_email -> org_springframework_security_access_annotation;
   com_hack23_cia_service_impl_email -> org_springframework_security_authentication;
   com_hack23_cia_service_impl_email -> org_springframework_security_core;

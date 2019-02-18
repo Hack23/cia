@@ -44,7 +44,7 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 	private static final long serialVersionUID = 1L;
 
 	 @Override
-	  protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		 
+	  protected void service(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {		 
 <span class="fc" id="L48">		 response.setHeader(&quot;Pragma&quot;, &quot;cache&quot;);</span>
 <span class="fc" id="L49">	     super.service(request, response);</span>
 <span class="fc" id="L50">	  }</span>

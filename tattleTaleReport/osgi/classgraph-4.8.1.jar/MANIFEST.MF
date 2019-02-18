@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Implementation-Title: ClassGraph
+Bundle-Description: The uber-fast, ultra-lightweight classpath and mod
+ ule path scanner for JVM languages.
+Bundle-License: http://opensource.org/licenses/MIT
+Bundle-SymbolicName: io.github.classgraph.classgraph
+Implementation-Version: 4.8.1
+Bundle-Category: Utilities
+Built-By: luke
+Bnd-LastModified: 1550179784008
+Bundle-ManifestVersion: 2
+Specification-Title: ClassGraph
+Implementation-Vendor-Id: io.github.classgraph
+Bundle-Vendor: Luke Hutchison
+Import-Package: io.github.classgraph,javax.xml.namespace,javax.xml.par
+ sers,javax.xml.xpath,nonapi.io.github.classgraph,nonapi.io.github.cla
+ ssgraph.classloaderhandler,nonapi.io.github.classgraph.classpath,nona
+ pi.io.github.classgraph.concurrency,nonapi.io.github.classgraph.fastz
+ ipfilereader,nonapi.io.github.classgraph.json,nonapi.io.github.classg
+ raph.recycler,nonapi.io.github.classgraph.types,nonapi.io.github.clas
+ sgraph.utils,org.w3c.dom
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-4.1.0.201810181252
+Export-Package: io.github.classgraph;version="4.8.1",nonapi.io.github.
+ classgraph.classpath;uses:="io.github.classgraph,nonapi.io.github.cla
+ ssgraph,nonapi.io.github.classgraph.utils";version="4.8.1",nonapi.io.
+ github.classgraph;uses:="io.github.classgraph,nonapi.io.github.classg
+ raph.utils";version="4.8.1",nonapi.io.github.classgraph.types;version
+ ="4.8.1",nonapi.io.github.classgraph.classloaderhandler;uses:="nonapi
+ .io.github.classgraph,nonapi.io.github.classgraph.classpath,nonapi.io
+ .github.classgraph.utils";version="4.8.1",nonapi.io.github.classgraph
+ .fastzipfilereader;uses:="io.github.classgraph,nonapi.io.github.class
+ graph,nonapi.io.github.classgraph.concurrency,nonapi.io.github.classg
+ raph.recycler,nonapi.io.github.classgraph.utils";version="4.8.1",nona
+ pi.io.github.classgraph.json;version="4.8.1",nonapi.io.github.classgr
+ aph.utils;version="4.8.1",nonapi.io.github.classgraph.recycler;versio
+ n="4.8.1",nonapi.io.github.classgraph.concurrency;uses:="nonapi.io.gi
+ thub.classgraph.utils";version="4.8.1"
+Bundle-Name: ClassGraph
+Bundle-Version: 4.8.1
+Multi-Release: true
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 11.0.2
+Specification-Version: 4.8.1
+Implementation-URL: https://github.com/classgraph/classgraph
+

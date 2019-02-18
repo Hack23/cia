@@ -1,0 +1,4 @@
+digraph protobuf_java_3_7_0_rc1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_google_protobuf_compiler -> com_google_protobuf;
+}

@@ -6,7 +6,7 @@ digraph service_external_val_2019_1_27_SNAPSHOT_dependencies {
   service_external_val_2019_1_27_SNAPSHOT -> model_external_val_partier_impl_2019_1_27_SNAPSHOT;
   service_external_val_2019_1_27_SNAPSHOT -> model_external_val_riksdagsvalkrets_impl_2019_1_27_SNAPSHOT;
   service_external_val_2019_1_27_SNAPSHOT -> service_external_common_2019_1_27_SNAPSHOT;
-  service_external_val_2019_1_27_SNAPSHOT -> spring_beans_5_1_4_RELEASE;
-  service_external_val_2019_1_27_SNAPSHOT -> spring_context_5_1_4_RELEASE;
-  service_external_val_2019_1_27_SNAPSHOT -> spring_oxm_5_1_4_RELEASE;
+  service_external_val_2019_1_27_SNAPSHOT -> spring_beans_5_1_5_RELEASE;
+  service_external_val_2019_1_27_SNAPSHOT -> spring_context_5_1_5_RELEASE;
+  service_external_val_2019_1_27_SNAPSHOT -> spring_oxm_5_1_5_RELEASE;
 }

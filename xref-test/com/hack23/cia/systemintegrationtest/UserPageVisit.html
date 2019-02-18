@@ -186,7 +186,7 @@
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ExpectedCondition&lt;Boolean&gt;() {
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 			@Override
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(WebDriver driver) {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(<strong class="jxr_keyword">final</strong> WebDriver driver) {
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 				<strong class="jxr_keyword">return</strong> getActionsAvailable().contains(value);
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 			}
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 
@@ -256,7 +256,7 @@
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ExpectedCondition&lt;Boolean&gt;() {
 <a class="jxr_linenumber" name="L249" href="#L249">249</a> 
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> 			@Override
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(WebDriver driver) {
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(<strong class="jxr_keyword">final</strong> WebDriver driver) {
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> 				<strong class="jxr_keyword">return</strong> getHtmlBodyAsText().contains(value);
 <a class="jxr_linenumber" name="L253" href="#L253">253</a> 			}
 <a class="jxr_linenumber" name="L254" href="#L254">254</a> 
@@ -309,7 +309,7 @@
 <a class="jxr_linenumber" name="L301" href="#L301">301</a> 	<strong class="jxr_keyword">public</strong> ExpectedCondition&lt;Boolean&gt; containsMenuItem(<strong class="jxr_keyword">final</strong> WebElement element,<strong class="jxr_keyword">final</strong> String... caption) {
 <a class="jxr_linenumber" name="L302" href="#L302">302</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ExpectedCondition&lt;Boolean&gt;() {
 <a class="jxr_linenumber" name="L303" href="#L303">303</a> 			@Override
-<a class="jxr_linenumber" name="L304" href="#L304">304</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(WebDriver driver) {
+<a class="jxr_linenumber" name="L304" href="#L304">304</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(<strong class="jxr_keyword">final</strong> WebDriver driver) {
 <a class="jxr_linenumber" name="L305" href="#L305">305</a> 				<strong class="jxr_keyword">return</strong> !ExpectedConditions.stalenessOf(element).apply(driver) &amp;&amp; getMenuItem(element, 1,caption) != <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L306" href="#L306">306</a> 			}
 <a class="jxr_linenumber" name="L307" href="#L307">307</a> 		};
@@ -362,7 +362,7 @@
 <a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">	 * @return the buttons</em>
 <a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L356" href="#L356">356</a> 	<strong class="jxr_keyword">public</strong> List&lt;WebElement&gt; getButtons() {
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> 		List&lt;WebElement&gt; result = getButtonElements();
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> 		<strong class="jxr_keyword">final</strong> List&lt;WebElement&gt; result = getButtonElements();
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> 		<strong class="jxr_keyword">final</strong> WebDriverWait wait = <strong class="jxr_keyword">new</strong> WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 <a class="jxr_linenumber" name="L359" href="#L359">359</a> 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
 <a class="jxr_linenumber" name="L360" href="#L360">360</a> 
@@ -370,7 +370,7 @@
 <a class="jxr_linenumber" name="L362" href="#L362">362</a> 	}
 <a class="jxr_linenumber" name="L363" href="#L363">363</a> 
 <a class="jxr_linenumber" name="L364" href="#L364">364</a> 	<strong class="jxr_keyword">private</strong> List&lt;WebElement&gt; getButtonElements() {
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> 		List&lt;WebElement&gt; result = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> 		<strong class="jxr_keyword">final</strong> List&lt;WebElement&gt; result = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L366" href="#L366">366</a> 		result.addAll(driver.findElements(By.className(<span class="jxr_string">"v-nativebutton"</span>)));
 <a class="jxr_linenumber" name="L367" href="#L367">367</a> 		result.addAll(driver.findElements(By.className(<span class="jxr_string">"v-button"</span>)));
 <a class="jxr_linenumber" name="L368" href="#L368">368</a> 		result.addAll(driver.findElements(By.className(<span class="jxr_string">"v-button-caption"</span>)));
@@ -384,10 +384,10 @@
 <a class="jxr_linenumber" name="L376" href="#L376">376</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ExpectedCondition&lt;Boolean&gt;() {
 <a class="jxr_linenumber" name="L377" href="#L377">377</a> 
 <a class="jxr_linenumber" name="L378" href="#L378">378</a> 			@Override
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(WebDriver driver) {
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> 			<strong class="jxr_keyword">public</strong> Boolean apply(<strong class="jxr_keyword">final</strong> WebDriver driver) {
 <a class="jxr_linenumber" name="L380" href="#L380">380</a> 				<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> WebElement webElement : getButtons()) {
 <a class="jxr_linenumber" name="L381" href="#L381">381</a> 
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> 					WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> 					<strong class="jxr_keyword">final</strong> WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
 <a class="jxr_linenumber" name="L383" href="#L383">383</a> 					<strong class="jxr_keyword">if</strong> (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) &amp;&amp; (value.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(value))) {
 <a class="jxr_linenumber" name="L384" href="#L384">384</a> 						<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="L385" href="#L385">385</a> 					}
@@ -766,7 +766,7 @@
 <a class="jxr_linenumber" name="L758" href="#L758">758</a> 		}
 <a class="jxr_linenumber" name="L759" href="#L759">759</a> 	}
 <a class="jxr_linenumber" name="L760" href="#L760">760</a> 
-<a class="jxr_linenumber" name="L761" href="#L761">761</a> 	<strong class="jxr_keyword">private</strong> WebElement findClickable(String id) {
+<a class="jxr_linenumber" name="L761" href="#L761">761</a> 	<strong class="jxr_keyword">private</strong> WebElement findClickable(<strong class="jxr_keyword">final</strong> String id) {
 <a class="jxr_linenumber" name="L762" href="#L762">762</a> 		<strong class="jxr_keyword">final</strong> WebDriverWait wait = <strong class="jxr_keyword">new</strong> WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 <a class="jxr_linenumber" name="L763" href="#L763">763</a> 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
 <a class="jxr_linenumber" name="L764" href="#L764">764</a> 
@@ -913,7 +913,7 @@
 <a class="jxr_linenumber" name="L905" href="#L905">905</a> 		wait.until(containsButton(buttonLabel));
 <a class="jxr_linenumber" name="L906" href="#L906">906</a> 
 <a class="jxr_linenumber" name="L907" href="#L907">907</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> WebElement webElement : getButtons()) {
-<a class="jxr_linenumber" name="L908" href="#L908">908</a> 			WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+<a class="jxr_linenumber" name="L908" href="#L908">908</a> 			<strong class="jxr_keyword">final</strong> WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
 <a class="jxr_linenumber" name="L909" href="#L909">909</a> 			<strong class="jxr_keyword">if</strong> (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) &amp;&amp; (buttonLabel.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(buttonLabel))) {
 <a class="jxr_linenumber" name="L910" href="#L910">910</a> 				<strong class="jxr_keyword">return</strong> refreshElement;
 <a class="jxr_linenumber" name="L911" href="#L911">911</a> 			}
@@ -983,7 +983,7 @@
 <a class="jxr_linenumber" name="L975" href="#L975">975</a> 	}
 <a class="jxr_linenumber" name="L976" href="#L976">976</a> 
 <a class="jxr_linenumber" name="L977" href="#L977">977</a> 	
-<a class="jxr_linenumber" name="L978" href="#L978">978</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> changePassword(<strong class="jxr_keyword">final</strong> String password,String newPassword, String repeatNewPassword) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L978" href="#L978">978</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> changePassword(<strong class="jxr_keyword">final</strong> String password,<strong class="jxr_keyword">final</strong> String newPassword, <strong class="jxr_keyword">final</strong> String repeatNewPassword) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L979" href="#L979">979</a> 		setFieldValue(<span class="jxr_string">"Change password.currentPassword"</span>,password);
 <a class="jxr_linenumber" name="L980" href="#L980">980</a> 		setFieldValue(<span class="jxr_string">"Change password.newPassword"</span>,newPassword);
 <a class="jxr_linenumber" name="L981" href="#L981">981</a> 		setFieldValue(<span class="jxr_string">"Change password.repeatNewPassword"</span>,repeatNewPassword);

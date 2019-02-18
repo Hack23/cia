@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartySupportsChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PartySupportsChartDataManagerImpl.java</span></div><h1>PartySupportsChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2019 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary_;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class PartySupportsChartDataManagerImpl.
+ */
+@Service
+public final class PartySupportsChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements PartySupportsChartDataManager {
+
+	/**
+	 * Instantiates a new party supports chart data manager impl.
+	 */
+	public PartySupportsChartDataManagerImpl() {
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
+
+	@Override
+	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
+
+<span class="fc" id="L59">		final DataContainer&lt;ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L60">				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);</span>
+
+<span class="fc" id="L62">		final List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt; list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				</span>
+				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
+				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
+				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
+
+<span class="fc" id="L67">		final Map&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; map = list.parallelStream().filter(Objects::nonNull)</span>
+<span class="fc" id="L68">		.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getOtherParty()));</span>
+					
+<span class="fc" id="L70">		final Series series = new Series();</span>
+<span class="fc" id="L71">		final DataSeries dataSeries = new DataSeries();</span>
+			
+<span class="fc" id="L73">		addData(map, series, dataSeries);</span>
+			
+<span class="fc" id="L75">		addChart(content,&quot;Party support ballot&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);</span>
+<span class="fc" id="L76">	}</span>
+
+	/**
+	 * Adds the data.
+	 *
+	 * @param map        the map
+	 * @param series     the series
+	 * @param dataSeries the data series
+	 */
+	private static void addData(final Map&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; map, final Series series,
+			final DataSeries dataSeries) {
+<span class="fc" id="L87">		final Set&lt;Entry&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt;&gt; entryMap = map.entrySet();</span>
+		
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; entry : entryMap) {</span>
+<span class="fc" id="L90">			series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+			
+<span class="fc" id="L92">			dataSeries.newSeries();</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">			for (final ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {</span>
+<span class="fc" id="L94">					dataSeries.add(data.getEmbeddedId().getDate(),</span>
+<span class="fc" id="L95">							100 - data.getDisagreePercentage());</span>
+<span class="fc" id="L96">			}</span>
+
+<span class="fc" id="L98">		}</span>
+<span class="fc" id="L99">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

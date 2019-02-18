@@ -376,12 +376,12 @@
 <a class="jxr_linenumber" name="L368" href="#L368">368</a> 		<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
 <a class="jxr_linenumber" name="L369" href="#L369">369</a> 		<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series();
 <a class="jxr_linenumber" name="L370" href="#L370">370</a> 		
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> 		Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> 		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
 <a class="jxr_linenumber" name="L372" href="#L372">372</a> 		
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> 		<strong class="jxr_keyword">for</strong> (Entry&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; entry : reportByMinistry.entrySet()) {
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; entry : reportByMinistry.entrySet()) {
 <a class="jxr_linenumber" name="L374" href="#L374">374</a> 			series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(entry.getKey()));
 <a class="jxr_linenumber" name="L375" href="#L375">375</a> 			dataSeries.newSeries();			
-<a class="jxr_linenumber" name="L376" href="#L376">376</a> 			Map&lt;Integer, Double&gt; annualSummaryMap = entry.getValue().stream().filter(t -&gt; t.getDescriptionFields().get(field) != <strong class="jxr_keyword">null</strong>).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> 			<strong class="jxr_keyword">final</strong> Map&lt;Integer, Double&gt; annualSummaryMap = entry.getValue().stream().filter(t -&gt; t.getDescriptionFields().get(field) != <strong class="jxr_keyword">null</strong>).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
 <a class="jxr_linenumber" name="L377" href="#L377">377</a> 
 <a class="jxr_linenumber" name="L378" href="#L378">378</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;Integer, Double&gt; entryData : annualSummaryMap.entrySet()) {
 <a class="jxr_linenumber" name="L379" href="#L379">379</a> 				<strong class="jxr_keyword">if</strong> (entryData.getValue() != <strong class="jxr_keyword">null</strong> &amp;&amp; entryData.getValue().intValue() &gt; 0) {

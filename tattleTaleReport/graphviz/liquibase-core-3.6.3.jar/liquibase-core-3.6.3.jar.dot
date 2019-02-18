@@ -1,0 +1,12 @@
+digraph liquibase_core_3_6_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  liquibase_core_3_6_3 -> ant_1_10_5;
+  liquibase_core_3_6_3 -> logback_classic_1_3_0_alpha4;
+  liquibase_core_3_6_3 -> logback_core_1_3_0_alpha4;
+  liquibase_core_3_6_3 -> slf4j_api_1_8_0_beta2;
+  liquibase_core_3_6_3 -> snakeyaml_1_23;
+  liquibase_core_3_6_3 -> spring_beans_5_1_5_RELEASE;
+  liquibase_core_3_6_3 -> spring_context_5_1_5_RELEASE;
+  liquibase_core_3_6_3 -> spring_core_5_1_5_RELEASE;
+  liquibase_core_3_6_3 -> xml_apis_1_4_01;
+}

@@ -110,7 +110,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page nr
 	 */
 	protected final int getPageNr(final String parameters) {
-<span class="fc" id="L113">		String cleanedString = parameters;</span>
+<span class="fc" id="L113">		final String cleanedString = parameters;</span>
 		String pageNrValue;
 <span class="pc bpc" id="L115" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
 <span class="fc" id="L116">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>

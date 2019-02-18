@@ -23,6 +23,6 @@ Export-Package: org.apache.activemq.artemis.integration.spring;uses:="
  rtemis.spi.core.naming"
 Import-Package: java.lang,org.apache.activemq.artemis.jms.server.embed
  ded;version="2.6.4",org.apache.activemq.artemis.spi.core.naming;versi
- on="2.6.4",org.springframework.beans;version="5.1.4.RELEASE",org.spri
- ngframework.beans.factory;version="5.1.4.RELEASE",org.springframework
- .beans.factory.config;version="5.1.4.RELEASE"
+ on="2.6.4",org.springframework.beans;version="5.1.5.RELEASE",org.spri
+ ngframework.beans.factory;version="5.1.5.RELEASE",org.springframework
+ .beans.factory.config;version="5.1.5.RELEASE"

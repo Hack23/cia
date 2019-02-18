@@ -99,15 +99,15 @@ Import-Package: com.hack23.cia.model.external.riksdagen.documentconten
  on="0.0.0",com.hack23.cia.service.external.val.api;version="0.0.0",co
  m.hack23.cia.service.external.worldbank.api;version="0.0.0",java.io,j
  ava.lang,java.nio.charset,java.text,java.util,java.util.concurrent,ja
- vax.annotation;version="7.16.0.Final",javax.jms;version="0.0.0",javax
- .persistence.metamodel;version="2.2",org.apache.commons.lang3;version
- ="3.8",org.joda.time;version="2.10",org.joda.time.format;version="2.1
- 0",org.slf4j;version="0.0.0",org.springframework.beans.factory.annota
- tion;version="5.1.4.RELEASE",org.springframework.context;version="5.1
- .4.RELEASE",org.springframework.jms.core;version="5.1.4.RELEASE",org.
- springframework.security.authentication;version="5.2.0.M1",org.spring
- framework.security.core;version="5.2.0.M1",org.springframework.securi
- ty.core.authority;version="5.2.0.M1",org.springframework.security.cor
- e.context;version="5.2.0.M1",org.springframework.stereotype;version="
- 5.1.4.RELEASE",org.springframework.transaction.annotation;version="5.
- 1.4.RELEASE"
+ vax.annotation;version="1.3",javax.jms;version="0.0.0",javax.persiste
+ nce.metamodel;version="2.2",org.apache.commons.lang3;version="3.8",or
+ g.joda.time;version="2.10",org.joda.time.format;version="2.10",org.sl
+ f4j;version="0.0.0",org.springframework.beans.factory.annotation;vers
+ ion="5.1.5.RELEASE",org.springframework.context;version="5.1.5.RELEAS
+ E",org.springframework.jms.core;version="5.1.5.RELEASE",org.springfra
+ mework.security.authentication;version="5.1.4.RELEASE",org.springfram
+ ework.security.core;version="5.1.4.RELEASE",org.springframework.secur
+ ity.core.authority;version="5.1.4.RELEASE",org.springframework.securi
+ ty.core.context;version="5.1.4.RELEASE",org.springframework.stereotyp
+ e;version="5.1.5.RELEASE",org.springframework.transaction.annotation;
+ version="5.1.5.RELEASE"

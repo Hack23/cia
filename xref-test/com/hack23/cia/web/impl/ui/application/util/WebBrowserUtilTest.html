@@ -47,10 +47,10 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  	@Test
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getIpInformationXForwardProxyTest() {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  	    MockHttpServletRequest request = <strong class="jxr_keyword">new</strong> MockHttpServletRequest(<span class="jxr_string">"GET"</span>, <span class="jxr_string">"/path"</span>);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  	    <strong class="jxr_keyword">final</strong> MockHttpServletRequest request = <strong class="jxr_keyword">new</strong> MockHttpServletRequest(<span class="jxr_string">"GET"</span>, <span class="jxr_string">"/path"</span>);
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  	    request.addHeader(WebBrowserUtil.X_FORWARDED_FOR, <span class="jxr_string">"203.0.113.195, 70.41.3.18, 150.172.238.178"</span>);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		RequestContextHolder.setRequestAttributes(<strong class="jxr_keyword">new</strong> ServletRequestAttributes(request));
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  	    WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  	    <strong class="jxr_keyword">final</strong> WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  		assertEquals(<span class="jxr_string">"203.0.113.195"</span>,WebBrowserUtil.getIpInformation(webBrowser));
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	}	
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
@@ -61,10 +61,10 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	@Test
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getIpInformationXForwardTest() {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	    MockHttpServletRequest request = <strong class="jxr_keyword">new</strong> MockHttpServletRequest(<span class="jxr_string">"GET"</span>, <span class="jxr_string">"/path"</span>);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	    <strong class="jxr_keyword">final</strong> MockHttpServletRequest request = <strong class="jxr_keyword">new</strong> MockHttpServletRequest(<span class="jxr_string">"GET"</span>, <span class="jxr_string">"/path"</span>);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  	    request.addHeader(WebBrowserUtil.X_FORWARDED_FOR, <span class="jxr_string">"203.0.113.195"</span>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  		RequestContextHolder.setRequestAttributes(<strong class="jxr_keyword">new</strong> ServletRequestAttributes(request));
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	    WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	    <strong class="jxr_keyword">final</strong> WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  		assertEquals(<span class="jxr_string">"203.0.113.195"</span>,WebBrowserUtil.getIpInformation(webBrowser));
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	}	
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  	@Test
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getIpInformationNullTest() {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  	    RequestContextHolder.setRequestAttributes(<strong class="jxr_keyword">new</strong> ServletRequestAttributes(<strong class="jxr_keyword">new</strong> MockHttpServletRequest(<span class="jxr_string">"GET"</span>, <span class="jxr_string">"/path"</span>)));
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	    WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	    <strong class="jxr_keyword">final</strong> WebBrowser webBrowser = <strong class="jxr_keyword">new</strong> WebBrowser();
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  		assertNull(WebBrowserUtil.getIpInformation(webBrowser));
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  	}	
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  	

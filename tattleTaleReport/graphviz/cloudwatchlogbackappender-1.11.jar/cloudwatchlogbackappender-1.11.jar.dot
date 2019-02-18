@@ -1,8 +1,8 @@
 digraph cloudwatchlogbackappender_1_11_dependencies {
   node [shape = box, fontsize=10.0];
-  cloudwatchlogbackappender_1_11 -> aws_java_sdk_core_1_11_490;
-  cloudwatchlogbackappender_1_11 -> aws_java_sdk_ec2_1_11_490;
-  cloudwatchlogbackappender_1_11 -> aws_java_sdk_logs_1_11_490;
+  cloudwatchlogbackappender_1_11 -> aws_java_sdk_core_1_11_500;
+  cloudwatchlogbackappender_1_11 -> aws_java_sdk_ec2_1_11_500;
+  cloudwatchlogbackappender_1_11 -> aws_java_sdk_logs_1_11_500;
   cloudwatchlogbackappender_1_11 -> logback_classic_1_3_0_alpha4;
   cloudwatchlogbackappender_1_11 -> logback_core_1_3_0_alpha4;
 }

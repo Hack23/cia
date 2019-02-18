@@ -103,7 +103,7 @@
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  				<span class="jxr_string">"ALB/ELB/Apache/Nginx/HaProxy"</span>);
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  		<strong class="jxr_keyword">final</strong> Container ciaWebContainer = ciaSystem.addContainer(<span class="jxr_string">"Web Application"</span>, <span class="jxr_string">"Web Application"</span>, <span class="jxr_string">"Jetty/Java"</span>);
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		SpringComponentFinderStrategy springComponentFinderStrategy = <strong class="jxr_keyword">new</strong> SpringComponentFinderStrategy(<strong class="jxr_keyword">new</strong> FirstImplementationOfInterfaceSupportingTypesStrategy()
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<strong class="jxr_keyword">final</strong> SpringComponentFinderStrategy springComponentFinderStrategy = <strong class="jxr_keyword">new</strong> SpringComponentFinderStrategy(<strong class="jxr_keyword">new</strong> FirstImplementationOfInterfaceSupportingTypesStrategy()
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  				,<strong class="jxr_keyword">new</strong> ReferencedTypesSupportingTypesStrategy(),<strong class="jxr_keyword">new</strong> ReferencedTypesInSamePackageSupportingTypesStrategy());
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		springComponentFinderStrategy.setIncludePublicTypesOnly(false);
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 		<strong class="jxr_keyword">final</strong> ComponentFinder componentFinderWeb = <strong class="jxr_keyword">new</strong> ComponentFinder(ciaWebContainer, <span class="jxr_string">"com.hack23.cia"</span>,

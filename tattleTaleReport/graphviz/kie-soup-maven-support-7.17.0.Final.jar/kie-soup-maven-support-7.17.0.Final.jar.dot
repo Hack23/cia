@@ -1,0 +1,5 @@
+digraph kie_soup_maven_support_7_17_0_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  kie_soup_maven_support_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  kie_soup_maven_support_7_17_0_Final -> xml_apis_1_4_01;
+}

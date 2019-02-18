@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyCoalationChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PartyCoalationChartDataManagerImpl.java</span></div><h1>PartyCoalationChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2019 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyCoalationChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
+
+/**
+ * The Class PartyCoalationChartDataManagerImpl.
+ */
+@Service
+public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements PartyCoalationChartDataManager {
+
+	/** The Constant FILTER_LOW_VALUES. */
+	private static final int FILTER_LOW_VALUES = 2;
+
+	/**
+	 * Instantiates a new party coalation chart data manager impl.
+	 */
+	public PartyCoalationChartDataManagerImpl() {
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
+
+	@Override
+	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
+
+<span class="fc" id="L59">		final DataContainer&lt;ViewRiksdagenPartyCoalationAgainstAnnualSummary, ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L60">				.getDataContainer(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);</span>
+
+<span class="fc" id="L62">		final Map&lt;String, List&lt;ViewRiksdagenPartyCoalationAgainstAnnualSummary&gt;&gt; map = dataContainer.getAll().parallelStream()</span>
+<span class="fc bfc" id="L63" title="All 4 branches covered.">				.filter(t -&gt; t.getEmbeddedId().getGroupAgainst().contains(partyId) &amp;&amp; t.getTotal() &gt; FILTER_LOW_VALUES)</span>
+<span class="fc" id="L64">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getGroupAgainst()));</span>
+
+<span class="fc" id="L66">		final Series series = new Series();</span>
+<span class="fc" id="L67">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="fc" id="L69">		addData(map, series, dataSeries);</span>
+
+<span class="fc" id="L71">		addChart(content, &quot;Part of coalations against committee proposal in ballot more than twice&quot;, new DCharts()</span>
+<span class="fc" id="L72">				.setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(),</span>
+				true);
+<span class="fc" id="L74">	}</span>
+
+	/**
+	 * Adds the data.
+	 *
+	 * @param map the map
+	 * @param series the series
+	 * @param dataSeries the data series
+	 */
+	private static void addData(final Map&lt;String, List&lt;ViewRiksdagenPartyCoalationAgainstAnnualSummary&gt;&gt; map,
+			final Series series, final DataSeries dataSeries) {
+<span class="fc" id="L85">		final Set&lt;Entry&lt;String, List&lt;ViewRiksdagenPartyCoalationAgainstAnnualSummary&gt;&gt;&gt; entryMap = map.entrySet();</span>
+
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenPartyCoalationAgainstAnnualSummary&gt;&gt; entry : entryMap) {</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">			if (!entry.getValue().isEmpty()) {</span>
+<span class="fc" id="L89">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+
+<span class="fc" id="L91">				dataSeries.newSeries();</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">				for (final ViewRiksdagenPartyCoalationAgainstAnnualSummary data : entry.getValue()) {</span>
+<span class="fc" id="L93">					dataSeries.add(data.getEmbeddedId().getYear() + &quot;-01-01&quot;, data.getTotal());</span>
+<span class="fc" id="L94">				}</span>
+			}
+<span class="fc" id="L96">		}</span>
+<span class="fc" id="L97">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

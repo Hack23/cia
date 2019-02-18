@@ -1,5 +1,5 @@
 digraph kinesis_logback_appender_1_4_4_dependencies {
   node [shape = box, fontsize=10.0];
-  kinesis_logback_appender_1_4_4 -> aws_java_sdk_core_1_11_490;
+  kinesis_logback_appender_1_4_4 -> aws_java_sdk_core_1_11_500;
   kinesis_logback_appender_1_4_4 -> logback_core_1_3_0_alpha4;
 }

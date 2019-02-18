@@ -27,39 +27,40 @@
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.mockito.Mockito;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.ApplicationManager;
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.admin.ManageUserAccountResponse;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.testfoundation.AbstractUnitTest;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Button.ClickEvent;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Notification.Type;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Panel;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ManageUserAccountClickListenerTest" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/ManageUserAccountClickListenerTest.html#ManageUserAccountClickListenerTest">ManageUserAccountClickListenerTest</a> <strong class="jxr_keyword">extends</strong> AbstractUnitTest {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">	 * Show notification failure test.</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  	@Test
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> showNotificationFailureTest() {
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  		ManageUserAccountRequest request = <strong class="jxr_keyword">new</strong> ManageUserAccountRequest();		
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		ManageUserAccountClickListener listener = Mockito.spy(<strong class="jxr_keyword">new</strong> ManageUserAccountClickListener(request));
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  		
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		ManageUserAccountResponse response = <strong class="jxr_keyword">new</strong> ManageUserAccountResponse(ServiceResult.FAILURE);
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		response.setErrorMessage(<span class="jxr_string">"errorMessage"</span>);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  		Mockito.when(applicationManager.service(request)).thenReturn(response);
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		listener.buttonClick(<strong class="jxr_keyword">new</strong> ClickEvent(<strong class="jxr_keyword">new</strong> Panel()));
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	}
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  }
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.mockito.ArgumentMatchers;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.mockito.Mockito;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.ApplicationManager;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.admin.ManageUserAccountResponse;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.testfoundation.AbstractUnitTest;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Button.ClickEvent;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Notification.Type;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Panel;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ManageUserAccountClickListenerTest" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/ManageUserAccountClickListenerTest.html#ManageUserAccountClickListenerTest">ManageUserAccountClickListenerTest</a> <strong class="jxr_keyword">extends</strong> AbstractUnitTest {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 * Show notification failure test.</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  	@Test
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> showNotificationFailureTest() {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		<strong class="jxr_keyword">final</strong> ManageUserAccountRequest request = <strong class="jxr_keyword">new</strong> ManageUserAccountRequest();		
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		<strong class="jxr_keyword">final</strong> ManageUserAccountClickListener listener = Mockito.spy(<strong class="jxr_keyword">new</strong> ManageUserAccountClickListener(request));
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		<strong class="jxr_keyword">final</strong> ApplicationManager applicationManager = Mockito.mock(ApplicationManager.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">final</strong> ManageUserAccountResponse response = <strong class="jxr_keyword">new</strong> ManageUserAccountResponse(ServiceResult.FAILURE);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  		response.setErrorMessage(<span class="jxr_string">"errorMessage"</span>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		Mockito.when(applicationManager.service(request)).thenReturn(response);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		listener.buttonClick(<strong class="jxr_keyword">new</strong> ClickEvent(<strong class="jxr_keyword">new</strong> Panel()));
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	}
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>

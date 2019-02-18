@@ -24,8 +24,8 @@ Export-Package: org.apache.lucene.analysis.phonetic;uses:="org.apache.
  e.lucene.analysis,org.apache.lucene.analysis.tokenattributes,org.apac
  he.lucene.analysis.util,org.apache.lucene.util"
 Import-Package: java.io,java.lang,java.lang.reflect,java.util,java.uti
- l.regex,org.apache.commons.codec;version="1.11",org.apache.commons.co
- dec.language;version="1.11",org.apache.commons.codec.language.bm;vers
- ion="1.11",org.apache.lucene.analysis;version="5.5.5",org.apache.luce
+ l.regex,org.apache.commons.codec;version="1.12",org.apache.commons.co
+ dec.language;version="1.12",org.apache.commons.codec.language.bm;vers
+ ion="1.12",org.apache.lucene.analysis;version="5.5.5",org.apache.luce
  ne.analysis.tokenattributes;version="5.5.5",org.apache.lucene.analysi
  s.util;version="5.5.5",org.apache.lucene.util;version="5.5.5"

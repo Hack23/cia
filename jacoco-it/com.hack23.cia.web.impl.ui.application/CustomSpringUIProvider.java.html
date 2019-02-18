@@ -42,19 +42,19 @@ public class CustomSpringUIProvider extends SpringUIProvider {
 	 *
 	 * @param vaadinSession the vaadin session
 	 */
-	public CustomSpringUIProvider(VaadinSession vaadinSession) {
+	public CustomSpringUIProvider(final VaadinSession vaadinSession) {
 <span class="fc" id="L46">		super(vaadinSession);</span>
 <span class="fc" id="L47">	}</span>
 
 	@Override
-	public UI createInstance(UICreateEvent event) {
+	public UI createInstance(final UICreateEvent event) {
 <span class="fc" id="L51">		final Class&lt;UIID&gt; key = UIID.class;</span>
 <span class="fc" id="L52">		final UIID identifier = new UIID(event);</span>
 <span class="fc" id="L53">		CurrentInstance.set(key, identifier);</span>
 		try {
 <span class="fc" id="L55">			logger.debug(&quot;Creating a new UI bean of class [{}] with identifier [{}]&quot;,</span>
 <span class="fc" id="L56">					event.getUIClass().getCanonicalName(), identifier);</span>
-<span class="fc" id="L57">			UI ui = getWebApplicationContext().getBean(event.getUIClass());</span>
+<span class="fc" id="L57">			final UI ui = getWebApplicationContext().getBean(event.getUIClass());</span>
 
 <span class="fc" id="L59">			getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());</span>
 
@@ -66,7 +66,7 @@ public class CustomSpringUIProvider extends SpringUIProvider {
 	}
 
 	@Override
-	protected Object findSpringViewDisplay(UI ui) {
+	protected Object findSpringViewDisplay(final UI ui) {
 <span class="fc" id="L70">		return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());</span>
 	}
 

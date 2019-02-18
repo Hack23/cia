@@ -39,20 +39,20 @@
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">	 *            the driver</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 * @return the web element</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> WebElement refreshElement(WebElement elem, WebDriver driver) {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> WebElement refreshElement(<strong class="jxr_keyword">final</strong> WebElement elem, <strong class="jxr_keyword">final</strong> WebDriver driver) {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  		<strong class="jxr_keyword">if</strong> (!isElementStale(elem))
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  			<strong class="jxr_keyword">return</strong> elem;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  		Object lastObject = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  			String[] arr = elem.toString().split(<span class="jxr_string">"-&gt;"</span>);
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  			List&lt;String&gt; newStr = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  			<strong class="jxr_keyword">for</strong> (String s : arr) {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  				String newstr = s.trim().replaceAll(<span class="jxr_string">"^&#92;&#92;[+"</span>, <span class="jxr_string">""</span>).replaceAll(<span class="jxr_string">"&#92;&#92;]+$"</span>, <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  				String[] parts = newstr.split(<span class="jxr_string">": "</span>);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  				String key = parts[0];
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  			<strong class="jxr_keyword">final</strong> String[] arr = elem.toString().split(<span class="jxr_string">"-&gt;"</span>);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  			<strong class="jxr_keyword">final</strong> List&lt;String&gt; newStr = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String s : arr) {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  				<strong class="jxr_keyword">final</strong> String newstr = s.trim().replaceAll(<span class="jxr_string">"^&#92;&#92;[+"</span>, <span class="jxr_string">""</span>).replaceAll(<span class="jxr_string">"&#92;&#92;]+$"</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  				<strong class="jxr_keyword">final</strong> String[] parts = newstr.split(<span class="jxr_string">": "</span>);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  				<strong class="jxr_keyword">final</strong> String key = parts[0];
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  				String value = parts[1];
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  				<strong class="jxr_keyword">int</strong> leftBracketsCount = value.length() - value.replace(<span class="jxr_string">"["</span>, <span class="jxr_string">""</span>).length();
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  				<strong class="jxr_keyword">int</strong> rightBracketscount = value.length() - value.replace(<span class="jxr_string">"]"</span>, <span class="jxr_string">""</span>).length();
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  				<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> leftBracketsCount = value.length() - value.replace(<span class="jxr_string">"["</span>, <span class="jxr_string">""</span>).length();
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  				<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> rightBracketscount = value.length() - value.replace(<span class="jxr_string">"]"</span>, <span class="jxr_string">""</span>).length();
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  				<strong class="jxr_keyword">if</strong> (leftBracketsCount - rightBracketscount == 1)
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  					value = value + <span class="jxr_string">"]"</span>;
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  				<strong class="jxr_keyword">if</strong> (lastObject == <strong class="jxr_keyword">null</strong>) {
@@ -61,7 +61,7 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  					lastObject = getWebElement(lastObject, key, value);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  				}
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  			}
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		} <strong class="jxr_keyword">catch</strong> (Exception e) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  			LOGGER.error(<span class="jxr_string">"Error in Refreshing the stale Element."</span>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  		}
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  		<strong class="jxr_keyword">return</strong> (WebElement) lastObject;
@@ -74,11 +74,11 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 *            the e</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 * @return true, if is element stale</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isElementStale(WebElement e) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isElementStale(<strong class="jxr_keyword">final</strong> WebElement e) {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  			e.isDisplayed();
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  			<strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		} <strong class="jxr_keyword">catch</strong> (StaleElementReferenceException ex) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> StaleElementReferenceException ex) {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		}
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  	}
@@ -94,15 +94,15 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 *            the value</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">	 * @return the web element</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> WebElement getWebElement(Object lastObject, String key, String value) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> WebElement getWebElement(<strong class="jxr_keyword">final</strong> Object lastObject, <strong class="jxr_keyword">final</strong> String key, <strong class="jxr_keyword">final</strong> String value) {
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		WebElement element = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  			By by = getBy(key, value);
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  			Method m = getCaseInsensitiveDeclaredMethod(lastObject, <span class="jxr_string">"findElement"</span>);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  			<strong class="jxr_keyword">final</strong> By by = getBy(key, value);
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  			<strong class="jxr_keyword">final</strong> Method m = getCaseInsensitiveDeclaredMethod(lastObject, <span class="jxr_string">"findElement"</span>);
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  			element = (WebElement) m.invoke(lastObject, by);
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		} <strong class="jxr_keyword">catch</strong> (InvocationTargetException e) {
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InvocationTargetException e) {
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  			e.printStackTrace();
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		} <strong class="jxr_keyword">catch</strong> (IllegalAccessException e) {
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IllegalAccessException e) {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  			e.printStackTrace();
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  		}
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		<strong class="jxr_keyword">return</strong> element;
@@ -121,11 +121,11 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">	 * @throws IllegalAccessException</em>
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">	 *             the illegal access exception</em>
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> By getBy(String key, String value) <strong class="jxr_keyword">throws</strong> InvocationTargetException, IllegalAccessException {
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		By by = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 		Class clazz = By.<strong class="jxr_keyword">class</strong>;
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		String methodName = key.replace(<span class="jxr_string">" "</span>, <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		Method m = getCaseInsensitiveStaticDeclaredMethod(clazz, methodName);
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> By getBy(<strong class="jxr_keyword">final</strong> String key, <strong class="jxr_keyword">final</strong> String value) <strong class="jxr_keyword">throws</strong> InvocationTargetException, IllegalAccessException {
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		<strong class="jxr_keyword">final</strong> By by = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 		<strong class="jxr_keyword">final</strong> Class clazz = By.<strong class="jxr_keyword">class</strong>;
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		<strong class="jxr_keyword">final</strong> String methodName = key.replace(<span class="jxr_string">" "</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">final</strong> Method m = getCaseInsensitiveStaticDeclaredMethod(clazz, methodName);
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 		<strong class="jxr_keyword">return</strong> (By) m.invoke(<strong class="jxr_keyword">null</strong>, value);
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 	}
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 
@@ -138,10 +138,10 @@
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">	 *            the method name</em>
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">	 * @return the case insensitive declared method</em>
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Method getCaseInsensitiveDeclaredMethod(Object obj, String methodName) {
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		Method[] methods = obj.getClass().getMethods();
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Method getCaseInsensitiveDeclaredMethod(<strong class="jxr_keyword">final</strong> Object obj, <strong class="jxr_keyword">final</strong> String methodName) {
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		<strong class="jxr_keyword">final</strong> Method[] methods = obj.getClass().getMethods();
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 		Method method = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">for</strong> (Method m : methods) {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Method m : methods) {
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 			<strong class="jxr_keyword">if</strong> (m.getName().equalsIgnoreCase(methodName)) {
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 				method = m;
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 				<strong class="jxr_keyword">break</strong>;
@@ -163,10 +163,10 @@
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">	 *            the method name</em>
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">	 * @return the case insensitive static declared method</em>
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Method getCaseInsensitiveStaticDeclaredMethod(Class clazz, String methodName) {
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		Method[] methods = clazz.getMethods();
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Method getCaseInsensitiveStaticDeclaredMethod(<strong class="jxr_keyword">final</strong> Class clazz, <strong class="jxr_keyword">final</strong> String methodName) {
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		<strong class="jxr_keyword">final</strong> Method[] methods = clazz.getMethods();
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 		Method method = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 		<strong class="jxr_keyword">for</strong> (Method m : methods) {
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Method m : methods) {
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 			<strong class="jxr_keyword">if</strong> (m.getName().equalsIgnoreCase(methodName)) {
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 				method = m;
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 				<strong class="jxr_keyword">break</strong>;

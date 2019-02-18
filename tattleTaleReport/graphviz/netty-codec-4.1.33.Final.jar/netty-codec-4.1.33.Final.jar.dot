@@ -3,5 +3,5 @@ digraph netty_codec_4_1_33_Final_dependencies {
   netty_codec_4_1_33_Final -> netty_buffer_4_1_33_Final;
   netty_codec_4_1_33_Final -> netty_common_4_1_33_Final;
   netty_codec_4_1_33_Final -> netty_transport_4_1_33_Final;
-  netty_codec_4_1_33_Final -> protobuf_java_3_6_1;
+  netty_codec_4_1_33_Final -> protobuf_java_3_7_0_rc1;
 }

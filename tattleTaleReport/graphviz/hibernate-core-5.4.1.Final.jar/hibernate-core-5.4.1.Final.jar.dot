@@ -2,7 +2,7 @@ digraph hibernate_core_5_4_1_Final_dependencies {
   node [shape = box, fontsize=10.0];
   hibernate_core_5_4_1_Final -> ant_1_10_5;
   hibernate_core_5_4_1_Final -> antlr_2_7_7_redhat_7;
-  hibernate_core_5_4_1_Final -> byte_buddy_1_9_8;
+  hibernate_core_5_4_1_Final -> byte_buddy_1_9_10;
   hibernate_core_5_4_1_Final -> classmate_1_4_0;
   hibernate_core_5_4_1_Final -> dom4j_2_1_1;
   hibernate_core_5_4_1_Final -> geronimo_jta_1_1_spec_1_1_1;
