@@ -95,7 +95,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jms</artifactId>
-      <version>5.9.2.Final</version>
+      <version>5.9.3.Final</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
