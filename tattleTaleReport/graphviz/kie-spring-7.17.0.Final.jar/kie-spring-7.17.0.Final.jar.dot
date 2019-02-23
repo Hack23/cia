@@ -6,7 +6,7 @@ digraph kie_spring_7_17_0_Final_dependencies {
   kie_spring_7_17_0_Final -> jbpm_flow_7_17_0_Final;
   kie_spring_7_17_0_Final -> kie_api_7_17_0_Final;
   kie_spring_7_17_0_Final -> kie_internal_7_17_0_Final;
-  kie_spring_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  kie_spring_7_17_0_Final -> slf4j_api_1_8_0_beta4;
   kie_spring_7_17_0_Final -> spring_beans_5_1_5_RELEASE;
   kie_spring_7_17_0_Final -> spring_context_5_1_5_RELEASE;
   kie_spring_7_17_0_Final -> spring_core_5_1_5_RELEASE;

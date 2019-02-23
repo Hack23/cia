@@ -1,0 +1,5 @@
+digraph encrypt_properties_2019_2_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  encrypt_properties_2019_2_24_SNAPSHOT -> bcprov_jdk15on_1_61;
+  encrypt_properties_2019_2_24_SNAPSHOT -> jasypt_1_9_3_redhat_3;
+}

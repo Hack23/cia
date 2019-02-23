@@ -1,0 +1,7 @@
+digraph javers_spring_5_2_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  javers_spring_5_2_1 -> aspectjweaver_1_9_2;
+  javers_spring_5_2_1 -> javers_core_5_2_1;
+  javers_spring_5_2_1 -> spring_data_commons_2_2_0_M1;
+  javers_spring_5_2_1 -> spring_security_core_5_1_4_RELEASE;
+}

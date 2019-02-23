@@ -12,7 +12,7 @@ digraph drools_compiler_7_17_0_Final_dependencies {
   drools_compiler_7_17_0_Final -> kie_soup_project_datamodel_commons_7_17_0_Final;
   drools_compiler_7_17_0_Final -> mvel2_2_4_4_Final;
   drools_compiler_7_17_0_Final -> protobuf_java_3_7_0_rc1;
-  drools_compiler_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  drools_compiler_7_17_0_Final -> slf4j_api_1_8_0_beta4;
   drools_compiler_7_17_0_Final -> xml_apis_1_4_01;
   drools_compiler_7_17_0_Final -> xstream_1_4_11_1;
 }

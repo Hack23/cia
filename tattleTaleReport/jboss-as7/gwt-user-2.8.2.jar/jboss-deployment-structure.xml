@@ -5,9 +5,9 @@
         <module name="asm.asm"/>
         <module name="javax.servlet.api"/>
         <module name="javax.validation.api"/>
+        <module name="nu.xom"/>
         <module name="org.apache.commons.io"/>
         <module name="org.hibernate.validator"/>
-        <module name="org.jaxen"/>
         <module name="org.junit"/>
         <module name="org.slf4j.jcl-over-slf4j"/>
         <module name="org.w3c.css.sac"/>

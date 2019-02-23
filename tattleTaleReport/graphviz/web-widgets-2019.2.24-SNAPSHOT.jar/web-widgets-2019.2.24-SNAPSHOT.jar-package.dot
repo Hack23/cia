@@ -1,0 +1,9 @@
+digraph web_widgets_2019_2_24_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_web_widgets_charts -> com_vaadin_annotations;
+  com_hack23_cia_web_widgets_charts -> com_vaadin_shared;
+  com_hack23_cia_web_widgets_charts -> com_vaadin_shared_communication;
+  com_hack23_cia_web_widgets_charts -> com_vaadin_shared_ui;
+  com_hack23_cia_web_widgets_charts -> com_vaadin_ui;
+  com_hack23_cia_web_widgets_charts -> org_apache_commons_lang3_builder;
+}

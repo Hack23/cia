@@ -1,0 +1,10 @@
+digraph model_external_val_partier_impl_2019_2_24_SNAPSHOT_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_hack23_cia_model_external_val_partier_impl -> com_hack23_cia_model_common_api;
+  com_hack23_cia_model_external_val_partier_impl -> com_hack23_cia_model_common_impl_xml;
+  com_hack23_cia_model_external_val_partier_impl -> org_jvnet_hyperjaxb3_ejb_test;
+  com_hack23_cia_model_external_val_partier_impl -> org_jvnet_jaxb2_commons_lang;
+  com_hack23_cia_model_external_val_partier_impl -> org_jvnet_jaxb2_commons_locator;
+  com_hack23_cia_model_external_val_partier_impl -> org_jvnet_jaxb2_commons_locator_util;
+  com_hack23_cia_model_external_val_partier_impl -> org_jvnet_jaxb2_commons_xml_bind;
+}

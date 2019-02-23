@@ -3,7 +3,7 @@ digraph spring_context_support_5_1_5_RELEASE_dependencies {
   spring_context_support_5_1_5_RELEASE -> activation_1_1;
   spring_context_support_5_1_5_RELEASE -> cache_api_1_0_0;
   spring_context_support_5_1_5_RELEASE -> javax_mail_1_6_2;
-  spring_context_support_5_1_5_RELEASE -> jcl_over_slf4j_1_8_0_beta2;
+  spring_context_support_5_1_5_RELEASE -> jcl_over_slf4j_1_8_0_beta4;
   spring_context_support_5_1_5_RELEASE -> quartz_2_3_0;
   spring_context_support_5_1_5_RELEASE -> spring_aop_5_1_5_RELEASE;
   spring_context_support_5_1_5_RELEASE -> spring_beans_5_1_5_RELEASE;

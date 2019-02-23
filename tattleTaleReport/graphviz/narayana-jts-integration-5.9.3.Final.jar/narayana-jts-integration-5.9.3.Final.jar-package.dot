@@ -1,0 +1,6 @@
+digraph narayana_jts_integration_5_9_3_Final_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_arjuna_ats_jbossatx -> org_jboss_tm_listener;
+  com_arjuna_ats_jbossatx_jts -> com_arjuna_common_internal_util;
+  com_arjuna_ats_jbossatx_logging -> org_jboss_logging_annotations;
+}

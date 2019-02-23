@@ -1,0 +1,9 @@
+digraph narayana_jts_integration_5_9_3_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  narayana_jts_integration_5_9_3_Final -> arjuna_5_9_3_Final;
+  narayana_jts_integration_5_9_3_Final -> common_5_9_3_Final;
+  narayana_jts_integration_5_9_3_Final -> geronimo_jta_1_1_spec_1_1_1;
+  narayana_jts_integration_5_9_3_Final -> jboss_logging_3_3_2_Final_redhat_00001;
+  narayana_jts_integration_5_9_3_Final -> jboss_transaction_spi_7_6_0_Final_redhat_1;
+  narayana_jts_integration_5_9_3_Final -> jta_5_9_3_Final;
+}

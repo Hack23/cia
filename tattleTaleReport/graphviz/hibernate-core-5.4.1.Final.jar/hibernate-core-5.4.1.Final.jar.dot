@@ -7,7 +7,7 @@ digraph hibernate_core_5_4_1_Final_dependencies {
   hibernate_core_5_4_1_Final -> dom4j_2_1_1;
   hibernate_core_5_4_1_Final -> geronimo_jta_1_1_spec_1_1_1;
   hibernate_core_5_4_1_Final -> hibernate_commons_annotations_5_1_0_Final;
-  hibernate_core_5_4_1_Final -> jandex_2_1_0_Final;
+  hibernate_core_5_4_1_Final -> jandex_2_1_1_Final;
   hibernate_core_5_4_1_Final -> javassist_3_24_1_GA;
   hibernate_core_5_4_1_Final -> javax_persistence_api_2_2;
   hibernate_core_5_4_1_Final -> jaxb_api_2_4_0;

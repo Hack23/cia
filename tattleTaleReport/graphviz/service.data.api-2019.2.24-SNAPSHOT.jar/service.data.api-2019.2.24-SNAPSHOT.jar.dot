@@ -1,0 +1,5 @@
+digraph service_data_api_2019_2_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_data_api_2019_2_24_SNAPSHOT -> javax_persistence_api_2_2;
+  service_data_api_2019_2_24_SNAPSHOT -> model_internal_application_user_impl_2019_2_24_SNAPSHOT;
+}

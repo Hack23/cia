@@ -7,5 +7,5 @@ digraph drools_decisiontables_7_17_0_Final_dependencies {
   drools_decisiontables_7_17_0_Final -> kie_internal_7_17_0_Final;
   drools_decisiontables_7_17_0_Final -> poi_4_0_1;
   drools_decisiontables_7_17_0_Final -> poi_ooxml_4_0_1;
-  drools_decisiontables_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  drools_decisiontables_7_17_0_Final -> slf4j_api_1_8_0_beta4;
 }

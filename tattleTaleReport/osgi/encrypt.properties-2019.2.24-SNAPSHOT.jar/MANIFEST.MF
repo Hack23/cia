@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.hack23.cia.encrypt.properties
+Built-By: pether
+Sealed: true
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_201
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.encryption.properties
+Bundle-Description: encrypt.properties-2019.2.24-SNAPSHOT
+Bundle-Name: encrypt.properties-2019.2.24-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.encryption.properties;uses:="org.bouncy
+ castle.jce.provider,org.jasypt.encryption.pbe"
+Import-Package: java.io,java.lang,java.security,org.bouncycastle.jce.p
+ rovider;version="1.1",org.jasypt.encryption.pbe;version="0.0.0"

@@ -1,0 +1,74 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: ArjunaJTA jta
+Implementation-Version: 5.9.3.Final
+Java-Version: 1.8.0_191
+Built-By: ochaloup
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/narayana-j
+ ta-all/jta
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: ArjunaJTA jta
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/narayana-jta-all/jta
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 4.19.13-200.fc28.x86_64
+Scm-Revision: 8172ad09cedad6a31181fb2a7bc1218481677838
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_191
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.ats.internal.jta.recovery.arjunacore
+Bundle-Description: jta-5.9.3.Final
+Bundle-Name: jta-5.9.3.Final
+Bundle-Version: 5.9
+Export-Package: com.arjuna.ats.internal.jta;uses:="com.arjuna.ats.inte
+ rnal.jta.resources.arjunacore",com.arjuna.ats.internal.jta.recovery.a
+ rjunacore;uses:="com.arjuna.ats.arjuna.recovery,com.arjuna.ats.intern
+ al.jta.resources.arjunacore,com.arjuna.ats.jta.utils",com.arjuna.ats.
+ internal.jta.resources,com.arjuna.ats.internal.jta.resources.arjunaco
+ re;uses:="com.arjuna.ats.arjuna.coordinator,com.arjuna.ats.internal.j
+ ta.recovery.arjunacore,com.arjuna.common.internal.util,org.jboss.tm",
+ com.arjuna.ats.internal.jta.resources.errorhandlers,com.arjuna.ats.in
+ ternal.jta.resources.spi,com.arjuna.ats.internal.jta.tools.osb.mbean.
+ jta;uses:="com.arjuna.ats.arjuna.tools.osb.mbean,com.arjuna.ats.inter
+ nal.jta.recovery.arjunacore,com.arjuna.ats.internal.jta.resources.arj
+ unacore",com.arjuna.ats.internal.jta.transaction.arjunacore;uses:="co
+ m.arjuna.ats.internal.jta.resources.arjunacore,org.jboss.tm",com.arju
+ na.ats.internal.jta.transaction.arjunacore.jca;uses:="org.jboss.tm",c
+ om.arjuna.ats.internal.jta.transaction.arjunacore.subordinate,com.arj
+ una.ats.internal.jta.transaction.arjunacore.subordinate.jca,com.arjun
+ a.ats.internal.jta.utils,com.arjuna.ats.internal.jta.utils.arjunacore
+ ,com.arjuna.ats.internal.jta.xa,com.arjuna.ats.jta,com.arjuna.ats.jta
+ .common;uses:="com.arjuna.common.internal.util,org.jboss.tm.usertx,or
+ g.jboss.tm.usertx.client",com.arjuna.ats.jta.exceptions,com.arjuna.at
+ s.jta.logging;uses:="org.jboss.logging.annotations",com.arjuna.ats.jt
+ a.recovery,com.arjuna.ats.jta.resources,com.arjuna.ats.jta.transactio
+ n,com.arjuna.ats.jta.utils,com.arjuna.ats.jta.xa;uses:="com.arjuna.at
+ s.internal.arjuna,java.nio.charset"
+Import-Package: com.arjuna.ats.arjuna;version="5.9",com.arjuna.ats.arj
+ una.common;version="5.9",com.arjuna.ats.arjuna.coordinator;version="5
+ .9",com.arjuna.ats.arjuna.coordinator.abstractrecord;version="5.9",co
+ m.arjuna.ats.arjuna.exceptions;version="5.9",com.arjuna.ats.arjuna.lo
+ gging;version="5.9",com.arjuna.ats.arjuna.objectstore;version="5.9",c
+ om.arjuna.ats.arjuna.recovery;version="5.9",com.arjuna.ats.arjuna.sta
+ te;version="5.9",com.arjuna.ats.arjuna.tools.osb.annotation;version="
+ 5.9",com.arjuna.ats.arjuna.tools.osb.mbean;version="5.9",com.arjuna.a
+ ts.arjuna.utils;version="5.9",com.arjuna.ats.internal.arjuna;version=
+ "5.9",com.arjuna.ats.internal.arjuna.abstractrecords;version="5.9",co
+ m.arjuna.ats.internal.arjuna.common;version="5.9",com.arjuna.common.i
+ nternal.util;version="5.9",com.arjuna.common.internal.util.propertyse
+ rvice;version="5.9",java.io,java.lang,java.lang.reflect,java.nio.char
+ set,java.sql,java.text,java.util,java.util.concurrent,java.util.concu
+ rrent.atomic,javax.management,javax.naming,javax.naming.spi,javax.res
+ ource.spi,javax.resource.spi.work,javax.sql,javax.transaction;version
+ ="1.1.1",javax.transaction.xa;version="1.1.1",org.jboss.logging;versi
+ on="3.3.2.Final-redhat-00001",org.jboss.logging.annotations,org.jboss
+ .tm;version="7.6.0.Final-redhat-1",org.jboss.tm.usertx;version="7.6.0
+ .Final-redhat-1",org.jboss.tm.usertx.client;version="7.6.0.Final-redh
+ at-1"

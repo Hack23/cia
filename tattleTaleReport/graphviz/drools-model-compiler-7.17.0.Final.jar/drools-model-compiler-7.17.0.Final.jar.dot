@@ -9,5 +9,5 @@ digraph drools_model_compiler_7_17_0_Final_dependencies {
   drools_model_compiler_7_17_0_Final -> kie_soup_maven_support_7_17_0_Final;
   drools_model_compiler_7_17_0_Final -> kie_soup_project_datamodel_commons_7_17_0_Final;
   drools_model_compiler_7_17_0_Final -> mvel2_2_4_4_Final;
-  drools_model_compiler_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  drools_model_compiler_7_17_0_Final -> slf4j_api_1_8_0_beta4;
 }

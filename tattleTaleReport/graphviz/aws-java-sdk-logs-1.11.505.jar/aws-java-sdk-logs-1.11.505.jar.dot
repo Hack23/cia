@@ -1,0 +1,7 @@
+digraph aws_java_sdk_logs_1_11_505_dependencies {
+  node [shape = box, fontsize=10.0];
+  aws_java_sdk_logs_1_11_505 -> aws_java_sdk_core_1_11_505;
+  aws_java_sdk_logs_1_11_505 -> jackson_annotations_2_9_0;
+  aws_java_sdk_logs_1_11_505 -> jackson_core_2_9_8;
+  aws_java_sdk_logs_1_11_505 -> jcl_over_slf4j_1_8_0_beta4;
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javax.persistence.api"/>
+        <module name="javax.xml.bind.api"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

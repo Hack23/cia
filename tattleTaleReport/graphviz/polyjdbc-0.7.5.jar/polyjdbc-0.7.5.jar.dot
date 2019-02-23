@@ -1,4 +1,4 @@
 digraph polyjdbc_0_7_5_dependencies {
   node [shape = box, fontsize=10.0];
-  polyjdbc_0_7_5 -> slf4j_api_1_8_0_beta2;
+  polyjdbc_0_7_5 -> slf4j_api_1_8_0_beta4;
 }

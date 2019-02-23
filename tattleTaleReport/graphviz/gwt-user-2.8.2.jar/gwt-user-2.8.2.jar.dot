@@ -5,7 +5,7 @@ digraph gwt_user_2_8_2_dependencies {
   gwt_user_2_8_2 -> gson_2_8_5;
   gwt_user_2_8_2 -> gwt_dev_2_8_2;
   gwt_user_2_8_2 -> icu4j_63_1;
-  gwt_user_2_8_2 -> jcl_over_slf4j_1_8_0_beta2;
+  gwt_user_2_8_2 -> jcl_over_slf4j_1_8_0_beta4;
   gwt_user_2_8_2 -> jsinterop_annotations_1_0_2;
   gwt_user_2_8_2 -> jsr305_3_0_2;
   gwt_user_2_8_2 -> sac_1_3;

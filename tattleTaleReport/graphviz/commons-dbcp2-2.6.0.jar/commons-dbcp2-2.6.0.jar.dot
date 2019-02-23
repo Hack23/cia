@@ -2,5 +2,5 @@ digraph commons_dbcp2_2_6_0_dependencies {
   node [shape = box, fontsize=10.0];
   commons_dbcp2_2_6_0 -> commons_pool2_2_6_1;
   commons_dbcp2_2_6_0 -> geronimo_jta_1_1_spec_1_1_1;
-  commons_dbcp2_2_6_0 -> jcl_over_slf4j_1_8_0_beta2;
+  commons_dbcp2_2_6_0 -> jcl_over_slf4j_1_8_0_beta4;
 }

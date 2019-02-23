@@ -1,7 +1,7 @@
 digraph xbean_spring_4_12_dependencies {
   node [shape = box, fontsize=10.0];
   xbean_spring_4_12 -> ant_1_10_5;
-  xbean_spring_4_12 -> jcl_over_slf4j_1_8_0_beta2;
+  xbean_spring_4_12 -> jcl_over_slf4j_1_8_0_beta4;
   xbean_spring_4_12 -> spring_beans_5_1_5_RELEASE;
   xbean_spring_4_12 -> spring_context_5_1_5_RELEASE;
   xbean_spring_4_12 -> spring_core_5_1_5_RELEASE;

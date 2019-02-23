@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-Description: JCL 1.2 implemented over SLF4J
+Implementation-Title: jcl-over-slf4j
+Bundle-SymbolicName: jcl.over.slf4j
+Implementation-Version: 1.8.0-beta4
+Archiver-Version: Plexus Archiver
+Built-By: ceki
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: SLF4J.ORG
+Import-Package: org.slf4j;version=1.8.0.beta4, org.slf4j.spi;version=1
+ .8.0.beta4
+Export-Package: org.apache.commons.logging;version=1.2,  org.apache.co
+ mmons.logging.impl;version=1.2
+Bundle-Version: 1.8.0.beta4
+Bundle-Name: jcl-over-slf4j
+X-Compile-Target-JDK: 1.6
+Multi-Release: true
+X-Compile-Source-JDK: 1.6
+Created-By: Apache Maven
+Build-Jdk: 1.7.0_80
+

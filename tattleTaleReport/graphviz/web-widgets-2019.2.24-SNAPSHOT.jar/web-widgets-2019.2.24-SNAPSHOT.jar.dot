@@ -1,0 +1,6 @@
+digraph web_widgets_2019_2_24_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  web_widgets_2019_2_24_SNAPSHOT -> commons_lang3_3_8_1;
+  web_widgets_2019_2_24_SNAPSHOT -> vaadin_server_8_7_0;
+  web_widgets_2019_2_24_SNAPSHOT -> vaadin_shared_8_7_0;
+}

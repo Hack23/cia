@@ -12,6 +12,6 @@ digraph kie_dmn_core_7_17_0_Final_dependencies {
   kie_dmn_core_7_17_0_Final -> kie_dmn_feel_7_17_0_Final;
   kie_dmn_core_7_17_0_Final -> kie_dmn_model_7_17_0_Final;
   kie_dmn_core_7_17_0_Final -> kie_internal_7_17_0_Final;
-  kie_dmn_core_7_17_0_Final -> slf4j_api_1_8_0_beta2;
+  kie_dmn_core_7_17_0_Final -> slf4j_api_1_8_0_beta4;
   kie_dmn_core_7_17_0_Final -> xml_apis_1_4_01;
 }

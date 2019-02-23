@@ -1,0 +1,66 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: ArjunaJTS integration
+Implementation-Version: 5.9.3.Final (revision: 8172a)
+Java-Version: 1.8.0_191
+Built-By: ochaloup
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/narayana-j
+ ts-all/narayana-jts-integration
+Os-Arch: amd64
+Specification-Vendor: Oracle
+Implementation-Vendor-Id: http://www.jboss.org/
+Specification-Title: JTA/JTS
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/narayana-jts-all/narayana
+ -jts-integration
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 4.19.13-200.fc28.x86_64
+Scm-Revision: 8172a
+arjuna-builder: JBoss Inc. [ochaloup] Linux 4.19.13-200.fc28.x86_64 20
+ 19/Feb/21 12:20
+arjuna-properties-file: jbossts-properties.xml
+arjuna-scm-revision: 8172a
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_191
+Implementation-URL: http://www.jboss.org/
+Specification-Version: 1.2/1.0
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.ats.internal.jbossatx.jts
+Bundle-Description: narayana-jts-integration-5.9.3.Final
+Bundle-Name: narayana-jts-integration-5.9.3.Final
+Bundle-Version: 0.0.0
+Export-Package: com.arjuna.ats.internal.jbossatx.jta,com.arjuna.ats.in
+ ternal.jbossatx.jta.jca,com.arjuna.ats.internal.jbossatx.jts,com.arju
+ na.ats.internal.jbossatx.jts.jca,com.arjuna.ats.jbossatx;uses:="org.j
+ boss.tm.listener",com.arjuna.ats.jbossatx.jta,com.arjuna.ats.jbossatx
+ .jts;uses:="com.arjuna.common.internal.util",com.arjuna.ats.jbossatx.
+ logging;uses:="org.jboss.logging.annotations"
+Import-Package: com.arjuna.ats.arjuna.common;version="5.9",com.arjuna.
+ ats.arjuna.coordinator;version="5.9",com.arjuna.ats.arjuna.exceptions
+ ;version="5.9",com.arjuna.ats.arjuna.objectstore;version="5.9",com.ar
+ juna.ats.arjuna.recovery;version="5.9",com.arjuna.ats.arjuna.state;ve
+ rsion="5.9",com.arjuna.ats.arjuna.utils;version="5.9",com.arjuna.ats.
+ internal.arjuna.common;version="5.9",com.arjuna.ats.internal.jta.reco
+ very.arjunacore;version="5.9",com.arjuna.ats.internal.jta.resources.a
+ rjunacore;version="5.9",com.arjuna.ats.internal.jta.transaction.arjun
+ acore;version="5.9",com.arjuna.ats.internal.jta.transaction.arjunacor
+ e.jca;version="5.9",com.arjuna.ats.internal.jta.transaction.jts,com.a
+ rjuna.ats.internal.jta.transaction.jts.jca,com.arjuna.ats.internal.jt
+ s,com.arjuna.ats.internal.jts.context,com.arjuna.ats.internal.jts.orb
+ specific,com.arjuna.ats.jta;version="5.9",com.arjuna.ats.jta.recovery
+ ;version="5.9",com.arjuna.ats.jta.transaction;version="5.9",com.arjun
+ a.ats.jts,com.arjuna.ats.jts.utils,com.arjuna.common.internal.util;ve
+ rsion="5.9",com.arjuna.common.internal.util.propertyservice;version="
+ 5.9",com.arjuna.common.util;version="5.9",com.arjuna.orbportability,c
+ om.arjuna.orbportability.common,java.io,java.lang,java.lang.reflect,j
+ ava.util,java.util.concurrent,java.util.concurrent.atomic,javax.namin
+ g,javax.naming.spi,javax.resource.spi.work,javax.transaction;version=
+ "1.1.1",javax.transaction.xa;version="1.1.1",org.jboss.iiop.tm,org.jb
+ oss.logging;version="3.3.2.Final-redhat-00001",org.jboss.logging.anno
+ tations,org.jboss.tm;version="7.6.0.Final-redhat-1",org.jboss.tm.list
+ ener;version="7.6.0.Final-redhat-1",org.omg.CORBA,org.omg.CosTransact
+ ions,org.omg.PortableInterceptor,org.omg.PortableInterceptor.ORBInitI
+ nfoPackage,org.omg.PortableServer
