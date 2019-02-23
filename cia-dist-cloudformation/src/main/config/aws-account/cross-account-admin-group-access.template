@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create a role that authorizes access to admin users in another account'
+Metadata:
+  Version: 0.7
+Parameters:
+  RoleName:
+    Type: String
+  SourceAccountId:
+    Type: String
+    MaxLength: 12
+    MinLength: 12
+    Description: 12 digit id of the account containing the users to which you're granting access
+  MultiFactorAuthRequired:
+    Default: "False"
+    Type: String
+    AllowedValues:
+      - "True"
+      - "False"
+Resources:
+  AssumeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref RoleName
+      Policies:
+          -
+            PolicyName: "AdminUser"
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                -
+                  Effect: "Allow"
+                  Action: "*"
+                  Resource: "*"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal: 
+            "AWS": !Join [ "", [ "arn:aws:iam::", !Ref SourceAccountId, ":root" ] ]
+          Action:
+          - sts:AssumeRole
+          Condition:
+            Bool:
+              "aws:MultiFactorAuthPresent": !Ref MultiFactorAuthRequired

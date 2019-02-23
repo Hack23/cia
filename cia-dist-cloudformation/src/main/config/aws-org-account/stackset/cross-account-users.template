@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create a group whose members can switch roles and access cross account resources'
+Metadata:
+  Version: 0.7
+Parameters:
+  TargetAccountRoleARNs:
+    Type: CommaDelimitedList
+    Default: "arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME"
+    Description: Comma delimited list of IAM Role ARNs in other accounts
+Resources:
+  AssumeRole:
+    Type: AWS::IAM::Group
+    Properties:
+      Policies:
+      - PolicyName: CrossAccountAccessPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - sts:AssumeRole
+            Resource: !Ref TargetAccountRoleARNs
