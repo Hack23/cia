@@ -1027,9 +1027,13 @@
       },
       "ArtifactBucket":{
          "Type":"AWS::S3::Bucket",
-         "DeletionPolicy":"Retain",
+         "DeletionPolicy":"Delete",
          "Properties":{
             "AccessControl":"Private",
+            "LoggingConfiguration": {
+                    "DestinationBucketName": {"Ref" : "LogsBucket"},
+                    "LogFilePrefix": "artifact-bucket-logs"
+            },
             "BucketEncryption":{
                "ServerSideEncryptionConfiguration":[
                   {
@@ -1091,7 +1095,7 @@
       },
       "ArtifactBucketPolicy":{
          "Type":"AWS::S3::BucketPolicy",
-         "DeletionPolicy":"Retain",
+         "DeletionPolicy":"Delete",
          "Properties":{
             "Bucket":{
                "Ref":"ArtifactBucket"
@@ -2587,7 +2591,7 @@
       },
       "LogsBucket":{
          "Type":"AWS::S3::Bucket",
-         "DeletionPolicy":"Retain",
+         "DeletionPolicy":"Delete",
          "Properties":{
             "AccessControl":"LogDeliveryWrite"
          }
