@@ -123,7 +123,7 @@
     <cia.project.versions.hibernate.validator>6.1.0.Alpha3</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.1.0.Alpha3</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.9.10</cia.project.versions.bytebuddy>
-    <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
+    <cia.project.versions.h2>1.4.198</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>4.0.1</cia.project.versions.poi>
