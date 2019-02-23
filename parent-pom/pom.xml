@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
@@ -97,10 +97,10 @@
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.dependencyCheck.htmlReportPath />
-    <sonar.dependencyCheck.reportPath />
-    <sonar.zaproxy.htmlReportPath />
-    <sonar.zaproxy.reportPath />
+    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
+    <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
+    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
+    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.1.4.RELEASE/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.1.5.RELEASE</cia.project.versions.spring>
@@ -1176,7 +1176,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1465,7 +1465,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine />
+        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-8-oracle/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
@@ -1632,7 +1632,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency" />
+                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
                   </target>
                 </configuration>
               </execution>
