@@ -28,7 +28,7 @@
   </distributionManagement>
   <build>
     <plugins>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.jvnet.hyperjaxb3</groupId>
         <artifactId>maven-hyperjaxb3-plugin</artifactId>
         <executions>
@@ -74,7 +74,7 @@
           <extension>true</extension>
           <variant>jpa2</variant>
           <specVersion>2.2</specVersion>
-          <generateDirectory>${project.build.directory}/generated-sources/hyperjaxb3</generateDirectory>
+          <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
           <bindingDirectory>src/main/xjb</bindingDirectory>
           <schemaDirectory>src/main/xsd</schemaDirectory>
           <roundtripTestClassName>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.RoundtripTest</roundtripTestClassName>
@@ -90,8 +90,8 @@
             </plugin>
           </plugins>
         </configuration>
-      </plugin>
-      <plugin>
+      </plugin>-->
+      <!--       <plugin>
         <groupId>com.google.code.maven-replacer-plugin</groupId>
         <artifactId>maven-replacer-plugin</artifactId>
         <executions>
@@ -103,7 +103,7 @@
           </execution>
         </executions>
         <configuration>
-          <file>target/generated-sources/hyperjaxb3/META-INF/persistence.xml</file>
+          <file>src/main/java/META-INF/persistence.xml</file>
           <replacements>
             <replacement>
               <token>persistence version="1.0"</token>
@@ -115,7 +115,7 @@
             </replacement>
           </replacements>
         </configuration>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>

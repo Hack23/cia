@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl">
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachment</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachmentContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceData</class>
+        <class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer</class>
+    </persistence-unit>
+</persistence>

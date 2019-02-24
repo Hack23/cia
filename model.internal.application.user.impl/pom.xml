@@ -265,7 +265,7 @@
           <extension>true</extension>
           <variant>jpa2</variant>
           <specVersion>2.2</specVersion>
-          <generateDirectory>${project.build.directory}/generated-sources/hyperjaxb3</generateDirectory>
+          <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
           <bindingDirectory>src/main/xjb</bindingDirectory>
           <schemaDirectory>src/main/xsd</schemaDirectory>
           <!-- <roundtripTestClassName>com.hack23.cia.model.internal.application.user.impl.RoundtripTest</roundtripTestClassName> -->
@@ -294,7 +294,7 @@
           </execution>
         </executions>
         <configuration>
-          <file>target/generated-sources/hyperjaxb3/META-INF/persistence.xml</file>
+          <file>src/main/java/META-INF/persistence.xml</file>
           <replacements>
             <replacement>
               <token>persistence version="1.0"</token>

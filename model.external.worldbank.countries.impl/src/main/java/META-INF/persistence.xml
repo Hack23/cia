@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="com.hack23.cia.model.external.worldbank.countries.impl">
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.Adminregion</class>
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement</class>
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.CountryElement</class>
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.IncomeLevel</class>
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.LendingType</class>
+        <class>com.hack23.cia.model.external.worldbank.countries.impl.Region</class>
+    </persistence-unit>
+</persistence>

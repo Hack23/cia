@@ -185,6 +185,13 @@
           <include>*.xjb</include>
         </includes>
       </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${project.basedir}/src/main/java</directory>
+        <includes>
+          <include>META-INF/persistence.xml</include>
+        </includes>
+      </resource>
     </resources>
     <pluginManagement>
       <plugins>
@@ -256,7 +263,7 @@
               <goal>process</goal>
             </goals>
             <configuration>
-              <sourceDirectory>${project.build.directory}/generated-sources/hyperjaxb3</sourceDirectory>
+              <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <outputDirectory>target/metamodel</outputDirectory>
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>

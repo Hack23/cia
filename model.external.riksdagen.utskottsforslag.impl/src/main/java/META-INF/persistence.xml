@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl">
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalData</class>
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData</class>
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData</class>
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalContainer</class>
+        <class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData</class>
+    </persistence-unit>
+</persistence>

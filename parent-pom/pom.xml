@@ -1203,6 +1203,7 @@
               </rules>
             </configuration>
           </execution>
+          <!-- 
           <execution>
             <id>enforce-java-source-encoding</id>
             <goals>
@@ -1218,6 +1219,7 @@
               </rules>
             </configuration>
           </execution>
+          -->
           <execution>
             <id>enforce-property-file-encoding</id>
             <goals>
