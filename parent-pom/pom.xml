@@ -1409,7 +1409,7 @@
         <jdk>13</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=permit --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
         			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
@@ -1430,7 +1430,7 @@
         <jdk>12</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=permit --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
         			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
@@ -1451,7 +1451,7 @@
         <jdk>11</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=permit --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
         			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
