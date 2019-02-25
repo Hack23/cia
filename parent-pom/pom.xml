@@ -1469,7 +1469,7 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <jdk>(,1.8],[9,)</jdk>
+        <jdk>[11,13)</jdk>
       </activation>
       <modules>
         <module>../testfoundation</module>
