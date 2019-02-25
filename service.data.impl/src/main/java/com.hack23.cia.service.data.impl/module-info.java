@@ -1,10 +1,7 @@
-module com.hack23.cia.service.data.impl {
+open module com.hack23.cia.service.data.impl {
 	exports com.hack23.cia.service.data.impl;
 	exports com.hack23.cia.service.data.impl.util;
-	
-	opens com.hack23.cia.service.data.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.data.impl.util to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	
+		
 	requires java.xml.bind;
 	requires java.sql;
 	requires java.desktop;

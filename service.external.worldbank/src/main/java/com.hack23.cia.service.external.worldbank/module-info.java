@@ -1,10 +1,7 @@
-module com.hack23.cia.service.external.worldbank {
+open module com.hack23.cia.service.external.worldbank {
 	exports com.hack23.cia.service.external.worldbank.api;
 	exports com.hack23.cia.service.external.worldbank.impl;
 	
-	opens com.hack23.cia.service.external.worldbank.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.external.worldbank.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-
 	requires java.xml.bind;
 	requires spring.beans;
 	requires org.slf4j;

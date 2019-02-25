@@ -1,10 +1,7 @@
-module com.hack23.cia.service.external.riksdagen {
+open module com.hack23.cia.service.external.riksdagen {
 	exports com.hack23.cia.service.external.riksdagen.api;
 	exports com.hack23.cia.service.external.riksdagen.impl;
 	
-	opens com.hack23.cia.service.external.riksdagen.api to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.external.riksdagen.impl to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-
 	requires java.xml.bind;
 	requires org.slf4j;
 	requires spring.context;

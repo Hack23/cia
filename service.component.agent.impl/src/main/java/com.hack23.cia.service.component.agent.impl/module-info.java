@@ -1,28 +1,10 @@
-module com.hack23.cia.service.component.agent.impl {
+open module com.hack23.cia.service.component.agent.impl {
 
 
 	exports com.hack23.cia.service.component.agent.impl.command;
 	exports com.hack23.cia.service.component.agent.impl.riksdagen;
 	exports com.hack23.cia.service.component.agent.impl.val;
 	exports com.hack23.cia.service.component.agent.impl.worldbank;
-
-	opens com.hack23.cia.service.component.agent.impl.command to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	
-	opens com.hack23.cia.service.component.agent.impl.riksdagen to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.riksdagen.workers to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.riksdagen.workers.data to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	
-	opens com.hack23.cia.service.component.agent.impl.val to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	
-	opens com.hack23.cia.service.component.agent.impl.worldbank to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.worldbank.workers to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.worldbank.workers.data to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.worldbank.workgenerator to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	opens com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
-	
-	opens com.hack23.cia.service.component.agent.impl.common.jms to spring.aop, spring.core, spring.beans, spring.context, spring.context.support;
 		
 	requires java.xml.bind;
 	requires java.annotation;
