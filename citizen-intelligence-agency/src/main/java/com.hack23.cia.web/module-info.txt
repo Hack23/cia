@@ -131,6 +131,7 @@ module com.hack23.cia.web {
 	requires spring.security.core;
 	requires spring.security.web;
 	requires org.apache.commons.lang3;
+	requires org.bouncycastle.provider;
 
 	requires weka.dev;
 	requires passay;
