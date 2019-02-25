@@ -8,8 +8,6 @@ addons:
   chrome: stable
   apt:
     packages:
-      - oracle-java8-installer
-      - oracle-java8-set-default
       - openjdk-11-jdk-headless
       - graphviz
       - build-essential
@@ -27,11 +25,11 @@ addons:
       - tzdata
 
 jdk:
-  - oraclejdk8
+  - openjdk11
 
 env:
   global:
-    - JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
     - PGPORT=5433
     
 cache:
