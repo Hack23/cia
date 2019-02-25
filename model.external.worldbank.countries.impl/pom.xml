@@ -27,7 +27,7 @@
     </site>
   </distributionManagement>
   <build>
-     <plugins>
+    <plugins>
       <!-- <plugin>
         <groupId>org.jvnet.hyperjaxb3</groupId>
         <artifactId>maven-hyperjaxb3-plugin</artifactId>
@@ -93,7 +93,7 @@
           </plugins>
         </configuration>
       </plugin>-->
-<!--       <plugin>
+      <!--       <plugin>
         <groupId>com.google.code.maven-replacer-plugin</groupId>
         <artifactId>maven-replacer-plugin</artifactId>
         <executions>

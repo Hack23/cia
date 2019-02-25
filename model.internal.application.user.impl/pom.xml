@@ -218,7 +218,7 @@
           </execution>
         </executions>
       </plugin>-->
-      <plugin>
+      <!--       <plugin>
         <groupId>org.jvnet.hyperjaxb3</groupId>
         <artifactId>maven-hyperjaxb3-plugin</artifactId>
         <executions>
@@ -268,7 +268,6 @@
           <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
           <bindingDirectory>src/main/xjb</bindingDirectory>
           <schemaDirectory>src/main/xsd</schemaDirectory>
-          <!-- <roundtripTestClassName>com.hack23.cia.model.internal.application.user.impl.RoundtripTest</roundtripTestClassName> -->
           <args>
             <arg>-Xfluent-api</arg>
             <arg>-XtoString</arg>
@@ -310,26 +309,11 @@
             </replacement>
           </replacements>
         </configuration>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>
         <executions>
-          <execution>
-            <id>process</id>
-            <phase>process-sources</phase>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${project.build.directory}/generated-sources/hyperjaxb3</sourceDirectory>
-              <outputDirectory>target/metamodel</outputDirectory>
-              <processors>
-                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-              </processors>
-              <compilerArguments>-source ${jdk.src.version} -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
-            </configuration>
-          </execution>
           <execution>
             <id>process-src-main-java</id>
             <phase>process-sources</phase>
