@@ -1,4 +1,4 @@
-module com.hack23.cia.web {
+open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;
 	exports com.hack23.cia.web.impl.ui.application.action;
 	exports com.hack23.cia.web.impl.ui.application.util;
@@ -54,63 +54,7 @@ module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 	exports com.hack23.cia.web.impl.ui.application.views.common;
-	
-	opens com.hack23.cia.web.impl.ui.application;	
-	opens com.hack23.cia.web.impl.ui.application.action;
-	opens com.hack23.cia.web.impl.ui.application.util;
-	opens com.hack23.cia.web.impl.ui.application.web.listener;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.system;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.agentoperations;
-	opens com.hack23.cia.web.impl.ui.application.views.admin.common;
-	opens com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
-	opens com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.parliament;
-	opens com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.home;
-	opens com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.party;
-	opens com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.ballot;
-	opens com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.country;
-	opens com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.goverment;
-	opens com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.document;
-	opens com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.committee;
-	opens com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.politician;
-	opens com.hack23.cia.web.impl.ui.application.views.user.common;
-	opens com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.user.govermentbody;
-	opens com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.labelfactory;
-	opens com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.formfactory.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.pagemode;
-	opens com.hack23.cia.web.impl.ui.application.views.common.sizing;
-	opens com.hack23.cia.web.impl.ui.application.views.common.viewnames;
-	opens com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.converters;
-	opens com.hack23.cia.web.impl.ui.application.views.common.rows;
-	opens com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.paging;
-	opens com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
-	opens com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
-	opens com.hack23.cia.web.impl.ui.application.views.common;
-	
+		
 	requires vaadin.compatibility.shared;
 	requires vaadin.compatibility.server;
 	requires vaadin.shared;
