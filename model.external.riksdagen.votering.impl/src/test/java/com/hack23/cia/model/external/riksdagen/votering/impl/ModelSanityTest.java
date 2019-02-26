@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-
+package com.hack23.cia.model.external.riksdagen.votering.impl;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
