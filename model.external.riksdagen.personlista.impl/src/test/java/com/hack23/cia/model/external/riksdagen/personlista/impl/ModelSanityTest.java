@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,13 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.api.action;
-
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+package com.hack23.cia.model.external.riksdagen.personlista.impl;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -34,18 +28,18 @@ import com.tocea.easycoverage.framework.checkers.BijectiveEqualsChecker;
 import com.tocea.easycoverage.framework.checkers.CloneChecker;
 import com.tocea.easycoverage.framework.checkers.NPEConstructorChecker;
 import com.tocea.easycoverage.framework.checkers.NPEMethodChecker;
-import com.tocea.easycoverage.framework.checkers.SetterChecker;
 import com.tocea.easycoverage.framework.checkers.NullValueEqualsChecker;
+import com.tocea.easycoverage.framework.checkers.SetterChecker;
 import com.tocea.easycoverage.framework.checkers.ToStringNotNullChecker;
 import com.tocea.easycoverage.framework.junit.JUnitTestSuiteProvider;
 
 import junit.framework.TestSuite;
 
 /**
- * The Class ApiActionSanityTest.
+ * The Class ModelSanityTest.
  */
 @RunWith(AllTests.class)
-public final class ApiActionSanityTest extends AbstractUnitTest {
+public final class ModelSanityTest extends AbstractUnitTest {
 
 	private static final String EXPECT_CLASSES_IN_PACKAGE = "Expect classes in package";
 
@@ -58,13 +52,7 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 		final JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
 
 		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
-				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.application"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
-				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.admin"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
-				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.user"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
-				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.kpi"));
+				checkAllClassesInPackage(testSuiteProvider, ModelSanityTest.class.getPackageName()));
 
 		testSuiteProvider.addClassChecker(ToStringNotNullChecker.class);
 		testSuiteProvider.addClassChecker(BijectiveCompareToChecker.class);
