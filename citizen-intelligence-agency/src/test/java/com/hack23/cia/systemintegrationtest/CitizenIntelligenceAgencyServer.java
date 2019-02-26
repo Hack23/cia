@@ -179,12 +179,13 @@ public final class CitizenIntelligenceAgencyServer {
 		server.addBean(mbContainer);
 
 		// Enable parsing of jndi-related parts of web.xml and jetty-env.xml
-		final org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList
-				.setServerDefault(server);
-		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
-				"org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
-		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
-				"org.eclipse.jetty.annotations.AnnotationConfiguration");
+		final org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
+//		class
+//		
+//		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
+//				"org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
+//		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
+//				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
 		final HttpConfiguration http_config = new HttpConfiguration();
 		http_config.setSecureScheme("https");

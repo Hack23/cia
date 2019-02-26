@@ -970,16 +970,17 @@
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-continuation</artifactId>
-      <version>${cia.project.versions.jetty}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty.websocket</groupId>
-      <artifactId>websocket-server</artifactId>
+      <artifactId>jetty-servlet</artifactId>
       <version>${cia.project.versions.jetty}</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-servlets</artifactId>
+      <version>${cia.project.versions.jetty}</version>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>javax-websocket-server-impl</artifactId>
@@ -1236,6 +1237,10 @@
           <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>javax.servlet-api</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -1261,11 +1266,13 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- 
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    -->
     <!--
     <dependency>
       <groupId>com.google.gwt</groupId>

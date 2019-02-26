@@ -94,7 +94,6 @@ open module com.hack23.cia.web {
 	requires dcharts;
 	requires commons.beanutils;
 	requires org.jsoup;
-	requires javax.servlet.api;
 	requires vaadin.spring;
 	requires spring.web;
 	requires java.logging;
