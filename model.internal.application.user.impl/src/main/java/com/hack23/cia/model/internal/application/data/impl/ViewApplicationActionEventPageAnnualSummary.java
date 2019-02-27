@@ -146,7 +146,7 @@ public class ViewApplicationActionEventPageAnnualSummary
      * 
      */
     public void setRank(final long value) {
-        this.rank = value;
+       this.rank = value;
     }
 
     /**

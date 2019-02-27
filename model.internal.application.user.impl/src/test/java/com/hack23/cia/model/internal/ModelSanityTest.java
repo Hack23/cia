@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.model.external.riksdagen.person.impl;
+package com.hack23.cia.model.internal;
 
 import org.junit.Test;
 import com.hack23.cia.testfoundation.AbstractUnitTest;

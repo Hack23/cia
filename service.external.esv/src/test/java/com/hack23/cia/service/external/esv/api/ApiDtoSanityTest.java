@@ -18,25 +18,13 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.AllTests;
+import org.junit.Test;
 
 import com.hack23.cia.testfoundation.AbstractUnitTest;
-import com.tocea.easycoverage.framework.checkers.ArrayIndexOutOfBoundExceptionChecker;
-import com.tocea.easycoverage.framework.checkers.BijectiveEqualsChecker;
-import com.tocea.easycoverage.framework.checkers.CloneChecker;
-import com.tocea.easycoverage.framework.checkers.NPEConstructorChecker;
-import com.tocea.easycoverage.framework.checkers.NullValueEqualsChecker;
-import com.tocea.easycoverage.framework.checkers.SetterChecker;
-import com.tocea.easycoverage.framework.checkers.ToStringNotNullChecker;
-import com.tocea.easycoverage.framework.junit.JUnitTestSuiteProvider;
-
-import junit.framework.TestSuite;
 
 /**
  * The Class ApiDtoSanityTest.
  */
-@RunWith(AllTests.class)
 public final class ApiDtoSanityTest extends AbstractUnitTest {
 
 
@@ -45,23 +33,10 @@ public final class ApiDtoSanityTest extends AbstractUnitTest {
 	 *
 	 * @return the test suite
 	 */
-	public static TestSuite suite() {
-		final JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
-
-		testSuiteProvider.addClass(GovernmentBodyAnnualOutcomeSummary.class);
-		testSuiteProvider.addClass(GovernmentBodyAnnualSummary.class);
-		testSuiteProvider.addClass(GovernmentOperationPeriodOutcome.class);
+	@Test
+	public void apiDtoTest() {
+		checkAllClassesInPackage("com.hack23.cia.service.external.esv.api");
 		
-		testSuiteProvider.addClassChecker(ToStringNotNullChecker.class);
-		testSuiteProvider.addClassChecker(BijectiveEqualsChecker.class);
-		testSuiteProvider.addClassChecker(CloneChecker.class);
-		testSuiteProvider.addClassChecker(NPEConstructorChecker.class);
-		testSuiteProvider.addClassChecker(NullValueEqualsChecker.class);
-
-		testSuiteProvider.addMethodChecker(SetterChecker.class);
-		testSuiteProvider.addMethodChecker(ArrayIndexOutOfBoundExceptionChecker.class);
-
-		return testSuiteProvider.getTestSuite();
 	}
 
 }

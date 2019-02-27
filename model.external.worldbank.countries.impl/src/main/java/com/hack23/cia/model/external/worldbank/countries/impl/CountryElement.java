@@ -468,8 +468,6 @@ public class CountryElement
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-
-
     /**
 	 * Gets the hjid.
 	 *

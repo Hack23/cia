@@ -36,6 +36,7 @@ open module com.hack23.cia.service.component.agent.impl {
 	requires com.hack23.cia.model.external.worldbank.indicators.impl;
 	requires com.hack23.cia.model.external.riksdagen.documentcontent.impl;
 	requires com.hack23.cia.model.external.worldbank.data.impl;
+	requires com.hack23.cia.model.external.worldbank.countries.impl;
 	requires com.hack23.cia.model.external.riksdagen.person.impl;
 	requires com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
 	requires com.hack23.cia.model.external.riksdagen.dokumentlista.impl;

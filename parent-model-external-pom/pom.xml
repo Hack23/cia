@@ -269,6 +269,7 @@
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
               <compilerArguments>-source ${jdk.src.version} -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
+              <excludes>**/module-info.*</excludes>
             </configuration>
           </execution>
         </executions>

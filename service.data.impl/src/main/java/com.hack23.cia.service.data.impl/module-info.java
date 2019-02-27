@@ -46,4 +46,5 @@ open module com.hack23.cia.service.data.impl {
 	requires com.google.common;
 
     requires com.hack23.cia.service.data.api;
+    requires com.hack23.cia.model.external.worldbank.countries.impl;
 }

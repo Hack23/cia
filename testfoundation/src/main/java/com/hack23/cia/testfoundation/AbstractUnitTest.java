@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
+ * Copyright 2010 James Pether Sörling
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,26 @@
 
 package com.hack23.cia.testfoundation;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.tocea.easycoverage.framework.junit.JUnitTestSuiteProvider;
+import com.openpojo.reflection.PojoClass;
+import com.openpojo.reflection.PojoClassFilter;
+import com.openpojo.reflection.filters.FilterPackageInfo;
+import com.openpojo.reflection.impl.PojoClassFactory;
+import com.openpojo.validation.Validator;
+import com.openpojo.validation.ValidatorBuilder;
+import com.openpojo.validation.rule.impl.EqualsAndHashCodeMatchRule;
+import com.openpojo.validation.rule.impl.GetterMustExistRule;
+import com.openpojo.validation.rule.impl.SetterMustExistRule;
+import com.openpojo.validation.test.impl.GetterTester;
+import com.openpojo.validation.test.impl.SetterTester;
+
 
 /**
  * The Class AbstractUnitTest.
  */
 public abstract class AbstractUnitTest extends AbstractTest {
-
-	private static final char PACKAGE_SEPARATOR = '.';
-	private static final char CLASS_FILE_DIRECTORY_SEPARATOR = '/';
-	private static final String CLASS_SUFFIX = ".class";
-
+	
 	/**
 	 * Instantiates a new abstract unit test.
 	 */
@@ -44,44 +49,30 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	/**
 	 * Check all classes in package.
 	 *
-	 * @param testSuiteProvider the test suite provider
-	 * @param string            the string
+	 * @param string the string
+	 * @return true, if successful
 	 */
-	public static final boolean checkAllClassesInPackage(final JUnitTestSuiteProvider testSuiteProvider,
-			final String string) {
-		final List<Class<?>> allClasses = getAllClasses(string);
-		for (final Class<?> class1 : allClasses) {
-			testSuiteProvider.addClass(class1);
-		}
-		return !allClasses.isEmpty();
+	public final boolean checkAllClassesInPackage(final String string) {
+		
+		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string, new FilterTestClasses());
+		
+		 Validator validator = ValidatorBuilder.create()
+                 .with(new SetterMustExistRule(),
+                       new GetterMustExistRule())
+                 .with(new SetterTester(),
+                       new GetterTester())
+                 .with(new EqualsAndHashCodeMatchRule())
+                 .build();
+		 validator.validate(pojoClassesRecursively);
+		 return true;
 	}
 
-	/**
-	 * Gets the all classes.
-	 *
-	 * @param pckgname the pckgname
-	 * @return the all classes
-	 */
-	public static final List<Class<?>> getAllClasses(final String pckgname) {
-		final List<Class<?>> classes = new ArrayList<>();
-		final File directory = new File(Thread.currentThread().getContextClassLoader()
-				.getResource(pckgname.replace(PACKAGE_SEPARATOR, CLASS_FILE_DIRECTORY_SEPARATOR)).getFile());
-		if (directory.exists()) {
-			final String[] files = directory.list();
-			for (final String file : files) {
-				if (file.endsWith(CLASS_SUFFIX)) {
-					try {
-						final StringBuilder stringBuilder = new StringBuilder();
-						stringBuilder.append(pckgname);
-						stringBuilder.append(PACKAGE_SEPARATOR);
-						stringBuilder.append(file.substring(0, file.length() - 6));
-						classes.add(Class.forName(stringBuilder.toString()));
-					} catch (final ClassNotFoundException e) {
-					}
-				}
-			}
-		}
-		return classes;
+	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
+	
+	private static class FilterTestClasses implements PojoClassFilter {
+	    public boolean include(PojoClass pojoClass) {
+	      return !(pojoClass.getSourcePath().contains("/test-classes/") || pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum()) && FilterPackageInfo.include(pojoClass);
+	    }
 	}
-
+	
 }

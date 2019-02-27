@@ -128,5 +128,6 @@ open module com.hack23.cia.web {
 	requires transitive com.hack23.cia.model.external.riksdagen.personlista.impl;
 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
+	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
 
 }

@@ -278,11 +278,9 @@ public class Portal
     }
 
 	@Override
-	public final String toString() {
+	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
-
-
 
     /**
      * Gets the value of the hjid property.
@@ -383,7 +381,7 @@ public class Portal
 
 
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
