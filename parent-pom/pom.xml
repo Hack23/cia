@@ -1688,7 +1688,6 @@
               <docencoding>UTF-8</docencoding>
               <breakiterator>true</breakiterator>
               <version>true</version>
-              <author>true</author>
               <keywords>true</keywords>
               <additionalOptions>
                 <additionalOption>-sourceclasspath ${project.build.outputDirectory}</additionalOption>
@@ -1806,20 +1805,10 @@
               </profiles>
             </configuration>
           </plugin>
-          <!-- <plugin> <groupId>ch.elca.el4j.maven.plugins</groupId> <artifactId>maven-depgraph-plugin</artifactId>
-						<executions> <execution> <phase>site</phase> <goals> <goal>depgraph</goal>
-						</goals> </execution> </executions> <inherited>true</inherited> <configuration>
-						<outDir>${project.build.directory}/site/images</outDir> <dotFile>Project-Dependencies.dot</dotFile>
-						<outFile>Project-Dependencies.png</outFile> <filterEmptyArtifacts>false</filterEmptyArtifacts>
-						</configuration> </plugin> -->
         </plugins>
       </build>
       <reporting>
         <plugins>
-          <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>clirr-maven-plugin</artifactId>
-						<version>2.6.1</version> <inherited>true</inherited> </plugin> -->
-          <!-- <plugin> <groupId>org.apache.rat</groupId> <artifactId>apache-rat-plugin</artifactId>
-						<version>0.7-SNAPSHOT</version> <inherited>true</inherited> </plugin> -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -1834,12 +1823,6 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!-- <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> <docletArtifact>
-								<groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId> <version>5.6</version>
-								</docletArtifact> <tagletArtifact> <groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId>
-								<version>5.6</version> </tagletArtifact> <additionalparam>-inferrel -inferdep
-								-quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize
-								9 -nodefontpackagesize 7</additionalparam> -->
               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
@@ -1853,7 +1836,6 @@
               <source>${jdk.src.version}</source>
               <breakiterator>true</breakiterator>
               <version>true</version>
-              <author>true</author>
               <keywords>true</keywords>
               <additionalOptions>
                 <additionalOption>-sourceclasspath ${project.build.outputDirectory}</additionalOption>
