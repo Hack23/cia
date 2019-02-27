@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.committee.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -16,18 +17,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -59,10 +59,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 })
 @Embeddable
 public class RiksdagenVoteDataBallotEmbeddedId
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected String ballotId;
     @XmlElement(required = true)
     protected String concern;
@@ -78,7 +82,7 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     
      */
     @Basic
-    @Column(name = "BALLOT_ID", length = 255)
+    @Column(name = "BALLOT_ID")
     public String getBallotId() {
         return ballotId;
     }
@@ -91,7 +95,7 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     {@link String }
      *     
      */
-    public void setBallotId(String value) {
+    public void setBallotId(final String value) {
         this.ballotId = value;
     }
 
@@ -104,7 +108,7 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     
      */
     @Basic
-    @Column(name = "CONCERN", length = 255)
+    @Column(name = "CONCERN")
     public String getConcern() {
         return concern;
     }
@@ -117,7 +121,7 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     {@link String }
      *     
      */
-    public void setConcern(String value) {
+    public void setConcern(final String value) {
         this.concern = value;
     }
 
@@ -130,7 +134,7 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     
      */
     @Basic
-    @Column(name = "ISSUE", length = 255)
+    @Column(name = "ISSUE")
     public String getIssue() {
         return issue;
     }
@@ -143,59 +147,31 @@ public class RiksdagenVoteDataBallotEmbeddedId
      *     {@link String }
      *     
      */
-    public void setIssue(String value) {
+    public void setIssue(final String value) {
         this.issue = value;
     }
 
-    public RiksdagenVoteDataBallotEmbeddedId withBallotId(String value) {
+    public RiksdagenVoteDataBallotEmbeddedId withBallotId(final String value) {
         setBallotId(value);
         return this;
     }
 
-    public RiksdagenVoteDataBallotEmbeddedId withConcern(String value) {
+    public RiksdagenVoteDataBallotEmbeddedId withConcern(final String value) {
         setConcern(value);
         return this;
     }
 
-    public RiksdagenVoteDataBallotEmbeddedId withIssue(String value) {
+    public RiksdagenVoteDataBallotEmbeddedId withIssue(final String value) {
         setIssue(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            String theBallotId;
-            theBallotId = this.getBallotId();
-            strategy.appendField(locator, this, "ballotId", buffer, theBallotId);
-        }
-        {
-            String theConcern;
-            theConcern = this.getConcern();
-            strategy.appendField(locator, this, "concern", buffer, theConcern);
-        }
-        {
-            String theIssue;
-            theIssue = this.getIssue();
-            strategy.appendField(locator, this, "issue", buffer, theIssue);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -233,34 +209,14 @@ public class RiksdagenVoteDataBallotEmbeddedId
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            String theBallotId;
-            theBallotId = this.getBallotId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "ballotId", theBallotId), currentHashCode, theBallotId);
-        }
-        {
-            String theConcern;
-            theConcern = this.getConcern();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "concern", theConcern), currentHashCode, theConcern);
-        }
-        {
-            String theIssue;
-            theIssue = this.getIssue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "issue", theIssue), currentHashCode, theIssue);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

@@ -71,7 +71,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 * @param id
 	 *            the new id
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -93,7 +93,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 * @param storage
 	 *            the new storage
 	 */
-	public void setStorage(String storage) {
+	public void setStorage(final String storage) {
 		this.storage = storage;
 	}
 
@@ -114,7 +114,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 * @param userId
 	 *            the new user id
 	 */
-	public void setUserId(String userId) {
+	public void setUserId(final String userId) {
 		this.userId = userId;
 	}
 
@@ -135,7 +135,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 * @param vaultName
 	 *            the new vault name
 	 */
-	public void setVaultName(String vaultName) {
+	public void setVaultName(final String vaultName) {
 		this.vaultName = vaultName;
 	}
 

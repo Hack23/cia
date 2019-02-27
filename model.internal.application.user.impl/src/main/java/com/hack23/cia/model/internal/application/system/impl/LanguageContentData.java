@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,19 +32,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -93,10 +93,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "LANGUAGE_CONTENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageContentData
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     protected String fromLanguage;
     protected String toLanguage;
@@ -139,7 +143,7 @@ public class LanguageContentData
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -157,7 +161,7 @@ public class LanguageContentData
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -170,7 +174,7 @@ public class LanguageContentData
      *     
      */
     @Basic
-    @Column(name = "FROM_LANGUAGE", length = 255)
+    @Column(name = "FROM_LANGUAGE")
     public String getFromLanguage() {
         return fromLanguage;
     }
@@ -183,7 +187,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setFromLanguage(String value) {
+    public void setFromLanguage(final String value) {
         this.fromLanguage = value;
     }
 
@@ -196,7 +200,7 @@ public class LanguageContentData
      *     
      */
     @Basic
-    @Column(name = "TO_LANGUAGE", length = 255)
+    @Column(name = "TO_LANGUAGE")
     public String getToLanguage() {
         return toLanguage;
     }
@@ -209,7 +213,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setToLanguage(String value) {
+    public void setToLanguage(final String value) {
         this.toLanguage = value;
     }
 
@@ -236,7 +240,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -249,7 +253,7 @@ public class LanguageContentData
      *     
      */
     @Basic
-    @Column(name = "KEY_GROUP", length = 255)
+    @Column(name = "KEY_GROUP")
     public String getKeyGroup() {
         return keyGroup;
     }
@@ -262,7 +266,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setKeyGroup(String value) {
+    public void setKeyGroup(final String value) {
         this.keyGroup = value;
     }
 
@@ -275,7 +279,7 @@ public class LanguageContentData
      *     
      */
     @Basic
-    @Column(name = "LOCATION_CONTEXT", length = 255)
+    @Column(name = "LOCATION_CONTEXT")
     public String getLocationContext() {
         return locationContext;
     }
@@ -288,7 +292,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setLocationContext(String value) {
+    public void setLocationContext(final String value) {
         this.locationContext = value;
     }
 
@@ -315,7 +319,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setLastModifiedDate(Date value) {
+    public void setLastModifiedDate(final Date value) {
         this.lastModifiedDate = value;
     }
 
@@ -341,7 +345,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setRefKey(String value) {
+    public void setRefKey(final String value) {
         this.refKey = value;
     }
 
@@ -367,7 +371,7 @@ public class LanguageContentData
      *     {@link String }
      *     
      */
-    public void setLanguageValue(String value) {
+    public void setLanguageValue(final String value) {
         this.languageValue = value;
     }
 
@@ -380,7 +384,7 @@ public class LanguageContentData
      *     
      */
     @Basic
-    @Column(name = "LANGUAGE_CONTENT_TYPE", length = 255)
+    @Column(name = "LANGUAGE_CONTENT_TYPE")
     @Enumerated(EnumType.STRING)
     public LanguageContentType getLanguageContentType() {
         return languageContentType;
@@ -394,137 +398,70 @@ public class LanguageContentData
      *     {@link LanguageContentType }
      *     
      */
-    public void setLanguageContentType(LanguageContentType value) {
+    public void setLanguageContentType(final LanguageContentType value) {
         this.languageContentType = value;
     }
 
-    public LanguageContentData withModelObjectId(Integer value) {
+    public LanguageContentData withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public LanguageContentData withModelObjectVersion(int value) {
+    public LanguageContentData withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public LanguageContentData withFromLanguage(String value) {
+    public LanguageContentData withFromLanguage(final String value) {
         setFromLanguage(value);
         return this;
     }
 
-    public LanguageContentData withToLanguage(String value) {
+    public LanguageContentData withToLanguage(final String value) {
         setToLanguage(value);
         return this;
     }
 
-    public LanguageContentData withCreatedDate(Date value) {
+    public LanguageContentData withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public LanguageContentData withKeyGroup(String value) {
+    public LanguageContentData withKeyGroup(final String value) {
         setKeyGroup(value);
         return this;
     }
 
-    public LanguageContentData withLocationContext(String value) {
+    public LanguageContentData withLocationContext(final String value) {
         setLocationContext(value);
         return this;
     }
 
-    public LanguageContentData withLastModifiedDate(Date value) {
+    public LanguageContentData withLastModifiedDate(final Date value) {
         setLastModifiedDate(value);
         return this;
     }
 
-    public LanguageContentData withRefKey(String value) {
+    public LanguageContentData withRefKey(final String value) {
         setRefKey(value);
         return this;
     }
 
-    public LanguageContentData withLanguageValue(String value) {
+    public LanguageContentData withLanguageValue(final String value) {
         setLanguageValue(value);
         return this;
     }
 
-    public LanguageContentData withLanguageContentType(LanguageContentType value) {
+    public LanguageContentData withLanguageContentType(final LanguageContentType value) {
         setLanguageContentType(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            String theFromLanguage;
-            theFromLanguage = this.getFromLanguage();
-            strategy.appendField(locator, this, "fromLanguage", buffer, theFromLanguage);
-        }
-        {
-            String theToLanguage;
-            theToLanguage = this.getToLanguage();
-            strategy.appendField(locator, this, "toLanguage", buffer, theToLanguage);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            String theKeyGroup;
-            theKeyGroup = this.getKeyGroup();
-            strategy.appendField(locator, this, "keyGroup", buffer, theKeyGroup);
-        }
-        {
-            String theLocationContext;
-            theLocationContext = this.getLocationContext();
-            strategy.appendField(locator, this, "locationContext", buffer, theLocationContext);
-        }
-        {
-            Date theLastModifiedDate;
-            theLastModifiedDate = this.getLastModifiedDate();
-            strategy.appendField(locator, this, "lastModifiedDate", buffer, theLastModifiedDate);
-        }
-        {
-            String theRefKey;
-            theRefKey = this.getRefKey();
-            strategy.appendField(locator, this, "refKey", buffer, theRefKey);
-        }
-        {
-            String theLanguageValue;
-            theLanguageValue = this.getLanguageValue();
-            strategy.appendField(locator, this, "languageValue", buffer, theLanguageValue);
-        }
-        {
-            LanguageContentType theLanguageContentType;
-            theLanguageContentType = this.getLanguageContentType();
-            strategy.appendField(locator, this, "languageContentType", buffer, theLanguageContentType);
-        }
-        return buffer;
-    }
 
     /**
      * Gets the value of the hjid property.
@@ -549,11 +486,11 @@ public class LanguageContentData
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -663,74 +600,14 @@ public class LanguageContentData
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            String theFromLanguage;
-            theFromLanguage = this.getFromLanguage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "fromLanguage", theFromLanguage), currentHashCode, theFromLanguage);
-        }
-        {
-            String theToLanguage;
-            theToLanguage = this.getToLanguage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "toLanguage", theToLanguage), currentHashCode, theToLanguage);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            String theKeyGroup;
-            theKeyGroup = this.getKeyGroup();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "keyGroup", theKeyGroup), currentHashCode, theKeyGroup);
-        }
-        {
-            String theLocationContext;
-            theLocationContext = this.getLocationContext();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "locationContext", theLocationContext), currentHashCode, theLocationContext);
-        }
-        {
-            Date theLastModifiedDate;
-            theLastModifiedDate = this.getLastModifiedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastModifiedDate", theLastModifiedDate), currentHashCode, theLastModifiedDate);
-        }
-        {
-            String theRefKey;
-            theRefKey = this.getRefKey();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "refKey", theRefKey), currentHashCode, theRefKey);
-        }
-        {
-            String theLanguageValue;
-            theLanguageValue = this.getLanguageValue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "languageValue", theLanguageValue), currentHashCode, theLanguageValue);
-        }
-        {
-            LanguageContentType theLanguageContentType;
-            theLanguageContentType = this.getLanguageContentType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "languageContentType", theLanguageContentType), currentHashCode, theLanguageContentType);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

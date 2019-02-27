@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
- *
+ * Copyright 2010 James Pether Sörling
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,11 +36,12 @@ import com.tocea.easycoverage.framework.junit.JUnitTestSuiteProvider;
 import junit.framework.TestSuite;
 
 /**
- * The Class ApiActionSanityTest.
+ * The Class ModelSanityTest.
  */
 @RunWith(AllTests.class)
 public final class ModelSanityTest extends AbstractUnitTest {
 
+	/** The Constant EXPECT_CLASSES_IN_PACKAGE. */
 	private static final String EXPECT_CLASSES_IN_PACKAGE = "Expect classes in package";
 
 	/**

@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,18 +31,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -79,10 +79,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "AGENCY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Agency
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     protected String agencyName;
     protected String description;
@@ -113,7 +117,7 @@ public class Agency
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -131,7 +135,7 @@ public class Agency
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -144,7 +148,7 @@ public class Agency
      *     
      */
     @Basic
-    @Column(name = "AGENCY_NAME", length = 255)
+    @Column(name = "AGENCY_NAME")
     public String getAgencyName() {
         return agencyName;
     }
@@ -157,7 +161,7 @@ public class Agency
      *     {@link String }
      *     
      */
-    public void setAgencyName(String value) {
+    public void setAgencyName(final String value) {
         this.agencyName = value;
     }
 
@@ -170,7 +174,7 @@ public class Agency
      *     
      */
     @Basic
-    @Column(name = "DESCRIPTION", length = 255)
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -183,7 +187,7 @@ public class Agency
      *     {@link String }
      *     
      */
-    public void setDescription(String value) {
+    public void setDescription(final String value) {
         this.description = value;
     }
 
@@ -224,93 +228,55 @@ public class Agency
      * 
      * 
      */
-    public void setPortals(List<Portal> portals) {
+    public void setPortals(final List<Portal> portals) {
         this.portals = portals;
     }
 
-    public Agency withModelObjectId(Integer value) {
+    public Agency withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public Agency withModelObjectVersion(int value) {
+    public Agency withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public Agency withAgencyName(String value) {
+    public Agency withAgencyName(final String value) {
         setAgencyName(value);
         return this;
     }
 
-    public Agency withDescription(String value) {
+    public Agency withDescription(final String value) {
         setDescription(value);
         return this;
     }
 
-    public Agency withPortals(Portal... values) {
+    public Agency withPortals(final Portal... values) {
         if (values!= null) {
-            for (Portal value: values) {
+            for (final Portal value: values) {
                 getPortals().add(value);
             }
         }
         return this;
     }
 
-    public Agency withPortals(Collection<Portal> values) {
+    public Agency withPortals(final Collection<Portal> values) {
         if (values!= null) {
             getPortals().addAll(values);
         }
         return this;
     }
 
-    public Agency withPortals(List<Portal> portals) {
+    public Agency withPortals(final List<Portal> portals) {
         setPortals(portals);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
-
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            String theAgencyName;
-            theAgencyName = this.getAgencyName();
-            strategy.appendField(locator, this, "agencyName", buffer, theAgencyName);
-        }
-        {
-            String theDescription;
-            theDescription = this.getDescription();
-            strategy.appendField(locator, this, "description", buffer, theDescription);
-        }
-        {
-            List<Portal> thePortals;
-            thePortals = (((this.portals!= null)&&(!this.portals.isEmpty()))?this.getPortals():null);
-            strategy.appendField(locator, this, "portals", buffer, thePortals);
-        }
-        return buffer;
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
     /**
      * Gets the value of the hjid property.
@@ -335,11 +301,11 @@ public class Agency
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -395,44 +361,14 @@ public class Agency
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            String theAgencyName;
-            theAgencyName = this.getAgencyName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "agencyName", theAgencyName), currentHashCode, theAgencyName);
-        }
-        {
-            String theDescription;
-            theDescription = this.getDescription();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "description", theDescription), currentHashCode, theDescription);
-        }
-        {
-            List<Portal> thePortals;
-            thePortals = (((this.portals!= null)&&(!this.portals.isEmpty()))?this.getPortals():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "portals", thePortals), currentHashCode, thePortals);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

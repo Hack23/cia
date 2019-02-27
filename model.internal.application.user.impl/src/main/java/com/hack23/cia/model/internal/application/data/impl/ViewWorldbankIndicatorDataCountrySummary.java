@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -22,18 +23,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -79,10 +79,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "view_worldbank_indicator_data_country_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewWorldbankIndicatorDataCountrySummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected WorldbankIndicatorDataCountrySummaryEmbeddedId embeddedId;
     @XmlElement(name = "indicator_name", required = true)
     protected String indicatorName;
@@ -111,8 +115,8 @@ public class ViewWorldbankIndicatorDataCountrySummary
      */
     @EmbeddedId
     @AttributeOverrides({
-        @AttributeOverride(name = "indicatorId", column = @Column(name = "EMBEDDED_ID_INDICATOR_ID", length = 255)),
-        @AttributeOverride(name = "countryId", column = @Column(name = "EMBEDDED_ID_COUNTRY_ID", length = 255))
+        @AttributeOverride(name = "indicatorId", column = @Column(name = "EMBEDDED_ID_INDICATOR_ID")),
+        @AttributeOverride(name = "countryId", column = @Column(name = "EMBEDDED_ID_COUNTRY_ID"))
     })
     public WorldbankIndicatorDataCountrySummaryEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -126,7 +130,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link WorldbankIndicatorDataCountrySummaryEmbeddedId }
      *     
      */
-    public void setEmbeddedId(WorldbankIndicatorDataCountrySummaryEmbeddedId value) {
+    public void setEmbeddedId(final WorldbankIndicatorDataCountrySummaryEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -139,7 +143,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     
      */
     @Basic
-    @Column(name = "INDICATOR_NAME", length = 255)
+    @Column(name = "INDICATOR_NAME")
     public String getIndicatorName() {
         return indicatorName;
     }
@@ -152,7 +156,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link String }
      *     
      */
-    public void setIndicatorName(String value) {
+    public void setIndicatorName(final String value) {
         this.indicatorName = value;
     }
 
@@ -165,7 +169,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     
      */
     @Basic
-    @Column(name = "SOURCE_NOTE", length = 255)
+    @Column(name = "SOURCE_NOTE")
     public String getSourceNote() {
         return sourceNote;
     }
@@ -178,7 +182,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link String }
      *     
      */
-    public void setSourceNote(String value) {
+    public void setSourceNote(final String value) {
         this.sourceNote = value;
     }
 
@@ -191,7 +195,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     
      */
     @Basic
-    @Column(name = "SOURCE_VALUE", length = 255)
+    @Column(name = "SOURCE_VALUE")
     public String getSourceValue() {
         return sourceValue;
     }
@@ -204,7 +208,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link String }
      *     
      */
-    public void setSourceValue(String value) {
+    public void setSourceValue(final String value) {
         this.sourceValue = value;
     }
 
@@ -217,7 +221,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     
      */
     @Basic
-    @Column(name = "SOURCE_ORGANIZATION", length = 255)
+    @Column(name = "SOURCE_ORGANIZATION")
     public String getSourceOrganization() {
         return sourceOrganization;
     }
@@ -230,7 +234,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link String }
      *     
      */
-    public void setSourceOrganization(String value) {
+    public void setSourceOrganization(final String value) {
         this.sourceOrganization = value;
     }
 
@@ -256,7 +260,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link Integer }
      *     
      */
-    public void setStartYear(Integer value) {
+    public void setStartYear(final Integer value) {
         this.startYear = value;
     }
 
@@ -282,7 +286,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link Integer }
      *     
      */
-    public void setEndYear(Integer value) {
+    public void setEndYear(final Integer value) {
         this.endYear = value;
     }
 
@@ -300,7 +304,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      * Sets the value of the dataPoint property.
      * 
      */
-    public void setDataPoint(long value) {
+    public void setDataPoint(final long value) {
         this.dataPoint = value;
     }
 
@@ -313,7 +317,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     
      */
     @Basic
-    @Column(name = "TOPICS", length = 255)
+    @Column(name = "TOPICS")
     public String getTopics() {
         return topics;
     }
@@ -326,119 +330,61 @@ public class ViewWorldbankIndicatorDataCountrySummary
      *     {@link String }
      *     
      */
-    public void setTopics(String value) {
+    public void setTopics(final String value) {
         this.topics = value;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withEmbeddedId(WorldbankIndicatorDataCountrySummaryEmbeddedId value) {
+    public ViewWorldbankIndicatorDataCountrySummary withEmbeddedId(final WorldbankIndicatorDataCountrySummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withIndicatorName(String value) {
+    public ViewWorldbankIndicatorDataCountrySummary withIndicatorName(final String value) {
         setIndicatorName(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withSourceNote(String value) {
+    public ViewWorldbankIndicatorDataCountrySummary withSourceNote(final String value) {
         setSourceNote(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withSourceValue(String value) {
+    public ViewWorldbankIndicatorDataCountrySummary withSourceValue(final String value) {
         setSourceValue(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withSourceOrganization(String value) {
+    public ViewWorldbankIndicatorDataCountrySummary withSourceOrganization(final String value) {
         setSourceOrganization(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withStartYear(Integer value) {
+    public ViewWorldbankIndicatorDataCountrySummary withStartYear(final Integer value) {
         setStartYear(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withEndYear(Integer value) {
+    public ViewWorldbankIndicatorDataCountrySummary withEndYear(final Integer value) {
         setEndYear(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withDataPoint(long value) {
+    public ViewWorldbankIndicatorDataCountrySummary withDataPoint(final long value) {
         setDataPoint(value);
         return this;
     }
 
-    public ViewWorldbankIndicatorDataCountrySummary withTopics(String value) {
+    public ViewWorldbankIndicatorDataCountrySummary withTopics(final String value) {
         setTopics(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            WorldbankIndicatorDataCountrySummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            String theIndicatorName;
-            theIndicatorName = this.getIndicatorName();
-            strategy.appendField(locator, this, "indicatorName", buffer, theIndicatorName);
-        }
-        {
-            String theSourceNote;
-            theSourceNote = this.getSourceNote();
-            strategy.appendField(locator, this, "sourceNote", buffer, theSourceNote);
-        }
-        {
-            String theSourceValue;
-            theSourceValue = this.getSourceValue();
-            strategy.appendField(locator, this, "sourceValue", buffer, theSourceValue);
-        }
-        {
-            String theSourceOrganization;
-            theSourceOrganization = this.getSourceOrganization();
-            strategy.appendField(locator, this, "sourceOrganization", buffer, theSourceOrganization);
-        }
-        {
-            Integer theStartYear;
-            theStartYear = this.getStartYear();
-            strategy.appendField(locator, this, "startYear", buffer, theStartYear);
-        }
-        {
-            Integer theEndYear;
-            theEndYear = this.getEndYear();
-            strategy.appendField(locator, this, "endYear", buffer, theEndYear);
-        }
-        {
-            long theDataPoint;
-            theDataPoint = this.getDataPoint();
-            strategy.appendField(locator, this, "dataPoint", buffer, theDataPoint);
-        }
-        {
-            String theTopics;
-            theTopics = this.getTopics();
-            strategy.appendField(locator, this, "topics", buffer, theTopics);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -530,64 +476,14 @@ public class ViewWorldbankIndicatorDataCountrySummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            WorldbankIndicatorDataCountrySummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            String theIndicatorName;
-            theIndicatorName = this.getIndicatorName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "indicatorName", theIndicatorName), currentHashCode, theIndicatorName);
-        }
-        {
-            String theSourceNote;
-            theSourceNote = this.getSourceNote();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sourceNote", theSourceNote), currentHashCode, theSourceNote);
-        }
-        {
-            String theSourceValue;
-            theSourceValue = this.getSourceValue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sourceValue", theSourceValue), currentHashCode, theSourceValue);
-        }
-        {
-            String theSourceOrganization;
-            theSourceOrganization = this.getSourceOrganization();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sourceOrganization", theSourceOrganization), currentHashCode, theSourceOrganization);
-        }
-        {
-            Integer theStartYear;
-            theStartYear = this.getStartYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "startYear", theStartYear), currentHashCode, theStartYear);
-        }
-        {
-            Integer theEndYear;
-            theEndYear = this.getEndYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "endYear", theEndYear), currentHashCode, theEndYear);
-        }
-        {
-            long theDataPoint;
-            theDataPoint = this.getDataPoint();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "dataPoint", theDataPoint), currentHashCode, theDataPoint);
-        }
-        {
-            String theTopics;
-            theTopics = this.getTopics();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "topics", theTopics), currentHashCode, theTopics);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

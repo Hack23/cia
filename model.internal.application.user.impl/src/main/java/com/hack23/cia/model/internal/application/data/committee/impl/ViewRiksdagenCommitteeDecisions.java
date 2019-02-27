@@ -11,6 +11,7 @@ package com.hack23.cia.model.internal.application.data.committee.impl;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -28,19 +29,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -98,10 +98,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "View_Riksdagen_Committee_Decisions")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommitteeDecisions
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected ViewRiksdagenCommitteeDecisionsEmbeddedId embeddedId;
     @XmlElement(required = true)
     protected String title;
@@ -146,7 +150,7 @@ public class ViewRiksdagenCommitteeDecisions
      */
     @EmbeddedId
     @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "EMBEDDED_ID_ID", length = 255)),
+        @AttributeOverride(name = "id", column = @Column(name = "EMBEDDED_ID_ID")),
         @AttributeOverride(name = "hangarId", column = @Column(name = "EMBEDDED_ID_HANGAR_ID", precision = 20, scale = 10)),
         @AttributeOverride(name = "issueNummer", column = @Column(name = "EMBEDDED_ID_ISSUE_NUMMER", precision = 20, scale = 10))
     })
@@ -162,7 +166,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link ViewRiksdagenCommitteeDecisionsEmbeddedId }
      *     
      */
-    public void setEmbeddedId(ViewRiksdagenCommitteeDecisionsEmbeddedId value) {
+    public void setEmbeddedId(final ViewRiksdagenCommitteeDecisionsEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -175,7 +179,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "TITLE", length = 255)
+    @Column(name = "TITLE")
     public String getTitle() {
         return title;
     }
@@ -188,7 +192,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
+    public void setTitle(final String value) {
         this.title = value;
     }
 
@@ -201,7 +205,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "HEADER", length = 255)
+    @Column(name = "HEADER")
     public String getHeader() {
         return header;
     }
@@ -214,7 +218,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setHeader(String value) {
+    public void setHeader(final String value) {
         this.header = value;
     }
 
@@ -227,7 +231,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "COMMITTEE_REPORT", length = 255)
+    @Column(name = "COMMITTEE_REPORT")
     public String getCommitteeReport() {
         return committeeReport;
     }
@@ -240,7 +244,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setCommitteeReport(String value) {
+    public void setCommitteeReport(final String value) {
         this.committeeReport = value;
     }
 
@@ -253,7 +257,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "RM", length = 255)
+    @Column(name = "RM")
     public String getRm() {
         return rm;
     }
@@ -266,7 +270,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setRm(String value) {
+    public void setRm(final String value) {
         this.rm = value;
     }
 
@@ -292,7 +296,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link BigDecimal }
      *     
      */
-    public void setEndNumber(BigDecimal value) {
+    public void setEndNumber(final BigDecimal value) {
         this.endNumber = value;
     }
 
@@ -305,7 +309,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "ORG", length = 255)
+    @Column(name = "ORG")
     public String getOrg() {
         return org;
     }
@@ -318,7 +322,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setOrg(String value) {
+    public void setOrg(final String value) {
         this.org = value;
     }
 
@@ -345,7 +349,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -372,7 +376,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setPublicDate(Date value) {
+    public void setPublicDate(final Date value) {
         this.publicDate = value;
     }
 
@@ -385,7 +389,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "COMMITTEE_PROPOSAL_URL_XML", length = 255)
+    @Column(name = "COMMITTEE_PROPOSAL_URL_XML")
     public String getCommitteeProposalUrlXml() {
         return committeeProposalUrlXml;
     }
@@ -398,7 +402,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setCommitteeProposalUrlXml(String value) {
+    public void setCommitteeProposalUrlXml(final String value) {
         this.committeeProposalUrlXml = value;
     }
 
@@ -411,7 +415,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "DECISION_TYPE", length = 255)
+    @Column(name = "DECISION_TYPE")
     public String getDecisionType() {
         return decisionType;
     }
@@ -424,7 +428,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setDecisionType(String value) {
+    public void setDecisionType(final String value) {
         this.decisionType = value;
     }
 
@@ -437,7 +441,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "BALLOT_ID", length = 255)
+    @Column(name = "BALLOT_ID")
     public String getBallotId() {
         return ballotId;
     }
@@ -450,7 +454,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setBallotId(String value) {
+    public void setBallotId(final String value) {
         this.ballotId = value;
     }
 
@@ -463,7 +467,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "AGAINST_PROPOSAL_PARTIES", length = 255)
+    @Column(name = "AGAINST_PROPOSAL_PARTIES")
     public String getAgainstProposalParties() {
         return againstProposalParties;
     }
@@ -476,7 +480,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setAgainstProposalParties(String value) {
+    public void setAgainstProposalParties(final String value) {
         this.againstProposalParties = value;
     }
 
@@ -502,7 +506,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link BigDecimal }
      *     
      */
-    public void setAgainstProposalNumber(BigDecimal value) {
+    public void setAgainstProposalNumber(final BigDecimal value) {
         this.againstProposalNumber = value;
     }
 
@@ -515,7 +519,7 @@ public class ViewRiksdagenCommitteeDecisions
      *     
      */
     @Basic
-    @Column(name = "WINNER", length = 255)
+    @Column(name = "WINNER")
     public String getWinner() {
         return winner;
     }
@@ -528,179 +532,92 @@ public class ViewRiksdagenCommitteeDecisions
      *     {@link String }
      *     
      */
-    public void setWinner(String value) {
+    public void setWinner(final String value) {
         this.winner = value;
     }
 
-    public ViewRiksdagenCommitteeDecisions withEmbeddedId(ViewRiksdagenCommitteeDecisionsEmbeddedId value) {
+    public ViewRiksdagenCommitteeDecisions withEmbeddedId(final ViewRiksdagenCommitteeDecisionsEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withTitle(String value) {
+    public ViewRiksdagenCommitteeDecisions withTitle(final String value) {
         setTitle(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withHeader(String value) {
+    public ViewRiksdagenCommitteeDecisions withHeader(final String value) {
         setHeader(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withCommitteeReport(String value) {
+    public ViewRiksdagenCommitteeDecisions withCommitteeReport(final String value) {
         setCommitteeReport(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withRm(String value) {
+    public ViewRiksdagenCommitteeDecisions withRm(final String value) {
         setRm(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withEndNumber(BigDecimal value) {
+    public ViewRiksdagenCommitteeDecisions withEndNumber(final BigDecimal value) {
         setEndNumber(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withOrg(String value) {
+    public ViewRiksdagenCommitteeDecisions withOrg(final String value) {
         setOrg(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withCreatedDate(Date value) {
+    public ViewRiksdagenCommitteeDecisions withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withPublicDate(Date value) {
+    public ViewRiksdagenCommitteeDecisions withPublicDate(final Date value) {
         setPublicDate(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withCommitteeProposalUrlXml(String value) {
+    public ViewRiksdagenCommitteeDecisions withCommitteeProposalUrlXml(final String value) {
         setCommitteeProposalUrlXml(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withDecisionType(String value) {
+    public ViewRiksdagenCommitteeDecisions withDecisionType(final String value) {
         setDecisionType(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withBallotId(String value) {
+    public ViewRiksdagenCommitteeDecisions withBallotId(final String value) {
         setBallotId(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withAgainstProposalParties(String value) {
+    public ViewRiksdagenCommitteeDecisions withAgainstProposalParties(final String value) {
         setAgainstProposalParties(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withAgainstProposalNumber(BigDecimal value) {
+    public ViewRiksdagenCommitteeDecisions withAgainstProposalNumber(final BigDecimal value) {
         setAgainstProposalNumber(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisions withWinner(String value) {
+    public ViewRiksdagenCommitteeDecisions withWinner(final String value) {
         setWinner(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            ViewRiksdagenCommitteeDecisionsEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            String theTitle;
-            theTitle = this.getTitle();
-            strategy.appendField(locator, this, "title", buffer, theTitle);
-        }
-        {
-            String theHeader;
-            theHeader = this.getHeader();
-            strategy.appendField(locator, this, "header", buffer, theHeader);
-        }
-        {
-            String theCommitteeReport;
-            theCommitteeReport = this.getCommitteeReport();
-            strategy.appendField(locator, this, "committeeReport", buffer, theCommitteeReport);
-        }
-        {
-            String theRm;
-            theRm = this.getRm();
-            strategy.appendField(locator, this, "rm", buffer, theRm);
-        }
-        {
-            BigDecimal theEndNumber;
-            theEndNumber = this.getEndNumber();
-            strategy.appendField(locator, this, "endNumber", buffer, theEndNumber);
-        }
-        {
-            String theOrg;
-            theOrg = this.getOrg();
-            strategy.appendField(locator, this, "org", buffer, theOrg);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            Date thePublicDate;
-            thePublicDate = this.getPublicDate();
-            strategy.appendField(locator, this, "publicDate", buffer, thePublicDate);
-        }
-        {
-            String theCommitteeProposalUrlXml;
-            theCommitteeProposalUrlXml = this.getCommitteeProposalUrlXml();
-            strategy.appendField(locator, this, "committeeProposalUrlXml", buffer, theCommitteeProposalUrlXml);
-        }
-        {
-            String theDecisionType;
-            theDecisionType = this.getDecisionType();
-            strategy.appendField(locator, this, "decisionType", buffer, theDecisionType);
-        }
-        {
-            String theBallotId;
-            theBallotId = this.getBallotId();
-            strategy.appendField(locator, this, "ballotId", buffer, theBallotId);
-        }
-        {
-            String theAgainstProposalParties;
-            theAgainstProposalParties = this.getAgainstProposalParties();
-            strategy.appendField(locator, this, "againstProposalParties", buffer, theAgainstProposalParties);
-        }
-        {
-            BigDecimal theAgainstProposalNumber;
-            theAgainstProposalNumber = this.getAgainstProposalNumber();
-            strategy.appendField(locator, this, "againstProposalNumber", buffer, theAgainstProposalNumber);
-        }
-        {
-            String theWinner;
-            theWinner = this.getWinner();
-            strategy.appendField(locator, this, "winner", buffer, theWinner);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -846,94 +763,14 @@ public class ViewRiksdagenCommitteeDecisions
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            ViewRiksdagenCommitteeDecisionsEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            String theTitle;
-            theTitle = this.getTitle();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "title", theTitle), currentHashCode, theTitle);
-        }
-        {
-            String theHeader;
-            theHeader = this.getHeader();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "header", theHeader), currentHashCode, theHeader);
-        }
-        {
-            String theCommitteeReport;
-            theCommitteeReport = this.getCommitteeReport();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "committeeReport", theCommitteeReport), currentHashCode, theCommitteeReport);
-        }
-        {
-            String theRm;
-            theRm = this.getRm();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rm", theRm), currentHashCode, theRm);
-        }
-        {
-            BigDecimal theEndNumber;
-            theEndNumber = this.getEndNumber();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "endNumber", theEndNumber), currentHashCode, theEndNumber);
-        }
-        {
-            String theOrg;
-            theOrg = this.getOrg();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "org", theOrg), currentHashCode, theOrg);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            Date thePublicDate;
-            thePublicDate = this.getPublicDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "publicDate", thePublicDate), currentHashCode, thePublicDate);
-        }
-        {
-            String theCommitteeProposalUrlXml;
-            theCommitteeProposalUrlXml = this.getCommitteeProposalUrlXml();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "committeeProposalUrlXml", theCommitteeProposalUrlXml), currentHashCode, theCommitteeProposalUrlXml);
-        }
-        {
-            String theDecisionType;
-            theDecisionType = this.getDecisionType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "decisionType", theDecisionType), currentHashCode, theDecisionType);
-        }
-        {
-            String theBallotId;
-            theBallotId = this.getBallotId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "ballotId", theBallotId), currentHashCode, theBallotId);
-        }
-        {
-            String theAgainstProposalParties;
-            theAgainstProposalParties = this.getAgainstProposalParties();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "againstProposalParties", theAgainstProposalParties), currentHashCode, theAgainstProposalParties);
-        }
-        {
-            BigDecimal theAgainstProposalNumber;
-            theAgainstProposalNumber = this.getAgainstProposalNumber();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "againstProposalNumber", theAgainstProposalNumber), currentHashCode, theAgainstProposalNumber);
-        }
-        {
-            String theWinner;
-            theWinner = this.getWinner();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "winner", theWinner), currentHashCode, theWinner);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

@@ -35,7 +35,7 @@ public enum DataAgentOperation {
     IMPORT("Import");
     private final String value;
 
-    DataAgentOperation(String v) {
+    DataAgentOperation(final String v) {
         value = v;
     }
 
@@ -43,8 +43,8 @@ public enum DataAgentOperation {
         return value;
     }
 
-    public static DataAgentOperation fromValue(String v) {
-        for (DataAgentOperation c: DataAgentOperation.values()) {
+    public static DataAgentOperation fromValue(final String v) {
+        for (final DataAgentOperation c: DataAgentOperation.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

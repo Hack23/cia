@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.politician.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,19 +26,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -129,10 +129,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_RIKSDAGEN_POLITICIAN")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPolitician
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected String personId;
     @XmlElement(required = true)
     protected String firstName;
@@ -198,7 +202,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setPersonId(String value) {
+    public void setPersonId(final String value) {
         this.personId = value;
     }
 
@@ -211,7 +215,7 @@ public class ViewRiksdagenPolitician
      *     
      */
     @Basic
-    @Column(name = "FIRST_NAME", length = 255)
+    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -224,7 +228,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setFirstName(String value) {
+    public void setFirstName(final String value) {
         this.firstName = value;
     }
 
@@ -237,7 +241,7 @@ public class ViewRiksdagenPolitician
      *     
      */
     @Basic
-    @Column(name = "LAST_NAME", length = 255)
+    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -250,7 +254,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setLastName(String value) {
+    public void setLastName(final String value) {
         this.lastName = value;
     }
 
@@ -263,7 +267,7 @@ public class ViewRiksdagenPolitician
      *     
      */
     @Basic
-    @Column(name = "PARTY", length = 255)
+    @Column(name = "PARTY")
     public String getParty() {
         return party;
     }
@@ -276,7 +280,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setParty(String value) {
+    public void setParty(final String value) {
         this.party = value;
     }
 
@@ -289,7 +293,7 @@ public class ViewRiksdagenPolitician
      *     
      */
     @Basic
-    @Column(name = "GENDER", length = 255)
+    @Column(name = "GENDER")
     public String getGender() {
         return gender;
     }
@@ -302,7 +306,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setGender(String value) {
+    public void setGender(final String value) {
         this.gender = value;
     }
 
@@ -320,7 +324,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the bornYear property.
      * 
      */
-    public void setBornYear(int value) {
+    public void setBornYear(final int value) {
         this.bornYear = value;
     }
 
@@ -338,7 +342,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalAssignments property.
      * 
      */
-    public void setTotalAssignments(long value) {
+    public void setTotalAssignments(final long value) {
         this.totalAssignments = value;
     }
 
@@ -356,7 +360,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the currentAssignments property.
      * 
      */
-    public void setCurrentAssignments(long value) {
+    public void setCurrentAssignments(final long value) {
         this.currentAssignments = value;
     }
 
@@ -383,7 +387,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setFirstAssignmentDate(Date value) {
+    public void setFirstAssignmentDate(final Date value) {
         this.firstAssignmentDate = value;
     }
 
@@ -410,7 +414,7 @@ public class ViewRiksdagenPolitician
      *     {@link String }
      *     
      */
-    public void setLastAssignmentDate(Date value) {
+    public void setLastAssignmentDate(final Date value) {
         this.lastAssignmentDate = value;
     }
 
@@ -428,7 +432,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServed property.
      * 
      */
-    public void setTotalDaysServed(long value) {
+    public void setTotalDaysServed(final long value) {
         this.totalDaysServed = value;
     }
 
@@ -446,7 +450,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedParliament property.
      * 
      */
-    public void setTotalDaysServedParliament(long value) {
+    public void setTotalDaysServedParliament(final long value) {
         this.totalDaysServedParliament = value;
     }
 
@@ -464,7 +468,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedCommittee property.
      * 
      */
-    public void setTotalDaysServedCommittee(long value) {
+    public void setTotalDaysServedCommittee(final long value) {
         this.totalDaysServedCommittee = value;
     }
 
@@ -482,7 +486,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedGovernment property.
      * 
      */
-    public void setTotalDaysServedGovernment(long value) {
+    public void setTotalDaysServedGovernment(final long value) {
         this.totalDaysServedGovernment = value;
     }
 
@@ -500,7 +504,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedEu property.
      * 
      */
-    public void setTotalDaysServedEu(long value) {
+    public void setTotalDaysServedEu(final long value) {
         this.totalDaysServedEu = value;
     }
 
@@ -518,7 +522,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the active property.
      * 
      */
-    public void setActive(boolean value) {
+    public void setActive(final boolean value) {
         this.active = value;
     }
 
@@ -536,7 +540,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeEu property.
      * 
      */
-    public void setActiveEu(boolean value) {
+    public void setActiveEu(final boolean value) {
         this.activeEu = value;
     }
 
@@ -554,7 +558,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeGovernment property.
      * 
      */
-    public void setActiveGovernment(boolean value) {
+    public void setActiveGovernment(final boolean value) {
         this.activeGovernment = value;
     }
 
@@ -572,7 +576,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeCommittee property.
      * 
      */
-    public void setActiveCommittee(boolean value) {
+    public void setActiveCommittee(final boolean value) {
         this.activeCommittee = value;
     }
 
@@ -590,7 +594,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeParliament property.
      * 
      */
-    public void setActiveParliament(boolean value) {
+    public void setActiveParliament(final boolean value) {
         this.activeParliament = value;
     }
 
@@ -608,7 +612,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeParty property.
      * 
      */
-    public void setActiveParty(boolean value) {
+    public void setActiveParty(final boolean value) {
         this.activeParty = value;
     }
 
@@ -626,7 +630,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the activeSpeaker property.
      * 
      */
-    public void setActiveSpeaker(boolean value) {
+    public void setActiveSpeaker(final boolean value) {
         this.activeSpeaker = value;
     }
 
@@ -644,7 +648,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedSpeaker property.
      * 
      */
-    public void setTotalDaysServedSpeaker(long value) {
+    public void setTotalDaysServedSpeaker(final long value) {
         this.totalDaysServedSpeaker = value;
     }
 
@@ -662,7 +666,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalDaysServedParty property.
      * 
      */
-    public void setTotalDaysServedParty(long value) {
+    public void setTotalDaysServedParty(final long value) {
         this.totalDaysServedParty = value;
     }
 
@@ -680,7 +684,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalPartyAssignments property.
      * 
      */
-    public void setTotalPartyAssignments(long value) {
+    public void setTotalPartyAssignments(final long value) {
         this.totalPartyAssignments = value;
     }
 
@@ -698,7 +702,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalMinistryAssignments property.
      * 
      */
-    public void setTotalMinistryAssignments(long value) {
+    public void setTotalMinistryAssignments(final long value) {
         this.totalMinistryAssignments = value;
     }
 
@@ -716,7 +720,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalCommitteeAssignments property.
      * 
      */
-    public void setTotalCommitteeAssignments(long value) {
+    public void setTotalCommitteeAssignments(final long value) {
         this.totalCommitteeAssignments = value;
     }
 
@@ -734,7 +738,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the totalSpeakerAssignments property.
      * 
      */
-    public void setTotalSpeakerAssignments(long value) {
+    public void setTotalSpeakerAssignments(final long value) {
         this.totalSpeakerAssignments = value;
     }
 
@@ -752,7 +756,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the currentPartyAssignments property.
      * 
      */
-    public void setCurrentPartyAssignments(long value) {
+    public void setCurrentPartyAssignments(final long value) {
         this.currentPartyAssignments = value;
     }
 
@@ -770,7 +774,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the currentMinistryAssignments property.
      * 
      */
-    public void setCurrentMinistryAssignments(long value) {
+    public void setCurrentMinistryAssignments(final long value) {
         this.currentMinistryAssignments = value;
     }
 
@@ -788,7 +792,7 @@ public class ViewRiksdagenPolitician
      * Sets the value of the currentCommitteeAssignments property.
      * 
      */
-    public void setCurrentCommitteeAssignments(long value) {
+    public void setCurrentCommitteeAssignments(final long value) {
         this.currentCommitteeAssignments = value;
     }
 
@@ -806,349 +810,176 @@ public class ViewRiksdagenPolitician
      * Sets the value of the currentSpeakerAssignments property.
      * 
      */
-    public void setCurrentSpeakerAssignments(long value) {
+    public void setCurrentSpeakerAssignments(final long value) {
         this.currentSpeakerAssignments = value;
     }
 
-    public ViewRiksdagenPolitician withPersonId(String value) {
+    public ViewRiksdagenPolitician withPersonId(final String value) {
         setPersonId(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withFirstName(String value) {
+    public ViewRiksdagenPolitician withFirstName(final String value) {
         setFirstName(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withLastName(String value) {
+    public ViewRiksdagenPolitician withLastName(final String value) {
         setLastName(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withParty(String value) {
+    public ViewRiksdagenPolitician withParty(final String value) {
         setParty(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withGender(String value) {
+    public ViewRiksdagenPolitician withGender(final String value) {
         setGender(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withBornYear(int value) {
+    public ViewRiksdagenPolitician withBornYear(final int value) {
         setBornYear(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalAssignments(long value) {
+    public ViewRiksdagenPolitician withTotalAssignments(final long value) {
         setTotalAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withCurrentAssignments(long value) {
+    public ViewRiksdagenPolitician withCurrentAssignments(final long value) {
         setCurrentAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withFirstAssignmentDate(Date value) {
+    public ViewRiksdagenPolitician withFirstAssignmentDate(final Date value) {
         setFirstAssignmentDate(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withLastAssignmentDate(Date value) {
+    public ViewRiksdagenPolitician withLastAssignmentDate(final Date value) {
         setLastAssignmentDate(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServed(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServed(final long value) {
         setTotalDaysServed(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedParliament(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedParliament(final long value) {
         setTotalDaysServedParliament(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedCommittee(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedCommittee(final long value) {
         setTotalDaysServedCommittee(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedGovernment(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedGovernment(final long value) {
         setTotalDaysServedGovernment(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedEu(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedEu(final long value) {
         setTotalDaysServedEu(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActive(boolean value) {
+    public ViewRiksdagenPolitician withActive(final boolean value) {
         setActive(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveEu(boolean value) {
+    public ViewRiksdagenPolitician withActiveEu(final boolean value) {
         setActiveEu(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveGovernment(boolean value) {
+    public ViewRiksdagenPolitician withActiveGovernment(final boolean value) {
         setActiveGovernment(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveCommittee(boolean value) {
+    public ViewRiksdagenPolitician withActiveCommittee(final boolean value) {
         setActiveCommittee(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveParliament(boolean value) {
+    public ViewRiksdagenPolitician withActiveParliament(final boolean value) {
         setActiveParliament(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveParty(boolean value) {
+    public ViewRiksdagenPolitician withActiveParty(final boolean value) {
         setActiveParty(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withActiveSpeaker(boolean value) {
+    public ViewRiksdagenPolitician withActiveSpeaker(final boolean value) {
         setActiveSpeaker(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedSpeaker(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedSpeaker(final long value) {
         setTotalDaysServedSpeaker(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalDaysServedParty(long value) {
+    public ViewRiksdagenPolitician withTotalDaysServedParty(final long value) {
         setTotalDaysServedParty(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalPartyAssignments(long value) {
+    public ViewRiksdagenPolitician withTotalPartyAssignments(final long value) {
         setTotalPartyAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalMinistryAssignments(long value) {
+    public ViewRiksdagenPolitician withTotalMinistryAssignments(final long value) {
         setTotalMinistryAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalCommitteeAssignments(long value) {
+    public ViewRiksdagenPolitician withTotalCommitteeAssignments(final long value) {
         setTotalCommitteeAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withTotalSpeakerAssignments(long value) {
+    public ViewRiksdagenPolitician withTotalSpeakerAssignments(final long value) {
         setTotalSpeakerAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withCurrentPartyAssignments(long value) {
+    public ViewRiksdagenPolitician withCurrentPartyAssignments(final long value) {
         setCurrentPartyAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withCurrentMinistryAssignments(long value) {
+    public ViewRiksdagenPolitician withCurrentMinistryAssignments(final long value) {
         setCurrentMinistryAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withCurrentCommitteeAssignments(long value) {
+    public ViewRiksdagenPolitician withCurrentCommitteeAssignments(final long value) {
         setCurrentCommitteeAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenPolitician withCurrentSpeakerAssignments(long value) {
+    public ViewRiksdagenPolitician withCurrentSpeakerAssignments(final long value) {
         setCurrentSpeakerAssignments(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            String thePersonId;
-            thePersonId = this.getPersonId();
-            strategy.appendField(locator, this, "personId", buffer, thePersonId);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            strategy.appendField(locator, this, "firstName", buffer, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            strategy.appendField(locator, this, "lastName", buffer, theLastName);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            strategy.appendField(locator, this, "party", buffer, theParty);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            strategy.appendField(locator, this, "gender", buffer, theGender);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            strategy.appendField(locator, this, "bornYear", buffer, theBornYear);
-        }
-        {
-            long theTotalAssignments;
-            theTotalAssignments = this.getTotalAssignments();
-            strategy.appendField(locator, this, "totalAssignments", buffer, theTotalAssignments);
-        }
-        {
-            long theCurrentAssignments;
-            theCurrentAssignments = this.getCurrentAssignments();
-            strategy.appendField(locator, this, "currentAssignments", buffer, theCurrentAssignments);
-        }
-        {
-            Date theFirstAssignmentDate;
-            theFirstAssignmentDate = this.getFirstAssignmentDate();
-            strategy.appendField(locator, this, "firstAssignmentDate", buffer, theFirstAssignmentDate);
-        }
-        {
-            Date theLastAssignmentDate;
-            theLastAssignmentDate = this.getLastAssignmentDate();
-            strategy.appendField(locator, this, "lastAssignmentDate", buffer, theLastAssignmentDate);
-        }
-        {
-            long theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            strategy.appendField(locator, this, "totalDaysServed", buffer, theTotalDaysServed);
-        }
-        {
-            long theTotalDaysServedParliament;
-            theTotalDaysServedParliament = this.getTotalDaysServedParliament();
-            strategy.appendField(locator, this, "totalDaysServedParliament", buffer, theTotalDaysServedParliament);
-        }
-        {
-            long theTotalDaysServedCommittee;
-            theTotalDaysServedCommittee = this.getTotalDaysServedCommittee();
-            strategy.appendField(locator, this, "totalDaysServedCommittee", buffer, theTotalDaysServedCommittee);
-        }
-        {
-            long theTotalDaysServedGovernment;
-            theTotalDaysServedGovernment = this.getTotalDaysServedGovernment();
-            strategy.appendField(locator, this, "totalDaysServedGovernment", buffer, theTotalDaysServedGovernment);
-        }
-        {
-            long theTotalDaysServedEu;
-            theTotalDaysServedEu = this.getTotalDaysServedEu();
-            strategy.appendField(locator, this, "totalDaysServedEu", buffer, theTotalDaysServedEu);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            strategy.appendField(locator, this, "active", buffer, theActive);
-        }
-        {
-            boolean theActiveEu;
-            theActiveEu = this.isActiveEu();
-            strategy.appendField(locator, this, "activeEu", buffer, theActiveEu);
-        }
-        {
-            boolean theActiveGovernment;
-            theActiveGovernment = this.isActiveGovernment();
-            strategy.appendField(locator, this, "activeGovernment", buffer, theActiveGovernment);
-        }
-        {
-            boolean theActiveCommittee;
-            theActiveCommittee = this.isActiveCommittee();
-            strategy.appendField(locator, this, "activeCommittee", buffer, theActiveCommittee);
-        }
-        {
-            boolean theActiveParliament;
-            theActiveParliament = this.isActiveParliament();
-            strategy.appendField(locator, this, "activeParliament", buffer, theActiveParliament);
-        }
-        {
-            boolean theActiveParty;
-            theActiveParty = this.isActiveParty();
-            strategy.appendField(locator, this, "activeParty", buffer, theActiveParty);
-        }
-        {
-            boolean theActiveSpeaker;
-            theActiveSpeaker = this.isActiveSpeaker();
-            strategy.appendField(locator, this, "activeSpeaker", buffer, theActiveSpeaker);
-        }
-        {
-            long theTotalDaysServedSpeaker;
-            theTotalDaysServedSpeaker = this.getTotalDaysServedSpeaker();
-            strategy.appendField(locator, this, "totalDaysServedSpeaker", buffer, theTotalDaysServedSpeaker);
-        }
-        {
-            long theTotalDaysServedParty;
-            theTotalDaysServedParty = this.getTotalDaysServedParty();
-            strategy.appendField(locator, this, "totalDaysServedParty", buffer, theTotalDaysServedParty);
-        }
-        {
-            long theTotalPartyAssignments;
-            theTotalPartyAssignments = this.getTotalPartyAssignments();
-            strategy.appendField(locator, this, "totalPartyAssignments", buffer, theTotalPartyAssignments);
-        }
-        {
-            long theTotalMinistryAssignments;
-            theTotalMinistryAssignments = this.getTotalMinistryAssignments();
-            strategy.appendField(locator, this, "totalMinistryAssignments", buffer, theTotalMinistryAssignments);
-        }
-        {
-            long theTotalCommitteeAssignments;
-            theTotalCommitteeAssignments = this.getTotalCommitteeAssignments();
-            strategy.appendField(locator, this, "totalCommitteeAssignments", buffer, theTotalCommitteeAssignments);
-        }
-        {
-            long theTotalSpeakerAssignments;
-            theTotalSpeakerAssignments = this.getTotalSpeakerAssignments();
-            strategy.appendField(locator, this, "totalSpeakerAssignments", buffer, theTotalSpeakerAssignments);
-        }
-        {
-            long theCurrentPartyAssignments;
-            theCurrentPartyAssignments = this.getCurrentPartyAssignments();
-            strategy.appendField(locator, this, "currentPartyAssignments", buffer, theCurrentPartyAssignments);
-        }
-        {
-            long theCurrentMinistryAssignments;
-            theCurrentMinistryAssignments = this.getCurrentMinistryAssignments();
-            strategy.appendField(locator, this, "currentMinistryAssignments", buffer, theCurrentMinistryAssignments);
-        }
-        {
-            long theCurrentCommitteeAssignments;
-            theCurrentCommitteeAssignments = this.getCurrentCommitteeAssignments();
-            strategy.appendField(locator, this, "currentCommitteeAssignments", buffer, theCurrentCommitteeAssignments);
-        }
-        {
-            long theCurrentSpeakerAssignments;
-            theCurrentSpeakerAssignments = this.getCurrentSpeakerAssignments();
-            strategy.appendField(locator, this, "currentSpeakerAssignments", buffer, theCurrentSpeakerAssignments);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -1447,179 +1278,14 @@ public class ViewRiksdagenPolitician
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            String thePersonId;
-            thePersonId = this.getPersonId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "personId", thePersonId), currentHashCode, thePersonId);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstName", theFirstName), currentHashCode, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastName", theLastName), currentHashCode, theLastName);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "party", theParty), currentHashCode, theParty);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "gender", theGender), currentHashCode, theGender);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "bornYear", theBornYear), currentHashCode, theBornYear);
-        }
-        {
-            long theTotalAssignments;
-            theTotalAssignments = this.getTotalAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalAssignments", theTotalAssignments), currentHashCode, theTotalAssignments);
-        }
-        {
-            long theCurrentAssignments;
-            theCurrentAssignments = this.getCurrentAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentAssignments", theCurrentAssignments), currentHashCode, theCurrentAssignments);
-        }
-        {
-            Date theFirstAssignmentDate;
-            theFirstAssignmentDate = this.getFirstAssignmentDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstAssignmentDate", theFirstAssignmentDate), currentHashCode, theFirstAssignmentDate);
-        }
-        {
-            Date theLastAssignmentDate;
-            theLastAssignmentDate = this.getLastAssignmentDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastAssignmentDate", theLastAssignmentDate), currentHashCode, theLastAssignmentDate);
-        }
-        {
-            long theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServed", theTotalDaysServed), currentHashCode, theTotalDaysServed);
-        }
-        {
-            long theTotalDaysServedParliament;
-            theTotalDaysServedParliament = this.getTotalDaysServedParliament();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedParliament", theTotalDaysServedParliament), currentHashCode, theTotalDaysServedParliament);
-        }
-        {
-            long theTotalDaysServedCommittee;
-            theTotalDaysServedCommittee = this.getTotalDaysServedCommittee();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedCommittee", theTotalDaysServedCommittee), currentHashCode, theTotalDaysServedCommittee);
-        }
-        {
-            long theTotalDaysServedGovernment;
-            theTotalDaysServedGovernment = this.getTotalDaysServedGovernment();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedGovernment", theTotalDaysServedGovernment), currentHashCode, theTotalDaysServedGovernment);
-        }
-        {
-            long theTotalDaysServedEu;
-            theTotalDaysServedEu = this.getTotalDaysServedEu();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedEu", theTotalDaysServedEu), currentHashCode, theTotalDaysServedEu);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "active", theActive), currentHashCode, theActive);
-        }
-        {
-            boolean theActiveEu;
-            theActiveEu = this.isActiveEu();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeEu", theActiveEu), currentHashCode, theActiveEu);
-        }
-        {
-            boolean theActiveGovernment;
-            theActiveGovernment = this.isActiveGovernment();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeGovernment", theActiveGovernment), currentHashCode, theActiveGovernment);
-        }
-        {
-            boolean theActiveCommittee;
-            theActiveCommittee = this.isActiveCommittee();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeCommittee", theActiveCommittee), currentHashCode, theActiveCommittee);
-        }
-        {
-            boolean theActiveParliament;
-            theActiveParliament = this.isActiveParliament();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeParliament", theActiveParliament), currentHashCode, theActiveParliament);
-        }
-        {
-            boolean theActiveParty;
-            theActiveParty = this.isActiveParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeParty", theActiveParty), currentHashCode, theActiveParty);
-        }
-        {
-            boolean theActiveSpeaker;
-            theActiveSpeaker = this.isActiveSpeaker();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "activeSpeaker", theActiveSpeaker), currentHashCode, theActiveSpeaker);
-        }
-        {
-            long theTotalDaysServedSpeaker;
-            theTotalDaysServedSpeaker = this.getTotalDaysServedSpeaker();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedSpeaker", theTotalDaysServedSpeaker), currentHashCode, theTotalDaysServedSpeaker);
-        }
-        {
-            long theTotalDaysServedParty;
-            theTotalDaysServedParty = this.getTotalDaysServedParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServedParty", theTotalDaysServedParty), currentHashCode, theTotalDaysServedParty);
-        }
-        {
-            long theTotalPartyAssignments;
-            theTotalPartyAssignments = this.getTotalPartyAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalPartyAssignments", theTotalPartyAssignments), currentHashCode, theTotalPartyAssignments);
-        }
-        {
-            long theTotalMinistryAssignments;
-            theTotalMinistryAssignments = this.getTotalMinistryAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalMinistryAssignments", theTotalMinistryAssignments), currentHashCode, theTotalMinistryAssignments);
-        }
-        {
-            long theTotalCommitteeAssignments;
-            theTotalCommitteeAssignments = this.getTotalCommitteeAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalCommitteeAssignments", theTotalCommitteeAssignments), currentHashCode, theTotalCommitteeAssignments);
-        }
-        {
-            long theTotalSpeakerAssignments;
-            theTotalSpeakerAssignments = this.getTotalSpeakerAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalSpeakerAssignments", theTotalSpeakerAssignments), currentHashCode, theTotalSpeakerAssignments);
-        }
-        {
-            long theCurrentPartyAssignments;
-            theCurrentPartyAssignments = this.getCurrentPartyAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentPartyAssignments", theCurrentPartyAssignments), currentHashCode, theCurrentPartyAssignments);
-        }
-        {
-            long theCurrentMinistryAssignments;
-            theCurrentMinistryAssignments = this.getCurrentMinistryAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentMinistryAssignments", theCurrentMinistryAssignments), currentHashCode, theCurrentMinistryAssignments);
-        }
-        {
-            long theCurrentCommitteeAssignments;
-            theCurrentCommitteeAssignments = this.getCurrentCommitteeAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentCommitteeAssignments", theCurrentCommitteeAssignments), currentHashCode, theCurrentCommitteeAssignments);
-        }
-        {
-            long theCurrentSpeakerAssignments;
-            theCurrentSpeakerAssignments = this.getCurrentSpeakerAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentSpeakerAssignments", theCurrentSpeakerAssignments), currentHashCode, theCurrentSpeakerAssignments);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

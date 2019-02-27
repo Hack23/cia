@@ -11,6 +11,7 @@ package com.hack23.cia.model.internal.application.data.document.impl;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,19 +27,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -102,10 +102,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_RIKSDAGEN_POLITICIAN_DOCUMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPoliticianDocument
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected long id;
     @XmlElement(required = true)
     protected String docId;
     @XmlElement(required = true)
@@ -157,7 +161,7 @@ public class ViewRiksdagenPoliticianDocument
      * Sets the value of the id property.
      * 
      */
-    public void setId(long value) {
+    public void setId(final long value) {
         this.id = value;
     }
 
@@ -170,7 +174,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "DOC_ID", length = 255)
+    @Column(name = "DOC_ID")
     public String getDocId() {
         return docId;
     }
@@ -183,7 +187,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setDocId(String value) {
+    public void setDocId(final String value) {
         this.docId = value;
     }
 
@@ -196,7 +200,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "DOCUMENT_TYPE", length = 255)
+    @Column(name = "DOCUMENT_TYPE")
     public String getDocumentType() {
         return documentType;
     }
@@ -209,7 +213,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setDocumentType(String value) {
+    public void setDocumentType(final String value) {
         this.documentType = value;
     }
 
@@ -222,7 +226,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "LABEL", length = 255)
+    @Column(name = "LABEL")
     public String getLabel() {
         return label;
     }
@@ -235,7 +239,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setLabel(String value) {
+    public void setLabel(final String value) {
         this.label = value;
     }
 
@@ -262,7 +266,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setMadePublicDate(Date value) {
+    public void setMadePublicDate(final Date value) {
         this.madePublicDate = value;
     }
 
@@ -275,7 +279,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "ORG", length = 255)
+    @Column(name = "ORG")
     public String getOrg() {
         return org;
     }
@@ -288,7 +292,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setOrg(String value) {
+    public void setOrg(final String value) {
         this.org = value;
     }
 
@@ -314,7 +318,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link BigInteger }
      *     
      */
-    public void setNumberValue(BigInteger value) {
+    public void setNumberValue(final BigInteger value) {
         this.numberValue = value;
     }
 
@@ -327,7 +331,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "RM", length = 255)
+    @Column(name = "RM")
     public String getRm() {
         return rm;
     }
@@ -340,7 +344,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setRm(String value) {
+    public void setRm(final String value) {
         this.rm = value;
     }
 
@@ -353,7 +357,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "STATUS", length = 255)
+    @Column(name = "STATUS")
     public String getStatus() {
         return status;
     }
@@ -366,7 +370,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setStatus(String value) {
+    public void setStatus(final String value) {
         this.status = value;
     }
 
@@ -379,7 +383,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "SUB_TITLE", length = 255)
+    @Column(name = "SUB_TITLE")
     public String getSubTitle() {
         return subTitle;
     }
@@ -392,7 +396,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setSubTitle(String value) {
+    public void setSubTitle(final String value) {
         this.subTitle = value;
     }
 
@@ -405,7 +409,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "SUB_TYPE", length = 255)
+    @Column(name = "SUB_TYPE")
     public String getSubType() {
         return subType;
     }
@@ -418,7 +422,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setSubType(String value) {
+    public void setSubType(final String value) {
         this.subType = value;
     }
 
@@ -431,7 +435,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "TEMP_LABEL", length = 255)
+    @Column(name = "TEMP_LABEL")
     public String getTempLabel() {
         return tempLabel;
     }
@@ -444,7 +448,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setTempLabel(String value) {
+    public void setTempLabel(final String value) {
         this.tempLabel = value;
     }
 
@@ -457,7 +461,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "TITLE", length = 255)
+    @Column(name = "TITLE")
     public String getTitle() {
         return title;
     }
@@ -470,7 +474,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
+    public void setTitle(final String value) {
         this.title = value;
     }
 
@@ -483,7 +487,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "ROLE_DESCRIPTION", length = 255)
+    @Column(name = "ROLE_DESCRIPTION")
     public String getRoleDescription() {
         return roleDescription;
     }
@@ -496,7 +500,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setRoleDescription(String value) {
+    public void setRoleDescription(final String value) {
         this.roleDescription = value;
     }
 
@@ -509,7 +513,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "PERSON_REFERENCE_ID", length = 255)
+    @Column(name = "PERSON_REFERENCE_ID")
     public String getPersonReferenceId() {
         return personReferenceId;
     }
@@ -522,7 +526,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setPersonReferenceId(String value) {
+    public void setPersonReferenceId(final String value) {
         this.personReferenceId = value;
     }
 
@@ -535,7 +539,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "REFERENCE_NAME", length = 255)
+    @Column(name = "REFERENCE_NAME")
     public String getReferenceName() {
         return referenceName;
     }
@@ -548,7 +552,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setReferenceName(String value) {
+    public void setReferenceName(final String value) {
         this.referenceName = value;
     }
 
@@ -561,7 +565,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "PARTY_SHORT_CODE", length = 255)
+    @Column(name = "PARTY_SHORT_CODE")
     public String getPartyShortCode() {
         return partyShortCode;
     }
@@ -574,7 +578,7 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link String }
      *     
      */
-    public void setPartyShortCode(String value) {
+    public void setPartyShortCode(final String value) {
         this.partyShortCode = value;
     }
 
@@ -600,209 +604,107 @@ public class ViewRiksdagenPoliticianDocument
      *     {@link Integer }
      *     
      */
-    public void setOrderNumber(Integer value) {
+    public void setOrderNumber(final Integer value) {
         this.orderNumber = value;
     }
 
-    public ViewRiksdagenPoliticianDocument withId(long value) {
+    public ViewRiksdagenPoliticianDocument withId(final long value) {
         setId(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withDocId(String value) {
+    public ViewRiksdagenPoliticianDocument withDocId(final String value) {
         setDocId(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withDocumentType(String value) {
+    public ViewRiksdagenPoliticianDocument withDocumentType(final String value) {
         setDocumentType(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withLabel(String value) {
+    public ViewRiksdagenPoliticianDocument withLabel(final String value) {
         setLabel(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withMadePublicDate(Date value) {
+    public ViewRiksdagenPoliticianDocument withMadePublicDate(final Date value) {
         setMadePublicDate(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withOrg(String value) {
+    public ViewRiksdagenPoliticianDocument withOrg(final String value) {
         setOrg(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withNumberValue(BigInteger value) {
+    public ViewRiksdagenPoliticianDocument withNumberValue(final BigInteger value) {
         setNumberValue(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withRm(String value) {
+    public ViewRiksdagenPoliticianDocument withRm(final String value) {
         setRm(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withStatus(String value) {
+    public ViewRiksdagenPoliticianDocument withStatus(final String value) {
         setStatus(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withSubTitle(String value) {
+    public ViewRiksdagenPoliticianDocument withSubTitle(final String value) {
         setSubTitle(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withSubType(String value) {
+    public ViewRiksdagenPoliticianDocument withSubType(final String value) {
         setSubType(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withTempLabel(String value) {
+    public ViewRiksdagenPoliticianDocument withTempLabel(final String value) {
         setTempLabel(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withTitle(String value) {
+    public ViewRiksdagenPoliticianDocument withTitle(final String value) {
         setTitle(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withRoleDescription(String value) {
+    public ViewRiksdagenPoliticianDocument withRoleDescription(final String value) {
         setRoleDescription(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withPersonReferenceId(String value) {
+    public ViewRiksdagenPoliticianDocument withPersonReferenceId(final String value) {
         setPersonReferenceId(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withReferenceName(String value) {
+    public ViewRiksdagenPoliticianDocument withReferenceName(final String value) {
         setReferenceName(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withPartyShortCode(String value) {
+    public ViewRiksdagenPoliticianDocument withPartyShortCode(final String value) {
         setPartyShortCode(value);
         return this;
     }
 
-    public ViewRiksdagenPoliticianDocument withOrderNumber(Integer value) {
+    public ViewRiksdagenPoliticianDocument withOrderNumber(final Integer value) {
         setOrderNumber(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            long theId;
-            theId = this.getId();
-            strategy.appendField(locator, this, "id", buffer, theId);
-        }
-        {
-            String theDocId;
-            theDocId = this.getDocId();
-            strategy.appendField(locator, this, "docId", buffer, theDocId);
-        }
-        {
-            String theDocumentType;
-            theDocumentType = this.getDocumentType();
-            strategy.appendField(locator, this, "documentType", buffer, theDocumentType);
-        }
-        {
-            String theLabel;
-            theLabel = this.getLabel();
-            strategy.appendField(locator, this, "label", buffer, theLabel);
-        }
-        {
-            Date theMadePublicDate;
-            theMadePublicDate = this.getMadePublicDate();
-            strategy.appendField(locator, this, "madePublicDate", buffer, theMadePublicDate);
-        }
-        {
-            String theOrg;
-            theOrg = this.getOrg();
-            strategy.appendField(locator, this, "org", buffer, theOrg);
-        }
-        {
-            BigInteger theNumberValue;
-            theNumberValue = this.getNumberValue();
-            strategy.appendField(locator, this, "numberValue", buffer, theNumberValue);
-        }
-        {
-            String theRm;
-            theRm = this.getRm();
-            strategy.appendField(locator, this, "rm", buffer, theRm);
-        }
-        {
-            String theStatus;
-            theStatus = this.getStatus();
-            strategy.appendField(locator, this, "status", buffer, theStatus);
-        }
-        {
-            String theSubTitle;
-            theSubTitle = this.getSubTitle();
-            strategy.appendField(locator, this, "subTitle", buffer, theSubTitle);
-        }
-        {
-            String theSubType;
-            theSubType = this.getSubType();
-            strategy.appendField(locator, this, "subType", buffer, theSubType);
-        }
-        {
-            String theTempLabel;
-            theTempLabel = this.getTempLabel();
-            strategy.appendField(locator, this, "tempLabel", buffer, theTempLabel);
-        }
-        {
-            String theTitle;
-            theTitle = this.getTitle();
-            strategy.appendField(locator, this, "title", buffer, theTitle);
-        }
-        {
-            String theRoleDescription;
-            theRoleDescription = this.getRoleDescription();
-            strategy.appendField(locator, this, "roleDescription", buffer, theRoleDescription);
-        }
-        {
-            String thePersonReferenceId;
-            thePersonReferenceId = this.getPersonReferenceId();
-            strategy.appendField(locator, this, "personReferenceId", buffer, thePersonReferenceId);
-        }
-        {
-            String theReferenceName;
-            theReferenceName = this.getReferenceName();
-            strategy.appendField(locator, this, "referenceName", buffer, theReferenceName);
-        }
-        {
-            String thePartyShortCode;
-            thePartyShortCode = this.getPartyShortCode();
-            strategy.appendField(locator, this, "partyShortCode", buffer, thePartyShortCode);
-        }
-        {
-            Integer theOrderNumber;
-            theOrderNumber = this.getOrderNumber();
-            strategy.appendField(locator, this, "orderNumber", buffer, theOrderNumber);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -975,109 +877,14 @@ public class ViewRiksdagenPoliticianDocument
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            long theId;
-            theId = this.getId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "id", theId), currentHashCode, theId);
-        }
-        {
-            String theDocId;
-            theDocId = this.getDocId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "docId", theDocId), currentHashCode, theDocId);
-        }
-        {
-            String theDocumentType;
-            theDocumentType = this.getDocumentType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "documentType", theDocumentType), currentHashCode, theDocumentType);
-        }
-        {
-            String theLabel;
-            theLabel = this.getLabel();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "label", theLabel), currentHashCode, theLabel);
-        }
-        {
-            Date theMadePublicDate;
-            theMadePublicDate = this.getMadePublicDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "madePublicDate", theMadePublicDate), currentHashCode, theMadePublicDate);
-        }
-        {
-            String theOrg;
-            theOrg = this.getOrg();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "org", theOrg), currentHashCode, theOrg);
-        }
-        {
-            BigInteger theNumberValue;
-            theNumberValue = this.getNumberValue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "numberValue", theNumberValue), currentHashCode, theNumberValue);
-        }
-        {
-            String theRm;
-            theRm = this.getRm();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rm", theRm), currentHashCode, theRm);
-        }
-        {
-            String theStatus;
-            theStatus = this.getStatus();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "status", theStatus), currentHashCode, theStatus);
-        }
-        {
-            String theSubTitle;
-            theSubTitle = this.getSubTitle();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "subTitle", theSubTitle), currentHashCode, theSubTitle);
-        }
-        {
-            String theSubType;
-            theSubType = this.getSubType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "subType", theSubType), currentHashCode, theSubType);
-        }
-        {
-            String theTempLabel;
-            theTempLabel = this.getTempLabel();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "tempLabel", theTempLabel), currentHashCode, theTempLabel);
-        }
-        {
-            String theTitle;
-            theTitle = this.getTitle();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "title", theTitle), currentHashCode, theTitle);
-        }
-        {
-            String theRoleDescription;
-            theRoleDescription = this.getRoleDescription();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "roleDescription", theRoleDescription), currentHashCode, theRoleDescription);
-        }
-        {
-            String thePersonReferenceId;
-            thePersonReferenceId = this.getPersonReferenceId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "personReferenceId", thePersonReferenceId), currentHashCode, thePersonReferenceId);
-        }
-        {
-            String theReferenceName;
-            theReferenceName = this.getReferenceName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "referenceName", theReferenceName), currentHashCode, theReferenceName);
-        }
-        {
-            String thePartyShortCode;
-            thePartyShortCode = this.getPartyShortCode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyShortCode", thePartyShortCode), currentHashCode, thePartyShortCode);
-        }
-        {
-            Integer theOrderNumber;
-            theOrderNumber = this.getOrderNumber();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "orderNumber", theOrderNumber), currentHashCode, theOrderNumber);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

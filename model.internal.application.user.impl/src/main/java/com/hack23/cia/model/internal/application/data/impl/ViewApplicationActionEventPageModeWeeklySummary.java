@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.impl;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -23,18 +24,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -70,10 +70,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "view_application_action_event_page_modes_weekly_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewApplicationActionEventPageModeWeeklySummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected ApplicationActionEventPageModePeriodSummaryEmbeddedId embeddedId;
     protected long hits;
     protected long rank;
@@ -91,8 +95,8 @@ public class ViewApplicationActionEventPageModeWeeklySummary
     @EmbeddedId
     @AttributeOverrides({
         @AttributeOverride(name = "createdDate", column = @Column(name = "EMBEDDED_ID_CREATED_DATE")),
-        @AttributeOverride(name = "page", column = @Column(name = "EMBEDDED_ID_PAGE", length = 255)),
-        @AttributeOverride(name = "pageMode", column = @Column(name = "EMBEDDED_ID_PAGE_MODE", length = 255))
+        @AttributeOverride(name = "page", column = @Column(name = "EMBEDDED_ID_PAGE")),
+        @AttributeOverride(name = "pageMode", column = @Column(name = "EMBEDDED_ID_PAGE_MODE"))
     })
     public ApplicationActionEventPageModePeriodSummaryEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -106,7 +110,7 @@ public class ViewApplicationActionEventPageModeWeeklySummary
      *     {@link ApplicationActionEventPageModePeriodSummaryEmbeddedId }
      *     
      */
-    public void setEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId value) {
+    public void setEmbeddedId(final ApplicationActionEventPageModePeriodSummaryEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -124,7 +128,7 @@ public class ViewApplicationActionEventPageModeWeeklySummary
      * Sets the value of the hits property.
      * 
      */
-    public void setHits(long value) {
+    public void setHits(final long value) {
         this.hits = value;
     }
 
@@ -142,7 +146,7 @@ public class ViewApplicationActionEventPageModeWeeklySummary
      * Sets the value of the rank property.
      * 
      */
-    public void setRank(long value) {
+    public void setRank(final long value) {
         this.rank = value;
     }
 
@@ -168,69 +172,37 @@ public class ViewApplicationActionEventPageModeWeeklySummary
      *     {@link BigDecimal }
      *     
      */
-    public void setRankPercentage(BigDecimal value) {
+    public void setRankPercentage(final BigDecimal value) {
         this.rankPercentage = value;
     }
 
-    public ViewApplicationActionEventPageModeWeeklySummary withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId value) {
+    public ViewApplicationActionEventPageModeWeeklySummary withEmbeddedId(final ApplicationActionEventPageModePeriodSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewApplicationActionEventPageModeWeeklySummary withHits(long value) {
+    public ViewApplicationActionEventPageModeWeeklySummary withHits(final long value) {
         setHits(value);
         return this;
     }
 
-    public ViewApplicationActionEventPageModeWeeklySummary withRank(long value) {
+    public ViewApplicationActionEventPageModeWeeklySummary withRank(final long value) {
         setRank(value);
         return this;
     }
 
-    public ViewApplicationActionEventPageModeWeeklySummary withRankPercentage(BigDecimal value) {
+    public ViewApplicationActionEventPageModeWeeklySummary withRankPercentage(final BigDecimal value) {
         setRankPercentage(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            ApplicationActionEventPageModePeriodSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            long theHits;
-            theHits = this.getHits();
-            strategy.appendField(locator, this, "hits", buffer, theHits);
-        }
-        {
-            long theRank;
-            theRank = this.getRank();
-            strategy.appendField(locator, this, "rank", buffer, theRank);
-        }
-        {
-            BigDecimal theRankPercentage;
-            theRankPercentage = this.getRankPercentage();
-            strategy.appendField(locator, this, "rankPercentage", buffer, theRankPercentage);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -277,39 +249,14 @@ public class ViewApplicationActionEventPageModeWeeklySummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            ApplicationActionEventPageModePeriodSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            long theHits;
-            theHits = this.getHits();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "hits", theHits), currentHashCode, theHits);
-        }
-        {
-            long theRank;
-            theRank = this.getRank();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rank", theRank), currentHashCode, theRank);
-        }
-        {
-            BigDecimal theRankPercentage;
-            theRankPercentage = this.getRankPercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rankPercentage", theRankPercentage), currentHashCode, theRankPercentage);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

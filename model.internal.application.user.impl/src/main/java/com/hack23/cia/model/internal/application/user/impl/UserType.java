@@ -40,7 +40,7 @@ public enum UserType {
         return name();
     }
 
-    public static UserType fromValue(String v) {
+    public static UserType fromValue(final String v) {
         return valueOf(v);
     }
 

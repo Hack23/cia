@@ -38,7 +38,7 @@ public enum DataAgentTarget {
     MODEL_EXTERNAL_RIKSDAGEN("Model_External_Riksdagen");
     private final String value;
 
-    DataAgentTarget(String v) {
+    DataAgentTarget(final String v) {
         value = v;
     }
 
@@ -46,8 +46,8 @@ public enum DataAgentTarget {
         return value;
     }
 
-    public static DataAgentTarget fromValue(String v) {
-        for (DataAgentTarget c: DataAgentTarget.values()) {
+    public static DataAgentTarget fromValue(final String v) {
+        for (final DataAgentTarget c: DataAgentTarget.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

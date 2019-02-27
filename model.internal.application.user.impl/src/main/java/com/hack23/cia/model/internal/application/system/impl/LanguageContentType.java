@@ -38,7 +38,7 @@ public enum LanguageContentType {
     HUMAN_TRANSLATION("Human Translation");
     private final String value;
 
-    LanguageContentType(String v) {
+    LanguageContentType(final String v) {
         value = v;
     }
 
@@ -46,8 +46,8 @@ public enum LanguageContentType {
         return value;
     }
 
-    public static LanguageContentType fromValue(String v) {
-        for (LanguageContentType c: LanguageContentType.values()) {
+    public static LanguageContentType fromValue(final String v) {
+        for (final LanguageContentType c: LanguageContentType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -53,7 +53,7 @@ public enum RiksdagenDataSources {
     COMMITTEE_PROPOSALS("Committee_Proposals");
     private final String value;
 
-    RiksdagenDataSources(String v) {
+    RiksdagenDataSources(final String v) {
         value = v;
     }
 
@@ -61,8 +61,8 @@ public enum RiksdagenDataSources {
         return value;
     }
 
-    public static RiksdagenDataSources fromValue(String v) {
-        for (RiksdagenDataSources c: RiksdagenDataSources.values()) {
+    public static RiksdagenDataSources fromValue(final String v) {
+        for (final RiksdagenDataSources c: RiksdagenDataSources.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

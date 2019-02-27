@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,18 +28,17 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -81,10 +81,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "PORTAL")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Portal
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     protected String portalName;
     @XmlSchemaType(name = "string")
@@ -116,7 +120,7 @@ public class Portal
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -134,7 +138,7 @@ public class Portal
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -147,7 +151,7 @@ public class Portal
      *     
      */
     @Basic
-    @Column(name = "PORTAL_NAME", length = 255)
+    @Column(name = "PORTAL_NAME")
     public String getPortalName() {
         return portalName;
     }
@@ -160,7 +164,7 @@ public class Portal
      *     {@link String }
      *     
      */
-    public void setPortalName(String value) {
+    public void setPortalName(final String value) {
         this.portalName = value;
     }
 
@@ -173,7 +177,7 @@ public class Portal
      *     
      */
     @Basic
-    @Column(name = "PORTAL_TYPE", length = 255)
+    @Column(name = "PORTAL_TYPE")
     @Enumerated(EnumType.STRING)
     public PortalType getPortalType() {
         return portalType;
@@ -187,7 +191,7 @@ public class Portal
      *     {@link PortalType }
      *     
      */
-    public void setPortalType(PortalType value) {
+    public void setPortalType(final PortalType value) {
         this.portalType = value;
     }
 
@@ -200,7 +204,7 @@ public class Portal
      *     
      */
     @Basic
-    @Column(name = "DESCRIPTION", length = 255)
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -213,7 +217,7 @@ public class Portal
      *     {@link String }
      *     
      */
-    public void setDescription(String value) {
+    public void setDescription(final String value) {
         this.description = value;
     }
 
@@ -226,7 +230,7 @@ public class Portal
      *     
      */
     @Basic
-    @Column(name = "GOOGLE_MAP_API_KEY", length = 255)
+    @Column(name = "GOOGLE_MAP_API_KEY")
     public String getGoogleMapApiKey() {
         return googleMapApiKey;
     }
@@ -239,87 +243,46 @@ public class Portal
      *     {@link String }
      *     
      */
-    public void setGoogleMapApiKey(String value) {
+    public void setGoogleMapApiKey(final String value) {
         this.googleMapApiKey = value;
     }
 
-    public Portal withModelObjectId(Integer value) {
+    public Portal withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public Portal withModelObjectVersion(int value) {
+    public Portal withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public Portal withPortalName(String value) {
+    public Portal withPortalName(final String value) {
         setPortalName(value);
         return this;
     }
 
-    public Portal withPortalType(PortalType value) {
+    public Portal withPortalType(final PortalType value) {
         setPortalType(value);
         return this;
     }
 
-    public Portal withDescription(String value) {
+    public Portal withDescription(final String value) {
         setDescription(value);
         return this;
     }
 
-    public Portal withGoogleMapApiKey(String value) {
+    public Portal withGoogleMapApiKey(final String value) {
         setGoogleMapApiKey(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            String thePortalName;
-            thePortalName = this.getPortalName();
-            strategy.appendField(locator, this, "portalName", buffer, thePortalName);
-        }
-        {
-            PortalType thePortalType;
-            thePortalType = this.getPortalType();
-            strategy.appendField(locator, this, "portalType", buffer, thePortalType);
-        }
-        {
-            String theDescription;
-            theDescription = this.getDescription();
-            strategy.appendField(locator, this, "description", buffer, theDescription);
-        }
-        {
-            String theGoogleMapApiKey;
-            theGoogleMapApiKey = this.getGoogleMapApiKey();
-            strategy.appendField(locator, this, "googleMapApiKey", buffer, theGoogleMapApiKey);
-        }
-        return buffer;
-    }
 
     /**
      * Gets the value of the hjid property.
@@ -344,11 +307,11 @@ public class Portal
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -413,49 +376,15 @@ public class Portal
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            String thePortalName;
-            thePortalName = this.getPortalName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "portalName", thePortalName), currentHashCode, thePortalName);
-        }
-        {
-            PortalType thePortalType;
-            thePortalType = this.getPortalType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "portalType", thePortalType), currentHashCode, thePortalType);
-        }
-        {
-            String theDescription;
-            theDescription = this.getDescription();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "description", theDescription), currentHashCode, theDescription);
-        }
-        {
-            String theGoogleMapApiKey;
-            theGoogleMapApiKey = this.getGoogleMapApiKey();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "googleMapApiKey", theGoogleMapApiKey), currentHashCode, theGoogleMapApiKey);
-        }
-        return currentHashCode;
-    }
 
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,19 +38,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -105,10 +105,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "APPLICATION_SESSION")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationSession
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(XmlDateTimeTypeAdapter.class)
@@ -155,7 +159,7 @@ public class ApplicationSession
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -173,7 +177,7 @@ public class ApplicationSession
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -200,7 +204,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -227,7 +231,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setDestroyedDate(Date value) {
+    public void setDestroyedDate(final Date value) {
         this.destroyedDate = value;
     }
 
@@ -240,7 +244,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "IP_INFORMATION", length = 255)
+    @Column(name = "IP_INFORMATION")
     public String getIpInformation() {
         return ipInformation;
     }
@@ -253,7 +257,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setIpInformation(String value) {
+    public void setIpInformation(final String value) {
         this.ipInformation = value;
     }
 
@@ -266,7 +270,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "USER_AGENT_INFORMATION", length = 255)
+    @Column(name = "USER_AGENT_INFORMATION")
     public String getUserAgentInformation() {
         return userAgentInformation;
     }
@@ -279,7 +283,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setUserAgentInformation(String value) {
+    public void setUserAgentInformation(final String value) {
         this.userAgentInformation = value;
     }
 
@@ -292,7 +296,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "SESSION_ID", length = 255)
+    @Column(name = "SESSION_ID")
     public String getSessionId() {
         return sessionId;
     }
@@ -305,7 +309,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setSessionId(String value) {
+    public void setSessionId(final String value) {
         this.sessionId = value;
     }
 
@@ -318,7 +322,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "USER_ID", length = 255)
+    @Column(name = "USER_ID")
     public String getUserId() {
         return userId;
     }
@@ -331,7 +335,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setUserId(String value) {
+    public void setUserId(final String value) {
         this.userId = value;
     }
 
@@ -344,7 +348,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "LOCALE", length = 255)
+    @Column(name = "LOCALE")
     public String getLocale() {
         return locale;
     }
@@ -357,7 +361,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setLocale(String value) {
+    public void setLocale(final String value) {
         this.locale = value;
     }
 
@@ -370,7 +374,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "OPERATING_SYSTEM", length = 255)
+    @Column(name = "OPERATING_SYSTEM")
     public String getOperatingSystem() {
         return operatingSystem;
     }
@@ -383,7 +387,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setOperatingSystem(String value) {
+    public void setOperatingSystem(final String value) {
         this.operatingSystem = value;
     }
 
@@ -396,7 +400,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "SCREEN_SIZE", length = 255)
+    @Column(name = "SCREEN_SIZE")
     public String getScreenSize() {
         return screenSize;
     }
@@ -409,7 +413,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setScreenSize(String value) {
+    public void setScreenSize(final String value) {
         this.screenSize = value;
     }
 
@@ -422,7 +426,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "TIME_ZONE", length = 255)
+    @Column(name = "TIME_ZONE")
     public String getTimeZone() {
         return timeZone;
     }
@@ -435,7 +439,7 @@ public class ApplicationSession
      *     {@link String }
      *     
      */
-    public void setTimeZone(String value) {
+    public void setTimeZone(final String value) {
         this.timeZone = value;
     }
 
@@ -448,7 +452,7 @@ public class ApplicationSession
      *     
      */
     @Basic
-    @Column(name = "SESSION_TYPE", length = 255)
+    @Column(name = "SESSION_TYPE")
     @Enumerated(EnumType.STRING)
     public ApplicationSessionType getSessionType() {
         return sessionType;
@@ -462,7 +466,7 @@ public class ApplicationSession
      *     {@link ApplicationSessionType }
      *     
      */
-    public void setSessionType(ApplicationSessionType value) {
+    public void setSessionType(final ApplicationSessionType value) {
         this.sessionType = value;
     }
 
@@ -503,183 +507,101 @@ public class ApplicationSession
      * 
      * 
      */
-    public void setEvents(List<ApplicationActionEvent> events) {
+    public void setEvents(final List<ApplicationActionEvent> events) {
         this.events = events;
     }
 
-    public ApplicationSession withModelObjectId(Integer value) {
+    public ApplicationSession withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public ApplicationSession withModelObjectVersion(int value) {
+    public ApplicationSession withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public ApplicationSession withCreatedDate(Date value) {
+    public ApplicationSession withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public ApplicationSession withDestroyedDate(Date value) {
+    public ApplicationSession withDestroyedDate(final Date value) {
         setDestroyedDate(value);
         return this;
     }
 
-    public ApplicationSession withIpInformation(String value) {
+    public ApplicationSession withIpInformation(final String value) {
         setIpInformation(value);
         return this;
     }
 
-    public ApplicationSession withUserAgentInformation(String value) {
+    public ApplicationSession withUserAgentInformation(final String value) {
         setUserAgentInformation(value);
         return this;
     }
 
-    public ApplicationSession withSessionId(String value) {
+    public ApplicationSession withSessionId(final String value) {
         setSessionId(value);
         return this;
     }
 
-    public ApplicationSession withUserId(String value) {
+    public ApplicationSession withUserId(final String value) {
         setUserId(value);
         return this;
     }
 
-    public ApplicationSession withLocale(String value) {
+    public ApplicationSession withLocale(final String value) {
         setLocale(value);
         return this;
     }
 
-    public ApplicationSession withOperatingSystem(String value) {
+    public ApplicationSession withOperatingSystem(final String value) {
         setOperatingSystem(value);
         return this;
     }
 
-    public ApplicationSession withScreenSize(String value) {
+    public ApplicationSession withScreenSize(final String value) {
         setScreenSize(value);
         return this;
     }
 
-    public ApplicationSession withTimeZone(String value) {
+    public ApplicationSession withTimeZone(final String value) {
         setTimeZone(value);
         return this;
     }
 
-    public ApplicationSession withSessionType(ApplicationSessionType value) {
+    public ApplicationSession withSessionType(final ApplicationSessionType value) {
         setSessionType(value);
         return this;
     }
 
-    public ApplicationSession withEvents(ApplicationActionEvent... values) {
+    public ApplicationSession withEvents(final ApplicationActionEvent... values) {
         if (values!= null) {
-            for (ApplicationActionEvent value: values) {
+            for (final ApplicationActionEvent value: values) {
                 getEvents().add(value);
             }
         }
         return this;
     }
 
-    public ApplicationSession withEvents(Collection<ApplicationActionEvent> values) {
+    public ApplicationSession withEvents(final Collection<ApplicationActionEvent> values) {
         if (values!= null) {
             getEvents().addAll(values);
         }
         return this;
     }
 
-    public ApplicationSession withEvents(List<ApplicationActionEvent> events) {
+    public ApplicationSession withEvents(final List<ApplicationActionEvent> events) {
         setEvents(events);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            Date theDestroyedDate;
-            theDestroyedDate = this.getDestroyedDate();
-            strategy.appendField(locator, this, "destroyedDate", buffer, theDestroyedDate);
-        }
-        {
-            String theIpInformation;
-            theIpInformation = this.getIpInformation();
-            strategy.appendField(locator, this, "ipInformation", buffer, theIpInformation);
-        }
-        {
-            String theUserAgentInformation;
-            theUserAgentInformation = this.getUserAgentInformation();
-            strategy.appendField(locator, this, "userAgentInformation", buffer, theUserAgentInformation);
-        }
-        {
-            String theSessionId;
-            theSessionId = this.getSessionId();
-            strategy.appendField(locator, this, "sessionId", buffer, theSessionId);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            strategy.appendField(locator, this, "userId", buffer, theUserId);
-        }
-        {
-            String theLocale;
-            theLocale = this.getLocale();
-            strategy.appendField(locator, this, "locale", buffer, theLocale);
-        }
-        {
-            String theOperatingSystem;
-            theOperatingSystem = this.getOperatingSystem();
-            strategy.appendField(locator, this, "operatingSystem", buffer, theOperatingSystem);
-        }
-        {
-            String theScreenSize;
-            theScreenSize = this.getScreenSize();
-            strategy.appendField(locator, this, "screenSize", buffer, theScreenSize);
-        }
-        {
-            String theTimeZone;
-            theTimeZone = this.getTimeZone();
-            strategy.appendField(locator, this, "timeZone", buffer, theTimeZone);
-        }
-        {
-            ApplicationSessionType theSessionType;
-            theSessionType = this.getSessionType();
-            strategy.appendField(locator, this, "sessionType", buffer, theSessionType);
-        }
-        {
-            List<ApplicationActionEvent> theEvents;
-            theEvents = (((this.events!= null)&&(!this.events.isEmpty()))?this.getEvents():null);
-            strategy.appendField(locator, this, "events", buffer, theEvents);
-        }
-        return buffer;
-    }
 
     /**
      * Gets the value of the hjid property.
@@ -704,11 +626,11 @@ public class ApplicationSession
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -845,89 +767,14 @@ public class ApplicationSession
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            Date theDestroyedDate;
-            theDestroyedDate = this.getDestroyedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "destroyedDate", theDestroyedDate), currentHashCode, theDestroyedDate);
-        }
-        {
-            String theIpInformation;
-            theIpInformation = this.getIpInformation();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "ipInformation", theIpInformation), currentHashCode, theIpInformation);
-        }
-        {
-            String theUserAgentInformation;
-            theUserAgentInformation = this.getUserAgentInformation();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userAgentInformation", theUserAgentInformation), currentHashCode, theUserAgentInformation);
-        }
-        {
-            String theSessionId;
-            theSessionId = this.getSessionId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sessionId", theSessionId), currentHashCode, theSessionId);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userId", theUserId), currentHashCode, theUserId);
-        }
-        {
-            String theLocale;
-            theLocale = this.getLocale();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "locale", theLocale), currentHashCode, theLocale);
-        }
-        {
-            String theOperatingSystem;
-            theOperatingSystem = this.getOperatingSystem();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "operatingSystem", theOperatingSystem), currentHashCode, theOperatingSystem);
-        }
-        {
-            String theScreenSize;
-            theScreenSize = this.getScreenSize();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "screenSize", theScreenSize), currentHashCode, theScreenSize);
-        }
-        {
-            String theTimeZone;
-            theTimeZone = this.getTimeZone();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "timeZone", theTimeZone), currentHashCode, theTimeZone);
-        }
-        {
-            ApplicationSessionType theSessionType;
-            theSessionType = this.getSessionType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sessionType", theSessionType), currentHashCode, theSessionType);
-        }
-        {
-            List<ApplicationActionEvent> theEvents;
-            theEvents = (((this.events!= null)&&(!this.events.isEmpty()))?this.getEvents():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "events", theEvents), currentHashCode, theEvents);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

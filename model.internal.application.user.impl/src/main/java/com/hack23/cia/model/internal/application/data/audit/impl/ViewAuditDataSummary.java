@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.audit.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,18 +21,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -65,10 +65,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_AUDIT_DATA_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditDataSummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected long id;
     @XmlElement(required = true)
     protected String dataType;
     protected long dataSize;
@@ -87,7 +91,7 @@ public class ViewAuditDataSummary
      * Sets the value of the id property.
      * 
      */
-    public void setId(long value) {
+    public void setId(final long value) {
         this.id = value;
     }
 
@@ -100,7 +104,7 @@ public class ViewAuditDataSummary
      *     
      */
     @Basic
-    @Column(name = "DATA_TYPE", length = 255)
+    @Column(name = "DATA_TYPE")
     public String getDataType() {
         return dataType;
     }
@@ -113,7 +117,7 @@ public class ViewAuditDataSummary
      *     {@link String }
      *     
      */
-    public void setDataType(String value) {
+    public void setDataType(final String value) {
         this.dataType = value;
     }
 
@@ -131,59 +135,32 @@ public class ViewAuditDataSummary
      * Sets the value of the dataSize property.
      * 
      */
-    public void setDataSize(long value) {
+    public void setDataSize(final long value) {
         this.dataSize = value;
     }
 
-    public ViewAuditDataSummary withId(long value) {
+    public ViewAuditDataSummary withId(final long value) {
         setId(value);
         return this;
     }
 
-    public ViewAuditDataSummary withDataType(String value) {
+    public ViewAuditDataSummary withDataType(final String value) {
         setDataType(value);
         return this;
     }
 
-    public ViewAuditDataSummary withDataSize(long value) {
+    public ViewAuditDataSummary withDataSize(final long value) {
         setDataSize(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            long theId;
-            theId = this.getId();
-            strategy.appendField(locator, this, "id", buffer, theId);
-        }
-        {
-            String theDataType;
-            theDataType = this.getDataType();
-            strategy.appendField(locator, this, "dataType", buffer, theDataType);
-        }
-        {
-            long theDataSize;
-            theDataSize = this.getDataSize();
-            strategy.appendField(locator, this, "dataSize", buffer, theDataSize);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -221,34 +198,14 @@ public class ViewAuditDataSummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            long theId;
-            theId = this.getId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "id", theId), currentHashCode, theId);
-        }
-        {
-            String theDataType;
-            theDataType = this.getDataType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "dataType", theDataType), currentHashCode, theDataType);
-        }
-        {
-            long theDataSize;
-            theDataSize = this.getDataSize();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "dataSize", theDataSize), currentHashCode, theDataSize);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

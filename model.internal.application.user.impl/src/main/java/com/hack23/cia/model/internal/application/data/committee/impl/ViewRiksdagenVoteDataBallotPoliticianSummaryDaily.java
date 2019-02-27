@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.committee.impl;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -23,18 +24,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -172,10 +172,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Daily")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId embeddedId;
     @XmlElement(name = "first_name", required = true)
     protected String firstName;
@@ -297,7 +301,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
     @EmbeddedId
     @AttributeOverrides({
         @AttributeOverride(name = "voteDate", column = @Column(name = "EMBEDDED_ID_VOTE_DATE")),
-        @AttributeOverride(name = "intressentId", column = @Column(name = "EMBEDDED_ID_INTRESSENT_ID", length = 255))
+        @AttributeOverride(name = "intressentId", column = @Column(name = "EMBEDDED_ID_INTRESSENT_ID"))
     })
     public RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -311,7 +315,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId }
      *     
      */
-    public void setEmbeddedId(RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId value) {
+    public void setEmbeddedId(final RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -324,7 +328,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     
      */
     @Basic
-    @Column(name = "FIRST_NAME", length = 255)
+    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -337,7 +341,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link String }
      *     
      */
-    public void setFirstName(String value) {
+    public void setFirstName(final String value) {
         this.firstName = value;
     }
 
@@ -350,7 +354,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     
      */
     @Basic
-    @Column(name = "LAST_NAME", length = 255)
+    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -363,7 +367,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link String }
      *     
      */
-    public void setLastName(String value) {
+    public void setLastName(final String value) {
         this.lastName = value;
     }
 
@@ -376,7 +380,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     
      */
     @Basic
-    @Column(name = "GENDER", length = 255)
+    @Column(name = "GENDER")
     public String getGender() {
         return gender;
     }
@@ -389,7 +393,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link String }
      *     
      */
-    public void setGender(String value) {
+    public void setGender(final String value) {
         this.gender = value;
     }
 
@@ -402,7 +406,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     
      */
     @Basic
-    @Column(name = "PARTY", length = 255)
+    @Column(name = "PARTY")
     public String getParty() {
         return party;
     }
@@ -415,7 +419,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link String }
      *     
      */
-    public void setParty(String value) {
+    public void setParty(final String value) {
         this.party = value;
     }
 
@@ -433,7 +437,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the bornYear property.
      * 
      */
-    public void setBornYear(int value) {
+    public void setBornYear(final int value) {
         this.bornYear = value;
     }
 
@@ -451,7 +455,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the numberBallots property.
      * 
      */
-    public void setNumberBallots(long value) {
+    public void setNumberBallots(final long value) {
         this.numberBallots = value;
     }
 
@@ -477,7 +481,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgBornYear(BigDecimal value) {
+    public void setAvgBornYear(final BigDecimal value) {
         this.avgBornYear = value;
     }
 
@@ -495,7 +499,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the avgTotalVotes property.
      * 
      */
-    public void setAvgTotalVotes(long value) {
+    public void setAvgTotalVotes(final long value) {
         this.avgTotalVotes = value;
     }
 
@@ -521,7 +525,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgYesVotes(BigDecimal value) {
+    public void setAvgYesVotes(final BigDecimal value) {
         this.avgYesVotes = value;
     }
 
@@ -547,7 +551,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgNoVotes(BigDecimal value) {
+    public void setAvgNoVotes(final BigDecimal value) {
         this.avgNoVotes = value;
     }
 
@@ -573,7 +577,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgAbstainVotes(BigDecimal value) {
+    public void setAvgAbstainVotes(final BigDecimal value) {
         this.avgAbstainVotes = value;
     }
 
@@ -599,7 +603,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgAbsentVotes(BigDecimal value) {
+    public void setAvgAbsentVotes(final BigDecimal value) {
         this.avgAbsentVotes = value;
     }
 
@@ -625,7 +629,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPercentageApproved(BigDecimal value) {
+    public void setPercentageApproved(final BigDecimal value) {
         this.percentageApproved = value;
     }
 
@@ -651,7 +655,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgPercentageYes(BigDecimal value) {
+    public void setAvgPercentageYes(final BigDecimal value) {
         this.avgPercentageYes = value;
     }
 
@@ -677,7 +681,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgPercentageNo(BigDecimal value) {
+    public void setAvgPercentageNo(final BigDecimal value) {
         this.avgPercentageNo = value;
     }
 
@@ -703,7 +707,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgPercentageAbsent(BigDecimal value) {
+    public void setAvgPercentageAbsent(final BigDecimal value) {
         this.avgPercentageAbsent = value;
     }
 
@@ -729,7 +733,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgPercentageAbstain(BigDecimal value) {
+    public void setAvgPercentageAbstain(final BigDecimal value) {
         this.avgPercentageAbstain = value;
     }
 
@@ -755,7 +759,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAvgPercentageMale(BigDecimal value) {
+    public void setAvgPercentageMale(final BigDecimal value) {
         this.avgPercentageMale = value;
     }
 
@@ -781,7 +785,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setTotalVotes(BigDecimal value) {
+    public void setTotalVotes(final BigDecimal value) {
         this.totalVotes = value;
     }
 
@@ -807,7 +811,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setYesVotes(BigDecimal value) {
+    public void setYesVotes(final BigDecimal value) {
         this.yesVotes = value;
     }
 
@@ -833,7 +837,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setNoVotes(BigDecimal value) {
+    public void setNoVotes(final BigDecimal value) {
         this.noVotes = value;
     }
 
@@ -859,7 +863,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAbstainVotes(BigDecimal value) {
+    public void setAbstainVotes(final BigDecimal value) {
         this.abstainVotes = value;
     }
 
@@ -885,7 +889,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setAbsentVotes(BigDecimal value) {
+    public void setAbsentVotes(final BigDecimal value) {
         this.absentVotes = value;
     }
 
@@ -911,7 +915,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyTotalVotes(BigDecimal value) {
+    public void setPartyTotalVotes(final BigDecimal value) {
         this.partyTotalVotes = value;
     }
 
@@ -937,7 +941,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyYesVotes(BigDecimal value) {
+    public void setPartyYesVotes(final BigDecimal value) {
         this.partyYesVotes = value;
     }
 
@@ -963,7 +967,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyNoVotes(BigDecimal value) {
+    public void setPartyNoVotes(final BigDecimal value) {
         this.partyNoVotes = value;
     }
 
@@ -989,7 +993,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyAbstainVotes(BigDecimal value) {
+    public void setPartyAbstainVotes(final BigDecimal value) {
         this.partyAbstainVotes = value;
     }
 
@@ -1015,7 +1019,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyAbsentVotes(BigDecimal value) {
+    public void setPartyAbsentVotes(final BigDecimal value) {
         this.partyAbsentVotes = value;
     }
 
@@ -1033,7 +1037,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the politicianYesVotes property.
      * 
      */
-    public void setPoliticianYesVotes(long value) {
+    public void setPoliticianYesVotes(final long value) {
         this.politicianYesVotes = value;
     }
 
@@ -1051,7 +1055,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the politicianNoVotes property.
      * 
      */
-    public void setPoliticianNoVotes(long value) {
+    public void setPoliticianNoVotes(final long value) {
         this.politicianNoVotes = value;
     }
 
@@ -1069,7 +1073,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the politicianAbstainVotes property.
      * 
      */
-    public void setPoliticianAbstainVotes(long value) {
+    public void setPoliticianAbstainVotes(final long value) {
         this.politicianAbstainVotes = value;
     }
 
@@ -1087,7 +1091,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the politicianAbsentVotes property.
      * 
      */
-    public void setPoliticianAbsentVotes(long value) {
+    public void setPoliticianAbsentVotes(final long value) {
         this.politicianAbsentVotes = value;
     }
 
@@ -1113,7 +1117,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPoliticianPercentageYes(BigDecimal value) {
+    public void setPoliticianPercentageYes(final BigDecimal value) {
         this.politicianPercentageYes = value;
     }
 
@@ -1139,7 +1143,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPoliticianPercentageNo(BigDecimal value) {
+    public void setPoliticianPercentageNo(final BigDecimal value) {
         this.politicianPercentageNo = value;
     }
 
@@ -1165,7 +1169,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPoliticianPercentageAbsent(BigDecimal value) {
+    public void setPoliticianPercentageAbsent(final BigDecimal value) {
         this.politicianPercentageAbsent = value;
     }
 
@@ -1191,7 +1195,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPoliticianPercentageAbstain(BigDecimal value) {
+    public void setPoliticianPercentageAbstain(final BigDecimal value) {
         this.politicianPercentageAbstain = value;
     }
 
@@ -1217,7 +1221,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyAvgBornYear(BigDecimal value) {
+    public void setPartyAvgBornYear(final BigDecimal value) {
         this.partyAvgBornYear = value;
     }
 
@@ -1243,7 +1247,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyAvgPercentageMale(BigDecimal value) {
+    public void setPartyAvgPercentageMale(final BigDecimal value) {
         this.partyAvgPercentageMale = value;
     }
 
@@ -1269,7 +1273,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyPercentageYes(BigDecimal value) {
+    public void setPartyPercentageYes(final BigDecimal value) {
         this.partyPercentageYes = value;
     }
 
@@ -1295,7 +1299,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyPercentageNo(BigDecimal value) {
+    public void setPartyPercentageNo(final BigDecimal value) {
         this.partyPercentageNo = value;
     }
 
@@ -1321,7 +1325,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyPercentageAbstain(BigDecimal value) {
+    public void setPartyPercentageAbstain(final BigDecimal value) {
         this.partyPercentageAbstain = value;
     }
 
@@ -1347,7 +1351,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyPercentageAbsent(BigDecimal value) {
+    public void setPartyPercentageAbsent(final BigDecimal value) {
         this.partyPercentageAbsent = value;
     }
 
@@ -1373,7 +1377,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPercentageYes(BigDecimal value) {
+    public void setPercentageYes(final BigDecimal value) {
         this.percentageYes = value;
     }
 
@@ -1399,7 +1403,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPercentageNo(BigDecimal value) {
+    public void setPercentageNo(final BigDecimal value) {
         this.percentageNo = value;
     }
 
@@ -1425,7 +1429,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPercentageAbstain(BigDecimal value) {
+    public void setPercentageAbstain(final BigDecimal value) {
         this.percentageAbstain = value;
     }
 
@@ -1451,7 +1455,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPercentageAbsent(BigDecimal value) {
+    public void setPercentageAbsent(final BigDecimal value) {
         this.percentageAbsent = value;
     }
 
@@ -1469,7 +1473,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the partyWonTotal property.
      * 
      */
-    public void setPartyWonTotal(long value) {
+    public void setPartyWonTotal(final long value) {
         this.partyWonTotal = value;
     }
 
@@ -1495,7 +1499,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setPartyWonPercentage(BigDecimal value) {
+    public void setPartyWonPercentage(final BigDecimal value) {
         this.partyWonPercentage = value;
     }
 
@@ -1513,7 +1517,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the approvedTotal property.
      * 
      */
-    public void setApprovedTotal(long value) {
+    public void setApprovedTotal(final long value) {
         this.approvedTotal = value;
     }
 
@@ -1539,7 +1543,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setApprovedPercentage(BigDecimal value) {
+    public void setApprovedPercentage(final BigDecimal value) {
         this.approvedPercentage = value;
     }
 
@@ -1565,7 +1569,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setWonPercentage(BigDecimal value) {
+    public void setWonPercentage(final BigDecimal value) {
         this.wonPercentage = value;
     }
 
@@ -1583,7 +1587,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the wonTotal property.
      * 
      */
-    public void setWonTotal(long value) {
+    public void setWonTotal(final long value) {
         this.wonTotal = value;
     }
 
@@ -1609,7 +1613,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      *     {@link BigDecimal }
      *     
      */
-    public void setRebelPercentage(BigDecimal value) {
+    public void setRebelPercentage(final BigDecimal value) {
         this.rebelPercentage = value;
     }
 
@@ -1627,579 +1631,291 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * Sets the value of the rebelTotal property.
      * 
      */
-    public void setRebelTotal(long value) {
+    public void setRebelTotal(final long value) {
         this.rebelTotal = value;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withEmbeddedId(RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withEmbeddedId(final RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withFirstName(String value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withFirstName(final String value) {
         setFirstName(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withLastName(String value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withLastName(final String value) {
         setLastName(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withGender(String value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withGender(final String value) {
         setGender(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withParty(String value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withParty(final String value) {
         setParty(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withBornYear(int value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withBornYear(final int value) {
         setBornYear(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withNumberBallots(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withNumberBallots(final long value) {
         setNumberBallots(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgBornYear(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgBornYear(final BigDecimal value) {
         setAvgBornYear(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgTotalVotes(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgTotalVotes(final long value) {
         setAvgTotalVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgYesVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgYesVotes(final BigDecimal value) {
         setAvgYesVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgNoVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgNoVotes(final BigDecimal value) {
         setAvgNoVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgAbstainVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgAbstainVotes(final BigDecimal value) {
         setAvgAbstainVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgAbsentVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgAbsentVotes(final BigDecimal value) {
         setAvgAbsentVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageApproved(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageApproved(final BigDecimal value) {
         setPercentageApproved(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageYes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageYes(final BigDecimal value) {
         setAvgPercentageYes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageNo(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageNo(final BigDecimal value) {
         setAvgPercentageNo(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageAbsent(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageAbsent(final BigDecimal value) {
         setAvgPercentageAbsent(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageAbstain(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageAbstain(final BigDecimal value) {
         setAvgPercentageAbstain(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageMale(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAvgPercentageMale(final BigDecimal value) {
         setAvgPercentageMale(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withTotalVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withTotalVotes(final BigDecimal value) {
         setTotalVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withYesVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withYesVotes(final BigDecimal value) {
         setYesVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withNoVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withNoVotes(final BigDecimal value) {
         setNoVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAbstainVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAbstainVotes(final BigDecimal value) {
         setAbstainVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAbsentVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withAbsentVotes(final BigDecimal value) {
         setAbsentVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyTotalVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyTotalVotes(final BigDecimal value) {
         setPartyTotalVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyYesVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyYesVotes(final BigDecimal value) {
         setPartyYesVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyNoVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyNoVotes(final BigDecimal value) {
         setPartyNoVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAbstainVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAbstainVotes(final BigDecimal value) {
         setPartyAbstainVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAbsentVotes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAbsentVotes(final BigDecimal value) {
         setPartyAbsentVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianYesVotes(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianYesVotes(final long value) {
         setPoliticianYesVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianNoVotes(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianNoVotes(final long value) {
         setPoliticianNoVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianAbstainVotes(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianAbstainVotes(final long value) {
         setPoliticianAbstainVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianAbsentVotes(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianAbsentVotes(final long value) {
         setPoliticianAbsentVotes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageYes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageYes(final BigDecimal value) {
         setPoliticianPercentageYes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageNo(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageNo(final BigDecimal value) {
         setPoliticianPercentageNo(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageAbsent(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageAbsent(final BigDecimal value) {
         setPoliticianPercentageAbsent(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageAbstain(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPoliticianPercentageAbstain(final BigDecimal value) {
         setPoliticianPercentageAbstain(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAvgBornYear(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAvgBornYear(final BigDecimal value) {
         setPartyAvgBornYear(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAvgPercentageMale(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyAvgPercentageMale(final BigDecimal value) {
         setPartyAvgPercentageMale(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageYes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageYes(final BigDecimal value) {
         setPartyPercentageYes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageNo(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageNo(final BigDecimal value) {
         setPartyPercentageNo(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageAbstain(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageAbstain(final BigDecimal value) {
         setPartyPercentageAbstain(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageAbsent(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyPercentageAbsent(final BigDecimal value) {
         setPartyPercentageAbsent(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageYes(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageYes(final BigDecimal value) {
         setPercentageYes(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageNo(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageNo(final BigDecimal value) {
         setPercentageNo(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageAbstain(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageAbstain(final BigDecimal value) {
         setPercentageAbstain(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageAbsent(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPercentageAbsent(final BigDecimal value) {
         setPercentageAbsent(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyWonTotal(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyWonTotal(final long value) {
         setPartyWonTotal(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyWonPercentage(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withPartyWonPercentage(final BigDecimal value) {
         setPartyWonPercentage(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withApprovedTotal(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withApprovedTotal(final long value) {
         setApprovedTotal(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withApprovedPercentage(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withApprovedPercentage(final BigDecimal value) {
         setApprovedPercentage(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withWonPercentage(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withWonPercentage(final BigDecimal value) {
         setWonPercentage(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withWonTotal(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withWonTotal(final long value) {
         setWonTotal(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withRebelPercentage(BigDecimal value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withRebelPercentage(final BigDecimal value) {
         setRebelPercentage(value);
         return this;
     }
 
-    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withRebelTotal(long value) {
+    public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily withRebelTotal(final long value) {
         setRebelTotal(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            strategy.appendField(locator, this, "firstName", buffer, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            strategy.appendField(locator, this, "lastName", buffer, theLastName);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            strategy.appendField(locator, this, "gender", buffer, theGender);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            strategy.appendField(locator, this, "party", buffer, theParty);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            strategy.appendField(locator, this, "bornYear", buffer, theBornYear);
-        }
-        {
-            long theNumberBallots;
-            theNumberBallots = this.getNumberBallots();
-            strategy.appendField(locator, this, "numberBallots", buffer, theNumberBallots);
-        }
-        {
-            BigDecimal theAvgBornYear;
-            theAvgBornYear = this.getAvgBornYear();
-            strategy.appendField(locator, this, "avgBornYear", buffer, theAvgBornYear);
-        }
-        {
-            long theAvgTotalVotes;
-            theAvgTotalVotes = this.getAvgTotalVotes();
-            strategy.appendField(locator, this, "avgTotalVotes", buffer, theAvgTotalVotes);
-        }
-        {
-            BigDecimal theAvgYesVotes;
-            theAvgYesVotes = this.getAvgYesVotes();
-            strategy.appendField(locator, this, "avgYesVotes", buffer, theAvgYesVotes);
-        }
-        {
-            BigDecimal theAvgNoVotes;
-            theAvgNoVotes = this.getAvgNoVotes();
-            strategy.appendField(locator, this, "avgNoVotes", buffer, theAvgNoVotes);
-        }
-        {
-            BigDecimal theAvgAbstainVotes;
-            theAvgAbstainVotes = this.getAvgAbstainVotes();
-            strategy.appendField(locator, this, "avgAbstainVotes", buffer, theAvgAbstainVotes);
-        }
-        {
-            BigDecimal theAvgAbsentVotes;
-            theAvgAbsentVotes = this.getAvgAbsentVotes();
-            strategy.appendField(locator, this, "avgAbsentVotes", buffer, theAvgAbsentVotes);
-        }
-        {
-            BigDecimal thePercentageApproved;
-            thePercentageApproved = this.getPercentageApproved();
-            strategy.appendField(locator, this, "percentageApproved", buffer, thePercentageApproved);
-        }
-        {
-            BigDecimal theAvgPercentageYes;
-            theAvgPercentageYes = this.getAvgPercentageYes();
-            strategy.appendField(locator, this, "avgPercentageYes", buffer, theAvgPercentageYes);
-        }
-        {
-            BigDecimal theAvgPercentageNo;
-            theAvgPercentageNo = this.getAvgPercentageNo();
-            strategy.appendField(locator, this, "avgPercentageNo", buffer, theAvgPercentageNo);
-        }
-        {
-            BigDecimal theAvgPercentageAbsent;
-            theAvgPercentageAbsent = this.getAvgPercentageAbsent();
-            strategy.appendField(locator, this, "avgPercentageAbsent", buffer, theAvgPercentageAbsent);
-        }
-        {
-            BigDecimal theAvgPercentageAbstain;
-            theAvgPercentageAbstain = this.getAvgPercentageAbstain();
-            strategy.appendField(locator, this, "avgPercentageAbstain", buffer, theAvgPercentageAbstain);
-        }
-        {
-            BigDecimal theAvgPercentageMale;
-            theAvgPercentageMale = this.getAvgPercentageMale();
-            strategy.appendField(locator, this, "avgPercentageMale", buffer, theAvgPercentageMale);
-        }
-        {
-            BigDecimal theTotalVotes;
-            theTotalVotes = this.getTotalVotes();
-            strategy.appendField(locator, this, "totalVotes", buffer, theTotalVotes);
-        }
-        {
-            BigDecimal theYesVotes;
-            theYesVotes = this.getYesVotes();
-            strategy.appendField(locator, this, "yesVotes", buffer, theYesVotes);
-        }
-        {
-            BigDecimal theNoVotes;
-            theNoVotes = this.getNoVotes();
-            strategy.appendField(locator, this, "noVotes", buffer, theNoVotes);
-        }
-        {
-            BigDecimal theAbstainVotes;
-            theAbstainVotes = this.getAbstainVotes();
-            strategy.appendField(locator, this, "abstainVotes", buffer, theAbstainVotes);
-        }
-        {
-            BigDecimal theAbsentVotes;
-            theAbsentVotes = this.getAbsentVotes();
-            strategy.appendField(locator, this, "absentVotes", buffer, theAbsentVotes);
-        }
-        {
-            BigDecimal thePartyTotalVotes;
-            thePartyTotalVotes = this.getPartyTotalVotes();
-            strategy.appendField(locator, this, "partyTotalVotes", buffer, thePartyTotalVotes);
-        }
-        {
-            BigDecimal thePartyYesVotes;
-            thePartyYesVotes = this.getPartyYesVotes();
-            strategy.appendField(locator, this, "partyYesVotes", buffer, thePartyYesVotes);
-        }
-        {
-            BigDecimal thePartyNoVotes;
-            thePartyNoVotes = this.getPartyNoVotes();
-            strategy.appendField(locator, this, "partyNoVotes", buffer, thePartyNoVotes);
-        }
-        {
-            BigDecimal thePartyAbstainVotes;
-            thePartyAbstainVotes = this.getPartyAbstainVotes();
-            strategy.appendField(locator, this, "partyAbstainVotes", buffer, thePartyAbstainVotes);
-        }
-        {
-            BigDecimal thePartyAbsentVotes;
-            thePartyAbsentVotes = this.getPartyAbsentVotes();
-            strategy.appendField(locator, this, "partyAbsentVotes", buffer, thePartyAbsentVotes);
-        }
-        {
-            long thePoliticianYesVotes;
-            thePoliticianYesVotes = this.getPoliticianYesVotes();
-            strategy.appendField(locator, this, "politicianYesVotes", buffer, thePoliticianYesVotes);
-        }
-        {
-            long thePoliticianNoVotes;
-            thePoliticianNoVotes = this.getPoliticianNoVotes();
-            strategy.appendField(locator, this, "politicianNoVotes", buffer, thePoliticianNoVotes);
-        }
-        {
-            long thePoliticianAbstainVotes;
-            thePoliticianAbstainVotes = this.getPoliticianAbstainVotes();
-            strategy.appendField(locator, this, "politicianAbstainVotes", buffer, thePoliticianAbstainVotes);
-        }
-        {
-            long thePoliticianAbsentVotes;
-            thePoliticianAbsentVotes = this.getPoliticianAbsentVotes();
-            strategy.appendField(locator, this, "politicianAbsentVotes", buffer, thePoliticianAbsentVotes);
-        }
-        {
-            BigDecimal thePoliticianPercentageYes;
-            thePoliticianPercentageYes = this.getPoliticianPercentageYes();
-            strategy.appendField(locator, this, "politicianPercentageYes", buffer, thePoliticianPercentageYes);
-        }
-        {
-            BigDecimal thePoliticianPercentageNo;
-            thePoliticianPercentageNo = this.getPoliticianPercentageNo();
-            strategy.appendField(locator, this, "politicianPercentageNo", buffer, thePoliticianPercentageNo);
-        }
-        {
-            BigDecimal thePoliticianPercentageAbsent;
-            thePoliticianPercentageAbsent = this.getPoliticianPercentageAbsent();
-            strategy.appendField(locator, this, "politicianPercentageAbsent", buffer, thePoliticianPercentageAbsent);
-        }
-        {
-            BigDecimal thePoliticianPercentageAbstain;
-            thePoliticianPercentageAbstain = this.getPoliticianPercentageAbstain();
-            strategy.appendField(locator, this, "politicianPercentageAbstain", buffer, thePoliticianPercentageAbstain);
-        }
-        {
-            BigDecimal thePartyAvgBornYear;
-            thePartyAvgBornYear = this.getPartyAvgBornYear();
-            strategy.appendField(locator, this, "partyAvgBornYear", buffer, thePartyAvgBornYear);
-        }
-        {
-            BigDecimal thePartyAvgPercentageMale;
-            thePartyAvgPercentageMale = this.getPartyAvgPercentageMale();
-            strategy.appendField(locator, this, "partyAvgPercentageMale", buffer, thePartyAvgPercentageMale);
-        }
-        {
-            BigDecimal thePartyPercentageYes;
-            thePartyPercentageYes = this.getPartyPercentageYes();
-            strategy.appendField(locator, this, "partyPercentageYes", buffer, thePartyPercentageYes);
-        }
-        {
-            BigDecimal thePartyPercentageNo;
-            thePartyPercentageNo = this.getPartyPercentageNo();
-            strategy.appendField(locator, this, "partyPercentageNo", buffer, thePartyPercentageNo);
-        }
-        {
-            BigDecimal thePartyPercentageAbstain;
-            thePartyPercentageAbstain = this.getPartyPercentageAbstain();
-            strategy.appendField(locator, this, "partyPercentageAbstain", buffer, thePartyPercentageAbstain);
-        }
-        {
-            BigDecimal thePartyPercentageAbsent;
-            thePartyPercentageAbsent = this.getPartyPercentageAbsent();
-            strategy.appendField(locator, this, "partyPercentageAbsent", buffer, thePartyPercentageAbsent);
-        }
-        {
-            BigDecimal thePercentageYes;
-            thePercentageYes = this.getPercentageYes();
-            strategy.appendField(locator, this, "percentageYes", buffer, thePercentageYes);
-        }
-        {
-            BigDecimal thePercentageNo;
-            thePercentageNo = this.getPercentageNo();
-            strategy.appendField(locator, this, "percentageNo", buffer, thePercentageNo);
-        }
-        {
-            BigDecimal thePercentageAbstain;
-            thePercentageAbstain = this.getPercentageAbstain();
-            strategy.appendField(locator, this, "percentageAbstain", buffer, thePercentageAbstain);
-        }
-        {
-            BigDecimal thePercentageAbsent;
-            thePercentageAbsent = this.getPercentageAbsent();
-            strategy.appendField(locator, this, "percentageAbsent", buffer, thePercentageAbsent);
-        }
-        {
-            long thePartyWonTotal;
-            thePartyWonTotal = this.getPartyWonTotal();
-            strategy.appendField(locator, this, "partyWonTotal", buffer, thePartyWonTotal);
-        }
-        {
-            BigDecimal thePartyWonPercentage;
-            thePartyWonPercentage = this.getPartyWonPercentage();
-            strategy.appendField(locator, this, "partyWonPercentage", buffer, thePartyWonPercentage);
-        }
-        {
-            long theApprovedTotal;
-            theApprovedTotal = this.getApprovedTotal();
-            strategy.appendField(locator, this, "approvedTotal", buffer, theApprovedTotal);
-        }
-        {
-            BigDecimal theApprovedPercentage;
-            theApprovedPercentage = this.getApprovedPercentage();
-            strategy.appendField(locator, this, "approvedPercentage", buffer, theApprovedPercentage);
-        }
-        {
-            BigDecimal theWonPercentage;
-            theWonPercentage = this.getWonPercentage();
-            strategy.appendField(locator, this, "wonPercentage", buffer, theWonPercentage);
-        }
-        {
-            long theWonTotal;
-            theWonTotal = this.getWonTotal();
-            strategy.appendField(locator, this, "wonTotal", buffer, theWonTotal);
-        }
-        {
-            BigDecimal theRebelPercentage;
-            theRebelPercentage = this.getRebelPercentage();
-            strategy.appendField(locator, this, "rebelPercentage", buffer, theRebelPercentage);
-        }
-        {
-            long theRebelTotal;
-            theRebelTotal = this.getRebelTotal();
-            strategy.appendField(locator, this, "rebelTotal", buffer, theRebelTotal);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -2705,294 +2421,14 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstName", theFirstName), currentHashCode, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastName", theLastName), currentHashCode, theLastName);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "gender", theGender), currentHashCode, theGender);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "party", theParty), currentHashCode, theParty);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "bornYear", theBornYear), currentHashCode, theBornYear);
-        }
-        {
-            long theNumberBallots;
-            theNumberBallots = this.getNumberBallots();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "numberBallots", theNumberBallots), currentHashCode, theNumberBallots);
-        }
-        {
-            BigDecimal theAvgBornYear;
-            theAvgBornYear = this.getAvgBornYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgBornYear", theAvgBornYear), currentHashCode, theAvgBornYear);
-        }
-        {
-            long theAvgTotalVotes;
-            theAvgTotalVotes = this.getAvgTotalVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgTotalVotes", theAvgTotalVotes), currentHashCode, theAvgTotalVotes);
-        }
-        {
-            BigDecimal theAvgYesVotes;
-            theAvgYesVotes = this.getAvgYesVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgYesVotes", theAvgYesVotes), currentHashCode, theAvgYesVotes);
-        }
-        {
-            BigDecimal theAvgNoVotes;
-            theAvgNoVotes = this.getAvgNoVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgNoVotes", theAvgNoVotes), currentHashCode, theAvgNoVotes);
-        }
-        {
-            BigDecimal theAvgAbstainVotes;
-            theAvgAbstainVotes = this.getAvgAbstainVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgAbstainVotes", theAvgAbstainVotes), currentHashCode, theAvgAbstainVotes);
-        }
-        {
-            BigDecimal theAvgAbsentVotes;
-            theAvgAbsentVotes = this.getAvgAbsentVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgAbsentVotes", theAvgAbsentVotes), currentHashCode, theAvgAbsentVotes);
-        }
-        {
-            BigDecimal thePercentageApproved;
-            thePercentageApproved = this.getPercentageApproved();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "percentageApproved", thePercentageApproved), currentHashCode, thePercentageApproved);
-        }
-        {
-            BigDecimal theAvgPercentageYes;
-            theAvgPercentageYes = this.getAvgPercentageYes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgPercentageYes", theAvgPercentageYes), currentHashCode, theAvgPercentageYes);
-        }
-        {
-            BigDecimal theAvgPercentageNo;
-            theAvgPercentageNo = this.getAvgPercentageNo();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgPercentageNo", theAvgPercentageNo), currentHashCode, theAvgPercentageNo);
-        }
-        {
-            BigDecimal theAvgPercentageAbsent;
-            theAvgPercentageAbsent = this.getAvgPercentageAbsent();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgPercentageAbsent", theAvgPercentageAbsent), currentHashCode, theAvgPercentageAbsent);
-        }
-        {
-            BigDecimal theAvgPercentageAbstain;
-            theAvgPercentageAbstain = this.getAvgPercentageAbstain();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgPercentageAbstain", theAvgPercentageAbstain), currentHashCode, theAvgPercentageAbstain);
-        }
-        {
-            BigDecimal theAvgPercentageMale;
-            theAvgPercentageMale = this.getAvgPercentageMale();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "avgPercentageMale", theAvgPercentageMale), currentHashCode, theAvgPercentageMale);
-        }
-        {
-            BigDecimal theTotalVotes;
-            theTotalVotes = this.getTotalVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalVotes", theTotalVotes), currentHashCode, theTotalVotes);
-        }
-        {
-            BigDecimal theYesVotes;
-            theYesVotes = this.getYesVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "yesVotes", theYesVotes), currentHashCode, theYesVotes);
-        }
-        {
-            BigDecimal theNoVotes;
-            theNoVotes = this.getNoVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "noVotes", theNoVotes), currentHashCode, theNoVotes);
-        }
-        {
-            BigDecimal theAbstainVotes;
-            theAbstainVotes = this.getAbstainVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "abstainVotes", theAbstainVotes), currentHashCode, theAbstainVotes);
-        }
-        {
-            BigDecimal theAbsentVotes;
-            theAbsentVotes = this.getAbsentVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "absentVotes", theAbsentVotes), currentHashCode, theAbsentVotes);
-        }
-        {
-            BigDecimal thePartyTotalVotes;
-            thePartyTotalVotes = this.getPartyTotalVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyTotalVotes", thePartyTotalVotes), currentHashCode, thePartyTotalVotes);
-        }
-        {
-            BigDecimal thePartyYesVotes;
-            thePartyYesVotes = this.getPartyYesVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyYesVotes", thePartyYesVotes), currentHashCode, thePartyYesVotes);
-        }
-        {
-            BigDecimal thePartyNoVotes;
-            thePartyNoVotes = this.getPartyNoVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyNoVotes", thePartyNoVotes), currentHashCode, thePartyNoVotes);
-        }
-        {
-            BigDecimal thePartyAbstainVotes;
-            thePartyAbstainVotes = this.getPartyAbstainVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyAbstainVotes", thePartyAbstainVotes), currentHashCode, thePartyAbstainVotes);
-        }
-        {
-            BigDecimal thePartyAbsentVotes;
-            thePartyAbsentVotes = this.getPartyAbsentVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyAbsentVotes", thePartyAbsentVotes), currentHashCode, thePartyAbsentVotes);
-        }
-        {
-            long thePoliticianYesVotes;
-            thePoliticianYesVotes = this.getPoliticianYesVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianYesVotes", thePoliticianYesVotes), currentHashCode, thePoliticianYesVotes);
-        }
-        {
-            long thePoliticianNoVotes;
-            thePoliticianNoVotes = this.getPoliticianNoVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianNoVotes", thePoliticianNoVotes), currentHashCode, thePoliticianNoVotes);
-        }
-        {
-            long thePoliticianAbstainVotes;
-            thePoliticianAbstainVotes = this.getPoliticianAbstainVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianAbstainVotes", thePoliticianAbstainVotes), currentHashCode, thePoliticianAbstainVotes);
-        }
-        {
-            long thePoliticianAbsentVotes;
-            thePoliticianAbsentVotes = this.getPoliticianAbsentVotes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianAbsentVotes", thePoliticianAbsentVotes), currentHashCode, thePoliticianAbsentVotes);
-        }
-        {
-            BigDecimal thePoliticianPercentageYes;
-            thePoliticianPercentageYes = this.getPoliticianPercentageYes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianPercentageYes", thePoliticianPercentageYes), currentHashCode, thePoliticianPercentageYes);
-        }
-        {
-            BigDecimal thePoliticianPercentageNo;
-            thePoliticianPercentageNo = this.getPoliticianPercentageNo();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianPercentageNo", thePoliticianPercentageNo), currentHashCode, thePoliticianPercentageNo);
-        }
-        {
-            BigDecimal thePoliticianPercentageAbsent;
-            thePoliticianPercentageAbsent = this.getPoliticianPercentageAbsent();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianPercentageAbsent", thePoliticianPercentageAbsent), currentHashCode, thePoliticianPercentageAbsent);
-        }
-        {
-            BigDecimal thePoliticianPercentageAbstain;
-            thePoliticianPercentageAbstain = this.getPoliticianPercentageAbstain();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "politicianPercentageAbstain", thePoliticianPercentageAbstain), currentHashCode, thePoliticianPercentageAbstain);
-        }
-        {
-            BigDecimal thePartyAvgBornYear;
-            thePartyAvgBornYear = this.getPartyAvgBornYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyAvgBornYear", thePartyAvgBornYear), currentHashCode, thePartyAvgBornYear);
-        }
-        {
-            BigDecimal thePartyAvgPercentageMale;
-            thePartyAvgPercentageMale = this.getPartyAvgPercentageMale();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyAvgPercentageMale", thePartyAvgPercentageMale), currentHashCode, thePartyAvgPercentageMale);
-        }
-        {
-            BigDecimal thePartyPercentageYes;
-            thePartyPercentageYes = this.getPartyPercentageYes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyPercentageYes", thePartyPercentageYes), currentHashCode, thePartyPercentageYes);
-        }
-        {
-            BigDecimal thePartyPercentageNo;
-            thePartyPercentageNo = this.getPartyPercentageNo();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyPercentageNo", thePartyPercentageNo), currentHashCode, thePartyPercentageNo);
-        }
-        {
-            BigDecimal thePartyPercentageAbstain;
-            thePartyPercentageAbstain = this.getPartyPercentageAbstain();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyPercentageAbstain", thePartyPercentageAbstain), currentHashCode, thePartyPercentageAbstain);
-        }
-        {
-            BigDecimal thePartyPercentageAbsent;
-            thePartyPercentageAbsent = this.getPartyPercentageAbsent();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyPercentageAbsent", thePartyPercentageAbsent), currentHashCode, thePartyPercentageAbsent);
-        }
-        {
-            BigDecimal thePercentageYes;
-            thePercentageYes = this.getPercentageYes();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "percentageYes", thePercentageYes), currentHashCode, thePercentageYes);
-        }
-        {
-            BigDecimal thePercentageNo;
-            thePercentageNo = this.getPercentageNo();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "percentageNo", thePercentageNo), currentHashCode, thePercentageNo);
-        }
-        {
-            BigDecimal thePercentageAbstain;
-            thePercentageAbstain = this.getPercentageAbstain();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "percentageAbstain", thePercentageAbstain), currentHashCode, thePercentageAbstain);
-        }
-        {
-            BigDecimal thePercentageAbsent;
-            thePercentageAbsent = this.getPercentageAbsent();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "percentageAbsent", thePercentageAbsent), currentHashCode, thePercentageAbsent);
-        }
-        {
-            long thePartyWonTotal;
-            thePartyWonTotal = this.getPartyWonTotal();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyWonTotal", thePartyWonTotal), currentHashCode, thePartyWonTotal);
-        }
-        {
-            BigDecimal thePartyWonPercentage;
-            thePartyWonPercentage = this.getPartyWonPercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyWonPercentage", thePartyWonPercentage), currentHashCode, thePartyWonPercentage);
-        }
-        {
-            long theApprovedTotal;
-            theApprovedTotal = this.getApprovedTotal();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "approvedTotal", theApprovedTotal), currentHashCode, theApprovedTotal);
-        }
-        {
-            BigDecimal theApprovedPercentage;
-            theApprovedPercentage = this.getApprovedPercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "approvedPercentage", theApprovedPercentage), currentHashCode, theApprovedPercentage);
-        }
-        {
-            BigDecimal theWonPercentage;
-            theWonPercentage = this.getWonPercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "wonPercentage", theWonPercentage), currentHashCode, theWonPercentage);
-        }
-        {
-            long theWonTotal;
-            theWonTotal = this.getWonTotal();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "wonTotal", theWonTotal), currentHashCode, theWonTotal);
-        }
-        {
-            BigDecimal theRebelPercentage;
-            theRebelPercentage = this.getRebelPercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rebelPercentage", theRebelPercentage), currentHashCode, theRebelPercentage);
-        }
-        {
-            long theRebelTotal;
-            theRebelTotal = this.getRebelTotal();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "rebelTotal", theRebelTotal), currentHashCode, theRebelTotal);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

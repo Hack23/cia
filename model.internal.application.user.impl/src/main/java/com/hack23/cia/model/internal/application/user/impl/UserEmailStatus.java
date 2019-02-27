@@ -38,7 +38,7 @@ public enum UserEmailStatus {
         return name();
     }
 
-    public static UserEmailStatus fromValue(String v) {
+    public static UserEmailStatus fromValue(final String v) {
         return valueOf(v);
     }
 

@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,18 +26,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -68,10 +68,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "DATA_AGENT_WORK_ORDER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DataAgentWorkOrder
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlSchemaType(name = "string")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlSchemaType(name = "string")
     protected DataAgentTarget target;
     @XmlSchemaType(name = "string")
     protected DataAgentOperation operation;
@@ -87,7 +91,7 @@ public class DataAgentWorkOrder
      *     
      */
     @Basic
-    @Column(name = "TARGET", length = 255)
+    @Column(name = "TARGET")
     @Enumerated(EnumType.STRING)
     public DataAgentTarget getTarget() {
         return target;
@@ -101,7 +105,7 @@ public class DataAgentWorkOrder
      *     {@link DataAgentTarget }
      *     
      */
-    public void setTarget(DataAgentTarget value) {
+    public void setTarget(final DataAgentTarget value) {
         this.target = value;
     }
 
@@ -114,7 +118,7 @@ public class DataAgentWorkOrder
      *     
      */
     @Basic
-    @Column(name = "OPERATION_", length = 255)
+    @Column(name = "OPERATION_")
     @Enumerated(EnumType.STRING)
     public DataAgentOperation getOperation() {
         return operation;
@@ -128,47 +132,25 @@ public class DataAgentWorkOrder
      *     {@link DataAgentOperation }
      *     
      */
-    public void setOperation(DataAgentOperation value) {
+    public void setOperation(final DataAgentOperation value) {
         this.operation = value;
     }
 
-    public DataAgentWorkOrder withTarget(DataAgentTarget value) {
+    public DataAgentWorkOrder withTarget(final DataAgentTarget value) {
         setTarget(value);
         return this;
     }
 
-    public DataAgentWorkOrder withOperation(DataAgentOperation value) {
+    public DataAgentWorkOrder withOperation(final DataAgentOperation value) {
         setOperation(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            DataAgentTarget theTarget;
-            theTarget = this.getTarget();
-            strategy.appendField(locator, this, "target", buffer, theTarget);
-        }
-        {
-            DataAgentOperation theOperation;
-            theOperation = this.getOperation();
-            strategy.appendField(locator, this, "operation", buffer, theOperation);
-        }
-        return buffer;
-    }
 
     /**
      * Gets the value of the hjid property.
@@ -193,11 +175,11 @@ public class DataAgentWorkOrder
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -226,29 +208,14 @@ public class DataAgentWorkOrder
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            DataAgentTarget theTarget;
-            theTarget = this.getTarget();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "target", theTarget), currentHashCode, theTarget);
-        }
-        {
-            DataAgentOperation theOperation;
-            theOperation = this.getOperation();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "operation", theOperation), currentHashCode, theOperation);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

@@ -41,6 +41,7 @@ import junit.framework.TestSuite;
 @RunWith(AllTests.class)
 public final class ModelSanityTest extends AbstractUnitTest {
 
+	/** The Constant EXPECT_CLASSES_IN_PACKAGE. */
 	private static final String EXPECT_CLASSES_IN_PACKAGE = "Expect classes in package";
 
 	/**

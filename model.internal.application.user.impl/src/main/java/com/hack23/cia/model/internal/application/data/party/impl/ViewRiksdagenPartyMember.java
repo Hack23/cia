@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.party.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,19 +26,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -119,10 +119,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_RIKSDAGEN_PARTY_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyMember
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected String id;
     protected long hjid;
     @XmlElement(required = true)
@@ -199,7 +203,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setId(String value) {
+    public void setId(final String value) {
         this.id = value;
     }
 
@@ -217,7 +221,7 @@ public class ViewRiksdagenPartyMember
      * Sets the value of the hjid property.
      * 
      */
-    public void setHjid(long value) {
+    public void setHjid(final long value) {
         this.hjid = value;
     }
 
@@ -230,7 +234,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "ADDRESS", length = 255)
+    @Column(name = "ADDRESS")
     public String getAddress() {
         return address;
     }
@@ -243,7 +247,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setAddress(String value) {
+    public void setAddress(final String value) {
         this.address = value;
     }
 
@@ -256,7 +260,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "CITY", length = 255)
+    @Column(name = "CITY")
     public String getCity() {
         return city;
     }
@@ -269,7 +273,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setCity(String value) {
+    public void setCity(final String value) {
         this.city = value;
     }
 
@@ -282,7 +286,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "CO_ADDRESS", length = 255)
+    @Column(name = "CO_ADDRESS")
     public String getCoAddress() {
         return coAddress;
     }
@@ -295,7 +299,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setCoAddress(String value) {
+    public void setCoAddress(final String value) {
         this.coAddress = value;
     }
 
@@ -308,7 +312,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "EMAIL", length = 255)
+    @Column(name = "EMAIL")
     public String getEmail() {
         return email;
     }
@@ -321,7 +325,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setEmail(String value) {
+    public void setEmail(final String value) {
         this.email = value;
     }
 
@@ -334,7 +338,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "FAX_NUMBER", length = 255)
+    @Column(name = "FAX_NUMBER")
     public String getFaxNumber() {
         return faxNumber;
     }
@@ -347,7 +351,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setFaxNumber(String value) {
+    public void setFaxNumber(final String value) {
         this.faxNumber = value;
     }
 
@@ -360,7 +364,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PARTY_ID", length = 255)
+    @Column(name = "PARTY_ID")
     public String getPartyId() {
         return partyId;
     }
@@ -373,7 +377,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPartyId(String value) {
+    public void setPartyId(final String value) {
         this.partyId = value;
     }
 
@@ -386,7 +390,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PARTY_NAME", length = 255)
+    @Column(name = "PARTY_NAME")
     public String getPartyName() {
         return partyName;
     }
@@ -399,7 +403,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPartyName(String value) {
+    public void setPartyName(final String value) {
         this.partyName = value;
     }
 
@@ -412,7 +416,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PHONE_NUMBER", length = 255)
+    @Column(name = "PHONE_NUMBER")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -425,7 +429,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPhoneNumber(String value) {
+    public void setPhoneNumber(final String value) {
         this.phoneNumber = value;
     }
 
@@ -438,7 +442,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "POST_CODE", length = 255)
+    @Column(name = "POST_CODE")
     public String getPostCode() {
         return postCode;
     }
@@ -451,7 +455,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPostCode(String value) {
+    public void setPostCode(final String value) {
         this.postCode = value;
     }
 
@@ -478,7 +482,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setRegisteredDate(Date value) {
+    public void setRegisteredDate(final Date value) {
         this.registeredDate = value;
     }
 
@@ -491,7 +495,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "SHORT_CODE", length = 255)
+    @Column(name = "SHORT_CODE")
     public String getShortCode() {
         return shortCode;
     }
@@ -504,7 +508,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setShortCode(String value) {
+    public void setShortCode(final String value) {
         this.shortCode = value;
     }
 
@@ -517,7 +521,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "WEBSITE", length = 255)
+    @Column(name = "WEBSITE")
     public String getWebsite() {
         return website;
     }
@@ -530,7 +534,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setWebsite(String value) {
+    public void setWebsite(final String value) {
         this.website = value;
     }
 
@@ -548,7 +552,7 @@ public class ViewRiksdagenPartyMember
      * Sets the value of the bornYear property.
      * 
      */
-    public void setBornYear(int value) {
+    public void setBornYear(final int value) {
         this.bornYear = value;
     }
 
@@ -561,7 +565,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "ELECTION_REGION", length = 255)
+    @Column(name = "ELECTION_REGION")
     public String getElectionRegion() {
         return electionRegion;
     }
@@ -574,7 +578,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setElectionRegion(String value) {
+    public void setElectionRegion(final String value) {
         this.electionRegion = value;
     }
 
@@ -587,7 +591,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "FIRST_NAME", length = 255)
+    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -600,7 +604,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setFirstName(String value) {
+    public void setFirstName(final String value) {
         this.firstName = value;
     }
 
@@ -613,7 +617,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "GENDER", length = 255)
+    @Column(name = "GENDER")
     public String getGender() {
         return gender;
     }
@@ -626,7 +630,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setGender(String value) {
+    public void setGender(final String value) {
         this.gender = value;
     }
 
@@ -639,7 +643,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "HANGAR_GUID", length = 255)
+    @Column(name = "HANGAR_GUID")
     public String getHangarGuid() {
         return hangarGuid;
     }
@@ -652,7 +656,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setHangarGuid(String value) {
+    public void setHangarGuid(final String value) {
         this.hangarGuid = value;
     }
 
@@ -665,7 +669,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "IMAGE_URL_192", length = 255)
+    @Column(name = "IMAGE_URL_192")
     public String getImageUrl192() {
         return imageUrl192;
     }
@@ -678,7 +682,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setImageUrl192(String value) {
+    public void setImageUrl192(final String value) {
         this.imageUrl192 = value;
     }
 
@@ -691,7 +695,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "IMAGE_URL_80", length = 255)
+    @Column(name = "IMAGE_URL_80")
     public String getImageUrl80() {
         return imageUrl80;
     }
@@ -704,7 +708,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setImageUrl80(String value) {
+    public void setImageUrl80(final String value) {
         this.imageUrl80 = value;
     }
 
@@ -717,7 +721,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "IMAGE_URL_MAX", length = 255)
+    @Column(name = "IMAGE_URL_MAX")
     public String getImageUrlMax() {
         return imageUrlMax;
     }
@@ -730,7 +734,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setImageUrlMax(String value) {
+    public void setImageUrlMax(final String value) {
         this.imageUrlMax = value;
     }
 
@@ -743,7 +747,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "LAST_NAME", length = 255)
+    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -756,7 +760,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setLastName(String value) {
+    public void setLastName(final String value) {
         this.lastName = value;
     }
 
@@ -769,7 +773,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PARTY", length = 255)
+    @Column(name = "PARTY")
     public String getParty() {
         return party;
     }
@@ -782,7 +786,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setParty(String value) {
+    public void setParty(final String value) {
         this.party = value;
     }
 
@@ -795,7 +799,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PERSON_URL_XML", length = 255)
+    @Column(name = "PERSON_URL_XML")
     public String getPersonUrlXml() {
         return personUrlXml;
     }
@@ -808,7 +812,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPersonUrlXml(String value) {
+    public void setPersonUrlXml(final String value) {
         this.personUrlXml = value;
     }
 
@@ -821,7 +825,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "PLACE", length = 255)
+    @Column(name = "PLACE")
     public String getPlace() {
         return place;
     }
@@ -834,7 +838,7 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setPlace(String value) {
+    public void setPlace(final String value) {
         this.place = value;
     }
 
@@ -847,7 +851,7 @@ public class ViewRiksdagenPartyMember
      *     
      */
     @Basic
-    @Column(name = "STATUS", length = 255)
+    @Column(name = "STATUS")
     public String getStatus() {
         return status;
     }
@@ -860,299 +864,152 @@ public class ViewRiksdagenPartyMember
      *     {@link String }
      *     
      */
-    public void setStatus(String value) {
+    public void setStatus(final String value) {
         this.status = value;
     }
 
-    public ViewRiksdagenPartyMember withId(String value) {
+    public ViewRiksdagenPartyMember withId(final String value) {
         setId(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withHjid(long value) {
+    public ViewRiksdagenPartyMember withHjid(final long value) {
         setHjid(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withAddress(String value) {
+    public ViewRiksdagenPartyMember withAddress(final String value) {
         setAddress(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withCity(String value) {
+    public ViewRiksdagenPartyMember withCity(final String value) {
         setCity(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withCoAddress(String value) {
+    public ViewRiksdagenPartyMember withCoAddress(final String value) {
         setCoAddress(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withEmail(String value) {
+    public ViewRiksdagenPartyMember withEmail(final String value) {
         setEmail(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withFaxNumber(String value) {
+    public ViewRiksdagenPartyMember withFaxNumber(final String value) {
         setFaxNumber(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPartyId(String value) {
+    public ViewRiksdagenPartyMember withPartyId(final String value) {
         setPartyId(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPartyName(String value) {
+    public ViewRiksdagenPartyMember withPartyName(final String value) {
         setPartyName(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPhoneNumber(String value) {
+    public ViewRiksdagenPartyMember withPhoneNumber(final String value) {
         setPhoneNumber(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPostCode(String value) {
+    public ViewRiksdagenPartyMember withPostCode(final String value) {
         setPostCode(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withRegisteredDate(Date value) {
+    public ViewRiksdagenPartyMember withRegisteredDate(final Date value) {
         setRegisteredDate(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withShortCode(String value) {
+    public ViewRiksdagenPartyMember withShortCode(final String value) {
         setShortCode(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withWebsite(String value) {
+    public ViewRiksdagenPartyMember withWebsite(final String value) {
         setWebsite(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withBornYear(int value) {
+    public ViewRiksdagenPartyMember withBornYear(final int value) {
         setBornYear(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withElectionRegion(String value) {
+    public ViewRiksdagenPartyMember withElectionRegion(final String value) {
         setElectionRegion(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withFirstName(String value) {
+    public ViewRiksdagenPartyMember withFirstName(final String value) {
         setFirstName(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withGender(String value) {
+    public ViewRiksdagenPartyMember withGender(final String value) {
         setGender(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withHangarGuid(String value) {
+    public ViewRiksdagenPartyMember withHangarGuid(final String value) {
         setHangarGuid(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withImageUrl192(String value) {
+    public ViewRiksdagenPartyMember withImageUrl192(final String value) {
         setImageUrl192(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withImageUrl80(String value) {
+    public ViewRiksdagenPartyMember withImageUrl80(final String value) {
         setImageUrl80(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withImageUrlMax(String value) {
+    public ViewRiksdagenPartyMember withImageUrlMax(final String value) {
         setImageUrlMax(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withLastName(String value) {
+    public ViewRiksdagenPartyMember withLastName(final String value) {
         setLastName(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withParty(String value) {
+    public ViewRiksdagenPartyMember withParty(final String value) {
         setParty(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPersonUrlXml(String value) {
+    public ViewRiksdagenPartyMember withPersonUrlXml(final String value) {
         setPersonUrlXml(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withPlace(String value) {
+    public ViewRiksdagenPartyMember withPlace(final String value) {
         setPlace(value);
         return this;
     }
 
-    public ViewRiksdagenPartyMember withStatus(String value) {
+    public ViewRiksdagenPartyMember withStatus(final String value) {
         setStatus(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            String theId;
-            theId = this.getId();
-            strategy.appendField(locator, this, "id", buffer, theId);
-        }
-        {
-            long theHjid;
-            theHjid = this.getHjid();
-            strategy.appendField(locator, this, "hjid", buffer, theHjid);
-        }
-        {
-            String theAddress;
-            theAddress = this.getAddress();
-            strategy.appendField(locator, this, "address", buffer, theAddress);
-        }
-        {
-            String theCity;
-            theCity = this.getCity();
-            strategy.appendField(locator, this, "city", buffer, theCity);
-        }
-        {
-            String theCoAddress;
-            theCoAddress = this.getCoAddress();
-            strategy.appendField(locator, this, "coAddress", buffer, theCoAddress);
-        }
-        {
-            String theEmail;
-            theEmail = this.getEmail();
-            strategy.appendField(locator, this, "email", buffer, theEmail);
-        }
-        {
-            String theFaxNumber;
-            theFaxNumber = this.getFaxNumber();
-            strategy.appendField(locator, this, "faxNumber", buffer, theFaxNumber);
-        }
-        {
-            String thePartyId;
-            thePartyId = this.getPartyId();
-            strategy.appendField(locator, this, "partyId", buffer, thePartyId);
-        }
-        {
-            String thePartyName;
-            thePartyName = this.getPartyName();
-            strategy.appendField(locator, this, "partyName", buffer, thePartyName);
-        }
-        {
-            String thePhoneNumber;
-            thePhoneNumber = this.getPhoneNumber();
-            strategy.appendField(locator, this, "phoneNumber", buffer, thePhoneNumber);
-        }
-        {
-            String thePostCode;
-            thePostCode = this.getPostCode();
-            strategy.appendField(locator, this, "postCode", buffer, thePostCode);
-        }
-        {
-            Date theRegisteredDate;
-            theRegisteredDate = this.getRegisteredDate();
-            strategy.appendField(locator, this, "registeredDate", buffer, theRegisteredDate);
-        }
-        {
-            String theShortCode;
-            theShortCode = this.getShortCode();
-            strategy.appendField(locator, this, "shortCode", buffer, theShortCode);
-        }
-        {
-            String theWebsite;
-            theWebsite = this.getWebsite();
-            strategy.appendField(locator, this, "website", buffer, theWebsite);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            strategy.appendField(locator, this, "bornYear", buffer, theBornYear);
-        }
-        {
-            String theElectionRegion;
-            theElectionRegion = this.getElectionRegion();
-            strategy.appendField(locator, this, "electionRegion", buffer, theElectionRegion);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            strategy.appendField(locator, this, "firstName", buffer, theFirstName);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            strategy.appendField(locator, this, "gender", buffer, theGender);
-        }
-        {
-            String theHangarGuid;
-            theHangarGuid = this.getHangarGuid();
-            strategy.appendField(locator, this, "hangarGuid", buffer, theHangarGuid);
-        }
-        {
-            String theImageUrl192;
-            theImageUrl192 = this.getImageUrl192();
-            strategy.appendField(locator, this, "imageUrl192", buffer, theImageUrl192);
-        }
-        {
-            String theImageUrl80;
-            theImageUrl80 = this.getImageUrl80();
-            strategy.appendField(locator, this, "imageUrl80", buffer, theImageUrl80);
-        }
-        {
-            String theImageUrlMax;
-            theImageUrlMax = this.getImageUrlMax();
-            strategy.appendField(locator, this, "imageUrlMax", buffer, theImageUrlMax);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            strategy.appendField(locator, this, "lastName", buffer, theLastName);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            strategy.appendField(locator, this, "party", buffer, theParty);
-        }
-        {
-            String thePersonUrlXml;
-            thePersonUrlXml = this.getPersonUrlXml();
-            strategy.appendField(locator, this, "personUrlXml", buffer, thePersonUrlXml);
-        }
-        {
-            String thePlace;
-            thePlace = this.getPlace();
-            strategy.appendField(locator, this, "place", buffer, thePlace);
-        }
-        {
-            String theStatus;
-            theStatus = this.getStatus();
-            strategy.appendField(locator, this, "status", buffer, theStatus);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -1406,154 +1263,14 @@ public class ViewRiksdagenPartyMember
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            String theId;
-            theId = this.getId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "id", theId), currentHashCode, theId);
-        }
-        {
-            long theHjid;
-            theHjid = this.getHjid();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "hjid", theHjid), currentHashCode, theHjid);
-        }
-        {
-            String theAddress;
-            theAddress = this.getAddress();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "address", theAddress), currentHashCode, theAddress);
-        }
-        {
-            String theCity;
-            theCity = this.getCity();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "city", theCity), currentHashCode, theCity);
-        }
-        {
-            String theCoAddress;
-            theCoAddress = this.getCoAddress();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "coAddress", theCoAddress), currentHashCode, theCoAddress);
-        }
-        {
-            String theEmail;
-            theEmail = this.getEmail();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "email", theEmail), currentHashCode, theEmail);
-        }
-        {
-            String theFaxNumber;
-            theFaxNumber = this.getFaxNumber();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "faxNumber", theFaxNumber), currentHashCode, theFaxNumber);
-        }
-        {
-            String thePartyId;
-            thePartyId = this.getPartyId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyId", thePartyId), currentHashCode, thePartyId);
-        }
-        {
-            String thePartyName;
-            thePartyName = this.getPartyName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "partyName", thePartyName), currentHashCode, thePartyName);
-        }
-        {
-            String thePhoneNumber;
-            thePhoneNumber = this.getPhoneNumber();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "phoneNumber", thePhoneNumber), currentHashCode, thePhoneNumber);
-        }
-        {
-            String thePostCode;
-            thePostCode = this.getPostCode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "postCode", thePostCode), currentHashCode, thePostCode);
-        }
-        {
-            Date theRegisteredDate;
-            theRegisteredDate = this.getRegisteredDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "registeredDate", theRegisteredDate), currentHashCode, theRegisteredDate);
-        }
-        {
-            String theShortCode;
-            theShortCode = this.getShortCode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "shortCode", theShortCode), currentHashCode, theShortCode);
-        }
-        {
-            String theWebsite;
-            theWebsite = this.getWebsite();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "website", theWebsite), currentHashCode, theWebsite);
-        }
-        {
-            int theBornYear;
-            theBornYear = this.getBornYear();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "bornYear", theBornYear), currentHashCode, theBornYear);
-        }
-        {
-            String theElectionRegion;
-            theElectionRegion = this.getElectionRegion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "electionRegion", theElectionRegion), currentHashCode, theElectionRegion);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstName", theFirstName), currentHashCode, theFirstName);
-        }
-        {
-            String theGender;
-            theGender = this.getGender();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "gender", theGender), currentHashCode, theGender);
-        }
-        {
-            String theHangarGuid;
-            theHangarGuid = this.getHangarGuid();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "hangarGuid", theHangarGuid), currentHashCode, theHangarGuid);
-        }
-        {
-            String theImageUrl192;
-            theImageUrl192 = this.getImageUrl192();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "imageUrl192", theImageUrl192), currentHashCode, theImageUrl192);
-        }
-        {
-            String theImageUrl80;
-            theImageUrl80 = this.getImageUrl80();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "imageUrl80", theImageUrl80), currentHashCode, theImageUrl80);
-        }
-        {
-            String theImageUrlMax;
-            theImageUrlMax = this.getImageUrlMax();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "imageUrlMax", theImageUrlMax), currentHashCode, theImageUrlMax);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastName", theLastName), currentHashCode, theLastName);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "party", theParty), currentHashCode, theParty);
-        }
-        {
-            String thePersonUrlXml;
-            thePersonUrlXml = this.getPersonUrlXml();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "personUrlXml", thePersonUrlXml), currentHashCode, thePersonUrlXml);
-        }
-        {
-            String thePlace;
-            thePlace = this.getPlace();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "place", thePlace), currentHashCode, thePlace);
-        }
-        {
-            String theStatus;
-            theStatus = this.getStatus();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "status", theStatus), currentHashCode, theStatus);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

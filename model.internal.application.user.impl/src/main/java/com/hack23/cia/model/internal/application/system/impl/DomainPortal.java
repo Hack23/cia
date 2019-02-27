@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +17,10 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
@@ -56,10 +52,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "DOMAIN_PORTAL")
 public class DomainPortal
     extends Portal
-    implements Serializable, Equals, HashCode, ToString
+    implements Serializable, Equals
 {
 
-    protected String domainName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String domainName;
 
     /**
      * Gets the value of the domainName property.
@@ -70,7 +70,7 @@ public class DomainPortal
      *     
      */
     @Basic
-    @Column(name = "DOMAIN_NAME", length = 255)
+    @Column(name = "DOMAIN_NAME")
     public String getDomainName() {
         return domainName;
     }
@@ -83,76 +83,53 @@ public class DomainPortal
      *     {@link String }
      *     
      */
-    public void setDomainName(String value) {
+    public void setDomainName(final String value) {
         this.domainName = value;
     }
 
-    public DomainPortal withDomainName(String value) {
+    public DomainPortal withDomainName(final String value) {
         setDomainName(value);
         return this;
     }
 
     @Override
-    public DomainPortal withModelObjectId(Integer value) {
+    public DomainPortal withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
     @Override
-    public DomainPortal withModelObjectVersion(int value) {
+    public DomainPortal withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
     @Override
-    public DomainPortal withPortalName(String value) {
+    public DomainPortal withPortalName(final String value) {
         setPortalName(value);
         return this;
     }
 
     @Override
-    public DomainPortal withPortalType(PortalType value) {
+    public DomainPortal withPortalType(final PortalType value) {
         setPortalType(value);
         return this;
     }
 
     @Override
-    public DomainPortal withDescription(String value) {
+    public DomainPortal withDescription(final String value) {
         setDescription(value);
         return this;
     }
 
     @Override
-    public DomainPortal withGoogleMapApiKey(String value) {
+    public DomainPortal withGoogleMapApiKey(final String value) {
         setGoogleMapApiKey(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        super.appendFields(locator, buffer, strategy);
-        {
-            String theDomainName;
-            theDomainName = this.getDomainName();
-            strategy.appendField(locator, this, "domainName", buffer, theDomainName);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -175,24 +152,9 @@ public class DomainPortal
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
-    }
-
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = super.hashCode(locator, strategy);
-        {
-            String theDomainName;
-            theDomainName = this.getDomainName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "domainName", theDomainName), currentHashCode, theDomainName);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
     }
 
 }

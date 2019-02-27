@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.committee.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -22,18 +23,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -65,10 +65,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "View_Riksdagen_Committee_Decision_Type_Org_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommitteeDecisionTypeOrgDailySummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId embeddedId;
     protected long total;
 
@@ -83,8 +87,8 @@ public class ViewRiksdagenCommitteeDecisionTypeOrgDailySummary
     @EmbeddedId
     @AttributeOverrides({
         @AttributeOverride(name = "decisionDate", column = @Column(name = "EMBEDDED_ID_DECISION_DATE")),
-        @AttributeOverride(name = "decisionType", column = @Column(name = "EMBEDDED_ID_DECISION_TYPE", length = 255)),
-        @AttributeOverride(name = "org", column = @Column(name = "EMBEDDED_ID_ORG", length = 255))
+        @AttributeOverride(name = "decisionType", column = @Column(name = "EMBEDDED_ID_DECISION_TYPE")),
+        @AttributeOverride(name = "org", column = @Column(name = "EMBEDDED_ID_ORG"))
     })
     public RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -98,7 +102,7 @@ public class ViewRiksdagenCommitteeDecisionTypeOrgDailySummary
      *     {@link RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId }
      *     
      */
-    public void setEmbeddedId(RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId value) {
+    public void setEmbeddedId(final RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -116,49 +120,27 @@ public class ViewRiksdagenCommitteeDecisionTypeOrgDailySummary
      * Sets the value of the total property.
      * 
      */
-    public void setTotal(long value) {
+    public void setTotal(final long value) {
         this.total = value;
     }
 
-    public ViewRiksdagenCommitteeDecisionTypeOrgDailySummary withEmbeddedId(RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId value) {
+    public ViewRiksdagenCommitteeDecisionTypeOrgDailySummary withEmbeddedId(final RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewRiksdagenCommitteeDecisionTypeOrgDailySummary withTotal(long value) {
+    public ViewRiksdagenCommitteeDecisionTypeOrgDailySummary withTotal(final long value) {
         setTotal(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            long theTotal;
-            theTotal = this.getTotal();
-            strategy.appendField(locator, this, "total", buffer, theTotal);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -187,29 +169,14 @@ public class ViewRiksdagenCommitteeDecisionTypeOrgDailySummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            long theTotal;
-            theTotal = this.getTotal();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "total", theTotal), currentHashCode, theTotal);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

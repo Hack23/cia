@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.audit.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,19 +26,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -75,10 +75,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_AUDIT_AUTHOR_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditAuthorSummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected long id;
     @XmlElement(required = true)
     protected String author;
     protected long changes;
@@ -105,7 +109,7 @@ public class ViewAuditAuthorSummary
      * Sets the value of the id property.
      * 
      */
-    public void setId(long value) {
+    public void setId(final long value) {
         this.id = value;
     }
 
@@ -118,7 +122,7 @@ public class ViewAuditAuthorSummary
      *     
      */
     @Basic
-    @Column(name = "AUTHOR", length = 255)
+    @Column(name = "AUTHOR")
     public String getAuthor() {
         return author;
     }
@@ -131,7 +135,7 @@ public class ViewAuditAuthorSummary
      *     {@link String }
      *     
      */
-    public void setAuthor(String value) {
+    public void setAuthor(final String value) {
         this.author = value;
     }
 
@@ -149,7 +153,7 @@ public class ViewAuditAuthorSummary
      * Sets the value of the changes property.
      * 
      */
-    public void setChanges(long value) {
+    public void setChanges(final long value) {
         this.changes = value;
     }
 
@@ -176,7 +180,7 @@ public class ViewAuditAuthorSummary
      *     {@link String }
      *     
      */
-    public void setFirstDate(Date value) {
+    public void setFirstDate(final Date value) {
         this.firstDate = value;
     }
 
@@ -203,79 +207,41 @@ public class ViewAuditAuthorSummary
      *     {@link String }
      *     
      */
-    public void setLastDate(Date value) {
+    public void setLastDate(final Date value) {
         this.lastDate = value;
     }
 
-    public ViewAuditAuthorSummary withId(long value) {
+    public ViewAuditAuthorSummary withId(final long value) {
         setId(value);
         return this;
     }
 
-    public ViewAuditAuthorSummary withAuthor(String value) {
+    public ViewAuditAuthorSummary withAuthor(final String value) {
         setAuthor(value);
         return this;
     }
 
-    public ViewAuditAuthorSummary withChanges(long value) {
+    public ViewAuditAuthorSummary withChanges(final long value) {
         setChanges(value);
         return this;
     }
 
-    public ViewAuditAuthorSummary withFirstDate(Date value) {
+    public ViewAuditAuthorSummary withFirstDate(final Date value) {
         setFirstDate(value);
         return this;
     }
 
-    public ViewAuditAuthorSummary withLastDate(Date value) {
+    public ViewAuditAuthorSummary withLastDate(final Date value) {
         setLastDate(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            long theId;
-            theId = this.getId();
-            strategy.appendField(locator, this, "id", buffer, theId);
-        }
-        {
-            String theAuthor;
-            theAuthor = this.getAuthor();
-            strategy.appendField(locator, this, "author", buffer, theAuthor);
-        }
-        {
-            long theChanges;
-            theChanges = this.getChanges();
-            strategy.appendField(locator, this, "changes", buffer, theChanges);
-        }
-        {
-            Date theFirstDate;
-            theFirstDate = this.getFirstDate();
-            strategy.appendField(locator, this, "firstDate", buffer, theFirstDate);
-        }
-        {
-            Date theLastDate;
-            theLastDate = this.getLastDate();
-            strategy.appendField(locator, this, "lastDate", buffer, theLastDate);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -331,44 +297,14 @@ public class ViewAuditAuthorSummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            long theId;
-            theId = this.getId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "id", theId), currentHashCode, theId);
-        }
-        {
-            String theAuthor;
-            theAuthor = this.getAuthor();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "author", theAuthor), currentHashCode, theAuthor);
-        }
-        {
-            long theChanges;
-            theChanges = this.getChanges();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "changes", theChanges), currentHashCode, theChanges);
-        }
-        {
-            Date theFirstDate;
-            theFirstDate = this.getFirstDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstDate", theFirstDate), currentHashCode, theFirstDate);
-        }
-        {
-            Date theLastDate;
-            theLastDate = this.getLastDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastDate", theLastDate), currentHashCode, theLastDate);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,19 +32,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -95,10 +95,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "application_configuration")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationConfiguration
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     protected String configTitle;
     protected String configDescription;
@@ -142,7 +146,7 @@ public class ApplicationConfiguration
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -160,7 +164,7 @@ public class ApplicationConfiguration
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -173,7 +177,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "CONFIG_TITLE", length = 255)
+    @Column(name = "CONFIG_TITLE")
     public String getConfigTitle() {
         return configTitle;
     }
@@ -186,7 +190,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setConfigTitle(String value) {
+    public void setConfigTitle(final String value) {
         this.configTitle = value;
     }
 
@@ -199,7 +203,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "CONFIG_DESCRIPTION", length = 255)
+    @Column(name = "CONFIG_DESCRIPTION")
     public String getConfigDescription() {
         return configDescription;
     }
@@ -212,7 +216,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setConfigDescription(String value) {
+    public void setConfigDescription(final String value) {
         this.configDescription = value;
     }
 
@@ -225,7 +229,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "CONFIGURATION_GROUP", length = 255)
+    @Column(name = "CONFIGURATION_GROUP")
     @Enumerated(EnumType.STRING)
     public ConfigurationGroup getConfigurationGroup() {
         return configurationGroup;
@@ -239,7 +243,7 @@ public class ApplicationConfiguration
      *     {@link ConfigurationGroup }
      *     
      */
-    public void setConfigurationGroup(ConfigurationGroup value) {
+    public void setConfigurationGroup(final ConfigurationGroup value) {
         this.configurationGroup = value;
     }
 
@@ -252,7 +256,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "COMPONENT", length = 255)
+    @Column(name = "COMPONENT")
     public String getComponent() {
         return component;
     }
@@ -265,7 +269,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setComponent(String value) {
+    public void setComponent(final String value) {
         this.component = value;
     }
 
@@ -278,7 +282,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "COMPONENT_TITLE", length = 255)
+    @Column(name = "COMPONENT_TITLE")
     public String getComponentTitle() {
         return componentTitle;
     }
@@ -291,7 +295,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setComponentTitle(String value) {
+    public void setComponentTitle(final String value) {
         this.componentTitle = value;
     }
 
@@ -304,7 +308,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "COMPONENT_DESCRIPTION", length = 255)
+    @Column(name = "COMPONENT_DESCRIPTION")
     public String getComponentDescription() {
         return componentDescription;
     }
@@ -317,7 +321,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setComponentDescription(String value) {
+    public void setComponentDescription(final String value) {
         this.componentDescription = value;
     }
 
@@ -330,7 +334,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "PROPERTY_ID", length = 255)
+    @Column(name = "PROPERTY_ID")
     public String getPropertyId() {
         return propertyId;
     }
@@ -343,7 +347,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setPropertyId(String value) {
+    public void setPropertyId(final String value) {
         this.propertyId = value;
     }
 
@@ -356,7 +360,7 @@ public class ApplicationConfiguration
      *     
      */
     @Basic
-    @Column(name = "PROPERTY_VALUE", length = 255)
+    @Column(name = "PROPERTY_VALUE")
     public String getPropertyValue() {
         return propertyValue;
     }
@@ -369,7 +373,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setPropertyValue(String value) {
+    public void setPropertyValue(final String value) {
         this.propertyValue = value;
     }
 
@@ -396,7 +400,7 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -423,147 +427,74 @@ public class ApplicationConfiguration
      *     {@link String }
      *     
      */
-    public void setUpdatedDate(Date value) {
+    public void setUpdatedDate(final Date value) {
         this.updatedDate = value;
     }
 
-    public ApplicationConfiguration withModelObjectId(Integer value) {
+    public ApplicationConfiguration withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public ApplicationConfiguration withModelObjectVersion(int value) {
+    public ApplicationConfiguration withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public ApplicationConfiguration withConfigTitle(String value) {
+    public ApplicationConfiguration withConfigTitle(final String value) {
         setConfigTitle(value);
         return this;
     }
 
-    public ApplicationConfiguration withConfigDescription(String value) {
+    public ApplicationConfiguration withConfigDescription(final String value) {
         setConfigDescription(value);
         return this;
     }
 
-    public ApplicationConfiguration withConfigurationGroup(ConfigurationGroup value) {
+    public ApplicationConfiguration withConfigurationGroup(final ConfigurationGroup value) {
         setConfigurationGroup(value);
         return this;
     }
 
-    public ApplicationConfiguration withComponent(String value) {
+    public ApplicationConfiguration withComponent(final String value) {
         setComponent(value);
         return this;
     }
 
-    public ApplicationConfiguration withComponentTitle(String value) {
+    public ApplicationConfiguration withComponentTitle(final String value) {
         setComponentTitle(value);
         return this;
     }
 
-    public ApplicationConfiguration withComponentDescription(String value) {
+    public ApplicationConfiguration withComponentDescription(final String value) {
         setComponentDescription(value);
         return this;
     }
 
-    public ApplicationConfiguration withPropertyId(String value) {
+    public ApplicationConfiguration withPropertyId(final String value) {
         setPropertyId(value);
         return this;
     }
 
-    public ApplicationConfiguration withPropertyValue(String value) {
+    public ApplicationConfiguration withPropertyValue(final String value) {
         setPropertyValue(value);
         return this;
     }
 
-    public ApplicationConfiguration withCreatedDate(Date value) {
+    public ApplicationConfiguration withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public ApplicationConfiguration withUpdatedDate(Date value) {
+    public ApplicationConfiguration withUpdatedDate(final Date value) {
         setUpdatedDate(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
-
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            String theConfigTitle;
-            theConfigTitle = this.getConfigTitle();
-            strategy.appendField(locator, this, "configTitle", buffer, theConfigTitle);
-        }
-        {
-            String theConfigDescription;
-            theConfigDescription = this.getConfigDescription();
-            strategy.appendField(locator, this, "configDescription", buffer, theConfigDescription);
-        }
-        {
-            ConfigurationGroup theConfigurationGroup;
-            theConfigurationGroup = this.getConfigurationGroup();
-            strategy.appendField(locator, this, "configurationGroup", buffer, theConfigurationGroup);
-        }
-        {
-            String theComponent;
-            theComponent = this.getComponent();
-            strategy.appendField(locator, this, "component", buffer, theComponent);
-        }
-        {
-            String theComponentTitle;
-            theComponentTitle = this.getComponentTitle();
-            strategy.appendField(locator, this, "componentTitle", buffer, theComponentTitle);
-        }
-        {
-            String theComponentDescription;
-            theComponentDescription = this.getComponentDescription();
-            strategy.appendField(locator, this, "componentDescription", buffer, theComponentDescription);
-        }
-        {
-            String thePropertyId;
-            thePropertyId = this.getPropertyId();
-            strategy.appendField(locator, this, "propertyId", buffer, thePropertyId);
-        }
-        {
-            String thePropertyValue;
-            thePropertyValue = this.getPropertyValue();
-            strategy.appendField(locator, this, "propertyValue", buffer, thePropertyValue);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            Date theUpdatedDate;
-            theUpdatedDate = this.getUpdatedDate();
-            strategy.appendField(locator, this, "updatedDate", buffer, theUpdatedDate);
-        }
-        return buffer;
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
     /**
      * Gets the value of the hjid property.
@@ -588,11 +519,11 @@ public class ApplicationConfiguration
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -711,79 +642,14 @@ public class ApplicationConfiguration
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            String theConfigTitle;
-            theConfigTitle = this.getConfigTitle();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "configTitle", theConfigTitle), currentHashCode, theConfigTitle);
-        }
-        {
-            String theConfigDescription;
-            theConfigDescription = this.getConfigDescription();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "configDescription", theConfigDescription), currentHashCode, theConfigDescription);
-        }
-        {
-            ConfigurationGroup theConfigurationGroup;
-            theConfigurationGroup = this.getConfigurationGroup();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "configurationGroup", theConfigurationGroup), currentHashCode, theConfigurationGroup);
-        }
-        {
-            String theComponent;
-            theComponent = this.getComponent();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "component", theComponent), currentHashCode, theComponent);
-        }
-        {
-            String theComponentTitle;
-            theComponentTitle = this.getComponentTitle();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "componentTitle", theComponentTitle), currentHashCode, theComponentTitle);
-        }
-        {
-            String theComponentDescription;
-            theComponentDescription = this.getComponentDescription();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "componentDescription", theComponentDescription), currentHashCode, theComponentDescription);
-        }
-        {
-            String thePropertyId;
-            thePropertyId = this.getPropertyId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "propertyId", thePropertyId), currentHashCode, thePropertyId);
-        }
-        {
-            String thePropertyValue;
-            thePropertyValue = this.getPropertyValue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "propertyValue", thePropertyValue), currentHashCode, thePropertyValue);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            Date theUpdatedDate;
-            theUpdatedDate = this.getUpdatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "updatedDate", theUpdatedDate), currentHashCode, theUpdatedDate);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

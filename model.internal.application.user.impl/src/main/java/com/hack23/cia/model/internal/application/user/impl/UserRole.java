@@ -40,7 +40,7 @@ public enum UserRole {
         return name();
     }
 
-    public static UserRole fromValue(String v) {
+    public static UserRole fromValue(final String v) {
         return valueOf(v);
     }
 

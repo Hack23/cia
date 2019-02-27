@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.committee.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -27,19 +28,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -81,10 +81,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_RIKSDAGEN_COMMITTEE")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommittee
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected RiksdagenCommitteeEmbeddedId embeddedId;
     protected long totalAssignments;
     @XmlElement(required = true, type = String.class)
@@ -109,8 +113,8 @@ public class ViewRiksdagenCommittee
      */
     @EmbeddedId
     @AttributeOverrides({
-        @AttributeOverride(name = "detail", column = @Column(name = "EMBEDDED_ID_DETAIL", length = 255)),
-        @AttributeOverride(name = "orgCode", column = @Column(name = "EMBEDDED_ID_ORG_CODE", length = 255))
+        @AttributeOverride(name = "detail", column = @Column(name = "EMBEDDED_ID_DETAIL")),
+        @AttributeOverride(name = "orgCode", column = @Column(name = "EMBEDDED_ID_ORG_CODE"))
     })
     public RiksdagenCommitteeEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -124,7 +128,7 @@ public class ViewRiksdagenCommittee
      *     {@link RiksdagenCommitteeEmbeddedId }
      *     
      */
-    public void setEmbeddedId(RiksdagenCommitteeEmbeddedId value) {
+    public void setEmbeddedId(final RiksdagenCommitteeEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -142,7 +146,7 @@ public class ViewRiksdagenCommittee
      * Sets the value of the totalAssignments property.
      * 
      */
-    public void setTotalAssignments(long value) {
+    public void setTotalAssignments(final long value) {
         this.totalAssignments = value;
     }
 
@@ -169,7 +173,7 @@ public class ViewRiksdagenCommittee
      *     {@link String }
      *     
      */
-    public void setFirstAssignmentDate(Date value) {
+    public void setFirstAssignmentDate(final Date value) {
         this.firstAssignmentDate = value;
     }
 
@@ -196,7 +200,7 @@ public class ViewRiksdagenCommittee
      *     {@link String }
      *     
      */
-    public void setLastAssignmentDate(Date value) {
+    public void setLastAssignmentDate(final Date value) {
         this.lastAssignmentDate = value;
     }
 
@@ -214,7 +218,7 @@ public class ViewRiksdagenCommittee
      * Sets the value of the totalDaysServed property.
      * 
      */
-    public void setTotalDaysServed(long value) {
+    public void setTotalDaysServed(final long value) {
         this.totalDaysServed = value;
     }
 
@@ -232,7 +236,7 @@ public class ViewRiksdagenCommittee
      * Sets the value of the currentMemberSize property.
      * 
      */
-    public void setCurrentMemberSize(long value) {
+    public void setCurrentMemberSize(final long value) {
         this.currentMemberSize = value;
     }
 
@@ -250,99 +254,53 @@ public class ViewRiksdagenCommittee
      * Sets the value of the active property.
      * 
      */
-    public void setActive(boolean value) {
+    public void setActive(final boolean value) {
         this.active = value;
     }
 
-    public ViewRiksdagenCommittee withEmbeddedId(RiksdagenCommitteeEmbeddedId value) {
+    public ViewRiksdagenCommittee withEmbeddedId(final RiksdagenCommitteeEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withTotalAssignments(long value) {
+    public ViewRiksdagenCommittee withTotalAssignments(final long value) {
         setTotalAssignments(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withFirstAssignmentDate(Date value) {
+    public ViewRiksdagenCommittee withFirstAssignmentDate(final Date value) {
         setFirstAssignmentDate(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withLastAssignmentDate(Date value) {
+    public ViewRiksdagenCommittee withLastAssignmentDate(final Date value) {
         setLastAssignmentDate(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withTotalDaysServed(long value) {
+    public ViewRiksdagenCommittee withTotalDaysServed(final long value) {
         setTotalDaysServed(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withCurrentMemberSize(long value) {
+    public ViewRiksdagenCommittee withCurrentMemberSize(final long value) {
         setCurrentMemberSize(value);
         return this;
     }
 
-    public ViewRiksdagenCommittee withActive(boolean value) {
+    public ViewRiksdagenCommittee withActive(final boolean value) {
         setActive(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            RiksdagenCommitteeEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            long theTotalAssignments;
-            theTotalAssignments = this.getTotalAssignments();
-            strategy.appendField(locator, this, "totalAssignments", buffer, theTotalAssignments);
-        }
-        {
-            Date theFirstAssignmentDate;
-            theFirstAssignmentDate = this.getFirstAssignmentDate();
-            strategy.appendField(locator, this, "firstAssignmentDate", buffer, theFirstAssignmentDate);
-        }
-        {
-            Date theLastAssignmentDate;
-            theLastAssignmentDate = this.getLastAssignmentDate();
-            strategy.appendField(locator, this, "lastAssignmentDate", buffer, theLastAssignmentDate);
-        }
-        {
-            long theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            strategy.appendField(locator, this, "totalDaysServed", buffer, theTotalDaysServed);
-        }
-        {
-            long theCurrentMemberSize;
-            theCurrentMemberSize = this.getCurrentMemberSize();
-            strategy.appendField(locator, this, "currentMemberSize", buffer, theCurrentMemberSize);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            strategy.appendField(locator, this, "active", buffer, theActive);
-        }
-        return buffer;
-    }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -416,54 +374,15 @@ public class ViewRiksdagenCommittee
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            RiksdagenCommitteeEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            long theTotalAssignments;
-            theTotalAssignments = this.getTotalAssignments();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalAssignments", theTotalAssignments), currentHashCode, theTotalAssignments);
-        }
-        {
-            Date theFirstAssignmentDate;
-            theFirstAssignmentDate = this.getFirstAssignmentDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstAssignmentDate", theFirstAssignmentDate), currentHashCode, theFirstAssignmentDate);
-        }
-        {
-            Date theLastAssignmentDate;
-            theLastAssignmentDate = this.getLastAssignmentDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastAssignmentDate", theLastAssignmentDate), currentHashCode, theLastAssignmentDate);
-        }
-        {
-            long theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServed", theTotalDaysServed), currentHashCode, theTotalDaysServed);
-        }
-        {
-            long theCurrentMemberSize;
-            theCurrentMemberSize = this.getCurrentMemberSize();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "currentMemberSize", theCurrentMemberSize), currentHashCode, theCurrentMemberSize);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "active", theActive), currentHashCode, theActive);
-        }
-        return currentHashCode;
-    }
 
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

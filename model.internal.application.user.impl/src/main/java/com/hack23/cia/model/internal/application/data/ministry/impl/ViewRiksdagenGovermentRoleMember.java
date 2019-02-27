@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.ministry.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,19 +26,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -87,10 +87,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "VIEW_RIKSDAGEN_GOVERMENT_ROLE_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenGovermentRoleMember
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected long roleId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected long roleId;
     @XmlElement(required = true)
     protected String detail;
     @XmlElement(name = "role_code", required = true)
@@ -129,7 +133,7 @@ public class ViewRiksdagenGovermentRoleMember
      * Sets the value of the roleId property.
      * 
      */
-    public void setRoleId(long value) {
+    public void setRoleId(final long value) {
         this.roleId = value;
     }
 
@@ -142,7 +146,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "DETAIL", length = 255)
+    @Column(name = "DETAIL")
     public String getDetail() {
         return detail;
     }
@@ -155,7 +159,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setDetail(String value) {
+    public void setDetail(final String value) {
         this.detail = value;
     }
 
@@ -168,7 +172,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "ROLE_CODE", length = 255)
+    @Column(name = "ROLE_CODE")
     public String getRoleCode() {
         return roleCode;
     }
@@ -181,7 +185,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setRoleCode(String value) {
+    public void setRoleCode(final String value) {
         this.roleCode = value;
     }
 
@@ -194,7 +198,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "FIRST_NAME", length = 255)
+    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -207,7 +211,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setFirstName(String value) {
+    public void setFirstName(final String value) {
         this.firstName = value;
     }
 
@@ -220,7 +224,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "LAST_NAME", length = 255)
+    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -233,7 +237,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setLastName(String value) {
+    public void setLastName(final String value) {
         this.lastName = value;
     }
 
@@ -260,7 +264,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setFromDate(Date value) {
+    public void setFromDate(final Date value) {
         this.fromDate = value;
     }
 
@@ -287,7 +291,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setToDate(Date value) {
+    public void setToDate(final Date value) {
         this.toDate = value;
     }
 
@@ -300,7 +304,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "PERSON_ID", length = 255)
+    @Column(name = "PERSON_ID")
     public String getPersonId() {
         return personId;
     }
@@ -313,7 +317,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setPersonId(String value) {
+    public void setPersonId(final String value) {
         this.personId = value;
     }
 
@@ -326,7 +330,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     
      */
     @Basic
-    @Column(name = "PARTY", length = 255)
+    @Column(name = "PARTY")
     public String getParty() {
         return party;
     }
@@ -339,7 +343,7 @@ public class ViewRiksdagenGovermentRoleMember
      *     {@link String }
      *     
      */
-    public void setParty(String value) {
+    public void setParty(final String value) {
         this.party = value;
     }
 
@@ -357,7 +361,7 @@ public class ViewRiksdagenGovermentRoleMember
      * Sets the value of the totalDaysServed property.
      * 
      */
-    public void setTotalDaysServed(int value) {
+    public void setTotalDaysServed(final int value) {
         this.totalDaysServed = value;
     }
 
@@ -375,139 +379,71 @@ public class ViewRiksdagenGovermentRoleMember
      * Sets the value of the active property.
      * 
      */
-    public void setActive(boolean value) {
+    public void setActive(final boolean value) {
         this.active = value;
     }
 
-    public ViewRiksdagenGovermentRoleMember withRoleId(long value) {
+    public ViewRiksdagenGovermentRoleMember withRoleId(final long value) {
         setRoleId(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withDetail(String value) {
+    public ViewRiksdagenGovermentRoleMember withDetail(final String value) {
         setDetail(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withRoleCode(String value) {
+    public ViewRiksdagenGovermentRoleMember withRoleCode(final String value) {
         setRoleCode(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withFirstName(String value) {
+    public ViewRiksdagenGovermentRoleMember withFirstName(final String value) {
         setFirstName(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withLastName(String value) {
+    public ViewRiksdagenGovermentRoleMember withLastName(final String value) {
         setLastName(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withFromDate(Date value) {
+    public ViewRiksdagenGovermentRoleMember withFromDate(final Date value) {
         setFromDate(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withToDate(Date value) {
+    public ViewRiksdagenGovermentRoleMember withToDate(final Date value) {
         setToDate(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withPersonId(String value) {
+    public ViewRiksdagenGovermentRoleMember withPersonId(final String value) {
         setPersonId(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withParty(String value) {
+    public ViewRiksdagenGovermentRoleMember withParty(final String value) {
         setParty(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withTotalDaysServed(int value) {
+    public ViewRiksdagenGovermentRoleMember withTotalDaysServed(final int value) {
         setTotalDaysServed(value);
         return this;
     }
 
-    public ViewRiksdagenGovermentRoleMember withActive(boolean value) {
+    public ViewRiksdagenGovermentRoleMember withActive(final boolean value) {
         setActive(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            long theRoleId;
-            theRoleId = this.getRoleId();
-            strategy.appendField(locator, this, "roleId", buffer, theRoleId);
-        }
-        {
-            String theDetail;
-            theDetail = this.getDetail();
-            strategy.appendField(locator, this, "detail", buffer, theDetail);
-        }
-        {
-            String theRoleCode;
-            theRoleCode = this.getRoleCode();
-            strategy.appendField(locator, this, "roleCode", buffer, theRoleCode);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            strategy.appendField(locator, this, "firstName", buffer, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            strategy.appendField(locator, this, "lastName", buffer, theLastName);
-        }
-        {
-            Date theFromDate;
-            theFromDate = this.getFromDate();
-            strategy.appendField(locator, this, "fromDate", buffer, theFromDate);
-        }
-        {
-            Date theToDate;
-            theToDate = this.getToDate();
-            strategy.appendField(locator, this, "toDate", buffer, theToDate);
-        }
-        {
-            String thePersonId;
-            thePersonId = this.getPersonId();
-            strategy.appendField(locator, this, "personId", buffer, thePersonId);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            strategy.appendField(locator, this, "party", buffer, theParty);
-        }
-        {
-            int theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            strategy.appendField(locator, this, "totalDaysServed", buffer, theTotalDaysServed);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            strategy.appendField(locator, this, "active", buffer, theActive);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -617,74 +553,14 @@ public class ViewRiksdagenGovermentRoleMember
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            long theRoleId;
-            theRoleId = this.getRoleId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "roleId", theRoleId), currentHashCode, theRoleId);
-        }
-        {
-            String theDetail;
-            theDetail = this.getDetail();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "detail", theDetail), currentHashCode, theDetail);
-        }
-        {
-            String theRoleCode;
-            theRoleCode = this.getRoleCode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "roleCode", theRoleCode), currentHashCode, theRoleCode);
-        }
-        {
-            String theFirstName;
-            theFirstName = this.getFirstName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "firstName", theFirstName), currentHashCode, theFirstName);
-        }
-        {
-            String theLastName;
-            theLastName = this.getLastName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastName", theLastName), currentHashCode, theLastName);
-        }
-        {
-            Date theFromDate;
-            theFromDate = this.getFromDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "fromDate", theFromDate), currentHashCode, theFromDate);
-        }
-        {
-            Date theToDate;
-            theToDate = this.getToDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "toDate", theToDate), currentHashCode, theToDate);
-        }
-        {
-            String thePersonId;
-            thePersonId = this.getPersonId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "personId", thePersonId), currentHashCode, thePersonId);
-        }
-        {
-            String theParty;
-            theParty = this.getParty();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "party", theParty), currentHashCode, theParty);
-        }
-        {
-            int theTotalDaysServed;
-            theTotalDaysServed = this.getTotalDaysServed();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalDaysServed", theTotalDaysServed), currentHashCode, theTotalDaysServed);
-        }
-        {
-            boolean theActive;
-            theActive = this.isActive();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "active", theActive), currentHashCode, theActive);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

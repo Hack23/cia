@@ -44,7 +44,7 @@ public enum WorldBankDataSources {
     TOPIC("Topic");
     private final String value;
 
-    WorldBankDataSources(String v) {
+    WorldBankDataSources(final String v) {
         value = v;
     }
 
@@ -52,8 +52,8 @@ public enum WorldBankDataSources {
         return value;
     }
 
-    public static WorldBankDataSources fromValue(String v) {
-        for (WorldBankDataSources c: WorldBankDataSources.values()) {
+    public static WorldBankDataSources fromValue(final String v) {
+        for (final WorldBankDataSources c: WorldBankDataSources.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

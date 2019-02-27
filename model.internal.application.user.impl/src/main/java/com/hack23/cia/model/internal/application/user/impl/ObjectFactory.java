@@ -53,7 +53,7 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://user.application.internal.model.cia.hack23.com/impl", name = "userAccount")
-    public JAXBElement<UserAccount> createUserAccount(UserAccount value) {
+    public JAXBElement<UserAccount> createUserAccount(final UserAccount value) {
         return new JAXBElement<UserAccount>(_UserAccount_QNAME, UserAccount.class, null, value);
     }
 

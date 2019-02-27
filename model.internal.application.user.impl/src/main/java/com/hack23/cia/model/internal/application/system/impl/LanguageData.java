@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,19 +30,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -87,10 +88,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "LANGUAGE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageData
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(XmlDateTimeTypeAdapter.class)
@@ -130,7 +135,7 @@ public class LanguageData
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -148,7 +153,7 @@ public class LanguageData
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -175,7 +180,7 @@ public class LanguageData
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -188,7 +193,7 @@ public class LanguageData
      *     
      */
     @Basic
-    @Column(name = "LANGUAGE_NAME", length = 255)
+    @Column(name = "LANGUAGE_NAME")
     public String getLanguageName() {
         return languageName;
     }
@@ -201,7 +206,7 @@ public class LanguageData
      *     {@link String }
      *     
      */
-    public void setLanguageName(String value) {
+    public void setLanguageName(final String value) {
         this.languageName = value;
     }
 
@@ -214,7 +219,7 @@ public class LanguageData
      *     
      */
     @Basic
-    @Column(name = "LANGUAGE_CODE", length = 255)
+    @Column(name = "LANGUAGE_CODE")
     public String getLanguageCode() {
         return languageCode;
     }
@@ -227,7 +232,7 @@ public class LanguageData
      *     {@link String }
      *     
      */
-    public void setLanguageCode(String value) {
+    public void setLanguageCode(final String value) {
         this.languageCode = value;
     }
 
@@ -240,7 +245,7 @@ public class LanguageData
      *     
      */
     @Basic
-    @Column(name = "TRANSLATION_STATUS", length = 255)
+    @Column(name = "TRANSLATION_STATUS")
     public String getTranslationStatus() {
         return translationStatus;
     }
@@ -253,7 +258,7 @@ public class LanguageData
      *     {@link String }
      *     
      */
-    public void setTranslationStatus(String value) {
+    public void setTranslationStatus(final String value) {
         this.translationStatus = value;
     }
 
@@ -279,7 +284,7 @@ public class LanguageData
      *     {@link Boolean }
      *     
      */
-    public void setLanguageEnabled(Boolean value) {
+    public void setLanguageEnabled(final Boolean value) {
         this.languageEnabled = value;
     }
 
@@ -305,7 +310,7 @@ public class LanguageData
      *     {@link Boolean }
      *     
      */
-    public void setAutoTranslationEnabled(Boolean value) {
+    public void setAutoTranslationEnabled(final Boolean value) {
         this.autoTranslationEnabled = value;
     }
 
@@ -332,70 +337,62 @@ public class LanguageData
      *     {@link String }
      *     
      */
-    public void setLastModifiedDate(Date value) {
+    public void setLastModifiedDate(final Date value) {
         this.lastModifiedDate = value;
     }
 
-    public LanguageData withModelObjectId(Integer value) {
+    public LanguageData withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public LanguageData withModelObjectVersion(int value) {
+    public LanguageData withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public LanguageData withCreatedDate(Date value) {
+    public LanguageData withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public LanguageData withLanguageName(String value) {
+    public LanguageData withLanguageName(final String value) {
         setLanguageName(value);
         return this;
     }
 
-    public LanguageData withLanguageCode(String value) {
+    public LanguageData withLanguageCode(final String value) {
         setLanguageCode(value);
         return this;
     }
 
-    public LanguageData withTranslationStatus(String value) {
+    public LanguageData withTranslationStatus(final String value) {
         setTranslationStatus(value);
         return this;
     }
 
-    public LanguageData withLanguageEnabled(Boolean value) {
+    public LanguageData withLanguageEnabled(final Boolean value) {
         setLanguageEnabled(value);
         return this;
     }
 
-    public LanguageData withAutoTranslationEnabled(Boolean value) {
+    public LanguageData withAutoTranslationEnabled(final Boolean value) {
         setAutoTranslationEnabled(value);
         return this;
     }
 
-    public LanguageData withLastModifiedDate(Date value) {
+    public LanguageData withLastModifiedDate(final Date value) {
         setLastModifiedDate(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
+    public StringBuilder appendFields(final ObjectLocator locator, final StringBuilder buffer, final ToStringStrategy strategy) {
         {
             Integer theModelObjectId;
             theModelObjectId = this.getModelObjectId();
@@ -467,11 +464,11 @@ public class LanguageData
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -563,64 +560,14 @@ public class LanguageData
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            String theLanguageName;
-            theLanguageName = this.getLanguageName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "languageName", theLanguageName), currentHashCode, theLanguageName);
-        }
-        {
-            String theLanguageCode;
-            theLanguageCode = this.getLanguageCode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "languageCode", theLanguageCode), currentHashCode, theLanguageCode);
-        }
-        {
-            String theTranslationStatus;
-            theTranslationStatus = this.getTranslationStatus();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "translationStatus", theTranslationStatus), currentHashCode, theTranslationStatus);
-        }
-        {
-            Boolean theLanguageEnabled;
-            theLanguageEnabled = this.isLanguageEnabled();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "languageEnabled", theLanguageEnabled), currentHashCode, theLanguageEnabled);
-        }
-        {
-            Boolean theAutoTranslationEnabled;
-            theAutoTranslationEnabled = this.isAutoTranslationEnabled();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "autoTranslationEnabled", theAutoTranslationEnabled), currentHashCode, theAutoTranslationEnabled);
-        }
-        {
-            Date theLastModifiedDate;
-            theLastModifiedDate = this.getLastModifiedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "lastModifiedDate", theLastModifiedDate), currentHashCode, theLastModifiedDate);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

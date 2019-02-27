@@ -46,7 +46,7 @@ public enum ApplicationOperationType {
         return name();
     }
 
-    public static ApplicationOperationType fromValue(String v) {
+    public static ApplicationOperationType fromValue(final String v) {
         return valueOf(v);
     }
 

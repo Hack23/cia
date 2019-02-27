@@ -40,7 +40,7 @@ public enum ApplicationSessionType {
         return name();
     }
 
-    public static ApplicationSessionType fromValue(String v) {
+    public static ApplicationSessionType fromValue(final String v) {
         return valueOf(v);
     }
 

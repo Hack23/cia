@@ -38,7 +38,7 @@ public enum PortalType {
     DOMAIN("Domain");
     private final String value;
 
-    PortalType(String v) {
+    PortalType(final String v) {
         value = v;
     }
 
@@ -46,8 +46,8 @@ public enum PortalType {
         return value;
     }
 
-    public static PortalType fromValue(String v) {
-        for (PortalType c: PortalType.values()) {
+    public static PortalType fromValue(final String v) {
+        for (final PortalType c: PortalType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -9,6 +9,7 @@
 package com.hack23.cia.model.internal.application.data.party.impl;
 
 import java.io.Serializable;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -22,18 +23,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.hack23.cia.model.common.api.ModelObject;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
 
 
 /**
@@ -71,10 +71,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "view_riksdagen_party_ballot_support_annual_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyBallotSupportAnnualSummary
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(required = true)
     protected ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId embeddedId;
     @XmlElement(name = "disagre_count")
     protected long disagreCount;
@@ -95,9 +99,9 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      */
     @EmbeddedId
     @AttributeOverrides({
-        @AttributeOverride(name = "date", column = @Column(name = "EMBEDDED_ID_DATE", length = 255)),
-        @AttributeOverride(name = "party", column = @Column(name = "EMBEDDED_ID_PARTY", length = 255)),
-        @AttributeOverride(name = "otherParty", column = @Column(name = "EMBEDDED_ID_OTHER_PARTY", length = 255))
+        @AttributeOverride(name = "date", column = @Column(name = "EMBEDDED_ID_DATE")),
+        @AttributeOverride(name = "party", column = @Column(name = "EMBEDDED_ID_PARTY")),
+        @AttributeOverride(name = "otherParty", column = @Column(name = "EMBEDDED_ID_OTHER_PARTY"))
     })
     public ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId getEmbeddedId() {
         return embeddedId;
@@ -111,7 +115,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      *     {@link ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId }
      *     
      */
-    public void setEmbeddedId(ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId value) {
+    public void setEmbeddedId(final ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId value) {
         this.embeddedId = value;
     }
 
@@ -129,7 +133,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * Sets the value of the disagreCount property.
      * 
      */
-    public void setDisagreCount(long value) {
+    public void setDisagreCount(final long value) {
         this.disagreCount = value;
     }
 
@@ -147,7 +151,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * Sets the value of the agreeCount property.
      * 
      */
-    public void setAgreeCount(long value) {
+    public void setAgreeCount(final long value) {
         this.agreeCount = value;
     }
 
@@ -165,7 +169,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * Sets the value of the disagreePercentage property.
      * 
      */
-    public void setDisagreePercentage(long value) {
+    public void setDisagreePercentage(final long value) {
         this.disagreePercentage = value;
     }
 
@@ -183,79 +187,42 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * Sets the value of the totalBallots property.
      * 
      */
-    public void setTotalBallots(long value) {
+    public void setTotalBallots(final long value) {
         this.totalBallots = value;
     }
 
-    public ViewRiksdagenPartyBallotSupportAnnualSummary withEmbeddedId(ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId value) {
+    public ViewRiksdagenPartyBallotSupportAnnualSummary withEmbeddedId(final ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
-    public ViewRiksdagenPartyBallotSupportAnnualSummary withDisagreCount(long value) {
+    public ViewRiksdagenPartyBallotSupportAnnualSummary withDisagreCount(final long value) {
         setDisagreCount(value);
         return this;
     }
 
-    public ViewRiksdagenPartyBallotSupportAnnualSummary withAgreeCount(long value) {
+    public ViewRiksdagenPartyBallotSupportAnnualSummary withAgreeCount(final long value) {
         setAgreeCount(value);
         return this;
     }
 
-    public ViewRiksdagenPartyBallotSupportAnnualSummary withDisagreePercentage(long value) {
+    public ViewRiksdagenPartyBallotSupportAnnualSummary withDisagreePercentage(final long value) {
         setDisagreePercentage(value);
         return this;
     }
 
-    public ViewRiksdagenPartyBallotSupportAnnualSummary withTotalBallots(long value) {
+    public ViewRiksdagenPartyBallotSupportAnnualSummary withTotalBallots(final long value) {
         setTotalBallots(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            strategy.appendField(locator, this, "embeddedId", buffer, theEmbeddedId);
-        }
-        {
-            long theDisagreCount;
-            theDisagreCount = this.getDisagreCount();
-            strategy.appendField(locator, this, "disagreCount", buffer, theDisagreCount);
-        }
-        {
-            long theAgreeCount;
-            theAgreeCount = this.getAgreeCount();
-            strategy.appendField(locator, this, "agreeCount", buffer, theAgreeCount);
-        }
-        {
-            long theDisagreePercentage;
-            theDisagreePercentage = this.getDisagreePercentage();
-            strategy.appendField(locator, this, "disagreePercentage", buffer, theDisagreePercentage);
-        }
-        {
-            long theTotalBallots;
-            theTotalBallots = this.getTotalBallots();
-            strategy.appendField(locator, this, "totalBallots", buffer, theTotalBallots);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -311,44 +278,14 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId theEmbeddedId;
-            theEmbeddedId = this.getEmbeddedId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "embeddedId", theEmbeddedId), currentHashCode, theEmbeddedId);
-        }
-        {
-            long theDisagreCount;
-            theDisagreCount = this.getDisagreCount();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "disagreCount", theDisagreCount), currentHashCode, theDisagreCount);
-        }
-        {
-            long theAgreeCount;
-            theAgreeCount = this.getAgreeCount();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "agreeCount", theAgreeCount), currentHashCode, theAgreeCount);
-        }
-        {
-            long theDisagreePercentage;
-            theDisagreePercentage = this.getDisagreePercentage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "disagreePercentage", theDisagreePercentage), currentHashCode, theDisagreePercentage);
-        }
-        {
-            long theTotalBallots;
-            theTotalBallots = this.getTotalBallots();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "totalBallots", theTotalBallots), currentHashCode, theTotalBallots);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

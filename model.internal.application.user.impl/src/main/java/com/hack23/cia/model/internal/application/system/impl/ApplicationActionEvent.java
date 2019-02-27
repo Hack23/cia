@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.system.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,19 +32,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -97,10 +97,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "APPLICATION_ACTION_EVENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationActionEvent
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     @XmlSchemaType(name = "string")
     protected ApplicationOperationType applicationOperation;
@@ -143,7 +147,7 @@ public class ApplicationActionEvent
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -161,7 +165,7 @@ public class ApplicationActionEvent
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -174,7 +178,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "APPLICATION_OPERATION", length = 255)
+    @Column(name = "APPLICATION_OPERATION")
     @Enumerated(EnumType.STRING)
     public ApplicationOperationType getApplicationOperation() {
         return applicationOperation;
@@ -188,7 +192,7 @@ public class ApplicationActionEvent
      *     {@link ApplicationOperationType }
      *     
      */
-    public void setApplicationOperation(ApplicationOperationType value) {
+    public void setApplicationOperation(final ApplicationOperationType value) {
         this.applicationOperation = value;
     }
 
@@ -201,7 +205,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "EVENT_GROUP", length = 255)
+    @Column(name = "EVENT_GROUP")
     @Enumerated(EnumType.STRING)
     public ApplicationEventGroup getEventGroup() {
         return eventGroup;
@@ -215,7 +219,7 @@ public class ApplicationActionEvent
      *     {@link ApplicationEventGroup }
      *     
      */
-    public void setEventGroup(ApplicationEventGroup value) {
+    public void setEventGroup(final ApplicationEventGroup value) {
         this.eventGroup = value;
     }
 
@@ -228,7 +232,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "PAGE", length = 255)
+    @Column(name = "PAGE")
     public String getPage() {
         return page;
     }
@@ -241,7 +245,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setPage(String value) {
+    public void setPage(final String value) {
         this.page = value;
     }
 
@@ -254,7 +258,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "PAGE_MODE", length = 255)
+    @Column(name = "PAGE_MODE")
     public String getPageMode() {
         return pageMode;
     }
@@ -267,7 +271,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setPageMode(String value) {
+    public void setPageMode(final String value) {
         this.pageMode = value;
     }
 
@@ -280,7 +284,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "ELEMENT_ID", length = 255)
+    @Column(name = "ELEMENT_ID")
     public String getElementId() {
         return elementId;
     }
@@ -293,7 +297,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setElementId(String value) {
+    public void setElementId(final String value) {
         this.elementId = value;
     }
 
@@ -306,7 +310,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "ACTION_NAME", length = 255)
+    @Column(name = "ACTION_NAME")
     public String getActionName() {
         return actionName;
     }
@@ -319,7 +323,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setActionName(String value) {
+    public void setActionName(final String value) {
         this.actionName = value;
     }
 
@@ -332,7 +336,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "SESSION_ID", length = 255)
+    @Column(name = "SESSION_ID")
     public String getSessionId() {
         return sessionId;
     }
@@ -345,7 +349,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setSessionId(String value) {
+    public void setSessionId(final String value) {
         this.sessionId = value;
     }
 
@@ -358,7 +362,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "USER_ID", length = 255)
+    @Column(name = "USER_ID")
     public String getUserId() {
         return userId;
     }
@@ -371,7 +375,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setUserId(String value) {
+    public void setUserId(final String value) {
         this.userId = value;
     }
 
@@ -397,7 +401,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setErrorMessage(String value) {
+    public void setErrorMessage(final String value) {
         this.errorMessage = value;
     }
 
@@ -410,7 +414,7 @@ public class ApplicationActionEvent
      *     
      */
     @Basic
-    @Column(name = "APPLICATION_MESSAGE", length = 255)
+    @Column(name = "APPLICATION_MESSAGE")
     public String getApplicationMessage() {
         return applicationMessage;
     }
@@ -423,7 +427,7 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setApplicationMessage(String value) {
+    public void setApplicationMessage(final String value) {
         this.applicationMessage = value;
     }
 
@@ -450,157 +454,79 @@ public class ApplicationActionEvent
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
-    public ApplicationActionEvent withModelObjectId(Integer value) {
+    public ApplicationActionEvent withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public ApplicationActionEvent withModelObjectVersion(int value) {
+    public ApplicationActionEvent withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public ApplicationActionEvent withApplicationOperation(ApplicationOperationType value) {
+    public ApplicationActionEvent withApplicationOperation(final ApplicationOperationType value) {
         setApplicationOperation(value);
         return this;
     }
 
-    public ApplicationActionEvent withEventGroup(ApplicationEventGroup value) {
+    public ApplicationActionEvent withEventGroup(final ApplicationEventGroup value) {
         setEventGroup(value);
         return this;
     }
 
-    public ApplicationActionEvent withPage(String value) {
+    public ApplicationActionEvent withPage(final String value) {
         setPage(value);
         return this;
     }
 
-    public ApplicationActionEvent withPageMode(String value) {
+    public ApplicationActionEvent withPageMode(final String value) {
         setPageMode(value);
         return this;
     }
 
-    public ApplicationActionEvent withElementId(String value) {
+    public ApplicationActionEvent withElementId(final String value) {
         setElementId(value);
         return this;
     }
 
-    public ApplicationActionEvent withActionName(String value) {
+    public ApplicationActionEvent withActionName(final String value) {
         setActionName(value);
         return this;
     }
 
-    public ApplicationActionEvent withSessionId(String value) {
+    public ApplicationActionEvent withSessionId(final String value) {
         setSessionId(value);
         return this;
     }
 
-    public ApplicationActionEvent withUserId(String value) {
+    public ApplicationActionEvent withUserId(final String value) {
         setUserId(value);
         return this;
     }
 
-    public ApplicationActionEvent withErrorMessage(String value) {
+    public ApplicationActionEvent withErrorMessage(final String value) {
         setErrorMessage(value);
         return this;
     }
 
-    public ApplicationActionEvent withApplicationMessage(String value) {
+    public ApplicationActionEvent withApplicationMessage(final String value) {
         setApplicationMessage(value);
         return this;
     }
 
-    public ApplicationActionEvent withCreatedDate(Date value) {
+    public ApplicationActionEvent withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
-
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            ApplicationOperationType theApplicationOperation;
-            theApplicationOperation = this.getApplicationOperation();
-            strategy.appendField(locator, this, "applicationOperation", buffer, theApplicationOperation);
-        }
-        {
-            ApplicationEventGroup theEventGroup;
-            theEventGroup = this.getEventGroup();
-            strategy.appendField(locator, this, "eventGroup", buffer, theEventGroup);
-        }
-        {
-            String thePage;
-            thePage = this.getPage();
-            strategy.appendField(locator, this, "page", buffer, thePage);
-        }
-        {
-            String thePageMode;
-            thePageMode = this.getPageMode();
-            strategy.appendField(locator, this, "pageMode", buffer, thePageMode);
-        }
-        {
-            String theElementId;
-            theElementId = this.getElementId();
-            strategy.appendField(locator, this, "elementId", buffer, theElementId);
-        }
-        {
-            String theActionName;
-            theActionName = this.getActionName();
-            strategy.appendField(locator, this, "actionName", buffer, theActionName);
-        }
-        {
-            String theSessionId;
-            theSessionId = this.getSessionId();
-            strategy.appendField(locator, this, "sessionId", buffer, theSessionId);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            strategy.appendField(locator, this, "userId", buffer, theUserId);
-        }
-        {
-            String theErrorMessage;
-            theErrorMessage = this.getErrorMessage();
-            strategy.appendField(locator, this, "errorMessage", buffer, theErrorMessage);
-        }
-        {
-            String theApplicationMessage;
-            theApplicationMessage = this.getApplicationMessage();
-            strategy.appendField(locator, this, "applicationMessage", buffer, theApplicationMessage);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        return buffer;
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
     /**
      * Gets the value of the hjid property.
@@ -625,11 +551,11 @@ public class ApplicationActionEvent
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -757,84 +683,14 @@ public class ApplicationActionEvent
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            ApplicationOperationType theApplicationOperation;
-            theApplicationOperation = this.getApplicationOperation();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "applicationOperation", theApplicationOperation), currentHashCode, theApplicationOperation);
-        }
-        {
-            ApplicationEventGroup theEventGroup;
-            theEventGroup = this.getEventGroup();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "eventGroup", theEventGroup), currentHashCode, theEventGroup);
-        }
-        {
-            String thePage;
-            thePage = this.getPage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "page", thePage), currentHashCode, thePage);
-        }
-        {
-            String thePageMode;
-            thePageMode = this.getPageMode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "pageMode", thePageMode), currentHashCode, thePageMode);
-        }
-        {
-            String theElementId;
-            theElementId = this.getElementId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "elementId", theElementId), currentHashCode, theElementId);
-        }
-        {
-            String theActionName;
-            theActionName = this.getActionName();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "actionName", theActionName), currentHashCode, theActionName);
-        }
-        {
-            String theSessionId;
-            theSessionId = this.getSessionId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "sessionId", theSessionId), currentHashCode, theSessionId);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userId", theUserId), currentHashCode, theUserId);
-        }
-        {
-            String theErrorMessage;
-            theErrorMessage = this.getErrorMessage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "errorMessage", theErrorMessage), currentHashCode, theErrorMessage);
-        }
-        {
-            String theApplicationMessage;
-            theApplicationMessage = this.getApplicationMessage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "applicationMessage", theApplicationMessage), currentHashCode, theApplicationMessage);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

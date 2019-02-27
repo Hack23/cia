@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -38,19 +39,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 
 
 /**
@@ -106,10 +106,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "USER_ACCOUNT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class UserAccount
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    protected Integer modelObjectId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer modelObjectId;
     protected int modelObjectVersion;
     protected String country;
     protected String username;
@@ -156,7 +160,7 @@ public class UserAccount
      *     {@link Integer }
      *     
      */
-    public void setModelObjectId(Integer value) {
+    public void setModelObjectId(final Integer value) {
         this.modelObjectId = value;
     }
 
@@ -174,7 +178,7 @@ public class UserAccount
      * Sets the value of the modelObjectVersion property.
      * 
      */
-    public void setModelObjectVersion(int value) {
+    public void setModelObjectVersion(final int value) {
         this.modelObjectVersion = value;
     }
 
@@ -187,7 +191,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "COUNTRY", length = 255)
+    @Column(name = "COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -200,7 +204,7 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setCountry(String value) {
+    public void setCountry(final String value) {
         this.country = value;
     }
 
@@ -213,7 +217,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USERNAME", length = 255)
+    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -226,7 +230,7 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setUsername(String value) {
+    public void setUsername(final String value) {
         this.username = value;
     }
 
@@ -239,7 +243,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "EMAIL", length = 255)
+    @Column(name = "EMAIL")
     public String getEmail() {
         return email;
     }
@@ -252,7 +256,7 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setEmail(String value) {
+    public void setEmail(final String value) {
         this.email = value;
     }
 
@@ -265,7 +269,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USER_ID", length = 255)
+    @Column(name = "USER_ID")
     public String getUserId() {
         return userId;
     }
@@ -278,7 +282,7 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setUserId(String value) {
+    public void setUserId(final String value) {
         this.userId = value;
     }
 
@@ -291,7 +295,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USERPASSWORD", length = 255)
+    @Column(name = "USERPASSWORD")
     public String getUserpassword() {
         return userpassword;
     }
@@ -304,7 +308,7 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setUserpassword(String value) {
+    public void setUserpassword(final String value) {
         this.userpassword = value;
     }
 
@@ -330,7 +334,7 @@ public class UserAccount
      *     {@link Integer }
      *     
      */
-    public void setNumberOfVisits(Integer value) {
+    public void setNumberOfVisits(final Integer value) {
         this.numberOfVisits = value;
     }
 
@@ -358,7 +362,7 @@ public class UserAccount
      */
     @ElementCollection
     @OrderColumn(name = "HJINDEX")
-    @Column(name = "HJVALUE", length = 255)
+    @Column(name = "HJVALUE")
     @CollectionTable(name = "USER_ACCOUNT_ADDRESS", joinColumns = {
         @JoinColumn(name = "HJID")
     })
@@ -373,7 +377,7 @@ public class UserAccount
      * 
      * 
      */
-    public void setAddress(List<String> address) {
+    public void setAddress(final List<String> address) {
         this.address = address;
     }
 
@@ -386,7 +390,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USER_TYPE", length = 255)
+    @Column(name = "USER_TYPE")
     @Enumerated(EnumType.STRING)
     public UserType getUserType() {
         return userType;
@@ -400,7 +404,7 @@ public class UserAccount
      *     {@link UserType }
      *     
      */
-    public void setUserType(UserType value) {
+    public void setUserType(final UserType value) {
         this.userType = value;
     }
 
@@ -413,7 +417,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USER_ROLE", length = 255)
+    @Column(name = "USER_ROLE")
     @Enumerated(EnumType.STRING)
     public UserRole getUserRole() {
         return userRole;
@@ -427,7 +431,7 @@ public class UserAccount
      *     {@link UserRole }
      *     
      */
-    public void setUserRole(UserRole value) {
+    public void setUserRole(final UserRole value) {
         this.userRole = value;
     }
 
@@ -440,7 +444,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USER_LOCK_STATUS", length = 255)
+    @Column(name = "USER_LOCK_STATUS")
     @Enumerated(EnumType.STRING)
     public UserLockStatus getUserLockStatus() {
         return userLockStatus;
@@ -454,7 +458,7 @@ public class UserAccount
      *     {@link UserLockStatus }
      *     
      */
-    public void setUserLockStatus(UserLockStatus value) {
+    public void setUserLockStatus(final UserLockStatus value) {
         this.userLockStatus = value;
     }
 
@@ -467,7 +471,7 @@ public class UserAccount
      *     
      */
     @Basic
-    @Column(name = "USER_EMAIL_STATUS", length = 255)
+    @Column(name = "USER_EMAIL_STATUS")
     @Enumerated(EnumType.STRING)
     public UserEmailStatus getUserEmailStatus() {
         return userEmailStatus;
@@ -481,7 +485,7 @@ public class UserAccount
      *     {@link UserEmailStatus }
      *     
      */
-    public void setUserEmailStatus(UserEmailStatus value) {
+    public void setUserEmailStatus(final UserEmailStatus value) {
         this.userEmailStatus = value;
     }
 
@@ -508,183 +512,100 @@ public class UserAccount
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
-    public UserAccount withModelObjectId(Integer value) {
+    public UserAccount withModelObjectId(final Integer value) {
         setModelObjectId(value);
         return this;
     }
 
-    public UserAccount withModelObjectVersion(int value) {
+    public UserAccount withModelObjectVersion(final int value) {
         setModelObjectVersion(value);
         return this;
     }
 
-    public UserAccount withCountry(String value) {
+    public UserAccount withCountry(final String value) {
         setCountry(value);
         return this;
     }
 
-    public UserAccount withUsername(String value) {
+    public UserAccount withUsername(final String value) {
         setUsername(value);
         return this;
     }
 
-    public UserAccount withEmail(String value) {
+    public UserAccount withEmail(final String value) {
         setEmail(value);
         return this;
     }
 
-    public UserAccount withUserId(String value) {
+    public UserAccount withUserId(final String value) {
         setUserId(value);
         return this;
     }
 
-    public UserAccount withUserpassword(String value) {
+    public UserAccount withUserpassword(final String value) {
         setUserpassword(value);
         return this;
     }
 
-    public UserAccount withNumberOfVisits(Integer value) {
+    public UserAccount withNumberOfVisits(final Integer value) {
         setNumberOfVisits(value);
         return this;
     }
 
-    public UserAccount withAddress(String... values) {
+    public UserAccount withAddress(final String... values) {
         if (values!= null) {
-            for (String value: values) {
+            for (final String value: values) {
                 getAddress().add(value);
             }
         }
         return this;
     }
 
-    public UserAccount withAddress(Collection<String> values) {
+    public UserAccount withAddress(final Collection<String> values) {
         if (values!= null) {
             getAddress().addAll(values);
         }
         return this;
     }
 
-    public UserAccount withAddress(List<String> address) {
+    public UserAccount withAddress(final List<String> address) {
         setAddress(address);
         return this;
     }
 
-    public UserAccount withUserType(UserType value) {
+    public UserAccount withUserType(final UserType value) {
         setUserType(value);
         return this;
     }
 
-    public UserAccount withUserRole(UserRole value) {
+    public UserAccount withUserRole(final UserRole value) {
         setUserRole(value);
         return this;
     }
 
-    public UserAccount withUserLockStatus(UserLockStatus value) {
+    public UserAccount withUserLockStatus(final UserLockStatus value) {
         setUserLockStatus(value);
         return this;
     }
 
-    public UserAccount withUserEmailStatus(UserEmailStatus value) {
+    public UserAccount withUserEmailStatus(final UserEmailStatus value) {
         setUserEmailStatus(value);
         return this;
     }
 
-    public UserAccount withCreatedDate(Date value) {
+    public UserAccount withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
-
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
-
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            String theCountry;
-            theCountry = this.getCountry();
-            strategy.appendField(locator, this, "country", buffer, theCountry);
-        }
-        {
-            String theUsername;
-            theUsername = this.getUsername();
-            strategy.appendField(locator, this, "username", buffer, theUsername);
-        }
-        {
-            String theEmail;
-            theEmail = this.getEmail();
-            strategy.appendField(locator, this, "email", buffer, theEmail);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            strategy.appendField(locator, this, "userId", buffer, theUserId);
-        }
-        {
-            String theUserpassword;
-            theUserpassword = this.getUserpassword();
-            strategy.appendField(locator, this, "userpassword", buffer, theUserpassword);
-        }
-        {
-            Integer theNumberOfVisits;
-            theNumberOfVisits = this.getNumberOfVisits();
-            strategy.appendField(locator, this, "numberOfVisits", buffer, theNumberOfVisits);
-        }
-        {
-            List<String> theAddress;
-            theAddress = (((this.address!= null)&&(!this.address.isEmpty()))?this.getAddress():null);
-            strategy.appendField(locator, this, "address", buffer, theAddress);
-        }
-        {
-            UserType theUserType;
-            theUserType = this.getUserType();
-            strategy.appendField(locator, this, "userType", buffer, theUserType);
-        }
-        {
-            UserRole theUserRole;
-            theUserRole = this.getUserRole();
-            strategy.appendField(locator, this, "userRole", buffer, theUserRole);
-        }
-        {
-            UserLockStatus theUserLockStatus;
-            theUserLockStatus = this.getUserLockStatus();
-            strategy.appendField(locator, this, "userLockStatus", buffer, theUserLockStatus);
-        }
-        {
-            UserEmailStatus theUserEmailStatus;
-            theUserEmailStatus = this.getUserEmailStatus();
-            strategy.appendField(locator, this, "userEmailStatus", buffer, theUserEmailStatus);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        return buffer;
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
     /**
      * Gets the value of the hjid property.
@@ -709,11 +630,11 @@ public class UserAccount
      *     {@link Long }
      *     
      */
-    public void setHjid(Long value) {
+    public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -850,89 +771,14 @@ public class UserAccount
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectId", theModelObjectId), currentHashCode, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "modelObjectVersion", theModelObjectVersion), currentHashCode, theModelObjectVersion);
-        }
-        {
-            String theCountry;
-            theCountry = this.getCountry();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "country", theCountry), currentHashCode, theCountry);
-        }
-        {
-            String theUsername;
-            theUsername = this.getUsername();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "username", theUsername), currentHashCode, theUsername);
-        }
-        {
-            String theEmail;
-            theEmail = this.getEmail();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "email", theEmail), currentHashCode, theEmail);
-        }
-        {
-            String theUserId;
-            theUserId = this.getUserId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userId", theUserId), currentHashCode, theUserId);
-        }
-        {
-            String theUserpassword;
-            theUserpassword = this.getUserpassword();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userpassword", theUserpassword), currentHashCode, theUserpassword);
-        }
-        {
-            Integer theNumberOfVisits;
-            theNumberOfVisits = this.getNumberOfVisits();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "numberOfVisits", theNumberOfVisits), currentHashCode, theNumberOfVisits);
-        }
-        {
-            List<String> theAddress;
-            theAddress = (((this.address!= null)&&(!this.address.isEmpty()))?this.getAddress():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "address", theAddress), currentHashCode, theAddress);
-        }
-        {
-            UserType theUserType;
-            theUserType = this.getUserType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userType", theUserType), currentHashCode, theUserType);
-        }
-        {
-            UserRole theUserRole;
-            theUserRole = this.getUserRole();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userRole", theUserRole), currentHashCode, theUserRole);
-        }
-        {
-            UserLockStatus theUserLockStatus;
-            theUserLockStatus = this.getUserLockStatus();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userLockStatus", theUserLockStatus), currentHashCode, theUserLockStatus);
-        }
-        {
-            UserEmailStatus theUserEmailStatus;
-            theUserEmailStatus = this.getUserEmailStatus();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "userEmailStatus", theUserEmailStatus), currentHashCode, theUserEmailStatus);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

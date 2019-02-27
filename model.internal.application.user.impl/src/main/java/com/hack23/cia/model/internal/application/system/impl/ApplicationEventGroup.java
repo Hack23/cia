@@ -44,7 +44,7 @@ public enum ApplicationEventGroup {
     ERROR("Error");
     private final String value;
 
-    ApplicationEventGroup(String v) {
+    ApplicationEventGroup(final String v) {
         value = v;
     }
 
@@ -52,8 +52,8 @@ public enum ApplicationEventGroup {
         return value;
     }
 
-    public static ApplicationEventGroup fromValue(String v) {
-        for (ApplicationEventGroup c: ApplicationEventGroup.values()) {
+    public static ApplicationEventGroup fromValue(final String v) {
+        for (final ApplicationEventGroup c: ApplicationEventGroup.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -10,6 +10,7 @@ package com.hack23.cia.model.internal.application.data.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,19 +22,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBToStringStrategy;
-import org.jvnet.jaxb2_commons.lang.ToString;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
 /**
@@ -65,10 +65,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 })
 @Embeddable
 public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
-    implements Serializable, ModelObject, Equals, HashCode, ToString
+    implements Serializable, ModelObject, Equals
 {
 
-    @XmlElement(name = "created_date", required = true, type = String.class)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlElement(name = "created_date", required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date createdDate;
@@ -100,7 +104,7 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
      *     {@link String }
      *     
      */
-    public void setCreatedDate(Date value) {
+    public void setCreatedDate(final Date value) {
         this.createdDate = value;
     }
 
@@ -113,7 +117,7 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
      *     
      */
     @Basic
-    @Column(name = "PAGE", length = 255)
+    @Column(name = "PAGE")
     public String getPage() {
         return page;
     }
@@ -126,7 +130,7 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
      *     {@link String }
      *     
      */
-    public void setPage(String value) {
+    public void setPage(final String value) {
         this.page = value;
     }
 
@@ -139,7 +143,7 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
      *     
      */
     @Basic
-    @Column(name = "PAGE_MODE", length = 255)
+    @Column(name = "PAGE_MODE")
     public String getPageMode() {
         return pageMode;
     }
@@ -152,59 +156,32 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
      *     {@link String }
      *     
      */
-    public void setPageMode(String value) {
+    public void setPageMode(final String value) {
         this.pageMode = value;
     }
 
-    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withCreatedDate(Date value) {
+    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withCreatedDate(final Date value) {
         setCreatedDate(value);
         return this;
     }
 
-    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withPage(String value) {
+    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withPage(final String value) {
         setPage(value);
         return this;
     }
 
-    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withPageMode(String value) {
+    public ApplicationActionEventPageModePeriodSummaryEmbeddedId withPageMode(final String value) {
         setPageMode(value);
         return this;
     }
 
-    public String toString() {
-        final ToStringStrategy strategy = JAXBToStringStrategy.INSTANCE;
-        final StringBuilder buffer = new StringBuilder();
-        append(null, buffer, strategy);
-        return buffer.toString();
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-    public StringBuilder append(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        strategy.appendStart(locator, this, buffer);
-        appendFields(locator, buffer, strategy);
-        strategy.appendEnd(locator, this, buffer);
-        return buffer;
-    }
 
-    public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            String thePage;
-            thePage = this.getPage();
-            strategy.appendField(locator, this, "page", buffer, thePage);
-        }
-        {
-            String thePageMode;
-            thePageMode = this.getPageMode();
-            strategy.appendField(locator, this, "pageMode", buffer, thePageMode);
-        }
-        return buffer;
-    }
-
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {
             return false;
         }
@@ -242,34 +219,14 @@ public class ApplicationActionEventPageModePeriodSummaryEmbeddedId
         return true;
     }
 
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
         return equals(null, null, object, strategy);
     }
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "createdDate", theCreatedDate), currentHashCode, theCreatedDate);
-        }
-        {
-            String thePage;
-            thePage = this.getPage();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "page", thePage), currentHashCode, thePage);
-        }
-        {
-            String thePageMode;
-            thePageMode = this.getPageMode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "pageMode", thePageMode), currentHashCode, thePageMode);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

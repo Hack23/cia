@@ -42,7 +42,7 @@ public enum ConfigurationGroup {
         return name();
     }
 
-    public static ConfigurationGroup fromValue(String v) {
+    public static ConfigurationGroup fromValue(final String v) {
         return valueOf(v);
     }
 

@@ -38,7 +38,7 @@ public enum UserLockStatus {
         return name();
     }
 
-    public static UserLockStatus fromValue(String v) {
+    public static UserLockStatus fromValue(final String v) {
         return valueOf(v);
     }
 

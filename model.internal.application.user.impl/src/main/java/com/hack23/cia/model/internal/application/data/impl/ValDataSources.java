@@ -35,7 +35,7 @@ public enum ValDataSources {
     PARTIES("Parties");
     private final String value;
 
-    ValDataSources(String v) {
+    ValDataSources(final String v) {
         value = v;
     }
 
@@ -43,8 +43,8 @@ public enum ValDataSources {
         return value;
     }
 
-    public static ValDataSources fromValue(String v) {
-        for (ValDataSources c: ValDataSources.values()) {
+    public static ValDataSources fromValue(final String v) {
+        for (final ValDataSources c: ValDataSources.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
