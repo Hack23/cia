@@ -75,7 +75,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "INDICATOR_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class IndicatorElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

@@ -74,7 +74,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_PROPOSAL_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentProposalData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

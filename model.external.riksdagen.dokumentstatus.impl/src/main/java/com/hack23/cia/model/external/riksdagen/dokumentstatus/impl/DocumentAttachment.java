@@ -72,7 +72,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_ATTACHMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentAttachment
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -131,7 +131,7 @@ public class DocumentAttachment
 	 * @return the file size
 	 */
     @Basic
-    @Column(name = "FILE_SIZE", precision = 20, scale = 0)
+    @Column(name = "FILE_SIZE", precision = 20)
     public BigInteger getFileSize() {
         return fileSize;
     }

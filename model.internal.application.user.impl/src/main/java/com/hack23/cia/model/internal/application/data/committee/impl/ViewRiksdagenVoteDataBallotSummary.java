@@ -104,7 +104,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotSummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -315,7 +315,7 @@ public class ViewRiksdagenVoteDataBallotSummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_VOTES", precision = 20, scale = 0)
+    @Column(name = "TOTAL_VOTES", precision = 20)
     public long getTotalVotes() {
         return totalVotes;
     }
@@ -333,7 +333,7 @@ public class ViewRiksdagenVoteDataBallotSummary
      * 
      */
     @Basic
-    @Column(name = "YES_VOTES", precision = 20, scale = 0)
+    @Column(name = "YES_VOTES", precision = 20)
     public long getYesVotes() {
         return yesVotes;
     }
@@ -351,7 +351,7 @@ public class ViewRiksdagenVoteDataBallotSummary
      * 
      */
     @Basic
-    @Column(name = "NO_VOTES", precision = 20, scale = 0)
+    @Column(name = "NO_VOTES", precision = 20)
     public long getNoVotes() {
         return noVotes;
     }
@@ -369,7 +369,7 @@ public class ViewRiksdagenVoteDataBallotSummary
      * 
      */
     @Basic
-    @Column(name = "ABSTAIN_VOTES", precision = 20, scale = 0)
+    @Column(name = "ABSTAIN_VOTES", precision = 20)
     public long getAbstainVotes() {
         return abstainVotes;
     }
@@ -387,7 +387,7 @@ public class ViewRiksdagenVoteDataBallotSummary
      * 
      */
     @Basic
-    @Column(name = "ABSENT_VOTES", precision = 20, scale = 0)
+    @Column(name = "ABSENT_VOTES", precision = 20)
     public long getAbsentVotes() {
         return absentVotes;
     }

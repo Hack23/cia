@@ -86,7 +86,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @IdClass(VoteDataDtoId.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class VoteDataDto
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -502,7 +502,7 @@ public class VoteDataDto
 	 * @return the electoral region number
 	 */
     @Basic
-    @Column(name = "ELECTORAL_REGION_NUMBER", precision = 20, scale = 0)
+    @Column(name = "ELECTORAL_REGION_NUMBER", precision = 20)
     public BigInteger getElectoralRegionNumber() {
         return electoralRegionNumber;
     }

@@ -75,7 +75,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_AUDIT_AUTHOR_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditAuthorSummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -144,7 +144,7 @@ public class ViewAuditAuthorSummary
      * 
      */
     @Basic
-    @Column(name = "CHANGES", precision = 20, scale = 0)
+    @Column(name = "CHANGES", precision = 20)
     public long getChanges() {
         return changes;
     }

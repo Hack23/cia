@@ -66,7 +66,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_CONTENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentContentData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

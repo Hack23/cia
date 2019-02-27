@@ -79,7 +79,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_worldbank_indicator_data_country_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewWorldbankIndicatorDataCountrySummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -295,7 +295,7 @@ public class ViewWorldbankIndicatorDataCountrySummary
      * 
      */
     @Basic
-    @Column(name = "DATA_POINT", precision = 20, scale = 0)
+    @Column(name = "DATA_POINT", precision = 20)
     public long getDataPoint() {
         return dataPoint;
     }

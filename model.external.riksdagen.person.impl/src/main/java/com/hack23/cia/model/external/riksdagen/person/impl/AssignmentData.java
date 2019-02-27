@@ -79,7 +79,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "ASSIGNMENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class AssignmentData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

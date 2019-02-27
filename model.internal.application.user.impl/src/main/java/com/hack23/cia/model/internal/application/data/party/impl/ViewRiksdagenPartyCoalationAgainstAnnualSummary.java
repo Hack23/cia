@@ -65,7 +65,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_riksdagen_party_coalation_against_annual_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyCoalationAgainstAnnualSummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -110,7 +110,7 @@ public class ViewRiksdagenPartyCoalationAgainstAnnualSummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL", precision = 20, scale = 0)
+    @Column(name = "TOTAL", precision = 20)
     public long getTotal() {
         return total;
     }

@@ -71,7 +71,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_COUNTY_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenCountyData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -101,7 +101,7 @@ public class SwedenCountyData
 	 * @return the code
 	 */
     @Basic
-    @Column(name = "CODE", precision = 20, scale = 0)
+    @Column(name = "CODE", precision = 20)
     public BigInteger getCode() {
         return code;
     }

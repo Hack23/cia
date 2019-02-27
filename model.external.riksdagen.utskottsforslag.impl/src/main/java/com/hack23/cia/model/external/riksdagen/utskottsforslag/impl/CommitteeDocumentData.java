@@ -86,7 +86,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "COMMITTEE_DOCUMENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CommitteeDocumentData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -201,7 +201,7 @@ public class CommitteeDocumentData
 	 * @return the hangar id
 	 */
     @Basic
-    @Column(name = "HANGAR_ID", precision = 20, scale = 0)
+    @Column(name = "HANGAR_ID", precision = 20)
     public BigInteger getHangarId() {
         return hangarId;
     }
@@ -321,7 +321,7 @@ public class CommitteeDocumentData
 	 * @return the end number
 	 */
     @Basic
-    @Column(name = "END_NUMBER", precision = 20, scale = 0)
+    @Column(name = "END_NUMBER", precision = 20)
     public BigInteger getEndNumber() {
         return endNumber;
     }

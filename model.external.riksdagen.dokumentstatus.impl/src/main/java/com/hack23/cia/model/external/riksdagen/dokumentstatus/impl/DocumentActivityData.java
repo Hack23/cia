@@ -77,7 +77,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "DOCUMENT_ACTIVITY_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentActivityData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -182,7 +182,7 @@ public class DocumentActivityData
 	 * @return the order number
 	 */
     @Basic
-    @Column(name = "ORDER_NUMBER", precision = 20, scale = 0)
+    @Column(name = "ORDER_NUMBER", precision = 20)
     public BigInteger getOrderNumber() {
         return orderNumber;
     }

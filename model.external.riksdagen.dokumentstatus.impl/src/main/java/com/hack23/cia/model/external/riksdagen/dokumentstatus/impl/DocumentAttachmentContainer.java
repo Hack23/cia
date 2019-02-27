@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_ATTACHMENT_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentAttachmentContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

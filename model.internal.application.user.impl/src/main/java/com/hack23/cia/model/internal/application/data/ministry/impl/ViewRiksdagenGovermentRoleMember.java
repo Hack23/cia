@@ -87,7 +87,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_GOVERMENT_ROLE_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenGovermentRoleMember
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

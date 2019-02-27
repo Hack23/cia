@@ -127,7 +127,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_PARTY_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartySummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -204,7 +204,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ASSIGNMENTS", precision = 20)
     public long getTotalAssignments() {
         return totalAssignments;
     }
@@ -222,7 +222,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "CURRENT_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "CURRENT_ASSIGNMENTS", precision = 20)
     public long getCurrentAssignments() {
         return currentAssignments;
     }
@@ -294,7 +294,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED", precision = 20)
     public long getTotalDaysServed() {
         return totalDaysServed;
     }
@@ -312,7 +312,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_PARLIAMENT", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_PARLIAMENT", precision = 20)
     public long getTotalDaysServedParliament() {
         return totalDaysServedParliament;
     }
@@ -330,7 +330,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_COMMITTEE", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_COMMITTEE", precision = 20)
     public long getTotalDaysServedCommittee() {
         return totalDaysServedCommittee;
     }
@@ -348,7 +348,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_GOVERNMENT", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_GOVERNMENT", precision = 20)
     public long getTotalDaysServedGovernment() {
         return totalDaysServedGovernment;
     }
@@ -366,7 +366,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_EU", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_EU", precision = 20)
     public long getTotalDaysServedEu() {
         return totalDaysServedEu;
     }
@@ -474,7 +474,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ACTIVE_EU", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ACTIVE_EU", precision = 20)
     public long getTotalActiveEu() {
         return totalActiveEu;
     }
@@ -492,7 +492,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ACTIVE_GOVERNMENT", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ACTIVE_GOVERNMENT", precision = 20)
     public long getTotalActiveGovernment() {
         return totalActiveGovernment;
     }
@@ -510,7 +510,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ACTIVE_COMMITTEE", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ACTIVE_COMMITTEE", precision = 20)
     public long getTotalActiveCommittee() {
         return totalActiveCommittee;
     }
@@ -528,7 +528,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ACTIVE_PARLIAMENT", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ACTIVE_PARLIAMENT", precision = 20)
     public long getTotalActiveParliament() {
         return totalActiveParliament;
     }
@@ -582,7 +582,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_SPEAKER", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_SPEAKER", precision = 20)
     public long getTotalDaysServedSpeaker() {
         return totalDaysServedSpeaker;
     }
@@ -600,7 +600,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED_PARTY", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED_PARTY", precision = 20)
     public long getTotalDaysServedParty() {
         return totalDaysServedParty;
     }
@@ -618,7 +618,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_PARTY_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_PARTY_ASSIGNMENTS", precision = 20)
     public long getTotalPartyAssignments() {
         return totalPartyAssignments;
     }
@@ -636,7 +636,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_MINISTRY_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_MINISTRY_ASSIGNMENTS", precision = 20)
     public long getTotalMinistryAssignments() {
         return totalMinistryAssignments;
     }
@@ -654,7 +654,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_COMMITTEE_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_COMMITTEE_ASSIGNMENTS", precision = 20)
     public long getTotalCommitteeAssignments() {
         return totalCommitteeAssignments;
     }
@@ -672,7 +672,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_SPEAKER_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_SPEAKER_ASSIGNMENTS", precision = 20)
     public long getTotalSpeakerAssignments() {
         return totalSpeakerAssignments;
     }
@@ -690,7 +690,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "CURRENT_PARTY_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "CURRENT_PARTY_ASSIGNMENTS", precision = 20)
     public long getCurrentPartyAssignments() {
         return currentPartyAssignments;
     }
@@ -708,7 +708,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "CURRENT_MINISTRY_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "CURRENT_MINISTRY_ASSIGNMENTS", precision = 20)
     public long getCurrentMinistryAssignments() {
         return currentMinistryAssignments;
     }
@@ -726,7 +726,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "CURRENT_COMMITTEE_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "CURRENT_COMMITTEE_ASSIGNMENTS", precision = 20)
     public long getCurrentCommitteeAssignments() {
         return currentCommitteeAssignments;
     }
@@ -744,7 +744,7 @@ public class ViewRiksdagenPartySummary
      * 
      */
     @Basic
-    @Column(name = "CURRENT_SPEAKER_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "CURRENT_SPEAKER_ASSIGNMENTS", precision = 20)
     public long getCurrentSpeakerAssignments() {
         return currentSpeakerAssignments;
     }

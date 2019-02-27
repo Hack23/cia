@@ -71,7 +71,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_riksdagen_party_ballot_support_annual_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyBallotSupportAnnualSummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -124,7 +124,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * 
      */
     @Basic
-    @Column(name = "DISAGRE_COUNT", precision = 20, scale = 0)
+    @Column(name = "DISAGRE_COUNT", precision = 20)
     public long getDisagreCount() {
         return disagreCount;
     }
@@ -142,7 +142,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * 
      */
     @Basic
-    @Column(name = "AGREE_COUNT", precision = 20, scale = 0)
+    @Column(name = "AGREE_COUNT", precision = 20)
     public long getAgreeCount() {
         return agreeCount;
     }
@@ -160,7 +160,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * 
      */
     @Basic
-    @Column(name = "DISAGREE_PERCENTAGE", precision = 20, scale = 0)
+    @Column(name = "DISAGREE_PERCENTAGE", precision = 20)
     public long getDisagreePercentage() {
         return disagreePercentage;
     }
@@ -178,7 +178,7 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL_BALLOTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_BALLOTS", precision = 20)
     public long getTotalBallots() {
         return totalBallots;
     }

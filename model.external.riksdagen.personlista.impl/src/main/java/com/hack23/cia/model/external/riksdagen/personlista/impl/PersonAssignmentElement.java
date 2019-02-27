@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "PERSON_ASSIGNMENT_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PersonAssignmentElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

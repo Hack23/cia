@@ -59,7 +59,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class RiksdagenVoteDataBallotEmbeddedId
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

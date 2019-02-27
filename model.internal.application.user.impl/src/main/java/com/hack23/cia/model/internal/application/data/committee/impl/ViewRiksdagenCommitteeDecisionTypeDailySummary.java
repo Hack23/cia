@@ -65,7 +65,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "View_Riksdagen_Committee_Decision_Type_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommitteeDecisionTypeDailySummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -110,7 +110,7 @@ public class ViewRiksdagenCommitteeDecisionTypeDailySummary
      * 
      */
     @Basic
-    @Column(name = "TOTAL", precision = 20, scale = 0)
+    @Column(name = "TOTAL", precision = 20)
     public long getTotal() {
         return total;
     }

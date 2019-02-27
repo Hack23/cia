@@ -68,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DETAIL_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DetailElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

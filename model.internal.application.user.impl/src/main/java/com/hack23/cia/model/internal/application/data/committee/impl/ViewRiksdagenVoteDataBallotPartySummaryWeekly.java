@@ -126,7 +126,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Party_Summary_Weekly")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotPartySummaryWeekly
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

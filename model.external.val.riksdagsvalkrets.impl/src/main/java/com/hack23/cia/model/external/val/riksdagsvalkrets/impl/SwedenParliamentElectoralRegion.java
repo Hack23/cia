@@ -69,7 +69,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_PARLIAMENT_ELECTORAL__1")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenParliamentElectoralRegion
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -131,7 +131,7 @@ public class SwedenParliamentElectoralRegion
 	 * @return the number of voters
 	 */
     @Basic
-    @Column(name = "NUMBER_OF_VOTERS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_OF_VOTERS", precision = 20)
     public BigInteger getNumberOfVoters() {
         return numberOfVoters;
     }
@@ -151,7 +151,7 @@ public class SwedenParliamentElectoralRegion
 	 * @return the first round
 	 */
     @Basic
-    @Column(name = "FIRST_ROUND", precision = 20, scale = 0)
+    @Column(name = "FIRST_ROUND", precision = 20)
     public BigInteger getFirstRound() {
         return firstRound;
     }
@@ -191,7 +191,7 @@ public class SwedenParliamentElectoralRegion
 	 * @return the second round
 	 */
     @Basic
-    @Column(name = "SECOND_ROUND", precision = 20, scale = 0)
+    @Column(name = "SECOND_ROUND", precision = 20)
     public BigInteger getSecondRound() {
         return secondRound;
     }
@@ -211,7 +211,7 @@ public class SwedenParliamentElectoralRegion
 	 * @return the number of seats
 	 */
     @Basic
-    @Column(name = "NUMBER_OF_SEATS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_OF_SEATS", precision = 20)
     public BigInteger getNumberOfSeats() {
         return numberOfSeats;
     }

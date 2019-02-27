@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "BALLOT_DOCUMENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BallotDocumentData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

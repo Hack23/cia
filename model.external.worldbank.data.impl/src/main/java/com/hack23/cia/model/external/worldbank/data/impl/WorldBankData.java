@@ -71,7 +71,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "WORLD_BANK_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class WorldBankData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

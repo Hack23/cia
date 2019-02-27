@@ -78,7 +78,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "COUNTRY_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CountryElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

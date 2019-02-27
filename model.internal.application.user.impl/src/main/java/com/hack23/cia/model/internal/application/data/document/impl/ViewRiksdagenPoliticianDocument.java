@@ -102,7 +102,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_POLITICIAN_DOCUMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPoliticianDocument
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -305,7 +305,7 @@ public class ViewRiksdagenPoliticianDocument
      *     
      */
     @Basic
-    @Column(name = "NUMBER_VALUE", precision = 20, scale = 0)
+    @Column(name = "NUMBER_VALUE", precision = 20)
     public BigInteger getNumberValue() {
         return numberValue;
     }

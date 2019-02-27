@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_application_action_event_page_element_hourly_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewApplicationActionEventPageElementHourlySummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -119,7 +119,7 @@ public class ViewApplicationActionEventPageElementHourlySummary
      * 
      */
     @Basic
-    @Column(name = "HITS", precision = 20, scale = 0)
+    @Column(name = "HITS", precision = 20)
     public long getHits() {
         return hits;
     }
@@ -137,7 +137,7 @@ public class ViewApplicationActionEventPageElementHourlySummary
      * 
      */
     @Basic
-    @Column(name = "RANK", precision = 20, scale = 0)
+    @Column(name = "RANK", precision = 20)
     public long getRank() {
         return rank;
     }

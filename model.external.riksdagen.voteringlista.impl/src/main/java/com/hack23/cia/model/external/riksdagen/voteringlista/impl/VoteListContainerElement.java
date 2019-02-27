@@ -71,7 +71,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "VOTE_LIST_CONTAINER_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class VoteListContainerElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

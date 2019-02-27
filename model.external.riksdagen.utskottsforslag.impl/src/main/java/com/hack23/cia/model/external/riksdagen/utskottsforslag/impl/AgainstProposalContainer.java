@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "AGAINST_PROPOSAL_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class AgainstProposalContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

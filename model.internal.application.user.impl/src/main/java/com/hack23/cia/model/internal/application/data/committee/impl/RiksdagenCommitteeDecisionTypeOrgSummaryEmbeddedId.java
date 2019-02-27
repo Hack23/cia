@@ -65,7 +65,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 })
 @Embeddable
 public class RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

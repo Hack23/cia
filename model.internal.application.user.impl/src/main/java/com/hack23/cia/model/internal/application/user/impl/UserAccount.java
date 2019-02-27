@@ -106,7 +106,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "USER_ACCOUNT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class UserAccount
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

@@ -172,7 +172,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Daily")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -446,7 +446,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "NUMBER_BALLOTS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_BALLOTS", precision = 20)
     public long getNumberBallots() {
         return numberBallots;
     }
@@ -490,7 +490,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "AVG_TOTAL_VOTES", precision = 20, scale = 0)
+    @Column(name = "AVG_TOTAL_VOTES", precision = 20)
     public long getAvgTotalVotes() {
         return avgTotalVotes;
     }
@@ -1028,7 +1028,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "POLITICIAN_YES_VOTES", precision = 20, scale = 0)
+    @Column(name = "POLITICIAN_YES_VOTES", precision = 20)
     public long getPoliticianYesVotes() {
         return politicianYesVotes;
     }
@@ -1046,7 +1046,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "POLITICIAN_NO_VOTES", precision = 20, scale = 0)
+    @Column(name = "POLITICIAN_NO_VOTES", precision = 20)
     public long getPoliticianNoVotes() {
         return politicianNoVotes;
     }
@@ -1064,7 +1064,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "POLITICIAN_ABSTAIN_VOTES", precision = 20, scale = 0)
+    @Column(name = "POLITICIAN_ABSTAIN_VOTES", precision = 20)
     public long getPoliticianAbstainVotes() {
         return politicianAbstainVotes;
     }
@@ -1082,7 +1082,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "POLITICIAN_ABSENT_VOTES", precision = 20, scale = 0)
+    @Column(name = "POLITICIAN_ABSENT_VOTES", precision = 20)
     public long getPoliticianAbsentVotes() {
         return politicianAbsentVotes;
     }
@@ -1464,7 +1464,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "PARTY_WON_TOTAL", precision = 20, scale = 0)
+    @Column(name = "PARTY_WON_TOTAL", precision = 20)
     public long getPartyWonTotal() {
         return partyWonTotal;
     }
@@ -1508,7 +1508,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "APPROVED_TOTAL", precision = 20, scale = 0)
+    @Column(name = "APPROVED_TOTAL", precision = 20)
     public long getApprovedTotal() {
         return approvedTotal;
     }
@@ -1578,7 +1578,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "WON_TOTAL", precision = 20, scale = 0)
+    @Column(name = "WON_TOTAL", precision = 20)
     public long getWonTotal() {
         return wonTotal;
     }
@@ -1622,7 +1622,7 @@ public class ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "REBEL_TOTAL", precision = 20, scale = 0)
+    @Column(name = "REBEL_TOTAL", precision = 20)
     public long getRebelTotal() {
         return rebelTotal;
     }

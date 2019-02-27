@@ -81,7 +81,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "PORTAL")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Portal
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

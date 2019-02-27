@@ -87,7 +87,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "DOCUMENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -344,7 +344,7 @@ public class DocumentData
 	 * @return the number value
 	 */
     @Basic
-    @Column(name = "NUMBER_VALUE", precision = 20, scale = 0)
+    @Column(name = "NUMBER_VALUE", precision = 20)
     public BigInteger getNumberValue() {
         return numberValue;
     }
@@ -364,7 +364,7 @@ public class DocumentData
 	 * @return the final number
 	 */
     @Basic
-    @Column(name = "FINAL_NUMBER", precision = 20, scale = 0)
+    @Column(name = "FINAL_NUMBER", precision = 20)
     public BigInteger getFinalNumber() {
         return finalNumber;
     }

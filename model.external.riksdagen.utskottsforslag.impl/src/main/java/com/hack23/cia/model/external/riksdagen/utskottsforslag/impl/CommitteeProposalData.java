@@ -84,7 +84,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "COMMITTEE_PROPOSAL_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CommitteeProposalData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -171,7 +171,7 @@ public class CommitteeProposalData
 	 * @return the issue number
 	 */
     @Basic
-    @Column(name = "ISSUE_NUMBER", precision = 20, scale = 0)
+    @Column(name = "ISSUE_NUMBER", precision = 20)
     public BigInteger getIssueNumber() {
         return issueNumber;
     }
@@ -231,7 +231,7 @@ public class CommitteeProposalData
 	 * @return the against proposal number
 	 */
     @Basic
-    @Column(name = "AGAINST_PROPOSAL_NUMBER", precision = 20, scale = 0)
+    @Column(name = "AGAINST_PROPOSAL_NUMBER", precision = 20)
     public BigInteger getAgainstProposalNumber() {
         return againstProposalNumber;
     }

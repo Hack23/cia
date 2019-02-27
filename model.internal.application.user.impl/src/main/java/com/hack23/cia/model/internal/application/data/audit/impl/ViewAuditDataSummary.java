@@ -65,7 +65,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "VIEW_AUDIT_DATA_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditDataSummary
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -126,7 +126,7 @@ public class ViewAuditDataSummary
      * 
      */
     @Basic
-    @Column(name = "DATA_SIZE", precision = 20, scale = 0)
+    @Column(name = "DATA_SIZE", precision = 20)
     public long getDataSize() {
         return dataSize;
     }

@@ -74,7 +74,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "TOPICS_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class TopicsElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -137,7 +137,7 @@ public class TopicsElement
 	 * @return the page
 	 */
     @Basic
-    @Column(name = "PAGE", precision = 20, scale = 0)
+    @Column(name = "PAGE", precision = 20)
     public BigInteger getPage() {
         return page;
     }
@@ -157,7 +157,7 @@ public class TopicsElement
 	 * @return the pages
 	 */
     @Basic
-    @Column(name = "PAGES", precision = 20, scale = 0)
+    @Column(name = "PAGES", precision = 20)
     public BigInteger getPages() {
         return pages;
     }
@@ -177,7 +177,7 @@ public class TopicsElement
 	 * @return the per page
 	 */
     @Basic
-    @Column(name = "PER_PAGE", precision = 20, scale = 0)
+    @Column(name = "PER_PAGE", precision = 20)
     public BigInteger getPerPage() {
         return perPage;
     }
@@ -197,7 +197,7 @@ public class TopicsElement
 	 * @return the total
 	 */
     @Basic
-    @Column(name = "TOTAL", precision = 20, scale = 0)
+    @Column(name = "TOTAL", precision = 20)
     public BigInteger getTotal() {
         return total;
     }

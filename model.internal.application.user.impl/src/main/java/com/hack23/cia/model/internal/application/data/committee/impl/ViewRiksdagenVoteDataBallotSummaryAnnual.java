@@ -104,7 +104,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Summary_Annual")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotSummaryAnnual
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

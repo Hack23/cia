@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_REFERENCE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentReferenceData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

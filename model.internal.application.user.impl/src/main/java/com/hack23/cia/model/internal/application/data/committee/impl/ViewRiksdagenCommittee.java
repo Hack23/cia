@@ -81,7 +81,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_COMMITTEE")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommittee
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -137,7 +137,7 @@ public class ViewRiksdagenCommittee
      * 
      */
     @Basic
-    @Column(name = "TOTAL_ASSIGNMENTS", precision = 20, scale = 0)
+    @Column(name = "TOTAL_ASSIGNMENTS", precision = 20)
     public long getTotalAssignments() {
         return totalAssignments;
     }
@@ -209,7 +209,7 @@ public class ViewRiksdagenCommittee
      * 
      */
     @Basic
-    @Column(name = "TOTAL_DAYS_SERVED", precision = 20, scale = 0)
+    @Column(name = "TOTAL_DAYS_SERVED", precision = 20)
     public long getTotalDaysServed() {
         return totalDaysServed;
     }
@@ -227,7 +227,7 @@ public class ViewRiksdagenCommittee
      * 
      */
     @Basic
-    @Column(name = "CURRENT_MEMBER_SIZE", precision = 20, scale = 0)
+    @Column(name = "CURRENT_MEMBER_SIZE", precision = 20)
     public long getCurrentMemberSize() {
         return currentMemberSize;
     }

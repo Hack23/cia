@@ -68,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DATA_AGENT_WORK_ORDER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DataAgentWorkOrder
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

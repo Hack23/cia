@@ -68,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "BALLOT_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BallotContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

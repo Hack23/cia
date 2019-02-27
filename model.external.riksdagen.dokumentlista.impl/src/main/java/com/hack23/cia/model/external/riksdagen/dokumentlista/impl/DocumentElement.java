@@ -97,7 +97,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -245,7 +245,7 @@ public class DocumentElement
 	 * @return the hit
 	 */
     @Basic
-    @Column(name = "HIT", precision = 20, scale = 0)
+    @Column(name = "HIT", precision = 20)
     public BigInteger getHit() {
         return hit;
     }
@@ -645,7 +645,7 @@ public class DocumentElement
 	 * @return the number value
 	 */
     @Basic
-    @Column(name = "NUMBER_VALUE", precision = 20, scale = 0)
+    @Column(name = "NUMBER_VALUE", precision = 20)
     public BigInteger getNumberValue() {
         return numberValue;
     }

@@ -79,7 +79,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "AGENCY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Agency
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

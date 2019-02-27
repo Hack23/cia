@@ -75,7 +75,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_STATUS_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentStatusContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

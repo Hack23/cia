@@ -67,7 +67,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_PROPOSAL_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentProposalContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

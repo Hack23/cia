@@ -60,7 +60,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class Country
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

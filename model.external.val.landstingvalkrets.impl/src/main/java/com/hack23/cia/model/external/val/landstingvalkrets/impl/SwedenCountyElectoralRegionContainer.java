@@ -67,7 +67,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_COUNTY_ELECTORAL_REGI_0")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenCountyElectoralRegionContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

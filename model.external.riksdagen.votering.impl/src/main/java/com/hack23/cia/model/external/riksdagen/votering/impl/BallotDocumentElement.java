@@ -90,7 +90,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "BALLOT_DOCUMENT_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BallotDocumentElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -490,7 +490,7 @@ public class BallotDocumentElement
 	 * @return the number value
 	 */
     @Basic
-    @Column(name = "NUMBER_VALUE", precision = 20, scale = 0)
+    @Column(name = "NUMBER_VALUE", precision = 20)
     public BigInteger getNumberValue() {
         return numberValue;
     }
@@ -510,7 +510,7 @@ public class BallotDocumentElement
 	 * @return the end number value
 	 */
     @Basic
-    @Column(name = "END_NUMBER_VALUE", precision = 20, scale = 0)
+    @Column(name = "END_NUMBER_VALUE", precision = 20)
     public BigInteger getEndNumberValue() {
         return endNumberValue;
     }

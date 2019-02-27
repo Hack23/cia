@@ -88,7 +88,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "LANGUAGE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

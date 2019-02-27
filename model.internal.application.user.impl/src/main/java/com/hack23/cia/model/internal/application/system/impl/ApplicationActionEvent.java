@@ -97,7 +97,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "APPLICATION_ACTION_EVENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationActionEvent
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

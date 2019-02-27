@@ -138,7 +138,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Party_Summary_Daily")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotPartySummaryDaily
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -334,7 +334,7 @@ public class ViewRiksdagenVoteDataBallotPartySummaryDaily
      * 
      */
     @Basic
-    @Column(name = "NUMBER_BALLOTS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_BALLOTS", precision = 20)
     public long getNumberBallots() {
         return numberBallots;
     }
@@ -404,7 +404,7 @@ public class ViewRiksdagenVoteDataBallotPartySummaryDaily
      * 
      */
     @Basic
-    @Column(name = "APPROVED_TOTAL", precision = 20, scale = 0)
+    @Column(name = "APPROVED_TOTAL", precision = 20)
     public long getApprovedTotal() {
         return approvedTotal;
     }
@@ -864,7 +864,7 @@ public class ViewRiksdagenVoteDataBallotPartySummaryDaily
      * 
      */
     @Basic
-    @Column(name = "PARTY_WON_TOTAL", precision = 20, scale = 0)
+    @Column(name = "PARTY_WON_TOTAL", precision = 20)
     public long getPartyWonTotal() {
         return partyWonTotal;
     }
@@ -908,7 +908,7 @@ public class ViewRiksdagenVoteDataBallotPartySummaryDaily
      * 
      */
     @Basic
-    @Column(name = "AVG_TOTAL_VOTES", precision = 20, scale = 0)
+    @Column(name = "AVG_TOTAL_VOTES", precision = 20)
     public long getAvgTotalVotes() {
         return avgTotalVotes;
     }

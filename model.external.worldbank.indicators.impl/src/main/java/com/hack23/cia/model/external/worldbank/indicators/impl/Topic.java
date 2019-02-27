@@ -68,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "TOPIC")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Topic
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

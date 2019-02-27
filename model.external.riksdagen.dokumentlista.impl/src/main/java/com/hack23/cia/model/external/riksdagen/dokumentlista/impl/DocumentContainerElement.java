@@ -73,7 +73,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_CONTAINER_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentContainerElement
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -225,7 +225,7 @@ public class DocumentContainerElement
 	 * @return the page
 	 */
     @Basic
-    @Column(name = "PAGE", precision = 20, scale = 0)
+    @Column(name = "PAGE", precision = 20)
     public BigInteger getPage() {
         return page;
     }
@@ -245,7 +245,7 @@ public class DocumentContainerElement
 	 * @return the total pages
 	 */
     @Basic
-    @Column(name = "TOTAL_PAGES", precision = 20, scale = 0)
+    @Column(name = "TOTAL_PAGES", precision = 20)
     public BigInteger getTotalPages() {
         return totalPages;
     }
@@ -285,7 +285,7 @@ public class DocumentContainerElement
 	 * @return the hits from
 	 */
     @Basic
-    @Column(name = "HITS_FROM", precision = 20, scale = 0)
+    @Column(name = "HITS_FROM", precision = 20)
     public BigInteger getHitsFrom() {
         return hitsFrom;
     }
@@ -305,7 +305,7 @@ public class DocumentContainerElement
 	 * @return the hits to
 	 */
     @Basic
-    @Column(name = "HITS_TO", precision = 20, scale = 0)
+    @Column(name = "HITS_TO", precision = 20)
     public BigInteger getHitsTo() {
         return hitsTo;
     }
@@ -325,7 +325,7 @@ public class DocumentContainerElement
 	 * @return the hits
 	 */
     @Basic
-    @Column(name = "HITS", precision = 20, scale = 0)
+    @Column(name = "HITS", precision = 20)
     public BigInteger getHits() {
         return hits;
     }

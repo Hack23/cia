@@ -57,7 +57,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class RiksdagenDocumentOrgSummaryEmbeddedId
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

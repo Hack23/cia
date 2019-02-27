@@ -88,7 +88,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VOTE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class VoteData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -453,7 +453,7 @@ public class VoteData
 	 * @return the electoral region number
 	 */
     @Basic
-    @Column(name = "ELECTORAL_REGION_NUMBER", precision = 20, scale = 0)
+    @Column(name = "ELECTORAL_REGION_NUMBER", precision = 20)
     public BigInteger getElectoralRegionNumber() {
         return electoralRegionNumber;
     }

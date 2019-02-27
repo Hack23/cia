@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_MUNICIPALITY_ELECTION_0")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenMunicipalityElectionRegionData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -116,7 +116,7 @@ public class SwedenMunicipalityElectionRegionData
 	 * @return the code
 	 */
     @Basic
-    @Column(name = "CODE", precision = 20, scale = 0)
+    @Column(name = "CODE", precision = 20)
     public BigInteger getCode() {
         return code;
     }
@@ -156,7 +156,7 @@ public class SwedenMunicipalityElectionRegionData
 	 * @return the number of voters
 	 */
     @Basic
-    @Column(name = "NUMBER_OF_VOTERS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_OF_VOTERS", precision = 20)
     public BigInteger getNumberOfVoters() {
         return numberOfVoters;
     }
@@ -176,7 +176,7 @@ public class SwedenMunicipalityElectionRegionData
 	 * @return the first round
 	 */
     @Basic
-    @Column(name = "FIRST_ROUND", precision = 20, scale = 0)
+    @Column(name = "FIRST_ROUND", precision = 20)
     public BigInteger getFirstRound() {
         return firstRound;
     }
@@ -216,7 +216,7 @@ public class SwedenMunicipalityElectionRegionData
 	 * @return the second round
 	 */
     @Basic
-    @Column(name = "SECOND_ROUND", precision = 20, scale = 0)
+    @Column(name = "SECOND_ROUND", precision = 20)
     public BigInteger getSecondRound() {
         return secondRound;
     }
@@ -236,7 +236,7 @@ public class SwedenMunicipalityElectionRegionData
 	 * @return the number of seats
 	 */
     @Basic
-    @Column(name = "NUMBER_OF_SEATS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_OF_SEATS", precision = 20)
     public BigInteger getNumberOfSeats() {
         return numberOfSeats;
     }

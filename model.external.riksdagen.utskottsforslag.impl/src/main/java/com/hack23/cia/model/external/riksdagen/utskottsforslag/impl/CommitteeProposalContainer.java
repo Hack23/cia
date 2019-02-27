@@ -70,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "COMMITTEE_PROPOSAL_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CommitteeProposalContainer
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**

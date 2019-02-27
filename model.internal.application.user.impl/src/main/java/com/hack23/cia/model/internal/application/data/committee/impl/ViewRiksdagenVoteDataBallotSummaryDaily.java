@@ -114,7 +114,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Summary_Daily")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotSummaryDaily
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -464,7 +464,7 @@ public class ViewRiksdagenVoteDataBallotSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "NUMBER_BALLOTS", precision = 20, scale = 0)
+    @Column(name = "NUMBER_BALLOTS", precision = 20)
     public long getNumberBallots() {
         return numberBallots;
     }
@@ -482,7 +482,7 @@ public class ViewRiksdagenVoteDataBallotSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "AVG_TOTAL_VOTES", precision = 20, scale = 0)
+    @Column(name = "AVG_TOTAL_VOTES", precision = 20)
     public long getAvgTotalVotes() {
         return avgTotalVotes;
     }
@@ -500,7 +500,7 @@ public class ViewRiksdagenVoteDataBallotSummaryDaily
      * 
      */
     @Basic
-    @Column(name = "APPROVED_BALLOTS", precision = 20, scale = 0)
+    @Column(name = "APPROVED_BALLOTS", precision = 20)
     public long getApprovedBallots() {
         return approvedBallots;
     }

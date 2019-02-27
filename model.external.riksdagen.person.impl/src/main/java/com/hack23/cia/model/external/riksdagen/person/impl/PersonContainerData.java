@@ -67,7 +67,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "PERSON_CONTAINER_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PersonContainerData
-    implements Serializable, ModelObject, Equals
+    implements ModelObject, Equals
 {
 
     /**
