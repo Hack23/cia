@@ -129,7 +129,7 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 	 *
 	 * @return the year total
 	 */
-	public Double getYearTotal() {
+	public double getYearTotal() {
 		return yearTotal;
 	}
 

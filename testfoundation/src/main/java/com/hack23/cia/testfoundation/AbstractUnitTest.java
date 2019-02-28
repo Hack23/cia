@@ -21,17 +21,22 @@ package com.hack23.cia.testfoundation;
 
 import java.util.List;
 
+import com.openpojo.business.identity.IdentityFactory;
+import com.openpojo.random.RandomFactory;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
 import com.openpojo.reflection.filters.FilterPackageInfo;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
 import com.openpojo.validation.ValidatorBuilder;
+import com.openpojo.validation.affirm.Affirm;
 import com.openpojo.validation.rule.impl.EqualsAndHashCodeMatchRule;
 import com.openpojo.validation.rule.impl.GetterMustExistRule;
 import com.openpojo.validation.rule.impl.SetterMustExistRule;
+import com.openpojo.validation.test.Tester;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
+import com.openpojo.validation.utils.IdentityHandlerStub;
 
 
 /**
@@ -60,13 +65,49 @@ public abstract class AbstractUnitTest extends AbstractTest {
                  .with(new SetterMustExistRule(),
                        new GetterMustExistRule())
                  .with(new SetterTester(),
-                       new GetterTester())
+                       new GetterTester()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
                  .with(new EqualsAndHashCodeMatchRule())
                  .build();
 		 validator.validate(pojoClassesRecursively);
 		 return true;
 	}
 
+	public final boolean checkAllDtoClassesInPackage(final String string) {
+		
+		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string, new FilterTestClasses());
+		
+		 Validator validator = ValidatorBuilder.create()
+                 .with(new GetterMustExistRule())
+                 .with(new GetterTester())
+                 .with(new EqualsAndHashCodeMatchRule()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
+                 .build();
+		 validator.validate(pojoClassesRecursively);
+		 return true;
+	}
+	
+	public class InvokeToStringTester implements Tester {
+		  public void run(PojoClass pojoClass) {
+			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+			    Affirm.affirmNotNull("toStringFailure", instance.toString());
+		  }
+	}
+
+	public class InvokeHashcodeTester implements Tester {
+		  public void run(PojoClass pojoClass) {
+			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+			    Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
+		  }
+	}
+
+	public class DummyEqualsTester implements Tester {
+		  public void run(PojoClass pojoClass) {
+			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+
+			    Affirm.affirmEquals("EqualsFailure", instance.toString(), instance.toString());
+		  }
+	}
+
+	
 	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
 	
 	private static class FilterTestClasses implements PojoClassFilter {
