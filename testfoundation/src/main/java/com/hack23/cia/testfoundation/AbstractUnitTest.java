@@ -35,6 +35,7 @@ import com.openpojo.validation.rule.impl.GetterMustExistRule;
 import com.openpojo.validation.rule.impl.SetterMustExistRule;
 import com.openpojo.validation.test.Tester;
 import com.openpojo.validation.test.impl.GetterTester;
+import com.openpojo.validation.test.impl.SerializableTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import com.openpojo.validation.utils.IdentityHandlerStub;
 
@@ -63,7 +64,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		
 		 Validator validator = ValidatorBuilder.create()
                  .with(new SetterMustExistRule(),
-                       new GetterMustExistRule())
+                       new GetterMustExistRule()).with(new SerializableTester())
                  .with(new SetterTester(),
                        new GetterTester()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
                  .with(new EqualsAndHashCodeMatchRule())
@@ -78,7 +79,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		
 		 Validator validator = ValidatorBuilder.create()
                  .with(new GetterMustExistRule())
-                 .with(new GetterTester())
+                 .with(new GetterTester()).with(new SerializableTester())
                  .with(new EqualsAndHashCodeMatchRule()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
                  .build();
 		 validator.validate(pojoClassesRecursively);
@@ -103,7 +104,9 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		  public void run(PojoClass pojoClass) {
 			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 
-			    Affirm.affirmEquals("EqualsFailure", instance.toString(), instance.toString());
+			    Affirm.affirmTrue("EqualsFailureSameInstanceDontMatch", instance.equals(instance));
+			    			    
+			    Affirm.affirmFalse("EqualsFailureNullValue", instance.equals(null));
 		  }
 	}
 
