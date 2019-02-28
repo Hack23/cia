@@ -96,7 +96,7 @@ public class PersonContainerElement
     @JoinColumn(name = "PERSON_PERSON_CONTAINER_ELEM_0")
     public List<PersonElement> getPerson() {
         if (person == null) {
-            person = new ArrayList<PersonElement>();
+            person = new ArrayList<>();
         }
         return this.person;
     }

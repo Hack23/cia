@@ -96,7 +96,7 @@ public class BallotDocumentData
     @JoinColumn(name = "VOTE_DATA_LIST_BALLOT_DOCUME_0")
     public List<VoteDataDto> getVoteDataList() {
         if (voteDataList == null) {
-            voteDataList = new ArrayList<VoteDataDto>();
+            voteDataList = new ArrayList<>();
         }
         return this.voteDataList;
     }

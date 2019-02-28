@@ -116,7 +116,7 @@ public class IndicatorsElement
     @JoinColumn(name = "INDICATOR__INDICATORS_ELEMEN_0")
     public List<IndicatorElement> getIndicator() {
         if (indicator == null) {
-            indicator = new ArrayList<IndicatorElement>();
+            indicator = new ArrayList<>();
         }
         return this.indicator;
     }

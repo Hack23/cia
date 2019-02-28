@@ -96,7 +96,7 @@ public class DocumentReferenceContainer
     @JoinColumn(name = "DOCUMENT_REFERENCE_LIST_DOCU_0")
     public List<DocumentReferenceData> getDocumentReferenceList() {
         if (documentReferenceList == null) {
-            documentReferenceList = new ArrayList<DocumentReferenceData>();
+            documentReferenceList = new ArrayList<>();
         }
         return this.documentReferenceList;
     }

@@ -116,7 +116,7 @@ public class DataElement
     @JoinColumn(name = "DATA__DATA_ELEMENT_HJID")
     public List<WorldBankData> getData() {
         if (data == null) {
-            data = new ArrayList<WorldBankData>();
+            data = new ArrayList<>();
         }
         return this.data;
     }

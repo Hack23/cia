@@ -37,7 +37,7 @@ public class StaleElementUtils {
 		Object lastObject = null;
 		try {
 			final String[] arr = elem.toString().split("->");
-			final List<String> newStr = new ArrayList<String>();
+			final List<String> newStr = new ArrayList<>();
 			for (final String s : arr) {
 				final String newstr = s.trim().replaceAll("^\\[+", "").replaceAll("\\]+$", "");
 				final String[] parts = newstr.split(": ");

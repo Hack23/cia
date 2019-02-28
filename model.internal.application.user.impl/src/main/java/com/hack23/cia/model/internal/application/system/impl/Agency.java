@@ -218,7 +218,7 @@ public class Agency
     @JoinColumn(name = "PORTALS_AGENCY_HJID")
     public List<Portal> getPortals() {
         if (portals == null) {
-            portals = new ArrayList<Portal>();
+            portals = new ArrayList<>();
         }
         return this.portals;
     }

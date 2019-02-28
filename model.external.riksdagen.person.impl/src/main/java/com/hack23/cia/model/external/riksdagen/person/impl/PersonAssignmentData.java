@@ -96,7 +96,7 @@ public class PersonAssignmentData
     @JoinColumn(name = "ASSIGNMENT_LIST_PERSON_ASSIG_0")
     public List<AssignmentData> getAssignmentList() {
         if (assignmentList == null) {
-            assignmentList = new ArrayList<AssignmentData>();
+            assignmentList = new ArrayList<>();
         }
         return this.assignmentList;
     }

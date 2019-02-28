@@ -96,7 +96,7 @@ public class DocumentDetailContainer
     @JoinColumn(name = "DOCUMENT_DETAIL_LIST_DOCUMEN_0")
     public List<DocumentDetailData> getDocumentDetailList() {
         if (documentDetailList == null) {
-            documentDetailList = new ArrayList<DocumentDetailData>();
+            documentDetailList = new ArrayList<>();
         }
         return this.documentDetailList;
     }

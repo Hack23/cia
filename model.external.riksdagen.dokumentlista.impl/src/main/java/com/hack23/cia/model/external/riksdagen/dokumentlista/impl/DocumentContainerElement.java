@@ -144,7 +144,7 @@ public class DocumentContainerElement
     @JoinColumn(name = "DOKUMENT_DOCUMENT_CONTAINER__0")
     public List<DocumentElement> getDokument() {
         if (dokument == null) {
-            dokument = new ArrayList<DocumentElement>();
+            dokument = new ArrayList<>();
         }
         return this.dokument;
     }

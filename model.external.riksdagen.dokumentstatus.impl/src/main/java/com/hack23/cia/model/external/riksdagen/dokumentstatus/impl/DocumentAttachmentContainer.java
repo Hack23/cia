@@ -96,7 +96,7 @@ public class DocumentAttachmentContainer
     @JoinColumn(name = "DOCUMENT_ATTACHMENT_LIST_DOC_0")
     public List<DocumentAttachment> getDocumentAttachmentList() {
         if (documentAttachmentList == null) {
-            documentAttachmentList = new ArrayList<DocumentAttachment>();
+            documentAttachmentList = new ArrayList<>();
         }
         return this.documentAttachmentList;
     }

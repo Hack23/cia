@@ -363,7 +363,7 @@ public class UserAccount
     })
     public List<String> getAddress() {
         if (address == null) {
-            address = new ArrayList<String>();
+            address = new ArrayList<>();
         }
         return this.address;
     }

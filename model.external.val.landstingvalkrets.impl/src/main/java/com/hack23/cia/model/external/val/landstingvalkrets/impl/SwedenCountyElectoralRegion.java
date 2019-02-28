@@ -170,7 +170,7 @@ public class SwedenCountyElectoralRegion
     @JoinColumn(name = "LANDSTINGSVALKRETS_SWEDEN_CO_0")
     public List<SwedenCountyElectoralArea> getLandstingsvalkrets() {
         if (landstingsvalkrets == null) {
-            landstingsvalkrets = new ArrayList<SwedenCountyElectoralArea>();
+            landstingsvalkrets = new ArrayList<>();
         }
         return this.landstingsvalkrets;
     }

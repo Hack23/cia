@@ -497,7 +497,7 @@ public class ApplicationSession
     @JoinColumn(name = "EVENTS_APPLICATION_SESSION_H_0")
     public List<ApplicationActionEvent> getEvents() {
         if (events == null) {
-            events = new ArrayList<ApplicationActionEvent>();
+            events = new ArrayList<>();
         }
         return this.events;
     }

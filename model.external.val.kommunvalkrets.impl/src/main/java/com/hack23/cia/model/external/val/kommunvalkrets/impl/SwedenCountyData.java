@@ -145,7 +145,7 @@ public class SwedenCountyData
     @JoinColumn(name = "KOMMUN_SWEDEN_COUNTY_DATA_HJ_0")
     public List<SwedenMunicipalityData> getKommun() {
         if (kommun == null) {
-            kommun = new ArrayList<SwedenMunicipalityData>();
+            kommun = new ArrayList<>();
         }
         return this.kommun;
     }

@@ -75,7 +75,7 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<>();
 		final String ballotId = UUID.randomUUID().toString();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenReturn(value);
@@ -107,7 +107,7 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<>();
 		final String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenReturn(value);
@@ -132,7 +132,7 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
-		final ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		final ArrayList<BallotDocumentElement> value = new ArrayList<>();
 		final String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 		value.add(new BallotDocumentElement().withBallotId(ballotId));
 		when(riksdagenApi.getBallotList()).thenThrow(new DataFailureException(new RuntimeException()));

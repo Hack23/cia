@@ -96,7 +96,7 @@ public class PersonAssignmentElement
     @JoinColumn(name = "UPPDRAG_PERSON_ASSIGNMENT_EL_0")
     public List<AssignmentElement> getUppdrag() {
         if (uppdrag == null) {
-            uppdrag = new ArrayList<AssignmentElement>();
+            uppdrag = new ArrayList<>();
         }
         return this.uppdrag;
     }

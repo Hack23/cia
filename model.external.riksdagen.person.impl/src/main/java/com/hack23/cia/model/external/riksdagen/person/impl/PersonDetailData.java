@@ -96,7 +96,7 @@ public class PersonDetailData
     @JoinColumn(name = "DETAIL_LIST_PERSON_DETAIL_DA_0")
     public List<DetailData> getDetailList() {
         if (detailList == null) {
-            detailList = new ArrayList<DetailData>();
+            detailList = new ArrayList<>();
         }
         return this.detailList;
     }

@@ -116,7 +116,7 @@ public class CountriesElement
     @JoinColumn(name = "COUNTRY_COUNTRIES_ELEMENT_HJ_0")
     public List<CountryElement> getCountry() {
         if (country == null) {
-            country = new ArrayList<CountryElement>();
+            country = new ArrayList<>();
         }
         return this.country;
     }

@@ -171,7 +171,7 @@ public class SwedenElectionRegion
     @JoinColumn(name = "PARTIES_SWEDEN_ELECTION_REGI_0")
     public List<SwedenPoliticalParty> getParties() {
         if (parties == null) {
-            parties = new ArrayList<SwedenPoliticalParty>();
+            parties = new ArrayList<>();
         }
         return this.parties;
     }

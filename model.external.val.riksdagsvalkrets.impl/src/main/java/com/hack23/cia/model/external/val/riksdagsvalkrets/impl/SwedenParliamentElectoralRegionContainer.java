@@ -93,7 +93,7 @@ public class SwedenParliamentElectoralRegionContainer
     @JoinColumn(name = "PARLIAMENT_ELECTORAL_REGIONS_0")
     public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() {
         if (parliamentElectoralRegions == null) {
-            parliamentElectoralRegions = new ArrayList<SwedenParliamentElectoralRegion>();
+            parliamentElectoralRegions = new ArrayList<>();
         }
         return this.parliamentElectoralRegions;
     }

@@ -96,7 +96,7 @@ public class AgainstProposalContainer
     @JoinColumn(name = "AGAINST_PROPOSAL_LIST_AGAINS_0")
     public List<AgainstProposalData> getAgainstProposalList() {
         if (againstProposalList == null) {
-            againstProposalList = new ArrayList<AgainstProposalData>();
+            againstProposalList = new ArrayList<>();
         }
         return this.againstProposalList;
     }

@@ -93,7 +93,7 @@ public class SwedenElectionTypeContainerElement
     @JoinColumn(name = "ELECTION_TYPES_SWEDEN_ELECTI_0")
     public List<SwedenElectionType> getElectionTypes() {
         if (electionTypes == null) {
-            electionTypes = new ArrayList<SwedenElectionType>();
+            electionTypes = new ArrayList<>();
         }
         return this.electionTypes;
     }

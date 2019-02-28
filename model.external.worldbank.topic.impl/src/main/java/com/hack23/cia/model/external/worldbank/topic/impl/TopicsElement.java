@@ -116,7 +116,7 @@ public class TopicsElement
     @JoinColumn(name = "TOPIC_TOPICS_ELEMENT_HJID")
     public List<TopicElement> getTopic() {
         if (topic == null) {
-            topic = new ArrayList<TopicElement>();
+            topic = new ArrayList<>();
         }
         return this.topic;
     }

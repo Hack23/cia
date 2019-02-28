@@ -145,7 +145,7 @@ public class SwedenMunicipalityData
     @JoinColumn(name = "KOMMUNVALKRETS_SWEDEN_MUNICI_0")
     public List<SwedenMunicipalityElectionRegionData> getKommunvalkrets() {
         if (kommunvalkrets == null) {
-            kommunvalkrets = new ArrayList<SwedenMunicipalityElectionRegionData>();
+            kommunvalkrets = new ArrayList<>();
         }
         return this.kommunvalkrets;
     }

@@ -109,7 +109,7 @@ public class VoteListContainerElement
     @JoinColumn(name = "VOTERING_VOTE_LIST_CONTAINER_0")
     public List<BallotDocumentElement> getVotering() {
         if (votering == null) {
-            votering = new ArrayList<BallotDocumentElement>();
+            votering = new ArrayList<>();
         }
         return this.votering;
     }

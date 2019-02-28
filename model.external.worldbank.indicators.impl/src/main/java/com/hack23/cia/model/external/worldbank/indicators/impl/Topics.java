@@ -94,7 +94,7 @@ public class Topics
     @JoinColumn(name = "TOPIC_TOPICS_HJID")
     public List<Topic> getTopic() {
         if (topic == null) {
-            topic = new ArrayList<Topic>();
+            topic = new ArrayList<>();
         }
         return this.topic;
     }

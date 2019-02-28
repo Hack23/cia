@@ -274,7 +274,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	public void updateVoteDataDataIgnoreEmptySuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
-		riksdagenUpdateService.updateVoteDataData(new ArrayList<VoteData>());
+		riksdagenUpdateService.updateVoteDataData(new ArrayList<>());
 		verify(voteDataDAO, never()).persist(any(List.class));
 	}
 

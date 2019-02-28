@@ -93,7 +93,7 @@ public class SwedenCountyDataContainer
     @JoinColumn(name = "COUNTY_REGIONS_SWEDEN_COUNTY_0")
     public List<SwedenCountyData> getCountyRegions() {
         if (countyRegions == null) {
-            countyRegions = new ArrayList<SwedenCountyData>();
+            countyRegions = new ArrayList<>();
         }
         return this.countyRegions;
     }
