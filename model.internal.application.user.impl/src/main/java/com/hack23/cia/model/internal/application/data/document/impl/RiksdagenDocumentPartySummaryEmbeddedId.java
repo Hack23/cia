@@ -72,7 +72,7 @@ public class RiksdagenDocumentPartySummaryEmbeddedId
 	 */
 	private static final long serialVersionUID = 1L;
 	@XmlElement(name = "public_date", required = true, type = String.class)
-    @XmlJavaTypeAdapter(	)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date publicDate;
     @XmlElement(name = "party_short_code", required = true)

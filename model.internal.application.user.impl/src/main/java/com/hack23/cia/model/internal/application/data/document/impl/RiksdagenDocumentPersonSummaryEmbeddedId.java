@@ -181,7 +181,7 @@ public class RiksdagenDocumentPersonSummaryEmbeddedId
 
 	@Override
 	public final boolean equals(final Object obj) {
-		return Equa	lsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override
