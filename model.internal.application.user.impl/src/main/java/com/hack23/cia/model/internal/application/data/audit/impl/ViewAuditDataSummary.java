@@ -22,11 +22,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -65,7 +64,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "VIEW_AUDIT_DATA_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditDataSummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -160,48 +159,10 @@ public class ViewAuditDataSummary
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewAuditDataSummary that = ((ViewAuditDataSummary) object);
-        {
-            long lhsId;
-            lhsId = this.getId();
-            long rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        {
-            String lhsDataType;
-            lhsDataType = this.getDataType();
-            String rhsDataType;
-            rhsDataType = that.getDataType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "dataType", lhsDataType), LocatorUtils.property(thatLocator, "dataType", rhsDataType), lhsDataType, rhsDataType)) {
-                return false;
-            }
-        }
-        {
-            long lhsDataSize;
-            lhsDataSize = this.getDataSize();
-            long rhsDataSize;
-            rhsDataSize = that.getDataSize();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "dataSize", lhsDataSize), LocatorUtils.property(thatLocator, "dataSize", rhsDataSize), lhsDataSize, rhsDataSize)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

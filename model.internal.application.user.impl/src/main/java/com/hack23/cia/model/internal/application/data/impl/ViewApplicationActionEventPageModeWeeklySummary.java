@@ -25,11 +25,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -70,7 +69,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_application_action_event_page_modes_weekly_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewApplicationActionEventPageModeWeeklySummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -202,57 +201,10 @@ public class ViewApplicationActionEventPageModeWeeklySummary
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewApplicationActionEventPageModeWeeklySummary that = ((ViewApplicationActionEventPageModeWeeklySummary) object);
-        {
-            ApplicationActionEventPageModePeriodSummaryEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            ApplicationActionEventPageModePeriodSummaryEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            long lhsHits;
-            lhsHits = this.getHits();
-            long rhsHits;
-            rhsHits = that.getHits();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hits", lhsHits), LocatorUtils.property(thatLocator, "hits", rhsHits), lhsHits, rhsHits)) {
-                return false;
-            }
-        }
-        {
-            long lhsRank;
-            lhsRank = this.getRank();
-            long rhsRank;
-            rhsRank = that.getRank();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rank", lhsRank), LocatorUtils.property(thatLocator, "rank", rhsRank), lhsRank, rhsRank)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsRankPercentage;
-            lhsRankPercentage = this.getRankPercentage();
-            BigDecimal rhsRankPercentage;
-            rhsRankPercentage = that.getRankPercentage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rankPercentage", lhsRankPercentage), LocatorUtils.property(thatLocator, "rankPercentage", rhsRankPercentage), lhsRankPercentage, rhsRankPercentage)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

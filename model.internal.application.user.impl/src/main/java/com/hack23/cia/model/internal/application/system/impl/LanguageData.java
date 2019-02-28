@@ -31,11 +31,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
@@ -88,7 +87,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "LANGUAGE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -468,102 +467,10 @@ public class LanguageData
         this.hjid = value;
     }
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final LanguageData that = ((LanguageData) object);
-        {
-            Integer lhsModelObjectId;
-            lhsModelObjectId = this.getModelObjectId();
-            Integer rhsModelObjectId;
-            rhsModelObjectId = that.getModelObjectId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectId", lhsModelObjectId), LocatorUtils.property(thatLocator, "modelObjectId", rhsModelObjectId), lhsModelObjectId, rhsModelObjectId)) {
-                return false;
-            }
-        }
-        {
-            int lhsModelObjectVersion;
-            lhsModelObjectVersion = this.getModelObjectVersion();
-            int rhsModelObjectVersion;
-            rhsModelObjectVersion = that.getModelObjectVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectVersion", lhsModelObjectVersion), LocatorUtils.property(thatLocator, "modelObjectVersion", rhsModelObjectVersion), lhsModelObjectVersion, rhsModelObjectVersion)) {
-                return false;
-            }
-        }
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsLanguageName;
-            lhsLanguageName = this.getLanguageName();
-            String rhsLanguageName;
-            rhsLanguageName = that.getLanguageName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "languageName", lhsLanguageName), LocatorUtils.property(thatLocator, "languageName", rhsLanguageName), lhsLanguageName, rhsLanguageName)) {
-                return false;
-            }
-        }
-        {
-            String lhsLanguageCode;
-            lhsLanguageCode = this.getLanguageCode();
-            String rhsLanguageCode;
-            rhsLanguageCode = that.getLanguageCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "languageCode", lhsLanguageCode), LocatorUtils.property(thatLocator, "languageCode", rhsLanguageCode), lhsLanguageCode, rhsLanguageCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsTranslationStatus;
-            lhsTranslationStatus = this.getTranslationStatus();
-            String rhsTranslationStatus;
-            rhsTranslationStatus = that.getTranslationStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "translationStatus", lhsTranslationStatus), LocatorUtils.property(thatLocator, "translationStatus", rhsTranslationStatus), lhsTranslationStatus, rhsTranslationStatus)) {
-                return false;
-            }
-        }
-        {
-            Boolean lhsLanguageEnabled;
-            lhsLanguageEnabled = this.isLanguageEnabled();
-            Boolean rhsLanguageEnabled;
-            rhsLanguageEnabled = that.isLanguageEnabled();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "languageEnabled", lhsLanguageEnabled), LocatorUtils.property(thatLocator, "languageEnabled", rhsLanguageEnabled), lhsLanguageEnabled, rhsLanguageEnabled)) {
-                return false;
-            }
-        }
-        {
-            Boolean lhsAutoTranslationEnabled;
-            lhsAutoTranslationEnabled = this.isAutoTranslationEnabled();
-            Boolean rhsAutoTranslationEnabled;
-            rhsAutoTranslationEnabled = that.isAutoTranslationEnabled();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "autoTranslationEnabled", lhsAutoTranslationEnabled), LocatorUtils.property(thatLocator, "autoTranslationEnabled", rhsAutoTranslationEnabled), lhsAutoTranslationEnabled, rhsAutoTranslationEnabled)) {
-                return false;
-            }
-        }
-        {
-            Date lhsLastModifiedDate;
-            lhsLastModifiedDate = this.getLastModifiedDate();
-            Date rhsLastModifiedDate;
-            rhsLastModifiedDate = that.getLastModifiedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastModifiedDate", lhsLastModifiedDate), LocatorUtils.property(thatLocator, "lastModifiedDate", rhsLastModifiedDate), lhsLastModifiedDate, rhsLastModifiedDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

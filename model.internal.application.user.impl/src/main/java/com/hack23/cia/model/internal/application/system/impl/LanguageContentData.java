@@ -33,11 +33,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -93,7 +92,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "LANGUAGE_CONTENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageContentData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -490,120 +489,10 @@ public class LanguageContentData
         this.hjid = value;
     }
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final LanguageContentData that = ((LanguageContentData) object);
-        {
-            Integer lhsModelObjectId;
-            lhsModelObjectId = this.getModelObjectId();
-            Integer rhsModelObjectId;
-            rhsModelObjectId = that.getModelObjectId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectId", lhsModelObjectId), LocatorUtils.property(thatLocator, "modelObjectId", rhsModelObjectId), lhsModelObjectId, rhsModelObjectId)) {
-                return false;
-            }
-        }
-        {
-            int lhsModelObjectVersion;
-            lhsModelObjectVersion = this.getModelObjectVersion();
-            int rhsModelObjectVersion;
-            rhsModelObjectVersion = that.getModelObjectVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectVersion", lhsModelObjectVersion), LocatorUtils.property(thatLocator, "modelObjectVersion", rhsModelObjectVersion), lhsModelObjectVersion, rhsModelObjectVersion)) {
-                return false;
-            }
-        }
-        {
-            String lhsFromLanguage;
-            lhsFromLanguage = this.getFromLanguage();
-            String rhsFromLanguage;
-            rhsFromLanguage = that.getFromLanguage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "fromLanguage", lhsFromLanguage), LocatorUtils.property(thatLocator, "fromLanguage", rhsFromLanguage), lhsFromLanguage, rhsFromLanguage)) {
-                return false;
-            }
-        }
-        {
-            String lhsToLanguage;
-            lhsToLanguage = this.getToLanguage();
-            String rhsToLanguage;
-            rhsToLanguage = that.getToLanguage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "toLanguage", lhsToLanguage), LocatorUtils.property(thatLocator, "toLanguage", rhsToLanguage), lhsToLanguage, rhsToLanguage)) {
-                return false;
-            }
-        }
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsKeyGroup;
-            lhsKeyGroup = this.getKeyGroup();
-            String rhsKeyGroup;
-            rhsKeyGroup = that.getKeyGroup();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "keyGroup", lhsKeyGroup), LocatorUtils.property(thatLocator, "keyGroup", rhsKeyGroup), lhsKeyGroup, rhsKeyGroup)) {
-                return false;
-            }
-        }
-        {
-            String lhsLocationContext;
-            lhsLocationContext = this.getLocationContext();
-            String rhsLocationContext;
-            rhsLocationContext = that.getLocationContext();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "locationContext", lhsLocationContext), LocatorUtils.property(thatLocator, "locationContext", rhsLocationContext), lhsLocationContext, rhsLocationContext)) {
-                return false;
-            }
-        }
-        {
-            Date lhsLastModifiedDate;
-            lhsLastModifiedDate = this.getLastModifiedDate();
-            Date rhsLastModifiedDate;
-            rhsLastModifiedDate = that.getLastModifiedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastModifiedDate", lhsLastModifiedDate), LocatorUtils.property(thatLocator, "lastModifiedDate", rhsLastModifiedDate), lhsLastModifiedDate, rhsLastModifiedDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsRefKey;
-            lhsRefKey = this.getRefKey();
-            String rhsRefKey;
-            rhsRefKey = that.getRefKey();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "refKey", lhsRefKey), LocatorUtils.property(thatLocator, "refKey", rhsRefKey), lhsRefKey, rhsRefKey)) {
-                return false;
-            }
-        }
-        {
-            String lhsLanguageValue;
-            lhsLanguageValue = this.getLanguageValue();
-            String rhsLanguageValue;
-            rhsLanguageValue = that.getLanguageValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "languageValue", lhsLanguageValue), LocatorUtils.property(thatLocator, "languageValue", rhsLanguageValue), lhsLanguageValue, rhsLanguageValue)) {
-                return false;
-            }
-        }
-        {
-            LanguageContentType lhsLanguageContentType;
-            lhsLanguageContentType = this.getLanguageContentType();
-            LanguageContentType rhsLanguageContentType;
-            rhsLanguageContentType = that.getLanguageContentType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "languageContentType", lhsLanguageContentType), LocatorUtils.property(thatLocator, "languageContentType", rhsLanguageContentType), lhsLanguageContentType, rhsLanguageContentType)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

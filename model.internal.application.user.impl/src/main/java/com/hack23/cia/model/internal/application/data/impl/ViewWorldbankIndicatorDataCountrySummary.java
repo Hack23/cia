@@ -24,11 +24,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -79,7 +78,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_worldbank_indicator_data_country_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewWorldbankIndicatorDataCountrySummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -384,102 +383,10 @@ public class ViewWorldbankIndicatorDataCountrySummary
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewWorldbankIndicatorDataCountrySummary that = ((ViewWorldbankIndicatorDataCountrySummary) object);
-        {
-            WorldbankIndicatorDataCountrySummaryEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            WorldbankIndicatorDataCountrySummaryEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            String lhsIndicatorName;
-            lhsIndicatorName = this.getIndicatorName();
-            String rhsIndicatorName;
-            rhsIndicatorName = that.getIndicatorName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "indicatorName", lhsIndicatorName), LocatorUtils.property(thatLocator, "indicatorName", rhsIndicatorName), lhsIndicatorName, rhsIndicatorName)) {
-                return false;
-            }
-        }
-        {
-            String lhsSourceNote;
-            lhsSourceNote = this.getSourceNote();
-            String rhsSourceNote;
-            rhsSourceNote = that.getSourceNote();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "sourceNote", lhsSourceNote), LocatorUtils.property(thatLocator, "sourceNote", rhsSourceNote), lhsSourceNote, rhsSourceNote)) {
-                return false;
-            }
-        }
-        {
-            String lhsSourceValue;
-            lhsSourceValue = this.getSourceValue();
-            String rhsSourceValue;
-            rhsSourceValue = that.getSourceValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "sourceValue", lhsSourceValue), LocatorUtils.property(thatLocator, "sourceValue", rhsSourceValue), lhsSourceValue, rhsSourceValue)) {
-                return false;
-            }
-        }
-        {
-            String lhsSourceOrganization;
-            lhsSourceOrganization = this.getSourceOrganization();
-            String rhsSourceOrganization;
-            rhsSourceOrganization = that.getSourceOrganization();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "sourceOrganization", lhsSourceOrganization), LocatorUtils.property(thatLocator, "sourceOrganization", rhsSourceOrganization), lhsSourceOrganization, rhsSourceOrganization)) {
-                return false;
-            }
-        }
-        {
-            Integer lhsStartYear;
-            lhsStartYear = this.getStartYear();
-            Integer rhsStartYear;
-            rhsStartYear = that.getStartYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "startYear", lhsStartYear), LocatorUtils.property(thatLocator, "startYear", rhsStartYear), lhsStartYear, rhsStartYear)) {
-                return false;
-            }
-        }
-        {
-            Integer lhsEndYear;
-            lhsEndYear = this.getEndYear();
-            Integer rhsEndYear;
-            rhsEndYear = that.getEndYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "endYear", lhsEndYear), LocatorUtils.property(thatLocator, "endYear", rhsEndYear), lhsEndYear, rhsEndYear)) {
-                return false;
-            }
-        }
-        {
-            long lhsDataPoint;
-            lhsDataPoint = this.getDataPoint();
-            long rhsDataPoint;
-            rhsDataPoint = that.getDataPoint();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "dataPoint", lhsDataPoint), LocatorUtils.property(thatLocator, "dataPoint", rhsDataPoint), lhsDataPoint, rhsDataPoint)) {
-                return false;
-            }
-        }
-        {
-            String lhsTopics;
-            lhsTopics = this.getTopics();
-            String rhsTopics;
-            rhsTopics = that.getTopics();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "topics", lhsTopics), LocatorUtils.property(thatLocator, "topics", rhsTopics), lhsTopics, rhsTopics)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

@@ -24,11 +24,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -67,7 +66,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "View_Riksdagen_Org_Document_Daily_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenOrgDocumentDailySummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -174,48 +173,10 @@ public class ViewRiksdagenOrgDocumentDailySummary
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenOrgDocumentDailySummary that = ((ViewRiksdagenOrgDocumentDailySummary) object);
-        {
-            RiksdagenDocumentOrgSummaryEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            RiksdagenDocumentOrgSummaryEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentType;
-            lhsDocumentType = this.getDocumentType();
-            String rhsDocumentType;
-            rhsDocumentType = that.getDocumentType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentType", lhsDocumentType), LocatorUtils.property(thatLocator, "documentType", rhsDocumentType), lhsDocumentType, rhsDocumentType)) {
-                return false;
-            }
-        }
-        {
-            long lhsTotal;
-            lhsTotal = this.getTotal();
-            long rhsTotal;
-            rhsTotal = that.getTotal();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "total", lhsTotal), LocatorUtils.property(thatLocator, "total", rhsTotal), lhsTotal, rhsTotal)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

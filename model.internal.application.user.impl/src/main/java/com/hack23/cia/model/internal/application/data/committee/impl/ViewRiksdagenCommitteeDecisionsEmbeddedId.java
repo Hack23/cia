@@ -19,11 +19,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -60,7 +59,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class ViewRiksdagenCommitteeDecisionsEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -172,48 +171,10 @@ public class ViewRiksdagenCommitteeDecisionsEmbeddedId
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenCommitteeDecisionsEmbeddedId that = ((ViewRiksdagenCommitteeDecisionsEmbeddedId) object);
-        {
-            String lhsId;
-            lhsId = this.getId();
-            String rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsHangarId;
-            lhsHangarId = this.getHangarId();
-            BigDecimal rhsHangarId;
-            rhsHangarId = that.getHangarId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hangarId", lhsHangarId), LocatorUtils.property(thatLocator, "hangarId", rhsHangarId), lhsHangarId, rhsHangarId)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsIssueNummer;
-            lhsIssueNummer = this.getIssueNummer();
-            BigDecimal rhsIssueNummer;
-            rhsIssueNummer = that.getIssueNummer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "issueNummer", lhsIssueNummer), LocatorUtils.property(thatLocator, "issueNummer", rhsIssueNummer), lhsIssueNummer, rhsIssueNummer)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

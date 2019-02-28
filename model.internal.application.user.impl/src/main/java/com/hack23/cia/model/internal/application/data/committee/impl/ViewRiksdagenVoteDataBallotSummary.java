@@ -30,11 +30,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -104,7 +103,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "View_Riksdagen_Vote_Data_Ballot_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenVoteDataBallotSummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -661,184 +660,10 @@ public class ViewRiksdagenVoteDataBallotSummary
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenVoteDataBallotSummary that = ((ViewRiksdagenVoteDataBallotSummary) object);
-        {
-            RiksdagenVoteDataBallotEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            RiksdagenVoteDataBallotEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            Date lhsVoteDate;
-            lhsVoteDate = this.getVoteDate();
-            Date rhsVoteDate;
-            rhsVoteDate = that.getVoteDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "voteDate", lhsVoteDate), LocatorUtils.property(thatLocator, "voteDate", rhsVoteDate), lhsVoteDate, rhsVoteDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsRm;
-            lhsRm = this.getRm();
-            String rhsRm;
-            rhsRm = that.getRm();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rm", lhsRm), LocatorUtils.property(thatLocator, "rm", rhsRm), lhsRm, rhsRm)) {
-                return false;
-            }
-        }
-        {
-            String lhsBallotType;
-            lhsBallotType = this.getBallotType();
-            String rhsBallotType;
-            rhsBallotType = that.getBallotType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ballotType", lhsBallotType), LocatorUtils.property(thatLocator, "ballotType", rhsBallotType), lhsBallotType, rhsBallotType)) {
-                return false;
-            }
-        }
-        {
-            String lhsLabel;
-            lhsLabel = this.getLabel();
-            String rhsLabel;
-            rhsLabel = that.getLabel();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "label", lhsLabel), LocatorUtils.property(thatLocator, "label", rhsLabel), lhsLabel, rhsLabel)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsAvgBornYear;
-            lhsAvgBornYear = this.getAvgBornYear();
-            BigDecimal rhsAvgBornYear;
-            rhsAvgBornYear = that.getAvgBornYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "avgBornYear", lhsAvgBornYear), LocatorUtils.property(thatLocator, "avgBornYear", rhsAvgBornYear), lhsAvgBornYear, rhsAvgBornYear)) {
-                return false;
-            }
-        }
-        {
-            long lhsTotalVotes;
-            lhsTotalVotes = this.getTotalVotes();
-            long rhsTotalVotes;
-            rhsTotalVotes = that.getTotalVotes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalVotes", lhsTotalVotes), LocatorUtils.property(thatLocator, "totalVotes", rhsTotalVotes), lhsTotalVotes, rhsTotalVotes)) {
-                return false;
-            }
-        }
-        {
-            long lhsYesVotes;
-            lhsYesVotes = this.getYesVotes();
-            long rhsYesVotes;
-            rhsYesVotes = that.getYesVotes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "yesVotes", lhsYesVotes), LocatorUtils.property(thatLocator, "yesVotes", rhsYesVotes), lhsYesVotes, rhsYesVotes)) {
-                return false;
-            }
-        }
-        {
-            long lhsNoVotes;
-            lhsNoVotes = this.getNoVotes();
-            long rhsNoVotes;
-            rhsNoVotes = that.getNoVotes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "noVotes", lhsNoVotes), LocatorUtils.property(thatLocator, "noVotes", rhsNoVotes), lhsNoVotes, rhsNoVotes)) {
-                return false;
-            }
-        }
-        {
-            long lhsAbstainVotes;
-            lhsAbstainVotes = this.getAbstainVotes();
-            long rhsAbstainVotes;
-            rhsAbstainVotes = that.getAbstainVotes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "abstainVotes", lhsAbstainVotes), LocatorUtils.property(thatLocator, "abstainVotes", rhsAbstainVotes), lhsAbstainVotes, rhsAbstainVotes)) {
-                return false;
-            }
-        }
-        {
-            long lhsAbsentVotes;
-            lhsAbsentVotes = this.getAbsentVotes();
-            long rhsAbsentVotes;
-            rhsAbsentVotes = that.getAbsentVotes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "absentVotes", lhsAbsentVotes), LocatorUtils.property(thatLocator, "absentVotes", rhsAbsentVotes), lhsAbsentVotes, rhsAbsentVotes)) {
-                return false;
-            }
-        }
-        {
-            boolean lhsApproved;
-            lhsApproved = this.isApproved();
-            boolean rhsApproved;
-            rhsApproved = that.isApproved();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "approved", lhsApproved), LocatorUtils.property(thatLocator, "approved", rhsApproved), lhsApproved, rhsApproved)) {
-                return false;
-            }
-        }
-        {
-            boolean lhsNoWinner;
-            lhsNoWinner = this.isNoWinner();
-            boolean rhsNoWinner;
-            rhsNoWinner = that.isNoWinner();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "noWinner", lhsNoWinner), LocatorUtils.property(thatLocator, "noWinner", rhsNoWinner), lhsNoWinner, rhsNoWinner)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsPercentageYes;
-            lhsPercentageYes = this.getPercentageYes();
-            BigDecimal rhsPercentageYes;
-            rhsPercentageYes = that.getPercentageYes();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "percentageYes", lhsPercentageYes), LocatorUtils.property(thatLocator, "percentageYes", rhsPercentageYes), lhsPercentageYes, rhsPercentageYes)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsPercentageNo;
-            lhsPercentageNo = this.getPercentageNo();
-            BigDecimal rhsPercentageNo;
-            rhsPercentageNo = that.getPercentageNo();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "percentageNo", lhsPercentageNo), LocatorUtils.property(thatLocator, "percentageNo", rhsPercentageNo), lhsPercentageNo, rhsPercentageNo)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsPercentageAbsent;
-            lhsPercentageAbsent = this.getPercentageAbsent();
-            BigDecimal rhsPercentageAbsent;
-            rhsPercentageAbsent = that.getPercentageAbsent();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "percentageAbsent", lhsPercentageAbsent), LocatorUtils.property(thatLocator, "percentageAbsent", rhsPercentageAbsent), lhsPercentageAbsent, rhsPercentageAbsent)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsPercentageAbstain;
-            lhsPercentageAbstain = this.getPercentageAbstain();
-            BigDecimal rhsPercentageAbstain;
-            rhsPercentageAbstain = that.getPercentageAbstain();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "percentageAbstain", lhsPercentageAbstain), LocatorUtils.property(thatLocator, "percentageAbstain", rhsPercentageAbstain), lhsPercentageAbstain, rhsPercentageAbstain)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsPercentageMale;
-            lhsPercentageMale = this.getPercentageMale();
-            BigDecimal rhsPercentageMale;
-            rhsPercentageMale = that.getPercentageMale();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "percentageMale", lhsPercentageMale), LocatorUtils.property(thatLocator, "percentageMale", rhsPercentageMale), lhsPercentageMale, rhsPercentageMale)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 
 	@Override

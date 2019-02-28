@@ -18,11 +18,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -59,7 +58,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -171,48 +170,11 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId that = ((ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId) object);
-        {
-            String lhsDate;
-            lhsDate = this.getDate();
-            String rhsDate;
-            rhsDate = that.getDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "date", lhsDate), LocatorUtils.property(thatLocator, "date", rhsDate), lhsDate, rhsDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsParty;
-            lhsParty = this.getParty();
-            String rhsParty;
-            rhsParty = that.getParty();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "party", lhsParty), LocatorUtils.property(thatLocator, "party", rhsParty), lhsParty, rhsParty)) {
-                return false;
-            }
-        }
-        {
-            String lhsOtherParty;
-            lhsOtherParty = this.getOtherParty();
-            String rhsOtherParty;
-            rhsOtherParty = that.getOtherParty();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "otherParty", lhsOtherParty), LocatorUtils.property(thatLocator, "otherParty", rhsOtherParty), lhsOtherParty, rhsOtherParty)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

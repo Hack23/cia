@@ -23,11 +23,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -65,7 +64,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 })
 @Embeddable
 public class ApplicationActionEventPageElementPeriodSummaryEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -180,48 +179,10 @@ public class ApplicationActionEventPageElementPeriodSummaryEmbeddedId
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ApplicationActionEventPageElementPeriodSummaryEmbeddedId that = ((ApplicationActionEventPageElementPeriodSummaryEmbeddedId) object);
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsPage;
-            lhsPage = this.getPage();
-            String rhsPage;
-            rhsPage = that.getPage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "page", lhsPage), LocatorUtils.property(thatLocator, "page", rhsPage), lhsPage, rhsPage)) {
-                return false;
-            }
-        }
-        {
-            String lhsElementId;
-            lhsElementId = this.getElementId();
-            String rhsElementId;
-            rhsElementId = that.getElementId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "elementId", lhsElementId), LocatorUtils.property(thatLocator, "elementId", rhsElementId), lhsElementId, rhsElementId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

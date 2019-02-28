@@ -23,11 +23,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -65,7 +64,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 })
 @Embeddable
 public class RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -181,48 +180,10 @@ public class RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId
 	}
 
 
-     public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId that = ((RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId) object);
-        {
-            Date lhsDecisionDate;
-            lhsDecisionDate = this.getDecisionDate();
-            Date rhsDecisionDate;
-            rhsDecisionDate = that.getDecisionDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "decisionDate", lhsDecisionDate), LocatorUtils.property(thatLocator, "decisionDate", rhsDecisionDate), lhsDecisionDate, rhsDecisionDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsDecisionType;
-            lhsDecisionType = this.getDecisionType();
-            String rhsDecisionType;
-            rhsDecisionType = that.getDecisionType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "decisionType", lhsDecisionType), LocatorUtils.property(thatLocator, "decisionType", rhsDecisionType), lhsDecisionType, rhsDecisionType)) {
-                return false;
-            }
-        }
-        {
-            String lhsOrg;
-            lhsOrg = this.getOrg();
-            String rhsOrg;
-            rhsOrg = that.getOrg();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "org", lhsOrg), LocatorUtils.property(thatLocator, "org", rhsOrg), lhsOrg, rhsOrg)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

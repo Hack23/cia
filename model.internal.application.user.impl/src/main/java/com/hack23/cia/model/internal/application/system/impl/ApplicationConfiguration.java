@@ -33,11 +33,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -95,7 +94,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "application_configuration")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationConfiguration
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -523,129 +522,10 @@ public class ApplicationConfiguration
         this.hjid = value;
     }
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ApplicationConfiguration that = ((ApplicationConfiguration) object);
-        {
-            Integer lhsModelObjectId;
-            lhsModelObjectId = this.getModelObjectId();
-            Integer rhsModelObjectId;
-            rhsModelObjectId = that.getModelObjectId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectId", lhsModelObjectId), LocatorUtils.property(thatLocator, "modelObjectId", rhsModelObjectId), lhsModelObjectId, rhsModelObjectId)) {
-                return false;
-            }
-        }
-        {
-            int lhsModelObjectVersion;
-            lhsModelObjectVersion = this.getModelObjectVersion();
-            int rhsModelObjectVersion;
-            rhsModelObjectVersion = that.getModelObjectVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectVersion", lhsModelObjectVersion), LocatorUtils.property(thatLocator, "modelObjectVersion", rhsModelObjectVersion), lhsModelObjectVersion, rhsModelObjectVersion)) {
-                return false;
-            }
-        }
-        {
-            String lhsConfigTitle;
-            lhsConfigTitle = this.getConfigTitle();
-            String rhsConfigTitle;
-            rhsConfigTitle = that.getConfigTitle();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "configTitle", lhsConfigTitle), LocatorUtils.property(thatLocator, "configTitle", rhsConfigTitle), lhsConfigTitle, rhsConfigTitle)) {
-                return false;
-            }
-        }
-        {
-            String lhsConfigDescription;
-            lhsConfigDescription = this.getConfigDescription();
-            String rhsConfigDescription;
-            rhsConfigDescription = that.getConfigDescription();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "configDescription", lhsConfigDescription), LocatorUtils.property(thatLocator, "configDescription", rhsConfigDescription), lhsConfigDescription, rhsConfigDescription)) {
-                return false;
-            }
-        }
-        {
-            ConfigurationGroup lhsConfigurationGroup;
-            lhsConfigurationGroup = this.getConfigurationGroup();
-            ConfigurationGroup rhsConfigurationGroup;
-            rhsConfigurationGroup = that.getConfigurationGroup();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "configurationGroup", lhsConfigurationGroup), LocatorUtils.property(thatLocator, "configurationGroup", rhsConfigurationGroup), lhsConfigurationGroup, rhsConfigurationGroup)) {
-                return false;
-            }
-        }
-        {
-            String lhsComponent;
-            lhsComponent = this.getComponent();
-            String rhsComponent;
-            rhsComponent = that.getComponent();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "component", lhsComponent), LocatorUtils.property(thatLocator, "component", rhsComponent), lhsComponent, rhsComponent)) {
-                return false;
-            }
-        }
-        {
-            String lhsComponentTitle;
-            lhsComponentTitle = this.getComponentTitle();
-            String rhsComponentTitle;
-            rhsComponentTitle = that.getComponentTitle();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "componentTitle", lhsComponentTitle), LocatorUtils.property(thatLocator, "componentTitle", rhsComponentTitle), lhsComponentTitle, rhsComponentTitle)) {
-                return false;
-            }
-        }
-        {
-            String lhsComponentDescription;
-            lhsComponentDescription = this.getComponentDescription();
-            String rhsComponentDescription;
-            rhsComponentDescription = that.getComponentDescription();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "componentDescription", lhsComponentDescription), LocatorUtils.property(thatLocator, "componentDescription", rhsComponentDescription), lhsComponentDescription, rhsComponentDescription)) {
-                return false;
-            }
-        }
-        {
-            String lhsPropertyId;
-            lhsPropertyId = this.getPropertyId();
-            String rhsPropertyId;
-            rhsPropertyId = that.getPropertyId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "propertyId", lhsPropertyId), LocatorUtils.property(thatLocator, "propertyId", rhsPropertyId), lhsPropertyId, rhsPropertyId)) {
-                return false;
-            }
-        }
-        {
-            String lhsPropertyValue;
-            lhsPropertyValue = this.getPropertyValue();
-            String rhsPropertyValue;
-            rhsPropertyValue = that.getPropertyValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "propertyValue", lhsPropertyValue), LocatorUtils.property(thatLocator, "propertyValue", rhsPropertyValue), lhsPropertyValue, rhsPropertyValue)) {
-                return false;
-            }
-        }
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            Date lhsUpdatedDate;
-            lhsUpdatedDate = this.getUpdatedDate();
-            Date rhsUpdatedDate;
-            rhsUpdatedDate = that.getUpdatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "updatedDate", lhsUpdatedDate), LocatorUtils.property(thatLocator, "updatedDate", rhsUpdatedDate), lhsUpdatedDate, rhsUpdatedDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

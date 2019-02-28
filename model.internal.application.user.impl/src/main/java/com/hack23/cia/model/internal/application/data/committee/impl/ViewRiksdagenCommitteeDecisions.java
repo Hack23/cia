@@ -30,11 +30,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -98,7 +97,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "View_Riksdagen_Committee_Decisions")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommitteeDecisions
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -617,156 +616,10 @@ public class ViewRiksdagenCommitteeDecisions
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenCommitteeDecisions that = ((ViewRiksdagenCommitteeDecisions) object);
-        {
-            ViewRiksdagenCommitteeDecisionsEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            ViewRiksdagenCommitteeDecisionsEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            String lhsTitle;
-            lhsTitle = this.getTitle();
-            String rhsTitle;
-            rhsTitle = that.getTitle();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "title", lhsTitle), LocatorUtils.property(thatLocator, "title", rhsTitle), lhsTitle, rhsTitle)) {
-                return false;
-            }
-        }
-        {
-            String lhsHeader;
-            lhsHeader = this.getHeader();
-            String rhsHeader;
-            rhsHeader = that.getHeader();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "header", lhsHeader), LocatorUtils.property(thatLocator, "header", rhsHeader), lhsHeader, rhsHeader)) {
-                return false;
-            }
-        }
-        {
-            String lhsCommitteeReport;
-            lhsCommitteeReport = this.getCommitteeReport();
-            String rhsCommitteeReport;
-            rhsCommitteeReport = that.getCommitteeReport();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "committeeReport", lhsCommitteeReport), LocatorUtils.property(thatLocator, "committeeReport", rhsCommitteeReport), lhsCommitteeReport, rhsCommitteeReport)) {
-                return false;
-            }
-        }
-        {
-            String lhsRm;
-            lhsRm = this.getRm();
-            String rhsRm;
-            rhsRm = that.getRm();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rm", lhsRm), LocatorUtils.property(thatLocator, "rm", rhsRm), lhsRm, rhsRm)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsEndNumber;
-            lhsEndNumber = this.getEndNumber();
-            BigDecimal rhsEndNumber;
-            rhsEndNumber = that.getEndNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "endNumber", lhsEndNumber), LocatorUtils.property(thatLocator, "endNumber", rhsEndNumber), lhsEndNumber, rhsEndNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsOrg;
-            lhsOrg = this.getOrg();
-            String rhsOrg;
-            rhsOrg = that.getOrg();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "org", lhsOrg), LocatorUtils.property(thatLocator, "org", rhsOrg), lhsOrg, rhsOrg)) {
-                return false;
-            }
-        }
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            Date lhsPublicDate;
-            lhsPublicDate = this.getPublicDate();
-            Date rhsPublicDate;
-            rhsPublicDate = that.getPublicDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "publicDate", lhsPublicDate), LocatorUtils.property(thatLocator, "publicDate", rhsPublicDate), lhsPublicDate, rhsPublicDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsCommitteeProposalUrlXml;
-            lhsCommitteeProposalUrlXml = this.getCommitteeProposalUrlXml();
-            String rhsCommitteeProposalUrlXml;
-            rhsCommitteeProposalUrlXml = that.getCommitteeProposalUrlXml();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "committeeProposalUrlXml", lhsCommitteeProposalUrlXml), LocatorUtils.property(thatLocator, "committeeProposalUrlXml", rhsCommitteeProposalUrlXml), lhsCommitteeProposalUrlXml, rhsCommitteeProposalUrlXml)) {
-                return false;
-            }
-        }
-        {
-            String lhsDecisionType;
-            lhsDecisionType = this.getDecisionType();
-            String rhsDecisionType;
-            rhsDecisionType = that.getDecisionType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "decisionType", lhsDecisionType), LocatorUtils.property(thatLocator, "decisionType", rhsDecisionType), lhsDecisionType, rhsDecisionType)) {
-                return false;
-            }
-        }
-        {
-            String lhsBallotId;
-            lhsBallotId = this.getBallotId();
-            String rhsBallotId;
-            rhsBallotId = that.getBallotId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ballotId", lhsBallotId), LocatorUtils.property(thatLocator, "ballotId", rhsBallotId), lhsBallotId, rhsBallotId)) {
-                return false;
-            }
-        }
-        {
-            String lhsAgainstProposalParties;
-            lhsAgainstProposalParties = this.getAgainstProposalParties();
-            String rhsAgainstProposalParties;
-            rhsAgainstProposalParties = that.getAgainstProposalParties();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "againstProposalParties", lhsAgainstProposalParties), LocatorUtils.property(thatLocator, "againstProposalParties", rhsAgainstProposalParties), lhsAgainstProposalParties, rhsAgainstProposalParties)) {
-                return false;
-            }
-        }
-        {
-            BigDecimal lhsAgainstProposalNumber;
-            lhsAgainstProposalNumber = this.getAgainstProposalNumber();
-            BigDecimal rhsAgainstProposalNumber;
-            rhsAgainstProposalNumber = that.getAgainstProposalNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "againstProposalNumber", lhsAgainstProposalNumber), LocatorUtils.property(thatLocator, "againstProposalNumber", rhsAgainstProposalNumber), lhsAgainstProposalNumber, rhsAgainstProposalNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsWinner;
-            lhsWinner = this.getWinner();
-            String rhsWinner;
-            rhsWinner = that.getWinner();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "winner", lhsWinner), LocatorUtils.property(thatLocator, "winner", rhsWinner), lhsWinner, rhsWinner)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

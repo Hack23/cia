@@ -27,11 +27,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -87,7 +86,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_COMMITTEE_ROLE_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenCommitteeRoleMember
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -443,121 +442,10 @@ public class ViewRiksdagenCommitteeRoleMember
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenCommitteeRoleMember that = ((ViewRiksdagenCommitteeRoleMember) object);
-        {
-            long lhsRoleId;
-            lhsRoleId = this.getRoleId();
-            long rhsRoleId;
-            rhsRoleId = that.getRoleId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "roleId", lhsRoleId), LocatorUtils.property(thatLocator, "roleId", rhsRoleId), lhsRoleId, rhsRoleId)) {
-                return false;
-            }
-        }
-        {
-            String lhsDetail;
-            lhsDetail = this.getDetail();
-            String rhsDetail;
-            rhsDetail = that.getDetail();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "detail", lhsDetail), LocatorUtils.property(thatLocator, "detail", rhsDetail), lhsDetail, rhsDetail)) {
-                return false;
-            }
-        }
-        {
-            String lhsRoleCode;
-            lhsRoleCode = this.getRoleCode();
-            String rhsRoleCode;
-            rhsRoleCode = that.getRoleCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "roleCode", lhsRoleCode), LocatorUtils.property(thatLocator, "roleCode", rhsRoleCode), lhsRoleCode, rhsRoleCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsFirstName;
-            lhsFirstName = this.getFirstName();
-            String rhsFirstName;
-            rhsFirstName = that.getFirstName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstName", lhsFirstName), LocatorUtils.property(thatLocator, "firstName", rhsFirstName), lhsFirstName, rhsFirstName)) {
-                return false;
-            }
-        }
-        {
-            String lhsLastName;
-            lhsLastName = this.getLastName();
-            String rhsLastName;
-            rhsLastName = that.getLastName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastName", lhsLastName), LocatorUtils.property(thatLocator, "lastName", rhsLastName), lhsLastName, rhsLastName)) {
-                return false;
-            }
-        }
-        {
-            Date lhsFromDate;
-            lhsFromDate = this.getFromDate();
-            Date rhsFromDate;
-            rhsFromDate = that.getFromDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "fromDate", lhsFromDate), LocatorUtils.property(thatLocator, "fromDate", rhsFromDate), lhsFromDate, rhsFromDate)) {
-                return false;
-            }
-        }
-        {
-            Date lhsToDate;
-            lhsToDate = this.getToDate();
-            Date rhsToDate;
-            rhsToDate = that.getToDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "toDate", lhsToDate), LocatorUtils.property(thatLocator, "toDate", rhsToDate), lhsToDate, rhsToDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsPersonId;
-            lhsPersonId = this.getPersonId();
-            String rhsPersonId;
-            rhsPersonId = that.getPersonId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "personId", lhsPersonId), LocatorUtils.property(thatLocator, "personId", rhsPersonId), lhsPersonId, rhsPersonId)) {
-                return false;
-            }
-        }
-        {
-            String lhsParty;
-            lhsParty = this.getParty();
-            String rhsParty;
-            rhsParty = that.getParty();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "party", lhsParty), LocatorUtils.property(thatLocator, "party", rhsParty), lhsParty, rhsParty)) {
-                return false;
-            }
-        }
-        {
-            int lhsTotalDaysServed;
-            lhsTotalDaysServed = this.getTotalDaysServed();
-            int rhsTotalDaysServed;
-            rhsTotalDaysServed = that.getTotalDaysServed();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalDaysServed", lhsTotalDaysServed), LocatorUtils.property(thatLocator, "totalDaysServed", rhsTotalDaysServed), lhsTotalDaysServed, rhsTotalDaysServed)) {
-                return false;
-            }
-        }
-        {
-            boolean lhsActive;
-            lhsActive = this.isActive();
-            boolean rhsActive;
-            rhsActive = that.isActive();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "active", lhsActive), LocatorUtils.property(thatLocator, "active", rhsActive), lhsActive, rhsActive)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

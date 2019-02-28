@@ -18,11 +18,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -57,7 +56,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 })
 @Embeddable
 public class ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -128,39 +127,10 @@ public class ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId that = ((ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId) object);
-        {
-            int lhsYear;
-            lhsYear = this.getYear();
-            int rhsYear;
-            rhsYear = that.getYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "year", lhsYear), LocatorUtils.property(thatLocator, "year", rhsYear), lhsYear, rhsYear)) {
-                return false;
-            }
-        }
-        {
-            String lhsGroupAgainst;
-            lhsGroupAgainst = this.getGroupAgainst();
-            String rhsGroupAgainst;
-            rhsGroupAgainst = that.getGroupAgainst();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "groupAgainst", lhsGroupAgainst), LocatorUtils.property(thatLocator, "groupAgainst", rhsGroupAgainst), lhsGroupAgainst, rhsGroupAgainst)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

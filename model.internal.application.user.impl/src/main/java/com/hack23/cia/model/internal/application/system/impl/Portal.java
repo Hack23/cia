@@ -29,11 +29,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -80,8 +79,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Entity(name = "Portal")
 @Table(name = "PORTAL")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Portal
-    implements ModelObject, Equals
+public class Portal implements ModelObject
 {
 
     /**
@@ -309,75 +307,10 @@ public class Portal
         this.hjid = value;
     }
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final Portal that = ((Portal) object);
-        {
-            Integer lhsModelObjectId;
-            lhsModelObjectId = this.getModelObjectId();
-            Integer rhsModelObjectId;
-            rhsModelObjectId = that.getModelObjectId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectId", lhsModelObjectId), LocatorUtils.property(thatLocator, "modelObjectId", rhsModelObjectId), lhsModelObjectId, rhsModelObjectId)) {
-                return false;
-            }
-        }
-        {
-            int lhsModelObjectVersion;
-            lhsModelObjectVersion = this.getModelObjectVersion();
-            int rhsModelObjectVersion;
-            rhsModelObjectVersion = that.getModelObjectVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectVersion", lhsModelObjectVersion), LocatorUtils.property(thatLocator, "modelObjectVersion", rhsModelObjectVersion), lhsModelObjectVersion, rhsModelObjectVersion)) {
-                return false;
-            }
-        }
-        {
-            String lhsPortalName;
-            lhsPortalName = this.getPortalName();
-            String rhsPortalName;
-            rhsPortalName = that.getPortalName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "portalName", lhsPortalName), LocatorUtils.property(thatLocator, "portalName", rhsPortalName), lhsPortalName, rhsPortalName)) {
-                return false;
-            }
-        }
-        {
-            PortalType lhsPortalType;
-            lhsPortalType = this.getPortalType();
-            PortalType rhsPortalType;
-            rhsPortalType = that.getPortalType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "portalType", lhsPortalType), LocatorUtils.property(thatLocator, "portalType", rhsPortalType), lhsPortalType, rhsPortalType)) {
-                return false;
-            }
-        }
-        {
-            String lhsDescription;
-            lhsDescription = this.getDescription();
-            String rhsDescription;
-            rhsDescription = that.getDescription();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "description", lhsDescription), LocatorUtils.property(thatLocator, "description", rhsDescription), lhsDescription, rhsDescription)) {
-                return false;
-            }
-        }
-        {
-            String lhsGoogleMapApiKey;
-            lhsGoogleMapApiKey = this.getGoogleMapApiKey();
-            String rhsGoogleMapApiKey;
-            rhsGoogleMapApiKey = that.getGoogleMapApiKey();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "googleMapApiKey", lhsGoogleMapApiKey), LocatorUtils.property(thatLocator, "googleMapApiKey", rhsGoogleMapApiKey), lhsGoogleMapApiKey, rhsGoogleMapApiKey)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 
 	@Override

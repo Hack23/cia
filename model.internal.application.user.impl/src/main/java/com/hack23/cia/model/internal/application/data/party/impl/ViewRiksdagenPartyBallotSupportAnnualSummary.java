@@ -24,11 +24,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -71,7 +70,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "view_riksdagen_party_ballot_support_annual_summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyBallotSupportAnnualSummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -222,66 +221,10 @@ public class ViewRiksdagenPartyBallotSupportAnnualSummary
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenPartyBallotSupportAnnualSummary that = ((ViewRiksdagenPartyBallotSupportAnnualSummary) object);
-        {
-            ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId lhsEmbeddedId;
-            lhsEmbeddedId = this.getEmbeddedId();
-            ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId rhsEmbeddedId;
-            rhsEmbeddedId = that.getEmbeddedId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "embeddedId", lhsEmbeddedId), LocatorUtils.property(thatLocator, "embeddedId", rhsEmbeddedId), lhsEmbeddedId, rhsEmbeddedId)) {
-                return false;
-            }
-        }
-        {
-            long lhsDisagreCount;
-            lhsDisagreCount = this.getDisagreCount();
-            long rhsDisagreCount;
-            rhsDisagreCount = that.getDisagreCount();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "disagreCount", lhsDisagreCount), LocatorUtils.property(thatLocator, "disagreCount", rhsDisagreCount), lhsDisagreCount, rhsDisagreCount)) {
-                return false;
-            }
-        }
-        {
-            long lhsAgreeCount;
-            lhsAgreeCount = this.getAgreeCount();
-            long rhsAgreeCount;
-            rhsAgreeCount = that.getAgreeCount();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "agreeCount", lhsAgreeCount), LocatorUtils.property(thatLocator, "agreeCount", rhsAgreeCount), lhsAgreeCount, rhsAgreeCount)) {
-                return false;
-            }
-        }
-        {
-            long lhsDisagreePercentage;
-            lhsDisagreePercentage = this.getDisagreePercentage();
-            long rhsDisagreePercentage;
-            rhsDisagreePercentage = that.getDisagreePercentage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "disagreePercentage", lhsDisagreePercentage), LocatorUtils.property(thatLocator, "disagreePercentage", rhsDisagreePercentage), lhsDisagreePercentage, rhsDisagreePercentage)) {
-                return false;
-            }
-        }
-        {
-            long lhsTotalBallots;
-            lhsTotalBallots = this.getTotalBallots();
-            long rhsTotalBallots;
-            rhsTotalBallots = that.getTotalBallots();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalBallots", lhsTotalBallots), LocatorUtils.property(thatLocator, "totalBallots", rhsTotalBallots), lhsTotalBallots, rhsTotalBallots)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

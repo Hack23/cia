@@ -27,11 +27,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -119,7 +118,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_PARTY_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPartyMember
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -1009,264 +1008,10 @@ public class ViewRiksdagenPartyMember
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenPartyMember that = ((ViewRiksdagenPartyMember) object);
-        {
-            String lhsId;
-            lhsId = this.getId();
-            String rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        {
-            long lhsHjid;
-            lhsHjid = this.getHjid();
-            long rhsHjid;
-            rhsHjid = that.getHjid();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hjid", lhsHjid), LocatorUtils.property(thatLocator, "hjid", rhsHjid), lhsHjid, rhsHjid)) {
-                return false;
-            }
-        }
-        {
-            String lhsAddress;
-            lhsAddress = this.getAddress();
-            String rhsAddress;
-            rhsAddress = that.getAddress();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "address", lhsAddress), LocatorUtils.property(thatLocator, "address", rhsAddress), lhsAddress, rhsAddress)) {
-                return false;
-            }
-        }
-        {
-            String lhsCity;
-            lhsCity = this.getCity();
-            String rhsCity;
-            rhsCity = that.getCity();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "city", lhsCity), LocatorUtils.property(thatLocator, "city", rhsCity), lhsCity, rhsCity)) {
-                return false;
-            }
-        }
-        {
-            String lhsCoAddress;
-            lhsCoAddress = this.getCoAddress();
-            String rhsCoAddress;
-            rhsCoAddress = that.getCoAddress();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "coAddress", lhsCoAddress), LocatorUtils.property(thatLocator, "coAddress", rhsCoAddress), lhsCoAddress, rhsCoAddress)) {
-                return false;
-            }
-        }
-        {
-            String lhsEmail;
-            lhsEmail = this.getEmail();
-            String rhsEmail;
-            rhsEmail = that.getEmail();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "email", lhsEmail), LocatorUtils.property(thatLocator, "email", rhsEmail), lhsEmail, rhsEmail)) {
-                return false;
-            }
-        }
-        {
-            String lhsFaxNumber;
-            lhsFaxNumber = this.getFaxNumber();
-            String rhsFaxNumber;
-            rhsFaxNumber = that.getFaxNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "faxNumber", lhsFaxNumber), LocatorUtils.property(thatLocator, "faxNumber", rhsFaxNumber), lhsFaxNumber, rhsFaxNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyId;
-            lhsPartyId = this.getPartyId();
-            String rhsPartyId;
-            rhsPartyId = that.getPartyId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyId", lhsPartyId), LocatorUtils.property(thatLocator, "partyId", rhsPartyId), lhsPartyId, rhsPartyId)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyName;
-            lhsPartyName = this.getPartyName();
-            String rhsPartyName;
-            rhsPartyName = that.getPartyName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyName", lhsPartyName), LocatorUtils.property(thatLocator, "partyName", rhsPartyName), lhsPartyName, rhsPartyName)) {
-                return false;
-            }
-        }
-        {
-            String lhsPhoneNumber;
-            lhsPhoneNumber = this.getPhoneNumber();
-            String rhsPhoneNumber;
-            rhsPhoneNumber = that.getPhoneNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "phoneNumber", lhsPhoneNumber), LocatorUtils.property(thatLocator, "phoneNumber", rhsPhoneNumber), lhsPhoneNumber, rhsPhoneNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsPostCode;
-            lhsPostCode = this.getPostCode();
-            String rhsPostCode;
-            rhsPostCode = that.getPostCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "postCode", lhsPostCode), LocatorUtils.property(thatLocator, "postCode", rhsPostCode), lhsPostCode, rhsPostCode)) {
-                return false;
-            }
-        }
-        {
-            Date lhsRegisteredDate;
-            lhsRegisteredDate = this.getRegisteredDate();
-            Date rhsRegisteredDate;
-            rhsRegisteredDate = that.getRegisteredDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "registeredDate", lhsRegisteredDate), LocatorUtils.property(thatLocator, "registeredDate", rhsRegisteredDate), lhsRegisteredDate, rhsRegisteredDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsShortCode;
-            lhsShortCode = this.getShortCode();
-            String rhsShortCode;
-            rhsShortCode = that.getShortCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "shortCode", lhsShortCode), LocatorUtils.property(thatLocator, "shortCode", rhsShortCode), lhsShortCode, rhsShortCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsWebsite;
-            lhsWebsite = this.getWebsite();
-            String rhsWebsite;
-            rhsWebsite = that.getWebsite();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "website", lhsWebsite), LocatorUtils.property(thatLocator, "website", rhsWebsite), lhsWebsite, rhsWebsite)) {
-                return false;
-            }
-        }
-        {
-            int lhsBornYear;
-            lhsBornYear = this.getBornYear();
-            int rhsBornYear;
-            rhsBornYear = that.getBornYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "bornYear", lhsBornYear), LocatorUtils.property(thatLocator, "bornYear", rhsBornYear), lhsBornYear, rhsBornYear)) {
-                return false;
-            }
-        }
-        {
-            String lhsElectionRegion;
-            lhsElectionRegion = this.getElectionRegion();
-            String rhsElectionRegion;
-            rhsElectionRegion = that.getElectionRegion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "electionRegion", lhsElectionRegion), LocatorUtils.property(thatLocator, "electionRegion", rhsElectionRegion), lhsElectionRegion, rhsElectionRegion)) {
-                return false;
-            }
-        }
-        {
-            String lhsFirstName;
-            lhsFirstName = this.getFirstName();
-            String rhsFirstName;
-            rhsFirstName = that.getFirstName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstName", lhsFirstName), LocatorUtils.property(thatLocator, "firstName", rhsFirstName), lhsFirstName, rhsFirstName)) {
-                return false;
-            }
-        }
-        {
-            String lhsGender;
-            lhsGender = this.getGender();
-            String rhsGender;
-            rhsGender = that.getGender();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "gender", lhsGender), LocatorUtils.property(thatLocator, "gender", rhsGender), lhsGender, rhsGender)) {
-                return false;
-            }
-        }
-        {
-            String lhsHangarGuid;
-            lhsHangarGuid = this.getHangarGuid();
-            String rhsHangarGuid;
-            rhsHangarGuid = that.getHangarGuid();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hangarGuid", lhsHangarGuid), LocatorUtils.property(thatLocator, "hangarGuid", rhsHangarGuid), lhsHangarGuid, rhsHangarGuid)) {
-                return false;
-            }
-        }
-        {
-            String lhsImageUrl192;
-            lhsImageUrl192 = this.getImageUrl192();
-            String rhsImageUrl192;
-            rhsImageUrl192 = that.getImageUrl192();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "imageUrl192", lhsImageUrl192), LocatorUtils.property(thatLocator, "imageUrl192", rhsImageUrl192), lhsImageUrl192, rhsImageUrl192)) {
-                return false;
-            }
-        }
-        {
-            String lhsImageUrl80;
-            lhsImageUrl80 = this.getImageUrl80();
-            String rhsImageUrl80;
-            rhsImageUrl80 = that.getImageUrl80();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "imageUrl80", lhsImageUrl80), LocatorUtils.property(thatLocator, "imageUrl80", rhsImageUrl80), lhsImageUrl80, rhsImageUrl80)) {
-                return false;
-            }
-        }
-        {
-            String lhsImageUrlMax;
-            lhsImageUrlMax = this.getImageUrlMax();
-            String rhsImageUrlMax;
-            rhsImageUrlMax = that.getImageUrlMax();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "imageUrlMax", lhsImageUrlMax), LocatorUtils.property(thatLocator, "imageUrlMax", rhsImageUrlMax), lhsImageUrlMax, rhsImageUrlMax)) {
-                return false;
-            }
-        }
-        {
-            String lhsLastName;
-            lhsLastName = this.getLastName();
-            String rhsLastName;
-            rhsLastName = that.getLastName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastName", lhsLastName), LocatorUtils.property(thatLocator, "lastName", rhsLastName), lhsLastName, rhsLastName)) {
-                return false;
-            }
-        }
-        {
-            String lhsParty;
-            lhsParty = this.getParty();
-            String rhsParty;
-            rhsParty = that.getParty();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "party", lhsParty), LocatorUtils.property(thatLocator, "party", rhsParty), lhsParty, rhsParty)) {
-                return false;
-            }
-        }
-        {
-            String lhsPersonUrlXml;
-            lhsPersonUrlXml = this.getPersonUrlXml();
-            String rhsPersonUrlXml;
-            rhsPersonUrlXml = that.getPersonUrlXml();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "personUrlXml", lhsPersonUrlXml), LocatorUtils.property(thatLocator, "personUrlXml", rhsPersonUrlXml), lhsPersonUrlXml, rhsPersonUrlXml)) {
-                return false;
-            }
-        }
-        {
-            String lhsPlace;
-            lhsPlace = this.getPlace();
-            String rhsPlace;
-            rhsPlace = that.getPlace();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "place", lhsPlace), LocatorUtils.property(thatLocator, "place", rhsPlace), lhsPlace, rhsPlace)) {
-                return false;
-            }
-        }
-        {
-            String lhsStatus;
-            lhsStatus = this.getStatus();
-            String rhsStatus;
-            rhsStatus = that.getStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "status", lhsStatus), LocatorUtils.property(thatLocator, "status", rhsStatus), lhsStatus, rhsStatus)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

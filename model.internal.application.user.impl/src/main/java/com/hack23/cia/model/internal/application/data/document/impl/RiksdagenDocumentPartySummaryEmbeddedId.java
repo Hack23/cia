@@ -23,11 +23,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -65,7 +64,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 })
 @Embeddable
 public class RiksdagenDocumentPartySummaryEmbeddedId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -73,7 +72,7 @@ public class RiksdagenDocumentPartySummaryEmbeddedId
 	 */
 	private static final long serialVersionUID = 1L;
 	@XmlElement(name = "public_date", required = true, type = String.class)
-    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlJavaTypeAdapter(	)
     @XmlSchemaType(name = "date")
     protected Date publicDate;
     @XmlElement(name = "party_short_code", required = true)
@@ -180,48 +179,10 @@ public class RiksdagenDocumentPartySummaryEmbeddedId
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final RiksdagenDocumentPartySummaryEmbeddedId that = ((RiksdagenDocumentPartySummaryEmbeddedId) object);
-        {
-            Date lhsPublicDate;
-            lhsPublicDate = this.getPublicDate();
-            Date rhsPublicDate;
-            rhsPublicDate = that.getPublicDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "publicDate", lhsPublicDate), LocatorUtils.property(thatLocator, "publicDate", rhsPublicDate), lhsPublicDate, rhsPublicDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyShortCode;
-            lhsPartyShortCode = this.getPartyShortCode();
-            String rhsPartyShortCode;
-            rhsPartyShortCode = that.getPartyShortCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyShortCode", lhsPartyShortCode), LocatorUtils.property(thatLocator, "partyShortCode", rhsPartyShortCode), lhsPartyShortCode, rhsPartyShortCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentType;
-            lhsDocumentType = this.getDocumentType();
-            String rhsDocumentType;
-            rhsDocumentType = that.getDocumentType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentType", lhsDocumentType), LocatorUtils.property(thatLocator, "documentType", rhsDocumentType), lhsDocumentType, rhsDocumentType)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

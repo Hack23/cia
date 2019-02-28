@@ -27,11 +27,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -79,7 +78,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_GOVERMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenMinistry
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -293,84 +292,10 @@ public class ViewRiksdagenMinistry
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenMinistry that = ((ViewRiksdagenMinistry) object);
-        {
-            String lhsNameId;
-            lhsNameId = this.getNameId();
-            String rhsNameId;
-            rhsNameId = that.getNameId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "nameId", lhsNameId), LocatorUtils.property(thatLocator, "nameId", rhsNameId), lhsNameId, rhsNameId)) {
-                return false;
-            }
-        }
-        {
-            long lhsTotalAssignments;
-            lhsTotalAssignments = this.getTotalAssignments();
-            long rhsTotalAssignments;
-            rhsTotalAssignments = that.getTotalAssignments();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalAssignments", lhsTotalAssignments), LocatorUtils.property(thatLocator, "totalAssignments", rhsTotalAssignments), lhsTotalAssignments, rhsTotalAssignments)) {
-                return false;
-            }
-        }
-        {
-            Date lhsFirstAssignmentDate;
-            lhsFirstAssignmentDate = this.getFirstAssignmentDate();
-            Date rhsFirstAssignmentDate;
-            rhsFirstAssignmentDate = that.getFirstAssignmentDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstAssignmentDate", lhsFirstAssignmentDate), LocatorUtils.property(thatLocator, "firstAssignmentDate", rhsFirstAssignmentDate), lhsFirstAssignmentDate, rhsFirstAssignmentDate)) {
-                return false;
-            }
-        }
-        {
-            Date lhsLastAssignmentDate;
-            lhsLastAssignmentDate = this.getLastAssignmentDate();
-            Date rhsLastAssignmentDate;
-            rhsLastAssignmentDate = that.getLastAssignmentDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastAssignmentDate", lhsLastAssignmentDate), LocatorUtils.property(thatLocator, "lastAssignmentDate", rhsLastAssignmentDate), lhsLastAssignmentDate, rhsLastAssignmentDate)) {
-                return false;
-            }
-        }
-        {
-            long lhsTotalDaysServed;
-            lhsTotalDaysServed = this.getTotalDaysServed();
-            long rhsTotalDaysServed;
-            rhsTotalDaysServed = that.getTotalDaysServed();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalDaysServed", lhsTotalDaysServed), LocatorUtils.property(thatLocator, "totalDaysServed", rhsTotalDaysServed), lhsTotalDaysServed, rhsTotalDaysServed)) {
-                return false;
-            }
-        }
-        {
-            long lhsCurrentMemberSize;
-            lhsCurrentMemberSize = this.getCurrentMemberSize();
-            long rhsCurrentMemberSize;
-            rhsCurrentMemberSize = that.getCurrentMemberSize();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "currentMemberSize", lhsCurrentMemberSize), LocatorUtils.property(thatLocator, "currentMemberSize", rhsCurrentMemberSize), lhsCurrentMemberSize, rhsCurrentMemberSize)) {
-                return false;
-            }
-        }
-        {
-            boolean lhsActive;
-            lhsActive = this.isActive();
-            boolean rhsActive;
-            rhsActive = that.isActive();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "active", lhsActive), LocatorUtils.property(thatLocator, "active", rhsActive), lhsActive, rhsActive)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

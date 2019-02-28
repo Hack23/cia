@@ -27,11 +27,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -77,7 +76,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_RIKSDAGEN_PARTY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenParty
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -283,75 +282,10 @@ public class ViewRiksdagenParty
 	}
 
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewRiksdagenParty that = ((ViewRiksdagenParty) object);
-        {
-            String lhsPartyId;
-            lhsPartyId = this.getPartyId();
-            String rhsPartyId;
-            rhsPartyId = that.getPartyId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyId", lhsPartyId), LocatorUtils.property(thatLocator, "partyId", rhsPartyId), lhsPartyId, rhsPartyId)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyNumber;
-            lhsPartyNumber = this.getPartyNumber();
-            String rhsPartyNumber;
-            rhsPartyNumber = that.getPartyNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyNumber", lhsPartyNumber), LocatorUtils.property(thatLocator, "partyNumber", rhsPartyNumber), lhsPartyNumber, rhsPartyNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyName;
-            lhsPartyName = this.getPartyName();
-            String rhsPartyName;
-            rhsPartyName = that.getPartyName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyName", lhsPartyName), LocatorUtils.property(thatLocator, "partyName", rhsPartyName), lhsPartyName, rhsPartyName)) {
-                return false;
-            }
-        }
-        {
-            long lhsHeadCount;
-            lhsHeadCount = this.getHeadCount();
-            long rhsHeadCount;
-            rhsHeadCount = that.getHeadCount();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "headCount", lhsHeadCount), LocatorUtils.property(thatLocator, "headCount", rhsHeadCount), lhsHeadCount, rhsHeadCount)) {
-                return false;
-            }
-        }
-        {
-            String lhsWebsite;
-            lhsWebsite = this.getWebsite();
-            String rhsWebsite;
-            rhsWebsite = that.getWebsite();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "website", lhsWebsite), LocatorUtils.property(thatLocator, "website", rhsWebsite), lhsWebsite, rhsWebsite)) {
-                return false;
-            }
-        }
-        {
-            Date lhsRegisteredDate;
-            lhsRegisteredDate = this.getRegisteredDate();
-            Date rhsRegisteredDate;
-            rhsRegisteredDate = that.getRegisteredDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "registeredDate", lhsRegisteredDate), LocatorUtils.property(thatLocator, "registeredDate", rhsRegisteredDate), lhsRegisteredDate, rhsRegisteredDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

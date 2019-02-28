@@ -8,7 +8,6 @@
 
 package com.hack23.cia.model.internal.application.user.impl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -40,14 +39,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
@@ -106,7 +101,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
 @Table(name = "USER_ACCOUNT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class UserAccount
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -634,147 +629,10 @@ public class UserAccount
         this.hjid = value;
     }
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final UserAccount that = ((UserAccount) object);
-        {
-            Integer lhsModelObjectId;
-            lhsModelObjectId = this.getModelObjectId();
-            Integer rhsModelObjectId;
-            rhsModelObjectId = that.getModelObjectId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectId", lhsModelObjectId), LocatorUtils.property(thatLocator, "modelObjectId", rhsModelObjectId), lhsModelObjectId, rhsModelObjectId)) {
-                return false;
-            }
-        }
-        {
-            int lhsModelObjectVersion;
-            lhsModelObjectVersion = this.getModelObjectVersion();
-            int rhsModelObjectVersion;
-            rhsModelObjectVersion = that.getModelObjectVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "modelObjectVersion", lhsModelObjectVersion), LocatorUtils.property(thatLocator, "modelObjectVersion", rhsModelObjectVersion), lhsModelObjectVersion, rhsModelObjectVersion)) {
-                return false;
-            }
-        }
-        {
-            String lhsCountry;
-            lhsCountry = this.getCountry();
-            String rhsCountry;
-            rhsCountry = that.getCountry();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "country", lhsCountry), LocatorUtils.property(thatLocator, "country", rhsCountry), lhsCountry, rhsCountry)) {
-                return false;
-            }
-        }
-        {
-            String lhsUsername;
-            lhsUsername = this.getUsername();
-            String rhsUsername;
-            rhsUsername = that.getUsername();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "username", lhsUsername), LocatorUtils.property(thatLocator, "username", rhsUsername), lhsUsername, rhsUsername)) {
-                return false;
-            }
-        }
-        {
-            String lhsEmail;
-            lhsEmail = this.getEmail();
-            String rhsEmail;
-            rhsEmail = that.getEmail();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "email", lhsEmail), LocatorUtils.property(thatLocator, "email", rhsEmail), lhsEmail, rhsEmail)) {
-                return false;
-            }
-        }
-        {
-            String lhsUserId;
-            lhsUserId = this.getUserId();
-            String rhsUserId;
-            rhsUserId = that.getUserId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userId", lhsUserId), LocatorUtils.property(thatLocator, "userId", rhsUserId), lhsUserId, rhsUserId)) {
-                return false;
-            }
-        }
-        {
-            String lhsUserpassword;
-            lhsUserpassword = this.getUserpassword();
-            String rhsUserpassword;
-            rhsUserpassword = that.getUserpassword();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userpassword", lhsUserpassword), LocatorUtils.property(thatLocator, "userpassword", rhsUserpassword), lhsUserpassword, rhsUserpassword)) {
-                return false;
-            }
-        }
-        {
-            Integer lhsNumberOfVisits;
-            lhsNumberOfVisits = this.getNumberOfVisits();
-            Integer rhsNumberOfVisits;
-            rhsNumberOfVisits = that.getNumberOfVisits();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "numberOfVisits", lhsNumberOfVisits), LocatorUtils.property(thatLocator, "numberOfVisits", rhsNumberOfVisits), lhsNumberOfVisits, rhsNumberOfVisits)) {
-                return false;
-            }
-        }
-        {
-            List<String> lhsAddress;
-            lhsAddress = (((this.address!= null)&&(!this.address.isEmpty()))?this.getAddress():null);
-            List<String> rhsAddress;
-            rhsAddress = (((that.address!= null)&&(!that.address.isEmpty()))?that.getAddress():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "address", lhsAddress), LocatorUtils.property(thatLocator, "address", rhsAddress), lhsAddress, rhsAddress)) {
-                return false;
-            }
-        }
-        {
-            UserType lhsUserType;
-            lhsUserType = this.getUserType();
-            UserType rhsUserType;
-            rhsUserType = that.getUserType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userType", lhsUserType), LocatorUtils.property(thatLocator, "userType", rhsUserType), lhsUserType, rhsUserType)) {
-                return false;
-            }
-        }
-        {
-            UserRole lhsUserRole;
-            lhsUserRole = this.getUserRole();
-            UserRole rhsUserRole;
-            rhsUserRole = that.getUserRole();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userRole", lhsUserRole), LocatorUtils.property(thatLocator, "userRole", rhsUserRole), lhsUserRole, rhsUserRole)) {
-                return false;
-            }
-        }
-        {
-            UserLockStatus lhsUserLockStatus;
-            lhsUserLockStatus = this.getUserLockStatus();
-            UserLockStatus rhsUserLockStatus;
-            rhsUserLockStatus = that.getUserLockStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userLockStatus", lhsUserLockStatus), LocatorUtils.property(thatLocator, "userLockStatus", rhsUserLockStatus), lhsUserLockStatus, rhsUserLockStatus)) {
-                return false;
-            }
-        }
-        {
-            UserEmailStatus lhsUserEmailStatus;
-            lhsUserEmailStatus = this.getUserEmailStatus();
-            UserEmailStatus rhsUserEmailStatus;
-            rhsUserEmailStatus = that.getUserEmailStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "userEmailStatus", lhsUserEmailStatus), LocatorUtils.property(thatLocator, "userEmailStatus", rhsUserEmailStatus), lhsUserEmailStatus, rhsUserEmailStatus)) {
-                return false;
-            }
-        }
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {

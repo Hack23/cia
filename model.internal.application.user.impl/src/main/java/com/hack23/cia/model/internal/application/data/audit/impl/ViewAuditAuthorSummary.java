@@ -27,11 +27,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
@@ -75,7 +74,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "VIEW_AUDIT_AUTHOR_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewAuditAuthorSummary
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -241,66 +240,10 @@ public class ViewAuditAuthorSummary
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final ViewAuditAuthorSummary that = ((ViewAuditAuthorSummary) object);
-        {
-            long lhsId;
-            lhsId = this.getId();
-            long rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        {
-            String lhsAuthor;
-            lhsAuthor = this.getAuthor();
-            String rhsAuthor;
-            rhsAuthor = that.getAuthor();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "author", lhsAuthor), LocatorUtils.property(thatLocator, "author", rhsAuthor), lhsAuthor, rhsAuthor)) {
-                return false;
-            }
-        }
-        {
-            long lhsChanges;
-            lhsChanges = this.getChanges();
-            long rhsChanges;
-            rhsChanges = that.getChanges();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "changes", lhsChanges), LocatorUtils.property(thatLocator, "changes", rhsChanges), lhsChanges, rhsChanges)) {
-                return false;
-            }
-        }
-        {
-            Date lhsFirstDate;
-            lhsFirstDate = this.getFirstDate();
-            Date rhsFirstDate;
-            rhsFirstDate = that.getFirstDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstDate", lhsFirstDate), LocatorUtils.property(thatLocator, "firstDate", rhsFirstDate), lhsFirstDate, rhsFirstDate)) {
-                return false;
-            }
-        }
-        {
-            Date lhsLastDate;
-            lhsLastDate = this.getLastDate();
-            Date rhsLastDate;
-            rhsLastDate = that.getLastDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastDate", lhsLastDate), LocatorUtils.property(thatLocator, "lastDate", rhsLastDate), lhsLastDate, rhsLastDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
 	@Override
 	public final int hashCode() {
