@@ -8,7 +8,7 @@
 
 package com.hack23.cia.model.internal.application.data.impl;
 
-import java.io.Serializable;
+
 import java.math.BigDecimal;
 
 import javax.persistence.AttributeOverride;

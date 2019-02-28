@@ -25,7 +25,6 @@
 
 package com.hack23.cia.model.external.val.partier.impl;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Basic;

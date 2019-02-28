@@ -148,14 +148,13 @@
     <cia.project.versions.jaxb2.plugin>0.14.0</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
-    <cia.project.versions.activemq>5.15.6</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.7</cia.project.versions.httpclient>
     <cia.project.versions.guava>27.0.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.8</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.12.0.SP02-redhat-00001</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
-    <cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api>
+    <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.76.0</cia.project.versions.javamelody>

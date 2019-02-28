@@ -25,8 +25,6 @@
 
 package com.hack23.cia.model.external.riksdagen.votering.impl;
 
-import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -38,12 +36,14 @@ import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
+import com.hack23.cia.model.common.api.ModelObject;
+
 /**
  * The Class VoteDataDtoId.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VoteDataDtoId
-    implements Serializable, Equals
+    implements ModelObject, Equals
 {
 
     /**
@@ -118,7 +118,7 @@ public class VoteDataDtoId
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.EqualsStrategy)
+     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
      */
     public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
         if ((object == null)||(this.getClass()!= object.getClass())) {

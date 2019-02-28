@@ -8,7 +8,7 @@
 
 package com.hack23.cia.model.internal.application.data.document.impl;
 
-import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.persistence.Basic;

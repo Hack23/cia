@@ -8,7 +8,7 @@
 
 package com.hack23.cia.model.internal.application.data.committee.impl;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

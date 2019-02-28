@@ -5,4 +5,6 @@ open module com.hack23.cia.model.common.impl {
 	requires org.apache.commons.lang3;
 
 	exports com.hack23.cia.model.common.impl;
+	exports com.hack23.cia.model.common.impl.xml;
+	
 }

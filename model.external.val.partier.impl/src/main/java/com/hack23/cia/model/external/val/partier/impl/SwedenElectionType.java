@@ -25,8 +25,6 @@
 
 package com.hack23.cia.model.external.val.partier.impl;
 
-import java.io.Serializable;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

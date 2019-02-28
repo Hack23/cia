@@ -19,6 +19,7 @@
 package com.hack23.cia.model.external.riksdagen.votering.impl;
 
 import org.junit.Test;
+
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**

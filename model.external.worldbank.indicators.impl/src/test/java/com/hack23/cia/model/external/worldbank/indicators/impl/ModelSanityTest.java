@@ -19,6 +19,7 @@
 package com.hack23.cia.model.external.worldbank.indicators.impl;
 
 import org.junit.Test;
+
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**

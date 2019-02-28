@@ -46,7 +46,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -166,10 +165,6 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			driver = htmlUnitDriver;
 		} else if ("htmlunit-ie11".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER);
-			htmlUnitDriver.setJavascriptEnabled(true);
-			driver = htmlUnitDriver;
-		} else if ("htmlunit-edge".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.EDGE);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else if ("htmlunit-chrome".equals(browser)) {

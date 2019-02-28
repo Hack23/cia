@@ -8,7 +8,7 @@
 
 package com.hack23.cia.model.internal.application.system.impl;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;

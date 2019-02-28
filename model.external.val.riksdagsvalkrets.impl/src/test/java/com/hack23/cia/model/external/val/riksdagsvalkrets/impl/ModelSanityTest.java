@@ -19,6 +19,7 @@
 package com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
 
 import org.junit.Test;
+
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**
