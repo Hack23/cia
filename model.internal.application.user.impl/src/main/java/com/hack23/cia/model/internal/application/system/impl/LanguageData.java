@@ -35,10 +35,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.ToStringStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter;
@@ -389,56 +385,6 @@ public class LanguageData
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
-
-
-    public StringBuilder appendFields(final ObjectLocator locator, final StringBuilder buffer, final ToStringStrategy strategy) {
-        {
-            Integer theModelObjectId;
-            theModelObjectId = this.getModelObjectId();
-            strategy.appendField(locator, this, "modelObjectId", buffer, theModelObjectId);
-        }
-        {
-            int theModelObjectVersion;
-            theModelObjectVersion = this.getModelObjectVersion();
-            strategy.appendField(locator, this, "modelObjectVersion", buffer, theModelObjectVersion);
-        }
-        {
-            Date theCreatedDate;
-            theCreatedDate = this.getCreatedDate();
-            strategy.appendField(locator, this, "createdDate", buffer, theCreatedDate);
-        }
-        {
-            String theLanguageName;
-            theLanguageName = this.getLanguageName();
-            strategy.appendField(locator, this, "languageName", buffer, theLanguageName);
-        }
-        {
-            String theLanguageCode;
-            theLanguageCode = this.getLanguageCode();
-            strategy.appendField(locator, this, "languageCode", buffer, theLanguageCode);
-        }
-        {
-            String theTranslationStatus;
-            theTranslationStatus = this.getTranslationStatus();
-            strategy.appendField(locator, this, "translationStatus", buffer, theTranslationStatus);
-        }
-        {
-            Boolean theLanguageEnabled;
-            theLanguageEnabled = this.isLanguageEnabled();
-            strategy.appendField(locator, this, "languageEnabled", buffer, theLanguageEnabled);
-        }
-        {
-            Boolean theAutoTranslationEnabled;
-            theAutoTranslationEnabled = this.isAutoTranslationEnabled();
-            strategy.appendField(locator, this, "autoTranslationEnabled", buffer, theAutoTranslationEnabled);
-        }
-        {
-            Date theLastModifiedDate;
-            theLastModifiedDate = this.getLastModifiedDate();
-            strategy.appendField(locator, this, "lastModifiedDate", buffer, theLastModifiedDate);
-        }
-        return buffer;
-    }
 
     /**
      * Gets the value of the hjid property.
