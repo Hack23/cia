@@ -19,12 +19,16 @@
 
 package com.hack23.cia.testfoundation;
 
+import static com.openpojo.validation.utils.ToStringHelper.safeToString;
+
 import java.util.List;
 
+import com.openpojo.log.LoggerFactory;
 import com.openpojo.random.RandomFactory;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
 import com.openpojo.reflection.PojoField;
+import com.openpojo.reflection.PojoMethod;
 import com.openpojo.reflection.filters.FilterPackageInfo;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
@@ -36,13 +40,14 @@ import com.openpojo.validation.rule.impl.SetterMustExistRule;
 import com.openpojo.validation.test.Tester;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-
+import com.openpojo.validation.utils.SameInstanceIdentityHandlerStub;
+import com.openpojo.validation.utils.ValidationHelper;
 
 /**
  * The Class AbstractUnitTest.
  */
 public abstract class AbstractUnitTest extends AbstractTest {
-	
+
 	/**
 	 * Instantiates a new abstract unit test.
 	 */
@@ -56,61 +61,59 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * @param string the string
 	 * @return true, if successful
 	 */
-	public final boolean checkAllClassesInPackage(final String string) {		
-		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string, new FilterTestClasses());
-		
-		 Validator validator = ValidatorBuilder.create()
-                 .with(new SetterMustExistRule(),
-                       new GetterMustExistRule())
-                 .with(new SetterTester(),
-                       new GetterTester()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
-                 .with(new EqualsAndHashCodeMatchRule())
-                 .build();
-		 validator.validate(pojoClassesRecursively);
-		 return true;
+	public final boolean checkAllClassesInPackage(final String string) {
+		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+				new FilterTestClasses());
+
+		Validator validator = ValidatorBuilder.create().with(new SetterMustExistRule(), new GetterMustExistRule())
+				.with(new SetterTester(), new GetterTester()).with(new InvokeToStringTester())
+				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester())
+				.with(new EqualsAndHashCodeMatchRule()).build();
+		validator.validate(pojoClassesRecursively);
+		return true;
 	}
 
 	public final boolean checkAllDtoClassesInPackage(final String string) {
-		
-		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string, new FilterTestClasses());
-		
-		 Validator validator = ValidatorBuilder.create()
-                 .with(new GetterMustExistRule())
-                 .with(new GetterTester())
-                 .with(new EqualsAndHashCodeMatchRule()).with(new InvokeToStringTester()).with(new InvokeHashcodeTester()).with(new DummyEqualsTester())
-                 .build();
-		 validator.validate(pojoClassesRecursively);
-		 return true;
+
+		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+				new FilterTestClasses());
+
+		Validator validator = ValidatorBuilder.create().with(new GetterMustExistRule()).with(new GetterTester())
+				.with(new EqualsAndHashCodeMatchRule()).with(new InvokeToStringTester())
+				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester()).build();
+		validator.validate(pojoClassesRecursively);
+		return true;
 	}
-	
+
 	public class InvokeToStringTester implements Tester {
-		  public void run(PojoClass pojoClass) {
-			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
-			    Affirm.affirmNotNull("toStringFailure", instance.toString());
-		  }
+		public void run(PojoClass pojoClass) {
+			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+			Affirm.affirmNotNull("toStringFailure", instance.toString());
+		}
 	}
 
 	public class InvokeHashcodeTester implements Tester {
-		  public void run(PojoClass pojoClass) {
-			    Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
-			    Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
-		  }
+		public void run(PojoClass pojoClass) {
+			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+			Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
+		}
 	}
 
 	public class DummyEqualsTester implements Tester {
-		  public void run(PojoClass pojoClass) {
-			    Object instance = randomValues(pojoClass);
-			        			    
-			    Object instance2 = randomValues(pojoClass);
+		public void run(PojoClass pojoClass) {
+			Object instance = randomValues(pojoClass);
 
-			    instance.equals(instance2);
-			    //Affirm.affirmFalse("EqualsFailureSameInstanceDontMatch:" + instance + ":" + instance2, instance.equals(instance2));			    			    
-		  }
+			Object instance2 = randomValues(pojoClass);
+
+			instance.equals(instance2);
+			// Affirm.affirmFalse("EqualsFailureSameInstanceDontMatch:" + instance + ":" +
+			// instance2, instance.equals(instance2));
+		}
 
 		private Object randomValues(PojoClass pojoClass) {
 			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			randomValues(instance, pojoClass);
-						
+
 			return instance;
 		}
 
@@ -118,26 +121,62 @@ public abstract class AbstractUnitTest extends AbstractTest {
 			if (pojoClass == null) {
 				return;
 			}
-			
-			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
-			    if (fieldEntry.hasSetter()) {
-			      final Object value;
 
-			      value = RandomFactory.getRandomValue(fieldEntry);
-			      fieldEntry.invokeSetter(instance, value);
-			    }
+			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
+				if (fieldEntry.hasSetter()) {
+					final Object value;
+
+					value = RandomFactory.getRandomValue(fieldEntry);
+					fieldEntry.invokeSetter(instance, value);
+				}
 			}
 			randomValues(instance, pojoClass.getSuperClass());
 		}
 	}
 
-	
-	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
-	
-	private static class FilterTestClasses implements PojoClassFilter {
-	    public boolean include(PojoClass pojoClass) {
-	      return !(pojoClass.getSourcePath().contains("/test-classes/") || pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract()) && FilterPackageInfo.include(pojoClass);
-	    }
+	public class WithTester implements Tester {
+
+		public void run(final PojoClass pojoClass) {
+			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
+			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
+
+				if (fieldEntry.hasSetter()) {
+					String name = fieldEntry.getName();
+
+					List<PojoMethod> methods = pojoClass.getPojoMethods();
+
+					for (PojoMethod pojoMethod : methods) {
+						if (("with" + name).equalsIgnoreCase(pojoMethod.getName())) {
+
+							final Object value = RandomFactory.getRandomValue(fieldEntry);
+
+							SameInstanceIdentityHandlerStub.registerIdentityHandlerStubForValue(value);
+							LoggerFactory.getLogger(this.getClass()).debug("Testing Field [{0}] with value [{1}]",
+									fieldEntry, safeToString(value));
+
+							pojoMethod.invoke(classInstance, value);
+
+							LoggerFactory.getLogger(this.getClass()).warn(pojoClass.getName());
+							
+							Affirm.affirmEquals("With test failed, non equal value for field=[" + fieldEntry + "]",
+									value, fieldEntry.get(classInstance));
+
+							SameInstanceIdentityHandlerStub.unregisterIdentityHandlerStubForValue(value);
+						}
+					}
+				}
+			}
+		}
 	}
-	
+
+	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
+
+	private static class FilterTestClasses implements PojoClassFilter {
+		public boolean include(PojoClass pojoClass) {
+			return !(pojoClass.getSourcePath().contains("/test-classes/")
+					|| pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract())
+					&& FilterPackageInfo.include(pojoClass);
+		}
+	}
+
 }

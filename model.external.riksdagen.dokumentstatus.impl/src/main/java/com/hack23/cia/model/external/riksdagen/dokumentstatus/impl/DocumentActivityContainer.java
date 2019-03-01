@@ -113,34 +113,6 @@ public class DocumentActivityContainer
     /**
 	 * With document activities.
 	 *
-	 * @param values the values
-	 * @return the document activity container
-	 */
-    public DocumentActivityContainer withDocumentActivities(final DocumentActivityData... values) {
-        if (values!= null) {
-            for (final DocumentActivityData value: values) {
-                getDocumentActivities().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With document activities.
-	 *
-	 * @param values the values
-	 * @return the document activity container
-	 */
-    public DocumentActivityContainer withDocumentActivities(final Collection<DocumentActivityData> values) {
-        if (values!= null) {
-            getDocumentActivities().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With document activities.
-	 *
 	 * @param documentActivities the document activities
 	 * @return the document activity container
 	 */

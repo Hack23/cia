@@ -113,34 +113,6 @@ public class DocumentPersonReferenceContainer
     /**
 	 * With document person reference list.
 	 *
-	 * @param values the values
-	 * @return the document person reference container
-	 */
-    public DocumentPersonReferenceContainer withDocumentPersonReferenceList(final DocumentPersonReferenceData... values) {
-        if (values!= null) {
-            for (final DocumentPersonReferenceData value: values) {
-                getDocumentPersonReferenceList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With document person reference list.
-	 *
-	 * @param values the values
-	 * @return the document person reference container
-	 */
-    public DocumentPersonReferenceContainer withDocumentPersonReferenceList(final Collection<DocumentPersonReferenceData> values) {
-        if (values!= null) {
-            getDocumentPersonReferenceList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With document person reference list.
-	 *
 	 * @param documentPersonReferenceList the document person reference list
 	 * @return the document person reference container
 	 */

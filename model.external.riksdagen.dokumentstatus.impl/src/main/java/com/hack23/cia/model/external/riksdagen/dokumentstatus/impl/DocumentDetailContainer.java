@@ -113,34 +113,6 @@ public class DocumentDetailContainer
     /**
 	 * With document detail list.
 	 *
-	 * @param values the values
-	 * @return the document detail container
-	 */
-    public DocumentDetailContainer withDocumentDetailList(final DocumentDetailData... values) {
-        if (values!= null) {
-            for (final DocumentDetailData value: values) {
-                getDocumentDetailList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With document detail list.
-	 *
-	 * @param values the values
-	 * @return the document detail container
-	 */
-    public DocumentDetailContainer withDocumentDetailList(final Collection<DocumentDetailData> values) {
-        if (values!= null) {
-            getDocumentDetailList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With document detail list.
-	 *
 	 * @param documentDetailList the document detail list
 	 * @return the document detail container
 	 */

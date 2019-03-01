@@ -551,22 +551,6 @@ public class UserAccount
         return this;
     }
 
-    public UserAccount withAddress(final String... values) {
-        if (values!= null) {
-            for (final String value: values) {
-                getAddress().add(value);
-            }
-        }
-        return this;
-    }
-
-    public UserAccount withAddress(final Collection<String> values) {
-        if (values!= null) {
-            getAddress().addAll(values);
-        }
-        return this;
-    }
-
     public UserAccount withAddress(final List<String> address) {
         setAddress(address);
         return this;

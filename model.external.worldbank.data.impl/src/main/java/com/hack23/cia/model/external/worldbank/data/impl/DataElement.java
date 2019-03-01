@@ -213,34 +213,6 @@ public class DataElement
     /**
 	 * With data.
 	 *
-	 * @param values the values
-	 * @return the data element
-	 */
-    public DataElement withData(final WorldBankData... values) {
-        if (values!= null) {
-            for (final WorldBankData value: values) {
-                getData().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With data.
-	 *
-	 * @param values the values
-	 * @return the data element
-	 */
-    public DataElement withData(final Collection<WorldBankData> values) {
-        if (values!= null) {
-            getData().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With data.
-	 *
 	 * @param data the data
 	 * @return the data element
 	 */

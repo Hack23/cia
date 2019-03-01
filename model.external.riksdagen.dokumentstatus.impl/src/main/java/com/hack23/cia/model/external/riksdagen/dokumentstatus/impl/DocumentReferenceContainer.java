@@ -113,34 +113,6 @@ public class DocumentReferenceContainer
     /**
 	 * With document reference list.
 	 *
-	 * @param values the values
-	 * @return the document reference container
-	 */
-    public DocumentReferenceContainer withDocumentReferenceList(final DocumentReferenceData... values) {
-        if (values!= null) {
-            for (final DocumentReferenceData value: values) {
-                getDocumentReferenceList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With document reference list.
-	 *
-	 * @param values the values
-	 * @return the document reference container
-	 */
-    public DocumentReferenceContainer withDocumentReferenceList(final Collection<DocumentReferenceData> values) {
-        if (values!= null) {
-            getDocumentReferenceList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With document reference list.
-	 *
 	 * @param documentReferenceList the document reference list
 	 * @return the document reference container
 	 */

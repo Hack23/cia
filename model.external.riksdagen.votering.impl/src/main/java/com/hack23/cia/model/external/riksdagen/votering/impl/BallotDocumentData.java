@@ -113,34 +113,6 @@ public class BallotDocumentData
     /**
 	 * With vote data list.
 	 *
-	 * @param values the values
-	 * @return the ballot document data
-	 */
-    public BallotDocumentData withVoteDataList(final VoteDataDto... values) {
-        if (values!= null) {
-            for (final VoteDataDto value: values) {
-                getVoteDataList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With vote data list.
-	 *
-	 * @param values the values
-	 * @return the ballot document data
-	 */
-    public BallotDocumentData withVoteDataList(final Collection<VoteDataDto> values) {
-        if (values!= null) {
-            getVoteDataList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With vote data list.
-	 *
 	 * @param voteDataList the vote data list
 	 * @return the ballot document data
 	 */

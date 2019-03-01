@@ -111,34 +111,6 @@ public class Topics
     /**
 	 * With topic.
 	 *
-	 * @param values the values
-	 * @return the topics
-	 */
-    public Topics withTopic(final Topic... values) {
-        if (values!= null) {
-            for (final Topic value: values) {
-                getTopic().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With topic.
-	 *
-	 * @param values the values
-	 * @return the topics
-	 */
-    public Topics withTopic(final Collection<Topic> values) {
-        if (values!= null) {
-            getTopic().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With topic.
-	 *
 	 * @param topic the topic
 	 * @return the topics
 	 */

@@ -381,34 +381,6 @@ public class DocumentContainerElement
     /**
 	 * With dokument.
 	 *
-	 * @param values the values
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDokument(final DocumentElement... values) {
-        if (values!= null) {
-            for (final DocumentElement value: values) {
-                getDokument().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With dokument.
-	 *
-	 * @param values the values
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDokument(final Collection<DocumentElement> values) {
-        if (values!= null) {
-            getDokument().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With dokument.
-	 *
 	 * @param dokument the dokument
 	 * @return the document container element
 	 */

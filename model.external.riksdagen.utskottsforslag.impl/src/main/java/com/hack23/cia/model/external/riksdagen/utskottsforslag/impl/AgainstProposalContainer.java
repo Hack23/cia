@@ -113,34 +113,6 @@ public class AgainstProposalContainer
     /**
 	 * With against proposal list.
 	 *
-	 * @param values the values
-	 * @return the against proposal container
-	 */
-    public AgainstProposalContainer withAgainstProposalList(final AgainstProposalData... values) {
-        if (values!= null) {
-            for (final AgainstProposalData value: values) {
-                getAgainstProposalList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With against proposal list.
-	 *
-	 * @param values the values
-	 * @return the against proposal container
-	 */
-    public AgainstProposalContainer withAgainstProposalList(final Collection<AgainstProposalData> values) {
-        if (values!= null) {
-            getAgainstProposalList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With against proposal list.
-	 *
 	 * @param againstProposalList the against proposal list
 	 * @return the against proposal container
 	 */

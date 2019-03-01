@@ -213,34 +213,6 @@ public class CountriesElement
     /**
 	 * With country.
 	 *
-	 * @param values the values
-	 * @return the countries element
-	 */
-    public CountriesElement withCountry(final CountryElement... values) {
-        if (values!= null) {
-            for (final CountryElement value: values) {
-                getCountry().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With country.
-	 *
-	 * @param values the values
-	 * @return the countries element
-	 */
-    public CountriesElement withCountry(final Collection<CountryElement> values) {
-        if (values!= null) {
-            getCountry().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With country.
-	 *
 	 * @param country the country
 	 * @return the countries element
 	 */

@@ -113,34 +113,6 @@ public class PersonAssignmentElement
     /**
 	 * With uppdrag.
 	 *
-	 * @param values the values
-	 * @return the person assignment element
-	 */
-    public PersonAssignmentElement withUppdrag(final AssignmentElement... values) {
-        if (values!= null) {
-            for (final AssignmentElement value: values) {
-                getUppdrag().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With uppdrag.
-	 *
-	 * @param values the values
-	 * @return the person assignment element
-	 */
-    public PersonAssignmentElement withUppdrag(final Collection<AssignmentElement> values) {
-        if (values!= null) {
-            getUppdrag().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With uppdrag.
-	 *
 	 * @param uppdrag the uppdrag
 	 * @return the person assignment element
 	 */

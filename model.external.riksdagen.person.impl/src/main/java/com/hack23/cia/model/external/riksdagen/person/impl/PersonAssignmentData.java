@@ -110,33 +110,6 @@ public class PersonAssignmentData
         this.assignmentList = assignmentList;
     }
 
-    /**
-	 * With assignment list.
-	 *
-	 * @param values the values
-	 * @return the person assignment data
-	 */
-    public PersonAssignmentData withAssignmentList(final AssignmentData... values) {
-        if (values!= null) {
-            for (final AssignmentData value: values) {
-                getAssignmentList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With assignment list.
-	 *
-	 * @param values the values
-	 * @return the person assignment data
-	 */
-    public PersonAssignmentData withAssignmentList(final Collection<AssignmentData> values) {
-        if (values!= null) {
-            getAssignmentList().addAll(values);
-        }
-        return this;
-    }
 
     /**
 	 * With assignment list.

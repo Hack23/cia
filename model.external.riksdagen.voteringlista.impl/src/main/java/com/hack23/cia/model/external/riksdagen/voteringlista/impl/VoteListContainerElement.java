@@ -186,34 +186,6 @@ public class VoteListContainerElement
     /**
 	 * With votering.
 	 *
-	 * @param values the values
-	 * @return the vote list container element
-	 */
-    public VoteListContainerElement withVotering(final BallotDocumentElement... values) {
-        if (values!= null) {
-            for (final BallotDocumentElement value: values) {
-                getVotering().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With votering.
-	 *
-	 * @param values the values
-	 * @return the vote list container element
-	 */
-    public VoteListContainerElement withVotering(final Collection<BallotDocumentElement> values) {
-        if (values!= null) {
-            getVotering().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With votering.
-	 *
 	 * @param votering the votering
 	 * @return the vote list container element
 	 */

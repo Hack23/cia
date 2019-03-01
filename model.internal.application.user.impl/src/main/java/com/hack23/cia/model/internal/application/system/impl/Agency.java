@@ -248,22 +248,6 @@ public class Agency
         return this;
     }
 
-    public Agency withPortals(final Portal... values) {
-        if (values!= null) {
-            for (final Portal value: values) {
-                getPortals().add(value);
-            }
-        }
-        return this;
-    }
-
-    public Agency withPortals(final Collection<Portal> values) {
-        if (values!= null) {
-            getPortals().addAll(values);
-        }
-        return this;
-    }
-
     public Agency withPortals(final List<Portal> portals) {
         setPortals(portals);
         return this;

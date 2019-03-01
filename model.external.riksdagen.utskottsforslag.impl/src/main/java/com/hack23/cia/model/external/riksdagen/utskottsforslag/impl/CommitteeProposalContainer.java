@@ -113,34 +113,6 @@ public class CommitteeProposalContainer
     /**
 	 * With committee proposal list.
 	 *
-	 * @param values the values
-	 * @return the committee proposal container
-	 */
-    public CommitteeProposalContainer withCommitteeProposalList(final CommitteeProposalData... values) {
-        if (values!= null) {
-            for (final CommitteeProposalData value: values) {
-                getCommitteeProposalList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With committee proposal list.
-	 *
-	 * @param values the values
-	 * @return the committee proposal container
-	 */
-    public CommitteeProposalContainer withCommitteeProposalList(final Collection<CommitteeProposalData> values) {
-        if (values!= null) {
-            getCommitteeProposalList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With committee proposal list.
-	 *
 	 * @param committeeProposalList the committee proposal list
 	 * @return the committee proposal container
 	 */

@@ -113,34 +113,6 @@ public class PersonContainerElement
     /**
 	 * With person.
 	 *
-	 * @param values the values
-	 * @return the person container element
-	 */
-    public PersonContainerElement withPerson(final PersonElement... values) {
-        if (values!= null) {
-            for (final PersonElement value: values) {
-                getPerson().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With person.
-	 *
-	 * @param values the values
-	 * @return the person container element
-	 */
-    public PersonContainerElement withPerson(final Collection<PersonElement> values) {
-        if (values!= null) {
-            getPerson().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With person.
-	 *
 	 * @param person the person
 	 * @return the person container element
 	 */

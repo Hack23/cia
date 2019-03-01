@@ -572,22 +572,6 @@ public class ApplicationSession
         return this;
     }
 
-    public ApplicationSession withEvents(final ApplicationActionEvent... values) {
-        if (values!= null) {
-            for (final ApplicationActionEvent value: values) {
-                getEvents().add(value);
-            }
-        }
-        return this;
-    }
-
-    public ApplicationSession withEvents(final Collection<ApplicationActionEvent> values) {
-        if (values!= null) {
-            getEvents().addAll(values);
-        }
-        return this;
-    }
-
     public ApplicationSession withEvents(final List<ApplicationActionEvent> events) {
         setEvents(events);
         return this;

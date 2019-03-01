@@ -213,34 +213,6 @@ public class TopicsElement
     /**
 	 * With topic.
 	 *
-	 * @param values the values
-	 * @return the topics element
-	 */
-    public TopicsElement withTopic(final TopicElement... values) {
-        if (values!= null) {
-            for (final TopicElement value: values) {
-                getTopic().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With topic.
-	 *
-	 * @param values the values
-	 * @return the topics element
-	 */
-    public TopicsElement withTopic(final Collection<TopicElement> values) {
-        if (values!= null) {
-            getTopic().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With topic.
-	 *
 	 * @param topic the topic
 	 * @return the topics element
 	 */

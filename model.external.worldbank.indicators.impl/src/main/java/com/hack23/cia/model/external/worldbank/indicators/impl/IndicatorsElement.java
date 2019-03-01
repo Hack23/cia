@@ -213,34 +213,6 @@ public class IndicatorsElement
     /**
 	 * With indicator.
 	 *
-	 * @param values the values
-	 * @return the indicators element
-	 */
-    public IndicatorsElement withIndicator(final IndicatorElement... values) {
-        if (values!= null) {
-            for (final IndicatorElement value: values) {
-                getIndicator().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With indicator.
-	 *
-	 * @param values the values
-	 * @return the indicators element
-	 */
-    public IndicatorsElement withIndicator(final Collection<IndicatorElement> values) {
-        if (values!= null) {
-            getIndicator().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With indicator.
-	 *
 	 * @param indicator the indicator
 	 * @return the indicators element
 	 */

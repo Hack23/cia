@@ -113,34 +113,6 @@ public class PersonDetailData
     /**
 	 * With detail list.
 	 *
-	 * @param values the values
-	 * @return the person detail data
-	 */
-    public PersonDetailData withDetailList(final DetailData... values) {
-        if (values!= null) {
-            for (final DetailData value: values) {
-                getDetailList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With detail list.
-	 *
-	 * @param values the values
-	 * @return the person detail data
-	 */
-    public PersonDetailData withDetailList(final Collection<DetailData> values) {
-        if (values!= null) {
-            getDetailList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With detail list.
-	 *
 	 * @param detailList the detail list
 	 * @return the person detail data
 	 */

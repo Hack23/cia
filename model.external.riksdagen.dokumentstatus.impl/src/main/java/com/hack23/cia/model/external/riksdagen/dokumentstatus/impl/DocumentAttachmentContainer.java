@@ -113,34 +113,6 @@ public class DocumentAttachmentContainer
     /**
 	 * With document attachment list.
 	 *
-	 * @param values the values
-	 * @return the document attachment container
-	 */
-    public DocumentAttachmentContainer withDocumentAttachmentList(final DocumentAttachment... values) {
-        if (values!= null) {
-            for (final DocumentAttachment value: values) {
-                getDocumentAttachmentList().add(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-	 * With document attachment list.
-	 *
-	 * @param values the values
-	 * @return the document attachment container
-	 */
-    public DocumentAttachmentContainer withDocumentAttachmentList(final Collection<DocumentAttachment> values) {
-        if (values!= null) {
-            getDocumentAttachmentList().addAll(values);
-        }
-        return this;
-    }
-
-    /**
-	 * With document attachment list.
-	 *
 	 * @param documentAttachmentList the document attachment list
 	 * @return the document attachment container
 	 */
