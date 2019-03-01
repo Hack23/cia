@@ -37,6 +37,7 @@ cache:
   - $HOME/.m2
 
 before_script:
+  - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
   - export DEBIAN_FRONTEND=noninteractive
   - sudo rm /etc/localtime
   - sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime 
@@ -82,11 +83,12 @@ before_script:
 
 script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
-  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   - export MAVEN_OPTS="-Duser.timezone=CET"
-  - xvfb-run --server-args="-screen 0 1280x800x24" mvn install -Prelease-site -Dmaven.test.failure.ignore=true -DfailIfNoTests=false -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -q '-Dtest=!**.*ITest*'
+  - xvfb-run --server-args="-screen 0 1280x800x24" mvn clean install -Dtest=no -DfailIfNoTests=false -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -q '-Dtest=no'
   - mvn sonar:sonar
  
 after_success:
   - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-
+  - fossa init
+  - fossa analyze
