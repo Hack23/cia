@@ -33,6 +33,7 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![JDK-11 or higher](https://img.shields.io/badge/jdk-11-green.svg)]
 [![JDK-12](https://img.shields.io/badge/jdk-12-orange.svg)]
 [![JDK-13](https://img.shields.io/badge/jdk-13-orange.svg)]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
 
 
 # Goal
@@ -242,3 +243,7 @@ $ sudo dpkg -i cia-dist-deb-2019.2.23.deb
 [![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)
 
 [![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
