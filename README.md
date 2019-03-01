@@ -9,6 +9,7 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/view/SystemQualityAssesment/job/Citizen-Intelligence-Agency-Complete-sonar-report.svg)](https://www.hack23.com/jenkins/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/view/SystemQualityAssesment/job/Citizen-Intelligence-Agency-Complete-sonar-report.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-sonar-report/lastCompletedBuild/testReport/)
 [![SonarQube Coverage](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Acia-all)
+[![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![SonarQube Tech Debt](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=sqale_debt_ratio)](https://www.hack23.com/sonar/component_measures?id=com.hack23.cia%3Acia-all)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
