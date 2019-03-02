@@ -12,11 +12,11 @@ apt-get -y dist-upgrade
 
 apt-get -y install gnupg2
 
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+#apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 
-echo "deb http://apt.postgresql.org/pub/repos/apt/ cosmic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+#echo "deb http://apt.postgresql.org/pub/repos/apt/ cosmic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
-apt-get update
+#apt-get update
 
 
 #
@@ -76,6 +76,11 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 # INSTALL ORACLE JDK
 #
 apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certificates-java wget
+
+wget https://download.java.net/java/GA/jdk12/33/GPL/openjdk-12_linux-x64_bin.tar.gz
+tar xvfz openjdk-12_linux-x64_bin.tar.gz
+mv jdk-12 /usr/lib/jvm/
+rm openjdk-12_linux-x64_bin.tar.gz
 
 dpkg -i /root/cia-dist-deb.deb
 

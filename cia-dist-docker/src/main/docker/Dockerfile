@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM ubuntu:19.04
 
 ADD userdata.sh /root/userdata.sh
 ADD dependencies/cia-dist-deb-${project.version}.deb /root/cia-dist-deb.deb
