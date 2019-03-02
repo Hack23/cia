@@ -34,6 +34,7 @@ import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
 import com.openpojo.validation.ValidatorBuilder;
 import com.openpojo.validation.affirm.Affirm;
+import com.openpojo.validation.rule.Rule;
 import com.openpojo.validation.rule.impl.EqualsAndHashCodeMatchRule;
 import com.openpojo.validation.rule.impl.GetterMustExistRule;
 import com.openpojo.validation.rule.impl.SetterMustExistRule;
@@ -70,6 +71,13 @@ public abstract class AbstractUnitTest extends AbstractTest {
 				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester())
 				.with(new EqualsAndHashCodeMatchRule()).build();
 		validator.validate(pojoClassesRecursively);
+
+		List<PojoClass> enumClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+				new FilterNonEnumClasses());
+
+		Validator enumValidator = ValidatorBuilder.create().with(new EnumTester()).build();
+		enumValidator.validate(enumClassesRecursively);
+
 		return true;
 	}
 
@@ -156,8 +164,6 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 							pojoMethod.invoke(classInstance, value);
 
-							LoggerFactory.getLogger(this.getClass()).warn(pojoClass.getName());
-							
 							Affirm.affirmEquals("With test failed, non equal value for field=[" + fieldEntry + "]",
 									value, fieldEntry.get(classInstance));
 
@@ -169,6 +175,35 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
+	public class EnumTester implements Rule {
+
+		public void evaluate(final PojoClass pojoClass) {
+			if (pojoClass.isEnum()) {
+
+				Object[] enumConstants = pojoClass.getClazz().getEnumConstants();
+
+				PojoMethod valueMethod = findMethod(pojoClass, "value");
+				PojoMethod fromValueMethod = findMethod(pojoClass, "fromValue");
+				if (valueMethod != null && fromValueMethod != null) {
+					for (Object object : enumConstants) {
+						fromValueMethod.invoke(object, valueMethod.invoke(object));
+					}
+				}
+			}
+		}
+	}
+
+	private static PojoMethod findMethod(PojoClass pojoClass, String name) {
+		List<PojoMethod> methods = pojoClass.getPojoMethods();
+
+		for (PojoMethod pojoMethod : methods) {
+			if (name.equalsIgnoreCase(pojoMethod.getName())) {
+				return pojoMethod;
+			}
+		}
+		return null;
+	}
+
 	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
 
 	private static class FilterTestClasses implements PojoClassFilter {
@@ -176,6 +211,12 @@ public abstract class AbstractUnitTest extends AbstractTest {
 			return !(pojoClass.getSourcePath().contains("/test-classes/")
 					|| pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract())
 					&& FilterPackageInfo.include(pojoClass);
+		}
+	}
+
+	private static class FilterNonEnumClasses implements PojoClassFilter {
+		public boolean include(PojoClass pojoClass) {
+			return pojoClass.isEnum() && FilterPackageInfo.include(pojoClass);
 		}
 	}
 
