@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+	<changeSet author="party_trends" id="2414872417007-324"
+		failOnError="true">
+		
+		<createView replaceIfExists="true"
+			viewName="view_riksdagen_party_ballot_support_annual_summary">SELECT to_char(date_trunc('month',p1.vote_date),'YYYY-MM-DD') as embedded_id_date, p1.embedded_id_party as embedded_id_party, p2.embedded_id_party as embedded_id_other_party, sum( case when p1.party_approved = p2.party_approved then 1 else 0 end) as agree_count, sum( case when p1.party_approved = p2.party_approved then 0 else 1 end) as disagre_count, (sum( case when p1.party_approved = p2.party_approved then 0 else 1 end) *100 )/ count(*) as disagree_percentage,  count(*) as total_ballots
+																		FROM view_riksdagen_vote_data_ballot_party_summary p1
+																		JOIN view_riksdagen_vote_data_ballot_party_summary p2 ON p1.embedded_id_party &lt;&gt; p2.embedded_id_party and p1.embedded_id_ballot_id = p2.embedded_id_ballot_id and p1.embedded_id_issue = p2.embedded_id_issue group by p1.embedded_id_party,p2.embedded_id_party,to_char(date_trunc('month',p1.vote_date),'YYYY-MM-DD')</createView>
+	</changeSet>
+
+	<changeSet author="pether" id="2414872417007-325">
+
+		<createView replaceIfExists="true"
+			viewName="view_riksdagen_party_role_member">select hjid as role_id,detail, role_code,first_name,last_name,from_date,to_date,person_data.id as person_id,person_data.party as party,(CASE WHEN to_date > CURRENT_DATE or to_date is null THEN CURRENT_DATE ELSE to_date END) - (CASE WHEN from_date > CURRENT_DATE THEN CURRENT_DATE ELSE from_date END) as total_days_served,(CASE WHEN to_date is null or to_date > CURRENT_DATE and from_date &lt; CURRENT_DATE THEN true ELSE false END) as active from assignment_data left join person_data on assignment_data.intressent_id = person_data.id where assignment_type='partiuppdrag'</createView>
+
+	</changeSet>
+
+
+</databaseChangeLog>
