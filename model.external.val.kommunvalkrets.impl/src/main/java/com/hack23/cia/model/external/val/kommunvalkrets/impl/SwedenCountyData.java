@@ -47,7 +47,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
@@ -70,7 +73,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_COUNTY_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenCountyData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -180,58 +183,16 @@ public class SwedenCountyData
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final SwedenCountyData that = ((SwedenCountyData) object);
-        {
-            BigInteger lhsCode;
-            lhsCode = this.getCode();
-            BigInteger rhsCode;
-            rhsCode = that.getCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "code", lhsCode), LocatorUtils.property(thatLocator, "code", rhsCode), lhsCode, rhsCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsCountyName;
-            lhsCountyName = this.getCountyName();
-            String rhsCountyName;
-            rhsCountyName = that.getCountyName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countyName", lhsCountyName), LocatorUtils.property(thatLocator, "countyName", rhsCountyName), lhsCountyName, rhsCountyName)) {
-                return false;
-            }
-        }
-        {
-            List<SwedenMunicipalityData> lhsKommun;
-            lhsKommun = (((this.kommun!= null)&&(!this.kommun.isEmpty()))?this.getKommun():null);
-            List<SwedenMunicipalityData> rhsKommun;
-            rhsKommun = (((that.kommun!= null)&&(!that.kommun.isEmpty()))?that.getKommun():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "kommun", lhsKommun), LocatorUtils.property(thatLocator, "kommun", rhsKommun), lhsKommun, rhsKommun)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj,"hjid");
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

@@ -42,7 +42,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
@@ -69,7 +72,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_MUNICIPALITY_ELECTION_0")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenMunicipalityElectionRegionData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -270,94 +273,16 @@ public class SwedenMunicipalityElectionRegionData
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final SwedenMunicipalityElectionRegionData that = ((SwedenMunicipalityElectionRegionData) object);
-        {
-            BigInteger lhsCode;
-            lhsCode = this.getCode();
-            BigInteger rhsCode;
-            rhsCode = that.getCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "code", lhsCode), LocatorUtils.property(thatLocator, "code", rhsCode), lhsCode, rhsCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsElectionRegionName;
-            lhsElectionRegionName = this.getElectionRegionName();
-            String rhsElectionRegionName;
-            rhsElectionRegionName = that.getElectionRegionName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "electionRegionName", lhsElectionRegionName), LocatorUtils.property(thatLocator, "electionRegionName", rhsElectionRegionName), lhsElectionRegionName, rhsElectionRegionName)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsNumberOfVoters;
-            lhsNumberOfVoters = this.getNumberOfVoters();
-            BigInteger rhsNumberOfVoters;
-            rhsNumberOfVoters = that.getNumberOfVoters();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "numberOfVoters", lhsNumberOfVoters), LocatorUtils.property(thatLocator, "numberOfVoters", rhsNumberOfVoters), lhsNumberOfVoters, rhsNumberOfVoters)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsFirstRound;
-            lhsFirstRound = this.getFirstRound();
-            BigInteger rhsFirstRound;
-            rhsFirstRound = that.getFirstRound();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstRound", lhsFirstRound), LocatorUtils.property(thatLocator, "firstRound", rhsFirstRound), lhsFirstRound, rhsFirstRound)) {
-                return false;
-            }
-        }
-        {
-            String lhsRest;
-            lhsRest = this.getRest();
-            String rhsRest;
-            rhsRest = that.getRest();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rest", lhsRest), LocatorUtils.property(thatLocator, "rest", rhsRest), lhsRest, rhsRest)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsSecondRound;
-            lhsSecondRound = this.getSecondRound();
-            BigInteger rhsSecondRound;
-            rhsSecondRound = that.getSecondRound();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "secondRound", lhsSecondRound), LocatorUtils.property(thatLocator, "secondRound", rhsSecondRound), lhsSecondRound, rhsSecondRound)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsNumberOfSeats;
-            lhsNumberOfSeats = this.getNumberOfSeats();
-            BigInteger rhsNumberOfSeats;
-            rhsNumberOfSeats = that.getNumberOfSeats();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "numberOfSeats", lhsNumberOfSeats), LocatorUtils.property(thatLocator, "numberOfSeats", rhsNumberOfSeats), lhsNumberOfSeats, rhsNumberOfSeats)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj,"hjid");
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

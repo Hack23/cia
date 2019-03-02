@@ -46,14 +46,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -72,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_ELECTION_REGION")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenElectionRegion
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -206,75 +202,16 @@ public class SwedenElectionRegion
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.EqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final SwedenElectionRegion that = ((SwedenElectionRegion) object);
-        {
-            String lhsCountyId;
-            lhsCountyId = this.getCountyId();
-            String rhsCountyId;
-            rhsCountyId = that.getCountyId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countyId", lhsCountyId), LocatorUtils.property(thatLocator, "countyId", rhsCountyId), lhsCountyId, rhsCountyId)) {
-                return false;
-            }
-        }
-        {
-            String lhsMunicipalId;
-            lhsMunicipalId = this.getMunicipalId();
-            String rhsMunicipalId;
-            rhsMunicipalId = that.getMunicipalId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "municipalId", lhsMunicipalId), LocatorUtils.property(thatLocator, "municipalId", rhsMunicipalId), lhsMunicipalId, rhsMunicipalId)) {
-                return false;
-            }
-        }
-        {
-            String lhsRegionName;
-            lhsRegionName = this.getRegionName();
-            String rhsRegionName;
-            rhsRegionName = that.getRegionName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "regionName", lhsRegionName), LocatorUtils.property(thatLocator, "regionName", rhsRegionName), lhsRegionName, rhsRegionName)) {
-                return false;
-            }
-        }
-        {
-            List<SwedenPoliticalParty> lhsParties;
-            lhsParties = (((this.parties!= null)&&(!this.parties.isEmpty()))?this.getParties():null);
-            List<SwedenPoliticalParty> rhsParties;
-            rhsParties = (((that.parties!= null)&&(!that.parties.isEmpty()))?that.getParties():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "parties", lhsParties), LocatorUtils.property(thatLocator, "parties", rhsParties), lhsParties, rhsParties)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

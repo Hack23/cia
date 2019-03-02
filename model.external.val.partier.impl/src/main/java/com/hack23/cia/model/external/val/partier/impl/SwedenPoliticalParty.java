@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -81,7 +82,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "SWEDEN_POLITICAL_PARTY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenPoliticalParty
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -406,147 +407,16 @@ public class SwedenPoliticalParty
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.EqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final SwedenPoliticalParty that = ((SwedenPoliticalParty) object);
-        {
-            String lhsPartyName;
-            lhsPartyName = this.getPartyName();
-            String rhsPartyName;
-            rhsPartyName = that.getPartyName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyName", lhsPartyName), LocatorUtils.property(thatLocator, "partyName", rhsPartyName), lhsPartyName, rhsPartyName)) {
-                return false;
-            }
-        }
-        {
-            String lhsShortCode;
-            lhsShortCode = this.getShortCode();
-            String rhsShortCode;
-            rhsShortCode = that.getShortCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "shortCode", lhsShortCode), LocatorUtils.property(thatLocator, "shortCode", rhsShortCode), lhsShortCode, rhsShortCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyId;
-            lhsPartyId = this.getPartyId();
-            String rhsPartyId;
-            rhsPartyId = that.getPartyId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyId", lhsPartyId), LocatorUtils.property(thatLocator, "partyId", rhsPartyId), lhsPartyId, rhsPartyId)) {
-                return false;
-            }
-        }
-        {
-            String lhsCoAddress;
-            lhsCoAddress = this.getCoAddress();
-            String rhsCoAddress;
-            rhsCoAddress = that.getCoAddress();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "coAddress", lhsCoAddress), LocatorUtils.property(thatLocator, "coAddress", rhsCoAddress), lhsCoAddress, rhsCoAddress)) {
-                return false;
-            }
-        }
-        {
-            String lhsPhoneNumber;
-            lhsPhoneNumber = this.getPhoneNumber();
-            String rhsPhoneNumber;
-            rhsPhoneNumber = that.getPhoneNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "phoneNumber", lhsPhoneNumber), LocatorUtils.property(thatLocator, "phoneNumber", rhsPhoneNumber), lhsPhoneNumber, rhsPhoneNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsAddress;
-            lhsAddress = this.getAddress();
-            String rhsAddress;
-            rhsAddress = that.getAddress();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "address", lhsAddress), LocatorUtils.property(thatLocator, "address", rhsAddress), lhsAddress, rhsAddress)) {
-                return false;
-            }
-        }
-        {
-            String lhsFaxNumber;
-            lhsFaxNumber = this.getFaxNumber();
-            String rhsFaxNumber;
-            rhsFaxNumber = that.getFaxNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "faxNumber", lhsFaxNumber), LocatorUtils.property(thatLocator, "faxNumber", rhsFaxNumber), lhsFaxNumber, rhsFaxNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsPostCode;
-            lhsPostCode = this.getPostCode();
-            String rhsPostCode;
-            rhsPostCode = that.getPostCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "postCode", lhsPostCode), LocatorUtils.property(thatLocator, "postCode", rhsPostCode), lhsPostCode, rhsPostCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsCity;
-            lhsCity = this.getCity();
-            String rhsCity;
-            rhsCity = that.getCity();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "city", lhsCity), LocatorUtils.property(thatLocator, "city", rhsCity), lhsCity, rhsCity)) {
-                return false;
-            }
-        }
-        {
-            String lhsEmail;
-            lhsEmail = this.getEmail();
-            String rhsEmail;
-            rhsEmail = that.getEmail();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "email", lhsEmail), LocatorUtils.property(thatLocator, "email", rhsEmail), lhsEmail, rhsEmail)) {
-                return false;
-            }
-        }
-        {
-            String lhsWebsite;
-            lhsWebsite = this.getWebsite();
-            String rhsWebsite;
-            rhsWebsite = that.getWebsite();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "website", lhsWebsite), LocatorUtils.property(thatLocator, "website", rhsWebsite), lhsWebsite, rhsWebsite)) {
-                return false;
-            }
-        }
-        {
-            Date lhsRegisteredDate;
-            lhsRegisteredDate = this.getRegisteredDate();
-            Date rhsRegisteredDate;
-            rhsRegisteredDate = that.getRegisteredDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "registeredDate", lhsRegisteredDate), LocatorUtils.property(thatLocator, "registeredDate", rhsRegisteredDate), lhsRegisteredDate, rhsRegisteredDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
