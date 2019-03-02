@@ -27,7 +27,6 @@ package com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Basic;

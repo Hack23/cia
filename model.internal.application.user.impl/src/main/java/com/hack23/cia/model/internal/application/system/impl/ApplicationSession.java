@@ -10,7 +10,6 @@ package com.hack23.cia.model.internal.application.system.impl;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 

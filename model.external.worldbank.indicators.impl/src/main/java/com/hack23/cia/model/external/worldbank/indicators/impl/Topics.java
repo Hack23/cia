@@ -26,7 +26,6 @@
 package com.hack23.cia.model.external.worldbank.indicators.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;

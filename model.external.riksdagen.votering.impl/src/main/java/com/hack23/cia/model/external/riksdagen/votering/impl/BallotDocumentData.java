@@ -26,7 +26,6 @@
 package com.hack23.cia.model.external.riksdagen.votering.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
