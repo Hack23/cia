@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Root_QNAME. */
-    private final static QName _Root_QNAME = new QName("http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", "root");
+    private static final QName _Root_QNAME = new QName("http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", "root");
 
     /**
 	 * Instantiates a new object factory.
@@ -72,7 +72,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", name = "root")
     public JAXBElement<SwedenParliamentElectoralRegionContainer> createRoot(final SwedenParliamentElectoralRegionContainer value) {
-        return new JAXBElement<SwedenParliamentElectoralRegionContainer>(_Root_QNAME, SwedenParliamentElectoralRegionContainer.class, null, value);
+        return new JAXBElement<>(_Root_QNAME, SwedenParliamentElectoralRegionContainer.class, null, value);
     }
 
 }

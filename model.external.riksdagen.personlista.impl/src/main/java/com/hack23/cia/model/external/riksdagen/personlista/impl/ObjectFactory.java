@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Personlista_QNAME. */
-    private final static QName _Personlista_QNAME = new QName("http://personlista.riksdagen.external.model.cia.hack23.com/impl", "personlista");
+    private static final QName _Personlista_QNAME = new QName("http://personlista.riksdagen.external.model.cia.hack23.com/impl", "personlista");
 
     /**
 	 * Instantiates a new object factory.
@@ -108,7 +108,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://personlista.riksdagen.external.model.cia.hack23.com/impl", name = "personlista")
     public JAXBElement<PersonContainerElement> createPersonlista(final PersonContainerElement value) {
-        return new JAXBElement<PersonContainerElement>(_Personlista_QNAME, PersonContainerElement.class, null, value);
+        return new JAXBElement<>(_Personlista_QNAME, PersonContainerElement.class, null, value);
     }
 
 }

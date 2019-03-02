@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Votering_QNAME. */
-    private final static QName _Votering_QNAME = new QName("http://votering.riksdagen.external.model.cia.hack23.com/impl", "votering");
+    private static final QName _Votering_QNAME = new QName("http://votering.riksdagen.external.model.cia.hack23.com/impl", "votering");
 
     /**
 	 * Instantiates a new object factory.
@@ -108,7 +108,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://votering.riksdagen.external.model.cia.hack23.com/impl", name = "votering")
     public JAXBElement<BallotContainer> createVotering(final BallotContainer value) {
-        return new JAXBElement<BallotContainer>(_Votering_QNAME, BallotContainer.class, null, value);
+        return new JAXBElement<>(_Votering_QNAME, BallotContainer.class, null, value);
     }
 
 }

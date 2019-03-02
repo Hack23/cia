@@ -63,19 +63,19 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * @return true, if successful
 	 */
 	public final boolean checkAllClassesInPackage(final String string) {
-		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
 
-		Validator validator = ValidatorBuilder.create().with(new SetterMustExistRule(), new GetterMustExistRule())
+		final Validator validator = ValidatorBuilder.create().with(new SetterMustExistRule(), new GetterMustExistRule())
 				.with(new SetterTester(), new GetterTester()).with(new InvokeToStringTester())
 				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester())
 				.with(new EqualsAndHashCodeMatchRule()).build();
 		validator.validate(pojoClassesRecursively);
 
-		List<PojoClass> enumClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+		final List<PojoClass> enumClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterNonEnumClasses());
 
-		Validator enumValidator = ValidatorBuilder.create().with(new EnumTester()).build();
+		final Validator enumValidator = ValidatorBuilder.create().with(new EnumTester()).build();
 		enumValidator.validate(enumClassesRecursively);
 
 		return true;
@@ -83,10 +83,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 	public final boolean checkAllDtoClassesInPackage(final String string) {
 
-		List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
+		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
 
-		Validator validator = ValidatorBuilder.create().with(new GetterMustExistRule()).with(new GetterTester())
+		final Validator validator = ValidatorBuilder.create().with(new GetterMustExistRule()).with(new GetterTester())
 				.with(new EqualsAndHashCodeMatchRule()).with(new InvokeToStringTester())
 				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester()).build();
 		validator.validate(pojoClassesRecursively);
@@ -94,38 +94,41 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	}
 
 	public class InvokeToStringTester implements Tester {
-		public void run(PojoClass pojoClass) {
-			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+		@Override
+		public void run(final PojoClass pojoClass) {
+			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmNotNull("toStringFailure", instance.toString());
 		}
 	}
 
 	public class InvokeHashcodeTester implements Tester {
-		public void run(PojoClass pojoClass) {
-			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+		@Override
+		public void run(final PojoClass pojoClass) {
+			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
 		}
 	}
 
 	public class DummyEqualsTester implements Tester {
-		public void run(PojoClass pojoClass) {
-			Object instance = randomValues(pojoClass);
+		@Override
+		public void run(final PojoClass pojoClass) {
+			final Object instance = randomValues(pojoClass);
 
-			Object instance2 = randomValues(pojoClass);
+			final Object instance2 = randomValues(pojoClass);
 
 			instance.equals(instance2);
 			// Affirm.affirmFalse("EqualsFailureSameInstanceDontMatch:" + instance + ":" +
 			// instance2, instance.equals(instance2));
 		}
 
-		private Object randomValues(PojoClass pojoClass) {
-			Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
+		private Object randomValues(final PojoClass pojoClass) {
+			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			randomValues(instance, pojoClass);
 
 			return instance;
 		}
 
-		private void randomValues(Object instance, PojoClass pojoClass) {
+		private void randomValues(final Object instance, final PojoClass pojoClass) {
 			if (pojoClass == null) {
 				return;
 			}
@@ -144,16 +147,17 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 	public class WithTester implements Tester {
 
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
 			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
 
 				if (fieldEntry.hasSetter()) {
-					String name = fieldEntry.getName();
+					final String name = fieldEntry.getName();
 
-					List<PojoMethod> methods = pojoClass.getPojoMethods();
+					final List<PojoMethod> methods = pojoClass.getPojoMethods();
 
-					for (PojoMethod pojoMethod : methods) {
+					for (final PojoMethod pojoMethod : methods) {
 						if (("with" + name).equalsIgnoreCase(pojoMethod.getName())) {
 
 							final Object value = RandomFactory.getRandomValue(fieldEntry);
@@ -177,21 +181,22 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 	public class EnumTester implements Rule {
 
+		@Override
 		public void evaluate(final PojoClass pojoClass) {
 			if (pojoClass.isEnum()) {
 
-				Object[] enumConstants = pojoClass.getClazz().getEnumConstants();
+				final Object[] enumConstants = pojoClass.getClazz().getEnumConstants();
 
-				PojoMethod valueMethod = findMethod(pojoClass, "value");
-				PojoMethod fromValueMethod = findMethod(pojoClass, "fromValue");
+				final PojoMethod valueMethod = findMethod(pojoClass, "value");
+				final PojoMethod fromValueMethod = findMethod(pojoClass, "fromValue");
 				if (valueMethod != null && fromValueMethod != null) {
-					for (Object object : enumConstants) {
+					for (final Object object : enumConstants) {
 						fromValueMethod.invoke(object, valueMethod.invoke(object));
 					}
 					
 					try {
 						fromValueMethod.invoke(enumConstants[0], "NoValidEnumStringValue");
-					} catch(RuntimeException e) {
+					} catch(final RuntimeException e) {
 						LoggerFactory.getLogger(this.getClass()).debug("Expected exception [{0}]",e);
 					}
 				}
@@ -199,10 +204,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
-	private static PojoMethod findMethod(PojoClass pojoClass, String name) {
-		List<PojoMethod> methods = pojoClass.getPojoMethods();
+	private static PojoMethod findMethod(final PojoClass pojoClass, final String name) {
+		final List<PojoMethod> methods = pojoClass.getPojoMethods();
 
-		for (PojoMethod pojoMethod : methods) {
+		for (final PojoMethod pojoMethod : methods) {
 			if (name.equalsIgnoreCase(pojoMethod.getName())) {
 				return pojoMethod;
 			}
@@ -213,7 +218,8 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
 
 	private static class FilterTestClasses implements PojoClassFilter {
-		public boolean include(PojoClass pojoClass) {
+		@Override
+		public boolean include(final PojoClass pojoClass) {
 			return !(pojoClass.getSourcePath().contains("/test-classes/")
 					|| pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract())
 					&& FilterPackageInfo.include(pojoClass);
@@ -221,7 +227,8 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	}
 
 	private static class FilterNonEnumClasses implements PojoClassFilter {
-		public boolean include(PojoClass pojoClass) {
+		@Override
+		public boolean include(final PojoClass pojoClass) {
 			return pojoClass.isEnum() && FilterPackageInfo.include(pojoClass);
 		}
 	}

@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Utskottsforslag_QNAME. */
-    private final static QName _Utskottsforslag_QNAME = new QName("http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl", "utskottsforslag");
+    private static final QName _Utskottsforslag_QNAME = new QName("http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl", "utskottsforslag");
 
     /**
 	 * Instantiates a new object factory.
@@ -108,7 +108,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl", name = "utskottsforslag")
     public JAXBElement<CommitteeProposalComponentData> createUtskottsforslag(final CommitteeProposalComponentData value) {
-        return new JAXBElement<CommitteeProposalComponentData>(_Utskottsforslag_QNAME, CommitteeProposalComponentData.class, null, value);
+        return new JAXBElement<>(_Utskottsforslag_QNAME, CommitteeProposalComponentData.class, null, value);
     }
 
 }

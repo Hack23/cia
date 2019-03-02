@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Dokumentstatus_QNAME. */
-    private final static QName _Dokumentstatus_QNAME = new QName("http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl", "dokumentstatus");
+    private static final QName _Dokumentstatus_QNAME = new QName("http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl", "dokumentstatus");
 
     /**
 	 * Instantiates a new object factory.
@@ -180,7 +180,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl", name = "dokumentstatus")
     public JAXBElement<DocumentStatusContainer> createDokumentstatus(final DocumentStatusContainer value) {
-        return new JAXBElement<DocumentStatusContainer>(_Dokumentstatus_QNAME, DocumentStatusContainer.class, null, value);
+        return new JAXBElement<>(_Dokumentstatus_QNAME, DocumentStatusContainer.class, null, value);
     }
 
 }

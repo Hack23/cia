@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Indicator_QNAME. */
-    private final static QName _Indicator_QNAME = new QName("http://indicators.worldbank.external.model.cia.hack23.com/impl", "indicator");
+    private static final QName _Indicator_QNAME = new QName("http://indicators.worldbank.external.model.cia.hack23.com/impl", "indicator");
 
     /**
 	 * Instantiates a new object factory.
@@ -99,7 +99,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://indicators.worldbank.external.model.cia.hack23.com/impl", name = "indicator")
     public JAXBElement<IndicatorElement> createIndicator(final IndicatorElement value) {
-        return new JAXBElement<IndicatorElement>(_Indicator_QNAME, IndicatorElement.class, null, value);
+        return new JAXBElement<>(_Indicator_QNAME, IndicatorElement.class, null, value);
     }
 
 }

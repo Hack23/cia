@@ -38,7 +38,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     /** The Constant _Topic_QNAME. */
-    private final static QName _Topic_QNAME = new QName("http://topic.worldbank.external.model.cia.hack23.com/impl", "topic");
+    private static final QName _Topic_QNAME = new QName("http://topic.worldbank.external.model.cia.hack23.com/impl", "topic");
 
     /**
 	 * Instantiates a new object factory.
@@ -72,7 +72,7 @@ public class ObjectFactory {
 	 */
     @XmlElementDecl(namespace = "http://topic.worldbank.external.model.cia.hack23.com/impl", name = "topic")
     public JAXBElement<TopicElement> createTopic(final TopicElement value) {
-        return new JAXBElement<TopicElement>(_Topic_QNAME, TopicElement.class, null, value);
+        return new JAXBElement<>(_Topic_QNAME, TopicElement.class, null, value);
     }
 
 }
