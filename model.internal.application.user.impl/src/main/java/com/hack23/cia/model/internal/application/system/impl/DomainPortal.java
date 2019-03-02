@@ -89,42 +89,6 @@ public class DomainPortal extends Portal
         return this;
     }
 
-    @Override
-    public DomainPortal withModelObjectId(final Integer value) {
-        setModelObjectId(value);
-        return this;
-    }
-
-    @Override
-    public DomainPortal withModelObjectVersion(final int value) {
-        setModelObjectVersion(value);
-        return this;
-    }
-
-    @Override
-    public DomainPortal withPortalName(final String value) {
-        setPortalName(value);
-        return this;
-    }
-
-    @Override
-    public DomainPortal withPortalType(final PortalType value) {
-        setPortalType(value);
-        return this;
-    }
-
-    @Override
-    public DomainPortal withDescription(final String value) {
-        setDescription(value);
-        return this;
-    }
-
-    @Override
-    public DomainPortal withGoogleMapApiKey(final String value) {
-        setGoogleMapApiKey(value);
-        return this;
-    }
-
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

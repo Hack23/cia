@@ -188,6 +188,12 @@ public abstract class AbstractUnitTest extends AbstractTest {
 					for (Object object : enumConstants) {
 						fromValueMethod.invoke(object, valueMethod.invoke(object));
 					}
+					
+					try {
+						fromValueMethod.invoke(enumConstants[0], "NoValidEnumStringValue");
+					} catch(RuntimeException e) {
+						LoggerFactory.getLogger(this.getClass()).debug("Expected exception [{0}]",e);
+					}
 				}
 			}
 		}
