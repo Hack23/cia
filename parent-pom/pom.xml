@@ -108,7 +108,7 @@
     <cia.project.versions.spring.security>5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.2</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
-    <cia.project.versions.asm>7.0</cia.project.versions.asm>
+    <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
@@ -629,17 +629,17 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>7.0</version>
+              <version>7.1</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-tree</artifactId>
-              <version>7.0</version>
+              <version>7.1</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-commons</artifactId>
-              <version>7.0</version>
+              <version>7.1</version>
             </dependency>
           </dependencies>
         </plugin>
