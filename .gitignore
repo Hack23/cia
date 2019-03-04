@@ -9,3 +9,7 @@ themes/reindeer/
 themes/valo/
 themes/runo/
 activemq-data/
+.classpath
+.project
+.settings/
+.springBeans
