@@ -1,4 +1,5 @@
 target/
+bin/
 gwt-unitCache/
 gwt-deploy/
 com.hack23.cia.web.widgets.WebWidgetSet/
