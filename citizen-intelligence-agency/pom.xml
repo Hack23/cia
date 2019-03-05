@@ -1572,7 +1572,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>1.19</version>
+        <version>1.20.jbossorg-1</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>
@@ -1793,7 +1793,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>1.19</version>
+        <version>1.20.jbossorg-1</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>
