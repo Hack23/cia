@@ -25,9 +25,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.io.FileUtils;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.jpa.FullTextEntityManager;
+import org.hibernate.search.mapper.orm.jpa.FullTextQuery;
+import org.hibernate.search.mapper.orm.jpa.FullTextQueryResultDefinitionContext;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,19 +70,17 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Test
 	@Transactional(timeout=900)
 	public void testSearchIndex() throws Exception {
-
 		final FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-		final QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder()
-				.forEntity(DocumentContentData.class).get();
-		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("content").matching("programmering")
-				.createQuery();
-
-		// wrap Lucene query in a javax.persistence.Query
-		final javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery,
-				DocumentContentData.class);
-
+		final FullTextQueryResultDefinitionContext<DocumentContentData> queryResult = fullTextEntityManager.search(DocumentContentData.class).query();
+		final FullTextQuery<DocumentContentData> query = queryResult.asEntity()
+	        .predicate( factory -> factory.match()
+	                .onFields( "content")
+	                .matching( "programmering" )
+	        )
+	        .build();
+		
 		// execute search
-		final List<DocumentContentData> result = jpaQuery.setMaxResults(500).getResultList();
+		final List<DocumentContentData> result = query.setMaxResults(500).getResultList();
 		assertTrue("expect some result",result.size()> 0);
 	}
 

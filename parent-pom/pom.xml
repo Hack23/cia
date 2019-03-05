@@ -234,12 +234,12 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-phonetic</artifactId>
-        <version>5.5.5</version>
+        <version>7.7.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>5.5.5</version>
+        <version>7.7.1</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>

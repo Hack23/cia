@@ -25,8 +25,11 @@ open module com.hack23.cia.service.data.impl {
 
 	requires spring.security.core;
 
-	requires org.hibernate.search.orm;
 	requires org.hibernate.search.engine;
+	requires org.hibernate.search.backend.lucene;
+	requires org.hibernate.search.mapper.pojo;
+	requires org.hibernate.search.mapper.orm;	
+	
 	requires com.fasterxml.jackson.databind;
 	requires aws.java.sdk.secretsmanager;
 	requires aws.java.sdk.core;
@@ -35,8 +38,9 @@ open module com.hack23.cia.service.data.impl {
 	requires liquibase.core;
 	requires commons.lang;
 	requires org.apache.commons.lang3;
-	requires lucene.core;
+//	requires lucene.core;
 	requires lucene.analyzers.common;
+
 	requires javers.spring;
 	requires javers.spring.jpa;
 	requires javers.persistence.sql;

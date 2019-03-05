@@ -21,7 +21,7 @@ package com.hack23.cia.service.data.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.search.jpa.Search;
+import org.hibernate.search.mapper.orm.Search;
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.service.data.api.SearchIndexer;
@@ -48,6 +48,6 @@ final class SearchIndexerImpl implements SearchIndexer {
 
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-		Search.getFullTextEntityManager(entityManager).createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
+		Search.getFullTextEntityManager(entityManager).createIndexer().threadsToLoadObjects(8).typesToIndexInParallel(1).batchSizeToLoadObjects(100).transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
 	}
 }

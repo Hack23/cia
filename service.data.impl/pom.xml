@@ -101,9 +101,9 @@
       <version>2.9.8</version>
     </dependency>
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-orm</artifactId>
-      <version>5.11.1.Final</version>
+      <groupId>org.hibernate.search</groupId>
+      <artifactId>hibernate-search-mapper-orm</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -144,6 +144,21 @@
         <exclusion>
           <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.search</groupId>
+      <artifactId>hibernate-search-backend-lucene</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>lucene-analyzers-common</artifactId>
+          <groupId>org.apache.lucene</groupId>
+	        </exclusion>
+	        <exclusion>
+	          <artifactId>lucene-queryparser</artifactId>
+	          <groupId>org.apache.lucene</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -262,7 +277,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-queryparser</artifactId>
-      <version>5.5.5</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
@@ -271,17 +286,17 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-backward-codecs</artifactId>
-      <version>5.5.5</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-misc</artifactId>
-      <version>5.5.5</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-facet</artifactId>
-      <version>5.5.5</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>
