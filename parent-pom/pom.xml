@@ -1282,6 +1282,7 @@
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
+      <!-- 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-toolchains-plugin</artifactId>
@@ -1293,7 +1294,7 @@
             </jdk>
           </toolchains>
         </configuration>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -1301,11 +1302,9 @@
           <execution>
             <id>default-compile</id>
             <configuration>
-              <!-- compile everything to ensure module-info contains right entries -->
-              <!-- required when JAVA_HOME is JDK 8 or below -->
-              <jdkToolchain>
+              <!-- <jdkToolchain>
                 <version>${jdk.target.version}</version>
-              </jdkToolchain>
+              </jdkToolchain>-->
               <source>${jdk.src.version}</source>
               <target>${jdk.target.version}</target>
             </configuration>
@@ -1328,9 +1327,9 @@
         </executions>
         <inherited>true</inherited>
         <configuration>
-          <jdkToolchain>
+          <!--  <jdkToolchain>
             <version>${jdk.target.version}</version>
-          </jdkToolchain>
+          </jdkToolchain>-->
           <source>${jdk.src.version}</source>
           <target>${jdk.target.version}</target>
         </configuration>
@@ -1672,7 +1671,7 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <doclet>org.jboss.apiviz.APIviz</doclet>
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
                   <groupId>com.grahamedgecombe.apiviz</groupId>
@@ -1681,6 +1680,7 @@
                 </docletArtifact>
               </docletArtifacts>
               <useStandardDocletOptions>true</useStandardDocletOptions>
+ -->
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
@@ -1822,13 +1822,14 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <doclet>org.jboss.apiviz.APIviz</doclet>
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
                 <artifactId>apiviz</artifactId>
                 <version>1.3.4</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
+ -->
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <docencoding>UTF-8</docencoding>
