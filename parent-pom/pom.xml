@@ -276,7 +276,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.3.redhat-1</version>
+        <version>1.9.3</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.jaxb2_commons</groupId>
