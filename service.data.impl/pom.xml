@@ -205,7 +205,7 @@
     <dependency>
       <groupId>org.elasticsearch.client</groupId>
       <artifactId>transport</artifactId>
-      <version>6.6.0</version>
+      <version>6.6.1</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-dataformat-cbor</artifactId>
@@ -299,7 +299,7 @@
     <dependency>
       <groupId>org.elasticsearch.plugin</groupId>
       <artifactId>transport-netty4-client</artifactId>
-      <version>6.6.0</version>
+      <version>6.6.1</version>
       <exclusions>
         <exclusion>
           <artifactId>netty-codec-http</artifactId>
@@ -389,7 +389,7 @@
     <dependency>
       <groupId>org.elasticsearch.client</groupId>
       <artifactId>elasticsearch-rest-client</artifactId>
-      <version>6.6.0</version>
+      <version>6.6.1</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-core</artifactId>
@@ -406,9 +406,14 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.codelibs.elasticsearch.module</groupId>
+      <artifactId>analysis-common</artifactId>
+      <version>6.6.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.elasticsearch.client</groupId>
       <artifactId>elasticsearch-rest-client-sniffer</artifactId>
-      <version>6.6.0</version>
+      <version>6.6.1</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-core</artifactId>
