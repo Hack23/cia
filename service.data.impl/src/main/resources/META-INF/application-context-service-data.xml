@@ -82,6 +82,18 @@
 		<property name="initialSize" value="20" />		
 		<property name="maxTotal" value="200" />
 	</bean>
+	
+	<bean id="elasticSearchClient" class="org.springframework.data.elasticsearch.client.NodeClientFactoryBean">
+		<constructor-arg index="0" value="false"/>
+		<property name="enableHttp" value="true" />
+		<property name="clusterName" value="cia" />
+	</bean>
+	
+	<bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
+        <constructor-arg name="client" ref="elasticSearchClient"/>
+    </bean>
+	
+	
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -154,9 +166,8 @@
  				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
-				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
-				
-				
+
+<!-- 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>								
 				<prop key="hibernate.search.backends.myBackend.type">lucene</prop> 			
 	  			<prop key="hibernate.search.backends.myBackend.lucene.directory_provider">local_directory</prop>
 	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
@@ -164,8 +175,15 @@
 	
 	 			<prop key="hibernate.search.default.indexwriter.max_thread_states">64</prop> 		
 	 			<prop key="hibernate.search.default.indexwriter.infostream">false</prop> 		
+ -->	 			
+	
+				<prop key="hibernate.search.backends.myBackend.type">elasticsearch</prop>
+				<prop key="hibernate.search.default_backend">myBackend</prop>
+	 			
+	 			
 	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop> 			
 	 			<prop key="hibernate.search.mapping_configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
+	 			
 <!-- 	 			<prop key="hibernate.search.backends.myBackend.root_directory">${database.search.index.location}</prop>
 	 			
  	 			<prop key="hibernate.search.backends.myBackend.index_defaults.refresh_after_write">true</prop>

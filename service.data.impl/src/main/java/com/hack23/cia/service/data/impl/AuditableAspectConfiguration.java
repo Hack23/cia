@@ -22,6 +22,8 @@ import java.sql.Connection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.hibernate.Session;
 import org.hibernate.internal.SessionImpl;
@@ -41,9 +43,6 @@ import org.javers.spring.auditable.aspect.JaversAuditableAspect;
 import org.javers.spring.jpa.TransactionalJaversBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.client.NodeClientFactoryBean;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -67,17 +66,6 @@ public class AuditableAspectConfiguration {
 		super();
 	}
 
-	@Bean
-	public ElasticsearchOperations elasticsearchTemplate() {
-		try {
-			return new ElasticsearchTemplate(new NodeClientFactoryBean(true).getObject());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-			return null;
-		}
-	}
-
 	/**
 	 * Gets the javers.
 	 *
@@ -86,7 +74,6 @@ public class AuditableAspectConfiguration {
 	 */
 	@Bean
 	public Javers getJavers(final PlatformTransactionManager txManager) {
-		elasticsearchTemplate();
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 

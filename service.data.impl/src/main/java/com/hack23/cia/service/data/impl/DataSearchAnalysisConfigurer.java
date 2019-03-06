@@ -29,7 +29,7 @@ import org.hibernate.search.backend.lucene.analysis.model.dsl.LuceneAnalysisDefi
 /**
  * The Class DataSearchAnalysisConfigurer.
  */
-public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer {
+public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer,ElasticsearchAnalysisConfigurer {
 
 	@Override
 	public void configure(LuceneAnalysisDefinitionContainerContext context) {
