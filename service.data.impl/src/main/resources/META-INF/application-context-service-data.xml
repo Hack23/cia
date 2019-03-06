@@ -2,11 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+       http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd">
 
 	<context:mbean-export />
 
@@ -83,13 +85,19 @@
 		<property name="maxTotal" value="200" />
 	</bean>
 	
-	<bean id="elasticSearchClient" class="org.springframework.data.elasticsearch.client.NodeClientFactoryBean">
-		<constructor-arg index="0" value="false"/>
+	
+	<elasticsearch:node-client id="elasticSearchClient" local="true" http-enabled="true" path-data="target" path-home="target"/>
+	
+<!--   	 <elasticsearch:transport-client id="elasticSearchClient2" cluster-nodes="localhost:9300" />
+ -->	
+<!-- 	<bean id="elasticSearchClient" class="org.springframework.data.elasticsearch.client.NodeClientFactoryBean">
+		<constructor-arg index="0" value="true"/>
 		<property name="enableHttp" value="true" />
 		<property name="clusterName" value="cia" />
+		<property name="pathConfiguration" value="/elasticsearch.yml" />
 	</bean>
-	
-	<bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
+ -->	
+ 	<bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
         <constructor-arg name="client" ref="elasticSearchClient"/>
     </bean>
 	
@@ -97,7 +105,7 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		depends-on="cacheManager,liquibase,transactionManager">
+		depends-on="cacheManager,liquibase,transactionManager,elasticsearchTemplate">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
 		<property name="jpaVendorAdapter">
@@ -167,7 +175,7 @@
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
 
-<!-- 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>								
+<!--   				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>								
 				<prop key="hibernate.search.backends.myBackend.type">lucene</prop> 			
 	  			<prop key="hibernate.search.backends.myBackend.lucene.directory_provider">local_directory</prop>
 	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
@@ -175,12 +183,13 @@
 	
 	 			<prop key="hibernate.search.default.indexwriter.max_thread_states">64</prop> 		
 	 			<prop key="hibernate.search.default.indexwriter.infostream">false</prop> 		
- -->	 			
+ -->	
 	
-				<prop key="hibernate.search.backends.myBackend.type">elasticsearch</prop>
+  				<prop key="hibernate.search.backends.myBackend.type">elasticsearch</prop>
 				<prop key="hibernate.search.default_backend">myBackend</prop>
-	 			
-	 			
+				<prop key="hibernate.search.backends.myBackend.host">http://localhost:9200</prop>
+	 
+	 	 			
 	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop> 			
 	 			<prop key="hibernate.search.mapping_configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
 	 			

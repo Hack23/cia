@@ -23,6 +23,8 @@ import org.apache.lucene.analysis.en.PorterStemFilterFactory;
 import org.apache.lucene.analysis.ngram.NGramFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
+import org.hibernate.search.backend.elasticsearch.analysis.ElasticsearchAnalysisConfigurer;
+import org.hibernate.search.backend.elasticsearch.analysis.model.dsl.ElasticsearchAnalysisDefinitionContainerContext;
 import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer;
 import org.hibernate.search.backend.lucene.analysis.model.dsl.LuceneAnalysisDefinitionContainerContext;
 
@@ -41,5 +43,13 @@ public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer,El
 				.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
 				.tokenFilter(PorterStemFilterFactory.class);
 	}
+
+	@Override
+	public void configure(ElasticsearchAnalysisDefinitionContainerContext context) {
+		
+	    context.analyzer( "se" ).custom().withTokenizer( "standard" ); 
+//        .withTokenFilters( "asciifolding", "lowercase" ); 
+
+}
 
 }

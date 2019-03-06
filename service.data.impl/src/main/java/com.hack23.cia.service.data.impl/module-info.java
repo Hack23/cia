@@ -28,6 +28,7 @@ open module com.hack23.cia.service.data.impl {
 
 	requires org.hibernate.search.engine;
 	requires org.hibernate.search.backend.lucene;
+	requires org.hibernate.search.backend.elasticsearch;	
 	requires org.hibernate.search.mapper.pojo;
 	requires org.hibernate.search.mapper.orm;	
 	
