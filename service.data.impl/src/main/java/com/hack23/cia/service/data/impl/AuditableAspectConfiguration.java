@@ -28,6 +28,9 @@ import org.hibernate.internal.SessionImpl;
 import org.javers.core.Javers;
 import org.javers.core.MappingStyle;
 import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;
+import org.javers.core.Javers;
+import org.javers.core.MappingStyle;
+import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;
 import org.javers.repository.sql.ConnectionProvider;
 import org.javers.repository.sql.DialectName;
 import org.javers.repository.sql.JaversSqlRepository;
@@ -38,6 +41,9 @@ import org.javers.spring.auditable.aspect.JaversAuditableAspect;
 import org.javers.spring.jpa.TransactionalJaversBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.client.NodeClientFactoryBean;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -53,12 +59,23 @@ public class AuditableAspectConfiguration {
 	/** The entity manager. */
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	/**
 	 * Instantiates a new auditable aspect configuration.
 	 */
 	public AuditableAspectConfiguration() {
 		super();
+	}
+
+	@Bean
+	public ElasticsearchOperations elasticsearchTemplate() {
+		try {
+			return new ElasticsearchTemplate(new NodeClientFactoryBean(true).getObject());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -69,6 +86,7 @@ public class AuditableAspectConfiguration {
 	 */
 	@Bean
 	public Javers getJavers(final PlatformTransactionManager txManager) {
+		elasticsearchTemplate();
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 
@@ -94,7 +112,8 @@ public class AuditableAspectConfiguration {
 	 * @return the javers auditable aspect
 	 */
 	@Bean
-	public JaversAuditableAspect javersAuditableAspect(final Javers javers, final AuthorProvider authorProvider, final CommitPropertiesProvider commitPropertiesProvider) {
+	public JaversAuditableAspect javersAuditableAspect(final Javers javers, final AuthorProvider authorProvider,
+			final CommitPropertiesProvider commitPropertiesProvider) {
 		return new JaversAuditableAspect(javers, authorProvider, commitPropertiesProvider);
 	}
 
@@ -108,14 +127,13 @@ public class AuditableAspectConfiguration {
 		return () -> {
 			final SecurityContext context = SecurityContextHolder.getContext();
 			if (context != null && context.getAuthentication() != null) {
-				return context.getAuthentication().getPrincipal().toString();			
+				return context.getAuthentication().getPrincipal().toString();
 			} else {
 				return "system";
-			}			
+			}
 		};
 	}
-	
-	
+
 	/**
 	 * Commit properties provider.
 	 *

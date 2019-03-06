@@ -35,6 +35,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
+import org.javers.spring.auditable.AuthorProvider;
+
 
 /**
  * The Class ApplicationSessionDAOITest.

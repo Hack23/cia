@@ -1,7 +1,8 @@
 open module com.hack23.cia.service.data.impl {
 	exports com.hack23.cia.service.data.impl;
 	exports com.hack23.cia.service.data.impl.util;
-		
+
+	requires spring.data.elasticsearch;
 	requires java.xml.bind;
 	requires java.sql;
 	requires java.desktop;

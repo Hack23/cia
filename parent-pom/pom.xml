@@ -234,12 +234,12 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-phonetic</artifactId>
-        <version>7.7.1</version>
+        <version>7.6.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>7.7.1</version>
+        <version>7.6.0</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>
@@ -1282,7 +1282,6 @@
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
-      <!-- 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-toolchains-plugin</artifactId>
@@ -1294,7 +1293,7 @@
             </jdk>
           </toolchains>
         </configuration>
-      </plugin>-->
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -1302,9 +1301,9 @@
           <execution>
             <id>default-compile</id>
             <configuration>
-              <!-- <jdkToolchain>
+              <jdkToolchain>
                 <version>${jdk.target.version}</version>
-              </jdkToolchain>-->
+              </jdkToolchain>
               <source>${jdk.src.version}</source>
               <target>${jdk.target.version}</target>
             </configuration>
@@ -1327,9 +1326,9 @@
         </executions>
         <inherited>true</inherited>
         <configuration>
-          <!--  <jdkToolchain>
+          <jdkToolchain>
             <version>${jdk.target.version}</version>
-          </jdkToolchain>-->
+          </jdkToolchain>
           <source>${jdk.src.version}</source>
           <target>${jdk.target.version}</target>
         </configuration>
