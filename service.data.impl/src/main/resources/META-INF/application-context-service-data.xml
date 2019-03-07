@@ -175,35 +175,29 @@
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
 
-<!--   				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>								
-				<prop key="hibernate.search.backends.myBackend.type">lucene</prop> 			
-	  			<prop key="hibernate.search.backends.myBackend.lucene.directory_provider">local_directory</prop>
-	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
-	 			<prop key="hibernate.search.default_backend">myBackend</prop> 		
-	
-	 			<prop key="hibernate.search.default.indexwriter.max_thread_states">64</prop> 		
-	 			<prop key="hibernate.search.default.indexwriter.infostream">false</prop> 		
- -->	
-	
-  				<prop key="hibernate.search.backends.myBackend.type">elasticsearch</prop>
-				<prop key="hibernate.search.default_backend">myBackend</prop>
-				<prop key="hibernate.search.backends.myBackend.host">http://localhost:9200</prop>
-	 
-	 	 			
 	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop> 			
 	 			<prop key="hibernate.search.mapping_configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
-	 			
-<!-- 	 			<prop key="hibernate.search.backends.myBackend.root_directory">${database.search.index.location}</prop>
-	 			
- 	 			<prop key="hibernate.search.backends.myBackend.index_defaults.refresh_after_write">true</prop>
-	   			<prop key="hibernate.search.indexing_strategy">manual</prop>
- -->	   			
-				<!-- Elasticsearch integration
-				<prop key="hibernate.search.default.indexmanager">elasticsearch</prop>
-				<prop key="hibernate.search.default.elasticsearch.host">http://127.0.0.1:9200</prop>
-				<prop key="hibernate.search.default.elasticsearch.index_schema_management_strategy">none</prop>
-				<prop key="hibernate.search.default.elasticsearch.index_management_wait_timeout">30000</prop>
-				 -->
+
+	 			<prop key="hibernate.search.default_backend">myBackend</prop> 		
+
+ 	 			<prop key="hibernate.search.default.indexwriter.max_thread_states">64</prop> 		
+	 			<prop key="hibernate.search.default.indexwriter.infostream">true</prop> 		
+				<prop key="hibernate.search.default.directory_provider">filesystem</prop>
+  	   			<prop key="hibernate.search.indexing_strategy">manual</prop>
+ 			
+ 				<prop key="hibernate.search.backends.myBackend.type">lucene</prop> 			
+	  			<prop key="hibernate.search.backends.myBackend.lucene.directory_provider">local_directory</prop>
+
+	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
+  				<prop key="hibernate.search.backends.myBackend.root_directory">.</prop>	 			
+  	 			<prop key="hibernate.search.backends.myBackend.index_defaults.refresh_after_write">true</prop>
+
+
+<!--     				<prop key="hibernate.search.backends.myBackend.type">elasticsearch</prop>
+				<prop key="hibernate.search.default_backend">myBackend</prop>
+				<prop key="hibernate.search.backends.myBackend.host">http://localhost:9200</prop>
+				<prop key="hibernate.search.backends.myBackend.index_defaults.lifecycle.minimal_required_status_wait_timeout">60000</prop>
+ -->	 	 				 			
 			</props>
 		</property>
 	</bean>

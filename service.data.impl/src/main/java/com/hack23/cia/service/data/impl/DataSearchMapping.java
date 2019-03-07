@@ -38,8 +38,8 @@ public class DataSearchMapping implements HibernateOrmSearchMappingConfigurer {
 				.indexed().property("hjid").documentId().property("content").fullTextField().analyzer("se").property("id");
 		
 //		mapping.type( DocumentElement.class )
-//		.indexed( "default2").property("id").documentId().property("title").fullTextField().analyzer("se").property("subTitle").fullTextField().analyzer("se");
-		mapping.type( DocumentStatusContainer.class )
-		.indexed().property("hjid").documentId().property("documentCategory").fullTextField().analyzer("se");
+//		.indexed().property("id").documentId().property("title").fullTextField().analyzer("se").property("subTitle").fullTextField().analyzer("se");
+//		mapping.type( DocumentStatusContainer.class )
+//		.indexed().property("hjid").documentId().property("documentCategory").fullTextField().analyzer("se");
 	}
 }

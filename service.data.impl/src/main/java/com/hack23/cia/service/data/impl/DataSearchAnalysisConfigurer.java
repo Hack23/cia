@@ -48,7 +48,7 @@ public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer,El
 	public void configure(ElasticsearchAnalysisDefinitionContainerContext context) {
 		
 		
-	    context.analyzer("se" ).custom().withTokenizer( "standard" );//.param("max_token_length","5");//.withTokenFilters( "swedish"); 
+	    context.analyzer("se").custom().withTokenizer("standard");//.param("max_token_length","5");//.withTokenFilters( "swedish"); 
 	    //context.tokenFilter("swedish_stemmer").type("stemmer").param("language","swedish");
 
 }

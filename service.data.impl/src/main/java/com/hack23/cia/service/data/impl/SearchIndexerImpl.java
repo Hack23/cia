@@ -48,6 +48,6 @@ final class SearchIndexerImpl implements SearchIndexer {
 
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-		Search.getFullTextEntityManager(entityManager).createIndexer().threadsToLoadObjects(8).typesToIndexInParallel(1).batchSizeToLoadObjects(100).transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
+		Search.getFullTextEntityManager(entityManager).createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
 	}
 }
