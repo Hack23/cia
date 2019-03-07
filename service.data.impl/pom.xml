@@ -157,7 +157,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-elasticsearch</artifactId>
-      <version>3.2.0.M1</version>
+      <version>3.2.0.M2</version>
       <exclusions>
         <exclusion>
           <artifactId>transport</artifactId>
@@ -576,7 +576,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-queryparser</artifactId>
-      <version>7.6.0</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
@@ -585,17 +585,17 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-backward-codecs</artifactId>
-      <version>7.6.0</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-misc</artifactId>
-      <version>7.6.0</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-facet</artifactId>
-      <version>7.6.0</version>
+      <version>7.7.1</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>

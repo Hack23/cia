@@ -106,7 +106,7 @@
     <cia.project.versions.spring>5.1.5.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.1.4.RELEASE/5.2.1.M1/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.4.RELEASE</cia.project.versions.spring.security>
-    <cia.project.versions.aspectj>1.9.2</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.3.RC1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
@@ -234,12 +234,12 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-phonetic</artifactId>
-        <version>7.6.0</version>
+        <version>7.7.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>7.6.0</version>
+        <version>7.7.1</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>
