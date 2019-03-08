@@ -2,7 +2,6 @@ open module com.hack23.cia.service.data.impl {
 	exports com.hack23.cia.service.data.impl;
 	exports com.hack23.cia.service.data.impl.util;
 
-	requires spring.data.elasticsearch;
 	requires java.xml.bind;
 	requires java.sql;
 	requires java.desktop;
@@ -28,7 +27,6 @@ open module com.hack23.cia.service.data.impl {
 
 	requires org.hibernate.search.engine;
 	requires org.hibernate.search.backend.lucene;
-	requires org.hibernate.search.backend.elasticsearch;	
 	requires org.hibernate.search.mapper.pojo;
 	requires org.hibernate.search.mapper.orm;	
 	
