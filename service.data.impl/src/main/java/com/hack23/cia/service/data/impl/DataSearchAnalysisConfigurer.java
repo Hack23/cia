@@ -23,15 +23,13 @@ import org.apache.lucene.analysis.en.PorterStemFilterFactory;
 import org.apache.lucene.analysis.ngram.NGramFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
-import org.hibernate.search.backend.elasticsearch.analysis.ElasticsearchAnalysisConfigurer;
-import org.hibernate.search.backend.elasticsearch.analysis.model.dsl.ElasticsearchAnalysisDefinitionContainerContext;
 import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer;
 import org.hibernate.search.backend.lucene.analysis.model.dsl.LuceneAnalysisDefinitionContainerContext;
 
 /**
  * The Class DataSearchAnalysisConfigurer.
  */
-public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer,ElasticsearchAnalysisConfigurer {
+public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer {
 
 	@Override
 	public void configure(LuceneAnalysisDefinitionContainerContext context) {
@@ -44,13 +42,5 @@ public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer,El
 				.tokenFilter(PorterStemFilterFactory.class);
 	}
 
-	@Override
-	public void configure(ElasticsearchAnalysisDefinitionContainerContext context) {
-		
-		
-	    context.analyzer("se").custom().withTokenizer("standard");//.param("max_token_length","5");//.withTokenFilters( "swedish"); 
-	    //context.tokenFilter("swedish_stemmer").type("stemmer").param("language","swedish");
-
-}
 
 }
