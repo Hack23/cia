@@ -60,7 +60,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 *             the exception
 	 */
 	@Test
-	@Transactional(timeout=1300)
+	@Transactional(timeout=30)
 	public void testCreateSearchIndex() throws Exception {
 		FileUtils.deleteDirectory(new File(databaseSearchIndexLocation));
 		searchIndexer.updateSearchIndex();
@@ -68,7 +68,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	}
 
 	@Test
-	@Transactional(timeout=900)
+	@Transactional(timeout=30)
 	public void testSearchIndex() throws Exception {
 		final FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 		final FullTextQueryResultDefinitionContext<DocumentContentData> queryResult = fullTextEntityManager.search(DocumentContentData.class).query();
