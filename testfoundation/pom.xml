@@ -306,7 +306,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.24.5</version>
+      <version>2.25.0</version>
       <exclusions>
         <exclusion>
           <artifactId>byte-buddy</artifactId>
@@ -399,7 +399,7 @@
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
-      <version>2.33</version>
+      <version>2.34.1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-codec</artifactId>
