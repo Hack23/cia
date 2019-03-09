@@ -33,9 +33,7 @@ public class DataSearchMapping implements HibernateOrmSearchMappingConfigurer {
 
 	@Override
 	public void configure(HibernateOrmMappingDefinitionContainerContext context) {
-		ProgrammaticMappingDefinitionContext mapping = context.programmaticMapping();		
-		mapping.type( DocumentContentData.class )
-				.indexed().property("hjid").documentId().property("content").fullTextField().analyzer("se").property("id");
+		context.annotationMapping().add(DocumentContentData.class);
 		
 //		mapping.type( DocumentElement.class )
 //		.indexed().property("id").documentId().property("title").fullTextField().analyzer("se").property("subTitle").fullTextField().analyzer("se");

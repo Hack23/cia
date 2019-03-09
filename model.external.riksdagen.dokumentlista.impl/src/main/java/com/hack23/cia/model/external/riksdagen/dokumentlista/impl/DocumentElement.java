@@ -27,9 +27,20 @@ package com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
 
 import java.math.BigInteger;
 
+import org.hibernate.search.mapper.pojo.bridge.IdentifierBridge;
+import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeFromDocumentIdentifierContext;
+import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeToDocumentIdentifierContext;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IdentifierBridgeRef;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -95,6 +106,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Entity(name = "DocumentElement")
 @Table(name = "DOCUMENT_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Indexed
 public class DocumentElement
     implements ModelObject, Equals
 {
@@ -108,82 +120,121 @@ public class DocumentElement
     @XmlElement(name = "traff", required = true)
     protected BigInteger hit;
     
+    
+    public static class DefaultStringIdentifier implements IdentifierBridge<String> {
+
+		@Override
+		public String cast(Object arg0) {
+			return (String) arg0;
+		}
+
+		@Override
+		public String fromDocumentIdentifier(String arg0, IdentifierBridgeFromDocumentIdentifierContext arg1) {
+			return arg0;
+		}
+
+		@Override
+		public String toDocumentIdentifier(String arg0, IdentifierBridgeToDocumentIdentifierContext arg1) {
+			return arg0;
+		}
+    	
+    }
+
     /** The id. */
     @XmlElement(required = true)
+    @DocumentId(identifierBridge = @IdentifierBridgeRef(type = DefaultStringIdentifier.class))
     protected String id;
     
     /** The domain org. */
     @XmlElement(name = "domain", required = true)
+    @GenericField
     protected String domainOrg;
     
     /** The document name. */
     @XmlElement(name = "dokumentnamn", required = true)
+    @GenericField
     protected String documentName;
     
     /** The debate name. */
     @XmlElement(name = "debattnamn", required = true)
+    @GenericField
     protected String debateName;
     
     /** The note title. */
     @XmlElement(name = "notisrubrik", required = true)
+    @GenericField
     protected String noteTitle;
     
     /** The note. */
     @XmlElement(name = "notis", required = true)
+    @GenericField
     protected String note;
     
     /** The summary. */
     @XmlElement(required = true)
+    @GenericField
     protected String summary;
     
     /** The database source. */
     @XmlElement(name = "database", required = true)
+    @GenericField
     protected String databaseSource;
     
     /** The origin. */
     @XmlElement(name = "kalla", required = true)
+    @GenericField
     protected String origin;
     
     /** The lang. */
     @XmlElement(required = true)
+    @GenericField
     protected String lang;
     
     /** The rm. */
     @XmlElement(required = true)
+    @GenericField
     protected String rm;
     
     /** The related id. */
     @XmlElement(name = "relaterat_id", required = true)
+    @GenericField
     protected String relatedId;
     
     /** The document type. */
     @XmlElement(name = "typ", required = true)
+    @GenericField
     protected String documentType;
     
     /** The doc type. */
     @XmlElement(name = "doktyp", required = true)
+    @GenericField
     protected String docType;
     
     /** The sub type. */
     @XmlElement(name = "subtyp", required = true)
+    @GenericField
     protected String subType;
     
     /** The status. */
     @XmlElement(required = true)
+    @GenericField
     protected String status;
     
     /** The label. */
     @XmlElement(name = "beteckning", required = true)
+    @GenericField
     protected String label;
     
     /** The temp label. */
     @XmlElement(name = "tempbeteckning", required = true)
+    @GenericField
     protected String tempLabel;
     
     /** The org. */
     @XmlElement(name = "organ", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NCName")
+    @GenericField
     protected String org;
     
     /** The number value. */
@@ -192,10 +243,12 @@ public class DocumentElement
     
     /** The title. */
     @XmlElement(name = "titel", required = true)
+    @GenericField
     protected String title;
     
     /** The sub title. */
     @XmlElement(name = "undertitel", required = true)
+    @GenericField
     protected String subTitle;
     
     /** The created date. */

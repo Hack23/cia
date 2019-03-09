@@ -50,7 +50,9 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
-
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
 /**
  * The Class DocumentContentData.
@@ -63,6 +65,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Entity(name = "DocumentContentData")
 @Table(name = "DOCUMENT_CONTENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Indexed
 public class DocumentContentData
     implements ModelObject, Equals
 {
@@ -74,14 +77,17 @@ public class DocumentContentData
 
 	/** The id. */
     @XmlElement(required = true)
+    @GenericField
     protected String id;
     
     /** The content. */
     @XmlElement(required = true)
+    @GenericField
     protected String content;
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
+    @GeneratedValue
     protected Long hjid;
 
     /**

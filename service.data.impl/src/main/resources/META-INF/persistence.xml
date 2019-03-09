@@ -106,10 +106,10 @@
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
-		
+
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 
@@ -172,26 +172,45 @@
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary</class>
-		
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 
 		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
-			<!-- <property name="hibernate.hbm2ddl.auto" value="${database.ddl}" />
-				Do not support materialized views in postgres
-			-->
-			<property name="hibernate.dialect" value="${hibernate.dialect}" />
-			<property name="hibernate.implicit_naming_strategy" value="legacy-hbm"/>
-			<property name="hibernate.bytecode.provider" value="bytebuddy" />
-			<property name="hibernate.archive.autodetection" value="class" />
-			<property name="hibernate.connection.characterEncoding" value="UTF-8" />
-			<property name="hibernate.session.events.log" value="false"/>
+			<!-- <property name="hibernate.hbm2ddl.auto" value="${database.ddl}" /> 
+				Do not support materialized views in postgres -->
+			<property name="hibernate.dialect"
+				value="${hibernate.dialect}" />
+			<property name="hibernate.implicit_naming_strategy"
+				value="legacy-hbm" />
+			<property name="hibernate.bytecode.provider"
+				value="bytebuddy" />
+			<property name="hibernate.archive.autodetection"
+				value="class" />
+			<property name="hibernate.connection.characterEncoding"
+				value="UTF-8" />
+			<property name="hibernate.session.events.log" value="false" />
 			<property name="hibernate.connection.charSet" value="UTF-8" />
-			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+			<property name="hibernate.enable_lazy_load_no_trans"
+				value="true" />
+
+
+			<property name="hibernate.search.mapping_configurer" value="com.hack23.cia.service.data.impl.DataSearchMapping"/>
+			<property name="hibernate.search.default_backend" value="myBackend"/>
+			<property name="hibernate.search.indexing_strategy" value="manual"/>
+			<property name="hibernate.search.autoregister_listeners" value="false"/>
+			<property name="hibernate.search.enable_annotation_mapping" value="false"/>
+
+			<property name="hibernate.search.backends.myBackend.type" value="lucene"/>
+			<property name="hibernate.search.backends.myBackend.lucene_version" value="7.7.1"/>
+			<property name="hibernate.search.backends.myBackend.directory_provider" value="local_directory"/>
+			<property name="hibernate.search.backends.myBackend.root_directory" value="."/>
+			<property name="hibernate.search.backends.myBackend.analysis_configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
+
 
 		</properties>
 	</persistence-unit>
