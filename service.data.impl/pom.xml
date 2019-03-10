@@ -210,7 +210,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.2.4</version>
+      <version>5.2.5</version>
       <exclusions>
         <!-- <exclusion> <groupId>org.springframework.data</groupId> <artifactId>spring-data-commons</artifactId> 
 					</exclusion> -->
