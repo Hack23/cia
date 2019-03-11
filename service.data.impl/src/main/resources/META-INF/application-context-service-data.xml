@@ -163,7 +163,10 @@
  				<prop key="hibernate.search.backends.myBackend.lucene_version">7.7.1</prop>
 	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
   				<prop key="hibernate.search.backends.myBackend.root_directory">.</prop>	 			
-	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>		
+	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>
+	 			<prop key="hibernate.search.enable_annotation_mapping">true</prop>
+	 			<prop key="hibernate.search.autoregister_listeners">true</prop>
+	 					
 
 			</props>
 		</property>
