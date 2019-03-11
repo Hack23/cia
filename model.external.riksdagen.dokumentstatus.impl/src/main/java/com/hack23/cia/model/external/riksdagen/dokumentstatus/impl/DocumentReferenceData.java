@@ -43,14 +43,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -68,7 +64,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_REFERENCE_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentReferenceData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -219,52 +215,10 @@ public class DocumentReferenceData
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentReferenceData that = ((DocumentReferenceData) object);
-        {
-            ReferenceType lhsReferenceType;
-            lhsReferenceType = this.getReferenceType();
-            ReferenceType rhsReferenceType;
-            rhsReferenceType = that.getReferenceType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "referenceType", lhsReferenceType), LocatorUtils.property(thatLocator, "referenceType", rhsReferenceType), lhsReferenceType, rhsReferenceType)) {
-                return false;
-            }
-        }
-        {
-            String lhsReferenceDocumentId;
-            lhsReferenceDocumentId = this.getReferenceDocumentId();
-            String rhsReferenceDocumentId;
-            rhsReferenceDocumentId = that.getReferenceDocumentId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "referenceDocumentId", lhsReferenceDocumentId), LocatorUtils.property(thatLocator, "referenceDocumentId", rhsReferenceDocumentId), lhsReferenceDocumentId, rhsReferenceDocumentId)) {
-                return false;
-            }
-        }
-        {
-            String lhsDetail;
-            lhsDetail = this.getDetail();
-            String rhsDetail;
-            rhsDetail = that.getDetail();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "detail", lhsDetail), LocatorUtils.property(thatLocator, "detail", rhsDetail), lhsDetail, rhsDetail)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 	/* (non-Javadoc)

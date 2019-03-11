@@ -40,14 +40,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -72,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_PROPOSAL_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentProposalData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -465,115 +461,10 @@ public class DocumentProposalData
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentProposalData that = ((DocumentProposalData) object);
-        {
-            int lhsProposalNumber;
-            lhsProposalNumber = this.getProposalNumber();
-            int rhsProposalNumber;
-            rhsProposalNumber = that.getProposalNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "proposalNumber", lhsProposalNumber), LocatorUtils.property(thatLocator, "proposalNumber", rhsProposalNumber), lhsProposalNumber, rhsProposalNumber)) {
-                return false;
-            }
-        }
-        {
-            int lhsDesignation;
-            lhsDesignation = this.getDesignation();
-            int rhsDesignation;
-            rhsDesignation = that.getDesignation();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "designation", lhsDesignation), LocatorUtils.property(thatLocator, "designation", rhsDesignation), lhsDesignation, rhsDesignation)) {
-                return false;
-            }
-        }
-        {
-            String lhsWording;
-            lhsWording = this.getWording();
-            String rhsWording;
-            rhsWording = that.getWording();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "wording", lhsWording), LocatorUtils.property(thatLocator, "wording", rhsWording), lhsWording, rhsWording)) {
-                return false;
-            }
-        }
-        {
-            String lhsWording2;
-            lhsWording2 = this.getWording2();
-            String rhsWording2;
-            rhsWording2 = that.getWording2();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "wording2", lhsWording2), LocatorUtils.property(thatLocator, "wording2", rhsWording2), lhsWording2, rhsWording2)) {
-                return false;
-            }
-        }
-        {
-            String lhsWording3;
-            lhsWording3 = this.getWording3();
-            String rhsWording3;
-            rhsWording3 = that.getWording3();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "wording3", lhsWording3), LocatorUtils.property(thatLocator, "wording3", rhsWording3), lhsWording3, rhsWording3)) {
-                return false;
-            }
-        }
-        {
-            String lhsWording4;
-            lhsWording4 = this.getWording4();
-            String rhsWording4;
-            rhsWording4 = that.getWording4();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "wording4", lhsWording4), LocatorUtils.property(thatLocator, "wording4", rhsWording4), lhsWording4, rhsWording4)) {
-                return false;
-            }
-        }
-        {
-            String lhsCommittee;
-            lhsCommittee = this.getCommittee();
-            String rhsCommittee;
-            rhsCommittee = that.getCommittee();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "committee", lhsCommittee), LocatorUtils.property(thatLocator, "committee", rhsCommittee), lhsCommittee, rhsCommittee)) {
-                return false;
-            }
-        }
-        {
-            String lhsChamber;
-            lhsChamber = this.getChamber();
-            String rhsChamber;
-            rhsChamber = that.getChamber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "chamber", lhsChamber), LocatorUtils.property(thatLocator, "chamber", rhsChamber), lhsChamber, rhsChamber)) {
-                return false;
-            }
-        }
-        {
-            String lhsProcessedIn;
-            lhsProcessedIn = this.getProcessedIn();
-            String rhsProcessedIn;
-            rhsProcessedIn = that.getProcessedIn();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "processedIn", lhsProcessedIn), LocatorUtils.property(thatLocator, "processedIn", rhsProcessedIn), lhsProcessedIn, rhsProcessedIn)) {
-                return false;
-            }
-        }
-        {
-            String lhsDecisionType;
-            lhsDecisionType = this.getDecisionType();
-            String rhsDecisionType;
-            rhsDecisionType = that.getDecisionType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "decisionType", lhsDecisionType), LocatorUtils.property(thatLocator, "decisionType", rhsDecisionType), lhsDecisionType, rhsDecisionType)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 

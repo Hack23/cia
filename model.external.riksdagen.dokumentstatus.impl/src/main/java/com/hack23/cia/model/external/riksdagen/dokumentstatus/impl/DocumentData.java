@@ -44,14 +44,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
@@ -86,7 +82,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "DOCUMENT_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -777,196 +773,10 @@ public class DocumentData
 
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentData that = ((DocumentData) object);
-        {
-            String lhsHangarId;
-            lhsHangarId = this.getHangarId();
-            String rhsHangarId;
-            rhsHangarId = that.getHangarId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hangarId", lhsHangarId), LocatorUtils.property(thatLocator, "hangarId", rhsHangarId), lhsHangarId, rhsHangarId)) {
-                return false;
-            }
-        }
-        {
-            String lhsId;
-            lhsId = this.getId();
-            String rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        {
-            String lhsRm;
-            lhsRm = this.getRm();
-            String rhsRm;
-            rhsRm = that.getRm();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rm", lhsRm), LocatorUtils.property(thatLocator, "rm", rhsRm), lhsRm, rhsRm)) {
-                return false;
-            }
-        }
-        {
-            String lhsLabel;
-            lhsLabel = this.getLabel();
-            String rhsLabel;
-            rhsLabel = that.getLabel();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "label", lhsLabel), LocatorUtils.property(thatLocator, "label", rhsLabel), lhsLabel, rhsLabel)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentType;
-            lhsDocumentType = this.getDocumentType();
-            String rhsDocumentType;
-            rhsDocumentType = that.getDocumentType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentType", lhsDocumentType), LocatorUtils.property(thatLocator, "documentType", rhsDocumentType), lhsDocumentType, rhsDocumentType)) {
-                return false;
-            }
-        }
-        {
-            String lhsSubType;
-            lhsSubType = this.getSubType();
-            String rhsSubType;
-            rhsSubType = that.getSubType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "subType", lhsSubType), LocatorUtils.property(thatLocator, "subType", rhsSubType), lhsSubType, rhsSubType)) {
-                return false;
-            }
-        }
-        {
-            String lhsTempLabel;
-            lhsTempLabel = this.getTempLabel();
-            String rhsTempLabel;
-            rhsTempLabel = that.getTempLabel();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "tempLabel", lhsTempLabel), LocatorUtils.property(thatLocator, "tempLabel", rhsTempLabel), lhsTempLabel, rhsTempLabel)) {
-                return false;
-            }
-        }
-        {
-            String lhsOrg;
-            lhsOrg = this.getOrg();
-            String rhsOrg;
-            rhsOrg = that.getOrg();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "org", lhsOrg), LocatorUtils.property(thatLocator, "org", rhsOrg), lhsOrg, rhsOrg)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsNumberValue;
-            lhsNumberValue = this.getNumberValue();
-            BigInteger rhsNumberValue;
-            rhsNumberValue = that.getNumberValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "numberValue", lhsNumberValue), LocatorUtils.property(thatLocator, "numberValue", rhsNumberValue), lhsNumberValue, rhsNumberValue)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsFinalNumber;
-            lhsFinalNumber = this.getFinalNumber();
-            BigInteger rhsFinalNumber;
-            rhsFinalNumber = that.getFinalNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "finalNumber", lhsFinalNumber), LocatorUtils.property(thatLocator, "finalNumber", rhsFinalNumber), lhsFinalNumber, rhsFinalNumber)) {
-                return false;
-            }
-        }
-        {
-            Date lhsMadePublicDate;
-            lhsMadePublicDate = this.getMadePublicDate();
-            Date rhsMadePublicDate;
-            rhsMadePublicDate = that.getMadePublicDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "madePublicDate", lhsMadePublicDate), LocatorUtils.property(thatLocator, "madePublicDate", rhsMadePublicDate), lhsMadePublicDate, rhsMadePublicDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsTitle;
-            lhsTitle = this.getTitle();
-            String rhsTitle;
-            rhsTitle = that.getTitle();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "title", lhsTitle), LocatorUtils.property(thatLocator, "title", rhsTitle), lhsTitle, rhsTitle)) {
-                return false;
-            }
-        }
-        {
-            String lhsSubTitle;
-            lhsSubTitle = this.getSubTitle();
-            String rhsSubTitle;
-            rhsSubTitle = that.getSubTitle();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "subTitle", lhsSubTitle), LocatorUtils.property(thatLocator, "subTitle", rhsSubTitle), lhsSubTitle, rhsSubTitle)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentUrlText;
-            lhsDocumentUrlText = this.getDocumentUrlText();
-            String rhsDocumentUrlText;
-            rhsDocumentUrlText = that.getDocumentUrlText();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentUrlText", lhsDocumentUrlText), LocatorUtils.property(thatLocator, "documentUrlText", rhsDocumentUrlText), lhsDocumentUrlText, rhsDocumentUrlText)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentUrlHtml;
-            lhsDocumentUrlHtml = this.getDocumentUrlHtml();
-            String rhsDocumentUrlHtml;
-            rhsDocumentUrlHtml = that.getDocumentUrlHtml();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentUrlHtml", lhsDocumentUrlHtml), LocatorUtils.property(thatLocator, "documentUrlHtml", rhsDocumentUrlHtml), lhsDocumentUrlHtml, rhsDocumentUrlHtml)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentStatusUrlXml;
-            lhsDocumentStatusUrlXml = this.getDocumentStatusUrlXml();
-            String rhsDocumentStatusUrlXml;
-            rhsDocumentStatusUrlXml = that.getDocumentStatusUrlXml();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentStatusUrlXml", lhsDocumentStatusUrlXml), LocatorUtils.property(thatLocator, "documentStatusUrlXml", rhsDocumentStatusUrlXml), lhsDocumentStatusUrlXml, rhsDocumentStatusUrlXml)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentStatusUrlWWW;
-            lhsDocumentStatusUrlWWW = this.getDocumentStatusUrlWWW();
-            String rhsDocumentStatusUrlWWW;
-            rhsDocumentStatusUrlWWW = that.getDocumentStatusUrlWWW();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentStatusUrlWWW", lhsDocumentStatusUrlWWW), LocatorUtils.property(thatLocator, "documentStatusUrlWWW", rhsDocumentStatusUrlWWW), lhsDocumentStatusUrlWWW, rhsDocumentStatusUrlWWW)) {
-                return false;
-            }
-        }
-        {
-            String lhsCommitteeReportUrlXml;
-            lhsCommitteeReportUrlXml = this.getCommitteeReportUrlXml();
-            String rhsCommitteeReportUrlXml;
-            rhsCommitteeReportUrlXml = that.getCommitteeReportUrlXml();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "committeeReportUrlXml", lhsCommitteeReportUrlXml), LocatorUtils.property(thatLocator, "committeeReportUrlXml", rhsCommitteeReportUrlXml), lhsCommitteeReportUrlXml, rhsCommitteeReportUrlXml)) {
-                return false;
-            }
-        }
-        {
-            String lhsStatus;
-            lhsStatus = this.getStatus();
-            String rhsStatus;
-            rhsStatus = that.getStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "status", lhsStatus), LocatorUtils.property(thatLocator, "status", rhsStatus), lhsStatus, rhsStatus)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object);
     }
 
 	/* (non-Javadoc)

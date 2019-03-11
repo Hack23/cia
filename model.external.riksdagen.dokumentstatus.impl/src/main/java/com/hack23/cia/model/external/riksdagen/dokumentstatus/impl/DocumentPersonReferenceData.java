@@ -43,14 +43,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -70,7 +66,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_PERSON_REFERENCE_DA_0")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentPersonReferenceData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -291,70 +287,10 @@ public class DocumentPersonReferenceData
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentPersonReferenceData that = ((DocumentPersonReferenceData) object);
-        {
-            String lhsPersonReferenceId;
-            lhsPersonReferenceId = this.getPersonReferenceId();
-            String rhsPersonReferenceId;
-            rhsPersonReferenceId = that.getPersonReferenceId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "personReferenceId", lhsPersonReferenceId), LocatorUtils.property(thatLocator, "personReferenceId", rhsPersonReferenceId), lhsPersonReferenceId, rhsPersonReferenceId)) {
-                return false;
-            }
-        }
-        {
-            String lhsReferenceName;
-            lhsReferenceName = this.getReferenceName();
-            String rhsReferenceName;
-            rhsReferenceName = that.getReferenceName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "referenceName", lhsReferenceName), LocatorUtils.property(thatLocator, "referenceName", rhsReferenceName), lhsReferenceName, rhsReferenceName)) {
-                return false;
-            }
-        }
-        {
-            String lhsPartyShortCode;
-            lhsPartyShortCode = this.getPartyShortCode();
-            String rhsPartyShortCode;
-            rhsPartyShortCode = that.getPartyShortCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "partyShortCode", lhsPartyShortCode), LocatorUtils.property(thatLocator, "partyShortCode", rhsPartyShortCode), lhsPartyShortCode, rhsPartyShortCode)) {
-                return false;
-            }
-        }
-        {
-            int lhsOrderNumber;
-            lhsOrderNumber = this.getOrderNumber();
-            int rhsOrderNumber;
-            rhsOrderNumber = that.getOrderNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "orderNumber", lhsOrderNumber), LocatorUtils.property(thatLocator, "orderNumber", rhsOrderNumber), lhsOrderNumber, rhsOrderNumber)) {
-                return false;
-            }
-        }
-        {
-            DocumentPersonReferenceRoleType lhsRoleDescription;
-            lhsRoleDescription = this.getRoleDescription();
-            DocumentPersonReferenceRoleType rhsRoleDescription;
-            rhsRoleDescription = that.getRoleDescription();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "roleDescription", lhsRoleDescription), LocatorUtils.property(thatLocator, "roleDescription", rhsRoleDescription), lhsRoleDescription, rhsRoleDescription)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 

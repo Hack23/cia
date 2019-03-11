@@ -47,14 +47,10 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
@@ -76,7 +72,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Table(name = "DOCUMENT_ACTIVITY_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentActivityData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -333,79 +329,10 @@ public class DocumentActivityData
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentActivityData that = ((DocumentActivityData) object);
-        {
-            Date lhsCreatedDate;
-            lhsCreatedDate = this.getCreatedDate();
-            Date rhsCreatedDate;
-            rhsCreatedDate = that.getCreatedDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "createdDate", lhsCreatedDate), LocatorUtils.property(thatLocator, "createdDate", rhsCreatedDate), lhsCreatedDate, rhsCreatedDate)) {
-                return false;
-            }
-        }
-        {
-            String lhsCode;
-            lhsCode = this.getCode();
-            String rhsCode;
-            rhsCode = that.getCode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "code", lhsCode), LocatorUtils.property(thatLocator, "code", rhsCode), lhsCode, rhsCode)) {
-                return false;
-            }
-        }
-        {
-            String lhsActivityName;
-            lhsActivityName = this.getActivityName();
-            String rhsActivityName;
-            rhsActivityName = that.getActivityName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "activityName", lhsActivityName), LocatorUtils.property(thatLocator, "activityName", rhsActivityName), lhsActivityName, rhsActivityName)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsOrderNumber;
-            lhsOrderNumber = this.getOrderNumber();
-            BigInteger rhsOrderNumber;
-            rhsOrderNumber = that.getOrderNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "orderNumber", lhsOrderNumber), LocatorUtils.property(thatLocator, "orderNumber", rhsOrderNumber), lhsOrderNumber, rhsOrderNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsProcess;
-            lhsProcess = this.getProcess();
-            String rhsProcess;
-            rhsProcess = that.getProcess();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "process", lhsProcess), LocatorUtils.property(thatLocator, "process", rhsProcess), lhsProcess, rhsProcess)) {
-                return false;
-            }
-        }
-        {
-            String lhsStatus;
-            lhsStatus = this.getStatus();
-            String rhsStatus;
-            rhsStatus = that.getStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "status", lhsStatus), LocatorUtils.property(thatLocator, "status", rhsStatus), lhsStatus, rhsStatus)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object);
     }
 
 

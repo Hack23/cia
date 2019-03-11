@@ -43,14 +43,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -85,7 +81,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @IdClass(VoteDataDtoId.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class VoteDataDto
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -774,196 +770,10 @@ public class VoteDataDto
 
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final VoteDataDto that = ((VoteDataDto) object);
-        {
-            VoteIssueType lhsConcern;
-            lhsConcern = this.getConcern();
-            VoteIssueType rhsConcern;
-            rhsConcern = that.getConcern();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "concern", lhsConcern), LocatorUtils.property(thatLocator, "concern", rhsConcern), lhsConcern, rhsConcern)) {
-                return false;
-            }
-        }
-        {
-            String lhsBankNumber;
-            lhsBankNumber = this.getBankNumber();
-            String rhsBankNumber;
-            rhsBankNumber = that.getBankNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "bankNumber", lhsBankNumber), LocatorUtils.property(thatLocator, "bankNumber", rhsBankNumber), lhsBankNumber, rhsBankNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsLabel;
-            lhsLabel = this.getLabel();
-            String rhsLabel;
-            rhsLabel = that.getLabel();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "label", lhsLabel), LocatorUtils.property(thatLocator, "label", rhsLabel), lhsLabel, rhsLabel)) {
-                return false;
-            }
-        }
-        {
-            String lhsLastName;
-            lhsLastName = this.getLastName();
-            String rhsLastName;
-            rhsLastName = that.getLastName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lastName", lhsLastName), LocatorUtils.property(thatLocator, "lastName", rhsLastName), lhsLastName, rhsLastName)) {
-                return false;
-            }
-        }
-        {
-            int lhsBornYear;
-            lhsBornYear = this.getBornYear();
-            int rhsBornYear;
-            rhsBornYear = that.getBornYear();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "bornYear", lhsBornYear), LocatorUtils.property(thatLocator, "bornYear", rhsBornYear), lhsBornYear, rhsBornYear)) {
-                return false;
-            }
-        }
-        {
-            String lhsFirstName;
-            lhsFirstName = this.getFirstName();
-            String rhsFirstName;
-            rhsFirstName = that.getFirstName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "firstName", lhsFirstName), LocatorUtils.property(thatLocator, "firstName", rhsFirstName), lhsFirstName, rhsFirstName)) {
-                return false;
-            }
-        }
-        {
-            String lhsIntressentId;
-            lhsIntressentId = this.getIntressentId();
-            String rhsIntressentId;
-            rhsIntressentId = that.getIntressentId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "intressentId", lhsIntressentId), LocatorUtils.property(thatLocator, "intressentId", rhsIntressentId), lhsIntressentId, rhsIntressentId)) {
-                return false;
-            }
-        }
-        {
-            String lhsPlace;
-            lhsPlace = this.getPlace();
-            String rhsPlace;
-            rhsPlace = that.getPlace();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "place", lhsPlace), LocatorUtils.property(thatLocator, "place", rhsPlace), lhsPlace, rhsPlace)) {
-                return false;
-            }
-        }
-        {
-            String lhsGender;
-            lhsGender = this.getGender();
-            String rhsGender;
-            rhsGender = that.getGender();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "gender", lhsGender), LocatorUtils.property(thatLocator, "gender", rhsGender), lhsGender, rhsGender)) {
-                return false;
-            }
-        }
-        {
-            String lhsFullName;
-            lhsFullName = this.getFullName();
-            String rhsFullName;
-            rhsFullName = that.getFullName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "fullName", lhsFullName), LocatorUtils.property(thatLocator, "fullName", rhsFullName), lhsFullName, rhsFullName)) {
-                return false;
-            }
-        }
-        {
-            String lhsParty;
-            lhsParty = this.getParty();
-            String rhsParty;
-            rhsParty = that.getParty();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "party", lhsParty), LocatorUtils.property(thatLocator, "party", rhsParty), lhsParty, rhsParty)) {
-                return false;
-            }
-        }
-        {
-            String lhsIssue;
-            lhsIssue = this.getIssue();
-            String rhsIssue;
-            rhsIssue = that.getIssue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "issue", lhsIssue), LocatorUtils.property(thatLocator, "issue", rhsIssue), lhsIssue, rhsIssue)) {
-                return false;
-            }
-        }
-        {
-            String lhsRm;
-            lhsRm = this.getRm();
-            String rhsRm;
-            rhsRm = that.getRm();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "rm", lhsRm), LocatorUtils.property(thatLocator, "rm", rhsRm), lhsRm, rhsRm)) {
-                return false;
-            }
-        }
-        {
-            VoteDecision lhsVote;
-            lhsVote = this.getVote();
-            VoteDecision rhsVote;
-            rhsVote = that.getVote();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "vote", lhsVote), LocatorUtils.property(thatLocator, "vote", rhsVote), lhsVote, rhsVote)) {
-                return false;
-            }
-        }
-        {
-            BallotType lhsBallotType;
-            lhsBallotType = this.getBallotType();
-            BallotType rhsBallotType;
-            rhsBallotType = that.getBallotType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ballotType", lhsBallotType), LocatorUtils.property(thatLocator, "ballotType", rhsBallotType), lhsBallotType, rhsBallotType)) {
-                return false;
-            }
-        }
-        {
-            String lhsElectoralRegion;
-            lhsElectoralRegion = this.getElectoralRegion();
-            String rhsElectoralRegion;
-            rhsElectoralRegion = that.getElectoralRegion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "electoralRegion", lhsElectoralRegion), LocatorUtils.property(thatLocator, "electoralRegion", rhsElectoralRegion), lhsElectoralRegion, rhsElectoralRegion)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsElectoralRegionNumber;
-            lhsElectoralRegionNumber = this.getElectoralRegionNumber();
-            BigInteger rhsElectoralRegionNumber;
-            rhsElectoralRegionNumber = that.getElectoralRegionNumber();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "electoralRegionNumber", lhsElectoralRegionNumber), LocatorUtils.property(thatLocator, "electoralRegionNumber", rhsElectoralRegionNumber), lhsElectoralRegionNumber, rhsElectoralRegionNumber)) {
-                return false;
-            }
-        }
-        {
-            String lhsBallotId;
-            lhsBallotId = this.getBallotId();
-            String rhsBallotId;
-            rhsBallotId = that.getBallotId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ballotId", lhsBallotId), LocatorUtils.property(thatLocator, "ballotId", rhsBallotId), lhsBallotId, rhsBallotId)) {
-                return false;
-            }
-        }
-        {
-            String lhsVoteDate;
-            lhsVoteDate = this.getVoteDate();
-            String rhsVoteDate;
-            rhsVoteDate = that.getVoteDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "voteDate", lhsVoteDate), LocatorUtils.property(thatLocator, "voteDate", rhsVoteDate), lhsVoteDate, rhsVoteDate)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object);
     }
 
 

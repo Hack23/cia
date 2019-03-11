@@ -29,12 +29,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -43,7 +39,7 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VoteDataDtoId
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -118,52 +114,10 @@ public class VoteDataDtoId
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final VoteDataDtoId that = ((VoteDataDtoId) object);
-        {
-            String lhsIntressentId;
-            lhsIntressentId = this.getIntressentId();
-            String rhsIntressentId;
-            rhsIntressentId = that.getIntressentId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "intressentId", lhsIntressentId), LocatorUtils.property(thatLocator, "intressentId", rhsIntressentId), lhsIntressentId, rhsIntressentId)) {
-                return false;
-            }
-        }
-        {
-            String lhsIssue;
-            lhsIssue = this.getIssue();
-            String rhsIssue;
-            rhsIssue = that.getIssue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "issue", lhsIssue), LocatorUtils.property(thatLocator, "issue", rhsIssue), lhsIssue, rhsIssue)) {
-                return false;
-            }
-        }
-        {
-            String lhsBallotId;
-            lhsBallotId = this.getBallotId();
-            String rhsBallotId;
-            rhsBallotId = that.getBallotId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ballotId", lhsBallotId), LocatorUtils.property(thatLocator, "ballotId", rhsBallotId), lhsBallotId, rhsBallotId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object);
     }
 
 	/* (non-Javadoc)
