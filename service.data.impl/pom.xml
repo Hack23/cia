@@ -277,6 +277,14 @@
           <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>spring-core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -610,7 +618,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.4.1.Final</version>
+      <version>5.4.2-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>

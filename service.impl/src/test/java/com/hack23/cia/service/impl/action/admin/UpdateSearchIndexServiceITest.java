@@ -38,6 +38,7 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 	 *             the exception
 	 */
 	@Test
+	@Ignore
 	public void Test() throws Exception {
 		setAuthenticatedAdminuser();
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();

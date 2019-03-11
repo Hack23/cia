@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.SearchIndexer;
 final class SearchIndexerImpl implements SearchIndexer {
 
 	/** The Constant TIMEOUT_IN_SECONDS. */
-	private static final int TIMEOUT_IN_SECONDS = 900;
+	private static final int TIMEOUT_IN_SECONDS = 15;
 
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
