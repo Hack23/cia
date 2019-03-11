@@ -69,7 +69,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		final Validator validator = ValidatorBuilder.create().with(new SetterMustExistRule(), new GetterMustExistRule())
 				.with(new SetterTester(), new GetterTester()).with(new InvokeToStringTester())
 				.with(new InvokeHashcodeTester()).with(new DummyEqualsTester()).with(new WithTester())
-				.with(new EqualsAndHashCodeMatchRule()).build();
+				.with(new ObjectFactoryTester()).with(new EqualsAndHashCodeMatchRule()).build();
 		validator.validate(pojoClassesRecursively);
 
 		final List<PojoClass> enumClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
@@ -179,6 +179,23 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
+	public class ObjectFactoryTester implements Tester {
+		@Override
+		public void run(final PojoClass pojoClass) {
+			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
+
+			if (classInstance.getClass().getSimpleName().startsWith("ObjectFactory")) {
+				final List<PojoMethod> methods = pojoClass.getPojoMethods();
+
+				for (final PojoMethod pojoMethod : methods) {
+					if (pojoMethod.getPojoParameters().isEmpty()) {
+						pojoMethod.invoke(classInstance);
+					}
+				}
+			}
+		}
+	}
+
 	public class EnumTester implements Rule {
 
 		@Override
@@ -193,11 +210,11 @@ public abstract class AbstractUnitTest extends AbstractTest {
 					for (final Object object : enumConstants) {
 						fromValueMethod.invoke(object, valueMethod.invoke(object));
 					}
-					
+
 					try {
 						fromValueMethod.invoke(enumConstants[0], "NoValidEnumStringValue");
-					} catch(final RuntimeException e) {
-						LoggerFactory.getLogger(this.getClass()).debug("Expected exception [{0}]",e);
+					} catch (final RuntimeException e) {
+						LoggerFactory.getLogger(this.getClass()).debug("Expected exception [{0}]", e);
 					}
 				}
 			}
