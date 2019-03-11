@@ -21,6 +21,7 @@ package com.hack23.cia.testfoundation;
 
 import static com.openpojo.validation.utils.ToStringHelper.safeToString;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.openpojo.log.LoggerFactory;
@@ -29,6 +30,7 @@ import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
 import com.openpojo.reflection.PojoField;
 import com.openpojo.reflection.PojoMethod;
+import com.openpojo.reflection.PojoParameter;
 import com.openpojo.reflection.filters.FilterPackageInfo;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
@@ -190,6 +192,14 @@ public abstract class AbstractUnitTest extends AbstractTest {
 				for (final PojoMethod pojoMethod : methods) {
 					if (pojoMethod.getPojoParameters().isEmpty()) {
 						pojoMethod.invoke(classInstance);
+					} else {
+						PojoParameter pojoParameter = pojoMethod.getPojoParameters().get(0);
+						
+						try {
+							pojoMethod.invoke(classInstance,pojoParameter.getType().getDeclaredConstructor().newInstance());
+						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+							LoggerFactory.getLogger(this.getClass()).error("Not Expected exception [{0}]", e);
+						}
 					}
 				}
 			}
