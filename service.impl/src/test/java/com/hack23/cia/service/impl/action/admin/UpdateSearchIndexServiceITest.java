@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
