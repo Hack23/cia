@@ -1,4 +1,4 @@
-package com.hack23.cia.service.impl.rules
+package com.hack23.cia.service.impl.rules.party
 
 import org.kie.api.runtime.KieRuntime
 
@@ -10,10 +10,20 @@ import com.hack23.cia.service.api.action.kpi.Status
 import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck
 
-rule "We have an active Party with no government experience"
+rule "We have a party supporting FRA committee_report=FöU15 and rm=2007/08"
 	dialect "java"
+	salience 10
     when
-        $p : PartyComplianceCheckImpl( party.active && party.party != "-" && party.totalDaysServedGovernment == 0 )
+        $p : PartyComplianceCheckImpl( supports("FöU15","2007/08") )
     then
-    	$p.addViolation( Status.MINOR, "PartyNoGovernmentExperience","Experience", kcontext.getRule().getName(),"ExperienceNoGuaranteeOfSuccess");
+    	$p.addViolation( Status.MINOR, "PartySupports","Behavior", kcontext.getRule().getName(),"n/a");
+end
+
+rule "We have a party against FRA committee_report=FöU15 and rm=2007/08"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl( against("FöU15","2007/08") )
+    then
+    	$p.addViolation( Status.MINOR, "PartyAgainst","Behavior", kcontext.getRule().getName(),"n/a");
 end
