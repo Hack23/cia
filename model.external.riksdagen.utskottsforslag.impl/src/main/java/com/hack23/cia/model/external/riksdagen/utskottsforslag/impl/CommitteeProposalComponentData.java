@@ -42,14 +42,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -67,7 +63,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "COMMITTEE_PROPOSAL_COMPONENT_0")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CommitteeProposalComponentData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -221,52 +217,10 @@ public class CommitteeProposalComponentData
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final CommitteeProposalComponentData that = ((CommitteeProposalComponentData) object);
-        {
-            AgainstProposalContainer lhsAgainstProposalContainer;
-            lhsAgainstProposalContainer = this.getAgainstProposalContainer();
-            AgainstProposalContainer rhsAgainstProposalContainer;
-            rhsAgainstProposalContainer = that.getAgainstProposalContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "againstProposalContainer", lhsAgainstProposalContainer), LocatorUtils.property(thatLocator, "againstProposalContainer", rhsAgainstProposalContainer), lhsAgainstProposalContainer, rhsAgainstProposalContainer)) {
-                return false;
-            }
-        }
-        {
-            CommitteeDocumentData lhsDocument;
-            lhsDocument = this.getDocument();
-            CommitteeDocumentData rhsDocument;
-            rhsDocument = that.getDocument();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "document", lhsDocument), LocatorUtils.property(thatLocator, "document", rhsDocument), lhsDocument, rhsDocument)) {
-                return false;
-            }
-        }
-        {
-            CommitteeProposalContainer lhsCommitteeProposalContainer;
-            lhsCommitteeProposalContainer = this.getCommitteeProposalContainer();
-            CommitteeProposalContainer rhsCommitteeProposalContainer;
-            rhsCommitteeProposalContainer = that.getCommitteeProposalContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "committeeProposalContainer", lhsCommitteeProposalContainer), LocatorUtils.property(thatLocator, "committeeProposalContainer", rhsCommitteeProposalContainer), lhsCommitteeProposalContainer, rhsCommitteeProposalContainer)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 	/* (non-Javadoc)

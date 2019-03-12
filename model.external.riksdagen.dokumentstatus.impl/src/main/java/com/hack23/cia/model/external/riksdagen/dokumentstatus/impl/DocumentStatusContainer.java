@@ -43,14 +43,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -73,7 +69,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_STATUS_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentStatusContainer
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -409,97 +405,10 @@ public class DocumentStatusContainer
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentStatusContainer that = ((DocumentStatusContainer) object);
-        {
-            DocumentData lhsDocument;
-            lhsDocument = this.getDocument();
-            DocumentData rhsDocument;
-            rhsDocument = that.getDocument();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "document", lhsDocument), LocatorUtils.property(thatLocator, "document", rhsDocument), lhsDocument, rhsDocument)) {
-                return false;
-            }
-        }
-        {
-            DocumentProposalContainer lhsDocumentProposal;
-            lhsDocumentProposal = this.getDocumentProposal();
-            DocumentProposalContainer rhsDocumentProposal;
-            rhsDocumentProposal = that.getDocumentProposal();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentProposal", lhsDocumentProposal), LocatorUtils.property(thatLocator, "documentProposal", rhsDocumentProposal), lhsDocumentProposal, rhsDocumentProposal)) {
-                return false;
-            }
-        }
-        {
-            DocumentActivityContainer lhsDocumentActivityContainer;
-            lhsDocumentActivityContainer = this.getDocumentActivityContainer();
-            DocumentActivityContainer rhsDocumentActivityContainer;
-            rhsDocumentActivityContainer = that.getDocumentActivityContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentActivityContainer", lhsDocumentActivityContainer), LocatorUtils.property(thatLocator, "documentActivityContainer", rhsDocumentActivityContainer), lhsDocumentActivityContainer, rhsDocumentActivityContainer)) {
-                return false;
-            }
-        }
-        {
-            DocumentDetailContainer lhsDocumentDetailContainer;
-            lhsDocumentDetailContainer = this.getDocumentDetailContainer();
-            DocumentDetailContainer rhsDocumentDetailContainer;
-            rhsDocumentDetailContainer = that.getDocumentDetailContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentDetailContainer", lhsDocumentDetailContainer), LocatorUtils.property(thatLocator, "documentDetailContainer", rhsDocumentDetailContainer), lhsDocumentDetailContainer, rhsDocumentDetailContainer)) {
-                return false;
-            }
-        }
-        {
-            DocumentAttachmentContainer lhsDocumentAttachmentContainer;
-            lhsDocumentAttachmentContainer = this.getDocumentAttachmentContainer();
-            DocumentAttachmentContainer rhsDocumentAttachmentContainer;
-            rhsDocumentAttachmentContainer = that.getDocumentAttachmentContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentAttachmentContainer", lhsDocumentAttachmentContainer), LocatorUtils.property(thatLocator, "documentAttachmentContainer", rhsDocumentAttachmentContainer), lhsDocumentAttachmentContainer, rhsDocumentAttachmentContainer)) {
-                return false;
-            }
-        }
-        {
-            DocumentReferenceContainer lhsDocumentReferenceContainer;
-            lhsDocumentReferenceContainer = this.getDocumentReferenceContainer();
-            DocumentReferenceContainer rhsDocumentReferenceContainer;
-            rhsDocumentReferenceContainer = that.getDocumentReferenceContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentReferenceContainer", lhsDocumentReferenceContainer), LocatorUtils.property(thatLocator, "documentReferenceContainer", rhsDocumentReferenceContainer), lhsDocumentReferenceContainer, rhsDocumentReferenceContainer)) {
-                return false;
-            }
-        }
-        {
-            DocumentPersonReferenceContainer lhsDocumentPersonReferenceContainer;
-            lhsDocumentPersonReferenceContainer = this.getDocumentPersonReferenceContainer();
-            DocumentPersonReferenceContainer rhsDocumentPersonReferenceContainer;
-            rhsDocumentPersonReferenceContainer = that.getDocumentPersonReferenceContainer();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentPersonReferenceContainer", lhsDocumentPersonReferenceContainer), LocatorUtils.property(thatLocator, "documentPersonReferenceContainer", rhsDocumentPersonReferenceContainer), lhsDocumentPersonReferenceContainer, rhsDocumentPersonReferenceContainer)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentCategory;
-            lhsDocumentCategory = this.getDocumentCategory();
-            String rhsDocumentCategory;
-            rhsDocumentCategory = that.getDocumentCategory();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentCategory", lhsDocumentCategory), LocatorUtils.property(thatLocator, "documentCategory", rhsDocumentCategory), lhsDocumentCategory, rhsDocumentCategory)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 
