@@ -11,7 +11,7 @@
 
   <logger name="com.hack23.cia" level="error"/>
 
-  <root level="info">
+  <root level="warn">
     <appender-ref ref="console" />
   </root>
 
