@@ -46,9 +46,6 @@ public final class RuleEngineITest extends AbstractServiceFunctionalIntegrationT
 		final List<ComplianceCheck> checkRulesCompliance = rulesEngine.checkRulesCompliance();
 		assertNotNull(checkRulesCompliance);
 		assertFalse(checkRulesCompliance.isEmpty());
-		for (final ComplianceCheck complianceCheck : checkRulesCompliance) {
-			System.out.println(complianceCheck.getName() +"" + complianceCheck.getRuleViolations());
-		}
 	}
 
 }
