@@ -2515,7 +2515,7 @@
                "Ref":"DBClass"
             },
             "Engine":"postgres",
-            "EngineVersion":"10.6",
+            "EngineVersion":"11.1",
             "MultiAZ":"false",
             "PubliclyAccessible":"false",
             "BackupRetentionPeriod":"7",
