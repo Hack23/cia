@@ -123,7 +123,7 @@
     <cia.project.versions.hibernate.validator>6.1.0.Alpha3</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.1.0.Alpha3</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.9.10</cia.project.versions.bytebuddy>
-    <cia.project.versions.h2>1.4.198</cia.project.versions.h2>
+    <cia.project.versions.h2>1.4.199</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>4.0.1</cia.project.versions.poi>
@@ -134,7 +134,7 @@
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>3.0.2</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>3.1.1</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>3.2.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
@@ -687,7 +687,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.1.1</version>
+              <version>3.2.0</version>
             </dependency>
           </dependencies>
           <inherited>true</inherited>
@@ -818,7 +818,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1661,7 +1661,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.0.1</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -1831,7 +1831,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.0.1</version>
+            <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
               <includeDependencySources>false</includeDependencySources>
