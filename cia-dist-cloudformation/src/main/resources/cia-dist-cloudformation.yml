@@ -2100,10 +2100,10 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://d2jnoze5tfhthg.cloudfront.net/java-11-amazon-corretto-jdk_11.0.2.9-1_amd64.deb\n"
-            - "dpkg -i --force all java-11-amazon-corretto-jdk_11.0.2.9-1_amd64.deb\n"
-            - "sudo mv /usr/lib/jvm/java-11-amazon-corretto /usr/lib/jvm/java-11-openjdk-amd64\n"
-            - "rm java-11-amazon-corretto-jdk_11.0.2.9-1_amd64.deb\n"
+            - "wget https://download.java.net/java/GA/jdk12/33/GPL/openjdk-12_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-12_linux-x64_bin.tar.gz\n"
+            - "sudo mv jdk-12 /usr/lib/jvm/jdk-12\n"
+            - "rm openjdk-12_linux-x64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
