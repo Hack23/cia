@@ -78,7 +78,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 		final FullTextQuery<DocumentContentData> query = queryResult.asEntity()
 	        .predicate( factory -> factory.match()
 	                .onFields( "content")
-	                .matching( "programmering" )
+	                .matching( "programmering" ).toPredicate()
 	        )
 	        .build();
 		
