@@ -7,9 +7,10 @@ import com.hack23.cia.service.api.action.kpi.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 import java.util.Date
 import java.util.concurrent.TimeUnit
+import java.lang.Math
 
 function long busyFactor(Date firstAssignmentDate, long totalDaysServed){
-  return ( totalDaysServed / (TimeUnit.MILLISECONDS.toDays(new Date().getTime() - firstAssignmentDate.getTime()) -1) );
+  return ( totalDaysServed / Math.max(TimeUnit.MILLISECONDS.toDays(new Date().getTime() - firstAssignmentDate.getTime()), 1) );
 }
 
 rule "We have an politician with busy schedule, more than 4 current roles and busy past"
