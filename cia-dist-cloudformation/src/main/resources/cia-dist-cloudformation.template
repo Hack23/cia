@@ -717,10 +717,7 @@
          }
       },
       "ContinuousAssessmentResultsTopic":{
-         "Type":"AWS::SNS::Topic",
-         "Properties" : {
-		    "KmsMasterKeyId" : "aws/sns"		  
-		}
+         "Type":"AWS::SNS::Topic"
       },
       "ContinuousAssessmentCompleteTopicSubscription":{
          "Type":"AWS::SNS::Subscription",
@@ -738,10 +735,7 @@
          }
       },
       "ContinuousAssessmentCompleteTopic":{
-         "Type":"AWS::SNS::Topic",
-         "Properties" : {
-		    "KmsMasterKeyId" : "aws/sns"		  
-		}         
+         "Type":"AWS::SNS::Topic"
       },
       "ContinuousAssessmentCompleteTopicPolicy":{
          "Type":"AWS::SNS::TopicPolicy",
@@ -756,9 +750,7 @@
                      "Principal":{
                         "Service":"inspector.amazonaws.com"
                      },
-				   "Action": [
-				      "sns:Publish"
-				    ],                   
+                     "Action":"sns:Publish",
                      "Resource": { "Ref":"ContinuousAssessmentCompleteTopic" }
                   }
                ]
@@ -831,17 +823,7 @@
                               { "Fn::Sub":"arn:aws:inspector:eu-west-1:${AWS::AccountId}:*" },
                               { "Fn::Sub":"arn:aws:sns:eu-west-1:${AWS::AccountId}:*" }                                                           
                            ]
-                        },
-                  {
-			      "Sid": "AllowSnsAccess",
-			      "Effect": "Allow",
-			      "Action": [
-			        "kms:GenerateDataKey*",
-			        "kms:Decrypt"
-			      ],
-			      "Resource": "*"
-			    }                  
-                        
+                        }
                      ]
                   }
                }
@@ -1009,31 +991,27 @@
       },
       "NotificationTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties" : {
-		    "KmsMasterKeyId" : "aws/sns"		  
-		}
+         "Properties":{
+
+         }
       },
       "InspectorScheduleTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties" : {
-		    "KmsMasterKeyId" : "aws/sns"		  
-		}
+         "Properties":{
+
+         }
       },
       "InspectorResultActionTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties" : {
-		    "KmsMasterKeyId" : "aws/sns"		  
-		}
+         "Properties":{
+
+         }
       },
       "ArtifactBucket":{
          "Type":"AWS::S3::Bucket",
-         "DeletionPolicy":"Delete",
+         "DeletionPolicy":"Retain",
          "Properties":{
             "AccessControl":"Private",
-            "LoggingConfiguration": {
-                    "DestinationBucketName": {"Ref" : "LogsBucket"},
-                    "LogFilePrefix": "artifact-bucket-logs"
-            },
             "BucketEncryption":{
                "ServerSideEncryptionConfiguration":[
                   {
@@ -1095,7 +1073,7 @@
       },
       "ArtifactBucketPolicy":{
          "Type":"AWS::S3::BucketPolicy",
-         "DeletionPolicy":"Delete",
+         "DeletionPolicy":"Retain",
          "Properties":{
             "Bucket":{
                "Ref":"ArtifactBucket"
@@ -2591,7 +2569,7 @@
       },
       "LogsBucket":{
          "Type":"AWS::S3::Bucket",
-         "DeletionPolicy":"Delete",
+         "DeletionPolicy":"Retain",
          "Properties":{
             "AccessControl":"LogDeliveryWrite"
          }
@@ -2910,11 +2888,10 @@
                "Ref":"WebServerLaunchConfig"
             },
             "MinSize":"1",
-            "MaxSize":"4",
+            "MaxSize":"10",
             "DesiredCapacity":{
                "Ref":"WebServerCount"
             },
-            "HealthCheckGracePeriod" : "60",
             "TargetGroupARNs":[
                {
                   "Ref":"TargetGroupHttps"
@@ -2961,7 +2938,7 @@
          },
          "CreationPolicy":{
             "ResourceSignal":{
-               "Timeout":"PT15M",
+               "Timeout":"PT45M",
                "Count":{
                   "Ref":"WebServerCount"
                }
@@ -3177,7 +3154,6 @@
                         "owner":"root",
                         "group":"root"
                      },
-                     
                      "/etc/cfn/hooks.d/cfn-auto-reloader.conf":{
                         "content":{
                            "Fn::Join":[
@@ -3533,7 +3509,7 @@
                         {
                            "Ref":"AWS::StackId"
                         },
-                        "    --resource WebServerFleet",
+                        "    --resource WebServerFleet ",
                         "    --region ",
                         {
                            "Ref":"AWS::Region"
