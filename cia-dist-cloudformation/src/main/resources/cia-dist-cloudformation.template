@@ -3514,6 +3514,17 @@
                         "/usr/lib/jvm/jdk-12/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
                         "/etc/init.d/cia restart\n",
                         "update-rc.d cia defaults\n",
+                        "cfn-signal -e $? ",
+                        "    --stack ",
+                        {
+                           "Ref":"AWS::StackId"
+                        },
+                        "    --resource WebServerFleet",
+                        "    --region ",
+                        {
+                           "Ref":"AWS::Region"
+                        },
+                        "\n",
                         "# TODO setup  cron jobs for security auditing, intrusion detection, system hardening#\n",
                         "sudo apt-get -y install lsb-invalid-mta\n",
                         "sudo apt-get -y install acct auditd audispd-plugins\n",
@@ -3532,7 +3543,7 @@
                         {
                            "Ref":"AWS::StackId"
                         },
-                        "    --resource WebServerFleet ",
+                        "    --resource WebServerFleet",
                         "    --region ",
                         {
                            "Ref":"AWS::Region"
