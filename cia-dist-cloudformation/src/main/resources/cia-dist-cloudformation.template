@@ -2914,7 +2914,7 @@
             "DesiredCapacity":{
                "Ref":"WebServerCount"
             },
-            "HealthCheckGracePeriod" : "900",
+            "HealthCheckGracePeriod" : "60",
             "TargetGroupARNs":[
                {
                   "Ref":"TargetGroupHttps"
@@ -2961,7 +2961,7 @@
          },
          "CreationPolicy":{
             "ResourceSignal":{
-               "Timeout":"PT45M",
+               "Timeout":"PT15M",
                "Count":{
                   "Ref":"WebServerCount"
                }
