@@ -2910,10 +2910,11 @@
                "Ref":"WebServerLaunchConfig"
             },
             "MinSize":"1",
-            "MaxSize":"10",
+            "MaxSize":"4",
             "DesiredCapacity":{
                "Ref":"WebServerCount"
             },
+            "HealthCheckGracePeriod" : "900",
             "TargetGroupARNs":[
                {
                   "Ref":"TargetGroupHttps"

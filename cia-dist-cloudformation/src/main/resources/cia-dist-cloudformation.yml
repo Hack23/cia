@@ -1722,8 +1722,9 @@ Resources:
         - !Ref 'PrivateAppSubnet3'
       LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
       MinSize: '1'
-      MaxSize: '10'
+      MaxSize: '4'
       DesiredCapacity: !Ref 'WebServerCount'
+      HealthCheckGracePeriod: '900'
       TargetGroupARNs:
         - !Ref 'TargetGroupHttps'
       Tags:
@@ -2128,8 +2129,8 @@ Resources:
             - "HISTCONTROL=ignorespace\n"
             - "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n"
             - "rm -rf /opt/cia/etc/keystore.p12\n"
-            - '/usr/lib/jvm/jdk-12/bin/keytool -genkey -noprompt -deststoretype
-              pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
+            - '/usr/lib/jvm/jdk-12/bin/keytool -genkey -noprompt -deststoretype pkcs12
+              -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
             - ' -alias jetty  -dname ''CN=$LOCAL_IP, OU=None, O=None, L=None, S=None,
               C=SE'' -keystore /opt/cia/etc/keystore.p12 '
             - " -storepass $KEY_PWD -keypass $KEY_PWD\n"
