@@ -1869,7 +1869,7 @@ Resources:
                   - region=
                   - !Ref 'AWS::Region'
                   - "\n"
-              mode: '000400'
+              mode: '000644'
               owner: root
               group: root
             /etc/cfn/hooks.d/cfn-auto-reloader.conf:
@@ -2161,13 +2161,6 @@ Resources:
               \ aws-rds-2016\n"
             - "/etc/init.d/cia restart\n"
             - "update-rc.d cia defaults\n"
-            - 'cfn-signal -e $? '
-            - '    --stack '
-            - !Ref 'AWS::StackId'
-            - '    --resource WebServerFleet'
-            - '    --region '
-            - !Ref 'AWS::Region'
-            - "\n"
             - "# TODO setup  cron jobs for security auditing, intrusion detection,\
               \ system hardening#\n"
             - "sudo apt-get -y install lsb-invalid-mta\n"
