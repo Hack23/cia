@@ -63,7 +63,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-core</artifactId>
-      <version>5.2.6</version>
+      <version>5.3.0</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
