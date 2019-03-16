@@ -30,6 +30,8 @@
   <logger name="org.springframework.oxm.jaxb" level="error"/>
 
   <logger name="org.springframework.security" level="warn"/>
+  
+  <logger name="org.apache.activemq.artemis" level="warn"/>  
 
   <logger name="com.hack23.cia" level="info"/>
 

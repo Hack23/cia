@@ -94,9 +94,11 @@
 
   <logger name="org.springframework.security" level="warn"/>
 
+  <logger name="org.apache.activemq.artemis" level="warn"/>
+ 
   <logger name="com.hack23.cia" level="info"/>
 
-  <root level="info">
+  <root level="warn">
     <appender-ref ref="${USE_LOG_APPENDER:-console}" />
   </root>  
 

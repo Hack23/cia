@@ -23,6 +23,8 @@ addons:
       - openssl
       - locales
       - tzdata
+      - ca-certificates-java
+      - ca-certificates
 
 jdk:
   - openjdk11
