@@ -3469,7 +3469,7 @@
                         " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/start.ini\n",
                         " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/start.ini\n",
                         "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
-                        "let JAVAMEMSIZE=$TOTAL_MEM_KB-1536*1024\n",
+                        "let JAVAMEMSIZE=$TOTAL_MEM_KB-2046*1024\n",
                         "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",
                         "# sed -i -e 's/# -DUSE_LOG_APPENDER=",
                         {

@@ -20,4 +20,4 @@ JETTY_ARGS="-Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system
 #JETTY_ARGS="$JETTY_ARGS -Djava.security.manager -Djava.security.policy=/opt/cia/etc/jetty-cia.policy -Dkie.security.policy=/opt/cia/etc/jetty-cia-kie-engine.policy -Dnetworkaddress.cache.ttl=10 -Djava.security.debug=access,failure"
 #JETTY_ARGS="$JETTY_ARGS -Djavamelody.cloudwatch-namespace=hack23/ciaAppDomain -Daws.region=eu-west-1"
 #JAVA_OPTIONS="-server -Xmx512m -Xms512m -XX:+UseG1GC -XX:MaxGCPauseMillis=500"
-JAVA_OPTIONS="-server -Xmx512m -Xms512m"
+JAVA_OPTIONS="-server -Xmx256m -Xms256m"

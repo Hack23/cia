@@ -1,3 +1,5 @@
+fix reduce mem ; oom_reaper out of memory: Kill process (java) score or sacrifice child
+
 Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20180126 : ami-1b791862
 
 Prepare use 18.04 ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20190212.1
