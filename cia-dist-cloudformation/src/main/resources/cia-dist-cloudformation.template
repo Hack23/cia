@@ -2497,6 +2497,7 @@
             "MultiAZ":"false",
             "PubliclyAccessible":"false",
             "BackupRetentionPeriod":"7",
+            "EnablePerformanceInsights" : "true",
             "EnableCloudwatchLogsExports": ["postgresql", "upgrade"],
             "StorageType":"gp2",
             "DBInstanceIdentifier":"rotation-instance",
