@@ -26,11 +26,14 @@
       <url>github:http://hack23.github.io/cia/</url>
     </site>
   </distributionManagement>
+  <properties>
+    <cia.project.versions.structurizr>1.3.0</cia.project.versions.structurizr>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-core</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -81,7 +84,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-plantuml</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -113,7 +116,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-client</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -175,19 +178,19 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-annotations</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-dot</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-spring</artifactId>
-      <version>1.3.0</version>
+      <version>${cia.project.versions.structurizr}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -223,7 +226,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
-      <version>2.2.0.M2</version>
+      <version>${cia.project.versions.spring.data}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -381,7 +384,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-cloudwatch</artifactId>
-      <version>1.11.519</version>
+      <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -408,7 +411,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.519</version>
+      <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -440,7 +443,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.519</version>
+      <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -498,7 +501,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-cbor</artifactId>
-      <version>2.9.8</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <!-- Test -->
     <dependency>
@@ -909,7 +912,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

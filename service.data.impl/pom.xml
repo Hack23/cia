@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.519</version>
+      <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -98,12 +98,12 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.8</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate.search</groupId>
       <artifactId>hibernate-search-mapper-orm</artifactId>
-      <version>6.0.0.Alpha2</version>
+      <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -150,47 +150,47 @@
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-cbor</artifactId>
-      <version>2.9.8</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec-http</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-common</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-buffer</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-resolver</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-handler</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-transport</artifactId>
-      <version>4.1.34.Final</version>
+      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate.search</groupId>
       <artifactId>hibernate-search-backend-lucene</artifactId>
-      <version>6.0.0.Alpha2</version>
+      <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
           <artifactId>lucene-analyzers-common</artifactId>
@@ -210,7 +210,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.3.1</version>
+      <version>${cia.project.versions.javers}</version>
       <exclusions>
         <!-- <exclusion> <groupId>org.springframework.data</groupId> <artifactId>spring-data-commons</artifactId> 
 					</exclusion> -->
@@ -271,7 +271,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-commons</artifactId>
-      <version>2.2.0.M2</version>
+      <version>${cia.project.versions.spring.data}</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-jcl</artifactId>
@@ -332,7 +332,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-memory</artifactId>
-      <version>7.7.1</version>
+      <version>${cia.project.versions.hibernate.lucene}</version>
       <exclusions>
         <exclusion>
           <artifactId>lucene-core</artifactId>
@@ -353,7 +353,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-queryparser</artifactId>
-      <version>7.7.1</version>
+      <version>${cia.project.versions.hibernate.lucene}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
@@ -362,17 +362,17 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-backward-codecs</artifactId>
-      <version>7.7.1</version>
+      <version>${cia.project.versions.hibernate.lucene}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-misc</artifactId>
-      <version>7.7.1</version>
+      <version>${cia.project.versions.hibernate.lucene}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-facet</artifactId>
-      <version>7.7.1</version>
+      <version>${cia.project.versions.hibernate.lucene}</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>
@@ -618,7 +618,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.4.1.Final</version>
+      <version>${cia.project.versions.hibernate}</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
@@ -916,12 +916,12 @@
           <dependency>
             <groupId>org.hibernate.search</groupId>
             <artifactId>hibernate-search-backend-lucene</artifactId>
-            <version>6.0.0.Alpha2</version>
+            <version>${cia.project.versions.hibernate.search}</version>
           </dependency>
           <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.24.1-GA</version>
+            <version>${cia.project.versions.javassist}</version>
           </dependency>
         </dependencies>
         <configuration>

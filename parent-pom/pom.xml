@@ -106,8 +106,11 @@
     <cia.project.versions.spring>5.1.5.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.1.4.RELEASE/5.2.1.M1/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.4.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring.data>2.2.0.M2</cia.project.versions.spring.data>
+    <cia.project.versions.aws>1.11.519</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.3.RC1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
+    <cia.project.versions.javers>5.3.1</cia.project.versions.javers>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
@@ -116,6 +119,8 @@
     <cia.project.versions.logback>1.3.0-alpha4</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.hibernate>5.4.1.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.search>6.0.0.Alpha2</cia.project.versions.hibernate.search>
+    <cia.project.versions.hibernate.lucene>7.7.1</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate.jpamodelgen>5.4.1.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.4.1.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.4.1.Final</cia.project.versions.hibernate.tools>
@@ -151,6 +156,7 @@
     <cia.project.versions.httpclient>4.5.7</cia.project.versions.httpclient>
     <cia.project.versions.guava>27.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.8</cia.project.versions.jackson>
+    <cia.project.versions.netty>4.1.34.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.0.SP02-redhat-00001</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
@@ -234,12 +240,12 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-phonetic</artifactId>
-        <version>7.7.1</version>
+        <version>${cia.project.versions.hibernate.lucene}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>7.7.1</version>
+        <version>${cia.project.versions.hibernate.lucene}</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>
@@ -651,7 +657,7 @@
             <dependency>
               <groupId>org.javassist</groupId>
               <artifactId>javassist</artifactId>
-              <version>3.24.1-GA</version>
+              <version>${cia.project.versions.javassist}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1787,7 +1793,7 @@
               <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
-                <version>3.24.1-GA</version>
+                <version>${cia.project.versions.javassist}</version>
               </dependency>
             </dependencies>
             <inherited>true</inherited>
