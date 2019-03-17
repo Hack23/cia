@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-internal-pom</artifactId>
-    <version>2019.2.23</version>
+    <version>2019.2.24.java8-SNAPSHOT</version>
     <relativePath>../parent-model-internal-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.internal.application.user.impl</artifactId>
@@ -63,7 +63,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-core</artifactId>
-      <version>5.2.6</version>
+      <version>5.3.1</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>

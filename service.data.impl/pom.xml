@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-service-pom</artifactId>
-    <version>2019.2.23</version>
+    <version>2019.2.24.java8-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.data.impl</artifactId>
@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.518</version>
+      <version>1.11.519</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.2.6</version>
+      <version>5.3.1</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>

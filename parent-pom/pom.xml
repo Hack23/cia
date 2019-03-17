@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2019.2.23</version>
+  <version>2019.2.24.java8-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -657,22 +657,22 @@
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-api</artifactId>
-              <version>1.11.1</version>
+              <version>1.11.2</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-gitexe</artifactId>
-              <version>1.11.1</version>
+              <version>1.11.2</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svn-commons</artifactId>
-              <version>1.11.1</version>
+              <version>1.11.2</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svnexe</artifactId>
-              <version>1.11.1</version>
+              <version>1.11.2</version>
             </dependency>
             <dependency>
               <groupId>commons-io</groupId>
