@@ -44,14 +44,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -76,7 +72,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "COUNTRY_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CountryElement
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -488,115 +484,10 @@ public class CountryElement
     }
 
     /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final CountryElement that = ((CountryElement) object);
-        {
-            String lhsIso2Code;
-            lhsIso2Code = this.getIso2Code();
-            String rhsIso2Code;
-            rhsIso2Code = that.getIso2Code();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "iso2Code", lhsIso2Code), LocatorUtils.property(thatLocator, "iso2Code", rhsIso2Code), lhsIso2Code, rhsIso2Code)) {
-                return false;
-            }
-        }
-        {
-            String lhsCountryName;
-            lhsCountryName = this.getCountryName();
-            String rhsCountryName;
-            rhsCountryName = that.getCountryName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countryName", lhsCountryName), LocatorUtils.property(thatLocator, "countryName", rhsCountryName), lhsCountryName, rhsCountryName)) {
-                return false;
-            }
-        }
-        {
-            Region lhsRegion;
-            lhsRegion = this.getRegion();
-            Region rhsRegion;
-            rhsRegion = that.getRegion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "region", lhsRegion), LocatorUtils.property(thatLocator, "region", rhsRegion), lhsRegion, rhsRegion)) {
-                return false;
-            }
-        }
-        {
-            Adminregion lhsAdminregion;
-            lhsAdminregion = this.getAdminregion();
-            Adminregion rhsAdminregion;
-            rhsAdminregion = that.getAdminregion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "adminregion", lhsAdminregion), LocatorUtils.property(thatLocator, "adminregion", rhsAdminregion), lhsAdminregion, rhsAdminregion)) {
-                return false;
-            }
-        }
-        {
-            IncomeLevel lhsIncomeLevel;
-            lhsIncomeLevel = this.getIncomeLevel();
-            IncomeLevel rhsIncomeLevel;
-            rhsIncomeLevel = that.getIncomeLevel();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "incomeLevel", lhsIncomeLevel), LocatorUtils.property(thatLocator, "incomeLevel", rhsIncomeLevel), lhsIncomeLevel, rhsIncomeLevel)) {
-                return false;
-            }
-        }
-        {
-            LendingType lhsLendingType;
-            lhsLendingType = this.getLendingType();
-            LendingType rhsLendingType;
-            rhsLendingType = that.getLendingType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "lendingType", lhsLendingType), LocatorUtils.property(thatLocator, "lendingType", rhsLendingType), lhsLendingType, rhsLendingType)) {
-                return false;
-            }
-        }
-        {
-            String lhsCapitalCity;
-            lhsCapitalCity = this.getCapitalCity();
-            String rhsCapitalCity;
-            rhsCapitalCity = that.getCapitalCity();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "capitalCity", lhsCapitalCity), LocatorUtils.property(thatLocator, "capitalCity", rhsCapitalCity), lhsCapitalCity, rhsCapitalCity)) {
-                return false;
-            }
-        }
-        {
-            String lhsLongitude;
-            lhsLongitude = this.getLongitude();
-            String rhsLongitude;
-            rhsLongitude = that.getLongitude();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "longitude", lhsLongitude), LocatorUtils.property(thatLocator, "longitude", rhsLongitude), lhsLongitude, rhsLongitude)) {
-                return false;
-            }
-        }
-        {
-            String lhsLatitude;
-            lhsLatitude = this.getLatitude();
-            String rhsLatitude;
-            rhsLatitude = that.getLatitude();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "latitude", lhsLatitude), LocatorUtils.property(thatLocator, "latitude", rhsLatitude), lhsLatitude, rhsLatitude)) {
-                return false;
-            }
-        }
-        {
-            String lhsId;
-            lhsId = this.getId();
-            String rhsId;
-            rhsId = that.getId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "id", lhsId), LocatorUtils.property(thatLocator, "id", rhsId), lhsId, rhsId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 

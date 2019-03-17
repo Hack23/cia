@@ -47,10 +47,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -69,7 +65,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "WORLD_BANK_DATA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class WorldBankData
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -252,56 +248,6 @@ public class WorldBankData
 	 */
     public void setHjid(final Long value) {
         this.hjid = value;
-    }
-
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final WorldBankData that = ((WorldBankData) object);
-        {
-            Indicator lhsIndicator;
-            lhsIndicator = this.getIndicator();
-            Indicator rhsIndicator;
-            rhsIndicator = that.getIndicator();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "indicator", lhsIndicator), LocatorUtils.property(thatLocator, "indicator", rhsIndicator), lhsIndicator, rhsIndicator)) {
-                return false;
-            }
-        }
-        {
-            Country lhsCountry;
-            lhsCountry = this.getCountry();
-            Country rhsCountry;
-            rhsCountry = that.getCountry();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "country", lhsCountry), LocatorUtils.property(thatLocator, "country", rhsCountry), lhsCountry, rhsCountry)) {
-                return false;
-            }
-        }
-        {
-            String lhsDataValue;
-            lhsDataValue = this.getDataValue();
-            String rhsDataValue;
-            rhsDataValue = that.getDataValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "dataValue", lhsDataValue), LocatorUtils.property(thatLocator, "dataValue", rhsDataValue), lhsDataValue, rhsDataValue)) {
-                return false;
-            }
-        }
-        {
-            Integer lhsYearDate;
-            lhsYearDate = this.getYearDate();
-            Integer rhsYearDate;
-            rhsYearDate = that.getYearDate();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "yearDate", lhsYearDate), LocatorUtils.property(thatLocator, "yearDate", rhsYearDate), lhsYearDate, rhsYearDate)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /* (non-Javadoc)
