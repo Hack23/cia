@@ -45,14 +45,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -68,7 +64,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "PERSON_ASSIGNMENT_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PersonAssignmentElement
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -150,35 +146,12 @@ public class PersonAssignmentElement
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final PersonAssignmentElement that = ((PersonAssignmentElement) object);
-        {
-            List<AssignmentElement> lhsUppdrag;
-            lhsUppdrag = (((this.uppdrag!= null)&&(!this.uppdrag.isEmpty()))?this.getUppdrag():null);
-            List<AssignmentElement> rhsUppdrag;
-            rhsUppdrag = (((that.uppdrag!= null)&&(!that.uppdrag.isEmpty()))?that.getUppdrag():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "uppdrag", lhsUppdrag), LocatorUtils.property(thatLocator, "uppdrag", rhsUppdrag), lhsUppdrag, rhsUppdrag)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
+    	return EqualsBuilder.reflectionEquals(this,object,"hjid");
     }
 
 
