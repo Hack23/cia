@@ -634,17 +634,17 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>7.1</version>
+              <version>${cia.project.versions.asm}</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-tree</artifactId>
-              <version>7.1</version>
+              <version>${cia.project.versions.asm}</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-commons</artifactId>
-              <version>7.1</version>
+              <version>${cia.project.versions.asm}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1108,6 +1108,23 @@
             </configuration>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${cia.project.versions.asm}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-tree</artifactId>
+            <version>${cia.project.versions.asm}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-commons</artifactId>
+            <version>${cia.project.versions.asm}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.walkmod.maven.plugins</groupId>
