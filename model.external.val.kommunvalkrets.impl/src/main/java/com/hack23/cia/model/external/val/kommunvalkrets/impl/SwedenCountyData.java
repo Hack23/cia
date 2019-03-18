@@ -86,7 +86,7 @@ public class SwedenCountyData
     
     /** The kommun. */
     @XmlElement(required = true)
-    protected List<SwedenMunicipalityData> kommun;
+    protected List<SwedenMunicipalityData> kommun = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -142,9 +142,6 @@ public class SwedenCountyData
     })
     @JoinColumn(name = "KOMMUN_SWEDEN_COUNTY_DATA_HJ_0")
     public List<SwedenMunicipalityData> getKommun() {
-        if (kommun == null) {
-            kommun = new ArrayList<>();
-        }
         return this.kommun;
     }
 

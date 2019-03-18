@@ -72,7 +72,7 @@ public class SwedenElectionTypeContainerElement
 
 	/** The election types. */
     @XmlElement(name = "valtyp", required = true)
-    protected List<SwedenElectionType> electionTypes;
+    protected List<SwedenElectionType> electionTypes = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -88,9 +88,6 @@ public class SwedenElectionTypeContainerElement
     })
     @JoinColumn(name = "ELECTION_TYPES_SWEDEN_ELECTI_0")
     public List<SwedenElectionType> getElectionTypes() {
-        if (electionTypes == null) {
-            electionTypes = new ArrayList<>();
-        }
         return this.electionTypes;
     }
 

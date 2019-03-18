@@ -75,7 +75,7 @@ public class VoteListContainerElement
 
 	/** The votering. */
     @XmlElement(required = true)
-    protected List<BallotDocumentElement> votering;
+    protected List<BallotDocumentElement> votering = new ArrayList<>();
     
     /** The grouping. */
     @XmlAttribute(name = "gruppering", required = true)
@@ -103,9 +103,6 @@ public class VoteListContainerElement
     })
     @JoinColumn(name = "VOTERING_VOTE_LIST_CONTAINER_0")
     public List<BallotDocumentElement> getVotering() {
-        if (votering == null) {
-            votering = new ArrayList<>();
-        }
         return this.votering;
     }
 

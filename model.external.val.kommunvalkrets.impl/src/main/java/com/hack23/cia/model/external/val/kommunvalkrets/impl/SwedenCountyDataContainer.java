@@ -72,7 +72,7 @@ public class SwedenCountyDataContainer
 
 	/** The county regions. */
     @XmlElement(name = "l\u00e4n", required = true)
-    protected List<SwedenCountyData> countyRegions;
+    protected List<SwedenCountyData> countyRegions = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -88,9 +88,6 @@ public class SwedenCountyDataContainer
     })
     @JoinColumn(name = "COUNTY_REGIONS_SWEDEN_COUNTY_0")
     public List<SwedenCountyData> getCountyRegions() {
-        if (countyRegions == null) {
-            countyRegions = new ArrayList<>();
-        }
         return this.countyRegions;
     }
 

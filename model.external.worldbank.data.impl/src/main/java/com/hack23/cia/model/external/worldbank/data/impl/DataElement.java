@@ -78,7 +78,7 @@ public class DataElement
 
 	/** The data. */
     @XmlElement(required = true)
-    protected List<WorldBankData> data;
+    protected List<WorldBankData> data = new ArrayList<>();
     
     /** The page. */
     @XmlAttribute(name = "page")
@@ -110,9 +110,6 @@ public class DataElement
     })
     @JoinColumn(name = "DATA__DATA_ELEMENT_HJID")
     public List<WorldBankData> getData() {
-        if (data == null) {
-            data = new ArrayList<>();
-        }
         return this.data;
     }
 

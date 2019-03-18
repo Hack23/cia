@@ -78,7 +78,7 @@ public class IndicatorsElement
 
 	/** The indicator. */
     @XmlElement(required = true)
-    protected List<IndicatorElement> indicator;
+    protected List<IndicatorElement> indicator = new ArrayList<>();
     
     /** The page. */
     @XmlAttribute(name = "page")
@@ -110,9 +110,6 @@ public class IndicatorsElement
     })
     @JoinColumn(name = "INDICATOR__INDICATORS_ELEMEN_0")
     public List<IndicatorElement> getIndicator() {
-        if (indicator == null) {
-            indicator = new ArrayList<>();
-        }
         return this.indicator;
     }
 

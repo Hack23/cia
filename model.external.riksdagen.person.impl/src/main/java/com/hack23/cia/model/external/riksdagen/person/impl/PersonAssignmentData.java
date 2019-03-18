@@ -74,7 +74,7 @@ public class PersonAssignmentData
 
 	/** The assignment list. */
     @XmlElement(name = "uppdrag", required = true)
-    protected List<AssignmentData> assignmentList;
+    protected List<AssignmentData> assignmentList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class PersonAssignmentData
     })
     @JoinColumn(name = "ASSIGNMENT_LIST_PERSON_ASSIG_0")
     public List<AssignmentData> getAssignmentList() {
-        if (assignmentList == null) {
-            assignmentList = new ArrayList<>();
-        }
         return this.assignmentList;
     }
 

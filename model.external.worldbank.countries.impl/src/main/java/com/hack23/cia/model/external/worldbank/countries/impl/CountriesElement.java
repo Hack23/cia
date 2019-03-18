@@ -72,7 +72,7 @@ public class CountriesElement implements ModelObject {
 
 	/** The country. */
 	@XmlElement(required = true)
-	protected List<CountryElement> country;
+	protected List<CountryElement> country = new ArrayList<>();
 
 	/** The page. */
 	@XmlAttribute(name = "page", required = true)
@@ -102,9 +102,6 @@ public class CountriesElement implements ModelObject {
 	@OneToMany(targetEntity = CountryElement.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "COUNTRY_COUNTRIES_ELEMENT_HJ_0")
 	public List<CountryElement> getCountry() {
-		if (country == null) {
-			country = new ArrayList<>();
-		}
 		return this.country;
 	}
 

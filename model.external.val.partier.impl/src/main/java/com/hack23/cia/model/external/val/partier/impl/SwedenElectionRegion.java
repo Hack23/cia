@@ -90,7 +90,7 @@ public class SwedenElectionRegion
     
     /** The parties. */
     @XmlElement(name = "parti", required = true)
-    protected List<SwedenPoliticalParty> parties;
+    protected List<SwedenPoliticalParty> parties = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -166,9 +166,6 @@ public class SwedenElectionRegion
     })
     @JoinColumn(name = "PARTIES_SWEDEN_ELECTION_REGI_0")
     public List<SwedenPoliticalParty> getParties() {
-        if (parties == null) {
-            parties = new ArrayList<>();
-        }
         return this.parties;
     }
 

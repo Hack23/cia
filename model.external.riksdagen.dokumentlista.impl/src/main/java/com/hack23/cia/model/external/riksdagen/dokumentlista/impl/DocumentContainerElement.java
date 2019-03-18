@@ -77,7 +77,7 @@ public class DocumentContainerElement
 
 	/** The dokument. */
     @XmlElement(required = true)
-    protected List<DocumentElement> dokument;
+    protected List<DocumentElement> dokument = new ArrayList<>();
     
     /** The datum. */
     @XmlAttribute(name = "datum", required = true)
@@ -138,9 +138,6 @@ public class DocumentContainerElement
     })
     @JoinColumn(name = "DOKUMENT_DOCUMENT_CONTAINER__0")
     public List<DocumentElement> getDokument() {
-        if (dokument == null) {
-            dokument = new ArrayList<>();
-        }
         return this.dokument;
     }
 

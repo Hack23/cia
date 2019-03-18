@@ -72,7 +72,7 @@ public class Topics
 	private static final long serialVersionUID = 1L;
 
 	/** The topic. */
-    protected List<Topic> topic;
+    protected List<Topic> topic = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -88,9 +88,6 @@ public class Topics
     })
     @JoinColumn(name = "TOPIC_TOPICS_HJID")
     public List<Topic> getTopic() {
-        if (topic == null) {
-            topic = new ArrayList<>();
-        }
         return this.topic;
     }
 

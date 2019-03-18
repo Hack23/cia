@@ -116,17 +116,17 @@ public class DocumentElement
     public static class DefaultStringIdentifier implements IdentifierBridge<String> {
 
 		@Override
-		public String cast(Object arg0) {
+		public String cast(final Object arg0) {
 			return (String) arg0;
 		}
 
 		@Override
-		public String fromDocumentIdentifier(String arg0, IdentifierBridgeFromDocumentIdentifierContext arg1) {
+		public String fromDocumentIdentifier(final String arg0, final IdentifierBridgeFromDocumentIdentifierContext arg1) {
 			return arg0;
 		}
 
 		@Override
-		public String toDocumentIdentifier(String arg0, IdentifierBridgeToDocumentIdentifierContext arg1) {
+		public String toDocumentIdentifier(final String arg0, final IdentifierBridgeToDocumentIdentifierContext arg1) {
 			return arg0;
 		}
     	

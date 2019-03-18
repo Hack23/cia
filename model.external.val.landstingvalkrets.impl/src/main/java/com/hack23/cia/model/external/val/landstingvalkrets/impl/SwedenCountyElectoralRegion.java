@@ -91,7 +91,7 @@ public class SwedenCountyElectoralRegion
     
     /** The landstingsvalkrets. */
     @XmlElement(required = true)
-    protected List<SwedenCountyElectoralArea> landstingsvalkrets;
+    protected List<SwedenCountyElectoralArea> landstingsvalkrets = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -167,9 +167,6 @@ public class SwedenCountyElectoralRegion
     })
     @JoinColumn(name = "LANDSTINGSVALKRETS_SWEDEN_CO_0")
     public List<SwedenCountyElectoralArea> getLandstingsvalkrets() {
-        if (landstingsvalkrets == null) {
-            landstingsvalkrets = new ArrayList<>();
-        }
         return this.landstingsvalkrets;
     }
 

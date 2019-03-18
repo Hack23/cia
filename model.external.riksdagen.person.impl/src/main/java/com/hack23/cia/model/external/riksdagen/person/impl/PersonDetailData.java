@@ -74,7 +74,7 @@ public class PersonDetailData
 
 	/** The detail list. */
     @XmlElement(name = "uppgift", required = true)
-    protected List<DetailData> detailList;
+    protected List<DetailData> detailList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class PersonDetailData
     })
     @JoinColumn(name = "DETAIL_LIST_PERSON_DETAIL_DA_0")
     public List<DetailData> getDetailList() {
-        if (detailList == null) {
-            detailList = new ArrayList<>();
-        }
         return this.detailList;
     }
 

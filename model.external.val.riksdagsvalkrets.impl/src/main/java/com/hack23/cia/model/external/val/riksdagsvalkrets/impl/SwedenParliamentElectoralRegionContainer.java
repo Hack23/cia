@@ -72,7 +72,7 @@ public class SwedenParliamentElectoralRegionContainer
 
 	/** The parliament electoral regions. */
     @XmlElement(name = "riksdagsvalkrets", required = true)
-    protected List<SwedenParliamentElectoralRegion> parliamentElectoralRegions;
+    protected List<SwedenParliamentElectoralRegion> parliamentElectoralRegions = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -88,9 +88,6 @@ public class SwedenParliamentElectoralRegionContainer
     })
     @JoinColumn(name = "PARLIAMENT_ELECTORAL_REGIONS_0")
     public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() {
-        if (parliamentElectoralRegions == null) {
-            parliamentElectoralRegions = new ArrayList<>();
-        }
         return this.parliamentElectoralRegions;
     }
 

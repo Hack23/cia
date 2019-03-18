@@ -86,7 +86,7 @@ public class SwedenMunicipalityData
     
     /** The kommunvalkrets. */
     @XmlElement(required = true)
-    protected List<SwedenMunicipalityElectionRegionData> kommunvalkrets;
+    protected List<SwedenMunicipalityElectionRegionData> kommunvalkrets = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -142,9 +142,6 @@ public class SwedenMunicipalityData
     })
     @JoinColumn(name = "KOMMUNVALKRETS_SWEDEN_MUNICI_0")
     public List<SwedenMunicipalityElectionRegionData> getKommunvalkrets() {
-        if (kommunvalkrets == null) {
-            kommunvalkrets = new ArrayList<>();
-        }
         return this.kommunvalkrets;
     }
 

@@ -74,7 +74,7 @@ public class BallotDocumentData
 
 	/** The vote data list. */
     @XmlElement(name = "votering", required = true)
-    protected List<VoteDataDto> voteDataList;
+    protected List<VoteDataDto> voteDataList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class BallotDocumentData
     })
     @JoinColumn(name = "VOTE_DATA_LIST_BALLOT_DOCUME_0")
     public List<VoteDataDto> getVoteDataList() {
-        if (voteDataList == null) {
-            voteDataList = new ArrayList<>();
-        }
         return this.voteDataList;
     }
 

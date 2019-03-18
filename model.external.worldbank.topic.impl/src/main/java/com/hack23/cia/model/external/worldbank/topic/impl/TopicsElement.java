@@ -78,7 +78,7 @@ public class TopicsElement
 
 	/** The topic. */
     @XmlElement(required = true)
-    protected List<TopicElement> topic;
+    protected List<TopicElement> topic = new ArrayList<>();
     
     /** The page. */
     @XmlAttribute(name = "page")
@@ -110,9 +110,6 @@ public class TopicsElement
     })
     @JoinColumn(name = "TOPIC_TOPICS_ELEMENT_HJID")
     public List<TopicElement> getTopic() {
-        if (topic == null) {
-            topic = new ArrayList<>();
-        }
         return this.topic;
     }
 

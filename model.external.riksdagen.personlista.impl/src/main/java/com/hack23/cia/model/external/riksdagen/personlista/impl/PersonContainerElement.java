@@ -74,7 +74,7 @@ public class PersonContainerElement
 
 	/** The person. */
     @XmlElement(required = true)
-    protected List<PersonElement> person;
+    protected List<PersonElement> person = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class PersonContainerElement
     })
     @JoinColumn(name = "PERSON_PERSON_CONTAINER_ELEM_0")
     public List<PersonElement> getPerson() {
-        if (person == null) {
-            person = new ArrayList<>();
-        }
         return this.person;
     }
 
