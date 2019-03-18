@@ -46,9 +46,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.hibernate.search.mapper.pojo.bridge.IdentifierBridge;
-import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeFromDocumentIdentifierContext;
-import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeToDocumentIdentifierContext;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IdentifierBridgeRef;
@@ -113,25 +110,6 @@ public class DocumentElement
     protected BigInteger hit;
     
     
-    public static class DefaultStringIdentifier implements IdentifierBridge<String> {
-
-		@Override
-		public String cast(final Object arg0) {
-			return (String) arg0;
-		}
-
-		@Override
-		public String fromDocumentIdentifier(final String arg0, final IdentifierBridgeFromDocumentIdentifierContext arg1) {
-			return arg0;
-		}
-
-		@Override
-		public String toDocumentIdentifier(final String arg0, final IdentifierBridgeToDocumentIdentifierContext arg1) {
-			return arg0;
-		}
-    	
-    }
-
     /** The id. */
     @XmlElement(required = true)
     @DocumentId(identifierBridge = @IdentifierBridgeRef(type = DefaultStringIdentifier.class))
