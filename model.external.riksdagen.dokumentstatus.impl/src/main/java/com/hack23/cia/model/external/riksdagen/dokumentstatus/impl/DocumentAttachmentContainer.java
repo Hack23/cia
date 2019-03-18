@@ -74,7 +74,7 @@ public class DocumentAttachmentContainer
 
 	/** The document attachment list. */
     @XmlElement(name = "bilaga", required = true)
-    protected List<DocumentAttachment> documentAttachmentList;
+    protected List<DocumentAttachment> documentAttachmentList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class DocumentAttachmentContainer
     })
     @JoinColumn(name = "DOCUMENT_ATTACHMENT_LIST_DOC_0")
     public List<DocumentAttachment> getDocumentAttachmentList() {
-        if (documentAttachmentList == null) {
-            documentAttachmentList = new ArrayList<>();
-        }
         return this.documentAttachmentList;
     }
 
