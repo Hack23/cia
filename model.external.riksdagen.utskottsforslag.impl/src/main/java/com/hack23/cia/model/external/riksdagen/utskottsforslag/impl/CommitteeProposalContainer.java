@@ -74,7 +74,7 @@ public class CommitteeProposalContainer
 
 	/** The committee proposal list. */
     @XmlElement(name = "utskottsforslag", required = true)
-    protected List<CommitteeProposalData> committeeProposalList;
+    protected List<CommitteeProposalData> committeeProposalList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class CommitteeProposalContainer
     })
     @JoinColumn(name = "COMMITTEE_PROPOSAL_LIST_COMM_0")
     public List<CommitteeProposalData> getCommitteeProposalList() {
-        if (committeeProposalList == null) {
-            committeeProposalList = new ArrayList<>();
-        }
         return this.committeeProposalList;
     }
 

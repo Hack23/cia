@@ -74,7 +74,7 @@ public class AgainstProposalContainer
 
 	/** The against proposal list. */
     @XmlElement(name = "motforslag", required = true)
-    protected List<AgainstProposalData> againstProposalList;
+    protected List<AgainstProposalData> againstProposalList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class AgainstProposalContainer
     })
     @JoinColumn(name = "AGAINST_PROPOSAL_LIST_AGAINS_0")
     public List<AgainstProposalData> getAgainstProposalList() {
-        if (againstProposalList == null) {
-            againstProposalList = new ArrayList<>();
-        }
         return this.againstProposalList;
     }
 

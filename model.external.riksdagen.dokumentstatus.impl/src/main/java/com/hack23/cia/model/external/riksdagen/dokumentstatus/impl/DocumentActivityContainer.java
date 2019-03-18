@@ -74,7 +74,7 @@ public class DocumentActivityContainer
 
 	/** The document activities. */
     @XmlElement(name = "aktivitet", required = true)
-    protected List<DocumentActivityData> documentActivities;
+    protected List<DocumentActivityData> documentActivities = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class DocumentActivityContainer
     })
     @JoinColumn(name = "DOCUMENT_ACTIVITIES_DOCUMENT_0")
     public List<DocumentActivityData> getDocumentActivities() {
-        if (documentActivities == null) {
-            documentActivities = new ArrayList<>();
-        }
         return this.documentActivities;
     }
 

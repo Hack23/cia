@@ -74,7 +74,7 @@ public class DocumentDetailContainer
 
 	/** The document detail list. */
     @XmlElement(name = "uppgift", required = true)
-    protected List<DocumentDetailData> documentDetailList;
+    protected List<DocumentDetailData> documentDetailList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class DocumentDetailContainer
     })
     @JoinColumn(name = "DOCUMENT_DETAIL_LIST_DOCUMEN_0")
     public List<DocumentDetailData> getDocumentDetailList() {
-        if (documentDetailList == null) {
-            documentDetailList = new ArrayList<>();
-        }
         return this.documentDetailList;
     }
 

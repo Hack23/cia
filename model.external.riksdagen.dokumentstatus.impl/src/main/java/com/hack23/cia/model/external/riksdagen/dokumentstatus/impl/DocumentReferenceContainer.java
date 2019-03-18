@@ -74,7 +74,7 @@ public class DocumentReferenceContainer
 
 	/** The document reference list. */
     @XmlElement(name = "referens", required = true)
-    protected List<DocumentReferenceData> documentReferenceList;
+    protected List<DocumentReferenceData> documentReferenceList = new ArrayList<>();
     
     /** The hjid. */
     @XmlAttribute(name = "Hjid")
@@ -90,9 +90,6 @@ public class DocumentReferenceContainer
     })
     @JoinColumn(name = "DOCUMENT_REFERENCE_LIST_DOCU_0")
     public List<DocumentReferenceData> getDocumentReferenceList() {
-        if (documentReferenceList == null) {
-            documentReferenceList = new ArrayList<>();
-        }
         return this.documentReferenceList;
     }
 
