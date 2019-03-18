@@ -45,12 +45,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -66,7 +62,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "SWEDEN_COUNTY_DATA_CONTAINER")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SwedenCountyDataContainer
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -128,36 +124,18 @@ public class SwedenCountyDataContainer
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final SwedenCountyDataContainer that = ((SwedenCountyDataContainer) object);
-        {
-            List<SwedenCountyData> lhsCountyRegions;
-            lhsCountyRegions = (((this.countyRegions!= null)&&(!this.countyRegions.isEmpty()))?this.getCountyRegions():null);
-            List<SwedenCountyData> rhsCountyRegions;
-            rhsCountyRegions = (((that.countyRegions!= null)&&(!that.countyRegions.isEmpty()))?that.getCountyRegions():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "countyRegions", lhsCountyRegions), LocatorUtils.property(thatLocator, "countyRegions", rhsCountyRegions), lhsCountyRegions, rhsCountyRegions)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		return new EqualsBuilder().append(getCountyRegions().toArray(), ((SwedenCountyDataContainer) obj).getCountyRegions().toArray()).isEquals();
+	}
 
 
 	/* (non-Javadoc)

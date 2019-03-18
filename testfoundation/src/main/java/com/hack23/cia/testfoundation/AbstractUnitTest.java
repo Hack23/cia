@@ -116,6 +116,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		public void run(final PojoClass pojoClass) {
 			final Object instance = randomValues(pojoClass);
 
+			Affirm.affirmFalse("EqualsCompareNullFailure", instance.equals(null));
+			Affirm.affirmFalse("EqualsCompareWrongClassFailure", instance.equals("WrongClass"));
+			Affirm.affirmTrue("EqualsCompareSelfFailure", instance.equals(instance));			
+			
 			final Object instance2 = randomValues(pojoClass);
 
 			instance.equals(instance2);

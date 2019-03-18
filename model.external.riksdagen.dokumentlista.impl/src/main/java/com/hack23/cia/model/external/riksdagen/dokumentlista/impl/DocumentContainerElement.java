@@ -48,14 +48,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -71,7 +67,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "DOCUMENT_CONTAINER_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentContainerElement
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -539,135 +535,18 @@ public class DocumentContainerElement
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final DocumentContainerElement that = ((DocumentContainerElement) object);
-        {
-            List<DocumentElement> lhsDokument;
-            lhsDokument = (((this.dokument!= null)&&(!this.dokument.isEmpty()))?this.getDokument():null);
-            List<DocumentElement> rhsDokument;
-            rhsDokument = (((that.dokument!= null)&&(!that.dokument.isEmpty()))?that.getDokument():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "dokument", lhsDokument), LocatorUtils.property(thatLocator, "dokument", rhsDokument), lhsDokument, rhsDokument)) {
-                return false;
-            }
-        }
-        {
-            String lhsDatum;
-            lhsDatum = this.getDatum();
-            String rhsDatum;
-            rhsDatum = that.getDatum();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "datum", lhsDatum), LocatorUtils.property(thatLocator, "datum", rhsDatum), lhsDatum, rhsDatum)) {
-                return false;
-            }
-        }
-        {
-            String lhsDebug;
-            lhsDebug = this.getDebug();
-            String rhsDebug;
-            rhsDebug = that.getDebug();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "debug", lhsDebug), LocatorUtils.property(thatLocator, "debug", rhsDebug), lhsDebug, rhsDebug)) {
-                return false;
-            }
-        }
-        {
-            String lhsNextPage;
-            lhsNextPage = this.getNextPage();
-            String rhsNextPage;
-            rhsNextPage = that.getNextPage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "nextPage", lhsNextPage), LocatorUtils.property(thatLocator, "nextPage", rhsNextPage), lhsNextPage, rhsNextPage)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsPage;
-            lhsPage = this.getPage();
-            BigInteger rhsPage;
-            rhsPage = that.getPage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "page", lhsPage), LocatorUtils.property(thatLocator, "page", rhsPage), lhsPage, rhsPage)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsTotalPages;
-            lhsTotalPages = this.getTotalPages();
-            BigInteger rhsTotalPages;
-            rhsTotalPages = that.getTotalPages();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "totalPages", lhsTotalPages), LocatorUtils.property(thatLocator, "totalPages", rhsTotalPages), lhsTotalPages, rhsTotalPages)) {
-                return false;
-            }
-        }
-        {
-            String lhsCreated;
-            lhsCreated = this.getCreated();
-            String rhsCreated;
-            rhsCreated = that.getCreated();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "created", lhsCreated), LocatorUtils.property(thatLocator, "created", rhsCreated), lhsCreated, rhsCreated)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsHitsFrom;
-            lhsHitsFrom = this.getHitsFrom();
-            BigInteger rhsHitsFrom;
-            rhsHitsFrom = that.getHitsFrom();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hitsFrom", lhsHitsFrom), LocatorUtils.property(thatLocator, "hitsFrom", rhsHitsFrom), lhsHitsFrom, rhsHitsFrom)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsHitsTo;
-            lhsHitsTo = this.getHitsTo();
-            BigInteger rhsHitsTo;
-            rhsHitsTo = that.getHitsTo();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hitsTo", lhsHitsTo), LocatorUtils.property(thatLocator, "hitsTo", rhsHitsTo), lhsHitsTo, rhsHitsTo)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsHits;
-            lhsHits = this.getHits();
-            BigInteger rhsHits;
-            rhsHits = that.getHits();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hits", lhsHits), LocatorUtils.property(thatLocator, "hits", rhsHits), lhsHits, rhsHits)) {
-                return false;
-            }
-        }
-        {
-            String lhsDocumentVersion;
-            lhsDocumentVersion = this.getDocumentVersion();
-            String rhsDocumentVersion;
-            rhsDocumentVersion = that.getDocumentVersion();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "documentVersion", lhsDocumentVersion), LocatorUtils.property(thatLocator, "documentVersion", rhsDocumentVersion), lhsDocumentVersion, rhsDocumentVersion)) {
-                return false;
-            }
-        }
-        {
-            String lhsWarning;
-            lhsWarning = this.getWarning();
-            String rhsWarning;
-            rhsWarning = that.getWarning();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "warning", lhsWarning), LocatorUtils.property(thatLocator, "warning", rhsWarning), lhsWarning, rhsWarning)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		return new EqualsBuilder().append(getDokument().toArray(), ((DocumentContainerElement) obj).getDokument().toArray()).isEquals();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

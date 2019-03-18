@@ -44,14 +44,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -67,7 +63,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "TOPICS")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Topics
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -148,36 +144,18 @@ public class Topics
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final Topics that = ((Topics) object);
-        {
-            List<Topic> lhsTopic;
-            lhsTopic = (((this.topic!= null)&&(!this.topic.isEmpty()))?this.getTopic():null);
-            List<Topic> rhsTopic;
-            rhsTopic = (((that.topic!= null)&&(!that.topic.isEmpty()))?that.getTopic():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "topic", lhsTopic), LocatorUtils.property(thatLocator, "topic", rhsTopic), lhsTopic, rhsTopic)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		return new EqualsBuilder().append(getTopic().toArray(), ((Topics) obj).getTopic().toArray()).isEquals();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

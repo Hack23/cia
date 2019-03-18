@@ -48,14 +48,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -72,7 +68,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Table(name = "INDICATORS_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class IndicatorsElement
-    implements ModelObject, Equals
+    implements ModelObject
 {
 
     /**
@@ -293,72 +289,18 @@ public class IndicatorsElement
         this.hjid = value;
     }
 
-    /* (non-Javadoc)
-     * @see org.jvnet.jaxb2_commons.lang.Equals#equals(org.jvnet.jaxb2_commons.locator.ObjectLocator, org.jvnet.jaxb2_commons.locator.ObjectLocator, java.lang.Object, org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy)
-     */
-    public boolean equals(final ObjectLocator thisLocator, final ObjectLocator thatLocator, final Object object, final EqualsStrategy strategy) {
-        if ((object == null)||(this.getClass()!= object.getClass())) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final IndicatorsElement that = ((IndicatorsElement) object);
-        {
-            List<IndicatorElement> lhsIndicator;
-            lhsIndicator = (((this.indicator!= null)&&(!this.indicator.isEmpty()))?this.getIndicator():null);
-            List<IndicatorElement> rhsIndicator;
-            rhsIndicator = (((that.indicator!= null)&&(!that.indicator.isEmpty()))?that.getIndicator():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "indicator", lhsIndicator), LocatorUtils.property(thatLocator, "indicator", rhsIndicator), lhsIndicator, rhsIndicator)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsPage;
-            lhsPage = this.getPage();
-            BigInteger rhsPage;
-            rhsPage = that.getPage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "page", lhsPage), LocatorUtils.property(thatLocator, "page", rhsPage), lhsPage, rhsPage)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsPages;
-            lhsPages = this.getPages();
-            BigInteger rhsPages;
-            rhsPages = that.getPages();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "pages", lhsPages), LocatorUtils.property(thatLocator, "pages", rhsPages), lhsPages, rhsPages)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsPerPage;
-            lhsPerPage = this.getPerPage();
-            BigInteger rhsPerPage;
-            rhsPerPage = that.getPerPage();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "perPage", lhsPerPage), LocatorUtils.property(thatLocator, "perPage", rhsPerPage), lhsPerPage, rhsPerPage)) {
-                return false;
-            }
-        }
-        {
-            BigInteger lhsTotal;
-            lhsTotal = this.getTotal();
-            BigInteger rhsTotal;
-            rhsTotal = that.getTotal();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "total", lhsTotal), LocatorUtils.property(thatLocator, "total", rhsTotal), lhsTotal, rhsTotal)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(final Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public boolean equals(final Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		return new EqualsBuilder().append(getIndicator().toArray(), ((IndicatorsElement) obj).getIndicator().toArray()).isEquals();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
