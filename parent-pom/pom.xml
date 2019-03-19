@@ -1709,9 +1709,6 @@
               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
-              <additionalOptions>
-                <additionalOption>${testAdditionalRuntimeArgLine}</additionalOption>
-              </additionalOptions>              
             </configuration>
           </plugin>
           <plugin>
@@ -1857,9 +1854,6 @@
               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
-              <additionalOptions>
-                <additionalOption>${testAdditionalRuntimeArgLine}</additionalOption>
-              </additionalOptions>
             </configuration>
           </plugin>
           <plugin>
