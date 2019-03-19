@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists></mailingLists>
+  <mailingLists/>
   <prerequisites>
     <maven>3.6.0</maven>
   </prerequisites>
@@ -96,10 +96,10 @@
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
-    <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
-    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
-    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
+    <sonar.dependencyCheck.htmlReportPath/>
+    <sonar.dependencyCheck.reportPath/>
+    <sonar.zaproxy.htmlReportPath/>
+    <sonar.zaproxy.reportPath/>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.1.5.RELEASE/5.1.6.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.1.5.RELEASE</cia.project.versions.spring>
@@ -156,7 +156,7 @@
     <cia.project.versions.guava>27.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.8</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.34.Final</cia.project.versions.netty>
-    <cia.project.versions.xerces>2.12.0.SP02-redhat-00001</cia.project.versions.xerces>
+    <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
@@ -1205,7 +1205,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence></DependencyConvergence>
+                <DependencyConvergence/>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1643,7 +1643,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
+                    <mkdir dir="${project.build.directory}/dependency"/>
                   </target>
                 </configuration>
               </execution>
@@ -1673,7 +1673,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.1.0</version>
-<!--             <executions>
+            <executions>
               <execution>
                 <id>attach-javadocs</id>
                 <goals>
@@ -1681,9 +1681,9 @@
                 </goals>
               </execution>
             </executions>
- -->            <inherited>true</inherited>
+            <inherited>true</inherited>
             <configuration>
-<!--               <includeDependencySources>false</includeDependencySources>
+              <includeDependencySources>false</includeDependencySources>
               <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
@@ -1692,7 +1692,7 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
- -->              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
                   <groupId>com.grahamedgecombe.apiviz</groupId>
@@ -1831,7 +1831,7 @@
             <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
-<!--               <includeDependencySources>false</includeDependencySources>
+              <includeDependencySources>false</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1839,7 +1839,7 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
- -->              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
                 <artifactId>apiviz</artifactId>
