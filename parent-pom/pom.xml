@@ -1683,8 +1683,8 @@
             </executions>
             <inherited>true</inherited>
             <configuration>
-              <includeDependencySources>true</includeDependencySources>
-              <includeTransitiveDependencySources>true</includeTransitiveDependencySources>
+              <includeDependencySources>false</includeDependencySources>
+              <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
