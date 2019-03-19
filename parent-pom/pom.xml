@@ -1706,10 +1706,10 @@
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
               <docencoding>UTF-8</docencoding>
-              <breakiterator>true</breakiterator>
+<!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
-            </configuration>
+ -->            </configuration>
           </plugin>
           <plugin>
             <artifactId>maven-source-plugin</artifactId>
@@ -1851,10 +1851,10 @@
               <encoding>UTF-8</encoding>
               <docencoding>UTF-8</docencoding>
               <source>${jdk.src.version}</source>
-              <breakiterator>true</breakiterator>
+<!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
-            </configuration>
+ -->            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
