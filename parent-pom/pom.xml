@@ -1710,9 +1710,8 @@
               <version>true</version>
               <keywords>true</keywords>
               <additionalOptions>
-                <!--<additionalOption>--source-path ${project.build.outputDirectory}</additionalOption>-->
-                <additionalOption>--source-path ${project.build.directory}/dependency</additionalOption>
-              </additionalOptions>
+                <additionalOption>${testAdditionalRuntimeArgLine}</additionalOption>
+              </additionalOptions>              
             </configuration>
           </plugin>
           <plugin>
@@ -1859,7 +1858,6 @@
               <version>true</version>
               <keywords>true</keywords>
               <additionalOptions>
-                <!--<additionalOption>--source-path ${project.build.outputDirectory}</additionalOption>-->
                 <additionalOption>${testAdditionalRuntimeArgLine}</additionalOption>
               </additionalOptions>
             </configuration>
