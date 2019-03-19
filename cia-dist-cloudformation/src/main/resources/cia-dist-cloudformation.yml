@@ -505,8 +505,6 @@ Resources:
       MemorySize: 512
   ContinuousAssessmentResultsTopic:
     Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: aws/sns
   ContinuousAssessmentCompleteTopicSubscription:
     Type: AWS::SNS::Subscription
     Properties:
@@ -515,8 +513,6 @@ Resources:
       TopicArn: !Ref 'ContinuousAssessmentCompleteTopic'
   ContinuousAssessmentCompleteTopic:
     Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: aws/sns
   ContinuousAssessmentCompleteTopicPolicy:
     Type: AWS::SNS::TopicPolicy
     Properties:
@@ -528,8 +524,7 @@ Resources:
             Effect: Allow
             Principal:
               Service: inspector.amazonaws.com
-            Action:
-              - sns:Publish
+            Action: sns:Publish
             Resource: !Ref 'ContinuousAssessmentCompleteTopic'
       Topics:
         - !Ref 'ContinuousAssessmentCompleteTopic'
@@ -573,12 +568,6 @@ Resources:
                   - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
                   - !Sub 'arn:aws:inspector:eu-west-1:${AWS::AccountId}:*'
                   - !Sub 'arn:aws:sns:eu-west-1:${AWS::AccountId}:*'
-              - Sid: AllowSnsAccess
-                Effect: Allow
-                Action:
-                  - kms:GenerateDataKey*
-                  - kms:Decrypt
-                Resource: '*'
   AnalyzeInspectorFindingsLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -706,24 +695,18 @@ Resources:
       SourceArn: !GetAtt 'InspectorScheduledRule.Arn'
   NotificationTopic:
     Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: aws/sns
+    Properties: {}
   InspectorScheduleTopic:
     Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: aws/sns
+    Properties: {}
   InspectorResultActionTopic:
     Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: aws/sns
+    Properties: {}
   ArtifactBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
     Properties:
       AccessControl: Private
-      LoggingConfiguration:
-        DestinationBucketName: !Ref 'LogsBucket'
-        LogFilePrefix: artifact-bucket-logs
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -758,7 +741,7 @@ Resources:
       TargetKeyId: !Ref 'ArtifactBucketEncryptionKey'
   ArtifactBucketPolicy:
     Type: AWS::S3::BucketPolicy
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
     Properties:
       Bucket: !Ref 'ArtifactBucket'
       PolicyDocument:
@@ -1528,6 +1511,7 @@ Resources:
       MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
+      EnablePerformanceInsights: 'true'
       EnableCloudwatchLogsExports:
         - postgresql
         - upgrade
@@ -1559,7 +1543,7 @@ Resources:
         - !GetAtt 'DatabaseSecurityGroup.GroupId'
   LogsBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
     Properties:
       AccessControl: LogDeliveryWrite
   LogsBucketPolicy:
@@ -1722,9 +1706,8 @@ Resources:
         - !Ref 'PrivateAppSubnet3'
       LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
       MinSize: '1'
-      MaxSize: '4'
+      MaxSize: '10'
       DesiredCapacity: !Ref 'WebServerCount'
-      HealthCheckGracePeriod: '900'
       TargetGroupARNs:
         - !Ref 'TargetGroupHttps'
       Tags:
@@ -2101,7 +2084,7 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://download.java.net/java/GA/jdk12/33/GPL/openjdk-12_linux-x64_bin.tar.gz\n"
+            - "wget https://download.java.net/java/GA/jdk12/GPL/openjdk-12_linux-x64_bin.tar.gz\n"
             - "tar xvfz openjdk-12_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-12 /usr/lib/jvm/jdk-12\n"
             - "rm openjdk-12_linux-x64_bin.tar.gz\n"
@@ -2141,7 +2124,7 @@ Resources:
             - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_'\
               \ /opt/cia/start.ini\n"
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
-            - "let JAVAMEMSIZE=$TOTAL_MEM_KB-1536*1024\n"
+            - "let JAVAMEMSIZE=$TOTAL_MEM_KB-2046*1024\n"
             - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n"
             - '# sed -i -e ''s/# -DUSE_LOG_APPENDER='
             - !Ref 'WebServerAppLogAppender'
@@ -2178,7 +2161,7 @@ Resources:
             - 'cfn-signal -e $? '
             - '    --stack '
             - !Ref 'AWS::StackId'
-            - '    --resource WebServerFleet'
+            - '    --resource WebServerFleet '
             - '    --region '
             - !Ref 'AWS::Region'
             - "\n"
