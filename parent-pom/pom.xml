@@ -106,10 +106,10 @@
     <!-- <cia.project.versions.spring.security>5.1.4.RELEASE/5.2.1.M1/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.4.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.M2</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.11.520</cia.project.versions.aws>
+    <cia.project.versions.aws>1.11.522</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.3.RC1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>5.3.1</cia.project.versions.javers>
+    <cia.project.versions.javers>5.3.2</cia.project.versions.javers>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
@@ -1650,7 +1650,7 @@
             </executions>
             <inherited>true</inherited>
           </plugin>
-<!--           <plugin>
+          <!--           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>3.1.1</version>
@@ -1669,11 +1669,12 @@
             </executions>
             <inherited>true</inherited>
           </plugin>
- -->          <plugin>
+ -->
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.1.0</version>
-<!--             <executions>
+            <!--             <executions>
               <execution>
                 <id>attach-javadocs</id>
                 <goals>
@@ -1681,9 +1682,10 @@
                 </goals>
               </execution>
             </executions>
- -->            <inherited>true</inherited>
+ -->
+            <inherited>true</inherited>
             <configuration>
-<!--               <includeDependencySources>false</includeDependencySources>
+              <!--               <includeDependencySources>false</includeDependencySources>
               <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
@@ -1692,7 +1694,8 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
- -->              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
+ -->
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
                   <groupId>com.grahamedgecombe.apiviz</groupId>
@@ -1706,10 +1709,11 @@
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
               <docencoding>UTF-8</docencoding>
-<!--               <breakiterator>true</breakiterator>
+              <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
- -->            </configuration>
+ -->
+            </configuration>
           </plugin>
           <plugin>
             <artifactId>maven-source-plugin</artifactId>
@@ -1831,7 +1835,7 @@
             <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
-<!--               <includeDependencySources>false</includeDependencySources>
+              <!--               <includeDependencySources>false</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1839,7 +1843,8 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
- -->              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
+ -->
+              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
                 <artifactId>apiviz</artifactId>
@@ -1851,10 +1856,11 @@
               <encoding>UTF-8</encoding>
               <docencoding>UTF-8</docencoding>
               <source>${jdk.src.version}</source>
-<!--               <breakiterator>true</breakiterator>
+              <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
- -->            </configuration>
+ -->
+            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
