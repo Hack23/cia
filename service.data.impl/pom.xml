@@ -306,7 +306,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.8.16</version>
+      <version>4.8.17</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
