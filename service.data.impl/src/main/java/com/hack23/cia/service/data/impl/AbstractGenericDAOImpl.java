@@ -20,6 +20,7 @@ package com.hack23.cia.service.data.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Function;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -36,11 +37,16 @@ import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.CacheMode;
+import org.hibernate.search.engine.search.SearchPredicate;
+import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateFactoryContext;
+import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateTerminalContext;
+import org.hibernate.search.engine.search.dsl.query.SearchQueryContext;
 import org.hibernate.search.mapper.orm.Search;
-import org.hibernate.search.mapper.orm.jpa.FullTextEntityManager;
-import org.hibernate.search.mapper.orm.jpa.FullTextQuery;
-import org.hibernate.search.mapper.orm.jpa.FullTextQueryResultDefinitionContext;
+import org.hibernate.search.mapper.orm.search.dsl.query.SearchQueryResultDefinitionContext;
+import org.hibernate.search.mapper.orm.search.query.SearchQuery;
 import org.javers.spring.annotation.JaversAuditable;
+import org.hibernate.search.mapper.orm.session.SearchSession;
+
 
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
@@ -267,8 +273,8 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	 *
 	 * @return the full text entity manager
 	 */
-	protected final FullTextEntityManager getFullTextEntityManager() {
-		return Search.getFullTextEntityManager(getEntityManager());
+	protected final SearchSession getFullTextEntityManager() {
+		return Search.getSearchSession(getEntityManager());
 	}
 	
 	/**
@@ -366,10 +372,12 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	@Override
 	public final List<T> search(final String searchExpression, final Integer maxResults, final String... fields) {
-		final FullTextQueryResultDefinitionContext<T> queryResult = getFullTextEntityManager().search(persistentClass).query();
-		final FullTextQuery<T> query = queryResult.asEntity()
-	        .predicate(t -> t.match().onFields(fields).matching(searchExpression).toPredicate())        
-	        .build();
-		return query.setMaxResults(maxResults).getResultList();
+		final SearchQueryResultDefinitionContext<T> queryResult = getFullTextEntityManager().search(persistentClass);
+		final SearchQueryContext<? extends SearchQuery<T>> query = queryResult.asEntity()
+	        .predicate((Function<? super SearchPredicateFactoryContext, SearchPredicateTerminalContext>) t -> t.match().onFields(fields).matching(searchExpression));        
+		return query.toQuery().fetch(maxResults).getHits();
+		
+		
+
 	}
 }

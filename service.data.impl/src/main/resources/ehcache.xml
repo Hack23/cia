@@ -28,14 +28,14 @@
     </resources>
  </cache-template> 
  
- <cache alias="org.hibernate.cache.spi.QueryResultsRegion">
+ <cache alias="default-query-results-region">
      <expiry>
          <tti unit="seconds">1200</tti>
      </expiry>
     <heap>1024</heap>
  </cache>
 
- <cache alias="org.hibernate.cache.spi.TimestampsRegion">
+ <cache alias="default-update-timestamps-region">
    <expiry>
    	<none />
   </expiry>

@@ -20,20 +20,26 @@ package com.hack23.cia.service.data.impl;
 
 import java.io.File;
 import java.util.List;
+import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.io.FileUtils;
 import org.hibernate.search.mapper.orm.Search;
-import org.hibernate.search.mapper.orm.jpa.FullTextEntityManager;
-import org.hibernate.search.mapper.orm.jpa.FullTextQuery;
-import org.hibernate.search.mapper.orm.jpa.FullTextQueryResultDefinitionContext;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.search.engine.search.SearchPredicate;
+import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateFactoryContext;
+import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateTerminalContext;
+import org.hibernate.search.engine.search.dsl.query.SearchQueryContext;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.search.dsl.query.SearchQueryResultDefinitionContext;
+import org.hibernate.search.mapper.orm.search.query.SearchQuery;
+
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.service.data.api.SearchIndexer;
@@ -73,17 +79,12 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Transactional(timeout=30)
 	@Ignore
 	public void testSearchIndex() throws Exception {
-		final FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-		final FullTextQueryResultDefinitionContext<DocumentContentData> queryResult = fullTextEntityManager.search(DocumentContentData.class).query();
-		final FullTextQuery<DocumentContentData> query = queryResult.asEntity()
-	        .predicate( factory -> factory.match()
-	                .onFields( "content")
-	                .matching( "programmering" ).toPredicate()
-	        )
-	        .build();
+		final SearchQueryResultDefinitionContext<DocumentContentData> queryResult = Search.getSearchSession(entityManager).search(DocumentContentData.class);
+		final SearchQueryContext<? extends SearchQuery<DocumentContentData>> query = queryResult.asEntity()
+	        .predicate((Function<? super SearchPredicateFactoryContext, SearchPredicateTerminalContext>) t -> t.match().onFields("content").matching("programmering"));        
+
 		
-		// execute search
-		final List<DocumentContentData> result = query.setMaxResults(500).getResultList();
+		final List<DocumentContentData> result = query.toQuery().fetch(500).getHits();
 		assertTrue("expect some result",result.size()> 0);
 	}
 

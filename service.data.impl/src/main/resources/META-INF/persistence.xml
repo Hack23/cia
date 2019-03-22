@@ -198,6 +198,9 @@
 			<property name="hibernate.enable_lazy_load_no_trans"
 				value="true" />
 
+			<property name="hibernate.javax.cache.missing_cache_strategy" value="create" />
+			<property name="hibernate.search.enable_configuration_property_tracking" value="false" />
+			
 
 			<property name="hibernate.search.mapping_configurer" value="com.hack23.cia.service.data.impl.DataSearchMapping"/>
 			<property name="hibernate.search.default_backend" value="myBackend"/>
