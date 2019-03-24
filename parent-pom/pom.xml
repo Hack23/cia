@@ -1674,7 +1674,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.1.0</version>
-            <!--             <executions>
+             <executions>
               <execution>
                 <id>attach-javadocs</id>
                 <goals>
@@ -1682,7 +1682,6 @@
                 </goals>
               </execution>
             </executions>
- -->
             <inherited>true</inherited>
             <configuration>
               <!--               <includeDependencySources>false</includeDependencySources>
