@@ -1674,11 +1674,11 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.1.0</version>
-             <executions>
+            <executions>
               <execution>
                 <id>attach-javadocs</id>
                 <goals>
-                  <goal>jar</goal>
+                  <goal>aggregate</goal>
                 </goals>
               </execution>
             </executions>
@@ -1707,6 +1707,8 @@
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
+              <release>${jdk.src.version}</release>
+              <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
               <!--               <breakiterator>true</breakiterator>
               <version>true</version>
@@ -1853,9 +1855,11 @@
  -->
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
-              <docencoding>UTF-8</docencoding>
               <source>${jdk.src.version}</source>
-              <!--               <breakiterator>true</breakiterator>
+              <release>${jdk.src.version}</release>
+              <sourcepath>${basedir}/src/main/java</sourcepath>
+              <docencoding>UTF-8</docencoding>
+             <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
  -->
