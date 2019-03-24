@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-core</artifactId>
-      <version>7.18.0.Final</version>
+      <version>7.19.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>mvel2</artifactId>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
-      <version>7.18.0.Final</version>
+      <version>7.19.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-tx</artifactId>
@@ -110,7 +110,7 @@
     <dependency>
       <groupId>org.eclipse.jdt</groupId>
       <artifactId>ecj</artifactId>
-      <version>3.16.0</version>
+      <version>3.17.0</version>
     </dependency>
     <dependency>
       <groupId>org.quartz-scheduler</groupId>

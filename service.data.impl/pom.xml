@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
-      <version>1.11.519</version>
+      <version>1.11.524</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>5.3.1</version>
+      <version>5.3.2</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
@@ -210,7 +210,7 @@
     <dependency>
       <groupId>org.polyjdbc</groupId>
       <artifactId>polyjdbc</artifactId>
-      <version>0.7.5</version>
+      <version>0.7.6</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
@@ -226,7 +226,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.8.14</version>
+      <version>4.8.21</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -527,7 +527,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.4.1.Final</version>
+      <version>5.4.2.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
@@ -615,7 +615,7 @@
     <dependency>
       <groupId>com.fasterxml</groupId>
       <artifactId>classmate</artifactId>
-      <version>1.4.0</version>
+      <version>1.5.0</version>
     </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
