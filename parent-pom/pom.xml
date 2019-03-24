@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2019.2.24.java8-SNAPSHOT</version>
+  <version>2019.3.24</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -54,7 +54,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2019.2.23</tag>
+    <tag>cia-all-2019.3.24</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>

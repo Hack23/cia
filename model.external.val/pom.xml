@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-external-pom</artifactId>
-    <version>2019.2.24.java8-SNAPSHOT</version>
+    <version>2019.3.24</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val</artifactId>
@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2019.2.23</tag>
+    <tag>cia-all-2019.3.24</tag>
     <url>https://github.com/Hack23/cia/tree/master/model.external.val</url>
   </scm>
   <distributionManagement>
