@@ -1859,7 +1859,7 @@
               <release>${jdk.src.version}</release>
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-             <!--               <breakiterator>true</breakiterator>
+              <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
  -->
