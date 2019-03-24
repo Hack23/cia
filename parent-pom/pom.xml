@@ -1678,22 +1678,19 @@
               <execution>
                 <id>attach-javadocs</id>
                 <goals>
-                  <goal>aggregate</goal>
+                  <goal>jar</goal>
                 </goals>
               </execution>
             </executions>
             <inherited>true</inherited>
             <configuration>
-              <!--               <includeDependencySources>false</includeDependencySources>
-              <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
-              <detectOfflineLinks>false</detectOfflineLinks>
+              <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
               </dependencySourceIncludes>
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
- -->
               <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
@@ -1702,14 +1699,15 @@
                   <version>1.3.4</version>
                 </docletArtifact>
               </docletArtifacts>
-              <useStandardDocletOptions>true</useStandardDocletOptions>
  -->
+              <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
               <release>${jdk.src.version}</release>
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
+              <additionalOptions>-html5</additionalOptions>
               <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
@@ -1836,7 +1834,7 @@
             <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
-              <!--               <includeDependencySources>false</includeDependencySources>
+              <includeDependencySources>true</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1844,6 +1842,7 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
+              <!--               
  -->
               <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
@@ -1851,14 +1850,15 @@
                 <artifactId>apiviz</artifactId>
                 <version>1.3.4</version>
               </docletArtifact>
-              <useStandardDocletOptions>true</useStandardDocletOptions>
  -->
+              <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <source>${jdk.src.version}</source>
               <release>${jdk.src.version}</release>
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
+              <additionalOptions>-html5</additionalOptions>
               <!--               <breakiterator>true</breakiterator>
               <version>true</version>
               <keywords>true</keywords>
