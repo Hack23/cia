@@ -1691,6 +1691,9 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
+              <additionalJOptions>
+                <additionalJOption>--add-modules=java.se</additionalJOption>
+              </additionalJOptions>
               <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
@@ -1708,10 +1711,7 @@
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
               <additionalOptions>-html5</additionalOptions>
-              <!--               <breakiterator>true</breakiterator>
-              <version>true</version>
-              <keywords>true</keywords>
- -->
+              <javadocVersion>${jdk.src.version}</javadocVersion>
             </configuration>
           </plugin>
           <plugin>
@@ -1842,8 +1842,10 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!--               
- -->
+              <additionalJOptions>
+                <additionalJOption>--add-modules=java.se</additionalJOption>
+              </additionalJOptions>
+              
               <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
@@ -1859,10 +1861,6 @@
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
               <additionalOptions>-html5</additionalOptions>
-              <!--               <breakiterator>true</breakiterator>
-              <version>true</version>
-              <keywords>true</keywords>
- -->
             </configuration>
           </plugin>
           <plugin>
