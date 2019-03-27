@@ -106,10 +106,10 @@
     <!-- <cia.project.versions.spring.security>5.1.4.RELEASE/5.2.1.M1/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.4.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.M2</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.11.525</cia.project.versions.aws>
+    <cia.project.versions.aws>1.11.526</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.3.RC1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>5.3.2</cia.project.versions.javers>
+    <cia.project.versions.javers>5.3.3</cia.project.versions.javers>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
@@ -126,7 +126,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha4</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.1.0.Alpha4</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.9.11</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.9.12</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.199</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
