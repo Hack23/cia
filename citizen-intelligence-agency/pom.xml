@@ -1187,7 +1187,7 @@
     <dependency>
       <groupId>com.ibm.icu</groupId>
       <artifactId>icu4j</artifactId>
-      <version>63.1</version>
+      <version>64.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
