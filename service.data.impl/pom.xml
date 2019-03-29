@@ -747,27 +747,27 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jta</artifactId>
-      <version>5.9.4.Final</version>
+      <version>${cia.project.versions.narayana}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jdbc</artifactId>
-      <version>5.9.5.Final</version>
+      <version>${cia.project.versions.narayana}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jms</artifactId>
-      <version>5.9.5.Final</version>
+      <version>${cia.project.versions.narayana}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jts</groupId>
       <artifactId>narayana-jts-integration</artifactId>
-      <version>5.9.4.Final</version>
+      <version>${cia.project.versions.narayana}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.arjunacore</groupId>
       <artifactId>arjuna</artifactId>
-      <version>5.9.5.Final</version>
+      <version>${cia.project.versions.narayana}</version>
       <exclusions>
         <exclusion>
           <artifactId>jconsole</artifactId>
@@ -778,7 +778,7 @@
     <dependency>
       <groupId>org.jboss.narayana.arjunacore</groupId>
       <artifactId>txoj</artifactId>
-      <version>5.9.5.Final</version>
+      <version>${cia.project.versions.narayana}</version>
       <exclusions>
         <exclusion>
           <artifactId>jconsole</artifactId>

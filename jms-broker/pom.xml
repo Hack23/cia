@@ -95,7 +95,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jms</artifactId>
-      <version>5.9.5.Final</version>
+      <version>${cia.project.versions.narayana}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
@@ -176,7 +176,7 @@
     <dependency>
       <groupId>org.apache.xbean</groupId>
       <artifactId>xbean-spring</artifactId>
-      <version>4.12</version>
+      <version>4.13</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
