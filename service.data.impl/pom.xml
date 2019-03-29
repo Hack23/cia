@@ -752,7 +752,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>jdbc</artifactId>
-      <version>5.9.4.Final</version>
+      <version>5.9.5.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
