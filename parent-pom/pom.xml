@@ -102,7 +102,7 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.1.5.RELEASE/5.1.6.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.1.6.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>5.1.6.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.1.4.RELEASE/5.2.1.M1/5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.5.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.M2</cia.project.versions.spring.data>
