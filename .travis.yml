@@ -39,7 +39,6 @@ cache:
   - $HOME/.m2
 
 before_script:
-  - jdk_switcher use openjdk11
   - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
   - export DEBIAN_FRONTEND=noninteractive
   - sudo rm /etc/localtime
@@ -85,7 +84,6 @@ before_script:
   - sudo -u postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
 
 script:
-  - jdk_switcher use openjdk11
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/969/821026 -O COMODORSACertificationAuthority.pem
