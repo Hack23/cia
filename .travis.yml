@@ -86,10 +86,6 @@ before_script:
 script:
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
-  - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/969/821026 -O COMODORSACertificationAuthority.pem
-  - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias COMODORSACertificationAuthority -import -file COMODORSACertificationAuthority.pem | true
-  - wget http://crt.comodoca.com/COMODORSADomainValidationSecureServerCA.crt
-  - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias COMODORSADomainValidationSecureServerCA -import -file COMODORSADomainValidationSecureServerCA.crt | true
   - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
   - tar xzvf apache-maven-3.6.0-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.0/bin:$PATH
