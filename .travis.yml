@@ -84,6 +84,7 @@ before_script:
   - sudo -u postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
 
 script:
+  - sudo ln -s /home/travis/openjdk11 /usr/lib/jvm/java-11-openjdk-amd64 
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
   - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
