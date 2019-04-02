@@ -87,6 +87,8 @@ before_script:
 script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
   - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+  - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/969/821026 -O COMODORSACertificationAuthority.pem
+  - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias COMODORSACertificationAuthority -import -file COMODORSACertificationAuthority.pem | true
   - wget http://crt.comodoca.com/COMODORSADomainValidationSecureServerCA.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias COMODORSADomainValidationSecureServerCA -import -file COMODORSADomainValidationSecureServerCA.crt | true
   - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
