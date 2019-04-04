@@ -2,7 +2,7 @@
   "name": "frontend-project",
   "version": "0.0.1",
   "devDependencies": {
-    "jasmine-core": "3.3.0",
+    "jasmine-core": "3.4.0",
     "karma": "4.0.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage": "1.1.2",
