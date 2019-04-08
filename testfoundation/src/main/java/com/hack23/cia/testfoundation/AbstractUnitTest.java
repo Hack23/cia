@@ -64,7 +64,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * @param string the string
 	 * @return true, if successful
 	 */
-	public final boolean checkAllClassesInPackage(final String string) {
+	protected final boolean checkAllClassesInPackage(final String string) {
 		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
 
@@ -83,7 +83,13 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		return true;
 	}
 
-	public final boolean checkAllDtoClassesInPackage(final String string) {
+	/**
+	 * Check all dto classes in package.
+	 *
+	 * @param string the string
+	 * @return true, if successful
+	 */
+	protected final boolean checkAllDtoClassesInPackage(final String string) {
 
 		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
@@ -95,24 +101,30 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		return true;
 	}
 
-	public class InvokeToStringTester implements Tester {
-		@Override
+	/**
+	 * The Class InvokeToStringTester.
+	 */
+	private static class InvokeToStringTester implements Tester {
 		public void run(final PojoClass pojoClass) {
 			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmNotNull("toStringFailure", instance.toString());
 		}
 	}
 
-	public class InvokeHashcodeTester implements Tester {
-		@Override
+	/**
+	 * The Class InvokeHashcodeTester.
+	 */
+	private static class InvokeHashcodeTester implements Tester {
 		public void run(final PojoClass pojoClass) {
 			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
 		}
 	}
 
-	public class DummyEqualsTester implements Tester {
-		@Override
+	/**
+	 * The Class DummyEqualsTester.
+	 */
+	private static class DummyEqualsTester implements Tester {
 		public void run(final PojoClass pojoClass) {
 			final Object instance = randomValues(pojoClass);
 
@@ -151,9 +163,11 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
-	public class WithTester implements Tester {
+	/**
+	 * The Class WithTester.
+	 */
+	private static class WithTester implements Tester {
 
-		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
 			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
@@ -185,8 +199,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
-	public class ObjectFactoryTester implements Tester {
-		@Override
+	/**
+	 * The Class ObjectFactoryTester.
+	 */
+	private static class ObjectFactoryTester implements Tester {
 		public void run(final PojoClass pojoClass) {
 			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
 
@@ -210,9 +226,11 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
-	public class EnumTester implements Rule {
+	/**
+	 * The Class EnumTester.
+	 */
+	private static class EnumTester implements Rule {
 
-		@Override
 		public void evaluate(final PojoClass pojoClass) {
 			if (pojoClass.isEnum()) {
 
@@ -248,8 +266,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
 
+	/**
+	 * The Class FilterTestClasses.
+	 */
 	private static class FilterTestClasses implements PojoClassFilter {
-		@Override
 		public boolean include(final PojoClass pojoClass) {
 			return !(pojoClass.getSourcePath().contains("/test-classes/")
 					|| pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract())
@@ -257,8 +277,10 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 	}
 
+	/**
+	 * The Class FilterNonEnumClasses.
+	 */
 	private static class FilterNonEnumClasses implements PojoClassFilter {
-		@Override
 		public boolean include(final PojoClass pojoClass) {
 			return pojoClass.isEnum() && FilterPackageInfo.include(pojoClass);
 		}

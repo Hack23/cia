@@ -22,14 +22,9 @@ import java.sql.Connection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.hibernate.Session;
 import org.hibernate.internal.SessionImpl;
-import org.javers.core.Javers;
-import org.javers.core.MappingStyle;
-import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;
 import org.javers.core.Javers;
 import org.javers.core.MappingStyle;
 import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;

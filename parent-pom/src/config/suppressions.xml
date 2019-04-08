@@ -64,5 +64,6 @@
 		<cve>CVE-2019-8331</cve>
 		<cve>CVE-2016-4978</cve>
 		<cve>CVE-2015-3208</cve>
+		<cve>CVE-2018-1258</cve>
     </suppress>
 </suppressions>

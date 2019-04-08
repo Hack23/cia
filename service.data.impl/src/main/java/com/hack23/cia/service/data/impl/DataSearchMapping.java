@@ -20,11 +20,11 @@ package com.hack23.cia.service.data.impl;
 
 import org.hibernate.search.mapper.orm.mapping.HibernateOrmMappingDefinitionContainerContext;
 import org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer;
-import org.hibernate.search.mapper.pojo.mapping.definition.programmatic.ProgrammaticMappingDefinitionContext;
+//import org.hibernate.search.mapper.pojo.mapping.definition.programmatic.ProgrammaticMappingDefinitionContext;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+//import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+//import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 
 /**
  * The Class DataSearchMapping.
