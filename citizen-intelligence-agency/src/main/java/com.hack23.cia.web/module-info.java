@@ -83,6 +83,8 @@ open module com.hack23.cia.web {
 	requires spring.aop;
 	requires statistics.card;
 	requires org.eclipse.jetty.servlet;
+	requires javax.servlet.api;
+
 	requires vaadin.grid.util;
 	requires yauaa;
 	requires qrcode;
