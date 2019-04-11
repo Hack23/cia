@@ -105,11 +105,11 @@
     <cia.project.versions.spring>5.2.0.M1</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security>
-    <cia.project.versions.spring.data>2.2.0.M2</cia.project.versions.spring.data>
+    <cia.project.versions.spring.data>2.2.0.M3</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.11.534</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.24.1-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>5.3.5</cia.project.versions.javers>
+    <cia.project.versions.javers>5.3.6</cia.project.versions.javers>
     <cia.project.versions.narayana>5.9.5.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
@@ -165,7 +165,7 @@
     <!-- <cia.project.versions.jetty>9.4.16.v20190410</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.76.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.7.2</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.8.0.beta1</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.27</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
