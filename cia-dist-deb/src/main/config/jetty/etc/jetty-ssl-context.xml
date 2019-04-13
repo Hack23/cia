@@ -30,7 +30,6 @@
   <Set name="RenegotiationAllowed"><Property name="jetty.sslContext.renegotiationAllowed" default="true"/></Set>
   <Set name="RenegotiationLimit"><Property name="jetty.sslContext.renegotiationLimit" default="5"/></Set>
  
- <!--
    <Set name="IncludeCipherSuites">
 	<Array type="java.lang.String">
 		<Item>TLS_AES_256_GCM_SHA384</Item>
@@ -55,8 +54,8 @@
 		<Item>TLSv1.2</Item>
 		<Item>TLSv1.3</Item>
 	</Array>
-  </Set>  
- -->
+  </Set>   
+ 
  
   <!-- Example of how to configure a PKIX Certificate Path revocation Checker
   <Call id="pkixPreferCrls" class="java.security.cert.PKIXRevocationChecker$Option" name="valueOf"><Arg>PREFER_CRLS</Arg></Call>
