@@ -94,7 +94,7 @@ script:
   - export PATH=$JAVA_HOME/bin:$PATH
   - export MAVEN_OPTS="-Duser.timezone=CET --illegal-access=warn --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED"
   - xvfb-run --server-args="-screen 0 1280x800x24" mvn clean install -Dtest=no -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -q '-Dtest=!**.*ITest*'
-  - mvn sonar:sonar
+  - mvn sonar:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
  
 after_success:
   - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
