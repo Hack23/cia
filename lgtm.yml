@@ -5,4 +5,4 @@ extraction:
         - graphviz
         - openjdk-11-jdk-headless
     index:
-      build_command: mvn clean package -f "pom.xml" -B -e -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -pl '!cia-dist-deb,!cia-dist-cloudformation'
+      build_command: mvn clean package -f "pom.xml" -B -e -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true  -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -pl '!cia-dist-deb,!cia-dist-cloudformation'
