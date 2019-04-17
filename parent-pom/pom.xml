@@ -49,7 +49,7 @@
   </contributors>
   <mailingLists></mailingLists>
   <prerequisites>
-    <maven>3.6.0</maven>
+    <maven>3.6.1</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
