@@ -3434,6 +3434,7 @@
                         },
                         " -O cia-dist-deb.deb \n",
                         "dpkg -i --force all cia-dist-deb.deb \n",
+                        "/etc/init.d/cia stop\n",                       
                         "echo 'database.name=",
                         {
                            "Ref":"DBName"
@@ -3491,7 +3492,8 @@
                         "chown -R cia:cia /opt/cia/.postgresql\n",
                         "chmod -R 700 /opt/cia/.postgresql\n",
                         "/usr/lib/jvm/jdk-12/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
-                        "/etc/init.d/cia restart\n",
+                        "/etc/init.d/cia stop\n",                       
+                        "/etc/init.d/cia start\n",                    
                         "update-rc.d cia defaults\n",
                         "# TODO setup  cron jobs for security auditing, intrusion detection, system hardening#\n",
                         "sudo apt-get -y install lsb-invalid-mta\n",
