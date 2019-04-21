@@ -3423,10 +3423,11 @@
                         "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
                         "sudo /etc/init.d/cron restart\n",
                         "# INSTALL OPEN JDK\n",
-                        "wget https://download.java.net/java/GA/jdk12/GPL/openjdk-12_linux-x64_bin.tar.gz\n",
-                        "tar xvfz openjdk-12_linux-x64_bin.tar.gz\n",
+                        "wget https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12%2B33/OpenJDK12U-jdk_x64_linux_hotspot_12_33.tar.gz\n",
+                        "mkdir -p jdk-12\n",
+                        "tar xvfz OpenJDK12U-jdk_x64_linux_hotspot_12_33.tar.gz -C jdk-12 --strip-components=1\n",
                         "sudo mv jdk-12 /usr/lib/jvm/jdk-12\n",
-                        "rm openjdk-12_linux-x64_bin.tar.gz\n",
+                        "rm OpenJDK12U-jdk_x64_linux_hotspot_12_33.tar.gz\n",
                         "wget ",
                         {
                            "Ref":"DebPackageUrl"
