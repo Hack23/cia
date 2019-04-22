@@ -51,6 +51,8 @@ import com.openpojo.validation.utils.ValidationHelper;
  */
 public abstract class AbstractUnitTest extends AbstractTest {
 
+	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
+
 	/**
 	 * Instantiates a new abstract unit test.
 	 */
@@ -146,7 +148,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 			return instance;
 		}
 
-		private void randomValues(final Object instance, final PojoClass pojoClass) {
+		private static void randomValues(final Object instance, final PojoClass pojoClass) {
 			if (pojoClass == null) {
 				return;
 			}
@@ -213,7 +215,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 					if (pojoMethod.getPojoParameters().isEmpty()) {
 						pojoMethod.invoke(classInstance);
 					} else {
-						PojoParameter pojoParameter = pojoMethod.getPojoParameters().get(0);
+						final PojoParameter pojoParameter = pojoMethod.getPojoParameters().get(0);
 						
 						try {
 							pojoMethod.invoke(classInstance,pojoParameter.getType().getDeclaredConstructor().newInstance());
@@ -263,8 +265,6 @@ public abstract class AbstractUnitTest extends AbstractTest {
 		}
 		return null;
 	}
-
-	private static final FilterPackageInfo FilterPackageInfo = new FilterPackageInfo();
 
 	/**
 	 * The Class FilterTestClasses.
