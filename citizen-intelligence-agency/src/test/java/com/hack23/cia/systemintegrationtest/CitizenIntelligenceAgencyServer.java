@@ -196,7 +196,7 @@ public final class CitizenIntelligenceAgencyServer {
 		final HttpConfiguration https_config = new HttpConfiguration(http_config);
 		https_config.addCustomizer(new SecureRequestCustomizer());
 
-		final SslContextFactory sslContextFactory = new SslContextFactory();
+		final SslContextFactory sslContextFactory = new SslContextFactory.Server();
 		sslContextFactory.setKeyStoreType("PKCS12");
 		sslContextFactory.setKeyStorePath("target/keystore.p12");
 		sslContextFactory.setTrustStorePath("target/keystore.p12");
