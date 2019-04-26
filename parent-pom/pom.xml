@@ -112,7 +112,7 @@
     <cia.project.versions.javers>5.3.6</cia.project.versions.javers>
     <cia.project.versions.narayana>5.9.5.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>7.1</cia.project.versions.asm>
-    <cia.project.versions.cglib>3.2.10</cia.project.versions.cglib>
+    <cia.project.versions.cglib>3.2.11</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.9</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
