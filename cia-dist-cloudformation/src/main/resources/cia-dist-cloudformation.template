@@ -616,6 +616,16 @@
         }, 
         "StartContinuousAssessmentLambdaRole": {
             "Type": "AWS::IAM::Role", 
+            "Metadata": {
+                "cfn_nag": {
+                    "rules_to_suppress": [
+                        {
+                            "id": "W11", 
+                            "reason": "Should have access to * resources of specific type"
+                        }
+                    ]
+                }
+            }, 
             "Properties": {
                 "ManagedPolicyArns": [
                     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole", 
@@ -796,6 +806,16 @@
         }, 
         "AnalyzeInspectorFindingsLambdaRole": {
             "Type": "AWS::IAM::Role", 
+            "Metadata": {
+                "cfn_nag": {
+                    "rules_to_suppress": [
+                        {
+                            "id": "W11", 
+                            "reason": "Should have access to * resources of specific type"
+                        }
+                    ]
+                }
+            }, 
             "Properties": {
                 "ManagedPolicyArns": [
                     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
@@ -1134,6 +1154,16 @@
         }, 
         "MaintenanceWindowServiceRole": {
             "Type": "AWS::IAM::Role", 
+            "Metadata": {
+                "cfn_nag": {
+                    "rules_to_suppress": [
+                        {
+                            "id": "W11", 
+                            "reason": "Should have access to * resources of specific type"
+                        }
+                    ]
+                }
+            }, 
             "Properties": {
                 "AssumeRolePolicyDocument": {
                     "Version": "2012-10-17", 
@@ -1167,7 +1197,15 @@
                                         "iam:PassRole"
                                     ], 
                                     "Resource": [
-                                        "*"
+                                        {
+                                            "Fn::Sub": "arn:aws:ec2:eu-west-1:${AWS::AccountId}:*"
+                                        }, 
+                                        {
+                                            "Fn::Sub": "arn:aws:ssm:eu-west-1:${AWS::AccountId}:*"
+                                        }, 
+                                        {
+                                            "Fn::Sub": "arn:aws:iam:eu-west-1:${AWS::AccountId}:*"
+                                        }
                                     ]
                                 }
                             ]
