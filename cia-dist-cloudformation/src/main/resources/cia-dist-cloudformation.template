@@ -1197,15 +1197,7 @@
                                         "iam:PassRole"
                                     ], 
                                     "Resource": [
-                                        {
-                                            "Fn::Sub": "arn:aws:ec2:eu-west-1:${AWS::AccountId}:*"
-                                        }, 
-                                        {
-                                            "Fn::Sub": "arn:aws:ssm:eu-west-1:${AWS::AccountId}:*"
-                                        }, 
-                                        {
-                                            "Fn::Sub": "arn:aws:iam:eu-west-1:${AWS::AccountId}:*"
-                                        }
+                                        "*"
                                     ]
                                 }
                             ]

@@ -808,9 +808,7 @@ Resources:
                 Action:
                   - iam:PassRole
                 Resource:
-                  - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
-                  - !Sub 'arn:aws:ssm:eu-west-1:${AWS::AccountId}:*'
-                  - !Sub 'arn:aws:iam:eu-west-1:${AWS::AccountId}:*'                                    
+                  - "*"
   MaintenanceWindow:
     Type: AWS::SSM::MaintenanceWindow
     Properties:
