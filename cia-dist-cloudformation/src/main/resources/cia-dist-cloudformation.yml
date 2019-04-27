@@ -808,7 +808,7 @@ Resources:
                 Action:
                   - iam:PassRole
                 Resource:
-                  - "*"
+                  - '*'
   MaintenanceWindow:
     Type: AWS::SSM::MaintenanceWindow
     Properties:
