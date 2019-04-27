@@ -540,7 +540,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.141.59</version>
+      <version>4.0.0-alpha-1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -674,7 +674,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>3.141.59</version>
+      <version>4.0.0-alpha-1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -763,7 +763,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>3.141.59</version>
+      <version>4.0.0-alpha-1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -1691,7 +1691,7 @@
                 <artifactItem>
                   <groupId>com.whitestein.vaadin.widgets</groupId>
                   <artifactId>wt-pdf-viewer</artifactId>
-                  <version>2.0.0</version>
+                  <version>2.0.1</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
