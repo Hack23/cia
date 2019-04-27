@@ -366,6 +366,11 @@ Resources:
       Path: /
   FlowLogsPolicy:
     Type: AWS::IAM::Policy
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W12
+            reason: "None of the flow log API actions (ec2:*FlowLogs) support resource-level permissions."
     Properties:
       PolicyName: FlowLogs
       PolicyDocument:
@@ -1488,6 +1493,13 @@ Resources:
       Principal: secretsmanager.amazonaws.com
   Database:
     Type: AWS::RDS::DBInstance
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: F23
+            reason: "SecretManager used."
+          - id: F24
+            reason: "SecretManager used."            
     DependsOn:
       - PrivateRoute
       - DatabaseSecurityGroup
@@ -1673,6 +1685,13 @@ Resources:
       - PublicElasticLoadBalancerV2
   PublicLoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W9
+            reason: "Public access"
+          - id: W2
+            reason: "Public access"
     Properties:
       GroupDescription: Public ELB Security Group with HTTPS access on port 443 from
         the internet
@@ -2093,6 +2112,7 @@ Resources:
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
             - "dpkg -i --force all cia-dist-deb.deb \n"
+            - "/etc/init.d/cia stop\n"
             - echo 'database.name=
             - !Ref 'DBName'
             - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
@@ -2143,7 +2163,8 @@ Resources:
             - "/usr/lib/jvm/jdk-12/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts\
               \ -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias\
               \ aws-rds-2016\n"
-            - "/etc/init.d/cia restart\n"
+            - "/etc/init.d/cia stop\n"
+            - "/etc/init.d/cia start\n"
             - "update-rc.d cia defaults\n"
             - "# TODO setup  cron jobs for security auditing, intrusion detection,\
               \ system hardening#\n"
@@ -2168,6 +2189,11 @@ Resources:
             - "\n"
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W5
+            reason: "Server in private subnet, using nat gateway"
     DependsOn: PublicLoadBalancerSecurityGroup
     Properties:
       GroupDescription: Allow access from load balancer and bastion as well as outbound
