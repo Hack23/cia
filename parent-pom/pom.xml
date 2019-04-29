@@ -160,7 +160,7 @@
     <cia.project.versions.netty>4.1.35.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.0.SP02-redhat-00001</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.18.v20190425</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.18.v20190429</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>9.4.15.v20190215</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
