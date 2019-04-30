@@ -120,7 +120,7 @@
     <cia.project.versions.logback>1.3.0-alpha4</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.hibernate>5.4.2.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.search>6.0.0.Alpha4</cia.project.versions.hibernate.search>
+    <cia.project.versions.hibernate.search>6.0.0.Alpha5</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.0.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate.jpamodelgen>5.4.2.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.4.2.Final</cia.project.versions.hibernate.build>
