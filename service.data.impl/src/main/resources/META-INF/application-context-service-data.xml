@@ -160,7 +160,7 @@
 	 			<prop key="hibernate.search.default_backend">myBackend</prop> 		
 	 			
  				<prop key="hibernate.search.backends.myBackend.type">lucene</prop>
- 				<prop key="hibernate.search.backends.myBackend.lucene_version">7.7.1</prop>
+ 				<prop key="hibernate.search.backends.myBackend.lucene_version">8.0.0</prop>
 	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
   				<prop key="hibernate.search.backends.myBackend.root_directory">.</prop>	 			
 	 			<prop key="hibernate.search.backends.myBackend.analysis_configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>

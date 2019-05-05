@@ -7,7 +7,7 @@
         http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.5.xsd">
 
  <service>
-   <jsr107:defaults enable-management="true" enable-statistics="true" default-template="defaultCacheTemplate"/>
+   <jsr107:defaults enable-management="true" enable-statistics="true"/>
  </service>
 
  <cache-template name="defaultCacheTemplate">

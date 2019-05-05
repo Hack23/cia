@@ -624,7 +624,16 @@
           <artifactId>hibernate-core</artifactId>
           <groupId>org.hibernate</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>cache-api</artifactId>
+          <groupId>javax.cache</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>javax.cache</groupId>
+      <artifactId>cache-api</artifactId>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
