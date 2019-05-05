@@ -3525,8 +3525,7 @@
                                 {
                                     "Fn::GetAtt": [
                                         "Database", 
-                                        "Endpoint", 
-                                        "Address"
+                                        "Endpoint.Address"
                                     ]
                                 }, 
                                 "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n", 
@@ -3742,16 +3741,14 @@
                         {
                             "Fn::GetAtt": [
                                 "Database", 
-                                "Endpoint", 
-                                "Address"
+                                "Endpoint.Address"
                             ]
                         }, 
                         ":", 
                         {
                             "Fn::GetAtt": [
                                 "Database", 
-                                "Endpoint", 
-                                "Port"
+                                "Endpoint.Port"
                             ]
                         }, 
                         "/", 
