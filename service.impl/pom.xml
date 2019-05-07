@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-core</artifactId>
-      <version>7.20.0.Final</version>
+      <version>7.21.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>mvel2</artifactId>
