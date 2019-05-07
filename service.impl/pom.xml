@@ -61,7 +61,7 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
-      <version>7.20.0.Final</version>
+      <version>7.21.0.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-tx</artifactId>
