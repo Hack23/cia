@@ -12,7 +12,6 @@ extraction:
         - bzr-builddeb
         - openssl
         - locales
-        - tzdata
         - ca-certificates-java
         - ca-certificates
         - wget
