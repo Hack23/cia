@@ -1682,13 +1682,16 @@
                 <id>attach-javadocs</id>
                 <phase>package</phase>
                 <goals>
-                  <goal>jar</goal>
-                  <goal>test-jar</goal>
+                  <goal>aggregate-jar</goal>
+                  <goal>test-aggregate-jar</goal>
                 </goals>
               </execution>
             </executions>
             <inherited>true</inherited>
             <configuration>
+              <debug>true</debug>
+              <detectJavaApiLink>false</detectJavaApiLink>
+              <linksource>true</linksource>
               <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1850,9 +1853,6 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <additionalJOptions>
-                <additionalJOption>--add-modules=java.se</additionalJOption>
-              </additionalJOptions>
               <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
