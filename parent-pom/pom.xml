@@ -1705,13 +1705,13 @@
                 </docletArtifact>
               </docletArtifacts>
 
+              -->
               <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
                 <artifactId>umldoclet</artifactId>
                 <version>2.0.2</version>
               </docletArtifact>
-              -->
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
@@ -1859,14 +1859,13 @@
                 <artifactId>apiviz</artifactId>
                 <version>1.3.4</version>
               </docletArtifact>
-
+               -->
               <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
                 <artifactId>umldoclet</artifactId>
                 <version>2.0.2</version>
               </docletArtifact>
-               -->
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
