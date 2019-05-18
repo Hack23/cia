@@ -828,7 +828,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.1.1-SNAPSHOT</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1672,7 +1672,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.1-SNAPSHOT</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -1718,7 +1718,7 @@
               <release>${jdk.src.version}</release>
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-              <additionalOptions>-html5</additionalOptions>
+              <!-- <additionalOptions>-html5</additionalOptions>-->
             </configuration>
           </plugin>
           <plugin>
@@ -1838,7 +1838,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.1-SNAPSHOT</version>
             <inherited>true</inherited>
             <configuration>
               <includeDependencySources>true</includeDependencySources>
@@ -1869,7 +1869,7 @@
               <release>${jdk.src.version}</release>
               <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-              <additionalOptions>-html5</additionalOptions>
+              <!-- <additionalOptions>-html5</additionalOptions>-->
             </configuration>
           </plugin>
           <plugin>
