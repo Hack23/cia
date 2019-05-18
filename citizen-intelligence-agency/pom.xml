@@ -895,7 +895,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-compress</artifactId>
-      <version>1.18.0.redhat-00001</version>
+      <version>${cia.project.versions.commons.compress}</version>
     </dependency>
     <dependency>
       <groupId>org.webbitserver</groupId>
