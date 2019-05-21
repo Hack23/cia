@@ -828,7 +828,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.1.1-SNAPSHOT</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1672,7 +1672,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.1.1-SNAPSHOT</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -1685,6 +1685,7 @@
             </executions>
             <inherited>true</inherited>
             <configuration>
+              <source>1.8</source>
               <debug>true</debug>
               <detectJavaApiLink>false</detectJavaApiLink>
               <linksource>true</linksource>
@@ -1838,9 +1839,10 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.1.1-SNAPSHOT</version>
+            <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
+              <source>1.8</source>
               <includeDependencySources>true</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
