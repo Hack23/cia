@@ -1701,6 +1701,7 @@
                 <phase>verify</phase>
                 <goals>
                   <goal>jar</goal>
+                  <goal>resource-bundle</goal>
                   <!-- <goal>test-jar</goal>-->
                 </goals>
               </execution>
@@ -1714,8 +1715,8 @@
                 <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
               </sourceFileExcludes>
               <debug>true</debug>
-              <detectJavaApiLink>false</detectJavaApiLink>
-              <linksource>false</linksource>
+              <detectJavaApiLink>true</detectJavaApiLink>
+              <linksource>true</linksource>
               <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
