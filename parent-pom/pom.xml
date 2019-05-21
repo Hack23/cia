@@ -1686,6 +1686,7 @@
             <inherited>true</inherited>
             <configuration>
               <source>1.8</source>
+              <excludes>${jdk.src.exclude}</excludes>
               <debug>true</debug>
               <detectJavaApiLink>false</detectJavaApiLink>
               <linksource>true</linksource>
@@ -1843,6 +1844,7 @@
             <inherited>true</inherited>
             <configuration>
               <source>1.8</source>
+              <excludes>${jdk.src.exclude}</excludes>
               <includeDependencySources>true</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
               <dependencySourceIncludes>
