@@ -68,7 +68,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< topic element>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://topic.worldbank.external.model.cia.hack23.com/impl", name = "topic")
     public JAXBElement<TopicElement> createTopic(final TopicElement value) {

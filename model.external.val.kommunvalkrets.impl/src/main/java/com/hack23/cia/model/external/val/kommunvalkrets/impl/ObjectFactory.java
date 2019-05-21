@@ -86,7 +86,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< sweden county data container>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://kommunvalkrets.val.external.model.cia.hack23.com/impl", name = "root")
     public JAXBElement<SwedenCountyDataContainer> createRoot(final SwedenCountyDataContainer value) {

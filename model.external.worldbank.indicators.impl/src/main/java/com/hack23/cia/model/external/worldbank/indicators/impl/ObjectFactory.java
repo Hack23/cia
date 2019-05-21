@@ -95,7 +95,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< indicator element>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://indicators.worldbank.external.model.cia.hack23.com/impl", name = "indicator")
     public JAXBElement<IndicatorElement> createIndicator(final IndicatorElement value) {

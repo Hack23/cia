@@ -68,7 +68,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< vote list container element>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://voteringlista.riksdagen.external.model.cia.hack23.com/impl", name = "voteringlista")
     public JAXBElement<VoteListContainerElement> createVoteringlista(final VoteListContainerElement value) {

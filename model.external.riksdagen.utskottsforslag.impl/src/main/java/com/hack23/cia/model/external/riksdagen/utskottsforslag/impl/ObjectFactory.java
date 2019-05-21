@@ -104,7 +104,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< committee proposal component data>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl", name = "utskottsforslag")
     public JAXBElement<CommitteeProposalComponentData> createUtskottsforslag(final CommitteeProposalComponentData value) {

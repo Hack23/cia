@@ -104,7 +104,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< ballot container>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://votering.riksdagen.external.model.cia.hack23.com/impl", name = "votering")
     public JAXBElement<BallotContainer> createVotering(final BallotContainer value) {

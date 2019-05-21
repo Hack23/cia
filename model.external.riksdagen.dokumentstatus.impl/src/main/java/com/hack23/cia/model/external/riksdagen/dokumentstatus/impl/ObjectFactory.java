@@ -176,7 +176,7 @@ public class ObjectFactory {
 	 * Creates a new Object object.
 	 *
 	 * @param value the value
-	 * @return the JAXB element< document status container>
+	 * @return the JAXB element
 	 */
     @XmlElementDecl(namespace = "http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl", name = "dokumentstatus")
     public JAXBElement<DocumentStatusContainer> createDokumentstatus(final DocumentStatusContainer value) {
