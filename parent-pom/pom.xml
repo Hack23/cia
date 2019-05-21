@@ -998,6 +998,28 @@
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
           <version>3.3.3</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-api</artifactId>
+              <version>2.8.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-manager</artifactId>
+              <version>2.8.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-javac</artifactId>
+              <version>2.8.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-utils</artifactId>
+              <version>3.0.22</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -1676,20 +1698,24 @@
             <executions>
               <execution>
                 <id>attach-javadocs</id>
-                <phase>package</phase>
+                <phase>verify</phase>
                 <goals>
-                  <goal>aggregate-jar</goal>
-                  <goal>test-aggregate-jar</goal>
+                  <goal>jar</goal>
+                  <!-- <goal>test-jar</goal>-->
                 </goals>
               </execution>
             </executions>
             <inherited>true</inherited>
             <configuration>
-              <source>1.8</source>
+              <source>${jdk.src.version}</source>
+              <release>${jdk.target.version}</release>
               <excludes>${jdk.src.exclude}</excludes>
+              <sourceFileExcludes>
+                <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
+              </sourceFileExcludes>
               <debug>true</debug>
               <detectJavaApiLink>false</detectJavaApiLink>
-              <linksource>true</linksource>
+              <linksource>false</linksource>
               <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1716,9 +1742,10 @@
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
-              <source>${jdk.src.version}</source>
-              <release>${jdk.src.version}</release>
-              <sourcepath>${basedir}/src/main/java</sourcepath>
+              <source>8</source>
+              <release>8</release>
+              <!-- <sourcepath>${basedir}/src/main/java</sourcepath>-->
+              <sourcepath>src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
               <!-- <additionalOptions>-html5</additionalOptions>-->
             </configuration>
@@ -1843,7 +1870,8 @@
             <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
-              <source>1.8</source>
+              <source>${jdk.src.version}</source>
+              <release>${jdk.target.version}</release>
               <excludes>${jdk.src.exclude}</excludes>
               <includeDependencySources>true</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
