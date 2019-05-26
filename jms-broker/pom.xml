@@ -151,7 +151,7 @@
     <dependency>
       <groupId>org.jasypt</groupId>
       <artifactId>jasypt-hibernate4</artifactId>
-      <version>1.9.2</version>
+      <version>1.9.3</version>
       <exclusions>
         <exclusion>
           <artifactId>jasypt</artifactId>
