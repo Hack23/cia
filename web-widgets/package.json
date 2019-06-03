@@ -12,9 +12,11 @@
     "karma-phantomjs-launcher": "1.0.4",
     "karma-sinon-chai": "2.0.2",
     "mocha": "6.1.4",
-    "phantomjs-prebuilt": "2.1.16"
+    "phantomjs-prebuilt": "2.1.16",
+    "concat-stream": ">=2.0.0"
   },
   "dependencies": {
-    "ncu": "0.2.1"
+    "ncu": "0.2.1",
+    "npm-check-updates": "^3.1.10"
   }
 }
