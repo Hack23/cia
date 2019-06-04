@@ -177,6 +177,8 @@
     <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
     <jdk.src.version>11</jdk.src.version>
     <jdk.target.version>11</jdk.target.version>
+    <javadoc.src.version>8</javadoc.src.version>
+    <javadoc.target.version>8</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
     <walkmod.chains>pmd</walkmod.chains>
     <walkmod.properties>configurationFile=${pom.basedir}/../ruleset.xml</walkmod.properties>
@@ -1708,15 +1710,16 @@
             </executions>
             <inherited>true</inherited>
             <configuration>
-              <source>${jdk.src.version}</source>
-              <release>${jdk.target.version}</release>
+              <source>${javadoc.src.version}</source>
+              <release>${javadoc.target.version}</release>
               <excludes>${jdk.src.exclude}</excludes>
               <sourceFileExcludes>
                 <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
               </sourceFileExcludes>
               <debug>true</debug>
-              <detectJavaApiLink>true</detectJavaApiLink>
-              <linksource>true</linksource>
+              <detectJavaApiLink>false</detectJavaApiLink>
+              <detectOfflineLinks>false</detectOfflineLinks>
+              <linksource>false</linksource>
               <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
@@ -1724,16 +1727,6 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
-              <docletArtifacts>
-                <docletArtifact>
-                  <groupId>com.grahamedgecombe.apiviz</groupId>
-                  <artifactId>apiviz</artifactId>
-                  <version>1.3.4</version>
-                </docletArtifact>
-              </docletArtifacts>
-
-              -->
               <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
@@ -1743,12 +1736,9 @@
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
-              <source>8</source>
-              <release>8</release>
-              <!-- <sourcepath>${basedir}/src/main/java</sourcepath>-->
               <sourcepath>src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-              <!-- <additionalOptions>-html5</additionalOptions>-->
+              <additionalOptions>-createPumlFiles</additionalOptions>
             </configuration>
           </plugin>
           <plugin>
@@ -1871,24 +1861,18 @@
             <version>3.1.0</version>
             <inherited>true</inherited>
             <configuration>
-              <source>${jdk.src.version}</source>
-              <release>${jdk.target.version}</release>
+              <source>${javadoc.src.version}</source>
+              <release>${javadoc.target.version}</release>
+              <sourcepath>src/main/java</sourcepath>
               <excludes>${jdk.src.exclude}</excludes>
-              <includeDependencySources>true</includeDependencySources>
               <detectOfflineLinks>false</detectOfflineLinks>
+              <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
               </dependencySourceIncludes>
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!--               <doclet>org.jboss.apiviz.APIviz</doclet>
-              <docletArtifact>
-                <groupId>com.grahamedgecombe.apiviz</groupId>
-                <artifactId>apiviz</artifactId>
-                <version>1.3.4</version>
-              </docletArtifact>
-               -->
               <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
@@ -1898,11 +1882,8 @@
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
-              <source>${jdk.src.version}</source>
-              <release>${jdk.src.version}</release>
-              <sourcepath>${basedir}/src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-              <!-- <additionalOptions>-html5</additionalOptions>-->
+              <additionalOptions>-createPumlFiles</additionalOptions>
             </configuration>
           </plugin>
           <plugin>
