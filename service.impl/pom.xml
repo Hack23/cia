@@ -202,30 +202,11 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>nz.ac.waikato.cms.weka</groupId>
-      <artifactId>weka-dev</artifactId>
-      <version>3.9.3</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>java-cup-11b-runtime</artifactId>
-          <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>all</artifactId>
-          <groupId>com.github.fommil.netlib</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>core</artifactId>
-          <groupId>com.github.fommil.netlib</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-	<dependency>
       <groupId>com.github.haifengl</groupId>
       <artifactId>smile-nlp</artifactId>
       <version>1.5.3</version>
     </dependency>
-	<dependency>
+    <dependency>
       <groupId>com.github.haifengl</groupId>
       <artifactId>smile-netlib</artifactId>
       <version>1.5.3</version>

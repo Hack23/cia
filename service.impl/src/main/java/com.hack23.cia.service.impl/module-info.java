@@ -17,6 +17,9 @@ open module com.hack23.cia.service.impl {
 	requires quartz;
 	requires commons.lang;
 	requires com.google.common;
+	requires smile.core;
+	requires smile.nlp;
+	
 
 	requires googleauth;
 
@@ -24,7 +27,6 @@ open module com.hack23.cia.service.impl {
 	requires spring.core;
 	requires org.apache.commons.lang3;
 
-	requires weka.dev;
 	requires passay;
 
 	requires org.joda.time;
