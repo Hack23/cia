@@ -2,6 +2,8 @@
 
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
+Using Statistical Machine Intelligence and Learning Engine and Business Rules Management System to track politicians.
+
 
 [![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)

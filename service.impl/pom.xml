@@ -220,6 +220,26 @@
         </exclusion>
       </exclusions>
     </dependency>
+	<dependency>
+      <groupId>com.github.haifengl</groupId>
+      <artifactId>smile-nlp</artifactId>
+      <version>1.5.3</version>
+    </dependency>
+	<dependency>
+      <groupId>com.github.haifengl</groupId>
+      <artifactId>smile-netlib</artifactId>
+      <version>1.5.3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>all</artifactId>
+          <groupId>com.github.fommil.netlib</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>core</artifactId>
+          <groupId>com.github.fommil.netlib</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>com.github.fommil.netlib</groupId>
       <artifactId>core</artifactId>
