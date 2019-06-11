@@ -77,7 +77,8 @@ open module com.hack23.cia.web {
 	requires org.apache.commons.lang3;
 	requires org.bouncycastle.provider;
 
-	requires weka.dev;
+	requires smile.core;
+	requires smile.nlp;	
 	requires passay;
 	requires wt.pdf.viewer;
 	requires spring.aop;
