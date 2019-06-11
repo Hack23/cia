@@ -106,7 +106,7 @@
     <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.2.0.M2</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.M4</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.11.569</cia.project.versions.aws>
+    <cia.project.versions.aws>1.11.570</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.25.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>5.5.2</cia.project.versions.javers>
@@ -162,7 +162,7 @@
     <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.18</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.18.v20190429</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.19.v20190610</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>9.4.15.v20190215</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
