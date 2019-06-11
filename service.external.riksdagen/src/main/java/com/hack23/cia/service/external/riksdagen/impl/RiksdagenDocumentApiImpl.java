@@ -58,7 +58,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String DOC_ID_KEY = "${DOC_ID}";
 
 	/** The Constant DOCUMENT_CONTENT. */
-	private static final String DOCUMENT_CONTENT = "https://data.riksdagen.se/dokument/${DOC_ID}/text";
+	private static final String DOCUMENT_CONTENT = "https://data.riksdagen.se/dokument/${DOC_ID}/xml";
 
 	/** The Constant DOCUMENT_LIST_CHANGED_DATE. */
 	private static final String DOCUMENT_LIST_CHANGED_DATE = "https://data.riksdagen.se/dokumentlista/?sok=&doktyp=&rm=&from=${CHANGED_SINCE}&tom=${CHANGED_TO}&ts=&bet=&tempbet=&nr=&org=&iid=&webbtv=&talare=&exakt=&planering=&sort=datum&sortorder=asc&rapport=&utformat=xml&a=";

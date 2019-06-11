@@ -55,9 +55,10 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	public void getDocumentContent() throws Exception {
 		final DocumentContentData documentContent = riksdagenApi
 				.getDocumentContent("GX11916");
+		System.out.println(documentContent.getContent());
 		assertNotNull(documentContent);
 		assertTrue(documentContent.getContent().contains(
-				"till statsrådet Cristina Husmark Pehrsson (m)"));
+				"till statsrådet Cristina Husmark Pehrsson"));
 	}
 
 	/**
