@@ -456,8 +456,8 @@
           <groupId>ant</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>colt</groupId>
-        	<artifactId>colt</artifactId>
+          <artifactId>colt</artifactId>
+          <groupId>colt</groupId>
         </exclusion>
       </exclusions>
     </dependency>
