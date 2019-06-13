@@ -221,6 +221,10 @@
           <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
         </exclusion>
+        <exclusion>
+          <groupId>org.springframework.ws</groupId>
+		  <artifactId>spring-ws-core</artifactId>   
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
