@@ -127,7 +127,7 @@
     <cia.project.versions.hibernate.build>5.4.3.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.4.3.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.1.0.Alpha4</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.1.0.Alpha5</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.1.0.Alpha4</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.9.13</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.199</cia.project.versions.h2>
