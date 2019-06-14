@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javaee.api"/>
+        <module name="org.jaxen"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

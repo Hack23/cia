@@ -1,0 +1,12 @@
+digraph smile_data_1_5_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  smile_data -> java_lang_invoke;
+  smile_data -> java_util_function;
+  smile_data -> java_util_stream;
+  smile_data -> smile_math;
+  smile_data -> smile_math_matrix;
+  smile_data_parser -> smile_data;
+  smile_data_parser -> smile_math;
+  smile_data_parser -> smile_math_matrix;
+  smile_data_parser_microarray -> smile_data;
+}

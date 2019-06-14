@@ -1,0 +1,21 @@
+digraph spring_webmvc_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_webmvc_5_2_0_M3 -> jackson_annotations_2_9_0;
+  spring_webmvc_5_2_0_M3 -> jackson_core_2_9_9;
+  spring_webmvc_5_2_0_M3 -> jackson_databind_2_9_9;
+  spring_webmvc_5_2_0_M3 -> jackson_dataformat_cbor_2_9_9;
+  spring_webmvc_5_2_0_M3 -> jaxb_api_2_4_0;
+  spring_webmvc_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_webmvc_5_2_0_M3 -> openpdf_1_2_20;
+  spring_webmvc_5_2_0_M3 -> poi_4_1_0;
+  spring_webmvc_5_2_0_M3 -> poi_ooxml_4_1_0;
+  spring_webmvc_5_2_0_M3 -> spring_aop_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_context_support_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_expression_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_oxm_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> spring_web_5_2_0_M3;
+  spring_webmvc_5_2_0_M3 -> xml_apis_1_4_01;
+}

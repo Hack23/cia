@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-graph
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-graph
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.graph
+Bundle-Description: smile-graph-1.5.3
+Bundle-Name: smile-graph-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.graph;uses:="smile.math,smile.sort"
+Import-Package: java.lang,java.lang.reflect,java.util,smile.math;versi
+ on="1.5.3",smile.sort;version="1.5.3"

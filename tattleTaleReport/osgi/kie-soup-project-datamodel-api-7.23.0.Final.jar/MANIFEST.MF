@@ -1,0 +1,77 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1560154929448
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: The parent contains all metadata (including plugins)
+  and also dependency versions. All KIE Soup modules    (except for user
+  BOMs like 'kie-soup-bom') should (transitively) inherit from this POM.
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Project Datamodel API
+Bundle-SymbolicName: org.kie.soup.kie-soup-project-datamodel-api
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.23.0.osgisnapshotqualifier
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.soup.project.datamodel;version="7.23.0.osgisnaps
+ hotqualifier",org.kie.soup.project.datamodel.imports;version="7.23.0.os
+ gisnapshotqualifier",org.kie.soup.project.datamodel.oracle;version="7.2
+ 3.0.osgisnapshotqualifier",org.kie.soup.project.datamodel.packages;vers
+ ion="7.23.0.osgisnapshotqualifier"
+Implementation-Title: Project Datamodel API
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bom/
+ kie-soup-parent/kie-soup-project-datamodel/kie-soup-project-datamodel-a
+ pi
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie.soup
+Implementation-Version: 7.23.0.Final
+Import-Package: org.kie.soup.commons.validation
+Include-Resource: org/kie/soup/project/datamodel/imports/HasImports.java
+ =src/main/java/org/kie/soup/project/datamodel/imports/HasImports.java,o
+ rg/kie/soup/project/datamodel/imports/Import.java=src/main/java/org/kie
+ /soup/project/datamodel/imports/Import.java,org/kie/soup/project/datamo
+ del/imports/Imports.java=src/main/java/org/kie/soup/project/datamodel/i
+ mports/Imports.java,org/kie/soup/project/datamodel/oracle/Annotation.ja
+ va=src/main/java/org/kie/soup/project/datamodel/oracle/Annotation.java,
+ org/kie/soup/project/datamodel/oracle/DataType.java=src/main/java/org/k
+ ie/soup/project/datamodel/oracle/DataType.java,org/kie/soup/project/dat
+ amodel/oracle/DateConverter.java=src/main/java/org/kie/soup/project/dat
+ amodel/oracle/DateConverter.java,org/kie/soup/project/datamodel/oracle/
+ DropDownData.java=src/main/java/org/kie/soup/project/datamodel/oracle/D
+ ropDownData.java,org/kie/soup/project/datamodel/oracle/ExtensionKind.ja
+ va=src/main/java/org/kie/soup/project/datamodel/oracle/ExtensionKind.ja
+ va,org/kie/soup/project/datamodel/oracle/FieldAccessorsAndMutators.java
+ =src/main/java/org/kie/soup/project/datamodel/oracle/FieldAccessorsAndM
+ utators.java,org/kie/soup/project/datamodel/oracle/MethodInfo.java=src/
+ main/java/org/kie/soup/project/datamodel/oracle/MethodInfo.java,org/kie
+ /soup/project/datamodel/oracle/ModelField.java=src/main/java/org/kie/so
+ up/project/datamodel/oracle/ModelField.java,org/kie/soup/project/datamo
+ del/oracle/ModuleDataModelOracle.java=src/main/java/org/kie/soup/projec
+ t/datamodel/oracle/ModuleDataModelOracle.java,org/kie/soup/project/data
+ model/oracle/OperatorsOracle.java=src/main/java/org/kie/soup/project/da
+ tamodel/oracle/OperatorsOracle.java,org/kie/soup/project/datamodel/orac
+ le/PackageDataModelOracle.java=src/main/java/org/kie/soup/project/datam
+ odel/oracle/PackageDataModelOracle.java,org/kie/soup/project/datamodel/
+ oracle/TypeSource.java=src/main/java/org/kie/soup/project/datamodel/ora
+ cle/TypeSource.java,org/kie/soup/project/datamodel/packages/HasPackageN
+ ame.java=src/main/java/org/kie/soup/project/datamodel/packages/HasPacka
+ geName.java,META-INF/ErraiApp.properties=src/main/resources/META-INF/Er
+ raiApp.properties,org/kie/soup/project/datamodel/ProjectDataModelAPI.gw
+ t.xml=src/main/resources/org/kie/soup/project/datamodel/ProjectDataMode
+ lAPI.gwt.xml
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-pr
+ oject-datamodel/kie-soup-project-datamodel-api
+Scm-Revision: c3a6043651978986c16355e4b2a7380872e02cf6
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-project-datamodel
+ /kie-soup-project-datamodel-api
+Specification-Title: Project Datamodel API
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.23.0.Final
+Tool: Bnd-3.5.0.201709291849
+

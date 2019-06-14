@@ -10,30 +10,29 @@ Specification-Vendor: http://www.ietf.org/rfc/rfc4627.txt
 Bundle-RequiredExecutionEnvironment: J2SE-1.5, JavaSE-1.6
 Specification-Title: JSON - JavaScript Object Notation
 Bundle-Vendor: http://fasterxml.com
-Import-Package: org.codehaus.jackson;version="1.9.13.redhat-4",org.cod
- ehaus.jackson.annotate;version="1.9.13.redhat-4",org.codehaus.jackson
- .format;version="1.9.13.redhat-4",org.codehaus.jackson.impl;version="
- 1.9.13.redhat-4",org.codehaus.jackson.io;version="1.9.13.redhat-4",or
- g.codehaus.jackson.sym;version="1.9.13.redhat-4",org.codehaus.jackson
- .type;version="1.9.13.redhat-4",org.codehaus.jackson.util;version="1.
- 9.13.redhat-4"
+Import-Package: org.codehaus.jackson;version="1.9.13.redhat-4",org.codeh
+ aus.jackson.annotate;version="1.9.13.redhat-4",org.codehaus.jackson.for
+ mat;version="1.9.13.redhat-4",org.codehaus.jackson.impl;version="1.9.13
+ .redhat-4",org.codehaus.jackson.io;version="1.9.13.redhat-4",org.codeha
+ us.jackson.sym;version="1.9.13.redhat-4",org.codehaus.jackson.type;vers
+ ion="1.9.13.redhat-4",org.codehaus.jackson.util;version="1.9.13.redhat-
+ 4"
 Tool: Bnd-unknown version
 Implementation-Vendor: http://fasterxml.com
-Export-Package: org.codehaus.jackson.impl;uses:="org.codehaus.jackson.
- io,org.codehaus.jackson,org.codehaus.jackson.format,org.codehaus.jack
- son.sym,org.codehaus.jackson.util";version="1.9.13.redhat-4",org.code
- haus.jackson.io;uses:="org.codehaus.jackson,org.codehaus.jackson.util
- ";version="1.9.13.redhat-4",org.codehaus.jackson.type;version="1.9.13
- .redhat-4",org.codehaus.jackson;uses:="org.codehaus.jackson.io,org.co
- dehaus.jackson.type,org.codehaus.jackson.sym,org.codehaus.jackson.ann
- otate,org.codehaus.jackson.util,org.codehaus.jackson.impl,org.codehau
- s.jackson.format";version="1.9.13.redhat-4",org.codehaus.jackson.form
- at;uses:="org.codehaus.jackson.io,org.codehaus.jackson";version="1.9.
- 13.redhat-4",org.codehaus.jackson.sym;uses:="org.codehaus.jackson.uti
- l";version="1.9.13.redhat-4",org.codehaus.jackson.annotate;version="1
- .9.13.redhat-4",org.codehaus.jackson.util;uses:="org.codehaus.jackson
- .io,org.codehaus.jackson.impl,org.codehaus.jackson";version="1.9.13.r
- edhat-4"
+Export-Package: org.codehaus.jackson.impl;uses:="org.codehaus.jackson.io
+ ,org.codehaus.jackson,org.codehaus.jackson.format,org.codehaus.jackson.
+ sym,org.codehaus.jackson.util";version="1.9.13.redhat-4",org.codehaus.j
+ ackson.io;uses:="org.codehaus.jackson,org.codehaus.jackson.util";versio
+ n="1.9.13.redhat-4",org.codehaus.jackson.type;version="1.9.13.redhat-4"
+ ,org.codehaus.jackson;uses:="org.codehaus.jackson.io,org.codehaus.jacks
+ on.type,org.codehaus.jackson.sym,org.codehaus.jackson.annotate,org.code
+ haus.jackson.util,org.codehaus.jackson.impl,org.codehaus.jackson.format
+ ";version="1.9.13.redhat-4",org.codehaus.jackson.format;uses:="org.code
+ haus.jackson.io,org.codehaus.jackson";version="1.9.13.redhat-4",org.cod
+ ehaus.jackson.sym;uses:="org.codehaus.jackson.util";version="1.9.13.red
+ hat-4",org.codehaus.jackson.annotate;version="1.9.13.redhat-4",org.code
+ haus.jackson.util;uses:="org.codehaus.jackson.io,org.codehaus.jackson.i
+ mpl,org.codehaus.jackson";version="1.9.13.redhat-4"
 Bundle-Version: 1.9.13.redhat-4
 Bundle-Name: Jackson JSON processor
 Created-By: 1.8.0_101 (Oracle Corporation)

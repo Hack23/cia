@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_121-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: analyzers-phonetic
+Specification-Version: 8.1.1
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.1.1 fcbe46c28cef11bc058779afba09521de1b19bef -
+  ab - 2019-05-22 15:16:08
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.analysis.phonetic
+Bundle-Description: lucene-analyzers-phonetic-8.1.1
+Bundle-Name: lucene-analyzers-phonetic-8.1.1
+Bundle-Version: 8.1.1
+Export-Package: org.apache.lucene.analysis.phonetic;uses:="org.apache.
+ commons.codec.language,org.apache.commons.codec.language.bm,org.apach
+ e.lucene.analysis,org.apache.lucene.analysis.tokenattributes,org.apac
+ he.lucene.analysis.util,org.apache.lucene.util"
+Import-Package: java.io,java.lang,java.lang.reflect,java.util,java.uti
+ l.regex,org.apache.commons.codec;version="1.12",org.apache.commons.co
+ dec.language;version="1.12",org.apache.commons.codec.language.bm;vers
+ ion="1.12",org.apache.lucene.analysis;version="8.1.1",org.apache.luce
+ ne.analysis.tokenattributes;version="8.1.1",org.apache.lucene.analysi
+ s.util;version="8.1.1",org.apache.lucene.util;version="8.1.1"

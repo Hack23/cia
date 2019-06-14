@@ -1,0 +1,8 @@
+digraph ehcache_3_7_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  ehcache_3_7_1 -> cache_api_1_1_1;
+  ehcache_3_7_1 -> jaxb_api_2_4_0;
+  ehcache_3_7_1 -> jsr305_3_0_2;
+  ehcache_3_7_1 -> slf4j_api_1_8_0_beta4;
+  ehcache_3_7_1 -> xml_apis_1_4_01;
+}

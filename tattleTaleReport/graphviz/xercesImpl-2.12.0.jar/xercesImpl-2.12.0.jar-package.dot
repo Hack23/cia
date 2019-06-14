@@ -1,0 +1,16 @@
+digraph xercesImpl_2_12_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_xerces_dom -> org_apache_xerces_xs;
+  org_apache_xerces_dom -> org_w3c_dom;
+  org_apache_xerces_impl -> org_apache_xerces_impl_io;
+  org_apache_xerces_impl_dv -> org_apache_xerces_xs;
+  org_apache_xerces_impl_dv_xs -> org_apache_xerces_impl_xs_util;
+  org_apache_xerces_impl_xs -> org_apache_xerces_impl_xs_util;
+  org_apache_xerces_impl_xs -> org_apache_xerces_xs;
+  org_apache_xerces_impl_xs_traversers -> org_apache_xerces_impl_xs_util;
+  org_apache_xerces_impl_xs_traversers -> org_apache_xerces_util;
+  org_apache_xerces_jaxp_validation -> org_apache_xerces_util;
+  org_apache_xerces_stax -> org_apache_xerces_stax_events;
+  org_apache_xerces_stax_events -> org_apache_xerces_stax;
+  org_apache_xerces_xinclude -> org_apache_xerces_impl_io;
+}

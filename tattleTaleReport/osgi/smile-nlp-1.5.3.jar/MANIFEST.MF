@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-nlp
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-nlp
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+Main-Class: smile.nlp.pos.HMMPOSTagger
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.nlp.pos
+Bundle-Description: smile-nlp-1.5.3
+Bundle-Name: smile-nlp-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.nlp;uses:="smile.nlp.dictionary,smile.nlp.releva
+ nce,smile.nlp.tokenizer",smile.nlp.collocation;uses:="smile.nlp,smile
+ .nlp.dictionary,smile.sort,smile.stat.distribution",smile.nlp.diction
+ ary,smile.nlp.keyword;uses:="smile.nlp,smile.nlp.collocation,smile.nl
+ p.stemmer,smile.nlp.tokenizer,smile.sort",smile.nlp.normalizer,smile.
+ nlp.pos;uses:="smile.math",smile.nlp.relevance;uses:="smile.nlp",smil
+ e.nlp.stemmer,smile.nlp.tokenizer;uses:="smile.nlp.dictionary"
+Import-Package: java.io,java.lang,java.text,java.util,java.util.regex,
+ org.slf4j;version="0.0.0",smile.math;version="1.5.3",smile.sort;versi
+ on="1.5.3",smile.stat.distribution;version="1.5.3"

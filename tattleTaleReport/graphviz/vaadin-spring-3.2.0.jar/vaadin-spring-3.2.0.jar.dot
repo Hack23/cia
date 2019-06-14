@@ -1,0 +1,11 @@
+digraph vaadin_spring_3_2_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_spring_3_2_0 -> javax_annotation_api_1_3_2;
+  vaadin_spring_3_2_0 -> slf4j_api_1_8_0_beta4;
+  vaadin_spring_3_2_0 -> spring_beans_5_2_0_M3;
+  vaadin_spring_3_2_0 -> spring_context_5_2_0_M3;
+  vaadin_spring_3_2_0 -> spring_core_5_2_0_M3;
+  vaadin_spring_3_2_0 -> spring_web_5_2_0_M3;
+  vaadin_spring_3_2_0 -> vaadin_server_8_8_3;
+  vaadin_spring_3_2_0 -> vaadin_shared_8_8_3;
+}

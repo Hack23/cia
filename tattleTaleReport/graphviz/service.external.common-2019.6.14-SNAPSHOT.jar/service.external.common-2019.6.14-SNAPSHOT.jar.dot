@@ -1,0 +1,9 @@
+digraph service_external_common_2019_6_14_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_external_common_2019_6_14_SNAPSHOT -> fluent_hc_4_5_9;
+  service_external_common_2019_6_14_SNAPSHOT -> jdom2_2_0_6;
+  service_external_common_2019_6_14_SNAPSHOT -> slf4j_api_1_8_0_beta4;
+  service_external_common_2019_6_14_SNAPSHOT -> spring_context_5_2_0_M3;
+  service_external_common_2019_6_14_SNAPSHOT -> spring_oxm_5_2_0_M3;
+  service_external_common_2019_6_14_SNAPSHOT -> xml_apis_1_4_01;
+}

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
 Built-By: Alexey Valikov
 Build-Jdk: 1.7.0_80
 Created-By: Apache Maven 3.3.9
+Archiver-Version: Plexus Archiver
 
 
 ### OSGi information
@@ -23,7 +23,7 @@ Import-Package: java.io,java.lang,java.net,java.security,java.util,jav
  .datatype;version="1.0",javax.xml.namespace;version="1.0",javax.xml.t
  ransform.dom;version="1.0",junit.framework,org.apache.commons.io;vers
  ion="2.6",org.apache.commons.io.filefilter;version="2.6",org.apache.c
- ommons.lang3;version="3.8",org.apache.commons.logging;version="0.0.0"
+ ommons.lang3;version="3.9",org.apache.commons.logging;version="0.0.0"
  ,org.custommonkey.xmlunit,org.jvnet.hyperjaxb3.ejb.util;version="0.0.
  0",org.jvnet.hyperjaxb3.xml.datatype.util;version="0.0.0",org.jvnet.j
  axb2_commons.lang;version="0.0.0",org.jvnet.jaxb2_commons.locator;ver

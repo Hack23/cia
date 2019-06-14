@@ -1,0 +1,13 @@
+digraph artemis_jms_server_2_9_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_jms_server_2_9_0 -> artemis_commons_2_9_0;
+  artemis_jms_server_2_9_0 -> artemis_core_client_2_9_0;
+  artemis_jms_server_2_9_0 -> artemis_jms_client_2_9_0;
+  artemis_jms_server_2_9_0 -> artemis_journal_2_9_0;
+  artemis_jms_server_2_9_0 -> artemis_server_2_9_0;
+  artemis_jms_server_2_9_0 -> artemis_service_extensions_2_9_0;
+  artemis_jms_server_2_9_0 -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
+  artemis_jms_server_2_9_0 -> geronimo_jta_1_1_spec_1_1_1;
+  artemis_jms_server_2_9_0 -> jboss_logging_3_4_0_Final;
+  artemis_jms_server_2_9_0 -> xml_apis_1_4_01;
+}

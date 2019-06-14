@@ -79,7 +79,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 <span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
 <span class="fc" id="L80">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
-<span class="fc" id="L82">		String selectedYear = &quot;2017/18&quot;;</span>
+<span class="fc" id="L82">		String selectedYear = &quot;2018/19&quot;;</span>
 <span class="pc bpc" id="L83" title="2 of 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
 <span class="fc" id="L84">			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));</span>
 		} 
@@ -90,7 +90,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 <span class="fc" id="L91">		final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -&gt; c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));</span>
 		
-<span class="fc" id="L93">		final ComboBox&lt;String&gt; comboBox = new ComboBox&lt;&gt;(&quot;Select year&quot;, Collections.unmodifiableList(Arrays.asList(&quot;2017/18&quot;,&quot;2016/17&quot;,&quot;2015/16&quot;,&quot;2014/15&quot;,&quot;2013/14&quot;,&quot;2012/13&quot;,&quot;2011/12&quot;,&quot;2010/11&quot;)));</span>
+<span class="fc" id="L93">		final ComboBox&lt;String&gt; comboBox = new ComboBox&lt;&gt;(&quot;Select year&quot;, Collections.unmodifiableList(Arrays.asList(&quot;2018/19&quot;,&quot;2017/18&quot;,&quot;2016/17&quot;,&quot;2015/16&quot;,&quot;2014/15&quot;,&quot;2013/14&quot;,&quot;2012/13&quot;,&quot;2011/12&quot;,&quot;2010/11&quot;)));</span>
 <span class="fc" id="L94">		panelContent.addComponent(comboBox);</span>
 <span class="fc" id="L95">		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);</span>
 <span class="fc" id="L96">		comboBox.setSelectedItem(selectedYear);</span>
@@ -115,4 +115,4 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -7,29 +7,28 @@ Bnd-LastModified: 1525277659426
 Implementation-Vendor-Id: commons-lang
 Specification-Title: Commons Lang
 Bundle-DocURL: http://commons.apache.org/lang/
-Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt
- =NOTICE.txt
+Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt=N
+ OTICE.txt
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
-Scm-Url: http://svn.apache.org/viewvc/commons/proper/lang/branches/LAN
- G_2_X
-Export-Package: org.apache.commons.lang;version="2.6.0.redhat-7",org.a
- pache.commons.lang.builder;version="2.6.0.redhat-7",org.apache.common
- s.lang.enum;version="2.6.0.redhat-7",org.apache.commons.lang.enums;ve
- rsion="2.6.0.redhat-7",org.apache.commons.lang.exception;version="2.6
- .0.redhat-7",org.apache.commons.lang.math;version="2.6.0.redhat-7",or
- g.apache.commons.lang.mutable;version="2.6.0.redhat-7",org.apache.com
- mons.lang.reflect;version="2.6.0.redhat-7",org.apache.commons.lang.te
- xt;version="2.6.0.redhat-7",org.apache.commons.lang.time;version="2.6
- .0.redhat-7"
+Scm-Url: http://svn.apache.org/viewvc/commons/proper/lang/branches/LANG_
+ 2_X
+Export-Package: org.apache.commons.lang;version="2.6.0.redhat-7",org.apa
+ che.commons.lang.builder;version="2.6.0.redhat-7",org.apache.commons.la
+ ng.enum;version="2.6.0.redhat-7",org.apache.commons.lang.enums;version=
+ "2.6.0.redhat-7",org.apache.commons.lang.exception;version="2.6.0.redha
+ t-7",org.apache.commons.lang.math;version="2.6.0.redhat-7",org.apache.c
+ ommons.lang.mutable;version="2.6.0.redhat-7",org.apache.commons.lang.re
+ flect;version="2.6.0.redhat-7",org.apache.commons.lang.text;version="2.
+ 6.0.redhat-7",org.apache.commons.lang.time;version="2.6.0.redhat-7"
 Bundle-Name: Commons Lang
 Implementation-Title: Commons Lang
-Bundle-Description: Commons Lang, a package of Java utility classes fo
- r the        classes that are in java.lang's hierarchy, or are consid
- ered to be so        standard as to justify existence in java.lang.
+Bundle-Description: Commons Lang, a package of Java utility classes for 
+ the        classes that are in java.lang's hierarchy, or are considered
+  to be so        standard as to justify existence in java.lang.
 Implementation-Version: 2.6.0.redhat-7
 Java-Version: 1.8.0_171
-Scm-Connection: scm:svn:http://svn.apache.org/repos/asf/commons/proper
- /lang/branches/LANG_2_X
+Scm-Connection: scm:svn:http://svn.apache.org/repos/asf/commons/proper/l
+ ang/branches/LANG_2_X
 Os-Arch: amd64
 Specification-Vendor: The Apache Software Foundation
 Bundle-ManifestVersion: 2
@@ -42,8 +41,7 @@ Os-Version: 2.6.32-696.20.1.el6.x86_64
 Scm-Revision: UNKNOWN
 Bundle-Version: 2.6.0.redhat-7
 X-Compile-Target-JDK: 1.6
-Implementation-Build: UNKNOWN_BRANCH@rUNKNOWN; 2018-05-02 16:13:55+000
- 0
+Implementation-Build: UNKNOWN_BRANCH@rUNKNOWN; 2018-05-02 16:13:55+0000
 X-Compile-Source-JDK: 1.3
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.8.0_171

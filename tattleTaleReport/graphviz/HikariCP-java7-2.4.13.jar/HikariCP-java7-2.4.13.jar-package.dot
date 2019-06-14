@@ -1,0 +1,30 @@
+digraph HikariCP_java7_2_4_13_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_zaxxer_hikari -> com_codahale_metrics;
+  com_zaxxer_hikari -> com_codahale_metrics_health;
+  com_zaxxer_hikari -> com_zaxxer_hikari_metrics;
+  com_zaxxer_hikari -> com_zaxxer_hikari_pool;
+  com_zaxxer_hikari -> com_zaxxer_hikari_util;
+  com_zaxxer_hikari_hibernate -> com_zaxxer_hikari;
+  com_zaxxer_hikari_hibernate -> org_hibernate_engine_jdbc_connections_spi;
+  com_zaxxer_hikari_metrics -> com_zaxxer_hikari_util;
+  com_zaxxer_hikari_metrics -> java_lang;
+  com_zaxxer_hikari_metrics_dropwizard -> com_codahale_metrics;
+  com_zaxxer_hikari_metrics_dropwizard -> com_codahale_metrics_health;
+  com_zaxxer_hikari_metrics_dropwizard -> com_zaxxer_hikari;
+  com_zaxxer_hikari_metrics_dropwizard -> com_zaxxer_hikari_metrics;
+  com_zaxxer_hikari_metrics_dropwizard -> com_zaxxer_hikari_pool;
+  com_zaxxer_hikari_metrics_prometheus -> com_zaxxer_hikari_metrics;
+  com_zaxxer_hikari_metrics_prometheus -> io_prometheus_client;
+  com_zaxxer_hikari_pool -> com_codahale_metrics;
+  com_zaxxer_hikari_pool -> com_codahale_metrics_health;
+  com_zaxxer_hikari_pool -> com_zaxxer_hikari;
+  com_zaxxer_hikari_pool -> com_zaxxer_hikari_metrics;
+  com_zaxxer_hikari_pool -> com_zaxxer_hikari_metrics_dropwizard;
+  com_zaxxer_hikari_pool -> com_zaxxer_hikari_util;
+  com_zaxxer_hikari_pool -> java_lang;
+  com_zaxxer_hikari_pool -> java_util_concurrent;
+  com_zaxxer_hikari_util -> com_zaxxer_hikari;
+  com_zaxxer_hikari_util -> com_zaxxer_hikari_pool;
+  com_zaxxer_hikari_util -> java_lang;
+}

@@ -1,0 +1,105 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: aclement
+Build-Jdk: 1.8.0_192
+Agent-Class: org.aspectj.weaver.loadtime.Agent
+Automatic-Module-Name: org.aspectj.weaver
+Can-Redefine-Classes: true
+Premain-Class: org.aspectj.weaver.loadtime.Agent
+
+Name: org/aspectj/weaver/
+Implementation-Vendor: https://www.eclipse.org/aspectj/
+Implementation-Title: org.aspectj.weaver
+Specification-Version: 1.9.4
+Bundle-Version: 1.9.4
+Bundle-Copyright: (C) Copyright 1999-2001 Xerox Corporation,												
+ 2002 Palo Alto Research Center, Incorporated (PARC),												2003-20
+ 19 Contributors. All Rights Reserved
+Implementation-Version: 1.9.4
+Specification-Title: AspectJ Weaver Classes
+Bundle-Name: AspectJ Weaver
+Specification-Vendor: https://www.eclipse.org/aspectj/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.aspectj.weaver
+Bundle-Description: aspectjweaver-1.9.4
+Bundle-Name: aspectjweaver-1.9.4
+Bundle-Version: 1.9.4
+Export-Package: aj.org.objectweb.asm,aj.org.objectweb.asm.signature,or
+ g.aspectj.apache.bcel;uses:="org.aspectj.apache.bcel.classfile,org.as
+ pectj.apache.bcel.generic,org.aspectj.apache.bcel.util",org.aspectj.a
+ pache.bcel.classfile;uses:="org.aspectj.apache.bcel,org.aspectj.apach
+ e.bcel.classfile.annotation,org.aspectj.apache.bcel.generic,org.aspec
+ tj.apache.bcel.util",org.aspectj.apache.bcel.classfile.annotation;use
+ s:="org.aspectj.apache.bcel,org.aspectj.apache.bcel.classfile,org.asp
+ ectj.apache.bcel.generic",org.aspectj.apache.bcel.generic;uses:="org.
+ aspectj.apache.bcel,org.aspectj.apache.bcel.classfile,org.aspectj.apa
+ che.bcel.classfile.annotation,org.aspectj.apache.bcel.util",org.aspec
+ tj.apache.bcel.util;uses:="java.nio.file,java.nio.file.attribute,org.
+ aspectj.apache.bcel.classfile",org.aspectj.asm;uses:="org.aspectj.asm
+ .internal,org.aspectj.bridge,org.aspectj.util",org.aspectj.asm.intern
+ al;uses:="org.aspectj.asm,org.aspectj.bridge",org.aspectj.bridge;uses
+ :="org.aspectj.util",org.aspectj.bridge.context;uses:="org.aspectj.br
+ idge",org.aspectj.internal.lang.annotation,org.aspectj.internal.lang.
+ reflect;uses:="org.aspectj.internal.lang.annotation,org.aspectj.lang.
+ annotation,org.aspectj.lang.reflect",org.aspectj.lang;uses:="org.aspe
+ ctj.lang.reflect,org.aspectj.runtime.internal",org.aspectj.lang.annot
+ ation,org.aspectj.lang.annotation.control,org.aspectj.lang.internal.l
+ ang,org.aspectj.lang.reflect;uses:="org.aspectj.internal.lang.reflect
+ ,org.aspectj.lang",org.aspectj.runtime,org.aspectj.runtime.internal;u
+ ses:="org.aspectj.lang,org.aspectj.runtime,org.aspectj.runtime.intern
+ al.cflowstack",org.aspectj.runtime.internal.cflowstack,org.aspectj.ru
+ ntime.reflect;uses:="org.aspectj.lang,org.aspectj.lang.reflect,org.as
+ pectj.runtime.internal",org.aspectj.util,org.aspectj.weaver;uses:="or
+ g.aspectj.bridge,org.aspectj.bridge.context,org.aspectj.util,org.aspe
+ ctj.weaver.ast,org.aspectj.weaver.patterns,org.aspectj.weaver.tools",
+ org.aspectj.weaver.ast;uses:="org.aspectj.weaver,org.aspectj.weaver.i
+ nternal.tools",org.aspectj.weaver.bcel;uses:="java.nio.file,java.nio.
+ file.attribute,org.aspectj.apache.bcel,org.aspectj.apache.bcel.classf
+ ile,org.aspectj.apache.bcel.classfile.annotation,org.aspectj.apache.b
+ cel.generic,org.aspectj.apache.bcel.util,org.aspectj.asm,org.aspectj.
+ asm.internal,org.aspectj.bridge,org.aspectj.bridge.context,org.aspect
+ j.util,org.aspectj.weaver,org.aspectj.weaver.ast,org.aspectj.weaver.b
+ cel.asm,org.aspectj.weaver.internal.tools,org.aspectj.weaver.loadtime
+ .definition,org.aspectj.weaver.model,org.aspectj.weaver.patterns,org.
+ aspectj.weaver.tools",org.aspectj.weaver.bcel.asm;uses:="aj.org.objec
+ tweb.asm,org.aspectj.weaver",org.aspectj.weaver.internal.tools;uses:=
+ "org.aspectj.util,org.aspectj.weaver,org.aspectj.weaver.ast,org.aspec
+ tj.weaver.patterns,org.aspectj.weaver.reflect,org.aspectj.weaver.tool
+ s",org.aspectj.weaver.loadtime;uses:="com.bea.jvm,org.aspectj.apache.
+ bcel,org.aspectj.apache.bcel.classfile,org.aspectj.apache.bcel.classf
+ ile.annotation,org.aspectj.apache.bcel.generic,org.aspectj.bridge,org
+ .aspectj.bridge.context,org.aspectj.util,org.aspectj.weaver,org.aspec
+ tj.weaver.bcel,org.aspectj.weaver.loadtime.definition,org.aspectj.wea
+ ver.ltw,org.aspectj.weaver.patterns,org.aspectj.weaver.tools,org.aspe
+ ctj.weaver.tools.cache",org.aspectj.weaver.loadtime.definition;uses:=
+ "org.aspectj.util",org.aspectj.weaver.ltw;uses:="org.aspectj.apache.b
+ cel.classfile,org.aspectj.apache.bcel.util,org.aspectj.bridge,org.asp
+ ectj.util,org.aspectj.weaver,org.aspectj.weaver.bcel,org.aspectj.weav
+ er.loadtime,org.aspectj.weaver.reflect",org.aspectj.weaver.model;uses
+ :="org.aspectj.asm,org.aspectj.asm.internal,org.aspectj.bridge,org.as
+ pectj.weaver,org.aspectj.weaver.bcel,org.aspectj.weaver.patterns",org
+ .aspectj.weaver.patterns;uses:="org.aspectj.bridge,org.aspectj.util,o
+ rg.aspectj.weaver,org.aspectj.weaver.ast,org.aspectj.weaver.internal.
+ tools,org.aspectj.weaver.tools",org.aspectj.weaver.reflect;uses:="org
+ .aspectj.apache.bcel.classfile,org.aspectj.apache.bcel.classfile.anno
+ tation,org.aspectj.apache.bcel.generic,org.aspectj.apache.bcel.util,o
+ rg.aspectj.bridge,org.aspectj.lang.annotation,org.aspectj.lang.reflec
+ t,org.aspectj.util,org.aspectj.weaver,org.aspectj.weaver.ast,org.aspe
+ ctj.weaver.bcel,org.aspectj.weaver.internal.tools,org.aspectj.weaver.
+ patterns,org.aspectj.weaver.tools",org.aspectj.weaver.tools;uses:="or
+ g.aspectj.bridge,org.aspectj.util,org.aspectj.weaver,org.aspectj.weav
+ er.bcel,org.aspectj.weaver.internal.tools,org.aspectj.weaver.patterns
+ ,org.aspectj.weaver.reflect,org.aspectj.weaver.tools.cache",org.aspec
+ tj.weaver.tools.cache;uses:="org.aspectj.bridge,org.aspectj.util,org.
+ aspectj.weaver,org.aspectj.weaver.tools"
+Import-Package: com.bea.jvm,java.io,java.lang,java.lang.annotation,jav
+ a.lang.instrument,java.lang.ref,java.lang.reflect,java.net,java.nio.f
+ ile,java.nio.file.attribute,java.security,java.sql,java.text,java.uti
+ l,java.util.concurrent,java.util.jar,java.util.logging,java.util.rege
+ x,java.util.zip,javax.xml.parsers;version="1.0",org.apache.commons.lo
+ gging;version="0.0.0",org.xml.sax;version="1.0",org.xml.sax.helpers;v
+ ersion="1.0",sun.misc

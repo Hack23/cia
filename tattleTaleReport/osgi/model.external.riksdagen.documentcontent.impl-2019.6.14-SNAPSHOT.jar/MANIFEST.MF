@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.documentc
+ ontent.impl
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.documentc
+ ontent.impl
+Bundle-Description: model.external.riksdagen.documentcontent.impl-2019
+ .6.14-SNAPSHOT
+Bundle-Name: model.external.riksdagen.documentcontent.impl-2019.6.14-S
+ NAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.documentconten
+ t.impl;uses:="com.hack23.cia.model.common.api,org.apache.commons.lang
+ 3.builder,org.hibernate.search.mapper.pojo.mapping.definition.annotat
+ ion"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
+ ang,javax.persistence;version="2.2",javax.persistence.metamodel;versi
+ on="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation;ver
+ sion="2.4.0",javax.xml.namespace;version="1.0",org.apache.commons.lan
+ g3.builder;version="3.9",org.hibernate.search.mapper.pojo.mapping.def
+ inition.annotation;version="6.0.0.Alpha6"

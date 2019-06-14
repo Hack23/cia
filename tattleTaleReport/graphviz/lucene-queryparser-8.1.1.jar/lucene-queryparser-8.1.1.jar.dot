@@ -1,0 +1,7 @@
+digraph lucene_queryparser_8_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_queryparser_8_1_1 -> lucene_core_8_1_1;
+  lucene_queryparser_8_1_1 -> lucene_queries_8_1_1;
+  lucene_queryparser_8_1_1 -> lucene_sandbox_8_1_1;
+  lucene_queryparser_8_1_1 -> xml_apis_1_4_01;
+}

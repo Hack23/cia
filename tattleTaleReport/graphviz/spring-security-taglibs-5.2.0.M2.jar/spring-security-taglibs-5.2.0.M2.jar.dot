@@ -1,0 +1,11 @@
+digraph spring_security_taglibs_5_2_0_M2_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_security_taglibs_5_2_0_M2 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_security_taglibs_5_2_0_M2 -> spring_beans_5_2_0_M3;
+  spring_security_taglibs_5_2_0_M2 -> spring_context_5_2_0_M3;
+  spring_security_taglibs_5_2_0_M2 -> spring_core_5_2_0_M3;
+  spring_security_taglibs_5_2_0_M2 -> spring_expression_5_2_0_M3;
+  spring_security_taglibs_5_2_0_M2 -> spring_security_core_5_2_0_M2;
+  spring_security_taglibs_5_2_0_M2 -> spring_security_web_5_2_0_M2;
+  spring_security_taglibs_5_2_0_M2 -> spring_web_5_2_0_M3;
+}

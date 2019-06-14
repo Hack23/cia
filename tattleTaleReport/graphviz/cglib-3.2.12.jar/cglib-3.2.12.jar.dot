@@ -1,0 +1,5 @@
+digraph cglib_3_2_12_dependencies {
+  node [shape = box, fontsize=10.0];
+  cglib_3_2_12 -> ant_1_10_6;
+  cglib_3_2_12 -> asm_7_1;
+}

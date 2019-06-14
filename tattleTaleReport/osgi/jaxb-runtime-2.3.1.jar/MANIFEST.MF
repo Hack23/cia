@@ -1,0 +1,64 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven 3.5.2
+Built-By: build
+Build-Jdk: 9.0.4
+Class-Path: jaxb-api-2.3.1.jar txw2-2.3.1.jar istack-commons-runtime-3.0
+ .7.jar stax-ex-1.8.jar FastInfoset-1.2.15.jar javax.activation-api-1.2.
+ 0.jar
+Build-Id: 2.3.1
+Build-Version: JAXB RI 2.3.1
+Git-Revision: ad5fa4c697632694cbcfa80177707db908cd98b2
+Git-Url: scm:git:git://java.net/jaxb~v2/jaxb-runtime-parent/jaxb-runtime
+Implementation-Title: JAXB Implementation
+Implementation-Vendor: Oracle
+Implementation-Vendor-Id: com.oracle
+Implementation-Version: 2.3.1
+Major-Version: 2.3.1
+Specification-Title: Java Architecture for XML Binding
+Specification-Version: 2.3
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.sun.xml.bind.v2.model.impl
+Bundle-Description: jaxb-runtime-2.3.1
+Bundle-Name: jaxb-runtime-2.3.1
+Bundle-Version: 2.3
+Export-Package: com.sun.xml.bind,com.sun.xml.bind.annotation,com.sun.x
+ ml.bind.api,com.sun.xml.bind.api.impl,com.sun.xml.bind.marshaller;use
+ s:="com.sun.xml.bind.v2.util",com.sun.xml.bind.unmarshaller,com.sun.x
+ ml.bind.util,com.sun.xml.bind.v2,com.sun.xml.bind.v2.bytecode,com.sun
+ .xml.bind.v2.model.annotation,com.sun.xml.bind.v2.model.core;uses:="c
+ om.sun.xml.bind.v2.model.impl",com.sun.xml.bind.v2.model.impl;uses:="
+ com.sun.xml.bind.v2.model.util",com.sun.xml.bind.v2.model.nav,com.sun
+ .xml.bind.v2.model.runtime,com.sun.xml.bind.v2.model.util,com.sun.xml
+ .bind.v2.runtime;uses:="com.sun.xml.bind.v2.util",com.sun.xml.bind.v2
+ .runtime.output;uses:="com.sun.xml.bind.marshaller,com.sun.xml.fastin
+ foset,com.sun.xml.fastinfoset.stax,org.jvnet.fastinfoset,org.jvnet.st
+ axex",com.sun.xml.bind.v2.runtime.property,com.sun.xml.bind.v2.runtim
+ e.reflect,com.sun.xml.bind.v2.runtime.reflect.opt,com.sun.xml.bind.v2
+ .runtime.unmarshaller;uses:="com.sun.xml.bind.v2.util,com.sun.xml.fas
+ tinfoset.sax,com.sun.xml.fastinfoset.stax,org.jvnet.fastinfoset,org.j
+ vnet.staxex",com.sun.xml.bind.v2.schemagen;uses:="java.util",com.sun.
+ xml.bind.v2.schemagen.episode,com.sun.xml.bind.v2.schemagen.xmlschema
+ ,com.sun.xml.bind.v2.util
+Import-Package: com.sun.istack;version="3.0.7",com.sun.xml.fastinfoset
+ ;version="1.0",com.sun.xml.fastinfoset.sax;version="1.0",com.sun.xml.
+ fastinfoset.stax;version="1.0",com.sun.xml.txw2;version="2.3",com.sun
+ .xml.txw2.annotation;version="2.3",com.sun.xml.txw2.output;version="2
+ .3",java.awt,java.awt.image,java.beans,java.io,java.lang,java.lang.an
+ notation,java.lang.ref,java.lang.reflect,java.math,java.net,java.nio.
+ charset,java.security,java.text,java.util,java.util.concurrent,java.u
+ til.logging,javax.activation;version="1.1",javax.imageio,javax.imagei
+ o.stream,javax.lang.model,javax.xml;version="1.0",javax.xml.bind;vers
+ ion="2.4.0",javax.xml.bind.annotation;version="2.4.0",javax.xml.bind.
+ annotation.adapters;version="2.4.0",javax.xml.bind.attachment;version
+ ="2.4.0",javax.xml.bind.helpers;version="2.4.0",javax.xml.datatype;ve
+ rsion="1.0",javax.xml.namespace;version="1.0",javax.xml.parsers;versi
+ on="1.0",javax.xml.stream;version="1.0",javax.xml.stream.events;versi
+ on="1.0",javax.xml.transform;version="1.0",javax.xml.transform.dom;ve
+ rsion="1.0",javax.xml.transform.sax;version="1.0",javax.xml.transform
+ .stream;version="1.0",javax.xml.validation;version="1.0",javax.xml.xp
+ ath;version="1.0",org.jvnet.fastinfoset;version="1.0",org.jvnet.staxe
+ x;version="1.8",org.w3c.dom;version="1.0",org.xml.sax;version="1.0",o
+ rg.xml.sax.helpers;version="1.0"

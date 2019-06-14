@@ -1,0 +1,7 @@
+digraph smile_netlib_1_5_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  smile_netlib -> com_github_fommil_netlib;
+  smile_netlib -> org_netlib_util;
+  smile_netlib -> smile_math;
+  smile_netlib -> smile_math_matrix;
+}

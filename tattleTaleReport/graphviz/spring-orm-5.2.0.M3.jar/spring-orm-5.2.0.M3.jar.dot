@@ -1,0 +1,15 @@
+digraph spring_orm_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_orm_5_2_0_M3 -> geronimo_jta_1_1_spec_1_1_1;
+  spring_orm_5_2_0_M3 -> hibernate_core_5_4_3_Final;
+  spring_orm_5_2_0_M3 -> javax_persistence_api_2_2;
+  spring_orm_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_orm_5_2_0_M3 -> spring_aop_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_jdbc_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_tx_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> spring_web_5_2_0_M3;
+  spring_orm_5_2_0_M3 -> xml_apis_1_4_01;
+}

@@ -1,0 +1,4 @@
+digraph HdrHistogram_2_1_9_dependencies {
+  node [shape = box, fontsize=10.0];
+  HdrHistogram_2_1_9 -> jaxb_api_2_4_0;
+}

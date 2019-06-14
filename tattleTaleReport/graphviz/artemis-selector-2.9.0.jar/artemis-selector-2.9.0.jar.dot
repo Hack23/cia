@@ -1,0 +1,5 @@
+digraph artemis_selector_2_9_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_selector_2_9_0 -> artemis_commons_2_9_0;
+  artemis_selector_2_9_0 -> xml_apis_1_4_01;
+}

@@ -1,0 +1,58 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_121-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: sandbox
+Specification-Version: 8.1.1
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.1.1 fcbe46c28cef11bc058779afba09521de1b19bef -
+  ab - 2019-05-22 15:16:17
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.search.intervals
+Bundle-Description: lucene-sandbox-8.1.1
+Bundle-Name: lucene-sandbox-8.1.1
+Bundle-Version: 8.1.1
+Export-Package: org.apache.lucene.codecs.idversion;uses:="org.apache.l
+ ucene.codecs,org.apache.lucene.codecs.blocktree,org.apache.lucene.ind
+ ex,org.apache.lucene.search,org.apache.lucene.store,org.apache.lucene
+ .util,org.apache.lucene.util.fst",org.apache.lucene.document;uses:="j
+ ava.lang.invoke,java.util,org.apache.lucene.geo,org.apache.lucene.ind
+ ex,org.apache.lucene.search,org.apache.lucene.util,org.apache.lucene.
+ util.bkd",org.apache.lucene.geo;uses:="java.lang.invoke,java.util.fun
+ ction,java.util.stream,org.apache.lucene.index,org.apache.lucene.util
+ ",org.apache.lucene.payloads;uses:="org.apache.lucene.index,org.apach
+ e.lucene.search,org.apache.lucene.search.spans,org.apache.lucene.util
+ ",org.apache.lucene.sandbox.queries;uses:="java.util,org.apache.lucen
+ e.analysis,org.apache.lucene.analysis.tokenattributes,org.apache.luce
+ ne.index,org.apache.lucene.search,org.apache.lucene.search.similariti
+ es,org.apache.lucene.util,org.apache.lucene.util.automaton",org.apach
+ e.lucene.search;uses:="java.lang.invoke,java.util,java.util.function,
+ java.util.stream,org.apache.lucene.analysis,org.apache.lucene.analysi
+ s.tokenattributes,org.apache.lucene.geo,org.apache.lucene.index,org.a
+ pache.lucene.search.similarities,org.apache.lucene.util,org.apache.lu
+ cene.util.automaton,org.apache.lucene.util.bkd,org.apache.lucene.util
+ .packed",org.apache.lucene.search.intervals;uses:="java.lang.invoke,j
+ ava.util,java.util.function,java.util.stream,org.apache.lucene.index,
+ org.apache.lucene.search,org.apache.lucene.search.similarities,org.ap
+ ache.lucene.util,org.apache.lucene.util.automaton"
+Import-Package: java.io,java.lang,java.lang.invoke,java.math,java.text
+ ,java.util,java.util.function,java.util.stream,org.apache.lucene.anal
+ ysis;version="8.1.1",org.apache.lucene.analysis.tokenattributes;versi
+ on="8.1.1",org.apache.lucene.codecs;version="8.1.1",org.apache.lucene
+ .codecs.blocktree;version="8.1.1",org.apache.lucene.document;version=
+ "8.1.1",org.apache.lucene.geo;version="8.1.1",org.apache.lucene.index
+ ;version="8.1.1",org.apache.lucene.search;version="8.1.1",org.apache.
+ lucene.search.similarities;version="8.1.1",org.apache.lucene.search.s
+ pans;version="8.1.1",org.apache.lucene.store;version="8.1.1",org.apac
+ he.lucene.util;version="8.1.1",org.apache.lucene.util.automaton;versi
+ on="8.1.1",org.apache.lucene.util.bkd;version="8.1.1",org.apache.luce
+ ne.util.fst;version="8.1.1",org.apache.lucene.util.packed;version="8.
+ 1.1"

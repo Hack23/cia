@@ -1,21 +1,21 @@
 Manifest-Version: 1.0
-Vaadin-License-Title: Apache License 2.0
-Vaadin-Stylesheets: VAADIN/addons/statistics/statistics.scss
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: mpash
+Build-Jdk: 1.8.0_181
 Implementation-Title: Statistics Card
 Implementation-Version: 0.3.2
-Archiver-Version: Plexus Archiver
-Built-By: mpash
 Implementation-Vendor-Id: com.github.markash
-Class-Path: viritin-2.1.jar confirmdialog-3.1.1.jar vaadin-server-8.5.
- 2.jar vaadin-shared-8.5.2.jar jsoup-1.11.2.jar gentyref-1.2.0.vaadin1
- .jar markdown4j-2.2-cj-1.1.jar commons-io-2.4.jar commons-beanutils-1
- .9.3.jar commons-collections-3.2.2.jar commons-lang3-3.4.jar javax.el
- -api-2.2.4.jar jackson-databind-2.6.3.jar jackson-annotations-2.8.0.j
- ar jackson-core-2.8.11.jar jackson-datatype-jdk8-2.6.3.jar
 Implementation-Vendor: Mark P Ashworth
+Vaadin-License-Title: Apache License 2.0
 Vaadin-Package-Version: 1
-Created-By: Apache Maven
-Build-Jdk: 1.8.0_181
+Vaadin-Stylesheets: VAADIN/addons/statistics/statistics.scss
+Class-Path: viritin-2.1.jar confirmdialog-3.1.1.jar vaadin-server-8.5.2.
+ jar vaadin-shared-8.5.2.jar jsoup-1.11.2.jar gentyref-1.2.0.vaadin1.jar
+  markdown4j-2.2-cj-1.1.jar commons-io-2.4.jar commons-beanutils-1.9.3.j
+ ar commons-collections-3.2.2.jar commons-lang3-3.4.jar javax.el-api-2.2
+ .4.jar jackson-databind-2.6.3.jar jackson-annotations-2.8.0.jar jackson
+ -core-2.8.11.jar jackson-datatype-jdk8-2.6.3.jar
 
 
 ### OSGi information
@@ -40,16 +40,16 @@ Export-Package: com.github.markash.ui.component.card;uses:="com.github
  orpicker,java.lang.invoke,java.time,java.util,java.util.function,java
  .util.stream"
 Import-Package: com.fasterxml.jackson.annotation;version="2.9.0",com.f
- asterxml.jackson.databind;version="2.9.8",com.fasterxml.jackson.datat
- ype.jdk8;version="2.9.8",com.vaadin.annotations;version="8.7.0",com.v
- aadin.data;version="8.7.0",com.vaadin.icons;version="8.7.0",com.vaadi
- n.navigator;version="8.7.0",com.vaadin.server;version="8.7.0",com.vaa
- din.shared;version="8.7.0",com.vaadin.shared.communication;version="8
- .7.0",com.vaadin.shared.ui;version="8.7.0",com.vaadin.shared.ui.color
- picker;version="8.7.0",com.vaadin.ui;version="8.7.0",com.vaadin.ui.th
- emes;version="8.7.0",java.io,java.lang,java.lang.invoke,java.math,jav
+ asterxml.jackson.databind;version="2.9.9",com.fasterxml.jackson.datat
+ ype.jdk8;version="2.9.9",com.vaadin.annotations;version="8.8.3",com.v
+ aadin.data;version="8.8.3",com.vaadin.icons;version="8.8.3",com.vaadi
+ n.navigator;version="8.8.3",com.vaadin.server;version="8.8.3",com.vaa
+ din.shared;version="8.8.3",com.vaadin.shared.communication;version="8
+ .8.3",com.vaadin.shared.ui;version="8.8.3",com.vaadin.shared.ui.color
+ picker;version="8.8.3",com.vaadin.ui;version="8.8.3",com.vaadin.ui.th
+ emes;version="8.8.3",java.io,java.lang,java.lang.invoke,java.math,jav
  a.text,java.time,java.util,java.util.function,java.util.stream,org.ap
- ache.commons.lang3;version="3.8",org.vaadin.viritin.button;version="2
+ ache.commons.lang3;version="3.9",org.vaadin.viritin.button;version="2
  .1",org.vaadin.viritin.fluency.server;version="2.1",org.vaadin.viriti
  n.fluency.ui;version="2.1",org.vaadin.viritin.label;version="2.1",org
  .vaadin.viritin.layouts;version="2.1"

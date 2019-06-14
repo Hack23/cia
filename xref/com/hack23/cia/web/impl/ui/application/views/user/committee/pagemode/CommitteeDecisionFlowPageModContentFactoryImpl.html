@@ -88,13 +88,13 @@
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  		String selectedYear = <span class="jxr_string">"2017/18"</span>;
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  		String selectedYear = <span class="jxr_string">"2018/19"</span>;
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  		<strong class="jxr_keyword">if</strong> (parameters != <strong class="jxr_keyword">null</strong> &amp;&amp; parameters.contains(<span class="jxr_string">"["</span>) &amp;&amp; parameters.contains(<span class="jxr_string">"]"</span>)) {
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		}
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">final</strong> ComboBox&lt;String&gt; comboBox = <strong class="jxr_keyword">new</strong> ComboBox&lt;&gt;(<span class="jxr_string">"Select year"</span>, Collections.unmodifiableList(
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  				Arrays.asList(<span class="jxr_string">"2017/18"</span>, <span class="jxr_string">"2016/17"</span>, <span class="jxr_string">"2015/16"</span>, <span class="jxr_string">"2014/15"</span>, <span class="jxr_string">"2013/14"</span>, <span class="jxr_string">"2012/13"</span>, <span class="jxr_string">"2011/12"</span>, <span class="jxr_string">"2010/11"</span>)));
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  				Arrays.asList(<span class="jxr_string">"2018/19"</span>,<span class="jxr_string">"2017/18"</span>, <span class="jxr_string">"2016/17"</span>, <span class="jxr_string">"2015/16"</span>, <span class="jxr_string">"2014/15"</span>, <span class="jxr_string">"2013/14"</span>, <span class="jxr_string">"2012/13"</span>, <span class="jxr_string">"2011/12"</span>, <span class="jxr_string">"2010/11"</span>)));
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		panelContent.addComponent(comboBox);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  		comboBox.setSelectedItem(selectedYear);

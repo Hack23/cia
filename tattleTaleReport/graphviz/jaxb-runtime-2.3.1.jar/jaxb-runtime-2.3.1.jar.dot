@@ -1,0 +1,10 @@
+digraph jaxb_runtime_2_3_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  jaxb_runtime_2_3_1 -> FastInfoset_1_2_15;
+  jaxb_runtime_2_3_1 -> activation_1_1;
+  jaxb_runtime_2_3_1 -> istack_commons_runtime_3_0_7;
+  jaxb_runtime_2_3_1 -> jaxb_api_2_4_0;
+  jaxb_runtime_2_3_1 -> jaxb_core_2_3_0_1;
+  jaxb_runtime_2_3_1 -> stax_ex_1_8;
+  jaxb_runtime_2_3_1 -> xml_apis_1_4_01;
+}

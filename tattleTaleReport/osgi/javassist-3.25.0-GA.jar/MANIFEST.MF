@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1555526734515
+Build-Jdk: 11.0.1
+Built-By: smarlow
+Bundle-Description: Javassist (JAVA programming ASSISTant) makes Java by
+ tecode manipulation    simple.  It is a class library for editing bytec
+ odes in Java.
+Bundle-License: http://www.mozilla.org/MPL/MPL-1.1.html, http://www.gnu.
+ org/licenses/lgpl-2.1.html, http://www.apache.org/licenses/
+Bundle-ManifestVersion: 2
+Bundle-Name: Javassist
+Bundle-SymbolicName: javassist
+Bundle-Vendor: Shigeru Chiba, www.javassist.org
+Bundle-Version: 3.25.0.GA
+Created-By: Apache Maven Bundle Plugin
+Export-Package: javassist;version="3.25.0.GA";uses:="javassist.bytecode,
+ javassist.compiler,javassist.compiler.ast,javassist.convert,javassist.e
+ xpr",javassist.bytecode;version="3.25.0.GA";uses:="javassist,javassist.
+ bytecode.annotation",javassist.bytecode.analysis;version="3.25.0.GA";us
+ es:="javassist,javassist.bytecode,javassist.bytecode.stackmap",javassis
+ t.bytecode.annotation;version="3.25.0.GA";uses:="javassist,javassist.by
+ tecode",javassist.bytecode.stackmap;version="3.25.0.GA";uses:="javassis
+ t,javassist.bytecode",javassist.compiler;version="3.25.0.GA";uses:="jav
+ assist,javassist.bytecode,javassist.compiler.ast",javassist.compiler.as
+ t;version="3.25.0.GA";uses:="javassist,javassist.compiler",javassist.co
+ nvert;version="3.25.0.GA";uses:="javassist,javassist.bytecode",javassis
+ t.expr;version="3.25.0.GA";uses:="javassist,javassist.bytecode",javassi
+ st.runtime;version="3.25.0.GA",javassist.scopedpool;version="3.25.0.GA"
+ ;uses:=javassist,javassist.tools;version="3.25.0.GA";uses:=javassist,ja
+ vassist.tools.reflect;version="3.25.0.GA";uses:="javassist,javassist.by
+ tecode",javassist.tools.rmi;version="3.25.0.GA";uses:="javassist,javass
+ ist.tools.web",javassist.tools.web;version="3.25.0.GA";uses:=javassist,
+ javassist.util;version="3.25.0.GA";uses:=javassist,javassist.util.proxy
+ ;version="3.25.0.GA";uses:="javassist,javassist.bytecode"
+Main-Class: javassist.CtClass
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: Javassist
+Specification-Vendor: Shigeru Chiba, www.javassist.org
+Specification-Version: 3.25.0-GA
+Tool: Bnd-3.3.0.201609221906
+

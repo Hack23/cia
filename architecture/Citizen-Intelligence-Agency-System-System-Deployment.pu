@@ -65,8 +65,8 @@ node "Dev Network" <<Dev Network>> as 239 {
   rectangle "Nexus" <<Container>> as 241 #1168bd
 }
 node "Github Org" <<Github Org>> as 234 {
-  rectangle "SCM" <<Container>> as 236 #1168bd
   rectangle "Documentation" <<Container>> as 238 #1168bd
+  rectangle "SCM" <<Container>> as 236 #1168bd
 }
 node "Security Account" <<Sumologic Account>> as 254 {
   node "AWS Account Security Dashboard" <<AWS Account Security Dashboard>> as 257 {
@@ -74,8 +74,8 @@ node "Security Account" <<Sumologic Account>> as 254 {
     rectangle "AwsConfigLogs" <<Container>> as 269 #1168bd
   }
   node "Server Security Dashboard" <<Server Security Dashboard>> as 256 {
-    rectangle "AwsInspectorResults" <<Container>> as 281 #1168bd
     rectangle "Ec2SystemLogs" <<Container>> as 273 #1168bd
+    rectangle "AwsInspectorResults" <<Container>> as 281 #1168bd
   }
   node "Nework Security Dashboard" <<Nework Security Dashboard>> as 255 {
     rectangle "AwsLoadbalancerAccessLogs" <<Container>> as 285 #1168bd
@@ -88,24 +88,24 @@ node "Security Account" <<Sumologic Account>> as 254 {
 215 .[#707070].> 220 : <<https>>\nUses
 220 .[#707070].> 228 : <<jdbc>>\nUses
 177 .[#707070].> 215 : <<filter rules>>\nProtects
-195 .[#707070].> 229 : Loads Data
-277 .[#707070].> 205 : Recieve logs
-249 .[#707070].> 243 : <<https>>\nPublish QA metrics
 229 .[#707070].> 205 : Write logs
-285 .[#707070].> 213 : Recieve logs
-265 .[#707070].> 210 : Recieve logs
-216 .[#707070].> 222 : HTTPS/H2
-191 .[#707070].> 222 : Run Commands
-187 .[#707070].> 222 : Inspects
-216 .[#707070].> 213 : Write logs
-222 .[#707070].> 205 : Write logs
-179 .[#707070].> 216 : Protects/Filter
-269 .[#707070].> 184 : Recieve logs
-249 .[#707070].> 241 : <<https>>\npublish artifacts
-273 .[#707070].> 205 : Recieve logs
-281 .[#707070].> 187 : Recieve reports
-249 .[#707070].> 238 : <<https>>\npublish Documentation
-261 .[#707070].> 205 : Recieve logs
+277 .[#707070].> 205 : Recieve logs
 249 .[#707070].> 236 : builds
 222 .[#707070].> 229 : JDBC
+285 .[#707070].> 213 : Recieve logs
+265 .[#707070].> 210 : Recieve logs
+191 .[#707070].> 222 : Run Commands
+216 .[#707070].> 222 : HTTPS/H2
+222 .[#707070].> 205 : Write logs
+216 .[#707070].> 213 : Write logs
+187 .[#707070].> 222 : Inspects
+179 .[#707070].> 216 : Protects/Filter
+269 .[#707070].> 184 : Recieve logs
+249 .[#707070].> 238 : <<https>>\npublish Documentation
+273 .[#707070].> 205 : Recieve logs
+281 .[#707070].> 187 : Recieve reports
+249 .[#707070].> 241 : <<https>>\npublish artifacts
+261 .[#707070].> 205 : Recieve logs
+249 .[#707070].> 243 : <<https>>\nPublish QA metrics
+195 .[#707070].> 229 : Loads Data
 @enduml

@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: jurjotorressantome
+Created-By: Apache Maven 3.6.1
+Build-Jdk: 1.8.0_211
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jasypt.hibernate4.type
+Bundle-Description: jasypt-hibernate4-1.9.3
+Bundle-Name: jasypt-hibernate4-1.9.3
+Bundle-Version: 0.0.0
+Export-Package: org.jasypt.hibernate4.connectionprovider;uses:="org.hi
+ bernate.service.jdbc.connections.internal,org.jasypt.encryption,org.j
+ asypt.encryption.pbe,org.jasypt.exceptions,org.jasypt.hibernate4.encr
+ yptor,org.jasypt.properties",org.jasypt.hibernate4.encryptor;uses:="o
+ rg.jasypt.encryption.pbe,org.jasypt.encryption.pbe.config,org.jasypt.
+ exceptions,org.jasypt.iv,org.jasypt.salt",org.jasypt.hibernate4.type;
+ uses:="org.jasypt.commons,org.jasypt.encryption.pbe,org.jasypt.except
+ ions,org.jasypt.hibernate4.encryptor"
+Import-Package: java.io,java.lang,java.math,java.security,java.sql,jav
+ a.util,org.hibernate;version="5.4.3.Final",org.hibernate.cfg;version=
+ "5.4.3.Final",org.hibernate.engine.spi;version="5.4.3.Final",org.hibe
+ rnate.service.jdbc.connections.internal,org.hibernate.usertype;versio
+ n="5.4.3.Final",org.jasypt.commons;version="0.0.0",org.jasypt.encrypt
+ ion;version="0.0.0",org.jasypt.encryption.pbe;version="0.0.0",org.jas
+ ypt.encryption.pbe.config;version="0.0.0",org.jasypt.exceptions;versi
+ on="0.0.0",org.jasypt.iv,org.jasypt.properties;version="0.0.0",org.ja
+ sypt.salt;version="0.0.0"

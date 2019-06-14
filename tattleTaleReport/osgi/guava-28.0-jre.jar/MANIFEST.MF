@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.google.common
+Bnd-LastModified: 1560295095644
+Build-Jdk: 1.8.0_181-google-v7
+Built-By: cgdecker
+Bundle-Description: Guava is a suite of core and expanded libraries that
+  include    utility classes, google's collections, io classes, and much
+     much more.
+Bundle-DocURL: https://github.com/google/guava/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Guava: Google Core Libraries for Java
+Bundle-SymbolicName: com.google.guava
+Bundle-Version: 28.0.0.jre
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.google.common.annotations;version="28.0.0",com.googl
+ e.common.base;version="28.0.0",com.google.common.cache;version="28.0.0"
+ ;uses:="com.google.common.base,com.google.common.collect,com.google.com
+ mon.util.concurrent",com.google.common.collect;version="28.0.0";uses:="
+ com.google.common.base",com.google.common.escape;version="28.0.0";uses:
+ ="com.google.common.base",com.google.common.eventbus;version="28.0.0",c
+ om.google.common.graph;version="28.0.0";uses:="com.google.common.collec
+ t",com.google.common.hash;version="28.0.0";uses:="com.google.common.bas
+ e",com.google.common.html;version="28.0.0";uses:="com.google.common.esc
+ ape",com.google.common.io;version="28.0.0";uses:="com.google.common.bas
+ e,com.google.common.collect,com.google.common.graph,com.google.common.h
+ ash",com.google.common.math;version="28.0.0",com.google.common.net;vers
+ ion="28.0.0";uses:="com.google.common.base,com.google.common.collect,co
+ m.google.common.escape",com.google.common.primitives;version="28.0.0";u
+ ses:="com.google.common.base",com.google.common.reflect;version="28.0.0
+ ";uses:="com.google.common.collect,com.google.common.io",com.google.com
+ mon.util.concurrent;version="28.0.0";uses:="com.google.common.base,com.
+ google.common.collect,com.google.common.util.concurrent.internal",com.g
+ oogle.common.xml;version="28.0.0";uses:="com.google.common.escape"
+Import-Package: com.google.common.util.concurrent.internal;version="[1.0
+ ,2)",javax.annotation;resolution:=optional;version="[3.0,4)",javax.cryp
+ to;resolution:=optional,javax.crypto.spec;resolution:=optional,sun.misc
+ ;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-2.3.0.201405100607
+

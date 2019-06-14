@@ -1,0 +1,5 @@
+digraph smile_data_1_5_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  smile_data_1_5_3 -> slf4j_api_1_8_0_beta4;
+  smile_data_1_5_3 -> smile_math_1_5_3;
+}

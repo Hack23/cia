@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Implementation-Title: Hibernate Search Utils - Common
+Automatic-Module-Name: org.hibernate.search.util.common
+Implementation-Version: 6.0.0.Alpha6
+Built-By: jenkins
+Implementation-Vendor-Id: hibernate.org
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://hibernate.org/search/
+Implementation-Vendor: hibernate.org
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.hibernate.search.util.common.impl
+Bundle-Description: hibernate-search-util-common-6.0.0.Alpha6
+Bundle-Name: hibernate-search-util-common-6.0.0.Alpha6
+Bundle-Version: 6.0.0.Alpha6
+Export-Package: org.hibernate.search.util.common;uses:="org.hibernate.
+ search.util.common.reporting",org.hibernate.search.util.common.functi
+ on;uses:="java.lang",org.hibernate.search.util.common.impl;uses:="jav
+ a.lang,java.lang.invoke,java.time,java.time.format,java.time.temporal
+ ,java.util,java.util.concurrent,java.util.function,java.util.stream,o
+ rg.hibernate.search.util.common,org.hibernate.search.util.common.logg
+ ing.impl",org.hibernate.search.util.common.logging.impl;uses:="java.l
+ ang.invoke,org.hibernate.search.util.common.impl,org.hibernate.search
+ .util.common.reporting,org.jboss.logging.annotations",org.hibernate.s
+ earch.util.common.reporting;uses:="java.util,org.hibernate.search.uti
+ l.common.reporting.impl",org.hibernate.search.util.common.reporting.i
+ mpl;uses:="java.util,org.hibernate.search.util.common.reporting,org.j
+ boss.logging.annotations"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.time,java.time.format,java.time.temporal,java.util,java.util.conc
+ urrent,java.util.concurrent.atomic,java.util.function,java.util.strea
+ m,org.jboss.logging;version="3.4",org.jboss.logging.annotations

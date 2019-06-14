@@ -1,0 +1,5 @@
+digraph lucene_facet_8_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_facet_8_1_1 -> hppc_0_8_1;
+  lucene_facet_8_1_1 -> lucene_core_8_1_1;
+}

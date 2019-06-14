@@ -527,10 +527,10 @@ Import-Package: cern.colt.list;version="0.0.0",cern.colt.map;version="
  rvlet,javax.servlet.http,javax.swing,javax.swing.border,javax.swing.e
  vent,javax.swing.plaf.basic,javax.swing.text,javax.swing.text.html,ja
  vax.swing.tree,javax.xml.parsers;version="1.0",net.sourceforge.htmlun
- it.corejs.javascript,org.apache.tools.ant;version="1.10.5",org.apache
- .tools.ant.taskdefs;version="1.10.5",org.apache.tools.ant.taskdefs.co
- mpilers;version="1.10.5",org.apache.tools.ant.types;version="1.10.5",
- org.apache.tools.ant.util;version="1.10.5",org.codehaus.mojo.animal_s
+ it.corejs.javascript,org.apache.tools.ant;version="1.10.6",org.apache
+ .tools.ant.taskdefs;version="1.10.6",org.apache.tools.ant.taskdefs.co
+ mpilers;version="1.10.6",org.apache.tools.ant.types;version="1.10.6",
+ org.apache.tools.ant.util;version="1.10.6",org.codehaus.mojo.animal_s
  niffer;version="0.0.0",org.eclipse.core.filesystem,org.eclipse.core.r
  esources,org.eclipse.core.runtime,org.eclipse.core.runtime.content,or
  g.eclipse.core.runtime.jobs,org.eclipse.core.runtime.preferences,org.
@@ -540,7 +540,7 @@ Import-Package: cern.colt.list;version="0.0.0",cern.colt.map;version="
  ,org.eclipse.jetty.util.log,org.eclipse.jetty.util.ssl,org.eclipse.je
  tty.util.thread,org.eclipse.jetty.webapp,org.eclipse.jface.text,org.e
  clipse.osgi.service.debug,org.eclipse.osgi.util,org.eclipse.text.edit
- s,org.objectweb.asm;version="7.0",org.objectweb.asm.commons,org.objec
- tweb.asm.signature;version="7.0",org.osgi.framework,org.osgi.service.
+ s,org.objectweb.asm;version="7.1",org.objectweb.asm.commons,org.objec
+ tweb.asm.signature;version="7.1",org.osgi.framework,org.osgi.service.
  prefs,org.w3c.dom;version="1.0",org.xml.sax;version="1.0",org.xml.sax
  .helpers;version="1.0",sun.misc,sun.net.www.protocol.jar

@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven 3.5.2
+Built-By: build
+Build-Jdk: 9.0.4
+Build-Id: 2.3.1
+Build-Version: JAXB RI 2.3.1
+Git-Revision: ad5fa4c697632694cbcfa80177707db908cd98b2
+Git-Url: scm:git:git://java.net/jaxb~v2/jaxb-txw-parent/txw2
+Implementation-Title: TXW Runtime
+Implementation-Vendor: Oracle
+Implementation-Vendor-Id: com.oracle
+Implementation-Version: 2.3.1
+Major-Version: 2.3.1
+Specification-Title: Java Architecture for XML Binding
+Specification-Version: 2.3
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.sun.xml.txw2
+Bundle-Description: txw2-2.3.1
+Bundle-Name: txw2-2.3.1
+Bundle-Version: 2.3
+Export-Package: com.sun.xml.txw2,com.sun.xml.txw2.annotation,com.sun.x
+ ml.txw2.output
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.refle
+ ct,java.util,javax.xml.namespace;version="1.0",javax.xml.parsers;vers
+ ion="1.0",javax.xml.stream;version="1.0",javax.xml.transform;version=
+ "1.0",javax.xml.transform.dom;version="1.0",javax.xml.transform.sax;v
+ ersion="1.0",javax.xml.transform.stream;version="1.0",org.w3c.dom;ver
+ sion="1.0",org.xml.sax;version="1.0",org.xml.sax.ext;version="1.0",or
+ g.xml.sax.helpers;version="1.0"

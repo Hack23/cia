@@ -9,8 +9,8 @@ Specification-Title: HttpComponents Apache HttpCore
 url: http://hc.apache.org/httpcomponents-core-ga
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Target-JDK: 1.6
-Implementation-Build: ${scmBranch}@r${buildNumber}; 2019-01-15 10:23:3
- 1+0000
+Implementation-Build: ${scmBranch}@r${buildNumber}; 2019-01-15 10:23:31+
+ 0000
 X-Compile-Source-JDK: 1.6
 Created-By: Apache Maven 3.5.4
 Build-Jdk: 1.8.0_181

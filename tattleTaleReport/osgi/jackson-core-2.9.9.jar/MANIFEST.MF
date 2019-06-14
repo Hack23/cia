@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.fasterxml.jackson.core
+Bnd-LastModified: 1557975519930
+Build-Jdk: 1.8.0_162
+Built-By: tatu
+Bundle-Description: Core Jackson processing abstractions (aka Streaming 
+ API), implementation for JSON
+Bundle-DocURL: https://github.com/FasterXML/jackson-core
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Jackson-core
+Bundle-SymbolicName: com.fasterxml.jackson.core.jackson-core
+Bundle-Vendor: FasterXML
+Bundle-Version: 2.9.9
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.fasterxml.jackson.core;version="2.9.9";uses:="com.fa
+ sterxml.jackson.core.async,com.fasterxml.jackson.core.format,com.faster
+ xml.jackson.core.io,com.fasterxml.jackson.core.sym,com.fasterxml.jackso
+ n.core.type,com.fasterxml.jackson.core.util",com.fasterxml.jackson.core
+ .async;version="2.9.9",com.fasterxml.jackson.core.base;version="2.9.9";
+ uses:="com.fasterxml.jackson.core,com.fasterxml.jackson.core.io,com.fas
+ terxml.jackson.core.json,com.fasterxml.jackson.core.util",com.fasterxml
+ .jackson.core.filter;version="2.9.9";uses:="com.fasterxml.jackson.core,
+ com.fasterxml.jackson.core.util",com.fasterxml.jackson.core.format;vers
+ ion="2.9.9";uses:="com.fasterxml.jackson.core",com.fasterxml.jackson.co
+ re.io;version="2.9.9";uses:="com.fasterxml.jackson.core,com.fasterxml.j
+ ackson.core.util",com.fasterxml.jackson.core.json;version="2.9.9";uses:
+ ="com.fasterxml.jackson.core,com.fasterxml.jackson.core.base,com.faster
+ xml.jackson.core.format,com.fasterxml.jackson.core.io,com.fasterxml.jac
+ kson.core.sym",com.fasterxml.jackson.core.json.async;version="2.9.9";us
+ es:="com.fasterxml.jackson.core,com.fasterxml.jackson.core.async,com.fa
+ sterxml.jackson.core.base,com.fasterxml.jackson.core.io,com.fasterxml.j
+ ackson.core.sym",com.fasterxml.jackson.core.sym;version="2.9.9",com.fas
+ terxml.jackson.core.type;version="2.9.9";uses:="com.fasterxml.jackson.c
+ ore",com.fasterxml.jackson.core.util;version="2.9.9";uses:="com.fasterx
+ ml.jackson.core,com.fasterxml.jackson.core.io"
+Implementation-Build-Date: 2019-05-16 02:58:23+0000
+Implementation-Title: Jackson-core
+Implementation-Vendor: FasterXML
+Implementation-Vendor-Id: com.fasterxml.jackson.core
+Implementation-Version: 2.9.9
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Specification-Title: Jackson-core
+Specification-Vendor: FasterXML
+Specification-Version: 2.9.9
+Tool: Bnd-2.3.0.201405100607
+X-Compile-Source-JDK: 1.6
+X-Compile-Target-JDK: 1.6
+

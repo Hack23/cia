@@ -1,0 +1,5 @@
+digraph ant_1_10_6_dependencies {
+  node [shape = box, fontsize=10.0];
+  ant_1_10_6 -> ant_launcher_1_10_6;
+  ant_1_10_6 -> xml_apis_1_4_01;
+}

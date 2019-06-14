@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-core
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-core
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.classification
+Bundle-Description: smile-core-1.5.3
+Bundle-Name: smile-core-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.association;uses:="smile.math,smile.sort,smile.u
+ til",smile.classification;uses:="smile.data,smile.math,smile.math.dis
+ tance,smile.math.kernel,smile.math.matrix,smile.math.rbf,smile.neighb
+ or,smile.projection,smile.regression,smile.sort,smile.stat.distributi
+ on,smile.util,smile.validation",smile.clustering;uses:="smile.cluster
+ ing.linkage,smile.data,smile.math,smile.math.distance,smile.math.matr
+ ix,smile.neighbor,smile.sort,smile.stat.distribution,smile.util",smil
+ e.clustering.linkage,smile.feature;uses:="smile.classification,smile.
+ data,smile.gap,smile.math,smile.regression,smile.sort,smile.validatio
+ n",smile.gap;uses:="smile.math,smile.util",smile.imputation;uses:="sm
+ ile.clustering,smile.math.matrix,smile.sort",smile.manifold;uses:="sm
+ ile.data,smile.graph,smile.math,smile.math.distance,smile.math.matrix
+ ,smile.neighbor,smile.stat.distribution,smile.util",smile.mds;uses:="
+ smile.math,smile.math.matrix,smile.sort",smile.neighbor;uses:="smile.
+ hash,smile.math,smile.math.distance,smile.sort,smile.stat.distributio
+ n",smile.projection;uses:="smile.math,smile.math.kernel,smile.math.ma
+ trix,smile.stat.distribution",smile.regression;uses:="java.util.strea
+ m,smile.data,smile.math,smile.math.distance,smile.math.kernel,smile.m
+ ath.matrix,smile.math.rbf,smile.math.special,smile.sort,smile.util,sm
+ ile.validation",smile.sampling;uses:="smile.math",smile.sequence;uses
+ :="smile.data,smile.math,smile.regression,smile.sort,smile.util",smil
+ e.taxonomy;uses:="smile.math.distance",smile.util;uses:="smile.cluste
+ ring,smile.data,smile.math,smile.math.distance,smile.math.rbf,smile.s
+ ort",smile.validation;uses:="java.lang.invoke,java.util.function,java
+ .util.stream,smile.classification,smile.math,smile.regression,smile.s
+ ort",smile.vq;uses:="smile.clustering,smile.clustering.linkage,smile.
+ math,smile.math.matrix,smile.sort,smile.stat.distribution",smile.wave
+ let;uses:="smile.math"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.nio,java.util,java.util.concurrent,java.util.function,java.util.s
+ tream,org.slf4j;version="0.0.0",smile.data;version="1.5.3",smile.grap
+ h;version="1.5.3",smile.hash;version="1.5.3",smile.math;version="1.5.
+ 3",smile.math.distance;version="1.5.3",smile.math.kernel;version="1.5
+ .3",smile.math.matrix;version="1.5.3",smile.math.rbf;version="1.5.3",
+ smile.math.special;version="1.5.3",smile.sort;version="1.5.3",smile.s
+ tat.distribution;version="1.5.3"

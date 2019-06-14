@@ -1,0 +1,10 @@
+digraph spring_aspects_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_aspects_5_2_0_M3 -> aspectjweaver_1_9_4;
+  spring_aspects_5_2_0_M3 -> spring_aop_5_2_0_M3;
+  spring_aspects_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_aspects_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_aspects_5_2_0_M3 -> spring_context_support_5_2_0_M3;
+  spring_aspects_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_aspects_5_2_0_M3 -> spring_tx_5_2_0_M3;
+}

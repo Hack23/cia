@@ -1,0 +1,6 @@
+digraph stax_ex_1_8_dependencies {
+  node [shape = box, fontsize=10.0];
+  stax_ex_1_8 -> activation_1_1;
+  stax_ex_1_8 -> jaxb_api_2_4_0;
+  stax_ex_1_8 -> xml_apis_1_4_01;
+}

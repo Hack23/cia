@@ -1,0 +1,23 @@
+digraph smile_math_1_5_3_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  smile_math -> java_lang_invoke;
+  smile_math -> java_util_concurrent;
+  smile_math -> java_util_function;
+  smile_math -> java_util_stream;
+  smile_math -> smile_math_random;
+  smile_math -> smile_sort;
+  smile_math_distance -> smile_math;
+  smile_math_distance -> smile_math_matrix;
+  smile_math_kernel -> smile_math;
+  smile_math_matrix -> smile_math;
+  smile_math_matrix -> smile_stat_distribution;
+  smile_math_rbf -> smile_math;
+  smile_math_special -> smile_math;
+  smile_stat_distribution -> smile_math;
+  smile_stat_distribution -> smile_math_matrix;
+  smile_stat_distribution -> smile_math_special;
+  smile_stat_hypothesis -> smile_math;
+  smile_stat_hypothesis -> smile_math_special;
+  smile_stat_hypothesis -> smile_sort;
+  smile_stat_hypothesis -> smile_stat_distribution;
+}

@@ -213,8 +213,8 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L213">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
 <span class="fc bfc" id="L214" title="All 2 branches covered.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
 <span class="fc" id="L215">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
-<span class="fc bfc" id="L216" title="All 2 branches covered.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L217">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
+<span class="nc" id="L217">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
 <span class="pc bpc" id="L218" title="1 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="fc" id="L219">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
 <span class="fc bfc" id="L220" title="All 2 branches covered.">		} else if (typeOfProperty.isEnum()) {</span>
@@ -246,4 +246,4 @@ import com.vaadin.ui.VerticalLayout;
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

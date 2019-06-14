@@ -1,0 +1,8 @@
+digraph hppc_0_8_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  com_carrotsearch_hppc -> com_carrotsearch_hppc_cursors;
+  com_carrotsearch_hppc -> com_carrotsearch_hppc_predicates;
+  com_carrotsearch_hppc -> com_carrotsearch_hppc_procedures;
+  com_carrotsearch_hppc -> java_lang;
+  com_carrotsearch_hppc -> java_util;
+}

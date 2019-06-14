@@ -116,7 +116,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 <span class="fc" id="L117">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
 
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {						</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		if (!ballots.isEmpty()) {						</span>
 <span class="fc" id="L120">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
 <span class="fc" id="L122">			LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
@@ -137,9 +137,9 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 <span class="fc bfc" id="L138" title="All 2 branches covered.">			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
 
-<span class="fc bfc" id="L140" title="All 2 branches covered.">				if (!decisionSummaries.isEmpty()) {</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">				if (!decisionSummaries.isEmpty()) {</span>
 
-<span class="fc" id="L142">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
+<span class="nc" id="L142">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							AS_LIST);
 
@@ -177,4 +177,4 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

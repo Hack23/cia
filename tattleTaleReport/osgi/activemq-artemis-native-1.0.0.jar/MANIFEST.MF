@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: artemis.jni
+Bnd-LastModified: 1551659092272
+Build-Jdk: 1.8.0_73
+Built-By: clebertsuconic
+Bundle-Description: The Apache Software Foundation provides support for 
+ the Apache community of open-source software projects.    The Apache pr
+ ojects are characterized by a collaborative, consensus based developmen
+ t process, an open and    pragmatic software license, and a desire to c
+ reate high quality software that leads the way in its field.    We cons
+ ider ourselves not simply a group of projects sharing a server, but rat
+ her a community of developers    and users.
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: ActiveMQ Artemis Native
+Bundle-SymbolicName: org.apache.activemq.artemis-native
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.activemq.artemis.nativo.jlibaio;uses:="org.jb
+ oss.logging";version="1.0.0",org.apache.activemq.artemis.nativo.jlibaio
+ .util;uses:="org.apache.activemq.artemis.nativo.jlibaio";version="1.0.0
+ "
+Implementation-Title: ActiveMQ Artemis Native
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.activemq
+Implementation-Version: 1.0.0
+Import-Package: org.apache.activemq.artemis.nativo.jlibaio,org.jboss.log
+ ging;version="[3.3,4)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: ActiveMQ Artemis Native
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 1.0.0
+Tool: Bnd-3.0.0.201509101326
+

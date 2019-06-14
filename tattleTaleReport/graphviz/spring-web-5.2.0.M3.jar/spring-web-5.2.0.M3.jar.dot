@@ -1,0 +1,26 @@
+digraph spring_web_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_web_5_2_0_M3 -> gson_2_8_5;
+  spring_web_5_2_0_M3 -> httpclient_4_5_9;
+  spring_web_5_2_0_M3 -> httpcore_4_4_11;
+  spring_web_5_2_0_M3 -> jackson_annotations_2_9_0;
+  spring_web_5_2_0_M3 -> jackson_core_2_9_9;
+  spring_web_5_2_0_M3 -> jackson_databind_2_9_9;
+  spring_web_5_2_0_M3 -> jackson_dataformat_cbor_2_9_9;
+  spring_web_5_2_0_M3 -> javax_mail_1_6_2;
+  spring_web_5_2_0_M3 -> jaxb_api_2_4_0;
+  spring_web_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_web_5_2_0_M3 -> netty_buffer_4_1_36_Final;
+  spring_web_5_2_0_M3 -> netty_codec_http_4_1_36_Final;
+  spring_web_5_2_0_M3 -> netty_common_4_1_36_Final;
+  spring_web_5_2_0_M3 -> netty_handler_4_1_36_Final;
+  spring_web_5_2_0_M3 -> netty_transport_4_1_36_Final;
+  spring_web_5_2_0_M3 -> protobuf_java_3_8_0;
+  spring_web_5_2_0_M3 -> spring_aop_5_2_0_M3;
+  spring_web_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_web_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_web_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_web_5_2_0_M3 -> spring_oxm_5_2_0_M3;
+  spring_web_5_2_0_M3 -> validation_api_2_0_1_Final;
+  spring_web_5_2_0_M3 -> xml_apis_1_4_01;
+}

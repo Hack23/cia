@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_121-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: misc
+Specification-Version: 8.1.1
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.1.1 fcbe46c28cef11bc058779afba09521de1b19bef -
+  ab - 2019-05-22 15:16:16
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.search
+Bundle-Description: lucene-misc-8.1.1
+Bundle-Name: lucene-misc-8.1.1
+Bundle-Version: 8.1.1
+Export-Package: org.apache.lucene.document;uses:="org.apache.lucene.an
+ alysis,org.apache.lucene.index,org.apache.lucene.search,org.apache.lu
+ cene.util",org.apache.lucene.index;uses:="java.nio.file,java.nio.file
+ .attribute,org.apache.lucene.analysis,org.apache.lucene.codecs,org.ap
+ ache.lucene.search,org.apache.lucene.store,org.apache.lucene.util",or
+ g.apache.lucene.misc;uses:="java.nio.file,org.apache.lucene.analysis,
+ org.apache.lucene.index,org.apache.lucene.search.similarities,org.apa
+ che.lucene.store,org.apache.lucene.util",org.apache.lucene.search;use
+ s:="org.apache.lucene.index,org.apache.lucene.util",org.apache.lucene
+ .search.similarity;uses:="org.apache.lucene.index,org.apache.lucene.s
+ earch,org.apache.lucene.search.similarities",org.apache.lucene.store;
+ uses:="java.lang.invoke,java.nio.file,org.apache.lucene.util",org.apa
+ che.lucene.util.fst;uses:="org.apache.lucene.store,org.apache.lucene.
+ util"
+Import-Package: java.io,java.lang,java.lang.invoke,java.net,java.nio,j
+ ava.nio.channels,java.nio.file,java.nio.file.attribute,java.security,
+ java.text,java.util,org.apache.lucene.analysis;version="8.1.1",org.ap
+ ache.lucene.codecs;version="8.1.1",org.apache.lucene.document;version
+ ="8.1.1",org.apache.lucene.index;version="8.1.1",org.apache.lucene.se
+ arch;version="8.1.1",org.apache.lucene.search.similarities;version="8
+ .1.1",org.apache.lucene.store;version="8.1.1",org.apache.lucene.util;
+ version="8.1.1",org.apache.lucene.util.fst;version="8.1.1"

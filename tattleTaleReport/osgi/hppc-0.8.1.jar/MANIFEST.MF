@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: dweiss
+Build-Jdk: 9.0.4
+Bnd-LastModified: 1526898253249
+Bundle-Description: High Performance Primitive Collections.   Fundamenta
+ l data structures (maps, sets, lists, stacks, queues) generated for  co
+ mbinations of object and primitive types to conserve JVM memory and spe
+ ed  up execution.
+Bundle-DocURL: http://www.carrotsearch.com
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: HPPC Collections
+Bundle-SymbolicName: com.carrotsearch.hppc
+Bundle-Vendor: Carrot Search s.c.
+Bundle-Version: 0.8.1
+Export-Package: com.carrotsearch.hppc;uses:="com.carrotsearch.hppc.curso
+ rs,com.carrotsearch.hppc.predicates,com.carrotsearch.hppc.procedures";v
+ ersion="0.8.1",com.carrotsearch.hppc.cursors;version="0.8.1",com.carrot
+ search.hppc.predicates;version="0.8.1",com.carrotsearch.hppc.procedures
+ ;version="0.8.1",com.carrotsearch.hppc.sorting;version="0.8.1"
+Import-Package: com.carrotsearch.hppc.cursors,com.carrotsearch.hppc.pred
+ icates,com.carrotsearch.hppc.procedures
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-3.5.0.201709291849
+

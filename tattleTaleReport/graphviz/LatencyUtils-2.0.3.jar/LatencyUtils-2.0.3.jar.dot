@@ -1,0 +1,4 @@
+digraph LatencyUtils_2_0_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  LatencyUtils_2_0_3 -> HdrHistogram_2_1_9;
+}

@@ -1,0 +1,10 @@
+digraph hibernate_validator_6_1_0_Alpha5_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_validator_6_1_0_Alpha5 -> classmate_1_5_0;
+  hibernate_validator_6_1_0_Alpha5 -> javax_persistence_api_2_2;
+  hibernate_validator_6_1_0_Alpha5 -> jboss_logging_3_4_0_Final;
+  hibernate_validator_6_1_0_Alpha5 -> joda_time_2_10_2;
+  hibernate_validator_6_1_0_Alpha5 -> jsoup_1_11_3;
+  hibernate_validator_6_1_0_Alpha5 -> validation_api_2_0_1_Final;
+  hibernate_validator_6_1_0_Alpha5 -> xml_apis_1_4_01;
+}

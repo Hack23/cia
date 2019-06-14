@@ -1,0 +1,4 @@
+digraph FastInfoset_1_2_15_dependencies {
+  node [shape = box, fontsize=10.0];
+  FastInfoset_1_2_15 -> xml_apis_1_4_01;
+}

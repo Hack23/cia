@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.votering.
+ impl
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.votering.
+ impl
+Bundle-Description: model.external.riksdagen.votering.impl-2019.6.14-S
+ NAPSHOT
+Bundle-Name: model.external.riksdagen.votering.impl-2019.6.14-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.votering.impl;
+ uses:="com.hack23.cia.model.common.api,com.hack23.cia.model.common.im
+ pl.xml,org.apache.commons.lang3.builder"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",com.ha
+ ck23.cia.model.common.impl.xml;version="0.0.0",java.lang,java.math,ja
+ va.util,javax.persistence;version="2.2",javax.persistence.metamodel;v
+ ersion="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation
+ ;version="2.4.0",javax.xml.bind.annotation.adapters;version="2.4.0",j
+ avax.xml.namespace;version="1.0",org.apache.commons.lang3.builder;ver
+ sion="3.9"

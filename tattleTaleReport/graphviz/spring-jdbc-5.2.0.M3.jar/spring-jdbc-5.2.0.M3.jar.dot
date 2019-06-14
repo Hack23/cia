@@ -1,0 +1,9 @@
+digraph spring_jdbc_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_jdbc_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_jdbc_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_jdbc_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_jdbc_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_jdbc_5_2_0_M3 -> spring_tx_5_2_0_M3;
+  spring_jdbc_5_2_0_M3 -> xml_apis_1_4_01;
+}

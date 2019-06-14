@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-math
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-math
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.stat.distribution
+Bundle-Description: smile-math-1.5.3
+Bundle-Name: smile-math-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.hash,smile.math;uses:="java.lang.invoke,java.uti
+ l.concurrent,java.util.function,java.util.stream,smile.math.random,sm
+ ile.sort",smile.math.distance;uses:="smile.math,smile.math.matrix",sm
+ ile.math.kernel;uses:="smile.math",smile.math.matrix;uses:="smile.mat
+ h,smile.stat.distribution",smile.math.random,smile.math.rbf;uses:="sm
+ ile.math",smile.math.special;uses:="smile.math",smile.sort,smile.stat
+ .distribution;uses:="smile.math,smile.math.matrix,smile.math.special"
+ ,smile.stat.hypothesis;uses:="smile.math,smile.math.special,smile.sor
+ t,smile.stat.distribution"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.nio,java.security,java.util,java.util.concurrent,java.util.functi
+ on,java.util.stream,org.slf4j;version="0.0.0"

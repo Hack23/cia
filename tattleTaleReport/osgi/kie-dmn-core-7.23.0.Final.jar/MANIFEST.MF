@@ -1,0 +1,74 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.dmn.core
+Bnd-LastModified: 1560158162194
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Activator: org.kie.dmn.core.osgi.Activator
+Bundle-Description: Top level pom for the KIE DMN support implementation
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: KIE :: Decision Model Notation :: Core
+Bundle-SymbolicName: org.kie.dmn.core
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.23.0.201906100857
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.dmn.core.api;version="7.23.0",org.kie.dmn.core.a
+ pi.event;version="7.23.0",org.kie.dmn.core.assembler;version="7.23.0",o
+ rg.kie.dmn.core.ast;version="7.23.0",org.kie.dmn.core.compiler;version=
+ "7.23.0",org.kie.dmn.core.compiler.execmodelbased;version="7.23.0",org.
+ kie.dmn.core.compiler.profiles;version="7.23.0",org.kie.dmn.core.fluent
+ ;version="7.23.0",org.kie.dmn.core.impl;version="7.23.0",org.kie.dmn.co
+ re.internal.utils;version="7.23.0",org.kie.dmn.core.osgi;version="7.23.
+ 0",org.kie.dmn.core.runtime;version="7.23.0",org.kie.dmn.core.util;vers
+ ion="7.23.0",org.kie.dmn.core.weaver;version="7.23.0"
+Implementation-Title: KIE :: Decision Model Notation :: Core
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-core
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie
+Implementation-Version: 7.23.0.Final
+Import-Package: com.github.javaparser,com.github.javaparser.ast,com.gith
+ ub.javaparser.ast.body,com.github.javaparser.ast.expr,com.github.javapa
+ rser.ast.type,javax.xml.namespace,javax.xml.stream,org.antlr.v4.runtime
+ ,org.drools.compiler.builder.impl,org.drools.compiler.commons.jci.compi
+ lers,org.drools.compiler.commons.jci.readers,org.drools.compiler.common
+ s.jci.stores,org.drools.compiler.compiler,org.drools.compiler.compiler.
+ io.memory,org.drools.compiler.kie.builder.impl,org.drools.compiler.lang
+ .descr,org.drools.core.common,org.drools.core.definitions,org.drools.co
+ re.fluent.impl,org.drools.core.impl,org.drools.core.util,org.drools.mod
+ el,org.drools.model.impl,org.drools.modelcompiler.builder,org.kie.api,o
+ rg.kie.api.builder,org.kie.api.command,org.kie.api.conf,org.kie.api.def
+ inition,org.kie.api.internal.assembler,org.kie.api.internal.io,org.kie.
+ api.internal.runtime,org.kie.api.internal.weaver,org.kie.api.io,org.kie
+ .api.runtime,org.kie.api.runtime.rule,org.kie.dmn.api.core,org.kie.dmn.
+ api.core.ast,org.kie.dmn.api.core.event,org.kie.dmn.api.feel.runtime.ev
+ ents,org.kie.dmn.api.marshalling,org.kie.dmn.backend.marshalling.v1_1.x
+ stream.extensions,org.kie.dmn.backend.marshalling.v1x,org.kie.dmn.core.
+ api,org.kie.dmn.core.ast,org.kie.dmn.core.compiler,org.kie.dmn.core.com
+ piler.execmodelbased,org.kie.dmn.core.compiler.profiles,org.kie.dmn.cor
+ e.impl,org.kie.dmn.core.util,org.kie.dmn.feel,org.kie.dmn.feel.codegen.
+ feel11,org.kie.dmn.feel.lang,org.kie.dmn.feel.lang.impl,org.kie.dmn.fee
+ l.lang.types,org.kie.dmn.feel.parser.feel11,org.kie.dmn.feel.parser.fee
+ l11.profiles,org.kie.dmn.feel.runtime,org.kie.dmn.feel.runtime.decision
+ tables,org.kie.dmn.feel.runtime.events,org.kie.dmn.feel.runtime.functio
+ ns,org.kie.dmn.feel.util,org.kie.dmn.model.api,org.kie.dmn.model.v1_1,o
+ rg.kie.dmn.model.v1_1.extensions,org.kie.dmn.model.v1_2,org.kie.interna
+ l.builder,org.kie.internal.builder.fluent,org.kie.internal.command,org.
+ kie.internal.jci,org.kie.internal.osgi,org.kie.internal.utils,org.slf4j
+Include-Resource: META-INF/kie.conf=src/main/resources/META-INF/kie.conf
+ ,libs/Two-Value Logic.dmn=src/main/resources/libs/Two-Value Logic.dmn
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn/k
+ ie-dmn-core
+Scm-Revision: 055f75ab4a9b785e523dc29b08cc11aa63893714
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-core
+Specification-Title: KIE :: Decision Model Notation :: Core
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.23.0.Final
+Tool: Bnd-3.5.0.201709291849
+

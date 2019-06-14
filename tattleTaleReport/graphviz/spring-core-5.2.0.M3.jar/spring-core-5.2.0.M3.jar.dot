@@ -1,0 +1,10 @@
+digraph spring_core_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_core_5_2_0_M3 -> ant_1_10_6;
+  spring_core_5_2_0_M3 -> aspectjweaver_1_9_4;
+  spring_core_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_core_5_2_0_M3 -> jsr305_3_0_2;
+  spring_core_5_2_0_M3 -> netty_buffer_4_1_36_Final;
+  spring_core_5_2_0_M3 -> netty_common_4_1_36_Final;
+  spring_core_5_2_0_M3 -> xml_apis_1_4_01;
+}

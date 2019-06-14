@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-netlib
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-netlib
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.netlib
+Bundle-Description: smile-netlib-1.5.3
+Bundle-Name: smile-netlib-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.netlib;uses:="com.github.fommil.netlib,org.netli
+ b.util,smile.math,smile.math.matrix"
+Import-Package: com.github.fommil.netlib;version="0.0.0",java.lang,jav
+ a.util,org.netlib.util;version="0.0.0",org.slf4j;version="0.0.0",smil
+ e.math;version="1.5.3",smile.math.matrix;version="1.5.3"

@@ -1,0 +1,70 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven Bundle Plugin
+Built-By: build
+Build-Jdk: 9.0.4
+Implementation-URL: http://fi.java.net
+Extension-Name: com.sun.xml.fastinfoset
+Implementation-Build-Id: ${scmBranch}-${buildNumber}, ${timestamp}
+Implementation-Title: Fast Infoset Implementation
+Implementation-Vendor: Oracle
+Implementation-Vendor-Id: com.oracle
+Implementation-Version: 1.2.15
+Specification-Title: ITU-T Rec. X.891 | ISO/IEC 24824-1 (Fast Infoset)
+Specification-Version: 1.0
+URL: http://fi.java.net
+Bnd-LastModified: 1535553538488
+Bundle-Description: Open Source implementation of the Fast Infoset Stand
+ ard for Binary XML (http://www.itu.int/ITU-T/asn1/).
+Bundle-DocURL: http://www.oracle.com
+Bundle-License: http://www.opensource.org/licenses/apache2.0.php
+Bundle-ManifestVersion: 2
+Bundle-Name: fastinfoset
+Bundle-SymbolicName: com.sun.xml.fastinfoset.FastInfoset
+Bundle-Vendor: Oracle Corpration
+Bundle-Version: 1.2.15
+Export-Package: com.sun.xml.fastinfoset.vocab;uses:="com.sun.xml.fastinf
+ oset.util,org.jvnet.fastinfoset";version="1.2.15",com.sun.xml.fastinfos
+ et;uses:="com.sun.xml.fastinfoset.util,com.sun.xml.fastinfoset.vocab,ja
+ vax.xml.namespace,org.jvnet.fastinfoset,org.xml.sax.helpers";version="1
+ .2.15",com.sun.xml.fastinfoset.dom;uses:="com.sun.xml.fastinfoset,com.s
+ un.xml.fastinfoset.util,org.jvnet.fastinfoset,org.w3c.dom";version="1.2
+ .15",com.sun.xml.fastinfoset.stax.factory;uses:="javax.xml.namespace,ja
+ vax.xml.stream,javax.xml.stream.events,javax.xml.stream.util,javax.xml.
+ transform";version="1.2.15",com.sun.xml.fastinfoset.stax;uses:="com.sun
+ .xml.fastinfoset,com.sun.xml.fastinfoset.sax,com.sun.xml.fastinfoset.ut
+ il,javax.xml.namespace,javax.xml.stream,org.jvnet.fastinfoset,org.jvnet
+ .fastinfoset.stax";version="1.2.15",com.sun.xml.fastinfoset.stax.events
+ ;uses:="javax.xml.namespace,javax.xml.stream,javax.xml.stream.events,ja
+ vax.xml.stream.util";version="1.2.15",com.sun.xml.fastinfoset.stax.util
+ ;uses:="javax.xml.namespace,javax.xml.stream";version="1.2.15",com.sun.
+ xml.fastinfoset.algorithm;uses:="org.jvnet.fastinfoset";version="1.2.15
+ ",com.sun.xml.fastinfoset.tools;uses:="com.sun.xml.fastinfoset.util,com
+ .sun.xml.fastinfoset.vocab,javax.xml.stream,org.jvnet.fastinfoset,org.x
+ ml.sax,org.xml.sax.ext,org.xml.sax.helpers";version="1.2.15",com.sun.xm
+ l.fastinfoset.alphabet;version="1.2.15",com.sun.xml.fastinfoset.sax;use
+ s:="com.sun.xml.fastinfoset,com.sun.xml.fastinfoset.algorithm,com.sun.x
+ ml.fastinfoset.util,org.jvnet.fastinfoset,org.jvnet.fastinfoset.sax,org
+ .xml.sax,org.xml.sax.ext";version="1.2.15",com.sun.xml.fastinfoset.org.
+ apache.xerces.util;version="1.2.15",com.sun.xml.fastinfoset.util;uses:=
+ "com.sun.xml.fastinfoset,javax.xml.namespace,org.jvnet.fastinfoset";ver
+ sion="1.2.15",org.jvnet.fastinfoset;uses:="javax.xml.transform.sax,org.
+ xml.sax,org.xml.sax.ext";version="1.2.15",org.jvnet.fastinfoset.stax;us
+ es:="javax.xml.stream";version="1.2.15",org.jvnet.fastinfoset.sax;uses:
+ ="org.jvnet.fastinfoset,org.xml.sax,org.xml.sax.ext";version="1.2.15",o
+ rg.jvnet.fastinfoset.sax.helpers;uses:="org.jvnet.fastinfoset.sax,org.x
+ ml.sax,org.xml.sax.ext,org.xml.sax.helpers";version="1.2.15"
+Import-Package: com.sun.xml.fastinfoset,com.sun.xml.fastinfoset.algorith
+ m,com.sun.xml.fastinfoset.alphabet,com.sun.xml.fastinfoset.dom,com.sun.
+ xml.fastinfoset.org.apache.xerces.util,com.sun.xml.fastinfoset.sax,com.
+ sun.xml.fastinfoset.stax,com.sun.xml.fastinfoset.stax.events,com.sun.xm
+ l.fastinfoset.stax.util,com.sun.xml.fastinfoset.tools,com.sun.xml.fasti
+ nfoset.util,com.sun.xml.fastinfoset.vocab,javax.xml.namespace,javax.xml
+ .parsers,javax.xml.stream,javax.xml.stream.events,javax.xml.stream.util
+ ,javax.xml.transform,javax.xml.transform.dom,javax.xml.transform.sax,ja
+ vax.xml.transform.stream,org.jvnet.fastinfoset,org.jvnet.fastinfoset.sa
+ x,org.jvnet.fastinfoset.stax,org.w3c.dom,org.xml.sax,org.xml.sax.ext,or
+ g.xml.sax.helpers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=9.0))"
+Tool: Bnd-3.5.0.201709291849
+

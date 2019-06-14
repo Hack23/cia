@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: build
+Build-Jdk: 9.0.4
+Implementation-Title: Extended StAX API
+Implementation-Version: 1.8
+Implementation-Vendor-Id: org.jvnet.staxex
+Implementation-URL: http://stax-ex.java.net/
+Implementation-Build-Id: ${scmBranch}-${buildNumber}, ${timestamp}
+Bnd-LastModified: 1524563042303
+Bundle-Description: Extensions to JSR-173 StAX API.
+Bundle-License: https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+Bundle-ManifestVersion: 2
+Bundle-Name: Extended StAX API
+Bundle-SymbolicName: org.jvnet.staxex.stax-ex
+Bundle-Version: 1.8.0
+Export-Package: org.jvnet.staxex;version="1.8.0";uses:="javax.activation
+ ,javax.xml.namespace,javax.xml.stream",org.jvnet.staxex.util;version="1
+ .8.0";uses:="javax.xml.bind.attachment,javax.xml.namespace,javax.xml.st
+ ream,org.w3c.dom"
+Import-Package: javax.activation,javax.xml.bind.attachment,javax.xml.nam
+ espace,javax.xml.stream,org.jvnet.staxex;version="[1.8,2)",org.w3c.dom
+Originally-Created-By: Apache Maven Bundle Plugin
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=9.0))"
+Tool: Bnd-3.5.0.201709291849
+

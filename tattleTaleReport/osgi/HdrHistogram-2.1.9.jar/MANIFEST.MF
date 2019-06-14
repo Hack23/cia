@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1463581566775
+Build-Jdk: 1.8.0_45
+Built-By: gil
+Bundle-Description: HdrHistogram supports the recording and analyzing sa
+ mpled data value        counts across a configurable integer value rang
+ e with configurable value        precision within the range. Value prec
+ ision is expressed as the number of        significant digits in the va
+ lue recording, and provides control over value        quantization beha
+ vior across the value range and the subsequent value        resolution 
+ at any given level.
+Bundle-License: http://creativecommons.org/publicdomain/zero/1.0/
+Bundle-ManifestVersion: 2
+Bundle-Name: HdrHistogram
+Bundle-SymbolicName: org.hdrhistogram.HdrHistogram
+Bundle-Version: 2.1.9
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.HdrHistogram;version="2.1.9"
+Implementation-Title: HdrHistogram
+Implementation-Vendor-Id: org.hdrhistogram
+Implementation-Version: 2.1.9
+Import-Package: javax.xml.bind
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Specification-Title: HdrHistogram
+Specification-Version: 2.1.9
+Tool: Bnd-2.3.0.201405100607
+

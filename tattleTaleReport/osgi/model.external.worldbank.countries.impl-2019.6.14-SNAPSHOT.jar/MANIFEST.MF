@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.worldbank.countries
+ .impl
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.worldbank.countries
+ .impl
+Bundle-Description: model.external.worldbank.countries.impl-2019.6.14-
+ SNAPSHOT
+Bundle-Name: model.external.worldbank.countries.impl-2019.6.14-SNAPSHO
+ T
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.worldbank.countries.impl
+ ;uses:="com.hack23.cia.model.common.api,org.apache.commons.lang3.buil
+ der"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
+ ang,java.math,java.util,javax.persistence;version="2.2",javax.persist
+ ence.metamodel;version="2.2",javax.xml.bind.annotation;version="2.4.0
+ ",javax.xml.bind.annotation.adapters;version="2.4.0",org.apache.commo
+ ns.lang3.builder;version="3.9"

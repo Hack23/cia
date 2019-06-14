@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: gil
+Created-By: Apache Maven 3.2.3
+Build-Jdk: 1.8.0_45
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.LatencyUtils
+Bundle-Description: LatencyUtils-2.0.3
+Bundle-Name: LatencyUtils-2.0.3
+Bundle-Version: 0.0.0
+Export-Package: org.LatencyUtils;uses:="org.HdrHistogram"
+Import-Package: java.io,java.lang,java.lang.ref,java.util,java.util.co
+ ncurrent,java.util.concurrent.atomic,org.HdrHistogram;version="2.1.9"

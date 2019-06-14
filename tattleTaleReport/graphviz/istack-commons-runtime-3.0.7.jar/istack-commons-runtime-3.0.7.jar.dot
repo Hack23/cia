@@ -1,0 +1,5 @@
+digraph istack_commons_runtime_3_0_7_dependencies {
+  node [shape = box, fontsize=10.0];
+  istack_commons_runtime_3_0_7 -> activation_1_1;
+  istack_commons_runtime_3_0_7 -> xml_apis_1_4_01;
+}

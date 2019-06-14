@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_121-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: memory
+Specification-Version: 8.1.1
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.1.1 fcbe46c28cef11bc058779afba09521de1b19bef -
+  ab - 2019-05-22 15:16:16
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.index.memory
+Bundle-Description: lucene-memory-8.1.1
+Bundle-Name: lucene-memory-8.1.1
+Bundle-Version: 8.1.1
+Export-Package: org.apache.lucene.index.memory;uses:="java.lang.invoke
+ ,java.util,java.util.function,java.util.stream,org.apache.lucene.anal
+ ysis,org.apache.lucene.analysis.tokenattributes,org.apache.lucene.doc
+ ument,org.apache.lucene.index,org.apache.lucene.search,org.apache.luc
+ ene.search.similarities,org.apache.lucene.util"
+Import-Package: java.io,java.lang,java.lang.invoke,java.util,java.util
+ .function,java.util.stream,org.apache.lucene.analysis;version="8.1.1"
+ ,org.apache.lucene.analysis.tokenattributes;version="8.1.1",org.apach
+ e.lucene.document;version="8.1.1",org.apache.lucene.index;version="8.
+ 1.1",org.apache.lucene.search;version="8.1.1",org.apache.lucene.searc
+ h.similarities;version="8.1.1",org.apache.lucene.util;version="8.1.1"

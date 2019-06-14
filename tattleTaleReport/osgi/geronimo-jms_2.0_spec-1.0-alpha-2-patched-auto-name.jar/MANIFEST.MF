@@ -8,8 +8,8 @@ Implementation-Version: 1.0-alpha-2
 Built-By: rmannibucau
 Bnd-LastModified: 1423762507840
 Bundle-ManifestVersion: 2
-Bundle-DocURL: http://geronimo.apache.org/maven/specs/geronimo-jms_2.0
- _spec/1.0-alpha-2
+Bundle-DocURL: http://geronimo.apache.org/maven/specs/geronimo-jms_2.0_s
+ pec/1.0-alpha-2
 Bundle-Vendor: The Apache Software Foundation
 Import-Package: javax.transaction.xa
 Tool: Bnd-1.50.0

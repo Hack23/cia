@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: build
+Build-Jdk: 9.0.4
+Implementation-Build-Id: 3.0.7-c8b5e20894f565780625d6f9b018ef7c458cd688,
+  2018-08-29T05:23:37-0700
+Bnd-LastModified: 1535545434210
+Bundle-Description: istack common utility code
+Bundle-DocURL: http://www.oracle.com/
+Bundle-License: https://glassfish.java.net/public/CDDL+GPL_1_1.html, htt
+ ps://glassfish.java.net/public/CDDL+GPL_1_1.html
+Bundle-ManifestVersion: 2
+Bundle-Name: istack common utility code runtime
+Bundle-SymbolicName: com.sun.istack.commons-runtime
+Bundle-Vendor: Oracle Corporation
+Bundle-Version: 3.0.7
+Export-Package: com.sun.istack;version="3.0.7";uses:="javax.activation,j
+ avax.xml.stream,org.xml.sax,org.xml.sax.helpers",com.sun.istack.localiz
+ ation;version="3.0.7",com.sun.istack.logging;version="3.0.7"
+Implementation-Title: istack common utility code runtime
+Implementation-Vendor: Oracle Corporation
+Implementation-Vendor-Id: com.sun.istack
+Implementation-Version: 3.0.7
+Import-Package: javax.activation,javax.xml.namespace,javax.xml.stream,or
+ g.xml.sax,org.xml.sax.helpers
+Originally-Created-By: Apache Maven Bundle Plugin
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-3.2.0.201605172007
+

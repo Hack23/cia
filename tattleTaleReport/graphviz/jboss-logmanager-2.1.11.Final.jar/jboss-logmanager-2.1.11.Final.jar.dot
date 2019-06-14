@@ -1,0 +1,6 @@
+digraph jboss_logmanager_2_1_11_Final_dependencies {
+  node [shape = box, fontsize=10.0];
+  jboss_logmanager_2_1_11_Final -> geronimo_json_1_0_spec_1_0_alpha_1;
+  jboss_logmanager_2_1_11_Final -> wildfly_common_1_5_1_Final;
+  jboss_logmanager_2_1_11_Final -> xml_apis_1_4_01;
+}

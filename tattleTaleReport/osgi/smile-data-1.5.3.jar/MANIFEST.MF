@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Implementation-Title: smile-data
+Implementation-Version: 1.5.3
+Specification-Vendor: Haifeng Li
+Specification-Title: smile-data
+Implementation-Vendor-Id: com.github.haifengl
+Specification-Version: 1.5.3
+Implementation-Vendor: Haifeng Li
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: smile.data
+Bundle-Description: smile-data-1.5.3
+Bundle-Name: smile-data-1.5.3
+Bundle-Version: 1.5.3
+Export-Package: smile.data;uses:="java.lang.invoke,java.util.function,
+ java.util.stream,smile.math,smile.math.matrix",smile.data.parser;uses
+ :="smile.data,smile.math,smile.math.matrix",smile.data.parser.microar
+ ray;uses:="smile.data"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.net,java.nio.charset,java.sql,java.text,java.util,java.util.funct
+ ion,java.util.stream,org.slf4j;version="0.0.0",smile.math;version="1.
+ 5.3",smile.math.matrix;version="1.5.3"

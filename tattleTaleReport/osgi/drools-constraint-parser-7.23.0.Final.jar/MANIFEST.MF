@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.drools.constraint-parser
+Bnd-LastModified: 1560157779348
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Parsing of constraints in LHS
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: drools-constraint-parser
+Bundle-SymbolicName: org.drools.constraint-parser
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.23.0.201906100857
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.drools.constraint.parser;version="7.23.0",org.drools
+ .constraint.parser.ast.expr;version="7.23.0",org.drools.constraint.pars
+ er.ast.visitor;version="7.23.0",org.drools.constraint.parser.printer;ve
+ rsion="7.23.0",org.drools.constraint.parser.utils;version="7.23.0"
+Implementation-Title: drools-constraint-parser
+Implementation-URL: http://www.kiegroup.org/drools/drools-model/drools-c
+ onstraint-parser
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.drools
+Implementation-Version: 7.23.0.Final
+Import-Package: com.github.javaparser,com.github.javaparser.ast,com.gith
+ ub.javaparser.ast.body,com.github.javaparser.ast.comments,com.github.ja
+ vaparser.ast.expr,com.github.javaparser.ast.nodeTypes,com.github.javapa
+ rser.ast.observer,com.github.javaparser.ast.stmt,com.github.javaparser.
+ ast.type,com.github.javaparser.ast.visitor,com.github.javaparser.metamo
+ del,com.github.javaparser.printer,com.github.javaparser.resolution,com.
+ github.javaparser.resolution.declarations,com.github.javaparser.utils,o
+ rg.drools.constraint.parser.ast.expr,org.drools.constraint.parser.ast.v
+ isitor,org.drools.constraint.parser.printer
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: org.drools.constraint.parser,org.drools.constraint.pars
+ er.ast.visitor,org.drools.constraint.parser.ast.expr,org.drools.constra
+ int.parser.printer,org.drools.constraint.parser.utils
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-mo
+ del/drools-constraint-parser
+Scm-Revision: 055f75ab4a9b785e523dc29b08cc11aa63893714
+Scm-Url: https://github.com/kiegroup/drools/drools-model/drools-constrai
+ nt-parser
+Specification-Title: drools-constraint-parser
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.23.0.Final
+Tool: Bnd-3.5.0.201709291849
+

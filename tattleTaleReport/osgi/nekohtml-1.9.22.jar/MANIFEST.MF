@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.8.4
-Built-By: Andy Clark, Marc Guillemot
 Created-By: 1.7.0_65-b17 (Oracle Corporation)
+Built-By: Andy Clark, Marc Guillemot
 
 Name: org/cyberneko/html/
-Implementation-Title: CyberNeko HTML Parser
-Implementation-Version: 1.9.22
-Specification-Vendor: World Wide Web Consortium (W3C)
 Specification-Title: Hyper-Text Markup Language (HTML)
 Specification-Version: 4.01
-Implementation-URL: http://nekohtml.sourceforge.net/index.html
+Specification-Vendor: World Wide Web Consortium (W3C)
+Implementation-Title: CyberNeko HTML Parser
+Implementation-Version: 1.9.22
 Implementation-Vendor: Andy Clark, Marc Guillemot
+Implementation-URL: http://nekohtml.sourceforge.net/index.html
 
 
 ### OSGi information
@@ -22,9 +22,7 @@ Bundle-Version: 4.01
 Export-Package: org.cyberneko.html,org.cyberneko.html.filters,org.cybe
  rneko.html.parsers,org.cyberneko.html.xercesbridge
 Import-Package: java.io,java.lang,java.lang.reflect,java.net,java.secu
- rity,java.text,java.util,org.apache.xerces.impl;version="2.12.0.SP02-
- redhat-00001",org.apache.xerces.parsers;version="2.12.0.SP02-redhat-0
- 0001",org.apache.xerces.util;version="2.12.0.SP02-redhat-00001",org.a
- pache.xerces.xni;version="2.12.0.SP02-redhat-00001",org.apache.xerces
- .xni.parser;version="2.12.0.SP02-redhat-00001",org.w3c.dom;version="1
- .0",org.xml.sax;version="1.0"
+ rity,java.text,java.util,org.apache.xerces.impl;version="1.0",org.apa
+ che.xerces.parsers;version="1.0",org.apache.xerces.util;version="1.0"
+ ,org.apache.xerces.xni;version="1.0",org.apache.xerces.xni.parser;ver
+ sion="1.0",org.w3c.dom;version="1.0",org.xml.sax;version="1.0"

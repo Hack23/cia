@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-Description: Sonatype helps open source projects to set up Maven 
+ repositories on https://oss.sonatype.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: javax.cache.api
+Built-By: gluck
+Bnd-LastModified: 1557468436762
+Bundle-ManifestVersion: 2
+Import-Package: javax.enterprise.util;resolution:=optional,javax.managem
+ ent
+Tool: Bnd-1.50.0
+Export-Package: javax.cache;uses:="javax.cache.integration,javax.cache.c
+ onfiguration,javax.cache.processor,javax.cache.spi";version="1.1.1",jav
+ ax.cache.annotation;uses:="javax.enterprise.util,javax.cache";version="
+ 1.1.1",javax.cache.configuration;uses:="javax.cache.event,javax.cache.i
+ ntegration,javax.cache.expiry";version="1.1.1",javax.cache.event;uses:=
+ "javax.cache";version="1.1.1",javax.cache.expiry;uses:="javax.cache.con
+ figuration";version="1.1.1",javax.cache.integration;uses:="javax.cache"
+ ;version="1.1.1",javax.cache.management;uses:="javax.management";versio
+ n="1.1.1",javax.cache.processor;uses:="javax.cache";version="1.1.1",jav
+ ax.cache.spi;uses:="javax.cache.configuration,javax.cache";version="1.1
+ .1"
+Bundle-Name: JSR107 API and SPI
+Bundle-Version: 1.1.1
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_45
+

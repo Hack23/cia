@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: chtompki
+Build-Jdk: 11.0.2
+Specification-Title: Apache Commons Lang
+Specification-Version: 3.9
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Apache Commons Lang
+Implementation-Version: 3.9
+Implementation-Vendor-Id: org.apache.commons
+Implementation-Vendor: The Apache Software Foundation
+Implementation-URL: http://commons.apache.org/proper/commons-lang/
+Automatic-Module-Name: org.apache.commons.lang3
+Bnd-LastModified: 1554946229157
+Bundle-Description: Apache Commons Lang, a package of Java utility class
+ es for the  classes that are in java.lang's hierarchy, or are considere
+ d to be so  standard as to justify existence in java.lang.
+Bundle-DocURL: http://commons.apache.org/proper/commons-lang/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Commons Lang
+Bundle-SymbolicName: org.apache.commons.lang3
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 3.9.0
+Export-Package: org.apache.commons.lang3;version="3.9",org.apache.common
+ s.lang3.arch;version="3.9",org.apache.commons.lang3.builder;version="3.
+ 9",org.apache.commons.lang3.concurrent;version="3.9",org.apache.commons
+ .lang3.event;version="3.9",org.apache.commons.lang3.exception;version="
+ 3.9",org.apache.commons.lang3.math;version="3.9",org.apache.commons.lan
+ g3.mutable;version="3.9",org.apache.commons.lang3.reflect;version="3.9"
+ ,org.apache.commons.lang3.text;version="3.9",org.apache.commons.lang3.t
+ ext.translate;version="3.9",org.apache.commons.lang3.time;version="3.9"
+ ,org.apache.commons.lang3.tuple;version="3.9"
+Include-Resource: META-INF/NOTICE.txt=NOTICE.txt,META-INF/LICENSE.txt=LI
+ CENSE.txt
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.1.0.201810181252
+

@@ -1,0 +1,4 @@
+digraph stax_ex_1_8_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jvnet_staxex_util -> org_jvnet_staxex;
+}

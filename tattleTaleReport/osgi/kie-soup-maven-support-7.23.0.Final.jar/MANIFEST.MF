@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1560154933196
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: The parent contains all metadata (including plugins)
+  and also dependency versions. All KIE Soup modules    (except for user
+  BOMs like 'kie-soup-bom') should (transitively) inherit from this POM.
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Maven-support
+Bundle-SymbolicName: org.kie.soup.kie-soup-maven-support
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.23.0.osgisnapshotqualifier
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.appformer.maven.support;version="7.23.0.osgisnapshot
+ qualifier"
+Implementation-Title: Maven-support
+Implementation-URL: http://www.jboss.org/jboss-integration-platform-bom/
+ kie-soup-parent/kie-soup-maven-utils/kie-soup-maven-support
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie.soup
+Implementation-Version: 7.23.0.Final
+Import-Package: javax.xml.parsers,org.slf4j,org.xml.sax,org.xml.sax.help
+ ers
+Include-Resource: META-INF/ErraiApp.properties=src/main/resources/META-I
+ NF/ErraiApp.properties,org/appformer/maven/support/AFMavenSupportAPI.gw
+ t.xml=src/main/resources/org/appformer/maven/support/AFMavenSupportAPI.
+ gwt.xml
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: org.appformer.maven.support
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-ma
+ ven-utils/kie-soup-maven-support
+Scm-Revision: c3a6043651978986c16355e4b2a7380872e02cf6
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-maven-utils/kie-s
+ oup-maven-support
+Specification-Title: Maven-support
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.23.0.Final
+Tool: Bnd-3.5.0.201709291849
+

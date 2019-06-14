@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure>
+  <deployment>
+     <dependencies>
+        <module name="javax.servlet.api"/>
+        <module name="javax.transaction.api"/>
+        <module name="javax.xml.bind.api"/>
+        <module name="org.jboss.logging"/>
+        <module name="org.slf4j"/>
+        <module name="system"/>
+     </dependencies>
+  </deployment>
+</jboss-deployment-structure>

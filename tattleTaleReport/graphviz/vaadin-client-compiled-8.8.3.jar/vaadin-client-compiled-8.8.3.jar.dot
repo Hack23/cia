@@ -1,0 +1,4 @@
+digraph vaadin_client_compiled_8_8_3_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_client_compiled_8_8_3 -> vaadin_shared_8_8_3;
+}
