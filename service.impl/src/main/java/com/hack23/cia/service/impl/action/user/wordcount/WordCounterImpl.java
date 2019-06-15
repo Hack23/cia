@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.action.user.wordcount;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -27,8 +28,9 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 
-import smile.feature.Bag;
-import smile.nlp.normalizer.SimpleNormalizer;
+import smile.nlp.SimpleCorpus;
+import smile.nlp.dictionary.EnglishPunctuations;
+import smile.nlp.tokenizer.SimpleSentenceSplitter;
 import smile.nlp.tokenizer.SimpleTokenizer;
 
 /**
@@ -37,13 +39,8 @@ import smile.nlp.tokenizer.SimpleTokenizer;
 @Service
 final class WordCounterImpl implements WordCounter {
 
-	/** The Constant TOKEN_DELIMITERS. */
-	private static final String TOKEN_DELIMITERS = " \r\n\t.,;:'\"()?!'";
-	
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WordCounterImpl.class);
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(WordCounterImpl.class);
 
 	/**
 	 * Instantiates a new word counter impl.
@@ -52,33 +49,22 @@ final class WordCounterImpl implements WordCounter {
 		super();
 	}
 
-
 	public Map<String, Integer> calculateWordCount(final DocumentContentData documentContentData, final int maxResult) {
 
 		final String html = documentContentData.getContent();
 
-		String normalized = SimpleNormalizer.getInstance().normalize(html);
-				
-	    SimpleTokenizer instance = new SimpleTokenizer(true);
-        String[] tokens = instance.split(normalized);
-        
-        Bag<String> bag = new Bag<>(tokens);
-		final Map<String,Integer> result = new HashMap<>();
+		SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
+				new SwedishStopWords(), EnglishPunctuations.getInstance());
 
-		try {
-			
-			double[][] x = new double[tokens.length][];
-			
-			 for (int i = 0; i < tokens.length; i++) {
-		            double[] feature = bag.feature(tokens);
-		            result.put(tokens[i],(int) feature[i]);
-		        }
-			
-		} catch (final Exception e) {
-			LOGGER.warn("Problem calculating wordcount for : {} , exception:{}",documentContentData.getId() ,e);
+		simpleCorpus.add(documentContentData.getId(), documentContentData.getId(), html);
+
+		Iterator<String> terms = simpleCorpus.getTerms();
+
+		final Map<String, Integer> result = new HashMap<>();
+		while (terms.hasNext()) {
+			String term = terms.next();
+			result.put(term, simpleCorpus.getTermFrequency(term));
 		}
-
-
 		return result;
 	}
 
