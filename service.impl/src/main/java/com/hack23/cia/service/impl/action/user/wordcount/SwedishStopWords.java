@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -52,7 +53,7 @@ public class SwedishStopWords implements StopWords {
 
 		try {
 			URL url = new URL("https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv");
-			try (BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream()))) {
+			try (BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8))) {
 				String line = null;
 				while ((line = input.readLine()) != null) {
 					line = line.trim();

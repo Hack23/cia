@@ -1863,15 +1863,15 @@
               <source>${javadoc.src.version}</source>
               <release>${javadoc.target.version}</release>
               <sourcepath>src/main/java</sourcepath>
-             <excludes>${jdk.src.exclude}</excludes>
+              <excludes>${jdk.src.exclude}</excludes>
               <sourceFileExcludes>
                 <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
               </sourceFileExcludes>
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
-              <linksource>false</linksource>               
+              <linksource>false</linksource>
               <includeDependencySources>true</includeDependencySources>
-               <dependencySourceIncludes>
+              <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
               </dependencySourceIncludes>
               <dependencySourceExcludes>
