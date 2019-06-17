@@ -1852,8 +1852,23 @@ Resources:
                   - secretsmanager:DescribeSecret
                   - secretsmanager:GetSecretValue
                 Resource: !Ref 'RDSInstanceRotationSecret'
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+        - PolicyName: limitedssm
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ssm:PutInventory
+                  - ssm:PutComplianceItems
+                  - ssm:PutConfigurePackageResult
+                  - ssm:UpdateAssociationStatus
+                  - ssm:UpdateInstanceAssociationStatus
+                  - ssm:UpdateInstanceInformation
+                  - ssmmessages:*
+                  - ssm:UpdateInstanceInformation
+                  - ec2messages:*
+                  - ssm:GetDocument
+                Resource: '*'
       RoleName: EC2SSMRole
   WebServerLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration

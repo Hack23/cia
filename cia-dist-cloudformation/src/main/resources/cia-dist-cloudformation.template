@@ -3172,10 +3172,32 @@
                                 }
                             ]
                         }
+                    },
+
+                    {
+                        "PolicyName": "limitedssm", 
+                        "PolicyDocument": {
+                            "Version": "2012-10-17", 
+                            "Statement": [                    
+                    {
+					  "Effect": "Allow",
+					  "Action": [
+					    "ssm:PutInventory",
+					    "ssm:PutComplianceItems",
+					    "ssm:PutConfigurePackageResult",
+					    "ssm:UpdateAssociationStatus",
+					    "ssm:UpdateInstanceAssociationStatus",
+					    "ssm:UpdateInstanceInformation",
+					    "ssmmessages:*",
+					    "ec2messages:*",					    
+					    "ssm:GetDocument"
+					  ],
+					  "Resource": "*"
+					}
+					
+                    ]
+                        }
                     }
-                ], 
-                "ManagedPolicyArns": [
-                    "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
                 ], 
                 "RoleName": "EC2SSMRole"
             }
