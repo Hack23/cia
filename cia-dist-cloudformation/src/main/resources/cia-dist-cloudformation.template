@@ -3173,29 +3173,76 @@
                             ]
                         }
                     },
-
-                    {
+                   {
                         "PolicyName": "limitedssm", 
                         "PolicyDocument": {
                             "Version": "2012-10-17", 
-                            "Statement": [                    
+                            "Statement": [
+                                {
+                                    "Effect": "Allow", 
+                                    "Action": [
+                                        "ssm:PutInventory", 
+                                        "ssm:PutComplianceItems", 
+                                        "ssm:PutConfigurePackageResult", 
+                                        "ssm:UpdateAssociationStatus", 
+                                        "ssm:UpdateInstanceAssociationStatus", 
+                                        "ssm:UpdateInstanceInformation", 
+                                        "ssmmessages:*", 
+                                        "ec2messages:*",
+                                        "logs:CreateLogGroup",
+                                        "logs:CreateLogStream",
+                                        "logs:DescribeLogGroups",
+                                        "logs:DescribeLogStreams",
+                                        "logs:PutLogEvents"                                       
+                                    ], 
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }, 
                     {
-					  "Effect": "Allow",
-					  "Action": [
-					    "ssm:PutInventory",
-					    "ssm:PutComplianceItems",
-					    "ssm:PutConfigurePackageResult",
-					    "ssm:UpdateAssociationStatus",
-					    "ssm:UpdateInstanceAssociationStatus",
-					    "ssm:UpdateInstanceInformation",
-					    "ssmmessages:*",
-					    "ec2messages:*",					    
-					    "ssm:GetDocument"
-					  ],
-					  "Resource": "*"
-					}
-					
-                    ]
+                        "PolicyName": "allowgathersoftware", 
+                        "PolicyDocument": {
+                            "Version": "2012-10-17", 
+                            "Statement": [
+                                {
+                                    "Effect": "Allow", 
+                                    "Action": "ssm:GetDocument", 
+                                    "Resource": {
+                                        "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-GatherSoftwareInventory"
+                                    }
+                                }
+                            ]
+                        }
+                    }, 
+                    {
+                        "PolicyName": "allowrunpatchline", 
+                        "PolicyDocument": {
+                            "Version": "2012-10-17", 
+                            "Statement": [
+                                {
+                                    "Effect": "Allow", 
+                                    "Action": "ssm:GetDocument", 
+                                    "Resource": {
+                                        "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-RunPatchBaseline"
+                                    }
+                                }
+                            ]
+                        }
+                    }, 
+                    {
+                        "PolicyName": "allowupdatessmagent", 
+                        "PolicyDocument": {
+                            "Version": "2012-10-17", 
+                            "Statement": [
+                                {
+                                    "Effect": "Allow", 
+                                    "Action": "ssm:GetDocument", 
+                                    "Resource": {
+                                        "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-UpdateSSMAgent"
+                                    }
+                                }
+                            ]
                         }
                     }
                 ], 
