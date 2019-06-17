@@ -1867,8 +1867,44 @@ Resources:
                   - ssmmessages:*
                   - ssm:UpdateInstanceInformation
                   - ec2messages:*
-                  - ssm:GetDocument
                 Resource: '*'
+        - PolicyName: limitedssm
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ssm:PutInventory
+                  - ssm:PutComplianceItems
+                  - ssm:PutConfigurePackageResult
+                  - ssm:UpdateAssociationStatus
+                  - ssm:UpdateInstanceAssociationStatus
+                  - ssm:UpdateInstanceInformation
+                  - ssmmessages:*
+                  - ssm:UpdateInstanceInformation
+                  - ec2messages:*
+                Resource: '*'          
+        - PolicyName: allowgathersoftware
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'ssm:GetDocument'
+                Resource: !Sub 'arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-GatherSoftwareInventory'
+        - PolicyName: allowrunpatchline
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'ssm:GetDocument'
+                Resource: !Sub 'arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-RunPatchBaseline'
+        - PolicyName: allowupdatessmagent
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'ssm:GetDocument'
+                Resource: !Sub 'arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-UpdateSSMAgent'
       RoleName: EC2SSMRole
   WebServerLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
