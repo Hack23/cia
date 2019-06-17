@@ -1878,6 +1878,13 @@ Resources:
                   - ssm:StartAutomationExecution
                   - ssm:UpdateMaintenanceWindowTarget
                   - ssm:UpdateMaintenanceWindowTask
+                  - cloudwatch:DescribeAlarmHistory
+                  - cloudwatch:DescribeAlarms
+                  - cloudwatch:GetMetricData
+                  - cloudwatch:GetMetricStatistics
+                  - cloudwatch:ListMetrics
+                  - cloudwatch:PutMetricAlarm
+                  - cloudwatch:PutMetricData
                 Resource: '*'
         - PolicyName: allowgathersoftware
           PolicyDocument:
