@@ -44,6 +44,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
@@ -77,7 +78,7 @@ public class DocumentContentData
     
     /** The content. */
     @XmlElement(required = true)
-    @GenericField
+    @FullTextField(analyzer="se")
     protected String content;
     
     /** The hjid. */
