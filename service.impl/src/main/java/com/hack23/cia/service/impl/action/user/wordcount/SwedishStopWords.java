@@ -35,32 +35,24 @@ import smile.nlp.dictionary.StopWords;
 /**
  * The Class SwedishStopWords.
  */
-public class SwedishStopWords implements StopWords {
+public final class SwedishStopWords implements StopWords {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(WordCounterImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SwedishStopWords.class);
 
 	/**
 	 * A set of stop words.
 	 */
-	private HashSet<String> dict;
+	private final HashSet<String> dict = new HashSet<>();
 
 	/**
-	 * Constructor.
+	 * Instantiates a new swedish stop words.
 	 */
 	public SwedishStopWords() {
-		dict = new HashSet<>();
-
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv");
+			final URL url = new URL("https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv");
 			try (BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8))) {
-				String line = null;
-				while ((line = input.readLine()) != null) {
-					line = line.trim();
-					if (!line.isEmpty()) {
-						dict.add(line);
-					}
-				}
+				addWords(input);
 			} catch (IOException ex) {
 				LOGGER.warn("",ex);
 			}
@@ -71,13 +63,29 @@ public class SwedishStopWords implements StopWords {
 	}
 
 	/**
+	 * Adds the words.
+	 *
+	 * @param input the input
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	private void addWords(final BufferedReader input) throws IOException {
+		String line = null;
+		while ((line = input.readLine()) != null) {
+			line = line.trim();
+			if (!line.isEmpty()) {
+				dict.add(line);
+			}
+		}
+	}
+
+	/**
 	 * Contains.
 	 *
 	 * @param word the word
 	 * @return true, if successful
 	 */
 	@Override
-	public boolean contains(String word) {
+	public boolean contains(final String word) {
 		return dict.contains(word);
 	}
 

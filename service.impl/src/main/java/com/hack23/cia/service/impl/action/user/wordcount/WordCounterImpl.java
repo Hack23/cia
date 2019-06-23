@@ -24,8 +24,6 @@ import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
@@ -41,9 +39,6 @@ import smile.nlp.tokenizer.SimpleTokenizer;
 @Service
 final class WordCounterImpl implements WordCounter {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(WordCounterImpl.class);
-
 	/**
 	 * Instantiates a new word counter impl.
 	 */
@@ -55,16 +50,16 @@ final class WordCounterImpl implements WordCounter {
 
 		final String html = documentContentData.getContent();
 		
-		SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
+		final SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
 				new SwedishStopWords(), EnglishPunctuations.getInstance());
 
 		simpleCorpus.add(documentContentData.getId(), documentContentData.getId(), Jsoup.clean(html, Whitelist.basic()));
 
-		Iterator<String> terms = simpleCorpus.getTerms();
+		final Iterator<String> terms = simpleCorpus.getTerms();
 
 		final Map<String, Integer> result = new HashMap<>();
 		while (terms.hasNext()) {
-			String term = terms.next();
+			final String term = terms.next();
 			result.put(term, simpleCorpus.getTermFrequency(term));
 		}
 		return result;
