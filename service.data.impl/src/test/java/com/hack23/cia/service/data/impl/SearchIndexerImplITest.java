@@ -31,7 +31,6 @@ import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateTerminalC
 import org.hibernate.search.engine.search.dsl.query.SearchQueryContext;
 import org.hibernate.search.engine.search.dsl.query.SearchQueryResultDefinitionContext;
 import org.hibernate.search.mapper.orm.Search;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,7 +63,6 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 */
 	@Test
 	@Transactional(timeout=900)
-	//@Ignore
 	public void testCreateSearchIndex() throws Exception {
 		FileUtils.deleteDirectory(new File(databaseSearchIndexLocation));
 		searchIndexer.updateSearchIndex();
@@ -73,7 +71,6 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 
 	@Test
 	@Transactional(timeout=30)
-	@Ignore
 	public void testSearchIndex() throws Exception {
 		final SearchQueryResultDefinitionContext<?, ?, DocumentContentData, ?, ?> queryResult = Search.getSearchSession(entityManager).search(DocumentContentData.class);
 		final SearchQueryContext<?, DocumentContentData, ?> query = queryResult.asEntity()

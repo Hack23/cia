@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
@@ -39,7 +38,6 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void Test() throws Exception {
 		setAuthenticatedAdminuser();
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
