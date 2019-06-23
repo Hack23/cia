@@ -1864,8 +1864,16 @@ Resources:
                   - ssm:UpdateAssociationStatus
                   - ssm:UpdateInstanceAssociationStatus
                   - ssm:UpdateInstanceInformation
-                  - ssmmessages:*
-                  - ec2messages:*
+                  - ec2messages:AcknowledgeMessage
+                  - ec2messages:DeleteMessage
+                  - ec2messages:FailMessage
+                  - ec2messages:GetEndpoint
+                  - ec2messages:GetMessages
+                  - ec2messages:SendReply
+                  - ssmmessages:CreateControlChannel
+                  - ssmmessages:CreateDataChannel
+                  - ssmmessages:OpenControlChannel
+                  - ssmmessages:OpenDataChannel
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:DescribeLogGroups
