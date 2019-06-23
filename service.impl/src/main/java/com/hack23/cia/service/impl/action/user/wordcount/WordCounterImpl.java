@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -52,11 +54,11 @@ final class WordCounterImpl implements WordCounter {
 	public Map<String, Integer> calculateWordCount(final DocumentContentData documentContentData, final int maxResult) {
 
 		final String html = documentContentData.getContent();
-
+		
 		SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
 				new SwedishStopWords(), EnglishPunctuations.getInstance());
 
-		simpleCorpus.add(documentContentData.getId(), documentContentData.getId(), html);
+		simpleCorpus.add(documentContentData.getId(), documentContentData.getId(), Jsoup.clean(html, Whitelist.basic()));
 
 		Iterator<String> terms = simpleCorpus.getTerms();
 

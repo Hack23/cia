@@ -70,7 +70,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 	private static final String START_PARAGRAPH = "<p>";
 
 	/** The Constant MAX_RESULTS. */
-	private static final int MAX_RESULTS = 30;
+	private static final int MAX_RESULTS = 60;
 
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document Data";
@@ -117,7 +117,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 			final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(), "", Whitelist.simpleText(),
 					new OutputSettings().indentAmount(4));
 
-			final Label htmlContent = new Label(cleanContent, ContentMode.HTML);
+			final Label htmlContent = new Label(cleanContent, ContentMode.PREFORMATTED);
 
 			formContent.addComponent(htmlContent);
 

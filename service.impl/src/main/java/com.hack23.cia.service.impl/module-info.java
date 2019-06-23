@@ -19,7 +19,7 @@ open module com.hack23.cia.service.impl {
 	requires com.google.common;
 	requires smile.core;
 	requires smile.nlp;
-	
+	requires org.jsoup;
 
 	requires googleauth;
 
