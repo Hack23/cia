@@ -82,7 +82,7 @@ public final class SearchDocumentService extends
 		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSearchExpression());
 		final SearchDocumentResponse response = new SearchDocumentResponse(ServiceResult.SUCCESS);
 
-		final List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
+		final List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"title","subTitle");
 		if (!searchResultTitles.isEmpty()) {
 		 response.setResultElement(searchResultTitles);
 		} else {
