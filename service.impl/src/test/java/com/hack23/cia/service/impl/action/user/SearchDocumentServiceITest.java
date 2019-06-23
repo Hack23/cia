@@ -72,7 +72,7 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 		serviceRequest.setMaxResults(10);
-		serviceRequest.setSearchExpression("cannabis");
+		serviceRequest.setSearchExpression("fritids");
 
 		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT,response);

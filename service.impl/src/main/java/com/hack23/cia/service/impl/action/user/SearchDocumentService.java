@@ -86,7 +86,7 @@ public final class SearchDocumentService extends
 		if (!searchResultTitles.isEmpty()) {
 		 response.setResultElement(searchResultTitles);
 		} else {
-			final List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "id","content");
+			final List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "content");
 			if (!searchResultContent.isEmpty()) {
 				final List<DocumentElement> searchResultTitlesForContent = new ArrayList<>();
 
