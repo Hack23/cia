@@ -272,7 +272,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	 * @return the full text entity manager
 	 */
 	protected final SearchSession getFullTextEntityManager() {
-		return Search.getSearchSession(getEntityManager());
+		return Search.session(getEntityManager());
 	}
 	
 	/**
