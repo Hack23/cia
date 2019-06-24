@@ -1,0 +1,39 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+
+        abstract class AbstractActorView [[AbstractActorView.html]] {
+            +AbstractActorView(Map<String, PageModeContentFactory>, String)
+        }
+
+        abstract class AbstractRankingView [[AbstractRankingView.html]] {
+            #AbstractRankingView(Map<String, PageModeContentFactory>, String)
+        }
+
+        abstract class AbstractPersonView [[AbstractPersonView.html]] {
+            +AbstractPersonView(Map<String, PageModeContentFactory>, String)
+        }
+
+        abstract class AbstractGroupView [[AbstractGroupView.html]] {
+            +AbstractGroupView(Map<String, PageModeContentFactory>, String)
+        }
+
+        abstract class AbstractUserView [[AbstractUserView.html]] {
+            #AbstractUserView(Map<String, PageModeContentFactory>, String)
+        }
+
+        AbstractUserView <|-- AbstractActorView
+        AbstractUserView <|-- AbstractRankingView
+        AbstractActorView <|-- AbstractPersonView
+        AbstractActorView <|-- AbstractGroupView
+        com.hack23.cia.web.impl.ui.application.views.common.AbstractView <|-- AbstractUserView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common {
+        abstract class AbstractView [[../../common/AbstractView.html]] {
+            #pageLinkFactory: PageLinkFactory
+            #pageActionEventHelper: PageActionEventHelper
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

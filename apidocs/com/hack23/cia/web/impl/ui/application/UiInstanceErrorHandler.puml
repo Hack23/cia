@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>UiInstanceErrorHandler\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.UiInstanceErrorHandler [[UiInstanceErrorHandler.html]] {
+        +UiInstanceErrorHandler(UI)
+        +error(ErrorEvent): void
+    }
+
+    interface "<size:14>ErrorHandler\n<size:10>com.vaadin.server" as com.vaadin.server.ErrorHandler {
+        {abstract} +error(ErrorEvent): void
+    }
+
+    com.vaadin.server.ErrorHandler <|.. com.hack23.cia.web.impl.ui.application.UiInstanceErrorHandler
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

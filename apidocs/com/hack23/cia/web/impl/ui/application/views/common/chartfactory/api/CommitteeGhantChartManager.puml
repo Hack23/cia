@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>CommitteeGhantChartManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.CommitteeGhantChartManager [[CommitteeGhantChartManager.html]] {
+        {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenCommitteeRoleMember>): void
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

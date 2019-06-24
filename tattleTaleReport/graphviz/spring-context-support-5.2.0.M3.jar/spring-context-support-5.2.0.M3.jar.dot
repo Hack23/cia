@@ -3,7 +3,7 @@ digraph spring_context_support_5_2_0_M3_dependencies {
   spring_context_support_5_2_0_M3 -> activation_1_1;
   spring_context_support_5_2_0_M3 -> cache_api_1_1_1;
   spring_context_support_5_2_0_M3 -> javax_mail_1_6_2;
-  spring_context_support_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_context_support_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
   spring_context_support_5_2_0_M3 -> quartz_2_3_1;
   spring_context_support_5_2_0_M3 -> spring_aop_5_2_0_M3;
   spring_context_support_5_2_0_M3 -> spring_beans_5_2_0_M3;

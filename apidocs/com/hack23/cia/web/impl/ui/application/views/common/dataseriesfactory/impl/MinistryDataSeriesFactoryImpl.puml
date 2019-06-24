@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>MinistryDataSeriesFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl.MinistryDataSeriesFactoryImpl [[MinistryDataSeriesFactoryImpl.html]] {
+        +createMinistryChartTimeSeriesAll(): DataSeries
+        +createMinistryChartTimeSeriesCurrent(): DataSeries
+        +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
+    }
+
+    interface "<size:14>MinistryDataSeriesFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory [[../api/MinistryDataSeriesFactory.html]] {
+        {abstract} +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
+        {abstract} +createMinistryChartTimeSeriesCurrent(): DataSeries
+        {abstract} +createMinistryChartTimeSeriesAll(): DataSeries
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl.MinistryDataSeriesFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api {
+
+        interface GridFactory [[GridFactory.html]] {
+            {abstract} +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+            {abstract} +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        }
+
+        java.io.Serializable <|.. GridFactory
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

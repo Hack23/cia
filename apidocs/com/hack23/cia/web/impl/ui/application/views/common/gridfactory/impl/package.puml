@@ -1,0 +1,34 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl {
+
+        class GridFactoryImpl [[GridFactoryImpl.html]] {
+            +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+            +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        }
+
+        class com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider<T> [[GridFactoryImpl.BeanNestedPropertyValueProvider.html]] {
+            +BeanNestedPropertyValueProvider(String)
+            +apply(T): String
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory <|.. GridFactoryImpl
+        com.vaadin.data.ValueProvider <|.. com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider
+        GridFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api {
+        interface GridFactory [[../api/GridFactory.html]] {
+            {abstract} +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+            {abstract} +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        }
+    }
+
+    namespace com.vaadin.data {
+        interface ValueProvider<SOURCE, TARGET> {
+            {static} +identity(): ValueProvider<T, T>
+            {abstract} +apply(SOURCE): TARGET
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

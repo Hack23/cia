@@ -1,0 +1,14 @@
+digraph aws_java_sdk_core_1_11_578_dependencies {
+  node [shape = box, fontsize=10.0];
+  aws_java_sdk_core_1_11_578 -> httpclient_4_5_9;
+  aws_java_sdk_core_1_11_578 -> httpcore_4_4_11;
+  aws_java_sdk_core_1_11_578 -> ion_java_1_4_0;
+  aws_java_sdk_core_1_11_578 -> jackson_annotations_2_9_0;
+  aws_java_sdk_core_1_11_578 -> jackson_core_2_9_9;
+  aws_java_sdk_core_1_11_578 -> jackson_databind_2_9_9;
+  aws_java_sdk_core_1_11_578 -> jackson_dataformat_cbor_2_9_9;
+  aws_java_sdk_core_1_11_578 -> jaxb_api_2_4_0;
+  aws_java_sdk_core_1_11_578 -> jcl_over_slf4j_2_0_0_alpha0;
+  aws_java_sdk_core_1_11_578 -> joda_time_2_10_2;
+  aws_java_sdk_core_1_11_578 -> xml_apis_1_4_01;
+}

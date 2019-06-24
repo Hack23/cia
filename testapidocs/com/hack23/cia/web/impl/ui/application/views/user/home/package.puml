@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.home {
+
+        class UserHomeView [[UserHomeView.html]] {
+            {static} +NAME: String
+            +UserHomeView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- UserHomeView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractUserView [[../common/AbstractUserView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

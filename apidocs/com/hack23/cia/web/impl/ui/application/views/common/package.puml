@@ -1,0 +1,40 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common {
+
+        abstract class AbstractView [[AbstractView.html]] {
+            #pageActionEventHelper: PageActionEventHelper
+            #AbstractView(Map<String, PageModeContentFactory>, String)
+            +postConstruct(): void
+            +enter(ViewChangeEvent): void
+            #createBasicLayoutWithPanelAndFooter(String): void
+            +getBarmenu(): MenuBar
+            #getPanel(): Panel
+        }
+
+        class MainView [[MainView.html]] {
+            {static} +NAME: String
+            +MainView(ApplicationContext)
+        }
+
+        com.vaadin.ui.Panel <|-- AbstractView
+        com.vaadin.navigator.View <|.. AbstractView
+        AbstractView --> com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory: pageLinkFactory
+        AbstractView <|-- MainView
+    }
+
+    namespace com.vaadin.ui {
+        class Panel {
+            #actionManager: ActionManager
+        }
+    }
+
+    namespace com.vaadin.navigator {
+        interface View {
+            +enter(ViewChangeEvent): void
+            +beforeLeave(ViewBeforeLeaveEvent): void
+            +getViewComponent(): Component
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

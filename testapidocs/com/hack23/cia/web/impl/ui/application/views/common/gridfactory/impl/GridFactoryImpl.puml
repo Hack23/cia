@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>GridFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl [[GridFactoryImpl.html]] {
+        +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+    }
+
+    interface "<size:14>GridFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory [[../api/GridFactory.html]] {
+        {abstract} +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        {abstract} +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+    }
+    class "<size:14>GridFactoryImpl.BeanNestedPropertyValueProvider\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider<T> [[GridFactoryImpl.BeanNestedPropertyValueProvider.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl
+    com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

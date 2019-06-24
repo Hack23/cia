@@ -1,0 +1,165 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.viewnames {
+
+        enum PartyPageMode [[PartyPageMode.html]] {
+            {static} +DOCUMENTHISTORY
+            {static} +CURRENTMEMBERS
+            {static} +MEMBERHISTORY
+            {static} +CURRENTLEADERS
+            {static} +LEADERHISTORY
+            {static} +COMMITTEEROLES
+            {static} +GOVERNMENTROLES
+            {static} +DOCUMENTACTIVITY
+            {static} +COMMITTEEBALLOTDECISIONSUMMARY
+            {static} +VOTEHISTORY
+            {static} +PARTYWONDAILYSUMMARYCHART
+            {static} +ROLEGHANT
+            {static} +PARTYAGAINSTCOALATIONSSUMMARY
+            {static} +PARTYSUPPORTSUMMARY
+        }
+
+        enum UserHomePageMode [[UserHomePageMode.html]] {
+            {static} +SECURITY_SETTINGS
+            {static} +USER_VISITS
+            {static} +USER_EVENTS
+        }
+
+        enum ChartIndicators [[ChartIndicators.html]] {
+            {static} +PARTYWINNER
+            {static} +PARTYGENDER
+            {static} +PARTYAGE
+            {static} +DOCUMENTACTIVITYBYTYPE
+            {static} +DECISIONACTIVITYBYTYPE
+            {static} +ALLMINISTRIESBYHEADCOUNT
+            {static} +CURRENTMINISTRIESBYHEADCOUNT
+            {static} +ALLMINISTRIESPARTYBYTOTALDAYS
+            {static} +CURRENTPARTIESBYHEADCOUNT
+            {static} +ALLCOMMITTEESBYHEADCOUNT
+            {static} +COMMITTEESBYPARTY
+            {static} +CURRENTCOMMITTEESBYHEADCOUNT
+            {static} +CURRENTCOMMITTEESBYPARTYDAYSSERVED
+            {static} +ALLPARTIES
+            {static} +CURRENTCOMMITTEES
+            {static} +CURRENTGOVERMENTPARTIES
+            {static} +CURRENTPARTIES
+            {static} +ALL_GOVERNMENT_ROLE_CHART
+            {static} +DECISION_FLOW_CHART
+        }
+
+        enum RiskIndicators [[RiskIndicators.html]] {
+            {static} +RISK_SUMMARY
+            {static} +RULE_VIOLATIONS
+        }
+
+        enum MinistryPageMode [[MinistryPageMode.html]] {
+            {static} +DOCUMENTHISTORY
+            {static} +DOCUMENTACTIVITY
+            {static} +CURRENTMEMBERS
+            {static} +MEMBERHISTORY
+            {static} +ROLEGHANT
+            {static} +GOVERNMENT_BODIES_HEADCOUNT
+            {static} +GOVERNMENT_BODIES_INCOME
+            {static} +GOVERNMENT_BODIES_EXPENDITURE
+            {static} +GOVERNMENT_OUTCOME
+        }
+
+        enum ApplicationPageMode [[ApplicationPageMode.html]] {
+            {static} +REGISTER
+            {static} +LOGIN
+            {static} +LOGOUT
+        }
+
+        enum DataSummaryPageMode [[DataSummaryPageMode.html]] {
+            {static} +AUTHORS
+        }
+
+        class AdminViews [[AdminViews.html]] {
+            {static} +ADMIN_AGENCY_VIEW_NAME: String
+            {static} +ADMIN_AGENT_OPERATIONVIEW_NAME: String
+            {static} +ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME: String
+            {static} +ADMIN_APPLICATIONS_EVENTS_VIEW_NAME: String
+            {static} +ADMIN_APPLICATIONS_SESSION_VIEW_NAME: String
+            {static} +ADMIN_COUNTRY_VIEW_NAME: String
+            {static} +ADMIN_DATA_SUMMARY_VIEW_NAME: String
+            {static} +ADMIN_LANGUAGE_CONTENT_VIEW_NAME: String
+            {static} +ADMIN_LANGUAGE_VIEW_NAME: String
+            {static} +ADMIN_MONITORING_VIEW_NAME: String
+            {static} +ADMIN_PORTAL_VIEW_NAME: String
+            {static} +ADMIN_USERACCOUNT_VIEW_NAME: String
+            {static} +ADMIN_EMAIL_VIEW_NAME: String
+        }
+
+        enum CommitteePageMode [[CommitteePageMode.html]] {
+            {static} +DOCUMENT_HISTORY
+            {static} +CURRENT_MEMBERS
+            {static} +MEMBERHISTORY
+            {static} +DOCUMENTACTIVITY
+            {static} +BALLOTDECISIONSUMMARY
+            {static} +DECISIONSUMMARY
+            {static} +DECISIONTYPEDAILYSUMMARY
+            {static} +ROLEGHANT
+        }
+
+        enum PageMode [[PageMode.html]] {
+            {static} +OVERVIEW
+            {static} +CHARTS
+            {static} +DATAGRID
+            {static} +INDICATORS
+            {static} +PAGEVISITHISTORY
+            {static} +RULES
+        }
+
+        enum PoliticianPageMode [[PoliticianPageMode.html]] {
+            {static} +ROLESUMMARY
+            {static} +ROLELIST
+            {static} +ROLEGHANT
+            {static} +DOCUMENTACTIVITY
+            {static} +DOCUMENTHISTORY
+            {static} +BALLOTDECISIONSUMMARY
+            {static} +VOTEHISTORY
+        }
+
+        enum GovernmentBodyPageMode [[GovernmentBodyPageMode.html]] {
+            {static} +HEADCOUNT
+            {static} +INCOME
+            {static} +EXPENDITURE
+        }
+
+        class CommonsViews [[CommonsViews.html]] {
+            {static} +MAIN_VIEW_NAME: String
+        }
+
+        enum DocumentPageMode [[DocumentPageMode.html]] {
+            {static} +DOCUMENTACTIVITY
+            {static} +PERSONREFERENCES
+            {static} +DOCUMENTDETAILS
+            {static} +DOCUMENTDATA
+            {static} +DOCUMENTREFERENCES
+            {static} +DOCUMENTDECISION
+            {static} +DOCUMENTATTACHMENTS
+        }
+
+        class UserViews [[UserViews.html]] {
+            {static} +BALLOT_VIEW_NAME: String
+            {static} +COMMITTEE_RANKING_VIEW_NAME: String
+            {static} +COMMITTEE_VIEW_NAME: String
+            {static} +DOCUMENT_VIEW_NAME: String
+            {static} +DOCUMENTS_VIEW_NAME: String
+            {static} +MINISTRY_RANKING_VIEW_NAME: String
+            {static} +MINISTRY_VIEW_NAME: String
+            {static} +GOVERNMENT_BODY_VIEW_NAME: String
+            {static} +GOVERNMENT_BODY_RANKING_VIEW_NAME: String
+            {static} +PARTY_RANKING_VIEW_NAME: String
+            {static} +PARTY_VIEW_NAME: String
+            {static} +POLITICIAN_RANKING_VIEW_NAME: String
+            {static} +POLITICIAN_VIEW_NAME: String
+            {static} +SEARCH_DOCUMENT_VIEW_NAME: String
+            {static} +USERHOME_VIEW_NAME: String
+            {static} +COUNTRY_RANKING_VIEW_NAME: String
+            {static} +PARLIAMENT_RANKING_VIEW_NAME: String
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

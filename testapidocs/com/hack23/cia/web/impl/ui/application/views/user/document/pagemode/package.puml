@@ -1,0 +1,81 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.document.pagemode {
+
+        class DocumentActivityPageModContentFactoryImpl [[DocumentActivityPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentDetailsPageModContentFactoryImpl [[DocumentDetailsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentOverviewPageModContentFactoryImpl [[DocumentOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentsOverviewPageModContentFactoryImpl [[DocumentsOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentReferencesPageModContentFactoryImpl [[DocumentReferencesPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class SearchDocumentPageModContentFactoryImpl [[SearchDocumentPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentPageVisitHistoryPageModContentFactoryImpl [[DocumentPageVisitHistoryPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentDataPageModContentFactoryImpl [[DocumentDataPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentPersonReferencesPageModContentFactoryImpl [[DocumentPersonReferencesPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentDecisionPageModContentFactoryImpl [[DocumentDecisionPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DocumentAttachementsPageModContentFactoryImpl [[DocumentAttachementsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentActivityPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentDetailsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DocumentsOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentReferencesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- SearchDocumentPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentDataPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentPersonReferencesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentDecisionPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- DocumentAttachementsPageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractItemPageModContentFactoryImpl<T> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
+            {abstract} #getItem(String): T
+        }
+        abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

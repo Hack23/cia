@@ -1,0 +1,19 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl {
+
+        class SearchDocumentResponseHandlerImpl [[SearchDocumentResponseHandlerImpl.html]] {
+            +SearchDocumentResponseHandlerImpl(GridFactory, Panel, VerticalLayout)
+            +handle(SearchDocumentResponse): void
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler <|.. SearchDocumentResponseHandlerImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api {
+        interface SearchDocumentResponseHandler [[../api/SearchDocumentResponseHandler.html]] {
+            {abstract} +handle(SearchDocumentResponse): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

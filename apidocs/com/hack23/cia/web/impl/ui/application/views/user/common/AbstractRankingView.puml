@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractRankingView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.common" as com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView [[AbstractRankingView.html]] {
+        #AbstractRankingView(Map<String, PageModeContentFactory>, String)
+    }
+
+    abstract class "<size:14>AbstractUserView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.common" as com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView [[AbstractUserView.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

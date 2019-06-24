@@ -1,0 +1,24 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>PartyPageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode [[PartyPageMode.html]] {
+        {static} +DOCUMENTHISTORY
+        {static} +CURRENTMEMBERS
+        {static} +MEMBERHISTORY
+        {static} +CURRENTLEADERS
+        {static} +LEADERHISTORY
+        {static} +COMMITTEEROLES
+        {static} +GOVERNMENTROLES
+        {static} +DOCUMENTACTIVITY
+        {static} +COMMITTEEBALLOTDECISIONSUMMARY
+        {static} +VOTEHISTORY
+        {static} +PARTYWONDAILYSUMMARYCHART
+        {static} +ROLEGHANT
+        {static} +PARTYAGAINSTCOALATIONSSUMMARY
+        {static} +PARTYSUPPORTSUMMARY
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

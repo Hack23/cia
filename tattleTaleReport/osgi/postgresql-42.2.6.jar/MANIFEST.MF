@@ -1,0 +1,99 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1560974407585
+Build-Jdk: 1.8.0_151
+Built-By: travis
+Bundle-Activator: org.postgresql.osgi.PGBundleActivator
+Bundle-Copyright: Copyright (c) 2003-2015, PostgreSQL Global Development
+  Group
+Bundle-Description: Java JDBC 4.2 (JRE 8+) driver for PostgreSQL databas
+ e
+Bundle-DocURL: https://jdbc.postgresql.org/
+Bundle-License: https://jdbc.postgresql.org/about/license.html
+Bundle-ManifestVersion: 2
+Bundle-Name: PostgreSQL JDBC Driver JDBC42
+Bundle-SymbolicName: org.postgresql.jdbc42
+Bundle-Vendor: PostgreSQL Global Development Group
+Bundle-Version: 42.2.6
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.postgresql;version="42.2.6";uses:="org.postgresql.co
+ py,org.postgresql.fastpath,org.postgresql.jdbc,org.postgresql.largeobje
+ ct,org.postgresql.replication,org.postgresql.util",org.postgresql.copy;
+ version="42.2.6";uses:="org.postgresql,org.postgresql.core",org.postgre
+ sql.core;version="42.2.6";uses:="javax.net,javax.net.ssl,org.postgresql
+ ,org.postgresql.copy,org.postgresql.core.v3,org.postgresql.jdbc,org.pos
+ tgresql.replication,org.postgresql.replication.fluent.logical,org.postg
+ resql.replication.fluent.physical,org.postgresql.util",org.postgresql.c
+ ore.v3;version="42.2.6";uses:="org.postgresql.copy,org.postgresql.core,
+ org.postgresql.jdbc,org.postgresql.util",org.postgresql.core.v3.replica
+ tion;version="42.2.6";uses:="org.postgresql.copy,org.postgresql.core,or
+ g.postgresql.replication,org.postgresql.replication.fluent.logical,org.
+ postgresql.replication.fluent.physical",org.postgresql.ds;version="42.2
+ .6";uses:="javax.naming,javax.sql,org.postgresql.ds.common",org.postgre
+ sql.ds.common;version="42.2.6";uses:="javax.naming,javax.naming.spi,jav
+ ax.sql,org.postgresql,org.postgresql.jdbc",org.postgresql.fastpath;vers
+ ion="42.2.6";uses:="org.postgresql.core",org.postgresql.geometric;versi
+ on="42.2.6";uses:="org.postgresql.util",org.postgresql.gss;version="42.
+ 2.6";uses:="javax.security.auth.callback,org.postgresql.core",org.postg
+ resql.hostchooser;version="42.2.6";uses:="org.postgresql.util",org.post
+ gresql.jdbc;version="42.2.6";uses:="javax.xml.transform,org.postgresql,
+ org.postgresql.copy,org.postgresql.core,org.postgresql.fastpath,org.pos
+ tgresql.jdbc2,org.postgresql.largeobject,org.postgresql.replication,org
+ .postgresql.util",org.postgresql.jdbc2;version="42.2.6",org.postgresql.
+ jdbc2.optional;version="42.2.6";uses:="org.postgresql.ds",org.postgresq
+ l.jdbc3;version="42.2.6";uses:="org.postgresql.ds",org.postgresql.jre8.
+ sasl;version="42.2.6";uses:="org.postgresql.core,org.postgresql.util",o
+ rg.postgresql.largeobject;version="42.2.6";uses:="org.postgresql.core,o
+ rg.postgresql.fastpath",org.postgresql.osgi;version="42.2.6";uses:="jav
+ ax.sql,org.osgi.framework,org.osgi.service.jdbc",org.postgresql.replica
+ tion;version="42.2.6";uses:="org.postgresql.core,org.postgresql.replica
+ tion.fluent",org.postgresql.replication.fluent;version="42.2.6";uses:="
+ org.postgresql.core,org.postgresql.replication,org.postgresql.replicati
+ on.fluent.logical,org.postgresql.replication.fluent.physical",org.postg
+ resql.replication.fluent.logical;version="42.2.6";uses:="org.postgresql
+ .core,org.postgresql.replication,org.postgresql.replication.fluent",org
+ .postgresql.replication.fluent.physical;version="42.2.6";uses:="org.pos
+ tgresql.core,org.postgresql.replication,org.postgresql.replication.flue
+ nt",org.postgresql.ssl;version="42.2.6";uses:="javax.net.ssl,javax.secu
+ rity.auth.callback,org.postgresql.core,org.postgresql.util",org.postgre
+ sql.ssl.jdbc4;version="42.2.6";uses:="javax.net.ssl,org.postgresql.ssl,
+ org.postgresql.util",org.postgresql.sspi;version="42.2.6";uses:="com.su
+ n.jna,org.postgresql.core",org.postgresql.translation;version="42.2.6",
+ org.postgresql.util;version="42.2.6";uses:="org.postgresql.core",org.po
+ stgresql.xa;version="42.2.6";uses:="javax.naming,javax.sql,javax.transa
+ ction.xa,org.postgresql.core,org.postgresql.ds,org.postgresql.ds.common
+ "
+Implementation-Title: PostgreSQL JDBC Driver - JDBC 4.2
+Implementation-Vendor: PostgreSQL Global Development Group
+Implementation-Vendor-Id: org.postgresql
+Implementation-Version: 42.2.6
+Import-Package: javax.sql,javax.transaction.xa,javax.naming,com.ongres.s
+ cram.client;resolution:=optional,com.ongres.scram.common;resolution:=op
+ tional,com.ongres.scram.common.exception;resolution:=optional,com.ongre
+ s.scram.common.message;resolution:=optional,com.ongres.scram.common.str
+ ingprep;resolution:=optional,com.sun.jna;resolution:=optional,com.sun.j
+ na.platform.win32;resolution:=optional,com.sun.jna.ptr;resolution:=opti
+ onal,com.sun.jna.win32;resolution:=optional,javax.crypto;resolution:=op
+ tional,javax.crypto.spec;resolution:=optional,javax.naming.ldap;resolut
+ ion:=optional,javax.naming.spi;resolution:=optional,javax.net;resolutio
+ n:=optional,javax.net.ssl;resolution:=optional,javax.security.auth;reso
+ lution:=optional,javax.security.auth.callback;resolution:=optional,java
+ x.security.auth.login;resolution:=optional,javax.security.auth.x500;res
+ olution:=optional,javax.xml.parsers;resolution:=optional,javax.xml.stre
+ am;resolution:=optional,javax.xml.transform;resolution:=optional,javax.
+ xml.transform.dom;resolution:=optional,javax.xml.transform.sax;resoluti
+ on:=optional,javax.xml.transform.stax;resolution:=optional,javax.xml.tr
+ ansform.stream;resolution:=optional,org.ietf.jgss;resolution:=optional,
+ org.osgi.framework;resolution:=optional;version="[1.6,2)",org.osgi.serv
+ ice.jdbc;resolution:=optional;version="[1.0,2)",org.w3c.dom;resolution:
+ =optional,org.xml.sax;resolution:=optional,waffle.windows.auth;resoluti
+ on:=optional,waffle.windows.auth.impl;resolution:=optional
+Main-Class: org.postgresql.util.PGJDBCMain
+Provide-Capability: osgi.service;effective:=active;objectClass="org.osgi
+ .service.jdbc.DataSourceFactory"
+Require-Capability: osgi.ee;filter:="(&(|(osgi.ee=J2SE)(osgi.ee=JavaSE))
+ (version>=1.8))"
+Specification-Title: JDBC
+Specification-Vendor: Oracle Corporation
+Specification-Version: 4.2
+Tool: Bnd-2.4.0.201411031534
+

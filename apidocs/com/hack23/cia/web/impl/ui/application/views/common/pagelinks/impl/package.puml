@@ -1,0 +1,60 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl {
+
+        class StreamSourceImplementation [[StreamSourceImplementation.html]] {
+            +StreamSourceImplementation(String)
+            +getStream(): InputStream
+        }
+
+        class ExternalAttachmentDownloadLink [[ExternalAttachmentDownloadLink.html]] {
+            +ExternalAttachmentDownloadLink(String, String, String)
+            +attach(): void
+        }
+
+        class PageLinkFactoryImpl [[PageLinkFactoryImpl.html]] {
+            +createMainViewPageLink(): Link
+            +createRegisterPageLink(): Link
+            +createLoginPageLink(): Link
+            +addCommitteePageLink(ViewRiksdagenCommittee): Link
+            +addMinistryPageLink(ViewRiksdagenMinistry): Link
+            +addPartyPageLink(ViewRiksdagenParty): Link
+            +createPoliticianPageLink(PersonData): Link
+            +createAdminPagingLink(String, String, String, String): Link
+            +createUserHomeViewPageLink(): Link
+        }
+
+        com.vaadin.server.StreamResource.StreamSource <|.. StreamSourceImplementation
+        com.vaadin.ui.Link <|-- ExternalAttachmentDownloadLink
+        com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory <|.. PageLinkFactoryImpl
+    }
+
+    namespace com.vaadin.server {
+        interface com.vaadin.server.StreamResource.StreamSource {
+            {abstract} +getStream(): InputStream
+        }
+    }
+
+    namespace com.vaadin.ui {
+        class Link {
+            {static} +--TARGET_BORDER_NONE--: BorderStyle
+            {static} +--TARGET_BORDER_MINIMAL--: BorderStyle
+            {static} +--TARGET_BORDER_DEFAULT--: BorderStyle
+        }
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api {
+        interface PageLinkFactory [[../api/PageLinkFactory.html]] {
+            {abstract} +createMainViewPageLink(): Link
+            {abstract} +createUserHomeViewPageLink(): Link
+            {abstract} +addCommitteePageLink(ViewRiksdagenCommittee): Link
+            {abstract} +addMinistryPageLink(ViewRiksdagenMinistry): Link
+            {abstract} +addPartyPageLink(ViewRiksdagenParty): Link
+            {abstract} +createAdminPagingLink(String, String, String, String): Link
+            {abstract} +createPoliticianPageLink(PersonData): Link
+            {abstract} +createRegisterPageLink(): Link
+            {abstract} +createLoginPageLink(): Link
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

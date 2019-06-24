@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PoliticianRankingView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.politician" as com.hack23.cia.web.impl.ui.application.views.user.politician.PoliticianRankingView [[PoliticianRankingView.html]] {
+        {static} +NAME: String
+        +PoliticianRankingView(ApplicationContext)
+    }
+
+    abstract class "<size:14>AbstractRankingView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.common" as com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView [[../common/AbstractRankingView.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- com.hack23.cia.web.impl.ui.application.views.user.politician.PoliticianRankingView
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

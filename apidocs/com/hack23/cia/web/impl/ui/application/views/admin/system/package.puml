@@ -1,0 +1,78 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.system {
+
+        class AdminLanguageContentView [[AdminLanguageContentView.html]] {
+            {static} +NAME: String
+            +AdminLanguageContentView(ApplicationContext)
+        }
+
+        class AdminUseraccountView [[AdminUseraccountView.html]] {
+            {static} +NAME: String
+            +AdminUseraccountView(ApplicationContext)
+        }
+
+        class AdminApplicationEventsView [[AdminApplicationEventsView.html]] {
+            {static} +NAME: String
+            +AdminApplicationEventsView(ApplicationContext)
+        }
+
+        class AdminEmailView [[AdminEmailView.html]] {
+            {static} +NAME: String
+            +AdminEmailView(ApplicationContext)
+        }
+
+        class AdminPortalView [[AdminPortalView.html]] {
+            {static} +NAME: String
+            +AdminPortalView(ApplicationContext)
+        }
+
+        class AdminCountryView [[AdminCountryView.html]] {
+            {static} +NAME: String
+            +AdminCountryView(ApplicationContext)
+        }
+
+        class AdminMonitoringView [[AdminMonitoringView.html]] {
+            {static} +NAME: String
+            +AdminMonitoringView(ApplicationContext)
+        }
+
+        class AdminApplicationConfigurationView [[AdminApplicationConfigurationView.html]] {
+            {static} +NAME: String
+            +AdminApplicationConfigurationView(ApplicationContext)
+        }
+
+        class AdminApplicationSessionView [[AdminApplicationSessionView.html]] {
+            {static} +NAME: String
+            +AdminApplicationSessionView(ApplicationContext)
+        }
+
+        class AdminAgencyView [[AdminAgencyView.html]] {
+            {static} +NAME: String
+            +AdminAgencyView(ApplicationContext)
+        }
+
+        class AdminLanguageView [[AdminLanguageView.html]] {
+            {static} +NAME: String
+            +AdminLanguageView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminLanguageContentView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminUseraccountView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminApplicationEventsView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminEmailView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminPortalView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminCountryView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminMonitoringView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminApplicationConfigurationView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminApplicationSessionView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminAgencyView
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminLanguageView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.common {
+        abstract class AbstractAdminView [[../common/AbstractAdminView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

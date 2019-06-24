@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>HttpSessionDestroyedEventListener\n<size:10>com.hack23.cia.web.impl.ui.application.web.listener" as com.hack23.cia.web.impl.ui.application.web.listener.HttpSessionDestroyedEventListener [[HttpSessionDestroyedEventListener.html]] {
+        +onApplicationEvent(HttpSessionDestroyedEvent): void
+    }
+
+    interface "<size:14>ApplicationListener\n<size:10>org.springframework.context" as org.springframework.context.ApplicationListener<HttpSessionDestroyedEvent> {
+        {abstract} +onApplicationEvent(HttpSessionDestroyedEvent): void
+    }
+
+    org.springframework.context.ApplicationListener <|.. com.hack23.cia.web.impl.ui.application.web.listener.HttpSessionDestroyedEventListener
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

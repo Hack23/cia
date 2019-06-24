@@ -7,7 +7,7 @@ digraph javers_spring_jpa_5_6_0_dependencies {
   javers_spring_jpa_5_6_0 -> javers_persistence_sql_5_6_0;
   javers_spring_jpa_5_6_0 -> javers_spring_5_6_0;
   javers_spring_jpa_5_6_0 -> jboss_transaction_api_1_2_spec_1_1_1_Final;
-  javers_spring_jpa_5_6_0 -> slf4j_api_1_8_0_beta4;
+  javers_spring_jpa_5_6_0 -> slf4j_api_2_0_0_alpha0;
   javers_spring_jpa_5_6_0 -> spring_beans_5_2_0_M3;
   javers_spring_jpa_5_6_0 -> spring_tx_5_2_0_M3;
 }

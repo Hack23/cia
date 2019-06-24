@@ -1,0 +1,82 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode {
+
+        class GovernmentBodyRankingExpenditurePageModContentFactoryImpl [[GovernmentBodyRankingExpenditurePageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyRankingDataGridPageModContentFactoryImpl [[GovernmentBodyRankingDataGridPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyHeadcountPageModContentFactoryImpl [[GovernmentBodyHeadcountPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyIncomePageModContentFactoryImpl [[GovernmentBodyIncomePageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyRankingHeadCountPageModContentFactoryImpl [[GovernmentBodyRankingHeadCountPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyOverviewPageModContentFactoryImpl [[GovernmentBodyOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyRankingOverviewPageModContentFactoryImpl [[GovernmentBodyRankingOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl [[GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyExpenditurePageModContentFactoryImpl [[GovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl [[GovernmentBodyPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class GovernmentBodyRankingIncomePageModContentFactoryImpl [[GovernmentBodyRankingIncomePageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingExpenditurePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingDataGridPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- GovernmentBodyHeadcountPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- GovernmentBodyIncomePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingHeadCountPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- GovernmentBodyOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- GovernmentBodyExpenditurePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingIncomePageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+        abstract class AbstractItemPageModContentFactoryImpl<T> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
+            {abstract} #getItem(String): T
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

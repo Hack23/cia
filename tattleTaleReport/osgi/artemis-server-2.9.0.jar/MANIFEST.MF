@@ -740,6 +740,6 @@ Import-Package: io.micrometer.core.instrument;version="1.1.4",io.micro
  on="2.4",org.apache.commons.configuration2.builder;version="2.4",org.
  apache.commons.configuration2.builder.fluent;version="2.4",org.apache
  .commons.lang3.text;version="3.9",org.jboss.logging;version="3.4",org
- .jboss.logging.annotations,org.jboss.logmanager;version="2.1.11.Final
- ",org.jboss.logmanager.config;version="2.1.11.Final",org.w3c.dom;vers
+ .jboss.logging.annotations,org.jboss.logmanager;version="2.1.13.Final
+ ",org.jboss.logmanager.config;version="2.1.13.Final",org.w3c.dom;vers
  ion="1.0"

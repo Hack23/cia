@@ -1,0 +1,91 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode {
+
+        class AdminApplicationEventsChartsPageModContentFactoryImpl [[AdminApplicationEventsChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminPortalPageModContentFactoryImpl [[AdminPortalPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        abstract class AbstractAdminSystemPageModContentFactoryImpl [[AbstractAdminSystemPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            #getPagingUtil(): PagingUtil
+        }
+
+        class EmailPageModContentFactoryImpl [[EmailPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminLanguagePageModContentFactoryImpl [[AdminLanguagePageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminMonitoringPageModContentFactoryImpl [[AdminMonitoringPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminApplicationEventsPageModContentFactoryImpl [[AdminApplicationEventsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminLanguageContentPageModContentFactoryImpl [[AdminLanguageContentPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminApplicationConfigurationPageModContentFactoryImpl [[AdminApplicationConfigurationPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminUserAccountPageModContentFactoryImpl [[AdminUserAccountPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminAgencyPageModContentFactoryImpl [[AdminAgencyPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminCountryPageModContentFactoryImpl [[AdminCountryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class AdminApplicationSessionPageModContentFactoryImpl [[AdminApplicationSessionPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationEventsChartsPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminPortalPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- AbstractAdminSystemPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- EmailPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminLanguagePageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminMonitoringPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationEventsPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminLanguageContentPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationConfigurationPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminUserAccountPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminAgencyPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminCountryPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationSessionPageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

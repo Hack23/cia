@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ComplianceCheckPageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ComplianceCheckPageItemRendererClickListener [[ComplianceCheckPageItemRendererClickListener.html]] {
+        +click(RendererClickEvent<ComplianceCheck>): void
+        +selectionChange(SelectionEvent<ComplianceCheck>): void
+    }
+
+    interface "<size:14>PageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener<ComplianceCheck> [[PageItemRendererClickListener.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ComplianceCheckPageItemRendererClickListener
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

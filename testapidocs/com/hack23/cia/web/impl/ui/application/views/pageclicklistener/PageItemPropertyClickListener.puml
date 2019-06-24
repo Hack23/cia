@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PageItemPropertyClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener [[PageItemPropertyClickListener.html]] {
+        +PageItemPropertyClickListener(String, String)
+        #getPageId(Serializable): String
+    }
+
+    abstract class "<size:14>AbstractPageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener<Serializable> [[AbstractPageItemRendererClickListener.html]] {
+        {abstract} #getPageId(Serializable): String
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener <|-- com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -5,6 +5,7 @@
         <module name="com.sun.xml.bind"/>
         <module name="javaee.api"/>
         <module name="javax.xml.bind.api"/>
+        <module name="nu.xom"/>
         <module name="org.jaxen"/>
         <module name="system"/>
      </dependencies>

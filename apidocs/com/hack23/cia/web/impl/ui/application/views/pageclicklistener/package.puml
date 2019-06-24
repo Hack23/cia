@@ -1,0 +1,160 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.pageclicklistener {
+
+        class LogoutClickListener [[LogoutClickListener.html]] {
+            +LogoutClickListener(LogoutRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class CommitFormWrapperClickListener [[CommitFormWrapperClickListener.html]] {
+            +CommitFormWrapperClickListener(Binder<?>, ClickListener)
+            +buttonClick(ClickEvent): void
+        }
+
+        class UpdateApplicationConfigurationClickListener [[UpdateApplicationConfigurationClickListener.html]] {
+            +UpdateApplicationConfigurationClickListener(UpdateApplicationConfigurationRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class RefreshDataViewsClickListener [[RefreshDataViewsClickListener.html]] {
+            +RefreshDataViewsClickListener(RefreshDataViewsRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class RegisterUserClickListener [[RegisterUserClickListener.html]] {
+            +RegisterUserClickListener(RegisterUserRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class RuleViolationPageItemRendererClickListener [[RuleViolationPageItemRendererClickListener.html]] {
+            +click(RendererClickEvent<RuleViolation>): void
+            +selectionChange(SelectionEvent<RuleViolation>): void
+        }
+
+        class UpdateSearchIndexClickListener [[UpdateSearchIndexClickListener.html]] {
+            +UpdateSearchIndexClickListener(UpdateSearchIndexRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class SearchDocumentClickListener [[SearchDocumentClickListener.html]] {
+            +SearchDocumentClickListener(SearchDocumentRequest, SearchDocumentResponseHandler)
+            +buttonClick(ClickEvent): void
+        }
+
+        class PageItemPropertyClickListener [[PageItemPropertyClickListener.html]] {
+            +PageItemPropertyClickListener(String, String)
+            #getPageId(Serializable): String
+        }
+
+        class SendEmailClickListener [[SendEmailClickListener.html]] {
+            +SendEmailClickListener(SendEmailRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class DecisionFlowValueChangeListener [[DecisionFlowValueChangeListener.html]] {
+            +DecisionFlowValueChangeListener(String, String)
+            +valueChange(ValueChangeEvent<String>): void
+        }
+
+        class DisableGoogleAuthenticatorCredentialClickListener [[DisableGoogleAuthenticatorCredentialClickListener.html]] {
+            +DisableGoogleAuthenticatorCredentialClickListener(DisableGoogleAuthenticatorCredentialRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        interface PageItemRendererClickListener<T> [[PageItemRendererClickListener.html]]
+
+        class ApplicationLoginListener [[ApplicationLoginListener.html]] {
+            +ApplicationLoginListener(LoginRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class RemoveDataClickListener [[RemoveDataClickListener.html]] {
+            +RemoveDataClickListener(RemoveDataRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class ComplianceCheckPageItemRendererClickListener [[ComplianceCheckPageItemRendererClickListener.html]] {
+            +click(RendererClickEvent<ComplianceCheck>): void
+            +selectionChange(SelectionEvent<ComplianceCheck>): void
+        }
+
+        class ChangePasswordClickListener [[ChangePasswordClickListener.html]] {
+            +ChangePasswordClickListener(ChangePasswordRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class SetGoogleAuthenticatorCredentialClickListener [[SetGoogleAuthenticatorCredentialClickListener.html]] {
+            +SetGoogleAuthenticatorCredentialClickListener(SetGoogleAuthenticatorCredentialRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        class StartAgentClickListener [[StartAgentClickListener.html]] {
+            +StartAgentClickListener(DataAgentTarget, DataAgentOperation)
+            +buttonClick(ClickEvent): void
+        }
+
+        abstract class AbstractPageItemRendererClickListener<T> [[AbstractPageItemRendererClickListener.html]] {
+            +AbstractPageItemRendererClickListener(String)
+            +click(RendererClickEvent<T>): void
+            +selectionChange(SelectionEvent<T>): void
+            {abstract} #getPageId(T): String
+        }
+
+        class ManageUserAccountClickListener [[ManageUserAccountClickListener.html]] {
+            +ManageUserAccountClickListener(ManageUserAccountRequest)
+            +buttonClick(ClickEvent): void
+        }
+
+        com.vaadin.ui.Button.ClickListener <|.. LogoutClickListener
+        com.vaadin.ui.Button.ClickListener <|.. CommitFormWrapperClickListener
+        com.vaadin.ui.Button.ClickListener <|.. UpdateApplicationConfigurationClickListener
+        com.vaadin.ui.Button.ClickListener <|.. RefreshDataViewsClickListener
+        com.vaadin.ui.Button.ClickListener <|.. RegisterUserClickListener
+        PageItemRendererClickListener <|.. RuleViolationPageItemRendererClickListener
+        com.vaadin.ui.Button.ClickListener <|.. UpdateSearchIndexClickListener
+        com.vaadin.ui.Button.ClickListener <|.. SearchDocumentClickListener
+        AbstractPageItemRendererClickListener <|-- PageItemPropertyClickListener
+        com.vaadin.ui.Button.ClickListener <|.. SendEmailClickListener
+        com.vaadin.data.HasValue.ValueChangeListener <|.. DecisionFlowValueChangeListener
+        com.vaadin.ui.Button.ClickListener <|.. DisableGoogleAuthenticatorCredentialClickListener
+        com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener <|.. PageItemRendererClickListener
+        com.vaadin.event.selection.SelectionListener <|.. PageItemRendererClickListener
+        com.vaadin.ui.Button.ClickListener <|.. ApplicationLoginListener
+        com.vaadin.ui.Button.ClickListener <|.. RemoveDataClickListener
+        PageItemRendererClickListener <|.. ComplianceCheckPageItemRendererClickListener
+        com.vaadin.ui.Button.ClickListener <|.. ChangePasswordClickListener
+        com.vaadin.ui.Button.ClickListener <|.. SetGoogleAuthenticatorCredentialClickListener
+        com.vaadin.ui.Button.ClickListener <|.. StartAgentClickListener
+        PageItemRendererClickListener <|.. AbstractPageItemRendererClickListener
+        com.vaadin.ui.Button.ClickListener <|.. ManageUserAccountClickListener
+    }
+
+    namespace com.vaadin.ui {
+        interface com.vaadin.ui.Button.ClickListener {
+            {static} +BUTTON_CLICK_METHOD: Method
+            {abstract} +buttonClick(ClickEvent): void
+        }
+    }
+
+    namespace com.vaadin.data {
+        interface com.vaadin.data.HasValue.ValueChangeListener<V> {
+            {static} +--VALUE_CHANGE_METHOD--: Method
+            {abstract} +valueChange(ValueChangeEvent<V>): void
+        }
+    }
+
+    namespace com.vaadin.ui.renderers {
+        interface com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener<T> {
+            {static} +CLICK_METHOD: Method
+            {abstract} +click(RendererClickEvent<T>): void
+        }
+    }
+
+    namespace com.vaadin.event.selection {
+        interface SelectionListener<T> {
+            {abstract} +selectionChange(SelectionEvent<T>): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartyDataSeriesFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl.PartyDataSeriesFactoryImpl [[PartyDataSeriesFactoryImpl.html]] {
+        +createPartyChartTimeSeriesAll(): DataSeries
+        +createPartyChartTimeSeriesCurrent(): DataSeries
+        +createChartTimeSeriesCurrentCommitteeByParty(): DataSeries
+        +createChartTimeSeriesCurrentGovernmentByParty(): DataSeries
+    }
+
+    interface "<size:14>PartyDataSeriesFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory [[../api/PartyDataSeriesFactory.html]] {
+        {abstract} +createPartyChartTimeSeriesAll(): DataSeries
+        {abstract} +createPartyChartTimeSeriesCurrent(): DataSeries
+        {abstract} +createChartTimeSeriesCurrentGovernmentByParty(): DataSeries
+        {abstract} +createChartTimeSeriesCurrentCommitteeByParty(): DataSeries
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl.PartyDataSeriesFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -2,7 +2,7 @@ digraph spring_aop_5_2_0_M3_dependencies {
   node [shape = box, fontsize=10.0];
   spring_aop_5_2_0_M3 -> aspectjweaver_1_9_4;
   spring_aop_5_2_0_M3 -> commons_pool2_2_6_2;
-  spring_aop_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_aop_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
   spring_aop_5_2_0_M3 -> spring_beans_5_2_0_M3;
   spring_aop_5_2_0_M3 -> spring_core_5_2_0_M3;
   spring_aop_5_2_0_M3 -> xml_apis_1_4_01;

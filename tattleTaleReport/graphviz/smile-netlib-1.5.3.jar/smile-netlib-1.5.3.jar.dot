@@ -2,6 +2,6 @@ digraph smile_netlib_1_5_3_dependencies {
   node [shape = box, fontsize=10.0];
   smile_netlib_1_5_3 -> arpack_combined_all_0_1;
   smile_netlib_1_5_3 -> core_1_1_2;
-  smile_netlib_1_5_3 -> slf4j_api_1_8_0_beta4;
+  smile_netlib_1_5_3 -> slf4j_api_2_0_0_alpha0;
   smile_netlib_1_5_3 -> smile_math_1_5_3;
 }

@@ -173,7 +173,7 @@ Export-Package: org.javers.common.collections;uses:="java.lang,java.la
 Import-Package: com.google.common.collect;version="0.0.0",com.google.g
  son;version="0.0.0",com.google.gson.annotations;version="0.0.0",com.g
  oogle.gson.reflect;version="0.0.0",io.github.classgraph;version="4.8.
- 39",java.io,java.lang,java.lang.annotation,java.lang.invoke,java.lang
+ 41",java.io,java.lang,java.lang.annotation,java.lang.invoke,java.lang
  .reflect,java.math,java.net,java.security,java.sql,java.time,java.tim
  e.chrono,java.time.format,java.time.temporal,java.util,java.util.conc
  urrent,java.util.concurrent.atomic,java.util.function,java.util.strea

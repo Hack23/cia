@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>WebBrowserUtil\n<size:10>com.hack23.cia.web.impl.ui.application.util" as com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil [[WebBrowserUtil.html]] {
+        {static} +X_FORWARDED_FOR: String
+        {static} +getIpInformation(WebBrowser): String
+        {static} +getOperatingSystem(WebBrowser): String
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

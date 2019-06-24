@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractItemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl<T> [[AbstractItemPageModContentFactoryImpl.html]] {
+        +validReference(String): boolean
+        {abstract} #getItem(String): T
+    }
+
+    abstract class "<size:14>AbstractPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

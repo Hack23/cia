@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartyDocumentChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyDocumentChartDataManagerImpl [[PartyDocumentChartDataManagerImpl.html]] {
+        +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
+    }
+
+    abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
+    interface "<size:14>PartyDocumentChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager [[../api/PartyDocumentChartDataManager.html]] {
+        {abstract} +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyDocumentChartDataManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyDocumentChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.paging {
+
+        interface PagingUtil [[PagingUtil.html]] {
+            {abstract} +createPagingControls(AbstractOrderedLayout, String, String, Long, int, int): void
+        }
+
+        class PagingUtilImpl [[PagingUtilImpl.html]] {
+            +createPagingControls(AbstractOrderedLayout, String, String, Long, int, int): void
+        }
+
+        PagingUtil <|.. PagingUtilImpl
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

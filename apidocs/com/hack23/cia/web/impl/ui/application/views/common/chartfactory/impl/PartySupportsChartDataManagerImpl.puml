@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartySupportsChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartySupportsChartDataManagerImpl [[PartySupportsChartDataManagerImpl.html]] {
+        +createPartyChart(AbstractOrderedLayout, String): void
+    }
+
+    abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
+    interface "<size:14>PartySupportsChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager [[../api/PartySupportsChartDataManager.html]] {
+        {abstract} +createPartyChart(AbstractOrderedLayout, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartySupportsChartDataManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartySupportsChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

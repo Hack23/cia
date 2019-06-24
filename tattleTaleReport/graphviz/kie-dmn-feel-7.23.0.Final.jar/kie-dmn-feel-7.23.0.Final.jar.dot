@@ -6,5 +6,5 @@ digraph kie_dmn_feel_7_23_0_Final_dependencies {
   kie_dmn_feel_7_23_0_Final -> javaparser_core_3_13_10;
   kie_dmn_feel_7_23_0_Final -> kie_dmn_api_7_23_0_Final;
   kie_dmn_feel_7_23_0_Final -> kie_internal_7_23_0_Final;
-  kie_dmn_feel_7_23_0_Final -> slf4j_api_1_8_0_beta4;
+  kie_dmn_feel_7_23_0_Final -> slf4j_api_2_0_0_alpha0;
 }

@@ -1,0 +1,24 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.sizing {
+
+        class ContentSize [[ContentSize.html]] {
+            {static} +FULL_SIZE: String
+            {static} +HALF_SIZE: String
+        }
+
+        class ContentRatio [[ContentRatio.html]] {
+            {static} +SMALL: float
+            {static} +SMALL2: float
+            {static} +SMALL3: float
+            {static} +GRID: float
+            {static} +CHART: float
+            {static} +LARGE_FORM: float
+            {static} +LARGE: float
+            {static} +SMALL_GRID: float
+            {static} +FULL_SIZE: float
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

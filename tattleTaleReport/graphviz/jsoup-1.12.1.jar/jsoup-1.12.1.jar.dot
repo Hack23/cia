@@ -1,0 +1,4 @@
+digraph jsoup_1_12_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  jsoup_1_12_1 -> xml_apis_1_4_01;
+}

@@ -59,5 +59,5 @@ Import-Package: io.netty.buffer;version="4.1.36.Final",io.netty.channe
  .util.stream,java.util.zip,javax.crypto,javax.crypto.spec,javax.net.s
  sl,javax.security.auth,javax.security.cert,org.apache.commons.beanuti
  ls;version="1.9.3.redhat-1",org.jboss.logging;version="3.4",org.jboss
- .logging.annotations,org.jboss.logmanager;version="2.1.11.Final",sun.
+ .logging.annotations,org.jboss.logmanager;version="2.1.13.Final",sun.
  misc

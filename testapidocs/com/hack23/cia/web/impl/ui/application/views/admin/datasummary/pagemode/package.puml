@@ -1,0 +1,25 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode {
+
+        class DataSummaryOverviewPageModContentFactoryImpl [[DataSummaryOverviewPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class DataSummaryAuthorPageModContentFactoryImpl [[DataSummaryAuthorPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DataSummaryOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DataSummaryAuthorPageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

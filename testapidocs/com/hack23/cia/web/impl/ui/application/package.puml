@@ -1,0 +1,75 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application {
+
+        class VaadinSpringConfig [[VaadinSpringConfig.html]]
+
+        class UiInstanceErrorHandler [[UiInstanceErrorHandler.html]] {
+            +UiInstanceErrorHandler(UI)
+            +error(ErrorEvent): void
+        }
+
+        class CitizenIntelligenceAgencySpringVaadinServlet [[CitizenIntelligenceAgencySpringVaadinServlet.html]] {
+            #servletInitialized(): void
+            #service(HttpServletRequest, HttpServletResponse): void
+        }
+
+        class CitizenIntelligenceAgencyUI [[CitizenIntelligenceAgencyUI.html]] {
+            #init(VaadinRequest): void
+        }
+
+        class CitizenIntelligenceAgencyHealthCheckServlet [[CitizenIntelligenceAgencyHealthCheckServlet.html]] {
+            +doGet(HttpServletRequest, HttpServletResponse): void
+        }
+
+        class CustomSpringUIProvider [[CustomSpringUIProvider.html]] {
+            +CustomSpringUIProvider(VaadinSession)
+            +createInstance(UICreateEvent): UI
+            #findSpringViewDisplay(UI): Object
+        }
+
+        class ResourceServlet [[ResourceServlet.html]] {
+            #service(HttpServletRequest, HttpServletResponse): void
+        }
+
+        com.vaadin.server.ErrorHandler <|.. UiInstanceErrorHandler
+        com.vaadin.spring.server.SpringVaadinServlet <|-- CitizenIntelligenceAgencySpringVaadinServlet
+        com.vaadin.ui.UI <|-- CitizenIntelligenceAgencyUI
+        javax.servlet.http.HttpServlet <|-- CitizenIntelligenceAgencyHealthCheckServlet
+        com.vaadin.spring.server.SpringUIProvider <|-- CustomSpringUIProvider
+        org.eclipse.jetty.servlet.DefaultServlet <|-- ResourceServlet
+    }
+
+    namespace com.vaadin.server {
+        interface ErrorHandler {
+            {abstract} +error(ErrorEvent): void
+        }
+    }
+
+    namespace com.vaadin.spring.server {
+        class SpringVaadinServlet {
+        }
+        class SpringUIProvider {
+            #logger: Logger
+        }
+    }
+
+    namespace com.vaadin.ui {
+        abstract class UI {
+            #actionManager: ActionManager
+            {abstract} #init(VaadinRequest): void
+        }
+    }
+
+    namespace javax.servlet.http {
+        abstract class HttpServlet {
+        }
+    }
+
+    namespace org.eclipse.jetty.servlet {
+        class DefaultServlet {
+            {static} +CONTEXT_INIT: String
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

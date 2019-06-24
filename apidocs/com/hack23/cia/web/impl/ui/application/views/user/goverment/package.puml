@@ -1,0 +1,26 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.goverment {
+
+        class MinistryRankingView [[MinistryRankingView.html]] {
+            {static} +NAME: String
+            +MinistryRankingView(ApplicationContext)
+        }
+
+        class MinistryView [[MinistryView.html]] {
+            {static} +NAME: String
+            +MinistryView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- MinistryRankingView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView <|-- MinistryView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
+        }
+        abstract class AbstractGroupView [[../common/AbstractGroupView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

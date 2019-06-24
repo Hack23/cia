@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AdminCountryView\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system" as com.hack23.cia.web.impl.ui.application.views.admin.system.AdminCountryView [[AdminCountryView.html]] {
+        {static} +NAME: String
+        +AdminCountryView(ApplicationContext)
+    }
+
+    abstract class "<size:14>AbstractAdminView\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.common" as com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView [[../common/AbstractAdminView.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- com.hack23.cia.web.impl.ui.application.views.admin.system.AdminCountryView
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

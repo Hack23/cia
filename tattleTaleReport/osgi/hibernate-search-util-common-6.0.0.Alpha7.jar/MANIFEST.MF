@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Implementation-Title: Hibernate Search Utils - Common
+Automatic-Module-Name: org.hibernate.search.util.common
+Implementation-Version: 6.0.0.Alpha7
+Built-By: jenkins
+Implementation-Vendor-Id: hibernate.org
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://hibernate.org/search/
+Implementation-Vendor: hibernate.org
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.hibernate.search.util.common.impl
+Bundle-Description: hibernate-search-util-common-6.0.0.Alpha7
+Bundle-Name: hibernate-search-util-common-6.0.0.Alpha7
+Bundle-Version: 6.0.0.Alpha7
+Export-Package: org.hibernate.search.util.common;uses:="org.hibernate.
+ search.util.common.reporting",org.hibernate.search.util.common.functi
+ on;uses:="java.lang",org.hibernate.search.util.common.impl;uses:="jav
+ a.lang,java.lang.invoke,java.time,java.time.format,java.time.temporal
+ ,java.util,java.util.concurrent,java.util.function,java.util.stream,o
+ rg.hibernate.search.util.common,org.hibernate.search.util.common.logg
+ ing.impl",org.hibernate.search.util.common.logging.impl;uses:="java.l
+ ang.invoke,org.hibernate.search.util.common,org.hibernate.search.util
+ .common.impl,org.hibernate.search.util.common.reporting,org.jboss.log
+ ging.annotations",org.hibernate.search.util.common.reflect.impl;uses:
+ ="java.lang.invoke,java.util,java.util.function,org.hibernate.search.
+ util.common,org.hibernate.search.util.common.impl,org.hibernate.searc
+ h.util.common.logging.impl,org.hibernate.search.util.common.reflect.s
+ pi",org.hibernate.search.util.common.reflect.spi;uses:="java.lang.ann
+ otation,java.lang.invoke,java.util.function,java.util.stream,org.hibe
+ rnate.search.util.common.logging.impl,org.hibernate.search.util.commo
+ n.reflect.impl",org.hibernate.search.util.common.reporting;uses:="jav
+ a.util,org.hibernate.search.util.common.reporting.impl",org.hibernate
+ .search.util.common.reporting.impl;uses:="java.util,org.hibernate.sea
+ rch.util.common.reporting,org.jboss.logging.annotations"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.invok
+ e,java.lang.reflect,java.time,java.time.format,java.time.temporal,jav
+ a.util,java.util.concurrent,java.util.concurrent.atomic,java.util.fun
+ ction,java.util.stream,org.jboss.logging;version="3.4",org.jboss.logg
+ ing.annotations

@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>GridFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory [[GridFactory.html]] {
+        {abstract} +createBasicBeanItemGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+        {abstract} +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
+    }
+
+    interface "<size:14>Serializable\n<size:10>java.io" as java.io.Serializable
+
+    java.io.Serializable <|.. com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

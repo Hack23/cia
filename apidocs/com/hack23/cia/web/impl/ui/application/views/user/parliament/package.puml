@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.parliament {
+
+        class ParliamentRankingView [[ParliamentRankingView.html]] {
+            {static} +NAME: String
+            +ParliamentRankingView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- ParliamentRankingView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

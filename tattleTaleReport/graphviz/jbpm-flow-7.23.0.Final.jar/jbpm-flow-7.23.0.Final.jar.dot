@@ -13,7 +13,7 @@ digraph jbpm_flow_7_23_0_Final_dependencies {
   jbpm_flow_7_23_0_Final -> mvel2_2_4_4_Final;
   jbpm_flow_7_23_0_Final -> protobuf_java_3_8_0;
   jbpm_flow_7_23_0_Final -> quartz_2_3_1;
-  jbpm_flow_7_23_0_Final -> slf4j_api_1_8_0_beta4;
+  jbpm_flow_7_23_0_Final -> slf4j_api_2_0_0_alpha0;
   jbpm_flow_7_23_0_Final -> xml_apis_1_4_01;
   jbpm_flow_7_23_0_Final -> xstream_1_4_11_1;
 }

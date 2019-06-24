@@ -1,0 +1,25 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode {
+
+        class BallotOverviewPageModContentFactoryImpl [[BallotOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class BallotChartsPageModContentFactoryImpl [[BallotChartsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- BallotOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- BallotChartsPageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractItemPageModContentFactoryImpl<T> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
+            {abstract} #getItem(String): T
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>UserViews\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews [[UserViews.html]] {
+        {static} +BALLOT_VIEW_NAME: String
+        {static} +COMMITTEE_RANKING_VIEW_NAME: String
+        {static} +COMMITTEE_VIEW_NAME: String
+        {static} +DOCUMENT_VIEW_NAME: String
+        {static} +DOCUMENTS_VIEW_NAME: String
+        {static} +MINISTRY_RANKING_VIEW_NAME: String
+        {static} +MINISTRY_VIEW_NAME: String
+        {static} +GOVERNMENT_BODY_VIEW_NAME: String
+        {static} +GOVERNMENT_BODY_RANKING_VIEW_NAME: String
+        {static} +PARTY_RANKING_VIEW_NAME: String
+        {static} +PARTY_VIEW_NAME: String
+        {static} +POLITICIAN_RANKING_VIEW_NAME: String
+        {static} +POLITICIAN_VIEW_NAME: String
+        {static} +SEARCH_DOCUMENT_VIEW_NAME: String
+        {static} +USERHOME_VIEW_NAME: String
+        {static} +COUNTRY_RANKING_VIEW_NAME: String
+        {static} +PARLIAMENT_RANKING_VIEW_NAME: String
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

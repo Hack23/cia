@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>ChartOptions\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions [[ChartOptions.html]] {
+        {abstract} +createOptionsCountryLineChart(Series): Options
+        {abstract} +createOptionsDonoutChart(): Options
+        {abstract} +createOptionsDonoutChartWithSeries(Series): Options
+        {abstract} +createOptionsPartyLineChart(Series): Options
+        {abstract} +createOptionsPersonLineChart(Series): Options
+        {abstract} +createOptionsPieChart(): Options
+        {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
+        {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

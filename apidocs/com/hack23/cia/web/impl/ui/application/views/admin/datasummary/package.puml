@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.datasummary {
+
+        class AdminDataSummaryView [[AdminDataSummaryView.html]] {
+            {static} +NAME: String
+            +AdminDataSummaryView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AdminDataSummaryView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.common {
+        abstract class AbstractAdminView [[../common/AbstractAdminView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

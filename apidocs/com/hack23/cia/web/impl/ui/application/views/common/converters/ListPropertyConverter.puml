@@ -1,0 +1,27 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ListPropertyConverter\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.converters" as com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter [[ListPropertyConverter.html]] {
+        +ListPropertyConverter(String, String)
+        +ListPropertyConverter(String, String, String)
+        +getColumn(): String
+        +convertToModel(String, ValueContext): Result<List<?>>
+        +convertToPresentation(List, ValueContext): String
+        +apply(Object): String
+    }
+
+    interface "<size:14>Converter\n<size:10>com.vaadin.data" as com.vaadin.data.Converter<String, List<?>> {
+        {abstract} +convertToModel(String, ValueContext): Result<MODEL>
+        {abstract} +convertToPresentation(List<?>, ValueContext): String
+    }
+    interface "<size:14>ValueProvider\n<size:10>com.vaadin.data" as com.vaadin.data.ValueProvider<Object, String> {
+        {abstract} +apply(Object): String
+    }
+
+    com.vaadin.data.Converter <|.. com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter
+    com.vaadin.data.ValueProvider <|.. com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

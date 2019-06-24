@@ -1,0 +1,19 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.util {
+
+        class UserContextUtil [[UserContextUtil.html]] {
+            {static} +getUserIdFromSecurityContext(): String
+            {static} +getRequestUrl(Page): String
+            {static} +allowRoleInSecurityContext(String): boolean
+        }
+
+        class WebBrowserUtil [[WebBrowserUtil.html]] {
+            {static} +X_FORWARDED_FOR: String
+            {static} +getIpInformation(WebBrowser): String
+            {static} +getOperatingSystem(WebBrowser): String
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

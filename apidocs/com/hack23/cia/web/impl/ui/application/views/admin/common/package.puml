@@ -1,0 +1,19 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.common {
+
+        abstract class AbstractAdminView [[AbstractAdminView.html]] {
+            #AbstractAdminView(Map<String, PageModeContentFactory>, String)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.AbstractView <|-- AbstractAdminView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common {
+        abstract class AbstractView [[../../common/AbstractView.html]] {
+            #pageLinkFactory: PageLinkFactory
+            #pageActionEventHelper: PageActionEventHelper
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

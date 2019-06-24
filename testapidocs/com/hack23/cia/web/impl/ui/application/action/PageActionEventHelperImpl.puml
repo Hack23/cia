@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PageActionEventHelperImpl\n<size:10>com.hack23.cia.web.impl.ui.application.action" as com.hack23.cia.web.impl.ui.application.action.PageActionEventHelperImpl [[PageActionEventHelperImpl.html]] {
+        +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
+    }
+
+    interface "<size:14>PageActionEventHelper\n<size:10>com.hack23.cia.web.impl.ui.application.action" as com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper [[PageActionEventHelper.html]] {
+        {abstract} +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper <|.. com.hack23.cia.web.impl.ui.application.action.PageActionEventHelperImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

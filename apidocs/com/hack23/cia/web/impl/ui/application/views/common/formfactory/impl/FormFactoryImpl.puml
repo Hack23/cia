@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>FormFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl.FormFactoryImpl [[FormFactoryImpl.html]] {
+        +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
+        +addFormPanelTextFields(AbstractOrderedLayout, T extends Serializable, Class<T extends Serializable>, List<String>): void
+    }
+
+    interface "<size:14>FormFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.formfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory [[../api/FormFactory.html]] {
+        {abstract} +addFormPanelTextFields(AbstractOrderedLayout, T extends Serializable, Class<T extends Serializable>, List<String>): void
+        {abstract} +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl.FormFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

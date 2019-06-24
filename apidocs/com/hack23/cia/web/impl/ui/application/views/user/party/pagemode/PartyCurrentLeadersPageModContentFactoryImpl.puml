@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartyCurrentLeadersPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.party.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCurrentLeadersPageModContentFactoryImpl [[PartyCurrentLeadersPageModContentFactoryImpl.html]] {
+        +matches(String, String): boolean
+        +createContent(String, MenuBar, Panel): Layout
+    }
+
+    abstract class "<size:14>AbstractItemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl<ViewRiksdagenParty> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
+        {abstract} #getItem(String): ViewRiksdagenParty
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCurrentLeadersPageModContentFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

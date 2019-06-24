@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ResourceServlet\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.ResourceServlet [[ResourceServlet.html]] {
+        #service(HttpServletRequest, HttpServletResponse): void
+    }
+
+    class "<size:14>DefaultServlet\n<size:10>org.eclipse.jetty.servlet" as org.eclipse.jetty.servlet.DefaultServlet
+
+    org.eclipse.jetty.servlet.DefaultServlet <|-- com.hack23.cia.web.impl.ui.application.ResourceServlet
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>SearchDocumentResponseHandler\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api" as com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler [[SearchDocumentResponseHandler.html]] {
+        {abstract} +handle(SearchDocumentResponse): void
+    }
+
+    interface "<size:14>Serializable\n<size:10>java.io" as java.io.Serializable
+
+    java.io.Serializable <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

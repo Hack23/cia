@@ -1,0 +1,209 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl {
+
+        class CommitteeMenuItemFactoryImpl [[CommitteeMenuItemFactoryImpl.html]] {
+            +createCommitteeeMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        class PartyMenuItemFactoryImpl [[PartyMenuItemFactoryImpl.html]] {
+            +createPartyMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        class GovernmentBodyMenuItemFactoryImpl [[GovernmentBodyMenuItemFactoryImpl.html]] {
+            +createGovernmentBodyMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        class MinistryRankingMenuItemFactoryImpl [[MinistryRankingMenuItemFactoryImpl.html]] {
+            +createMinistryRankingMenuBar(MenuBar): void
+            +createMinistryRankingTopics(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class DocumentMenuItemFactoryImpl [[DocumentMenuItemFactoryImpl.html]] {
+            +createDocumentMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+            +createDocumentsMenuBar(MenuBar): void
+        }
+
+        class PartyRankingMenuItemFactoryImpl [[PartyRankingMenuItemFactoryImpl.html]] {
+            +createPartyRankingMenuBar(MenuBar): void
+            +createPartyRankingTopics(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class PoliticianRankingMenuItemFactoryImpl [[PoliticianRankingMenuItemFactoryImpl.html]] {
+            +createPoliticianRankingMenuBar(MenuBar): void
+            +createPoliticianRankingTopics(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class ApplicationMenuItemFactoryImpl [[ApplicationMenuItemFactoryImpl.html]] {
+            +createMainPageMenuBar(MenuBar): MenuBar
+            +addRankingMenu(MenuBar): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class CommitteeRankingMenuItemFactoryImpl [[CommitteeRankingMenuItemFactoryImpl.html]] {
+            +createCommitteeeRankingMenuBar(MenuBar): void
+            +createCommitteeRankingTopics(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class CountryMenuItemFactoryImpl [[CountryMenuItemFactoryImpl.html]] {
+            +createCountryTopicMenu(MenuBar): void
+            +createCountryTopicMenu(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class ParliamentMenuItemFactoryImpl [[ParliamentMenuItemFactoryImpl.html]] {
+            +createParliamentTopicMenu(MenuBar): void
+            +createParliamentTopicMenu(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class GovernmentBodyRankingMenuItemFactoryImpl [[GovernmentBodyRankingMenuItemFactoryImpl.html]] {
+            +createGovernmentBodyRankingMenuBar(MenuBar): void
+            +createGovernmentBodyRankingTopics(MenuItem): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        abstract class AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]] {
+            #initApplicationMenuBar(MenuBar): void
+            #createButtonLink(ResponsiveRow, String, Resource, ClickListener, String): void
+        }
+
+        class PoliticianMenuItemFactoryImpl [[PoliticianMenuItemFactoryImpl.html]] {
+            +createPoliticianMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        class MinistryMenuItemFactoryImpl [[MinistryMenuItemFactoryImpl.html]] {
+            +createMinistryMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        class UserHomeMenuItemFactoryImpl [[UserHomeMenuItemFactoryImpl.html]] {
+            +createUserHomeMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout): void
+        }
+
+        class BallotMenuItemFactoryImpl [[BallotMenuItemFactoryImpl.html]] {
+            +createBallotMenuBar(MenuBar, String): void
+            +createOverviewPage(VerticalLayout, String): void
+        }
+
+        AbstractMenuItemFactoryImpl <|-- CommitteeMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory <|.. CommitteeMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- PartyMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory <|.. PartyMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- GovernmentBodyMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory <|.. GovernmentBodyMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- MinistryRankingMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory <|.. MinistryRankingMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- DocumentMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory <|.. DocumentMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- PartyRankingMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory <|.. PartyRankingMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- PoliticianRankingMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory <|.. PoliticianRankingMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- ApplicationMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory <|.. ApplicationMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- CommitteeRankingMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory <|.. CommitteeRankingMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- CountryMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory <|.. CountryMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- ParliamentMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory <|.. ParliamentMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- GovernmentBodyRankingMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory <|.. GovernmentBodyRankingMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- PoliticianMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory <|.. PoliticianMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- MinistryMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory <|.. MinistryMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- UserHomeMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory <|.. UserHomeMenuItemFactoryImpl
+        AbstractMenuItemFactoryImpl <|-- BallotMenuItemFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory <|.. BallotMenuItemFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.menufactory.api {
+        interface CommitteeMenuItemFactory [[../api/CommitteeMenuItemFactory.html]] {
+            {abstract} +createCommitteeeMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface PartyMenuItemFactory [[../api/PartyMenuItemFactory.html]] {
+            {abstract} +createPartyMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface GovernmentBodyMenuItemFactory [[../api/GovernmentBodyMenuItemFactory.html]] {
+            {abstract} +createGovernmentBodyMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface MinistryRankingMenuItemFactory [[../api/MinistryRankingMenuItemFactory.html]] {
+            {abstract} +createMinistryRankingMenuBar(MenuBar): void
+            {abstract} +createMinistryRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface DocumentMenuItemFactory [[../api/DocumentMenuItemFactory.html]] {
+            {abstract} +createDocumentMenuBar(MenuBar, String): void
+            {abstract} +createDocumentsMenuBar(MenuBar): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface PartyRankingMenuItemFactory [[../api/PartyRankingMenuItemFactory.html]] {
+            {abstract} +createPartyRankingMenuBar(MenuBar): void
+            {abstract} +createPartyRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface PoliticianRankingMenuItemFactory [[../api/PoliticianRankingMenuItemFactory.html]] {
+            {abstract} +createPoliticianRankingMenuBar(MenuBar): void
+            {abstract} +createPoliticianRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface ApplicationMenuItemFactory [[../api/ApplicationMenuItemFactory.html]] {
+            {abstract} +createMainPageMenuBar(MenuBar): MenuBar
+            {abstract} +addRankingMenu(MenuBar): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface CommitteeRankingMenuItemFactory [[../api/CommitteeRankingMenuItemFactory.html]] {
+            {abstract} +createCommitteeeRankingMenuBar(MenuBar): void
+            {abstract} +createCommitteeRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface CountryMenuItemFactory [[../api/CountryMenuItemFactory.html]] {
+            {abstract} +createCountryTopicMenu(MenuBar): void
+            {abstract} +createCountryTopicMenu(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface ParliamentMenuItemFactory [[../api/ParliamentMenuItemFactory.html]] {
+            {abstract} +createParliamentTopicMenu(MenuBar): void
+            {abstract} +createParliamentTopicMenu(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface GovernmentBodyRankingMenuItemFactory [[../api/GovernmentBodyRankingMenuItemFactory.html]] {
+            {abstract} +createGovernmentBodyRankingMenuBar(MenuBar): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+            {abstract} +createGovernmentBodyRankingTopics(MenuItem): void
+        }
+        interface PoliticianMenuItemFactory [[../api/PoliticianMenuItemFactory.html]] {
+            {abstract} +createPoliticianMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface MinistryMenuItemFactory [[../api/MinistryMenuItemFactory.html]] {
+            {abstract} +createMinistryMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+        interface UserHomeMenuItemFactory [[../api/UserHomeMenuItemFactory.html]] {
+            {abstract} +createUserHomeMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+        interface BallotMenuItemFactory [[../api/BallotMenuItemFactory.html]] {
+            {abstract} +createBallotMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

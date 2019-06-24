@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>PageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener<T> [[PageItemRendererClickListener.html]]
+
+    interface "<size:14>ClickableRenderer.RendererClickListener\n<size:10>com.vaadin.ui.renderers" as com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener<T> {
+        {abstract} +click(RendererClickEvent<T>): void
+    }
+    interface "<size:14>SelectionListener\n<size:10>com.vaadin.event.selection" as com.vaadin.event.selection.SelectionListener<T> {
+        {abstract} +selectionChange(SelectionEvent<T>): void
+    }
+
+    com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener
+    com.vaadin.event.selection.SelectionListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

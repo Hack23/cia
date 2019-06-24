@@ -1,0 +1,17 @@
+digraph spring_security_web_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_security_web_5_2_0_M3 -> jackson_annotations_2_9_0;
+  spring_security_web_5_2_0_M3 -> jackson_core_2_9_9;
+  spring_security_web_5_2_0_M3 -> jackson_databind_2_9_9;
+  spring_security_web_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_security_web_5_2_0_M3 -> spring_beans_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_expression_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_jdbc_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_security_core_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_tx_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_web_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> spring_webmvc_5_2_0_M3;
+  spring_security_web_5_2_0_M3 -> xml_apis_1_4_01;
+}

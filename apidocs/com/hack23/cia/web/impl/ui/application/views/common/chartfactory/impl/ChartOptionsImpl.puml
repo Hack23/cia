@@ -1,0 +1,33 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ChartOptionsImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ChartOptionsImpl [[ChartOptionsImpl.html]] {
+        {static} +NUMBER_TICKS_DATE: int
+        {static} +YEAR_MONTH_DAY_FORMAT: String
+        +createOptionsCountryLineChart(Series): Options
+        +createOptionsDonoutChart(): Options
+        +createOptionsDonoutChartWithSeries(Series): Options
+        +createOptionsPartyLineChart(Series): Options
+        +createOptionsPersonLineChart(Series): Options
+        +createOptionsPieChart(): Options
+        +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+        +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
+    }
+
+    interface "<size:14>ChartOptions\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions [[../api/ChartOptions.html]] {
+        {abstract} +createOptionsCountryLineChart(Series): Options
+        {abstract} +createOptionsDonoutChart(): Options
+        {abstract} +createOptionsDonoutChartWithSeries(Series): Options
+        {abstract} +createOptionsPartyLineChart(Series): Options
+        {abstract} +createOptionsPersonLineChart(Series): Options
+        {abstract} +createOptionsPieChart(): Options
+        {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
+        {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ChartOptionsImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.home.pagemode {
+
+        class UserHomeApplicationEventsPageModContentFactoryImpl [[UserHomeApplicationEventsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class UserHomeApplicationSessionsPageModContentFactoryImpl [[UserHomeApplicationSessionsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class UserHomeSecuritySettingsPageModContentFactoryImpl [[UserHomeSecuritySettingsPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class UserHomeOverviewPageModContentFactoryImpl [[UserHomeOverviewPageModContentFactoryImpl.html]] {
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- UserHomeApplicationEventsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- UserHomeApplicationSessionsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- UserHomeSecuritySettingsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- UserHomeOverviewPageModContentFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+        abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

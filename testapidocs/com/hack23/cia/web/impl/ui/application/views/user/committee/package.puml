@@ -1,0 +1,26 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.committee {
+
+        class CommitteeRankingView [[CommitteeRankingView.html]] {
+            {static} +NAME: String
+            +CommitteeRankingView(ApplicationContext)
+        }
+
+        class CommitteeView [[CommitteeView.html]] {
+            {static} +NAME: String
+            +CommitteeView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- CommitteeRankingView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView <|-- CommitteeView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
+        }
+        abstract class AbstractGroupView [[../common/AbstractGroupView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

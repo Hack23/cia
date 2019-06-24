@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CitizenIntelligenceAgencySpringVaadinServlet\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencySpringVaadinServlet [[CitizenIntelligenceAgencySpringVaadinServlet.html]] {
+        #servletInitialized(): void
+        #service(HttpServletRequest, HttpServletResponse): void
+    }
+
+    class "<size:14>SpringVaadinServlet\n<size:10>com.vaadin.spring.server" as com.vaadin.spring.server.SpringVaadinServlet
+
+    com.vaadin.spring.server.SpringVaadinServlet <|-- com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencySpringVaadinServlet
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

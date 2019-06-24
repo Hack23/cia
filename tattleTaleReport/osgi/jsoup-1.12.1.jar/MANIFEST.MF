@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: jhy
+Build-Jdk: 9.0.1
+Automatic-Module-Name: org.jsoup
+Bnd-LastModified: 1557705274608
+Bundle-Description: jsoup is a Java library for working with real-world 
+ HTML. It provides a very convenient API for extracting and manipulating
+  data, using the best of DOM, CSS, and jquery-like methods. jsoup imple
+ ments the WHATWG HTML5 specification, and parses HTML to the same DOM a
+ s modern browsers do.
+Bundle-DocURL: https://jsoup.org/
+Bundle-License: https://jsoup.org/license
+Bundle-ManifestVersion: 2
+Bundle-Name: jsoup Java HTML Parser
+Bundle-SymbolicName: org.jsoup
+Bundle-Vendor: Jonathan Hedley
+Bundle-Version: 1.12.1
+Export-Package: org.jsoup;uses:="javax.net.ssl,org.jsoup.nodes,org.jsoup
+ .parser,org.jsoup.safety";version="1.12.1",org.jsoup.nodes;uses:="org.j
+ soup,org.jsoup.parser,org.jsoup.select";version="1.12.1",org.jsoup.pars
+ er;uses:="org.jsoup.nodes";version="1.12.1",org.jsoup.safety;uses:="org
+ .jsoup.nodes";version="1.12.1",org.jsoup.examples;uses:="org.jsoup.node
+ s";version="1.12.1",org.jsoup.select;uses:="org.jsoup.nodes";version="1
+ .12.1",org.jsoup.helper;uses:="javax.net.ssl,javax.xml.parsers,org.jsou
+ p,org.jsoup.nodes,org.jsoup.parser,org.jsoup.select,org.w3c.dom";versio
+ n="1.12.1"
+Import-Package: javax.net.ssl,javax.xml.parsers,javax.xml.transform,java
+ x.xml.transform.dom,javax.xml.transform.stream,org.w3c.dom
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-2.4.1.201501161923
+

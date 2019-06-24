@@ -1,0 +1,23 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CommitteeRankingMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.CommitteeRankingMenuItemFactoryImpl [[CommitteeRankingMenuItemFactoryImpl.html]] {
+        +createCommitteeeRankingMenuBar(MenuBar): void
+        +createCommitteeRankingTopics(MenuItem): void
+        +createOverviewPage(VerticalLayout): void
+    }
+
+    abstract class "<size:14>AbstractMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]]
+    interface "<size:14>CommitteeRankingMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory [[../api/CommitteeRankingMenuItemFactory.html]] {
+        {abstract} +createCommitteeeRankingMenuBar(MenuBar): void
+        {abstract} +createCommitteeRankingTopics(MenuItem): void
+        {abstract} +createOverviewPage(VerticalLayout): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.CommitteeRankingMenuItemFactoryImpl
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.CommitteeRankingMenuItemFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

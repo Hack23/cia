@@ -1,0 +1,16 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api {
+
+        interface SearchDocumentResponseHandler [[SearchDocumentResponseHandler.html]] {
+            {abstract} +handle(SearchDocumentResponse): void
+        }
+
+        java.io.Serializable <|.. SearchDocumentResponseHandler
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

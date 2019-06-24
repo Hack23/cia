@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.ballot {
+
+        class BallotView [[BallotView.html]] {
+            {static} +NAME: String
+            +BallotView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- BallotView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractUserView [[../common/AbstractUserView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

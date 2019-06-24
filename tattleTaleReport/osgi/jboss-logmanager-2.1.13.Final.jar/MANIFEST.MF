@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: jperkins
+Build-Jdk: 9.0.4
+Specification-Title: JBoss Log Manager
+Specification-Version: 2.1.13.Final
+Specification-Vendor: JBoss by Red Hat
+Implementation-Title: JBoss Log Manager
+Implementation-Version: 2.1.13.Final
+Implementation-Vendor-Id: org.jboss.logmanager
+Implementation-Vendor: JBoss by Red Hat
+Implementation-URL: http://www.jboss.org/jboss-logmanager
+Java-Vendor: Oracle Corporation
+Java-Version: 9.0.4
+Multi-Release: true
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 5.1.8-300.fc30.x86_64
+Scm-Connection: scm:git:git@github.com:jboss/jboss-parent-pom.git/jboss-
+ logmanager
+Scm-Revision: 00c1e2f902e2eff4034ff6c01fef2c8d25e93dd4
+Scm-Url: http://github.com/jboss/jboss-parent-pom/jboss-logmanager
+Bnd-LastModified: 1560982575194
+Bundle-Description: An implementation of java.util.logging.LogManager
+Bundle-DocURL: http://www.jboss.org
+Bundle-License: http://repository.jboss.org/licenses/apache-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: JBoss Log Manager
+Bundle-SymbolicName: org.jboss.logmanager.jboss-logmanager
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 2.1.13.Final
+Export-Package: org.jboss.logmanager;version="2.1.13.Final";uses:="org.j
+ boss.logmanager.config,org.jboss.logmanager.handlers",org.jboss.logmana
+ ger.config;version="2.1.13.Final";uses:="org.jboss.logmanager",org.jbos
+ s.logmanager.errormanager;version="2.1.13.Final",org.jboss.logmanager.f
+ ilters;version="2.1.13.Final",org.jboss.logmanager.formatters;version="
+ 2.1.13.Final";uses:="org.jboss.logmanager",org.jboss.logmanager.handler
+ s;version="2.1.13.Final";uses:="javax.net,org.jboss.logmanager"
+Import-Package: com.sun.jmx.trace,javax.json;version="[1.0,2)";resolutio
+ n:=optional,javax.json.stream;version="[1.0,2)";resolution:=optional,ja
+ vax.net,javax.net.ssl,javax.xml.namespace,javax.xml.stream,org.jboss.lo
+ gmanager;version="[2.1,3)",org.jboss.logmanager.config;version="[2.1,3)
+ ",org.jboss.logmanager.errormanager;version="[2.1,3)",org.jboss.logmana
+ ger.filters;version="[2.1,3)",org.jboss.logmanager.formatters;version="
+ [2.1,3)",org.jboss.logmanager.handlers;version="[2.1,3)",org.jboss.modu
+ les;resolution:=optional,org.wildfly.common.net,org.wildfly.common.os
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.2.0.201903051501
+

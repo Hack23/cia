@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartyChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyChartDataManagerImpl [[PartyChartDataManagerImpl.html]] {
+        +createPartyWinnerChart(AbstractOrderedLayout): void
+        +createPartyLineChart(AbstractOrderedLayout, String): void
+        +createPartyGenderChart(AbstractOrderedLayout): void
+        +createPartyAgeChart(AbstractOrderedLayout): void
+    }
+
+    abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
+    interface "<size:14>PartyChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager [[../api/PartyChartDataManager.html]] {
+        {abstract} +createPartyWinnerChart(AbstractOrderedLayout): void
+        {abstract} +createPartyLineChart(AbstractOrderedLayout, String): void
+        {abstract} +createPartyGenderChart(AbstractOrderedLayout): void
+        {abstract} +createPartyAgeChart(AbstractOrderedLayout): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyChartDataManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PartyChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

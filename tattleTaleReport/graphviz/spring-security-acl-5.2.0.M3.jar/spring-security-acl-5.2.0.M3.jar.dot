@@ -1,0 +1,10 @@
+digraph spring_security_acl_5_2_0_M3_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_security_acl_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_security_acl_5_2_0_M3 -> spring_aop_5_2_0_M3;
+  spring_security_acl_5_2_0_M3 -> spring_context_5_2_0_M3;
+  spring_security_acl_5_2_0_M3 -> spring_core_5_2_0_M3;
+  spring_security_acl_5_2_0_M3 -> spring_jdbc_5_2_0_M3;
+  spring_security_acl_5_2_0_M3 -> spring_security_core_5_2_0_M3;
+  spring_security_acl_5_2_0_M3 -> spring_tx_5_2_0_M3;
+}

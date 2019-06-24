@@ -1,0 +1,23 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AdminChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl [[AdminChartDataManagerImpl.html]] {
+        +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
+        +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+    }
+
+    abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
+    interface "<size:14>AdminChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager [[../api/AdminChartDataManager.html]] {
+        {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
+        {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

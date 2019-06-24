@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CitizenIntelligenceAgencyHealthCheckServlet\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyHealthCheckServlet [[CitizenIntelligenceAgencyHealthCheckServlet.html]] {
+        +doGet(HttpServletRequest, HttpServletResponse): void
+    }
+
+    abstract class "<size:14>HttpServlet\n<size:10>javax.servlet.http" as javax.servlet.http.HttpServlet
+
+    javax.servlet.http.HttpServlet <|-- com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyHealthCheckServlet
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

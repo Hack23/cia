@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl.html]] {
+        +findByValue(String): List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>
+    }
+
+    interface "<size:14>GenericChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> [[../api/GenericChartDataManager.html]] {
+        {abstract} +findByValue(String): List<T>
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>BallotMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.BallotMenuItemFactoryImpl [[BallotMenuItemFactoryImpl.html]] {
+        +createBallotMenuBar(MenuBar, String): void
+        +createOverviewPage(VerticalLayout, String): void
+    }
+
+    abstract class "<size:14>AbstractMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]]
+    interface "<size:14>BallotMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory [[../api/BallotMenuItemFactory.html]] {
+        {abstract} +createBallotMenuBar(MenuBar, String): void
+        {abstract} +createOverviewPage(VerticalLayout, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.BallotMenuItemFactoryImpl
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.BallotMenuItemFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

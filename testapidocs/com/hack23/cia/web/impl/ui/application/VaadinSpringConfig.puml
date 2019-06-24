@@ -1,0 +1,9 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>VaadinSpringConfig\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.VaadinSpringConfig [[VaadinSpringConfig.html]]
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

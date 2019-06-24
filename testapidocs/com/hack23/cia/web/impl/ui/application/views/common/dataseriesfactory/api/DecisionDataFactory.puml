@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>DecisionDataFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory [[DecisionDataFactory.html]] {
+        {abstract} +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

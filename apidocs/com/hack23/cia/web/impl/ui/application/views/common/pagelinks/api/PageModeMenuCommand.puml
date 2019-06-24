@@ -1,0 +1,27 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PageModeMenuCommand\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api" as com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand [[PageModeMenuCommand.html]] {
+        +PageModeMenuCommand(String, PageMode)
+        +PageModeMenuCommand(String, String)
+        +PageModeMenuCommand(String, PageMode, String)
+        +PageModeMenuCommand(String, String, String)
+        +getPagePath(): String
+        +menuSelected(MenuItem): void
+        +buttonClick(ClickEvent): void
+    }
+
+    interface "<size:14>MenuBar.Command\n<size:10>com.vaadin.ui" as com.vaadin.ui.MenuBar.Command {
+        {abstract} +menuSelected(MenuItem): void
+    }
+    interface "<size:14>Button.ClickListener\n<size:10>com.vaadin.ui" as com.vaadin.ui.Button.ClickListener {
+        {abstract} +buttonClick(ClickEvent): void
+    }
+
+    com.vaadin.ui.MenuBar.Command <|.. com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand
+    com.vaadin.ui.Button.ClickListener <|.. com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

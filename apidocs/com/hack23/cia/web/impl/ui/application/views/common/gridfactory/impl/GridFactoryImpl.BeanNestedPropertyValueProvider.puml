@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>GridFactoryImpl.BeanNestedPropertyValueProvider\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider<T> [[GridFactoryImpl.BeanNestedPropertyValueProvider.html]] {
+        +BeanNestedPropertyValueProvider(String)
+        +apply(T): String
+    }
+
+    interface "<size:14>ValueProvider\n<size:10>com.vaadin.data" as com.vaadin.data.ValueProvider<T, String> {
+        {abstract} +apply(T): String
+    }
+    class "<size:14>GridFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl [[GridFactoryImpl.html]]
+
+    com.vaadin.data.ValueProvider <|.. com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider
+    com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl.GridFactoryImpl.BeanNestedPropertyValueProvider
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

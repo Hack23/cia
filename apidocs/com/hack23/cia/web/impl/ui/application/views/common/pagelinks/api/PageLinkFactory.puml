@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>PageLinkFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api" as com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory [[PageLinkFactory.html]] {
+        {abstract} +createMainViewPageLink(): Link
+        {abstract} +createUserHomeViewPageLink(): Link
+        {abstract} +addCommitteePageLink(ViewRiksdagenCommittee): Link
+        {abstract} +addMinistryPageLink(ViewRiksdagenMinistry): Link
+        {abstract} +addPartyPageLink(ViewRiksdagenParty): Link
+        {abstract} +createAdminPagingLink(String, String, String, String): Link
+        {abstract} +createPoliticianPageLink(PersonData): Link
+        {abstract} +createRegisterPageLink(): Link
+        {abstract} +createLoginPageLink(): Link
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

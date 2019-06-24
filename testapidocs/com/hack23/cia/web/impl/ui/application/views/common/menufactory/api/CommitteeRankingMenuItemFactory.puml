@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>CommitteeRankingMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory [[CommitteeRankingMenuItemFactory.html]] {
+        {abstract} +createCommitteeeRankingMenuBar(MenuBar): void
+        {abstract} +createCommitteeRankingTopics(MenuItem): void
+        {abstract} +createOverviewPage(VerticalLayout): void
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

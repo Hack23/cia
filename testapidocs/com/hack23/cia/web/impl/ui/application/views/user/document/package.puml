@@ -1,0 +1,30 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.document {
+
+        class DocumentView [[DocumentView.html]] {
+            {static} +NAME: String
+            +DocumentView(ApplicationContext)
+        }
+
+        class DocumentsView [[DocumentsView.html]] {
+            {static} +NAME: String
+            +DocumentsView(ApplicationContext)
+        }
+
+        class SearchDocumentView [[SearchDocumentView.html]] {
+            {static} +NAME: String
+            +SearchDocumentView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- DocumentView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- DocumentsView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|-- SearchDocumentView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractUserView [[../common/AbstractUserView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

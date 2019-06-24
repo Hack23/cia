@@ -1,0 +1,22 @@
+digraph spring_data_commons_2_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_data_commons_2_2_0_RC1 -> guava_28_0_jre;
+  spring_data_commons_2_2_0_RC1 -> jackson_annotations_2_9_0;
+  spring_data_commons_2_2_0_RC1 -> jackson_core_2_9_9;
+  spring_data_commons_2_2_0_RC1 -> jackson_databind_2_9_9;
+  spring_data_commons_2_2_0_RC1 -> jaxb_api_2_4_0;
+  spring_data_commons_2_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_data_commons_2_2_0_RC1 -> joda_time_2_10_2;
+  spring_data_commons_2_2_0_RC1 -> jsr305_3_0_2;
+  spring_data_commons_2_2_0_RC1 -> slf4j_api_2_0_0_alpha0;
+  spring_data_commons_2_2_0_RC1 -> spring_aop_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_beans_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_context_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_core_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_expression_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_oxm_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_tx_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_web_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> spring_webmvc_5_2_0_M3;
+  spring_data_commons_2_2_0_RC1 -> xml_apis_1_4_01;
+}

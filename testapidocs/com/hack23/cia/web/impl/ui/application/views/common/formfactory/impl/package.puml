@@ -1,0 +1,20 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl {
+
+        class FormFactoryImpl [[FormFactoryImpl.html]] {
+            +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
+            +addFormPanelTextFields(AbstractOrderedLayout, T extends Serializable, Class<T extends Serializable>, List<String>): void
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory <|.. FormFactoryImpl
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.common.formfactory.api {
+        interface FormFactory [[../api/FormFactory.html]] {
+            {abstract} +addFormPanelTextFields(AbstractOrderedLayout, T extends Serializable, Class<T extends Serializable>, List<String>): void
+            {abstract} +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

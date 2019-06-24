@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PersonDocumentChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PersonDocumentChartDataManagerImpl [[PersonDocumentChartDataManagerImpl.html]] {
+        +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
+    }
+
+    abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
+    interface "<size:14>PersonDocumentChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager [[../api/PersonDocumentChartDataManager.html]] {
+        {abstract} +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PersonDocumentChartDataManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.PersonDocumentChartDataManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

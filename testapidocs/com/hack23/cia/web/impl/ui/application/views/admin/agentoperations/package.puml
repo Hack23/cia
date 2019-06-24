@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.agentoperations {
+
+        class AgentOperationView [[AgentOperationView.html]] {
+            {static} +NAME: String
+            +AgentOperationView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- AgentOperationView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.admin.common {
+        abstract class AbstractAdminView [[../common/AbstractAdminView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

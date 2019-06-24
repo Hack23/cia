@@ -3,7 +3,7 @@ digraph spring_messaging_5_2_0_M3_dependencies {
   spring_messaging_5_2_0_M3 -> jackson_annotations_2_9_0;
   spring_messaging_5_2_0_M3 -> jackson_core_2_9_9;
   spring_messaging_5_2_0_M3 -> jackson_databind_2_9_9;
-  spring_messaging_5_2_0_M3 -> jcl_over_slf4j_1_8_0_beta4;
+  spring_messaging_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
   spring_messaging_5_2_0_M3 -> netty_buffer_4_1_36_Final;
   spring_messaging_5_2_0_M3 -> netty_codec_4_1_36_Final;
   spring_messaging_5_2_0_M3 -> netty_common_4_1_36_Final;

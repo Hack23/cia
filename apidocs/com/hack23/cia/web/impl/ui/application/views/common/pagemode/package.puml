@@ -1,0 +1,70 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
+
+        abstract class AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]] {
+            {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
+            {static} +CURRENT_PAGE_VISIT_HISTORY: String
+            {static} +DEFAULT_RESULTS_PER_PAGE: int
+            #getPageId(String): String
+            #getPageNr(String): int
+            #getApplicationManager(): ApplicationManager
+            #getMenuItemFactory(): ApplicationMenuItemFactory
+            #getGridFactory(): GridFactory
+            #getFormFactory(): FormFactory
+            #getPageLinkFactory(): PageLinkFactory
+            #getAdminChartDataManager(): AdminChartDataManager
+            #getPageActionEventHelper(): PageActionEventHelper
+            #createPanelContent(): VerticalLayout
+            #createPageVisitHistory(String, String, VerticalLayout): void
+        }
+
+        class MainViewRegisterPageModContentFactoryImpl [[MainViewRegisterPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class MainViewPageVisitHistoryPageModContentFactoryImpl [[MainViewPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class MainViewLoginPageModContentFactoryImpl [[MainViewLoginPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        abstract class AbstractBasicPageModContentFactoryImpl [[AbstractBasicPageModContentFactoryImpl.html]] {
+            +validReference(String): boolean
+        }
+
+        abstract class AbstractItemPageModContentFactoryImpl<T> [[AbstractItemPageModContentFactoryImpl.html]] {
+            +validReference(String): boolean
+            {abstract} #getItem(String): T
+        }
+
+        interface PageModeContentFactory [[PageModeContentFactory.html]] {
+            {abstract} +matches(String, String): boolean
+            {abstract} +validReference(String): boolean
+            {abstract} +createContent(String, MenuBar, Panel): Layout
+        }
+
+        class MainViewOverviewPageModContentFactoryImpl [[MainViewOverviewPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +matches(String, String): boolean
+            +createContent(String, MenuBar, Panel): Layout
+        }
+
+        PageModeContentFactory <|.. AbstractPageModContentFactoryImpl
+        AbstractBasicPageModContentFactoryImpl <|-- MainViewRegisterPageModContentFactoryImpl
+        AbstractBasicPageModContentFactoryImpl <|-- MainViewPageVisitHistoryPageModContentFactoryImpl
+        AbstractBasicPageModContentFactoryImpl <|-- MainViewLoginPageModContentFactoryImpl
+        AbstractPageModContentFactoryImpl <|-- AbstractBasicPageModContentFactoryImpl
+        AbstractPageModContentFactoryImpl <|-- AbstractItemPageModContentFactoryImpl
+        AbstractBasicPageModContentFactoryImpl <|-- MainViewOverviewPageModContentFactoryImpl
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

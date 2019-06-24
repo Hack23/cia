@@ -1,0 +1,12 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>UserHomeMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory [[UserHomeMenuItemFactory.html]] {
+        {abstract} +createUserHomeMenuBar(MenuBar, String): void
+        {abstract} +createOverviewPage(VerticalLayout): void
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>GovernmentBodyMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.GovernmentBodyMenuItemFactoryImpl [[GovernmentBodyMenuItemFactoryImpl.html]] {
+        +createGovernmentBodyMenuBar(MenuBar, String): void
+        +createOverviewPage(VerticalLayout, String): void
+    }
+
+    abstract class "<size:14>AbstractMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]]
+    interface "<size:14>GovernmentBodyMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory [[../api/GovernmentBodyMenuItemFactory.html]] {
+        {abstract} +createGovernmentBodyMenuBar(MenuBar, String): void
+        {abstract} +createOverviewPage(VerticalLayout, String): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.GovernmentBodyMenuItemFactoryImpl
+    com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.GovernmentBodyMenuItemFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

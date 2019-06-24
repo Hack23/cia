@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.utskottsf
+ orslag.impl
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.utskottsf
+ orslag.impl
+Bundle-Description: model.external.riksdagen.utskottsforslag.impl-2019
+ .6.24-SNAPSHOT
+Bundle-Name: model.external.riksdagen.utskottsforslag.impl-2019.6.24-S
+ NAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.utskottsforsla
+ g.impl;uses:="com.hack23.cia.model.common.api,com.hack23.cia.model.co
+ mmon.impl.xml,org.apache.commons.lang3.builder,org.jvnet.hyperjaxb3.x
+ ml.bind.annotation.adapters"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",com.ha
+ ck23.cia.model.common.impl.xml;version="0.0.0",java.lang,java.math,ja
+ va.util,javax.persistence;version="2.2",javax.persistence.metamodel;v
+ ersion="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation
+ ;version="2.4.0",javax.xml.bind.annotation.adapters;version="2.4.0",j
+ avax.xml.namespace;version="1.0",org.apache.commons.lang3.builder;ver
+ sion="3.9",org.jvnet.hyperjaxb3.xml.bind.annotation.adapters;version=
+ "0.0.0",org.w3c.dom;version="1.0"

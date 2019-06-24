@@ -109,15 +109,15 @@ import com.vaadin.ui.Link;
 <span class="fc" id="L109">					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L112" title="All 4 branches covered.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
 <span class="fc" id="L113">					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L116" title="All 4 branches covered.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
+<span class="pc bpc" id="L116" title="1 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
 <span class="fc" id="L117">					addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);</span>
 				}
 
-<span class="fc bfc" id="L120" title="All 4 branches covered.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="pc bpc" id="L120" title="1 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
 <span class="fc" id="L121">					addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);</span>
 				}
 

@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CustomSpringUIProvider\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.CustomSpringUIProvider [[CustomSpringUIProvider.html]] {
+        +CustomSpringUIProvider(VaadinSession)
+        +createInstance(UICreateEvent): UI
+        #findSpringViewDisplay(UI): Object
+    }
+
+    class "<size:14>SpringUIProvider\n<size:10>com.vaadin.spring.server" as com.vaadin.spring.server.SpringUIProvider
+
+    com.vaadin.spring.server.SpringUIProvider <|-- com.hack23.cia.web.impl.ui.application.CustomSpringUIProvider
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

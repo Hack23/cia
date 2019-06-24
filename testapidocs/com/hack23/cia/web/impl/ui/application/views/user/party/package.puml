@@ -1,0 +1,26 @@
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.user.party {
+
+        class PartyView [[PartyView.html]] {
+            {static} +NAME: String
+            +PartyView(ApplicationContext)
+        }
+
+        class PartyRankingView [[PartyRankingView.html]] {
+            {static} +NAME: String
+            +PartyRankingView(ApplicationContext)
+        }
+
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView <|-- PartyView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- PartyRankingView
+    }
+
+    namespace com.hack23.cia.web.impl.ui.application.views.user.common {
+        abstract class AbstractGroupView [[../common/AbstractGroupView.html]] {
+        }
+        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

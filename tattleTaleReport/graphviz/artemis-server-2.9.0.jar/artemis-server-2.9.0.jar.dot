@@ -11,7 +11,7 @@ digraph artemis_server_2_9_0_dependencies {
   artemis_server_2_9_0 -> geronimo_json_1_0_spec_1_0_alpha_1;
   artemis_server_2_9_0 -> geronimo_jta_1_1_spec_1_1_1;
   artemis_server_2_9_0 -> jboss_logging_3_4_0_Final;
-  artemis_server_2_9_0 -> jboss_logmanager_2_1_11_Final;
+  artemis_server_2_9_0 -> jboss_logmanager_2_1_13_Final;
   artemis_server_2_9_0 -> micrometer_core_1_1_4;
   artemis_server_2_9_0 -> netty_buffer_4_1_36_Final;
   artemis_server_2_9_0 -> netty_codec_4_1_36_Final;

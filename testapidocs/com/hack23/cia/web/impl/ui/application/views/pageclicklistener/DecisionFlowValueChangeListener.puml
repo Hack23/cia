@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DecisionFlowValueChangeListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DecisionFlowValueChangeListener [[DecisionFlowValueChangeListener.html]] {
+        +DecisionFlowValueChangeListener(String, String)
+        +valueChange(ValueChangeEvent<String>): void
+    }
+
+    interface "<size:14>HasValue.ValueChangeListener\n<size:10>com.vaadin.data" as com.vaadin.data.HasValue.ValueChangeListener<String> {
+        {abstract} +valueChange(ValueChangeEvent<V>): void
+    }
+
+    com.vaadin.data.HasValue.ValueChangeListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DecisionFlowValueChangeListener
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

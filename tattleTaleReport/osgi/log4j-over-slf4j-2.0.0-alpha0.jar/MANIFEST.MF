@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ceki
+Build-Jdk: 11.0.2
+Bundle-Description: Log4j implemented over SLF4J
+Bundle-Version: 2.0.0.alpha0
+Implementation-Version: 2.0.0-alpha0
+Multi-Release: true
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Implementation-Title: log4j-over-slf4j
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: log4j.over.slf4j
+Bundle-Name: log4j-over-slf4j
+Bundle-Vendor: SLF4J.ORG
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.apache.log4j;version=1.2.17,org.apache.log4j.helpers
+ ;version=1.2.17,org.apache.log4j.spi;version=1.2.17,org.apache.log4j.xm
+ l;version=1.2.17
+Import-Package: org.slf4j;version=1.6.0,org.slf4j.helpers;version=1.6.0,
+ org.slf4j.spi;version=1.6.0
+

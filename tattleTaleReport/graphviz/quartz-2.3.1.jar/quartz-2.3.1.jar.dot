@@ -4,6 +4,6 @@ digraph quartz_2_3_1_dependencies {
   quartz_2_3_1 -> geronimo_jta_1_1_spec_1_1_1;
   quartz_2_3_1 -> jaxb_api_2_4_0;
   quartz_2_3_1 -> jboss_logging_3_4_0_Final;
-  quartz_2_3_1 -> slf4j_api_1_8_0_beta4;
+  quartz_2_3_1 -> slf4j_api_2_0_0_alpha0;
   quartz_2_3_1 -> xml_apis_1_4_01;
 }

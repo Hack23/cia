@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl [[MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
+        +matches(String, String): boolean
+        +createContent(String, MenuBar, Panel): Layout
+    }
+
+    abstract class "<size:14>AbstractBasicPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

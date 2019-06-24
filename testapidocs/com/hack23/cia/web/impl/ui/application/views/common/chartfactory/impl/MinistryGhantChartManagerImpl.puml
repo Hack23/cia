@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>MinistryGhantChartManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.MinistryGhantChartManagerImpl [[MinistryGhantChartManagerImpl.html]] {
+        #getComparator(): Comparator<ViewRiksdagenGovermentRoleMember>
+        #getRoleMapping(): Function<ViewRiksdagenGovermentRoleMember, String>
+        #getStepMapping(): StepMapping<ViewRiksdagenGovermentRoleMember>
+    }
+
+    abstract class "<size:14>AbstractGhantChartManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl<ViewRiksdagenGovermentRoleMember> [[AbstractGhantChartManagerImpl.html]] {
+        {abstract} #getComparator(): Comparator<T>
+        {abstract} #getRoleMapping(): Function<T, String>
+        {abstract} #getStepMapping(): StepMapping<T>
+    }
+    interface "<size:14>MinistryGhantChartManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager [[../api/MinistryGhantChartManager.html]] {
+        {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenGovermentRoleMember>): void
+    }
+
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.MinistryGhantChartManagerImpl
+    com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.MinistryGhantChartManagerImpl
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

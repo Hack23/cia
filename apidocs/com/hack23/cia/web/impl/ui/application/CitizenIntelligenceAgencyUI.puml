@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CitizenIntelligenceAgencyUI\n<size:10>com.hack23.cia.web.impl.ui.application" as com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyUI [[CitizenIntelligenceAgencyUI.html]] {
+        #init(VaadinRequest): void
+    }
+
+    abstract class "<size:14>UI\n<size:10>com.vaadin.ui" as com.vaadin.ui.UI {
+        {abstract} #init(VaadinRequest): void
+    }
+
+    com.vaadin.ui.UI <|-- com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyUI
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

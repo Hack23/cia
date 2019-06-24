@@ -3,7 +3,7 @@ digraph liquibase_core_3_6_3_dependencies {
   liquibase_core_3_6_3 -> ant_1_10_6;
   liquibase_core_3_6_3 -> logback_classic_1_3_0_alpha4;
   liquibase_core_3_6_3 -> logback_core_1_3_0_alpha4;
-  liquibase_core_3_6_3 -> slf4j_api_1_8_0_beta4;
+  liquibase_core_3_6_3 -> slf4j_api_2_0_0_alpha0;
   liquibase_core_3_6_3 -> snakeyaml_1_24;
   liquibase_core_3_6_3 -> spring_beans_5_2_0_M3;
   liquibase_core_3_6_3 -> spring_context_5_2_0_M3;

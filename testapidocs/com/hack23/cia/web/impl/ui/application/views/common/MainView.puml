@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>MainView\n<size:10>com.hack23.cia.web.impl.ui.application.views.common" as com.hack23.cia.web.impl.ui.application.views.common.MainView [[MainView.html]] {
+        {static} +NAME: String
+        +MainView(ApplicationContext)
+    }
+
+    abstract class "<size:14>AbstractView\n<size:10>com.hack23.cia.web.impl.ui.application.views.common" as com.hack23.cia.web.impl.ui.application.views.common.AbstractView [[AbstractView.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.common.AbstractView <|-- com.hack23.cia.web.impl.ui.application.views.common.MainView
+
+    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+@enduml

@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-security-acl
+Automatic-Module-Name: spring.security.acl
+Implementation-Version: 5.2.0.M3
+Created-By: 1.8.0_201 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.security.acls.domain
+Bundle-Description: spring-security-acl-5.2.0.M3
+Bundle-Name: spring-security-acl-5.2.0.M3
+Bundle-Version: 5.2.0.M3
+Export-Package: org.springframework.security.acls;uses:="org.aopallian
+ ce.intercept,org.springframework.security.access,org.springframework.
+ security.access.vote,org.springframework.security.acls.domain,org.spr
+ ingframework.security.acls.model,org.springframework.security.core",o
+ rg.springframework.security.acls.afterinvocation;uses:="org.springfra
+ mework.security.access,org.springframework.security.acls.domain,org.s
+ pringframework.security.acls.model,org.springframework.security.core"
+ ,org.springframework.security.acls.domain;uses:="java.lang.invoke,jav
+ a.util.function,net.sf.ehcache,org.springframework.cache,org.springfr
+ amework.security.access,org.springframework.security.access.hierarchi
+ calroles,org.springframework.security.acls.model,org.springframework.
+ security.core,org.springframework.security.core.authority,org.springf
+ ramework.security.core.context,org.springframework.security.core.user
+ details,org.springframework.security.util",org.springframework.securi
+ ty.acls.jdbc;uses:="java.lang.invoke,java.util.function,org.springfra
+ mework.security.acls.domain,org.springframework.security.acls.model,o
+ rg.springframework.security.core,org.springframework.security.core.co
+ ntext,org.springframework.security.util",org.springframework.security
+ .acls.model;uses:="org.springframework.security.core"
+Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
+ ava.sql,java.util,java.util.function,javax.sql,net.sf.ehcache,org.aop
+ alliance.intercept;version="5.2.0.M3",org.apache.commons.logging;vers
+ ion="0.0.0",org.springframework.cache;version="5.2.0.M3",org.springfr
+ amework.context;version="5.2.0.M3",org.springframework.context.suppor
+ t;version="5.2.0.M3",org.springframework.core.convert;version="5.2.0.
+ M3",org.springframework.core.convert.converter;version="5.2.0.M3",org
+ .springframework.core.convert.support;version="5.2.0.M3",org.springfr
+ amework.dao;version="5.2.0.M3",org.springframework.jdbc.core;version=
+ "5.2.0.M3",org.springframework.security.access;version="5.2.0.M3",org
+ .springframework.security.access.hierarchicalroles;version="5.2.0.M3"
+ ,org.springframework.security.access.vote;version="5.2.0.M3",org.spri
+ ngframework.security.core;version="5.2.0.M3",org.springframework.secu
+ rity.core.authority;version="5.2.0.M3",org.springframework.security.c
+ ore.context;version="5.2.0.M3",org.springframework.security.core.user
+ details;version="5.2.0.M3",org.springframework.security.util;version=
+ "5.2.0.M3",org.springframework.transaction.support;version="5.2.0.M3"
+ ,org.springframework.util;version="5.2.0.M3"
