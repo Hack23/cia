@@ -55,10 +55,15 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	public void getDocumentContent() throws Exception {
 		final DocumentContentData documentContent = riksdagenApi
 				.getDocumentContent("GX11916");
-		System.out.println(documentContent.getContent());
 		assertNotNull(documentContent);
 		assertTrue(documentContent.getContent().contains(
 				"till statsrådet Cristina Husmark Pehrsson"));
+
+		final DocumentContentData documentContent2 = riksdagenApi
+				.getDocumentContent("GVA3FöU43");
+		assertNotNull(documentContent2);
+		assertTrue(documentContent2.getContent().contains(
+				"Försvarsutskottet"));
 	}
 
 	/**
@@ -193,6 +198,9 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertTrue(dokumentstatus.getDocumentDetailContainer().getDocumentDetailList().size()>0);
 
 
+		dokumentstatus = riksdagenApi.getDocumentStatus("GVA3FöU43");
+		assertNotNull(dokumentstatus);
+				
 		dokumentstatus = riksdagenApi
 				.getDocumentStatus("GX02Ub453");
 		assertNotNull(dokumentstatus);
