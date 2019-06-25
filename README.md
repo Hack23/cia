@@ -37,6 +37,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![JDK-11 or higher](https://img.shields.io/badge/jdk-11-green.svg)]
 [![JDK-12](https://img.shields.io/badge/jdk-12-orange.svg)]
 [![JDK-13](https://img.shields.io/badge/jdk-13-orange.svg)]
+[![JDK-14](https://img.shields.io/badge/jdk-14-orange.svg)]
 
 
 # Goal
