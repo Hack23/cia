@@ -156,6 +156,7 @@
  				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
+				<prop key="hibernate.search.automatic_indexing.strategy">none</prop>
 	 			<prop key="hibernate.search.mapping_configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
 	 			<prop key="hibernate.search.default_backend">myBackend</prop> 		
 	 			
