@@ -1535,7 +1535,7 @@ Resources:
       AllocatedStorage: !Ref 'DBAllocatedStorage'
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: '11.2'
+      EngineVersion: '11.4'
       MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
