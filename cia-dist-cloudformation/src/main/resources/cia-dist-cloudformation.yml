@@ -1741,7 +1741,7 @@ Resources:
         - !Ref 'PrivateAppSubnet3'
       LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
       MinSize: '1'
-      MaxSize: '10'
+      MaxSize: '2'
       DesiredCapacity: !Ref 'WebServerCount'
       TargetGroupARNs:
         - !Ref 'TargetGroupHttps'
