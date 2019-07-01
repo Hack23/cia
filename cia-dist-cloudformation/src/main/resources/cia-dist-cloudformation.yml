@@ -2180,11 +2180,12 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://download.java.net/java/early_access/jdk13/27/GPL/openjdk-13-ea+27_linux-x64_bin.tar.gz\n"
-            - "mkdir -p jdk-13\n"
-            - "tar xvfz openjdk-13-ea+27_linux-x64_bin.tar.gz -C jdk-13 --strip-components=1\n"
-            - "sudo mv jdk-13 /usr/lib/jvm/jdk-13\n"
-            - "rm openjdk-13-ea+27_linux-x64_bin.tar.gz\n"
+            - "wget https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.1%2B12/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz\n"
+            - "mkdir -p jdk-12\n"
+            - "tar xvfz OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz -C jdk-12\
+              \ --strip-components=1\n"
+            - "sudo mv jdk-12 /usr/lib/jvm/jdk-12\n"
+            - "rm OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
