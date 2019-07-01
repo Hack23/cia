@@ -89,7 +89,16 @@
           <artifactId>jboss-logmanager</artifactId>
           <groupId>org.jboss.logmanager</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>commons-text</artifactId>
+          <groupId>org.apache.commons</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>${cia.project.versions.commons.text}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
