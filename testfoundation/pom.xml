@@ -380,7 +380,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
-      <version>1.6</version>
+      <version>${cia.project.versions.commons.text}</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>

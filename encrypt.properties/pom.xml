@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcpkix-jdk15on</artifactId>
-      <version>1.62</version>
+      <version>${cia.project.versions.bouncycastle}</version>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
