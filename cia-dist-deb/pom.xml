@@ -111,7 +111,7 @@
           <deb>
             <section>devel</section>
             <preDepends>ca-certificates-java</preDepends>
-            <suggests>postgresql, openjdk-11-jdk-headless, oracle-java11-installer</suggests>
+            <suggests>postgresql, openjdk-11-jdk-headless, ca-certificates-java</suggests>
           </deb>
           <packages>
             <package>
