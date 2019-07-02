@@ -733,7 +733,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.8</version>
+          <version>3.8.1</version>
           <dependencies>
             <dependency>
               <groupId>xml-apis</groupId>
@@ -1819,7 +1819,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>3.8</version>
+            <version>3.8.1</version>
             <inherited>true</inherited>
             <configuration>
               <inputEncoding>UTF-8</inputEncoding>
