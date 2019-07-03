@@ -22,10 +22,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class UrlHelper.
  */
 public final class UrlHelper {
+	
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(UrlHelper.class);
+
 
 	/**
 	 * Url encode.
@@ -37,6 +44,7 @@ public final class UrlHelper {
 		try {
 			return URLEncoder.encode(id, StandardCharsets.UTF_8.toString());
 		} catch (UnsupportedEncodingException e) {
+			LOGGER.warn("Problem encoding {} : {}",id,e);
 			return id;
 		}
 	}
