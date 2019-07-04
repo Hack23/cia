@@ -19,6 +19,7 @@
 package com.hack23.cia.service.external.riksdagen.impl;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -202,7 +203,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
-			return new DocumentContentData().withId(UrlHelper.urlEncode(id))
+			return new DocumentContentData().withId(UrlHelper.urlEncode(id,StandardCharsets.UTF_8.toString()))
 					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, id)));
 		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
@@ -261,7 +262,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id) throws DataFailureException {
 		try {
-			final String url = DOCUMENT_STATUS.replace(ID_KEY, UrlHelper.urlEncode(id));
+			final String url = DOCUMENT_STATUS.replace(ID_KEY, UrlHelper.urlEncode(id,StandardCharsets.UTF_8.toString()));
 			return ((JAXBElement<DocumentStatusContainer>) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller,
 					url, HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
 		} catch (final XmlAgentException e) {

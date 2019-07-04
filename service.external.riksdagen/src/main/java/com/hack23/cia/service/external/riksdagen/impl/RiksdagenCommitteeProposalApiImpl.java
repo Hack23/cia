@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.external.riksdagen.impl;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.xml.bind.JAXBElement;
 
 import org.slf4j.Logger;
@@ -86,7 +88,7 @@ final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteePropo
 	@Override
 	public CommitteeProposalComponentData getCommitteeProposal(final String id) throws DataFailureException {
 		try {
-			final String url = COMMITTE_PROPOSAL.replace(ID_KEY, UrlHelper.urlEncode(id));
+			final String url = COMMITTE_PROPOSAL.replace(ID_KEY, UrlHelper.urlEncode(id,StandardCharsets.UTF_8.toString()));
 			return ((JAXBElement<CommitteeProposalComponentData>) xmlAgent.unmarshallXml(
 					riksdagenCommitteeProposalMarshaller, url,
 					HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();

@@ -18,34 +18,34 @@
 */
 package com.hack23.cia.service.external.riksdagen.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * The Class UrlHelper.
+ * The Class UrlHelperTest.
  */
-public final class UrlHelper {
-	
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(UrlHelper.class);
-
+public class UrlHelperTest extends Assert {
 
 	/**
-	 * Url encode.
+	 * Url encode succes test.
 	 *
-	 * @param id the id
-	 * @return the string
+	 * @throws Exception the exception
 	 */
-	public static String urlEncode(final String id, final String charset) {
-		try {
-			return URLEncoder.encode(id, charset);
-		} catch (UnsupportedEncodingException e) {
-			LOGGER.warn("Problem encoding {} : {}",id,e);
-			return id;
-		}
+	@Test
+	public void urlEncodeSuccesTest() throws Exception {
+		assertEquals("%26", new UrlHelper().urlEncode("&",StandardCharsets.UTF_8.toString()));
+	}
+
+	/**
+	 * Url encode failure test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void urlEncodeFailureTest() throws Exception {
+		assertEquals("&", new UrlHelper().urlEncode("&","bad encoding"));
 	}
 
 }
