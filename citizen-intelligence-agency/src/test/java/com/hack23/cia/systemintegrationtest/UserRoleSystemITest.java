@@ -2558,7 +2558,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), "H101UU1"));
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), "H701NU6"));
 
 	}
 
