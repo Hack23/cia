@@ -8,3 +8,25 @@ patch:
         patched: '2019-07-04T06:28:34.079Z'
     - npm-check-updates > node-alias > lodash:
         patched: '2019-07-04T06:28:34.079Z'
+    - npm-check-updates > snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-config > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > inquirer > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
+    - npm-check-updates > snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-05T18:16:14.693Z'
