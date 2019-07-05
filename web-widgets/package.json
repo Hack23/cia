@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "ncu": "0.2.1",
-    "npm-check-updates": "3.1.13",
+    "npm-check-updates": "3.1.14",
     "snyk": "1.192.0"
   },
   "scripts": {
