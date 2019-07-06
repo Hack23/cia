@@ -14,7 +14,7 @@ rule "We have a party supporting FRA committee_report=FöU15 and rm=2007/08"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl( supports("FöU15","2007/08") )
+        $p : PartyComplianceCheckImpl( supports("FöU15","2007/08","1") )
     then
     	$p.addViolation( Status.MINOR, "PartySupports","Behavior", kcontext.getRule().getName(),"n/a");
 end
@@ -23,7 +23,7 @@ rule "We have a party against FRA committee_report=FöU15 and rm=2007/08"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl( against("FöU15","2007/08") )
+        $p : PartyComplianceCheckImpl( against("FöU15","2007/08","1") )
     then
     	$p.addViolation( Status.MINOR, "PartyAgainst","Behavior", kcontext.getRule().getName(),"n/a");
 end

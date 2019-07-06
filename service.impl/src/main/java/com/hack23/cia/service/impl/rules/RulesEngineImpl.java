@@ -106,10 +106,19 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
 
-		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>> decisionMap = dataViewer
-				.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
-						new String[] { "2007/08", "FöU15" }, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.rm,
-						ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.committeeReport)
+		List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> importantDecisions = new ArrayList<>();
+
+		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
+				new String[] { "2017/18", "KU16" } };
+
+		for (String[] decision : decisions) {
+			importantDecisions
+					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
+							decision, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.rm,
+							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.committeeReport));
+		}
+
+		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>> decisionMap = importantDecisions
 				.stream().collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
 
 		for (final ViewRiksdagenPolitician politicianData : list) {
@@ -189,10 +198,20 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
 
-		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>> decisionMap = dataViewer
-				.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
-						new String[] { "2007/08", "FöU15" }, ViewRiksdagenCommitteeBallotDecisionPartySummary_.rm,
-						ViewRiksdagenCommitteeBallotDecisionPartySummary_.committeeReport)
+		List<ViewRiksdagenCommitteeBallotDecisionPartySummary> importantDecisions = new ArrayList<>();
+
+		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
+				new String[] { "2017/18", "KU16" } };
+
+		for (String[] decision : decisions) {
+			importantDecisions
+					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
+							decision, ViewRiksdagenCommitteeBallotDecisionPartySummary_.rm,
+							ViewRiksdagenCommitteeBallotDecisionPartySummary_.committeeReport));
+
+		}
+
+		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>> decisionMap = importantDecisions
 				.stream().collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
 
 		for (final ViewRiksdagenPartySummary partyData : list) {

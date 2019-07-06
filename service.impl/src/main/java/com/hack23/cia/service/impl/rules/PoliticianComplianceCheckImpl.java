@@ -105,11 +105,12 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
-	public boolean supports(final String committeeReport,final String rm) {
+	public boolean supports(final String committeeReport,final String rm,final String issue) {
 		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
+			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
 				return YES.equalsIgnoreCase(summary.getVote());
 			}			
 		}
@@ -121,11 +122,12 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
-	public boolean against(final String committeeReport,final String rm) {
+	public boolean against(final String committeeReport,final String rm,final String issue) {
 		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
+			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
 				return NO.equalsIgnoreCase(summary.getVote());
 			}			
 		}
