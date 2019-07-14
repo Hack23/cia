@@ -49,14 +49,15 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
  */
 public final class CitizenIntelligenceAgencyServer {
 
+	/** The Constant PORT. */
+	public static final int PORT = 28443;
+
 	/** The Constant ACCESS_URL. */
 	public static final String ACCESS_URL = "https://localhost:" + PORT + "/";
 	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CitizenIntelligenceAgencyServer.class);
 
-	/** The Constant PORT. */
-	public static final int PORT = 28443;
 
 	/** The server started. */
 	private static int serverStarted = 0;
