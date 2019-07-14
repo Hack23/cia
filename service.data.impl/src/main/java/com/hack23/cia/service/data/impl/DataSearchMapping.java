@@ -20,11 +20,10 @@ package com.hack23.cia.service.data.impl;
 
 import org.hibernate.search.mapper.orm.mapping.HibernateOrmMappingDefinitionContainerContext;
 import org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer;
-//import org.hibernate.search.mapper.pojo.mapping.definition.programmatic.ProgrammaticMappingDefinitionContext;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
-//import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-//import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 
 /**
  * The Class DataSearchMapping.
@@ -33,11 +32,6 @@ public class DataSearchMapping implements HibernateOrmSearchMappingConfigurer {
 
 	@Override
 	public void configure(HibernateOrmMappingDefinitionContainerContext context) {
-		context.annotationMapping().add(DocumentContentData.class);
-		
-//		mapping.type( DocumentElement.class )
-//		.indexed().property("id").documentId().property("title").fullTextField().analyzer("se").property("subTitle").fullTextField().analyzer("se");
-//		mapping.type( DocumentStatusContainer.class )
-//		.indexed().property("hjid").documentId().property("documentCategory").fullTextField().analyzer("se");
+		context.annotationMapping().add(DocumentContentData.class).add(DocumentElement.class).add(DocumentStatusContainer.class);
 	}
 }

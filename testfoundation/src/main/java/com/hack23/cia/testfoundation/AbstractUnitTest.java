@@ -137,8 +137,6 @@ public abstract class AbstractUnitTest extends AbstractTest {
 			final Object instance2 = randomValues(pojoClass);
 
 			instance.equals(instance2);
-			// Affirm.affirmFalse("EqualsFailureSameInstanceDontMatch:" + instance + ":" +
-			// instance2, instance.equals(instance2));
 		}
 
 		private Object randomValues(final PojoClass pojoClass) {
