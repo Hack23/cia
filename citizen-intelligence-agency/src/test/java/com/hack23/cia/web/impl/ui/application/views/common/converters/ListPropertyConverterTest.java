@@ -36,6 +36,15 @@ import com.vaadin.data.ValueContext;
 public class ListPropertyConverterTest extends AbstractUnitTest {
 
 	/**
+	 * Apply no such method ignore failure test.
+	 */
+	@Test
+	public void applyNoSuchMethodIgnoreFailureTest() {
+		final String emptyString = new ListPropertyConverter("party", "party").apply(new ViewRiksdagenCommittee());
+		assertEquals("",emptyString);
+	}
+	
+	/**
 	 * Convert to model verify dummy impl test.
 	 */
 	@Test
@@ -45,35 +54,25 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 		assertNotNull(convertToModel);
 		assertFalse(convertToModel.isError());		
 	}
-	
-	/**
-	 * Convert to presentation null value failure test.
-	 */
-	@Test
-	public void convertToPresentationNullValueFailureTest() {
-		final ValueContext context = new ValueContext(Locale.ENGLISH);
-		final String emptyString = new ListPropertyConverter("", null).convertToPresentation(null, context);
-		assertEquals("",emptyString);
-	}
 
 	/**
-	 * Convert to presentation wrong path method value failure test.
+	 * Convert to presentation fallback no value test.
 	 */
 	@Test
-	public void convertToPresentationWrongPathMethodValueFailureTest() {
+	public void convertToPresentationFallbackNoValueTest() {
 		final ValueContext context = new ValueContext(Locale.ENGLISH);
-		final String emptyString = new ListPropertyConverter("party", "party").convertToPresentation(Arrays.asList(new ViewRiksdagenCommittee()), context);
+		final String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty()), context);
 		assertEquals("[ ]",emptyString);
 	}
 
 	/**
-	 * Convert to presentation test.
+	 * Convert to presentation fallback test.
 	 */
 	@Test
-	public void convertToPresentationTest() {
+	public void convertToPresentationFallbackTest() {
 		final ValueContext context = new ValueContext(Locale.ENGLISH);
-		final String emptyString = new ListPropertyConverter("partyId", "partyId").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyId("partyId")), context);
-		assertEquals("[partyId ]",emptyString);
+		final String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyName("PartyName")), context);
+		assertEquals("[PartyName ]",emptyString);
 	}
 
 	/**
@@ -88,33 +87,34 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 
 	
 	/**
-	 * Convert to presentation fallback test.
+	 * Convert to presentation null value failure test.
 	 */
 	@Test
-	public void convertToPresentationFallbackTest() {
+	public void convertToPresentationNullValueFailureTest() {
 		final ValueContext context = new ValueContext(Locale.ENGLISH);
-		final String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyName("PartyName")), context);
-		assertEquals("[PartyName ]",emptyString);
-	}
-
-	/**
-	 * Convert to presentation fallback no value test.
-	 */
-	@Test
-	public void convertToPresentationFallbackNoValueTest() {
-		final ValueContext context = new ValueContext(Locale.ENGLISH);
-		final String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty()), context);
-		assertEquals("[ ]",emptyString);
-	}
-
-
-	/**
-	 * Apply no such method ignore failure test.
-	 */
-	@Test
-	public void applyNoSuchMethodIgnoreFailureTest() {
-		final String emptyString = new ListPropertyConverter("party", "party").apply(new ViewRiksdagenCommittee());
+		final String emptyString = new ListPropertyConverter("", null).convertToPresentation(null, context);
 		assertEquals("",emptyString);
+	}
+
+	/**
+	 * Convert to presentation test.
+	 */
+	@Test
+	public void convertToPresentationTest() {
+		final ValueContext context = new ValueContext(Locale.ENGLISH);
+		final String emptyString = new ListPropertyConverter("partyId", "partyId").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyId("partyId")), context);
+		assertEquals("[partyId ]",emptyString);
+	}
+
+
+	/**
+	 * Convert to presentation wrong path method value failure test.
+	 */
+	@Test
+	public void convertToPresentationWrongPathMethodValueFailureTest() {
+		final ValueContext context = new ValueContext(Locale.ENGLISH);
+		final String emptyString = new ListPropertyConverter("party", "party").convertToPresentation(Arrays.asList(new ViewRiksdagenCommittee()), context);
+		assertEquals("[ ]",emptyString);
 	}
 
 }

@@ -40,27 +40,22 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyDocumentHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
-			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
 	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "title", "subTitle", "id",
 			"docId", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "documentType",
 			"subType", "org", "label", "numberValue", "status", "tempLabel", "orderNumber" };
-	private static final String MEMBER_DOCUMENT_HISTORY = "Member Document history";
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
+			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
+	private static final String MEMBER_DOCUMENT_HISTORY = "Member Document history";
 
 	/**
 	 * Instantiates a new party document history page mod content factory impl.
 	 */
 	public PartyDocumentHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -86,6 +81,11 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTHISTORY.toString());
 	}
 
 }

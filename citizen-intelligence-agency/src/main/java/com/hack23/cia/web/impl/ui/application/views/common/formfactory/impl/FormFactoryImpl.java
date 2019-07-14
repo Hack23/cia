@@ -66,103 +66,14 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class FormFactoryImpl implements FormFactory {
 
-	/** The Constant SIZE_FOR_GRID. */
-	private static final int SIZE_FOR_GRID = 8;
-
 	/** The Constant HIDDEN_FIELD_NAME. */
 	private static final String HIDDEN_FIELD_NAME = "password";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
 
-	@Override
-	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final T item,
-			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
-		final BeanValidationBinder<T> binder = new BeanValidationBinder<>(beanType);
-		binder.setBean(item);
-		binder.setReadOnly(true);
-
-		for (final String property : displayProperties) {
-
-			final AbstractField buildAndBind = createField(property);
-			binder.bind(buildAndBind,property);
-			buildAndBind.setCaption(property);
-			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
-			buildAndBind.setReadOnly(false);
-			buildAndBind.setWidth(ContentSize.HALF_SIZE);
-
-			panelContent.addComponent(buildAndBind);
-		}
-
-		final VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.setWidth("50%");
-
-		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(binder,buttonListener));
-		button.setId(buttonLabel);
-		button.setWidth("25%");
-		button.setIcon(VaadinIcons.BULLSEYE);
-		button.setEnabled(false);
-		binder.addStatusChangeListener(event -> button.setEnabled(event.getBinder().isValid()));
-		
-		
-		verticalLayout.addComponent(button);
-		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
-
-		panelContent.addComponent(verticalLayout);
-	}
-
-
-	/**
-	 * Creates the field.
-	 *
-	 * @param property the property
-	 * @return the abstract field
-	 */
-	private static AbstractField<?> createField(final String property) {
-		if (StringUtils.containsIgnoreCase(property,HIDDEN_FIELD_NAME)) {
-			return new PasswordField();
-		} else {
-			return new TextField();
-		}
-	}
-	
-
-	@Override
-	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final T item,
-			final Class<T> beanType, final List<String> displayProperties) {
-
-
-		final Panel formPanel = new Panel();
-		formPanel.setSizeFull();
-
-
-		panelContent.addComponent(formPanel);
-		if (displayProperties.size() > SIZE_FOR_GRID) {
-			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-		}
-		else {
-			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);
-		}
-
-
-		final FormLayout formContent = new FormLayout();
-		formPanel.setContent(formContent);
-		formContent.setWidth(ContentSize.FULL_SIZE);
-
-		final Binder<T> binder = new Binder<>(beanType);
-		binder.setBean(item);
-		binder.setReadOnly(true);
-
-		PropertyDescriptor[] propertyDescriptors=null;
-		try {
-			final BeanInfo info = Introspector.getBeanInfo(item.getClass());
-			propertyDescriptors = info.getPropertyDescriptors();
-		} catch (final IntrospectionException exception) {
-			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", exception);
-		}
-
-		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);
-	}
+	/** The Constant SIZE_FOR_GRID. */
+	private static final int SIZE_FOR_GRID = 8;
 
 	/**
 	 * Creates the display property converters.
@@ -194,6 +105,22 @@ public final class FormFactoryImpl implements FormFactory {
 			}
 		}
 	}
+
+
+	/**
+	 * Creates the field.
+	 *
+	 * @param property the property
+	 * @return the abstract field
+	 */
+	private static AbstractField<?> createField(final String property) {
+		if (StringUtils.containsIgnoreCase(property,HIDDEN_FIELD_NAME)) {
+			return new PasswordField();
+		} else {
+			return new TextField();
+		}
+	}
+	
 
 	/**
 	 * Gets the converter for type.
@@ -243,6 +170,79 @@ public final class FormFactoryImpl implements FormFactory {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final T item,
+			final Class<T> beanType, final List<String> displayProperties) {
+
+
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+
+		panelContent.addComponent(formPanel);
+		if (displayProperties.size() > SIZE_FOR_GRID) {
+			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+		}
+		else {
+			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);
+		}
+
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+		formContent.setWidth(ContentSize.FULL_SIZE);
+
+		final Binder<T> binder = new Binder<>(beanType);
+		binder.setBean(item);
+		binder.setReadOnly(true);
+
+		PropertyDescriptor[] propertyDescriptors=null;
+		try {
+			final BeanInfo info = Introspector.getBeanInfo(item.getClass());
+			propertyDescriptors = info.getPropertyDescriptors();
+		} catch (final IntrospectionException exception) {
+			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", exception);
+		}
+
+		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);
+	}
+
+	@Override
+	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final T item,
+			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
+		final BeanValidationBinder<T> binder = new BeanValidationBinder<>(beanType);
+		binder.setBean(item);
+		binder.setReadOnly(true);
+
+		for (final String property : displayProperties) {
+
+			final AbstractField buildAndBind = createField(property);
+			binder.bind(buildAndBind,property);
+			buildAndBind.setCaption(property);
+			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
+			buildAndBind.setReadOnly(false);
+			buildAndBind.setWidth(ContentSize.HALF_SIZE);
+
+			panelContent.addComponent(buildAndBind);
+		}
+
+		final VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.setWidth("50%");
+
+		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(binder,buttonListener));
+		button.setId(buttonLabel);
+		button.setWidth("25%");
+		button.setIcon(VaadinIcons.BULLSEYE);
+		button.setEnabled(false);
+		binder.addStatusChangeListener(event -> button.setEnabled(event.getBinder().isValid()));
+		
+		
+		verticalLayout.addComponent(button);
+		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
+
+		panelContent.addComponent(verticalLayout);
 	}
 
 }

@@ -48,15 +48,15 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	private static final String SEARCH = "Search";
-
 	private static final List<String> AS_LIST = Collections.singletonList( "searchExpression" );
+
+	/** The Constant MAX_RESULT_SIZE. */
+	private static final int MAX_RESULT_SIZE = 100;
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
-	/** The Constant MAX_RESULT_SIZE. */
-	private static final int MAX_RESULT_SIZE = 100;
+	private static final String SEARCH = "Search";
 
 	@Autowired
 	private DocumentMenuItemFactory documentMenuItemFactory;
@@ -66,11 +66,6 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 	 */
 	public SearchDocumentPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -115,6 +110,11 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page);
 	}
 
 }

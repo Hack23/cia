@@ -39,34 +39,34 @@ import com.vaadin.ui.Panel;
  */
 public abstract class AbstractChartDataManagerImpl {
 
-	/** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
-	private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
+	/** The Constant CHART_MARGIN_SIZE. */
+	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
 
-	/** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
-	private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
+	/** The Constant CHART_LEFT_MARGIN. */
+	private static final int CHART_LEFT_MARGIN= 2;
+
+	/** The Constant CHART_RIGHT_MARGIN. */
+	private static final int CHART_RIGHT_MARGIN = 2;
+
+	/** The Constant CHART_TOP_MARGIN_SIZE. */
+	private static final int CHART_TOP_MARGIN_SIZE = 2;
 
 	/** The Constant CHART_WIDTH_REDUCTION. */
 	private static final int CHART_WIDTH_REDUCTION = 50;
 
-	/** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
-	private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
+	/** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
+	private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
+	/** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
+	private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
 
 	/** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
 	private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
 
 	/** The Constant MINIMUM_CHART_WIDTH. */
 	private static final int MINIMUM_CHART_WIDTH = 600;
-	/** The Constant CHART_MARGIN_SIZE. */
-	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
 
-	/** The Constant CHART_RIGHT_MARGIN. */
-	private static final int CHART_RIGHT_MARGIN = 2;
-
-	/** The Constant CHART_LEFT_MARGIN. */
-	private static final int CHART_LEFT_MARGIN= 2;
-
-	/** The Constant CHART_TOP_MARGIN_SIZE. */
-	private static final int CHART_TOP_MARGIN_SIZE = 2;
+	/** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
+	private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
 
 	/** The application manager. */
 	@Autowired
@@ -85,21 +85,26 @@ public abstract class AbstractChartDataManagerImpl {
 	}
 
 	/**
-	 * Gets the application manager.
+	 * Gets the chart window height.
 	 *
-	 * @return the application manager
+	 * @param fullPage the full page
+	 * @return the chart window height
 	 */
-	protected final ApplicationManager getApplicationManager() {
-		return applicationManager;
+	private static int getChartWindowHeight(final boolean fullPage) {
+		if (fullPage) {
+			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);
+		} else {
+			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);
+		}
 	}
 
 	/**
-	 * Gets the chart options.
+	 * Gets the chart window width.
 	 *
-	 * @return the chart options
+	 * @return the chart window width
 	 */
-	protected final ChartOptions getChartOptions() {
-		return chartOptions;
+	private static int getChartWindowWidth() {
+		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);
 	}
 
 	/**
@@ -148,26 +153,21 @@ public abstract class AbstractChartDataManagerImpl {
 	}
 
 	/**
-	 * Gets the chart window width.
+	 * Gets the application manager.
 	 *
-	 * @return the chart window width
+	 * @return the application manager
 	 */
-	private static int getChartWindowWidth() {
-		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);
+	protected final ApplicationManager getApplicationManager() {
+		return applicationManager;
 	}
 
 	/**
-	 * Gets the chart window height.
+	 * Gets the chart options.
 	 *
-	 * @param fullPage the full page
-	 * @return the chart window height
+	 * @return the chart options
 	 */
-	private static int getChartWindowHeight(final boolean fullPage) {
-		if (fullPage) {
-			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);
-		} else {
-			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);
-		}
+	protected final ChartOptions getChartOptions() {
+		return chartOptions;
 	}
 
 	/**

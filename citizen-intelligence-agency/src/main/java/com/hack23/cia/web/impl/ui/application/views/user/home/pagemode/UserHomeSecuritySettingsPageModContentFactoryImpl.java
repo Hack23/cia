@@ -54,20 +54,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
-	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
+	/** The Constant AS_LIST. */
+	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
 
 	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
 
-	/** The Constant AS_LIST. */
-	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
-
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
+	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String SECURITY_SETTINGS = "Security Settings";
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = "Userhome:";
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -80,9 +80,35 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());
+	/**
+	 * Creates the change password button.
+	 *
+	 * @return the vertical layout
+	 */
+	private VerticalLayout createChangePasswordButton() {
+
+		final VerticalLayout formLayout = new VerticalLayout();
+		formLayout.setSizeFull();
+
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		formLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+
+		final ChangePasswordRequest request = new ChangePasswordRequest();
+		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		request.setCurrentPassword("");
+		request.setNewPassword("");
+		request.setRepeatNewPassword("");
+		
+		final ClickListener listener = new ChangePasswordClickListener(request);
+		getFormFactory().addRequestInputFormFields(formContent, request,
+				ChangePasswordRequest.class, Arrays.asList("currentPassword","newPassword","repeatNewPassword"), "Change password", listener);
+
+		return formLayout;
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
@@ -117,33 +143,6 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	}
 
 	/**
-	 * Creates the enable google auth button.
-	 *
-	 * @return the vertical layout
-	 */
-	private VerticalLayout createEnableGoogleAuthButton() {
-		final VerticalLayout formLayout = new VerticalLayout();
-		formLayout.setSizeFull();
-
-		final Panel formPanel = new Panel();
-		formPanel.setSizeFull();
-
-		formLayout.addComponent(formPanel);
-
-		final FormLayout formContent = new FormLayout();
-		formPanel.setContent(formContent);
-
-		final SetGoogleAuthenticatorCredentialRequest request = new SetGoogleAuthenticatorCredentialRequest();
-		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		request.setUserpassword("");
-		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);
-		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,
-				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR, listener);
-
-		return formLayout;
-	}
-
-	/**
 	 * Creates the disable google auth button.
 	 *
 	 * @return the vertical layout
@@ -170,14 +169,13 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		return formLayout;
 	}
-	
+
 	/**
-	 * Creates the change password button.
+	 * Creates the enable google auth button.
 	 *
 	 * @return the vertical layout
 	 */
-	private VerticalLayout createChangePasswordButton() {
-
+	private VerticalLayout createEnableGoogleAuthButton() {
 		final VerticalLayout formLayout = new VerticalLayout();
 		formLayout.setSizeFull();
 
@@ -189,17 +187,19 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
 
-		final ChangePasswordRequest request = new ChangePasswordRequest();
+		final SetGoogleAuthenticatorCredentialRequest request = new SetGoogleAuthenticatorCredentialRequest();
 		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		request.setCurrentPassword("");
-		request.setNewPassword("");
-		request.setRepeatNewPassword("");
-		
-		final ClickListener listener = new ChangePasswordClickListener(request);
-		getFormFactory().addRequestInputFormFields(formContent, request,
-				ChangePasswordRequest.class, Arrays.asList("currentPassword","newPassword","repeatNewPassword"), "Change password", listener);
+		request.setUserpassword("");
+		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);
+		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,
+				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR, listener);
 
 		return formLayout;
+	}
+	
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());
 	}
 
 }

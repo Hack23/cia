@@ -51,11 +51,6 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString());
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -72,6 +67,11 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString());
 	}
 
 }

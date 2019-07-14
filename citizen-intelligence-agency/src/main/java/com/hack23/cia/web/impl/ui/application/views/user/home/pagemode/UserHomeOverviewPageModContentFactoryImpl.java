@@ -56,11 +56,11 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
-
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = "Userhome:";
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -71,12 +71,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	 */
 	public UserHomeOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
@@ -120,6 +114,12 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

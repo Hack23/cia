@@ -53,28 +53,6 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 		super();
 	}
 
-	@Override
-	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
-
-		final DataContainer<ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
-
-		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				
-				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
-				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
-				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
-
-		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
-		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
-					
-		final Series series = new Series();
-		final DataSeries dataSeries = new DataSeries();
-			
-		addData(map, series, dataSeries);
-			
-		addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
-	}
-
 	/**
 	 * Adds the data.
 	 *
@@ -96,6 +74,28 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 			}
 
 		}
+	}
+
+	@Override
+	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
+
+		final DataContainer<ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
+
+		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				
+				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
+				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
+				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
+
+		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
+		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
+					
+		final Series series = new Series();
+		final DataSeries dataSeries = new DataSeries();
+			
+		addData(map, series, dataSeries);
+			
+		addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
 
 }

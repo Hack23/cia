@@ -47,12 +47,6 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 		super();
 	}
 
-	@Override
-	public void click(final RendererClickEvent<ComplianceCheck> event) {
-		navigateToPage(event.getItem());
-		
-	}
-
 	/**
 	 * Navigate to page.
 	 *
@@ -65,6 +59,12 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 		} else {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
 		}
+	}
+
+	@Override
+	public void click(final RendererClickEvent<ComplianceCheck> event) {
+		navigateToPage(event.getItem());
+		
 	}
 
 

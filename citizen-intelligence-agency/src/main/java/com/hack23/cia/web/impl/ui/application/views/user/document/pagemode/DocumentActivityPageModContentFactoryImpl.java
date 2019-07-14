@@ -43,23 +43,18 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentActivityPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
 	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "code", "activityName", "orderNumber",
 			"process", "status" };
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
 	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
 
 	/**
 	 * Instantiates a new document activity page mod content factory impl.
 	 */
 	public DocumentActivityPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -94,6 +89,11 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 				parameters, pageId);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 }

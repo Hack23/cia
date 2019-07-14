@@ -44,17 +44,17 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	/** The Constant ABSENT. */
 	private static final String ABSENT = "Absent";
 
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
+	/** The Constant NUMBER_BALLOTS. */
+	private static final String NUMBER_BALLOTS = "Number ballots";
+
 	/** The Constant PARTY_REBEL. */
 	private static final String PARTY_REBEL = "Party Rebel";
 
 	/** The Constant WON. */
 	private static final String WON = "Won";
-
-	/** The Constant NUMBER_BALLOTS. */
-	private static final String NUMBER_BALLOTS = "Number ballots";
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	/** The data chart manager. */
 	@Autowired
@@ -69,24 +69,25 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 
 
-	@Override
-	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
-
-		final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list = dataChartManager.findByValue(personId);
-
-		final Series series = new Series().addSeries(new XYseries().setLabel(WON))
-				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))
-				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		if (list != null) {
-			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);
+	/**
+	 * Adds the politican data.
+	 *
+	 * @param list             the list
+	 * @param dataSeries       the data series
+	 * @param simpleDateFormat the simple date format
+	 * @param t                the t
+	 */
+	private static void addPoliticanData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
+			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object> t) {
+		dataSeries.newSeries();
+		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat.format(
+								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
+						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));
+			}
 		}
-
-		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);
 	}
 
 
@@ -112,25 +113,24 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 
 	
-	/**
-	 * Adds the politican data.
-	 *
-	 * @param list             the list
-	 * @param dataSeries       the data series
-	 * @param simpleDateFormat the simple date format
-	 * @param t                the t
-	 */
-	private static void addPoliticanData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
-			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object> t) {
-		dataSeries.newSeries();
-		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-				dataSeries.add(
-						simpleDateFormat.format(
-								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));
-			}
+	@Override
+	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
+
+		final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list = dataChartManager.findByValue(personId);
+
+		final Series series = new Series().addSeries(new XYseries().setLabel(WON))
+				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))
+				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
+		if (list != null) {
+			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);
 		}
+
+		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);
 	}
 
 

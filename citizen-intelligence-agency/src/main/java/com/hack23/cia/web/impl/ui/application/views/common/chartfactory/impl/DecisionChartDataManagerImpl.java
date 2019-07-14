@@ -50,14 +50,14 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class DecisionChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements DecisionChartDataManager {
 
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
 	/** The Constant UNDER_SCORE. */
 	private static final String UNDER_SCORE = "_";
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	/**
 	 * Instantiates a new decision chart data manager impl.
@@ -67,33 +67,30 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 	/**
-	 * Gets the committee decision type map.
+	 * Adds the decision type by org data.
 	 *
-	 * @return the committee decision type map
+	 * @param simpleDateFormat the simple date format
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
 	 */
-	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);
+	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
+			final Series series, final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> map) {
+		for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : map.entrySet()) {
+			if (!EMPTY_STRING.equals(entry.getKey())) {
 
-		final Date now = new Date();
-		final Date notBefore = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();
-		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getDecisionDate().after(now)
-						&& !notBefore.after(t.getEmbeddedId().getDecisionDate()))
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
-	}
+				final XYseries label = new XYseries();
+				label.setLabel(entry.getKey());
 
-	/**
-	 * Gets the committee decision type org map.
-	 *
-	 * @return the committee decision type org map
-	 */
-	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
+				series.addSeries(label);
 
-		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
+				dataSeries.newSeries();
+				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
+						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
+								item.getTotal());
+				}
+			}
+		}
 	}
 
 	@Override
@@ -156,30 +153,33 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 	/**
-	 * Adds the decision type by org data.
+	 * Gets the committee decision type map.
 	 *
-	 * @param simpleDateFormat the simple date format
-	 * @param dataSeries the data series
-	 * @param series the series
-	 * @param map the map
+	 * @return the committee decision type map
 	 */
-	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
-			final Series series, final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> map) {
-		for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : map.entrySet()) {
-			if (!EMPTY_STRING.equals(entry.getKey())) {
+	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
+		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);
 
-				final XYseries label = new XYseries();
-				label.setLabel(entry.getKey());
+		final Date now = new Date();
+		final Date notBefore = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();
+		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
+				.filter(t -> t != null && !t.getEmbeddedId().getDecisionDate().after(now)
+						&& !notBefore.after(t.getEmbeddedId().getDecisionDate()))
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
+	}
 
-				series.addSeries(label);
+	/**
+	 * Gets the committee decision type org map.
+	 *
+	 * @return the committee decision type org map
+	 */
+	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
+		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
 
-				dataSeries.newSeries();
-				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
-								item.getTotal());
-				}
-			}
-		}
+		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
 
 }

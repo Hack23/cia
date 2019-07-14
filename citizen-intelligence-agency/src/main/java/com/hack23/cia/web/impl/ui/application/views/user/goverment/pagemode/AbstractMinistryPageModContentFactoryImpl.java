@@ -43,13 +43,13 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPag
 		super();
 	}
 
-	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
-		return ministryMenuItemFactory;
-	}
-
 	@Override
 	protected ViewRiksdagenMinistry getItem(final String parameters) {
 		return getApplicationManager().getDataContainer(ViewRiksdagenMinistry.class).load(getPageId(parameters));
+	}
+
+	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
+		return ministryMenuItemFactory;
 	}
 
 }

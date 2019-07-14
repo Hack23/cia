@@ -36,11 +36,11 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);
 
-	/** The url. */
-	private final String url;
-	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The url. */
+	private final String url;
 
 	/**
 	 * Instantiates a new stream source implementation.

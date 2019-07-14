@@ -39,23 +39,11 @@ import com.vaadin.ui.Link;
 @Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 
-	/** The Constant PAGE_SEPARATOR. */
-	private static final Character PAGE_SEPARATOR = '/';
-
-	/** The Constant POLITICIAN. */
-	private static final String POLITICIAN = "Politician ";
-
-	/** The Constant PARTY. */
-	private static final String PARTY = "Party ";
+	/** The Constant COMMITTEE. */
+	private static final String COMMITTEE = "Committee ";
 
 	/** The Constant PAGE_PREFIX. */
 	private static final String PAGE_PREFIX = "#!";
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry ";
-
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee ";
 
 	/** The Constant LINK_SEPARATOR. */
 	private static final String LINK_SEPARATOR = PAGE_PREFIX;
@@ -63,34 +51,17 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant MAIN_VIEW_LINK_TEXT. */
 	private static final String MAIN_VIEW_LINK_TEXT = "Main View";
 
-	@Override
-	public Link createMainViewPageLink() {
-		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());
-		pageLink.setIcon(VaadinIcons.STAR);
-		return pageLink;
-	}
+	/** The Constant MINISTRY. */
+	private static final String MINISTRY = "Ministry ";
 
-	@Override
-	public Link createRegisterPageLink() {
-		final Link pageLink = new Link("Register", new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));
-		pageLink.setId(ViewAction.VISIT_REGISTER.name());
-		pageLink.setIcon(VaadinIcons.RANDOM);
-		return pageLink;
-	}
+	/** The Constant PAGE_SEPARATOR. */
+	private static final Character PAGE_SEPARATOR = '/';
 
-	@Override
-	public Link createLoginPageLink() {
-		final Link pageLink = new Link("Login", new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));
-		pageLink.setId(ViewAction.VISIT_LOGIN.name());
-		pageLink.setIcon(VaadinIcons.SIGN_IN);
-		return pageLink;
-	}
+	/** The Constant PARTY. */
+	private static final String PARTY = "Party ";
 
-
+	/** The Constant POLITICIAN. */
+	private static final String POLITICIAN = "Politician ";
 
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
@@ -125,6 +96,38 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
+
+
+	@Override
+	public Link createAdminPagingLink(final String label,final String page, final String pageId, final String pageNr) {
+		final Link pageLink = new Link(label,
+				new ExternalResource(PAGE_PREFIX + page + PAGE_SEPARATOR
+						+ "[" + pageNr + "]"));
+		pageLink.setId(page +"ShowPage" + PAGE_SEPARATOR
+				+ pageNr);
+		pageLink.setIcon(VaadinIcons.SERVER);
+
+		return pageLink;
+	}
+
+	@Override
+	public Link createLoginPageLink() {
+		final Link pageLink = new Link("Login", new ExternalResource(
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));
+		pageLink.setId(ViewAction.VISIT_LOGIN.name());
+		pageLink.setIcon(VaadinIcons.SIGN_IN);
+		return pageLink;
+	}
+
+	@Override
+	public Link createMainViewPageLink() {
+		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
+		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());
+		pageLink.setIcon(VaadinIcons.STAR);
+		return pageLink;
+	}
+
 	@Override
 	public Link createPoliticianPageLink(final PersonData personData) {
 		final Link pageLink = new Link(POLITICIAN
@@ -139,14 +142,11 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 
 	@Override
-	public Link createAdminPagingLink(final String label,final String page, final String pageId, final String pageNr) {
-		final Link pageLink = new Link(label,
-				new ExternalResource(PAGE_PREFIX + page + PAGE_SEPARATOR
-						+ "[" + pageNr + "]"));
-		pageLink.setId(page +"ShowPage" + PAGE_SEPARATOR
-				+ pageNr);
-		pageLink.setIcon(VaadinIcons.SERVER);
-
+	public Link createRegisterPageLink() {
+		final Link pageLink = new Link("Register", new ExternalResource(
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));
+		pageLink.setId(ViewAction.VISIT_REGISTER.name());
+		pageLink.setIcon(VaadinIcons.RANDOM);
 		return pageLink;
 	}
 

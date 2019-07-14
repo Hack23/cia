@@ -34,14 +34,14 @@ import com.vaadin.ui.UI;
  */
 public final class UiInstanceErrorHandler implements ErrorHandler {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant LOG_WARN_VAADIN_ERROR. */
 	private static final String LOG_WARN_VAADIN_ERROR = "Vaadin error";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(UiInstanceErrorHandler.class);
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The ui. */
 	private final UI ui;

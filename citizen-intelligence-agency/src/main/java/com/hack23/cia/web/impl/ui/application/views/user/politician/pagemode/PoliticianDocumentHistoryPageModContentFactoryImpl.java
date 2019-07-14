@@ -41,14 +41,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
-			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
 	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "documentType", "subType",
 			"title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "org", "id",
 			"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" };
 	private static final String DOCUMENTS = "Documents";
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
+			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
 
 	/**
 	 * Instantiates a new politician document history page mod content factory
@@ -56,11 +56,6 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 	 */
 	public PoliticianDocumentHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -88,5 +83,10 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());
 	}
 }

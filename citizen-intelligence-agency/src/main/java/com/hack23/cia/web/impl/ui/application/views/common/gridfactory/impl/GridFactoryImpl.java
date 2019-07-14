@@ -49,72 +49,54 @@ import com.vaadin.ui.Grid.SelectionMode;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	/**
+	 * The Class BeanNestedPropertyValueProvider.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
+	public static final class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The property. */
+		private final String property;
+
+		/**
+		 * Instantiates a new bean nested property value provider.
+		 *
+		 * @param property
+		 *            the property
+		 */
+		public BeanNestedPropertyValueProvider(final String property) {
+			super();
+			this.property = property;
+		}
+
+		@Override
+		public String apply(final T source) {
+			try {
+				return BeanUtils.getProperty(source, property);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				LOGGER.warn("Problem getting property : {} from source : {} , exception: {}", property, source, e);
+				return "";
+			}
+		}
+
+	}
 	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new grid factory impl.
 	 */
 	public GridFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public <T extends Serializable> void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,
-			final Class<T> dataType, final List<T> datasource, final String caption, final String[] columnOrder,
-			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
-			final ListPropertyConverter[] collectionPropertyConverters) {
-		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,
-				hideColumns, listener, actionId, collectionPropertyConverters);
-
-	}
-
-	@Override
-	public <T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(
-			final AbstractOrderedLayout panelContent, final Class<T> dataType, final List<T> datasource,
-			final String caption, final String[] nestedProperties, final String[] columnOrder,
-			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
-			final ListPropertyConverter[] collectionPropertyConverters) {
-
-		final Grid<T> grid = Grid.withPropertySet(BeanPropertySet.get(dataType));
-		grid.setCaption(caption);
-
-		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));
-
-		grid.setSelectionMode(SelectionMode.SINGLE);
-
-		createNestedProperties(grid, nestedProperties);
-		
-		setColumnConverters(collectionPropertyConverters, grid);
-
-		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
-
-		configureListeners(listener, grid);
-
-
-		grid.setSizeFull();
-
-		grid.setStyleName("Level2Header");
-
-		createGridCellFilter(columnOrder, grid, dataType);
-
-		grid.setResponsive(true);
-
-		panelContent.addComponent(grid);
-		panelContent.setExpandRatio(grid, ContentRatio.GRID);
-	}
-
-	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid,
-			final String[] nestedProperties) {
-		if (nestedProperties != null) {
-			for (final String property : nestedProperties) {
-				final Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
-				addColumn.setId(property);
-			}
-		}
 	}
 
 	/**
@@ -176,6 +158,16 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
+	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid,
+			final String[] nestedProperties) {
+		if (nestedProperties != null) {
+			for (final String property : nestedProperties) {
+				final Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
+				addColumn.setId(property);
+			}
+		}
+	}
+
 	/**
 	 * Sets the column converters.
 	 *
@@ -196,41 +188,49 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
-	/**
-	 * The Class BeanNestedPropertyValueProvider.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public static final class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
+	@Override
+	public <T extends Serializable> void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,
+			final Class<T> dataType, final List<T> datasource, final String caption, final String[] columnOrder,
+			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
+			final ListPropertyConverter[] collectionPropertyConverters) {
+		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,
+				hideColumns, listener, actionId, collectionPropertyConverters);
 
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
+	}
 
-		/** The property. */
-		private final String property;
+	@Override
+	public <T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(
+			final AbstractOrderedLayout panelContent, final Class<T> dataType, final List<T> datasource,
+			final String caption, final String[] nestedProperties, final String[] columnOrder,
+			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
+			final ListPropertyConverter[] collectionPropertyConverters) {
 
-		/**
-		 * Instantiates a new bean nested property value provider.
-		 *
-		 * @param property
-		 *            the property
-		 */
-		public BeanNestedPropertyValueProvider(final String property) {
-			super();
-			this.property = property;
-		}
+		final Grid<T> grid = Grid.withPropertySet(BeanPropertySet.get(dataType));
+		grid.setCaption(caption);
 
-		@Override
-		public String apply(final T source) {
-			try {
-				return BeanUtils.getProperty(source, property);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				LOGGER.warn("Problem getting property : {} from source : {} , exception: {}", property, source, e);
-				return "";
-			}
-		}
+		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));
 
+		grid.setSelectionMode(SelectionMode.SINGLE);
+
+		createNestedProperties(grid, nestedProperties);
+		
+		setColumnConverters(collectionPropertyConverters, grid);
+
+		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
+
+		configureListeners(listener, grid);
+
+
+		grid.setSizeFull();
+
+		grid.setStyleName("Level2Header");
+
+		createGridCellFilter(columnOrder, grid, dataType);
+
+		grid.setResponsive(true);
+
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
 }

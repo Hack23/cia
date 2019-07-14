@@ -45,6 +45,13 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	protected void service(final HttpServletRequest request, final HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+		super.service(request, response);
+	}
+
+	@Override
 	protected void servletInitialized() throws ServletException {
 		final VaadinServletService service = getService();
 		service.addSessionInitListener(event -> {
@@ -61,12 +68,5 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 			UIScopeImpl.cleanupSession(session);
 			VaadinSessionScope.cleanupSession(session);
 		});
-	}
-
-	@Override
-	protected void service(final HttpServletRequest request, final HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-		super.service(request, response);
 	}
 }

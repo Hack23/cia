@@ -33,21 +33,21 @@ import com.vaadin.ui.Notification;
  */
 public class DisableGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 
-	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
-	private static final String PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID = "Problem disable google authenticator, sessionid{}";
-
-	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR. */
-	private static final String PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR = "Problem disable google authenticator";
-
 	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
-
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DisableGoogleAuthenticatorCredentialClickListener.class);
+
+	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR = "Problem disable google authenticator";
+
+	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
+	private static final String PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID = "Problem disable google authenticator, sessionid{}";
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The google auth request. */
 	private final DisableGoogleAuthenticatorCredentialRequest googleAuthRequest;

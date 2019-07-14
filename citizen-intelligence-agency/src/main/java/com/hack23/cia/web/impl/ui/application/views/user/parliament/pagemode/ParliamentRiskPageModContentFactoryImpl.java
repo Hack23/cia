@@ -64,12 +64,6 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.RULES.toString())
-				&& parameters.contains(RiskIndicators.RISK_SUMMARY.toString());
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -109,6 +103,12 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.RULES.toString())
+				&& parameters.contains(RiskIndicators.RISK_SUMMARY.toString());
 	}
 
 }

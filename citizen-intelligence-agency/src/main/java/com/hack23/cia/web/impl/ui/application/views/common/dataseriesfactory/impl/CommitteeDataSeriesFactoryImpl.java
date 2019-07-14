@@ -51,37 +51,6 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 
 
 	@Override
-	public DataSeries createCommitteeChartTimeSeriesAll() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommittee.class);
-
-		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {
-			dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getTotalAssignments());
-		}
-		return dataSeries;
-	}
-
-
-	@Override
-	public DataSeries createCommitteeChartTimeSeriesCurrent() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommittee.class);
-
-		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {
-			if (data.isActive()) {
-				dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getCurrentMemberSize());
-			}
-		}
-		return dataSeries;
-	}
-
-
-
-	@Override
 	public DataSeries createChartTimeSeriesTotalDaysServedCommitteeByParty() {
 		DataSeries dataSeries = new DataSeries();
 
@@ -98,6 +67,37 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 			if (summary != null && summary.isActive()) {
 
 				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalDaysServedCommittee());
+			}
+		}
+		return dataSeries;
+	}
+
+
+	@Override
+	public DataSeries createCommitteeChartTimeSeriesAll() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenCommittee.class);
+
+		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {
+			dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getTotalAssignments());
+		}
+		return dataSeries;
+	}
+
+
+
+	@Override
+	public DataSeries createCommitteeChartTimeSeriesCurrent() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenCommittee.class);
+
+		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {
+			if (data.isActive()) {
+				dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getCurrentMemberSize());
 			}
 		}
 		return dataSeries;

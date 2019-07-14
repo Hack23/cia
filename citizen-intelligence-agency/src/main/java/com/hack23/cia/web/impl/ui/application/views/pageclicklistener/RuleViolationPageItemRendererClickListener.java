@@ -46,12 +46,6 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 		super();
 	}
 
-	@Override
-	public void click(final RendererClickEvent<RuleViolation> event) {
-		navigateToPage(event.getItem());
-		
-	}
-
 	/**
 	 * Navigate to page.
 	 *
@@ -64,6 +58,12 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 		} else {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
 		}
+	}
+
+	@Override
+	public void click(final RendererClickEvent<RuleViolation> event) {
+		navigateToPage(event.getItem());
+		
 	}
 
 

@@ -54,34 +54,34 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
 
-	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
-	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
-
-	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
-	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
-
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-
 	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
 	private static final String COUNTRY_INDICATORS_SWEDEN = "Country Indicators, Sweden";
+
 
 	/** The Constant COUNTRY_RANKING_TEXT. */
 	private static final String COUNTRY_RANKING_TEXT = "Counry Ranking";
 
+	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
+	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
+
+	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
+	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
+
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
+
+	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
+	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
 	/** The application menu item factory. */
 	@Autowired
@@ -92,30 +92,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 */
 	public CountryMenuItemFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public void createCountryTopicMenu(final MenuBar menuBar) {
-		initApplicationMenuBar(menuBar);
-
-		applicationMenuItemFactory.addRankingMenu(menuBar);
-
-
-		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.SERVER, null));
-
-	}
-
-	@Override
-	public void createCountryTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				COMMAND_OVERVIEW);
-
-		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
-
-		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
-
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_PAGEVISITHISTORY);
-
 	}
 
 	/**
@@ -152,6 +128,41 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 	}
 
+	@Override
+	public void createCountryTopicMenu(final MenuBar menuBar) {
+		initApplicationMenuBar(menuBar);
+
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+
+
+		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.SERVER, null));
+
+	}
+
+	@Override
+	public void createCountryTopicMenu(final MenuItem charts) {
+		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
+				COMMAND_OVERVIEW);
+
+		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
+
+		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
+
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_PAGEVISITHISTORY);
+
+	}
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		final MenuBar menuBar = new MenuBar();
+		panelContent.addComponent(menuBar);
+		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
+		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
+
+		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
+		menuBar.setAutoOpen(true);
+	}
+
 	/**
 	 * Gets the topic indicator map.
 	 *
@@ -169,16 +180,5 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 				.collect(Collectors.groupingBy(SimpleEntry::getKey,
 						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));
-	}
-
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent) {
-		final MenuBar menuBar = new MenuBar();
-		panelContent.addComponent(menuBar);
-		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
-		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
-
-		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
-		menuBar.setAutoOpen(true);
 	}
 }

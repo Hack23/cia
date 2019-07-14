@@ -27,12 +27,20 @@ public interface PartyChartDataManager {
 
 
 	/**
-	 * Creates the party winner chart.
+	 * Creates the party age chart.
 	 *
 	 * @param content
 	 *            the content
 	 */
-	void createPartyWinnerChart(AbstractOrderedLayout content);
+	void createPartyAgeChart(AbstractOrderedLayout content);
+
+	/**
+	 * Creates the party gender chart.
+	 *
+	 * @param content
+	 *            the content
+	 */
+	void createPartyGenderChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the party line chart.
@@ -45,19 +53,11 @@ public interface PartyChartDataManager {
 	void createPartyLineChart(AbstractOrderedLayout content,String partyId);
 
 	/**
-	 * Creates the party gender chart.
+	 * Creates the party winner chart.
 	 *
 	 * @param content
 	 *            the content
 	 */
-	void createPartyGenderChart(AbstractOrderedLayout content);
-
-	/**
-	 * Creates the party age chart.
-	 *
-	 * @param content
-	 *            the content
-	 */
-	void createPartyAgeChart(AbstractOrderedLayout content);
+	void createPartyWinnerChart(AbstractOrderedLayout content);
 
 }

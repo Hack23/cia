@@ -26,21 +26,21 @@ public enum DocumentPageMode {
 	/** The documentactivity. */
 	DOCUMENTACTIVITY,
 
-	/** The personreferences. */
-	PERSONREFERENCES,
-
-	/** The documentdetails. */
-	DOCUMENTDETAILS,
+	/** The documentattachments. */
+	DOCUMENTATTACHMENTS,
 
 	/** The documentdata. */
 	DOCUMENTDATA,
 
-	/** The documentreferences. */
-	DOCUMENTREFERENCES,
-
 	/** The documentdecision. */
 	DOCUMENTDECISION,
 
-/** The documentattachments. */
-DOCUMENTATTACHMENTS
+	/** The documentdetails. */
+	DOCUMENTDETAILS,
+
+	/** The documentreferences. */
+	DOCUMENTREFERENCES,
+
+/** The personreferences. */
+PERSONREFERENCES
 }

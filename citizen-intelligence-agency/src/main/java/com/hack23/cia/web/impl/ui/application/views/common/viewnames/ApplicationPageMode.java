@@ -23,12 +23,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum ApplicationPageMode {
 
-	/** The register. */
-	REGISTER,
-
 	/** The login. */
 	LOGIN,
 
 	/** The logout. */
-	LOGOUT
+	LOGOUT,
+
+	/** The register. */
+	REGISTER
 }

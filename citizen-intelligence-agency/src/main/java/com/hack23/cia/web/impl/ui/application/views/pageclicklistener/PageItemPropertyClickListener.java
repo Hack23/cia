@@ -36,12 +36,12 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	/** The Constant LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION. */
 	private static final String LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION = "Problem getting property {} from object {} exception {}";
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(PageItemPropertyClickListener.class);
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 
 	/** The property. */

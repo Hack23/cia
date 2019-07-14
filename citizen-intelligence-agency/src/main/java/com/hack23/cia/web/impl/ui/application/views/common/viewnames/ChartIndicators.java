@@ -23,38 +23,26 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum ChartIndicators {
 
-	/** The partywinner. */
-	PARTYWINNER,
-
-	/** The partygender. */
-	PARTYGENDER,
-
-	/** The partyage. */
-	PARTYAGE,
-
-	/** The documentactivitybytype. */
-	DOCUMENTACTIVITYBYTYPE,
-
-	/** The decisionactivitybytype. */
-	DECISIONACTIVITYBYTYPE,
-
-	/** The allministriesbyheadcount. */
-	ALLMINISTRIESBYHEADCOUNT,
-
-	/** The currentministriesbyheadcount. */
-	CURRENTMINISTRIESBYHEADCOUNT,
-
-	/** The allministriespartybytotaldays. */
-	ALLMINISTRIESPARTYBYTOTALDAYS,
-
-	/** The currentpartiesbyheadcount. */
-	CURRENTPARTIESBYHEADCOUNT,
+	/** The all government role chart. */
+	ALL_GOVERNMENT_ROLE_CHART,
 
 	/** The allcommitteesbyheadcount. */
 	ALLCOMMITTEESBYHEADCOUNT,
 
+	/** The allministriesbyheadcount. */
+	ALLMINISTRIESBYHEADCOUNT,
+
+	/** The allministriespartybytotaldays. */
+	ALLMINISTRIESPARTYBYTOTALDAYS,
+
+	/** The allparties. */
+	ALLPARTIES,
+
 	/** The committeesbyparty. */
 	COMMITTEESBYPARTY,
+
+	/** The currentcommittees. */
+	CURRENTCOMMITTEES,
 
 	/** The currentcommitteesbyheadcount. */
 	CURRENTCOMMITTEESBYHEADCOUNT,
@@ -62,22 +50,34 @@ public enum ChartIndicators {
 	/** The currentcommitteesbypartyheadcount. */
 	CURRENTCOMMITTEESBYPARTYDAYSSERVED,
 
-	/** The allparties. */
-	ALLPARTIES,
-
-	/** The currentcommittees. */
-	CURRENTCOMMITTEES,
-
 	/** The currentgovermentparties. */
 	CURRENTGOVERMENTPARTIES,
+
+	/** The currentministriesbyheadcount. */
+	CURRENTMINISTRIESBYHEADCOUNT,
 
 	/** The currentparties. */
 	CURRENTPARTIES,
 
-	/** The all government role chart. */
-	ALL_GOVERNMENT_ROLE_CHART,
-	
+	/** The currentpartiesbyheadcount. */
+	CURRENTPARTIESBYHEADCOUNT,
+
 	/** The decision flow chart. */
-	DECISION_FLOW_CHART;
+	DECISION_FLOW_CHART,
+
+	/** The decisionactivitybytype. */
+	DECISIONACTIVITYBYTYPE,
+
+	/** The documentactivitybytype. */
+	DOCUMENTACTIVITYBYTYPE,
+
+	/** The partyage. */
+	PARTYAGE,
+
+	/** The partygender. */
+	PARTYGENDER,
+	
+	/** The partywinner. */
+	PARTYWINNER;
 
 }

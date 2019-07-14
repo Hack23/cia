@@ -31,6 +31,14 @@ public interface PoliticianRankingMenuItemFactory {
 	/**
 	 * Creates a new PoliticianRankingMenuItem object.
 	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
+	/**
+	 * Creates a new PoliticianRankingMenuItem object.
+	 *
 	 * @param menuBar
 	 *            the menu bar
 	 */
@@ -43,14 +51,6 @@ public interface PoliticianRankingMenuItemFactory {
 	 *            the politician menu item
 	 */
 	void createPoliticianRankingTopics(MenuItem politicianMenuItem);
-
-	/**
-	 * Creates a new PoliticianRankingMenuItem object.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createOverviewPage(VerticalLayout panelContent);
 
 
 }

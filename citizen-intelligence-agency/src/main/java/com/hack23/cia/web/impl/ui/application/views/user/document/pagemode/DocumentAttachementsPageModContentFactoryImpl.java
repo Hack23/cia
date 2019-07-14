@@ -50,17 +50,17 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 @Component
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant PDF. */
-	private static final String PDF = "pdf";
-
-	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
-
 	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };
 
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
+
+	/** The Constant HIDE_COLUMNS. */
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+
+	/** The Constant PDF. */
+	private static final String PDF = "pdf";
 
 	/**
 	 * Instantiates a new document attachements page mod content factory impl.
@@ -69,9 +69,34 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTATTACHMENTS.toString());
+	/**
+	 * Display document attachements.
+	 *
+	 * @param panelContent the panel content
+	 * @param documentAttachmentList the document attachment list
+	 */
+	private static void displayDocumentAttachements(final VerticalLayout panelContent,
+			final List<DocumentAttachment> documentAttachmentList) {
+		for (final DocumentAttachment documentAttachment : documentAttachmentList) {
+
+			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
+				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
+				wtPdfViewer.setSizeFull();
+
+				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment.getFileUrl()), documentAttachment.getFileName()));
+
+				panelContent.addComponent(wtPdfViewer);
+				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);
+			} else {
+				final VerticalLayout verticalLayout = new VerticalLayout();
+				panelContent.addComponent(verticalLayout);
+				panelContent.setExpandRatio(verticalLayout, ContentRatio.SMALL);
+				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(
+						documentAttachment.getFileName(), documentAttachment.getFileType(),
+						documentAttachment.getFileUrl());
+				verticalLayout.addComponent(link);
+			}
+		}
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -110,34 +135,9 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 	}
 
-	/**
-	 * Display document attachements.
-	 *
-	 * @param panelContent the panel content
-	 * @param documentAttachmentList the document attachment list
-	 */
-	private static void displayDocumentAttachements(final VerticalLayout panelContent,
-			final List<DocumentAttachment> documentAttachmentList) {
-		for (final DocumentAttachment documentAttachment : documentAttachmentList) {
-
-			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
-				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
-				wtPdfViewer.setSizeFull();
-
-				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment.getFileUrl()), documentAttachment.getFileName()));
-
-				panelContent.addComponent(wtPdfViewer);
-				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);
-			} else {
-				final VerticalLayout verticalLayout = new VerticalLayout();
-				panelContent.addComponent(verticalLayout);
-				panelContent.setExpandRatio(verticalLayout, ContentRatio.SMALL);
-				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(
-						documentAttachment.getFileName(), documentAttachment.getFileType(),
-						documentAttachment.getFileUrl());
-				verticalLayout.addComponent(link);
-			}
-		}
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTATTACHMENTS.toString());
 	}
 
 }

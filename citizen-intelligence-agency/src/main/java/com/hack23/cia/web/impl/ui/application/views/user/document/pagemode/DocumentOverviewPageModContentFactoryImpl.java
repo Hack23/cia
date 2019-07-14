@@ -48,12 +48,12 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST3 = Collections.singletonList("documentCategory");
-	private static final List<String> AS_LIST2 = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
-			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue", "hangarId");
 	private static final List<String> AS_LIST = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
 			"title", "subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label", "tempLabel",
 			"numberValue", "kallId", "documentFormat");
+	private static final List<String> AS_LIST2 = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
+			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue", "hangarId");
+	private static final List<String> AS_LIST3 = Collections.singletonList("documentCategory");
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -62,13 +62,6 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 	 */
 	public DocumentOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -114,6 +107,13 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

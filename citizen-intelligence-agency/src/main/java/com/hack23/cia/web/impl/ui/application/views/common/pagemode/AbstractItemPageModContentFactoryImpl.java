@@ -32,17 +32,17 @@ public abstract class AbstractItemPageModContentFactoryImpl<T> extends AbstractP
 		super();
 	}
 
-	@Override
-	public final boolean validReference(final String parameters) {
-		return getItem(parameters) != null;
-	}
-
 	/**
 	 * Gets the item.
 	 *
 	 * @param parameters the parameters
 	 * @return the item
 	 */
-	protected abstract T getItem(String parameters); 
+	protected abstract T getItem(String parameters);
+
+	@Override
+	public final boolean validReference(final String parameters) {
+		return getItem(parameters) != null;
+	} 
 	
 }

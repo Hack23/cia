@@ -38,10 +38,10 @@ public interface BallotChartDataManager {
 	 *            the tab
 	 * @param content
 	 *            the content
-	 * @param viewRiksdagenVoteDataBallotSummary
-	 *            the view riksdagen vote data ballot summary
+	 * @param partyList
+	 *            the party list
 	 */
-	void createChart(Tab tab,AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
+	void createChart(Tab tab,AbstractOrderedLayout content,List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
 
 	/**
 	 * Creates the chart.
@@ -50,8 +50,8 @@ public interface BallotChartDataManager {
 	 *            the tab
 	 * @param content
 	 *            the content
-	 * @param partyList
-	 *            the party list
+	 * @param viewRiksdagenVoteDataBallotSummary
+	 *            the view riksdagen vote data ballot summary
 	 */
-	void createChart(Tab tab,AbstractOrderedLayout content,List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
+	void createChart(Tab tab,AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
 }

@@ -30,20 +30,6 @@ import com.vaadin.ui.Link;
 public interface PageLinkFactory {
 
 	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createMainViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createUserHomeViewPageLink();
-
-	/**
 	 * Adds the committee page link.
 	 *
 	 * @param data
@@ -88,6 +74,20 @@ public interface PageLinkFactory {
 	/**
 	 * Creates a new PageLink object.
 	 *
+	 * @return the link
+	 */
+	Link createLoginPageLink();
+
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createMainViewPageLink();
+
+	/**
+	 * Creates a new PageLink object.
+	 *
 	 * @param personData
 	 *            the person data
 	 * @return the link
@@ -106,6 +106,6 @@ public interface PageLinkFactory {
 	 *
 	 * @return the link
 	 */
-	Link createLoginPageLink();
+	Link createUserHomeViewPageLink();
 
 }

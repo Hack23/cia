@@ -40,11 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "party",
-			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
 	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party",
 			"bornYear", "totalDaysServed", "currentAssignments", "totalAssignments", "firstAssignmentDate",
 			"lastAssignmentDate", "totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
@@ -58,20 +53,20 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
-	private static final String POLITICIANS = "Politicians";
+
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "party",
+			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final String POLITICIANS = "Politicians";
 
 	/**
 	 * Instantiates a new party current members page mod content factory impl.
 	 */
 	public PartyCurrentMembersPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.CURRENTMEMBERS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -97,6 +92,11 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.CURRENTMEMBERS.toString());
 	}
 
 }

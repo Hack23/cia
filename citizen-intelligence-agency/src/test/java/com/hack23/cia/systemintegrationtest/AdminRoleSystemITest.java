@@ -88,26 +88,30 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
-	 * Site admin portal test.
+	 * Site admin test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(timeout = 60000)
-	public void siteAdminPortalTest() throws Exception {
+	public void siteAdminAgentOperationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Portal"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 
-		clickFirstRowInGrid(userPageVisit);
+		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW});
+		final WebElement importWorldBankDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_WORLDBANK");
+		assertNotNull("Start IMPORT MODEL_EXTERNAL_WORLDBANK Button",importWorldBankDataButton);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+		final WebElement importRiksdagenDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN");
+		assertNotNull("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN Button",importRiksdagenDataButton);
 
+		userPageVisit.performClickAction(importRiksdagenDataButton);
 	}
 
 	/**
@@ -140,6 +144,117 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site admin application event charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationEventChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event chart"));
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
+
+	}
+
+	/**
+	 * Site admin application event test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationEventTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
+
+		clickFirstRowInGrid(userPageVisit);
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+
+	}
+
+	/**
+	 * Site admin application session last page test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionLastPageTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+
+		final WebElement nextPageButton = userPageVisit.findButton("last page");
+		userPageVisit.performClickAction(nextPageButton);
+	}
+
+
+	/**
+	 * Site admin application session next page test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionNextPageTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+
+		final WebElement nextPageButton = userPageVisit.findButton("next page");
+		userPageVisit.performClickAction(nextPageButton);
+
+	}
+
+	/**
+	 * Site admin application session test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+
+		clickFirstRowInGrid(userPageVisit);
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("ApplicationActionEvent"));
+
+	}
+
+	/**
 	 * Site admin country test.
 	 *
 	 * @throws Exception
@@ -160,28 +275,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 
-	}
-
-	/**
-	 * Site admin email test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminEmailTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
-
-		userPageVisit.sendEmailOnEmailPage("james@hack23.com", "siteAdminEmailTest", "siteAdminEmailTest content");
-
-		userPageVisit.checkNotificationMessage("Email Sentdesc");
 	}
 
 	/**
@@ -207,27 +300,142 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		//userPageVisit.checkNotificationMessage("Send email failedEmail is not a valid email address");
 	}
 
-
 	/**
-	 * Site admin useraccount test.
+	 * Site admin email test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(timeout = 60000)
-	public void siteAdminUseraccountTest() throws Exception {
+	public void siteAdminEmailTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
+
+		userPageVisit.sendEmailOnEmailPage("james@hack23.com", "siteAdminEmailTest", "siteAdminEmailTest content");
+
+		userPageVisit.checkNotificationMessage("Email Sentdesc");
+	}
+
+	
+	/**
+	 * Site admin language content test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminLanguageContentTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language Content"));
+
+		clickFirstRowInGrid(userPageVisit);
+		userPageVisit.validatePage(new
+		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
+		""));
+
+	}
+
+
+	/**
+	 * Site admin language test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminLanguageTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language"));
+
+		clickFirstRowInGrid(userPageVisit);
+		userPageVisit.validatePage(new
+		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+
+	}
+
+	/**
+	 * Site admin monitoring failed access test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminMonitoringFailedAccessTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denied:adminmonitoring"));
+
+		// assertTrue("Expect this content",
+		// userPageVisit.getIframesHtmlBodyAsText().contains("Access
+		// denided:adminmonitoring"));
+	}
+
+
+	/**
+	 * Site admin monitoring success test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminMonitoringSuccessTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Admin Monitoring"));
+
+		assertFalse("Dont expect this content",
+				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
+	}
+
+
+	/**
+	 * Site admin portal test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminPortalTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Portal"));
 
 		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 
 	}
 
@@ -259,227 +467,27 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkNotificationMessage("Operation completeddesc");
 	}
 
+
 	/**
-	 * Site admin language test.
+	 * Site admin useraccount test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(timeout = 60000)
-	public void siteAdminLanguageTest() throws Exception {
+	public void siteAdminUseraccountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language"));
-
-		clickFirstRowInGrid(userPageVisit);
-		userPageVisit.validatePage(new
-		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-
-	}
-
-	/**
-	 * Site admin language content test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminLanguageContentTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language Content"));
-
-		clickFirstRowInGrid(userPageVisit);
-		userPageVisit.validatePage(new
-		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
-		""));
-
-	}
-
-	/**
-	 * Site admin application session test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminApplicationSessionTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
 
 		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("ApplicationActionEvent"));
-
-	}
-
-	
-	/**
-	 * Site admin application session next page test.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminApplicationSessionNextPageTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
-
-		final WebElement nextPageButton = userPageVisit.findButton("next page");
-		userPageVisit.performClickAction(nextPageButton);
-
-	}
-
-
-	/**
-	 * Site admin application session last page test.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminApplicationSessionLastPageTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
-
-		final WebElement nextPageButton = userPageVisit.findButton("last page");
-		userPageVisit.performClickAction(nextPageButton);
-	}
-
-	/**
-	 * Site admin application event test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminApplicationEventTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
-
-		clickFirstRowInGrid(userPageVisit);
-
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-
-	}
-
-
-	/**
-	 * Site admin application event charts test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminApplicationEventChartsTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event chart"));
-
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
-
-	}
-
-
-	/**
-	 * Site admin monitoring failed access test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminMonitoringFailedAccessTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denied:adminmonitoring"));
-
-		// assertTrue("Expect this content",
-		// userPageVisit.getIframesHtmlBodyAsText().contains("Access
-		// denided:adminmonitoring"));
-	}
-
-	/**
-	 * Site admin monitoring success test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminMonitoringSuccessTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Admin Monitoring"));
-
-		assertFalse("Dont expect this content",
-				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
-	}
-
-
-	/**
-	 * Visit admin data summary view.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 90000)
-	public void visitAdminDataSummaryViewTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 
 	}
 
@@ -526,13 +534,13 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 
 	/**
-	 * Visit admin data summary view remove politician test.
+	 * Visit admin data summary view remove application history test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(timeout = 75000)
-	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
+	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
@@ -542,10 +550,11 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
-		final WebElement removePoliticiansButton =userPageVisit.findButton("Remove Politicians");
-		assertNotNull("Expect to find a Button",removePoliticiansButton);
+		final WebElement removeApplicationHistoryButton =userPageVisit.findButton("Remove Application History");
+		assertNotNull("Expect to find a Button",removeApplicationHistoryButton);
 
-		// userPageVisit.performClickAction(removePoliticiansButton);
+		// userPageVisit.performClickAction(removeApplicationHistoryButton);
+
 	}
 
 	/**
@@ -573,13 +582,13 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 
 	/**
-	 * Visit admin data summary view remove application history test.
+	 * Visit admin data summary view remove politician test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(timeout = 75000)
-	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
+	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
@@ -589,16 +598,34 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
-		final WebElement removeApplicationHistoryButton =userPageVisit.findButton("Remove Application History");
-		assertNotNull("Expect to find a Button",removeApplicationHistoryButton);
+		final WebElement removePoliticiansButton =userPageVisit.findButton("Remove Politicians");
+		assertNotNull("Expect to find a Button",removePoliticiansButton);
 
-		// userPageVisit.performClickAction(removeApplicationHistoryButton);
-
+		// userPageVisit.performClickAction(removePoliticiansButton);
 	}
 
 
 
 
+
+	/**
+	 * Visit admin data summary view.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(timeout = 90000)
+	public void visitAdminDataSummaryViewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+	}
 
 	/**
 	 * Visit admin data summary view update search index test.
@@ -622,33 +649,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.performClickAction(updateSearchIndexButton);
 
-	}
-
-	/**
-	 * Site admin test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminAgentOperationTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
-
-		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW});
-		final WebElement importWorldBankDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_WORLDBANK");
-		assertNotNull("Start IMPORT MODEL_EXTERNAL_WORLDBANK Button",importWorldBankDataButton);
-
-		final WebElement importRiksdagenDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN");
-		assertNotNull("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN Button",importRiksdagenDataButton);
-
-		userPageVisit.performClickAction(importRiksdagenDataButton);
 	}
 
 

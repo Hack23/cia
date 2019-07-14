@@ -45,18 +45,18 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid");
+	/** The Constant ADMIN_LANGUAGE. */
+	private static final String ADMIN_LANGUAGE = "Admin Language";
 
 	private static final List<String> AS_LIST = Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" );
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
-
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageName", "modelObjectVersion" };
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
 
 	private static final String LANGUAGE_DATA = "LanguageData";
 
-	/** The Constant ADMIN_LANGUAGE. */
-	private static final String ADMIN_LANGUAGE = "Admin Language";
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid");
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;

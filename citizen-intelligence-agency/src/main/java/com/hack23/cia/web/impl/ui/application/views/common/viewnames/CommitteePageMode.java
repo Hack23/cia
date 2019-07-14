@@ -23,26 +23,26 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum CommitteePageMode {
 
-	/** The document history. */
-	DOCUMENT_HISTORY,
+	/** The ballotdecisionsummary. */
+	BALLOTDECISIONSUMMARY,
 
 	/** The current members. */
 	CURRENT_MEMBERS,
-
-	/** The memberhistory. */
-	MEMBERHISTORY,
-
-	/** The documentactivity. */
-	DOCUMENTACTIVITY,
-
-	/** The ballotdecisionsummary. */
-	BALLOTDECISIONSUMMARY,
 
 	/** The decisionsummary. */
 	DECISIONSUMMARY,
 
 	/** The decisiontypedailysummary. */
 	DECISIONTYPEDAILYSUMMARY,
+
+	/** The document history. */
+	DOCUMENT_HISTORY,
+
+	/** The documentactivity. */
+	DOCUMENTACTIVITY,
+
+	/** The memberhistory. */
+	MEMBERHISTORY,
 
  /** The roleghant. */
  ROLEGHANT

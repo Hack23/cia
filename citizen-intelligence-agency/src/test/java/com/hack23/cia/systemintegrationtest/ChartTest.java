@@ -31,29 +31,6 @@ import org.junit.Test;
 
 public final class ChartTest extends Assert {
 
-	/**
-	 * Adds the serie test.
-	 */
-	@Test
-	public void addSerieTest() {
-		final XYseries label = new XYseriesFix();
-		label.setLabel("sune");
-		toJsonString(label);
-		assertNotNull("Problem with toJsonString, no label",label);
-	}
-
-	static class XYseriesFix extends XYseries {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getValue() {
-			return toJsonString(this);
-		}
-
-	}
-
 	static class XYaxisFix extends XYaxis {
 
 		/** The Constant serialVersionUID. */
@@ -83,6 +60,17 @@ public final class ChartTest extends Assert {
 
 	}
 
+	static class XYseriesFix extends XYseries {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public String getValue() {
+			return toJsonString(this);
+		}
+
+	}
 
 	/**
 	 * To json string.
@@ -133,6 +121,18 @@ public final class ChartTest extends Assert {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	/**
+	 * Adds the serie test.
+	 */
+	@Test
+	public void addSerieTest() {
+		final XYseries label = new XYseriesFix();
+		label.setLabel("sune");
+		toJsonString(label);
+		assertNotNull("Problem with toJsonString, no label",label);
 	}
 
 }

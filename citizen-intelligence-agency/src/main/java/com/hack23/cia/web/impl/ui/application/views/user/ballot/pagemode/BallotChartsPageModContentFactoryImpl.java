@@ -72,9 +72,25 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
+	/**
+	 * Creates the issue concern map.
+	 *
+	 * @param partyBallotList
+	 *            the party ballot list
+	 * @return the map
+	 */
+	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
+		final Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
+		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
+
+			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
+				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
+				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());				
+				partySummarList.add(partySummary);
+			}
+		}
+
+		return concernIssuePartyBallotSummaryMap;
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -135,25 +151,9 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 	}
 
-	/**
-	 * Creates the issue concern map.
-	 *
-	 * @param partyBallotList
-	 *            the party ballot list
-	 * @return the map
-	 */
-	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
-		final Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
-		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
-
-			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
-				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
-				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());				
-				partySummarList.add(partySummary);
-			}
-		}
-
-		return concernIssuePartyBallotSummaryMap;
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
 	}
 
 }

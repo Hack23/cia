@@ -46,18 +46,18 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationEventsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage");
-
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" };
-
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" };
+	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
+	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
 
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
+	private static final List<String> AS_LIST = Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage");
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" };
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
@@ -68,11 +68,6 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	 */
 	public AdminApplicationEventsPageModContentFactoryImpl() {
 		super(NAME);
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -117,6 +112,11 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
 	}
 
 }

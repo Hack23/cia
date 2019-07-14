@@ -42,23 +42,23 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingDataGridPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party");
-
-	private static final String[] HIDE_COLUMNS = new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"};
-
 	private static final String[] COLUMN_ORDER = new String[] { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate",
 			"activeEu",
 			"activeGovernment", "activeCommittee",
 			"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
 			"totalDaysServedParliament", "totalDaysServedEu" };
 
-	private static final String PARTIES = "Parties";
-
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 
+	private static final String[] HIDE_COLUMNS = new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"};
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party");
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
+
+	private static final String PARTIES = "Parties";
 
 	/**
 	 * Instantiates a new party ranking data grid page mod content factory impl.

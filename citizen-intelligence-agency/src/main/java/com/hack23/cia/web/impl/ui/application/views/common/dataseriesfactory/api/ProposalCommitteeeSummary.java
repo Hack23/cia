@@ -25,17 +25,17 @@ import java.util.Locale;
  */
 public final class ProposalCommitteeeSummary {
 
-	/** The org. */
-	private final String org;
+	/** The decision. */
+	private final String decision;
 	
 	/** The doc type. */
 	private final String docType;
 	
-	/** The decision. */
-	private final String decision;
-	
 	/** The hangar id. */
 	private final String hangarId;
+	
+	/** The org. */
+	private final String org;
 	
 	/**
 	 * Instantiates a new proposal committeee summary.
@@ -58,12 +58,12 @@ public final class ProposalCommitteeeSummary {
 	}
 
 	/**
-	 * Gets the org.
+	 * Gets the decision.
 	 *
-	 * @return the org
+	 * @return the decision
 	 */
-	public String getOrg() {
-		return org;
+	public String getDecision() {
+		return decision;
 	}
 
 	/**
@@ -76,21 +76,21 @@ public final class ProposalCommitteeeSummary {
 	}
 
 	/**
-	 * Gets the decision.
-	 *
-	 * @return the decision
-	 */
-	public String getDecision() {
-		return decision;
-	}
-
-	/**
 	 * Gets the hangar id.
 	 *
 	 * @return the hangar id
 	 */
 	public String getHangarId() {
 		return hangarId;
+	}
+
+	/**
+	 * Gets the org.
+	 *
+	 * @return the org
+	 */
+	public String getOrg() {
+		return org;
 	}
 
 	@Override

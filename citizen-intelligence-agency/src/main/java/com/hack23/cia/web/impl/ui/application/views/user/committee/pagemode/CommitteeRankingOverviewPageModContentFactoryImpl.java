@@ -38,12 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeRankingOverviewPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
 	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
 
@@ -58,6 +52,12 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 			+ "\nSearch by name";
 
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "overview";
+
 
 	/**
 	 * Instantiates a new committee ranking overview page mod content factory
@@ -67,9 +67,17 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+	/**
+	 * Creates the description.
+	 *
+	 * @return the text area
+	 */
+	private static TextArea createDescription() {
+		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
+				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
+		totalCommitteeRankinglistLabel.setSizeFull();
+		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
+		return totalCommitteeRankinglistLabel;
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -95,17 +103,9 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 	}
 
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
-				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
-		totalCommitteeRankinglistLabel.setSizeFull();
-		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
-		return totalCommitteeRankinglistLabel;
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 

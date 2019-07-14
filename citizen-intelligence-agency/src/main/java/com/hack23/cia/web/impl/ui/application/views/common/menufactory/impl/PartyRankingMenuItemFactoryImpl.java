@@ -40,8 +40,11 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
 
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
+	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties, total days served in parliament";
+
+	/** The Constant CHART_BY_TOPIC_TEXT. */
+	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
 
 	/** The Constant COMMAND_CHARTS_ALL_PARTIES. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());
@@ -61,23 +64,8 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	/** The Constant COMMAND_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
-	/** The Constant PARTY_RANKING. */
-	private static final String PARTY_RANKING = "Party Ranking";
-
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties, total days served in parliament";
-
-	/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT. */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties active in parliament, head count";
-
-	/**
-	 * The Constant
-	 * PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT.
-	 */
-	private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = "Party by total members, based on roles in departments, committees and parliament";
-
-	/** The Constant TOTAL_MEMBERS. */
-	private static final String TOTAL_MEMBERS = "Total members";
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties active in committees, head count";
@@ -85,17 +73,29 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties active in ministries, head count";
 
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
-
-	/** The Constant CHART_BY_TOPIC_TEXT. */
-	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties active in parliament, head count";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+	/**
+	 * The Constant
+	 * PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT.
+	 */
+	private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = "Party by total members, based on roles in departments, committees and parliament";
+
+	/** The Constant PARTY_RANKING. */
+	private static final String PARTY_RANKING = "Party Ranking";
+
+	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
+	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
+
+	/** The Constant TOTAL_MEMBERS. */
+	private static final String TOTAL_MEMBERS = "Total members";
 
 	/** The application menu item factory. */
 	@Autowired
@@ -107,6 +107,28 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	 */
 	public PartyRankingMenuItemFactoryImpl() {
 		super();
+	}
+
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
+
+		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
+				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Chart over the headcount by party in current goverment");
+
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
+				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
+				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
+		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
+				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
+
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+
 	}
 
 
@@ -149,28 +171,6 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				COMMAND_PAGEVISITHISTORY);
-	}
-
-
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-
-		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
-				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Chart over the headcount by party in current goverment");
-
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
-		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
-
 	}
 
 

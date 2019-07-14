@@ -36,16 +36,6 @@ public interface AdminChartDataManager {
 
 
 	/**
-	 * Creates the application action event page mode daily summary chart.
-	 *
-	 * @param content
-	 *            the content
-	 * @param page
-	 *            the page
-	 */
-	void createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout content,String page);
-
-	/**
 	 * Creates the application action event page element daily summary chart.
 	 *
 	 * @param content
@@ -56,5 +46,15 @@ public interface AdminChartDataManager {
 	 *            the element id
 	 */
 	void createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout content,String page, String elementId);
+
+	/**
+	 * Creates the application action event page mode daily summary chart.
+	 *
+	 * @param content
+	 *            the content
+	 * @param page
+	 *            the page
+	 */
+	void createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout content,String page);
 
 }

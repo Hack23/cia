@@ -50,11 +50,6 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -71,5 +66,10 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl
 		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
 	}
 }

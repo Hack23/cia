@@ -47,8 +47,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class AgentOperationsOverviewPageModContentFactoryImpl
 		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
-	/** The Constant WILL_FETCH_DATA_FROM_SOURCE. */
-	private static final String WILL_FETCH_DATA_FROM_SOURCE = "Will fetch data from source";
+	/** The Constant ADMIN_AGENT_OPERATION. */
+	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
 
 	/** The Constant BUTTON_ID_PATTERN. */
 	private static final String BUTTON_ID_PATTERN = "{0}.{1}.{2}";
@@ -59,8 +59,8 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
 
-	/** The Constant ADMIN_AGENT_OPERATION. */
-	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
+	/** The Constant WILL_FETCH_DATA_FROM_SOURCE. */
+	private static final String WILL_FETCH_DATA_FROM_SOURCE = "Will fetch data from source";
 
 	/**
 	 * Instantiates a new agent operations overview page mod content factory
@@ -68,11 +68,6 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 	 */
 	public AgentOperationsOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -104,6 +99,11 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 
 		return content;
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page);
 	}
 
 }

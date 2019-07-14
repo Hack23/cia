@@ -48,25 +48,25 @@ import com.vaadin.ui.VerticalLayout;
 public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 		extends AbstractUserHomePageModContentFactoryImpl {
 
+	private static final String APPLICATION_SESSION = "ApplicationSession";
+
 	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] {
 			new ListPropertyConverter("page", "events", "actionName") };
-
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion",
-			"sessionId", "sessionType", "userId", "locale" };
 
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "operatingSystem",
 			"ipInformation", "events", "userAgentInformation" };
 
-	private static final String APPLICATION_SESSION = "ApplicationSession";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion",
+			"sessionId", "sessionType", "userId", "locale" };
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
 
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String USER_VISITS = "User Visits";
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = "Userhome:";
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -78,11 +78,6 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 	 */
 	public UserHomeApplicationSessionsPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(UserHomePageMode.USER_VISITS.toString());
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
@@ -112,6 +107,11 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(UserHomePageMode.USER_VISITS.toString());
 	}
 
 }

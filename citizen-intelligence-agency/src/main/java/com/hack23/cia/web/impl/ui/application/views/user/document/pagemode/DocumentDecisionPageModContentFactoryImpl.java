@@ -58,11 +58,6 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -95,6 +90,11 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());
 	}
 
 }

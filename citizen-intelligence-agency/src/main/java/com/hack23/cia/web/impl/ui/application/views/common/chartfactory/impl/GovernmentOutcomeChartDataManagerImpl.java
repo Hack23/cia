@@ -52,6 +52,19 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 		super();
 	}
 
+	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
+			final Series series) {
+		series.addSeries(new XYseries().setLabel(variables.toString()));
+		dataSeries.newSeries();
+		
+		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
+		Collections.sort(list);
+		for (final GovernmentOperationPeriodOutcome entry : list) {
+
+			dataSeries.add(entry.getPeriod() + "-01", entry.getValue());
+		}
+	}
+
 	@Override
 	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
 		final Map<String, List<GovernmentOperationPeriodOutcome>> map = esvApi.getReport();
@@ -66,19 +79,6 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
 
-	}
-
-	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
-			final Series series) {
-		series.addSeries(new XYseries().setLabel(variables.toString()));
-		dataSeries.newSeries();
-		
-		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
-		Collections.sort(list);
-		for (final GovernmentOperationPeriodOutcome entry : list) {
-
-			dataSeries.add(entry.getPeriod() + "-01", entry.getValue());
-		}
 	}
 
 }

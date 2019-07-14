@@ -35,20 +35,20 @@ import com.vaadin.ui.UI;
  */
 public final class ApplicationLoginListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant LOG_MSG_LOGIN_REQUEST. */
+	private static final String LOG_MSG_LOGIN_REQUEST = "LoginRequest {}";
+
 	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
 	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
 	/** The Constant LOGIN_FAILED. */
 	private static final String LOGIN_FAILED = "Login failed:";
 
-	/** The Constant LOG_MSG_LOGIN_REQUEST. */
-	private static final String LOG_MSG_LOGIN_REQUEST = "LoginRequest {}";
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
 	/** The login request. */
 	private final LoginRequest loginRequest;

@@ -39,26 +39,21 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+	/** The Constant ADMIN_AUTHOR_SUMMARY. */
+	private static final String ADMIN_AUTHOR_SUMMARY = "Admin Author Summary";
 
 	private static final String[] COLUMN_ORDER = new String[] { "author", "changes", "firstDate", "lastDate" };
 
+	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
-
-	/** The Constant ADMIN_AUTHOR_SUMMARY. */
-	private static final String ADMIN_AUTHOR_SUMMARY = "Admin Author Summary";
 
 	/**
 	 * Instantiates a new data summary author page mod content factory impl.
 	 */
 	public DataSummaryAuthorPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(DataSummaryPageMode.AUTHORS.toString());
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -87,6 +82,11 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 		
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(DataSummaryPageMode.AUTHORS.toString());
 	}
 
 }

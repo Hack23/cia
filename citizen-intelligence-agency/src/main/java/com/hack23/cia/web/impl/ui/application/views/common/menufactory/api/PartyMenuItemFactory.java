@@ -29,21 +29,21 @@ public interface PartyMenuItemFactory {
 	/**
 	 * Creates a new PartyMenuItem object.
 	 *
-	 * @param menuBar
-	 *            the menu bar
-	 * @param pageId
-	 *            the page id
-	 */
-	void createPartyMenuBar(MenuBar menuBar, String pageId);
-
-	/**
-	 * Creates a new PartyMenuItem object.
-	 *
 	 * @param panelContent
 	 *            the panel content
 	 * @param pageId
 	 *            the page id
 	 */
 	void createOverviewPage(VerticalLayout panelContent, String pageId);
+
+	/**
+	 * Creates a new PartyMenuItem object.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 * @param pageId
+	 *            the page id
+	 */
+	void createPartyMenuBar(MenuBar menuBar, String pageId);
 
 }

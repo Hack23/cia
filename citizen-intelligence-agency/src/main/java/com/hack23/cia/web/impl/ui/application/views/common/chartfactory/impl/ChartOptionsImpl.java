@@ -51,17 +51,50 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
-	/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */
-	private static final int ONE_COLUMN_NUMBER_OF_ROWS = 12;
+	/** The Constant BACKGROUND_COLOR. */
+	private static final String BACKGROUND_COLOR = "#13303f";
+
+	/** The Constant BORDER_COLOR. */
+	private static final String BORDER_COLOR = "#83898c";
+
+	/** The Constant FLOAT_FORMAT. */
+	private static final String FLOAT_FORMAT = "%.2f";
+
+	/** The Constant FONT_FAMILY. */
+	private static final String FONT_FAMILY = "Inconsolata";
+
+	/** The Constant FONT_SIZE. */
+	private static final String FONT_SIZE = "8px";
+
+	/** The Constant GRIDLINE_COLOR. */
+	private static final String GRIDLINE_COLOR = "#213f49";
+
+	/** The Constant LEGEND_COLUMNS. */
+	private static final int LEGEND_COLUMNS = 3;
+
+	/** The Constant LEGEND_FONT_SIZE. */
+	private static final String LEGEND_FONT_SIZE = "10px";
+
+	/** The Constant LEGEND_ROWS. */
+	private static final int LEGEND_ROWS = 20;
+
+	/** The Constant NUMBER_TICKS. */
+	private static final int NUMBER_TICKS = 5;
+
+	/** The Constant NUMBER_TICKS_DATE. */
+	public static final int NUMBER_TICKS_DATE = 8;
 
 	/** The Constant ONE_COLUMN_NUMBER_OF_COLUMNS. */
 	private static final int ONE_COLUMN_NUMBER_OF_COLUMNS = 1;
 
-	/** The Constant ONE_ROW_NUMBER_OF_ROWS. */
-	private static final int ONE_ROW_NUMBER_OF_ROWS = 1;
+	/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */
+	private static final int ONE_COLUMN_NUMBER_OF_ROWS = 12;
 
 	/** The Constant ONE_ROW_NUMBER_OF_COLUMNS. */
 	private static final int ONE_ROW_NUMBER_OF_COLUMNS = 10;
+
+	/** The Constant ONE_ROW_NUMBER_OF_ROWS. */
+	private static final int ONE_ROW_NUMBER_OF_ROWS = 1;
 
 	/** The Constant SLICE_MARGIN. */
 	private static final int SLICE_MARGIN = 3;
@@ -69,41 +102,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 	/** The Constant START_ANGLE. */
 	private static final int START_ANGLE = -90;
 
-	/** The Constant FLOAT_FORMAT. */
-	private static final String FLOAT_FORMAT = "%.2f";
-
-	/** The Constant NUMBER_TICKS. */
-	private static final int NUMBER_TICKS = 5;
-
-	/** The Constant LEGEND_COLUMNS. */
-	private static final int LEGEND_COLUMNS = 3;
-
-	/** The Constant LEGEND_ROWS. */
-	private static final int LEGEND_ROWS = 20;
-
-	/** The Constant LEGEND_FONT_SIZE. */
-	private static final String LEGEND_FONT_SIZE = "10px";
-
-	/** The Constant BORDER_COLOR. */
-	private static final String BORDER_COLOR = "#83898c";
-
-	/** The Constant GRIDLINE_COLOR. */
-	private static final String GRIDLINE_COLOR = "#213f49";
-
-	/** The Constant BACKGROUND_COLOR. */
-	private static final String BACKGROUND_COLOR = "#13303f";
-
 	/** The Constant TEXT_COLOR. */
 	private static final String TEXT_COLOR = "#ffffff";
-
-	/** The Constant FONT_SIZE. */
-	private static final String FONT_SIZE = "8px";
-
-	/** The Constant FONT_FAMILY. */
-	private static final String FONT_FAMILY = "Inconsolata";
-
-	/** The Constant NUMBER_TICKS_DATE. */
-	public static final int NUMBER_TICKS_DATE = 8;
 
 	/** The Constant YEAR_MONTH_DAY_FORMAT. */
 	public static final String YEAR_MONTH_DAY_FORMAT = "%F";
@@ -143,6 +143,15 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 
 	/**
+	 * Creates the cursor.
+	 *
+	 * @return the cursor
+	 */
+	private static Cursor createCursor() {
+		return new Cursor().setZoom(true).setLooseZoom(true).setShow(true);
+	}
+
+	/**
 	 * Creates the default grid.
 	 *
 	 * @return the grid
@@ -180,51 +189,14 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	/**
-	 * Creates the legend outside.
+	 * Creates the donout series default.
 	 *
-	 * @return the legend
+	 * @return the series defaults
 	 */
-	private static Legend createLegendOutside() {
-		return setLegendStyling(new Legend().setShow(true)
-				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
-				.setPlacement(LegendPlacements.OUTSIDE_GRID));
-	}
-
-	/**
-	 * Creates the legend outside one column.
-	 *
-	 * @return the legend
-	 */
-	private static Legend createLegendOutsideOneColumn() {
-		return setLegendStyling(new Legend().setShow(true)
-				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))
-				.setPlacement(LegendPlacements.OUTSIDE_GRID));
-	}
-
-	/**
-	 * Creates the legend outside.
-	 *
-	 * @return the legend
-	 */
-	private static Legend createLegendInsideOneRow() {
-		return setLegendStyling(new Legend().setShow(true)
-				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))
-				.setPlacement(LegendPlacements.INSIDE_GRID));
-	}
-
-	/**
-	 * Sets the legend styling.
-	 *
-	 * @param legend
-	 *            the legend
-	 * @return the legend
-	 */
-	private static Legend setLegendStyling(final Legend legend) {
-		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
-		return legend;
+	private static SeriesDefaults createDonoutSeriesDefault() {
+		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
+						.setDataLabels(DataLabels.VALUE));
 	}
 
 	/**
@@ -249,6 +221,43 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendInsideOneRow() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))
+				.setPlacement(LegendPlacements.INSIDE_GRID));
+	}
+
+	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendOutside() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
+				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+	}
+
+	/**
+	 * Creates the legend outside one column.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendOutsideOneColumn() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))
+				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+	}
+
+
+	/**
 	 * Creates the series default pie chart.
 	 *
 	 * @return the series defaults
@@ -258,14 +267,16 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setRendererOptions(new PieRenderer().setShowDataLabels(true)).setShadow(true);
 	}
 
-
 	/**
-	 * Creates the cursor.
+	 * Sets the legend styling.
 	 *
-	 * @return the cursor
+	 * @param legend
+	 *            the legend
+	 * @return the legend
 	 */
-	private static Cursor createCursor() {
-		return new Cursor().setZoom(true).setLooseZoom(true).setShow(true);
+	private static Legend setLegendStyling(final Legend legend) {
+		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
+		return legend;
 	}
 
 	@Override
@@ -289,17 +300,6 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public Options createOptionsDonoutChartWithSeries(final Series series) {
 		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
 				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
-	}
-
-	/**
-	 * Creates the donout series default.
-	 *
-	 * @return the series defaults
-	 */
-	private static SeriesDefaults createDonoutSeriesDefault() {
-		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
-						.setDataLabels(DataLabels.VALUE));
 	}
 
 	@Override

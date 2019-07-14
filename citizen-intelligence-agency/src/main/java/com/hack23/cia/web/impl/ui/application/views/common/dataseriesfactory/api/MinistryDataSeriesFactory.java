@@ -37,13 +37,13 @@ public interface MinistryDataSeriesFactory {
 	 *
 	 * @return the data series
 	 */
-	DataSeries createMinistryChartTimeSeriesCurrent();
+	DataSeries createMinistryChartTimeSeriesAll();
 
 	/**
 	 * Creates a new MinistryDataSeries object.
 	 *
 	 * @return the data series
 	 */
-	DataSeries createMinistryChartTimeSeriesAll();
+	DataSeries createMinistryChartTimeSeriesCurrent();
 
 }

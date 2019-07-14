@@ -43,84 +43,74 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
-	/** The Constant DATA_AUTHOR_SUMMARY. */
-	private static final String DATA_AUTHOR_SUMMARY = "Data author summary";
+	/** The Constant ADMIN_TEXT. */
+	private static final String ADMIN_TEXT = "Admin";
 
-	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
-	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+	/** The Constant AGENCY. */
+	private static final String AGENCY = "Agency";
 
-	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
-	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+	/** The Constant AGENT_OPERATIONS_TEXT. */
+	private static final String AGENT_OPERATIONS_TEXT = "Agent operations";
 
-	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
-	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+	/** The Constant APPLICATION. */
+	private static final String APPLICATION = "Application";
 
-	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
-	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+	/** The Constant APPLICATION_CONFIGURATION. */
+	private static final String APPLICATION_CONFIGURATION = "System settings";
 
-	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
-	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
+	/** The Constant APPLICATION_EVENT. */
+	private static final String APPLICATION_EVENT = "Application Event";
 
-	/** The Constant COMMAND_EMAIL. */
-	private static final PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
-			"");
+	/** The Constant APPLICATION_EVENT_CHARTS. */
+	private static final String APPLICATION_EVENT_CHARTS = "Application Event charts";
 
-	/** The Constant COMMAND_MAINVIEW_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COMMAND_USERACCOUNT. */
-	private static final PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
-			"");
-
-	/** The Constant COMMAND_APPLICATION_EVENTS. */
-	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(
-			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
-
-	/** The Constant COMMAND_APPLICATION_SESSION. */
-	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
-			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
-
-	/** The Constant COMMAND_MONITORING. */
-	private static final PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
-			"");
-
-	/** The Constant COMMAND_DATASUMMARY. */
-	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
-			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
-	
-	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
-			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
-
-	
-	/** The Constant COMMAND_AGENT_OPERATION. */
-	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(
-			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
-
-	/** The Constant COMMAND_LANGUAGE_CONTENT. */
-	private static final PageModeMenuCommand COMMAND_LANGUAGE_CONTENT = new PageModeMenuCommand(
-			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "");
-
-	/** The Constant COMMAND_LANGUAGE. */
-	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
-			"");
-
-	/** The Constant COMMAND_COUNTRY. */
-	private static final PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
-
-	/** The Constant COMMAND_PORTAL. */
-	private static final PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
+	/** The Constant APPLICATION_SESSION. */
+	private static final String APPLICATION_SESSION = "Application Session";
 
 	/** The Constant COMMAND_AGENCY. */
 	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
+
+	/** The Constant COMMAND_AGENT_OPERATION. */
+	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(
+			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
 
 	/** The Constant COMMAND_APPLICATION_CONFIGURATION. */
 	private static final PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "");
 
-	/** The Constant COMMAND_REGISTER. */
-	private static final PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-			ApplicationPageMode.REGISTER.toString());
+	/** The Constant COMMAND_APPLICATION_EVENTS. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(
+			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
+
+	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
+	
+	/** The Constant COMMAND_APPLICATION_SESSION. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
+
+	
+	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
+			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
+
+	/** The Constant COMMAND_COUNTRY. */
+	private static final PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
+
+	/** The Constant COMMAND_DATASUMMARY. */
+	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
+			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
+
+	/** The Constant COMMAND_EMAIL. */
+	private static final PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND_LANGUAGE. */
+	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND_LANGUAGE_CONTENT. */
+	private static final PageModeMenuCommand COMMAND_LANGUAGE_CONTENT = new PageModeMenuCommand(
+			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "");
 
 	/** The Constant COMMAND_LOGIN. */
 	private static final PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
@@ -130,27 +120,70 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND_LOGOUT = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			ApplicationPageMode.LOGOUT.toString());
 
-	/** The Constant COMMAND_USERHOME. */
-	private static final PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
-
 	/** The Constant COMMAND_MAINVIEW_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant LINK_STYLE_NAME. */
-	private static final String LINK_STYLE_NAME = "link";
+	/** The Constant COMMAND_MAINVIEW_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND_MONITORING. */
+	private static final PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND_PORTAL. */
+	private static final PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
+
+	/** The Constant COMMAND_REGISTER. */
+	private static final PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			ApplicationPageMode.REGISTER.toString());
+
+	/** The Constant COMMAND_USERACCOUNT. */
+	private static final PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND_USERHOME. */
+	private static final PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
+
+	/** The Constant CONFIGURATION. */
+	private static final String CONFIGURATION = "Configuration";
+
+	/** The Constant COUNTRY. */
+	private static final String COUNTRY = "Country";
+
+	/** The Constant DATA_AUTHOR_SUMMARY. */
+	private static final String DATA_AUTHOR_SUMMARY = "Data author summary";
+
+	/** The Constant DATA_SUMMARY_TEXT. */
+	private static final String DATA_SUMMARY_TEXT = "Data Summary";
+
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant EMAIL. */
+	private static final String EMAIL = "Email";
 
 	/** The Constant HEADER_STYLE_NAME. */
 	private static final String HEADER_STYLE_NAME = "Header";
 
-	/** The Constant MENU_BAR_WIDTH. */
-	private static final String MENU_BAR_WIDTH = "80%";
+	/** The Constant LANGUAGE. */
+	private static final String LANGUAGE = "Language";
 
-	/** The Constant MAIN. */
-	private static final String MAIN = "Main";
+	/** The Constant LANGUAGE_CONTENT. */
+	private static final String LANGUAGE_CONTENT = "Language Content";
 
-	/** The Constant REGISTER. */
-	private static final String REGISTER = "Register";
+	/** The Constant LINK_STYLE_NAME. */
+	private static final String LINK_STYLE_NAME = "link";
 
 	/** The Constant LOGIN. */
 	private static final String LOGIN = "Login";
@@ -158,77 +191,44 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
 
-	/** The Constant APPLICATION. */
-	private static final String APPLICATION = "Application";
-
-	/** The Constant EMAIL. */
-	private static final String EMAIL = "Email";
-
-	/** The Constant USER_ACTIVITY. */
-	private static final String USER_ACTIVITY = "User Activity";
+	/** The Constant MAIN. */
+	private static final String MAIN = "Main";
 
 	/** The Constant MANAGEMENT. */
 	private static final String MANAGEMENT = "Management";
 
-	/** The Constant CONFIGURATION. */
-	private static final String CONFIGURATION = "Configuration";
-
-	/** The Constant ROLE_USER. */
-	private static final String ROLE_USER = "ROLE_USER";
-
-	/** The Constant ROLE_ADMIN. */
-	private static final String ROLE_ADMIN = "ROLE_ADMIN";
-
-	/** The Constant START_TEXT. */
-	private static final String START_TEXT = "Start";
-
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome";
-
-	/** The Constant LANGUAGE_CONTENT. */
-	private static final String LANGUAGE_CONTENT = "Language Content";
-
-	/** The Constant LANGUAGE. */
-	private static final String LANGUAGE = "Language";
-
-	/** The Constant COUNTRY. */
-	private static final String COUNTRY = "Country";
-
-	/** The Constant USERACCOUNT. */
-	private static final String USERACCOUNT = "Useraccount";
-
-	/** The Constant APPLICATION_EVENT. */
-	private static final String APPLICATION_EVENT = "Application Event";
-
-	/** The Constant APPLICATION_SESSION. */
-	private static final String APPLICATION_SESSION = "Application Session";
-
-	/** The Constant PORTAL. */
-	private static final String PORTAL = "Portal";
-
-	/** The Constant AGENCY. */
-	private static final String AGENCY = "Agency";
-
-	/** The Constant APPLICATION_CONFIGURATION. */
-	private static final String APPLICATION_CONFIGURATION = "System settings";
-
-	/** The Constant SYSTEM_PERFORMANCE. */
-	private static final String SYSTEM_PERFORMANCE = "System Performance";
-
-	/** The Constant DATA_SUMMARY_TEXT. */
-	private static final String DATA_SUMMARY_TEXT = "Data Summary";
-
-	/** The Constant AGENT_OPERATIONS_TEXT. */
-	private static final String AGENT_OPERATIONS_TEXT = "Agent operations";
-
-	/** The Constant ADMIN_TEXT. */
-	private static final String ADMIN_TEXT = "Admin";
+	/** The Constant MENU_BAR_WIDTH. */
+	private static final String MENU_BAR_WIDTH = "80%";
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-	/** The Constant APPLICATION_EVENT_CHARTS. */
-	private static final String APPLICATION_EVENT_CHARTS = "Application Event charts";
+	/** The Constant PORTAL. */
+	private static final String PORTAL = "Portal";
+
+	/** The Constant REGISTER. */
+	private static final String REGISTER = "Register";
+
+	/** The Constant ROLE_ADMIN. */
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+	/** The Constant ROLE_USER. */
+	private static final String ROLE_USER = "ROLE_USER";
+
+	/** The Constant START_TEXT. */
+	private static final String START_TEXT = "Start";
+
+	/** The Constant SYSTEM_PERFORMANCE. */
+	private static final String SYSTEM_PERFORMANCE = "System Performance";
+
+	/** The Constant USER_ACTIVITY. */
+	private static final String USER_ACTIVITY = "User Activity";
+
+	/** The Constant USERACCOUNT. */
+	private static final String USERACCOUNT = "Useraccount";
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = "Userhome";
 
 
 
@@ -238,36 +238,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	public AbstractMenuItemFactoryImpl() {
 		super();
-	}
-
-	/**
-	 * Inits the application menu bar.
-	 *
-	 * @param menuBar
-	 *            the menu bar
-	 */
-	protected final void initApplicationMenuBar(final MenuBar menuBar) {
-		menuBar.removeItems();
-		menuBar.setWidth(MENU_BAR_WIDTH);
-		menuBar.setStyleName(HEADER_STYLE_NAME);
-		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);
-
-		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);
-
-		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
-
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
-
-
-		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);
-			createAdminMenu(mainViewItem);
-			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);
-		} else {
-			mainViewItem.addItem(LOGIN, VaadinIcons.SIGN_IN, COMMAND_LOGIN);
-			mainViewItem.addItem(REGISTER, VaadinIcons.FILE_ADD, COMMAND_REGISTER);
-		}
-
 	}
 
 	/**
@@ -351,6 +321,36 @@ public abstract class AbstractMenuItemFactoryImpl {
 		layout.addComponent(descriptionLabel);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
+
+	/**
+	 * Inits the application menu bar.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 */
+	protected final void initApplicationMenuBar(final MenuBar menuBar) {
+		menuBar.removeItems();
+		menuBar.setWidth(MENU_BAR_WIDTH);
+		menuBar.setStyleName(HEADER_STYLE_NAME);
+		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);
+
+		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);
+
+		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
+
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
+
+
+		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
+			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);
+			createAdminMenu(mainViewItem);
+			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);
+		} else {
+			mainViewItem.addItem(LOGIN, VaadinIcons.SIGN_IN, COMMAND_LOGIN);
+			mainViewItem.addItem(REGISTER, VaadinIcons.FILE_ADD, COMMAND_REGISTER);
+		}
+
 	}
 
 }

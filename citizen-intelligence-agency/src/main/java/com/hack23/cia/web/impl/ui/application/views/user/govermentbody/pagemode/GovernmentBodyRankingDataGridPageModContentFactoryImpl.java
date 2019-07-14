@@ -45,14 +45,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.GOVERNMENT_BODY_VIEW_NAME, "orgNumber");
-	private static final String[] HIDE_COLUMNS = new String[] { "vat", "consecutiveNumber", "comment", "mCode" };
 	private static final String[] COLUMN_ORDER = new String[] { "name", "govermentBodyId", "ministry", "orgNumber",
 			"headCount", "annualWorkHeadCount" };
-	private static final String GOVERNMENT_BODIES = "Government bodies";
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+	private static final String[] HIDE_COLUMNS = new String[] { "vat", "consecutiveNumber", "comment", "mCode" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.GOVERNMENT_BODY_VIEW_NAME, "orgNumber");
 
 	/** The esv api. */
 	@Autowired
@@ -64,11 +64,6 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 	 */
 	public GovernmentBodyRankingDataGridPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -94,6 +89,11 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 }

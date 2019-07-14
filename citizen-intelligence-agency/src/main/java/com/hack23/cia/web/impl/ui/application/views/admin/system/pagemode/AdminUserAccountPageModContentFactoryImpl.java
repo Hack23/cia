@@ -55,20 +55,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country",
-			"numberOfVisits" );
-
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
-
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
-
-	private static final String USER_ACCOUNT = "UserAccount";
-
 	/** The Constant ADMIN_USERACCOUNT. */
 	private static final String ADMIN_USERACCOUNT = "Admin Useraccount";
+
+	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country",
+			"numberOfVisits" );
 
 	/** The Constant BUTTON_ID_PATTERN. */
 	private static final String BUTTON_ID_PATTERN = "{0}.{1}";
@@ -76,8 +67,17 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant BUTTON_PATTERN. */
 	private static final String BUTTON_PATTERN = "Perform {0}";
 
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
+			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
+
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
+
+	private static final String USER_ACCOUNT = "UserAccount";
 	
 	/**
 	 * Instantiates a new admin user account page mod content factory impl.

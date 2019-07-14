@@ -23,84 +23,6 @@ public class StaleElementUtils {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StaleElementUtils.class);
 
 	/**
-	 * Refresh element.
-	 *
-	 * @param elem
-	 *            the elem
-	 * @param driver
-	 *            the driver
-	 * @return the web element
-	 */
-	public static WebElement refreshElement(final WebElement elem, final WebDriver driver) {
-		if (!isElementStale(elem))
-			return elem;
-		Object lastObject = null;
-		try {
-			final String[] arr = elem.toString().split("->");
-			final List<String> newStr = new ArrayList<>();
-			for (final String s : arr) {
-				final String newstr = s.trim().replaceAll("^\\[+", "").replaceAll("\\]+$", "");
-				final String[] parts = newstr.split(": ");
-				final String key = parts[0];
-				String value = parts[1];
-				final int leftBracketsCount = value.length() - value.replace("[", "").length();
-				final int rightBracketscount = value.length() - value.replace("]", "").length();
-				if (leftBracketsCount - rightBracketscount == 1)
-					value = value + "]";
-				if (lastObject == null) {
-					lastObject = driver;
-				} else {
-					lastObject = getWebElement(lastObject, key, value);
-				}
-			}
-		} catch (final Exception e) {
-			LOGGER.error("Error in Refreshing the stale Element.");
-		}
-		return (WebElement) lastObject;
-	}
-
-	/**
-	 * Checks if is element stale.
-	 *
-	 * @param e
-	 *            the e
-	 * @return true, if is element stale
-	 */
-	public static boolean isElementStale(final WebElement e) {
-		try {
-			e.isDisplayed();
-			return false;
-		} catch (final StaleElementReferenceException ex) {
-			return true;
-		}
-	}
-
-	/**
-	 * Gets the web element.
-	 *
-	 * @param lastObject
-	 *            the last object
-	 * @param key
-	 *            the key
-	 * @param value
-	 *            the value
-	 * @return the web element
-	 */
-	private static WebElement getWebElement(final Object lastObject, final String key, final String value) {
-		WebElement element = null;
-		try {
-			final By by = getBy(key, value);
-			final Method m = getCaseInsensitiveDeclaredMethod(lastObject, "findElement");
-			element = (WebElement) m.invoke(lastObject, by);
-		} catch (final InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (final IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return element;
-	}
-
-	/**
 	 * Gets the by.
 	 *
 	 * @param key
@@ -169,5 +91,83 @@ public class StaleElementUtils {
 					String.format(Locale.ENGLISH,"%s Method name is not found for this Class %s", methodName, clazz.toString()));
 		}
 		return method;
+	}
+
+	/**
+	 * Gets the web element.
+	 *
+	 * @param lastObject
+	 *            the last object
+	 * @param key
+	 *            the key
+	 * @param value
+	 *            the value
+	 * @return the web element
+	 */
+	private static WebElement getWebElement(final Object lastObject, final String key, final String value) {
+		WebElement element = null;
+		try {
+			final By by = getBy(key, value);
+			final Method m = getCaseInsensitiveDeclaredMethod(lastObject, "findElement");
+			element = (WebElement) m.invoke(lastObject, by);
+		} catch (final InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (final IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return element;
+	}
+
+	/**
+	 * Checks if is element stale.
+	 *
+	 * @param e
+	 *            the e
+	 * @return true, if is element stale
+	 */
+	public static boolean isElementStale(final WebElement e) {
+		try {
+			e.isDisplayed();
+			return false;
+		} catch (final StaleElementReferenceException ex) {
+			return true;
+		}
+	}
+
+	/**
+	 * Refresh element.
+	 *
+	 * @param elem
+	 *            the elem
+	 * @param driver
+	 *            the driver
+	 * @return the web element
+	 */
+	public static WebElement refreshElement(final WebElement elem, final WebDriver driver) {
+		if (!isElementStale(elem))
+			return elem;
+		Object lastObject = null;
+		try {
+			final String[] arr = elem.toString().split("->");
+			final List<String> newStr = new ArrayList<>();
+			for (final String s : arr) {
+				final String newstr = s.trim().replaceAll("^\\[+", "").replaceAll("\\]+$", "");
+				final String[] parts = newstr.split(": ");
+				final String key = parts[0];
+				String value = parts[1];
+				final int leftBracketsCount = value.length() - value.replace("[", "").length();
+				final int rightBracketscount = value.length() - value.replace("]", "").length();
+				if (leftBracketsCount - rightBracketscount == 1)
+					value = value + "]";
+				if (lastObject == null) {
+					lastObject = driver;
+				} else {
+					lastObject = getWebElement(lastObject, key, value);
+				}
+			}
+		} catch (final Exception e) {
+			LOGGER.error("Error in Refreshing the stale Element.");
+		}
+		return (WebElement) lastObject;
 	}
 }

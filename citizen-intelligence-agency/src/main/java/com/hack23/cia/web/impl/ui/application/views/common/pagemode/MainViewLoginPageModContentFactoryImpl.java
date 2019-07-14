@@ -50,14 +50,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	private static final String LOGIN = "Login";
-
-	private static final String LOGIN_USER = "Login user";
-
 	private static final List<String> AS_LIST = Arrays.asList( "email", "otpCode", "userpassword" );
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency";
+
+	private static final String LOGIN = "Login";
+
+	private static final String LOGIN_USER = "Login user";
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
@@ -67,12 +67,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 	 */
 	public MainViewLoginPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS" })
@@ -124,6 +118,12 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());
 	}
 
 }

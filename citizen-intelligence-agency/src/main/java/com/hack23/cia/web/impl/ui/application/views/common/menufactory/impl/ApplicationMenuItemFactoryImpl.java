@@ -46,23 +46,24 @@ import com.vaadin.ui.VerticalLayout;
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
-	/** The Constant GOVERNMENT_BODY_RANKING. */
-	private static final String GOVERNMENT_BODY_RANKING = "Government body Ranking";
+	/** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
 
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government bodies";
-
-	/** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_COUNTRY_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND_MINISTRY_RANKING_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
-			PageMode.OVERVIEW);
+	/** The Constant COMMAND_DOCUMENTS. */
+	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
 
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
@@ -71,24 +72,24 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
-	/** The Constant COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-			PageMode.DATAGRID);
-
-	/** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_MINISTRY_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_PARTY_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_PARTY_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND_PARTY_RANKING_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
 
@@ -96,111 +97,100 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.DATAGRID);
-
 	/** The Constant COMMAND_SEARCH_DOCUMENT. */
 	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
-
-	/** The Constant COMMAND_DOCUMENTS. */
-	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
-
-
-	/** The Constant POLITICIAN_RANKING. */
-	private static final String POLITICIAN_RANKING = "Politician Ranking";
-
-	/** The Constant PARTY_RANKING. */
-	private static final String PARTY_RANKING = "Party Ranking";
-
-	/** The Constant MINISTRY_RANKING. */
-	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
 	/** The Constant COMMITTEE_RANKING_TEXT. */
 	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
 
-	/** The Constant RANKING_TEXT. */
-	private static final String RANKING_TEXT = "Ranking";
-
-	/** The Constant POLITICIAN_RANKING_LINK_TEXT. */
-	private static final String POLITICIAN_RANKING_LINK_TEXT = POLITICIAN_RANKING;
-
-	/** The Constant PARTY_RANKING_LINK_TEXT. */
-	private static final String PARTY_RANKING_LINK_TEXT = PARTY_RANKING;
-
 	/** The Constant COMMITTEE_RANKING_LINK_TEXT. */
 	private static final String COMMITTEE_RANKING_LINK_TEXT = COMMITTEE_RANKING_TEXT;
-
-	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
-	private static final String MINISTRY_RANKING_LINK_TEXT = MINISTRY_RANKING;
-
-	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
-	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
-
-	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
-	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
-
-	/** The Constant MINISTRIES_LINK_TEXT. */
-	private static final String MINISTRIES_LINK_TEXT = "Ministries";
 
 	/** The Constant COMMITTEES_LINK_TEXT. */
 	private static final String COMMITTEES_LINK_TEXT = "Committees";
 
+	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
+	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
+
+	/** The Constant DOCUMENTS. */
+	private static final String DOCUMENTS = "Documents";
+
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+
+	/** The Constant GOVERNMENT_BODY_RANKING. */
+	private static final String GOVERNMENT_BODY_RANKING = "Government body Ranking";
+
+	/** The Constant MINISTRIES_LINK_TEXT. */
+	private static final String MINISTRIES_LINK_TEXT = "Ministries";
+
+	/** The Constant MINISTRY_RANKING. */
+	private static final String MINISTRY_RANKING = "Ministry Ranking";
+
+	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
+	private static final String MINISTRY_RANKING_LINK_TEXT = MINISTRY_RANKING;
+
+	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
+	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
+
 	/** The Constant PARTIES_LINK_TEXT. */
 	private static final String PARTIES_LINK_TEXT = "Parties";
+
+	/** The Constant PARTY_RANKING. */
+	private static final String PARTY_RANKING = "Party Ranking";
+
+	/** The Constant PARTY_RANKING_LINK_TEXT. */
+	private static final String PARTY_RANKING_LINK_TEXT = PARTY_RANKING;
+
+	/** The Constant POLITICIAN_RANKING. */
+	private static final String POLITICIAN_RANKING = "Politician Ranking";
+
+	/** The Constant POLITICIAN_RANKING_LINK_TEXT. */
+	private static final String POLITICIAN_RANKING_LINK_TEXT = POLITICIAN_RANKING;
 
 	/** The Constant POLITICIANS_LINK_TEXT. */
 	private static final String POLITICIANS_LINK_TEXT = "Politicians";
 
-	/** The Constant DOCUMENTS. */
-	private static final String DOCUMENTS = "Documents";
+	/** The Constant RANKING_TEXT. */
+	private static final String RANKING_TEXT = "Ranking";
 
 	/** The Constant SEARCH_DOCUMENTS. */
 	private static final String SEARCH_DOCUMENTS = "Search documents";
 
 
-	/** The politician ranking menu item factory. */
-	@Autowired
-	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
-
-	/** The party ranking menu item factory. */
-	@Autowired
-	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
-
 	/** The committee ranking menu item factory. */
 	@Autowired
 	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
-
-	/** The ministry ranking menu item factory. */
-	@Autowired
-	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
 
 	/** The country menu item factory. */
 	@Autowired
 	private CountryMenuItemFactory countryMenuItemFactory;
 
-	/** The parliament menu item factory. */
-	@Autowired
-	private ParliamentMenuItemFactory parliamentMenuItemFactory;
-	
 	/** The government body ranking menu item factory. */
 	@Autowired
 	private GovernmentBodyRankingMenuItemFactory governmentBodyRankingMenuItemFactory;
+
+	/** The ministry ranking menu item factory. */
+	@Autowired
+	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
+
+	/** The parliament menu item factory. */
+	@Autowired
+	private ParliamentMenuItemFactory parliamentMenuItemFactory;
+
+	/** The party ranking menu item factory. */
+	@Autowired
+	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
+	
+	/** The politician ranking menu item factory. */
+	@Autowired
+	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
 
 	/**
 	 * Instantiates a new application menu item factory impl.
 	 */
 	public ApplicationMenuItemFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public MenuBar createMainPageMenuBar(final MenuBar menuBar) {
-		initApplicationMenuBar(menuBar);
-
-		addRankingMenu(menuBar);
-
-		return menuBar;
 	}
 
 	@Override
@@ -239,6 +229,15 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS);
 		documentsMenuItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);
 		documentsMenuItem.addItem(SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);
+	}
+
+	@Override
+	public MenuBar createMainPageMenuBar(final MenuBar menuBar) {
+		initApplicationMenuBar(menuBar);
+
+		addRankingMenu(menuBar);
+
+		return menuBar;
 	}
 
 	@Override

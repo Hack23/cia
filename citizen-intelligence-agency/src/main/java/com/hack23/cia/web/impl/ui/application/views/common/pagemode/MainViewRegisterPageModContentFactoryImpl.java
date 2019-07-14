@@ -49,8 +49,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	private static final String REGISTER = "Register";
-
 	private static final List<String> AS_LIST = Arrays.asList( "username", "email", "country", "userpassword" );
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
@@ -59,17 +57,13 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
+	private static final String REGISTER = "Register";
+
 	/**
 	 * Instantiates a new main view register page mod content factory impl.
 	 */
 	public MainViewRegisterPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, ApplicationPageMode.REGISTER.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS" })
@@ -118,6 +112,12 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& StringUtils.contains(parameters, ApplicationPageMode.REGISTER.toString());
 	}
 
 }

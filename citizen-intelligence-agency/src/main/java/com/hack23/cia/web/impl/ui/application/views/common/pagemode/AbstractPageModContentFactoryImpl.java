@@ -39,163 +39,48 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractPageModContentFactoryImpl implements PageModeContentFactory {
 
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
-
 	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	public static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
 	/** The Constant DEFAULT_RESULTS_PER_PAGE. */
 	public static final int DEFAULT_RESULTS_PER_PAGE = 250;
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
+	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	/** The admin chart data manager. */
+	@Autowired
+	private AdminChartDataManager adminChartDataManager;
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
-
-	/** The menu item factory. */
-	@Autowired
-	private ApplicationMenuItemFactory menuItemFactory;
-
-	/** The grid factory. */
-	@Autowired
-	private GridFactory gridFactory;
 
 	/** The form factory. */
 	@Autowired
 	private FormFactory formFactory;
 
-	/** The page link factory. */
+	/** The grid factory. */
 	@Autowired
-	private PageLinkFactory pageLinkFactory;
+	private GridFactory gridFactory;
+
+	/** The menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory menuItemFactory;
 
 	/** The page action event helper. */
 	@Autowired
 	private PageActionEventHelper pageActionEventHelper;
 
-	/** The admin chart data manager. */
+	/** The page link factory. */
 	@Autowired
-	private AdminChartDataManager adminChartDataManager;
+	private PageLinkFactory pageLinkFactory;
 
 	/**
 	 * Instantiates a new abstract page mod content factory impl.
 	 */
 	protected AbstractPageModContentFactoryImpl() {
 		super();
-	}
-
-	/**
-	 * Gets the page id.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @return the page id
-	 */
-	protected final String getPageId(final String parameters) {
-		if (parameters != null) {
-			String cleanedString = parameters;
-			if (parameters.contains("[")) {
-				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
-			} 
-			
-			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
-		} else {
-			return "";
-		}
-	}
-
-	/**
-	 * Gets the page nr.
-	 *
-	 * @param parameters the parameters
-	 * @return the page nr
-	 */
-	protected final int getPageNr(final String parameters) {
-		final String cleanedString = parameters;
-		String pageNrValue;
-		if (cleanedString != null && cleanedString.contains("[") && cleanedString.contains("]")) {
-			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));
-		} else {
-			pageNrValue = "";
-		}
-
-		int pageNr = 1;
-
-		if (pageNrValue.length() > 0 && !pageNrValue.contains("/")) {
-			pageNr = Integer.parseInt(pageNrValue);
-		}
-		return pageNr;
-	}
-
-	/**
-	 * Gets the application manager.
-	 *
-	 * @return the application manager
-	 */
-	protected final ApplicationManager getApplicationManager() {
-		return applicationManager;
-	}
-
-	/**
-	 * Gets the menu item factory.
-	 *
-	 * @return the menu item factory
-	 */
-	protected final ApplicationMenuItemFactory getMenuItemFactory() {
-		return menuItemFactory;
-	}
-
-	/**
-	 * Gets the grid factory.
-	 *
-	 * @return the grid factory
-	 */
-	protected final GridFactory getGridFactory() {
-		return gridFactory;
-	}
-
-	/**
-	 * Gets the form factory.
-	 *
-	 * @return the form factory
-	 */
-	protected final FormFactory getFormFactory() {
-		return formFactory;
-	}
-
-	/**
-	 * Gets the page link factory.
-	 *
-	 * @return the page link factory
-	 */
-	protected final PageLinkFactory getPageLinkFactory() {
-		return pageLinkFactory;
-	}
-
-	protected final AdminChartDataManager getAdminChartDataManager() {
-		return adminChartDataManager;
-	}
-
-	/**
-	 * Gets the page action event helper.
-	 *
-	 * @return the page action event helper
-	 */
-	protected final PageActionEventHelper getPageActionEventHelper() {
-		return pageActionEventHelper;
-	}
-
-	/**
-	 * Creates the panel content.
-	 *
-	 * @return the vertical layout
-	 */
-	protected final VerticalLayout createPanelContent() {
-		final VerticalLayout panelContent = new VerticalLayout();
-		panelContent.setMargin(true);
-		panelContent.setWidth(100, Unit.PERCENTAGE);
-		panelContent.setHeight(100, Unit.PERCENTAGE);
-		panelContent.setStyleName("Header");
-		return panelContent;
 	}
 
 	/**
@@ -236,6 +121,121 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,
 				pageName);
 
+	}
+
+	/**
+	 * Creates the panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected final VerticalLayout createPanelContent() {
+		final VerticalLayout panelContent = new VerticalLayout();
+		panelContent.setMargin(true);
+		panelContent.setWidth(100, Unit.PERCENTAGE);
+		panelContent.setHeight(100, Unit.PERCENTAGE);
+		panelContent.setStyleName("Header");
+		return panelContent;
+	}
+
+	protected final AdminChartDataManager getAdminChartDataManager() {
+		return adminChartDataManager;
+	}
+
+	/**
+	 * Gets the application manager.
+	 *
+	 * @return the application manager
+	 */
+	protected final ApplicationManager getApplicationManager() {
+		return applicationManager;
+	}
+
+	/**
+	 * Gets the form factory.
+	 *
+	 * @return the form factory
+	 */
+	protected final FormFactory getFormFactory() {
+		return formFactory;
+	}
+
+	/**
+	 * Gets the grid factory.
+	 *
+	 * @return the grid factory
+	 */
+	protected final GridFactory getGridFactory() {
+		return gridFactory;
+	}
+
+	/**
+	 * Gets the menu item factory.
+	 *
+	 * @return the menu item factory
+	 */
+	protected final ApplicationMenuItemFactory getMenuItemFactory() {
+		return menuItemFactory;
+	}
+
+	/**
+	 * Gets the page action event helper.
+	 *
+	 * @return the page action event helper
+	 */
+	protected final PageActionEventHelper getPageActionEventHelper() {
+		return pageActionEventHelper;
+	}
+
+	/**
+	 * Gets the page id.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @return the page id
+	 */
+	protected final String getPageId(final String parameters) {
+		if (parameters != null) {
+			String cleanedString = parameters;
+			if (parameters.contains("[")) {
+				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
+			} 
+			
+			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Gets the page link factory.
+	 *
+	 * @return the page link factory
+	 */
+	protected final PageLinkFactory getPageLinkFactory() {
+		return pageLinkFactory;
+	}
+
+	/**
+	 * Gets the page nr.
+	 *
+	 * @param parameters the parameters
+	 * @return the page nr
+	 */
+	protected final int getPageNr(final String parameters) {
+		final String cleanedString = parameters;
+		String pageNrValue;
+		if (cleanedString != null && cleanedString.contains("[") && cleanedString.contains("]")) {
+			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));
+		} else {
+			pageNrValue = "";
+		}
+
+		int pageNr = 1;
+
+		if (pageNrValue.length() > 0 && !pageNrValue.contains("/")) {
+			pageNr = Integer.parseInt(pageNrValue);
+		}
+		return pageNr;
 	}
 
 }

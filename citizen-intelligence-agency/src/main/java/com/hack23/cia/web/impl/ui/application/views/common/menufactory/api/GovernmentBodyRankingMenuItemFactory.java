@@ -38,18 +38,18 @@ public interface GovernmentBodyRankingMenuItemFactory {
 	/**
 	 * Creates a new GovernmentBodyRankingMenuItem object.
 	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createOverviewPage(VerticalLayout panelContent);
-
-	/**
-	 * Creates a new GovernmentBodyRankingMenuItem object.
-	 *
 	 * @param addItem
 	 *            the add item
 	 */
 	void createGovernmentBodyRankingTopics(MenuItem addItem);
+
+	/**
+	 * Creates a new GovernmentBodyRankingMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
 
 
 }

@@ -46,20 +46,20 @@ import com.vaadin.ui.UI;
 @Service
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {
 
-	/** The Constant REQUIRED_AUTHORITIES. */
-	private static final String REQUIRED_AUTHORITIES = " , RequiredAuthorities:";
-
 	/** The Constant ACCESS_DENIED. */
 	private static final String ACCESS_DENIED = "Access Denied";
 
 	/** The Constant AUTHORITIES. */
 	private static final String AUTHORITIES = "Authorities:";
 
+	/** The Constant CRLF. */
+	private static final String CRLF = "[\r\n]";
+
 	/** The Constant CRLF_REPLACEMENT. */
 	private static final String CRLF_REPLACEMENT = "";
 
-	/** The Constant CRLF. */
-	private static final String CRLF = "[\r\n]";
+	/** The Constant ERROR_MESSAGE_FORMAT. */
+	private static final String ERROR_MESSAGE_FORMAT = "Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
 
 	/**
 	 * The Constant
@@ -67,11 +67,11 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	 */
 	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
 
-	/** The Constant ERROR_MESSAGE_FORMAT. */
-	private static final String ERROR_MESSAGE_FORMAT = "Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
-
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationFailureEventListener.class);
+
+	/** The Constant REQUIRED_AUTHORITIES. */
+	private static final String REQUIRED_AUTHORITIES = " , RequiredAuthorities:";
 
 	/** The application manager. */
 	@Autowired

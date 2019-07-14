@@ -45,21 +45,21 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	/** The Constant ADMIN_PORTAL. */
+	private static final String ADMIN_PORTAL = "Admin Portal";
+
 	private static final List<String> AS_LIST = Arrays.asList("portalName", "description", "portalType",
 			"googleMapApiKey");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" };
 
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
 			"modelObjectVersion" };
 
-	private static final String PORTAL2 = "Portal";
-
-	/** The Constant ADMIN_PORTAL. */
-	private static final String ADMIN_PORTAL = "Admin Portal";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
+
+	private static final String PORTAL2 = "Portal";
 
 	/**
 	 * Instantiates a new admin agency page mod content factory impl.

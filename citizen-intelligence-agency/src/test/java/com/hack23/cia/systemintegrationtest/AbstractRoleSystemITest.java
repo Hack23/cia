@@ -56,18 +56,15 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationTest {
 
-	/** The browser. */
-	protected final String browser;
+	private static String systemTestTargetAdminEmail;
 
-	/** The Constant webDriverMap. */
-	private static final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
+	private static String systemTestTargetAdminPassword;
 
 	/** The Constant usingExternalServer. */
 	private static final boolean usingExternalServer;
 
-	private static String systemTestTargetAdminEmail;
-
-	private static String systemTestTargetAdminPassword;
+	/** The Constant webDriverMap. */
+	private static final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
 
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
@@ -89,6 +86,9 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
+
+	/** The browser. */
+	protected final String browser;
 
 	/**
 	 * Instantiates a new abstract role system test.
@@ -133,12 +133,35 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	}
 
 	/**
+	 * Click first row in grid.
+	 *
+	 * @param userPageVisit
+	 *            the user page visit
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
+	protected final  void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
+		final List<WebElement> gridRows = userPageVisit.getGridRows();
+		assertFalse(gridRows.isEmpty());
+
+		final WebElement choosenRow = gridRows.iterator().next();
+
+		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
+
+		final WebElement choosenCell = cells.iterator().next();
+
+		userPageVisit.performClickAction(choosenCell);
+
+	}
+
+	/**
 	 * Close web driver.
 	 */
 	@After
 	public final void closeWebDriver() {
 		webDriverMap.get(browser).quit();
 	}
+
 
 	/**
 	 * Gets the web driver.
@@ -181,29 +204,6 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 
 	    webDriverMap.put(browser, driver);
 		return driver;
-	}
-
-
-	/**
-	 * Click first row in grid.
-	 *
-	 * @param userPageVisit
-	 *            the user page visit
-	 * @throws InterruptedException
-	 *             the interrupted exception
-	 */
-	protected final  void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
-		final List<WebElement> gridRows = userPageVisit.getGridRows();
-		assertFalse(gridRows.isEmpty());
-
-		final WebElement choosenRow = gridRows.iterator().next();
-
-		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
-
-		final WebElement choosenCell = cells.iterator().next();
-
-		userPageVisit.performClickAction(choosenCell);
-
 	}
 
 	/**

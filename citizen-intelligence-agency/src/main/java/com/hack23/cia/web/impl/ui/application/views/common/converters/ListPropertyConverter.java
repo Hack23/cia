@@ -37,27 +37,27 @@ import com.vaadin.data.ValueProvider;
  */
 public final class ListPropertyConverter implements Converter<String, List<?>>,ValueProvider<Object, String> {
 	
+	private static final char CONTENT_SEPARATOR = ' ';
+
+	private static final char END_TAG = ']';
+	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);
 
 	private static final PropertyUtilsBean PROPERTY_UTILS_BEAN= new PropertyUtilsBean();
-	
-	private static final char CONTENT_SEPARATOR = ' ';
-
-	private static final char START_TAG = '[';
-
-	private static final char END_TAG = ']';
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The property. */
-	private final String property;
+	private static final char START_TAG = '[';
 
 	/** The column. */
 	private final String column;
 
 	private final String fallbackColumn;
+
+	/** The property. */
+	private final String property;
 
 	/**
 	 * Instantiates a new collection property converter.
@@ -91,33 +91,22 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 
 
 	/**
-	 * Gets the column.
+	 * Adds the fallback value.
 	 *
-	 * @return the column
+	 * @param stringBuilder the string builder
+	 * @param object        the object
+	 * @throws IllegalAccessException    the illegal access exception
+	 * @throws InvocationTargetException the invocation target exception
+	 * @throws NoSuchMethodException     the no such method exception
 	 */
-	public String getColumn() {
-		return column;
-	}
-
-	@Override
-	public Result<List<?>> convertToModel(final String value, final ValueContext context) {
-		return Result.ok(new ArrayList<>());
-	}
-
-	@Override
-	public String convertToPresentation(final List value, final ValueContext context) {
-		final StringBuilder stringBuilder = new StringBuilder();
-
-		if (value != null) {
-			stringBuilder.append(START_TAG);
-			for (final Object object : value) {
-				appendObjectPresentation(stringBuilder, object);
+	private void addFallbackValue(final StringBuilder stringBuilder, final Object object)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		if (fallbackColumn != null) {
+			final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
+			if (beanPropertyFallBack != null) {
+				stringBuilder.append(beanPropertyFallBack);
 			}
-			stringBuilder.append(END_TAG);
 		}
-
-
-		return stringBuilder.toString();
 	}
 
 	/**
@@ -144,25 +133,6 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 		stringBuilder.append(CONTENT_SEPARATOR);
 	}
 
-	/**
-	 * Adds the fallback value.
-	 *
-	 * @param stringBuilder the string builder
-	 * @param object        the object
-	 * @throws IllegalAccessException    the illegal access exception
-	 * @throws InvocationTargetException the invocation target exception
-	 * @throws NoSuchMethodException     the no such method exception
-	 */
-	private void addFallbackValue(final StringBuilder stringBuilder, final Object object)
-			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		if (fallbackColumn != null) {
-			final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
-			if (beanPropertyFallBack != null) {
-				stringBuilder.append(beanPropertyFallBack);
-			}
-		}
-	}
-
 	@Override
 	public String apply(final Object source) {
 		List<?> list;
@@ -173,6 +143,36 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 			LOGGER.warn("Problem getting list {}, object {} , exception {}", property, column, e);
 		} 
 		return "";
+	}
+
+	@Override
+	public Result<List<?>> convertToModel(final String value, final ValueContext context) {
+		return Result.ok(new ArrayList<>());
+	}
+
+	@Override
+	public String convertToPresentation(final List value, final ValueContext context) {
+		final StringBuilder stringBuilder = new StringBuilder();
+
+		if (value != null) {
+			stringBuilder.append(START_TAG);
+			for (final Object object : value) {
+				appendObjectPresentation(stringBuilder, object);
+			}
+			stringBuilder.append(END_TAG);
+		}
+
+
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * Gets the column.
+	 *
+	 * @return the column
+	 */
+	public String getColumn() {
+		return column;
 	}
 
 }

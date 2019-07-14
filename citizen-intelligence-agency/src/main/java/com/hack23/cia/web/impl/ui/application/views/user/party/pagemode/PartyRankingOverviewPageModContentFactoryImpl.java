@@ -52,28 +52,6 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		super();
 	}
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
-
-		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-
-		final String pageId = getPageId(parameters);
-
-		panelContent.addComponent(createDescription());
-
-		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(NAME + "::" + OVERVIEW);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
-
-		return panelContent;
-
-	}
-
 	/**
 	 * Creates the description.
 	 *
@@ -96,6 +74,28 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		totalpartytoplistLabel.setSizeFull();
 		totalpartytoplistLabel.setStyleName("Level2Header");
 		return totalpartytoplistLabel;
+	}
+
+	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+		final VerticalLayout panelContent = createPanelContent();
+
+		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+
+		final String pageId = getPageId(parameters);
+
+		panelContent.addComponent(createDescription());
+
+		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);
+
+		panel.setCaption(NAME + "::" + OVERVIEW);
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
+
+		return panelContent;
+
 	}
 
 

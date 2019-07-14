@@ -42,11 +42,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
-
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:All parties";
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
 	/** The chart data manager. */
 	@Autowired
@@ -62,12 +62,6 @@ public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 	 */
 	public PoliticianRankingChartsAllPartiesPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, PageMode.CHARTS.toString()) && parameters.contains(ChartIndicators.ALLPARTIES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -90,6 +84,12 @@ public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& StringUtils.contains(parameters, PageMode.CHARTS.toString()) && parameters.contains(ChartIndicators.ALLPARTIES.toString());
 	}
 
 }

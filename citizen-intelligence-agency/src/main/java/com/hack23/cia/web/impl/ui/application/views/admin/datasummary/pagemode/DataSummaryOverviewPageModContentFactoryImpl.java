@@ -51,9 +51,24 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+	/** The Constant ADMIN_DATA_SUMMARY. */
+	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
 	private static final String[] COLUMN_ORDER = new String[] { "dataType", "dataSize" };
+
+	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
+
+	/** The Constant REFRESH_ALL_VIEWS. */
+	private static final String REFRESH_ALL_VIEWS = "Refresh all views";
+
+	/** The Constant REFRESH_VIEWS. */
+	private static final String REFRESH_VIEWS = "Refresh Views";
+
+	/** The Constant REMOVE_APPLICATION_HISTORY. */
+	private static final String REMOVE_APPLICATION_HISTORY = "Remove Application History";
 
 	/** The Constant REMOVE_DOCUMENTS. */
 	private static final String REMOVE_DOCUMENTS = "Remove Documents";
@@ -61,38 +76,17 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant REMOVE_POLITICIANS. */
 	private static final String REMOVE_POLITICIANS = "Remove Politicians";
 
-	/** The Constant REFRESH_ALL_VIEWS. */
-	private static final String REFRESH_ALL_VIEWS = "Refresh all views";
-
 	/** The Constant UPDATE_DOCUMENT_SEARCH_INDEX. */
 	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = "Update document search index";
 
-	/** The Constant REMOVE_APPLICATION_HISTORY. */
-	private static final String REMOVE_APPLICATION_HISTORY = "Remove Application History";
-
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
-
 	/** The Constant UPDATE_SEARCH_INDEX. */
 	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
-
-	/** The Constant REFRESH_VIEWS. */
-	private static final String REFRESH_VIEWS = "Refresh Views";
-
-	/** The Constant ADMIN_DATA_SUMMARY. */
-	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
 	/**
 	 * Instantiates a new data summary overview page mod content factory impl.
 	 */
 	public DataSummaryOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -165,6 +159,12 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

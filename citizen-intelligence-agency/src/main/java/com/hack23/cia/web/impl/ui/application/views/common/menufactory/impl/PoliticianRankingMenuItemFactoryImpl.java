@@ -41,23 +41,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements PoliticianRankingMenuItemFactory {
 
-	/** The Constant CURRENT_PARTIES. */
-	private static final String CURRENT_PARTIES = "Current parties";
-
 	/** The Constant ALL_PARTIES. */
 	private static final String ALL_PARTIES = "All parties";
 
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COMMAND_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.DATAGRID);
-
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.OVERVIEW);
+	/** The Constant CHART_BY_TOPIC_TEXT. */
+	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
 
 	/** The Constant COMMAND_ALL_PARTIES. */
 	private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
@@ -67,28 +55,40 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
 
-	/** The Constant POLITICIAN_RANKING. */
-	private static final String POLITICIAN_RANKING = "Politician Ranking";
+	/** The Constant COMMAND_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
 
 	/**
 	 * The Constant CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS.
 	 */
 	private static final String CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS = "Current and past assignments and summary experience in days";
 
-	/** The Constant POLITICAL_EXPERIENCE_SUMMARY. */
-	private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
-
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
-
-	/** The Constant CHART_BY_TOPIC_TEXT. */
-	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
+	/** The Constant CURRENT_PARTIES. */
+	private static final String CURRENT_PARTIES = "Current parties";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+	/** The Constant POLITICAL_EXPERIENCE_SUMMARY. */
+	private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
+
+	/** The Constant POLITICIAN_RANKING. */
+	private static final String POLITICIAN_RANKING = "Politician Ranking";
+
+	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
+	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
 
 	/** The application menu item factory. */
 	@Autowired
@@ -99,6 +99,20 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	 */
 	public PoliticianRankingMenuItemFactoryImpl() {
 		super();
+	}
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
+
+		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
+
+		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
+
+		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
+		
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+
 	}
 
 	@Override
@@ -126,20 +140,6 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 		chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);
 
 		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY);
-
-	}
-
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-
-		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
-
-		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
-
-		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
-		
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

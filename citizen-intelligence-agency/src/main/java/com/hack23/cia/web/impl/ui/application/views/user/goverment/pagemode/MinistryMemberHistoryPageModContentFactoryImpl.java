@@ -43,13 +43,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryMemberHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName",
+			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
 	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName",
-			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "Member History";
@@ -62,11 +62,6 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 	 */
 	public MinistryMemberHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.MEMBERHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -96,6 +91,11 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.MEMBERHISTORY.toString());
 	}
 
 }

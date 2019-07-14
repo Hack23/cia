@@ -48,15 +48,10 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The Constant BALLOT_DECISION_SUMMARY. */
+	private static final String BALLOT_DECISION_SUMMARY = "Ballot Decision Summary";
+
 	private static final String BALLOT_ID = "ballotId";
-
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
-
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.id", "endNumber", "org",
-			"createdDate", "publicDate", BALLOT_ID, "decisionType", "label", "againstProposalNumber", "avgBornYear",
-			"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo", "percentageAbsent",
-			"percentageAbstain" };
 
 	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "embeddedId.concern", "embeddedId.id",
 			"committeeReport", "embeddedId.issue", "rm", "title", "subTitle", "endNumber", "org", "createdDate",
@@ -65,16 +60,21 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 			"approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
 			"percentageMale" };
 
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue",
-			"embeddedId.id" };
-
-	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "Committee Ballot Decision Summary";
-
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
-	/** The Constant BALLOT_DECISION_SUMMARY. */
-	private static final String BALLOT_DECISION_SUMMARY = "Ballot Decision Summary";
+	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "Committee Ballot Decision Summary";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.id", "endNumber", "org",
+			"createdDate", "publicDate", BALLOT_ID, "decisionType", "label", "againstProposalNumber", "avgBornYear",
+			"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo", "percentageAbsent",
+			"percentageAbstain" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue",
+			"embeddedId.id" };
 
 	/**
 	 * Instantiates a new committee ballot decision summary page mod content
@@ -82,11 +82,6 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	 */
 	public CommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.BALLOTDECISIONSUMMARY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -118,6 +113,11 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				parameters, pageId);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.BALLOTDECISIONSUMMARY.toString());
 	}
 
 }

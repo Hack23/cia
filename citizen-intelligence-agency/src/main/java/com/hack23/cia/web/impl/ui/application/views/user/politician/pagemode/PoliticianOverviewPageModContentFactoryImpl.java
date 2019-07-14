@@ -63,13 +63,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -129,6 +122,13 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
 		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

@@ -53,36 +53,6 @@ public final class MinistryDataSeriesFactoryImpl implements MinistryDataSeriesFa
 
 
 	@Override
-	public DataSeries createMinistryChartTimeSeriesAll() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		for (final ViewRiksdagenMinistry data : dataContainer.getAll()) {
-			dataSeries =dataSeries.newSeries().add(data.getNameId(),data.getTotalAssignments());
-		}
-		return dataSeries;
-	}
-
-	@Override
-	public DataSeries createMinistryChartTimeSeriesCurrent() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		for (final ViewRiksdagenMinistry data : dataContainer.getAll()) {
-			if (data.isActive()) {
-				dataSeries =dataSeries.newSeries().add(data.getNameId(),data.getCurrentMemberSize());
-			}
-		}
-		return dataSeries;
-	}
-
-
-
-	@Override
 	public DataSeries createChartTimeSeriesTotalDaysServedGovernmentByParty() {
 		DataSeries dataSeries = new DataSeries();
 
@@ -99,6 +69,36 @@ public final class MinistryDataSeriesFactoryImpl implements MinistryDataSeriesFa
 			if (summary != null && summary.isActive()) {
 
 				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalDaysServedGovernment());
+			}
+		}
+		return dataSeries;
+	}
+
+	@Override
+	public DataSeries createMinistryChartTimeSeriesAll() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenMinistry.class);
+
+		for (final ViewRiksdagenMinistry data : dataContainer.getAll()) {
+			dataSeries =dataSeries.newSeries().add(data.getNameId(),data.getTotalAssignments());
+		}
+		return dataSeries;
+	}
+
+
+
+	@Override
+	public DataSeries createMinistryChartTimeSeriesCurrent() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenMinistry.class);
+
+		for (final ViewRiksdagenMinistry data : dataContainer.getAll()) {
+			if (data.isActive()) {
+				dataSeries =dataSeries.newSeries().add(data.getNameId(),data.getCurrentMemberSize());
 			}
 		}
 		return dataSeries;

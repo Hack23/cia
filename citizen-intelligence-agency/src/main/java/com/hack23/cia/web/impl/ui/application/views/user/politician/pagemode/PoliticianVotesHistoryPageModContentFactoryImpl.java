@@ -40,21 +40,21 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianVotesHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	private static final String BALLOTS = "Ballots";
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
-			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", EMBEDDED_ID_BALLOT_ID,
-			"ballotType" };
 	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "vote", "won", "partyWon", "rebel", "noWinner", "approved", "partyApproved",
 			"totalVotes", "partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
 			"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear", "partyAvgBornYear",
 			"avgBornYear", "gender", "partyPercentageMale", "percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
+			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", EMBEDDED_ID_BALLOT_ID,
+			"ballotType" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue" };
-	private static final String BALLOTS = "Ballots";
 	/**
 	 * The view riksdagen vote data ballot politician summary chart data
 	 * manager.
@@ -68,11 +68,6 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 	 */
 	public PoliticianVotesHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.VOTEHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -95,5 +90,10 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.VOTEHISTORY.toString());
 	}
 }

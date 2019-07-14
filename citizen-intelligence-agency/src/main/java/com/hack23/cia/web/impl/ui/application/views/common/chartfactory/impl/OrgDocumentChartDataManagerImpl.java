@@ -50,27 +50,27 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements OrgDocumentChartDataManager {
 
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	private static final String DOCUMENT_HISTORY_BY_ORG = "Document History by Org";
-
-	/** The Constant NO_INFO. */
-	private static final String NO_INFO = "NoInfo";
-
-	/** The Constant YEAR_PREFIX. */
-	private static final String YEAR_PREFIX = "19";
-
-	/** The Constant MINUS_SIGN. */
-	private static final String MINUS_SIGN = "-";
 
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(OrgDocumentChartDataManagerImpl.class);
+
+	/** The Constant MINUS_SIGN. */
+	private static final String MINUS_SIGN = "-";
+
+	/** The Constant NO_INFO. */
+	private static final String NO_INFO = "NoInfo";
+
 	/** The Constant UNDER_SCORE. */
 	private static final String UNDER_SCORE = "_";
 
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(OrgDocumentChartDataManagerImpl.class);
+	/** The Constant YEAR_PREFIX. */
+	private static final String YEAR_PREFIX = "19";
 
 	/**
 	 * Instantiates a new org document chart data manager impl.
@@ -80,41 +80,26 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	}
 
 	/**
-	 * Gets the view riksdagen org document daily summary map.
+	 * Adds the data item.
 	 *
-	 * @return the view riksdagen org document daily summary map
+	 * @param dataSeries              the data series
+	 * @param simpleDateFormat        the simple date format
+	 * @param parseIncomingDateFormat the parse incoming date format
+	 * @param item                    the item
 	 */
-	private Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
+	private static void addDataItem(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
+			final SimpleDateFormat parseIncomingDateFormat, final ViewRiksdagenOrgDocumentDailySummary item) {
+		if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
 
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))
-				.collect(Collectors.groupingBy(
-						t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH)
-								.replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
-	}
-
-	@Override
-	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content, final String org) {
-		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING)
-				.replace(MINUS_SIGN, EMPTY_STRING).trim();
-
-		final DataSeries dataSeries = new DataSeries();
-		final Series series = new Series();
-
-		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
-
-		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(searchOrg);
-
-		if (itemList != null) {
-			addDocumentHistoryByOrgData(dataSeries, series, itemList);
+			try {
+				dataSeries.add(
+						simpleDateFormat
+								.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
+						item.getTotal());
+			} catch (final ParseException e) {
+				LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
+			}
 		}
-
-		addChart(content, DOCUMENT_HISTORY_BY_ORG,
-				new DCharts().setDataSeries(dataSeries)
-						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
-				true);
 	}
 
 	/**
@@ -163,27 +148,42 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		}
 	}
 
-	/**
-	 * Adds the data item.
-	 *
-	 * @param dataSeries              the data series
-	 * @param simpleDateFormat        the simple date format
-	 * @param parseIncomingDateFormat the parse incoming date format
-	 * @param item                    the item
-	 */
-	private static void addDataItem(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
-			final SimpleDateFormat parseIncomingDateFormat, final ViewRiksdagenOrgDocumentDailySummary item) {
-		if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+	@Override
+	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content, final String org) {
+		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING)
+				.replace(MINUS_SIGN, EMPTY_STRING).trim();
 
-			try {
-				dataSeries.add(
-						simpleDateFormat
-								.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
-						item.getTotal());
-			} catch (final ParseException e) {
-				LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
-			}
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
+
+		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(searchOrg);
+
+		if (itemList != null) {
+			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
+
+		addChart(content, DOCUMENT_HISTORY_BY_ORG,
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
+	}
+
+	/**
+	 * Gets the view riksdagen org document daily summary map.
+	 *
+	 * @return the view riksdagen org document daily summary map
+	 */
+	private Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
+		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
+
+		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
+				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))
+				.collect(Collectors.groupingBy(
+						t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH)
+								.replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
 	}
 
 }

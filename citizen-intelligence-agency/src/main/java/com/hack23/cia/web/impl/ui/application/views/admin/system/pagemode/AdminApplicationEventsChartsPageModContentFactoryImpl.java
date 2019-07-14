@@ -52,11 +52,6 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 		super(NAME);
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return parameters != null && NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
-	}
-
 	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -75,6 +70,11 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		return content;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return parameters != null && NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
 	}
 
 }

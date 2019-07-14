@@ -43,13 +43,13 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId");
-	private static final String[] HIDE_COLUMNS = new String[] {"active"};
 	private static final String[] COLUMN_ORDER = new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
 			"firstAssignmentDate", "lastAssignmentDate", "active" };
-	private static final String MINISTRIES = "Ministries";
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
+	private static final String[] HIDE_COLUMNS = new String[] {"active"};
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId");
+	private static final String MINISTRIES = "Ministries";
 
 	/**
 	 * Instantiates a new ministry ranking data grid page mod content factory
@@ -57,12 +57,6 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 	 */
 	public MinistryRankingDataGridPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -88,6 +82,12 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 }

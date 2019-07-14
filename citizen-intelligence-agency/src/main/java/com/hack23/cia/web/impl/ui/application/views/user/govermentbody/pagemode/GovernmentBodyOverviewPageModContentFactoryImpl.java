@@ -42,11 +42,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		extends AbstractGovernmentBodyPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/** The Constant GOVERNMENT_BODY. */
 	private static final String GOVERNMENT_BODY = "GovernmentBody:";
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "overview";
 
 	/**
 	 * Instantiates a new government body overview page mod content factory
@@ -54,13 +54,6 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 */
 	public GovernmentBodyOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -92,6 +85,13 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

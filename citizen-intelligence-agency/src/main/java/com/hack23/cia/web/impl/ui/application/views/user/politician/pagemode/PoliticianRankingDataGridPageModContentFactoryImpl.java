@@ -43,10 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
-
 	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
 			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
 			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
@@ -62,13 +58,17 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
 
-	private static final String POLITICIANS = "Politicians";
+	/** The Constant DATAGRID. */
+	private static final String DATAGRID = "Datagrid";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
+	private static final String POLITICIANS = "Politicians";
 
 	/**
 	 * Instantiates a new politician ranking data grid page mod content factory
@@ -76,12 +76,6 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 	 */
 	public PoliticianRankingDataGridPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -107,6 +101,12 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page)
+				&& StringUtils.contains(parameters, PageMode.DATAGRID.toString());
 	}
 
 }

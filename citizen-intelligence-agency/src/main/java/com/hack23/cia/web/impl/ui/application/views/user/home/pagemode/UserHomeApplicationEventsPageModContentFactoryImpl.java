@@ -47,23 +47,23 @@ import com.vaadin.ui.VerticalLayout;
 public final class UserHomeApplicationEventsPageModContentFactoryImpl
 		extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "userId", "sessionId", "modelObjectId",
-			"modelObjectVersion" };
+	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "eventGroup",
 			"applicationOperation", "actionName", "page", "pageMode", "elementId", "applicationMessage", "errorMessage",
 			"modelObjectVersion" };
 
-	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "userId", "sessionId", "modelObjectId",
+			"modelObjectVersion" };
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 
 	/** The Constant USER_EVENTS. */
 	private static final String USER_EVENTS = "User Events";
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = "Userhome:";
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -75,11 +75,6 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 	 */
 	public UserHomeApplicationEventsPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(UserHomePageMode.USER_EVENTS.toString());
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
@@ -111,6 +106,11 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(UserHomePageMode.USER_EVENTS.toString());
 	}
 
 }

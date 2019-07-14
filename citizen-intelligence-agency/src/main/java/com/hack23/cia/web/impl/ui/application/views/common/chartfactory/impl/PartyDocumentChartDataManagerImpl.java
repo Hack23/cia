@@ -48,25 +48,25 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PartyDocumentChartDataManager {
 
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	private static final String DOCUMENT_HISTORY_PARTY = "Document history party";
-
-	/** The Constant NO_INFO. */
-	private static final String NO_INFO = "NoInfo";
-
-	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
-	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
 
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
-	/** The Constant UNDER_SCORE. */
-	private static final String UNDER_SCORE = "_";
+	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
+	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(PartyDocumentChartDataManagerImpl.class);
 
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+	/** The Constant NO_INFO. */
+	private static final String NO_INFO = "NoInfo";
+
+	/** The Constant UNDER_SCORE. */
+	private static final String UNDER_SCORE = "_";
 
 	/**
 	 * Instantiates a new party document chart data manager impl.
@@ -76,17 +76,30 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 	}
 
 	/**
-	 * Gets the view riksdagen party document daily summary map.
+	 * Adds the document history by party data.
 	 *
-	 * @return the view riksdagen party document daily summary map
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
 	 */
-	private Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
+	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
+			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH)
-						.replace(UNDER_SCORE, EMPTY_STRING).trim()));
+		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
+
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+			dataSeries.newSeries();
+			if (entry.getValue() != null) {
+				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
+					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
+				}
+			} else {
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+			}
+
+		}
 	}
 
 	@Override
@@ -115,30 +128,17 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 	}
 
 	/**
-	 * Adds the document history by party data.
+	 * Gets the view riksdagen party document daily summary map.
 	 *
-	 * @param dataSeries the data series
-	 * @param series the series
-	 * @param map the map
+	 * @return the view riksdagen party document daily summary map
 	 */
-	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
-			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+	private Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
+		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
-		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
-
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
-					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
-				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-			}
-
-		}
+		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH)
+						.replace(UNDER_SCORE, EMPTY_STRING).trim()));
 	}
 
 }

@@ -30,6 +30,13 @@ public interface CommitteeDataSeriesFactory {
 	 *
 	 * @return the data series
 	 */
+	DataSeries createChartTimeSeriesTotalDaysServedCommitteeByParty();
+
+	/**
+	 * Creates a new CommitteeDataSeries object.
+	 *
+	 * @return the data series
+	 */
 	DataSeries createCommitteeChartTimeSeriesAll();
 
 	/**
@@ -38,12 +45,5 @@ public interface CommitteeDataSeriesFactory {
 	 * @return the data series
 	 */
 	DataSeries createCommitteeChartTimeSeriesCurrent();
-
-	/**
-	 * Creates a new CommitteeDataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createChartTimeSeriesTotalDaysServedCommitteeByParty();
 
 }

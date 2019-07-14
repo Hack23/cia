@@ -27,38 +27,23 @@ import com.vaadin.ui.VerticalLayout;
 public interface GovernmentBodyChartDataManager {
 
 	/**
-	 * Creates the ministry government body headcount summary chart.
+	 * Creates the government body expenditure summary chart.
 	 *
-	 * @param content
-	 *            the content
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent);
+
+	/**
+	 * Creates the government body expenditure summary chart.
+	 *
+	 * @param panelContent
+	 *            the panel content
 	 * @param name
 	 *            the name
 	 */
-	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content,String name);
+	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
 
-	/**
-	 * Creates the ministry government body headcount summary chart.
-	 *
-	 * @param content
-	 *            the content
-	 */
-	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content);
-
-	/**
-	 * Creates the ministry government body income summary chart.
-	 *
-	 * @param content the content
-	 */
-	void createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout content);
-
-	/**
-	 * Creates the ministry government body expenditure summary chart.
-	 *
-	 * @param content the content
-	 */
-	void createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout content);
-
-	
 	/**
 	 * Creates the government body headcount summary chart.
 	 *
@@ -77,6 +62,7 @@ public interface GovernmentBodyChartDataManager {
 	 */
 	void createGovernmentBodyHeadcountSummaryChart(VerticalLayout panelContent, String name);
 
+	
 	/**
 	 * Creates the government body income summary chart.
 	 *
@@ -94,33 +80,13 @@ public interface GovernmentBodyChartDataManager {
 	 *            the name
 	 */
 	void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name);
-	
-	/**
-	 * Creates the government body expenditure summary chart.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent);
-
 
 	/**
-	 * Creates the government body expenditure summary chart.
+	 * Creates the ministry government body expenditure summary chart.
 	 *
-	 * @param panelContent
-	 *            the panel content
-	 * @param name
-	 *            the name
+	 * @param content the content
 	 */
-	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
-
-	/**
-	 * Creates the ministry government body income summary chart.
-	 *
-	 * @param panelContent the panel content
-	 * @param name         the name
-	 */
-	void createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name);
+	void createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the ministry government body expenditure summary chart.
@@ -129,5 +95,39 @@ public interface GovernmentBodyChartDataManager {
 	 * @param name         the name
 	 */
 	void createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
+	
+	/**
+	 * Creates the ministry government body headcount summary chart.
+	 *
+	 * @param content
+	 *            the content
+	 */
+	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content);
+
+
+	/**
+	 * Creates the ministry government body headcount summary chart.
+	 *
+	 * @param content
+	 *            the content
+	 * @param name
+	 *            the name
+	 */
+	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content,String name);
+
+	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param content the content
+	 */
+	void createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout content);
+
+	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param panelContent the panel content
+	 * @param name         the name
+	 */
+	void createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name);
 
 }

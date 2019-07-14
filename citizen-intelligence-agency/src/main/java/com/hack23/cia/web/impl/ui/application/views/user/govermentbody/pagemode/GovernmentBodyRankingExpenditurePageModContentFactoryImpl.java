@@ -53,11 +53,6 @@ public final class GovernmentBodyRankingExpenditurePageModContentFactoryImpl ext
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, GovernmentBodyPageMode.EXPENDITURE.toString());
-	}
-
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -76,6 +71,11 @@ public final class GovernmentBodyRankingExpenditurePageModContentFactoryImpl ext
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, GovernmentBodyPageMode.EXPENDITURE.toString());
 	}
 
 }

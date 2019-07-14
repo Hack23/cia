@@ -32,6 +32,29 @@ import com.vaadin.ui.UI;
 public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 
 	/**
+	 * Selection value change event source empty test.
+	 */
+	@Test
+	public void selectionValueChangeEventSourceEmptyTest() {
+		final String pageName = "pageName";
+		final String pageId = "pageId";
+		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
+		
+		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
+		
+		final HasValue hasValue = Mockito.mock(HasValue.class);
+		Mockito.when(hasValue.isEmpty()).thenReturn(true);
+		
+		Mockito.when(event.getSource()).thenReturn(hasValue);
+		
+		listener.valueChange(event);
+		
+		Mockito.verify(event,times(1)).getSource();
+
+	}
+
+	
+	/**
 	 * Selection value change test.
 	 */
 	@Test
@@ -58,29 +81,6 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 		listener.valueChange(event);
 		
 		Mockito.verify(navigatorMock, times(1)).navigateTo(pageName + "/CHARTS/DECISION_FLOW_CHART/" + pageId + "[" +value + "]");
-	}
-
-	
-	/**
-	 * Selection value change event source empty test.
-	 */
-	@Test
-	public void selectionValueChangeEventSourceEmptyTest() {
-		final String pageName = "pageName";
-		final String pageId = "pageId";
-		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
-		
-		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
-		
-		final HasValue hasValue = Mockito.mock(HasValue.class);
-		Mockito.when(hasValue.isEmpty()).thenReturn(true);
-		
-		Mockito.when(event.getSource()).thenReturn(hasValue);
-		
-		listener.valueChange(event);
-		
-		Mockito.verify(event,times(1)).getSource();
-
 	}
 
 }

@@ -44,17 +44,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
-			"personReferenceId", "org", "docId", "label", "roleDescription" };
-
 	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "id", "docId",
 			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
 			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
-
-	private static final String DOCUMENTS = "Documents";
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -62,17 +54,20 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
 
+	private static final String DOCUMENTS = "Documents";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+			"personReferenceId", "org", "docId", "label", "roleDescription" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
+
 	/**
 	 * Instantiates a new committee document history page mod content factory
 	 * impl.
 	 */
 	public CommitteeDocumentHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.DOCUMENT_HISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -104,6 +99,11 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 				parameters, pageId);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.DOCUMENT_HISTORY.toString());
 	}
 
 }

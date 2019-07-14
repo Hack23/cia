@@ -47,23 +47,6 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 	@Override
-	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
-		final DataSeries dataSeries = new DataSeries();
-
-		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
-		dataSeries.newSeries().add("No", viewRiksdagenVoteDataBallotSummary.getNoVotes());
-		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
-		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
-
-		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
-		tab.setCaption(caption);
-
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);
-	}
-
-
-
-	@Override
 	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
 		final DataSeries dataSeries = new DataSeries();
 
@@ -91,6 +74,23 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChartWithSeries(series)).show(), true);
+	}
+
+
+
+	@Override
+	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
+		final DataSeries dataSeries = new DataSeries();
+
+		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
+		dataSeries.newSeries().add("No", viewRiksdagenVoteDataBallotSummary.getNoVotes());
+		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
+		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
+
+		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
+		tab.setCaption(caption);
+
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);
 	}
 
 

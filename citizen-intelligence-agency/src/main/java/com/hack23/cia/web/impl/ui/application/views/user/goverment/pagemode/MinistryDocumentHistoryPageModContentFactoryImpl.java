@@ -43,20 +43,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
-			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
-
 	private static final String[] COLUMN_ORDER = new String[] { "id", "docId", "personReferenceId", "roleDescription",
 			"org", "label", "rm", "madePublicDate", "numberValue", "title", "subTitle", "tempLabel", "orderNumber",
 			"documentType", "subType", "status", "partyShortCode", "referenceName" };
 
-	private static final String DOCUMENTS = "Documents";
-
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
+
+	private static final String DOCUMENTS = "Documents";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
 
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
@@ -67,11 +67,6 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 	 */
 	public MinistryDocumentHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.DOCUMENTHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -101,6 +96,11 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.DOCUMENTHISTORY.toString());
 	}
 
 }

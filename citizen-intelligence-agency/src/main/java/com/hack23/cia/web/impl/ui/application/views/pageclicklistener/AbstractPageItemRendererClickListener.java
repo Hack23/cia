@@ -57,6 +57,16 @@ public abstract class AbstractPageItemRendererClickListener<T> implements PageIt
 	}
 
 
+	/**
+	 * Gets the page id.
+	 *
+	 * @param t
+	 *            the t
+	 * @return the page id
+	 */
+	protected abstract String getPageId(T t);
+
+
 	@Override
 	public final void selectionChange(final SelectionEvent<T> event) {
 		final Set<T> added =event.getAllSelectedItems();
@@ -66,15 +76,5 @@ public abstract class AbstractPageItemRendererClickListener<T> implements PageIt
 
 		}
 	}
-
-
-	/**
-	 * Gets the page id.
-	 *
-	 * @param t
-	 *            the t
-	 * @return the page id
-	 */
-	protected abstract String getPageId(T t);
 
 }

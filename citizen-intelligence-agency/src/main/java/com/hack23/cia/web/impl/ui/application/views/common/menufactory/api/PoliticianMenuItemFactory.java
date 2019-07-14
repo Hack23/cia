@@ -29,21 +29,21 @@ public interface PoliticianMenuItemFactory {
 	/**
 	 * Creates a new PoliticianMenuItem object.
 	 *
-	 * @param menuBar
-	 *            the menu bar
-	 * @param pageId
-	 *            the page id
-	 */
-	void createPoliticianMenuBar(MenuBar menuBar, String pageId);
-
-	/**
-	 * Creates a new PoliticianMenuItem object.
-	 *
 	 * @param panelContent
 	 *            the panel content
 	 * @param pageId
 	 *            the page id
 	 */
 	void createOverviewPage(VerticalLayout panelContent, String pageId);
+
+	/**
+	 * Creates a new PoliticianMenuItem object.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 * @param pageId
+	 *            the page id
+	 */
+	void createPoliticianMenuBar(MenuBar menuBar, String pageId);
 
 }

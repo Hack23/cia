@@ -32,24 +32,30 @@ public final class UserViews {
 	/** The Constant COMMITTEE_VIEW_NAME. */
 	public static final String COMMITTEE_VIEW_NAME = "committee";
 
+	/** The Constant COUNTRY_RANKING_VIEW_NAME. */
+	public static final String COUNTRY_RANKING_VIEW_NAME = "countryranking";
+
 	/** The Constant DOCUMENT_VIEW_NAME. */
 	public static final String DOCUMENT_VIEW_NAME = "document";
 
 	/** The Constant DOCUMENTS_VIEW_NAME. */
 	public static final String DOCUMENTS_VIEW_NAME = "documents";
 
-	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
-	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
-
-	/** The Constant MINISTRY_VIEW_NAME. */
-	public static final String MINISTRY_VIEW_NAME = "ministry";
+	/** The Constant GOVERNMENT_BODY_RANKING_VIEW_NAME. */
+	public static final String GOVERNMENT_BODY_RANKING_VIEW_NAME = "governmentbodyranking";
 
 	/** The Constant GOVERNMENT_BODY_VIEW_NAME. */
 	public static final String GOVERNMENT_BODY_VIEW_NAME = "governmentbody";
 
-	/** The Constant GOVERNMENT_BODY_RANKING_VIEW_NAME. */
-	public static final String GOVERNMENT_BODY_RANKING_VIEW_NAME = "governmentbodyranking";
+	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
+	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 	
+	/** The Constant MINISTRY_VIEW_NAME. */
+	public static final String MINISTRY_VIEW_NAME = "ministry";
+
+	/** The Constant PARLIAMENT_RANKING_VIEW_NAME. */
+	public static final String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
+
 	/** The Constant PARTY_RANKING_VIEW_NAME. */
 	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
 
@@ -67,11 +73,5 @@ public final class UserViews {
 
 	/** The Constant USERHOME_VIEW_NAME. */
 	public static final String USERHOME_VIEW_NAME = "userhome";
-
-	/** The Constant COUNTRY_RANKING_VIEW_NAME. */
-	public static final String COUNTRY_RANKING_VIEW_NAME = "countryranking";
-
-	/** The Constant PARLIAMENT_RANKING_VIEW_NAME. */
-	public static final String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
 
 }

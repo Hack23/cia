@@ -48,6 +48,11 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements DocumentChartDataManager {
 
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
+	/** The Constant EMPTY_STRING. */
+	private static final String EMPTY_STRING = "";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);
 
 	/** The Constant MOT_PROP_BET. */
@@ -56,52 +61,11 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	/** The Constant YEAR_PREFIX. */
 	private static final String YEAR_PREFIX = "19";
 
-	/** The Constant EMPTY_STRING. */
-	private static final String EMPTY_STRING = "";
-
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
 	/**
 	 * Instantiates a new document chart data manager impl.
 	 */
 	public DocumentChartDataManagerImpl() {
 		super();
-	}
-
-	/**
-	 * Gets the document type map.
-	 *
-	 * @return the document type map
-	 */
-	private Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
-		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);
-
-		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)
-						&& StringUtils.containsIgnoreCase(MOT_PROP_BET, t.getEmbeddedId().getDocumentType()))
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
-	}
-
-	@Override
-	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
-		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
-
-		final DataSeries dataSeries = new DataSeries();
-		final Series series = new Series();
-
-		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
-			if (entry.getKey() != null && !EMPTY_STRING.equals(entry.getKey())) {
-				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);
-			}
-		}
-
-		addChart(content, "Document type",
-				new DCharts().setDataSeries(dataSeries)
-						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
-				true);
 	}
 
 	/**
@@ -130,6 +94,42 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 			}
 		}
+	}
+
+	@Override
+	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
+		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
+
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
+			if (entry.getKey() != null && !EMPTY_STRING.equals(entry.getKey())) {
+				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);
+			}
+		}
+
+		addChart(content, "Document type",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
+	}
+
+	/**
+	 * Gets the document type map.
+	 *
+	 * @return the document type map
+	 */
+	private Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
+		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);
+
+		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
+				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)
+						&& StringUtils.containsIgnoreCase(MOT_PROP_BET, t.getEmbeddedId().getDocumentType()))
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
 }

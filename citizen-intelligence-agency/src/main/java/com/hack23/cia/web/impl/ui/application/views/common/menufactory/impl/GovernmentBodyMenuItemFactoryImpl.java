@@ -41,17 +41,17 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements GovernmentBodyMenuItemFactory {
 
-	/** The Constant HEADCOUNT_CHART. */
-	private static final String HEADCOUNT_CHART = "Headcount chart";
-
-	/** The Constant INCOME. */
-	private static final String INCOME = "Income";
-
 	/** The Constant EXPENDITURE. */
 	private static final String EXPENDITURE = "Expenditure";
 
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
+
+	/** The Constant HEADCOUNT_CHART. */
+	private static final String HEADCOUNT_CHART = "Headcount chart";
+
+	/** The Constant INCOME. */
+	private static final String INCOME = "Income";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";

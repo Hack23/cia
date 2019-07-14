@@ -36,11 +36,11 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	/** The Constant CAPTION_SEPARATOR. */
 	private static final String CAPTION_SEPARATOR = "::";
 
-	/** The Constant PARTY. */
-	private static final String PARTY = "Party:";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
+
+	/** The Constant PARTY. */
+	private static final String PARTY = "Party:";
 
 	/** The party menu item factory. */
 	@Autowired
@@ -51,6 +51,20 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 */
 	AbstractPartyPageModContentFactoryImpl() {
 		super();
+	}
+
+	@Override
+	protected ViewRiksdagenParty getItem(final String parameters) {
+		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));
+	}
+
+	/**
+	 * Gets the party menu item factory.
+	 *
+	 * @return the party menu item factory
+	 */
+	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
+		return partyMenuItemFactory;
 	}
 
 	/**
@@ -71,20 +85,6 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);
-	}
-
-	/**
-	 * Gets the party menu item factory.
-	 *
-	 * @return the party menu item factory
-	 */
-	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
-		return partyMenuItemFactory;
-	}
-
-	@Override
-	protected ViewRiksdagenParty getItem(final String parameters) {
-		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));
 	}
 
 }

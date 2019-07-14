@@ -40,15 +40,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final String BALLOTS = "Ballots";
+
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
-
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
-
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
-			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,
-			"partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "noWinner" };
 
 	private static final String[] COLUMN_ORDER = new String[] { "embeddedId.party", "voteDate", "rm", "label",
 			"embeddedId.concern", "embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
@@ -56,7 +50,14 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
 
-	private static final String BALLOTS = "Ballots";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
+			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,
+			"partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "noWinner" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
 	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue", "embeddedId.party" };
@@ -73,11 +74,6 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 	 */
 	public PartyVoteHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.VOTEHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -100,6 +96,11 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.VOTEHISTORY.toString());
 	}
 
 }

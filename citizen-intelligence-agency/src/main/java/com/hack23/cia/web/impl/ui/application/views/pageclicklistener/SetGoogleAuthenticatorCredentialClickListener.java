@@ -42,38 +42,38 @@ import fi.jasoft.qrcode.QRCode;
 public final class SetGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 
 
-	/** The Constant PROBLEM_DISPLAYING_QR_CODE. */
-	private static final String PROBLEM_DISPLAYING_QR_CODE = "Problem displaying qr code";
-
-	/** The Constant WINDOW_POSITION. */
-	private static final int WINDOW_POSITION = 100;
+	/** The Constant ERROR_MESSAGE. */
+	private static final String ERROR_MESSAGE = "Error message";
 
 	/** The Constant GOOGLE_AUTHENTICATOR_QR_CODE. */
 	private static final String GOOGLE_AUTHENTICATOR_QR_CODE = "Google Authenticator QR code";
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(SetGoogleAuthenticatorCredentialClickListener.class);
+
 	/** The Constant MODAL_WINDOW_SIZE. */
 	private static final String MODAL_WINDOW_SIZE = "400px";
 
-	/** The Constant QR_CODE_IMAGE_SIZE. */
-	private static final String QR_CODE_IMAGE_SIZE = "175px";
-
-	/** The Constant QR_CODE. */
-	private static final String QR_CODE = "QR code";
-
-	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
-	private static final String PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID = "Problem enable google authenticator, sessionid{}";
+	/** The Constant PROBLEM_DISPLAYING_QR_CODE. */
+	private static final String PROBLEM_DISPLAYING_QR_CODE = "Problem displaying qr code";
 
 	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR = "Problem enable google authenticator";
 
-	/** The Constant ERROR_MESSAGE. */
-	private static final String ERROR_MESSAGE = "Error message";
+	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
+	private static final String PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID = "Problem enable google authenticator, sessionid{}";
+
+	/** The Constant QR_CODE. */
+	private static final String QR_CODE = "QR code";
+
+	/** The Constant QR_CODE_IMAGE_SIZE. */
+	private static final String QR_CODE_IMAGE_SIZE = "175px";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(SetGoogleAuthenticatorCredentialClickListener.class);
+	/** The Constant WINDOW_POSITION. */
+	private static final int WINDOW_POSITION = 100;
 
 	/** The google auth request. */
 	private final SetGoogleAuthenticatorCredentialRequest googleAuthRequest;

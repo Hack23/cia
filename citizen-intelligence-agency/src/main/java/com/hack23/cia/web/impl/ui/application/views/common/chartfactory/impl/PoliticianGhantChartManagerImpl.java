@@ -35,14 +35,33 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Poli
 public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartManagerImpl<AssignmentData>
 		implements PoliticianGhantChartManager {
 
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<AssignmentData, String> {
+
+		/** The Constant RIKSDAGSLEDAMOT. */
+		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
+
+		@Override
+		public String apply(final AssignmentData t) {
+			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
+				return RIKSDAGSLEDAMOT;
+			} else {
+				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
+			}
+
+		}
+	}
+
 	/** The Constant DEPARTEMENT. */
 	private static final String DEPARTEMENT = "Departement";
 
-	/** The Constant LEDIG. */
-	private static final String LEDIG = "LEDIG";
-
 	/** The Constant KAMMARUPPDRAG. */
 	private static final String KAMMARUPPDRAG = "kammaruppdrag";
+
+	/** The Constant LEDIG. */
+	private static final String LEDIG = "LEDIG";
 
 	/**
 	 * Instantiates a new politician ghant chart manager impl.
@@ -64,31 +83,6 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 	@Override
 	protected StepMapping<AssignmentData> getStepMapping() {
 		return new StepMapping<AssignmentData>() {
-
-			@Override
-			public Date getFromDate(final AssignmentData t) {
-				return t.getFromDate();
-			}
-
-			@Override
-			public Date getToDate(final AssignmentData t) {
-				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
-			}
-
-			@Override
-			public String getRoleCode(final AssignmentData t) {
-				return t.getRoleCode();
-			}
-
-			@Override
-			public String getOrg(final AssignmentData t) {
-				return t.getDetail();
-			}
-
-			@Override
-			public String getParty(final AssignmentData t) {
-				return t.getOrgCode();
-			}
 
 			@Override
 			public String getBackgroundColor(final AssignmentData t) {
@@ -116,30 +110,36 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 			}
 
 			@Override
+			public Date getFromDate(final AssignmentData t) {
+				return t.getFromDate();
+			}
+
+			@Override
 			public Object getLastName(final AssignmentData t) {
 				return "";
 			}
 
-		};
-	}
-
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<AssignmentData, String> {
-
-		/** The Constant RIKSDAGSLEDAMOT. */
-		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
-
-		@Override
-		public String apply(final AssignmentData t) {
-			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
-				return RIKSDAGSLEDAMOT;
-			} else {
-				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
+			@Override
+			public String getOrg(final AssignmentData t) {
+				return t.getDetail();
 			}
 
-		}
+			@Override
+			public String getParty(final AssignmentData t) {
+				return t.getOrgCode();
+			}
+
+			@Override
+			public String getRoleCode(final AssignmentData t) {
+				return t.getRoleCode();
+			}
+
+			@Override
+			public Date getToDate(final AssignmentData t) {
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+			}
+
+		};
 	}
 
 }

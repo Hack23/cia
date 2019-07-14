@@ -46,20 +46,20 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
 	private static final String BALLOT_ID = "ballotId";
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
-	private static final String[] HIDE_COLUMNS = new String[] { "label", "endNumber", "publicDate", "createdDate",
-			"embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
-			"partyPercentageAbstain", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
-			"firstName", "lastName", "party", BALLOT_ID, "decisionType", "ballotType", "againstProposalNumber" };
 	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "org", "committeeReport", "title",
 			"subTitle", "winner", "embeddedId.concern", "embeddedId.issue", "vote", "won", "rebel", "noWinner",
 			"approved", "partyApproved", "againstProposalNumber", "againstProposalParties", "totalVotes",
 			"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes",
 			"abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear", "partyAvgBornYear", "avgBornYear",
 			"ballotType", "decisionType", BALLOT_ID };
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue" };
 	private static final String COMMITTEE_BALLOT_DECISION_POLITICIAN_SUMMARY = "Committee Ballot Decision Politician Summary";
+	private static final String[] HIDE_COLUMNS = new String[] { "label", "endNumber", "publicDate", "createdDate",
+			"embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
+			"partyPercentageAbstain", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
+			"firstName", "lastName", "party", BALLOT_ID, "decisionType", "ballotType", "againstProposalNumber" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue" };
 
 	/**
 	 * Instantiates a new politician ballot decision summary page mod content
@@ -67,11 +67,6 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 	 */
 	public PoliticianBallotDecisionSummaryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -108,5 +103,10 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());
 	}
 }

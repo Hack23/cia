@@ -40,24 +40,19 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCommitteeRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party" };
 	private static final String[] COLUMN_ORDER = new String[] { "roleId", "personId", "firstName", "lastName", "detail",
 			"active", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant COMMITTEE_ROLES. */
 	private static final String COMMITTEE_ROLES = "CommitteeRoles";
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/**
 	 * Instantiates a new party committee roles page mod content factory impl.
 	 */
 	public PartyCommitteeRolesPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.COMMITTEEROLES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -84,6 +79,11 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.COMMITTEEROLES.toString());
 	}
 
 }

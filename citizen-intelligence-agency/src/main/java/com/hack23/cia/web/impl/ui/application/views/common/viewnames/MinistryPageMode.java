@@ -23,30 +23,30 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum MinistryPageMode {
 
-	/** The documenthistory. */
-	DOCUMENTHISTORY,
+	/** The currentmembers. */
+	CURRENTMEMBERS,
 
 	/** The documentactivity. */
 	DOCUMENTACTIVITY,
 
-	/** The currentmembers. */
-	CURRENTMEMBERS,
-
-	/** The memberhistory. */
-	MEMBERHISTORY,
-
-	/** The roleghant. */
-	ROLEGHANT,
-	
-	/** The government bodies. */
-	GOVERNMENT_BODIES_HEADCOUNT,
-
-	/** The government bodies income. */
-	GOVERNMENT_BODIES_INCOME,
+	/** The documenthistory. */
+	DOCUMENTHISTORY,
 
 	/** The government bodies expenditure. */
 	GOVERNMENT_BODIES_EXPENDITURE,
+
+	/** The government bodies. */
+	GOVERNMENT_BODIES_HEADCOUNT,
 	
+	/** The government bodies income. */
+	GOVERNMENT_BODIES_INCOME,
+
 	/** The government outcome. */
-	GOVERNMENT_OUTCOME;
+	GOVERNMENT_OUTCOME,
+
+	/** The memberhistory. */
+	MEMBERHISTORY,
+	
+	/** The roleghant. */
+	ROLEGHANT;
 }

@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingOverviewPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/** The Constant MINISTRY_RANKING_BY_TOPIC. */
 	private static final String MINISTRY_RANKING_BY_TOPIC = "Ministry Ranking by topic";
 
@@ -55,6 +52,9 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 			+ "\nSearch by name";
 
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "overview";
+
 
 	/**
 	 * Instantiates a new ministry ranking overview page mod content factory
@@ -64,9 +64,17 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+	/**
+	 * Creates the description.
+	 *
+	 * @return the text area
+	 */
+	private static TextArea createDescription() {
+		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,
+				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
+		totalCommitteeRankinglistLabel.setSizeFull();
+		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
+		return totalCommitteeRankinglistLabel;
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -92,17 +100,9 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 	}
 
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,
-				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
-		totalCommitteeRankinglistLabel.setSizeFull();
-		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
-		return totalCommitteeRankinglistLabel;
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 

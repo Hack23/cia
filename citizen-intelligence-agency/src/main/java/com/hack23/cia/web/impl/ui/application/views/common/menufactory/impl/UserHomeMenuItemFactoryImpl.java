@@ -40,17 +40,17 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
 
-	/** The Constant USER_EVENTS. */
-	private static final String USER_EVENTS = "User Events";
-
-	/** The Constant USER_VISITS. */
-	private static final String USER_VISITS = "User Visits";
-
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
 	/** The Constant SECURITY_SETTING_TEXT. */
 	private static final String SECURITY_SETTING_TEXT = "Security settings";
+
+	/** The Constant USER_EVENTS. */
+	private static final String USER_EVENTS = "User Events";
+
+	/** The Constant USER_VISITS. */
+	private static final String USER_VISITS = "User Visits";
 
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -60,6 +60,23 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	 */
 	public UserHomeMenuItemFactoryImpl() {
 		super();
+	}
+
+
+	@Override
+	public void createOverviewPage(final VerticalLayout overviewLayout) {
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
+
+		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),"Security settings, enable MFA");
+
+		createButtonLink(grid,USER_VISITS, VaadinIcons.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),"All past visits");
+
+		createButtonLink(grid,USER_EVENTS, VaadinIcons.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),"All past events");
+
+
 	}
 
 
@@ -82,23 +99,6 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		accountItem.addItem(USER_EVENTS, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
-
-
-	}
-
-
-	@Override
-	public void createOverviewPage(final VerticalLayout overviewLayout) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-
-		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),"Security settings, enable MFA");
-
-		createButtonLink(grid,USER_VISITS, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),"All past visits");
-
-		createButtonLink(grid,USER_EVENTS, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),"All past events");
 
 
 	}

@@ -50,26 +50,26 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationSessionPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS2 = new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" };
+	/** The Constant ADMIN_APPLICATION_SESSION. */
+	private static final String ADMIN_APPLICATION_SESSION = "Admin Application Session";
+
+	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+
+	private static final String APPLICATION_SESSION = "ApplicationSession";
+
+	private static final List<String> AS_LIST = Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
+			"ipInformation", "userAgentInformation");
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
+			"ipInformation", "userAgentInformation", "sessionId" };
 
 	private static final String[] COLUMN_ORDER2 = new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
 			"elementId", "errorMessage", "applicationMessage",
 			"modelObjectVersion" };
 
-	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
-
-	private static final List<String> AS_LIST = Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
-			"ipInformation", "userAgentInformation");
-
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"};
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
-			"ipInformation", "userAgentInformation", "sessionId" };
-
-	private static final String APPLICATION_SESSION = "ApplicationSession";
-
-	/** The Constant ADMIN_APPLICATION_SESSION. */
-	private static final String ADMIN_APPLICATION_SESSION = "Admin Application Session";
+	private static final String[] HIDE_COLUMNS2 = new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;

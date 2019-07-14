@@ -43,14 +43,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
-
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
 	/** The chart data manager. */
 	@Autowired
@@ -66,12 +66,6 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 	 */
 	public CommitteeRankingCommitteeByPartyChartsPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString()) && !parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -99,6 +93,12 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
+				&& parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString()) && !parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
 	}
 
 }

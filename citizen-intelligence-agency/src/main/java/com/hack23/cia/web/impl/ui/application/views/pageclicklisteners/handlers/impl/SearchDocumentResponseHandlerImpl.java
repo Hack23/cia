@@ -34,8 +34,11 @@ import com.vaadin.ui.VerticalLayout;
  */
 public final class SearchDocumentResponseHandlerImpl implements SearchDocumentResponseHandler {
 
-	/** The Constant DOCUMENT_LISTENER. */
-	private static final PageItemPropertyClickListener DOCUMENT_LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
+	/** The Constant DOCUMENT. */
+	private static final String DOCUMENT = "Document";
+
+	/** The Constant DOCUMENT_GRID_COLUMN_ORDER. */
+	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
 
 	/** The Constant DOCUMENT_GRID_HIDE_COLUMNS. */
 	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
@@ -43,23 +46,20 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
 			"committeeReportUrlXml" };
 
-	/** The Constant DOCUMENT_GRID_COLUMN_ORDER. */
-	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
-
-	/** The Constant DOCUMENT. */
-	private static final String DOCUMENT = "Document";
+	/** The Constant DOCUMENT_LISTENER. */
+	private static final PageItemPropertyClickListener DOCUMENT_LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The searchresult layout. */
-	private final VerticalLayout searchresultLayout;
 
 	/** The form panel. */
 	private final Panel formPanel;
 
 	/** The grid factory. */
 	private final GridFactory gridFactory;
+
+	/** The searchresult layout. */
+	private final VerticalLayout searchresultLayout;
 
 	/**
 	 * Instantiates a new search document response handler impl.

@@ -77,15 +77,6 @@ public interface ChartOptions {
 	Options createOptionsPieChart();
 
 	/**
-	 * Creates the options XY date float log Y axis legend outside.
-	 *
-	 * @param series
-	 *            the series
-	 * @return the options
-	 */
-	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
-
-	/**
 	 * Creates the options XY date float legend inside one column.
 	 *
 	 * @param series
@@ -93,5 +84,14 @@ public interface ChartOptions {
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLegendInsideOneColumn(Series series);
+
+	/**
+	 * Creates the options XY date float log Y axis legend outside.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
 
 }

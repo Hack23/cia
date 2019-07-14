@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
  */
 public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	private final String viewName;
-
 	@Autowired
 	private PagingUtil pagingUtil;
+
+	private final String viewName;
 	
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.
@@ -43,11 +43,6 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		this.viewName = viewName;
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return viewName.equals(page);
-	}
-
 	/**
 	 * Gets the paging util.
 	 *
@@ -55,6 +50,11 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 */
 	protected final PagingUtil getPagingUtil() {
 		return pagingUtil;
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return viewName.equals(page);
 	}
 
 }

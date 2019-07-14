@@ -45,9 +45,8 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" };
+	/** The Constant ADMIN_COUNTRY. */
+	private static final String ADMIN_COUNTRY = "Admin Country";
 
 	private static final List<String> AS_LIST = Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
 			"longitude", "latitude" );
@@ -57,8 +56,9 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 	private static final String COUNTRY2 = "Country";
 
-	/** The Constant ADMIN_COUNTRY. */
-	private static final String ADMIN_COUNTRY = "Admin Country";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid");
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_COUNTRY_VIEW_NAME;

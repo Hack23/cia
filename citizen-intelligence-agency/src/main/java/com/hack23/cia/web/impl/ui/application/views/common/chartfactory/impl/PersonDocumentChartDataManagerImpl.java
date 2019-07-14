@@ -48,25 +48,25 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PersonDocumentChartDataManager {
 
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	private static final String DOCUMENT_HISTORY = "Document history";
-
-	/** The Constant NO_INFO. */
-	private static final String NO_INFO = "NoInfo";
-
-	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
-	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
 
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
-	/** The Constant UNDER_SCORE. */
-	private static final String UNDER_SCORE = "_";
+	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
+	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonDocumentChartDataManagerImpl.class);
 
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+	/** The Constant NO_INFO. */
+	private static final String NO_INFO = "NoInfo";
+
+	/** The Constant UNDER_SCORE. */
+	private static final String UNDER_SCORE = "_";
 
 	/**
 	 * Instantiates a new person document chart data manager impl.
@@ -76,16 +76,30 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 	}
 
 	/**
-	 * Gets the view riksdagen politician document daily summary map.
+	 * Adds the document history by person data.
 	 *
-	 * @return the view riksdagen politician document daily summary map
+	 * @param simpleDateFormat the simple date format
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
 	 */
-	private Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
+	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat,
+			final DataSeries dataSeries, final Series series,
+			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map) {
+		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
 
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+			dataSeries.newSeries();
+			if (entry.getValue() != null) {
+				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
+					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
+				}
+			} else {
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+			}
+
+		}
 	}
 
 	@Override
@@ -118,30 +132,16 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 	}
 
 	/**
-	 * Adds the document history by person data.
+	 * Gets the view riksdagen politician document daily summary map.
 	 *
-	 * @param simpleDateFormat the simple date format
-	 * @param dataSeries the data series
-	 * @param series the series
-	 * @param map the map
+	 * @return the view riksdagen politician document daily summary map
 	 */
-	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat,
-			final DataSeries dataSeries, final Series series,
-			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map) {
-		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
+	private Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
+		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
-					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
-				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-			}
-
-		}
+		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
 	}
 
 }

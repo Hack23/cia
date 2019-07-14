@@ -34,51 +34,39 @@ import com.vaadin.ui.Label;
  */
 public final class RowUtil {
 
-	/** The Constant TITLE. */
-	private static final String TITLE = "title";
-
-	/** The Constant ITEMBOX. */
-	private static final String ITEMBOX = "itembox";
-
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
 
 	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
 
-	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
-	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
-
 	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
 
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant ITEMBOX. */
+	private static final String ITEMBOX = "itembox";
+
+	/** The Constant TITLE. */
+	private static final String TITLE = "title";
+
 	/**
-	 * Creates the row item.
+	 * Creates the grid layout.
 	 *
-	 * @param row         the row
-	 * @param button      the button
-	 * @param description the description
+	 * @param panelContent the panel content
+	 * @return the responsive row
 	 */
-	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
+		final ResponsiveLayout layout = new ResponsiveLayout();
 		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
-
-		button.addStyleName(ITEMBOX);
-		button.addStyleName(TITLE);
-		Responsive.makeResponsive(button);
-		button.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(button);
-
-		final Label descriptionLabel = new Label(description);
-		descriptionLabel.addStyleName(ITEMBOX);
-		Responsive.makeResponsive(descriptionLabel);
-		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(descriptionLabel);
-
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+		layout.addStyleName("v-layout-content-overview-panel-level1");
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		panelContent.addComponent(layout);
+		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
+		return layout.addRow();
 	}
 
 	/**
@@ -112,20 +100,32 @@ public final class RowUtil {
 	}
 
 	/**
-	 * Creates the grid layout.
+	 * Creates the row item.
 	 *
-	 * @param panelContent the panel content
-	 * @return the responsive row
+	 * @param row         the row
+	 * @param button      the button
+	 * @param description the description
 	 */
-	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
-		final ResponsiveLayout layout = new ResponsiveLayout();
+	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
-		layout.addStyleName("v-layout-content-overview-panel-level1");
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
-		panelContent.addComponent(layout);
-		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
-		return layout.addRow();
+		layout.setSizeUndefined();
+
+		button.addStyleName(ITEMBOX);
+		button.addStyleName(TITLE);
+		Responsive.makeResponsive(button);
+		button.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(button);
+
+		final Label descriptionLabel = new Label(description);
+		descriptionLabel.addStyleName(ITEMBOX);
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(descriptionLabel);
+
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
 }

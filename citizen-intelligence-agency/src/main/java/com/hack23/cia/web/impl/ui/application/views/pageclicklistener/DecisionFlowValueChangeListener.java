@@ -32,11 +32,11 @@ public final class DecisionFlowValueChangeListener implements ValueChangeListene
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The page name. */
-	private final String pageName;
-
 	/** The page id. */
 	private final String pageId;
+
+	/** The page name. */
+	private final String pageName;
 	
 	
 	/**

@@ -32,20 +32,20 @@ import com.vaadin.ui.Button.ClickListener;
  */
 public final class StartAgentClickListener extends AbstractClickListener implements ClickListener {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant LOG_MSG_EXECUTE_WORKORDER. */
 	private static final String LOG_MSG_EXECUTE_WORKORDER = "Execute workorder:{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StartAgentClickListener.class);
 
-	/** The data agent target. */
-	private final DataAgentTarget dataAgentTarget;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The data agent operation. */
 	private final DataAgentOperation dataAgentOperation;
+
+	/** The data agent target. */
+	private final DataAgentTarget dataAgentTarget;
 
 	/**
 	 * Instantiates a new start agent click listener.

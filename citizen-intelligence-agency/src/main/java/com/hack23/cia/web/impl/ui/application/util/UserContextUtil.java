@@ -37,19 +37,25 @@ import com.vaadin.server.Page;
 public final class UserContextUtil {
 
 	/**
-	 * Gets the user id from security context.
+	 * Allow role in security context.
 	 *
-	 * @return the user id from security context
+	 * @param role
+	 *            the role
+	 * @return true, if successful
 	 */
-	public static String getUserIdFromSecurityContext() {
+	public static boolean allowRoleInSecurityContext(final String role) {
+		boolean result = false;
 		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				return authentication.getPrincipal().toString();
+		if (context != null && context.getAuthentication() != null) {
+			final Collection<? extends GrantedAuthority> authorities = context.getAuthentication().getAuthorities();
+
+			for (final GrantedAuthority grantedAuthority : authorities) {
+				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
+					result = true;
+				}
 			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
@@ -70,25 +76,19 @@ public final class UserContextUtil {
 	}
 
 	/**
-	 * Allow role in security context.
+	 * Gets the user id from security context.
 	 *
-	 * @param role
-	 *            the role
-	 * @return true, if successful
+	 * @return the user id from security context
 	 */
-	public static boolean allowRoleInSecurityContext(final String role) {
-		boolean result = false;
+	public static String getUserIdFromSecurityContext() {
 		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null && context.getAuthentication() != null) {
-			final Collection<? extends GrantedAuthority> authorities = context.getAuthentication().getAuthorities();
-
-			for (final GrantedAuthority grantedAuthority : authorities) {
-				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
-					result = true;
-				}
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+				return authentication.getPrincipal().toString();
 			}
 		}
-		return result;
+		return null;
 	}
 
 }

@@ -58,20 +58,35 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractView extends Panel implements View {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
 
+	/** The Constant ROLE_ADMIN. */
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+
 	/** The Constant ROLE_USER. */
 	private static final String ROLE_USER = "ROLE_USER";
 
-	/** The Constant ROLE_ADMIN. */
-	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The barmenu. */
+	private final MenuBar barmenu = new MenuBar();
+
+	/** The menu item factory. */
+	@Autowired
+	private transient ApplicationMenuItemFactory menuItemFactory;
+
+	/** The page action event helper. */
+	@Autowired
+	protected transient PageActionEventHelper pageActionEventHelper;
+
+	/** The page link factory. */
+	@Autowired
+	protected transient PageLinkFactory pageLinkFactory;
 
 	/** The page mode content factory map. */
 	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
@@ -79,26 +94,11 @@ public abstract class AbstractView extends Panel implements View {
 	/** The page name. */
 	private final String pageName;
 
-	/** The barmenu. */
-	private final MenuBar barmenu = new MenuBar();
-
-	/** The top header right panel. */
-	private final HorizontalLayout topHeaderRightPanel = new HorizontalLayout();
-
 	/** The panel. */
 	private Panel panel;
-
-	/** The page link factory. */
-	@Autowired
-	protected transient PageLinkFactory pageLinkFactory;
-
-	/** The page action event helper. */
-	@Autowired
-	protected transient PageActionEventHelper pageActionEventHelper;
 	
-	/** The menu item factory. */
-	@Autowired
-	private transient ApplicationMenuItemFactory menuItemFactory;
+	/** The top header right panel. */
+	private final HorizontalLayout topHeaderRightPanel = new HorizontalLayout();
 
 
 	/**
@@ -111,44 +111,72 @@ public abstract class AbstractView extends Panel implements View {
 	}
 
 	/**
-	 * Post construct.
+	 * Adds the logo to header.
+	 *
+	 * @param topHeader
+	 *            the top header
 	 */
-	@PostConstruct
-	public final void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(pageName);
+	private static void addLogoToHeader(final HorizontalLayout topHeader) {
+		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
+		final Image ciaLogoImage = new Image(null,ciaLogoResource);
+		topHeader.addComponent(ciaLogoImage);
+		ciaLogoImage.setWidth("60px");
+		ciaLogoImage.setHeight("60px");
+		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
 	}
 
 
-	@Override
-	public final void enter(final ViewChangeEvent event) {
-		try {
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout() {
+		return createFullSizeVerticalLayout(true,true);
+	}
 
-			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
-			
-			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {					
-					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-					return;
-				} 
-			}
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @param margin
+	 *            the margin
+	 * @param spacing
+	 *            the spacing
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout(final boolean margin, final boolean spacing) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(margin);
+		layout.setSpacing(spacing);
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		return layout;
+	}
 
-			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
-			final VerticalLayout panelContent = createFullSizeVerticalLayout();
-			
-			menuItemFactory.createMainPageMenuBar(getBarmenu());
+	/**
+	 * Creates the top title header.
+	 *
+	 * @param topHeader
+	 *            the top header
+	 */
+	private static void createTopTitleHeader(final HorizontalLayout topHeader) {
+		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
 
-			LabelFactory.createHeader2Label(panelContent,"Invalid reference, content not found:" +pageName+ "/"+ parameters);
-			
-			getPanel().setContent(panelContent);
-			getPanel().setCaption("Invalid Reference");
-		} catch (final AccessDeniedException e ) {
-			LOGGER.warn("Authorization Failure:: {} : {}  exception : {}",e.getMessage(),pageName,e.getClass().getName());
-			final VerticalLayout panelContent = createFullSizeVerticalLayout();
-			LabelFactory.createHeader2Label(panelContent,"Access denied:" +pageName);
-			getPanel().setContent(panelContent);
-			getPanel().setCaption("Access denied");
-		}
+
+		final Label titleLabel = new Label("Citizen Intelligence Agency");
+		titleLabel.setStyleName("Header");
+		topTitleHeadertPanel.addComponent(titleLabel);
+		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);
+
+		final Label sloganLabel = new Label("// Tracking politicians like bugs!");
+		sloganLabel.setStyleName("HeaderSlogan");
+		topTitleHeadertPanel.addComponent(sloganLabel);
+		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);
+
+		topHeader.addComponent(topTitleHeadertPanel);
+		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
 	}
 
 	/**
@@ -201,7 +229,7 @@ public abstract class AbstractView extends Panel implements View {
 		setSizeFull();
 
 	}
-
+	
 	/**
 	 * Creates the top header actions for user context.
 	 */
@@ -231,72 +259,35 @@ public abstract class AbstractView extends Panel implements View {
 		}
 	}
 
-	/**
-	 * Creates the full size vertical layout.
-	 *
-	 * @param margin
-	 *            the margin
-	 * @param spacing
-	 *            the spacing
-	 * @return the vertical layout
-	 */
-	private static VerticalLayout createFullSizeVerticalLayout(final boolean margin, final boolean spacing) {
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(margin);
-		layout.setSpacing(spacing);
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
-		return layout;
-	}
-	
-	/**
-	 * Creates the full size vertical layout.
-	 *
-	 * @return the vertical layout
-	 */
-	private static VerticalLayout createFullSizeVerticalLayout() {
-		return createFullSizeVerticalLayout(true,true);
-	}
+	@Override
+	public final void enter(final ViewChangeEvent event) {
+		try {
 
-	/**
-	 * Adds the logo to header.
-	 *
-	 * @param topHeader
-	 *            the top header
-	 */
-	private static void addLogoToHeader(final HorizontalLayout topHeader) {
-		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
-		final Image ciaLogoImage = new Image(null,ciaLogoResource);
-		topHeader.addComponent(ciaLogoImage);
-		ciaLogoImage.setWidth("60px");
-		ciaLogoImage.setHeight("60px");
-		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
-		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
-	}
+			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
+			
+			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {					
+					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+					return;
+				} 
+			}
 
-	/**
-	 * Creates the top title header.
-	 *
-	 * @param topHeader
-	 *            the top header
-	 */
-	private static void createTopTitleHeader(final HorizontalLayout topHeader) {
-		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
+			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
+			final VerticalLayout panelContent = createFullSizeVerticalLayout();
+			
+			menuItemFactory.createMainPageMenuBar(getBarmenu());
 
-
-		final Label titleLabel = new Label("Citizen Intelligence Agency");
-		titleLabel.setStyleName("Header");
-		topTitleHeadertPanel.addComponent(titleLabel);
-		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);
-
-		final Label sloganLabel = new Label("// Tracking politicians like bugs!");
-		sloganLabel.setStyleName("HeaderSlogan");
-		topTitleHeadertPanel.addComponent(sloganLabel);
-		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);
-
-		topHeader.addComponent(topTitleHeadertPanel);
-		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
-		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
+			LabelFactory.createHeader2Label(panelContent,"Invalid reference, content not found:" +pageName+ "/"+ parameters);
+			
+			getPanel().setContent(panelContent);
+			getPanel().setCaption("Invalid Reference");
+		} catch (final AccessDeniedException e ) {
+			LOGGER.warn("Authorization Failure:: {} : {}  exception : {}",e.getMessage(),pageName,e.getClass().getName());
+			final VerticalLayout panelContent = createFullSizeVerticalLayout();
+			LabelFactory.createHeader2Label(panelContent,"Access denied:" +pageName);
+			getPanel().setContent(panelContent);
+			getPanel().setCaption("Access denied");
+		}
 	}
 
 	/**
@@ -315,6 +306,15 @@ public abstract class AbstractView extends Panel implements View {
 	 */
 	protected final Panel getPanel() {
 		return panel;
+	}
+
+	/**
+	 * Post construct.
+	 */
+	@PostConstruct
+	public final void postConstruct() {
+		setSizeFull();
+		createBasicLayoutWithPanelAndFooter(pageName);
 	}
 
 }

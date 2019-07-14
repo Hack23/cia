@@ -54,26 +54,26 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant END_FONT_SIZE. */
-	private static final String END_FONT_SIZE = ")\">";
+	/** The Constant DOCUMENT_DATA. */
+	private static final String DOCUMENT_DATA = "Document Data";
 
 	/** The Constant END_FONT. */
 	private static final String END_FONT = "</font> ";
 
-	/** The Constant START_FONT_SIZE. */
-	private static final String START_FONT_SIZE = "<font size=\"";
+	/** The Constant END_FONT_SIZE. */
+	private static final String END_FONT_SIZE = ")\">";
 
 	/** The Constant END_PARAGRAPH. */
 	private static final String END_PARAGRAPH = "</p>";
 
-	/** The Constant START_PARAGRAPH. */
-	private static final String START_PARAGRAPH = "<p>";
-
 	/** The Constant MAX_RESULTS. */
 	private static final int MAX_RESULTS = 60;
 
-	/** The Constant DOCUMENT_DATA. */
-	private static final String DOCUMENT_DATA = "Document Data";
+	/** The Constant START_FONT_SIZE. */
+	private static final String START_FONT_SIZE = "<font size=\"";
+
+	/** The Constant START_PARAGRAPH. */
+	private static final String START_PARAGRAPH = "<p>";
 
 	/**
 	 * Instantiates a new document data page mod content factory impl.
@@ -82,9 +82,15 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 		super();
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDATA.toString());
+	private static String createWordCloud(final Map<String, Integer> wordMap) {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(START_PARAGRAPH);
+		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
+			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey())
+					.append(END_FONT);
+		}
+		builder.append(END_PARAGRAPH);
+		return builder.toString();
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -145,15 +151,9 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 	}
 
-	private static String createWordCloud(final Map<String, Integer> wordMap) {
-		final StringBuilder builder = new StringBuilder();
-		builder.append(START_PARAGRAPH);
-		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
-			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey())
-					.append(END_FONT);
-		}
-		builder.append(END_PARAGRAPH);
-		return builder.toString();
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDATA.toString());
 	}
 
 }

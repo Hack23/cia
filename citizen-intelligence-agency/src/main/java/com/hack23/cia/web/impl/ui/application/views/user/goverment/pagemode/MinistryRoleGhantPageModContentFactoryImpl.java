@@ -45,11 +45,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = "Role Ghant";
-
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
+
+	/** The Constant ROLE_GHANT. */
+	private static final String ROLE_GHANT = "Role Ghant";
 
 	@Autowired
 	private MinistryGhantChartManager ministryGhantChartManager;
@@ -59,11 +59,6 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 	 */
 	public MinistryRoleGhantPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.ROLEGHANT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -91,6 +86,11 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 				parameters, pageId);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.ROLEGHANT.toString());
 	}
 
 }

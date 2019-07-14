@@ -30,14 +30,7 @@ public interface PartyDataSeriesFactory {
 	 *
 	 * @return the data series
 	 */
-	DataSeries createPartyChartTimeSeriesAll();
-
-	/**
-	 * Creates a new PartyDataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createPartyChartTimeSeriesCurrent();
+	DataSeries createChartTimeSeriesCurrentCommitteeByParty();
 
 	/**
 	 * Creates a new PartyDataSeries object.
@@ -51,7 +44,14 @@ public interface PartyDataSeriesFactory {
 	 *
 	 * @return the data series
 	 */
-	DataSeries createChartTimeSeriesCurrentCommitteeByParty();
+	DataSeries createPartyChartTimeSeriesAll();
+
+	/**
+	 * Creates a new PartyDataSeries object.
+	 *
+	 * @return the data series
+	 */
+	DataSeries createPartyChartTimeSeriesCurrent();
 
 
 }

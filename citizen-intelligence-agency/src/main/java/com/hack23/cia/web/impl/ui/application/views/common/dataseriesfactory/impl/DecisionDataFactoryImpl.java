@@ -52,20 +52,6 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 		super();
 	}
 	
-	@Override
-	public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
-		final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
-
-		final DataContainer<DocumentStatusContainer, Long> dataContainer = applicationManager
-				.getDataContainer(DocumentStatusContainer.class);
-
-		for (final DocumentStatusContainer document : dataContainer.getAll()) {
-
-			addProposalCommitteeeSummary(processedIn, summary, document);
-		}
-		return summary;
-	}
-
 	/**
 	 * Adds the proposal committeee summary.
 	 *
@@ -104,6 +90,23 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	}
 
 	/**
+	 * Gets the committtee short name.
+	 *
+	 * @param proposal
+	 *            the proposal
+	 * @return the committtee short name
+	 */
+	private static String getCommittteeShortName(final DocumentProposalData proposal) {
+		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").toUpperCase(Locale.ENGLISH);
+				
+		if (upperCase.contains(",")) {
+			return upperCase.substring(0, upperCase.indexOf(','));
+		} else {
+			return upperCase;
+		}
+	}
+
+	/**
 	 * Gets the document name.
 	 *
 	 * @param document
@@ -121,21 +124,18 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 		
 	}
 
-	/**
-	 * Gets the committtee short name.
-	 *
-	 * @param proposal
-	 *            the proposal
-	 * @return the committtee short name
-	 */
-	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").toUpperCase(Locale.ENGLISH);
-				
-		if (upperCase.contains(",")) {
-			return upperCase.substring(0, upperCase.indexOf(','));
-		} else {
-			return upperCase;
+	@Override
+	public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
+		final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
+
+		final DataContainer<DocumentStatusContainer, Long> dataContainer = applicationManager
+				.getDataContainer(DocumentStatusContainer.class);
+
+		for (final DocumentStatusContainer document : dataContainer.getAll()) {
+
+			addProposalCommitteeeSummary(processedIn, summary, document);
 		}
+		return summary;
 	}
 	
 }

@@ -57,25 +57,21 @@ import com.vaadin.ui.UI;
 @Viewport("width=device-width, initial-scale=1")
 public final class CitizenIntelligenceAgencyUI extends UI {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	/** The Constant CRLF. */
+	private static final String CRLF = "[\r\n]";
 
 	/** The Constant CRLF_REPLACEMENT. */
 	private static final String CRLF_REPLACEMENT = "";
 	
-	/** The Constant CRLF. */
-	private static final String CRLF = "[\r\n]";
-	
 	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
-
+	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(CitizenIntelligenceAgencyUI.class);
 
-	/** The main view. */
-	@Autowired
-	private MainView mainView;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The application manager. */
 	@Autowired
@@ -83,6 +79,10 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 	@Autowired
 	private transient ConfigurationManager configurationManager;
+
+	/** The main view. */
+	@Autowired
+	private MainView mainView;
 
 	@Autowired
 	private SpringNavigator springNavigator;

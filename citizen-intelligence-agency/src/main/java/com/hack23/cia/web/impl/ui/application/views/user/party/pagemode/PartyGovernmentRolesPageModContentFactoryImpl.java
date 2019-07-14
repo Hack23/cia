@@ -41,22 +41,17 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyGovernmentRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	private static final String PERSON_ID = "personId";
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", PERSON_ID, "party" };
 	private static final String[] COLUMN_ORDER = new String[] { "roleId", PERSON_ID, "firstName", "lastName", "active",
 			"detail", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant GOVERNMENT_ROLES. */
 	private static final String GOVERNMENT_ROLES = "Government Roles";
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", PERSON_ID, "party" };
 
 	/**
 	 * Instantiates a new party government roles page mod content factory impl.
 	 */
 	public PartyGovernmentRolesPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.GOVERNMENTROLES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -84,6 +79,11 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.GOVERNMENTROLES.toString());
 	}
 
 }

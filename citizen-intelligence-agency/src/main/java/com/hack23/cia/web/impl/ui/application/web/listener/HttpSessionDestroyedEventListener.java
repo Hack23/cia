@@ -42,20 +42,20 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 @Service
 public final class HttpSessionDestroyedEventListener implements ApplicationListener<HttpSessionDestroyedEvent> {
 
-	/** The Constant PRINCIPAL. */
-	private static final String PRINCIPAL = "AnonymousUser";
-
 	/** The Constant KEY. */
 	private static final String KEY = "HttpSessionDestroyedEventListener";
-
-	/** The Constant ROLE_ANONYMOUS. */
-	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
 
 	/** The Constant LOG_MSG_SESSION_DESTROYED_SESSION_ID. */
 	private static final String LOG_MSG_SESSION_DESTROYED_SESSION_ID = "Session destroyed SESSION_ID :{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(HttpSessionDestroyedEventListener.class);
+
+	/** The Constant PRINCIPAL. */
+	private static final String PRINCIPAL = "AnonymousUser";
+
+	/** The Constant ROLE_ANONYMOUS. */
+	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
 
 	/** The application manager. */
 	@Autowired

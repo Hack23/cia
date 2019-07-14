@@ -30,6 +30,14 @@ public interface PartyRankingMenuItemFactory {
 	/**
 	 * Creates a new PartyRankingMenuItem object.
 	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
+	/**
+	 * Creates a new PartyRankingMenuItem object.
+	 *
 	 * @param menuBar
 	 *            the menu bar
 	 */
@@ -42,14 +50,6 @@ public interface PartyRankingMenuItemFactory {
 	 *            the partyn menu item
 	 */
 	void createPartyRankingTopics(MenuItem partynMenuItem);
-
-	/**
-	 * Creates a new PartyRankingMenuItem object.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createOverviewPage(VerticalLayout panelContent);
 
 
 }

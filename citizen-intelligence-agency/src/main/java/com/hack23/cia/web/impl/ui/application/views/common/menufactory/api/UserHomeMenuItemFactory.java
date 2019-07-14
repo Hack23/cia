@@ -29,19 +29,19 @@ public interface UserHomeMenuItemFactory {
 	/**
 	 * Creates a new UserHomeMenuItem object.
 	 *
+	 * @param overviewLayout
+	 *            the overview layout
+	 */
+	void createOverviewPage(VerticalLayout overviewLayout);
+
+	/**
+	 * Creates a new UserHomeMenuItem object.
+	 *
 	 * @param barmenu
 	 *            the barmenu
 	 * @param pageId
 	 *            the page id
 	 */
 	void createUserHomeMenuBar(MenuBar barmenu, String pageId);
-
-	/**
-	 * Creates a new UserHomeMenuItem object.
-	 *
-	 * @param overviewLayout
-	 *            the overview layout
-	 */
-	void createOverviewPage(VerticalLayout overviewLayout);
 
 }

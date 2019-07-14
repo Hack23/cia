@@ -34,14 +34,14 @@ import com.vaadin.ui.Component;
  */
 abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenPolitician> {
 
+	/** The Constant DAYS_PER_STANDARD_YEAR. */
+	private static final long DAYS_PER_STANDARD_YEAR = 365L;
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
 
 	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = "Politician:";
-
-	/** The Constant DAYS_PER_STANDARD_YEAR. */
-	private static final long DAYS_PER_STANDARD_YEAR = 365L;
 
 	/** The politician ranking menu item factory. */
 	@Autowired
@@ -69,6 +69,26 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 		return years + " Years " + days + " days";
 	}
 
+	@Override
+	protected ViewRiksdagenPolitician getItem(final String parameters) {
+		final String pageId = getPageId(parameters);
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
+		if (personData != null) {
+			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Gets the politician ranking menu item factory.
+	 *
+	 * @return the politician ranking menu item factory
+	 */
+	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
+		return politicianMenuItemFactory;
+	}
+
 	/**
 	 * Page completed.
 	 *
@@ -88,26 +108,6 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 
 		panel.setCaption(NAME + "::" + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '
 				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');
-	}
-
-	/**
-	 * Gets the politician ranking menu item factory.
-	 *
-	 * @return the politician ranking menu item factory
-	 */
-	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
-		return politicianMenuItemFactory;
-	}
-
-	@Override
-	protected ViewRiksdagenPolitician getItem(final String parameters) {
-		final String pageId = getPageId(parameters);
-		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
-		if (personData != null) {
-			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());
-		} else {
-			return null;
-		}
 	}
 
 }

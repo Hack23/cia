@@ -43,14 +43,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList("partyName", "partyId", "headCount", "partyNumber",
+			"registeredDate", "website");
+
 	private static final List<String> AS_LIST2 = Arrays.asList("active", "firstAssignmentDate", "lastAssignmentDate",
 			"currentAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu",
 			"totalDaysServedEu", "activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment",
 			"activeCommittee", "totalActiveCommittee", "totalDaysServedCommittee", "activeParliament",
 			"totalActiveParliament", "totalDaysServedParliament");
-
-	private static final List<String> AS_LIST = Arrays.asList("partyName", "partyId", "headCount", "partyNumber",
-			"registeredDate", "website");
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
@@ -60,13 +60,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 */
 	public PartyOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -112,6 +105,13 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

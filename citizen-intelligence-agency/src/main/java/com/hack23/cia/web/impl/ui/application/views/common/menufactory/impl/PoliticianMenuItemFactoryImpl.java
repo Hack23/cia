@@ -41,33 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PoliticianMenuItemFactory {
 
-	/** The Constant POLITICIAN_RANKING. */
-	private static final String POLITICIAN_RANKING = "Politician Ranking";
-
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = "Vote history";
-
-	/** The Constant ROLE_LIST. */
-	private static final String ROLE_LIST = "RoleList";
-
-	/** The Constant TOTAL_EXPERIENCE. */
-	private static final String TOTAL_EXPERIENCE = "Total experience";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = "RoleGhant";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
 	/** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
 	private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
 
@@ -77,19 +50,46 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
 
+	/** The Constant DOCUMENT_HISTORY_TEXT. */
+	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
+
+	/** The Constant DOCUMENTS_TEXT. */
+	private static final String DOCUMENTS_TEXT = "Documents";
+
+	/** The Constant INDICATORS_TEXT. */
+	private static final String INDICATORS_TEXT = "Indicators";
+
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-	/** The politician ranking menu item factory. */
-	@Autowired
-	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
+	/** The Constant POLITICIAN_RANKING. */
+	private static final String POLITICIAN_RANKING = "Politician Ranking";
+
+	/** The Constant ROLE_GHANT_TEXT. */
+	private static final String ROLE_GHANT_TEXT = "RoleGhant";
+
+	/** The Constant ROLE_LIST. */
+	private static final String ROLE_LIST = "RoleList";
+
+	/** The Constant ROLES_TEXT. */
+	private static final String ROLES_TEXT = "Roles";
+
+	/** The Constant TOTAL_EXPERIENCE. */
+	private static final String TOTAL_EXPERIENCE = "Total experience";
+
+	/** The Constant VOTE_HISTORY. */
+	private static final String VOTE_HISTORY = "Vote history";
 
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
+	/** The politician ranking menu item factory. */
+	@Autowired
+	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
 
 
 	/**
@@ -97,6 +97,42 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	 */
 	public PoliticianMenuItemFactoryImpl() {
 		super();
+	}
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
+
+		createButtonLink(grid,INDICATORS_TEXT, VaadinIcons.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), "Daily summary of ballots breakdown by won,party rebel,absent and number of ballots");
+
+
+		createButtonLink(grid,TOTAL_EXPERIENCE, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLESUMMARY.toString(), pageId), "Experience summary in EU,government,parliament,committess and party roles");
+
+		createButtonLink(grid,ROLE_LIST, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLELIST.toString(), pageId), "List all roles");
+
+		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles");
+
+
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), "Document activity by document type");
+
+		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), "Document history list");
+
+
+		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.VOTEHISTORY.toString(), pageId), "Summary of all votes");
+
+		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
+
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), "View history of page visit for this page.");
+
 	}
 
 	@Override
@@ -144,42 +180,6 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 			politicanItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
-
-	}
-
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-
-		createButtonLink(grid,INDICATORS_TEXT, VaadinIcons.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), "Daily summary of ballots breakdown by won,party rebel,absent and number of ballots");
-
-
-		createButtonLink(grid,TOTAL_EXPERIENCE, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLESUMMARY.toString(), pageId), "Experience summary in EU,government,parliament,committess and party roles");
-
-		createButtonLink(grid,ROLE_LIST, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLELIST.toString(), pageId), "List all roles");
-
-		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles");
-
-
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), "Document activity by document type");
-
-		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), "Document history list");
-
-
-		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.VOTEHISTORY.toString(), pageId), "Summary of all votes");
-
-		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), "View history of page visit for this page.");
 
 	}
 

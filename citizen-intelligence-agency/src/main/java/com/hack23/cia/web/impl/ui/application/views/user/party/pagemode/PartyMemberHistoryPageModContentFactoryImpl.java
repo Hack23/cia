@@ -40,10 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
-	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "party", "activeEu",
-			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
 	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party",
 			"bornYear", "totalDaysServed", "currentAssignments", "totalAssignments", "firstAssignmentDate",
 			"lastAssignmentDate", "totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
@@ -57,20 +53,19 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
-	private static final String POLITICIANS = "Politicians";
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "party", "activeEu",
+			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "MemberHistory";
+	private static final String POLITICIANS = "Politicians";
 
 	/**
 	 * Instantiates a new party member history page mod content factory impl.
 	 */
 	public PartyMemberHistoryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.MEMBERHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -95,6 +90,11 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PartyPageMode.MEMBERHISTORY.toString());
 	}
 
 }

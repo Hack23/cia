@@ -46,24 +46,17 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 	private static final List<String> AS_LIST = Arrays.asList("nameId", "active", "firstAssignmentDate",
 			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "overview";
 
 	/**
 	 * Instantiates a new ministry overview page mod content factory impl.
 	 */
 	public MinistryOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -100,6 +93,13 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }

@@ -30,6 +30,14 @@ public interface ParliamentMenuItemFactory {
 	/**
 	 * Creates a new ParliamentMenuItem object.
 	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
+	/**
+	 * Creates a new ParliamentMenuItem object.
+	 *
 	 * @param barmenu
 	 *            the barmenu
 	 */
@@ -42,14 +50,6 @@ public interface ParliamentMenuItemFactory {
 	 *            the parliament menu item
 	 */
 	void createParliamentTopicMenu(MenuItem parliamentMenuItem);
-
-	/**
-	 * Creates a new ParliamentMenuItem object.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createOverviewPage(VerticalLayout panelContent);
 
 
 }

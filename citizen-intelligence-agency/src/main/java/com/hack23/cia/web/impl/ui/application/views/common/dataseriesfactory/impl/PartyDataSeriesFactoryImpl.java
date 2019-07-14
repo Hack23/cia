@@ -52,37 +52,6 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 	}
 
 	@Override
-	public DataSeries createPartyChartTimeSeriesAll() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			dataSeries = dataSeries.newSeries().add(data.getPartyName(),
-					data.getHeadCount());
-		}
-		return dataSeries;
-	}
-
-	@Override
-	public DataSeries createPartyChartTimeSeriesCurrent() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {
-			if (data != null && data.isActiveParliament()) {
-
-				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),
-						data.getTotalActiveParliament());
-			}
-		}
-		return dataSeries;
-	}
-
-	@Override
 	public DataSeries createChartTimeSeriesCurrentCommitteeByParty() {
 		DataSeries dataSeries = new DataSeries();
 
@@ -104,7 +73,6 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 		return dataSeries;
 	}
 
-
 	@Override
 	public DataSeries createChartTimeSeriesCurrentGovernmentByParty() {
 		DataSeries dataSeries = new DataSeries();
@@ -122,6 +90,38 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 			if (summary != null && summary.isActive()) {
 
 				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveGovernment());
+			}
+		}
+		return dataSeries;
+	}
+
+	@Override
+	public DataSeries createPartyChartTimeSeriesAll() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenParty.class);
+
+		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
+			dataSeries = dataSeries.newSeries().add(data.getPartyName(),
+					data.getHeadCount());
+		}
+		return dataSeries;
+	}
+
+
+	@Override
+	public DataSeries createPartyChartTimeSeriesCurrent() {
+		DataSeries dataSeries = new DataSeries();
+
+		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenPartySummary.class);
+
+		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {
+			if (data != null && data.isActiveParliament()) {
+
+				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),
+						data.getTotalActiveParliament());
 			}
 		}
 		return dataSeries;

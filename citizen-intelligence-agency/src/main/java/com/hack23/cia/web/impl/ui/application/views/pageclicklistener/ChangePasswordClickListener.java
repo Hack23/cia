@@ -33,18 +33,18 @@ import com.vaadin.ui.Notification;
  */
 public class ChangePasswordClickListener extends AbstractClickListener implements ClickListener {
 
-	/** The Constant PROBLEM_CHANGING_PASSWORD_SESSIONID. */
-	private static final String PROBLEM_CHANGING_PASSWORD_SESSIONID = "Problem changing password, sessionid{}";
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(ChangePasswordClickListener.class);
 
 	/** The Constant PROBLEM_CHANGING_PASSWORD. */
 	private static final String PROBLEM_CHANGING_PASSWORD = "Problem changing password";
 
+	/** The Constant PROBLEM_CHANGING_PASSWORD_SESSIONID. */
+	private static final String PROBLEM_CHANGING_PASSWORD_SESSIONID = "Problem changing password, sessionid{}";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ChangePasswordClickListener.class);
 
 	/** The change password request. */
 	private final ChangePasswordRequest changePasswordRequest;

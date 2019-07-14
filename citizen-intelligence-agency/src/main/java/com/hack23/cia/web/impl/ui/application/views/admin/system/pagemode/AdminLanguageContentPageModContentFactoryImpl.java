@@ -45,20 +45,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguageContentPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid");
-
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" };
-
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
-			"languageValue" };
-
-	private static final String LANGUAGE_CONTENT_DATA = "LanguageContentData";
+	/** The Constant ADMIN_LANGUAGE_CONTENT. */
+	private static final String ADMIN_LANGUAGE_CONTENT = "Admin Language Content";
 
 	private static final List<String> AS_LIST = Arrays.asList( "refKey", "fromLanguage", "toLanguage", "createdDate",
 			"languageValue");
 
-	/** The Constant ADMIN_LANGUAGE_CONTENT. */
-	private static final String ADMIN_LANGUAGE_CONTENT = "Admin Language Content";
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
+			"languageValue" };
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" };
+
+	private static final String LANGUAGE_CONTENT_DATA = "LanguageContentData";
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid");
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME;

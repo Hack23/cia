@@ -41,25 +41,15 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements GovernmentBodyRankingMenuItemFactory {
 
-	private static final String EXPENDITURE = "Expenditure";
-
-	private static final String INCOME = "Income";
-
-	private static final String HEADCOUNT = "Headcount";
-
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government bodies";
-
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
-
 	/** The Constant COMMAN_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
-	
+
 	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
+
+	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			GovernmentBodyPageMode.EXPENDITURE.toString());
 
 	private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			GovernmentBodyPageMode.HEADCOUNT.toString());
@@ -67,12 +57,22 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			GovernmentBodyPageMode.INCOME.toString());
 
-	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-			GovernmentBodyPageMode.EXPENDITURE.toString());
-
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
 	
+	private static final String EXPENDITURE = "Expenditure";
+
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
+
+	private static final String HEADCOUNT = "Headcount";
+
+	
+	private static final String INCOME = "Income";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";

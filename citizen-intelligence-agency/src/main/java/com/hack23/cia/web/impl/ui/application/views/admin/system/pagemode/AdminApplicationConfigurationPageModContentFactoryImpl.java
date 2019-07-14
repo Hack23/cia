@@ -53,27 +53,27 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final String UPDATE_CONFIGURATION = "Update Configuration";
+	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
+	private static final String ADMIN_APPLICATION_CONFIGURATION = "Admin Application Configuration";
 
-	private static final List<String> AS_LIST2 = Arrays.asList( "configTitle",
-			"configDescription", "componentTitle", "componentDescription", "propertyValue" );
+	private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
 
 	private static final List<String> AS_LIST = Arrays.asList( "configurationGroup", "component","configTitle" ,"configDescription",
 			"propertyValue", "createdDate",
 			"updatedDate" );
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"};
+	private static final List<String> AS_LIST2 = Arrays.asList( "configTitle",
+			"configDescription", "componentTitle", "componentDescription", "propertyValue" );
 
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
 			 "componentDescription", "propertyId", "propertyValue" };
 
-	private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
-
-	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
-	private static final String ADMIN_APPLICATION_CONFIGURATION = "Admin Application Configuration";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"};
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
+
+	private static final String UPDATE_CONFIGURATION = "Update Configuration";
 
 	/**
 	 * Instantiates a new admin application configuration page mod content

@@ -34,8 +34,20 @@ import com.vaadin.ui.Link;
 @Component
 public final class PagingUtilImpl implements PagingUtil {
 
+	/** The first page. */
+	private static final String FIRST_PAGE = "first page";
+
+	/** The last page. */
+	private static final String LAST_PAGE = "last page";
+
 	/** The limit for displaying start end links. */
 	private static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
+
+	/** The next page. */
+	private static final String NEXT_PAGE = "next page";
+
+	/** The page header. */
+	private static final String PAGE_HEADER = "Page: ";
 
 	/** The page one. */
 	private static final int PAGE_ONE = 1;
@@ -43,34 +55,37 @@ public final class PagingUtilImpl implements PagingUtil {
 	/** The page separator. */
 	private static final char PAGE_SEPARATOR = '/';
 
-	/** The show. */
-	private static final String SHOW = " :: Show ";
+	/** The pages total results. */
+	private static final String PAGES_TOTAL_RESULTS = " pages. Total results:";
+
+	/** The previous page. */
+	private static final String PREVIOUS_PAGE = "previous page";
 
 	/** The results per page. */
 	private static final String RESULTS_PER_PAGE = " results per page:";
 
-	/** The pages total results. */
-	private static final String PAGES_TOTAL_RESULTS = " pages. Total results:";
-
-	/** The page header. */
-	private static final String PAGE_HEADER = "Page: ";
-
-	/** The next page. */
-	private static final String NEXT_PAGE = "next page";
-
-	/** The first page. */
-	private static final String FIRST_PAGE = "first page";
-
-	/** The last page. */
-	private static final String LAST_PAGE = "last page";
-
-	/** The previous page. */
-	private static final String PREVIOUS_PAGE = "previous page";
+	/** The show. */
+	private static final String SHOW = " :: Show ";
 
 	/** The page link factory. */
 	@Autowired
 	private PageLinkFactory pageLinkFactory;
 	
+	/**
+	 * Adds the paging link.
+	 *
+	 * @param label          the label
+	 * @param name           the name
+	 * @param pageId         the page id
+	 * @param maxPages       the max pages
+	 * @param pagingControls the paging controls
+	 */
+	private void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
+		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));
+		pagingControls.addComponent(previousPageLink);
+		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
+	}
+
 	/**
 	 * Creates the paging controls.
 	 *
@@ -125,20 +140,5 @@ public final class PagingUtilImpl implements PagingUtil {
 				content.setExpandRatio(pagingControls, ContentRatio.SMALL2);
 
 			}
-
-	/**
-	 * Adds the paging link.
-	 *
-	 * @param label          the label
-	 * @param name           the name
-	 * @param pageId         the page id
-	 * @param maxPages       the max pages
-	 * @param pagingControls the paging controls
-	 */
-	private void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
-		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));
-		pagingControls.addComponent(previousPageLink);
-		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
-	}
 
 }

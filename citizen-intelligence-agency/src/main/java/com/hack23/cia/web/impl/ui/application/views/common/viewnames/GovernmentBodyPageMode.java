@@ -23,12 +23,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum GovernmentBodyPageMode {
 
+	/** The expenditure. */
+	EXPENDITURE,
+
 	/** The headcount. */
 	HEADCOUNT,
-
-	/** The income. */
-	INCOME,
 	
-	/** The expenditure. */
-	EXPENDITURE;
+	/** The income. */
+	INCOME;
 }

@@ -49,20 +49,20 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
  */
 public final class CitizenIntelligenceAgencyServer {
 
+	/** The Constant ACCESS_URL. */
+	public static final String ACCESS_URL = "https://localhost:" + PORT + "/";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CitizenIntelligenceAgencyServer.class);
 
 	/** The Constant PORT. */
 	public static final int PORT = 28443;
 
-	/** The Constant ACCESS_URL. */
-	public static final String ACCESS_URL = "https://localhost:" + PORT + "/";
+	/** The server started. */
+	private static int serverStarted = 0;
 
 	/** The test server. */
 	private static CitizenIntelligenceAgencyServer testServer;
-
-	/** The server started. */
-	private static int serverStarted = 0;
 
 	/** The initialised. */
 	private boolean initialised;
@@ -76,6 +76,20 @@ public final class CitizenIntelligenceAgencyServer {
 	public CitizenIntelligenceAgencyServer() {
 		super();
 		initLogger();
+	}
+
+	/**
+	 * Inits the logger.
+	 */
+	private static void initLogger() {
+		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
+		System.setProperty("slf4j", "true");
+		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
+		// System.setProperty("javax.net.debug", "all");
+
+		LogManager.getLogManager().reset();
+		SLF4JBridgeHandler.install();
+		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
 	}
 
 	/**
@@ -133,36 +147,6 @@ public final class CitizenIntelligenceAgencyServer {
 			// testServer.stop();
 			// testServer = null;
 		}
-	}
-
-	/**
-	 * Start server.
-	 */
-	public void startServer() {
-		try {
-			initLogger();
-			init();
-			start();
-			while (!server.isStarted())
-				;
-
-		} catch (final Exception e) {
-			LOGGER.error("Application Exception", e);
-		}
-	}
-
-	/**
-	 * Inits the logger.
-	 */
-	private static void initLogger() {
-		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
-		System.setProperty("slf4j", "true");
-		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
-		// System.setProperty("javax.net.debug", "all");
-
-		LogManager.getLogManager().reset();
-		SLF4JBridgeHandler.install();
-		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
 	}
 
 	/**
@@ -245,6 +229,22 @@ public final class CitizenIntelligenceAgencyServer {
 			server.start();
 		} catch (final Exception e) {
 			LOGGER.error("Problem starting server", e);
+		}
+	}
+
+	/**
+	 * Start server.
+	 */
+	public void startServer() {
+		try {
+			initLogger();
+			init();
+			start();
+			while (!server.isStarted())
+				;
+
+		} catch (final Exception e) {
+			LOGGER.error("Application Exception", e);
 		}
 	}
 

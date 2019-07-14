@@ -35,11 +35,11 @@ public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServl
 	/** The Constant OK. */
 	private static final String OK = "OK";
 
-	/** The Constant TEXT_HTML. */
-	private static final String TEXT_HTML = "text/html";
-	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The Constant TEXT_HTML. */
+	private static final String TEXT_HTML = "text/html";
 
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {

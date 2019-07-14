@@ -50,17 +50,99 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
-	/** The Constant PARTY_END_TAG. */
-	private static final char PARTY_END_TAG = ')';
+	/**
+	 * The Interface StepMapping.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
+	public interface StepMapping<T> {
 
-	/** The Constant PARTY_START_TAG. */
-	private static final String PARTY_START_TAG = " (";
+		/**
+		 * Gets the background color.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the background color
+		 */
+		String getBackgroundColor(T t);
+
+		/**
+		 * Gets the first name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the first name
+		 */
+		Object getFirstName(T assignmentData);
+
+		/**
+		 * Gets the from date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the from date
+		 */
+		Date getFromDate(T t);
+
+		/**
+		 * Gets the last name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the last name
+		 */
+		Object getLastName(T assignmentData);
+
+		/**
+		 * Gets the org.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the org
+		 */
+		String getOrg(T t);
+
+		/**
+		 * Gets the party.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the party
+		 */
+		String getParty(T t);
+
+		/**
+		 * Gets the role code.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the role code
+		 */
+		String getRoleCode(T t);
+
+		/**
+		 * Gets the to date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the to date
+		 */
+		Date getToDate(T t);
+
+	}
 
 	/** The Constant CONTENT_SEPARATOR. */
 	private static final char CONTENT_SEPARATOR = ' ';
 
 	/** The Constant FILTER_DATA_BEFORE_YEAR. */
 	private static final int FILTER_DATA_BEFORE_YEAR = 2000;
+
+	/** The Constant PARTY_END_TAG. */
+	private static final char PARTY_END_TAG = ')';
+
+	/** The Constant PARTY_START_TAG. */
+	private static final String PARTY_START_TAG = " (";
 
 	/**
 	 * Instantiates a new abstract ghant chart manager impl.
@@ -70,47 +152,74 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	}
 
 	/**
-	 * Creates the role ghant.
+	 * Creates the gantt.
 	 *
-	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
-	 * @param assignmentList            the assignment list
+	 * @return the gantt
 	 */
-	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection<T> assignmentList) {
-
-		final Comparator<T> compare = getComparator();
-
-		final List<T> list = assignmentList.stream().filter(
-				(final T x) -> new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() > FILTER_DATA_BEFORE_YEAR)
-				.collect(Collectors.toList());
-
-		Collections.sort(list, compare);
-
-		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());
-		roleSummaryLayoutTabsheet.addComponent(createGantt);
-		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
-
+	private static final Gantt createGantt() {
+		final Gantt gantt = new Gantt();
+		gantt.setSizeFull();
+		gantt.setWidth(100, Unit.PERCENTAGE);
+		gantt.setHeight(100, Unit.PERCENTAGE);
+		gantt.setResizableSteps(false);
+		gantt.setMovableSteps(false);
+		gantt.setResolution(Resolution.Week);
+		return gantt;
 	}
 
 	/**
-	 * Gets the comparator.
+	 * Strip dates after current date.
 	 *
-	 * @return the comparator
+	 * @param toDate
+	 *            the to date
+	 * @return the date
 	 */
-	protected abstract Comparator<T> getComparator();
+	private static final Date stripDatesAfterCurrentDate(final Date toDate) {
+		final DateTime currentTime = new DateTime();
+
+		if (currentTime.isBefore(toDate.getTime())) {
+			return currentTime.plusDays(1).toDate();
+		} else {
+			return toDate;
+		}
+	}
 
 	/**
-	 * Gets the role mapping.
+	 * Adds the view generic role member to step.
 	 *
-	 * @return the role mapping
+	 * @param stepName
+	 *            the step name
+	 * @param step
+	 *            the step
+	 * @param assignments
+	 *            the assignments
+	 * @param stepMapping
+	 *            the step mapping
 	 */
-	protected abstract Function<T, String> getRoleMapping();
+	private void addViewGenericRoleMemberToStep(final String stepName, final Step step, final List<T> assignments,
+			final StepMapping<T> stepMapping) {
 
-	/**
-	 * Gets the step mapping.
-	 *
-	 * @return the step mapping
-	 */
-	protected abstract StepMapping<T> getStepMapping();
+		for (final T assignmentData : assignments) {
+
+			String subStepName = "";
+
+			if (stepMapping.getRoleCode(assignmentData) != null) {
+				subStepName = new StringBuilder().append(stepMapping.getFirstName(assignmentData))
+						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(assignmentData))
+						.append(PARTY_START_TAG).append(stepMapping.getParty(assignmentData)).append(PARTY_END_TAG)
+						.toString();
+			}
+
+			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);
+			sameRoleSubStep.setDescription(stepName + '.' + subStepName);			
+			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));
+
+			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
+			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());
+
+			step.addSubStep(sameRoleSubStep);
+		}
+	}
 	
 
 	/**
@@ -159,6 +268,28 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	}
 
 	/**
+	 * Creates the role ghant.
+	 *
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList            the assignment list
+	 */
+	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection<T> assignmentList) {
+
+		final Comparator<T> compare = getComparator();
+
+		final List<T> list = assignmentList.stream().filter(
+				(final T x) -> new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() > FILTER_DATA_BEFORE_YEAR)
+				.collect(Collectors.toList());
+
+		Collections.sort(list, compare);
+
+		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());
+		roleSummaryLayoutTabsheet.addComponent(createGantt);
+		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
+
+	}
+
+	/**
 	 * Entries sorted by values.
 	 *
 	 * @param map
@@ -197,155 +328,24 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	}
 
 	/**
-	 * Adds the view generic role member to step.
+	 * Gets the comparator.
 	 *
-	 * @param stepName
-	 *            the step name
-	 * @param step
-	 *            the step
-	 * @param assignments
-	 *            the assignments
-	 * @param stepMapping
-	 *            the step mapping
+	 * @return the comparator
 	 */
-	private void addViewGenericRoleMemberToStep(final String stepName, final Step step, final List<T> assignments,
-			final StepMapping<T> stepMapping) {
-
-		for (final T assignmentData : assignments) {
-
-			String subStepName = "";
-
-			if (stepMapping.getRoleCode(assignmentData) != null) {
-				subStepName = new StringBuilder().append(stepMapping.getFirstName(assignmentData))
-						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(assignmentData))
-						.append(PARTY_START_TAG).append(stepMapping.getParty(assignmentData)).append(PARTY_END_TAG)
-						.toString();
-			}
-
-			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);
-			sameRoleSubStep.setDescription(stepName + '.' + subStepName);			
-			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));
-
-			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
-			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());
-
-			step.addSubStep(sameRoleSubStep);
-		}
-	}
+	protected abstract Comparator<T> getComparator();
 
 	/**
-	 * Strip dates after current date.
+	 * Gets the role mapping.
 	 *
-	 * @param toDate
-	 *            the to date
-	 * @return the date
+	 * @return the role mapping
 	 */
-	private static final Date stripDatesAfterCurrentDate(final Date toDate) {
-		final DateTime currentTime = new DateTime();
-
-		if (currentTime.isBefore(toDate.getTime())) {
-			return currentTime.plusDays(1).toDate();
-		} else {
-			return toDate;
-		}
-	}
+	protected abstract Function<T, String> getRoleMapping();
 
 	/**
-	 * Creates the gantt.
+	 * Gets the step mapping.
 	 *
-	 * @return the gantt
+	 * @return the step mapping
 	 */
-	private static final Gantt createGantt() {
-		final Gantt gantt = new Gantt();
-		gantt.setSizeFull();
-		gantt.setWidth(100, Unit.PERCENTAGE);
-		gantt.setHeight(100, Unit.PERCENTAGE);
-		gantt.setResizableSteps(false);
-		gantt.setMovableSteps(false);
-		gantt.setResolution(Resolution.Week);
-		return gantt;
-	}
-
-	/**
-	 * The Interface StepMapping.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public interface StepMapping<T> {
-
-		/**
-		 * Gets the from date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the from date
-		 */
-		Date getFromDate(T t);
-
-		/**
-		 * Gets the to date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the to date
-		 */
-		Date getToDate(T t);
-
-		/**
-		 * Gets the role code.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the role code
-		 */
-		String getRoleCode(T t);
-
-		/**
-		 * Gets the org.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the org
-		 */
-		String getOrg(T t);
-
-		/**
-		 * Gets the party.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the party
-		 */
-		String getParty(T t);
-
-		/**
-		 * Gets the background color.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the background color
-		 */
-		String getBackgroundColor(T t);
-
-		/**
-		 * Gets the first name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the first name
-		 */
-		Object getFirstName(T assignmentData);
-
-		/**
-		 * Gets the last name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the last name
-		 */
-		Object getLastName(T assignmentData);
-
-	}
+	protected abstract StepMapping<T> getStepMapping();
 
 }

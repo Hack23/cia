@@ -32,23 +32,13 @@ public class UserContextUtilTest extends AbstractUnitTest {
 
 	
 	/**
-	 * Gets the user id from security context null test.
-	 *
-	 * @return the user id from security context null test
-	 */
-	@Test
-	public void getUserIdFromSecurityContextNullTest() {
-		assertNull(UserContextUtil.getUserIdFromSecurityContext());
-	}
-	
-	/**
 	 * Allow role in security context null context test.
 	 */
 	@Test
 	public void allowRoleInSecurityContextNullContextTest() {
 		assertFalse(UserContextUtil.allowRoleInSecurityContext("anyRole"));
 	}
-
+	
 	/**
 	 * Gets the request url null page test.
 	 *
@@ -58,6 +48,16 @@ public class UserContextUtilTest extends AbstractUnitTest {
 	public void getRequestUrlNullPageTest() {
 	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest("GET", "/path")));
 		assertEquals("http://localhost/path",UserContextUtil.getRequestUrl(null));
+	}
+
+	/**
+	 * Gets the user id from security context null test.
+	 *
+	 * @return the user id from security context null test
+	 */
+	@Test
+	public void getUserIdFromSecurityContextNullTest() {
+		assertNull(UserContextUtil.getUserIdFromSecurityContext());
 	}
 	
 	

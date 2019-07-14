@@ -31,6 +31,17 @@ import com.vaadin.ui.TextArea;
 public interface DecisionFlowChartManager {
 
 	/**
+	 * Creates the all decision flow.
+	 *
+	 * @param committeeMap
+	 *            the committee map
+	 * @param rm
+	 *            the rm
+	 * @return the sankey chart
+	 */
+	SankeyChart createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
+
+	/**
 	 * Creates the committee decision flow.
 	 *
 	 * @param viewRiksdagenCommittee
@@ -43,17 +54,6 @@ public interface DecisionFlowChartManager {
 	 */
 	SankeyChart createCommitteeDecisionFlow(ViewRiksdagenCommittee viewRiksdagenCommittee,
 			Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
-
-	/**
-	 * Creates the all decision flow.
-	 *
-	 * @param committeeMap
-	 *            the committee map
-	 * @param rm
-	 *            the rm
-	 * @return the sankey chart
-	 */
-	SankeyChart createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
 
 	/**
 	 * Creates the committeee decision summary.

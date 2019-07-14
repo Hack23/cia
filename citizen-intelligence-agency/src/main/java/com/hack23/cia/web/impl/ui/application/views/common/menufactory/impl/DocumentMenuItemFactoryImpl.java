@@ -40,23 +40,26 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
-	/** The Constant DOCUMENTS. */
-	private static final String DOCUMENTS = "Documents";
+	/** The Constant ATTACHEMENTS. */
+	private static final String ATTACHEMENTS = "Attachements";
 
-	/** The Constant DOCUMENT_DETAILS. */
-	private static final String DOCUMENT_DETAILS = "Document details";
+	/** The Constant COMMAND_DOCUMENTS. */
+	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_SEARCH_DOCUMENT. */
+	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
 
 	/** The Constant COMPLETE_DOCUMENT_AS_TEXT. */
 	private static final String COMPLETE_DOCUMENT_AS_TEXT = "Complete document as text";
 
-	/** The Constant DOCUMENT_DECISIONS. */
-	private static final String DOCUMENT_DECISIONS = "Document decisions";
-
-	/** The Constant ATTACHEMENTS. */
-	private static final String ATTACHEMENTS = "Attachements";
+	/** The Constant DOCUMENT. */
+	private static final String DOCUMENT = "Document";
 
 	/** The Constant DOCUMENT_ACTIVITIES. */
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
+
+	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
+	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
 
 	/** The Constant DOCUMENT_ATTACHEMENTS. */
 	private static final String DOCUMENT_ATTACHEMENTS = "Document Attachements";
@@ -64,21 +67,21 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document data";
 
-	/** The Constant DOCUMENT. */
-	private static final String DOCUMENT = "Document";
+	/** The Constant DOCUMENT_DECISION. */
+	private static final String DOCUMENT_DECISION = "Document Decision";
 
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = "Person references";
 
+	/** The Constant DOCUMENT_DECISIONS. */
+	private static final String DOCUMENT_DECISIONS = "Document decisions";
+
+	/** The Constant DOCUMENT_DETAILS. */
+	private static final String DOCUMENT_DETAILS = "Document details";
 
 	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
 
-	/** The Constant DOCUMENT_DECISION. */
-	private static final String DOCUMENT_DECISION = "Document Decision";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+	/** The Constant DOCUMENTS. */
+	private static final String DOCUMENTS = "Documents";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
@@ -86,11 +89,8 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-	/** The Constant COMMAND_SEARCH_DOCUMENT. */
-	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
-
-	/** The Constant COMMAND_DOCUMENTS. */
-	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
+	/** The Constant PERSON_REFERENCES. */
+	private static final String PERSON_REFERENCES = "Person references";
 
 	/** The application menu item factory. */
 	@Autowired
@@ -142,6 +142,18 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 
 	@Override
+	public void createDocumentsMenuBar(final MenuBar menuBar) {
+		initApplicationMenuBar(menuBar);
+
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);
+		documentsItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);
+		documentsItem.addItem("Search Documents",VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);
+
+	}
+
+
+	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
@@ -165,18 +177,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);
-	}
-
-
-	@Override
-	public void createDocumentsMenuBar(final MenuBar menuBar) {
-		initApplicationMenuBar(menuBar);
-
-		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);
-		documentsItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);
-		documentsItem.addItem("Search Documents",VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);
-
 	}
 
 }

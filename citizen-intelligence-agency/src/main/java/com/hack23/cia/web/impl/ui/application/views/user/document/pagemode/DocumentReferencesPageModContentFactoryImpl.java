@@ -43,22 +43,17 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
 	private static final String[] COLUMN_ORDER = new String[] { "referenceType", "referenceDocumentId", "detail" };
-	private static final String DOCUMENT_REFERENCES2 = "Document references";
 	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
+	private static final String DOCUMENT_REFERENCES2 = "Document references";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
 
 	/**
 	 * Instantiates a new document references page mod content factory impl.
 	 */
 	public DocumentReferencesPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTREFERENCES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -93,6 +88,11 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTREFERENCES.toString());
 	}
 
 }

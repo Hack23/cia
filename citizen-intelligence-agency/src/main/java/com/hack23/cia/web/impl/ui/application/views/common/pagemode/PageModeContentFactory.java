@@ -28,6 +28,19 @@ import com.vaadin.ui.Panel;
 public interface PageModeContentFactory {
 
 	/**
+	 * Creates a new PageModeContent object.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @param menuBar
+	 *            the menu bar
+	 * @param panel
+	 *            the panel
+	 * @return the layout
+	 */
+	Layout createContent(String parameters,MenuBar menuBar,Panel panel);
+	
+	/**
 	 * Matches.
 	 *
 	 * @param page
@@ -45,18 +58,5 @@ public interface PageModeContentFactory {
 	 * @return true, if successful
 	 */
 	boolean validReference(String parameters);
-	
-	/**
-	 * Creates a new PageModeContent object.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @param menuBar
-	 *            the menu bar
-	 * @param panel
-	 *            the panel
-	 * @return the layout
-	 */
-	Layout createContent(String parameters,MenuBar menuBar,Panel panel);
 
 }

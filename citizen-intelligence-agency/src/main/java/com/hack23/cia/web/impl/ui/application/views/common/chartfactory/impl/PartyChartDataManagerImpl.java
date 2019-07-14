@@ -50,98 +50,43 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImpl implements PartyChartDataManager {
 
 
+	/**
+	 * The Interface DataValueCalculator.
+	 */
+	@FunctionalInterface
+	interface DataValueCalculator {
+
+		/**
+		 * Gets the data value.
+		 *
+		 * @param item
+		 *            the item
+		 * @return the data value
+		 */
+		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
+	}
+
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
+	/** The Constant NUMBER_BALLOTS. */
+	private static final String NUMBER_BALLOTS = "Number ballots";
+
 	/** The Constant PARTY_ABSENT. */
 	private static final String PARTY_ABSENT = "Party Absent";
 
 	/** The Constant PARTY_WON. */
 	private static final String PARTY_WON = "Party Won";
 
-	/** The Constant NUMBER_BALLOTS. */
-	private static final String NUMBER_BALLOTS = "Number ballots";
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
+
 
 	/**
 	 * Instantiates a new party chart data manager impl.
 	 */
 	public PartyChartDataManagerImpl() {
 		super();
-	}
-
-
-	/**
-	 * Gets the max size view riksdagen vote data ballot party summary daily.
-	 *
-	 * @return the max size view riksdagen vote data ballot party summary daily
-	 */
-	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily() {
-		initPartyMap();
-
-		final Optional<Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>>> first = partyMap.entrySet()
-				.stream().sorted((e1, e2) -> Integer.compare(e2.getValue().size(), e1.getValue().size())
-
-		).findFirst();
-
-		if (first.isPresent()) {
-			return first.get().getValue();
-		} else {
-			return new ArrayList<>();
-		}
-	}
-
-
-	/**
-	 * Gets the party map.
-	 *
-	 * @return the party map
-	 */
-	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> getPartyMap() {
-		initPartyMap();
-
-		return partyMap;
-	}
-
-
-
-
-
-	/**
-	 * Inits the party map.
-	 */
-	private synchronized void initPartyMap() {
-		if (partyMap == null) {
-			final DataContainer<ViewRiksdagenVoteDataBallotPartySummaryDaily, RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId> partyBallotSummaryDailyDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummaryDaily.class);
-
-			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getParty()));
-		}
-	}
-
-	@Override
-	public void createPartyWinnerChart(final AbstractOrderedLayout content) {
-
-		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		final Series series = new Series();
-
-		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
-			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			
-		}
-
-		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
-		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getNumberBallots);
-
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 
@@ -166,83 +111,8 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		}
 	}
 
-	/**
-	 * Gets the view riksdagen vote data ballot party summary daily.
-	 *
-	 * @param party
-	 *            the party
-	 * @return the view riksdagen vote data ballot party summary daily
-	 */
-	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getViewRiksdagenVoteDataBallotPartySummaryDaily(
-			final String party) {
-		initPartyMap();
-
-		return partyMap.get(party);
-	}
 
 
-	@Override
-	public void createPartyLineChart(final AbstractOrderedLayout content,final String partyId) {
-
-		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getViewRiksdagenVoteDataBallotPartySummaryDaily(
-				partyId);
-
-		if (list != null) {
-			final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))
-					.addSeries(new XYseries().setLabel(PARTY_ABSENT));
-	
-			final DataSeries dataSeries = new DataSeries();
-	
-			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-	
-			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
-			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
-	
-			addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
-		}
-	}
-
-
-	@Override
-	public void createPartyGenderChart(final AbstractOrderedLayout content) {
-
-		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
-
-	}
-
-
-	@Override
-	public void createPartyAgeChart(final AbstractOrderedLayout content) {
-		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
-	}
-
-
-
-	/**
-	 * Creates the party ballot chart.
-	 *
-	 * @param dataValueCalculator
-	 *            the data value calculator
-	 * @return the d charts
-	 */
-	private void createPartyBallotChart(final AbstractOrderedLayout content,final DataValueCalculator dataValueCalculator) {
-		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		final Series series = new Series();
-
-		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
-
-			if (!"-".equals(entry.getKey())) {
-				addBallotData(dataValueCalculator, dataSeries, simpleDateFormat, series, entry);
-			}
-		}
-
-		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
-	}
 
 
 	/**
@@ -271,20 +141,150 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		}
 	}
 
-	/**
-	 * The Interface DataValueCalculator.
-	 */
-	@FunctionalInterface
-	interface DataValueCalculator {
+	@Override
+	public void createPartyAgeChart(final AbstractOrderedLayout content) {
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+	}
 
-		/**
-		 * Gets the data value.
-		 *
-		 * @param item
-		 *            the item
-		 * @return the data value
-		 */
-		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
+
+	/**
+	 * Creates the party ballot chart.
+	 *
+	 * @param dataValueCalculator
+	 *            the data value calculator
+	 * @return the d charts
+	 */
+	private void createPartyBallotChart(final AbstractOrderedLayout content,final DataValueCalculator dataValueCalculator) {
+		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
+		final Series series = new Series();
+
+		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
+
+			if (!"-".equals(entry.getKey())) {
+				addBallotData(dataValueCalculator, dataSeries, simpleDateFormat, series, entry);
+			}
+		}
+
+		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+	}
+
+	@Override
+	public void createPartyGenderChart(final AbstractOrderedLayout content) {
+
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
+
+	}
+
+
+	@Override
+	public void createPartyLineChart(final AbstractOrderedLayout content,final String partyId) {
+
+		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getViewRiksdagenVoteDataBallotPartySummaryDaily(
+				partyId);
+
+		if (list != null) {
+			final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))
+					.addSeries(new XYseries().setLabel(PARTY_ABSENT));
+	
+			final DataSeries dataSeries = new DataSeries();
+	
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+	
+			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
+			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
+	
+			addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
+		}
+	}
+
+
+	@Override
+	public void createPartyWinnerChart(final AbstractOrderedLayout content) {
+
+		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
+		final Series series = new Series();
+
+		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
+			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
+			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			
+		}
+
+		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
+		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getNumberBallots);
+
+		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+	}
+
+
+	/**
+	 * Gets the max size view riksdagen vote data ballot party summary daily.
+	 *
+	 * @return the max size view riksdagen vote data ballot party summary daily
+	 */
+	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily() {
+		initPartyMap();
+
+		final Optional<Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>>> first = partyMap.entrySet()
+				.stream().sorted((e1, e2) -> Integer.compare(e2.getValue().size(), e1.getValue().size())
+
+		).findFirst();
+
+		if (first.isPresent()) {
+			return first.get().getValue();
+		} else {
+			return new ArrayList<>();
+		}
+	}
+
+
+
+	/**
+	 * Gets the party map.
+	 *
+	 * @return the party map
+	 */
+	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> getPartyMap() {
+		initPartyMap();
+
+		return partyMap;
+	}
+
+
+	/**
+	 * Gets the view riksdagen vote data ballot party summary daily.
+	 *
+	 * @param party
+	 *            the party
+	 * @return the view riksdagen vote data ballot party summary daily
+	 */
+	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getViewRiksdagenVoteDataBallotPartySummaryDaily(
+			final String party) {
+		initPartyMap();
+
+		return partyMap.get(party);
+	}
+
+	/**
+	 * Inits the party map.
+	 */
+	private synchronized void initPartyMap() {
+		if (partyMap == null) {
+			final DataContainer<ViewRiksdagenVoteDataBallotPartySummaryDaily, RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId> partyBallotSummaryDailyDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummaryDaily.class);
+
+			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
+					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getParty()));
+		}
 	}
 
 

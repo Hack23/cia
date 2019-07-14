@@ -36,20 +36,20 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	/** The Constant EMAIL_SENT. */
 	private static final String EMAIL_SENT = "Email Sent";
 
-	/** The Constant SEND_EMAIL_FAILURE. */
-	private static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
+	/** The Constant LOG_MSG_SEND_EMAIL. */
+	private static final String LOG_MSG_SEND_EMAIL = "SendEmail {}";
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
 	private static final String SEND_EMAIL_FAILEDFAILED = "Send email failed";
 
-	/** The Constant LOG_MSG_SEND_EMAIL. */
-	private static final String LOG_MSG_SEND_EMAIL = "SendEmail {}";
+	/** The Constant SEND_EMAIL_FAILURE. */
+	private static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);
 
 	/** The reqister request. */
 	private final SendEmailRequest sendEmailRequest;

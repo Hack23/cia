@@ -37,6 +37,17 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		implements PartyGhantChartManager {
 
 	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenPartyRoleMember t) {
+			return t.getRoleCode();
+		}
+	}
+
+	/**
 	 * Instantiates a new party ghant chart manager impl.
 	 */
 	public PartyGhantChartManagerImpl() {
@@ -56,31 +67,6 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 	@Override
 	protected StepMapping<ViewRiksdagenPartyRoleMember> getStepMapping() {
 		return new StepMapping<ViewRiksdagenPartyRoleMember>() {
-
-			@Override
-			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
-				return t.getFromDate();
-			}
-
-			@Override
-			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
-			}
-
-			@Override
-			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
-				return t.getRoleCode();
-			}
-
-			@Override
-			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
-				return t.getDetail();
-			}
-
-			@Override
-			public String getParty(final ViewRiksdagenPartyRoleMember t) {
-				return t.getParty();
-			}
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
@@ -105,22 +91,36 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			}
 
 			@Override
+			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
+				return t.getFromDate();
+			}
+
+			@Override
 			public Object getLastName(final ViewRiksdagenPartyRoleMember t) {
 				return t.getLastName();
 			}
 
+			@Override
+			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
+				return t.getDetail();
+			}
+
+			@Override
+			public String getParty(final ViewRiksdagenPartyRoleMember t) {
+				return t.getParty();
+			}
+
+			@Override
+			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
+				return t.getRoleCode();
+			}
+
+			@Override
+			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+			}
+
 		};
-	}
-
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenPartyRoleMember t) {
-			return t.getRoleCode();
-		}
 	}
 
 }

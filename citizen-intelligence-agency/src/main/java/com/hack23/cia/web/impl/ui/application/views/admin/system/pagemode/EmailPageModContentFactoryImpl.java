@@ -46,17 +46,17 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant EMAIL. */
-	private static final String EMAIL = "Email";
-
-	/** The Constant SEND_EMAIL_REQUEST_FORM_FIELDS. */
-	private static final List<String> SEND_EMAIL_REQUEST_FORM_FIELDS = Arrays.asList( "email", "subject", "content" );
-
 	/** The Constant ADMIN_EMAIL. */
 	private static final String ADMIN_EMAIL = "Admin email";
 
+	/** The Constant EMAIL. */
+	private static final String EMAIL = "Email";
+
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_EMAIL_VIEW_NAME;
+
+	/** The Constant SEND_EMAIL_REQUEST_FORM_FIELDS. */
+	private static final List<String> SEND_EMAIL_REQUEST_FORM_FIELDS = Arrays.asList( "email", "subject", "content" );
 
 	/**
 	 * Instantiates a new email page mod content factory impl.

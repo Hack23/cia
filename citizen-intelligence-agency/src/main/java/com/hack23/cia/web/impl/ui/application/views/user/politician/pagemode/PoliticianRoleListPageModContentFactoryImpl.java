@@ -41,21 +41,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "intressentId", "orderNumber", "orgCode" };
+	private static final String ASSIGNMENTS = "Assignments";
 	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "assignmentType", "status", "detail",
 			"orgCode", "fromDate", "toDate" };
-	private static final String ASSIGNMENTS = "Assignments";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "intressentId", "orderNumber", "orgCode" };
 
 	/**
 	 * Instantiates a new politician role list page mod content factory impl.
 	 */
 	public PoliticianRoleListPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLELIST.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -96,6 +91,11 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
 				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLELIST.toString());
 	}
 
 }

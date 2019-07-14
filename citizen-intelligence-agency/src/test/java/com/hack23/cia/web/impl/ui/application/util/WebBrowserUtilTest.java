@@ -33,6 +33,18 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 
 	
 	/**
+	 * Gets the ip information null test.
+	 *
+	 * @return the ip information null test
+	 */
+	@Test
+	public void getIpInformationNullTest() {
+	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest("GET", "/path")));
+	    final WebBrowser webBrowser = new WebBrowser();
+		assertNull(WebBrowserUtil.getIpInformation(webBrowser));
+	}	
+
+	/**
 	 * Gets the ip information X forward proxy test.
 	 *
 	 * @return the ip information X forward proxy test
@@ -58,18 +70,6 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 	    final WebBrowser webBrowser = new WebBrowser();
 		assertEquals("203.0.113.195",WebBrowserUtil.getIpInformation(webBrowser));
-	}	
-
-	/**
-	 * Gets the ip information null test.
-	 *
-	 * @return the ip information null test
-	 */
-	@Test
-	public void getIpInformationNullTest() {
-	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest("GET", "/path")));
-	    final WebBrowser webBrowser = new WebBrowser();
-		assertNull(WebBrowserUtil.getIpInformation(webBrowser));
 	}	
 	
 }

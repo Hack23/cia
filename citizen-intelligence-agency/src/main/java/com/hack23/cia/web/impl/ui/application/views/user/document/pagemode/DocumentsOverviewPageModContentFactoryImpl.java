@@ -45,14 +45,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+	private static final String DOCUMENT = "Document";
 	private static final String[] HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
 			"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
 			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
 			"committeeReportUrlXml" };
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
-	private static final String DOCUMENT = "Document";
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -64,11 +64,6 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 	 */
 	public DocumentsOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -101,6 +96,11 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page);
 	}
 
 }

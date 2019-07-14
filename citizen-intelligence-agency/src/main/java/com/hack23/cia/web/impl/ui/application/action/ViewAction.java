@@ -23,51 +23,17 @@ package com.hack23.cia.web.impl.ui.application.action;
  */
 public enum ViewAction {
 
-	/** The visit admin agent operation view. */
-	VISIT_ADMIN_AGENT_OPERATION_VIEW,
-
-	/** The visit admin data summary view. */
-	VISIT_ADMIN_DATA_SUMMARY_VIEW,
+	/** The start agent button. */
+	START_AGENT_BUTTON,
 
 	/** The visit admin agency view. */
 	VISIT_ADMIN_AGENCY_VIEW,
 
-	/** The visit ballot view. */
-	VISIT_BALLOT_VIEW,
+	/** The visit admin agent operation view. */
+	VISIT_ADMIN_AGENT_OPERATION_VIEW,
 
-	VISIT_COUNTRY_VIEW,
-
-	/** The visit main view. */
-	VISIT_MAIN_VIEW,
-
-	/** The start agent button. */
-	START_AGENT_BUTTON,
-
-	/** The visit politician view. */
-	VISIT_POLITICIAN_VIEW,
-
-	/** The visit politician ranking view. */
-	VISIT_POLITICIAN_RANKING_VIEW,
-
-	VISIT_PARLIAMENT_RANKING_VIEW,
-
-	/** The visit party view. */
-	VISIT_PARTY_VIEW,
-
-	/** The visit party ranking view. */
-	VISIT_PARTY_RANKING_VIEW,
-
-	/** The visit committee ranking view. */
-	VISIT_COMMITTEE_RANKING_VIEW,
-
-	/** The visit committee view. */
-	VISIT_COMMITTEE_VIEW,
-
-	/** The visit ministry ranking view. */
-	VISIT_MINISTRY_RANKING_VIEW,
-
-	/** The visit ministry view. */
-	VISIT_MINISTRY_VIEW,
+	/** The visit admin application configuration view. */
+	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,
 
 	/** The visit admin application events view. */
 	VISIT_ADMIN_APPLICATION_EVENTS_VIEW,
@@ -78,11 +44,20 @@ public enum ViewAction {
 	/** The visit admin country view. */
 	VISIT_ADMIN_COUNTRY_VIEW,
 
+	/** The visit admin data summary view. */
+	VISIT_ADMIN_DATA_SUMMARY_VIEW,
+
+	/** The visit admin email view. */
+	VISIT_ADMIN_EMAIL_VIEW,
+
 	/** The visit admin language content view. */
 	VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,
 
 	/** The visit admin language view. */
 	VISIT_ADMIN_LANGUAGE_VIEW,
+
+	/** The visit admin monitoring view. */
+	VISIT_ADMIN_MONITORING_VIEW,
 
 	/** The visit admin portal view. */
 	VISIT_ADMIN_PORTAL_VIEW,
@@ -90,27 +65,52 @@ public enum ViewAction {
 	/** The visit admin useraccount view. */
 	VISIT_ADMIN_USERACCOUNT_VIEW,
 
+	/** The visit ballot view. */
+	VISIT_BALLOT_VIEW,
+
+	/** The visit committee ranking view. */
+	VISIT_COMMITTEE_RANKING_VIEW,
+
+	/** The visit committee view. */
+	VISIT_COMMITTEE_VIEW,
+
+	VISIT_COUNTRY_VIEW,
+
 	/** The visit document view. */
 	VISIT_DOCUMENT_VIEW,
 
-	/** The visit search view. */
-	VISIT_SEARCH_VIEW,
+	VISIT_DOCUMENTS_VIEW,
 
-	/** The visit admin monitoring view. */
-	VISIT_ADMIN_MONITORING_VIEW,
+	/** The visit government body ranking view. */
+	VISIT_GOVERNMENT_BODY_RANKING_VIEW,
 
-	/** The visit user home view. */
-	VISIT_USER_HOME_VIEW,
-
-	/** The visit admin application configuration view. */
-	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW, VISIT_REGISTER, VISIT_LOGIN,
-
-	/** The visit admin email view. */
-	VISIT_ADMIN_EMAIL_VIEW, VISIT_DOCUMENTS_VIEW,
-	
 	/** The visit government body view. */
 	VISIT_GOVERNMENT_BODY_VIEW,
+
+	VISIT_LOGIN,
+
+	/** The visit main view. */
+	VISIT_MAIN_VIEW,
+
+	/** The visit ministry ranking view. */
+	VISIT_MINISTRY_RANKING_VIEW,
+
+	/** The visit ministry view. */
+	VISIT_MINISTRY_VIEW,
+
+	VISIT_PARLIAMENT_RANKING_VIEW,
+
+	/** The visit party ranking view. */
+	VISIT_PARTY_RANKING_VIEW, /** The visit party view. */
+	VISIT_PARTY_VIEW, /** The visit politician ranking view. */
+	VISIT_POLITICIAN_RANKING_VIEW,
+
+	/** The visit politician view. */
+	VISIT_POLITICIAN_VIEW, VISIT_REGISTER,
 	
-	/** The visit government body ranking view. */
-	VISIT_GOVERNMENT_BODY_RANKING_VIEW;
+	/** The visit search view. */
+	VISIT_SEARCH_VIEW,
+	
+	/** The visit user home view. */
+	VISIT_USER_HOME_VIEW;
 }

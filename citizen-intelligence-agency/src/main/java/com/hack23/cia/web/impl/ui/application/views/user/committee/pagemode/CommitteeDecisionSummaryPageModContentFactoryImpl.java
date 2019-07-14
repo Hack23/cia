@@ -49,20 +49,10 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = "ballotId";
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
-
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.hangarId", "embeddedId.id",
-			"endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties", "againstProposalNumber",
-			"createdDate" };
-
 	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "publicDate", "committeeReport",
 			"embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",
 			"header", "endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties",
 			"againstProposalNumber" };
-
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.hangarId", "embeddedId.id",
-			"embeddedId.issueNummer" };
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -70,17 +60,22 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = "Decision Summary";
 
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.hangarId", "embeddedId.id",
+			"endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties", "againstProposalNumber",
+			"createdDate" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.hangarId", "embeddedId.id",
+			"embeddedId.issueNummer" };
+
 	/**
 	 * Instantiates a new committee decision summary page mod content factory
 	 * impl.
 	 */
 	public CommitteeDecisionSummaryPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.DECISIONSUMMARY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -111,6 +106,11 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 				parameters, pageId);
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.DECISIONSUMMARY.toString());
 	}
 
 }

@@ -59,9 +59,9 @@ public class AppPublicSystemDocumentation {
 	// inspired from
 	// https://github.com/structurizr/java/blob/master/structurizr-examples/src/com/structurizr/example/SpringPetClinic.java
 
-	private static final long WORKSPACE_ID = 37264;
 	private static final String API_KEY = "";
 	private static final String API_SECRET = "";
+	private static final long WORKSPACE_ID = 37264;
 
 	/**
 	 * The main method.

@@ -36,11 +36,11 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The page reference. */
-	private final String pageReference;
-
 	/** The page. */
 	private final String page;
+
+	/** The page reference. */
+	private final String pageReference;
 
 
 	/**
@@ -62,21 +62,6 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *
 	 * @param page
 	 *            the page
-	 * @param part
-	 *            the part
-	 */
-	public PageModeMenuCommand(final String page, final String part) {
-		super();
-		this.page = page;
-		pageReference = part;
-	}
-
-
-	/**
-	 * Instantiates a new page mode menu command.
-	 *
-	 * @param page
-	 *            the page
 	 * @param pageMode
 	 *            the page mode
 	 * @param part
@@ -86,6 +71,21 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 		super();
 		this.page = page;
 		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();
+	}
+
+
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param part
+	 *            the part
+	 */
+	public PageModeMenuCommand(final String page, final String part) {
+		super();
+		this.page = page;
+		pageReference = part;
 	}
 
 
@@ -105,6 +105,11 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 		pageReference = pageMode + PAGE_SEPARATOR + part;
 	}
 
+	@Override
+	public void buttonClick(final ClickEvent event) {
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
+	}
+
 	/**
 	 * Gets the page path.
 	 *
@@ -120,11 +125,6 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
-		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
-	}
-
-	@Override
-	public void buttonClick(final ClickEvent event) {
 		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
 	}
 

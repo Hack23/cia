@@ -23,47 +23,47 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum PartyPageMode {
 
-	/** The documenthistory. */
-	DOCUMENTHISTORY,
-
-	/** The currentmembers. */
-	CURRENTMEMBERS,
-
-	/** The memberhistory. */
-	MEMBERHISTORY,
-
-	/** The currentleaders. */
-	CURRENTLEADERS,
-
-	/** The leaderhistory. */
-	LEADERHISTORY,
+	/** The committeeballotdecisionsummary. */
+	COMMITTEEBALLOTDECISIONSUMMARY,
 
 	/** The committeeroles. */
 	COMMITTEEROLES,
 
-	/** The governmentroles. */
-	GOVERNMENTROLES,
+	/** The currentleaders. */
+	CURRENTLEADERS,
+
+	/** The currentmembers. */
+	CURRENTMEMBERS,
 
 	/** The documentactivity. */
 	DOCUMENTACTIVITY,
 
-	/** The committeeballotdecisionsummary. */
-	COMMITTEEBALLOTDECISIONSUMMARY,
+	/** The documenthistory. */
+	DOCUMENTHISTORY,
 
-	/** The votehistory. */
-	VOTEHISTORY,
+	/** The governmentroles. */
+	GOVERNMENTROLES,
 
-/** The partywondailysummarychart. */
+	/** The leaderhistory. */
+	LEADERHISTORY,
+
+	/** The memberhistory. */
+	MEMBERHISTORY,
+
+	/** The partyagainstcoalationssummary. */
+	 PARTYAGAINSTCOALATIONSSUMMARY,
+
+/** The partysupportsummary. */
+ PARTYSUPPORTSUMMARY,
+
+ /** The partywondailysummarychart. */
 PARTYWONDAILYSUMMARYCHART,
-
+ 
  /** The roleghant. */
  ROLEGHANT,
- 
- /** The partyagainstcoalationssummary. */
- PARTYAGAINSTCOALATIONSSUMMARY,
 
- /** The partysupportsummary. */
- PARTYSUPPORTSUMMARY;
+ /** The votehistory. */
+VOTEHISTORY;
 
 
 }

@@ -27,6 +27,14 @@ import com.vaadin.ui.VerticalLayout;
 public interface ApplicationMenuItemFactory {
 
 	/**
+	 * Adds the ranking menu.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 */
+	void addRankingMenu(MenuBar menuBar);
+
+	/**
 	 * Creates a new ApplicationMenuItem object.
 	 *
 	 * @param menuBar
@@ -34,14 +42,6 @@ public interface ApplicationMenuItemFactory {
 	 * @return the menu bar
 	 */
 	MenuBar createMainPageMenuBar(MenuBar menuBar);
-
-	/**
-	 * Adds the ranking menu.
-	 *
-	 * @param menuBar
-	 *            the menu bar
-	 */
-	void addRankingMenu(MenuBar menuBar);
 
 
 	/**

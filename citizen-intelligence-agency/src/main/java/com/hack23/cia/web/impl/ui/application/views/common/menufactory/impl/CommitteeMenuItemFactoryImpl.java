@@ -42,41 +42,35 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory {
 
-	/** The Constant COMMITTEE_RANKING_TEXT. */
-	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = "RoleGhant";
-
-	/** The Constant MEMBER_HISTORY_TEXT. */
-	private static final String MEMBER_HISTORY_TEXT = "Member History";
-
-	/** The Constant CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
-	/** The Constant DECISION_TYPE_DAILY_SUMMARY_TEXT. */
-	private static final String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
-
-	/** The Constant DECISION_SUMMARY_TEXT. */
-	private static final String DECISION_SUMMARY_TEXT = "Decision Summary";
-
 	/** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
 	private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
 
 	/** The Constant BALLOTS_TEXT. */
 	private static final String BALLOTS_TEXT = "Ballots";
 
+	/** The Constant COMMITTEE_RANKING_TEXT. */
+	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
+
+	/** The Constant CURRENT_MEMBERS_TEXT. */
+	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
+
+	/** The Constant DECISION_SUMMARY_TEXT. */
+	private static final String DECISION_SUMMARY_TEXT = "Decision Summary";
+
+	/** The Constant DECISION_TYPE_DAILY_SUMMARY_TEXT. */
+	private static final String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
+
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+
+	/** The Constant DOCUMENT_HISTORY_TEXT. */
+	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
+
+	/** The Constant DOCUMENTS_TEXT. */
+	private static final String DOCUMENTS_TEXT = "Documents";
+
+	/** The Constant MEMBER_HISTORY_TEXT. */
+	private static final String MEMBER_HISTORY_TEXT = "Member History";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
@@ -84,13 +78,19 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-	/** The committee ranking menu item factory. */
-	@Autowired
-	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
+	/** The Constant ROLE_GHANT_TEXT. */
+	private static final String ROLE_GHANT_TEXT = "RoleGhant";
+
+	/** The Constant ROLES_TEXT. */
+	private static final String ROLES_TEXT = "Roles";
 
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
+	/** The committee ranking menu item factory. */
+	@Autowired
+	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
 
 
 	/**

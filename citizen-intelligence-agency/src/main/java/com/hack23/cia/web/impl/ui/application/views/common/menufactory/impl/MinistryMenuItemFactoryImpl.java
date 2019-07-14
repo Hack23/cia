@@ -41,8 +41,17 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
 
-	/** The Constant GOVERNMENT_BODIES_INCOME. */
-	private static final String GOVERNMENT_BODIES_INCOME = "Government bodies income";
+	/** The Constant CURRENT_MEMBERS_TEXT. */
+	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
+
+	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
+	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+
+	/** The Constant DOCUMENT_HISTORY_TEXT. */
+	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
+
+	/** The Constant DOCUMENTS_TEXT. */
+	private static final String DOCUMENTS_TEXT = "Documents";
 
 	/** The Constant GOVERNMENT_BODIES_EXPENDITURE. */
 	private static final String GOVERNMENT_BODIES_EXPENDITURE = "Government bodies expenditure";
@@ -50,35 +59,26 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES_HEADCOUNT = "Government bodies headcount";
 
-	/** The Constant MINISTRY_RANKING. */
-	private static final String MINISTRY_RANKING = "Ministry Ranking";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = "RoleGhant";
+	/** The Constant GOVERNMENT_BODIES_INCOME. */
+	private static final String GOVERNMENT_BODIES_INCOME = "Government bodies income";
 
 	/** The Constant MEMBER_HISTORY_TEXT. */
 	private static final String MEMBER_HISTORY_TEXT = "Member History";
 
-	/** The Constant CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+	/** The Constant MINISTRY_RANKING. */
+	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+	/** The Constant ROLE_GHANT_TEXT. */
+	private static final String ROLE_GHANT_TEXT = "RoleGhant";
+
+	/** The Constant ROLES_TEXT. */
+	private static final String ROLES_TEXT = "Roles";
 
 	/** The application menu item factory. */
 	@Autowired

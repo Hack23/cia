@@ -40,11 +40,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentActivityPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+
+	/** The Constant MINISTRY. */
+	private static final String MINISTRY = "Ministry:";
 
 	/** The chart data manager. */
 	@Autowired
@@ -56,11 +56,6 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 	 */
 	public MinistryDocumentActivityPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -83,6 +78,11 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 }

@@ -54,13 +54,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
+	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
+			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
+			"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
+			"againstProposalNumber" );
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
-			"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
-			"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" };
+	private static final List<String> AS_LIST2 = Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
+			"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "approved" );
+
+	/** The Constant COMMITTEE. */
+	private static final String BALLOT = "Ballot:";
+
+	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
 
 	private static final String[] COLUMN_ORDER = new String[] { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
@@ -68,43 +75,30 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", "embeddedId.ballotId" };
 
+
+	private static final int FIRST_OBJECT = 0;
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
+			"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
+			"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" };
+
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
 
 	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
 
-	private static final List<String> AS_LIST2 = Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
-			"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved" );
-
-	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
-			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
-			"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
-			"againstProposalNumber" );
-
-	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
-
-	private static final int FIRST_OBJECT = 0;
-
-	/** The Constant COMMITTEE. */
-	private static final String BALLOT = "Ballot:";
-
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
+
+	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
 
 	/**
 	 * Instantiates a new ballot overview page mod content factory impl.
 	 */
 	public BallotOverviewPageModContentFactoryImpl() {
 		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -174,6 +168,13 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 		}
 		return panelContent;
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }
