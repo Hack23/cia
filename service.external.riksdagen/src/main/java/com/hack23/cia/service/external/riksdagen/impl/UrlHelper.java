@@ -37,6 +37,7 @@ public final class UrlHelper {
 	 * Url encode.
 	 *
 	 * @param id the id
+	 * @param charset the charset
 	 * @return the string
 	 */
 	public static String urlEncode(final String id, final String charset) {

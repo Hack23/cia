@@ -97,6 +97,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
 	public boolean supports(final String committeeReport,final String rm, final String issue) {
@@ -113,6 +114,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
 	public boolean against(final String committeeReport,final String rm, final String issue) {

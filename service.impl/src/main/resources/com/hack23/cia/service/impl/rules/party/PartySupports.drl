@@ -27,3 +27,22 @@ rule "We have a party against FRA committee_report=FöU15 and rm=2007/08"
     then
     	$p.addViolation( Status.MINOR, "PartyAgainst","Behavior", kcontext.getRule().getName(),"n/a");
 end
+
+
+rule "We have a party supporting combating hybrid warfare in the form of propaganda committee_report=KU16 and rm=2017/18"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl( supports("KU16","2017/18","8") )
+    then
+    	$p.addViolation( Status.MINOR, "PartySupports","Behavior", kcontext.getRule().getName(),"n/a");
+end
+
+rule "We have a party against combating hybrid warfare in the form of propaganda committee_report=KU16 and rm=2017/18"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl( against("KU16","2017/18","8") )
+    then
+    	$p.addViolation( Status.MINOR, "PartyAgainst","Behavior", kcontext.getRule().getName(),"n/a");
+end

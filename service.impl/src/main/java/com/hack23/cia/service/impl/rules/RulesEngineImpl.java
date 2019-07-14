@@ -106,12 +106,12 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
 
-		List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> importantDecisions = new ArrayList<>();
+		final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> importantDecisions = new ArrayList<>();
 
 		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
 				new String[] { "2017/18", "KU16" } };
 
-		for (String[] decision : decisions) {
+		for (final String[] decision : decisions) {
 			importantDecisions
 					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
 							decision, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.rm,
@@ -198,12 +198,12 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
 
-		List<ViewRiksdagenCommitteeBallotDecisionPartySummary> importantDecisions = new ArrayList<>();
+		final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> importantDecisions = new ArrayList<>();
 
 		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
 				new String[] { "2017/18", "KU16" } };
 
-		for (String[] decision : decisions) {
+		for (final String[] decision : decisions) {
 			importantDecisions
 					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
 							decision, ViewRiksdagenCommitteeBallotDecisionPartySummary_.rm,
