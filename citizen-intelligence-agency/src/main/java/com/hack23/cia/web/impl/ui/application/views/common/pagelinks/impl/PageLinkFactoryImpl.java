@@ -54,6 +54,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry ";
 
+
 	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
 

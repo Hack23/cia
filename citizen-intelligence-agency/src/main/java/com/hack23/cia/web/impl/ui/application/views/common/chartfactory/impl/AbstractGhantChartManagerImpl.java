@@ -50,88 +50,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
-	/**
-	 * The Interface StepMapping.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public interface StepMapping<T> {
-
-		/**
-		 * Gets the background color.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the background color
-		 */
-		String getBackgroundColor(T t);
-
-		/**
-		 * Gets the first name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the first name
-		 */
-		Object getFirstName(T assignmentData);
-
-		/**
-		 * Gets the from date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the from date
-		 */
-		Date getFromDate(T t);
-
-		/**
-		 * Gets the last name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the last name
-		 */
-		Object getLastName(T assignmentData);
-
-		/**
-		 * Gets the org.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the org
-		 */
-		String getOrg(T t);
-
-		/**
-		 * Gets the party.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the party
-		 */
-		String getParty(T t);
-
-		/**
-		 * Gets the role code.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the role code
-		 */
-		String getRoleCode(T t);
-
-		/**
-		 * Gets the to date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the to date
-		 */
-		Date getToDate(T t);
-
-	}
-
 	/** The Constant CONTENT_SEPARATOR. */
 	private static final char CONTENT_SEPARATOR = ' ';
 
@@ -220,7 +138,6 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 			step.addSubStep(sameRoleSubStep);
 		}
 	}
-	
 
 	/**
 	 * Creates the generic gantt.
@@ -266,6 +183,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 		return gantt;
 	}
+	
 
 	/**
 	 * Creates the role ghant.
@@ -347,5 +265,87 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 * @return the step mapping
 	 */
 	protected abstract StepMapping<T> getStepMapping();
+
+	/**
+	 * The Interface StepMapping.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
+	public interface StepMapping<T> {
+
+		/**
+		 * Gets the background color.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the background color
+		 */
+		String getBackgroundColor(T t);
+
+		/**
+		 * Gets the first name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the first name
+		 */
+		Object getFirstName(T assignmentData);
+
+		/**
+		 * Gets the from date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the from date
+		 */
+		Date getFromDate(T t);
+
+		/**
+		 * Gets the last name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the last name
+		 */
+		Object getLastName(T assignmentData);
+
+		/**
+		 * Gets the org.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the org
+		 */
+		String getOrg(T t);
+
+		/**
+		 * Gets the party.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the party
+		 */
+		String getParty(T t);
+
+		/**
+		 * Gets the role code.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the role code
+		 */
+		String getRoleCode(T t);
+
+		/**
+		 * Gets the to date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the to date
+		 */
+		Date getToDate(T t);
+
+	}
 
 }

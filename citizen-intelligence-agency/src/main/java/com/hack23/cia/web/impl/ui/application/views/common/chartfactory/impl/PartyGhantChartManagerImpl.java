@@ -37,17 +37,6 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		implements PartyGhantChartManager {
 
 	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenPartyRoleMember t) {
-			return t.getRoleCode();
-		}
-	}
-
-	/**
 	 * Instantiates a new party ghant chart manager impl.
 	 */
 	public PartyGhantChartManagerImpl() {
@@ -121,6 +110,17 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenPartyRoleMember t) {
+			return t.getRoleCode();
+		}
 	}
 
 }

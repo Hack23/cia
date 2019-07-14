@@ -64,16 +64,17 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
 			"abstainVotes", "absentVotes", "approved" );
 
+	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
+
 	/** The Constant COMMITTEE. */
 	private static final String BALLOT = "Ballot:";
-
-	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
 
 	private static final String[] COLUMN_ORDER = new String[] { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", "embeddedId.ballotId" };
+
 
 
 	private static final int FIRST_OBJECT = 0;

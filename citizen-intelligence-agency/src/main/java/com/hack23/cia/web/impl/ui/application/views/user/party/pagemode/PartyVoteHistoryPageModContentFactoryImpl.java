@@ -50,7 +50,6 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
 
-
 	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
 			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,

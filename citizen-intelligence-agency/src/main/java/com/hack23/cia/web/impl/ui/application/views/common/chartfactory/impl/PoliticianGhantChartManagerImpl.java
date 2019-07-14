@@ -35,25 +35,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Poli
 public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartManagerImpl<AssignmentData>
 		implements PoliticianGhantChartManager {
 
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<AssignmentData, String> {
-
-		/** The Constant RIKSDAGSLEDAMOT. */
-		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
-
-		@Override
-		public String apply(final AssignmentData t) {
-			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
-				return RIKSDAGSLEDAMOT;
-			} else {
-				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
-			}
-
-		}
-	}
-
 	/** The Constant DEPARTEMENT. */
 	private static final String DEPARTEMENT = "Departement";
 
@@ -140,6 +121,25 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<AssignmentData, String> {
+
+		/** The Constant RIKSDAGSLEDAMOT. */
+		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
+
+		@Override
+		public String apply(final AssignmentData t) {
+			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
+				return RIKSDAGSLEDAMOT;
+			} else {
+				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
+			}
+
+		}
 	}
 
 }

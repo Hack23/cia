@@ -31,47 +31,6 @@ import org.junit.Test;
 
 public final class ChartTest extends Assert {
 
-	static class XYaxisFix extends XYaxis {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-
-		/**
-		 * Instantiates a new x yaxis fix.
-		 */
-		public XYaxisFix() {
-			super();
-		}
-
-		/**
-		 * Instantiates a new x yaxis fix.
-		 *
-		 * @param y
-		 *            the y
-		 */
-		public XYaxisFix(final XYaxes y) {
-			super(y);
-		}
-
-		@Override
-		public String getValue() {
-			return toJsonString(this);
-		}
-
-	}
-
-	static class XYseriesFix extends XYseries {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getValue() {
-			return toJsonString(this);
-		}
-
-	}
-
 	/**
 	 * To json string.
 	 *
@@ -123,7 +82,6 @@ public final class ChartTest extends Assert {
 		}
 	}
 
-
 	/**
 	 * Adds the serie test.
 	 */
@@ -133,6 +91,48 @@ public final class ChartTest extends Assert {
 		label.setLabel("sune");
 		toJsonString(label);
 		assertNotNull("Problem with toJsonString, no label",label);
+	}
+
+	static class XYaxisFix extends XYaxis {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * Instantiates a new x yaxis fix.
+		 */
+		public XYaxisFix() {
+			super();
+		}
+
+		/**
+		 * Instantiates a new x yaxis fix.
+		 *
+		 * @param y
+		 *            the y
+		 */
+		public XYaxisFix(final XYaxes y) {
+			super(y);
+		}
+
+		@Override
+		public String getValue() {
+			return toJsonString(this);
+		}
+
+	}
+
+
+	static class XYseriesFix extends XYseries {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public String getValue() {
+			return toJsonString(this);
+		}
+
 	}
 
 }

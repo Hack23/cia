@@ -37,17 +37,6 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 		implements MinistryGhantChartManager {
 
 	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenGovermentRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenGovermentRoleMember t) {
-			return t.getRoleCode()+ ".["+ t.getPersonId() +"]." + t.getDetail();
-		}
-	}
-
-	/**
 	 * Instantiates a new ministry ghant chart manager impl.
 	 */
 	public MinistryGhantChartManagerImpl() {
@@ -119,6 +108,17 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenGovermentRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenGovermentRoleMember t) {
+			return t.getRoleCode()+ ".["+ t.getPersonId() +"]." + t.getDetail();
+		}
 	}
 
 }

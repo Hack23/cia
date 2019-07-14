@@ -49,46 +49,9 @@ import com.vaadin.ui.Grid.SelectionMode;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
-	/**
-	 * The Class BeanNestedPropertyValueProvider.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public static final class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-
-		/** The property. */
-		private final String property;
-
-		/**
-		 * Instantiates a new bean nested property value provider.
-		 *
-		 * @param property
-		 *            the property
-		 */
-		public BeanNestedPropertyValueProvider(final String property) {
-			super();
-			this.property = property;
-		}
-
-		@Override
-		public String apply(final T source) {
-			try {
-				return BeanUtils.getProperty(source, property);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				LOGGER.warn("Problem getting property : {} from source : {} , exception: {}", property, source, e);
-				return "";
-			}
-		}
-
-	}
-	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);
-
+	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -231,6 +194,43 @@ public final class GridFactoryImpl implements GridFactory {
 
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
+	}
+
+	/**
+	 * The Class BeanNestedPropertyValueProvider.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
+	public static final class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The property. */
+		private final String property;
+
+		/**
+		 * Instantiates a new bean nested property value provider.
+		 *
+		 * @param property
+		 *            the property
+		 */
+		public BeanNestedPropertyValueProvider(final String property) {
+			super();
+			this.property = property;
+		}
+
+		@Override
+		public String apply(final T source) {
+			try {
+				return BeanUtils.getProperty(source, property);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				LOGGER.warn("Problem getting property : {} from source : {} , exception: {}", property, source, e);
+				return "";
+			}
+		}
+
 	}
 
 }

@@ -50,22 +50,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImpl implements PartyChartDataManager {
 
 
-	/**
-	 * The Interface DataValueCalculator.
-	 */
-	@FunctionalInterface
-	interface DataValueCalculator {
-
-		/**
-		 * Gets the data value.
-		 *
-		 * @param item
-		 *            the item
-		 * @return the data value
-		 */
-		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
-	}
-
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
@@ -80,7 +64,6 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
-
 
 	/**
 	 * Instantiates a new party chart data manager impl.
@@ -112,9 +95,6 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 
-
-
-
 	/**
 	 * Adds the ballot data.
 	 *
@@ -141,11 +121,14 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		}
 	}
 
+
+
+
+
 	@Override
 	public void createPartyAgeChart(final AbstractOrderedLayout content) {
 		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
-
 
 	/**
 	 * Creates the party ballot chart.
@@ -173,13 +156,13 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
+
 	@Override
 	public void createPartyGenderChart(final AbstractOrderedLayout content) {
 
 		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
 
 	}
-
 
 	@Override
 	public void createPartyLineChart(final AbstractOrderedLayout content,final String partyId) {
@@ -247,7 +230,6 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 
-
 	/**
 	 * Gets the party map.
 	 *
@@ -258,6 +240,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		return partyMap;
 	}
+
 
 
 	/**
@@ -274,6 +257,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		return partyMap.get(party);
 	}
 
+
 	/**
 	 * Inits the party map.
 	 */
@@ -285,6 +269,22 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
 					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getParty()));
 		}
+	}
+
+	/**
+	 * The Interface DataValueCalculator.
+	 */
+	@FunctionalInterface
+	interface DataValueCalculator {
+
+		/**
+		 * Gets the data value.
+		 *
+		 * @param item
+		 *            the item
+		 * @return the data value
+		 */
+		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
 	}
 
 

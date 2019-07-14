@@ -37,17 +37,6 @@ public final class CommitteeGhantChartManagerImpl
 		extends AbstractGhantChartManagerImpl<ViewRiksdagenCommitteeRoleMember> implements CommitteeGhantChartManager {
 
 	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
-			return t.getRoleCode() +".["+ t.getPersonId() +"]";
-		}
-	}
-
-	/**
 	 * Instantiates a new committee ghant chart manager impl.
 	 */
 	public CommitteeGhantChartManagerImpl() {
@@ -119,6 +108,17 @@ public final class CommitteeGhantChartManagerImpl
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
+			return t.getRoleCode() +".["+ t.getPersonId() +"]";
+		}
 	}
 
 }
