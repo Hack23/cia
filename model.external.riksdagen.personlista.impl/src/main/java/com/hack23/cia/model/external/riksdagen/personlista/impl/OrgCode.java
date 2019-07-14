@@ -49,7 +49,7 @@ public enum OrgCode {
     
     /** The F ö U. */
     @XmlEnumValue("F\u00f6U")
-    FÖ_U("F\u00f6U"),
+    FO_U("F\u00f6U"),
     
     /** The ju u. */
     @XmlEnumValue("JuU")
@@ -99,7 +99,7 @@ public enum OrgCode {
     
     /** The U F ö U. */
     @XmlEnumValue("UF\u00f6U")
-    U_FÖ_U("UF\u00f6U"),
+    U_FO_U("UF\u00f6U"),
     
     /** The umju. */
     UMJU("UMJU"),

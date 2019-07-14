@@ -39,11 +39,11 @@ public enum RoleStatus {
 
     /** The ANDR E VIC E TALMA N tjänstgörand E RIKSDAGSLEDAMOT. */
     @XmlEnumValue("Andre vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)")
-    ANDRE_VICE_TALMAN_TJÄNSTGÖRANDE_RIKSDAGSLEDAMOT("Andre vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
+    ANDRE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT("Andre vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
     
-    /** The AVGÅNGE N RIKSDAGSLEDAMOT. */
+    /** The AVGANGE N RIKSDAGSLEDAMOT. */
     @XmlEnumValue("Avg\u00e5ngen riksdagsledamot")
-    AVGÅNGEN_RIKSDAGSLEDAMOT("Avg\u00e5ngen riksdagsledamot"),
+    AVGANGEN_RIKSDAGSLEDAMOT("Avg\u00e5ngen riksdagsledamot"),
     
     /** The avliden 2000 04 28. */
     @XmlEnumValue("Avliden  2000-04-28")
@@ -69,25 +69,25 @@ public enum RoleStatus {
     @XmlEnumValue("Avliden  2007-06-30")
     AVLIDEN_2007_06_30("Avliden  2007-06-30"),
     
-    /** The ERSÄTTARE. */
+    /** The ERSATTARE. */
     @XmlEnumValue("Ers\u00e4ttare")
-    ERSÄTTARE("Ers\u00e4ttare"),
+    ERSATTARE("Ers\u00e4ttare"),
     
     /** The finansminister. */
     @XmlEnumValue("Finansminister")
     FINANSMINISTER("Finansminister"),
     
-    /** The FÖRST E VIC E TALMA N tjänstgörand E RIKSDAGSLEDAMOT. */
+    /** The FORST E VIC E TALMA N tjänstgörand E RIKSDAGSLEDAMOT. */
     @XmlEnumValue("F\u00f6rste vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)")
-    FÖRSTE_VICE_TALMAN_TJÄNSTGÖRANDE_RIKSDAGSLEDAMOT("F\u00f6rste vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
+    FORSTE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT("F\u00f6rste vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
     
-    /** The FÖRSVARSMINISTER. */
+    /** The FORSVARSMINISTER. */
     @XmlEnumValue("F\u00f6rsvarsminister")
-    FÖRSVARSMINISTER("F\u00f6rsvarsminister"),
+    FORSVARSMINISTER("F\u00f6rsvarsminister"),
     
     /** The INTEGRATION S OC H jämställdhetsminister. */
     @XmlEnumValue("Integrations- och j\u00e4mst\u00e4lldhetsminister")
-    INTEGRATIONS_OCH_JÄMSTÄLLDHETSMINISTER("Integrations- och j\u00e4mst\u00e4lldhetsminister"),
+    INTEGRATIONS_OCH_JAMSTALLDHETSMINISTER("Integrations- och j\u00e4mst\u00e4lldhetsminister"),
     
     /** The jordbruksminister. */
     @XmlEnumValue("Jordbruksminister")
@@ -105,13 +105,13 @@ public enum RoleStatus {
     @XmlEnumValue("Ledig")
     LEDIG("Ledig"),
     
-    /** The MILJÖMINISTER. */
+    /** The MILJOMINISTER. */
     @XmlEnumValue("Milj\u00f6minister")
-    MILJÖMINISTER("Milj\u00f6minister"),
+    MILJOMINISTER("Milj\u00f6minister"),
     
-    /** The NÄRINGSMINISTER. */
+    /** The NARINGSMINISTER. */
     @XmlEnumValue("N\u00e4ringsminister")
-    NÄRINGSMINISTER("N\u00e4ringsminister"),
+    NARINGSMINISTER("N\u00e4ringsminister"),
     
     /** The socialminister. */
     @XmlEnumValue("Socialminister")
@@ -121,9 +121,9 @@ public enum RoleStatus {
     @XmlEnumValue("Statsminister")
     STATSMINISTER("Statsminister"),
     
-    /** The STATSRÅD. */
+    /** The STATSRAD. */
     @XmlEnumValue("Statsr\u00e5d")
-    STATSRÅD("Statsr\u00e5d"),
+    STATSRAD("Statsr\u00e5d"),
     
     /** The talman. */
     @XmlEnumValue("Talman")
@@ -131,43 +131,43 @@ public enum RoleStatus {
     
     /** The TIDIGAR E ersättare. */
     @XmlEnumValue("Tidigare ers\u00e4ttare")
-    TIDIGARE_ERSÄTTARE("Tidigare ers\u00e4ttare"),
+    TIDIGARE_ERSATTARE("Tidigare ers\u00e4ttare"),
     
     /** The tidigare riksdagsledamot. */
     @XmlEnumValue("Tidigare riksdagsledamot")
     TIDIGARE_RIKSDAGSLEDAMOT("Tidigare riksdagsledamot"),
     
-    /** The TILLGÄNGLI G ersättare. */
+    /** The TILLGANGLI G ersättare. */
     @XmlEnumValue("Tillg\u00e4nglig ers\u00e4ttare")
-    TILLGÄNGLIG_ERSÄTTARE("Tillg\u00e4nglig ers\u00e4ttare"),
+    TILLGANGLIG_ERSATTARE("Tillg\u00e4nglig ers\u00e4ttare"),
     
-    /** The TJÄNSTGÖRAND E ersättare. */
+    /** The TJANSTGORAND E ersättare. */
     @XmlEnumValue("Tj\u00e4nstg\u00f6rande ers\u00e4ttare")
-    TJÄNSTGÖRANDE_ERSÄTTARE("Tj\u00e4nstg\u00f6rande ers\u00e4ttare"),
+    TJANSTGORANDE_ERSATTARE("Tj\u00e4nstg\u00f6rande ers\u00e4ttare"),
     
-    /** The TJÄNSTGÖRAND E RIKSDAGSLEDAMOT. */
+    /** The TJANSTGORAND E RIKSDAGSLEDAMOT. */
     @XmlEnumValue("Tj\u00e4nstg\u00f6rande riksdagsledamot")
-    TJÄNSTGÖRANDE_RIKSDAGSLEDAMOT("Tj\u00e4nstg\u00f6rande riksdagsledamot"),
+    TJANSTGORANDE_RIKSDAGSLEDAMOT("Tj\u00e4nstg\u00f6rande riksdagsledamot"),
     
-    /** The TJÄNSTGÖRAND E statsrådsersättare. */
+    /** The TJANSTGORAND E statsrådsersättare. */
     @XmlEnumValue("Tj\u00e4nstg\u00f6rande statsr\u00e5dsers\u00e4ttare")
-    TJÄNSTGÖRANDE_STATSRÅDSERSÄTTARE("Tj\u00e4nstg\u00f6rande statsr\u00e5dsers\u00e4ttare"),
+    TJANSTGORANDE_STATSRADSERSATTARE("Tj\u00e4nstg\u00f6rande statsr\u00e5dsers\u00e4ttare"),
     
-    /** The TJÄNSTGÖRANDE. */
+    /** The TJANSTGORANDE. */
     @XmlEnumValue("Tj\u00e4nstg\u00f6rande")
-    TJÄNSTGÖRANDE("Tj\u00e4nstg\u00f6rande"),
+    TJANSTGORANDE("Tj\u00e4nstg\u00f6rande"),
     
-    /** The TJÄNSTGÖRAND E talmansersättare. */
+    /** The TJANSTGORAND E talmansersättare. */
     @XmlEnumValue("Tj\u00e4nstg\u00f6rande talmansers\u00e4ttare")
-    TJÄNSTGÖRANDE_TALMANSERSÄTTARE("Tj\u00e4nstg\u00f6rande talmansers\u00e4ttare"),
+    TJANSTGORANDE_TALMANSERSATTARE("Tj\u00e4nstg\u00f6rande talmansers\u00e4ttare"),
     
-    /** The TJÄNSTLEDI G RIKSDAGSLEDAMOT. */
+    /** The TJANSTLEDI G RIKSDAGSLEDAMOT. */
     @XmlEnumValue("Tj\u00e4nstledig riksdagsledamot")
-    TJÄNSTLEDIG_RIKSDAGSLEDAMOT("Tj\u00e4nstledig riksdagsledamot"),
+    TJANSTLEDIG_RIKSDAGSLEDAMOT("Tj\u00e4nstledig riksdagsledamot"),
     
     /** The TREDJ E VIC E TALMA N tjänstgörand E RIKSDAGSLEDAMOT. */
     @XmlEnumValue("Tredje vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)")
-    TREDJE_VICE_TALMAN_TJÄNSTGÖRANDE_RIKSDAGSLEDAMOT("Tredje vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
+    TREDJE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT("Tredje vice talman (tj\u00e4nstg\u00f6rande riksdagsledamot)"),
     
     /** The utbildningsminister. */
     @XmlEnumValue("Utbildningsminister")
