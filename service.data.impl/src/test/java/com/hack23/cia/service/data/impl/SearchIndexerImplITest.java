@@ -20,16 +20,11 @@ package com.hack23.cia.service.data.impl;
 
 import java.io.File;
 import java.util.List;
-import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.io.FileUtils;
-import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateFactoryContext;
-import org.hibernate.search.engine.search.dsl.predicate.SearchPredicateTerminalContext;
-import org.hibernate.search.engine.search.dsl.query.SearchQueryContext;
-import org.hibernate.search.engine.search.dsl.query.SearchQueryResultDefinitionContext;
 import org.hibernate.search.mapper.orm.Search;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,10 +67,8 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Test
 	@Transactional(timeout=30)
 	public void testSearchIndex() throws Exception {
-		final SearchQueryResultDefinitionContext<?, ?, DocumentContentData, ?, ?> queryResult = Search.getSearchSession(entityManager).search(DocumentContentData.class);
-		final SearchQueryContext<?, DocumentContentData, ?> query = queryResult.asEntity()
-	        .predicate((Function<? super SearchPredicateFactoryContext, SearchPredicateTerminalContext>) t -> t.match().onFields("content").matching("programmering"));        
-		final List<DocumentContentData> result = query.toQuery().fetch(500).getHits();
+		final List<DocumentContentData> result = Search.session(entityManager).search(DocumentContentData.class).asEntity()
+	        .predicate(t -> t.match().onFields("content").matching("programmering")).fetchHits(500);
 		assertTrue("expect some result",result.size()> 0);
 	}
 
