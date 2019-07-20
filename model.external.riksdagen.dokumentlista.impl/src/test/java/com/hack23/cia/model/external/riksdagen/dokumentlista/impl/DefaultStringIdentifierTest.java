@@ -30,7 +30,6 @@ public final class DefaultStringIdentifierTest extends AbstractUnitTest {
 	@Test
 	public void basicTest() {
 		String arg0 = "argo";
-		assertEquals(arg0,new DefaultStringIdentifier().cast(arg0));
 		assertEquals(arg0,new DefaultStringIdentifier().fromDocumentIdentifier(arg0,null));
 		assertEquals(arg0,new DefaultStringIdentifier().toDocumentIdentifier(arg0,null));
 

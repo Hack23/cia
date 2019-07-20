@@ -29,17 +29,6 @@ import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeToDocumen
 public final class DefaultStringIdentifier implements IdentifierBridge<String> {
 
 	/**
-	 * Cast.
-	 *
-	 * @param arg0 the arg 0
-	 * @return the string
-	 */
-	@Override
-	public String cast(final Object arg0) {
-		return (String) arg0;
-	}
-
-	/**
 	 * From document identifier.
 	 *
 	 * @param arg0 the arg 0
