@@ -23,8 +23,8 @@ import org.apache.lucene.analysis.en.PorterStemFilterFactory;
 import org.apache.lucene.analysis.ngram.NGramFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
+import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurationContext;
 import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer;
-import org.hibernate.search.backend.lucene.analysis.model.dsl.LuceneAnalysisDefinitionContainerContext;
 
 /**
  * The Class DataSearchAnalysisConfigurer.
@@ -32,14 +32,14 @@ import org.hibernate.search.backend.lucene.analysis.model.dsl.LuceneAnalysisDefi
 public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer {
 
 	@Override
-	public void configure(LuceneAnalysisDefinitionContainerContext context) {
+	public void configure(LuceneAnalysisConfigurationContext context) {
 		context.analyzer("ngram").custom().tokenizer(StandardTokenizerFactory.class)
-				.tokenFilter(LowerCaseFilterFactory.class).tokenFilter(NGramFilterFactory.class)
-				.param("minGramSize", "3").param("maxGramSize", "3").analyzer("se").custom()
-				.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
-				.tokenFilter(SwedishLightStemFilterFactory.class).analyzer("en").custom()
-				.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
-				.tokenFilter(PorterStemFilterFactory.class);
+		.tokenFilter(LowerCaseFilterFactory.class).tokenFilter(NGramFilterFactory.class)
+		.param("minGramSize", "3").param("maxGramSize", "3").analyzer("se").custom()
+		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
+		.tokenFilter(SwedishLightStemFilterFactory.class).analyzer("en").custom()
+		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
+		.tokenFilter(PorterStemFilterFactory.class);		
 	}
 
 

@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import org.hibernate.search.mapper.orm.mapping.HibernateOrmMappingDefinitionContainerContext;
+import org.hibernate.search.mapper.orm.mapping.HibernateOrmMappingConfigurationContext;
 import org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
@@ -29,7 +29,7 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 public class DataSearchMapping implements HibernateOrmSearchMappingConfigurer {
 
 	@Override
-	public void configure(HibernateOrmMappingDefinitionContainerContext context) {
-		context.annotationMapping().add(DocumentContentData.class);
+	public void configure(HibernateOrmMappingConfigurationContext context) {
+		context.annotationMapping().add(DocumentContentData.class);		
 	}
 }
