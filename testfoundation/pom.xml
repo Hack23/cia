@@ -476,7 +476,7 @@
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.12</version>
+      <version>${cia.project.versions.commons.codec}</version>
     </dependency>
     <dependency>
       <groupId>xml-apis</groupId>
