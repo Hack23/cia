@@ -163,15 +163,7 @@ public final class CitizenIntelligenceAgencyServer {
 		final MBeanContainer mbContainer = new MBeanContainer(ManagementFactory.getPlatformMBeanServer());
 		server.addBean(mbContainer);
 
-		//final org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
-		
-		// Enable parsing of jndi-related parts of web.xml and jetty-env.xml
-		final org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList
-					.setServerDefault(server);
-		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
-						"org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
-		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
-						"org.eclipse.jetty.annotations.AnnotationConfiguration");
+		final org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
 				
 		final HttpConfiguration http_config = new HttpConfiguration();
 		http_config.setSecureScheme("https");
@@ -181,7 +173,7 @@ public final class CitizenIntelligenceAgencyServer {
 		final HttpConfiguration https_config = new HttpConfiguration(http_config);
 		https_config.addCustomizer(new SecureRequestCustomizer());
 
-		final SslContextFactory sslContextFactory = new SslContextFactory.Server();
+		final SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
 		sslContextFactory.setKeyStoreType("PKCS12");
 		sslContextFactory.setKeyStorePath("target/keystore.p12");
 		sslContextFactory.setTrustStorePath("target/keystore.p12");

@@ -980,8 +980,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-continuation</artifactId>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>javax-websocket-server</artifactId>
       <version>${cia.project.versions.jetty}</version>
       <scope>provided</scope>
     </dependency>
@@ -996,12 +996,6 @@
       <artifactId>jetty-servlets</artifactId>
       <version>${cia.project.versions.jetty}</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty.websocket</groupId>
-      <artifactId>javax-websocket-server-impl</artifactId>
-      <version>${cia.project.versions.jetty}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>xerces</groupId>

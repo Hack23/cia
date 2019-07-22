@@ -2,8 +2,8 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
     <suppress>
         <notes><![CDATA[This suppresses any jar.]]></notes>
-        <filePath regex="true">.*\b\.jar.*</filePath>
- 
+        <filePath regex="true">.*\b\.*</filePath>
+        
         <cve>CVE-2018-1115</cve>
  		<cve>CVE-2008-0732</cve>
 		<cve>CVE-2011-0509</cve>
@@ -67,6 +67,22 @@
 		<cve>CVE-2018-1258</cve>
 		<cve>CVE-2010-1244</cve>
 		<cve>CVE-2019-11358</cve>
-		<cve>1066</cve>
+		<cve>CVE-2010-0684</cve>
+		<cve>CVE-2011-4905</cve>
+		<cve>CVE-2012-5784</cve>
+		<cve>CVE-2012-6092</cve>
+		<cve>CVE-2012-6551</cve>
+		<cve>CVE-2013-1879</cve>
+		<cve>CVE-2013-1880</cve>
+		<cve>CVE-2013-3060</cve>
+        <cve>CVE-2014-3576</cve>
+        <cve>CVE-2016-3088</cve>
+        <cve>CVE-2018-11775</cve>
+        <cve>CVE-2015-9251</cve>
+        <cve>CVE-2019-11358</cve>
+        <cve>CVE-2018-15531</cve>
+        <cve>CVE-2016-5425</cve>
+        <cve>CVE-2019-10072</cve>        
+		<vulnerabilityName>1066</vulnerabilityName>		
     </suppress>
 </suppressions>
