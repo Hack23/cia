@@ -65,5 +65,8 @@
 		<cve>CVE-2016-4978</cve>
 		<cve>CVE-2015-3208</cve>
 		<cve>CVE-2018-1258</cve>
+		<cve>CVE-2010-1244</cve>
+		<cve>CVE-2019-11358</cve>
+		<cve>1066</cve>
     </suppress>
 </suppressions>
