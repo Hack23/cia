@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
     <suppress>
         <notes><![CDATA[This suppresses any jar.]]></notes>
         <filePath regex="true">.*\b\.*</filePath>
-        
         <cve>CVE-2018-1115</cve>
  		<cve>CVE-2008-0732</cve>
 		<cve>CVE-2011-0509</cve>
@@ -83,6 +82,5 @@
         <cve>CVE-2018-15531</cve>
         <cve>CVE-2016-5425</cve>
         <cve>CVE-2019-10072</cve>        
-		<vulnerabilityName>1066</vulnerabilityName>		
     </suppress>
 </suppressions>
