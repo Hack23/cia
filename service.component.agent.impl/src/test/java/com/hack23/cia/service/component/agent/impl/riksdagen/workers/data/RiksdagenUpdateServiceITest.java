@@ -206,7 +206,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void updateCommitteeProposalComponentDataAlreadyExistUpdateWithSuccessTest() throws Exception {
+	public void updateCommitteeProposalComponentDataAlreadyExistUpdateWithListsSuccessTest() throws Exception {
 		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
 				CommitteeProposalComponentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
@@ -218,6 +218,27 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		
 		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(committeeProposalContainer).withAgainstProposalContainer(againstProposalContainer);
+				
+		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				documentProposal.getDocument())).thenReturn(documentProposal);
+		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
+		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
+	}
+
+	/**
+	 * Update committee proposal component data already exist update with null lists success test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void updateCommitteeProposalComponentDataAlreadyExistUpdateWithNullListsSuccessTest() throws Exception {
+		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
+				CommitteeProposalComponentDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
+				committeeProposalComponentDataDAO);
+		
+		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(null).withAgainstProposalContainer(null);
 				
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);

@@ -168,11 +168,11 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		exist.getDocument().setDocumentStatusUrlWww(committeeProposal.getDocument().getDocumentStatusUrlWww());
 		exist.getDocument().setCommitteeProposalUrlXml(committeeProposal.getDocument().getCommitteeProposalUrlXml());
 		
-		if (exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty()) {
+		if (exist.getAgainstProposalContainer() != null && exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty()) {
 			exist.getAgainstProposalContainer().setAgainstProposalList(committeeProposal.getAgainstProposalContainer().getAgainstProposalList());
 		}
 		
-		if (exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
+		if (exist.getCommitteeProposalContainer() != null && exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
 			exist.getCommitteeProposalContainer().setCommitteeProposalList(committeeProposal.getCommitteeProposalContainer().getCommitteeProposalList());
 		}		
 	}
@@ -200,10 +200,8 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	}
 
 	private static void mergeDocumentStatusContainer(final DocumentStatusContainer existData, final DocumentStatusContainer documentData) {		
-		if (!"planerat".equals(documentData.getDocument().getStatus())) {
 			existData.getDocument().setStatus(documentData.getDocument().getStatus());
 			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());			
-		}
 	}
 
 	@Override
