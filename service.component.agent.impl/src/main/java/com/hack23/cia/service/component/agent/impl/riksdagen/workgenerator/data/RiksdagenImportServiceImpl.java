@@ -40,6 +40,10 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData_;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
@@ -149,6 +153,12 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	public Map<String, String> getCommitteeProposalComponentDataMap() {
 		return createMapFromList(committeeProposalComponentDataDAO.getIdList());
 	}
+	
+	@Override
+	public List<CommitteeProposalComponentData> getNoneCompletedCommitteeProposal() {
+		return committeeProposalComponentDataDAO.findListByEmbeddedProperty(CommitteeProposalComponentData_.document,CommitteeDocumentData.class,CommitteeDocumentData_.status,"planerat");
+	}
+
 
 	@Override
 	public Map<String, String> getDocumentContentMap() {

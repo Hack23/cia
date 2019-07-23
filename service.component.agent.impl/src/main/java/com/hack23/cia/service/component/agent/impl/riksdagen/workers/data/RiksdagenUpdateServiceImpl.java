@@ -140,10 +140,41 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
-		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
-				committeeProposal.getDocument()) == null) {
+		CommitteeProposalComponentData exist = committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				committeeProposal.getDocument());
+		if (exist == null) {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
+		} else {
+			mergeCommitteeProposalComponentData(exist,committeeProposal);
+			committeeProposalComponentDataDAO.persist(exist);
 		}
+	}
+
+	/**
+	 * Merge committee proposal component data.
+	 *
+	 * @param exist the exist
+	 * @param committeeProposal the committee proposal
+	 */
+	private static void mergeCommitteeProposalComponentData(final CommitteeProposalComponentData exist,
+			final CommitteeProposalComponentData committeeProposal) {		
+		exist.getDocument().setStatus(committeeProposal.getDocument().getStatus());
+		exist.getDocument().setPublicDate(committeeProposal.getDocument().getPublicDate());
+	
+		exist.getDocument().setDocumentUrlText(committeeProposal.getDocument().getDocumentUrlText());
+		exist.getDocument().setDocumentUrlHtml(committeeProposal.getDocument().getDocumentUrlHtml());
+		exist.getDocument().setDocumentStatusUrlXml(committeeProposal.getDocument().getDocumentStatusUrlXml());
+		
+		exist.getDocument().setDocumentStatusUrlWww(committeeProposal.getDocument().getDocumentStatusUrlWww());
+		exist.getDocument().setCommitteeProposalUrlXml(committeeProposal.getDocument().getCommitteeProposalUrlXml());
+		
+		if (exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty()) {
+			exist.getAgainstProposalContainer().setAgainstProposalList(committeeProposal.getAgainstProposalContainer().getAgainstProposalList());
+		}
+		
+		if (exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
+			exist.getCommitteeProposalContainer().setCommitteeProposalList(committeeProposal.getCommitteeProposalContainer().getCommitteeProposalList());
+		}		
 	}
 
 	@Override

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 
 /**
  * The Interface RiksdagenImportService.
@@ -102,5 +103,12 @@ public interface RiksdagenImportService {
 	 * @return the none completed document status committee reports
 	 */
 	List<DocumentStatusContainer> getNoneCompletedDocumentStatusCommitteeReports();
+
+	/**
+	 * Gets the none completed committee proposal.
+	 *
+	 * @return the none completed committee proposal
+	 */
+	List<CommitteeProposalComponentData> getNoneCompletedCommitteeProposal();
 
 }

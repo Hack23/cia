@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 
 /**
@@ -68,6 +69,12 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 				LOGGER.info("load https://data.riksdagen.se/utskottsforslag/{}", id);
 			}
 		}
+		
+		for (final CommitteeProposalComponentData container : getImportService().getNoneCompletedCommitteeProposal()) {
+				 getJmsSender().send(committeeProposalComponentDataWorkdestination,container.getDocument().getId());
+			 
+		}		
+
 	}
 
 }

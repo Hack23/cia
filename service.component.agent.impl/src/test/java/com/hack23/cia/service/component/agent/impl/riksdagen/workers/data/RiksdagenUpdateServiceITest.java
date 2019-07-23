@@ -44,9 +44,13 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalContainer;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId_;
@@ -177,24 +181,51 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	}
 
 	/**
-	 * Update committee proposal component data already exist ignore success test.
+	 * Update committee proposal component data already exist update success test.
 	 *
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void updateCommitteeProposalComponentDataAlreadyExistIgnoreSuccessTest() throws Exception {
+	public void updateCommitteeProposalComponentDataAlreadyExistUpdateSuccessTest() throws Exception {
 		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
 				CommitteeProposalComponentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
 				committeeProposalComponentDataDAO);
 		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
-				.withDocument(new CommitteeDocumentData());
+				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(new CommitteeProposalContainer()).withAgainstProposalContainer(new AgainstProposalContainer());
+				
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
-		verify(committeeProposalComponentDataDAO, never()).persist(documentProposal);
+		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
 	}
 
+	/**
+	 * Update committee proposal component data already exist update with success test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void updateCommitteeProposalComponentDataAlreadyExistUpdateWithSuccessTest() throws Exception {
+		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
+				CommitteeProposalComponentDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
+				committeeProposalComponentDataDAO);
+		final CommitteeProposalContainer committeeProposalContainer = new CommitteeProposalContainer();
+		committeeProposalContainer.getCommitteeProposalList().add(new CommitteeProposalData());
+		final AgainstProposalContainer againstProposalContainer = new AgainstProposalContainer();
+		againstProposalContainer.getAgainstProposalList().add(new AgainstProposalData());
+		
+		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(committeeProposalContainer).withAgainstProposalContainer(againstProposalContainer);
+				
+		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				documentProposal.getDocument())).thenReturn(documentProposal);
+		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
+		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
+	}
+
+	
 	/**
 	 * Update document element success test.
 	 *
