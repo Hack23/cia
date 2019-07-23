@@ -185,7 +185,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"371B8030-1B48-4E9B-A177-A16CCE74F079"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"38736D18-7025-4EFE-ABC7-0D22E4AE8C11"));
 
 		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
