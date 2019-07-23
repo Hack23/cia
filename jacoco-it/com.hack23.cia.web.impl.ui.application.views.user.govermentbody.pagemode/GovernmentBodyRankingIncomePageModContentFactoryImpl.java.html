@@ -53,29 +53,29 @@ public final class GovernmentBodyRankingIncomePageModContentFactoryImpl extends 
 <span class="fc" id="L53">		super();</span>
 <span class="fc" id="L54">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L58" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.INCOME.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L66">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L61">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L70">		panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODIES + parameters);</span>
+<span class="fc" id="L65">		panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODIES + parameters);</span>
 
-<span class="fc" id="L72">		governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent);</span>
+<span class="fc" id="L67">		governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent);</span>
 
-<span class="fc" id="L74">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L77">		return panelContent;</span>
+<span class="fc" id="L72">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L78" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.INCOME.toString());</span>
 	}
 
 }

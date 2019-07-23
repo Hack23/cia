@@ -38,12 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeRankingOverviewPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
 	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
 	private static final String COMMITTEE_RANKING_BY_TOPIC = &quot;Committee Ranking by topic&quot;;
 
@@ -58,6 +52,12 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 			+ &quot;\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
 			+ &quot;\nSearch by name&quot;;
 
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = &quot;overview&quot;;
+
 
 	/**
 	 * Instantiates a new committee ranking overview page mod content factory
@@ -67,45 +67,45 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 <span class="fc" id="L67">		super();</span>
 <span class="fc" id="L68">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L72" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
-	}
-
-	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L78">		final VerticalLayout panelContent = createPanelContent();</span>
-
-<span class="fc" id="L80">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
-
-<span class="fc" id="L82">		final String pageId = getPageId(parameters);</span>
-
-<span class="fc" id="L84">		panelContent.addComponent(createDescription());</span>
-
-<span class="fc" id="L86">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
-
-<span class="fc" id="L88">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L90">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
-
-<span class="fc" id="L93">		return panelContent;</span>
-
-	}
-
-
 	/**
 	 * Creates the description.
 	 *
 	 * @return the text area
 	 */
 	private static TextArea createDescription() {
-<span class="fc" id="L104">		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,</span>
+<span class="fc" id="L76">		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,</span>
 				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
-<span class="fc" id="L106">		totalCommitteeRankinglistLabel.setSizeFull();</span>
-<span class="fc" id="L107">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="fc" id="L108">		return totalCommitteeRankinglistLabel;</span>
+<span class="fc" id="L78">		totalCommitteeRankinglistLabel.setSizeFull();</span>
+<span class="fc" id="L79">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
+<span class="fc" id="L80">		return totalCommitteeRankinglistLabel;</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L88">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L92">		panelContent.addComponent(createDescription());</span>
+
+<span class="fc" id="L94">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+
+<span class="fc" id="L96">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+
+<span class="fc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L101">		return panelContent;</span>
+
+	}
+
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="pc bpc" id="L108" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 

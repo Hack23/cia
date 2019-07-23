@@ -7,5 +7,5 @@
         {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenPartyRoleMember>): void
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

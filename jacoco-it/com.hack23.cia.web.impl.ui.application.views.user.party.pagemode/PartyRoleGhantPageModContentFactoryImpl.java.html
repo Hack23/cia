@@ -55,34 +55,34 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 <span class="fc" id="L55">		super();</span>
 <span class="fc" id="L56">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L60" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.ROLEGHANT.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L70">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L71">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L73">		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);</span>
+<span class="fc" id="L68">		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);</span>
 
-<span class="fc" id="L75">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L76">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="fc" id="L70">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L78">		final List&lt;ViewRiksdagenPartyRoleMember&gt; allMembers = partyRoleMemberDataContainer</span>
-<span class="fc" id="L79">				.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());</span>
+<span class="fc" id="L73">		final List&lt;ViewRiksdagenPartyRoleMember&gt; allMembers = partyRoleMemberDataContainer</span>
+<span class="fc" id="L74">				.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());</span>
 
-<span class="fc" id="L81">		partyGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
+<span class="fc" id="L76">		partyGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
 
-<span class="fc" id="L83">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L84">		return panelContent;</span>
+<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L79">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.ROLEGHANT.toString());</span>
 	}
 
 }

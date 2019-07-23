@@ -4,30 +4,30 @@
     hide empty methods
 
     class "<size:14>PageLinkFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl" as com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.PageLinkFactoryImpl [[PageLinkFactoryImpl.html]] {
-        +createMainViewPageLink(): Link
-        +createRegisterPageLink(): Link
-        +createLoginPageLink(): Link
         +addCommitteePageLink(ViewRiksdagenCommittee): Link
         +addMinistryPageLink(ViewRiksdagenMinistry): Link
         +addPartyPageLink(ViewRiksdagenParty): Link
-        +createPoliticianPageLink(PersonData): Link
         +createAdminPagingLink(String, String, String, String): Link
+        +createLoginPageLink(): Link
+        +createMainViewPageLink(): Link
+        +createPoliticianPageLink(PersonData): Link
+        +createRegisterPageLink(): Link
         +createUserHomeViewPageLink(): Link
     }
 
     interface "<size:14>PageLinkFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api" as com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory [[../api/PageLinkFactory.html]] {
-        {abstract} +createMainViewPageLink(): Link
-        {abstract} +createUserHomeViewPageLink(): Link
         {abstract} +addCommitteePageLink(ViewRiksdagenCommittee): Link
         {abstract} +addMinistryPageLink(ViewRiksdagenMinistry): Link
         {abstract} +addPartyPageLink(ViewRiksdagenParty): Link
         {abstract} +createAdminPagingLink(String, String, String, String): Link
+        {abstract} +createLoginPageLink(): Link
+        {abstract} +createMainViewPageLink(): Link
         {abstract} +createPoliticianPageLink(PersonData): Link
         {abstract} +createRegisterPageLink(): Link
-        {abstract} +createLoginPageLink(): Link
+        {abstract} +createUserHomeViewPageLink(): Link
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.PageLinkFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

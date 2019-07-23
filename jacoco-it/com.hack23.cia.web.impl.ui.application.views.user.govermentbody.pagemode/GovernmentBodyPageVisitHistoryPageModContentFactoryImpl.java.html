@@ -52,28 +52,28 @@ public final class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 <span class="fc" id="L52">		super();</span>
 <span class="fc" id="L53">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L57" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L66">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L61">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L68">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
+<span class="fc" id="L63">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
 
-<span class="fc" id="L70">		panel.setCaption(NAME + &quot;::&quot; + PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L65">		panel.setCaption(NAME + &quot;::&quot; + PAGE_VISIT_HISTORY);</span>
 
-<span class="fc" id="L72">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L75">		return panelContent;</span>
+<span class="fc" id="L70">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L76" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

@@ -5,6 +5,6 @@ digraph xstream_1_4_11_1_dependencies {
   xstream_1_4_11_1 -> dom4j_2_1_1;
   xstream_1_4_11_1 -> jaxb_api_2_4_0;
   xstream_1_4_11_1 -> jdom2_2_0_6;
-  xstream_1_4_11_1 -> joda_time_2_10_2;
+  xstream_1_4_11_1 -> joda_time_2_10_3;
   xstream_1_4_11_1 -> xml_apis_1_4_01;
 }

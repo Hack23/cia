@@ -22,4 +22,4 @@ Export-Package: net.sf.cglib.beans;uses:="net.sf.cglib.core",net.sf.cg
 Import-Package: java.beans,java.io,java.lang,java.lang.ref,java.lang.r
  eflect,java.math,java.net,java.security,java.util,java.util.concurren
  t,java.util.zip,org.apache.tools.ant;version="1.10.6",org.apache.tool
- s.ant.types;version="1.10.6",org.objectweb.asm;version="7.1"
+ s.ant.types;version="1.10.6",org.objectweb.asm;version="0.0.0"

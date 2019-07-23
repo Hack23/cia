@@ -2,7 +2,7 @@ digraph wt_pdf_viewer_2_0_1_dependencies {
   node [shape = box, fontsize=10.0];
   wt_pdf_viewer_2_0_1 -> gwt_user_2_8_2;
   wt_pdf_viewer_2_0_1 -> slf4j_api_2_0_0_alpha0;
-  wt_pdf_viewer_2_0_1 -> vaadin_client_8_8_3;
-  wt_pdf_viewer_2_0_1 -> vaadin_server_8_8_3;
-  wt_pdf_viewer_2_0_1 -> vaadin_shared_8_8_3;
+  wt_pdf_viewer_2_0_1 -> vaadin_client_8_9_0_beta1;
+  wt_pdf_viewer_2_0_1 -> vaadin_server_8_9_0_beta1;
+  wt_pdf_viewer_2_0_1 -> vaadin_shared_8_9_0_beta1;
 }

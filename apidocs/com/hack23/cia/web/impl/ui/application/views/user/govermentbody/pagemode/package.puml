@@ -2,60 +2,60 @@
     namespace com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode {
 
         class GovernmentBodyRankingExpenditurePageModContentFactoryImpl [[GovernmentBodyRankingExpenditurePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyRankingDataGridPageModContentFactoryImpl [[GovernmentBodyRankingDataGridPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyHeadcountPageModContentFactoryImpl [[GovernmentBodyHeadcountPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyIncomePageModContentFactoryImpl [[GovernmentBodyIncomePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyRankingHeadCountPageModContentFactoryImpl [[GovernmentBodyRankingHeadCountPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyOverviewPageModContentFactoryImpl [[GovernmentBodyOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyRankingOverviewPageModContentFactoryImpl [[GovernmentBodyRankingOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl [[GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyExpenditurePageModContentFactoryImpl [[GovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl [[GovernmentBodyPageVisitHistoryPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class GovernmentBodyRankingIncomePageModContentFactoryImpl [[GovernmentBodyRankingIncomePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- GovernmentBodyRankingExpenditurePageModContentFactoryImpl
@@ -78,5 +78,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -4,14 +4,14 @@
     hide empty methods
 
     enum "<size:14>PoliticianPageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode [[PoliticianPageMode.html]] {
-        {static} +ROLESUMMARY
-        {static} +ROLELIST
-        {static} +ROLEGHANT
+        {static} +BALLOTDECISIONSUMMARY
         {static} +DOCUMENTACTIVITY
         {static} +DOCUMENTHISTORY
-        {static} +BALLOTDECISIONSUMMARY
+        {static} +ROLEGHANT
+        {static} +ROLELIST
+        {static} +ROLESUMMARY
         {static} +VOTEHISTORY
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -43,26 +43,26 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 <span class="fc" id="L43">		super();</span>
 <span class="fc" id="L44">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L48" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L54">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L56">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L51">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L58">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L59">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L61">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L63">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L64">		return panelContent;</span>
+<span class="fc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L59">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L65" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

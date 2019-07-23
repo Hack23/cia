@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1563515448293
+Build-Jdk: 1.8.0_162
+Built-By: tatu
+Bundle-Description: Support for reading and writing Concise Binary Objec
+ t Representation([CBOR](https://www.rfc-editor.org/info/rfc7049)encoded
+  data using Jackson abstractions (streaming API, data binding, tree mod
+ el)
+Bundle-DocURL: http://github.com/FasterXML/jackson-dataformats-binary
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Jackson dataformat: CBOR
+Bundle-SymbolicName: com.fasterxml.jackson.dataformat.jackson-dataformat
+ -cbor
+Bundle-Vendor: FasterXML
+Bundle-Version: 2.10.0.pr1
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.fasterxml.jackson.dataformat.cbor;version="2.10.0.pr
+ 1";uses:="com.fasterxml.jackson.core,com.fasterxml.jackson.core.base,co
+ m.fasterxml.jackson.core.format,com.fasterxml.jackson.core.io,com.faste
+ rxml.jackson.core.json,com.fasterxml.jackson.core.sym,com.fasterxml.jac
+ kson.core.util",com.fasterxml.jackson.dataformat.cbor.databind;version=
+ "2.10.0.pr1";uses:="com.fasterxml.jackson.core,com.fasterxml.jackson.da
+ tabind,com.fasterxml.jackson.databind.cfg,com.fasterxml.jackson.datafor
+ mat.cbor"
+Implementation-Build-Date: 2019-07-19 05:50:21+0000
+Implementation-Title: Jackson dataformat: CBOR
+Implementation-Vendor: FasterXML
+Implementation-Vendor-Id: com.fasterxml.jackson.dataformat
+Implementation-Version: 2.10.0.pr1
+Import-Package: com.fasterxml.jackson.core;version="[2.10,3)",com.faster
+ xml.jackson.core.base;version="[2.10,3)",com.fasterxml.jackson.core.for
+ mat;version="[2.10,3)",com.fasterxml.jackson.core.io;version="[2.10,3)"
+ ,com.fasterxml.jackson.core.json;version="[2.10,3)",com.fasterxml.jacks
+ on.core.sym;version="[2.10,3)",com.fasterxml.jackson.core.util;version=
+ "[2.10,3)",com.fasterxml.jackson.databind;version="[2.10,3)",com.faster
+ xml.jackson.databind.cfg;version="[2.10,3)",com.fasterxml.jackson.dataf
+ ormat.cbor;version="[2.10,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Specification-Title: Jackson dataformat: CBOR
+Specification-Vendor: FasterXML
+Specification-Version: 2.10.0.pr1
+Tool: Bnd-4.2.0.201903051501
+X-Compile-Source-JDK: 1.7
+X-Compile-Target-JDK: 1.7
+

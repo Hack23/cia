@@ -152,7 +152,7 @@ Import-Package: java.awt,java.awt.font,java.awt.geom,java.awt.image,ja
  ava.util.zip,javax.crypto,javax.imageio,javax.xml.parsers;version="1.
  0",javax.xml.transform;version="1.0",javax.xml.transform.dom;version=
  "1.0",javax.xml.transform.stream;version="1.0",org.apache.commons.cod
- ec;version="1.12",org.apache.poi;version="4.1.0",org.apache.poi.commo
+ ec;version="1.13",org.apache.poi;version="4.1.0",org.apache.poi.commo
  n.usermodel;version="4.1.0",org.apache.poi.common.usermodel.fonts;ver
  sion="4.1.0",org.apache.poi.ddf;version="4.1.0",org.apache.poi.extrac
  tor;version="4.1.0",org.apache.poi.hpsf;version="4.1.0",org.apache.po

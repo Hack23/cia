@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.drools.mvel-parser
+Bnd-LastModified: 1563180520777
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Parsing of constraints in LHS
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: drools-mvel-parser
+Bundle-SymbolicName: org.drools.mvel-parser
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.24.0.201907150836
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.drools.mvel.parser;version="7.24.0",org.drools.mvel.
+ parser.ast.expr;version="7.24.0",org.drools.mvel.parser.ast.visitor;ver
+ sion="7.24.0",org.drools.mvel.parser.printer;version="7.24.0",org.drool
+ s.mvel.parser.utils;version="7.24.0"
+Implementation-Title: drools-mvel-parser
+Implementation-URL: http://www.kiegroup.org/drools/drools-model/drools-m
+ vel-parser
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.drools
+Implementation-Version: 7.24.0.Final
+Import-Package: com.github.javaparser,com.github.javaparser.ast,com.gith
+ ub.javaparser.ast.body,com.github.javaparser.ast.comments,com.github.ja
+ vaparser.ast.expr,com.github.javaparser.ast.modules,com.github.javapars
+ er.ast.nodeTypes,com.github.javaparser.ast.observer,com.github.javapars
+ er.ast.stmt,com.github.javaparser.ast.type,com.github.javaparser.ast.vi
+ sitor,com.github.javaparser.metamodel,com.github.javaparser.printer,com
+ .github.javaparser.resolution,com.github.javaparser.resolution.declarat
+ ions,com.github.javaparser.utils,org.drools.mvel.parser.ast.expr,org.dr
+ ools.mvel.parser.ast.visitor,org.drools.mvel.parser.printer
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: org.drools.mvel.parser.ast.expr,org.drools.mvel.parser.
+ ast.visitor,org.drools.mvel.parser,org.drools.mvel.parser.utils,org.dro
+ ols.mvel.parser.printer
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-mo
+ del/drools-mvel-parser
+Scm-Revision: 8efef81fdd0476523ceb3be2a12a92c094aefde8
+Scm-Url: https://github.com/kiegroup/drools/drools-model/drools-mvel-par
+ ser
+Specification-Title: drools-mvel-parser
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.24.0.Final
+Tool: Bnd-3.5.0.201709291849
+

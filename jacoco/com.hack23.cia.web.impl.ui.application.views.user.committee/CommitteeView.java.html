@@ -36,11 +36,11 @@ import com.vaadin.spring.annotation.SpringView;
 @SpringView(name = CommitteeView.NAME)
 public final class CommitteeView extends AbstractGroupView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new committee view.

@@ -2,38 +2,38 @@
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
 
         abstract class AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]] {
-            {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
             {static} +CURRENT_PAGE_VISIT_HISTORY: String
             {static} +DEFAULT_RESULTS_PER_PAGE: int
-            #getPageId(String): String
-            #getPageNr(String): int
-            #getApplicationManager(): ApplicationManager
-            #getMenuItemFactory(): ApplicationMenuItemFactory
-            #getGridFactory(): GridFactory
-            #getFormFactory(): FormFactory
-            #getPageLinkFactory(): PageLinkFactory
-            #getAdminChartDataManager(): AdminChartDataManager
-            #getPageActionEventHelper(): PageActionEventHelper
-            #createPanelContent(): VerticalLayout
+            {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
             #createPageVisitHistory(String, String, VerticalLayout): void
+            #createPanelContent(): VerticalLayout
+            #getAdminChartDataManager(): AdminChartDataManager
+            #getApplicationManager(): ApplicationManager
+            #getFormFactory(): FormFactory
+            #getGridFactory(): GridFactory
+            #getMenuItemFactory(): ApplicationMenuItemFactory
+            #getPageActionEventHelper(): PageActionEventHelper
+            #getPageId(String): String
+            #getPageLinkFactory(): PageLinkFactory
+            #getPageNr(String): int
         }
 
         class MainViewRegisterPageModContentFactoryImpl [[MainViewRegisterPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MainViewPageVisitHistoryPageModContentFactoryImpl [[MainViewPageVisitHistoryPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MainViewLoginPageModContentFactoryImpl [[MainViewLoginPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         abstract class AbstractBasicPageModContentFactoryImpl [[AbstractBasicPageModContentFactoryImpl.html]] {
@@ -41,20 +41,20 @@
         }
 
         abstract class AbstractItemPageModContentFactoryImpl<T> [[AbstractItemPageModContentFactoryImpl.html]] {
-            +validReference(String): boolean
             {abstract} #getItem(String): T
+            +validReference(String): boolean
         }
 
         interface PageModeContentFactory [[PageModeContentFactory.html]] {
+            {abstract} +createContent(String, MenuBar, Panel): Layout
             {abstract} +matches(String, String): boolean
             {abstract} +validReference(String): boolean
-            {abstract} +createContent(String, MenuBar, Panel): Layout
         }
 
         class MainViewOverviewPageModContentFactoryImpl [[MainViewOverviewPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         PageModeContentFactory <|.. AbstractPageModContentFactoryImpl
@@ -66,5 +66,5 @@
         AbstractBasicPageModContentFactoryImpl <|-- MainViewOverviewPageModContentFactoryImpl
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

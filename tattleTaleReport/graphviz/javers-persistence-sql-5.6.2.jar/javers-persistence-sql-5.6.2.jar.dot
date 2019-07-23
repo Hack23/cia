@@ -1,0 +1,7 @@
+digraph javers_persistence_sql_5_6_2_dependencies {
+  node [shape = box, fontsize=10.0];
+  javers_persistence_sql_5_6_2 -> guava_28_0_jre;
+  javers_persistence_sql_5_6_2 -> javers_core_5_6_2;
+  javers_persistence_sql_5_6_2 -> polyjdbc_0_7_6;
+  javers_persistence_sql_5_6_2 -> slf4j_api_2_0_0_alpha0;
+}

@@ -2,18 +2,18 @@
     namespace com.hack23.cia.web.impl.ui.application.views.user.party.pagemode {
 
         class PartyMemberHistoryPageModContentFactoryImpl [[PartyMemberHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyOverviewPageModContentFactoryImpl [[PartyOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyLeaderHistoryPageModContentFactoryImpl [[PartyLeaderHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl [[PartyRankingCurrentPartiesChartsPageModContentFactoryImpl.html]] {
@@ -23,23 +23,23 @@
         }
 
         class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl [[PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyVoteHistoryPageModContentFactoryImpl [[PartyVoteHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyCurrentLeadersPageModContentFactoryImpl [[PartyCurrentLeadersPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyPageVisitHistoryPageModContentFactoryImpl [[PartyPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl [[PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl.html]] {
@@ -55,18 +55,18 @@
         }
 
         class PartyGovernmentRolesPageModContentFactoryImpl [[PartyGovernmentRolesPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyCurrentMembersPageModContentFactoryImpl [[PartyCurrentMembersPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl [[PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRankingAllPartiesChartsPageModContentFactoryImpl [[PartyRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
@@ -82,28 +82,28 @@
         }
 
         class PartySupportAnnualSummaryChartPageModContentFactoryImpl [[PartySupportAnnualSummaryChartPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyDocumentHistoryPageModContentFactoryImpl [[PartyDocumentHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRoleGhantPageModContentFactoryImpl [[PartyRoleGhantPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyCommitteeRolesPageModContentFactoryImpl [[PartyCommitteeRolesPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyWonDailySummaryChartPageModContentFactoryImpl [[PartyWonDailySummaryChartPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRankingOverviewPageModContentFactoryImpl [[PartyRankingOverviewPageModContentFactoryImpl.html]] {
@@ -113,8 +113,8 @@
         }
 
         class PartyDocumentActivityPageModContentFactoryImpl [[PartyDocumentActivityPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl [[PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl.html]] {
@@ -155,5 +155,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -5,17 +5,17 @@
 
     class "<size:14>DecisionFlowChartManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.DecisionFlowChartManagerImpl [[DecisionFlowChartManagerImpl.html]] {
         +createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
-        +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
         +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
+        +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
     }
 
     interface "<size:14>DecisionFlowChartManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager [[../api/DecisionFlowChartManager.html]] {
-        {abstract} +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
         {abstract} +createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
+        {abstract} +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
         {abstract} +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.DecisionFlowChartManagerImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

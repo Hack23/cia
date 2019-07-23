@@ -24,14 +24,14 @@
         }
 
         interface UserHomeMenuItemFactory [[UserHomeMenuItemFactory.html]] {
-            {abstract} +createUserHomeMenuBar(MenuBar, String): void
             {abstract} +createOverviewPage(VerticalLayout): void
+            {abstract} +createUserHomeMenuBar(MenuBar, String): void
         }
 
         interface PoliticianRankingMenuItemFactory [[PoliticianRankingMenuItemFactory.html]] {
+            {abstract} +createOverviewPage(VerticalLayout): void
             {abstract} +createPoliticianRankingMenuBar(MenuBar): void
             {abstract} +createPoliticianRankingTopics(MenuItem): void
-            {abstract} +createOverviewPage(VerticalLayout): void
         }
 
         interface GovernmentBodyMenuItemFactory [[GovernmentBodyMenuItemFactory.html]] {
@@ -40,25 +40,25 @@
         }
 
         interface ParliamentMenuItemFactory [[ParliamentMenuItemFactory.html]] {
+            {abstract} +createOverviewPage(VerticalLayout): void
             {abstract} +createParliamentTopicMenu(MenuBar): void
             {abstract} +createParliamentTopicMenu(MenuItem): void
-            {abstract} +createOverviewPage(VerticalLayout): void
         }
 
         interface PoliticianMenuItemFactory [[PoliticianMenuItemFactory.html]] {
-            {abstract} +createPoliticianMenuBar(MenuBar, String): void
             {abstract} +createOverviewPage(VerticalLayout, String): void
+            {abstract} +createPoliticianMenuBar(MenuBar, String): void
         }
 
         interface GovernmentBodyRankingMenuItemFactory [[GovernmentBodyRankingMenuItemFactory.html]] {
             {abstract} +createGovernmentBodyRankingMenuBar(MenuBar): void
-            {abstract} +createOverviewPage(VerticalLayout): void
             {abstract} +createGovernmentBodyRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
         }
 
         interface ApplicationMenuItemFactory [[ApplicationMenuItemFactory.html]] {
-            {abstract} +createMainPageMenuBar(MenuBar): MenuBar
             {abstract} +addRankingMenu(MenuBar): void
+            {abstract} +createMainPageMenuBar(MenuBar): MenuBar
             {abstract} +createOverviewPage(VerticalLayout): void
         }
 
@@ -75,14 +75,14 @@
         }
 
         interface PartyRankingMenuItemFactory [[PartyRankingMenuItemFactory.html]] {
+            {abstract} +createOverviewPage(VerticalLayout): void
             {abstract} +createPartyRankingMenuBar(MenuBar): void
             {abstract} +createPartyRankingTopics(MenuItem): void
-            {abstract} +createOverviewPage(VerticalLayout): void
         }
 
         interface PartyMenuItemFactory [[PartyMenuItemFactory.html]] {
-            {abstract} +createPartyMenuBar(MenuBar, String): void
             {abstract} +createOverviewPage(VerticalLayout, String): void
+            {abstract} +createPartyMenuBar(MenuBar, String): void
         }
 
         interface CommitteeMenuItemFactory [[CommitteeMenuItemFactory.html]] {
@@ -92,5 +92,5 @@
 
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

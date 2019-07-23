@@ -9,8 +9,8 @@
         }
 
         class CitizenIntelligenceAgencySpringVaadinServlet [[CitizenIntelligenceAgencySpringVaadinServlet.html]] {
-            #servletInitialized(): void
             #service(HttpServletRequest, HttpServletResponse): void
+            #servletInitialized(): void
         }
 
         class CitizenIntelligenceAgencyUI [[CitizenIntelligenceAgencyUI.html]] {
@@ -71,5 +71,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

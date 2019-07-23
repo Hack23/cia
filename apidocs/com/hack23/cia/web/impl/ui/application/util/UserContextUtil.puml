@@ -4,10 +4,10 @@
     hide empty methods
 
     class "<size:14>UserContextUtil\n<size:10>com.hack23.cia.web.impl.ui.application.util" as com.hack23.cia.web.impl.ui.application.util.UserContextUtil [[UserContextUtil.html]] {
-        {static} +getUserIdFromSecurityContext(): String
-        {static} +getRequestUrl(Page): String
         {static} +allowRoleInSecurityContext(String): boolean
+        {static} +getRequestUrl(Page): String
+        {static} +getUserIdFromSecurityContext(): String
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

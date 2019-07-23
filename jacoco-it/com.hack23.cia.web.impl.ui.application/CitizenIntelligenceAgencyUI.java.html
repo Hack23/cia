@@ -57,25 +57,21 @@ import com.vaadin.ui.UI;
 @Viewport(&quot;width=device-width, initial-scale=1&quot;)
 public final class CitizenIntelligenceAgencyUI extends UI {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	/** The Constant CRLF. */
+	private static final String CRLF = &quot;[\r\n]&quot;;
 
 	/** The Constant CRLF_REPLACEMENT. */
 	private static final String CRLF_REPLACEMENT = &quot;&quot;;
 	
-	/** The Constant CRLF. */
-	private static final String CRLF = &quot;[\r\n]&quot;;
-	
 	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = &quot;Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}&quot;;
-
+	
 	/** The Constant LOGGER. */
-<span class="fc" id="L73">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="fc" id="L74">			.getLogger(CitizenIntelligenceAgencyUI.class);</span>
+<span class="fc" id="L70">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L71">			.getLogger(CitizenIntelligenceAgencyUI.class);</span>
 
-	/** The main view. */
-	@Autowired
-	private MainView mainView;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The application manager. */
 	@Autowired
@@ -83,6 +79,10 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 	@Autowired
 	private transient ConfigurationManager configurationManager;
+
+	/** The main view. */
+	@Autowired
+	private MainView mainView;
 
 	@Autowired
 	private SpringNavigator springNavigator;

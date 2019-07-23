@@ -56,15 +56,15 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  @Component
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="SearchDocumentPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/document/pagemode/SearchDocumentPageModContentFactoryImpl.html#SearchDocumentPageModContentFactoryImpl">SearchDocumentPageModContentFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractBasicPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagemode/AbstractBasicPageModContentFactoryImpl.html#AbstractBasicPageModContentFactoryImpl">AbstractBasicPageModContentFactoryImpl</a> {
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SEARCH = <span class="jxr_string">"Search"</span>;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> List&lt;String&gt; AS_LIST = Collections.singletonList( <span class="jxr_string">"searchExpression"</span> );
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> List&lt;String&gt; AS_LIST = Collections.singletonList( <span class="jxr_string">"searchExpression"</span> );
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<em class="jxr_javadoccomment">/** The Constant NAME. */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<em class="jxr_javadoccomment">/** The Constant MAX_RESULT_SIZE. */</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> MAX_RESULT_SIZE = 100;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<em class="jxr_javadoccomment">/** The Constant MAX_RESULT_SIZE. */</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> MAX_RESULT_SIZE = 100;
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<em class="jxr_javadoccomment">/** The Constant NAME. */</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SEARCH = <span class="jxr_string">"Search"</span>;
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	@Autowired
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<strong class="jxr_keyword">private</strong> <a name="DocumentMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/DocumentMenuItemFactory.html#DocumentMenuItemFactory">DocumentMenuItemFactory</a> documentMenuItemFactory;
@@ -76,53 +76,53 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Override
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page);
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	}
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	@Override
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	@Override
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout searchLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  		searchLayout.setSizeFull();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  		panelContent.addComponent(searchLayout);
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout searchLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		searchLayout.setSizeFull();
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  		panelContent.addComponent(searchLayout);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout searchresultLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  		searchresultLayout.setSizeFull();
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout searchresultLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		searchresultLayout.setSizeFull();
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">final</strong> Panel formPanel = <strong class="jxr_keyword">new</strong> Panel();
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		formPanel.setSizeFull();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  		searchresultLayout.addComponent(formPanel);
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">final</strong> Panel formPanel = <strong class="jxr_keyword">new</strong> Panel();
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		formPanel.setSizeFull();
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">final</strong> FormLayout formContent = <strong class="jxr_keyword">new</strong> FormLayout();
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		formPanel.setContent(formContent);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		searchresultLayout.addComponent(formPanel);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<strong class="jxr_keyword">final</strong> FormLayout formContent = <strong class="jxr_keyword">new</strong> FormLayout();
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		formPanel.setContent(formContent);
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 		panelContent.addComponent(searchresultLayout);
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		panelContent.setExpandRatio(searchresultLayout, ContentRatio.LARGE);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		<strong class="jxr_keyword">final</strong> SearchDocumentRequest searchRequest = <strong class="jxr_keyword">new</strong> SearchDocumentRequest();
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		searchRequest.setSearchExpression(<span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 				SearchDocumentRequest.<strong class="jxr_keyword">class</strong>, AS_LIST, SEARCH,
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 				<strong class="jxr_keyword">new</strong> <a name="SearchDocumentClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/SearchDocumentClickListener.html#SearchDocumentClickListener">SearchDocumentClickListener</a>(searchRequest, <strong class="jxr_keyword">new</strong> <a name="SearchDocumentResponseHandlerImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklisteners/handlers/impl/SearchDocumentResponseHandlerImpl.html#SearchDocumentResponseHandlerImpl">SearchDocumentResponseHandlerImpl</a>(getGridFactory(), formPanel,
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 						searchresultLayout)));
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		panelContent.addComponent(searchresultLayout);
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		panelContent.setExpandRatio(searchresultLayout, ContentRatio.LARGE);
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		<strong class="jxr_keyword">final</strong> SearchDocumentRequest searchRequest = <strong class="jxr_keyword">new</strong> SearchDocumentRequest();
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		searchRequest.setSearchExpression(<span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 				SearchDocumentRequest.<strong class="jxr_keyword">class</strong>, AS_LIST, SEARCH,
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 				<strong class="jxr_keyword">new</strong> <a name="SearchDocumentClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/SearchDocumentClickListener.html#SearchDocumentClickListener">SearchDocumentClickListener</a>(searchRequest, <strong class="jxr_keyword">new</strong> <a name="SearchDocumentResponseHandlerImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklisteners/handlers/impl/SearchDocumentResponseHandlerImpl.html#SearchDocumentResponseHandlerImpl">SearchDocumentResponseHandlerImpl</a>(getGridFactory(), formPanel,
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 						searchresultLayout)));
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 				parameters, pageId);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		<strong class="jxr_keyword">return</strong> panelContent;
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 				parameters, pageId);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		<strong class="jxr_keyword">return</strong> panelContent;
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 	}
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	@Override
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page);
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 	}
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> }

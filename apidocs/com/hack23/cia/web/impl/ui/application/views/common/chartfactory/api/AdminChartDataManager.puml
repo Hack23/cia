@@ -5,9 +5,9 @@
 
     interface "<size:14>AdminChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager [[AdminChartDataManager.html]] {
         {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
-        {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
         {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+        {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.drools.decisiontables
+Bnd-LastModified: 1563180367759
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Activator: org.drools.decisiontable.osgi.Activator
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion d
+ oes complex event processing (CEP).
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Drools :: Decision Tables
+Bundle-SymbolicName: org.drools.decisiontables
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.24.0.201907150836
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.drools.decisiontable;version="7.24.0",org.drools.dec
+ isiontable.osgi;version="7.24.0",org.drools.decisiontable.parser;versio
+ n="7.24.0",org.drools.decisiontable.parser.csv;version="7.24.0",org.dro
+ ols.decisiontable.parser.xls;version="7.24.0"
+Implementation-Title: Drools :: Decision Tables
+Implementation-URL: http://www.kiegroup.org/drools/drools-decisiontables
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.drools
+Implementation-Version: 7.24.0.Final
+Import-Package: org.apache.poi.openxml4j.exceptions,org.apache.poi.ss.us
+ ermodel,org.apache.poi.ss.util,org.drools.template.model,org.drools.tem
+ plate.parser,org.drools.compiler.compiler,org.drools.core.io.impl,org.d
+ rools.core.util,org.drools.decisiontable.parser,org.drools.decisiontabl
+ e.parser.csv,org.drools.decisiontable.parser.xls,org.kie.api.io,org.kie
+ .internal.builder,org.kie.internal.io,org.kie.internal.osgi,org.slf4j
+Include-Resource: META-INF/kie.conf=src/main/resources/META-INF/kie.conf
+ ,python-dt/Example.xls=src/main/resources/python-dt/Example.xls,python-
+ dt/README.txt=src/main/resources/python-dt/README.txt,python-dt/pydt.py
+ =src/main/resources/python-dt/pydt.py,python-dt/pydt_test.py=src/main/r
+ esources/python-dt/pydt_test.py
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: python-dt
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-de
+ cisiontables
+Scm-Revision: 8efef81fdd0476523ceb3be2a12a92c094aefde8
+Scm-Url: https://github.com/kiegroup/drools/drools-decisiontables
+Specification-Title: Drools :: Decision Tables
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.24.0.Final
+Tool: Bnd-3.5.0.201709291849
+

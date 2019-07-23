@@ -18,8 +18,8 @@
 
         class AdminApplicationEventsChartsPageModContentFactoryImpl [[AdminApplicationEventsChartsPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class EmailPageModContentFactoryImpl [[EmailPageModContentFactoryImpl.html]] {
@@ -48,14 +48,14 @@
         }
 
         abstract class AbstractAdminSystemPageModContentFactoryImpl [[AbstractAdminSystemPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             #getPagingUtil(): PagingUtil
+            +matches(String, String): boolean
         }
 
         class AdminApplicationEventsPageModContentFactoryImpl [[AdminApplicationEventsPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class AdminApplicationSessionPageModContentFactoryImpl [[AdminApplicationSessionPageModContentFactoryImpl.html]] {
@@ -87,5 +87,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

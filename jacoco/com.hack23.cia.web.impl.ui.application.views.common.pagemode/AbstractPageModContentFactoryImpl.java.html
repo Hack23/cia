@@ -39,42 +39,42 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractPageModContentFactoryImpl implements PageModeContentFactory {
 
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = &quot;General Page Mode Page Visit&quot;;
-
 	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	public static final String CURRENT_PAGE_VISIT_HISTORY = &quot;Current Page Visit History&quot;;
 
 	/** The Constant DEFAULT_RESULTS_PER_PAGE. */
 	public static final int DEFAULT_RESULTS_PER_PAGE = 250;
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
+	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = &quot;General Page Mode Page Visit&quot;;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private AdminChartDataManager adminChartDataManager;
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
-
-	/** The menu item factory. */
-	@Autowired
-	private ApplicationMenuItemFactory menuItemFactory;
-
-	/** The grid factory. */
-	@Autowired
-	private GridFactory gridFactory;
 
 	/** The form factory. */
 	@Autowired
 	private FormFactory formFactory;
 
-	/** The page link factory. */
+	/** The grid factory. */
 	@Autowired
-	private PageLinkFactory pageLinkFactory;
+	private GridFactory gridFactory;
+
+	/** The menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory menuItemFactory;
 
 	/** The page action event helper. */
 	@Autowired
 	private PageActionEventHelper pageActionEventHelper;
 
-	/** The admin chart data manager. */
+	/** The page link factory. */
 	@Autowired
-	private AdminChartDataManager adminChartDataManager;
+	private PageLinkFactory pageLinkFactory;
 
 	/**
 	 * Instantiates a new abstract page mod content factory impl.
@@ -82,121 +82,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected AbstractPageModContentFactoryImpl() {
 <span class="fc" id="L83">		super();</span>
 <span class="fc" id="L84">	}</span>
-
-	/**
-	 * Gets the page id.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @return the page id
-	 */
-	protected final String getPageId(final String parameters) {
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		if (parameters != null) {</span>
-<span class="fc" id="L95">			String cleanedString = parameters;</span>
-<span class="fc bfc" id="L96" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
-<span class="fc" id="L97">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
-			} 
-			
-<span class="fc" id="L100">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length(), cleanedString.length());</span>
-		} else {
-<span class="nc" id="L102">			return &quot;&quot;;</span>
-		}
-	}
-
-	/**
-	 * Gets the page nr.
-	 *
-	 * @param parameters the parameters
-	 * @return the page nr
-	 */
-	protected final int getPageNr(final String parameters) {
-<span class="fc" id="L113">		final String cleanedString = parameters;</span>
-		String pageNrValue;
-<span class="pc bpc" id="L115" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
-<span class="fc" id="L116">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
-		} else {
-<span class="fc" id="L118">			pageNrValue = &quot;&quot;;</span>
-		}
-
-<span class="fc" id="L121">		int pageNr = 1;</span>
-
-<span class="pc bpc" id="L123" title="1 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
-<span class="fc" id="L124">			pageNr = Integer.parseInt(pageNrValue);</span>
-		}
-<span class="fc" id="L126">		return pageNr;</span>
-	}
-
-	/**
-	 * Gets the application manager.
-	 *
-	 * @return the application manager
-	 */
-	protected final ApplicationManager getApplicationManager() {
-<span class="fc" id="L135">		return applicationManager;</span>
-	}
-
-	/**
-	 * Gets the menu item factory.
-	 *
-	 * @return the menu item factory
-	 */
-	protected final ApplicationMenuItemFactory getMenuItemFactory() {
-<span class="fc" id="L144">		return menuItemFactory;</span>
-	}
-
-	/**
-	 * Gets the grid factory.
-	 *
-	 * @return the grid factory
-	 */
-	protected final GridFactory getGridFactory() {
-<span class="fc" id="L153">		return gridFactory;</span>
-	}
-
-	/**
-	 * Gets the form factory.
-	 *
-	 * @return the form factory
-	 */
-	protected final FormFactory getFormFactory() {
-<span class="fc" id="L162">		return formFactory;</span>
-	}
-
-	/**
-	 * Gets the page link factory.
-	 *
-	 * @return the page link factory
-	 */
-	protected final PageLinkFactory getPageLinkFactory() {
-<span class="fc" id="L171">		return pageLinkFactory;</span>
-	}
-
-	protected final AdminChartDataManager getAdminChartDataManager() {
-<span class="fc" id="L175">		return adminChartDataManager;</span>
-	}
-
-	/**
-	 * Gets the page action event helper.
-	 *
-	 * @return the page action event helper
-	 */
-	protected final PageActionEventHelper getPageActionEventHelper() {
-<span class="fc" id="L184">		return pageActionEventHelper;</span>
-	}
-
-	/**
-	 * Creates the panel content.
-	 *
-	 * @return the vertical layout
-	 */
-	protected final VerticalLayout createPanelContent() {
-<span class="fc" id="L193">		final VerticalLayout panelContent = new VerticalLayout();</span>
-<span class="fc" id="L194">		panelContent.setMargin(true);</span>
-<span class="fc" id="L195">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L196">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L197">		panelContent.setStyleName(&quot;Header&quot;);</span>
-<span class="fc" id="L198">		return panelContent;</span>
-	}
 
 	/**
 	 * Creates the page visit history.
@@ -211,32 +96,147 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
 
-<span class="fc" id="L214">		final TabSheet tabsheet = new TabSheet();</span>
-<span class="fc" id="L215">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L216">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L99">		final TabSheet tabsheet = new TabSheet();</span>
+<span class="fc" id="L100">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L101">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
 
-<span class="fc" id="L218">		panelContent.addComponent(tabsheet);</span>
-<span class="fc" id="L219">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
+<span class="fc" id="L103">		panelContent.addComponent(tabsheet);</span>
+<span class="fc" id="L104">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L221">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
-<span class="fc" id="L222">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L223">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L224">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
+<span class="fc" id="L106">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
+<span class="fc" id="L107">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L108">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L109">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
 
-<span class="fc" id="L226">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
-<span class="fc" id="L227">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
+<span class="fc" id="L111">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L112">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
 				pageName, pageId);
 
-<span class="fc" id="L230">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
-<span class="fc" id="L231">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L232">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L233">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
-<span class="fc" id="L234">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
+<span class="fc" id="L115">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
+<span class="fc" id="L116">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L117">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L118">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
+<span class="fc" id="L119">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
 
-<span class="fc" id="L236">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
+<span class="fc" id="L121">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
 				pageName);
 
-<span class="fc" id="L239">	}</span>
+<span class="fc" id="L124">	}</span>
+
+	/**
+	 * Creates the panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected final VerticalLayout createPanelContent() {
+<span class="fc" id="L132">		final VerticalLayout panelContent = new VerticalLayout();</span>
+<span class="fc" id="L133">		panelContent.setMargin(true);</span>
+<span class="fc" id="L134">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L135">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L136">		panelContent.setStyleName(&quot;Header&quot;);</span>
+<span class="fc" id="L137">		return panelContent;</span>
+	}
+
+	protected final AdminChartDataManager getAdminChartDataManager() {
+<span class="fc" id="L141">		return adminChartDataManager;</span>
+	}
+
+	/**
+	 * Gets the application manager.
+	 *
+	 * @return the application manager
+	 */
+	protected final ApplicationManager getApplicationManager() {
+<span class="fc" id="L150">		return applicationManager;</span>
+	}
+
+	/**
+	 * Gets the form factory.
+	 *
+	 * @return the form factory
+	 */
+	protected final FormFactory getFormFactory() {
+<span class="fc" id="L159">		return formFactory;</span>
+	}
+
+	/**
+	 * Gets the grid factory.
+	 *
+	 * @return the grid factory
+	 */
+	protected final GridFactory getGridFactory() {
+<span class="fc" id="L168">		return gridFactory;</span>
+	}
+
+	/**
+	 * Gets the menu item factory.
+	 *
+	 * @return the menu item factory
+	 */
+	protected final ApplicationMenuItemFactory getMenuItemFactory() {
+<span class="fc" id="L177">		return menuItemFactory;</span>
+	}
+
+	/**
+	 * Gets the page action event helper.
+	 *
+	 * @return the page action event helper
+	 */
+	protected final PageActionEventHelper getPageActionEventHelper() {
+<span class="fc" id="L186">		return pageActionEventHelper;</span>
+	}
+
+	/**
+	 * Gets the page id.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @return the page id
+	 */
+	protected final String getPageId(final String parameters) {
+<span class="pc bpc" id="L197" title="1 of 2 branches missed.">		if (parameters != null) {</span>
+<span class="fc" id="L198">			String cleanedString = parameters;</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
+<span class="fc" id="L200">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
+			} 
+			
+<span class="fc" id="L203">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length(), cleanedString.length());</span>
+		} else {
+<span class="nc" id="L205">			return &quot;&quot;;</span>
+		}
+	}
+
+	/**
+	 * Gets the page link factory.
+	 *
+	 * @return the page link factory
+	 */
+	protected final PageLinkFactory getPageLinkFactory() {
+<span class="fc" id="L215">		return pageLinkFactory;</span>
+	}
+
+	/**
+	 * Gets the page nr.
+	 *
+	 * @param parameters the parameters
+	 * @return the page nr
+	 */
+	protected final int getPageNr(final String parameters) {
+<span class="fc" id="L225">		final String cleanedString = parameters;</span>
+		String pageNrValue;
+<span class="pc bpc" id="L227" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
+<span class="fc" id="L228">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
+		} else {
+<span class="fc" id="L230">			pageNrValue = &quot;&quot;;</span>
+		}
+
+<span class="fc" id="L233">		int pageNr = 1;</span>
+
+<span class="pc bpc" id="L235" title="1 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
+<span class="fc" id="L236">			pageNr = Integer.parseInt(pageNrValue);</span>
+		}
+<span class="fc" id="L238">		return pageNr;</span>
+	}
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

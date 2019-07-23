@@ -34,14 +34,14 @@ import com.vaadin.ui.Component;
  */
 abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl&lt;ViewRiksdagenPolitician&gt; {
 
+	/** The Constant DAYS_PER_STANDARD_YEAR. */
+	private static final long DAYS_PER_STANDARD_YEAR = 365L;
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
 
 	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = &quot;Politician:&quot;;
-
-	/** The Constant DAYS_PER_STANDARD_YEAR. */
-	private static final long DAYS_PER_STANDARD_YEAR = 365L;
 
 	/** The politician ranking menu item factory. */
 	@Autowired
@@ -69,6 +69,26 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 <span class="fc" id="L69">		return years + &quot; Years &quot; + days + &quot; days&quot;;</span>
 	}
 
+	@Override
+	protected ViewRiksdagenPolitician getItem(final String parameters) {
+<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L75">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		if (personData != null) {</span>
+<span class="fc" id="L77">			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());</span>
+		} else {
+<span class="nc" id="L79">			return null;</span>
+		}
+	}
+
+	/**
+	 * Gets the politician ranking menu item factory.
+	 *
+	 * @return the politician ranking menu item factory
+	 */
+	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
+<span class="fc" id="L89">		return politicianMenuItemFactory;</span>
+	}
+
 	/**
 	 * Page completed.
 	 *
@@ -83,32 +103,12 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 */
 	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
-<span class="fc" id="L86">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L106">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
 				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 
-<span class="fc" id="L89">		panel.setCaption(NAME + &quot;::&quot; + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '</span>
-<span class="fc" id="L90">				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');</span>
-<span class="fc" id="L91">	}</span>
-
-	/**
-	 * Gets the politician ranking menu item factory.
-	 *
-	 * @return the politician ranking menu item factory
-	 */
-	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
-<span class="fc" id="L99">		return politicianMenuItemFactory;</span>
-	}
-
-	@Override
-	protected ViewRiksdagenPolitician getItem(final String parameters) {
-<span class="fc" id="L104">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L105">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);</span>
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">		if (personData != null) {</span>
-<span class="fc" id="L107">			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());</span>
-		} else {
-<span class="nc" id="L109">			return null;</span>
-		}
-	}
+<span class="fc" id="L109">		panel.setCaption(NAME + &quot;::&quot; + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '</span>
+<span class="fc" id="L110">				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');</span>
+<span class="fc" id="L111">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

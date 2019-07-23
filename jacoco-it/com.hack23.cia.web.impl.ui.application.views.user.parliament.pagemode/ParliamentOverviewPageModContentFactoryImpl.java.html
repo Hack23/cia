@@ -47,26 +47,26 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 <span class="fc" id="L47">		super();</span>
 <span class="fc" id="L48">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L52" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L59">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L53">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L54">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
-<span class="fc" id="L61">		panelContent.addComponent(new Label(OVERVIEW));</span>
+<span class="fc" id="L56">		panelContent.addComponent(new Label(OVERVIEW));</span>
 
-<span class="fc" id="L63">		getParliamentMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L58">		getParliamentMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));</span>
-<span class="fc" id="L66">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+<span class="fc" id="L60">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));</span>
+<span class="fc" id="L61">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
 
-<span class="fc" id="L68">		return panelContent;</span>
+<span class="fc" id="L63">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="pc bpc" id="L69" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

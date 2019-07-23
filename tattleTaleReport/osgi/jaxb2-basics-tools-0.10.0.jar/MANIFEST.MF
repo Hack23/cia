@@ -56,13 +56,13 @@ Import-Package: com.sun.codemodel;version="2.4",com.sun.codemodel.fmt;
  xml.bind;version="2.4.0",javax.xml.bind.annotation;version="2.4.0",ja
  vax.xml.namespace;version="1.0",javax.xml.parsers;version="1.0",javax
  .xml.transform;version="1.0",javax.xml.transform.dom;version="1.0",or
- g.apache.commons.beanutils;version="1.9.3.redhat-1",org.apache.common
- s.lang3;version="3.9",org.apache.commons.logging;version="0.0.0",org.
- jvnet.jaxb2_commons.lang;version="0.0.0",org.jvnet.jaxb2_commons.xml.
- bind;version="0.0.0",org.jvnet.jaxb2_commons.xml.bind.model;version="
- 0.0.0",org.jvnet.jaxb2_commons.xml.bind.model.concrete;version="0.0.0
- ",org.jvnet.jaxb2_commons.xml.bind.model.concrete.origin;version="0.0
- .0",org.jvnet.jaxb2_commons.xml.bind.model.origin;version="0.0.0",org
- .springframework.beans.factory.config;version="5.2.0.M3",org.springfr
- amework.context.support;version="5.2.0.M3",org.w3c.dom;version="1.0",
- org.xml.sax;version="1.0"
+ g.apache.commons.beanutils;version="1.9.4",org.apache.commons.lang3;v
+ ersion="3.9",org.apache.commons.logging;version="0.0.0",org.jvnet.jax
+ b2_commons.lang;version="0.0.0",org.jvnet.jaxb2_commons.xml.bind;vers
+ ion="0.0.0",org.jvnet.jaxb2_commons.xml.bind.model;version="0.0.0",or
+ g.jvnet.jaxb2_commons.xml.bind.model.concrete;version="0.0.0",org.jvn
+ et.jaxb2_commons.xml.bind.model.concrete.origin;version="0.0.0",org.j
+ vnet.jaxb2_commons.xml.bind.model.origin;version="0.0.0",org.springfr
+ amework.beans.factory.config;version="5.2.0.M3",org.springframework.c
+ ontext.support;version="5.2.0.M3",org.w3c.dom;version="1.0",org.xml.s
+ ax;version="1.0"

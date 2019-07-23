@@ -4,16 +4,16 @@
     hide empty methods
 
     class "<size:14>ContentRatio\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.sizing" as com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio [[ContentRatio.html]] {
+        {static} +CHART: float
+        {static} +FULL_SIZE: float
+        {static} +GRID: float
+        {static} +LARGE: float
+        {static} +LARGE_FORM: float
         {static} +SMALL: float
+        {static} +SMALL_GRID: float
         {static} +SMALL2: float
         {static} +SMALL3: float
-        {static} +GRID: float
-        {static} +CHART: float
-        {static} +LARGE_FORM: float
-        {static} +LARGE: float
-        {static} +SMALL_GRID: float
-        {static} +FULL_SIZE: float
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

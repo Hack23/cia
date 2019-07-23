@@ -5,8 +5,8 @@
 
     class "<size:14>GovernmentBodyPageVisitHistoryPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyPageVisitHistoryPageModContentFactoryImpl [[GovernmentBodyPageVisitHistoryPageModContentFactoryImpl.html]] {
         {static} +NAME: String
-        +matches(String, String): boolean
         +createContent(String, MenuBar, Panel): Layout
+        +matches(String, String): boolean
     }
 
     abstract class "<size:14>AbstractItemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl<List<GovernmentBodyAnnualSummary>> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
@@ -15,5 +15,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

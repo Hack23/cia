@@ -40,11 +40,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentActivityPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = &quot;Ministry:&quot;;
-
 	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = &quot;Document Activity&quot;;
+
+	/** The Constant MINISTRY. */
+	private static final String MINISTRY = &quot;Ministry:&quot;;
 
 	/** The chart data manager. */
 	@Autowired
@@ -58,31 +58,31 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 <span class="fc" id="L58">		super();</span>
 <span class="fc" id="L59">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L63" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L73">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L74">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L68">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="fc" id="L69">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L76">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
+<span class="fc" id="L71">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
 
-<span class="fc" id="L78">		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L73">		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());</span>
 
-<span class="fc" id="L80">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L81">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L75">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L76">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L84">		return panelContent;</span>
+<span class="fc" id="L79">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());</span>
 	}
 
 }

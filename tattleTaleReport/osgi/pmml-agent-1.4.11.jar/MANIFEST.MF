@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Premain-Class: org.jpmml.agent.Main
+Built-By: vfed
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_162
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.jpmml.agent
+Bundle-Description: pmml-agent-1.4.11
+Bundle-Name: pmml-agent-1.4.11
+Bundle-Version: 0.0.0
+Export-Package: org.jpmml.agent
+Import-Package: java.io,java.lang,java.lang.instrument,java.security,j
+ ava.util,javassist;version="0.0.0",javassist.bytecode;version="0.0.0"
+ ,javassist.bytecode.annotation;version="0.0.0"

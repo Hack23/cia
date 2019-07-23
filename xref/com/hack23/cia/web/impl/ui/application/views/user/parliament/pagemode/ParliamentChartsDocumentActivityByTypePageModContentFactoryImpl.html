@@ -63,29 +63,29 @@
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  	}
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	@Override
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  				&amp;&amp; parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	}
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	@Override
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	@Override
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		documentChartDataManager.createDocumentTypeChart(panelContent);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  				parameters, pageId);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		panel.setCaption(NAME + <span class="jxr_string">"::"</span> + DOCUMENT_ACTIVITY_DESCRIPTION);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		documentChartDataManager.createDocumentTypeChart(panelContent);
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">return</strong> panelContent;
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  				parameters, pageId);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		panel.setCaption(NAME + <span class="jxr_string">"::"</span> + DOCUMENT_ACTIVITY_DESCRIPTION);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">return</strong> panelContent;
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	}
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	@Override
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  				&amp;&amp; parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  	}
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  }

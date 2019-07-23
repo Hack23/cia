@@ -48,25 +48,25 @@ import com.vaadin.ui.VerticalLayout;
 public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 		extends AbstractUserHomePageModContentFactoryImpl {
 
-<span class="fc" id="L51">	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] {</span>
-			new ListPropertyConverter(&quot;page&quot;, &quot;events&quot;, &quot;actionName&quot;) };
-
-<span class="fc" id="L54">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;hjid&quot;);
-
-<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,</span>
-			&quot;sessionId&quot;, &quot;sessionType&quot;, &quot;userId&quot;, &quot;locale&quot; };
-
-<span class="fc" id="L60">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;operatingSystem&quot;,</span>
-			&quot;ipInformation&quot;, &quot;events&quot;, &quot;userAgentInformation&quot; };
-
 	private static final String APPLICATION_SESSION = &quot;ApplicationSession&quot;;
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = &quot;Userhome:&quot;;
+<span class="fc" id="L53">	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] {</span>
+			new ListPropertyConverter(&quot;page&quot;, &quot;events&quot;, &quot;actionName&quot;) };
+
+<span class="fc" id="L56">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;operatingSystem&quot;,</span>
+			&quot;ipInformation&quot;, &quot;events&quot;, &quot;userAgentInformation&quot; };
+
+<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,</span>
+			&quot;sessionId&quot;, &quot;sessionType&quot;, &quot;userId&quot;, &quot;locale&quot; };
+
+<span class="fc" id="L62">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;hjid&quot;);
 
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String USER_VISITS = &quot;User Visits&quot;;
+
+	/** The Constant USERHOME. */
+	private static final String USERHOME = &quot;Userhome:&quot;;
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -80,38 +80,38 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 <span class="fc" id="L80">		super();</span>
 <span class="fc" id="L81">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.USER_VISITS.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L91">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L92">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L93">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
+<span class="fc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L87">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L88">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
 
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
-<span class="fc" id="L96">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
-<span class="fc" id="L97">			LabelFactory.createHeader2Label(panelContent, USER_VISITS);</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
+<span class="fc" id="L91">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L92">			LabelFactory.createHeader2Label(panelContent, USER_VISITS);</span>
 
-<span class="fc" id="L99">			final DataContainer&lt;ApplicationSession, Long&gt; sessionDataContainer = getApplicationManager()</span>
-<span class="fc" id="L100">					.getDataContainer(ApplicationSession.class);</span>
+<span class="fc" id="L94">			final DataContainer&lt;ApplicationSession, Long&gt; sessionDataContainer = getApplicationManager()</span>
+<span class="fc" id="L95">					.getDataContainer(ApplicationSession.class);</span>
 
-<span class="fc" id="L102">			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,</span>
-<span class="fc" id="L103">					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,</span>
-<span class="fc" id="L104">							userAccount.get().getUserId(), ApplicationSession_.createdDate),</span>
+<span class="fc" id="L97">			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,</span>
+<span class="fc" id="L98">					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,</span>
+<span class="fc" id="L99">							userAccount.get().getUserId(), ApplicationSession_.createdDate),</span>
 					APPLICATION_SESSION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, COLLECTION_PROPERTY_CONVERTERS);
 
-<span class="fc" id="L107">			panel.setCaption(NAME + &quot;::&quot; + USERHOME + USER_VISITS);</span>
+<span class="fc" id="L102">			panel.setCaption(NAME + &quot;::&quot; + USERHOME + USER_VISITS);</span>
 		}
 
-<span class="fc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L113">		return panelContent;</span>
+<span class="fc" id="L108">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L114" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.USER_VISITS.toString());</span>
 	}
 
 }

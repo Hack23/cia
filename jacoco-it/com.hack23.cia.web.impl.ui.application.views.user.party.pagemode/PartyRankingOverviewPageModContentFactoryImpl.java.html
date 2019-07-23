@@ -52,35 +52,13 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 <span class="fc" id="L52">		super();</span>
 <span class="fc" id="L53">	}</span>
 
-	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
-
-<span class="fc" id="L60">		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);</span>
-
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
-
-<span class="fc" id="L64">		panelContent.addComponent(createDescription());</span>
-
-<span class="fc" id="L66">		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);</span>
-
-<span class="fc" id="L68">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
-
-<span class="fc" id="L73">		return panelContent;</span>
-
-	}
-
 	/**
 	 * Creates the description.
 	 *
 	 * @return the text area
 	 */
 	private static TextArea createDescription() {
-<span class="fc" id="L83">		final TextArea totalpartytoplistLabel = new TextArea(</span>
+<span class="fc" id="L61">		final TextArea totalpartytoplistLabel = new TextArea(</span>
 				&quot;Party Ranking by topic&quot;,
 				&quot;Time served in Parliament:ALL:CURRENT:&quot;
 						+ &quot;\nTime served in Committees:ALL:CURRENT:&quot;
@@ -93,9 +71,31 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 						+ &quot;\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
 						+ &quot;\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
 						+ &quot;\nSearch by name&quot;);
-<span class="fc" id="L96">		totalpartytoplistLabel.setSizeFull();</span>
-<span class="fc" id="L97">		totalpartytoplistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="fc" id="L98">		return totalpartytoplistLabel;</span>
+<span class="fc" id="L74">		totalpartytoplistLabel.setSizeFull();</span>
+<span class="fc" id="L75">		totalpartytoplistLabel.setStyleName(&quot;Level2Header&quot;);</span>
+<span class="fc" id="L76">		return totalpartytoplistLabel;</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L82">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L84">		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L86">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L88">		panelContent.addComponent(createDescription());</span>
+
+<span class="fc" id="L90">		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+
+<span class="fc" id="L92">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+
+<span class="fc" id="L94">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L97">		return panelContent;</span>
+
 	}
 
 

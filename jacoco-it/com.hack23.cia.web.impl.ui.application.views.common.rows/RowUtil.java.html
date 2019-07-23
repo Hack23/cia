@@ -34,52 +34,40 @@ import com.vaadin.ui.Label;
  */
 <span class="nc" id="L35">public final class RowUtil {</span>
 
-	/** The Constant TITLE. */
-	private static final String TITLE = &quot;title&quot;;
-
-	/** The Constant ITEMBOX. */
-	private static final String ITEMBOX = &quot;itembox&quot;;
-
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
 
 	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
 
-	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
-	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
-
 	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
 
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant ITEMBOX. */
+	private static final String ITEMBOX = &quot;itembox&quot;;
+
+	/** The Constant TITLE. */
+	private static final String TITLE = &quot;title&quot;;
+
 	/**
-	 * Creates the row item.
+	 * Creates the grid layout.
 	 *
-	 * @param row         the row
-	 * @param button      the button
-	 * @param description the description
+	 * @param panelContent the panel content
+	 * @return the responsive row
 	 */
-	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
-<span class="nc" id="L63">		final CssLayout layout = new CssLayout();</span>
-<span class="nc" id="L64">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
-<span class="nc" id="L65">		Responsive.makeResponsive(layout);</span>
-<span class="nc" id="L66">		layout.setSizeUndefined();</span>
-
-<span class="nc" id="L68">		button.addStyleName(ITEMBOX);</span>
-<span class="nc" id="L69">		button.addStyleName(TITLE);</span>
-<span class="nc" id="L70">		Responsive.makeResponsive(button);</span>
-<span class="nc" id="L71">		button.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L72">		layout.addComponent(button);</span>
-
-<span class="nc" id="L74">		final Label descriptionLabel = new Label(description);</span>
-<span class="nc" id="L75">		descriptionLabel.addStyleName(ITEMBOX);</span>
-<span class="nc" id="L76">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="nc" id="L77">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L78">		layout.addComponent(descriptionLabel);</span>
-
-<span class="nc" id="L80">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
-<span class="nc" id="L81">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="nc" id="L82">	}</span>
+	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
+<span class="fc" id="L62">		final ResponsiveLayout layout = new ResponsiveLayout();</span>
+<span class="fc" id="L63">		Responsive.makeResponsive(layout);</span>
+<span class="fc" id="L64">		layout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+<span class="fc" id="L65">		layout.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L66">		layout.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L67">		panelContent.addComponent(layout);</span>
+<span class="fc" id="L68">		panelContent.setExpandRatio(layout, ContentRatio.LARGE);</span>
+<span class="fc" id="L69">		return layout.addRow();</span>
+	}
 
 	/**
 	 * Creates the row component.
@@ -90,43 +78,55 @@ import com.vaadin.ui.Label;
 	 */
 	public static void createRowComponent(final ResponsiveRow row, final Component component,
 			final String description) {
-<span class="fc" id="L93">		final CssLayout layout = new CssLayout();</span>
-<span class="fc" id="L94">		layout.addStyleName(&quot;.v-layout-content-pagemode-panel-level2&quot;);</span>
-<span class="fc" id="L95">		Responsive.makeResponsive(layout);</span>
-<span class="fc" id="L96">		layout.setSizeUndefined();</span>
+<span class="fc" id="L81">		final CssLayout layout = new CssLayout();</span>
+<span class="fc" id="L82">		layout.addStyleName(&quot;.v-layout-content-pagemode-panel-level2&quot;);</span>
+<span class="fc" id="L83">		Responsive.makeResponsive(layout);</span>
+<span class="fc" id="L84">		layout.setSizeUndefined();</span>
 
-<span class="fc" id="L98">		final Label descriptionLabel = new Label(description);</span>
-<span class="fc" id="L99">		descriptionLabel.addStyleName(ITEMBOX);</span>
-<span class="fc" id="L100">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="fc" id="L101">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L102">		layout.addComponent(descriptionLabel);</span>
+<span class="fc" id="L86">		final Label descriptionLabel = new Label(description);</span>
+<span class="fc" id="L87">		descriptionLabel.addStyleName(ITEMBOX);</span>
+<span class="fc" id="L88">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L89">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L90">		layout.addComponent(descriptionLabel);</span>
 
-<span class="fc" id="L104">		component.addStyleName(ITEMBOX);</span>
-<span class="fc" id="L105">		component.addStyleName(TITLE);</span>
-<span class="fc" id="L106">		Responsive.makeResponsive(component);</span>
-<span class="fc" id="L107">		component.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L108">		layout.addComponent(component);</span>
+<span class="fc" id="L92">		component.addStyleName(ITEMBOX);</span>
+<span class="fc" id="L93">		component.addStyleName(TITLE);</span>
+<span class="fc" id="L94">		Responsive.makeResponsive(component);</span>
+<span class="fc" id="L95">		component.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L96">		layout.addComponent(component);</span>
 
-<span class="fc" id="L110">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
-<span class="fc" id="L111">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="fc" id="L112">	}</span>
+<span class="fc" id="L98">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L99">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L100">	}</span>
 
 	/**
-	 * Creates the grid layout.
+	 * Creates the row item.
 	 *
-	 * @param panelContent the panel content
-	 * @return the responsive row
+	 * @param row         the row
+	 * @param button      the button
+	 * @param description the description
 	 */
-	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
-<span class="fc" id="L121">		final ResponsiveLayout layout = new ResponsiveLayout();</span>
-<span class="fc" id="L122">		Responsive.makeResponsive(layout);</span>
-<span class="fc" id="L123">		layout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
-<span class="fc" id="L124">		layout.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L125">		layout.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L126">		panelContent.addComponent(layout);</span>
-<span class="fc" id="L127">		panelContent.setExpandRatio(layout, ContentRatio.LARGE);</span>
-<span class="fc" id="L128">		return layout.addRow();</span>
-	}
+	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
+<span class="nc" id="L110">		final CssLayout layout = new CssLayout();</span>
+<span class="nc" id="L111">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="nc" id="L112">		Responsive.makeResponsive(layout);</span>
+<span class="nc" id="L113">		layout.setSizeUndefined();</span>
+
+<span class="nc" id="L115">		button.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L116">		button.addStyleName(TITLE);</span>
+<span class="nc" id="L117">		Responsive.makeResponsive(button);</span>
+<span class="nc" id="L118">		button.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L119">		layout.addComponent(button);</span>
+
+<span class="nc" id="L121">		final Label descriptionLabel = new Label(description);</span>
+<span class="nc" id="L122">		descriptionLabel.addStyleName(ITEMBOX);</span>
+<span class="nc" id="L123">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="nc" id="L124">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L125">		layout.addComponent(descriptionLabel);</span>
+
+<span class="nc" id="L127">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="nc" id="L128">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="nc" id="L129">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

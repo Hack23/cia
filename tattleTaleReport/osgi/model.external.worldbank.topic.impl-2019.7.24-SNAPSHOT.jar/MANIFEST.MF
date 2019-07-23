@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.worldbank.topic.imp
+ l
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.worldbank.topic.imp
+ l
+Bundle-Description: model.external.worldbank.topic.impl-2019.7.24-SNAP
+ SHOT
+Bundle-Name: model.external.worldbank.topic.impl-2019.7.24-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.worldbank.topic.impl;use
+ s:="com.hack23.cia.model.common.api,org.apache.commons.lang3.builder"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
+ ang,java.math,java.util,javax.persistence;version="2.2",javax.persist
+ ence.metamodel;version="2.2",javax.xml.bind;version="2.4.0",javax.xml
+ .bind.annotation;version="2.4.0",javax.xml.namespace;version="1.0",or
+ g.apache.commons.lang3.builder;version="3.9"

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-DocURL: http://asm.ow2.org
+Bundle-ManifestVersion: 2
+Bundle-Name: org.objectweb.asm.tree.analysis
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.objectweb.asm.tree.analysis
+Bundle-Version: 7.2.0.beta
+Export-Package: org.objectweb.asm.tree.analysis;version="7.2.0.beta";use
+ s:="org.objectweb.asm,org.objectweb.asm.tree"
+Implementation-Title: Static code analysis API of ASM, a very small and 
+ fast Java bytecode manipulation framework
+Implementation-Version: 7.2-beta
+Import-Package: org.objectweb.asm;version="[7.2,8)",org.objectweb.asm.tr
+ ee;version="[7.2,8)"
+Module-Requires: org.objectweb.asm.tree;transitive=true
+

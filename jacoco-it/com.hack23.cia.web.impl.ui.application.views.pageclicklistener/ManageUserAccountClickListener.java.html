@@ -33,23 +33,23 @@ import com.vaadin.ui.Notification;
  */
 public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant LOG_MSG_SEND_EMAIL. */
+	private static final String LOG_MSG = &quot;Operation {}&quot;;
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L40">	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserAccountClickListener.class);</span>
+
 	/** The Constant EMAIL_SENT. */
 	private static final String OPERATION_COMPLETED = &quot;Operation completed&quot;;
-
-	/** The Constant SEND_EMAIL_FAILURE. */
-	private static final String OPERATION_FAILURE = &quot;Operation {} failure&quot;;
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
 	private static final String OPERATION_FAILED = &quot;Operation failed&quot;;
 
-	/** The Constant LOG_MSG_SEND_EMAIL. */
-	private static final String LOG_MSG = &quot;Operation {}&quot;;
+	/** The Constant SEND_EMAIL_FAILURE. */
+	private static final String OPERATION_FAILURE = &quot;Operation {} failure&quot;;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-<span class="fc" id="L52">	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserAccountClickListener.class);</span>
 
 	/** The reqister request. */
 	private final ManageUserAccountRequest manageUserAccountRequest;

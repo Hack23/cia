@@ -36,11 +36,11 @@ import com.vaadin.spring.annotation.SpringView;
 @SpringView(name = AdminMonitoringView.NAME)
 public final class AdminMonitoringView extends AbstractAdminView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_MONITORING_VIEW_NAME;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new admin monitoring view.

@@ -36,11 +36,11 @@ import com.vaadin.spring.annotation.SpringView;
 @SpringView(name = DocumentView.NAME)
 public final class DocumentView extends AbstractUserView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENT_VIEW_NAME;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new document view.

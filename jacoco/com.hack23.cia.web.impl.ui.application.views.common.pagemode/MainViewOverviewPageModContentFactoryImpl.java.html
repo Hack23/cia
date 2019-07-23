@@ -51,32 +51,32 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 <span class="fc" id="L51">		super();</span>
 <span class="fc" id="L52">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L56" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="fc bfc" id="L57" title="All 4 branches covered.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L60">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
 
-<span class="fc" id="L68">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L62">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L70">		LabelFactory.createHeader2Label(panelContent, &quot;MainOverview&quot;);</span>
+<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, &quot;MainOverview&quot;);</span>
 
-<span class="fc" id="L72">		getMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L66">		getMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
-<span class="fc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L68">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
-<span class="fc" id="L78">		return panelContent;</span>
+<span class="fc" id="L72">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

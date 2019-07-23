@@ -46,12 +46,6 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 <span class="fc" id="L46">		super();</span>
 <span class="fc" id="L47">	}</span>
 
-	@Override
-	public void click(final RendererClickEvent&lt;RuleViolation&gt; event) {
-<span class="fc" id="L51">		navigateToPage(event.getItem());</span>
-		
-<span class="fc" id="L53">	}</span>
-
 	/**
 	 * Navigate to page.
 	 *
@@ -59,11 +53,17 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	 *            the violation
 	 */
 	private static void navigateToPage(final RuleViolation violation) {
-<span class="fc bfc" id="L62" title="All 2 branches covered.">		if (violation.getResourceType() == ResourceType.PARTY) {			</span>
-<span class="fc" id="L63">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		if (violation.getResourceType() == ResourceType.PARTY) {			</span>
+<span class="fc" id="L57">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
 		} else {
-<span class="fc" id="L65">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
+<span class="fc" id="L59">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
 		}
+<span class="fc" id="L61">	}</span>
+
+	@Override
+	public void click(final RendererClickEvent&lt;RuleViolation&gt; event) {
+<span class="fc" id="L65">		navigateToPage(event.getItem());</span>
+		
 <span class="fc" id="L67">	}</span>
 
 

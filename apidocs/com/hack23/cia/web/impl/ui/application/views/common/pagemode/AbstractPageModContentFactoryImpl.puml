@@ -4,29 +4,29 @@
     hide empty methods
 
     abstract class "<size:14>AbstractPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]] {
-        {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
         {static} +CURRENT_PAGE_VISIT_HISTORY: String
         {static} +DEFAULT_RESULTS_PER_PAGE: int
-        #getPageId(String): String
-        #getPageNr(String): int
-        #getApplicationManager(): ApplicationManager
-        #getMenuItemFactory(): ApplicationMenuItemFactory
-        #getGridFactory(): GridFactory
-        #getFormFactory(): FormFactory
-        #getPageLinkFactory(): PageLinkFactory
-        #getAdminChartDataManager(): AdminChartDataManager
-        #getPageActionEventHelper(): PageActionEventHelper
-        #createPanelContent(): VerticalLayout
+        {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
         #createPageVisitHistory(String, String, VerticalLayout): void
+        #createPanelContent(): VerticalLayout
+        #getAdminChartDataManager(): AdminChartDataManager
+        #getApplicationManager(): ApplicationManager
+        #getFormFactory(): FormFactory
+        #getGridFactory(): GridFactory
+        #getMenuItemFactory(): ApplicationMenuItemFactory
+        #getPageActionEventHelper(): PageActionEventHelper
+        #getPageId(String): String
+        #getPageLinkFactory(): PageLinkFactory
+        #getPageNr(String): int
     }
 
     interface "<size:14>PageModeContentFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory [[PageModeContentFactory.html]] {
+        {abstract} +createContent(String, MenuBar, Panel): Layout
         {abstract} +matches(String, String): boolean
         {abstract} +validReference(String): boolean
-        {abstract} +createContent(String, MenuBar, Panel): Layout
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

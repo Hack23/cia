@@ -52,33 +52,33 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 <span class="fc" id="L52">		super();</span>
 <span class="fc" id="L53">	}</span>
 
-	@Override
-	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
-<span class="fc" id="L57">		final Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map = esvApi.getReport();</span>
-<span class="fc" id="L58">		final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L59">		final Series series = new Series();</span>
-
-<span class="fc" id="L61">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);</span>
-<span class="fc" id="L62">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		</span>
-
-<span class="fc" id="L64">		addChart(content, &quot;GovernmentOperationPeriodOutcome&quot;,</span>
-<span class="fc" id="L65">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="fc" id="L66">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
-				true);
-
-<span class="fc" id="L69">	}</span>
-
 	private static void createPeriodData(final Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
 			final Series series) {
-<span class="fc" id="L73">		series.addSeries(new XYseries().setLabel(variables.toString()));</span>
-<span class="fc" id="L74">		dataSeries.newSeries();</span>
+<span class="fc" id="L57">		series.addSeries(new XYseries().setLabel(variables.toString()));</span>
+<span class="fc" id="L58">		dataSeries.newSeries();</span>
 		
-<span class="fc" id="L76">		final List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		</span>
-<span class="fc" id="L77">		Collections.sort(list);</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">		for (final GovernmentOperationPeriodOutcome entry : list) {</span>
+<span class="fc" id="L60">		final List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		</span>
+<span class="fc" id="L61">		Collections.sort(list);</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (final GovernmentOperationPeriodOutcome entry : list) {</span>
 
-<span class="fc" id="L80">			dataSeries.add(entry.getPeriod() + &quot;-01&quot;, entry.getValue());</span>
-<span class="fc" id="L81">		}</span>
+<span class="fc" id="L64">			dataSeries.add(entry.getPeriod() + &quot;-01&quot;, entry.getValue());</span>
+<span class="fc" id="L65">		}</span>
+<span class="fc" id="L66">	}</span>
+
+	@Override
+	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
+<span class="fc" id="L70">		final Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map = esvApi.getReport();</span>
+<span class="fc" id="L71">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L72">		final Series series = new Series();</span>
+
+<span class="fc" id="L74">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);</span>
+<span class="fc" id="L75">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		</span>
+
+<span class="fc" id="L77">		addChart(content, &quot;GovernmentOperationPeriodOutcome&quot;,</span>
+<span class="fc" id="L78">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L79">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+				true);
+
 <span class="fc" id="L82">	}</span>
 
 }

@@ -5,13 +5,13 @@
 
     enum "<size:14>DocumentPageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode [[DocumentPageMode.html]] {
         {static} +DOCUMENTACTIVITY
-        {static} +PERSONREFERENCES
-        {static} +DOCUMENTDETAILS
-        {static} +DOCUMENTDATA
-        {static} +DOCUMENTREFERENCES
-        {static} +DOCUMENTDECISION
         {static} +DOCUMENTATTACHMENTS
+        {static} +DOCUMENTDATA
+        {static} +DOCUMENTDECISION
+        {static} +DOCUMENTDETAILS
+        {static} +DOCUMENTREFERENCES
+        {static} +PERSONREFERENCES
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

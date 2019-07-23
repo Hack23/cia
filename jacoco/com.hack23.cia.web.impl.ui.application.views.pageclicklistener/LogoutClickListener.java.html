@@ -36,20 +36,20 @@ import com.vaadin.ui.UI;
  */
 public class LogoutClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant ERROR_MESSAGE. */
+	private static final String ERROR_MESSAGE = &quot;Error message&quot;;
+
 	/** The Constant LOG_MSG_LOGOUT_FAILURE. */
 	private static final String LOG_MSG_LOGOUT_FAILURE = &quot;Logout {} failure&quot;;
 
-	/** The Constant ERROR_MESSAGE. */
-	private static final String ERROR_MESSAGE = &quot;Error message&quot;;
+	/** The Constant LOGGER. */
+<span class="fc" id="L46">	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);</span>
 
 	/** The Constant LOGOUT_FAILED. */
 	private static final String LOGOUT_FAILED = &quot;Logout failed&quot;;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-<span class="fc" id="L52">	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);</span>
 
 	/** The logout request. */
 	private final LogoutRequest logoutRequest;

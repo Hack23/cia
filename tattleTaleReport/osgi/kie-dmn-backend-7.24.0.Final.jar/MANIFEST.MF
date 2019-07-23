@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.dmn.backend
+Bnd-LastModified: 1563180749593
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Top level pom for the KIE DMN support implementation
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: KIE :: Decision Model Notation :: Backend
+Bundle-SymbolicName: org.kie.dmn.backend
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.24.0.201907150836
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.dmn.backend.marshalling;version="7.24.0",org.kie
+ .dmn.backend.marshalling.v1_1.xstream;version="7.24.0",org.kie.dmn.back
+ end.marshalling.v1_1.xstream.extensions;version="7.24.0",org.kie.dmn.ba
+ ckend.marshalling.v1_2.xstream;version="7.24.0",org.kie.dmn.backend.mar
+ shalling.v1x;version="7.24.0"
+Implementation-Title: KIE :: Decision Model Notation :: Backend
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-backe
+ nd
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie
+Implementation-Version: 7.24.0.Final
+Import-Package: com.thoughtworks.xstream,com.thoughtworks.xstream.conver
+ ters,com.thoughtworks.xstream.converters.collections,com.thoughtworks.x
+ stream.io,com.thoughtworks.xstream.io.naming,com.thoughtworks.xstream.i
+ o.xml,com.thoughtworks.xstream.mapper,javax.xml.namespace,javax.xml.str
+ eam,javax.xml.transform,javax.xml.transform.sax,javax.xml.transform.str
+ eam,org.kie.dmn.api.marshalling,org.kie.dmn.api.marshalling.v1_1,org.ki
+ e.dmn.backend.marshalling,org.kie.dmn.backend.marshalling.v1_1.xstream,
+ org.kie.dmn.backend.marshalling.v1_2.xstream,org.kie.dmn.model.api,org.
+ kie.dmn.model.api.dmndi,org.kie.dmn.model.v1_1,org.kie.dmn.model.v1_1.e
+ xtensions,org.kie.dmn.model.v1_2,org.kie.dmn.model.v1_2.dmndi,org.kie.s
+ oup.commons.xstream,org.slf4j,org.xml.sax
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn/k
+ ie-dmn-backend
+Scm-Revision: 8efef81fdd0476523ceb3be2a12a92c094aefde8
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-backend
+Specification-Title: KIE :: Decision Model Notation :: Backend
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.24.0.Final
+Tool: Bnd-3.5.0.201709291849
+

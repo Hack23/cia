@@ -4,10 +4,10 @@
         class ListPropertyConverter [[ListPropertyConverter.html]] {
             +ListPropertyConverter(String, String)
             +ListPropertyConverter(String, String, String)
-            +getColumn(): String
+            +apply(Object): String
             +convertToModel(String, ValueContext): Result<List<?>>
             +convertToPresentation(List, ValueContext): String
-            +apply(Object): String
+            +getColumn(): String
         }
 
         com.vaadin.data.Converter <|.. ListPropertyConverter
@@ -29,5 +29,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

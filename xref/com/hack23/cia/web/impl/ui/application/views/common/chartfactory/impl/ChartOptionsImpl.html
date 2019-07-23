@@ -59,59 +59,59 @@
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  @Component
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="ChartOptionsImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/chartfactory/impl/ChartOptionsImpl.html#ChartOptionsImpl">ChartOptionsImpl</a> <strong class="jxr_keyword">implements</strong> <a name="ChartOptions" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/chartfactory/api/ChartOptions.html#ChartOptions">ChartOptions</a> {
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_COLUMN_NUMBER_OF_ROWS = 12;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/** The Constant BACKGROUND_COLOR. */</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BACKGROUND_COLOR = <span class="jxr_string">"#13303f"</span>;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_COLUMN_NUMBER_OF_COLUMNS. */</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_COLUMN_NUMBER_OF_COLUMNS = 1;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<em class="jxr_javadoccomment">/** The Constant BORDER_COLOR. */</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BORDER_COLOR = <span class="jxr_string">"#83898c"</span>;
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_ROW_NUMBER_OF_ROWS. */</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_ROW_NUMBER_OF_ROWS = 1;
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<em class="jxr_javadoccomment">/** The Constant FLOAT_FORMAT. */</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FLOAT_FORMAT = <span class="jxr_string">"%.2f"</span>;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_ROW_NUMBER_OF_COLUMNS. */</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_ROW_NUMBER_OF_COLUMNS = 10;
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/** The Constant FONT_FAMILY. */</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FONT_FAMILY = <span class="jxr_string">"Inconsolata"</span>;
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<em class="jxr_javadoccomment">/** The Constant SLICE_MARGIN. */</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> SLICE_MARGIN = 3;
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<em class="jxr_javadoccomment">/** The Constant FONT_SIZE. */</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FONT_SIZE = <span class="jxr_string">"8px"</span>;
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<em class="jxr_javadoccomment">/** The Constant START_ANGLE. */</em>
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> START_ANGLE = -90;
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<em class="jxr_javadoccomment">/** The Constant GRIDLINE_COLOR. */</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GRIDLINE_COLOR = <span class="jxr_string">"#213f49"</span>;
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<em class="jxr_javadoccomment">/** The Constant FLOAT_FORMAT. */</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FLOAT_FORMAT = <span class="jxr_string">"%.2f"</span>;
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_COLUMNS. */</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LEGEND_COLUMNS = 3;
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<em class="jxr_javadoccomment">/** The Constant NUMBER_TICKS. */</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> NUMBER_TICKS = 5;
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_FONT_SIZE. */</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LEGEND_FONT_SIZE = <span class="jxr_string">"10px"</span>;
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_COLUMNS. */</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LEGEND_COLUMNS = 3;
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_ROWS. */</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LEGEND_ROWS = 20;
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_ROWS. */</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LEGEND_ROWS = 20;
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<em class="jxr_javadoccomment">/** The Constant NUMBER_TICKS. */</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> NUMBER_TICKS = 5;
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	<em class="jxr_javadoccomment">/** The Constant LEGEND_FONT_SIZE. */</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LEGEND_FONT_SIZE = <span class="jxr_string">"10px"</span>;
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	<em class="jxr_javadoccomment">/** The Constant NUMBER_TICKS_DATE. */</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> NUMBER_TICKS_DATE = 8;
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  	<em class="jxr_javadoccomment">/** The Constant BORDER_COLOR. */</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BORDER_COLOR = <span class="jxr_string">"#83898c"</span>;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_COLUMN_NUMBER_OF_COLUMNS. */</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_COLUMN_NUMBER_OF_COLUMNS = 1;
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	<em class="jxr_javadoccomment">/** The Constant GRIDLINE_COLOR. */</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GRIDLINE_COLOR = <span class="jxr_string">"#213f49"</span>;
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_COLUMN_NUMBER_OF_ROWS = 12;
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  	<em class="jxr_javadoccomment">/** The Constant BACKGROUND_COLOR. */</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BACKGROUND_COLOR = <span class="jxr_string">"#13303f"</span>;
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_ROW_NUMBER_OF_COLUMNS. */</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_ROW_NUMBER_OF_COLUMNS = 10;
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  	<em class="jxr_javadoccomment">/** The Constant TEXT_COLOR. */</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TEXT_COLOR = <span class="jxr_string">"#ffffff"</span>;
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  	<em class="jxr_javadoccomment">/** The Constant ONE_ROW_NUMBER_OF_ROWS. */</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> ONE_ROW_NUMBER_OF_ROWS = 1;
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  	<em class="jxr_javadoccomment">/** The Constant FONT_SIZE. */</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FONT_SIZE = <span class="jxr_string">"8px"</span>;
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  	<em class="jxr_javadoccomment">/** The Constant SLICE_MARGIN. */</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> SLICE_MARGIN = 3;
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 	<em class="jxr_javadoccomment">/** The Constant FONT_FAMILY. */</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FONT_FAMILY = <span class="jxr_string">"Inconsolata"</span>;
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 	<em class="jxr_javadoccomment">/** The Constant START_ANGLE. */</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> START_ANGLE = -90;
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	<em class="jxr_javadoccomment">/** The Constant NUMBER_TICKS_DATE. */</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> NUMBER_TICKS_DATE = 8;
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	<em class="jxr_javadoccomment">/** The Constant TEXT_COLOR. */</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TEXT_COLOR = <span class="jxr_string">"#ffffff"</span>;
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 	<em class="jxr_javadoccomment">/** The Constant YEAR_MONTH_DAY_FORMAT. */</em>
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String YEAR_MONTH_DAY_FORMAT = <span class="jxr_string">"%F"</span>;
@@ -151,163 +151,163 @@
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">	 * Creates the default grid.</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">	 * Creates the cursor.</em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">	 * @return the grid</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">	 * @return the cursor</em>
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Grid createDefaultGrid() {
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		<strong class="jxr_keyword">final</strong> Grid grid = <strong class="jxr_keyword">new</strong> Grid();
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		grid.setBackground(BACKGROUND_COLOR);
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 		grid.setGridLineColor(GRIDLINE_COLOR);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 		grid.setBorderColor(BORDER_COLOR);
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		<strong class="jxr_keyword">return</strong> grid;
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 	}
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">	 * Created legend enhanced inside north west.</em>
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createdLegendEnhancedInsideNorthWest() {
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 				.setRendererOptions(
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 	}
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">	 * Created legend enhanced inside west.</em>
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createdLegendEnhancedInsideWest() {
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 				<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer()
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS)));
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 	}
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">	 * Creates the legend outside.</em>
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendOutside() {
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 				.setRendererOptions(
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 	}
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">	 * Creates the legend outside one column.</em>
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendOutsideOneColumn() {
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> 				.setRendererOptions(
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 	}
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">	 * Creates the legend outside.</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendInsideOneRow() {
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> 				.setRendererOptions(
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> 				.setPlacement(LegendPlacements.INSIDE_GRID));
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 	}
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> <em class="jxr_javadoccomment">	 * Sets the legend styling.</em>
-<a class="jxr_linenumber" name="L220" href="#L220">220</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> <em class="jxr_javadoccomment">	 * @param legend</em>
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">	 *            the legend</em>
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend setLegendStyling(<strong class="jxr_keyword">final</strong> Legend legend) {
-<a class="jxr_linenumber" name="L226" href="#L226">226</a> 		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
-<a class="jxr_linenumber" name="L227" href="#L227">227</a> 		<strong class="jxr_keyword">return</strong> legend;
-<a class="jxr_linenumber" name="L228" href="#L228">228</a> 	}
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> 
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">	 * Creates the high lighter.</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">	 * @return the highlighter</em>
-<a class="jxr_linenumber" name="L234" href="#L234">234</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L235" href="#L235">235</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Highlighter createHighLighter() {
-<a class="jxr_linenumber" name="L236" href="#L236">236</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Highlighter().setShow(<strong class="jxr_keyword">true</strong>).setShowTooltip(<strong class="jxr_keyword">true</strong>).setTooltipAlwaysVisible(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> 				.setKeepTooltipInsideChart(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> 	}
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> <em class="jxr_javadoccomment">	 * Creates the high lighter north.</em>
-<a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">	 * @return the highlighter</em>
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Highlighter createHighLighterNorth() {
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Highlighter().setShow(<strong class="jxr_keyword">true</strong>).setShowTooltip(<strong class="jxr_keyword">true</strong>).setTooltipAlwaysVisible(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> 				.setKeepTooltipInsideChart(<strong class="jxr_keyword">true</strong>).setTooltipLocation(TooltipLocations.NORTH)
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(<strong class="jxr_keyword">true</strong>).setBringSeriesToFront(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> 	}
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">	 * Creates the series default pie chart.</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">	 * @return the series defaults</em>
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> SeriesDefaults createSeriesDefaultPieChart() {
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> SeriesDefaults().setRenderer(SeriesRenderers.PIE)
-<a class="jxr_linenumber" name="L258" href="#L258">258</a> 				.setRendererOptions(<strong class="jxr_keyword">new</strong> PieRenderer().setShowDataLabels(<strong class="jxr_keyword">true</strong>)).setShadow(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L259" href="#L259">259</a> 	}
-<a class="jxr_linenumber" name="L260" href="#L260">260</a> 
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">	 * Creates the cursor.</em>
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">	 * @return the cursor</em>
-<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Cursor createCursor() {
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Cursor().setZoom(<strong class="jxr_keyword">true</strong>).setLooseZoom(<strong class="jxr_keyword">true</strong>).setShow(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> 	}
-<a class="jxr_linenumber" name="L270" href="#L270">270</a> 
-<a class="jxr_linenumber" name="L271" href="#L271">271</a> 	@Override
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsCountryLineChart(<strong class="jxr_keyword">final</strong> Series series) {
-<a class="jxr_linenumber" name="L273" href="#L273">273</a> 		<strong class="jxr_keyword">final</strong> Axes axes = <strong class="jxr_keyword">new</strong> Axes().addAxis(<strong class="jxr_keyword">new</strong> XYaxis().setRenderer(AxisRenderers.DATE)
-<a class="jxr_linenumber" name="L274" href="#L274">274</a> 				.setTickOptions(<strong class="jxr_keyword">new</strong> AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> 				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(<strong class="jxr_keyword">new</strong> XYaxis(XYaxes.Y).setTickOptions(<strong class="jxr_keyword">new</strong> AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> 
-<a class="jxr_linenumber" name="L277" href="#L277">277</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().addOption(<strong class="jxr_keyword">new</strong> SeriesDefaults()).addOption(axes)
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> 				.addOption(createDefaultGrid()).addOption(createCursor());
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Cursor createCursor() {
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Cursor().setZoom(<strong class="jxr_keyword">true</strong>).setLooseZoom(<strong class="jxr_keyword">true</strong>).setShow(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 	}
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">	 * Creates the default grid.</em>
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">	 * @return the grid</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Grid createDefaultGrid() {
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 		<strong class="jxr_keyword">final</strong> Grid grid = <strong class="jxr_keyword">new</strong> Grid();
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 		grid.setBackground(BACKGROUND_COLOR);
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 		grid.setGridLineColor(GRIDLINE_COLOR);
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 		grid.setBorderColor(BORDER_COLOR);
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 		<strong class="jxr_keyword">return</strong> grid;
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 	}
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 * Created legend enhanced inside north west.</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createdLegendEnhancedInsideNorthWest() {
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 				.setRendererOptions(
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> 	}
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> <em class="jxr_javadoccomment">	 * Created legend enhanced inside west.</em>
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createdLegendEnhancedInsideWest() {
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 				<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> 						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer()
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> 								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS)));
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 	}
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> <em class="jxr_javadoccomment">	 * Creates the donout series default.</em>
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">	 * @return the series defaults</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> SeriesDefaults createDonoutSeriesDefault() {
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 				.setRendererOptions(<strong class="jxr_keyword">new</strong> DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 						.setDataLabels(DataLabels.VALUE));
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 	}
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">	 * Creates the high lighter.</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">	 * @return the highlighter</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Highlighter createHighLighter() {
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Highlighter().setShow(<strong class="jxr_keyword">true</strong>).setShowTooltip(<strong class="jxr_keyword">true</strong>).setTooltipAlwaysVisible(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 				.setKeepTooltipInsideChart(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> 	}
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> 
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">	 * Creates the high lighter north.</em>
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">	 * @return the highlighter</em>
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Highlighter createHighLighterNorth() {
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Highlighter().setShow(<strong class="jxr_keyword">true</strong>).setShowTooltip(<strong class="jxr_keyword">true</strong>).setTooltipAlwaysVisible(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L219" href="#L219">219</a> 				.setKeepTooltipInsideChart(<strong class="jxr_keyword">true</strong>).setTooltipLocation(TooltipLocations.NORTH)
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(<strong class="jxr_keyword">true</strong>).setBringSeriesToFront(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 	}
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">	 * Creates the legend outside.</em>
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L228" href="#L228">228</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendInsideOneRow() {
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L230" href="#L230">230</a> 				.setRendererOptions(
+<a class="jxr_linenumber" name="L231" href="#L231">231</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> 				.setPlacement(LegendPlacements.INSIDE_GRID));
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> 	}
+<a class="jxr_linenumber" name="L234" href="#L234">234</a> 
+<a class="jxr_linenumber" name="L235" href="#L235">235</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">	 * Creates the legend outside.</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendOutside() {
+<a class="jxr_linenumber" name="L241" href="#L241">241</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 				.setRendererOptions(
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> 	}
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> 
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">	 * Creates the legend outside one column.</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend createLegendOutsideOneColumn() {
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		<strong class="jxr_keyword">return</strong> setLegendStyling(<strong class="jxr_keyword">new</strong> Legend().setShow(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 				.setRendererOptions(
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> 						<strong class="jxr_keyword">new</strong> EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(<strong class="jxr_keyword">true</strong>).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> 	}
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> 
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> 
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> <em class="jxr_javadoccomment">	 * Creates the series default pie chart.</em>
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">	 * @return the series defaults</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> SeriesDefaults createSeriesDefaultPieChart() {
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> SeriesDefaults().setRenderer(SeriesRenderers.PIE)
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> 				.setRendererOptions(<strong class="jxr_keyword">new</strong> PieRenderer().setShowDataLabels(<strong class="jxr_keyword">true</strong>)).setShadow(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> 	}
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> 
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">	 * Sets the legend styling.</em>
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">	 * @param legend</em>
+<a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">	 *            the legend</em>
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">	 * @return the legend</em>
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Legend setLegendStyling(<strong class="jxr_keyword">final</strong> Legend legend) {
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> 		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
+<a class="jxr_linenumber" name="L279" href="#L279">279</a> 		<strong class="jxr_keyword">return</strong> legend;
 <a class="jxr_linenumber" name="L280" href="#L280">280</a> 	}
 <a class="jxr_linenumber" name="L281" href="#L281">281</a> 
 <a class="jxr_linenumber" name="L282" href="#L282">282</a> 	@Override
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsDonoutChart() {
-<a class="jxr_linenumber" name="L284" href="#L284">284</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 				.setHighlighter(createHighLighter()).addOption(createDefaultGrid()).addOption(createCursor());
-<a class="jxr_linenumber" name="L286" href="#L286">286</a> 	}
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsCountryLineChart(<strong class="jxr_keyword">final</strong> Series series) {
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> 		<strong class="jxr_keyword">final</strong> Axes axes = <strong class="jxr_keyword">new</strong> Axes().addAxis(<strong class="jxr_keyword">new</strong> XYaxis().setRenderer(AxisRenderers.DATE)
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> 				.setTickOptions(<strong class="jxr_keyword">new</strong> AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> 				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(<strong class="jxr_keyword">new</strong> XYaxis(XYaxes.Y).setTickOptions(<strong class="jxr_keyword">new</strong> AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 <a class="jxr_linenumber" name="L287" href="#L287">287</a> 
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> 	@Override
-<a class="jxr_linenumber" name="L289" href="#L289">289</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsDonoutChartWithSeries(<strong class="jxr_keyword">final</strong> Series series) {
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> 				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> 	}
-<a class="jxr_linenumber" name="L293" href="#L293">293</a> 
-<a class="jxr_linenumber" name="L294" href="#L294">294</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">	 * Creates the donout series default.</em>
-<a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">	 * @return the series defaults</em>
-<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L299" href="#L299">299</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> SeriesDefaults createDonoutSeriesDefault() {
-<a class="jxr_linenumber" name="L300" href="#L300">300</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-<a class="jxr_linenumber" name="L301" href="#L301">301</a> 				.setRendererOptions(<strong class="jxr_keyword">new</strong> DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(<strong class="jxr_keyword">true</strong>)
-<a class="jxr_linenumber" name="L302" href="#L302">302</a> 						.setDataLabels(DataLabels.VALUE));
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().addOption(<strong class="jxr_keyword">new</strong> SeriesDefaults()).addOption(axes)
+<a class="jxr_linenumber" name="L289" href="#L289">289</a> 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> 				.addOption(createDefaultGrid()).addOption(createCursor());
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> 	}
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> 
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> 	@Override
+<a class="jxr_linenumber" name="L294" href="#L294">294</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsDonoutChart() {
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 				.setHighlighter(createHighLighter()).addOption(createDefaultGrid()).addOption(createCursor());
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> 	}
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> 
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 	@Override
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> 	<strong class="jxr_keyword">public</strong> Options createOptionsDonoutChartWithSeries(<strong class="jxr_keyword">final</strong> Series series) {
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
+<a class="jxr_linenumber" name="L302" href="#L302">302</a> 				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
 <a class="jxr_linenumber" name="L303" href="#L303">303</a> 	}
 <a class="jxr_linenumber" name="L304" href="#L304">304</a> 
 <a class="jxr_linenumber" name="L305" href="#L305">305</a> 	@Override

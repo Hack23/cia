@@ -36,11 +36,11 @@ import com.vaadin.spring.annotation.SpringView;
 @SpringView(name = GovernmenBodyView.NAME)
 public final class GovernmenBodyView extends AbstractGroupView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.GOVERNMENT_BODY_VIEW_NAME;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new governmen body view.

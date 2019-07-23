@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.dmn.model
+Bnd-LastModified: 1563180688988
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Top level pom for the KIE DMN support implementation
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: KIE :: Decision Model Notation :: Model
+Bundle-SymbolicName: org.kie.dmn.model
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.24.0.201907150836
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.dmn.model.api;version="7.24.0",org.kie.dmn.model
+ .api.dmndi;version="7.24.0",org.kie.dmn.model.v1_1;version="7.24.0",org
+ .kie.dmn.model.v1_1.extensions;version="7.24.0",org.kie.dmn.model.v1_2;
+ version="7.24.0",org.kie.dmn.model.v1_2.dmndi;version="7.24.0"
+Implementation-Title: KIE :: Decision Model Notation :: Model
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-model
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie
+Implementation-Version: 7.24.0.Final
+Import-Package: javax.xml.stream,javax.xml.namespace,javax.xml,com.thoug
+ htworks.xstream.mapper;resolution:=optional,com.thoughtworks.xstream.co
+ nverters;resolution:=optional,com.thoughtworks.xstream.converters.basic
+ ;resolution:=optional,com.thoughtworks.xstream.converters.collections;r
+ esolution:=optional,com.thoughtworks.xstream.converters.extended;resolu
+ tion:=optional,com.thoughtworks.xstream.converters.enums;resolution:=op
+ tional,com.thoughtworks.xstream.converters.javabean;resolution:=optiona
+ l,com.thoughtworks.xstream.converters.reflection;resolution:=optional,c
+ om.thoughtworks.xstream.converters.time;resolution:=optional
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn/k
+ ie-dmn-model
+Scm-Revision: 8efef81fdd0476523ceb3be2a12a92c094aefde8
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-model
+Specification-Title: KIE :: Decision Model Notation :: Model
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.24.0.Final
+Tool: Bnd-3.5.0.201709291849
+

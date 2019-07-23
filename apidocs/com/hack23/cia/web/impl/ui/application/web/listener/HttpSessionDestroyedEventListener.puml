@@ -13,5 +13,5 @@
 
     org.springframework.context.ApplicationListener <|.. com.hack23.cia.web.impl.ui.application.web.listener.HttpSessionDestroyedEventListener
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

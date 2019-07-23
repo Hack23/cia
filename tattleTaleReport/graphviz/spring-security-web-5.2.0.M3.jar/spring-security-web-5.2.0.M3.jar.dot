@@ -1,8 +1,8 @@
 digraph spring_security_web_5_2_0_M3_dependencies {
   node [shape = box, fontsize=10.0];
-  spring_security_web_5_2_0_M3 -> jackson_annotations_2_9_0;
-  spring_security_web_5_2_0_M3 -> jackson_core_2_9_9;
-  spring_security_web_5_2_0_M3 -> jackson_databind_2_9_9;
+  spring_security_web_5_2_0_M3 -> jackson_annotations_2_10_0_pr1;
+  spring_security_web_5_2_0_M3 -> jackson_core_2_10_0_pr1;
+  spring_security_web_5_2_0_M3 -> jackson_databind_2_10_0_pr1;
   spring_security_web_5_2_0_M3 -> jcl_over_slf4j_2_0_0_alpha0;
   spring_security_web_5_2_0_M3 -> spring_beans_5_2_0_M3;
   spring_security_web_5_2_0_M3 -> spring_context_5_2_0_M3;

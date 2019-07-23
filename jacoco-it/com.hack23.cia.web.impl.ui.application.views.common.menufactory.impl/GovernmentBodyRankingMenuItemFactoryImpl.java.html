@@ -41,38 +41,38 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements GovernmentBodyRankingMenuItemFactory {
 
+	/** The Constant COMMAN_OVERVIEW. */
+<span class="fc" id="L45">	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
+
+<span class="fc" id="L48">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.DATAGRID);
+
+<span class="fc" id="L51">	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L52">			GovernmentBodyPageMode.EXPENDITURE.toString());</span>
+
+<span class="fc" id="L54">	private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L55">			GovernmentBodyPageMode.HEADCOUNT.toString());</span>
+
+<span class="fc" id="L57">	private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L58">			GovernmentBodyPageMode.INCOME.toString());</span>
+
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+<span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
+	
 	private static final String EXPENDITURE = &quot;Expenditure&quot;;
-
-	private static final String INCOME = &quot;Income&quot;;
-
-	private static final String HEADCOUNT = &quot;Headcount&quot;;
 
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = &quot;Government bodies&quot;;
 
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-<span class="fc" id="L54">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-			PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COMMAN_OVERVIEW. */
-<span class="fc" id="L58">	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-			PageMode.OVERVIEW);
-	
-<span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-			PageMode.DATAGRID);
-
-<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L65">			GovernmentBodyPageMode.HEADCOUNT.toString());</span>
-
-<span class="fc" id="L67">	private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L68">			GovernmentBodyPageMode.INCOME.toString());</span>
-
-<span class="fc" id="L70">	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L71">			GovernmentBodyPageMode.EXPENDITURE.toString());</span>
-
-	
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = &quot;GovernmentBody Ranking&quot;;
+
+	private static final String HEADCOUNT = &quot;Headcount&quot;;
+
+	
+	private static final String INCOME = &quot;Income&quot;;
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;

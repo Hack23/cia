@@ -53,14 +53,14 @@ import com.vaadin.ui.AbstractOrderedLayout;
 @Service
 public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImpl implements AdminChartDataManager {
 
-	/** The Constant PAGE_RANK. */
-	private static final String PAGE_RANK = &quot;Page Rank&quot;;
+	/** The Constant DD_MMM_YYYY. */
+	private static final String DD_MMM_YYYY = &quot;dd-MMM-yyyy&quot;;
 
 	/** The Constant PAGE_HITS. */
 	private static final String PAGE_HITS = &quot;Page Hits&quot;;
 
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = &quot;dd-MMM-yyyy&quot;;
+	/** The Constant PAGE_RANK. */
+	private static final String PAGE_RANK = &quot;Page Rank&quot;;
 
 	/**
 	 * Instantiates a new admin chart data manager impl.
@@ -68,152 +68,6 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	public AdminChartDataManagerImpl() {
 <span class="fc" id="L69">		super();</span>
 <span class="fc" id="L70">	}</span>
-
-	/**
-	 * Gets the application action event page daily summary map.
-	 *
-	 * @return the application action event page daily summary map
-	 */
-	private Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; getApplicationActionEventPageDailySummaryMap() {
-<span class="nc" id="L78">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L79">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
-
-<span class="nc" id="L81">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
-<span class="nc" id="L82">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
-	}
-
-	@Override
-	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
-
-<span class="nc" id="L88">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
-
-<span class="nc" id="L90">		final DataSeries dataSeries = new DataSeries();</span>
-
-<span class="nc" id="L92">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
-
-<span class="nc" id="L94">		final Series series = new Series();</span>
-
-<span class="nc bnc" id="L96" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
-
-<span class="nc bnc" id="L98" title="All 2 branches missed.">			if (entry.getKey() != null) {</span>
-<span class="nc" id="L99">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
-
-<span class="nc" id="L101">				dataSeries.newSeries();</span>
-<span class="nc" id="L102">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {</span>
-<span class="nc" id="L104">					dataSeries.add(</span>
-<span class="nc" id="L105">							simpleDateFormat.format(</span>
-<span class="nc" id="L106">									viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),</span>
-<span class="nc" id="L107">							viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());</span>
-<span class="nc" id="L108">				}</span>
-			}
-
-<span class="nc" id="L111">		}</span>
-
-<span class="nc" id="L113">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
-<span class="nc" id="L114">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="nc" id="L115">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
-				true);
-<span class="nc" id="L117">	}</span>
-
-	/**
-	 * Gets the application action event page mode daily summary map.
-	 *
-	 * @param page the page
-	 * @return the application action event page mode daily summary map
-	 */
-	private Map&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; getApplicationActionEventPageModeDailySummaryMap(
-			final String page) {
-<span class="fc" id="L127">		final DataContainer&lt;ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L128">				.getDataContainer(ViewApplicationActionEventPageModeDailySummary.class);</span>
-
-<span class="fc" id="L130">		final List&lt;ViewApplicationActionEventPageModeDailySummary&gt; findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer</span>
-<span class="fc" id="L131">				.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class,</span>
-						ViewApplicationActionEventPageModeDailySummary_.embeddedId,
-						ApplicationActionEventPageModePeriodSummaryEmbeddedId.class,
-						ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page,
-						ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
-
-<span class="fc" id="L137">		return findOrderedListByEmbeddedProperty.parallelStream().filter(Objects::nonNull)</span>
-<span class="fc" id="L138">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPageMode()));</span>
-	}
-
-	@Override
-	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout content,
-			final String page) {
-
-<span class="fc" id="L145">		final Map&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; map = getApplicationActionEventPageModeDailySummaryMap(</span>
-				page);
-
-<span class="fc" id="L148">		final DataSeries dataSeries = new DataSeries();</span>
-
-<span class="fc" id="L150">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
-
-<span class="fc" id="L152">		final Series series = new Series();</span>
-
-<span class="fc bfc" id="L154" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
-
-<span class="pc bpc" id="L156" title="1 of 2 branches missed.">			if (entry.getKey() != null) {</span>
-<span class="fc" id="L157">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
-
-<span class="fc" id="L159">				dataSeries.newSeries();</span>
-<span class="fc" id="L160">				final List&lt;ViewApplicationActionEventPageModeDailySummary&gt; list = entry.getValue();</span>
-<span class="fc bfc" id="L161" title="All 2 branches covered.">				for (final ViewApplicationActionEventPageModeDailySummary item : list) {</span>
-<span class="fc" id="L162">					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), item.getHits());</span>
-<span class="fc" id="L163">				}</span>
-			}
-
-<span class="fc" id="L166">		}</span>
-
-<span class="fc" id="L168">		addChart(content, &quot;Page Action Events daily Summary&quot;,</span>
-<span class="fc" id="L169">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="fc" id="L170">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
-				true);
-<span class="fc" id="L172">	}</span>
-
-	/**
-	 * Gets the application action event page element daily summary list.
-	 *
-	 * @param page the page
-	 * @param elementId the element id
-	 * @return the application action event page element daily summary list
-	 */
-	private List&lt;ViewApplicationActionEventPageElementDailySummary&gt; getApplicationActionEventPageElementDailySummaryList(
-			final String page, final String elementId) {
-<span class="fc" id="L183">		final DataContainer&lt;ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L184">				.getDataContainer(ViewApplicationActionEventPageElementDailySummary.class);</span>
-
-<span class="fc" id="L186">		final List&lt;ViewApplicationActionEventPageElementDailySummary&gt; findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer</span>
-<span class="fc" id="L187">				.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class,</span>
-						ViewApplicationActionEventPageElementDailySummary_.embeddedId,
-						ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class,
-						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId,
-						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
-
-<span class="fc" id="L193">		return findOrderedListByEmbeddedProperty.parallelStream()</span>
-<span class="pc bpc" id="L194" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getPage().equals(page)).collect(Collectors.toList());</span>
-	}
-
-	@Override
-	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,
-			final String page, final String elementId) {
-<span class="fc" id="L200">		final List&lt;ViewApplicationActionEventPageElementDailySummary&gt; list = getApplicationActionEventPageElementDailySummaryList(</span>
-				page, elementId);
-
-<span class="fc" id="L203">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
-<span class="fc" id="L204">		final Series series = new Series();</span>
-<span class="fc" id="L205">		final DataSeries dataSeries = new DataSeries();</span>
-
-<span class="fc" id="L207">		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_HITS, series, list, dataSeries,</span>
-				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getHits);
-<span class="fc" id="L209">		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, list, dataSeries,</span>
-				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getRank);
-
-<span class="fc" id="L212">		addChart(content, &quot;Page element Action Events daily Summary&quot;,</span>
-<span class="fc" id="L213">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="fc" id="L214">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
-				true);
-<span class="fc" id="L216">	}</span>
 
 	/**
 	 * Adds the view application action event page element daily summary values.
@@ -229,13 +83,159 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 			final Series series, final List&lt;ViewApplicationActionEventPageElementDailySummary&gt; list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
 			final ToLongFunction&lt;ViewApplicationActionEventPageElementDailySummary&gt; t) {
-<span class="fc" id="L232">		series.addSeries(new XYseries().setLabel(label));</span>
-<span class="fc" id="L233">		dataSeries.newSeries();</span>
+<span class="fc" id="L86">		series.addSeries(new XYseries().setLabel(label));</span>
+<span class="fc" id="L87">		dataSeries.newSeries();</span>
 
-<span class="fc bfc" id="L235" title="All 2 branches covered.">		for (final ViewApplicationActionEventPageElementDailySummary item : list) {</span>
-<span class="fc" id="L236">			dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), t.applyAsLong(item));</span>
-<span class="fc" id="L237">		}</span>
-<span class="fc" id="L238">	}</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		for (final ViewApplicationActionEventPageElementDailySummary item : list) {</span>
+<span class="fc" id="L90">			dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), t.applyAsLong(item));</span>
+<span class="fc" id="L91">		}</span>
+<span class="fc" id="L92">	}</span>
+
+	@Override
+	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
+
+<span class="nc" id="L97">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
+
+<span class="nc" id="L99">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="nc" id="L101">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+
+<span class="nc" id="L103">		final Series series = new Series();</span>
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">			if (entry.getKey() != null) {</span>
+<span class="nc" id="L108">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+
+<span class="nc" id="L110">				dataSeries.newSeries();</span>
+<span class="nc" id="L111">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {</span>
+<span class="nc" id="L113">					dataSeries.add(</span>
+<span class="nc" id="L114">							simpleDateFormat.format(</span>
+<span class="nc" id="L115">									viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),</span>
+<span class="nc" id="L116">							viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());</span>
+<span class="nc" id="L117">				}</span>
+			}
+
+<span class="nc" id="L120">		}</span>
+
+<span class="nc" id="L122">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
+<span class="nc" id="L123">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L124">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+				true);
+<span class="nc" id="L126">	}</span>
+
+	@Override
+	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,
+			final String page, final String elementId) {
+<span class="fc" id="L131">		final List&lt;ViewApplicationActionEventPageElementDailySummary&gt; list = getApplicationActionEventPageElementDailySummaryList(</span>
+				page, elementId);
+
+<span class="fc" id="L134">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L135">		final Series series = new Series();</span>
+<span class="fc" id="L136">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="fc" id="L138">		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_HITS, series, list, dataSeries,</span>
+				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getHits);
+<span class="fc" id="L140">		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, list, dataSeries,</span>
+				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getRank);
+
+<span class="fc" id="L143">		addChart(content, &quot;Page element Action Events daily Summary&quot;,</span>
+<span class="fc" id="L144">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L145">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+				true);
+<span class="fc" id="L147">	}</span>
+
+	@Override
+	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout content,
+			final String page) {
+
+<span class="fc" id="L153">		final Map&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; map = getApplicationActionEventPageModeDailySummaryMap(</span>
+				page);
+
+<span class="fc" id="L156">		final DataSeries dataSeries = new DataSeries();</span>
+
+<span class="fc" id="L158">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+
+<span class="fc" id="L160">		final Series series = new Series();</span>
+
+<span class="fc bfc" id="L162" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">			if (entry.getKey() != null) {</span>
+<span class="fc" id="L165">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+
+<span class="fc" id="L167">				dataSeries.newSeries();</span>
+<span class="fc" id="L168">				final List&lt;ViewApplicationActionEventPageModeDailySummary&gt; list = entry.getValue();</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">				for (final ViewApplicationActionEventPageModeDailySummary item : list) {</span>
+<span class="fc" id="L170">					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), item.getHits());</span>
+<span class="fc" id="L171">				}</span>
+			}
+
+<span class="fc" id="L174">		}</span>
+
+<span class="fc" id="L176">		addChart(content, &quot;Page Action Events daily Summary&quot;,</span>
+<span class="fc" id="L177">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L178">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+				true);
+<span class="fc" id="L180">	}</span>
+
+	/**
+	 * Gets the application action event page daily summary map.
+	 *
+	 * @return the application action event page daily summary map
+	 */
+	private Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; getApplicationActionEventPageDailySummaryMap() {
+<span class="nc" id="L188">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L189">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
+
+<span class="nc" id="L191">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
+<span class="nc" id="L192">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
+	}
+
+	/**
+	 * Gets the application action event page element daily summary list.
+	 *
+	 * @param page the page
+	 * @param elementId the element id
+	 * @return the application action event page element daily summary list
+	 */
+	private List&lt;ViewApplicationActionEventPageElementDailySummary&gt; getApplicationActionEventPageElementDailySummaryList(
+			final String page, final String elementId) {
+<span class="fc" id="L204">		final DataContainer&lt;ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L205">				.getDataContainer(ViewApplicationActionEventPageElementDailySummary.class);</span>
+
+<span class="fc" id="L207">		final List&lt;ViewApplicationActionEventPageElementDailySummary&gt; findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer</span>
+<span class="fc" id="L208">				.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class,</span>
+						ViewApplicationActionEventPageElementDailySummary_.embeddedId,
+						ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class,
+						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId,
+						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
+
+<span class="fc" id="L214">		return findOrderedListByEmbeddedProperty.parallelStream()</span>
+<span class="pc bpc" id="L215" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getPage().equals(page)).collect(Collectors.toList());</span>
+	}
+
+	/**
+	 * Gets the application action event page mode daily summary map.
+	 *
+	 * @param page the page
+	 * @return the application action event page mode daily summary map
+	 */
+	private Map&lt;String, List&lt;ViewApplicationActionEventPageModeDailySummary&gt;&gt; getApplicationActionEventPageModeDailySummaryMap(
+			final String page) {
+<span class="fc" id="L226">		final DataContainer&lt;ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L227">				.getDataContainer(ViewApplicationActionEventPageModeDailySummary.class);</span>
+
+<span class="fc" id="L229">		final List&lt;ViewApplicationActionEventPageModeDailySummary&gt; findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer</span>
+<span class="fc" id="L230">				.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class,</span>
+						ViewApplicationActionEventPageModeDailySummary_.embeddedId,
+						ApplicationActionEventPageModePeriodSummaryEmbeddedId.class,
+						ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page,
+						ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
+
+<span class="fc" id="L236">		return findOrderedListByEmbeddedProperty.parallelStream().filter(Objects::nonNull)</span>
+<span class="fc" id="L237">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPageMode()));</span>
+	}
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

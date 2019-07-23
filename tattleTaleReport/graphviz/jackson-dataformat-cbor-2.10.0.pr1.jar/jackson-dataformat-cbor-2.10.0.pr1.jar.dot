@@ -1,0 +1,5 @@
+digraph jackson_dataformat_cbor_2_10_0_pr1_dependencies {
+  node [shape = box, fontsize=10.0];
+  jackson_dataformat_cbor_2_10_0_pr1 -> jackson_core_2_10_0_pr1;
+  jackson_dataformat_cbor_2_10_0_pr1 -> jackson_databind_2_10_0_pr1;
+}

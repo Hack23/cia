@@ -4,20 +4,20 @@
     hide empty methods
 
     class "<size:14>ApplicationMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.ApplicationMenuItemFactoryImpl [[ApplicationMenuItemFactoryImpl.html]] {
-        +createMainPageMenuBar(MenuBar): MenuBar
         +addRankingMenu(MenuBar): void
+        +createMainPageMenuBar(MenuBar): MenuBar
         +createOverviewPage(VerticalLayout): void
     }
 
     abstract class "<size:14>AbstractMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]]
     interface "<size:14>ApplicationMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory [[../api/ApplicationMenuItemFactory.html]] {
-        {abstract} +createMainPageMenuBar(MenuBar): MenuBar
         {abstract} +addRankingMenu(MenuBar): void
+        {abstract} +createMainPageMenuBar(MenuBar): MenuBar
         {abstract} +createOverviewPage(VerticalLayout): void
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.ApplicationMenuItemFactoryImpl
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.ApplicationMenuItemFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

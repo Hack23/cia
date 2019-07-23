@@ -52,20 +52,6 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 <span class="fc" id="L52">		super();</span>
 <span class="fc" id="L53">	}</span>
 	
-	@Override
-	public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
-<span class="fc" id="L57">		final List&lt;ProposalCommitteeeSummary&gt; summary = new ArrayList&lt;&gt;();</span>
-
-<span class="fc" id="L59">		final DataContainer&lt;DocumentStatusContainer, Long&gt; dataContainer = applicationManager</span>
-<span class="fc" id="L60">				.getDataContainer(DocumentStatusContainer.class);</span>
-
-<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (final DocumentStatusContainer document : dataContainer.getAll()) {</span>
-
-<span class="fc" id="L64">			addProposalCommitteeeSummary(processedIn, summary, document);</span>
-<span class="fc" id="L65">		}</span>
-<span class="fc" id="L66">		return summary;</span>
-	}
-
 	/**
 	 * Adds the proposal committeee summary.
 	 *
@@ -78,19 +64,19 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 */
 	private static void addProposalCommitteeeSummary(final String processedIn, final List&lt;ProposalCommitteeeSummary&gt; summary,
 			final DocumentStatusContainer document) {
-<span class="pc bpc" id="L81" title="1 of 4 branches missed.">		if (document.getDocumentProposal() != null &amp;&amp; document.getDocumentProposal().getProposal() != null) {</span>
+<span class="pc bpc" id="L67" title="1 of 4 branches missed.">		if (document.getDocumentProposal() != null &amp;&amp; document.getDocumentProposal().getProposal() != null) {</span>
 
-<span class="fc" id="L83">			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+<span class="fc" id="L69">			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
 
-<span class="pc bpc" id="L85" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
-<span class="pc bpc" id="L86" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
-<span class="pc bpc" id="L87" title="1 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+<span class="pc bpc" id="L71" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
+<span class="pc bpc" id="L72" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
 				
-<span class="fc" id="L89">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
+<span class="fc" id="L75">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
 
 			}
 		}
-<span class="fc" id="L93">	}</span>
+<span class="fc" id="L79">	}</span>
 
 	/**
 	 * Cleanup decision.
@@ -100,25 +86,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 * @return the string
 	 */
 	private static String cleanupDecision(final String chamber) {
-<span class="fc" id="L103">		return chamber.toUpperCase(Locale.ENGLISH).replace(&quot;(UTSKOTTET)&quot;, &quot;&quot;).replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UTBSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UBTSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;(&quot;, &quot;&quot;).replace(&quot;)&quot;,&quot;&quot;);</span>
-	}
-
-	/**
-	 * Gets the document name.
-	 *
-	 * @param document
-	 *            the document
-	 * @return the document name
-	 */
-	private static String getDocumentName(final DocumentStatusContainer document) {
-<span class="fc bfc" id="L114" title="All 2 branches covered.">		if (&quot;prop&quot;.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
-<span class="fc" id="L115">			return &quot;Proposition&quot;;</span>
-<span class="pc bpc" id="L116" title="2 of 4 branches missed.">		} else if (document.getDocument().getSubType() != null &amp;&amp; document.getDocument().getSubType().length() &gt; &quot;motion&quot;.length()) {</span>
-<span class="fc" id="L117">			return document.getDocument().getSubType();</span>
-		} else {
-<span class="nc" id="L119">			return &quot;Motion&quot;;</span>
-		}
-		
+<span class="fc" id="L89">		return chamber.toUpperCase(Locale.ENGLISH).replace(&quot;(UTSKOTTET)&quot;, &quot;&quot;).replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UTBSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UBTSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;(&quot;, &quot;&quot;).replace(&quot;)&quot;,&quot;&quot;);</span>
 	}
 
 	/**
@@ -129,13 +97,45 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 * @return the committtee short name
 	 */
 	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-<span class="fc" id="L132">		final String upperCase = proposal.getProcessedIn().replaceAll(&quot;\\d&quot;,&quot;&quot;).replace(&quot;/:&quot;,&quot;&quot;).toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L100">		final String upperCase = proposal.getProcessedIn().replaceAll(&quot;\\d&quot;,&quot;&quot;).replace(&quot;/:&quot;,&quot;&quot;).toUpperCase(Locale.ENGLISH);</span>
 				
-<span class="fc bfc" id="L134" title="All 2 branches covered.">		if (upperCase.contains(&quot;,&quot;)) {</span>
-<span class="fc" id="L135">			return upperCase.substring(0, upperCase.indexOf(','));</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">		if (upperCase.contains(&quot;,&quot;)) {</span>
+<span class="fc" id="L103">			return upperCase.substring(0, upperCase.indexOf(','));</span>
 		} else {
-<span class="fc" id="L137">			return upperCase;</span>
+<span class="fc" id="L105">			return upperCase;</span>
 		}
+	}
+
+	/**
+	 * Gets the document name.
+	 *
+	 * @param document
+	 *            the document
+	 * @return the document name
+	 */
+	private static String getDocumentName(final DocumentStatusContainer document) {
+<span class="fc bfc" id="L117" title="All 2 branches covered.">		if (&quot;prop&quot;.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
+<span class="fc" id="L118">			return &quot;Proposition&quot;;</span>
+<span class="pc bpc" id="L119" title="2 of 4 branches missed.">		} else if (document.getDocument().getSubType() != null &amp;&amp; document.getDocument().getSubType().length() &gt; &quot;motion&quot;.length()) {</span>
+<span class="fc" id="L120">			return document.getDocument().getSubType();</span>
+		} else {
+<span class="nc" id="L122">			return &quot;Motion&quot;;</span>
+		}
+		
+	}
+
+	@Override
+	public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
+<span class="fc" id="L129">		final List&lt;ProposalCommitteeeSummary&gt; summary = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L131">		final DataContainer&lt;DocumentStatusContainer, Long&gt; dataContainer = applicationManager</span>
+<span class="fc" id="L132">				.getDataContainer(DocumentStatusContainer.class);</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		for (final DocumentStatusContainer document : dataContainer.getAll()) {</span>
+
+<span class="fc" id="L136">			addProposalCommitteeeSummary(processedIn, summary, document);</span>
+<span class="fc" id="L137">		}</span>
+<span class="fc" id="L138">		return summary;</span>
 	}
 	
 }

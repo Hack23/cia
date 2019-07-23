@@ -4,14 +4,14 @@
     hide empty methods
 
     interface "<size:14>AbstractGhantChartManagerImpl.StepMapping\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping<T> [[AbstractGhantChartManagerImpl.StepMapping.html]] {
-        {abstract} +getFromDate(T): Date
-        {abstract} +getToDate(T): Date
-        {abstract} +getRoleCode(T): String
-        {abstract} +getOrg(T): String
-        {abstract} +getParty(T): String
         {abstract} +getBackgroundColor(T): String
         {abstract} +getFirstName(T): Object
+        {abstract} +getFromDate(T): Date
         {abstract} +getLastName(T): Object
+        {abstract} +getOrg(T): String
+        {abstract} +getParty(T): String
+        {abstract} +getRoleCode(T): String
+        {abstract} +getToDate(T): Date
     }
 
     abstract class "<size:14>AbstractGhantChartManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl<T> [[AbstractGhantChartManagerImpl.html]] {
@@ -22,5 +22,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl +-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

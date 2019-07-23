@@ -4,16 +4,16 @@
     hide empty methods
 
     enum "<size:14>MinistryPageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode [[MinistryPageMode.html]] {
-        {static} +DOCUMENTHISTORY
-        {static} +DOCUMENTACTIVITY
         {static} +CURRENTMEMBERS
-        {static} +MEMBERHISTORY
-        {static} +ROLEGHANT
+        {static} +DOCUMENTACTIVITY
+        {static} +DOCUMENTHISTORY
+        {static} +GOVERNMENT_BODIES_EXPENDITURE
         {static} +GOVERNMENT_BODIES_HEADCOUNT
         {static} +GOVERNMENT_BODIES_INCOME
-        {static} +GOVERNMENT_BODIES_EXPENDITURE
         {static} +GOVERNMENT_OUTCOME
+        {static} +MEMBERHISTORY
+        {static} +ROLEGHANT
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

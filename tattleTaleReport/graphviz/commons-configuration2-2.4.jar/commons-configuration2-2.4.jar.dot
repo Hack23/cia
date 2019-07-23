@@ -1,10 +1,10 @@
 digraph commons_configuration2_2_4_dependencies {
   node [shape = box, fontsize=10.0];
-  commons_configuration2_2_4 -> commons_beanutils_1_9_3_redhat_1;
-  commons_configuration2_2_4 -> commons_codec_1_12;
+  commons_configuration2_2_4 -> commons_beanutils_1_9_4;
+  commons_configuration2_2_4 -> commons_codec_1_13;
   commons_configuration2_2_4 -> commons_lang3_3_9;
-  commons_configuration2_2_4 -> commons_text_1_6;
-  commons_configuration2_2_4 -> jackson_databind_2_9_9;
+  commons_configuration2_2_4 -> commons_text_1_7;
+  commons_configuration2_2_4 -> jackson_databind_2_10_0_pr1;
   commons_configuration2_2_4 -> jcl_over_slf4j_2_0_0_alpha0;
   commons_configuration2_2_4 -> snakeyaml_1_24;
   commons_configuration2_2_4 -> spring_beans_5_2_0_M3;

@@ -2,54 +2,54 @@
     namespace com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode {
 
         class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl [[ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentRiskPageModContentFactoryImpl [[ParliamentRiskPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentChartsPartyGenderPageModContentFactoryImpl [[ParliamentChartsPartyGenderPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentOverviewPageModContentFactoryImpl [[ParliamentOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl [[ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentRuleViolationsPageModContentFactoryImpl [[ParliamentRuleViolationsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentChartsPartyWinnerPageModContentFactoryImpl [[ParliamentChartsPartyWinnerPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentPageVisitHistoryPageModContentFactoryImpl [[ParliamentPageVisitHistoryPageModContentFactoryImpl.html]] {
             {static} +NAME: String
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentDecisionFlowPageModContentFactoryImpl [[ParliamentDecisionFlowPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class ParliamentChartsPartyAgePageModContentFactoryImpl [[ParliamentChartsPartyAgePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl
@@ -68,5 +68,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -4,10 +4,10 @@
     hide empty methods
 
     interface "<size:14>PartyRankingMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory [[PartyRankingMenuItemFactory.html]] {
+        {abstract} +createOverviewPage(VerticalLayout): void
         {abstract} +createPartyRankingMenuBar(MenuBar): void
         {abstract} +createPartyRankingTopics(MenuItem): void
-        {abstract} +createOverviewPage(VerticalLayout): void
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -14,5 +14,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener <|-- com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

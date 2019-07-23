@@ -40,14 +40,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
-<span class="fc" id="L45">	private static final String[] HIDE_COLUMNS = new String[] { &quot;roleId&quot;, &quot;personId&quot;, &quot;party&quot;, &quot;detail&quot; };</span>
-<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = new String[] { &quot;roleId&quot;, &quot;roleCode&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
+<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = new String[] { &quot;roleId&quot;, &quot;roleCode&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
 			&quot;lastName&quot;, &quot;party&quot;, &quot;totalDaysServed&quot;, &quot;active&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
-	private static final String LEADER_HISTORY2 = &quot;Leader History&quot;;
+<span class="fc" id="L45">	private static final String[] HIDE_COLUMNS = new String[] { &quot;roleId&quot;, &quot;personId&quot;, &quot;party&quot;, &quot;detail&quot; };</span>
 	/** The Constant LEADER_HISTORY. */
 	private static final String LEADER_HISTORY = &quot;LeaderHistory&quot;;
+	private static final String LEADER_HISTORY2 = &quot;Leader History&quot;;
+<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
 
 	/**
 	 * Instantiates a new party leader history page mod content factory impl.
@@ -56,33 +56,33 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 <span class="fc" id="L56">		super();</span>
 <span class="fc" id="L57">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L61" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.LEADERHISTORY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L70">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L71">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L73">		LabelFactory.createHeader2Label(panelContent, LEADER_HISTORY);</span>
+<span class="fc" id="L68">		LabelFactory.createHeader2Label(panelContent, LEADER_HISTORY);</span>
 
-<span class="fc" id="L75">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L76">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="fc" id="L70">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L78">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
-<span class="fc" id="L79">				partyRoleMemberDataContainer.getAllBy(ViewRiksdagenPartyRoleMember_.party,</span>
-<span class="fc" id="L80">						viewRiksdagenParty.getPartyId()),</span>
+<span class="fc" id="L73">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
+<span class="fc" id="L74">				partyRoleMemberDataContainer.getAllBy(ViewRiksdagenPartyRoleMember_.party,</span>
+<span class="fc" id="L75">						viewRiksdagenParty.getPartyId()),</span>
 				LEADER_HISTORY2, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L83">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L84">		return panelContent;</span>
+<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L79">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.LEADERHISTORY.toString());</span>
 	}
 
 }

@@ -53,40 +53,13 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 <span class="fc" id="L53">		super();</span>
 <span class="fc" id="L54">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L58" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
-	}
-
-	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
-
-<span class="fc" id="L66">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
-
-<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
-
-<span class="fc" id="L70">		panelContent.addComponent(createDescription());</span>
-
-<span class="fc" id="L72">		getPoliticianRankingMenuItemFactory().createOverviewPage(panelContent);</span>
-
-<span class="fc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L76">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
-				NAME, parameters, pageId);
-
-<span class="fc" id="L79">		return panelContent;</span>
-
-	}
-
 	/**
 	 * Creates the description.
 	 *
 	 * @return the text area
 	 */
 	private static TextArea createDescription() {
-<span class="fc" id="L89">		final TextArea totalpoliticantoplistLabel = new TextArea(&quot;Politician Ranking by topic&quot;,</span>
+<span class="fc" id="L62">		final TextArea totalpoliticantoplistLabel = new TextArea(&quot;Politician Ranking by topic&quot;,</span>
 				&quot;Time served in Parliament:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion&quot;
 						+ &quot;\nTime served in Committees:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion&quot;
 						+ &quot;\nTime served in Government:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion&quot;
@@ -98,9 +71,36 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 						+ &quot;\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion&quot;
 						+ &quot;\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion&quot;
 						+ &quot;\nSearch by name&quot;);
-<span class="fc" id="L101">		totalpoliticantoplistLabel.setSizeFull();</span>
-<span class="fc" id="L102">		totalpoliticantoplistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="fc" id="L103">		return totalpoliticantoplistLabel;</span>
+<span class="fc" id="L74">		totalpoliticantoplistLabel.setSizeFull();</span>
+<span class="fc" id="L75">		totalpoliticantoplistLabel.setStyleName(&quot;Level2Header&quot;);</span>
+<span class="fc" id="L76">		return totalpoliticantoplistLabel;</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L82">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L84">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L86">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L88">		panelContent.addComponent(createDescription());</span>
+
+<span class="fc" id="L90">		getPoliticianRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+
+<span class="fc" id="L92">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+
+<span class="fc" id="L94">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+				NAME, parameters, pageId);
+
+<span class="fc" id="L97">		return panelContent;</span>
+
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="pc bpc" id="L103" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

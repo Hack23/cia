@@ -36,11 +36,11 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The page reference. */
-	private final String pageReference;
-
 	/** The page. */
 	private final String page;
+
+	/** The page reference. */
+	private final String pageReference;
 
 
 	/**
@@ -62,14 +62,16 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *
 	 * @param page
 	 *            the page
+	 * @param pageMode
+	 *            the page mode
 	 * @param part
 	 *            the part
 	 */
-	public PageModeMenuCommand(final String page, final String part) {
-<span class="fc" id="L69">		super();</span>
-<span class="fc" id="L70">		this.page = page;</span>
-<span class="fc" id="L71">		pageReference = part;</span>
-<span class="fc" id="L72">	}</span>
+	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
+<span class="fc" id="L71">		super();</span>
+<span class="fc" id="L72">		this.page = page;</span>
+<span class="fc" id="L73">		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();</span>
+<span class="fc" id="L74">	}</span>
 
 
 	/**
@@ -77,15 +79,13 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *
 	 * @param page
 	 *            the page
-	 * @param pageMode
-	 *            the page mode
 	 * @param part
 	 *            the part
 	 */
-	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
+	public PageModeMenuCommand(final String page, final String part) {
 <span class="fc" id="L86">		super();</span>
 <span class="fc" id="L87">		this.page = page;</span>
-<span class="fc" id="L88">		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();</span>
+<span class="fc" id="L88">		pageReference = part;</span>
 <span class="fc" id="L89">	}</span>
 
 
@@ -105,28 +105,28 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 <span class="fc" id="L105">		pageReference = pageMode + PAGE_SEPARATOR + part;</span>
 <span class="fc" id="L106">	}</span>
 
+	@Override
+	public void buttonClick(final ClickEvent event) {
+<span class="nc" id="L110">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
+<span class="nc" id="L111">	}</span>
+
 	/**
 	 * Gets the page path.
 	 *
 	 * @return the page path
 	 */
 	public String getPagePath() {
-<span class="pc bpc" id="L114" title="1 of 4 branches missed.">		if (pageReference != null &amp;&amp; !pageReference.isEmpty()) {</span>
-<span class="fc" id="L115">			return page + PAGE_SEPARATOR + pageReference;</span>
+<span class="pc bpc" id="L119" title="1 of 4 branches missed.">		if (pageReference != null &amp;&amp; !pageReference.isEmpty()) {</span>
+<span class="fc" id="L120">			return page + PAGE_SEPARATOR + pageReference;</span>
 		} else {
-<span class="fc" id="L117">			return page;</span>
+<span class="fc" id="L122">			return page;</span>
 		}
 	}
 
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
-<span class="fc" id="L123">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
-<span class="fc" id="L124">	}</span>
-
-	@Override
-	public void buttonClick(final ClickEvent event) {
-<span class="nc" id="L128">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
-<span class="nc" id="L129">	}</span>
+<span class="fc" id="L128">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
+<span class="fc" id="L129">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

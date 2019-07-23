@@ -58,27 +58,27 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  	}
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Override
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	}
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	@Override
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	@Override
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTACTIVITY.toString());
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTACTIVITY.toString());
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">return</strong> panelContent;
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		<strong class="jxr_keyword">return</strong> panelContent;
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Override
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  	}
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  }
 </pre>

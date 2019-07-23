@@ -4,18 +4,18 @@
     hide empty methods
 
     class "<size:14>UserHomeMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.UserHomeMenuItemFactoryImpl [[UserHomeMenuItemFactoryImpl.html]] {
-        +createUserHomeMenuBar(MenuBar, String): void
         +createOverviewPage(VerticalLayout): void
+        +createUserHomeMenuBar(MenuBar, String): void
     }
 
     abstract class "<size:14>AbstractMenuItemFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl [[AbstractMenuItemFactoryImpl.html]]
     interface "<size:14>UserHomeMenuItemFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.menufactory.api" as com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory [[../api/UserHomeMenuItemFactory.html]] {
-        {abstract} +createUserHomeMenuBar(MenuBar, String): void
         {abstract} +createOverviewPage(VerticalLayout): void
+        {abstract} +createUserHomeMenuBar(MenuBar, String): void
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.UserHomeMenuItemFactoryImpl
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.UserHomeMenuItemFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

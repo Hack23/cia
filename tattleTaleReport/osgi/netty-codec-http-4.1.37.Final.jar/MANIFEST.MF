@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Implementation-Title: Netty/Codec/HTTP
+Bundle-Description: Netty is an asynchronous event-driven network applic
+ ation framework for    rapid development of maintainable high performan
+ ce protocol servers and    clients.
+Automatic-Module-Name: io.netty.codec.http
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: io.netty.codec-http
+Implementation-Version: 4.1.37.Final
+Built-By: root
+Bnd-LastModified: 1561710178034
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: io.netty
+Bundle-DocURL: http://netty.io/
+Bundle-Vendor: The Netty Project
+Import-Package: com.jcraft.jzlib;resolution:=optional,io.netty.buffer;ve
+ rsion="[4.1,5)",io.netty.channel;version="[4.1,5)",io.netty.channel.emb
+ edded;version="[4.1,5)",io.netty.handler.codec,io.netty.handler.codec.b
+ ase64;version="[4.1,5)",io.netty.handler.codec.compression;version="[4.
+ 1,5)",io.netty.handler.ssl;version="[4.1,5)",io.netty.handler.stream;ve
+ rsion="[4.1,5)",io.netty.util;version="[4.1,5)",io.netty.util.concurren
+ t;version="[4.1,5)",io.netty.util.internal;version="[4.1,5)",io.netty.u
+ til.internal.logging;version="[4.1,5)",sun.nio.ch;resolution:=optional,
+ org.eclipse.jetty.npn;version="[1,2)";resolution:=optional,org.eclipse.
+ jetty.alpn;version="[1,2)";resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Netty Project
+Export-Package: io.netty.handler.codec.http;uses:="io.netty.buffer,io.ne
+ tty.channel,io.netty.channel.embedded,io.netty.handler.codec,io.netty.h
+ andler.codec.compression,io.netty.handler.codec.http.cookie,io.netty.ha
+ ndler.stream,io.netty.util";version="4.1.37",io.netty.handler.codec.htt
+ p.cookie;version="4.1.37",io.netty.handler.codec.http.cors;uses:="io.ne
+ tty.channel,io.netty.handler.codec.http";version="4.1.37",io.netty.hand
+ ler.codec.http.multipart;uses:="io.netty.buffer,io.netty.channel,io.net
+ ty.handler.codec,io.netty.handler.codec.http,io.netty.handler.stream,io
+ .netty.util";version="4.1.37",io.netty.handler.codec.http.websocketx;us
+ es:="io.netty.buffer,io.netty.channel,io.netty.handler.codec,io.netty.h
+ andler.codec.http,io.netty.handler.stream,io.netty.util,io.netty.util.i
+ nternal.logging";version="4.1.37",io.netty.handler.codec.http.websocket
+ x.extensions;uses:="io.netty.channel,io.netty.handler.codec,io.netty.ha
+ ndler.codec.http.websocketx";version="4.1.37",io.netty.handler.codec.ht
+ tp.websocketx.extensions.compression;uses:="io.netty.channel,io.netty.h
+ andler.codec.http.websocketx.extensions";version="4.1.37",io.netty.hand
+ ler.codec.rtsp;uses:="io.netty.buffer,io.netty.channel,io.netty.handler
+ .codec.http,io.netty.util";version="4.1.37",io.netty.handler.codec.spdy
+ ;uses:="io.netty.buffer,io.netty.channel,io.netty.handler.codec,io.nett
+ y.handler.codec.http,io.netty.util";version="4.1.37"
+Bundle-Name: Netty/Codec/HTTP
+Bundle-Version: 4.1.37.Final
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_212
+Implementation-URL: http://netty.io/netty-codec-http/
+

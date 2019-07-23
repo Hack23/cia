@@ -55,29 +55,29 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 <span class="fc" id="L55">		super();</span>
 <span class="fc" id="L56">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L60" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L68">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L62">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L73">		documentChartDataManager.createDocumentTypeChart(panelContent);</span>
+<span class="fc" id="L67">		documentChartDataManager.createDocumentTypeChart(panelContent);</span>
 
-<span class="fc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L77">		panel.setCaption(NAME + &quot;::&quot; + DOCUMENT_ACTIVITY_DESCRIPTION);</span>
+<span class="fc" id="L71">		panel.setCaption(NAME + &quot;::&quot; + DOCUMENT_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="fc" id="L73">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L79" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());</span>
 	}
 
 }

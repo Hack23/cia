@@ -4,14 +4,14 @@
     hide empty methods
 
     abstract class "<size:14>AbstractView\n<size:10>com.hack23.cia.web.impl.ui.application.views.common" as com.hack23.cia.web.impl.ui.application.views.common.AbstractView [[AbstractView.html]] {
-        #pageLinkFactory: PageLinkFactory
         #pageActionEventHelper: PageActionEventHelper
+        #pageLinkFactory: PageLinkFactory
         #AbstractView(Map<String, PageModeContentFactory>, String)
-        +postConstruct(): void
-        +enter(ViewChangeEvent): void
         #createBasicLayoutWithPanelAndFooter(String): void
+        +enter(ViewChangeEvent): void
         +getBarmenu(): MenuBar
         #getPanel(): Panel
+        +postConstruct(): void
     }
 
     class "<size:14>Panel\n<size:10>com.vaadin.ui" as com.vaadin.ui.Panel
@@ -20,5 +20,5 @@
     com.vaadin.ui.Panel <|-- com.hack23.cia.web.impl.ui.application.views.common.AbstractView
     com.vaadin.navigator.View <|.. com.hack23.cia.web.impl.ui.application.views.common.AbstractView
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

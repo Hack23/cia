@@ -56,32 +56,32 @@ public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extend
 <span class="fc" id="L56">		super();</span>
 <span class="fc" id="L57">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L61" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L71">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L72">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L66">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="fc" id="L67">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L74">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);</span>
+<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);</span>
 
-<span class="fc" id="L76">		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,</span>
-<span class="fc" id="L77">				viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L71">		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,</span>
+<span class="fc" id="L72">				viewRiksdagenMinistry.getNameId());</span>
 
-<span class="fc" id="L79">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L83">		return panelContent;</span>
+<span class="fc" id="L78">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L84" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
 	}
 
 }

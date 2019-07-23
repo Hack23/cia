@@ -43,14 +43,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
-
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = &quot;All Parties, total days served&quot;;
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = &quot;Charts:&quot;;
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
 	/** The chart data manager. */
 	@Autowired
@@ -68,37 +68,37 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 <span class="fc" id="L68">		super();</span>
 <span class="fc" id="L69">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L74" title="All 4 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString()) &amp;&amp; !parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L80">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L74">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L82">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L76">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L84">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L86">		final HorizontalLayout chartLayout = new HorizontalLayout();</span>
-<span class="fc" id="L87">		chartLayout.setSizeFull();</span>
+<span class="fc" id="L80">		final HorizontalLayout chartLayout = new HorizontalLayout();</span>
+<span class="fc" id="L81">		chartLayout.setSizeFull();</span>
 
-<span class="fc" id="L89">		chartDataManager.createChartPanel(chartLayout,</span>
-<span class="fc" id="L90">				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),</span>
+<span class="fc" id="L83">		chartDataManager.createChartPanel(chartLayout,</span>
+<span class="fc" id="L84">				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),</span>
 				ALL_PARTIES_TOTAL_DAYS_SERVED);
 
-<span class="fc" id="L93">		panelContent.addComponent(chartLayout);</span>
+<span class="fc" id="L87">		panelContent.addComponent(chartLayout);</span>
 
-<span class="fc" id="L95">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
+<span class="fc" id="L89">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
 
-<span class="fc" id="L97">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L91">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L100">		return panelContent;</span>
+<span class="fc" id="L94">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L100" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L101" title="All 4 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString()) &amp;&amp; !parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());</span>
 	}
 
 }

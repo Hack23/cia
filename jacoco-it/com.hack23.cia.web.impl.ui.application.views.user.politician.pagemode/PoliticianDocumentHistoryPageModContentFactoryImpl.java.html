@@ -41,14 +41,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
-<span class="fc" id="L44">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;);
-<span class="fc" id="L46">	private static final String[] HIDE_COLUMNS = new String[] { &quot;id&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;,</span>
-			&quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;tempLabel&quot;, &quot;referenceName&quot;, &quot;docId&quot;, &quot;label&quot;, &quot;roleDescription&quot; };
-<span class="fc" id="L48">	private static final String[] COLUMN_ORDER = new String[] { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;documentType&quot;, &quot;subType&quot;,</span>
+<span class="fc" id="L44">	private static final String[] COLUMN_ORDER = new String[] { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;documentType&quot;, &quot;subType&quot;,</span>
 			&quot;title&quot;, &quot;subTitle&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;, &quot;roleDescription&quot;, &quot;org&quot;, &quot;id&quot;,
 			&quot;docId&quot;, &quot;tempLabel&quot;, &quot;label&quot;, &quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;status&quot; };
 	private static final String DOCUMENTS = &quot;Documents&quot;;
+<span class="fc" id="L48">	private static final String[] HIDE_COLUMNS = new String[] { &quot;id&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;,</span>
+			&quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;tempLabel&quot;, &quot;referenceName&quot;, &quot;docId&quot;, &quot;label&quot;, &quot;roleDescription&quot; };
+<span class="fc" id="L50">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;);
 
 	/**
 	 * Instantiates a new politician document history page mod content factory
@@ -58,36 +58,36 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 <span class="fc" id="L58">		super();</span>
 <span class="fc" id="L59">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L63" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L73">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L68">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
 
-<span class="fc" id="L75">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L70">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L77">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
+<span class="fc" id="L72">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
 
-<span class="fc" id="L79">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
-<span class="fc" id="L80">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
+<span class="fc" id="L74">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
+<span class="fc" id="L75">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
 
-<span class="fc" id="L82">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
-<span class="fc" id="L83">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
-<span class="fc" id="L84">						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),</span>
+<span class="fc" id="L77">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
+<span class="fc" id="L78">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
+<span class="fc" id="L79">						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),</span>
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L88">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L89">		return panelContent;</span>
+<span class="fc" id="L83">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="fc" id="L84">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L90" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

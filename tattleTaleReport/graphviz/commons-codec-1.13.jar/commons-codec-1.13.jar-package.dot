@@ -1,0 +1,10 @@
+digraph commons_codec_1_13_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_commons_codec_binary -> org_apache_commons_codec;
+  org_apache_commons_codec_cli -> org_apache_commons_codec_digest;
+  org_apache_commons_codec_digest -> java_util_concurrent;
+  org_apache_commons_codec_digest -> org_apache_commons_codec;
+  org_apache_commons_codec_language -> org_apache_commons_codec;
+  org_apache_commons_codec_language_bm -> org_apache_commons_codec;
+  org_apache_commons_codec_net -> org_apache_commons_codec;
+}

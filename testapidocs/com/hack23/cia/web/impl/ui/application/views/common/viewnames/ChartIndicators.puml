@@ -4,26 +4,26 @@
     hide empty methods
 
     enum "<size:14>ChartIndicators\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators [[ChartIndicators.html]] {
-        {static} +PARTYWINNER
-        {static} +PARTYGENDER
-        {static} +PARTYAGE
-        {static} +DOCUMENTACTIVITYBYTYPE
-        {static} +DECISIONACTIVITYBYTYPE
-        {static} +ALLMINISTRIESBYHEADCOUNT
-        {static} +CURRENTMINISTRIESBYHEADCOUNT
-        {static} +ALLMINISTRIESPARTYBYTOTALDAYS
-        {static} +CURRENTPARTIESBYHEADCOUNT
+        {static} +ALL_GOVERNMENT_ROLE_CHART
         {static} +ALLCOMMITTEESBYHEADCOUNT
+        {static} +ALLMINISTRIESBYHEADCOUNT
+        {static} +ALLMINISTRIESPARTYBYTOTALDAYS
+        {static} +ALLPARTIES
         {static} +COMMITTEESBYPARTY
+        {static} +CURRENTCOMMITTEES
         {static} +CURRENTCOMMITTEESBYHEADCOUNT
         {static} +CURRENTCOMMITTEESBYPARTYDAYSSERVED
-        {static} +ALLPARTIES
-        {static} +CURRENTCOMMITTEES
         {static} +CURRENTGOVERMENTPARTIES
+        {static} +CURRENTMINISTRIESBYHEADCOUNT
         {static} +CURRENTPARTIES
-        {static} +ALL_GOVERNMENT_ROLE_CHART
+        {static} +CURRENTPARTIESBYHEADCOUNT
         {static} +DECISION_FLOW_CHART
+        {static} +DECISIONACTIVITYBYTYPE
+        {static} +DOCUMENTACTIVITYBYTYPE
+        {static} +PARTYAGE
+        {static} +PARTYGENDER
+        {static} +PARTYWINNER
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

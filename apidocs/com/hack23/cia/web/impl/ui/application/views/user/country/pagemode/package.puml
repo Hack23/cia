@@ -2,13 +2,13 @@
     namespace com.hack23.cia.web.impl.ui.application.views.user.country.pagemode {
 
         class WorldIndicatorsPageModContentFactoryImpl [[WorldIndicatorsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class CountryRankingOverviewPageModContentFactoryImpl [[CountryRankingOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- WorldIndicatorsPageModContentFactoryImpl
@@ -19,5 +19,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -4,13 +4,13 @@
     hide empty methods
 
     abstract class "<size:14>AbstractAdminSystemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode" as com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl [[AbstractAdminSystemPageModContentFactoryImpl.html]] {
-        +matches(String, String): boolean
         #getPagingUtil(): PagingUtil
+        +matches(String, String): boolean
     }
 
     abstract class "<size:14>AbstractBasicPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -54,29 +54,29 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 <span class="fc" id="L54">		super();</span>
 <span class="fc" id="L55">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L59" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.PARTYGENDER.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L67">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
 
-<span class="fc" id="L70">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L72">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
+<span class="fc" id="L66">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
 
-<span class="fc" id="L74">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L76">		panel.setCaption(NAME + &quot;::&quot; + PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);</span>
+<span class="fc" id="L70">		panel.setCaption(NAME + &quot;::&quot; + PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);</span>
 
-<span class="fc" id="L78">		return panelContent;</span>
+<span class="fc" id="L72">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L78" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.PARTYGENDER.toString());</span>
 	}
 
 }

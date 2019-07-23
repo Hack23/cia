@@ -60,33 +60,33 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	}
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	@Override
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createGovernmentOutcomeChart(<strong class="jxr_keyword">final</strong> AbstractOrderedLayout content) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map = esvApi.getReport();
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series();
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createPeriodData(<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map, <strong class="jxr_keyword">final</strong> GovernmentOperationPeriodOutcome.Variables variables,<strong class="jxr_keyword">final</strong> DataSeries dataSeries,
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  			<strong class="jxr_keyword">final</strong> Series series) {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(variables.toString()));
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		dataSeries.newSeries();
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		<strong class="jxr_keyword">final</strong> List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		Collections.sort(list);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> GovernmentOperationPeriodOutcome entry : list) {
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		addChart(content, <span class="jxr_string">"GovernmentOperationPeriodOutcome"</span>,
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  				<strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries)
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  				<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createPeriodData(<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map, <strong class="jxr_keyword">final</strong> GovernmentOperationPeriodOutcome.Variables variables,<strong class="jxr_keyword">final</strong> DataSeries dataSeries,
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  			<strong class="jxr_keyword">final</strong> Series series) {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(variables.toString()));
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		dataSeries.newSeries();
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		Collections.sort(list);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> GovernmentOperationPeriodOutcome entry : list) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  			dataSeries.add(entry.getPeriod() + <span class="jxr_string">"-01"</span>, entry.getValue());
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		}
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  			dataSeries.add(entry.getPeriod() + <span class="jxr_string">"-01"</span>, entry.getValue());
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		}
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	}
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	@Override
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createGovernmentOutcomeChart(<strong class="jxr_keyword">final</strong> AbstractOrderedLayout content) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; map = esvApi.getReport();
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series();
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		addChart(content, <span class="jxr_string">"GovernmentOperationPeriodOutcome"</span>,
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  				<strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries)
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  				<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  	}
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  }

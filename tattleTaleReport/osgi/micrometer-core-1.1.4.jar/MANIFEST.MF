@@ -158,7 +158,7 @@ Import-Package: ch.qos.logback.classic;version="0.0.0",ch.qos.logback.
  tflix.hystrix.strategy.eventnotifier,com.netflix.hystrix.strategy.exe
  cutionhook,com.netflix.hystrix.strategy.metrics,com.netflix.hystrix.s
  trategy.properties,com.sun.management,io.netty.handler.codec.http;ver
- sion="4.1.36.Final",java.io,java.lang,java.lang.annotation,java.lang.
+ sion="4.1.37.Final",java.io,java.lang,java.lang.annotation,java.lang.
  invoke,java.lang.management,java.lang.ref,java.lang.reflect,java.net,
  java.nio.charset,java.sql,java.text,java.time,java.time.format,java.t
  ime.temporal,java.util,java.util.concurrent,java.util.concurrent.atom

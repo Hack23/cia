@@ -2,8 +2,8 @@
     namespace com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl {
 
         class FormFactoryImpl [[FormFactoryImpl.html]] {
-            +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
             +addFormPanelTextFields(AbstractOrderedLayout, T extends Serializable, Class<T extends Serializable>, List<String>): void
+            +addRequestInputFormFields(FormLayout, T extends Serializable, Class<T extends Serializable>, List<String>, String, ClickListener): void
         }
 
         com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory <|.. FormFactoryImpl
@@ -16,5 +16,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

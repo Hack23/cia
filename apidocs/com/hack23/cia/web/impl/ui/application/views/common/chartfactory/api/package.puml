@@ -3,8 +3,8 @@
 
         interface AdminChartDataManager [[AdminChartDataManager.html]] {
             {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
-            {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
             {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+            {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
         }
 
         interface ChartOptions [[ChartOptions.html]] {
@@ -14,13 +14,13 @@
             {abstract} +createOptionsPartyLineChart(Series): Options
             {abstract} +createOptionsPersonLineChart(Series): Options
             {abstract} +createOptionsPieChart(): Options
-            {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
             {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+            {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
         }
 
         interface BallotChartDataManager [[BallotChartDataManager.html]] {
-            {abstract} +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
             {abstract} +createChart(Tab, AbstractOrderedLayout, List<ViewRiksdagenVoteDataBallotPartySummary>): void
+            {abstract} +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
         }
 
         interface PartyCoalationChartDataManager [[PartyCoalationChartDataManager.html]] {
@@ -28,18 +28,18 @@
         }
 
         interface GovernmentBodyChartDataManager [[GovernmentBodyChartDataManager.html]] {
-            {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
-            {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
-            {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
-            {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout): void
+            {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
+            {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
             {abstract} +createGovernmentBodyHeadcountSummaryChart(VerticalLayout): void
             {abstract} +createGovernmentBodyHeadcountSummaryChart(VerticalLayout, String): void
             {abstract} +createGovernmentBodyIncomeSummaryChart(VerticalLayout): void
             {abstract} +createGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
-            {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
-            {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
-            {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
+            {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout): void
             {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
+            {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
+            {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
+            {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
+            {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
         }
 
         interface GenericChartDataManager<T> [[GenericChartDataManager.html]] {
@@ -51,8 +51,8 @@
         }
 
         interface DecisionFlowChartManager [[DecisionFlowChartManager.html]] {
-            {abstract} +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
             {abstract} +createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
+            {abstract} +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
             {abstract} +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
         }
 
@@ -73,10 +73,10 @@
         }
 
         interface PartyChartDataManager [[PartyChartDataManager.html]] {
-            {abstract} +createPartyWinnerChart(AbstractOrderedLayout): void
-            {abstract} +createPartyLineChart(AbstractOrderedLayout, String): void
-            {abstract} +createPartyGenderChart(AbstractOrderedLayout): void
             {abstract} +createPartyAgeChart(AbstractOrderedLayout): void
+            {abstract} +createPartyGenderChart(AbstractOrderedLayout): void
+            {abstract} +createPartyLineChart(AbstractOrderedLayout, String): void
+            {abstract} +createPartyWinnerChart(AbstractOrderedLayout): void
         }
 
         interface PoliticianChartDataManager [[PoliticianChartDataManager.html]] {
@@ -118,5 +118,5 @@
 
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

@@ -38,12 +38,12 @@ abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractI
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.GOVERNMENT_BODY_VIEW_NAME;
 
-	@Autowired
-	private GovernmentBodyMenuItemFactory governmentBodyMenuItemFactory;
-
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
+
+	@Autowired
+	private GovernmentBodyMenuItemFactory governmentBodyMenuItemFactory;
 
 	/**
 	 * Instantiates a new abstract government body page mod content factory impl.

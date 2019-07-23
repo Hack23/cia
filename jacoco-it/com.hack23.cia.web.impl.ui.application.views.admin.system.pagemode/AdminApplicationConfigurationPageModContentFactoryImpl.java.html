@@ -53,27 +53,27 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final String UPDATE_CONFIGURATION = &quot;Update Configuration&quot;;
+	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
+	private static final String ADMIN_APPLICATION_CONFIGURATION = &quot;Admin Application Configuration&quot;;
 
-<span class="fc" id="L58">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
-			&quot;configDescription&quot;, &quot;componentTitle&quot;, &quot;componentDescription&quot;, &quot;propertyValue&quot; );
+	private static final String APPLICATION_CONFIGURATION = &quot;ApplicationConfiguration&quot;;
 
 <span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;configurationGroup&quot;, &quot;component&quot;,&quot;configTitle&quot; ,&quot;configDescription&quot;,</span>
 			&quot;propertyValue&quot;, &quot;createdDate&quot;,
 			&quot;updatedDate&quot; );
 
-<span class="fc" id="L65">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
+<span class="fc" id="L65">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
+			&quot;configDescription&quot;, &quot;componentTitle&quot;, &quot;componentDescription&quot;, &quot;propertyValue&quot; );
 
-<span class="fc" id="L67">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
+<span class="fc" id="L68">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
 			 &quot;componentDescription&quot;, &quot;propertyId&quot;, &quot;propertyValue&quot; };
 
-	private static final String APPLICATION_CONFIGURATION = &quot;ApplicationConfiguration&quot;;
-
-	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
-	private static final String ADMIN_APPLICATION_CONFIGURATION = &quot;Admin Application Configuration&quot;;
+<span class="fc" id="L71">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
+
+	private static final String UPDATE_CONFIGURATION = &quot;Update Configuration&quot;;
 
 	/**
 	 * Instantiates a new admin application configuration page mod content

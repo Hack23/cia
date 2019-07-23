@@ -35,20 +35,20 @@ import com.vaadin.ui.UI;
  */
 public final class RegisterUserClickListener extends AbstractClickListener implements ClickListener {
 
-	/** The Constant REGISTER_USER_FAILURE. */
-	private static final String REGISTER_USER_FAILURE = &quot;RegisterUser {} failure&quot;;
+	/** The Constant LOG_MSG_REGISTER_USER. */
+	private static final String LOG_MSG_REGISTER_USER = &quot;RegisterUser {}&quot;;
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L42">	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserClickListener.class);</span>
 
 	/** The Constant REGISTER_FAILED. */
 	private static final String REGISTER_FAILED = &quot;Register failed:&quot;;
 
-	/** The Constant LOG_MSG_REGISTER_USER. */
-	private static final String LOG_MSG_REGISTER_USER = &quot;RegisterUser {}&quot;;
+	/** The Constant REGISTER_USER_FAILURE. */
+	private static final String REGISTER_USER_FAILURE = &quot;RegisterUser {} failure&quot;;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-<span class="fc" id="L51">	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserClickListener.class);</span>
 
 	/** The reqister request. */
 	private final RegisterUserRequest reqisterRequest;

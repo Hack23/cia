@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Bundle-Description: Byte Buddy is a Java library for creating Java class
+ es at run time.        This artifact is a build of Byte Buddy with all 
+ ASM dependencies repackaged into its own name space.
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: net.bytebuddy.byte-buddy
+Built-By: rafael
+Bnd-LastModified: 1563708591142
+Bundle-ManifestVersion: 2
+Tool: Bnd-3.5.0.201709291849
+Main-Class: net.bytebuddy.build.Plugin$Engine$Default
+Export-Package: net.bytebuddy;version="1.9.15",net.bytebuddy.agent.build
+ er;version="1.9.15",net.bytebuddy.asm;version="1.9.15",net.bytebuddy.bu
+ ild;version="1.9.15",net.bytebuddy.description;version="1.9.15",net.byt
+ ebuddy.description.annotation;version="1.9.15",net.bytebuddy.descriptio
+ n.enumeration;version="1.9.15",net.bytebuddy.description.field;version=
+ "1.9.15",net.bytebuddy.description.method;version="1.9.15",net.bytebudd
+ y.description.modifier;version="1.9.15",net.bytebuddy.description.type;
+ version="1.9.15",net.bytebuddy.dynamic;version="1.9.15",net.bytebuddy.d
+ ynamic.loading;version="1.9.15",net.bytebuddy.dynamic.scaffold;version=
+ "1.9.15",net.bytebuddy.dynamic.scaffold.inline;version="1.9.15",net.byt
+ ebuddy.dynamic.scaffold.subclass;version="1.9.15",net.bytebuddy.impleme
+ ntation;version="1.9.15",net.bytebuddy.implementation.attribute;version
+ ="1.9.15",net.bytebuddy.implementation.auxiliary;version="1.9.15",net.b
+ ytebuddy.implementation.bind;version="1.9.15",net.bytebuddy.implementat
+ ion.bind.annotation;version="1.9.15",net.bytebuddy.implementation.bytec
+ ode;version="1.9.15",net.bytebuddy.implementation.bytecode.assign;versi
+ on="1.9.15",net.bytebuddy.implementation.bytecode.assign.primitive;vers
+ ion="1.9.15",net.bytebuddy.implementation.bytecode.assign.reference;ver
+ sion="1.9.15",net.bytebuddy.implementation.bytecode.collection;version=
+ "1.9.15",net.bytebuddy.implementation.bytecode.constant;version="1.9.15
+ ",net.bytebuddy.implementation.bytecode.member;version="1.9.15",net.byt
+ ebuddy.matcher;version="1.9.15",net.bytebuddy.pool;version="1.9.15",net
+ .bytebuddy.utility;version="1.9.15",net.bytebuddy.utility.privilege;ver
+ sion="1.9.15",net.bytebuddy.utility.visitor;version="1.9.15",net.bytebu
+ ddy.jar.asm;version="1.9.15",net.bytebuddy.jar.asm.signature;version="1
+ .9.15",net.bytebuddy.jar.asm.commons;version="1.9.15"
+Bundle-Name: Byte Buddy (without dependencies)
+Bundle-Version: 1.9.15
+Multi-Release: true
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_201
+

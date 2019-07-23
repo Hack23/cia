@@ -4,38 +4,38 @@
     hide empty methods
 
     class "<size:14>GovernmentBodyChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.GovernmentBodyChartDataManagerImpl [[GovernmentBodyChartDataManagerImpl.html]] {
-        +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
-        +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
+        +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
+        +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
         +createGovernmentBodyHeadcountSummaryChart(VerticalLayout): void
         +createGovernmentBodyHeadcountSummaryChart(VerticalLayout, String): void
         +createGovernmentBodyIncomeSummaryChart(VerticalLayout): void
         +createGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
-        +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
-        +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
-        +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
         +createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout): void
-        +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
         +createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
+        +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
+        +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
+        +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
+        +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
     }
 
     abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
     interface "<size:14>GovernmentBodyChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager [[../api/GovernmentBodyChartDataManager.html]] {
-        {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
-        {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
-        {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
-        {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout): void
+        {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
+        {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
         {abstract} +createGovernmentBodyHeadcountSummaryChart(VerticalLayout): void
         {abstract} +createGovernmentBodyHeadcountSummaryChart(VerticalLayout, String): void
         {abstract} +createGovernmentBodyIncomeSummaryChart(VerticalLayout): void
         {abstract} +createGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
-        {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
-        {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
-        {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
+        {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout): void
         {abstract} +createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout, String): void
+        {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout): void
+        {abstract} +createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout, String): void
+        {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
+        {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.GovernmentBodyChartDataManagerImpl
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.GovernmentBodyChartDataManagerImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

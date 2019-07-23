@@ -36,11 +36,11 @@ import com.vaadin.spring.annotation.SpringView;
 @SpringView(name = AdminApplicationEventsView.NAME)
 public final class AdminApplicationEventsView extends AbstractAdminView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new admin application events view.

@@ -1,0 +1,5 @@
+digraph commons_beanutils_1_9_4_dependencies {
+  node [shape = box, fontsize=10.0];
+  commons_beanutils_1_9_4 -> commons_collections_3_2_2_redhat_2;
+  commons_beanutils_1_9_4 -> jcl_over_slf4j_2_0_0_alpha0;
+}

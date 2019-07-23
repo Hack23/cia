@@ -1,0 +1,4 @@
+digraph pmml_agent_1_4_11_dependencies {
+  node [shape = box, fontsize=10.0];
+  pmml_agent_1_4_11 -> javassist_3_25_0_GA;
+}

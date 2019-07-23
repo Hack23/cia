@@ -4,10 +4,10 @@
     hide empty methods
 
     class "<size:14>RowUtil\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.rows" as com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil [[RowUtil.html]] {
-        {static} +createRowItem(ResponsiveRow, Button, String): void
-        {static} +createRowComponent(ResponsiveRow, Component, String): void
         {static} +createGridLayout(AbstractOrderedLayout): ResponsiveRow
+        {static} +createRowComponent(ResponsiveRow, Component, String): void
+        {static} +createRowItem(ResponsiveRow, Button, String): void
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

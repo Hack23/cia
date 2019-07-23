@@ -53,12 +53,12 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  @Component
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="DocumentPersonReferencesPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/document/pagemode/DocumentPersonReferencesPageModContentFactoryImpl.html#DocumentPersonReferencesPageModContentFactoryImpl">DocumentPersonReferencesPageModContentFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractDocumentPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/document/pagemode/AbstractDocumentPageModContentFactoryImpl.html#AbstractDocumentPageModContentFactoryImpl">AbstractDocumentPageModContentFactoryImpl</a> {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com<a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a>cation/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a> LISTENER = <strong class="jxr_keyword">new</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a>(
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  			UserViews.POLITICIAN_VIEW_NAME, <span class="jxr_string">"personReferenceId"</span>);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] HIDE_COLUMNS = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"personReferenceId"</span>, <span class="jxr_string">"hjid"</span> };
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] COLUMN_ORDER = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"personReferenceId"</span>, <span class="jxr_string">"referenceName"</span>, <span class="jxr_string">"partyShortCode"</span>,
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  			<span class="jxr_string">"orderNumber"</span>, <span class="jxr_string">"roleDescription"</span> };
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DOCUMENT_PERSON_REFERENCES = <span class="jxr_string">"Document person references"</span>;
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] COLUMN_ORDER = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"personReferenceId"</span>, <span class="jxr_string">"referenceName"</span>, <span class="jxr_string">"partyShortCode"</span>,
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  			<span class="jxr_string">"orderNumber"</span>, <span class="jxr_string">"roleDescription"</span> };
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DOCUMENT_PERSON_REFERENCES = <span class="jxr_string">"Document person references"</span>;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] HIDE_COLUMNS = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"personReferenceId"</span>, <span class="jxr_string">"hjid"</span> };
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com<a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a>cation/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a> LISTENER = <strong class="jxr_keyword">new</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a>(
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  			UserViews.POLITICIAN_VIEW_NAME, <span class="jxr_string">"personReferenceId"</span>);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/** The Constant PERSON_REFERENCES. */</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PERSON_REFERENCES = <span class="jxr_string">"Person References"</span>;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
@@ -70,44 +70,44 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	}
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	@Override
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.PERSONREFERENCES.toString());
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	@Override
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Override
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  				.getDataContainer(DocumentStatusContainer.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  				.findByQueryProperty(DocumentStatusContainer.<strong class="jxr_keyword">class</strong>, DocumentStatusContainer_.document,
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  						DocumentData.<strong class="jxr_keyword">class</strong>, DocumentData_.id, pageId);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		LabelFactory.createHeader2Label(panelContent, PERSON_REFERENCES);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		<strong class="jxr_keyword">if</strong> (documentStatusContainer != <strong class="jxr_keyword">null</strong> &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  						.getDocumentPersonReferenceList() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  					DOCUMENT_PERSON_REFERENCES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		}
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		panel.setContent(panelContent);
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  				parameters, pageId);
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 		<strong class="jxr_keyword">return</strong> panelContent;
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  				.getDataContainer(DocumentStatusContainer.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  				.findByQueryProperty(DocumentStatusContainer.<strong class="jxr_keyword">class</strong>, DocumentStatusContainer_.document,
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  						DocumentData.<strong class="jxr_keyword">class</strong>, DocumentData_.id, pageId);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		LabelFactory.createHeader2Label(panelContent, PERSON_REFERENCES);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">if</strong> (documentStatusContainer != <strong class="jxr_keyword">null</strong> &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  						.getDocumentPersonReferenceList() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  					DOCUMENT_PERSON_REFERENCES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		}
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		panel.setContent(panelContent);
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  				parameters, pageId);
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<strong class="jxr_keyword">return</strong> panelContent;
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  	}
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	@Override
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.PERSONREFERENCES.toString());
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 	}
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> }

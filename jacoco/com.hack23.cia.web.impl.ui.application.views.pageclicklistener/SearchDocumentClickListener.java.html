@@ -37,23 +37,23 @@ public class SearchDocumentClickListener extends AbstractClickListener implement
 	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = &quot;Error message&quot;;
 
-	/** The Constant SEARCH_FAILED. */
-	private static final String SEARCH_FAILED = &quot;Search failed&quot;;
+	/** The Constant LOG_MSG_SEARCH_DOCUMENT. */
+	private static final String LOG_MSG_SEARCH_DOCUMENT = &quot;SearchDocument {}&quot;;
 
 	/** The Constant LOG_MSG_SEARCH_DOCUMENT_FAILURE. */
 	private static final String LOG_MSG_SEARCH_DOCUMENT_FAILURE = &quot;SearchDocument {} failure&quot;;
 
-	/** The Constant LOG_MSG_SEARCH_DOCUMENT. */
-	private static final String LOG_MSG_SEARCH_DOCUMENT = &quot;SearchDocument {}&quot;;
+	/** The Constant LOGGER. */
+<span class="fc" id="L47">	private static final Logger LOGGER = LoggerFactory.getLogger(SearchDocumentClickListener.class);</span>
+
+	/** The Constant SEARCH_FAILED. */
+	private static final String SEARCH_FAILED = &quot;Search failed&quot;;
 
 	/** The Constant SEARCH_SUCCESS. */
 	private static final String SEARCH_SUCCESS = &quot;Search success&quot;;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-<span class="fc" id="L56">	private static final Logger LOGGER = LoggerFactory.getLogger(SearchDocumentClickListener.class);</span>
 
 	/** The reqister request. */
 	private final SearchDocumentRequest reqisterRequest;

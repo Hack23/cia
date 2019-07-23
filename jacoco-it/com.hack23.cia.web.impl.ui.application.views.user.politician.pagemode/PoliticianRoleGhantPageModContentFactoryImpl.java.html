@@ -51,33 +51,33 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 <span class="fc" id="L51">		super();</span>
 <span class="fc" id="L52">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L56" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLEGHANT.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L67">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L61">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L62">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLEGHANT.toString());</span>
+<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLEGHANT.toString());</span>
 
-<span class="fc" id="L71">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="fc" id="L72">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="fc" id="L66">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="fc" id="L67">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L74">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+<span class="fc" id="L69">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
 
-<span class="fc" id="L76">		politicianGhantChartManager.createRoleGhant(panelContent, assignmentList);</span>
+<span class="fc" id="L71">		politicianGhantChartManager.createRoleGhant(panelContent, assignmentList);</span>
 
-<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="fc" id="L73">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="fc" id="L74">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L80" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLEGHANT.toString());</span>
 	}
 
 }

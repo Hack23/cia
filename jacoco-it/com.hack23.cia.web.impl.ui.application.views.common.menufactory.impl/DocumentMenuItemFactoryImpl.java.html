@@ -40,23 +40,26 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
-	/** The Constant DOCUMENTS. */
-	private static final String DOCUMENTS = &quot;Documents&quot;;
+	/** The Constant ATTACHEMENTS. */
+	private static final String ATTACHEMENTS = &quot;Attachements&quot;;
 
-	/** The Constant DOCUMENT_DETAILS. */
-	private static final String DOCUMENT_DETAILS = &quot;Document details&quot;;
+	/** The Constant COMMAND_DOCUMENTS. */
+<span class="fc" id="L47">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
+
+	/** The Constant COMMAND_SEARCH_DOCUMENT. */
+<span class="fc" id="L50">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
 
 	/** The Constant COMPLETE_DOCUMENT_AS_TEXT. */
 	private static final String COMPLETE_DOCUMENT_AS_TEXT = &quot;Complete document as text&quot;;
 
-	/** The Constant DOCUMENT_DECISIONS. */
-	private static final String DOCUMENT_DECISIONS = &quot;Document decisions&quot;;
-
-	/** The Constant ATTACHEMENTS. */
-	private static final String ATTACHEMENTS = &quot;Attachements&quot;;
+	/** The Constant DOCUMENT. */
+	private static final String DOCUMENT = &quot;Document&quot;;
 
 	/** The Constant DOCUMENT_ACTIVITIES. */
 	private static final String DOCUMENT_ACTIVITIES = &quot;Document activities&quot;;
+
+	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
+	private static final String DOCUMENT_ACTIVITY_TEXT = &quot;Document Activity&quot;;
 
 	/** The Constant DOCUMENT_ATTACHEMENTS. */
 	private static final String DOCUMENT_ATTACHEMENTS = &quot;Document Attachements&quot;;
@@ -64,21 +67,21 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = &quot;Document data&quot;;
 
-	/** The Constant DOCUMENT. */
-	private static final String DOCUMENT = &quot;Document&quot;;
+	/** The Constant DOCUMENT_DECISION. */
+	private static final String DOCUMENT_DECISION = &quot;Document Decision&quot;;
 
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = &quot;Person references&quot;;
 
+	/** The Constant DOCUMENT_DECISIONS. */
+	private static final String DOCUMENT_DECISIONS = &quot;Document decisions&quot;;
+
+	/** The Constant DOCUMENT_DETAILS. */
+	private static final String DOCUMENT_DETAILS = &quot;Document details&quot;;
 
 	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = &quot;Document References&quot;;
 
-	/** The Constant DOCUMENT_DECISION. */
-	private static final String DOCUMENT_DECISION = &quot;Document Decision&quot;;
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = &quot;Document Activity&quot;;
+	/** The Constant DOCUMENTS. */
+	private static final String DOCUMENTS = &quot;Documents&quot;;
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
@@ -86,11 +89,8 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
 
-	/** The Constant COMMAND_SEARCH_DOCUMENT. */
-<span class="fc" id="L90">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
-
-	/** The Constant COMMAND_DOCUMENTS. */
-<span class="fc" id="L93">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
+	/** The Constant PERSON_REFERENCES. */
+	private static final String PERSON_REFERENCES = &quot;Person references&quot;;
 
 	/** The application menu item factory. */
 	@Autowired
@@ -142,41 +142,41 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 
 	@Override
-	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L146">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+	public void createDocumentsMenuBar(final MenuBar menuBar) {
+<span class="fc" id="L146">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L148">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L149">				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);</span>
+<span class="fc" id="L148">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L149">		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);</span>
+<span class="fc" id="L150">		documentsItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
+<span class="fc" id="L151">		documentsItem.addItem(&quot;Search Documents&quot;,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
 
-<span class="fc" id="L151">		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L152">				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);</span>
-
-<span class="fc" id="L154">		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L155">				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);</span>
-
-<span class="fc" id="L157">		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L158">				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);</span>
-
-<span class="fc" id="L160">		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L161">				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);</span>
-
-<span class="fc" id="L163">		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L164">				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);</span>
-
-<span class="fc" id="L166">		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="fc" id="L167">				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);</span>
-<span class="fc" id="L168">	}</span>
+<span class="fc" id="L153">	}</span>
 
 
 	@Override
-	public void createDocumentsMenuBar(final MenuBar menuBar) {
-<span class="fc" id="L173">		initApplicationMenuBar(menuBar);</span>
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+<span class="fc" id="L158">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L175">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
-<span class="fc" id="L176">		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);</span>
-<span class="fc" id="L177">		documentsItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
-<span class="fc" id="L178">		documentsItem.addItem(&quot;Search Documents&quot;,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
+<span class="fc" id="L160">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L161">				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);</span>
 
+<span class="fc" id="L163">		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L164">				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);</span>
+
+<span class="fc" id="L166">		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L167">				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);</span>
+
+<span class="fc" id="L169">		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L170">				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);</span>
+
+<span class="fc" id="L172">		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L173">				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);</span>
+
+<span class="fc" id="L175">		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L176">				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);</span>
+
+<span class="fc" id="L178">		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L179">				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);</span>
 <span class="fc" id="L180">	}</span>
 
 }

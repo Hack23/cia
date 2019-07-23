@@ -51,28 +51,28 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 <span class="fc" id="L51">		super();</span>
 <span class="fc" id="L52">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L56" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L67">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L61">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L62">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
+<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
 
-<span class="fc" id="L71">		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);</span>
+<span class="fc" id="L66">		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);</span>
 
-<span class="fc" id="L73">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L74">		return panelContent;</span>
+<span class="fc" id="L68">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L69">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L75" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString());</span>
 	}
 
 }

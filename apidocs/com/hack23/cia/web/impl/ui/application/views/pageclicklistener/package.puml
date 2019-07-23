@@ -96,8 +96,8 @@
         abstract class AbstractPageItemRendererClickListener<T> [[AbstractPageItemRendererClickListener.html]] {
             +AbstractPageItemRendererClickListener(String)
             +click(RendererClickEvent<T>): void
-            +selectionChange(SelectionEvent<T>): void
             {abstract} #getPageId(T): String
+            +selectionChange(SelectionEvent<T>): void
         }
 
         class ManageUserAccountClickListener [[ManageUserAccountClickListener.html]] {
@@ -156,5 +156,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

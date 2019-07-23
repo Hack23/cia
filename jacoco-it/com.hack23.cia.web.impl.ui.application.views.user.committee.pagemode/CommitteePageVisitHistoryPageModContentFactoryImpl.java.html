@@ -49,28 +49,28 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 <span class="fc" id="L49">		super();</span>
 <span class="fc" id="L50">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L54" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L65">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L59">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L60">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L67">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L62">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L69">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L64">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L72">		return panelContent;</span>
+<span class="fc" id="L67">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

@@ -1,0 +1,4 @@
+digraph lucene_join_8_1_1_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_join_8_1_1 -> lucene_core_8_1_1;
+}

@@ -4,8 +4,8 @@
     hide empty methods
 
     class "<size:14>PartyCurrentMembersPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.party.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCurrentMembersPageModContentFactoryImpl [[PartyCurrentMembersPageModContentFactoryImpl.html]] {
-        +matches(String, String): boolean
         +createContent(String, MenuBar, Panel): Layout
+        +matches(String, String): boolean
     }
 
     abstract class "<size:14>AbstractItemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl<ViewRiksdagenParty> [[../../../common/pagemode/AbstractItemPageModContentFactoryImpl.html]] {
@@ -14,5 +14,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCurrentMembersPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

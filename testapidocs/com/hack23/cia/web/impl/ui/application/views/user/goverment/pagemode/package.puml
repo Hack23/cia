@@ -2,113 +2,113 @@
     namespace com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode {
 
         class MinistryRankingDataGridPageModContentFactoryImpl [[MinistryRankingDataGridPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl [[MinistryRankingAllMinistriesChartsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingPageVisitHistoryPageModContentFactoryImpl [[MinistryRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRoleGhantPageModContentFactoryImpl [[MinistryRoleGhantPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryPageVisitHistoryPageModContentFactoryImpl [[MinistryPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingGovernmentBodiesPageModContentFactoryImpl [[MinistryRankingGovernmentBodiesPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryCurrentMembersPageModContentFactoryImpl [[MinistryCurrentMembersPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryDocumentActivityPageModContentFactoryImpl [[MinistryDocumentActivityPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryGovernmentBodiesHeadcountModContentFactoryImpl [[MinistryGovernmentBodiesHeadcountModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl [[MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryMemberHistoryPageModContentFactoryImpl [[MinistryMemberHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryDocumentHistoryPageModContentFactoryImpl [[MinistryDocumentHistoryPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl [[MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingOverviewPageModContentFactoryImpl [[MinistryRankingOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingGovernmentOutcomePageModContentFactoryImpl [[MinistryRankingGovernmentOutcomePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl [[MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingAllRolesChartsPageModContentFactoryImpl [[MinistryRankingAllRolesChartsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingAllPartiesChartsPageModContentFactoryImpl [[MinistryRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryOverviewPageModContentFactoryImpl [[MinistryOverviewPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryGovernmentBodiesExpenditureModContentFactoryImpl [[MinistryGovernmentBodiesExpenditureModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryGovernmentBodiesIncomeModContentFactoryImpl [[MinistryGovernmentBodiesIncomeModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl [[MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.html]] {
-            +matches(String, String): boolean
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingDataGridPageModContentFactoryImpl
@@ -142,5 +142,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

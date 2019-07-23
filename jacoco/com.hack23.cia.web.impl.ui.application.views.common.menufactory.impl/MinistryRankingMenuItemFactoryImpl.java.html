@@ -42,104 +42,104 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements MinistryRankingMenuItemFactory {
 
-	/** The Constant GOVERNMENT_OUTCOME. */
-	private static final String GOVERNMENT_OUTCOME = &quot;Government outcome&quot;;
-
-	/** The Constant GOVERNMENT_ROLES_CHART. */
-	private static final String GOVERNMENT_ROLES_CHART = &quot;Government roles chart&quot;;
-
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-<span class="fc" id="L52">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-			PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT. */
-<span class="fc" id="L56">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L57">			PageMode.CHARTS, ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());</span>
-
-	/** The Constant COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS. */
-<span class="fc" id="L60">	private static final PageModeMenuCommand COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L61">			PageMode.CHARTS, ChartIndicators.ALLMINISTRIESPARTYBYTOTALDAYS.toString());</span>
-
-	/** The Constant COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT. */
-<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L65">			PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString());</span>
-
-	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT. */
-<span class="fc" id="L68">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L69">			PageMode.CHARTS, ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString());</span>
-
-	/** The Constant COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT. */
-<span class="fc" id="L72">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L73">			PageMode.CHARTS, ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());</span>
-
-	/** The Constant COMMAND_DATAGRID. */
-<span class="fc" id="L76">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-			PageMode.DATAGRID);
-
-	/** The Constant COMMAN_OVERVIEW. */
-<span class="fc" id="L80">	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-			PageMode.OVERVIEW);
-
-	/** The Constant COMMAND_GOVERNMENT_BODIES_HEADCOUNT. */
-<span class="fc" id="L84">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L85">			MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
-
-	/** The Constant COMMAND_GOVERNMENT_BODIES_INCOME. */
-<span class="fc" id="L88">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L89">			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());</span>
-
-	/** The Constant COMMAND_GOVERNMENT_BODIES_EXPENDITURE. */
-<span class="fc" id="L92">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L93">			MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());</span>
-	
-	/** The Constant COMMAND_GOVERNMENT_OUTCOME. */
-<span class="fc" id="L96">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L97">			MinistryPageMode.GOVERNMENT_OUTCOME.toString());</span>
-	
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY = &quot;Government body headcount by ministry&quot;;
-
-	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY. */
-	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY = &quot;Government body income by ministry&quot;;
-	
-	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY. */
-	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY = &quot;Government body expenditure by ministry&quot;;
-	
-	/** The Constant MINISTRY_RANKING. */
-	private static final String MINISTRY_RANKING = &quot;Ministry Ranking&quot;;
-
 	/** The Constant ALL_MINISTRIES_TOTAL_MEMBERS_TEXT. */
 	private static final String ALL_MINISTRIES_TOTAL_MEMBERS_TEXT = &quot;All ministries, total members&quot;;
 
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT = &quot;All parties, total days served in ministries&quot;;
 
-	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = &quot;Current parties active in ministries, head count&quot;;
+	/** The Constant CHART_BY_TOPIC_TEXT. */
+	private static final String CHART_BY_TOPIC_TEXT = &quot;Chart by topic&quot;;
 
-	/** The Constant CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT = &quot;Current ministries, current members&quot;;
+	/** The Constant COMMAN_OVERVIEW. */
+<span class="fc" id="L55">	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT. */
+<span class="fc" id="L59">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L60">			PageMode.CHARTS, ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());</span>
+
+	/** The Constant COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT. */
+<span class="fc" id="L63">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L64">			PageMode.CHARTS, ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());</span>
+
+	/** The Constant COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS. */
+<span class="fc" id="L67">	private static final PageModeMenuCommand COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L68">			PageMode.CHARTS, ChartIndicators.ALLMINISTRIESPARTYBYTOTALDAYS.toString());</span>
+
+	/** The Constant COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT. */
+<span class="fc" id="L71">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L72">			PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString());</span>
+
+	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT. */
+<span class="fc" id="L75">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L76">			PageMode.CHARTS, ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString());</span>
+
+	/** The Constant COMMAND_DATAGRID. */
+<span class="fc" id="L79">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+			PageMode.DATAGRID);
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_EXPENDITURE. */
+<span class="fc" id="L83">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L84">			MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());</span>
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_HEADCOUNT. */
+<span class="fc" id="L87">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L88">			MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_INCOME. */
+<span class="fc" id="L91">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L92">			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());</span>
+	
+	/** The Constant COMMAND_GOVERNMENT_OUTCOME. */
+<span class="fc" id="L95">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L96">			MinistryPageMode.GOVERNMENT_OUTCOME.toString());</span>
+	
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+<span class="fc" id="L99">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
 
 	/**
 	 * The Constant
 	 * CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION.
 	 */
 	private static final String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION = &quot;Current and past member and summary of total polticial days membership&quot;;
+	
+	/** The Constant CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT. */
+	private static final String CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT = &quot;Current ministries, current members&quot;;
+	
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = &quot;Current parties active in ministries, head count&quot;;
 
-	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
-	private static final String POLITICAL_WORK_SUMMARY_TEXT = &quot;Political Work Summary&quot;;
+	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY. */
+	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY = &quot;Government body expenditure by ministry&quot;;
 
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY = &quot;Government body headcount by ministry&quot;;
 
-	/** The Constant CHART_BY_TOPIC_TEXT. */
-	private static final String CHART_BY_TOPIC_TEXT = &quot;Chart by topic&quot;;
+	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY. */
+	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY = &quot;Government body income by ministry&quot;;
+
+	/** The Constant GOVERNMENT_OUTCOME. */
+	private static final String GOVERNMENT_OUTCOME = &quot;Government outcome&quot;;
+
+	/** The Constant GOVERNMENT_ROLES_CHART. */
+	private static final String GOVERNMENT_ROLES_CHART = &quot;Government roles chart&quot;;
+
+	/** The Constant MINISTRY_RANKING. */
+	private static final String MINISTRY_RANKING = &quot;Ministry Ranking&quot;;
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
+
+	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
+	private static final String POLITICAL_WORK_SUMMARY_TEXT = &quot;Political Work Summary&quot;;
+
+	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
+	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;
 
 	/** The application menu item factory. */
 	@Autowired

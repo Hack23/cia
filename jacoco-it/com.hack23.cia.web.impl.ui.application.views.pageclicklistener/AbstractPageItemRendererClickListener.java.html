@@ -57,17 +57,6 @@ public abstract class AbstractPageItemRendererClickListener&lt;T&gt; implements 
 <span class="fc" id="L57">	}</span>
 
 
-	@Override
-	public final void selectionChange(final SelectionEvent&lt;T&gt; event) {
-<span class="fc" id="L62">		final Set&lt;T&gt; added =event.getAllSelectedItems();</span>
-
-<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (!added.isEmpty()) {</span>
-<span class="fc" id="L65">			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));</span>
-
-		}
-<span class="fc" id="L68">	}</span>
-
-
 	/**
 	 * Gets the page id.
 	 *
@@ -76,6 +65,17 @@ public abstract class AbstractPageItemRendererClickListener&lt;T&gt; implements 
 	 * @return the page id
 	 */
 	protected abstract String getPageId(T t);
+
+
+	@Override
+	public final void selectionChange(final SelectionEvent&lt;T&gt; event) {
+<span class="fc" id="L72">		final Set&lt;T&gt; added =event.getAllSelectedItems();</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (!added.isEmpty()) {</span>
+<span class="fc" id="L75">			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));</span>
+
+		}
+<span class="fc" id="L78">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

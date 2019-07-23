@@ -51,27 +51,27 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 <span class="fc" id="L51">		super();</span>
 <span class="fc" id="L52">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L56" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L65">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L66">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L60">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L61">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L68">		LabelFactory.createHeader2Label(panelContent, INDICATORS);</span>
+<span class="fc" id="L63">		LabelFactory.createHeader2Label(panelContent, INDICATORS);</span>
 
-<span class="fc" id="L70">		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());</span>
+<span class="fc" id="L65">		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L72">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L73">		return panelContent;</span>
+<span class="fc" id="L67">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="fc" id="L68">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L74" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

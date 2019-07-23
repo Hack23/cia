@@ -23,11 +23,11 @@
         {abstract} +createOptionsPartyLineChart(Series): Options
         {abstract} +createOptionsPersonLineChart(Series): Options
         {abstract} +createOptionsPieChart(): Options
-        {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
         {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+        {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ChartOptionsImpl
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

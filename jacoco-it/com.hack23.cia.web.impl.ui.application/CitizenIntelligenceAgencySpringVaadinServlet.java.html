@@ -45,29 +45,29 @@ import com.vaadin.spring.server.SpringVaadinServlet;
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void servletInitialized() throws ServletException {
-<span class="fc" id="L49">		final VaadinServletService service = getService();</span>
-<span class="fc" id="L50">		service.addSessionInitListener(event -&gt; {</span>
-<span class="fc" id="L51">			final VaadinSession session = event.getSession();</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">			for (final UIProvider provider : session.getUIProviders()) {</span>
-<span class="pc bpc" id="L53" title="1 of 2 branches missed.">				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
-<span class="fc" id="L54">					session.removeUIProvider(provider);</span>
-				}
-<span class="fc" id="L56">			}</span>
-<span class="fc" id="L57">			session.addUIProvider(new CustomSpringUIProvider(session));</span>
-<span class="fc" id="L58">		});</span>
-<span class="fc" id="L59">		service.addSessionDestroyListener(event -&gt; {</span>
-<span class="fc" id="L60">			final VaadinSession session = event.getSession();</span>
-<span class="fc" id="L61">			UIScopeImpl.cleanupSession(session);</span>
-<span class="fc" id="L62">			VaadinSessionScope.cleanupSession(session);</span>
-<span class="fc" id="L63">		});</span>
-<span class="fc" id="L64">	}</span>
-
-	@Override
 	protected void service(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
-<span class="fc" id="L69">		response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
-<span class="fc" id="L70">		super.service(request, response);</span>
+<span class="fc" id="L50">		response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
+<span class="fc" id="L51">		super.service(request, response);</span>
+<span class="fc" id="L52">	}</span>
+
+	@Override
+	protected void servletInitialized() throws ServletException {
+<span class="fc" id="L56">		final VaadinServletService service = getService();</span>
+<span class="fc" id="L57">		service.addSessionInitListener(event -&gt; {</span>
+<span class="fc" id="L58">			final VaadinSession session = event.getSession();</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">			for (final UIProvider provider : session.getUIProviders()) {</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
+<span class="fc" id="L61">					session.removeUIProvider(provider);</span>
+				}
+<span class="fc" id="L63">			}</span>
+<span class="fc" id="L64">			session.addUIProvider(new CustomSpringUIProvider(session));</span>
+<span class="fc" id="L65">		});</span>
+<span class="fc" id="L66">		service.addSessionDestroyListener(event -&gt; {</span>
+<span class="fc" id="L67">			final VaadinSession session = event.getSession();</span>
+<span class="fc" id="L68">			UIScopeImpl.cleanupSession(session);</span>
+<span class="fc" id="L69">			VaadinSessionScope.cleanupSession(session);</span>
+<span class="fc" id="L70">		});</span>
 <span class="fc" id="L71">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

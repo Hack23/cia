@@ -48,30 +48,30 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 <span class="fc" id="L48">		super();</span>
 <span class="fc" id="L49">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L53">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L54" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L62">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
+<span class="fc" id="L54">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L55">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		panelContent.addComponent(new Label(OVERVIEW));</span>
+<span class="fc" id="L59">		panelContent.addComponent(new Label(OVERVIEW));</span>
 
-<span class="fc" id="L68">		getCountryMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L61">		getCountryMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
-<span class="fc" id="L71">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
+<span class="fc" id="L64">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
 
-<span class="fc" id="L73">		return panelContent;</span>
+<span class="fc" id="L66">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L72">		final String pageId = getPageId(parameters);</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

@@ -10,44 +10,44 @@
         }
 
         enum ViewAction [[ViewAction.html]] {
-            {static} +VISIT_ADMIN_AGENT_OPERATION_VIEW
-            {static} +VISIT_ADMIN_DATA_SUMMARY_VIEW
-            {static} +VISIT_ADMIN_AGENCY_VIEW
-            {static} +VISIT_BALLOT_VIEW
-            {static} +VISIT_COUNTRY_VIEW
-            {static} +VISIT_MAIN_VIEW
             {static} +START_AGENT_BUTTON
-            {static} +VISIT_POLITICIAN_VIEW
-            {static} +VISIT_POLITICIAN_RANKING_VIEW
-            {static} +VISIT_PARLIAMENT_RANKING_VIEW
-            {static} +VISIT_PARTY_VIEW
-            {static} +VISIT_PARTY_RANKING_VIEW
-            {static} +VISIT_COMMITTEE_RANKING_VIEW
-            {static} +VISIT_COMMITTEE_VIEW
-            {static} +VISIT_MINISTRY_RANKING_VIEW
-            {static} +VISIT_MINISTRY_VIEW
+            {static} +VISIT_ADMIN_AGENCY_VIEW
+            {static} +VISIT_ADMIN_AGENT_OPERATION_VIEW
+            {static} +VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW
             {static} +VISIT_ADMIN_APPLICATION_EVENTS_VIEW
             {static} +VISIT_ADMIN_APPLICATION_SESSION_VIEW
             {static} +VISIT_ADMIN_COUNTRY_VIEW
+            {static} +VISIT_ADMIN_DATA_SUMMARY_VIEW
+            {static} +VISIT_ADMIN_EMAIL_VIEW
             {static} +VISIT_ADMIN_LANGUAGE_CONTENT_VIEW
             {static} +VISIT_ADMIN_LANGUAGE_VIEW
+            {static} +VISIT_ADMIN_MONITORING_VIEW
             {static} +VISIT_ADMIN_PORTAL_VIEW
             {static} +VISIT_ADMIN_USERACCOUNT_VIEW
+            {static} +VISIT_BALLOT_VIEW
+            {static} +VISIT_COMMITTEE_RANKING_VIEW
+            {static} +VISIT_COMMITTEE_VIEW
+            {static} +VISIT_COUNTRY_VIEW
             {static} +VISIT_DOCUMENT_VIEW
-            {static} +VISIT_SEARCH_VIEW
-            {static} +VISIT_ADMIN_MONITORING_VIEW
-            {static} +VISIT_USER_HOME_VIEW
-            {static} +VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW
-            {static} +VISIT_REGISTER
-            {static} +VISIT_LOGIN
-            {static} +VISIT_ADMIN_EMAIL_VIEW
             {static} +VISIT_DOCUMENTS_VIEW
-            {static} +VISIT_GOVERNMENT_BODY_VIEW
             {static} +VISIT_GOVERNMENT_BODY_RANKING_VIEW
+            {static} +VISIT_GOVERNMENT_BODY_VIEW
+            {static} +VISIT_LOGIN
+            {static} +VISIT_MAIN_VIEW
+            {static} +VISIT_MINISTRY_RANKING_VIEW
+            {static} +VISIT_MINISTRY_VIEW
+            {static} +VISIT_PARLIAMENT_RANKING_VIEW
+            {static} +VISIT_PARTY_RANKING_VIEW
+            {static} +VISIT_PARTY_VIEW
+            {static} +VISIT_POLITICIAN_RANKING_VIEW
+            {static} +VISIT_POLITICIAN_VIEW
+            {static} +VISIT_REGISTER
+            {static} +VISIT_SEARCH_VIEW
+            {static} +VISIT_USER_HOME_VIEW
         }
 
         PageActionEventHelper <|.. PageActionEventHelperImpl
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

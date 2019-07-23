@@ -58,55 +58,55 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 <span class="fc" id="L58">		return new StepMapping&lt;ViewRiksdagenPartyRoleMember&gt;() {</span>
 
 			@Override
-			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L62">				return t.getFromDate();</span>
-			}
-
-			@Override
-			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L67">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
-			}
-
-			@Override
-			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L72">				return t.getRoleCode();</span>
-			}
-
-			@Override
-			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L77">				return t.getDetail();</span>
-			}
-
-			@Override
-			public String getParty(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L82">				return t.getParty();</span>
-			}
-
-			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
 				String color;
 
-<span class="fc bfc" id="L89" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;vice&quot;)) {</span>
-<span class="fc" id="L90">					color = &quot;A8D999&quot;;</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partiledare&quot;)</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;språkrör&quot;)</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partisekreterare&quot;)) {</span>
-<span class="fc" id="L94">					color = &quot;3271c8&quot;;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;vice&quot;)) {</span>
+<span class="fc" id="L65">					color = &quot;A8D999&quot;;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partiledare&quot;)</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;språkrör&quot;)</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partisekreterare&quot;)) {</span>
+<span class="fc" id="L69">					color = &quot;3271c8&quot;;</span>
 				} else {
-<span class="fc" id="L96">					color = &quot;0eab76&quot;;</span>
+<span class="fc" id="L71">					color = &quot;0eab76&quot;;</span>
 				}
 
-<span class="fc" id="L99">				return color;</span>
+<span class="fc" id="L74">				return color;</span>
 			}
 
 			@Override
 			public Object getFirstName(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L104">				return t.getFirstName();</span>
+<span class="fc" id="L79">				return t.getFirstName();</span>
+			}
+
+			@Override
+			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
+<span class="fc" id="L84">				return t.getFromDate();</span>
 			}
 
 			@Override
 			public Object getLastName(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L109">				return t.getLastName();</span>
+<span class="fc" id="L89">				return t.getLastName();</span>
+			}
+
+			@Override
+			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
+<span class="fc" id="L94">				return t.getDetail();</span>
+			}
+
+			@Override
+			public String getParty(final ViewRiksdagenPartyRoleMember t) {
+<span class="fc" id="L99">				return t.getParty();</span>
+			}
+
+			@Override
+			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
+<span class="fc" id="L104">				return t.getRoleCode();</span>
+			}
+
+			@Override
+			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
+<span class="fc" id="L109">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
 			}
 
 		};

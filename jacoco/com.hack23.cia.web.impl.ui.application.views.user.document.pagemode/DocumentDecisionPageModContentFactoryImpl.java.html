@@ -58,43 +58,43 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 <span class="fc" id="L58">		super();</span>
 <span class="fc" id="L59">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L63" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L73">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L68">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L75">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L76">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L70">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L78">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L79">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="fc" id="L73">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L74">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L82">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);</span>
+<span class="fc" id="L77">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);</span>
 
-<span class="pc bpc" id="L84" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentProposal() != null</span>
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentProposal().getProposal() != null) {</span>
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentProposal() != null</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentProposal().getProposal() != null) {</span>
 
-<span class="fc" id="L87">			getFormFactory().addFormPanelTextFields(panelContent,</span>
-<span class="fc" id="L88">					documentStatusContainer.getDocumentProposal().getProposal(), DocumentProposalData.class, AS_LIST);</span>
+<span class="fc" id="L82">			getFormFactory().addFormPanelTextFields(panelContent,</span>
+<span class="fc" id="L83">					documentStatusContainer.getDocumentProposal().getProposal(), DocumentProposalData.class, AS_LIST);</span>
 
 		}
 
-<span class="fc" id="L92">		panel.setContent(panelContent);</span>
-<span class="fc" id="L93">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L87">		panel.setContent(panelContent);</span>
+<span class="fc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L96">		return panelContent;</span>
+<span class="fc" id="L91">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L97" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());</span>
 	}
 
 }

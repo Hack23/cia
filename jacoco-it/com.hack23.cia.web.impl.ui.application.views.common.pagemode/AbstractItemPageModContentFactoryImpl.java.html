@@ -32,18 +32,18 @@ public abstract class AbstractItemPageModContentFactoryImpl&lt;T&gt; extends Abs
 <span class="fc" id="L32">		super();</span>
 <span class="fc" id="L33">	}</span>
 
-	@Override
-	public final boolean validReference(final String parameters) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">		return getItem(parameters) != null;</span>
-	}
-
 	/**
 	 * Gets the item.
 	 *
 	 * @param parameters the parameters
 	 * @return the item
 	 */
-	protected abstract T getItem(String parameters); 
+	protected abstract T getItem(String parameters);
+
+	@Override
+	public final boolean validReference(final String parameters) {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		return getItem(parameters) != null;</span>
+	} 
 	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

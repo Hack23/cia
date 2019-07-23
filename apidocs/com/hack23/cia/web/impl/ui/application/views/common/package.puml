@@ -4,11 +4,11 @@
         abstract class AbstractView [[AbstractView.html]] {
             #pageActionEventHelper: PageActionEventHelper
             #AbstractView(Map<String, PageModeContentFactory>, String)
-            +postConstruct(): void
-            +enter(ViewChangeEvent): void
             #createBasicLayoutWithPanelAndFooter(String): void
+            +enter(ViewChangeEvent): void
             +getBarmenu(): MenuBar
             #getPanel(): Panel
+            +postConstruct(): void
         }
 
         class MainView [[MainView.html]] {
@@ -36,5 +36,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

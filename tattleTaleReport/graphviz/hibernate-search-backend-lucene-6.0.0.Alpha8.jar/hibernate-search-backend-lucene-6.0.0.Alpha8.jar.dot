@@ -1,0 +1,10 @@
+digraph hibernate_search_backend_lucene_6_0_0_Alpha8_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> hibernate_search_engine_6_0_0_Alpha8;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> hibernate_search_util_common_6_0_0_Alpha8;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> jboss_logging_3_4_0_Final;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> lucene_analyzers_common_8_1_1;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> lucene_core_8_1_1;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> lucene_join_8_1_1;
+  hibernate_search_backend_lucene_6_0_0_Alpha8 -> lucene_queryparser_8_1_1;
+}

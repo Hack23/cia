@@ -6,13 +6,13 @@
     abstract class "<size:14>AbstractPageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener<T> [[AbstractPageItemRendererClickListener.html]] {
         +AbstractPageItemRendererClickListener(String)
         +click(RendererClickEvent<T>): void
-        +selectionChange(SelectionEvent<T>): void
         {abstract} #getPageId(T): String
+        +selectionChange(SelectionEvent<T>): void
     }
 
     interface "<size:14>PageItemRendererClickListener\n<size:10>com.hack23.cia.web.impl.ui.application.views.pageclicklistener" as com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener<T> [[PageItemRendererClickListener.html]]
 
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

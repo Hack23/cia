@@ -1,0 +1,11 @@
+digraph yauaa_5_11_dependencies {
+  node [shape = box, fontsize=10.0];
+  yauaa_5_11 -> checker_qual_2_8_1;
+  yauaa_5_11 -> commons_collections4_4_4;
+  yauaa_5_11 -> commons_lang3_3_9;
+  yauaa_5_11 -> commons_text_1_7;
+  yauaa_5_11 -> jcl_over_slf4j_2_0_0_alpha0;
+  yauaa_5_11 -> jsr305_3_0_2;
+  yauaa_5_11 -> prefixmap_1_1;
+  yauaa_5_11 -> slf4j_api_2_0_0_alpha0;
+}

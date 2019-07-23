@@ -4,10 +4,10 @@
     hide empty methods
 
     interface "<size:14>PageModeContentFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory [[PageModeContentFactory.html]] {
+        {abstract} +createContent(String, MenuBar, Panel): Layout
         {abstract} +matches(String, String): boolean
         {abstract} +validReference(String): boolean
-        {abstract} +createContent(String, MenuBar, Panel): Layout
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

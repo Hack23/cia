@@ -53,29 +53,29 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 <span class="fc" id="L53">		super();</span>
 <span class="fc" id="L54">	}</span>
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L58" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
-	}
-
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L61">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L69">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L63">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
-<span class="fc" id="L71">		decisionChartDataManager.createDecisionTypeChart(panelContent);</span>
+<span class="fc" id="L65">		decisionChartDataManager.createDecisionTypeChart(panelContent);</span>
 
-<span class="fc" id="L73">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L75">		panel.setCaption(NAME + &quot;::&quot; + DECISION_ACTIVIY_DESCRIPTION);</span>
+<span class="fc" id="L69">		panel.setCaption(NAME + &quot;::&quot; + DECISION_ACTIVIY_DESCRIPTION);</span>
 
-<span class="fc" id="L77">		return panelContent;</span>
+<span class="fc" id="L71">		return panelContent;</span>
 
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
 	}
 
 }

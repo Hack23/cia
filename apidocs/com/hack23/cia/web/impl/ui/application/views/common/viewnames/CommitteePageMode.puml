@@ -4,15 +4,15 @@
     hide empty methods
 
     enum "<size:14>CommitteePageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode [[CommitteePageMode.html]] {
-        {static} +DOCUMENT_HISTORY
-        {static} +CURRENT_MEMBERS
-        {static} +MEMBERHISTORY
-        {static} +DOCUMENTACTIVITY
         {static} +BALLOTDECISIONSUMMARY
+        {static} +CURRENT_MEMBERS
         {static} +DECISIONSUMMARY
         {static} +DECISIONTYPEDAILYSUMMARY
+        {static} +DOCUMENT_HISTORY
+        {static} +DOCUMENTACTIVITY
+        {static} +MEMBERHISTORY
         {static} +ROLEGHANT
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

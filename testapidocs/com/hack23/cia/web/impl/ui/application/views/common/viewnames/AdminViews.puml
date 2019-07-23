@@ -11,13 +11,13 @@
         {static} +ADMIN_APPLICATIONS_SESSION_VIEW_NAME: String
         {static} +ADMIN_COUNTRY_VIEW_NAME: String
         {static} +ADMIN_DATA_SUMMARY_VIEW_NAME: String
+        {static} +ADMIN_EMAIL_VIEW_NAME: String
         {static} +ADMIN_LANGUAGE_CONTENT_VIEW_NAME: String
         {static} +ADMIN_LANGUAGE_VIEW_NAME: String
         {static} +ADMIN_MONITORING_VIEW_NAME: String
         {static} +ADMIN_PORTAL_VIEW_NAME: String
         {static} +ADMIN_USERACCOUNT_VIEW_NAME: String
-        {static} +ADMIN_EMAIL_VIEW_NAME: String
     }
 
-    center footer UMLDoclet 2.0.3, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
 @enduml

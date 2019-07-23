@@ -1,6 +1,6 @@
 digraph jaxb2_basics_tools_0_10_0_dependencies {
   node [shape = box, fontsize=10.0];
-  jaxb2_basics_tools_0_10_0 -> commons_beanutils_1_9_3_redhat_1;
+  jaxb2_basics_tools_0_10_0 -> commons_beanutils_1_9_4;
   jaxb2_basics_tools_0_10_0 -> commons_lang3_3_9;
   jaxb2_basics_tools_0_10_0 -> jaxb_api_2_4_0;
   jaxb2_basics_tools_0_10_0 -> jaxb_core_2_3_0_1;

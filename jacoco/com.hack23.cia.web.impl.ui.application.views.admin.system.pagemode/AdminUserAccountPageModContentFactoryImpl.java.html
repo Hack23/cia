@@ -55,20 +55,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-<span class="fc" id="L58">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;,</span>
-			&quot;numberOfVisits&quot; );
-
-<span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
-
-<span class="fc" id="L63">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
-
-<span class="fc" id="L65">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
-			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
-
-	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;
-
 	/** The Constant ADMIN_USERACCOUNT. */
 	private static final String ADMIN_USERACCOUNT = &quot;Admin Useraccount&quot;;
+
+<span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;,</span>
+			&quot;numberOfVisits&quot; );
 
 	/** The Constant BUTTON_ID_PATTERN. */
 	private static final String BUTTON_ID_PATTERN = &quot;{0}.{1}&quot;;
@@ -76,8 +67,17 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant BUTTON_PATTERN. */
 	private static final String BUTTON_PATTERN = &quot;Perform {0}&quot;;
 
+<span class="fc" id="L70">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
+			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
+
+<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
+
+<span class="fc" id="L75">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
+
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
+
+	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;
 	
 	/**
 	 * Instantiates a new admin user account page mod content factory impl.
