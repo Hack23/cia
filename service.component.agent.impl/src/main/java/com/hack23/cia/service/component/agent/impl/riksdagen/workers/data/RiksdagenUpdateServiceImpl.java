@@ -168,13 +168,17 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		exist.getDocument().setDocumentStatusUrlWww(committeeProposal.getDocument().getDocumentStatusUrlWww());
 		exist.getDocument().setCommitteeProposalUrlXml(committeeProposal.getDocument().getCommitteeProposalUrlXml());
 		
-		if (exist.getAgainstProposalContainer() != null && exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty()) {
+		if (exist.getAgainstProposalContainer() == null) {
+			exist.setAgainstProposalContainer(committeeProposal.getAgainstProposalContainer());
+		} else if (exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty())  {
 			exist.getAgainstProposalContainer().setAgainstProposalList(committeeProposal.getAgainstProposalContainer().getAgainstProposalList());
 		}
 		
-		if (exist.getCommitteeProposalContainer() != null && exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
+		if (exist.getCommitteeProposalContainer() == null ) {
+			exist.setCommitteeProposalContainer(committeeProposal.getCommitteeProposalContainer());
+		} else if (exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
 			exist.getCommitteeProposalContainer().setCommitteeProposalList(committeeProposal.getCommitteeProposalContainer().getCommitteeProposalList());
-		}		
+		}
 	}
 
 	@Override
