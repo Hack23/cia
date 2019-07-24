@@ -471,6 +471,44 @@
                 ]
             }
         }, 
+        "VirtualPrivateGateway": {
+            "Type": "AWS::EC2::VPNGateway", 
+            "Properties": {
+                "Type": "ipsec.1", 
+                "Tags": [
+                    {
+                        "Key": "Name", 
+                        "Value": "vpcgateway"
+                    }
+                ]
+            }
+        }, 
+        "AttachVPNGatewayToVPC": {
+            "Type": "AWS::EC2::VPCGatewayAttachment", 
+            "DependsOn": "VirtualPrivateGateway", 
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                }, 
+                "VpnGatewayId": {
+                    "Ref": "VirtualPrivateGateway"
+                }
+            }
+        },
+        "VPNGatewayRoutePropagation": {
+            "Type": "AWS::EC2::VPNGatewayRoutePropagation", 
+            "DependsOn": "AttachVPNGatewayToVPC", 
+            "Properties": {
+                "RouteTableIds": [
+                    {
+                        "Ref": "PrivateAppRouteTable"
+                    }
+                ], 
+                "VpnGatewayId": {
+                    "Ref": "VirtualPrivateGateway"
+                }
+            }
+        },         
         "FlowLogsRole": {
             "Type": "AWS::IAM::Role", 
             "Properties": {
