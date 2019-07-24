@@ -735,7 +735,7 @@ Resources:
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
       LoggingConfiguration:
-        DestinationBucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
+        DestinationBucketName: !Ref 'LogsBucket'
         LogFilePrefix: /logs/ArtifactBucket/
   ArtifactBucketEncryptionKey:
     Type: AWS::KMS::Key
@@ -1582,7 +1582,6 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      BucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
       AccessControl: LogDeliveryWrite
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true

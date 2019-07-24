@@ -1068,7 +1068,7 @@
                     "RestrictPublicBuckets": true
                 },
                 "LoggingConfiguration": {
-                    "DestinationBucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
+                    "DestinationBucketName": { "Ref": "LogsBucket" }, 
                     "LogFilePrefix": "/logs/ArtifactBucket/"                  
                 }                
             }
@@ -2653,7 +2653,6 @@
             "Type": "AWS::S3::Bucket", 
             "DeletionPolicy": "Delete", 
             "Properties": {
-                 "BucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
                  "AccessControl": "LogDeliveryWrite",                
                  "PublicAccessBlockConfiguration": {
                     "BlockPublicAcls": true, 
