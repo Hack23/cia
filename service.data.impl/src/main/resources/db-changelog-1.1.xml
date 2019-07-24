@@ -173,7 +173,7 @@
 	</changeSet>
 
 
-	<changeSet author="pether" id="1414872417007-221">
+	<changeSet author="pether" id="1414872417007-221" failOnError="false">
 		<createView replaceIfExists="true" viewName="view_riksdagen_goverment">select distinct detail as name_id,count(assignment_data.detail) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' group by detail</createView>
 	</changeSet>
 
