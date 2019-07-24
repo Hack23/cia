@@ -1044,8 +1044,9 @@
             "Properties": {}
         }, 
         "ArtifactBucket": {
-            "Type": "AWS::S3::Bucket", 
-            "DeletionPolicy": "Retain", 
+            "Type": "AWS::S3::Bucket",
+            "DependsOn" : "LogsBucket",            
+            "DeletionPolicy": "Delete", 
             "Properties": {
                 "AccessControl": "Private", 
                 "BucketEncryption": {
@@ -1059,7 +1060,17 @@
                             }
                         }
                     ]
-                }
+                },               
+                "PublicAccessBlockConfiguration": {
+                    "BlockPublicAcls": true, 
+                    "BlockPublicPolicy": true, 
+                    "IgnorePublicAcls": true, 
+                    "RestrictPublicBuckets": true
+                },
+                "LoggingConfiguration": {
+                    "DestinationBucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
+                    "LogFilePrefix": "/logs/ArtifactBucket/"                  
+                }                
             }
         }, 
         "ArtifactBucketEncryptionKey": {
@@ -2640,9 +2651,29 @@
         }, 
         "LogsBucket": {
             "Type": "AWS::S3::Bucket", 
-            "DeletionPolicy": "Retain", 
+            "DeletionPolicy": "Delete", 
             "Properties": {
-                "AccessControl": "LogDeliveryWrite"
+                 "BucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
+                 "AccessControl": "LogDeliveryWrite",                
+                 "PublicAccessBlockConfiguration": {
+                    "BlockPublicAcls": true, 
+                    "BlockPublicPolicy": true, 
+                    "IgnorePublicAcls": true, 
+                    "RestrictPublicBuckets": true
+                },
+                "BucketEncryption": {
+                    "ServerSideEncryptionConfiguration": [
+                        {
+                            "ServerSideEncryptionByDefault": {
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                },
+                "LoggingConfiguration": {
+                    "DestinationBucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
+                    "LogFilePrefix": "/logs/LogsBucket/"
+                } 
             }
         }, 
         "LogsBucketPolicy": {

@@ -720,7 +720,8 @@ Resources:
     Properties: {}
   ArtifactBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
+    DependsOn: LogsBucket
+    DeletionPolicy: Delete
     Properties:
       AccessControl: Private
       BucketEncryption:
@@ -728,6 +729,14 @@ Resources:
           - ServerSideEncryptionByDefault:
               KMSMasterKeyID: !Ref 'ArtifactBucketEncryptionKey'
               SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LoggingConfiguration:
+        DestinationBucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
+        LogFilePrefix: /logs/ArtifactBucket/
   ArtifactBucketEncryptionKey:
     Type: AWS::KMS::Key
     Properties:
@@ -1571,9 +1580,22 @@ Resources:
         - !GetAtt 'DatabaseSecurityGroup.GroupId'
   LogsBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
+    DeletionPolicy: Delete
     Properties:
+      BucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
       AccessControl: LogDeliveryWrite
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LoggingConfiguration:
+        DestinationBucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
+        LogFilePrefix: /logs/LogsBucket/
   LogsBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
