@@ -1594,7 +1594,6 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
       LoggingConfiguration:
-        DestinationBucketName: !Sub ' ${AWS::AccountId}-${AWS::StackName}-logs'
         LogFilePrefix: /logs/LogsBucket/
   LogsBucketPolicy:
     Type: AWS::S3::BucketPolicy

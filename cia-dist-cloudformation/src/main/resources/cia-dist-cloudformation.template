@@ -2671,7 +2671,6 @@
                     ]
                 },
                 "LoggingConfiguration": {
-                    "DestinationBucketName": { "Fn::Sub": " ${AWS::AccountId}-${AWS::StackName}-logs" }, 
                     "LogFilePrefix": "/logs/LogsBucket/"
                 } 
             }
