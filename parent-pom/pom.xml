@@ -162,7 +162,7 @@
     <cia.project.versions.guava>28.0-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.10.0.pr1</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.37.Final</cia.project.versions.netty>
-    <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
+    <cia.project.versions.xerces>2.12.0.SP02</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.18</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0-alpha0</cia.project.versions.jetty>
