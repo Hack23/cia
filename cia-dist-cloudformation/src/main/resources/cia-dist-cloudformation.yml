@@ -741,7 +741,7 @@ Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DependsOn: LogsBucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
     Properties:
       AccessControl: Private
       BucketEncryption:
@@ -1600,7 +1600,7 @@ Resources:
         - !GetAtt 'DatabaseSecurityGroup.GroupId'
   LogsBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
     Properties:
       AccessControl: LogDeliveryWrite
       PublicAccessBlockConfiguration:
