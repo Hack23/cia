@@ -119,8 +119,8 @@ Export-Package: org.springframework.asm,org.springframework.cglib,org.
  t;uses:="java.util,org.springframework.lang",org.springframework.util
  .xml;uses:="java.lang.invoke,java.util.function,org.springframework.l
  ang,org.springframework.util"
-Import-Package: io.netty.buffer;version="4.1.37.Final",io.netty.util;v
- ersion="4.1.37.Final",io.reactivex,java.beans,java.io,java.lang,java.
+Import-Package: io.netty.buffer;version="4.1.38.Final",io.netty.util;v
+ ersion="4.1.38.Final",io.reactivex,java.beans,java.io,java.lang,java.
  lang.annotation,java.lang.invoke,java.lang.ref,java.lang.reflect,java
  .math,java.net,java.nio,java.nio.channels,java.nio.charset,java.nio.f
  ile,java.nio.file.attribute,java.security,java.text,java.time,java.ut

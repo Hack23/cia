@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.commons-pool2
+Built-By: ggregory
+Bnd-LastModified: 1564065772752
+Implementation-Vendor-Id: org.apache
+Specification-Title: Apache Commons Pool
+Bundle-DocURL: https://commons.apache.org/proper/commons-pool/
+Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt=N
+ OTICE.txt
+Import-Package: net.sf.cglib.proxy;resolution:=optional,javax.management
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Export-Package: org.apache.commons.pool2;version="2.7.0",org.apache.comm
+ ons.pool2.impl;version="2.7.0",org.apache.commons.pool2.proxy;version="
+ 2.7.0"
+Bundle-Name: Apache Commons Pool
+Implementation-Title: Apache Commons Pool
+Bundle-Description: The Apache Commons Object Pooling Library.
+Implementation-Version: 2.7.0
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-4.1.0.201810181252
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 2.7.0
+X-Compile-Target-JDK: 1.8
+Implementation-Build: release@rf4455dcb8afaf9ae7054589110f1082a7a8a282c;
+  2019-07-25 14:36:11+0000
+X-Compile-Source-JDK: 1.8
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_221
+Implementation-URL: https://commons.apache.org/proper/commons-pool/
+Specification-Version: 2.7.0
+

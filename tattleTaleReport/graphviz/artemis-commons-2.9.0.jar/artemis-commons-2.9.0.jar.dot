@@ -3,8 +3,8 @@ digraph artemis_commons_2_9_0_dependencies {
   artemis_commons_2_9_0 -> commons_beanutils_1_9_4;
   artemis_commons_2_9_0 -> jboss_logging_3_4_0_Final;
   artemis_commons_2_9_0 -> jboss_logmanager_2_1_13_Final;
-  artemis_commons_2_9_0 -> netty_buffer_4_1_37_Final;
-  artemis_commons_2_9_0 -> netty_common_4_1_37_Final;
-  artemis_commons_2_9_0 -> netty_handler_4_1_37_Final;
-  artemis_commons_2_9_0 -> netty_transport_4_1_37_Final;
+  artemis_commons_2_9_0 -> netty_buffer_4_1_38_Final;
+  artemis_commons_2_9_0 -> netty_common_4_1_38_Final;
+  artemis_commons_2_9_0 -> netty_handler_4_1_38_Final;
+  artemis_commons_2_9_0 -> netty_transport_4_1_38_Final;
 }

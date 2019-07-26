@@ -126,10 +126,10 @@ Export-Package: org.springframework.messaging;uses:="java.lang,java.la
 Import-Package: com.fasterxml.jackson.annotation;version="2.10.0.pr1",
  com.fasterxml.jackson.core;version="2.10.0.pr1",com.fasterxml.jackson
  .databind;version="2.10.0.pr1",com.fasterxml.jackson.databind.type;ve
- rsion="2.10.0.pr1",io.netty.buffer;version="4.1.37.Final",io.netty.ch
- annel;version="4.1.37.Final",io.netty.channel.group;version="4.1.37.F
- inal",io.netty.handler.codec;version="4.1.37.Final",io.netty.util;ver
- sion="4.1.37.Final",io.netty.util.concurrent;version="4.1.37.Final",i
+ rsion="2.10.0.pr1",io.netty.buffer;version="4.1.38.Final",io.netty.ch
+ annel;version="4.1.38.Final",io.netty.channel.group;version="4.1.38.F
+ inal",io.netty.handler.codec;version="4.1.38.Final",io.netty.util;ver
+ sion="4.1.38.Final",io.netty.util.concurrent;version="4.1.38.Final",i
  o.rsocket,io.rsocket.metadata,io.rsocket.transport,io.rsocket.transpo
  rt.netty.client,io.rsocket.util,java.io,java.lang,java.lang.annotatio
  n,java.lang.invoke,java.lang.reflect,java.net,java.nio,java.nio.chars

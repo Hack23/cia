@@ -1,0 +1,4 @@
+digraph jmespath_java_1_11_599_dependencies {
+  node [shape = box, fontsize=10.0];
+  jmespath_java_1_11_599 -> jackson_databind_2_10_0_pr1;
+}

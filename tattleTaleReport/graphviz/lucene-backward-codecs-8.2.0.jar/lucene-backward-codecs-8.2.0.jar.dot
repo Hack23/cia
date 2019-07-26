@@ -1,0 +1,4 @@
+digraph lucene_backward_codecs_8_2_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  lucene_backward_codecs_8_2_0 -> lucene_core_8_2_0;
+}

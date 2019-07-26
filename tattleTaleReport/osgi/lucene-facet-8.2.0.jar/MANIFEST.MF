@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: facet
+Specification-Version: 8.2.0
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.2.0 31d7ec7bbfdcd2c4cc61d9d35e962165410b65fe -
+  ivera - 2019-07-19 15:06:39
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.facet
+Bundle-Description: lucene-facet-8.2.0
+Bundle-Name: lucene-facet-8.2.0
+Bundle-Version: 8.2.0
+Export-Package: org.apache.lucene.facet;uses:="com.carrotsearch.hppc,c
+ om.carrotsearch.hppc.cursors,java.lang.invoke,java.util,java.util.fun
+ ction,org.apache.lucene.document,org.apache.lucene.facet.sortedset,or
+ g.apache.lucene.facet.taxonomy,org.apache.lucene.index,org.apache.luc
+ ene.search,org.apache.lucene.util",org.apache.lucene.facet.range;uses
+ :="java.util,org.apache.lucene.facet,org.apache.lucene.index,org.apac
+ he.lucene.search,org.apache.lucene.util",org.apache.lucene.facet.sort
+ edset;uses:="org.apache.lucene.document,org.apache.lucene.facet,org.a
+ pache.lucene.index,org.apache.lucene.search,org.apache.lucene.util",o
+ rg.apache.lucene.facet.taxonomy;uses:="com.carrotsearch.hppc,com.carr
+ otsearch.hppc.cursors,java.nio.file,org.apache.lucene.document,org.ap
+ ache.lucene.facet,org.apache.lucene.facet.taxonomy.directory,org.apac
+ he.lucene.index,org.apache.lucene.search,org.apache.lucene.store,org.
+ apache.lucene.util",org.apache.lucene.facet.taxonomy.directory;uses:=
+ "java.nio.file,java.util,org.apache.lucene.analysis,org.apache.lucene
+ .analysis.tokenattributes,org.apache.lucene.document,org.apache.lucen
+ e.facet,org.apache.lucene.facet.taxonomy,org.apache.lucene.facet.taxo
+ nomy.writercache,org.apache.lucene.index,org.apache.lucene.search,org
+ .apache.lucene.store,org.apache.lucene.util",org.apache.lucene.facet.
+ taxonomy.writercache;uses:="org.apache.lucene.facet.taxonomy,org.apac
+ he.lucene.util"
+Import-Package: com.carrotsearch.hppc;version="0.0.0",com.carrotsearch
+ .hppc.cursors;version="0.0.0",java.io,java.lang,java.lang.invoke,java
+ .nio.file,java.util,java.util.concurrent,java.util.concurrent.atomic,
+ java.util.function,java.util.logging,org.apache.lucene.analysis;versi
+ on="8.2.0",org.apache.lucene.analysis.tokenattributes;version="8.2.0"
+ ,org.apache.lucene.document;version="8.2.0",org.apache.lucene.index;v
+ ersion="8.2.0",org.apache.lucene.search;version="8.2.0",org.apache.lu
+ cene.store;version="8.2.0",org.apache.lucene.util;version="8.2.0"

@@ -13,13 +13,13 @@ digraph artemis_server_2_9_0_dependencies {
   artemis_server_2_9_0 -> jboss_logging_3_4_0_Final;
   artemis_server_2_9_0 -> jboss_logmanager_2_1_13_Final;
   artemis_server_2_9_0 -> micrometer_core_1_1_4;
-  artemis_server_2_9_0 -> netty_buffer_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_codec_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_codec_http_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_common_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_handler_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_transport_4_1_37_Final;
-  artemis_server_2_9_0 -> netty_transport_native_epoll_4_1_37_Final_linux_x86_64;
-  artemis_server_2_9_0 -> netty_transport_native_kqueue_4_1_37_Final_osx_x86_64;
+  artemis_server_2_9_0 -> netty_buffer_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_codec_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_codec_http_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_common_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_handler_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_transport_4_1_38_Final;
+  artemis_server_2_9_0 -> netty_transport_native_epoll_4_1_38_Final_linux_x86_64;
+  artemis_server_2_9_0 -> netty_transport_native_kqueue_4_1_38_Final_osx_x86_64;
   artemis_server_2_9_0 -> xml_apis_1_4_01;
 }

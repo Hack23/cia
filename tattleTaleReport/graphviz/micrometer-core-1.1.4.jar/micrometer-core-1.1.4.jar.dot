@@ -10,6 +10,6 @@ digraph micrometer_core_1_1_4_dependencies {
   micrometer_core_1_1_4 -> jsr305_3_0_2;
   micrometer_core_1_1_4 -> logback_classic_1_3_0_alpha4;
   micrometer_core_1_1_4 -> logback_core_1_3_0_alpha4;
-  micrometer_core_1_1_4 -> netty_codec_http_4_1_37_Final;
+  micrometer_core_1_1_4 -> netty_codec_http_4_1_38_Final;
   micrometer_core_1_1_4 -> slf4j_api_2_0_0_alpha0;
 }

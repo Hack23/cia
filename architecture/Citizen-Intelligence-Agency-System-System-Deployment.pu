@@ -60,9 +60,9 @@ node "Audit Account" <<Aws Account>> as 181 {
   }
 }
 node "Dev Network" <<Dev Network>> as 239 {
-  rectangle "Nexus" <<Container>> as 241 #1168bd
   rectangle "Sonarqube" <<Container>> as 243 #1168bd
   rectangle "Jenkins" <<Container>> as 249 #1168bd
+  rectangle "Nexus" <<Container>> as 241 #1168bd
 }
 node "Github Org" <<Github Org>> as 234 {
   rectangle "SCM" <<Container>> as 236 #1168bd
@@ -74,8 +74,8 @@ node "Security Account" <<Sumologic Account>> as 254 {
     rectangle "AwsConfigLogs" <<Container>> as 269 #1168bd
   }
   node "Server Security Dashboard" <<Server Security Dashboard>> as 256 {
-    rectangle "AwsInspectorResults" <<Container>> as 281 #1168bd
     rectangle "Ec2SystemLogs" <<Container>> as 273 #1168bd
+    rectangle "AwsInspectorResults" <<Container>> as 281 #1168bd
   }
   node "Nework Security Dashboard" <<Nework Security Dashboard>> as 255 {
     rectangle "VpcFlowLogs" <<Container>> as 261 #1168bd
@@ -91,21 +91,21 @@ node "Security Account" <<Sumologic Account>> as 254 {
 222 .[#707070].> 229 : JDBC
 277 .[#707070].> 205 : Recieve logs
 249 .[#707070].> 238 : <<https>>\npublish Documentation
-195 .[#707070].> 229 : Loads Data
+229 .[#707070].> 205 : Write logs
 285 .[#707070].> 213 : Recieve logs
 265 .[#707070].> 210 : Recieve logs
-222 .[#707070].> 205 : Write logs
 216 .[#707070].> 222 : HTTPS/H2
-187 .[#707070].> 222 : Inspects
-179 .[#707070].> 216 : Protects/Filter
+222 .[#707070].> 205 : Write logs
 191 .[#707070].> 222 : Run Commands
+179 .[#707070].> 216 : Protects/Filter
+187 .[#707070].> 222 : Inspects
 216 .[#707070].> 213 : Write logs
 269 .[#707070].> 184 : Recieve logs
-249 .[#707070].> 241 : <<https>>\npublish artifacts
+249 .[#707070].> 236 : builds
 273 .[#707070].> 205 : Recieve logs
 281 .[#707070].> 187 : Recieve reports
-249 .[#707070].> 243 : <<https>>\nPublish QA metrics
+249 .[#707070].> 241 : <<https>>\npublish artifacts
 261 .[#707070].> 205 : Recieve logs
-249 .[#707070].> 236 : builds
-229 .[#707070].> 205 : Write logs
+249 .[#707070].> 243 : <<https>>\nPublish QA metrics
+195 .[#707070].> 229 : Loads Data
 @enduml

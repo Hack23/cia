@@ -267,14 +267,14 @@ Import-Package: com.caucho.hessian,com.caucho.hessian.client,com.cauch
  e.protobuf.util,com.googlecode.protobuf.format,com.rometools.rome.fee
  d,com.rometools.rome.feed.atom,com.rometools.rome.feed.rss,com.rometo
  ols.rome.io,com.sun.net.httpserver,groovy.lang,io.netty.bootstrap;ver
- sion="4.1.37.Final",io.netty.buffer;version="4.1.37.Final",io.netty.c
- hannel;version="4.1.37.Final",io.netty.channel.nio;version="4.1.37.Fi
- nal",io.netty.channel.socket;version="4.1.37.Final",io.netty.channel.
- socket.nio;version="4.1.37.Final",io.netty.handler.codec.http;version
- ="4.1.37.Final",io.netty.handler.codec.http.cookie;version="4.1.37.Fi
- nal",io.netty.handler.ssl;version="4.1.37.Final",io.netty.handler.tim
- eout;version="4.1.37.Final",io.netty.util;version="4.1.37.Final",io.n
- etty.util.concurrent;version="4.1.37.Final",io.undertow.connector,io.
+ sion="4.1.38.Final",io.netty.buffer;version="4.1.38.Final",io.netty.c
+ hannel;version="4.1.38.Final",io.netty.channel.nio;version="4.1.38.Fi
+ nal",io.netty.channel.socket;version="4.1.38.Final",io.netty.channel.
+ socket.nio;version="4.1.38.Final",io.netty.handler.codec.http;version
+ ="4.1.38.Final",io.netty.handler.codec.http.cookie;version="4.1.38.Fi
+ nal",io.netty.handler.ssl;version="4.1.38.Final",io.netty.handler.tim
+ eout;version="4.1.38.Final",io.netty.util;version="4.1.38.Final",io.n
+ etty.util.concurrent;version="4.1.38.Final",io.undertow.connector,io.
  undertow.server,io.undertow.server.handlers,io.undertow.util,java.awt
  .image,java.beans,java.io,java.lang,java.lang.annotation,java.lang.in
  voke,java.lang.reflect,java.net,java.nio,java.nio.channels,java.nio.c

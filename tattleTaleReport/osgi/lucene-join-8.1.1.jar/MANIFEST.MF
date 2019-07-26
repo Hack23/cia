@@ -23,6 +23,6 @@ Export-Package: org.apache.lucene.search.join;uses:="java.lang,java.la
  ng.invoke,java.util,java.util.function,org.apache.lucene.document,org
  .apache.lucene.index,org.apache.lucene.search,org.apache.lucene.util"
 Import-Package: java.io,java.lang,java.lang.invoke,java.util,java.util
- .function,org.apache.lucene.document;version="8.1.1",org.apache.lucen
- e.index;version="8.1.1",org.apache.lucene.search;version="8.1.1",org.
- apache.lucene.util;version="8.1.1"
+ .function,org.apache.lucene.document;version="8.2.0",org.apache.lucen
+ e.index;version="8.2.0",org.apache.lucene.search;version="8.2.0",org.
+ apache.lucene.util;version="8.2.0"

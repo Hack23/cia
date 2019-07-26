@@ -447,15 +447,15 @@ Import-Package: java.io,java.lang,java.lang.invoke,java.math,java.nio.
  charset,java.nio.file,java.nio.file.attribute,java.text,java.time,jav
  a.time.format,java.time.temporal,java.util,java.util.concurrent,java.
  util.concurrent.atomic,java.util.concurrent.locks,java.util.function,
- java.util.stream,org.apache.lucene.analysis;version="8.1.1",org.apach
- e.lucene.analysis.core;version="8.1.1",org.apache.lucene.analysis.tok
- enattributes;version="8.1.1",org.apache.lucene.analysis.util;version=
- "8.1.1",org.apache.lucene.document;version="8.1.1",org.apache.lucene.
- geo;version="8.1.1",org.apache.lucene.index;version="8.1.1",org.apach
- e.lucene.queryparser.simple;version="8.1.1",org.apache.lucene.search;
- version="8.1.1",org.apache.lucene.search.join;version="8.1.1",org.apa
- che.lucene.store;version="8.1.1",org.apache.lucene.util;version="8.1.
- 1",org.hibernate.search.engine.backend;version="6.0.0.Alpha8",org.hib
+ java.util.stream,org.apache.lucene.analysis;version="8.2.0",org.apach
+ e.lucene.analysis.core;version="8.2.0",org.apache.lucene.analysis.tok
+ enattributes;version="8.2.0",org.apache.lucene.analysis.util;version=
+ "8.2.0",org.apache.lucene.document;version="8.2.0",org.apache.lucene.
+ geo;version="8.2.0",org.apache.lucene.index;version="8.2.0",org.apach
+ e.lucene.queryparser.simple;version="8.2.0",org.apache.lucene.search;
+ version="8.2.0",org.apache.lucene.search.join;version="8.1.1",org.apa
+ che.lucene.store;version="8.2.0",org.apache.lucene.util;version="8.2.
+ 0",org.hibernate.search.engine.backend;version="6.0.0.Alpha8",org.hib
  ernate.search.engine.backend.document;version="6.0.0.Alpha8",org.hibe
  rnate.search.engine.backend.document.model.dsl;version="6.0.0.Alpha8"
  ,org.hibernate.search.engine.backend.document.model.dsl.spi;version="

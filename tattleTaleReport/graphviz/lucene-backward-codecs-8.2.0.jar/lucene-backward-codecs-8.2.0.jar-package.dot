@@ -1,0 +1,12 @@
+digraph lucene_backward_codecs_8_2_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_codecs;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_codecs_lucene50;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_codecs_lucene60;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_codecs_perfield;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_index;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_search;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_store;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_util;
+  org_apache_lucene_codecs_lucene70 -> org_apache_lucene_util_packed;
+}

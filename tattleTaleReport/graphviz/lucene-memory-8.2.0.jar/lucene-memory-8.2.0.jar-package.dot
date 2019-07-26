@@ -1,0 +1,14 @@
+digraph lucene_memory_8_2_0_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_apache_lucene_index_memory -> java_lang_invoke;
+  org_apache_lucene_index_memory -> java_util;
+  org_apache_lucene_index_memory -> java_util_function;
+  org_apache_lucene_index_memory -> java_util_stream;
+  org_apache_lucene_index_memory -> org_apache_lucene_analysis;
+  org_apache_lucene_index_memory -> org_apache_lucene_analysis_tokenattributes;
+  org_apache_lucene_index_memory -> org_apache_lucene_document;
+  org_apache_lucene_index_memory -> org_apache_lucene_index;
+  org_apache_lucene_index_memory -> org_apache_lucene_search;
+  org_apache_lucene_index_memory -> org_apache_lucene_search_similarities;
+  org_apache_lucene_index_memory -> org_apache_lucene_util;
+}

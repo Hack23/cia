@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.service.data.api
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.data.api
+Bundle-Description: service.data.api-2019.7.27-SNAPSHOT
+Bundle-Name: service.data.api-2019.7.27-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.data.api;uses:="com.hack23.cia.
+ model.internal.application.system.impl,java.lang"
+Import-Package: com.hack23.cia.model.internal.application.system.impl;
+ version="0.0.0",java.io,java.lang,java.util,javax.persistence.metamod
+ el;version="2.2"

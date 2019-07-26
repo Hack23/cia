@@ -3,6 +3,6 @@ digraph artemis_journal_2_9_0_dependencies {
   artemis_journal_2_9_0 -> activemq_artemis_native_1_0_0;
   artemis_journal_2_9_0 -> artemis_commons_2_9_0;
   artemis_journal_2_9_0 -> jboss_logging_3_4_0_Final;
-  artemis_journal_2_9_0 -> netty_buffer_4_1_37_Final;
-  artemis_journal_2_9_0 -> netty_common_4_1_37_Final;
+  artemis_journal_2_9_0 -> netty_buffer_4_1_38_Final;
+  artemis_journal_2_9_0 -> netty_common_4_1_38_Final;
 }

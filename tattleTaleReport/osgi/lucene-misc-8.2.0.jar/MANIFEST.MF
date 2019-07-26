@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: misc
+Specification-Version: 8.2.0
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.2.0 31d7ec7bbfdcd2c4cc61d9d35e962165410b65fe -
+  ivera - 2019-07-19 15:06:41
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.search
+Bundle-Description: lucene-misc-8.2.0
+Bundle-Name: lucene-misc-8.2.0
+Bundle-Version: 8.2.0
+Export-Package: org.apache.lucene.document;uses:="org.apache.lucene.an
+ alysis,org.apache.lucene.index,org.apache.lucene.search,org.apache.lu
+ cene.util",org.apache.lucene.index;uses:="java.nio.file,java.nio.file
+ .attribute,org.apache.lucene.analysis,org.apache.lucene.codecs,org.ap
+ ache.lucene.search,org.apache.lucene.store,org.apache.lucene.util",or
+ g.apache.lucene.misc;uses:="java.nio.file,org.apache.lucene.analysis,
+ org.apache.lucene.index,org.apache.lucene.search.similarities,org.apa
+ che.lucene.store,org.apache.lucene.util",org.apache.lucene.search;use
+ s:="org.apache.lucene.index,org.apache.lucene.misc,org.apache.lucene.
+ util",org.apache.lucene.search.similarity;uses:="org.apache.lucene.in
+ dex,org.apache.lucene.search,org.apache.lucene.search.similarities",o
+ rg.apache.lucene.store;uses:="java.lang.invoke,java.nio.file,org.apac
+ he.lucene.util",org.apache.lucene.util,org.apache.lucene.util.fst;use
+ s:="org.apache.lucene.store,org.apache.lucene.util"
+Import-Package: java.io,java.lang,java.lang.invoke,java.net,java.nio,j
+ ava.nio.channels,java.nio.file,java.nio.file.attribute,java.security,
+ java.text,java.util,java.util.concurrent.atomic,org.apache.lucene.ana
+ lysis;version="8.2.0",org.apache.lucene.codecs;version="8.2.0",org.ap
+ ache.lucene.document;version="8.2.0",org.apache.lucene.index;version=
+ "8.2.0",org.apache.lucene.search;version="8.2.0",org.apache.lucene.se
+ arch.similarities;version="8.2.0",org.apache.lucene.store;version="8.
+ 2.0",org.apache.lucene.util;version="8.2.0",org.apache.lucene.util.fs
+ t;version="8.2.0"

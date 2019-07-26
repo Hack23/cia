@@ -161,7 +161,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.co
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeDecisionSummaryPageModContentFactoryImpl,0,211,0,4,0,20,0,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteePageVisitHistoryPageModContentFactoryImpl,0,53,0,4,0,11,0,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,AbstractCommitteePageModContentFactoryImpl,0,16,0,0,0,4,0,3,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeRankingDataGridPageModContentFactoryImpl,0,112,0,4,0,16,0,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeRankingDataGridPageModContentFactoryImpl,0,120,0,4,0,16,0,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeOverviewPageModContentFactoryImpl,0,132,1,7,0,23,1,7,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl,0,63,1,5,0,14,1,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode,CommitteeBallotDecisionSummaryPageModContentFactoryImpl,0,309,0,4,0,21,0,6,0,4

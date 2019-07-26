@@ -56,7 +56,7 @@ Import-Package: com.jamonapi,com.jamonapi.utils,java.io,java.lang,java
  .lang.annotation,java.lang.invoke,java.lang.reflect,java.util,java.ut
  il.concurrent,java.util.concurrent.atomic,java.util.function,java.uti
  l.regex,org.apache.commons.logging;version="0.0.0",org.apache.commons
- .pool2;version="2.6.2",org.apache.commons.pool2.impl;version="2.6.2",
+ .pool2;version="2.7.0",org.apache.commons.pool2.impl;version="2.7.0",
  org.aspectj.bridge;version="1.9.4",org.aspectj.lang;version="1.9.4",o
  rg.aspectj.lang.annotation;version="1.9.4",org.aspectj.lang.reflect;v
  ersion="1.9.4",org.aspectj.runtime.internal;version="1.9.4",org.aspec

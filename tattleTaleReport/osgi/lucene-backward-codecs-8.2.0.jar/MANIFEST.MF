@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: backward-codecs
+Specification-Version: 8.2.0
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.2.0 31d7ec7bbfdcd2c4cc61d9d35e962165410b65fe -
+  ivera - 2019-07-19 15:06:37
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.codecs.lucene70
+Bundle-Description: lucene-backward-codecs-8.2.0
+Bundle-Name: lucene-backward-codecs-8.2.0
+Bundle-Version: 8.2.0
+Export-Package: org.apache.lucene.codecs,org.apache.lucene.codecs.luce
+ ne70;uses:="org.apache.lucene.codecs,org.apache.lucene.codecs.lucene5
+ 0,org.apache.lucene.codecs.lucene60,org.apache.lucene.codecs.perfield
+ ,org.apache.lucene.index,org.apache.lucene.search,org.apache.lucene.s
+ tore,org.apache.lucene.util,org.apache.lucene.util.packed"
+Import-Package: java.io,java.lang,java.util,org.apache.lucene.codecs;v
+ ersion="8.2.0",org.apache.lucene.codecs.lucene50;version="8.2.0",org.
+ apache.lucene.codecs.lucene60;version="8.2.0",org.apache.lucene.codec
+ s.lucene70;version="8.2.0",org.apache.lucene.codecs.perfield;version=
+ "8.2.0",org.apache.lucene.index;version="8.2.0",org.apache.lucene.sea
+ rch;version="8.2.0",org.apache.lucene.store;version="8.2.0",org.apach
+ e.lucene.util;version="8.2.0",org.apache.lucene.util.packed;version="
+ 8.2.0"

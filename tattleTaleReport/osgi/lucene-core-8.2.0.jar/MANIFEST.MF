@@ -1,0 +1,108 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: core
+Specification-Version: 8.2.0
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.2.0 31d7ec7bbfdcd2c4cc61d9d35e962165410b65fe -
+  ivera - 2019-07-19 15:05:56
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+Multi-Release: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.index
+Bundle-Description: lucene-core-8.2.0
+Bundle-Name: lucene-core-8.2.0
+Bundle-Version: 8.2.0
+Export-Package: org.apache.lucene,org.apache.lucene.analysis;uses:="ja
+ va.lang.invoke,java.nio.charset,java.nio.file,java.util.function,org.
+ apache.lucene.analysis.tokenattributes,org.apache.lucene.store,org.ap
+ ache.lucene.util,org.apache.lucene.util.automaton",org.apache.lucene.
+ analysis.standard;uses:="java.lang.invoke,java.util.function,org.apac
+ he.lucene.analysis,org.apache.lucene.analysis.tokenattributes,org.apa
+ che.lucene.util",org.apache.lucene.analysis.tokenattributes;uses:="ja
+ va.util,org.apache.lucene.util",org.apache.lucene.codecs;uses:="java.
+ nio.charset,java.util,org.apache.lucene.analysis,org.apache.lucene.do
+ cument,org.apache.lucene.index,org.apache.lucene.search,org.apache.lu
+ cene.store,org.apache.lucene.util,org.apache.lucene.util.packed",org.
+ apache.lucene.codecs.blocktree;uses:="org.apache.lucene.codecs,org.ap
+ ache.lucene.index,org.apache.lucene.store,org.apache.lucene.util,org.
+ apache.lucene.util.automaton,org.apache.lucene.util.fst",org.apache.l
+ ucene.codecs.compressing;uses:="org.apache.lucene.codecs,org.apache.l
+ ucene.index,org.apache.lucene.search,org.apache.lucene.store,org.apac
+ he.lucene.util,org.apache.lucene.util.packed",org.apache.lucene.codec
+ s.lucene50;uses:="java.lang.invoke,java.util,java.util.function,java.
+ util.stream,org.apache.lucene.codecs,org.apache.lucene.codecs.blocktr
+ ee,org.apache.lucene.codecs.compressing,org.apache.lucene.index,org.a
+ pache.lucene.search,org.apache.lucene.store,org.apache.lucene.util,or
+ g.apache.lucene.util.packed",org.apache.lucene.codecs.lucene60;uses:=
+ "org.apache.lucene.codecs,org.apache.lucene.index,org.apache.lucene.s
+ tore,org.apache.lucene.util,org.apache.lucene.util.bkd",org.apache.lu
+ cene.codecs.lucene70;uses:="org.apache.lucene.codecs,org.apache.lucen
+ e.index,org.apache.lucene.search,org.apache.lucene.store,org.apache.l
+ ucene.util",org.apache.lucene.codecs.lucene80;uses:="java.util,org.ap
+ ache.lucene.codecs,org.apache.lucene.codecs.lucene50,org.apache.lucen
+ e.codecs.lucene60,org.apache.lucene.codecs.lucene70,org.apache.lucene
+ .codecs.perfield,org.apache.lucene.index,org.apache.lucene.search,org
+ .apache.lucene.store,org.apache.lucene.util,org.apache.lucene.util.pa
+ cked",org.apache.lucene.codecs.perfield;uses:="java.lang.invoke,java.
+ util.function,java.util.stream,org.apache.lucene.codecs,org.apache.lu
+ cene.index,org.apache.lucene.util",org.apache.lucene.document;uses:="
+ java.nio.charset,java.util,org.apache.lucene.analysis,org.apache.luce
+ ne.analysis.tokenattributes,org.apache.lucene.geo,org.apache.lucene.i
+ ndex,org.apache.lucene.search,org.apache.lucene.search.similarities,o
+ rg.apache.lucene.util",org.apache.lucene.geo;uses:="java.lang.invoke,
+ java.util.function,org.apache.lucene.index,org.apache.lucene.util",or
+ g.apache.lucene.index;uses:="java.io,java.lang,java.lang.invoke,java.
+ nio.charset,java.nio.file,java.util,java.util.function,java.util.stre
+ am,org.apache.lucene.analysis,org.apache.lucene.analysis.standard,org
+ .apache.lucene.analysis.tokenattributes,org.apache.lucene.codecs,org.
+ apache.lucene.codecs.blocktree,org.apache.lucene.document,org.apache.
+ lucene.search,org.apache.lucene.search.similarities,org.apache.lucene
+ .store,org.apache.lucene.util,org.apache.lucene.util.automaton,org.ap
+ ache.lucene.util.bkd,org.apache.lucene.util.packed",org.apache.lucene
+ .search;uses:="java.lang,java.lang.invoke,java.util,java.util.concurr
+ ent,java.util.function,java.util.stream,org.apache.lucene.document,or
+ g.apache.lucene.index,org.apache.lucene.search.similarities,org.apach
+ e.lucene.search.spans,org.apache.lucene.store,org.apache.lucene.util,
+ org.apache.lucene.util.automaton",org.apache.lucene.search.similariti
+ es;uses:="org.apache.lucene.index,org.apache.lucene.search,org.apache
+ .lucene.util",org.apache.lucene.search.spans;uses:="java.lang.invoke,
+ java.util,java.util.function,org.apache.lucene.index,org.apache.lucen
+ e.search,org.apache.lucene.search.similarities,org.apache.lucene.util
+ ",org.apache.lucene.store;uses:="java.io,java.lang,java.lang.invoke,j
+ ava.nio.channels,java.nio.charset,java.nio.file,java.nio.file.attribu
+ te,java.util,java.util.concurrent,java.util.function,java.util.stream
+ ,org.apache.lucene.index,org.apache.lucene.util",org.apache.lucene.ut
+ il;uses:="java.lang,java.lang.invoke,java.nio.charset,java.nio.file,j
+ ava.nio.file.attribute,java.time,java.util,java.util.function,java.ut
+ il.stream,org.apache.lucene.analysis,org.apache.lucene.analysis.token
+ attributes,org.apache.lucene.codecs,org.apache.lucene.index,org.apach
+ e.lucene.search,org.apache.lucene.search.spans,org.apache.lucene.stor
+ e,org.apache.lucene.util.graph,org.apache.lucene.util.packed",org.apa
+ che.lucene.util.automaton;uses:="java.util,org.apache.lucene.index,or
+ g.apache.lucene.util",org.apache.lucene.util.bkd;uses:="java.util.fun
+ ction,java.util.stream,org.apache.lucene.codecs,org.apache.lucene.ind
+ ex,org.apache.lucene.search,org.apache.lucene.store,org.apache.lucene
+ .util,org.apache.lucene.util.packed",org.apache.lucene.util.fst;uses:
+ ="java.nio.file,org.apache.lucene.codecs,org.apache.lucene.store,org.
+ apache.lucene.util,org.apache.lucene.util.packed",org.apache.lucene.u
+ til.graph;uses:="java.lang.invoke,java.util.function,java.util.stream
+ ,org.apache.lucene.analysis,org.apache.lucene.analysis.tokenattribute
+ s,org.apache.lucene.index,org.apache.lucene.util,org.apache.lucene.ut
+ il.automaton",org.apache.lucene.util.mutable;uses:="org.apache.lucene
+ .util",org.apache.lucene.util.packed;uses:="org.apache.lucene.codecs,
+ org.apache.lucene.index,org.apache.lucene.store,org.apache.lucene.uti
+ l"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.invok
+ e,java.lang.ref,java.lang.reflect,java.math,java.net,java.nio,java.ni
+ o.channels,java.nio.charset,java.nio.file,java.nio.file.attribute,jav
+ a.security,java.text,java.time,java.util,java.util.concurrent,java.ut
+ il.concurrent.atomic,java.util.concurrent.locks,java.util.function,ja
+ va.util.regex,java.util.stream,java.util.zip
