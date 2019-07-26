@@ -42,7 +42,7 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "embeddedId", "totalDaysServed", "currentMemberSize",
+	private static final String[] COLUMN_ORDER = new String[] { "embeddedId.detail", "embeddedId", "totalDaysServed", "currentMemberSize",
 			"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" };
 
 	private static final String COMMITTEES = "Committees";
@@ -50,7 +50,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "active" };
+	private static final String[] HIDE_COLUMNS = new String[] { "active","embeddedId" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode");
 
