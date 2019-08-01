@@ -77,12 +77,12 @@ before_script:
   - echo "pg_stat_statements.max = 10000" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "listen_addresses = '*'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - sudo service postgresql start 10
-  - sudo -u postgres psql -c "CREATE USER eris WITH password 'discord';" -U postgres
-  - sudo -u postgres psql -c "create database cia_dev" -U postgres
-  - sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;" -U postgres
-  - sudo -u postgres psql -U postgres -c "create extension pgcrypto" cia_dev
-  - #sudo -u postgres psql -U postgres -c "create extension pgaudit" cia_dev
-  - sudo -u postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
+  - sudo -Hiu postgres psql -c "CREATE USER eris WITH password 'discord';" -U postgres
+  - sudo -Hiu postgres psql -c "create database cia_dev" -U postgres
+  - sudo -Hiu postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;" -U postgres
+  - sudo -Hiu postgres psql -U postgres -c "create extension pgcrypto" cia_dev
+  - #sudo -Hiu postgres psql -U postgres -c "create extension pgaudit" cia_dev
+  - sudo -Hiu postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
 
 script:
   - sudo ln -s /home/travis/openjdk11 /usr/lib/jvm/java-11-openjdk-amd64 
