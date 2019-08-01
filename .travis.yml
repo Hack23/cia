@@ -2,32 +2,15 @@ dist: bionic
 language: java
 sudo: true
 install: true
+before_install:
+  - sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb postgresql-10 postgresql-client-10 postgresql-contrib-10 postgresql-10-pgaudit openssl locales tzdata ca-certificates-java ca-certificates wget openjdk-11-jdk-headless
 addons:
   sonarcloud:
     organization: "hack23"
     github_token: "$GITHUB_TOKEN"
   chrome: stable
   apt:
-    packages:
-      - graphviz
-      - build-essential
-      - fakeroot
-      - devscripts
-      - debhelper
-      - dh-make
-      - bzr-builddeb
-      - postgresql-10
-      - postgresql-client-10
-      - postgresql-contrib-10
-      - postgresql-10-pgaudit
-      - openssl
-      - locales
-      - tzdata
-      - ca-certificates-java
-      - ca-certificates
-      - wget
-      - openjdk-11-jdk-headless
-
+    update: true    
 env:
   global:
     - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
