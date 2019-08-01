@@ -1,3 +1,4 @@
+dist: bionic
 language: java
 sudo: true
 install: true
