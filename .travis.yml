@@ -26,13 +26,11 @@ addons:
       - ca-certificates-java
       - ca-certificates
       - wget
-
-jdk:
-  - openjdk11
+      - openjdk-11-jdk-headless
 
 env:
   global:
-    - JAVA_HOME=/home/travis/openjdk11
+    - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
     - PGPORT=5433
     
 cache:
@@ -85,7 +83,6 @@ before_script:
   - sudo -Hiu postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
 
 script:
-  - sudo ln -s /home/travis/openjdk11 /usr/lib/jvm/java-11-openjdk-amd64 
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
   - wget http://apache.mirrors.spacedump.net/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
