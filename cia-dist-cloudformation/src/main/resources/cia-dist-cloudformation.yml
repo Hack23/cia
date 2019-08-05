@@ -239,6 +239,8 @@ Mappings:
       CIDR: 10.40.21.0/24
     Private3:
       CIDR: 10.40.22.0/24
+    QuickSightVpn:
+      CIDR: 10.40.40.0/24
   AWSRegionAvailabilityZone:
     us-east-1:
       FIRST: us-east-1a
@@ -1044,6 +1046,23 @@ Resources:
           Value: !Ref 'AWS::StackId'
         - Key: Network
           Value: PrivateApp
+  QuickSightVpnConnectionSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - FIRST
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - QuickSightVpn
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: VPN
   PrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -1186,6 +1205,11 @@ Resources:
       RouteTableId: !Ref 'PrivateRouteTable'
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId: !Ref 'NAT'
+  QuickSightVpnConnectionSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'QuickSightVpnConnectionSubnet'
+      RouteTableId: !Ref 'PrivateRouteTable'
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -1219,6 +1243,45 @@ Resources:
           Value: !Ref 'AWS::StackId'
         - Key: Network
           Value: Public
+  QuickSightVpnNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: VPN
+  InboundPostgresqlQuickSightVpnNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'QuickSightVpnNetworkAcl'
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - QuickSightVpn
+        - CIDR
+      PortRange:
+        From: '5432'
+        To: '5432'
+  OutboundPostgresqlQuickSightVpnNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'QuickSightVpnNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - QuickSightVpn
+        - CIDR
+      PortRange:
+        From: '1024'
+        To: '65535'
   PrivateNetworkAcl:
     Type: AWS::EC2::NetworkAcl
     Properties:
@@ -1444,6 +1507,11 @@ Resources:
     Properties:
       SubnetId: !Ref 'PrivateAppSubnet3'
       NetworkAclId: !Ref 'PrivateAppNetworkAcl'
+  QuickSightVpnConnectionSubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'QuickSightVpnConnectionSubnet'
+      NetworkAclId: !Ref 'QuickSightVpnNetworkAcl'
   PrivateSubnetNetworkAclAssociation:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties:
@@ -1459,22 +1527,51 @@ Resources:
     Properties:
       SubnetId: !Ref 'PrivateSubnet3'
       NetworkAclId: !Ref 'PrivateNetworkAcl'
+  QuickSightVpnConnectionSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Quicksight Access from vpn connection
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: !FindInMap
+            - SubnetConfig
+            - VPC
+            - CIDR
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: !FindInMap
+            - SubnetConfig
+            - VPC
+            - CIDR
   DatabaseSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    DependsOn: WebServerSecurityGroup
+    DependsOn: WebServerSecurityGroup,QuickSightVpnConnectionSecurityGroup
     Properties:
-      GroupDescription: Frontend Access
+      GroupDescription: Database Access
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          SourceSecurityGroupId: !Ref 'QuickSightVpnConnectionSecurityGroup'
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          SourceSecurityGroupId: !Ref 'QuickSightVpnConnectionSecurityGroup'
   DatabaseParamGroup:
     Type: AWS::RDS::DBParameterGroup
     Properties:
