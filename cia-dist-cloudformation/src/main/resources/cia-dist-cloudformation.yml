@@ -1550,7 +1550,9 @@ Resources:
             - CIDR
   DatabaseSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    DependsOn: WebServerSecurityGroup,QuickSightVpnConnectionSecurityGroup
+    DependsOn:
+      - WebServerSecurityGroup
+      - QuickSightVpnConnectionSecurityGroup
     Properties:
       GroupDescription: Database Access
       VpcId: !Ref 'VPC'
