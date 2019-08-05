@@ -1262,7 +1262,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - QuickSightVpn
+        - VPC
         - CIDR
       PortRange:
         From: '5432'
@@ -1277,7 +1277,7 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - QuickSightVpn
+        - VPC
         - CIDR
       PortRange:
         From: '1024'
@@ -1301,7 +1301,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp
+        - VPC
         - CIDR
       PortRange:
         From: '5432'
@@ -1316,7 +1316,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp2
+        - VPC
         - CIDR
       PortRange:
         From: '5432'
@@ -1331,7 +1331,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp3
+        - VPC
         - CIDR
       PortRange:
         From: '5432'
@@ -1346,7 +1346,7 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp
+        - VPC
         - CIDR
       PortRange:
         From: '1024'
@@ -1361,7 +1361,7 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp2
+        - VPC
         - CIDR
       PortRange:
         From: '1024'
@@ -1376,7 +1376,7 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp3
+        - VPC
         - CIDR
       PortRange:
         From: '1024'
@@ -1534,16 +1534,16 @@ Resources:
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '5432'
-          ToPort: '5432'
+          FromPort: '1'
+          ToPort: '65535'
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
       SecurityGroupEgress:
         - IpProtocol: tcp
-          FromPort: '5432'
-          ToPort: '5432'
+          FromPort: '1'
+          ToPort: '65535'
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC

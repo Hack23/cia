@@ -2110,7 +2110,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "QuickSightVpn", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2133,7 +2133,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "QuickSightVpn", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2176,7 +2176,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2199,7 +2199,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp2", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2222,7 +2222,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp3", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2245,7 +2245,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2268,7 +2268,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp2", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2291,7 +2291,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "PrivateApp3", 
+                        "VPC", 
                         "CIDR"
                     ]
                 }, 
@@ -2557,8 +2557,8 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp", 
-                        "FromPort": "5432", 
-                        "ToPort": "5432", 
+                        "FromPort": "1", 
+                        "ToPort": "65535", 
                         "CidrIp": {
                             "Fn::FindInMap": [
                                 "SubnetConfig", 
@@ -2571,8 +2571,8 @@
                 "SecurityGroupEgress": [
                     {
                         "IpProtocol": "tcp", 
-                        "FromPort": "5432", 
-                        "ToPort": "5432", 
+                        "FromPort": "1", 
+                        "ToPort": "65535", 
                          "CidrIp": {
                             "Fn::FindInMap": [
                                 "SubnetConfig", 
