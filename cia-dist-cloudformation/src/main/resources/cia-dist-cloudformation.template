@@ -2107,13 +2107,7 @@
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "false", 
-                "CidrBlock": {
-                    "Fn::FindInMap": [
-                        "SubnetConfig", 
-                        "VPC", 
-                        "CIDR"
-                    ]
-                }, 
+                "CidrBlock": "CidrBlock": "0.0.0.0/0", 
                 "PortRange": {
                     "From": "5432", 
                     "To": "5432"
@@ -2130,13 +2124,7 @@
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "true", 
-                "CidrBlock": {
-                    "Fn::FindInMap": [
-                        "SubnetConfig", 
-                        "VPC", 
-                        "CIDR"
-                    ]
-                }, 
+                "CidrBlock": "0.0.0.0/0", 
                 "PortRange": {
                     "From": "1024", 
                     "To": "65535"
@@ -2559,13 +2547,7 @@
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
-                        "CidrIp": {
-                            "Fn::FindInMap": [
-                                "SubnetConfig", 
-                                "VPC", 
-                                "CIDR"
-                            ]
-                        }
+                        "CidrBlock": "0.0.0.0/0"
                     }
                 ], 
                 "SecurityGroupEgress": [
@@ -2573,13 +2555,7 @@
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
-                         "CidrIp": {
-                            "Fn::FindInMap": [
-                                "SubnetConfig", 
-                                "VPC", 
-                                "CIDR"
-                            ]
-                        }
+                        "CidrBlock": "0.0.0.0/0"
                    }
                 ]
             }
