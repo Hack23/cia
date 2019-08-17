@@ -152,7 +152,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2019.7.26/cia-dist-deb-2019.7.26.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2019.8.17/cia-dist-deb-2019.8.17.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -1260,10 +1260,7 @@ Resources:
       Protocol: '6'
       RuleAction: allow
       Egress: 'false'
-      CidrBlock: !FindInMap
-        - SubnetConfig
-        - VPC
-        - CIDR
+      CidrBlock: 0.0.0.0/0
       PortRange:
         From: '5432'
         To: '5432'
@@ -1275,10 +1272,7 @@ Resources:
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: !FindInMap
-        - SubnetConfig
-        - VPC
-        - CIDR
+      CidrBlock: 0.0.0.0/0
       PortRange:
         From: '1024'
         To: '65535'
@@ -1536,18 +1530,12 @@ Resources:
         - IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
-          CidrIp: !FindInMap
-            - SubnetConfig
-            - VPC
-            - CIDR
+          CidrBlock: 0.0.0.0/0
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
-          CidrIp: !FindInMap
-            - SubnetConfig
-            - VPC
-            - CIDR
+          CidrBlock: 0.0.0.0/0
   DatabaseSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     DependsOn:

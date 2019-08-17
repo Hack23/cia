@@ -159,7 +159,7 @@
             "Type": "String"
         }, 
         "DebPackageUrl": {
-            "Default": "https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2019.7.26/cia-dist-deb-2019.7.26.deb", 
+            "Default": "https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2019.8.17/cia-dist-deb-2019.8.17.deb", 
             "Description": "The debian package url", 
             "Type": "String", 
             "MinLength": "8"
@@ -2107,7 +2107,7 @@
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "false", 
-                "CidrBlock": "CidrBlock": "0.0.0.0/0", 
+                "CidrBlock": "0.0.0.0/0", 
                 "PortRange": {
                     "From": "5432", 
                     "To": "5432"

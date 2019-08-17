@@ -25,8 +25,8 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
-[![Anchore Image Overview](https://anchore.io/service/badges/image/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939)](https://anchore.io/image/dockerhub/hack23%2Fcia%3A2019.7.26)	
-[![Anchore Image Policy](https://anchore.io/service/badges/policy/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939?registry=dockerhub&repository=hack23/cia&tag=2019.7.26)](https://anchore.io)
+[![Anchore Image Overview](https://anchore.io/service/badges/image/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939)](https://anchore.io/image/dockerhub/hack23%2Fcia%3A2019.8.17)	
+[![Anchore Image Policy](https://anchore.io/service/badges/policy/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939?registry=dockerhub&repository=hack23/cia&tag=2019.8.17)](https://anchore.io)
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
 [![](https://codescene.io/projects/4166/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/4166/jobs/latest-successful/results)
@@ -145,7 +145,7 @@ Israel
   
  Docker repository : https://hub.docker.com/r/hack23/cia/ 
 
-1. docker run hack23/cia:2019.7.26 -p 28443:8443
+1. docker run hack23/cia:2019.8.17 -p 28443:8443
 
 2. Access server at https://localhost:28443/cia/ , register new user to get admin access
 
@@ -157,24 +157,14 @@ Israel
 1. Installing database(postgres) and openjdk
 
 ```
-$ sudo apt-get install openjdk-8-jdk postgresql pgadmin3
+$ sudo apt-get install openjdk-11-jdk postgresql-11 pgadmin3
 ```
 
-
-2. Installing Oracle JDK 8 on Ubuntu
-
-First you need to add webupd8team Java PPA repository in your system and install Oracle Java 8 using following set of commands.
-
-```
-$ sudo add-apt-repository ppa:webupd8team/java
-$ sudo apt-get update
-$ sudo apt-get install oracle-java9-installer oracle-java8-installer oracle-java8-unlimited-jce-policy
-```
 
 2. Installing Postgresql on Ubuntu
 
 ```
-$ sudo apt-get install postgresql-10 postgresql-contrib postgresql-10-pgaudit
+$ sudo apt-get install postgresql-11 postgresql-contrib postgresql-11-pgaudit
 ```
 
 3. Create empty database
@@ -191,7 +181,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 
 4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto 
 
-Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
+Edit file "/etc/postgresql/11/main/postgresql.conf" set
 
 ```
 max_prepared_transactions = 100
@@ -205,7 +195,7 @@ pg_stat_statements.max = 10000
 ```
 
 5. Modify postgres setting
-Edit file "/etc/postgresql/9.6/main/pg_hba.conf" add line
+Edit file "/etc/postgresql/11/main/pg_hba.conf" add line
 
 ```
 host all all ::1/128 md5
@@ -222,14 +212,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2019.7.26/cia-dist-deb-2019.7.26.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2019.8.17/cia-dist-deb-2019.8.17.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2019.7.26.deb
+$ sudo dpkg -i cia-dist-deb-2019.8.17.deb
 ```
 
 
