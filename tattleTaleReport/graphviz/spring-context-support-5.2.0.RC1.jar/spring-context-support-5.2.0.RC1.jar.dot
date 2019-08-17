@@ -1,0 +1,14 @@
+digraph spring_context_support_5_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_context_support_5_2_0_RC1 -> activation_1_1;
+  spring_context_support_5_2_0_RC1 -> cache_api_1_1_1;
+  spring_context_support_5_2_0_RC1 -> javax_mail_1_6_2;
+  spring_context_support_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_context_support_5_2_0_RC1 -> quartz_2_3_1;
+  spring_context_support_5_2_0_RC1 -> spring_aop_5_2_0_RC1;
+  spring_context_support_5_2_0_RC1 -> spring_beans_5_2_0_RC1;
+  spring_context_support_5_2_0_RC1 -> spring_context_5_2_0_RC1;
+  spring_context_support_5_2_0_RC1 -> spring_core_5_2_0_RC1;
+  spring_context_support_5_2_0_RC1 -> spring_jdbc_5_2_0_RC1;
+  spring_context_support_5_2_0_RC1 -> spring_tx_5_2_0_RC1;
+}

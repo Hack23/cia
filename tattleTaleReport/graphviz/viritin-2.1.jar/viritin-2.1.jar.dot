@@ -6,7 +6,7 @@ digraph viritin_2_1_dependencies {
   viritin_2_1 -> gwt_elemental_2_8_2;
   viritin_2_1 -> jsoup_1_12_1;
   viritin_2_1 -> markdown4j_2_2_cj_1_1;
-  viritin_2_1 -> vaadin_server_8_9_0_beta1;
-  viritin_2_1 -> vaadin_shared_8_9_0_beta1;
+  viritin_2_1 -> vaadin_server_8_9_0_beta2;
+  viritin_2_1 -> vaadin_shared_8_9_0_beta2;
   viritin_2_1 -> validation_api_2_0_1_Final;
 }

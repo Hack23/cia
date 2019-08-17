@@ -1,5 +1,5 @@
 digraph passay_1_5_0_dependencies {
   node [shape = box, fontsize=10.0];
   passay_1_5_0 -> guava_28_0_jre;
-  passay_1_5_0 -> spring_context_5_2_0_M3;
+  passay_1_5_0 -> spring_context_5_2_0_RC1;
 }

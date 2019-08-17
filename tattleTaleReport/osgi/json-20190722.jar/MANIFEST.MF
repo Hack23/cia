@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.json
+Bnd-LastModified: 1565139239582
+Build-Jdk: 10.0.2
+Built-By: Benjamin Gehrels
+Bundle-Description: JSON is a light-weight, language independent, data i
+ nterchange format.		See http://www.JSON.org/		The files in this package
+  implement JSON encoders/decoders in Java.		It also includes the capabi
+ lity to convert between JSON and XML, HTTP		headers, Cookies, and CDL.	
+ 	This is a reference implementation. There is a large number of JSON pa
+ ckages		in Java. Perhaps someday the Java community will standardize on
+  one. Until		then, choose carefully.		The license includes this restric
+ tion: "The software shall be used for good,		not evil." If your conscie
+ nce cannot live with that, then choose a different		package.
+Bundle-License: http://json.org/license.html
+Bundle-ManifestVersion: 2
+Bundle-Name: JSON in Java
+Bundle-SymbolicName: json
+Bundle-Version: 20190722.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.json;version="20190722.0.0"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-3.0.0.201509101326
+

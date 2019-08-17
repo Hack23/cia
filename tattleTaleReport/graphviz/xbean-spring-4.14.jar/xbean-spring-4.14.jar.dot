@@ -2,9 +2,9 @@ digraph xbean_spring_4_14_dependencies {
   node [shape = box, fontsize=10.0];
   xbean_spring_4_14 -> ant_1_10_6;
   xbean_spring_4_14 -> jcl_over_slf4j_2_0_0_alpha0;
-  xbean_spring_4_14 -> spring_beans_5_2_0_M3;
-  xbean_spring_4_14 -> spring_context_5_2_0_M3;
-  xbean_spring_4_14 -> spring_core_5_2_0_M3;
-  xbean_spring_4_14 -> spring_web_5_2_0_M3;
+  xbean_spring_4_14 -> spring_beans_5_2_0_RC1;
+  xbean_spring_4_14 -> spring_context_5_2_0_RC1;
+  xbean_spring_4_14 -> spring_core_5_2_0_RC1;
+  xbean_spring_4_14 -> spring_web_5_2_0_RC1;
   xbean_spring_4_14 -> xml_apis_1_4_01;
 }

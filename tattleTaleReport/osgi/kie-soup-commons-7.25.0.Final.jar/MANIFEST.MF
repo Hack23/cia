@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.soup.commons
+Bnd-LastModified: 1564989649981
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Collection of reusable (not depending on any other K
+ IE Soup module) components for KIE Soup.
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: KIE Soup Commons
+Bundle-SymbolicName: org.kie.soup.commons
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.25.0.201908050720
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.soup.commons;version="7.25.0",org.kie.soup.commo
+ ns.cron;version="7.25.0",org.kie.soup.commons.util;version="7.25.0",org
+ .kie.soup.commons.validation;version="7.25.0",org.kie.soup.commons.xstr
+ eam;version="7.25.0"
+Implementation-Title: KIE Soup Commons
+Implementation-URL: http://www.kiegroup.org/kie-soup-parent/kie-soup-com
+ mons
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie.soup
+Implementation-Version: 7.25.0.Final
+Import-Package: com.thoughtworks.xstream;resolution:=optional,com.though
+ tworks.xstream.annotations;resolution:=optional,com.thoughtworks.xstrea
+ m.converters;resolution:=optional,com.thoughtworks.xstream.converters.r
+ eflection;resolution:=optional,com.thoughtworks.xstream.core;resolution
+ :=optional,com.thoughtworks.xstream.io;resolution:=optional,com.thought
+ works.xstream.mapper;resolution:=optional,com.thoughtworks.xstream.secu
+ rity;resolution:=optional
+Include-Resource: org/kie/soup/commons/KIESoupCommons.gwt.xml=src/main/r
+ esources/org/kie/soup/commons/KIESoupCommons.gwt.xml
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-co
+ mmons
+Scm-Revision: 1787dd3bac01b7823a1bf70a9b14ab72eb5bc43e
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-commons
+Specification-Title: KIE Soup Commons
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.25.0.Final
+Tool: Bnd-3.5.0.201709291849
+

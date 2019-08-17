@@ -1,0 +1,15 @@
+digraph spring_jms_5_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_jms_5_2_0_RC1 -> geronimo_jms_2_0_spec_1_0_alpha_2_patched_auto_name;
+  spring_jms_5_2_0_RC1 -> jackson_annotations_2_10_0_pr1;
+  spring_jms_5_2_0_RC1 -> jackson_databind_2_10_0_pr1;
+  spring_jms_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_jms_5_2_0_RC1 -> spring_aop_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_beans_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_context_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_core_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_messaging_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_oxm_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> spring_tx_5_2_0_RC1;
+  spring_jms_5_2_0_RC1 -> xml_apis_1_4_01;
+}

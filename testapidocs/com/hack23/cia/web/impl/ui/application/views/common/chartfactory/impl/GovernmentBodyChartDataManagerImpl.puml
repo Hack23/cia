@@ -37,5 +37,5 @@
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.GovernmentBodyChartDataManagerImpl
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.GovernmentBodyChartDataManagerImpl
 
-    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
 @enduml

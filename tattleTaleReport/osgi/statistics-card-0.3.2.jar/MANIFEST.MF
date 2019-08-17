@@ -42,13 +42,13 @@ Export-Package: com.github.markash.ui.component.card;uses:="com.github
 Import-Package: com.fasterxml.jackson.annotation;version="2.10.0.pr1",
  com.fasterxml.jackson.databind;version="2.10.0.pr1",com.fasterxml.jac
  kson.datatype.jdk8;version="2.10.0.pr1",com.vaadin.annotations;versio
- n="8.9.0.beta1",com.vaadin.data;version="8.9.0.beta1",com.vaadin.icon
- s;version="8.9.0.beta1",com.vaadin.navigator;version="8.9.0.beta1",co
- m.vaadin.server;version="8.9.0.beta1",com.vaadin.shared;version="8.9.
- 0.beta1",com.vaadin.shared.communication;version="8.9.0.beta1",com.va
- adin.shared.ui;version="8.9.0.beta1",com.vaadin.shared.ui.colorpicker
- ;version="8.9.0.beta1",com.vaadin.ui;version="8.9.0.beta1",com.vaadin
- .ui.themes;version="8.9.0.beta1",java.io,java.lang,java.lang.invoke,j
+ n="8.9.0.beta2",com.vaadin.data;version="8.9.0.beta2",com.vaadin.icon
+ s;version="8.9.0.beta2",com.vaadin.navigator;version="8.9.0.beta2",co
+ m.vaadin.server;version="8.9.0.beta2",com.vaadin.shared;version="8.9.
+ 0.beta2",com.vaadin.shared.communication;version="8.9.0.beta2",com.va
+ adin.shared.ui;version="8.9.0.beta2",com.vaadin.shared.ui.colorpicker
+ ;version="8.9.0.beta2",com.vaadin.ui;version="8.9.0.beta2",com.vaadin
+ .ui.themes;version="8.9.0.beta2",java.io,java.lang,java.lang.invoke,j
  ava.math,java.text,java.time,java.util,java.util.function,java.util.s
  tream,org.apache.commons.lang3;version="3.9",org.vaadin.viritin.butto
  n;version="2.1",org.vaadin.viritin.fluency.server;version="2.1",org.v

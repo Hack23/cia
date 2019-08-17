@@ -12,5 +12,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView <|-- com.hack23.cia.web.impl.ui.application.views.admin.system.AdminMonitoringView
 
-    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
 @enduml

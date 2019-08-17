@@ -219,29 +219,29 @@ Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
  va.util.function,java.util.stream,javax.enterprise.inject.spi,javax.p
  ersistence;version="2.2",javax.persistence.criteria;version="2.2",jav
  ax.persistence.metamodel;version="2.2",javax.transaction;version="1.1
- .1",org.hibernate;version="5.4.3.Final",org.hibernate.action.spi;vers
- ion="5.4.3.Final",org.hibernate.annotations.common.reflection;version
- ="5.1.0.Final",org.hibernate.boot;version="5.4.3.Final",org.hibernate
- .boot.registry;version="5.4.3.Final",org.hibernate.boot.registry.clas
- sloading.spi;version="5.4.3.Final",org.hibernate.boot.spi;version="5.
- 4.3.Final",org.hibernate.bytecode.enhance.spi;version="5.4.3.Final",o
- rg.hibernate.cache.spi.access;version="5.4.3.Final",org.hibernate.cfg
- ;version="5.4.3.Final",org.hibernate.collection.spi;version="5.4.3.Fi
- nal",org.hibernate.criterion;version="5.4.3.Final",org.hibernate.engi
- ne.config.spi;version="5.4.3.Final",org.hibernate.engine.spi;version=
- "5.4.3.Final",org.hibernate.engine.transaction.jta.platform.spi;versi
- on="5.4.3.Final",org.hibernate.event.service.spi;version="5.4.3.Final
- ",org.hibernate.event.spi;version="5.4.3.Final",org.hibernate.integra
- tor.spi;version="5.4.3.Final",org.hibernate.mapping;version="5.4.3.Fi
- nal",org.hibernate.metamodel.model.domain.spi;version="5.4.3.Final",o
- rg.hibernate.metamodel.spi;version="5.4.3.Final",org.hibernate.persis
- ter.entity;version="5.4.3.Final",org.hibernate.property.access.spi;ve
- rsion="5.4.3.Final",org.hibernate.proxy;version="5.4.3.Final",org.hib
- ernate.query;version="5.4.3.Final",org.hibernate.query.internal;versi
- on="5.4.3.Final",org.hibernate.query.spi;version="5.4.3.Final",org.hi
- bernate.resource.beans.container.spi;version="5.4.3.Final",org.hibern
- ate.resource.beans.spi;version="5.4.3.Final",org.hibernate.resource.t
- ransaction.spi;version="5.4.3.Final",org.hibernate.search.engine.back
+ .1",org.hibernate;version="5.4.4.Final",org.hibernate.action.spi;vers
+ ion="5.4.4.Final",org.hibernate.annotations.common.reflection;version
+ ="5.1.0.Final",org.hibernate.boot;version="5.4.4.Final",org.hibernate
+ .boot.registry;version="5.4.4.Final",org.hibernate.boot.registry.clas
+ sloading.spi;version="5.4.4.Final",org.hibernate.boot.spi;version="5.
+ 4.4.Final",org.hibernate.bytecode.enhance.spi;version="5.4.4.Final",o
+ rg.hibernate.cache.spi.access;version="5.4.4.Final",org.hibernate.cfg
+ ;version="5.4.4.Final",org.hibernate.collection.spi;version="5.4.4.Fi
+ nal",org.hibernate.criterion;version="5.4.4.Final",org.hibernate.engi
+ ne.config.spi;version="5.4.4.Final",org.hibernate.engine.spi;version=
+ "5.4.4.Final",org.hibernate.engine.transaction.jta.platform.spi;versi
+ on="5.4.4.Final",org.hibernate.event.service.spi;version="5.4.4.Final
+ ",org.hibernate.event.spi;version="5.4.4.Final",org.hibernate.integra
+ tor.spi;version="5.4.4.Final",org.hibernate.mapping;version="5.4.4.Fi
+ nal",org.hibernate.metamodel.model.domain.spi;version="5.4.4.Final",o
+ rg.hibernate.metamodel.spi;version="5.4.4.Final",org.hibernate.persis
+ ter.entity;version="5.4.4.Final",org.hibernate.property.access.spi;ve
+ rsion="5.4.4.Final",org.hibernate.proxy;version="5.4.4.Final",org.hib
+ ernate.query;version="5.4.4.Final",org.hibernate.query.internal;versi
+ on="5.4.4.Final",org.hibernate.query.spi;version="5.4.4.Final",org.hi
+ bernate.resource.beans.container.spi;version="5.4.4.Final",org.hibern
+ ate.resource.beans.spi;version="5.4.4.Final",org.hibernate.resource.t
+ ransaction.spi;version="5.4.4.Final",org.hibernate.search.engine.back
  end.types.converter.runtime;version="6.0.0.Alpha8",org.hibernate.sear
  ch.engine.backend.work.execution;version="6.0.0.Alpha8",org.hibernate
  .search.engine.cfg.spi;version="6.0.0.Alpha8",org.hibernate.search.en
@@ -289,8 +289,8 @@ Import-Package: java.io,java.lang,java.lang.invoke,java.lang.reflect,j
  ;version="6.0.0.Alpha8",org.hibernate.search.util.common.impl;version
  ="6.0.0.Alpha8",org.hibernate.search.util.common.logging.impl;version
  ="6.0.0.Alpha8",org.hibernate.search.util.common.reflect.spi;version=
- "6.0.0.Alpha8",org.hibernate.service;version="5.4.3.Final",org.hibern
- ate.service.spi;version="5.4.3.Final",org.hibernate.transform;version
- ="5.4.3.Final",org.hibernate.type;version="5.4.3.Final",org.hibernate
- .type.spi;version="5.4.3.Final",org.jboss.logging;version="3.4",org.j
+ "6.0.0.Alpha8",org.hibernate.service;version="5.4.4.Final",org.hibern
+ ate.service.spi;version="5.4.4.Final",org.hibernate.transform;version
+ ="5.4.4.Final",org.hibernate.type;version="5.4.4.Final",org.hibernate
+ .type.spi;version="5.4.4.Final",org.jboss.logging;version="3.4",org.j
  boss.logging.annotations

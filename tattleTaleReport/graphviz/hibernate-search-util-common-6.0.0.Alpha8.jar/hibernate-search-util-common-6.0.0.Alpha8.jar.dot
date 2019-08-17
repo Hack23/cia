@@ -1,4 +1,4 @@
 digraph hibernate_search_util_common_6_0_0_Alpha8_dependencies {
   node [shape = box, fontsize=10.0];
-  hibernate_search_util_common_6_0_0_Alpha8 -> jboss_logging_3_4_0_Final;
+  hibernate_search_util_common_6_0_0_Alpha8 -> jboss_logging_3_4_1_Final;
 }

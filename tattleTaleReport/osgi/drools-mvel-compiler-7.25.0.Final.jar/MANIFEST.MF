@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.drools.mvel-compiler
+Bnd-LastModified: 1564993616205
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion d
+ oes complex event processing (CEP).
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: drools-mvel-compiler
+Bundle-SymbolicName: org.drools.mvel-compiler
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.25.0.201908050814
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.drools.mvelcompiler;version="7.25.0",org.drools.mvel
+ compiler.ast;version="7.25.0",org.drools.mvelcompiler.context;version="
+ 7.25.0",org.drools.mvelcompiler.util;version="7.25.0"
+Implementation-Title: drools-mvel-compiler
+Implementation-URL: http://www.kiegroup.org/drools/drools-model/drools-m
+ vel-compiler
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.drools
+Implementation-Version: 7.25.0.Final
+Import-Package: com.github.javaparser,com.github.javaparser.ast,com.gith
+ ub.javaparser.ast.body,com.github.javaparser.ast.expr,com.github.javapa
+ rser.ast.nodeTypes,com.github.javaparser.ast.stmt,com.github.javaparser
+ .ast.type,com.github.javaparser.ast.visitor,org.drools.core.util,org.dr
+ ools.mvel.parser,org.drools.mvel.parser.ast.expr,org.drools.mvel.parser
+ .ast.visitor,org.drools.mvel.parser.printer,org.drools.mvelcompiler,org
+ .drools.mvelcompiler.ast,org.drools.mvelcompiler.context,org.drools.mve
+ lcompiler.util,org.kie.soup.project.datamodel.commons.types,org.slf4j
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: org.drools.mvelcompiler,org.drools.mvelcompiler.ast,org
+ .drools.mvelcompiler.context,org.drools.mvelcompiler.util
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-mo
+ del/drools-mvel-compiler
+Scm-Revision: f7073d29a6e963070d4461d9c435fa0ed88e445f
+Scm-Url: https://github.com/kiegroup/drools/drools-model/drools-mvel-com
+ piler
+Specification-Title: drools-mvel-compiler
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.25.0.Final
+Tool: Bnd-3.5.0.201709291849
+

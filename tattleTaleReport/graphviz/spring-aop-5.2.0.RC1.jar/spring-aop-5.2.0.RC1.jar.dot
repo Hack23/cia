@@ -1,0 +1,9 @@
+digraph spring_aop_5_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_aop_5_2_0_RC1 -> aspectjweaver_1_9_4;
+  spring_aop_5_2_0_RC1 -> commons_pool2_2_7_0;
+  spring_aop_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_aop_5_2_0_RC1 -> spring_beans_5_2_0_RC1;
+  spring_aop_5_2_0_RC1 -> spring_core_5_2_0_RC1;
+  spring_aop_5_2_0_RC1 -> xml_apis_1_4_01;
+}

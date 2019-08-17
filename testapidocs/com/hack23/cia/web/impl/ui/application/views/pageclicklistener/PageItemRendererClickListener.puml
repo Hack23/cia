@@ -15,5 +15,5 @@
     com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener
     com.vaadin.event.selection.SelectionListener <|.. com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener
 
-    center footer UMLDoclet 2.0.4, PlantUML 1.2019.06
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
 @enduml

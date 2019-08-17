@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.drools.templates
+Bnd-LastModified: 1564993424180
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion d
+ oes complex event processing (CEP).
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Drools :: Templates
+Bundle-SymbolicName: org.drools.templates
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.25.0.201908050814
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.drools.template;version="7.25.0",org.drools.template
+ .jdbc;version="7.25.0",org.drools.template.model;version="7.25.0",org.d
+ rools.template.objects;version="7.25.0",org.drools.template.parser;vers
+ ion="7.25.0"
+Implementation-Title: Drools :: Templates
+Implementation-URL: http://www.kiegroup.org/drools/drools-templates
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.drools
+Implementation-Version: 7.25.0.Final
+Import-Package: org.drools.compiler.builder.impl,org.drools.core.definit
+ ions,org.drools.core.impl,org.drools.core.util,org.drools.template,org.
+ drools.template.model,org.drools.template.objects,org.drools.template.p
+ arser,org.kie.api.definition,org.kie.api.runtime,org.kie.api.runtime.ru
+ le,org.mvel2.integration,org.mvel2.integration.impl,org.mvel2.templates
+Include-Resource: org/drools/template/package.html=src/main/resources/or
+ g/drools/template/package.html
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Private-Package: org.drools.template.model,org.drools.template,org.drool
+ s.template.parser,org.drools.template.jdbc,org.drools.template.objects
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/drools-te
+ mplates
+Scm-Revision: f7073d29a6e963070d4461d9c435fa0ed88e445f
+Scm-Url: https://github.com/kiegroup/drools/drools-templates
+Specification-Title: Drools :: Templates
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.25.0.Final
+Tool: Bnd-3.5.0.201709291849
+

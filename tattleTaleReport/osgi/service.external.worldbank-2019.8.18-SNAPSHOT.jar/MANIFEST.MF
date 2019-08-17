@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.service.external.worldbank
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.service.external.worldbank.api
+Bundle-Description: service.external.worldbank-2019.8.18-SNAPSHOT
+Bundle-Name: service.external.worldbank-2019.8.18-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.service.external.worldbank.api;uses:="j
+ ava.lang",com.hack23.cia.service.external.worldbank.impl;uses:="com.h
+ ack23.cia.model.external.worldbank.countries.impl,com.hack23.cia.mode
+ l.external.worldbank.data.impl,com.hack23.cia.model.external.worldban
+ k.indicators.impl,com.hack23.cia.model.external.worldbank.topic.impl,
+ com.hack23.cia.service.external.common.api,com.hack23.cia.service.ext
+ ernal.worldbank.api,java.lang.invoke,org.apache.commons.codec,org.apa
+ che.commons.csv,org.apache.http.client.fluent"
+Import-Package: com.hack23.cia.model.external.worldbank.countries.impl
+ ;version="0.0.0",com.hack23.cia.model.external.worldbank.data.impl;ve
+ rsion="0.0.0",com.hack23.cia.model.external.worldbank.indicators.impl
+ ;version="0.0.0",com.hack23.cia.model.external.worldbank.topic.impl;v
+ ersion="0.0.0",com.hack23.cia.service.external.common.api;version="0.
+ 0.0",java.io,java.lang,java.lang.invoke,java.math,java.nio.charset,ja
+ va.util,java.util.zip,org.apache.commons.codec;version="1.13",org.apa
+ che.commons.csv;version="1.7",org.apache.http.client.fluent;version="
+ 4.5",org.slf4j;version="0.0.0",org.springframework.beans.factory.anno
+ tation;version="5.2.0.RC1",org.springframework.oxm;version="5.2.0.RC1
+ ",org.springframework.stereotype;version="5.2.0.RC1"

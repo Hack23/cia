@@ -3,7 +3,7 @@ digraph dcharts_2_0_0_hack23_dependencies {
   dcharts_2_0_0_hack23 -> commons_codec_1_13;
   dcharts_2_0_0_hack23 -> commons_lang3_3_9;
   dcharts_2_0_0_hack23 -> gwt_user_2_8_2;
-  dcharts_2_0_0_hack23 -> vaadin_client_8_9_0_beta1;
-  dcharts_2_0_0_hack23 -> vaadin_server_8_9_0_beta1;
-  dcharts_2_0_0_hack23 -> vaadin_shared_8_9_0_beta1;
+  dcharts_2_0_0_hack23 -> vaadin_client_8_9_0_beta2;
+  dcharts_2_0_0_hack23 -> vaadin_server_8_9_0_beta2;
+  dcharts_2_0_0_hack23 -> vaadin_shared_8_9_0_beta2;
 }

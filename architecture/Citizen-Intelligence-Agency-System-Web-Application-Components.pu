@@ -13,161 +13,161 @@ skinparam {
   noteBorderColor #707070
 }
 package "Web Application" <<Container>> {
-  component "AdminChartDataManager" <<Spring Service>> as 17 #1168bd
-  component "AgentContainer" <<Spring Component>> as 61 #1168bd
-  component "ApplicationManager" <<Spring Service>> as 13 #1168bd
-  component "ApplicationMenuItemFactory" <<Spring Service>> as 28 #1168bd
-  component "AuthenticationProvider" <<Spring Component>> as 67 #1168bd
-  component "BallotChartDataManager" <<Spring Service>> as 41 #1168bd
-  component "BallotMenuItemFactory" <<Spring Service>> as 38 #1168bd
-  component "BootstrapDefaultConfig" <<Spring Component>> as 69 #1168bd
+  component "AdminChartDataManager" <<Spring Service>> as 48 #1168bd
+  component "AgentContainer" <<Spring Component>> as 66 #1168bd
+  component "ApplicationManager" <<Spring Service>> as 31 #1168bd
+  component "ApplicationMenuItemFactory" <<Spring Service>> as 26 #1168bd
+  component "AuthenticationProvider" <<Spring Component>> as 61 #1168bd
+  component "BallotChartDataManager" <<Spring Service>> as 29 #1168bd
+  component "BallotMenuItemFactory" <<Spring Service>> as 12 #1168bd
+  component "BootstrapDefaultConfig" <<Spring Component>> as 68 #1168bd
   component "ChartDataManager" <<Spring Service>> as 57 #1168bd
-  component "ChartOptions" <<Spring Component>> as 63 #1168bd
-  component "CommitteeDataSeriesFactory" <<Spring Service>> as 16 #1168bd
-  component "CommitteeGhantChartManager" <<Spring Service>> as 14 #1168bd
-  component "CommitteeMenuItemFactory" <<Spring Service>> as 15 #1168bd
-  component "CommitteeRankingMenuItemFactory" <<Spring Service>> as 44 #1168bd
-  component "ConfigurationManager" <<Spring Service>> as 48 #1168bd
-  component "CountryMenuItemFactory" <<Spring Service>> as 18 #1168bd
-  component "DecisionChartDataManager" <<Spring Service>> as 31 #1168bd
-  component "DecisionDataFactory" <<Spring Service>> as 56 #1168bd
-  component "DecisionFlowChartManager" <<Spring Service>> as 20 #1168bd
-  component "DocumentChartDataManager" <<Spring Service>> as 29 #1168bd
-  component "DocumentMenuItemFactory" <<Spring Service>> as 37 #1168bd
-  component "FormFactory" <<Spring Service>> as 11 #1168bd
-  component "GovernmentBodyChartDataManager" <<Spring Service>> as 22 #1168bd
-  component "GovernmentBodyMenuItemFactory" <<Spring Service>> as 45 #1168bd
-  component "GovernmentBodyRankingMenuItemFactory" <<Spring Service>> as 35 #1168bd
-  component "GovernmentOutcomeChartDataManager" <<Spring Service>> as 47 #1168bd
-  component "GridFactory" <<Spring Service>> as 33 #1168bd
-  component "MainView" <<Spring Service>> as 19 #1168bd
-  component "MainViewLoginPageModContentFactoryImpl" <<Spring Component>> as 64 #1168bd
-  component "MainViewOverviewPageModContentFactoryImpl" <<Spring Component>> as 60 #1168bd
-  component "MainViewPageVisitHistoryPageModContentFactoryImpl" <<Spring Component>> as 62 #1168bd
-  component "MainViewRegisterPageModContentFactoryImpl" <<Spring Component>> as 65 #1168bd
-  component "MinistryDataSeriesFactory" <<Spring Service>> as 32 #1168bd
-  component "MinistryGhantChartManager" <<Spring Service>> as 26 #1168bd
-  component "MinistryMenuItemFactory" <<Spring Service>> as 21 #1168bd
-  component "MinistryRankingMenuItemFactory" <<Spring Service>> as 58 #1168bd
-  component "OrgDocumentChartDataManager" <<Spring Service>> as 46 #1168bd
-  component "PageActionEventHelper" <<Spring Service>> as 39 #1168bd
-  component "PagingUtil" <<Spring Component>> as 59 #1168bd
-  component "ParliamentMenuItemFactory" <<Spring Service>> as 54 #1168bd
-  component "PartyChartDataManager" <<Spring Service>> as 42 #1168bd
-  component "PartyCoalationChartDataManager" <<Spring Service>> as 52 #1168bd
-  component "PartyDataSeriesFactory" <<Spring Service>> as 24 #1168bd
-  component "PartyDocumentChartDataManager" <<Spring Service>> as 25 #1168bd
-  component "PartyGhantChartManager" <<Spring Service>> as 43 #1168bd
-  component "PartyMenuItemFactory" <<Spring Service>> as 53 #1168bd
-  component "PartyRankingMenuItemFactory" <<Spring Service>> as 30 #1168bd
-  component "PartySupportsChartDataManager" <<Spring Service>> as 23 #1168bd
-  component "PersonDocumentChartDataManager" <<Spring Service>> as 27 #1168bd
-  component "PoliticianDataManagerImpl" <<Spring Service>> as 51 #1168bd
-  component "PoliticianGhantChartManager" <<Spring Service>> as 40 #1168bd
-  component "PoliticianMenuItemFactory" <<Spring Service>> as 34 #1168bd
-  component "PoliticianRankingMenuItemFactory" <<Spring Service>> as 49 #1168bd
-  component "UserHomeMenuItemFactory" <<Spring Service>> as 50 #1168bd
-  component "ViewDataDataContainerFactory" <<Spring Component>> as 66 #1168bd
-  component "ViewRiksdagenCommitteeDataContainer" <<Spring Component>> as 68 #1168bd
+  component "ChartOptions" <<Spring Component>> as 64 #1168bd
+  component "CommitteeDataSeriesFactory" <<Spring Service>> as 41 #1168bd
+  component "CommitteeGhantChartManager" <<Spring Service>> as 32 #1168bd
+  component "CommitteeMenuItemFactory" <<Spring Service>> as 42 #1168bd
+  component "CommitteeRankingMenuItemFactory" <<Spring Service>> as 40 #1168bd
+  component "ConfigurationManager" <<Spring Service>> as 43 #1168bd
+  component "CountryMenuItemFactory" <<Spring Service>> as 16 #1168bd
+  component "DecisionChartDataManager" <<Spring Service>> as 35 #1168bd
+  component "DecisionDataFactory" <<Spring Service>> as 25 #1168bd
+  component "DecisionFlowChartManager" <<Spring Service>> as 56 #1168bd
+  component "DocumentChartDataManager" <<Spring Service>> as 28 #1168bd
+  component "DocumentMenuItemFactory" <<Spring Service>> as 39 #1168bd
+  component "FormFactory" <<Spring Service>> as 44 #1168bd
+  component "GovernmentBodyChartDataManager" <<Spring Service>> as 19 #1168bd
+  component "GovernmentBodyMenuItemFactory" <<Spring Service>> as 11 #1168bd
+  component "GovernmentBodyRankingMenuItemFactory" <<Spring Service>> as 15 #1168bd
+  component "GovernmentOutcomeChartDataManager" <<Spring Service>> as 30 #1168bd
+  component "GridFactory" <<Spring Service>> as 58 #1168bd
+  component "MainView" <<Spring Service>> as 22 #1168bd
+  component "MainViewLoginPageModContentFactoryImpl" <<Spring Component>> as 59 #1168bd
+  component "MainViewOverviewPageModContentFactoryImpl" <<Spring Component>> as 62 #1168bd
+  component "MainViewPageVisitHistoryPageModContentFactoryImpl" <<Spring Component>> as 67 #1168bd
+  component "MainViewRegisterPageModContentFactoryImpl" <<Spring Component>> as 63 #1168bd
+  component "MinistryDataSeriesFactory" <<Spring Service>> as 52 #1168bd
+  component "MinistryGhantChartManager" <<Spring Service>> as 18 #1168bd
+  component "MinistryMenuItemFactory" <<Spring Service>> as 50 #1168bd
+  component "MinistryRankingMenuItemFactory" <<Spring Service>> as 45 #1168bd
+  component "OrgDocumentChartDataManager" <<Spring Service>> as 10 #1168bd
+  component "PageActionEventHelper" <<Spring Service>> as 14 #1168bd
+  component "PagingUtil" <<Spring Component>> as 65 #1168bd
+  component "ParliamentMenuItemFactory" <<Spring Service>> as 53 #1168bd
+  component "PartyChartDataManager" <<Spring Service>> as 47 #1168bd
+  component "PartyCoalationChartDataManager" <<Spring Service>> as 20 #1168bd
+  component "PartyDataSeriesFactory" <<Spring Service>> as 13 #1168bd
+  component "PartyDocumentChartDataManager" <<Spring Service>> as 23 #1168bd
+  component "PartyGhantChartManager" <<Spring Service>> as 24 #1168bd
+  component "PartyMenuItemFactory" <<Spring Service>> as 33 #1168bd
+  component "PartyRankingMenuItemFactory" <<Spring Service>> as 27 #1168bd
+  component "PartySupportsChartDataManager" <<Spring Service>> as 34 #1168bd
+  component "PersonDocumentChartDataManager" <<Spring Service>> as 51 #1168bd
+  component "PoliticianDataManagerImpl" <<Spring Service>> as 37 #1168bd
+  component "PoliticianGhantChartManager" <<Spring Service>> as 21 #1168bd
+  component "PoliticianMenuItemFactory" <<Spring Service>> as 38 #1168bd
+  component "PoliticianRankingMenuItemFactory" <<Spring Service>> as 36 #1168bd
+  component "UserHomeMenuItemFactory" <<Spring Service>> as 49 #1168bd
+  component "ViewDataDataContainerFactory" <<Spring Component>> as 60 #1168bd
+  component "ViewRiksdagenCommitteeDataContainer" <<Spring Component>> as 69 #1168bd
   component "ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl" <<Spring Service>> as 55 #1168bd
-  component "ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl" <<Spring Service>> as 10 #1168bd
-  component "ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl" <<Spring Service>> as 36 #1168bd
-  component "WorldIndicatorChartDataManager" <<Spring Service>> as 12 #1168bd
+  component "ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl" <<Spring Service>> as 17 #1168bd
+  component "ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl" <<Spring Service>> as 54 #1168bd
+  component "WorldIndicatorChartDataManager" <<Spring Service>> as 46 #1168bd
 }
-17 .[#707070].> 13 
-17 .[#707070].> 63 
-13 .[#707070].> 61 
-13 .[#707070].> 66 
-28 .[#707070].> 44 
-28 .[#707070].> 18 
-28 .[#707070].> 35 
-28 .[#707070].> 58 
-28 .[#707070].> 54 
-28 .[#707070].> 30 
-28 .[#707070].> 49 
-41 .[#707070].> 13 
-41 .[#707070].> 63 
-69 .[#707070].> 48 
-57 .[#707070].> 13 
-57 .[#707070].> 63 
-16 .[#707070].> 13 
-15 .[#707070].> 28 
-15 .[#707070].> 44 
-44 .[#707070].> 28 
-18 .[#707070].> 13 
-18 .[#707070].> 28 
-31 .[#707070].> 13 
-31 .[#707070].> 63 
-56 .[#707070].> 13 
-20 .[#707070].> 56 
-29 .[#707070].> 13 
-29 .[#707070].> 63 
-37 .[#707070].> 28 
-22 .[#707070].> 13 
-22 .[#707070].> 63 
-45 .[#707070].> 28 
-45 .[#707070].> 35 
-35 .[#707070].> 28 
-47 .[#707070].> 13 
-47 .[#707070].> 63 
-19 .[#707070].> 13 
-19 .[#707070].> 28 
-64 .[#707070].> 17 
-64 .[#707070].> 13 
-64 .[#707070].> 28 
-64 .[#707070].> 11 
-64 .[#707070].> 33 
-64 .[#707070].> 39 
-60 .[#707070].> 17 
-60 .[#707070].> 13 
-60 .[#707070].> 28 
-60 .[#707070].> 11 
-60 .[#707070].> 33 
-60 .[#707070].> 39 
-19 .[#707070].> 39 
-62 .[#707070].> 17 
-62 .[#707070].> 13 
-62 .[#707070].> 28 
-62 .[#707070].> 11 
-62 .[#707070].> 33 
-62 .[#707070].> 39 
-65 .[#707070].> 17 
-65 .[#707070].> 13 
-65 .[#707070].> 28 
-65 .[#707070].> 11 
-65 .[#707070].> 33 
-65 .[#707070].> 39 
-32 .[#707070].> 13 
-21 .[#707070].> 28 
-21 .[#707070].> 58 
-58 .[#707070].> 28 
-46 .[#707070].> 13 
-46 .[#707070].> 63 
-39 .[#707070].> 13 
-54 .[#707070].> 28 
-42 .[#707070].> 13 
-42 .[#707070].> 63 
-52 .[#707070].> 13 
-52 .[#707070].> 63 
-24 .[#707070].> 13 
-25 .[#707070].> 13 
-25 .[#707070].> 63 
-53 .[#707070].> 28 
-53 .[#707070].> 30 
-30 .[#707070].> 28 
-23 .[#707070].> 13 
-23 .[#707070].> 63 
-27 .[#707070].> 13 
-27 .[#707070].> 63 
-51 .[#707070].> 13 
-51 .[#707070].> 63 
-34 .[#707070].> 28 
-34 .[#707070].> 49 
-49 .[#707070].> 28 
-50 .[#707070].> 28 
-55 .[#707070].> 13 
-10 .[#707070].> 13 
-36 .[#707070].> 13 
-12 .[#707070].> 13 
-12 .[#707070].> 63 
+48 .[#707070].> 31 
+48 .[#707070].> 64 
+31 .[#707070].> 66 
+31 .[#707070].> 60 
+26 .[#707070].> 40 
+26 .[#707070].> 16 
+26 .[#707070].> 15 
+26 .[#707070].> 45 
+26 .[#707070].> 53 
+26 .[#707070].> 27 
+26 .[#707070].> 36 
+29 .[#707070].> 31 
+29 .[#707070].> 64 
+68 .[#707070].> 43 
+57 .[#707070].> 31 
+57 .[#707070].> 64 
+41 .[#707070].> 31 
+42 .[#707070].> 26 
+42 .[#707070].> 40 
+40 .[#707070].> 26 
+16 .[#707070].> 31 
+16 .[#707070].> 26 
+35 .[#707070].> 31 
+35 .[#707070].> 64 
+25 .[#707070].> 31 
+56 .[#707070].> 25 
+28 .[#707070].> 31 
+28 .[#707070].> 64 
+39 .[#707070].> 26 
+19 .[#707070].> 31 
+19 .[#707070].> 64 
+11 .[#707070].> 26 
+11 .[#707070].> 15 
+15 .[#707070].> 26 
+30 .[#707070].> 31 
+30 .[#707070].> 64 
+22 .[#707070].> 31 
+22 .[#707070].> 26 
+59 .[#707070].> 48 
+59 .[#707070].> 31 
+59 .[#707070].> 26 
+59 .[#707070].> 44 
+59 .[#707070].> 58 
+59 .[#707070].> 14 
+62 .[#707070].> 48 
+62 .[#707070].> 31 
+62 .[#707070].> 26 
+62 .[#707070].> 44 
+62 .[#707070].> 58 
+62 .[#707070].> 14 
+22 .[#707070].> 14 
+67 .[#707070].> 48 
+67 .[#707070].> 31 
+67 .[#707070].> 26 
+67 .[#707070].> 44 
+67 .[#707070].> 58 
+67 .[#707070].> 14 
+63 .[#707070].> 48 
+63 .[#707070].> 31 
+63 .[#707070].> 26 
+63 .[#707070].> 44 
+63 .[#707070].> 58 
+63 .[#707070].> 14 
+52 .[#707070].> 31 
+50 .[#707070].> 26 
+50 .[#707070].> 45 
+45 .[#707070].> 26 
+10 .[#707070].> 31 
+10 .[#707070].> 64 
+14 .[#707070].> 31 
+53 .[#707070].> 26 
+47 .[#707070].> 31 
+47 .[#707070].> 64 
+20 .[#707070].> 31 
+20 .[#707070].> 64 
+13 .[#707070].> 31 
+23 .[#707070].> 31 
+23 .[#707070].> 64 
+33 .[#707070].> 26 
+33 .[#707070].> 27 
+27 .[#707070].> 26 
+34 .[#707070].> 31 
+34 .[#707070].> 64 
+51 .[#707070].> 31 
+51 .[#707070].> 64 
+37 .[#707070].> 31 
+37 .[#707070].> 64 
+38 .[#707070].> 26 
+38 .[#707070].> 36 
+36 .[#707070].> 26 
+49 .[#707070].> 26 
+55 .[#707070].> 31 
+17 .[#707070].> 31 
+54 .[#707070].> 31 
+46 .[#707070].> 31 
+46 .[#707070].> 64 
 @enduml

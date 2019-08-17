@@ -1,0 +1,26 @@
+digraph spring_web_5_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_web_5_2_0_RC1 -> gson_2_8_5;
+  spring_web_5_2_0_RC1 -> httpclient_4_5_9;
+  spring_web_5_2_0_RC1 -> httpcore_4_4_11;
+  spring_web_5_2_0_RC1 -> jackson_annotations_2_10_0_pr1;
+  spring_web_5_2_0_RC1 -> jackson_core_2_10_0_pr1;
+  spring_web_5_2_0_RC1 -> jackson_databind_2_10_0_pr1;
+  spring_web_5_2_0_RC1 -> jackson_dataformat_cbor_2_10_0_pr1;
+  spring_web_5_2_0_RC1 -> javax_mail_1_6_2;
+  spring_web_5_2_0_RC1 -> jaxb_api_2_4_0;
+  spring_web_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_web_5_2_0_RC1 -> netty_buffer_4_1_39_Final;
+  spring_web_5_2_0_RC1 -> netty_codec_http_4_1_39_Final;
+  spring_web_5_2_0_RC1 -> netty_common_4_1_39_Final;
+  spring_web_5_2_0_RC1 -> netty_handler_4_1_39_Final;
+  spring_web_5_2_0_RC1 -> netty_transport_4_1_39_Final;
+  spring_web_5_2_0_RC1 -> protobuf_java_3_9_1;
+  spring_web_5_2_0_RC1 -> spring_aop_5_2_0_RC1;
+  spring_web_5_2_0_RC1 -> spring_beans_5_2_0_RC1;
+  spring_web_5_2_0_RC1 -> spring_context_5_2_0_RC1;
+  spring_web_5_2_0_RC1 -> spring_core_5_2_0_RC1;
+  spring_web_5_2_0_RC1 -> spring_oxm_5_2_0_RC1;
+  spring_web_5_2_0_RC1 -> validation_api_2_0_1_Final;
+  spring_web_5_2_0_RC1 -> xml_apis_1_4_01;
+}

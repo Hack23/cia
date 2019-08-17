@@ -1,0 +1,77 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.soup.project.datamodel.commons
+Bnd-LastModified: 1564989666465
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: The parent contains all metadata (including plugins)
+  and also dependency versions. All KIE Soup modules    (except for user
+  BOMs like 'kie-soup-bom') should (transitively) inherit from this POM.
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Project DataModel - Commons
+Bundle-SymbolicName: org.kie.soup.project.datamodel.commons
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.25.0.201908050720
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.soup.project.datamodel.commons;version="7.25.0",
+ org.kie.soup.project.datamodel.commons.imports;version="7.25.0",org.kie
+ .soup.project.datamodel.commons.oracle;version="7.25.0",org.kie.soup.pr
+ oject.datamodel.commons.packages;version="7.25.0",org.kie.soup.project.
+ datamodel.commons.types;version="7.25.0",org.kie.soup.project.datamodel
+ .commons.util;version="7.25.0"
+Implementation-Title: Project DataModel - Commons
+Implementation-URL: http://www.kiegroup.org/kie-soup-parent/kie-soup-pro
+ ject-datamodel/kie-soup-project-datamodel-commons
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie.soup
+Implementation-Version: 7.25.0.Final
+Import-Package: org.kie.soup.project.datamodel.imports,org.kie.soup.proj
+ ect.datamodel.oracle,org.kie.soup.project.datamodel.packages,org.mvel2,
+ org.mvel2.compiler,org.mvel2.integration
+Include-Resource: org/kie/soup/project/datamodel/commons/IUpgradeHelper.
+ java=src/main/java/org/kie/soup/project/datamodel/commons/IUpgradeHelpe
+ r.java,org/kie/soup/project/datamodel/commons/imports/ImportsParser.jav
+ a=src/main/java/org/kie/soup/project/datamodel/commons/imports/ImportsP
+ arser.java,org/kie/soup/project/datamodel/commons/imports/ImportsWriter
+ .java=src/main/java/org/kie/soup/project/datamodel/commons/imports/Impo
+ rtsWriter.java,org/kie/soup/project/datamodel/commons/oracle/ModuleData
+ ModelOracleImpl.java=src/main/java/org/kie/soup/project/datamodel/commo
+ ns/oracle/ModuleDataModelOracleImpl.java,org/kie/soup/project/datamodel
+ /commons/oracle/ModuleDataModelOracleUtils.java=src/main/java/org/kie/s
+ oup/project/datamodel/commons/oracle/ModuleDataModelOracleUtils.java,or
+ g/kie/soup/project/datamodel/commons/oracle/PackageDataModelOracleImpl.
+ java=src/main/java/org/kie/soup/project/datamodel/commons/oracle/Packag
+ eDataModelOracleImpl.java,org/kie/soup/project/datamodel/commons/packag
+ es/PackageNameParser.java=src/main/java/org/kie/soup/project/datamodel/
+ commons/packages/PackageNameParser.java,org/kie/soup/project/datamodel/
+ commons/packages/PackageNameWriter.java=src/main/java/org/kie/soup/proj
+ ect/datamodel/commons/packages/PackageNameWriter.java,org/kie/soup/proj
+ ect/datamodel/commons/types/ClassTypeResolver.java=src/main/java/org/ki
+ e/soup/project/datamodel/commons/types/ClassTypeResolver.java,org/kie/s
+ oup/project/datamodel/commons/types/TypeResolver.java=src/main/java/org
+ /kie/soup/project/datamodel/commons/types/TypeResolver.java,org/kie/sou
+ p/project/datamodel/commons/util/MVELEvaluator.java=src/main/java/org/k
+ ie/soup/project/datamodel/commons/util/MVELEvaluator.java,org/kie/soup/
+ project/datamodel/commons/util/RawMVELEvaluator.java=src/main/java/org/
+ kie/soup/project/datamodel/commons/util/RawMVELEvaluator.java,META-INF/
+ ErraiApp.properties=src/main/resources/META-INF/ErraiApp.properties,org
+ /kie/soup/project/datamodel/commons/ProjectDataModelCommons.gwt.xml=src
+ /main/resources/org/kie/soup/project/datamodel/commons/ProjectDataModel
+ Commons.gwt.xml
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:git@github.com:kiegroup/kie-soup.git/kie-soup-pr
+ oject-datamodel/kie-soup-project-datamodel-commons
+Scm-Revision: 1787dd3bac01b7823a1bf70a9b14ab72eb5bc43e
+Scm-Url: https://github.com/kiegroup/kie-soup/kie-soup-project-datamodel
+ /kie-soup-project-datamodel-commons
+Specification-Title: Project DataModel - Commons
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.25.0.Final
+Tool: Bnd-3.5.0.201709291849
+

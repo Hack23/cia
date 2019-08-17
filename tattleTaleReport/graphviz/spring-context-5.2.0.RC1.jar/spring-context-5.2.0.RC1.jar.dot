@@ -1,0 +1,14 @@
+digraph spring_context_5_2_0_RC1_dependencies {
+  node [shape = box, fontsize=10.0];
+  spring_context_5_2_0_RC1 -> aspectjweaver_1_9_4;
+  spring_context_5_2_0_RC1 -> hibernate_validator_6_1_0_Alpha6;
+  spring_context_5_2_0_RC1 -> javax_annotation_api_1_3_2;
+  spring_context_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
+  spring_context_5_2_0_RC1 -> joda_time_2_10_3;
+  spring_context_5_2_0_RC1 -> spring_aop_5_2_0_RC1;
+  spring_context_5_2_0_RC1 -> spring_beans_5_2_0_RC1;
+  spring_context_5_2_0_RC1 -> spring_core_5_2_0_RC1;
+  spring_context_5_2_0_RC1 -> spring_expression_5_2_0_RC1;
+  spring_context_5_2_0_RC1 -> validation_api_2_0_1_Final;
+  spring_context_5_2_0_RC1 -> xml_apis_1_4_01;
+}

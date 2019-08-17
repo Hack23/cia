@@ -79,23 +79,23 @@ Import-Package: ch.qos.logback.classic;version="0.0.0",ch.qos.logback.
  ax.servlet.http,javax.sql,javax.xml.parsers;version="1.0",javax.xml.s
  tream;version="1.0",net.sf.ehcache,net.sf.ehcache.config,net.sf.ehcac
  he.management,net.sf.ehcache.store,org.aopalliance.aop;version="5.2.0
- .M3",org.aopalliance.intercept;version="5.2.0.M3",org.apache.commons.
- dbcp,org.apache.commons.dbcp2;version="2.6.0",org.apache.log4j;versio
- n="0.0.0",org.apache.log4j.spi;version="0.0.0",org.apache.logging.log
- 4j,org.apache.logging.log4j.core,org.apache.logging.log4j.core.append
- er,org.apache.logging.log4j.core.config,org.apache.logging.log4j.core
- .filter,org.apache.logging.log4j.core.layout,org.apache.logging.log4j
- .spi,org.apache.tomcat.dbcp.dbcp,org.apache.tomcat.dbcp.dbcp2,org.apa
- che.tomcat.jdbc.pool,org.jrobin.core;version="1.6.0",org.jrobin.data;
- version="1.6.0",org.jrobin.graph;version="1.6.0",org.quartz;version="
- 0.0.0",org.quartz.impl;version="0.0.0",org.quartz.impl.matchers;versi
- on="0.0.0",org.slf4j;version="0.0.0",org.springframework.aop;version=
- "5.2.0.M3",org.springframework.aop.support;version="5.2.0.M3",org.spr
- ingframework.beans;version="5.2.0.M3",org.springframework.beans.facto
- ry;version="5.2.0.M3",org.springframework.beans.factory.config;versio
- n="5.2.0.M3",org.springframework.context;version="5.2.0.M3",org.sprin
- gframework.core;version="5.2.0.M3",org.springframework.data.mongodb,o
- rg.springframework.http;version="5.2.0.M3",org.springframework.http.c
- lient;version="5.2.0.M3",org.springframework.jndi;version="5.2.0.M3",
- org.springframework.web.client;version="5.2.0.M3",org.w3c.dom;version
- ="1.0",org.xml.sax;version="1.0",sun.misc,sun.nio.ch
+ .RC1",org.aopalliance.intercept;version="5.2.0.RC1",org.apache.common
+ s.dbcp,org.apache.commons.dbcp2;version="2.7.0",org.apache.log4j;vers
+ ion="0.0.0",org.apache.log4j.spi;version="0.0.0",org.apache.logging.l
+ og4j,org.apache.logging.log4j.core,org.apache.logging.log4j.core.appe
+ nder,org.apache.logging.log4j.core.config,org.apache.logging.log4j.co
+ re.filter,org.apache.logging.log4j.core.layout,org.apache.logging.log
+ 4j.spi,org.apache.tomcat.dbcp.dbcp,org.apache.tomcat.dbcp.dbcp2,org.a
+ pache.tomcat.jdbc.pool,org.jrobin.core;version="1.6.0",org.jrobin.dat
+ a;version="1.6.0",org.jrobin.graph;version="1.6.0",org.quartz;version
+ ="0.0.0",org.quartz.impl;version="0.0.0",org.quartz.impl.matchers;ver
+ sion="0.0.0",org.slf4j;version="0.0.0",org.springframework.aop;versio
+ n="5.2.0.RC1",org.springframework.aop.support;version="5.2.0.RC1",org
+ .springframework.beans;version="5.2.0.RC1",org.springframework.beans.
+ factory;version="5.2.0.RC1",org.springframework.beans.factory.config;
+ version="5.2.0.RC1",org.springframework.context;version="5.2.0.RC1",o
+ rg.springframework.core;version="5.2.0.RC1",org.springframework.data.
+ mongodb,org.springframework.http;version="5.2.0.RC1",org.springframew
+ ork.http.client;version="5.2.0.RC1",org.springframework.jndi;version=
+ "5.2.0.RC1",org.springframework.web.client;version="5.2.0.RC1",org.w3
+ c.dom;version="1.0",org.xml.sax;version="1.0",sun.misc,sun.nio.ch

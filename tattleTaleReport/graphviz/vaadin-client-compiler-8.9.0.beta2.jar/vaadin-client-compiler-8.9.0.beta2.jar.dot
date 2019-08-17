@@ -1,0 +1,11 @@
+digraph vaadin_client_compiler_8_9_0_beta2_dependencies {
+  node [shape = box, fontsize=10.0];
+  vaadin_client_compiler_8_9_0_beta2 -> commons_io_2_6;
+  vaadin_client_compiler_8_9_0_beta2 -> gwt_dev_2_8_2;
+  vaadin_client_compiler_8_9_0_beta2 -> gwt_elemental_2_8_2;
+  vaadin_client_compiler_8_9_0_beta2 -> gwt_user_2_8_2;
+  vaadin_client_compiler_8_9_0_beta2 -> sac_1_3;
+  vaadin_client_compiler_8_9_0_beta2 -> vaadin_client_8_9_0_beta2;
+  vaadin_client_compiler_8_9_0_beta2 -> vaadin_server_8_9_0_beta2;
+  vaadin_client_compiler_8_9_0_beta2 -> vaadin_shared_8_9_0_beta2;
+}

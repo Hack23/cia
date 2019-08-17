@@ -1,6 +1,6 @@
 digraph HikariCP_java7_2_4_13_dependencies {
   node [shape = box, fontsize=10.0];
-  HikariCP_java7_2_4_13 -> hibernate_core_5_4_3_Final;
+  HikariCP_java7_2_4_13 -> hibernate_core_5_4_4_Final;
   HikariCP_java7_2_4_13 -> javassist_3_25_0_GA;
   HikariCP_java7_2_4_13 -> slf4j_api_2_0_0_alpha0;
 }

@@ -1,0 +1,56 @@
+Manifest-Version: 1.0
+Implementation-Title: Netty/Codec
+Bundle-Description: Netty is an asynchronous event-driven network applic
+ ation framework for    rapid development of maintainable high performan
+ ce protocol servers and    clients.
+Automatic-Module-Name: io.netty.codec
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: io.netty.codec
+Implementation-Version: 4.1.39.Final
+Built-By: root
+Bnd-LastModified: 1565717473394
+Bundle-ManifestVersion: 2
+Implementation-Vendor-Id: io.netty
+Bundle-DocURL: https://netty.io/
+Bundle-Vendor: The Netty Project
+Import-Package: com.google.protobuf;version="[2.6,3)";resolution:=option
+ al,com.google.protobuf.nano;resolution:=optional,com.jcraft.jzlib;resol
+ ution:=optional,com.ning.compress;version="[1.0,2)";resolution:=optiona
+ l,com.ning.compress.lzf;version="[1.0,2)";resolution:=optional,com.ning
+ .compress.lzf.util;version="[1.0,2)";resolution:=optional,io.netty.buff
+ er;version="[4.1,5)",io.netty.channel;version="[4.1,5)",io.netty.channe
+ l.socket;version="[4.1,5)",io.netty.util;version="[4.1,5)",io.netty.uti
+ l.concurrent;version="[4.1,5)",io.netty.util.internal;version="[4.1,5)"
+ ,io.netty.util.internal.logging;version="[4.1,5)",lzma.sdk;resolution:=
+ optional,lzma.sdk.lzma;resolution:=optional,net.jpountz.lz4;resolution:
+ =optional,net.jpountz.xxhash;resolution:=optional,org.jboss.marshalling
+ ;resolution:=optional,sun.nio.ch;resolution:=optional,org.eclipse.jetty
+ .npn;version="[1,2)";resolution:=optional,org.eclipse.jetty.alpn;versio
+ n="[1,2)";resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-2.4.1.201501161923
+Implementation-Vendor: The Netty Project
+Export-Package: io.netty.handler.codec;uses:="io.netty.buffer,io.netty.c
+ hannel,io.netty.channel.socket,io.netty.util";version="4.1.39",io.netty
+ .handler.codec.base64;uses:="io.netty.buffer,io.netty.channel,io.netty.
+ handler.codec";version="4.1.39",io.netty.handler.codec.bytes;uses:="io.
+ netty.buffer,io.netty.channel,io.netty.handler.codec";version="4.1.39",
+ io.netty.handler.codec.compression;uses:="io.netty.buffer,io.netty.chan
+ nel,io.netty.handler.codec,net.jpountz.lz4";version="4.1.39",io.netty.h
+ andler.codec.json;uses:="io.netty.buffer,io.netty.channel,io.netty.hand
+ ler.codec";version="4.1.39",io.netty.handler.codec.marshalling;uses:="i
+ o.netty.buffer,io.netty.channel,io.netty.handler.codec,org.jboss.marsha
+ lling";version="4.1.39",io.netty.handler.codec.protobuf;uses:="com.goog
+ le.protobuf,com.google.protobuf.nano,io.netty.buffer,io.netty.channel,i
+ o.netty.handler.codec";version="4.1.39",io.netty.handler.codec.serializ
+ ation;uses:="io.netty.buffer,io.netty.channel,io.netty.handler.codec";v
+ ersion="4.1.39",io.netty.handler.codec.string;uses:="io.netty.buffer,io
+ .netty.channel,io.netty.handler.codec";version="4.1.39",io.netty.handle
+ r.codec.xml;uses:="io.netty.buffer,io.netty.channel,io.netty.handler.co
+ dec";version="4.1.39"
+Bundle-Name: Netty/Codec
+Bundle-Version: 4.1.39.Final
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_212
+Implementation-URL: https://netty.io/netty-codec/
+

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 11
+Automatic-Module-Name: com.hack23.cia.model.external.riksdagen.person.im
+ pl
+Sealed: true
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.hack23.cia.model.external.riksdagen.person.im
+ pl
+Bundle-Description: model.external.riksdagen.person.impl-2019.8.18-SNA
+ PSHOT
+Bundle-Name: model.external.riksdagen.person.impl-2019.8.18-SNAPSHOT
+Bundle-Version: 0.0.0
+Export-Package: com.hack23.cia.model.external.riksdagen.person.impl;us
+ es:="com.hack23.cia.model.common.api,com.hack23.cia.model.common.impl
+ .xml,org.apache.commons.lang3.builder"
+Import-Package: com.hack23.cia.model.common.api;version="0.0.0",com.ha
+ ck23.cia.model.common.impl.xml;version="0.0.0",java.lang,java.util,ja
+ vax.persistence;version="2.2",javax.persistence.metamodel;version="2.
+ 2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation;version="
+ 2.4.0",javax.xml.bind.annotation.adapters;version="2.4.0",javax.xml.n
+ amespace;version="1.0",org.apache.commons.lang3.builder;version="3.9"

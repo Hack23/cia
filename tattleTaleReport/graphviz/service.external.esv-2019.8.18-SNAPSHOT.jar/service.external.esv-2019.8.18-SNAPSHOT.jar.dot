@@ -1,0 +1,12 @@
+digraph service_external_esv_2019_8_18_SNAPSHOT_dependencies {
+  node [shape = box, fontsize=10.0];
+  service_external_esv_2019_8_18_SNAPSHOT -> commons_codec_1_13;
+  service_external_esv_2019_8_18_SNAPSHOT -> commons_csv_1_7;
+  service_external_esv_2019_8_18_SNAPSHOT -> commons_lang3_3_9;
+  service_external_esv_2019_8_18_SNAPSHOT -> fluent_hc_4_5_9;
+  service_external_esv_2019_8_18_SNAPSHOT -> poi_4_1_0;
+  service_external_esv_2019_8_18_SNAPSHOT -> poi_ooxml_4_1_0;
+  service_external_esv_2019_8_18_SNAPSHOT -> slf4j_api_2_0_0_alpha0;
+  service_external_esv_2019_8_18_SNAPSHOT -> spring_beans_5_2_0_RC1;
+  service_external_esv_2019_8_18_SNAPSHOT -> spring_context_5_2_0_RC1;
+}

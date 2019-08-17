@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-oxm
+Automatic-Module-Name: spring.oxm
+Implementation-Version: 5.2.0.RC1
+Created-By: 1.8.0_212 (Oracle Corporation)
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.oxm
+Bundle-Description: spring-oxm-5.2.0.RC1
+Bundle-Name: spring-oxm-5.2.0.RC1
+Bundle-Version: 5.2.0.RC1
+Export-Package: org.springframework.oxm;uses:="org.springframework.lan
+ g",org.springframework.oxm.config;uses:="org.springframework.lang",or
+ g.springframework.oxm.jaxb;uses:="java.lang.invoke,java.util.function
+ ,org.springframework.lang,org.springframework.oxm",org.springframewor
+ k.oxm.jibx;uses:="org.jibx.runtime,org.jibx.runtime.impl,org.springfr
+ amework.lang",org.springframework.oxm.mime;uses:="org.springframework
+ .lang",org.springframework.oxm.support;uses:="java.lang.invoke,org.sp
+ ringframework.lang",org.springframework.oxm.xstream;uses:="com.though
+ tworks.xstream,com.thoughtworks.xstream.converters,com.thoughtworks.x
+ stream.converters.reflection,com.thoughtworks.xstream.core,com.though
+ tworks.xstream.core.util,com.thoughtworks.xstream.io,com.thoughtworks
+ .xstream.io.naming,com.thoughtworks.xstream.io.xml,com.thoughtworks.x
+ stream.mapper,java.lang.invoke,java.util.function,org.springframework
+ .lang"
+Import-Package: com.thoughtworks.xstream;version="1.4",com.thoughtwork
+ s.xstream.converters;version="1.4",com.thoughtworks.xstream.converter
+ s.reflection;version="1.4",com.thoughtworks.xstream.core;version="1.4
+ ",com.thoughtworks.xstream.core.util;version="1.4",com.thoughtworks.x
+ stream.io;version="1.4",com.thoughtworks.xstream.io.naming;version="1
+ .4",com.thoughtworks.xstream.io.xml;version="1.4",com.thoughtworks.xs
+ tream.mapper;version="1.4",java.awt,java.io,java.lang,java.lang.annot
+ ation,java.lang.invoke,java.lang.reflect,java.math,java.net,java.util
+ ,java.util.function,javax.activation;version="1.1",javax.xml;version=
+ "1.0",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation;versio
+ n="2.4.0",javax.xml.bind.annotation.adapters;version="2.4.0",javax.xm
+ l.bind.attachment;version="2.4.0",javax.xml.datatype;version="1.0",ja
+ vax.xml.namespace;version="1.0",javax.xml.parsers;version="1.0",javax
+ .xml.stream;version="1.0",javax.xml.transform;version="1.0",javax.xml
+ .transform.dom;version="1.0",javax.xml.transform.sax;version="1.0",ja
+ vax.xml.transform.stream;version="1.0",javax.xml.validation;version="
+ 1.0",org.apache.commons.logging;version="0.0.0",org.jibx.runtime,org.
+ jibx.runtime.impl,org.springframework.beans.factory;version="5.2.0.RC
+ 1",org.springframework.beans.factory.support;version="5.2.0.RC1",org.
+ springframework.beans.factory.xml;version="5.2.0.RC1",org.springframe
+ work.core;version="5.2.0.RC1",org.springframework.core.annotation;ver
+ sion="5.2.0.RC1",org.springframework.core.io;version="5.2.0.RC1",org.
+ springframework.core.io.support;version="5.2.0.RC1",org.springframewo
+ rk.core.type;version="5.2.0.RC1",org.springframework.core.type.classr
+ eading;version="5.2.0.RC1",org.springframework.core.type.filter;versi
+ on="5.2.0.RC1",org.springframework.lang;version="5.2.0.RC1",org.sprin
+ gframework.util;version="5.2.0.RC1",org.springframework.util.xml;vers
+ ion="5.2.0.RC1",org.w3c.dom;version="1.0",org.w3c.dom.ls;version="1.0
+ ",org.xml.sax;version="1.0",org.xml.sax.ext;version="1.0",org.xml.sax
+ .helpers;version="1.0"

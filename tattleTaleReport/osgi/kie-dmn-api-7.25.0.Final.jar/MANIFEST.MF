@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.kie.dmn.api
+Bnd-LastModified: 1564993782912
+Build-Jdk: 1.8.0_201
+Built-By: jenkins
+Bundle-Description: Top level pom for the KIE DMN support implementation
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: KIE :: Decision Model Notation :: API
+Bundle-SymbolicName: org.kie.dmn.api
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 7.25.0.201908050814
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.kie.dmn.api.core;version="7.25.0",org.kie.dmn.api.co
+ re.ast;version="7.25.0",org.kie.dmn.api.core.event;version="7.25.0",org
+ .kie.dmn.api.feel.runtime.events;version="7.25.0",org.kie.dmn.api.marsh
+ alling;version="7.25.0",org.kie.dmn.api.marshalling.v1_1;version="7.25.
+ 0"
+Implementation-Title: KIE :: Decision Model Notation :: API
+Implementation-URL: http://www.kiegroup.org/drools/kie-dmn/kie-dmn-api
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.kie
+Implementation-Version: 7.25.0.Final
+Import-Package: com.thoughtworks.xstream,com.thoughtworks.xstream.io.xml
+ ,org.kie.api.internal.io,org.kie.api.io,org.kie.dmn.api.core,org.kie.dm
+ n.api.core.ast,org.kie.dmn.api.core.event,org.kie.dmn.api.feel.runtime.
+ events,org.kie.dmn.api.marshalling,org.kie.dmn.model.api,org.kie.intern
+ al.builder
+Java-Vendor: Oracle Corporation
+Java-Version: 1.8.0_201
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.10.0-514.el7.x86_64
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Scm-Connection: scm:git:https://github.com:kiegroup/drools.git/kie-dmn/k
+ ie-dmn-api
+Scm-Revision: f7073d29a6e963070d4461d9c435fa0ed88e445f
+Scm-Url: https://github.com/kiegroup/drools/kie-dmn/kie-dmn-api
+Specification-Title: KIE :: Decision Model Notation :: API
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 7.25.0.Final
+Tool: Bnd-3.5.0.201709291849
+
