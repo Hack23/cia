@@ -92,7 +92,7 @@
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
     <sonar.host.url>https://www.hack23.com/sonar/</sonar.host.url>
     <sonar.sources>.</sonar.sources>
-    <sonar.inclusions>src/main/**</sonar.inclusions>
+    <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
