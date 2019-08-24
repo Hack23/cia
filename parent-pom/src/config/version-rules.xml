@@ -1,0 +1,30 @@
+<ruleset comparisonMethod="maven"
+         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+  <ignoreVersions>
+    <ignoreVersion type="regex">(?i).*[-_\.]b[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]CR[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]rc[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]beta[0-9\.-]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]nightly[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]jboss[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*-atlassian-[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*-jenkins-[0-9\.]*</ignoreVersion>
+    <ignoreVersion type="regex">.*[-\.]redhat-[0-9]+</ignoreVersion>
+    <ignoreVersion type="regex">\d{4,}.*</ignoreVersion>  <!-- z.B. commons-collections:commons-collections ... 3.2.1.redhat-7 -> 20040117.000000 -->
+  </ignoreVersions>
+	<rules>
+		<rule groupId="org.jvnet.jaxb2_commons">
+			<ignoreVersions>
+				<ignoreVersion>1.11.1</ignoreVersion>
+				<ignoreVersion>1.11.1-PUBLISHED-BY-MISTAKE</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="org.postgresql">
+			<ignoreVersions>
+				<ignoreVersion type="regex">.*\.jre[67]</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+	</rules>
+</ruleset>
