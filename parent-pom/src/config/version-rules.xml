@@ -3,24 +3,22 @@
          xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
   <ignoreVersions>
     <ignoreVersion type="regex">(?i).*[-_\.]b[0-9\.]*</ignoreVersion>
+<!-- 
+    Currently prefer to use alpha,beta,rc,cr releases except for rules ignoring some groupId:s
+    
     <ignoreVersion type="regex">(?i).*[-_\.]CR[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">(?i).*[-_\.]rc[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">(?i).*[-_\.]beta[0-9\.-]*</ignoreVersion>
-    <ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>
+    <ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>-->
+    
     <ignoreVersion type="regex">(?i).*[-_\.]nightly[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">(?i).*[-_\.]jboss[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">(?i).*-atlassian-[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">(?i).*-jenkins-[0-9\.]*</ignoreVersion>
     <ignoreVersion type="regex">.*[-\.]redhat-[0-9]+</ignoreVersion>
-    <ignoreVersion type="regex">\d{4,}.*</ignoreVersion>  <!-- z.B. commons-collections:commons-collections ... 3.2.1.redhat-7 -> 20040117.000000 -->
+    <ignoreVersion type="regex">\d{4,}.*</ignoreVersion>
   </ignoreVersions>
 	<rules>
-		<rule groupId="org.jvnet.jaxb2_commons">
-			<ignoreVersions>
-				<ignoreVersion>1.11.1</ignoreVersion>
-				<ignoreVersion>1.11.1-PUBLISHED-BY-MISTAKE</ignoreVersion>
-			</ignoreVersions>
-		</rule>
 		<rule groupId="org.postgresql">
 			<ignoreVersions>
 				<ignoreVersion type="regex">.*\.jre[67]</ignoreVersion>
@@ -28,14 +26,22 @@
 		</rule>
 		<rule groupId="com.google.gwt">
 			<ignoreVersions>
-				<ignoreVersion>2.8.20160720</ignoreVersion>
+				<ignoreVersion type="regex">.*2\.8\.20.*</ignoreVersion>				
 			</ignoreVersions>
 		</rule>
+		
+		<!-- Strange versions, older release dates  -->
 		<rule groupId="xml-apis">
 			<ignoreVersions>
-				<ignoreVersion>2.0.2</ignoreVersion>
+				<ignoreVersion>2.0.0</ignoreVersion>
+				<ignoreVersion>2.0.2</ignoreVersion>				
 			</ignoreVersions>
 		</rule>
+		<rule groupId="antlr">
+			<ignoreVersions>
+				<ignoreVersion type="regex">3\..*</ignoreVersion>
+			</ignoreVersions>
+		</rule>		
 		<rule groupId="javax.inject" artifactId="javax.inject">
 			<ignoreVersions>
 				<ignoreVersion>1.0-PFD-1</ignoreVersion>
@@ -43,7 +49,7 @@
 		</rule>
 		<rule groupId="jdepend">
 			<ignoreVersions>
-				<ignoreVersion>2.9.1</ignoreVersion>
+				<ignoreVersion type="regex">.*</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		<rule groupId="javax.interceptor">
@@ -51,5 +57,29 @@
 				<ignoreVersion>3.1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
+		<rule groupId="org.jvnet.jaxb2_commons">
+			<ignoreVersions>
+				<ignoreVersion>1.11.1</ignoreVersion>
+				<ignoreVersion>1.11.1-PUBLISHED-BY-MISTAKE</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+
+		
+		<!-- Ignore alpha versions  -->
+		<rule groupId="io.netty">
+			<ignoreVersions>
+				<ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>
+			</ignoreVersions>
+		</rule>		
+		<rule groupId="org.hibernate">
+			<ignoreVersions>
+				<ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>
+			</ignoreVersions>
+		</rule>		
+		<rule groupId="org.jboss.spec.javax.transaction">
+			<ignoreVersions>
+				<ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.-]*</ignoreVersion>
+			</ignoreVersions>
+		</rule>		
 	</rules>
 </ruleset>
