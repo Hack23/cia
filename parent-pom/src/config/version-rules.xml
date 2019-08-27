@@ -28,26 +28,28 @@
 		</rule>
 		<rule groupId="com.google.gwt">
 			<ignoreVersions>
-				<ignoreVersion type="regex">.*\.2.8.20[0-9\.]*</ignoreVersion>
+				<ignoreVersion>2.8.20160720</ignoreVersion>
 			</ignoreVersions>
 		</rule>
-
 		<rule groupId="xml-apis">
 			<ignoreVersions>
-				<ignoreVersion type="regex">.*\.2.0.2</ignoreVersion>
+				<ignoreVersion>2.0.2</ignoreVersion>
 			</ignoreVersions>
 		</rule>
-		<rule groupId="javax.inject">
+		<rule groupId="javax.inject" artifactId="javax.inject">
 			<ignoreVersions>
-				<ignoreVersion type="regex">.*\.1.0-PFD-1</ignoreVersion>
+				<ignoreVersion>1.0-PFD-1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		<rule groupId="jdepend">
 			<ignoreVersions>
-				<ignoreVersion type="regex">.*\.2.9.1</ignoreVersion>
+				<ignoreVersion>2.9.1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
-				
-		
+		<rule groupId="javax.interceptor">
+			<ignoreVersions>
+				<ignoreVersion>3.1</ignoreVersion>
+			</ignoreVersions>
+		</rule>
 	</rules>
 </ruleset>
