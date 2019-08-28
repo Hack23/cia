@@ -1,0 +1,9 @@
+digraph artemis_service_extensions_2_10_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_service_extensions_2_10_0 -> artemis_commons_2_10_0;
+  artemis_service_extensions_2_10_0 -> artemis_core_client_2_10_0;
+  artemis_service_extensions_2_10_0 -> artemis_jms_client_2_10_0;
+  artemis_service_extensions_2_10_0 -> geronimo_jta_1_1_spec_1_1_1;
+  artemis_service_extensions_2_10_0 -> jboss_logging_3_4_1_Final;
+  artemis_service_extensions_2_10_0 -> xml_apis_1_4_01;
+}

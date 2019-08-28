@@ -1,0 +1,9 @@
+digraph jctools_core_2_1_1_package_dependencies {
+  node [shape = box, fontsize=10.0];
+  org_jctools_maps -> org_jctools_util;
+  org_jctools_queues -> org_jctools_queues_spec;
+  org_jctools_queues -> org_jctools_util;
+  org_jctools_queues_atomic -> org_jctools_queues;
+  org_jctools_queues_atomic -> org_jctools_queues_spec;
+  org_jctools_queues_atomic -> org_jctools_util;
+}

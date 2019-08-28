@@ -6,7 +6,7 @@ digraph spring_webmvc_5_2_0_RC1_dependencies {
   spring_webmvc_5_2_0_RC1 -> jackson_dataformat_cbor_2_10_0_pr1;
   spring_webmvc_5_2_0_RC1 -> jaxb_api_2_4_0;
   spring_webmvc_5_2_0_RC1 -> jcl_over_slf4j_2_0_0_alpha0;
-  spring_webmvc_5_2_0_RC1 -> openpdf_1_3_3;
+  spring_webmvc_5_2_0_RC1 -> openpdf_1_3_5;
   spring_webmvc_5_2_0_RC1 -> poi_4_1_0;
   spring_webmvc_5_2_0_RC1 -> poi_ooxml_4_1_0;
   spring_webmvc_5_2_0_RC1 -> spring_aop_5_2_0_RC1;

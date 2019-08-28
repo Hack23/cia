@@ -27,7 +27,7 @@ Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
  .bind.annotation;version="2.4.0",javax.xml.bind.annotation.adapters;v
  ersion="2.4.0",javax.xml.namespace;version="1.0",org.apache.commons.l
  ang3.builder;version="3.9",org.hibernate.search.mapper.pojo.bridge;ve
- rsion="6.0.0.Alpha8",org.hibernate.search.mapper.pojo.bridge.mapping.
- annotation;version="6.0.0.Alpha8",org.hibernate.search.mapper.pojo.br
- idge.runtime;version="6.0.0.Alpha8",org.hibernate.search.mapper.pojo.
- mapping.definition.annotation;version="6.0.0.Alpha8"
+ rsion="6.0.0.Alpha9",org.hibernate.search.mapper.pojo.bridge.mapping.
+ annotation;version="6.0.0.Alpha9",org.hibernate.search.mapper.pojo.br
+ idge.runtime;version="6.0.0.Alpha9",org.hibernate.search.mapper.pojo.
+ mapping.definition.annotation;version="6.0.0.Alpha9"

@@ -11,7 +11,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.do
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentDetailsPageModContentFactoryImpl,0,104,3,7,0,20,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentActivityPageModContentFactoryImpl,0,116,3,7,0,20,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentAttachementsPageModContentFactoryImpl,0,180,3,11,0,39,3,9,0,5
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentReferencesPageModContentFactoryImpl,18,86,4,6,3,17,3,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.document.pagemode,DocumentReferencesPageModContentFactoryImpl,0,104,3,7,0,20,3,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl.BeanNestedPropertyValueProvider,21,11,0,0,3,4,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl,0,210,3,19,0,47,3,17,0,9
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.common,AbstractAdminView,0,5,0,0,0,2,0,1,0,1

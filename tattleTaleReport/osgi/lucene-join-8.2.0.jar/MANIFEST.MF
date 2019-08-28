@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.5
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Extension-Name: org.apache.lucene
+Specification-Title: Lucene Search Engine: join
+Specification-Version: 8.2.0
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 8.2.0 31d7ec7bbfdcd2c4cc61d9d35e962165410b65fe -
+  ivera - 2019-07-19 15:06:40
+Implementation-Vendor: The Apache Software Foundation
+X-Compile-Source-JDK: 8
+X-Compile-Target-JDK: 8
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.lucene.search.join
+Bundle-Description: lucene-join-8.2.0
+Bundle-Name: lucene-join-8.2.0
+Bundle-Version: 8.2.0
+Export-Package: org.apache.lucene.search.join;uses:="java.lang,java.la
+ ng.invoke,java.util,java.util.function,org.apache.lucene.document,org
+ .apache.lucene.index,org.apache.lucene.search,org.apache.lucene.util"
+Import-Package: java.io,java.lang,java.lang.invoke,java.util,java.util
+ .function,org.apache.lucene.document;version="8.2.0",org.apache.lucen
+ e.index;version="8.2.0",org.apache.lucene.search;version="8.2.0",org.
+ apache.lucene.util;version="8.2.0"

@@ -1,0 +1,10 @@
+digraph artemis_commons_2_10_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_commons_2_10_0 -> commons_beanutils_1_9_4;
+  artemis_commons_2_10_0 -> jboss_logging_3_4_1_Final;
+  artemis_commons_2_10_0 -> jboss_logmanager_2_1_14_Final;
+  artemis_commons_2_10_0 -> netty_buffer_4_1_39_Final;
+  artemis_commons_2_10_0 -> netty_common_4_1_39_Final;
+  artemis_commons_2_10_0 -> netty_handler_4_1_39_Final;
+  artemis_commons_2_10_0 -> netty_transport_4_1_39_Final;
+}

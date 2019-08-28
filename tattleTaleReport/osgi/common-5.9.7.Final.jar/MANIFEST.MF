@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Implementation-Title: Narayana: common
+Implementation-Version: 5.9.7.Final
+Java-Version: 1.8.0_222
+Built-By: tom
+Scm-Connection: scm:git:git@github.com:jbosstm/narayana.git/common
+Specification-Vendor: JBoss by Red Hat
+Os-Arch: amd64
+Specification-Title: Narayana: common
+Implementation-Vendor-Id: http://www.jboss.org/
+Java-Vendor: Oracle Corporation
+Os-Name: Linux
+Scm-Url: https://github.com/jbosstm/narayana/common
+Implementation-Vendor: JBoss by Red Hat, Inc.
+Os-Version: 5.2.8-200.fc30.x86_64
+Scm-Revision: bbe5b99b75bb812866fee6d98dae94988bff768f
+arjuna-properties-file: jbossts-properties.xml
+Created-By: Apache Maven 3.5.4
+Build-Jdk: 1.8.0_222
+Specification-Version: 5.9
+Implementation-URL: http://www.jboss.org/
+
+
+### OSGi information
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.arjuna.common.util.propertyservice
+Bundle-Description: common-5.9.7.Final
+Bundle-Name: common-5.9.7.Final
+Bundle-Version: 5.9
+Export-Package: com.arjuna.common.internal.util;uses:="com.arjuna.comm
+ on.logging",com.arjuna.common.internal.util.propertyservice,com.arjun
+ a.common.logging;uses:="org.jboss.logging.annotations",com.arjuna.com
+ mon.util,com.arjuna.common.util.propertyservice;uses:="com.arjuna.com
+ mon.logging"
+Import-Package: java.io,java.lang,java.lang.annotation,java.lang.refle
+ ct,java.net,java.util,java.util.concurrent,javax.xml.parsers;version=
+ "1.0",javax.xml.stream;version="1.0",org.jboss.logging;version="3.4",
+ org.jboss.logging.annotations,org.xml.sax;version="1.0",org.xml.sax.h
+ elpers;version="1.0"

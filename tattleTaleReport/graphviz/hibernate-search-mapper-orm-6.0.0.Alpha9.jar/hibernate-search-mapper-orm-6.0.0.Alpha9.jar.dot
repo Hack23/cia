@@ -1,0 +1,11 @@
+digraph hibernate_search_mapper_orm_6_0_0_Alpha9_dependencies {
+  node [shape = box, fontsize=10.0];
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> geronimo_jta_1_1_spec_1_1_1;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> hibernate_commons_annotations_5_1_0_Final;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> hibernate_core_5_4_4_Final;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> hibernate_search_engine_6_0_0_Alpha9;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> hibernate_search_mapper_pojo_6_0_0_Alpha9;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> hibernate_search_util_common_6_0_0_Alpha9;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> javax_persistence_api_2_2;
+  hibernate_search_mapper_orm_6_0_0_Alpha9 -> jboss_logging_3_4_1_Final;
+}

@@ -24,4 +24,4 @@ Import-Package: com.hack23.cia.model.common.api;version="0.0.0",java.l
  on="2.2",javax.xml.bind;version="2.4.0",javax.xml.bind.annotation;ver
  sion="2.4.0",javax.xml.namespace;version="1.0",org.apache.commons.lan
  g3.builder;version="3.9",org.hibernate.search.mapper.pojo.mapping.def
- inition.annotation;version="6.0.0.Alpha8"
+ inition.annotation;version="6.0.0.Alpha9"

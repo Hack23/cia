@@ -1,0 +1,6 @@
+digraph artemis_spring_integration_2_10_0_dependencies {
+  node [shape = box, fontsize=10.0];
+  artemis_spring_integration_2_10_0 -> artemis_jms_server_2_10_0;
+  artemis_spring_integration_2_10_0 -> artemis_server_2_10_0;
+  artemis_spring_integration_2_10_0 -> spring_beans_5_2_0_RC1;
+}

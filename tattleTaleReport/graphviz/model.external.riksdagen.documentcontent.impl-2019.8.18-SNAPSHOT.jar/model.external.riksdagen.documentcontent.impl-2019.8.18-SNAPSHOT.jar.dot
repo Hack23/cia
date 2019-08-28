@@ -1,7 +1,7 @@
 digraph model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT_dependencies {
   node [shape = box, fontsize=10.0];
   model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> commons_lang3_3_9;
-  model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> hibernate_search_mapper_pojo_6_0_0_Alpha8;
+  model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> hibernate_search_mapper_pojo_6_0_0_Alpha9;
   model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> javax_persistence_api_2_2;
   model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> jaxb_api_2_4_0;
   model_external_riksdagen_documentcontent_impl_2019_8_18_SNAPSHOT -> model_common_api_2019_8_18_SNAPSHOT;

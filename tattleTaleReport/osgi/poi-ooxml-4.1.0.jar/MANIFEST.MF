@@ -288,9 +288,9 @@ Import-Package: com.graphbuilder.curve;version="0.0.0",com.graphbuilde
  .image.renderable,org.apache.batik.gvt,org.apache.batik.util,org.apac
  he.commons.collections4;version="4.4",org.apache.commons.collections4
  .iterators;version="4.4",org.apache.commons.collections4.multimap;ver
- sion="4.4",org.apache.commons.compress.archivers;version="1.18",org.a
- pache.commons.compress.archivers.zip;version="1.18",org.apache.common
- s.compress.utils;version="1.18",org.apache.jcp.xml.dsig.internal.dom,
+ sion="4.4",org.apache.commons.compress.archivers;version="1.19",org.a
+ pache.commons.compress.archivers.zip;version="1.19",org.apache.common
+ s.compress.utils;version="1.19",org.apache.jcp.xml.dsig.internal.dom,
  org.apache.poi;version="4.1.0",org.apache.poi.common.usermodel;versio
  n="4.1.0",org.apache.poi.common.usermodel.fonts;version="4.1.0",org.a
  pache.poi.extractor;version="4.1.0",org.apache.poi.hpsf;version="4.1.

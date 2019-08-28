@@ -75,10 +75,10 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 <span class="fc" id="L75">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_REFERENCES);</span>
 
 <span class="pc bpc" id="L77" title="1 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentReferenceContainer() != null</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList() != null) {</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList() != null) {</span>
 
-<span class="nc" id="L80">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentReferenceData.class,</span>
-<span class="nc" id="L81">					documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),</span>
+<span class="fc" id="L80">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentReferenceData.class,</span>
+<span class="fc" id="L81">					documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),</span>
 					DOCUMENT_REFERENCES2, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 		}
 

@@ -78,16 +78,16 @@ Import-Package: com.amazonaws.client.builder;version="0.0.0",com.amazo
  rnate.boot.model.naming;version="5.4.4.Final",org.hibernate.engine.jd
  bc.env.spi;version="5.4.4.Final",org.hibernate.internal;version="5.4.
  4.Final",org.hibernate.search.backend.lucene.analysis;version="6.0.0.
- Alpha8",org.hibernate.search.backend.lucene.analysis.model.dsl;versio
- n="6.0.0.Alpha8",org.hibernate.search.engine.search.dsl.predicate;ver
- sion="6.0.0.Alpha8",org.hibernate.search.engine.search.dsl.query;vers
- ion="6.0.0.Alpha8",org.hibernate.search.mapper.orm;version="6.0.0.Alp
- ha8",org.hibernate.search.mapper.orm.mapping;version="6.0.0.Alpha8",o
- rg.hibernate.search.mapper.orm.massindexing;version="6.0.0.Alpha8",or
- g.hibernate.search.mapper.orm.search.dsl.query;version="6.0.0.Alpha8"
- ,org.hibernate.search.mapper.orm.session;version="6.0.0.Alpha8",org.h
+ Alpha9",org.hibernate.search.backend.lucene.analysis.model.dsl;versio
+ n="6.0.0.Alpha9",org.hibernate.search.engine.search.dsl.predicate;ver
+ sion="6.0.0.Alpha9",org.hibernate.search.engine.search.dsl.query;vers
+ ion="6.0.0.Alpha9",org.hibernate.search.mapper.orm;version="6.0.0.Alp
+ ha9",org.hibernate.search.mapper.orm.mapping;version="6.0.0.Alpha9",o
+ rg.hibernate.search.mapper.orm.massindexing;version="6.0.0.Alpha9",or
+ g.hibernate.search.mapper.orm.search.dsl.query;version="6.0.0.Alpha9"
+ ,org.hibernate.search.mapper.orm.session;version="6.0.0.Alpha9",org.h
  ibernate.search.mapper.pojo.mapping.definition.annotation;version="6.
- 0.0.Alpha8",org.javers.core;version="0.0.0",org.javers.core.graph;ver
+ 0.0.Alpha9",org.javers.core;version="0.0.0",org.javers.core.graph;ver
  sion="0.0.0",org.javers.hibernate.integration;version="0.0.0",org.jav
  ers.repository.api;version="0.0.0",org.javers.repository.sql;version=
  "0.0.0",org.javers.spring.annotation;version="0.0.0",org.javers.sprin
