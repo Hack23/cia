@@ -100,6 +100,10 @@
           <artifactId>antlr4-runtime</artifactId>
           <groupId>org.antlr</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+          <groupId>org.jboss.spec.javax.annotation</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

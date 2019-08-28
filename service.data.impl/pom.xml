@@ -615,10 +615,10 @@
       <artifactId>ehcache</artifactId>
       <version>3.8.0</version>
       <exclusions>
-      	<exclusion>
-      	   <groupId>org.glassfish.jaxb</groupId>
-           <artifactId>jaxb-runtime</artifactId>      	
-      	</exclusion>
+        <exclusion>
+          <artifactId>jaxb-runtime</artifactId>
+          <groupId>org.glassfish.jaxb</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
