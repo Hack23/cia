@@ -107,7 +107,7 @@
     <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.M4/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.2.0.M4</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.RC2</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.11.622</cia.project.versions.aws>
+    <cia.project.versions.aws>1.11.623</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.25.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>5.6.3</cia.project.versions.javers>
@@ -117,7 +117,7 @@
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.9</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.text>1.7</cia.project.versions.commons.text>
+    <cia.project.versions.commons.text>1.8</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.13</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.62</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.0-alpha0</cia.project.versions.slf4j>
@@ -161,7 +161,7 @@
     <cia.project.versions.maven>3.5.3</cia.project.versions.maven>
     <cia.project.versions.httpclient>4.5.9</cia.project.versions.httpclient>
     <cia.project.versions.guava>28.1-jre</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.10.0.pr1</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.10.0.pr2</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.39.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.0.SP02</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.19</cia.project.versions.commons.compress>
