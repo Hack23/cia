@@ -58,7 +58,16 @@
           <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>istack-commons-runtime</artifactId>
+          <groupId>com.sun.istack</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.istack</groupId>
+      <artifactId>istack-commons-runtime</artifactId>
+      <version>${cia.project.versions.istack}</version>
     </dependency>
     <dependency>
       <groupId>org.javers</groupId>
@@ -256,7 +265,7 @@
             <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
             <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>
         </configuration>
       </plugin>

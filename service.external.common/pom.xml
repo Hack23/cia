@@ -54,8 +54,9 @@
       <artifactId>jaxb-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-core</artifactId>
+      <groupId>com.sun.istack</groupId>
+      <artifactId>istack-commons-runtime</artifactId>
+      <version>${cia.project.versions.istack}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>

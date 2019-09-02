@@ -33,6 +33,11 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-secretsmanager</artifactId>
       <version>${cia.project.versions.aws}</version>
@@ -646,6 +651,10 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <exclusions>
         <exclusion>
+          <artifactId>istack-commons-runtime</artifactId>
+          <groupId>com.sun.istack</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>antlr</artifactId>
           <groupId>antlr</groupId>
         </exclusion>
@@ -688,6 +697,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.sun.istack</groupId>
+      <artifactId>istack-commons-runtime</artifactId>
+      <version>${cia.project.versions.istack}</version>
+    </dependency>
+    <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
     </dependency>
@@ -698,10 +712,12 @@
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>javax.activation-api</artifactId>
+          <groupId>javax.activation</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.hibernate.common</groupId>
@@ -858,6 +874,12 @@
       <groupId>com.sun.mail</groupId>
       <artifactId>javax.mail</artifactId>
       <version>1.6.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>activation</artifactId>
+          <groupId>javax.activation</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>commons-collections</groupId>
@@ -945,7 +967,7 @@
             <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
             <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>
         </configuration>
       </plugin>
