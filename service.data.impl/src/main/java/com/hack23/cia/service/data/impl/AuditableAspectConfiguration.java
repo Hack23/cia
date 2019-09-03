@@ -19,6 +19,8 @@
 package com.hack23.cia.service.data.impl;
 
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -123,6 +125,13 @@ public class AuditableAspectConfiguration {
 	 */
 	@Bean
 	public CommitPropertiesProvider commitPropertiesProvider() {
-		return () -> ImmutableMap.of("key", "ok");
+		return new CommitPropertiesProvider() {
+            @Override
+            public Map<String, String> provide() {
+                Map<String, String> props = new HashMap<>();
+                props.put("key", "ok");	
+                return props;	
+            }	            
+        };	
 	}
 }
