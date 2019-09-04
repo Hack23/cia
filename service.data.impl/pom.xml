@@ -387,7 +387,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>3.6.3</version>
+      <version>3.7.0</version>
       <exclusions>
         <exclusion>
           <artifactId>jetty-servlet</artifactId>
@@ -963,11 +963,11 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"/>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"/>
+            <hbm2doc destdir="target/site/hbm2doc"/>
+            <property key="dot.executable" value="${graphviz.dot.executable}"/>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
           </hibernatetool>
         </configuration>
       </plugin>
