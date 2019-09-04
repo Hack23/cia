@@ -2126,7 +2126,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp", 
                         "CIDR"
                     ]
                 }, 
@@ -2149,7 +2149,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp2", 
                         "CIDR"
                     ]
                 }, 
@@ -2172,7 +2172,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp3", 
                         "CIDR"
                     ]
                 }, 
@@ -2195,7 +2195,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp", 
                         "CIDR"
                     ]
                 }, 
@@ -2218,7 +2218,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp2", 
                         "CIDR"
                     ]
                 }, 
@@ -2241,7 +2241,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
-                        "VPC", 
+                        "PrivateApp3", 
                         "CIDR"
                     ]
                 }, 
