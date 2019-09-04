@@ -2509,7 +2509,7 @@
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
-                        "CidrBlock": "0.0.0.0/0"
+                        "CidrIp": "0.0.0.0/0"
                     }
                 ], 
                 "SecurityGroupEgress": [
@@ -2517,7 +2517,7 @@
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
-                        "CidrBlock": "0.0.0.0/0"
+                        "CidrIp": "0.0.0.0/0"
                    }
                 ]
             }
