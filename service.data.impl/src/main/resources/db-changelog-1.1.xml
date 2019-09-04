@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
 	<changeSet author="pether" id="1414872417007-202">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_document_data_committee_report_url">select id,committee_report_url_xml from document_data where committee_report_url_xml is not null</createView>
 	</changeSet>
 
@@ -16,43 +16,32 @@
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-204">
-		<createView replaceIfExists="true" viewName="view_riksdagen_committee">select distinct detail as EMBEDDED_ID_DETAIL, org_code as EMBEDDED_ID_ORG_CODE, count(org_code) as total_assignments from assignment_data where org_code is not null and assignment_type='uppdrag' group by detail,org_code</createView>
+		<createView viewName="view_riksdagen_committee">select distinct detail as EMBEDDED_ID_DETAIL, org_code as EMBEDDED_ID_ORG_CODE, count(org_code) as total_assignments from assignment_data where org_code is not null and assignment_type='uppdrag' group by detail,org_code</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-205">
-		<createView replaceIfExists="true" viewName="view_riksdagen_goverment">select distinct detail as EMBEDDED_ID_DETAIL from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen'</createView>
+		<createView viewName="view_riksdagen_goverment">select distinct detail as EMBEDDED_ID_DETAIL from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen'</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-206">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_goverment_roles">select distinct detail as EMBEDDED_ID_DETAIL, role_code,count(detail) as total_assignments from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' group by detail,role_code</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-207">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_decisions">select id,title,header,hangar_id,label as committee_report,committee_document_data.rm,end_number,issue_number,org,created_date,public_date,committee_proposal_url_xml,decision_type,ballot_id,against_proposal_parties,against_proposal_number,winner from committee_proposal_data LEFT JOIN committee_document_data ON committee_document_data.label=committee_report and committee_proposal_data.rm=committee_document_data.rm</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-208">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_goverment_proposals">select id,title,sub_title,status,org,hangar_id,label,made_public_date,number_value,document_status_url_xml from document_data where document_type='PROP'</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-209">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_member_proposals">select * from document_element  where document_type='MOT'</createView>
 	</changeSet>
-
-
-	<!-- select distinct document_type from document_element where document_type
-		is not null and document_status_url_xml is not null; document_refer -->
-
-
-
-
-	<!-- select * from view_riksdagen_committee_decisions where decision_type
-		is not null and decision_type!='-' and decision_type!=''; -->
-
 
 	<changeSet author="pether (generated)" id="1416258476613-210">
 		<createTable tableName="document_proposal_container">
@@ -126,16 +115,16 @@
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-218">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_roles">select distinct detail as EMBEDDED_ID_DETAIL, role_code,count(detail) as total_assignments from assignment_data where org_code is not null and assignment_type='uppdrag' group by detail,role_code</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-219">
 
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_committee">SELECT DISTINCT assignment_data.detail AS embedded_id_detail, assignment_data.org_code AS embedded_id_org_code,count(assignment_data.org_code) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date FROM assignment_data WHERE assignment_data.org_code IS NOT NULL AND assignment_data.assignment_type = 'uppdrag' GROUP BY assignment_data.detail, assignment_data.org_code</createView>
+		<dropView viewName="view_riksdagen_committee" /> <createView viewName="view_riksdagen_committee">SELECT DISTINCT assignment_data.detail AS embedded_id_detail, assignment_data.org_code AS embedded_id_org_code,count(assignment_data.org_code) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date FROM assignment_data WHERE assignment_data.org_code IS NOT NULL AND assignment_data.assignment_type = 'uppdrag' GROUP BY assignment_data.detail, assignment_data.org_code</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_parliament_member_proposal">SELECT view_riksdagen_committee.embedded_id_detail,
     view_riksdagen_committee.embedded_id_org_code,
     view_riksdagen_committee.total_assignments,
@@ -165,41 +154,41 @@
 
 
 	<changeSet author="pether" id="1414872417007-220">
-		<createView replaceIfExists="true"
+		<dropView viewName="view_riksdagen_goverment_roles" /> <createView
 			viewName="view_riksdagen_goverment_roles">select distinct detail as EMBEDDED_ID_DETAIL, role_code,count(detail) as total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' group by detail,role_code</createView>
 
-		<createView replaceIfExists="true"
+		<dropView viewName="view_riksdagen_committee_roles" /> <createView
 			viewName="view_riksdagen_committee_roles">select distinct detail as EMBEDDED_ID_DETAIL, role_code,count(detail) as total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date from assignment_data where org_code is not null and assignment_type='uppdrag' group by detail,role_code</createView>
 	</changeSet>
 
 
 	<changeSet author="pether" id="1414872417007-221">
-		<createView replaceIfExists="true" viewName="view_riksdagen_goverment">select distinct detail as name_id,count(assignment_data.detail) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' group by detail</createView>
+		<dropView viewName="view_riksdagen_goverment" /> <createView viewName="view_riksdagen_goverment">select distinct detail as name_id,count(assignment_data.detail) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' group by detail</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-222">
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_member">select * from sweden_political_party LEFT JOIN person_data ON person_data.party = sweden_political_party.short_code where person_data.party = sweden_political_party.short_code and short_code !='-'</createView>
+		<createView viewName="view_riksdagen_party_member">select * from sweden_political_party LEFT JOIN person_data ON person_data.party = sweden_political_party.short_code where person_data.party = sweden_political_party.short_code and short_code !='-'</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-223">
-		<createView replaceIfExists="true" viewName="view_riksdagen_party">select distinct party_id,party_name,short_code,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code</createView>
+		<createView viewName="view_riksdagen_party">select distinct party_id,party_name,short_code,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-224">
-		<createView replaceIfExists="true" viewName="view_riksdagen_party">select distinct party_id as party_number,party_name,short_code as party_id,website,registered_date,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code,website,registered_date</createView>
+		<dropView viewName="view_riksdagen_party" /> <createView viewName="view_riksdagen_party">select distinct party_id as party_number,party_name,short_code as party_id,website,registered_date,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code,website,registered_date</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-225">
-		<createView replaceIfExists="true" viewName="view_riksdagen_goverment">select distinct detail as name_id,count(assignment_data.detail) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served ,(CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_member_size from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' and status !='LEDIG' group by detail</createView>
+		<dropView viewName="view_riksdagen_goverment" /> <createView viewName="view_riksdagen_goverment">select distinct detail as name_id,count(assignment_data.detail) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served ,(CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_member_size from assignment_data where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen' and status !='LEDIG' group by detail</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-226">
 
 		<dropView viewName="view_riksdagen_committee_parliament_member_proposal" />
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_committee">SELECT DISTINCT assignment_data.detail AS embedded_id_detail, assignment_data.org_code AS embedded_id_org_code,count(assignment_data.org_code) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served ,(CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_member_size FROM assignment_data WHERE assignment_data.org_code IS NOT NULL AND assignment_data.assignment_type = 'uppdrag' GROUP BY assignment_data.detail, assignment_data.org_code</createView>
+		<dropView viewName="view_riksdagen_committee" /> <createView viewName="view_riksdagen_committee">SELECT DISTINCT assignment_data.detail AS embedded_id_detail, assignment_data.org_code AS embedded_id_org_code,count(assignment_data.org_code) AS total_assignments,min(from_date) as first_assignment_date,max(to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served ,(CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_member_size FROM assignment_data WHERE assignment_data.org_code IS NOT NULL AND assignment_data.assignment_type = 'uppdrag' GROUP BY assignment_data.detail, assignment_data.org_code</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_parliament_member_proposal">SELECT view_riksdagen_committee.embedded_id_detail,
     view_riksdagen_committee.embedded_id_org_code,
     view_riksdagen_committee.total_assignments,
@@ -231,30 +220,30 @@
 
 	<changeSet author="pether" id="1414872417007-227">
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_goverment_role_member">select detail as EMBEDDED_ID_DETAIL, role_code,first_name,last_name,from_date,to_date,person_data.id as person_id,person_data.party as party,(CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date as total_days_served,(CASE WHEN to_date > CURRENT_DATE THEN true ELSE false END) as active from assignment_data  left join person_data on assignment_data.intressent_id = person_data.id where role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen'</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_role_member">select detail as EMBEDDED_ID_DETAIL, role_code,first_name,last_name,from_date,to_date,person_data.id as person_id,person_data.party as party,(CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date as total_days_served,(CASE WHEN to_date > CURRENT_DATE THEN true ELSE false END) as active from assignment_data left join person_data on assignment_data.intressent_id = person_data.id where org_code is not null and assignment_type='uppdrag'</createView>
 
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-228">
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament_seat,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu_parliament, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
+		<createView viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament_seat,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu_parliament, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
 
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-229">
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament_seat,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu_parliament, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
+		<dropView viewName="view_riksdagen_politician" /> <createView viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament_seat,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu_parliament, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-230">
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND detail='Europaparlamentet' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_eu,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_government,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (org_code is not null and assignment_type='uppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_committee,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_parliament from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
+		<dropView viewName="view_riksdagen_politician" /> <createView viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_parliament,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND detail='Europaparlamentet' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_eu,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_government,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (org_code is not null and assignment_type='uppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_committee,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_parliament from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-231">
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select party,
+		<createView viewName="view_riksdagen_party_summary">select party,
 min(first_assignment_date) as first_assignment_date,
 max(last_assignment_date) as last_assignment_date,
 sum(total_days_served::int8)::int8 as total_days_served,
@@ -274,7 +263,7 @@ from view_riksdagen_politician group by party</createView>
 
 
 	<changeSet author="pether" id="1414872417007-232">
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select party,
+		<dropView viewName="view_riksdagen_party_summary" /> <createView viewName="view_riksdagen_party_summary">select party,
 min(first_assignment_date) as first_assignment_date,
 max(last_assignment_date) as last_assignment_date,
 sum(total_days_served::int8)::int8 as total_days_served,
@@ -302,9 +291,9 @@ from view_riksdagen_politician group by party</createView>
 
 		<dropView viewName="view_riksdagen_party_summary" />
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN ((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE (CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) END) as total_days_served_parliament,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND detail='Europaparlamentet' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_eu,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_government,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (org_code is not null and assignment_type='uppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_committee,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN 1 ELSE (CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -1 ELSE 0 END) END) > 0 THEN true ELSE false END) as active_parliament from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
+		<dropView viewName="view_riksdagen_politician" /> <createView viewName="view_riksdagen_politician">select view_riksdagen_party_member.id as person_id,max(first_name) as first_name,max(last_name) as last_name,max(party) as party,min(assignment_data.from_date) as first_assignment_date,max(assignment_data.to_date) as last_assignment_date,sum((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) as total_days_served,sum( CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN ((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE (CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) END) as total_days_served_parliament,sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_committee,sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_government,sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - from_date) ELSE 0 END) as total_days_served_eu, (CASE WHEN max(to_date) > CURRENT_DATE THEN true ELSE false END) as active,count(*) total_assignments,sum((CASE WHEN to_date > CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND detail='Europaparlamentet' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_eu,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_government,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND (org_code is not null and assignment_type='uppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_committee,(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN 1 ELSE (CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -1 ELSE 0 END) END) > 0 THEN true ELSE false END) as active_parliament from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select party,
+		<createView viewName="view_riksdagen_party_summary">select party,
 min(first_assignment_date) as first_assignment_date,
 max(last_assignment_date) as last_assignment_date,
 sum(total_days_served::int8)::int8 as total_days_served,
@@ -329,7 +318,7 @@ from view_riksdagen_politician group by party</createView>
 
 
 	<changeSet author="pether" id="1414872417007-234">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_politician_document">select hjid as id,document_document_status_con_0 as doc_id,document_type,label,made_public_date,org,number_value,rm,status,sub_title,sub_type,temp_label,title,role_description,person_reference_id,reference_name,party_short_code,order_number from (select * from document_status_container left join document_data on document_status_container.document_document_status_con_0 = document_data.id) as e3 left join (select document_person_reference_da_0.hjid as id,role_description,person_reference_id,reference_name,party_short_code,order_number,document_person_reference_li_1 from document_person_reference_da_0 left join (select document_person_reference_co_0.hjid as person_id_ref from document_status_container left join document_person_reference_co_0 on document_status_container.hjid = document_person_reference_co_0.hjid) e2 on  document_person_reference_da_0.document_person_reference_li_1 = e2.person_id_ref) e4 on e3.document_person_reference_co_1 = e4.document_person_reference_li_1</createView>
 	</changeSet>
 
@@ -338,7 +327,7 @@ from view_riksdagen_politician group by party</createView>
 
 		<dropView viewName="view_riksdagen_party_summary" />
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select
+		<dropView viewName="view_riksdagen_politician" /> <createView viewName="view_riksdagen_politician">select
 				view_riksdagen_party_member.id as person_id,
 				max(first_name) as first_name,
 				max(last_name) as last_name,
@@ -373,7 +362,7 @@ from view_riksdagen_politician group by party</createView>
 				(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN 1 ELSE (CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -1 ELSE 0 END) END) > 0 THEN true ELSE false END) as active_parliament
 					 from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select
+		<createView viewName="view_riksdagen_party_summary">select
 	party,
 	min(first_assignment_date) as first_assignment_date,
 	max(last_assignment_date) as last_assignment_date,

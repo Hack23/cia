@@ -144,7 +144,7 @@
 
 		<dropView viewName="view_riksdagen_party_summary" />
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select
+		<dropView viewName="view_riksdagen_politician" /> <createView viewName="view_riksdagen_politician">select
 				view_riksdagen_party_member.id as person_id,
 				max(first_name) as first_name,
 				max(last_name) as last_name,
@@ -181,7 +181,7 @@
 
 
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select
+		<createView viewName="view_riksdagen_party_summary">select
 	party,
 	min(first_assignment_date) as first_assignment_date,
 	max(last_assignment_date) as last_assignment_date,
@@ -225,11 +225,11 @@
 		<dropView viewName="view_riksdagen_party_summary" />
 		<dropView viewName="view_riksdagen_politician" />
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_member">select * from sweden_political_party LEFT JOIN person_data ON person_data.party = sweden_political_party.short_code where person_data.party = sweden_political_party.short_code</createView>
+		<dropView viewName="view_riksdagen_party_member" /> <createView viewName="view_riksdagen_party_member">select * from sweden_political_party LEFT JOIN person_data ON person_data.party = sweden_political_party.short_code where person_data.party = sweden_political_party.short_code</createView>
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party">select distinct party_id as party_number,party_name,short_code as party_id,website,registered_date,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code,website,registered_date</createView>
+		<createView viewName="view_riksdagen_party">select distinct party_id as party_number,party_name,short_code as party_id,website,registered_date,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code,website,registered_date</createView>
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_politician">select
+		<createView viewName="view_riksdagen_politician">select
 				view_riksdagen_party_member.id as person_id,
 				max(first_name) as first_name,
 				max(last_name) as last_name,
@@ -266,7 +266,7 @@
 
 
 
-		<createView replaceIfExists="true" viewName="view_riksdagen_party_summary">select
+		<createView viewName="view_riksdagen_party_summary">select
 	party,
 	min(first_assignment_date) as first_assignment_date,
 	max(last_assignment_date) as last_assignment_date,

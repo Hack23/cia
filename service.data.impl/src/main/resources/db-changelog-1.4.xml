@@ -18,7 +18,7 @@
 			tableName="committee_document_data" />
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_decisions">select id,title,header,hangar_id,label as committee_report,committee_document_data.rm,end_number,issue_number,org,created_date,public_date,committee_proposal_url_xml,decision_type,ballot_id,against_proposal_parties,against_proposal_number,winner from committee_proposal_data LEFT JOIN committee_document_data ON committee_document_data.label=committee_report and committee_proposal_data.rm=committee_document_data.rm</createView>
 	</changeSet>
 
@@ -44,11 +44,11 @@
 
 		<dropView viewName="view_riksdagen_vote_data_ballot_party_summary" />
 
-		<createView replaceIfExists="true"
+		<dropView viewName="view_riksdagen_vote_data_ballot_summary" /> <createView
 			viewName="view_riksdagen_vote_data_ballot_summary">select embedded_id_ballot_id,embedded_id_concern,embedded_id_issue,max(ballot_type) as ballot_type,max(rm) as rm, max(label) as label,max(vote_date) as vote_date,round(avg(born_year)) as avg_born_year,count(*) as total_votes,sum( case when vote='JA' then 1 else 0 end) as yes_votes,sum( case when vote='NEJ' then 1 else 0 end) as no_votes,sum( case when vote='AVSTÅR' then 1 else 0 end) as abstain_votes,sum( case when vote='FRÅNVARANDE' then 1 else 0 end) as absent_votes , sum( case when vote='JA' then 1 else 0 end) > sum( case when vote='NEJ' then 1 else 0 end)  as approved ,sum( case when vote='JA' then 1 else 0 end) = sum( case when vote='NEJ' then 1 else 0 end)  as no_winner, round((100.0 *sum( case when vote='JA' then 1 else 0 end)) / count(*),2)  as percentage_yes,round((100.0 *sum( case when vote='NEJ' then 1 else 0 end)) / count(*),2)  as percentage_no,round((100.0 *sum( case when vote='FRÅNVARANDE' then 1 else 0 end)) / count(*),2)  as percentage_absent,round((100.0 *sum( case when vote='AVSTÅR' then 1 else 0 end)) / count(*),2)  as percentage_abstain,round((100.0 *sum( case when gender='MAN' then 1 else 0 end)) / count(*),2)  as percentage_male from vote_data group by embedded_id_ballot_id,embedded_id_issue,embedded_id_concern order by vote_date</createView>
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_party_summary">select vote_data.embedded_id_ballot_id,vote_data.embedded_id_concern,vote_data.embedded_id_issue,party as embedded_id_party,
 	max(avg_born_year) as avg_born_year,
 	max(total_votes) as total_votes,
@@ -67,7 +67,7 @@
 	max(vote_data.ballot_type) as ballot_type ,max(vote_data.rm) as rm, max(vote_data.label) as label,max(vote_data.vote_date) as vote_date,round(avg(born_year)) as party_avg_born_year,count(*) as party_total_votes,sum( case when vote='JA' then 1 else 0 end) as party_yes_votes,sum( case when vote='NEJ' then 1 else 0 end) as party_no_votes,sum( case when vote='AVSTÅR' then 1 else 0 end) as party_abstain_votes,sum( case when vote='FRÅNVARANDE' then 1 else 0 end) as party_absent_votes , sum( case when vote='JA' then 1 else 0 end) > sum( case when vote='NEJ' then 1 else 0 end)  as party_approved ,sum( case when vote='JA' then 1 else 0 end) = sum( case when vote='NEJ' then 1 else 0 end)  as party_no_winner, round((100.0 *sum( case when vote='JA' then 1 else 0 end)) / count(*),2)  as party_percentage_yes,round((100.0 *sum( case when vote='NEJ' then 1 else 0 end)) / count(*),2)  as party_percentage_no,round((100.0 *sum( case when vote='FRÅNVARANDE' then 1 else 0 end)) / count(*),2)  as party_percentage_absent,round((100.0 *sum( case when vote='AVSTÅR' then 1 else 0 end)) / count(*),2)  as party_percentage_abstain,round((100.0 *sum( case when gender='MAN' then 1 else 0 end)) / count(*),2)  as party_percentage_male from vote_data left join view_riksdagen_vote_data_ballot_summary on vote_data.embedded_id_ballot_id =  view_riksdagen_vote_data_ballot_summary.embedded_id_ballot_id and vote_data.embedded_id_issue =  view_riksdagen_vote_data_ballot_summary.embedded_id_issue and vote_data.embedded_id_concern =  view_riksdagen_vote_data_ballot_summary.embedded_id_concern group by vote_data.embedded_id_ballot_id,vote_data.embedded_id_issue,vote_data.embedded_id_concern,party order by vote_date</createView>
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_politician_summary">select vote_data.embedded_id_ballot_id,embedded_id_intressent_id,vote_data.embedded_id_concern,vote_data.embedded_id_issue,party,max(first_name) as first_name, max(last_name) as last_name,max(gender) as gender, max(born_year) as born_year,
 	max(avg_born_year) as avg_born_year,
 	max(total_votes) as total_votes,
@@ -90,7 +90,7 @@
 
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_summary_daily">select vote_date,count(*) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,max(total_votes) avg_total_votes,round(avg(yes_votes),2) as avg_yes_votes,round(avg(no_votes),2) as avg_no_votes,round(avg(abstain_votes),2) as avg_abstain_votes,round(avg(absent_votes),2) as avg_absent_votes,  round((100.0 * sum( case when approved then 1 else 0 end)) / count(*),2) as percentage_approved,	round(avg(percentage_yes),2) as avg_percentage_yes,
 			round(avg(percentage_no),2) as avg_percentage_no,
 			round(avg(percentage_absent),2) as avg_percentage_absent,
@@ -110,7 +110,7 @@
 		   from view_riksdagen_vote_data_ballot_summary group by 1 order by vote_date</createView>
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_summary_weekly">select   date(date_trunc('week', vote_date)) as vote_date, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -131,7 +131,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_summary_daily group by 1</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_summary_monthly">select   date(date_trunc('month', vote_date))  as vote_date, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -152,7 +152,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_summary_daily group by 1</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_summary_annual">select   date(date_trunc('year', vote_date))  as vote_date, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -175,7 +175,7 @@
 
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_party_summary_daily">select vote_date as embedded_id_vote_date,embedded_id_party,count(*) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,max(total_votes) avg_total_votes,round(avg(yes_votes),2) as avg_yes_votes,round(avg(no_votes),2) as avg_no_votes,round(avg(abstain_votes),2) as avg_abstain_votes,round(avg(absent_votes),2) as avg_absent_votes,  round((100.0 * sum( case when approved then 1 else 0 end)) / count(*),2) as percentage_approved,
 			round(avg(percentage_yes),2) as avg_percentage_yes,
 			round(avg(percentage_no),2) as avg_percentage_no,
@@ -209,7 +209,7 @@
 		   from view_riksdagen_vote_data_ballot_party_summary group by embedded_id_party,1 order by vote_date</createView>
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_party_summary_weekly">select   date(date_trunc('week', embedded_id_vote_date)) as embedded_id_vote_date,embedded_id_party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -243,7 +243,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_party_summary_daily group by 1,embedded_id_party</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_party_summary_monthly">select   date(date_trunc('month', embedded_id_vote_date)) as  embedded_id_vote_date,embedded_id_party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -277,7 +277,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_party_summary_daily group by 1,embedded_id_party</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_party_summary_annual">select   date(date_trunc('year', embedded_id_vote_date))  as embedded_id_vote_date,embedded_id_party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -313,7 +313,7 @@
 
 
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_politician_summary_daily">select vote_date as embedded_id_vote_date,embedded_id_intressent_id,max(first_name) as first_name,max(last_name) as last_name,max(gender) as gender,max(born_year) as born_year,max(party) as party,count(*) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,max(total_votes) avg_total_votes,round(avg(yes_votes),2) as avg_yes_votes,round(avg(no_votes),2) as avg_no_votes,round(avg(abstain_votes),2) as avg_abstain_votes,round(avg(absent_votes),2) as avg_absent_votes,  round((100.0 * sum( case when approved then 1 else 0 end)) / count(*),2) as percentage_approved,
 			round(avg(percentage_yes),2) as avg_percentage_yes,
 			round(avg(percentage_no),2) as avg_percentage_no,
@@ -358,7 +358,7 @@
 			sum(case when rebel then 1 else 0 end) as rebel_total
 		   from view_riksdagen_vote_data_ballot_politician_summary group by embedded_id_intressent_id,1</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_politician_summary_weekly">select   date(date_trunc('week', embedded_id_vote_date))  as embedded_id_vote_date,embedded_id_intressent_id,max(first_name) as first_name,max(last_name) as last_name,max(gender) as gender,max(born_year) as born_year,max(party) as party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -404,7 +404,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_politician_summary_daily group by 1,embedded_id_intressent_id</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_politician_summary_monthly">select   date(date_trunc('month', embedded_id_vote_date))  as embedded_id_vote_date,embedded_id_intressent_id,max(first_name) as first_name,max(last_name) as last_name,max(gender) as gender,max(born_year) as born_year,max(party) as party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -450,7 +450,7 @@
 	round(avg(percentage_approved),2) as avg_percentage_approved
  	from view_riksdagen_vote_data_ballot_politician_summary_daily group by 1,embedded_id_intressent_id</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_vote_data_ballot_politician_summary_annual">select   date(date_trunc('year', embedded_id_vote_date))  as embedded_id_vote_date,embedded_id_intressent_id,max(first_name) as first_name,max(last_name) as last_name,max(gender) as gender,max(born_year) as born_year,max(party) as party, sum(number_ballots) as number_ballots,round(avg(avg_born_year),0) as avg_born_year,
 	round(avg(avg_percentage_yes),2) as avg_percentage_yes,
 	round(avg(avg_percentage_no),2) as avg_percentage_no,
@@ -502,34 +502,34 @@
 
 	<changeSet author="pether" id="1414872417007-254">
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_document_type_daily_summary">select left(made_public_date,10) as embedded_id_public_date,document_type as embedded_id_document_type,count(*) as total from document_element group by left(made_public_date,10),document_type</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_politician_document_daily_summary">select made_public_date as embedded_id_public_date,person_reference_id as embedded_id_person_id,document_type as embedded_id_document_type,count(*) as total from view_riksdagen_politician_document group by made_public_date,document_type,person_reference_id</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_party_document_daily_summary">select made_public_date as embedded_id_public_date,party_short_code as embedded_id_party_short_code,document_type as embedded_id_document_type,count(distinct id) distinct_documents,count(distinct person_reference_id) as distinct_people,count(*) total from view_riksdagen_politician_document group by made_public_date,document_type,party_short_code;</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_org_document_daily_summary">select left(made_public_date,10) as embedded_id_public_date,org as embedded_id_org,document_type,count(*) as total from document_element group by left(made_public_date,10),document_type,org</createView>
 
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-255">
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_decision_type_summary">select upper(decision_type) as embedded_id_decision_type,public_date as embedded_id_decision_date,count(*) as total from view_riksdagen_committee_decisions group by upper(decision_type),public_date</createView>
 
-		<createView replaceIfExists="true"
+		<createView
 			viewName="view_riksdagen_committee_decision_type_org_summary">select upper(decision_type) as embedded_id_decision_type,org as embedded_id_org,public_date as embedded_id_decision_date,count(*) as total from view_riksdagen_committee_decisions group by upper(decision_type),public_date,org</createView>
 
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-256">
-		<createView replaceIfExists="true"
+		<dropView viewName="view_riksdagen_committee_decision_type_summary" /> <createView
 			viewName="view_riksdagen_committee_decision_type_summary">select upper(decision_type) as embedded_id_decision_type,public_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),public_date order by public_date</createView>
 
-		<createView replaceIfExists="true"
+		<dropView viewName="view_riksdagen_committee_decision_type_org_summary" /> <createView
 			viewName="view_riksdagen_committee_decision_type_org_summary">select upper(decision_type) as embedded_id_decision_type,org as embedded_id_org,public_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),public_date,org</createView>
 	</changeSet>
 
