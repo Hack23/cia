@@ -17,7 +17,7 @@
      http://www.springframework.org/schema/cache/spring-cache.xsd
      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
      http://www.springframework.org/schema/security
-     http://www.springframework.org/schema/security/spring-security-4.2.xsd
+     http://www.springframework.org/schema/security/spring-security.xsd
      http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd">
 
 	<bean id="servicePropertyConfigurer"
