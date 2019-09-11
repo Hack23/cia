@@ -14,7 +14,7 @@ open module com.hack23.cia.service.data.impl {
 	requires spring.beans;
 	requires spring.jdbc;
 	requires spring.tx;
-	requires postgresql;
+	requires org.postgresql.jdbc;
 	requires java.naming;
 	
 	requires java.persistence;
