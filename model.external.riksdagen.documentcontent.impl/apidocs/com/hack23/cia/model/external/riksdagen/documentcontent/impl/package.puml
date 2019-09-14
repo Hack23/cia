@@ -1,0 +1,31 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.documentcontent.impl {
+
+        class DocumentContentData [[DocumentContentData.html]] {
+            #id: String
+            #content: String
+            #hjid: Long
+            +getId(): String
+            +setId(String): void
+            +getContent(): String
+            +setContent(String): void
+            +withId(String): DocumentContentData
+            +withContent(String): DocumentContentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createDocumentContentData(): DocumentContentData
+            +createDocumentcontentdata(DocumentContentData): JAXBElement<DocumentContentData>
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentContentData
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

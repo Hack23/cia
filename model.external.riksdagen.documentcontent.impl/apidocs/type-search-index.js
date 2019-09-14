@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.hack23.cia.model.external.riksdagen.documentcontent.impl","l":"DocumentContentData"},{"p":"com.hack23.cia.model.external.riksdagen.documentcontent.impl","l":"ObjectFactory"}]
