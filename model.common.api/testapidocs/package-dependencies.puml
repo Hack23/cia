@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+
+    ' Package links
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
