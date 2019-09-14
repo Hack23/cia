@@ -1,0 +1,86 @@
+@startuml
+    namespace com.hack23.cia.model.external.worldbank.data.impl {
+
+        class WorldBankData [[WorldBankData.html]] {
+            #dataValue: String
+            #yearDate: Integer
+            #hjid: Long
+            +getDataValue(): String
+            +setDataValue(String): void
+            +getYearDate(): Integer
+            +setYearDate(Integer): void
+            +withIndicator(Indicator): WorldBankData
+            +withCountry(Country): WorldBankData
+            +withDataValue(String): WorldBankData
+            +withYearDate(Integer): WorldBankData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Indicator [[Indicator.html]] {
+            #value: String
+            #id: String
+            +getValue(): String
+            +setValue(String): void
+            +getId(): String
+            +setId(String): void
+            +withValue(String): Indicator
+            +withId(String): Indicator
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createDataElement(): DataElement
+            +createWorldBankData(): WorldBankData
+            +createIndicator(): Indicator
+            +createCountry(): Country
+        }
+
+        class DataElement [[DataElement.html]] {
+            #page: BigInteger
+            #pages: BigInteger
+            #perPage: BigInteger
+            #total: BigInteger
+            #hjid: Long
+            +getPage(): BigInteger
+            +setPage(BigInteger): void
+            +getPages(): BigInteger
+            +setPages(BigInteger): void
+            +getPerPage(): BigInteger
+            +setPerPage(BigInteger): void
+            +getTotal(): BigInteger
+            +setTotal(BigInteger): void
+            +withData(List<WorldBankData>): DataElement
+            +withPage(BigInteger): DataElement
+            +withPages(BigInteger): DataElement
+            +withPerPage(BigInteger): DataElement
+            +withTotal(BigInteger): DataElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Country [[Country.html]] {
+            #value: String
+            #id: String
+            +getValue(): String
+            +setValue(String): void
+            +getId(): String
+            +setId(String): void
+            +withValue(String): Country
+            +withId(String): Country
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. WorldBankData
+        WorldBankData --> Indicator: indicator
+        WorldBankData --> Country: country
+        com.hack23.cia.model.common.api.ModelObject <|.. Indicator
+        com.hack23.cia.model.common.api.ModelObject <|.. DataElement
+        DataElement --> "*" WorldBankData: data
+        com.hack23.cia.model.common.api.ModelObject <|.. Country
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

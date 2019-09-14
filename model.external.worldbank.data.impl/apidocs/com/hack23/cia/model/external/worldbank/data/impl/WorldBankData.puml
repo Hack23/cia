@@ -1,0 +1,33 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>WorldBankData\n<size:10>com.hack23.cia.model.external.worldbank.data.impl" as com.hack23.cia.model.external.worldbank.data.impl.WorldBankData [[WorldBankData.html]] {
+        #indicator: Indicator
+        #country: Country
+        #dataValue: String
+        #yearDate: Integer
+        #hjid: Long
+        +getIndicator(): Indicator
+        +setIndicator(Indicator): void
+        +getCountry(): Country
+        +setCountry(Country): void
+        +getDataValue(): String
+        +setDataValue(String): void
+        +getYearDate(): Integer
+        +setYearDate(Integer): void
+        +withIndicator(Indicator): WorldBankData
+        +withCountry(Country): WorldBankData
+        +withDataValue(String): WorldBankData
+        +withYearDate(Integer): WorldBankData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.data.impl.WorldBankData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

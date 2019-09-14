@@ -1,0 +1,37 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DataElement\n<size:10>com.hack23.cia.model.external.worldbank.data.impl" as com.hack23.cia.model.external.worldbank.data.impl.DataElement [[DataElement.html]] {
+        #data: List<WorldBankData>
+        #page: BigInteger
+        #pages: BigInteger
+        #perPage: BigInteger
+        #total: BigInteger
+        #hjid: Long
+        +getData(): List<WorldBankData>
+        +setData(List<WorldBankData>): void
+        +getPage(): BigInteger
+        +setPage(BigInteger): void
+        +getPages(): BigInteger
+        +setPages(BigInteger): void
+        +getPerPage(): BigInteger
+        +setPerPage(BigInteger): void
+        +getTotal(): BigInteger
+        +setTotal(BigInteger): void
+        +withData(List<WorldBankData>): DataElement
+        +withPage(BigInteger): DataElement
+        +withPages(BigInteger): DataElement
+        +withPerPage(BigInteger): DataElement
+        +withTotal(BigInteger): DataElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.data.impl.DataElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
