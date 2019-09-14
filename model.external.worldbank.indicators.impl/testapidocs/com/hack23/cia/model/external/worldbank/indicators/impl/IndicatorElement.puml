@@ -1,0 +1,41 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>IndicatorElement\n<size:10>com.hack23.cia.model.external.worldbank.indicators.impl" as com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement [[IndicatorElement.html]] {
+        #indicatorName: String
+        #source: Source
+        #sourceNote: String
+        #sourceOrganization: String
+        #topics: Topics
+        #id: String
+        #hjid: Long
+        +getIndicatorName(): String
+        +setIndicatorName(String): void
+        +getSource(): Source
+        +setSource(Source): void
+        +getSourceNote(): String
+        +setSourceNote(String): void
+        +getSourceOrganization(): String
+        +setSourceOrganization(String): void
+        +getTopics(): Topics
+        +setTopics(Topics): void
+        +getId(): String
+        +setId(String): void
+        +withIndicatorName(String): IndicatorElement
+        +withSource(Source): IndicatorElement
+        +withSourceNote(String): IndicatorElement
+        +withSourceOrganization(String): IndicatorElement
+        +withTopics(Topics): IndicatorElement
+        +withId(String): IndicatorElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

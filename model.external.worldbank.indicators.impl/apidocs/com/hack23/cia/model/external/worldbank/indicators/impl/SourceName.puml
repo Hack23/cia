@@ -1,0 +1,31 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>SourceName\n<size:10>com.hack23.cia.model.external.worldbank.indicators.impl" as com.hack23.cia.model.external.worldbank.indicators.impl.SourceName [[SourceName.html]] {
+        {static} +DOING_BUSINESS
+        {static} +WORLD_DEVELOPMENT_INDICATORS
+        {static} +GLOBAL_DEVELOPMENT_FINANCE
+        {static} +ENTERPRISE_SURVEYS
+        {static} +GLOBAL_ECONOMIC_MONITOR
+        {static} +GLOBAL_ECONOMIC_MONITOR_GEM_COMMODITIES
+        {static} +PUBLIC_SECTOR_DEBT
+        {static} +WORLDWIDE_GOVERNANCE_INDICATORS
+        {static} +AFRICA_DEVELOPMENT_INDICATORS
+        {static} +EDUCATION_STATISTICS
+        {static} +GENDER_STATISTICS
+        {static} +HEALTH_NUTRITION_AND_POPULATION_STATISTICS
+        {static} +INTERNATIONAL_DEVELOPMENT_ASSOCIATION_RESULTS_MEASUREMENT_SYSTEM
+        {static} +MILLENNIUM_DEVELOPMENT_GOALS
+        {static} +QUARTERLY_EXTERNAL_DEBT_STATISTICS_QEDS_SPECIAL_DATA_DISSEMINATION_STANDARD_SDDS
+        {static} +QUARTERLY_EXTERNAL_DEBT_STATISTICS_QEDS_GENERAL_DATA_DISSEMINATION_SYSTEM_GDDS
+        {static} +JOBS_FOR_KNOWLEDGE_PLATFORM
+        {static} +CORPORATE_SCORECARD
+        {static} +GEP_ECONOMIC_PROSPECTS
+        +value(): String
+        {static} +fromValue(String): SourceName
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

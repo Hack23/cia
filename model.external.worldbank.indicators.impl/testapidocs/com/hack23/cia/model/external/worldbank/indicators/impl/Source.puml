@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Source\n<size:10>com.hack23.cia.model.external.worldbank.indicators.impl" as com.hack23.cia.model.external.worldbank.indicators.impl.Source [[Source.html]] {
+        #value: String
+        #id: String
+        +getValue(): String
+        +setValue(String): void
+        +getId(): String
+        +setId(String): void
+        +withValue(String): Source
+        +withId(String): Source
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.indicators.impl.Source
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

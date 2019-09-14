@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ObjectFactory\n<size:10>com.hack23.cia.model.external.worldbank.indicators.impl" as com.hack23.cia.model.external.worldbank.indicators.impl.ObjectFactory [[ObjectFactory.html]] {
+        +createIndicatorsElement(): IndicatorsElement
+        +createIndicatorElement(): IndicatorElement
+        +createSource(): Source
+        +createTopics(): Topics
+        +createTopic(): Topic
+        +createIndicator(IndicatorElement): JAXBElement<IndicatorElement>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

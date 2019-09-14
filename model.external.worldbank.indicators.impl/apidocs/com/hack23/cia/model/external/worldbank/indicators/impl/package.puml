@@ -1,0 +1,132 @@
+@startuml
+    namespace com.hack23.cia.model.external.worldbank.indicators.impl {
+
+        class IndicatorsElement [[IndicatorsElement.html]] {
+            #page: BigInteger
+            #pages: BigInteger
+            #perPage: BigInteger
+            #total: BigInteger
+            #hjid: Long
+            +getPage(): BigInteger
+            +setPage(BigInteger): void
+            +getPages(): BigInteger
+            +setPages(BigInteger): void
+            +getPerPage(): BigInteger
+            +setPerPage(BigInteger): void
+            +getTotal(): BigInteger
+            +setTotal(BigInteger): void
+            +withIndicator(List<IndicatorElement>): IndicatorsElement
+            +withPage(BigInteger): IndicatorsElement
+            +withPages(BigInteger): IndicatorsElement
+            +withPerPage(BigInteger): IndicatorsElement
+            +withTotal(BigInteger): IndicatorsElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum SourceName [[SourceName.html]] {
+            {static} +DOING_BUSINESS
+            {static} +WORLD_DEVELOPMENT_INDICATORS
+            {static} +GLOBAL_DEVELOPMENT_FINANCE
+            {static} +ENTERPRISE_SURVEYS
+            {static} +GLOBAL_ECONOMIC_MONITOR
+            {static} +GLOBAL_ECONOMIC_MONITOR_GEM_COMMODITIES
+            {static} +PUBLIC_SECTOR_DEBT
+            {static} +WORLDWIDE_GOVERNANCE_INDICATORS
+            {static} +AFRICA_DEVELOPMENT_INDICATORS
+            {static} +EDUCATION_STATISTICS
+            {static} +GENDER_STATISTICS
+            {static} +HEALTH_NUTRITION_AND_POPULATION_STATISTICS
+            {static} +INTERNATIONAL_DEVELOPMENT_ASSOCIATION_RESULTS_MEASUREMENT_SYSTEM
+            {static} +MILLENNIUM_DEVELOPMENT_GOALS
+            {static} +QUARTERLY_EXTERNAL_DEBT_STATISTICS_QEDS_SPECIAL_DATA_DISSEMINATION_STANDARD_SDDS
+            {static} +QUARTERLY_EXTERNAL_DEBT_STATISTICS_QEDS_GENERAL_DATA_DISSEMINATION_SYSTEM_GDDS
+            {static} +JOBS_FOR_KNOWLEDGE_PLATFORM
+            {static} +CORPORATE_SCORECARD
+            {static} +GEP_ECONOMIC_PROSPECTS
+            +value(): String
+            {static} +fromValue(String): SourceName
+        }
+
+        class Topics [[Topics.html]] {
+            #hjid: Long
+            +withTopic(List<Topic>): Topics
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createIndicatorsElement(): IndicatorsElement
+            +createIndicatorElement(): IndicatorElement
+            +createSource(): Source
+            +createTopics(): Topics
+            +createTopic(): Topic
+            +createIndicator(IndicatorElement): JAXBElement<IndicatorElement>
+        }
+
+        class IndicatorElement [[IndicatorElement.html]] {
+            #indicatorName: String
+            #sourceNote: String
+            #sourceOrganization: String
+            #id: String
+            #hjid: Long
+            +getIndicatorName(): String
+            +setIndicatorName(String): void
+            +getSourceNote(): String
+            +setSourceNote(String): void
+            +getSourceOrganization(): String
+            +setSourceOrganization(String): void
+            +getId(): String
+            +setId(String): void
+            +withIndicatorName(String): IndicatorElement
+            +withSource(Source): IndicatorElement
+            +withSourceNote(String): IndicatorElement
+            +withSourceOrganization(String): IndicatorElement
+            +withTopics(Topics): IndicatorElement
+            +withId(String): IndicatorElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Topic [[Topic.html]] {
+            #value: String
+            #id: String
+            #hjid: Long
+            +getValue(): String
+            +setValue(String): void
+            +getId(): String
+            +setId(String): void
+            +withValue(String): Topic
+            +withId(String): Topic
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Source [[Source.html]] {
+            #value: String
+            #id: String
+            +getValue(): String
+            +setValue(String): void
+            +getId(): String
+            +setId(String): void
+            +withValue(String): Source
+            +withId(String): Source
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. IndicatorsElement
+        IndicatorsElement --> "*" IndicatorElement: indicator
+        com.hack23.cia.model.common.api.ModelObject <|.. Topics
+        Topics --> "*" Topic: topic
+        com.hack23.cia.model.common.api.ModelObject <|.. IndicatorElement
+        IndicatorElement --> Source: source
+        IndicatorElement --> Topics: topics
+        com.hack23.cia.model.common.api.ModelObject <|.. Topic
+        com.hack23.cia.model.common.api.ModelObject <|.. Source
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
