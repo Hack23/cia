@@ -1,0 +1,37 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>TopicsElement\n<size:10>com.hack23.cia.model.external.worldbank.topic.impl" as com.hack23.cia.model.external.worldbank.topic.impl.TopicsElement [[TopicsElement.html]] {
+        #topic: List<TopicElement>
+        #page: BigInteger
+        #pages: BigInteger
+        #perPage: BigInteger
+        #total: BigInteger
+        #hjid: Long
+        +getTopic(): List<TopicElement>
+        +setTopic(List<TopicElement>): void
+        +getPage(): BigInteger
+        +setPage(BigInteger): void
+        +getPages(): BigInteger
+        +setPages(BigInteger): void
+        +getPerPage(): BigInteger
+        +setPerPage(BigInteger): void
+        +getTotal(): BigInteger
+        +setTotal(BigInteger): void
+        +withTopic(List<TopicElement>): TopicsElement
+        +withPage(BigInteger): TopicsElement
+        +withPages(BigInteger): TopicsElement
+        +withPerPage(BigInteger): TopicsElement
+        +withTotal(BigInteger): TopicsElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.topic.impl.TopicsElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

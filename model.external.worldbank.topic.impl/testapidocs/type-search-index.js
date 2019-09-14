@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.hack23.cia.model.external.worldbank.topic.impl","l":"ObjectFactory"},{"p":"com.hack23.cia.model.external.worldbank.topic.impl","l":"TopicElement"},{"p":"com.hack23.cia.model.external.worldbank.topic.impl","l":"TopicsElement"}]

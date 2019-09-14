@@ -1,0 +1,61 @@
+@startuml
+    namespace com.hack23.cia.model.external.worldbank.topic.impl {
+
+        class TopicsElement [[TopicsElement.html]] {
+            #page: BigInteger
+            #pages: BigInteger
+            #perPage: BigInteger
+            #total: BigInteger
+            #hjid: Long
+            +getPage(): BigInteger
+            +setPage(BigInteger): void
+            +getPages(): BigInteger
+            +setPages(BigInteger): void
+            +getPerPage(): BigInteger
+            +setPerPage(BigInteger): void
+            +getTotal(): BigInteger
+            +setTotal(BigInteger): void
+            +withTopic(List<TopicElement>): TopicsElement
+            +withPage(BigInteger): TopicsElement
+            +withPages(BigInteger): TopicsElement
+            +withPerPage(BigInteger): TopicsElement
+            +withTotal(BigInteger): TopicsElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createTopicsElement(): TopicsElement
+            +createTopicElement(): TopicElement
+            +createTopic(TopicElement): JAXBElement<TopicElement>
+        }
+
+        class TopicElement [[TopicElement.html]] {
+            #sourceNote: String
+            #topicValue: String
+            #id: String
+            #hjid: Long
+            +getSourceNote(): String
+            +setSourceNote(String): void
+            +getTopicValue(): String
+            +setTopicValue(String): void
+            +getId(): String
+            +setId(String): void
+            +withSourceNote(String): TopicElement
+            +withTopicValue(String): TopicElement
+            +withId(String): TopicElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. TopicsElement
+        TopicsElement --> "*" TopicElement: topic
+        com.hack23.cia.model.common.api.ModelObject <|.. TopicElement
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
