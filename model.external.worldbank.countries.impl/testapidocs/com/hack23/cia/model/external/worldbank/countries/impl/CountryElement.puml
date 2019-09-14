@@ -1,0 +1,57 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CountryElement\n<size:10>com.hack23.cia.model.external.worldbank.countries.impl" as com.hack23.cia.model.external.worldbank.countries.impl.CountryElement [[CountryElement.html]] {
+        #iso2Code: String
+        #countryName: String
+        #region: Region
+        #adminregion: Adminregion
+        #incomeLevel: IncomeLevel
+        #lendingType: LendingType
+        #capitalCity: String
+        #longitude: String
+        #latitude: String
+        #id: String
+        #hjid: Long
+        +getIso2Code(): String
+        +setIso2Code(String): void
+        +getCountryName(): String
+        +setCountryName(String): void
+        +getRegion(): Region
+        +setRegion(Region): void
+        +getAdminregion(): Adminregion
+        +setAdminregion(Adminregion): void
+        +getIncomeLevel(): IncomeLevel
+        +setIncomeLevel(IncomeLevel): void
+        +getLendingType(): LendingType
+        +setLendingType(LendingType): void
+        +getCapitalCity(): String
+        +setCapitalCity(String): void
+        +getLongitude(): String
+        +setLongitude(String): void
+        +getLatitude(): String
+        +setLatitude(String): void
+        +getId(): String
+        +setId(String): void
+        +withIso2Code(String): CountryElement
+        +withCountryName(String): CountryElement
+        +withRegion(Region): CountryElement
+        +withAdminregion(Adminregion): CountryElement
+        +withIncomeLevel(IncomeLevel): CountryElement
+        +withLendingType(LendingType): CountryElement
+        +withCapitalCity(String): CountryElement
+        +withLongitude(String): CountryElement
+        +withLatitude(String): CountryElement
+        +withId(String): CountryElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.worldbank.countries.impl.CountryElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,171 @@
+@startuml
+    namespace com.hack23.cia.model.external.worldbank.countries.impl {
+
+        class Region [[Region.html]] {
+            #id: String
+            +getId(): String
+            +setId(String): void
+            +withValue(RegionCategory): Region
+            +withId(String): Region
+        }
+
+        enum IncomeLevelCategory [[IncomeLevelCategory.html]] {
+            {static} +LOW_INCOME
+            {static} +LOWER_MIDDLE_INCOME
+            {static} +AGGREGATES
+            {static} +HIGH_INCOME_NON_OECD
+            {static} +NA
+            {static} +HIGH_INCOME_OECD
+            {static} +UPPER_MIDDLE_INCOME
+            +value(): String
+            {static} +fromValue(String): IncomeLevelCategory
+        }
+
+        enum RegionCategory [[RegionCategory.html]] {
+            {static} +EAST_ASIA_PACIFIC_ALL_INCOME_LEVELS
+            {static} +EUROPE_CENTRAL_ASIA_ALL_INCOME_LEVELS
+            {static} +LATIN_AMERICA_CARIBBEAN_ALL_INCOME_LEVELS
+            {static} +MIDDLE_EAST_NORTH_AFRICA_ALL_INCOME_LEVELS
+            {static} +AGGREGATES
+            {static} +NORTH_AMERICA
+            {static} +SUB_SAHARAN_AFRICA_ALL_INCOME_LEVELS
+            {static} +SOUTH_ASIA
+            +value(): String
+            {static} +fromValue(String): RegionCategory
+        }
+
+        class LendingType [[LendingType.html]] {
+            #id: String
+            +getId(): String
+            +setId(String): void
+            +withValue(LendingTypeCategory): LendingType
+            +withId(String): LendingType
+        }
+
+        enum LendingTypeCategory [[LendingTypeCategory.html]] {
+            {static} +AGGREGATES
+            {static} +IBRD_ONLY
+            {static} +IDA_BLEND
+            {static} +IDA_ONLY
+            {static} +NA
+            {static} +NOT_CLASSIFIED
+            +value(): String
+            {static} +fromValue(String): LendingTypeCategory
+        }
+
+        enum AdminRegionCategory [[AdminRegionCategory.html]] {
+            {static} +EAST_ASIA_PACIFIC_DEVELOPING_ONLY
+            {static} +EUROPE_CENTRAL_ASIA_DEVELOPING_ONLY
+            {static} +LATIN_AMERICA_CARIBBEAN_DEVELOPING_ONLY
+            {static} +MIDDLE_EAST_NORTH_AFRICA_DEVELOPING_ONLY
+            {static} +SOUTH_ASIA
+            {static} +SUB_SAHARAN_AFRICA_DEVELOPING_ONLY
+            +value(): String
+            {static} +fromValue(String): AdminRegionCategory
+        }
+
+        class CountriesElement [[CountriesElement.html]] {
+            #page: BigInteger
+            #pages: BigInteger
+            #perPage: BigInteger
+            #total: BigInteger
+            #hjid: Long
+            +getPage(): BigInteger
+            +setPage(BigInteger): void
+            +getPages(): BigInteger
+            +setPages(BigInteger): void
+            +getPerPage(): BigInteger
+            +setPerPage(BigInteger): void
+            +getTotal(): BigInteger
+            +setTotal(BigInteger): void
+            +withCountry(List<CountryElement>): CountriesElement
+            +withPage(BigInteger): CountriesElement
+            +withPages(BigInteger): CountriesElement
+            +withPerPage(BigInteger): CountriesElement
+            +withTotal(BigInteger): CountriesElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class CountryElement [[CountryElement.html]] {
+            #iso2Code: String
+            #countryName: String
+            #capitalCity: String
+            #longitude: String
+            #latitude: String
+            #id: String
+            #hjid: Long
+            +getIso2Code(): String
+            +setIso2Code(String): void
+            +getCountryName(): String
+            +setCountryName(String): void
+            +getCapitalCity(): String
+            +setCapitalCity(String): void
+            +getLongitude(): String
+            +setLongitude(String): void
+            +getLatitude(): String
+            +setLatitude(String): void
+            +getId(): String
+            +setId(String): void
+            +withIso2Code(String): CountryElement
+            +withCountryName(String): CountryElement
+            +withRegion(Region): CountryElement
+            +withAdminregion(Adminregion): CountryElement
+            +withIncomeLevel(IncomeLevel): CountryElement
+            +withLendingType(LendingType): CountryElement
+            +withCapitalCity(String): CountryElement
+            +withLongitude(String): CountryElement
+            +withLatitude(String): CountryElement
+            +withId(String): CountryElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createCountriesElement(): CountriesElement
+            +createCountryElement(): CountryElement
+            +createRegion(): Region
+            +createAdminregion(): Adminregion
+            +createIncomeLevel(): IncomeLevel
+            +createLendingType(): LendingType
+        }
+
+        class Adminregion [[Adminregion.html]] {
+            #id: String
+            +getId(): String
+            +setId(String): void
+            +withValue(AdminRegionCategory): Adminregion
+            +withId(String): Adminregion
+        }
+
+        class IncomeLevel [[IncomeLevel.html]] {
+            #id: String
+            +getId(): String
+            +setId(String): void
+            +withValue(IncomeLevelCategory): IncomeLevel
+            +withId(String): IncomeLevel
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. Region
+        Region --> RegionCategory: value
+        com.hack23.cia.model.common.api.ModelObject <|.. LendingType
+        LendingType --> LendingTypeCategory: value
+        com.hack23.cia.model.common.api.ModelObject <|.. CountriesElement
+        CountriesElement --> "*" CountryElement: country
+        com.hack23.cia.model.common.api.ModelObject <|.. CountryElement
+        CountryElement --> Region: region
+        CountryElement --> Adminregion: adminregion
+        CountryElement --> IncomeLevel: incomeLevel
+        CountryElement --> LendingType: lendingType
+        com.hack23.cia.model.common.api.ModelObject <|.. Adminregion
+        Adminregion --> AdminRegionCategory: value
+        com.hack23.cia.model.common.api.ModelObject <|.. IncomeLevel
+        IncomeLevel --> IncomeLevelCategory: value
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

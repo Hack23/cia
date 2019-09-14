@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>IncomeLevelCategory\n<size:10>com.hack23.cia.model.external.worldbank.countries.impl" as com.hack23.cia.model.external.worldbank.countries.impl.IncomeLevelCategory [[IncomeLevelCategory.html]] {
+        {static} +LOW_INCOME
+        {static} +LOWER_MIDDLE_INCOME
+        {static} +AGGREGATES
+        {static} +HIGH_INCOME_NON_OECD
+        {static} +NA
+        {static} +HIGH_INCOME_OECD
+        {static} +UPPER_MIDDLE_INCOME
+        +value(): String
+        {static} +fromValue(String): IncomeLevelCategory
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

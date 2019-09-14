@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>AdminRegionCategory\n<size:10>com.hack23.cia.model.external.worldbank.countries.impl" as com.hack23.cia.model.external.worldbank.countries.impl.AdminRegionCategory [[AdminRegionCategory.html]] {
+        {static} +EAST_ASIA_PACIFIC_DEVELOPING_ONLY
+        {static} +EUROPE_CENTRAL_ASIA_DEVELOPING_ONLY
+        {static} +LATIN_AMERICA_CARIBBEAN_DEVELOPING_ONLY
+        {static} +MIDDLE_EAST_NORTH_AFRICA_DEVELOPING_ONLY
+        {static} +SOUTH_ASIA
+        {static} +SUB_SAHARAN_AFRICA_DEVELOPING_ONLY
+        +value(): String
+        {static} +fromValue(String): AdminRegionCategory
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
