@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentProposalContainer\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer [[DocumentProposalContainer.html]] {
+        #proposal: DocumentProposalData
+        #hjid: Long
+        +getProposal(): DocumentProposalData
+        +setProposal(DocumentProposalData): void
+        +withProposal(DocumentProposalData): DocumentProposalContainer
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentDetailData\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData [[DocumentDetailData.html]] {
+        #code: String
+        #detailName: String
+        #text: String
+        #hjid: Long
+        +getCode(): String
+        +setCode(String): void
+        +getDetailName(): String
+        +setDetailName(String): void
+        +getText(): String
+        +setText(String): void
+        +withCode(String): DocumentDetailData
+        +withDetailName(String): DocumentDetailData
+        +withText(String): DocumentDetailData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

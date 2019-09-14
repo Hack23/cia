@@ -1,0 +1,423 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.dokumentstatus.impl {
+
+        class DocumentData [[DocumentData.html]] {
+            #hangarId: String
+            #id: String
+            #rm: String
+            #label: String
+            #documentType: String
+            #subType: String
+            #tempLabel: String
+            #org: String
+            #numberValue: BigInteger
+            #finalNumber: BigInteger
+            #madePublicDate: Date
+            #title: String
+            #subTitle: String
+            #documentUrlText: String
+            #documentUrlHtml: String
+            #documentStatusUrlXml: String
+            #documentStatusUrlWWW: String
+            #committeeReportUrlXml: String
+            #status: String
+            +getHangarId(): String
+            +setHangarId(String): void
+            +getId(): String
+            +setId(String): void
+            +getRm(): String
+            +setRm(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +getSubType(): String
+            +setSubType(String): void
+            +getTempLabel(): String
+            +setTempLabel(String): void
+            +getOrg(): String
+            +setOrg(String): void
+            +getNumberValue(): BigInteger
+            +setNumberValue(BigInteger): void
+            +getFinalNumber(): BigInteger
+            +setFinalNumber(BigInteger): void
+            +getMadePublicDate(): Date
+            +setMadePublicDate(Date): void
+            +getTitle(): String
+            +setTitle(String): void
+            +getSubTitle(): String
+            +setSubTitle(String): void
+            +getDocumentUrlText(): String
+            +setDocumentUrlText(String): void
+            +getDocumentUrlHtml(): String
+            +setDocumentUrlHtml(String): void
+            +getDocumentStatusUrlXml(): String
+            +setDocumentStatusUrlXml(String): void
+            +getDocumentStatusUrlWWW(): String
+            +setDocumentStatusUrlWWW(String): void
+            +getCommitteeReportUrlXml(): String
+            +setCommitteeReportUrlXml(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +withHangarId(String): DocumentData
+            +withId(String): DocumentData
+            +withRm(String): DocumentData
+            +withLabel(String): DocumentData
+            +withDocumentType(String): DocumentData
+            +withSubType(String): DocumentData
+            +withTempLabel(String): DocumentData
+            +withOrg(String): DocumentData
+            +withNumberValue(BigInteger): DocumentData
+            +withFinalNumber(BigInteger): DocumentData
+            +withMadePublicDate(Date): DocumentData
+            +withTitle(String): DocumentData
+            +withSubTitle(String): DocumentData
+            +withDocumentUrlText(String): DocumentData
+            +withDocumentUrlHtml(String): DocumentData
+            +withDocumentStatusUrlXml(String): DocumentData
+            +withDocumentStatusUrlWWW(String): DocumentData
+            +withCommitteeReportUrlXml(String): DocumentData
+            +withStatus(String): DocumentData
+        }
+
+        enum DocumentPersonReferenceRoleType [[DocumentPersonReferenceRoleType.html]] {
+            {static} +UNDERTECKNARE
+            {static} +STALLDTILL
+            {static} +BESVARADAV
+            +value(): String
+            {static} +fromValue(String): DocumentPersonReferenceRoleType
+        }
+
+        class DocumentProposalData [[DocumentProposalData.html]] {
+            #proposalNumber: int
+            #designation: int
+            #wording: String
+            #wording2: String
+            #wording3: String
+            #wording4: String
+            #committee: String
+            #chamber: String
+            #processedIn: String
+            #decisionType: String
+            #hjid: Long
+            +getProposalNumber(): int
+            +setProposalNumber(int): void
+            +getDesignation(): int
+            +setDesignation(int): void
+            +getWording(): String
+            +setWording(String): void
+            +getWording2(): String
+            +setWording2(String): void
+            +getWording3(): String
+            +setWording3(String): void
+            +getWording4(): String
+            +setWording4(String): void
+            +getCommittee(): String
+            +setCommittee(String): void
+            +getChamber(): String
+            +setChamber(String): void
+            +getProcessedIn(): String
+            +setProcessedIn(String): void
+            +getDecisionType(): String
+            +setDecisionType(String): void
+            +withProposalNumber(int): DocumentProposalData
+            +withDesignation(int): DocumentProposalData
+            +withWording(String): DocumentProposalData
+            +withWording2(String): DocumentProposalData
+            +withWording3(String): DocumentProposalData
+            +withWording4(String): DocumentProposalData
+            +withCommittee(String): DocumentProposalData
+            +withChamber(String): DocumentProposalData
+            +withProcessedIn(String): DocumentProposalData
+            +withDecisionType(String): DocumentProposalData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentReferenceContainer [[DocumentReferenceContainer.html]] {
+            #hjid: Long
+            +withDocumentReferenceList(List<DocumentReferenceData>): DocumentReferenceContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentDetailContainer [[DocumentDetailContainer.html]] {
+            #hjid: Long
+            +withDocumentDetailList(List<DocumentDetailData>): DocumentDetailContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentAttachmentContainer [[DocumentAttachmentContainer.html]] {
+            #hjid: Long
+            +withDocumentAttachmentList(List<DocumentAttachment>): DocumentAttachmentContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum DocumentActivityStatusType [[DocumentActivityStatusType.html]] {
+            {static} +PLANERAD
+            {static} +PLANERAT
+            {static} +INTRÄFFAT
+            +value(): String
+            {static} +fromValue(String): DocumentActivityStatusType
+        }
+
+        enum ReferenceType [[ReferenceType.html]] {
+            {static} +PROTKOLLBESLUT
+            {static} +PROTOKOLLDEBATT
+            {static} +RIKSDAGSSKRIVELSE
+            {static} +BEHANDLAR
+            +value(): String
+            {static} +fromValue(String): ReferenceType
+        }
+
+        class DocumentProposalContainer [[DocumentProposalContainer.html]] {
+            #hjid: Long
+            +withProposal(DocumentProposalData): DocumentProposalContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentDetailData [[DocumentDetailData.html]] {
+            #code: String
+            #detailName: String
+            #text: String
+            #hjid: Long
+            +getCode(): String
+            +setCode(String): void
+            +getDetailName(): String
+            +setDetailName(String): void
+            +getText(): String
+            +setText(String): void
+            +withCode(String): DocumentDetailData
+            +withDetailName(String): DocumentDetailData
+            +withText(String): DocumentDetailData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum DocumentSubType [[DocumentSubType.html]] {
+            {static} +KOMMITTEMOTION
+            {static} +BET
+            {static} +UTL
+            {static} +FLERPARTIMOTION
+            {static} +ENSKILD_MOTION
+            {static} +PROP
+            {static} +SKR
+            +value(): String
+            {static} +fromValue(String): DocumentSubType
+        }
+
+        class DocumentActivityContainer [[DocumentActivityContainer.html]] {
+            #hjid: Long
+            +withDocumentActivities(List<DocumentActivityData>): DocumentActivityContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createDocumentStatusContainer(): DocumentStatusContainer
+            +createDocumentData(): DocumentData
+            +createDocumentActivityContainer(): DocumentActivityContainer
+            +createDocumentActivityData(): DocumentActivityData
+            +createDocumentProposalData(): DocumentProposalData
+            +createDocumentProposalContainer(): DocumentProposalContainer
+            +createDocumentDetailContainer(): DocumentDetailContainer
+            +createDocumentDetailData(): DocumentDetailData
+            +createDocumentAttachmentContainer(): DocumentAttachmentContainer
+            +createDocumentAttachment(): DocumentAttachment
+            +createDocumentReferenceContainer(): DocumentReferenceContainer
+            +createDocumentReferenceData(): DocumentReferenceData
+            +createDocumentPersonReferenceContainer(): DocumentPersonReferenceContainer
+            +createDocumentPersonReferenceData(): DocumentPersonReferenceData
+            +createDokumentstatus(DocumentStatusContainer): JAXBElement<DocumentStatusContainer>
+        }
+
+        class DocumentAttachment [[DocumentAttachment.html]] {
+            #fileName: String
+            #fileSize: BigInteger
+            #fileType: String
+            #fileUrl: String
+            #hjid: Long
+            +getFileName(): String
+            +setFileName(String): void
+            +getFileSize(): BigInteger
+            +setFileSize(BigInteger): void
+            +getFileType(): String
+            +setFileType(String): void
+            +getFileUrl(): String
+            +setFileUrl(String): void
+            +withFileName(String): DocumentAttachment
+            +withFileSize(BigInteger): DocumentAttachment
+            +withFileType(String): DocumentAttachment
+            +withFileUrl(String): DocumentAttachment
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentReferenceData [[DocumentReferenceData.html]] {
+            #referenceDocumentId: String
+            #detail: String
+            #hjid: Long
+            +getReferenceDocumentId(): String
+            +setReferenceDocumentId(String): void
+            +getDetail(): String
+            +setDetail(String): void
+            +withReferenceType(ReferenceType): DocumentReferenceData
+            +withReferenceDocumentId(String): DocumentReferenceData
+            +withDetail(String): DocumentReferenceData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentActivityData [[DocumentActivityData.html]] {
+            #createdDate: Date
+            #code: String
+            #activityName: String
+            #orderNumber: BigInteger
+            #process: String
+            #status: String
+            #hjid: Long
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getCode(): String
+            +setCode(String): void
+            +getActivityName(): String
+            +setActivityName(String): void
+            +getOrderNumber(): BigInteger
+            +setOrderNumber(BigInteger): void
+            +getProcess(): String
+            +setProcess(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +withCreatedDate(Date): DocumentActivityData
+            +withCode(String): DocumentActivityData
+            +withActivityName(String): DocumentActivityData
+            +withOrderNumber(BigInteger): DocumentActivityData
+            +withProcess(String): DocumentActivityData
+            +withStatus(String): DocumentActivityData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentStatusContainer [[DocumentStatusContainer.html]] {
+            #documentCategory: String
+            #hjid: Long
+            +getDocumentCategory(): String
+            +setDocumentCategory(String): void
+            +withDocument(DocumentData): DocumentStatusContainer
+            +withDocumentProposal(DocumentProposalContainer): DocumentStatusContainer
+            +withDocumentActivityContainer(DocumentActivityContainer): DocumentStatusContainer
+            +withDocumentDetailContainer(DocumentDetailContainer): DocumentStatusContainer
+            +withDocumentAttachmentContainer(DocumentAttachmentContainer): DocumentStatusContainer
+            +withDocumentReferenceContainer(DocumentReferenceContainer): DocumentStatusContainer
+            +withDocumentPersonReferenceContainer(DocumentPersonReferenceContainer): DocumentStatusContainer
+            +withDocumentCategory(String): DocumentStatusContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentPersonReferenceData [[DocumentPersonReferenceData.html]] {
+            #personReferenceId: String
+            #referenceName: String
+            #partyShortCode: String
+            #orderNumber: int
+            #hjid: Long
+            +getPersonReferenceId(): String
+            +setPersonReferenceId(String): void
+            +getReferenceName(): String
+            +setReferenceName(String): void
+            +getPartyShortCode(): String
+            +setPartyShortCode(String): void
+            +getOrderNumber(): int
+            +setOrderNumber(int): void
+            +withPersonReferenceId(String): DocumentPersonReferenceData
+            +withReferenceName(String): DocumentPersonReferenceData
+            +withPartyShortCode(String): DocumentPersonReferenceData
+            +withOrderNumber(int): DocumentPersonReferenceData
+            +withRoleDescription(DocumentPersonReferenceRoleType): DocumentPersonReferenceData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentPersonReferenceContainer [[DocumentPersonReferenceContainer.html]] {
+            #hjid: Long
+            +withDocumentPersonReferenceList(List<DocumentPersonReferenceData>): DocumentPersonReferenceContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum DocumentType [[DocumentType.html]] {
+            {static} +BET
+            {static} +BILAGA
+            {static} +EUNBIL
+            {static} +DS
+            {static} +DIR
+            {static} +KF_LISTA
+            {static} +EUNPROT
+            {static} +EUNDOK
+            {static} +FPM
+            {static} +FRSRDG
+            {static} +F_LISTA
+            {static} +RIR
+            {static} +IP
+            {static} +KOMM
+            {static} +MINRÅD
+            {static} +MOT
+            {static} +PROP
+            {static} +PROT
+            {static} +RFR
+            {static} +RSKR
+            {static} +FR
+            {static} +SKR
+            {static} +SOU
+            {static} +FRS
+            {static} +SFS
+            {static} +T_LISTA
+            {static} +UTSKOTTSDOKUMENT
+            {static} +YTTR
+            {static} +PLAN
+            {static} +UTTAG
+            {static} +XXUTSKOTTSDOKUMENT
+            +value(): String
+            {static} +fromValue(String): DocumentType
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentData
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentProposalData
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentReferenceContainer
+        DocumentReferenceContainer --> "*" DocumentReferenceData: documentReferenceList
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentDetailContainer
+        DocumentDetailContainer --> "*" DocumentDetailData: documentDetailList
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentAttachmentContainer
+        DocumentAttachmentContainer --> "*" DocumentAttachment: documentAttachmentList
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentProposalContainer
+        DocumentProposalContainer --> DocumentProposalData: proposal
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentDetailData
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentActivityContainer
+        DocumentActivityContainer --> "*" DocumentActivityData: documentActivities
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentAttachment
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentReferenceData
+        DocumentReferenceData --> ReferenceType: referenceType
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentActivityData
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentStatusContainer
+        DocumentStatusContainer --> DocumentData: document
+        DocumentStatusContainer --> DocumentProposalContainer: documentProposal
+        DocumentStatusContainer --> DocumentActivityContainer: documentActivityContainer
+        DocumentStatusContainer --> DocumentDetailContainer: documentDetailContainer
+        DocumentStatusContainer --> DocumentAttachmentContainer: documentAttachmentContainer
+        DocumentStatusContainer --> DocumentReferenceContainer: documentReferenceContainer
+        DocumentStatusContainer --> DocumentPersonReferenceContainer: documentPersonReferenceContainer
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentPersonReferenceData
+        DocumentPersonReferenceData --> DocumentPersonReferenceRoleType: roleDescription
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentPersonReferenceContainer
+        DocumentPersonReferenceContainer --> "*" DocumentPersonReferenceData: documentPersonReferenceList
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

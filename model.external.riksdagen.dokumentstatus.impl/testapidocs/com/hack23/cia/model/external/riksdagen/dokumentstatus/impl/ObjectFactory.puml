@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ObjectFactory\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.ObjectFactory [[ObjectFactory.html]] {
+        +createDocumentStatusContainer(): DocumentStatusContainer
+        +createDocumentData(): DocumentData
+        +createDocumentActivityContainer(): DocumentActivityContainer
+        +createDocumentActivityData(): DocumentActivityData
+        +createDocumentProposalData(): DocumentProposalData
+        +createDocumentProposalContainer(): DocumentProposalContainer
+        +createDocumentDetailContainer(): DocumentDetailContainer
+        +createDocumentDetailData(): DocumentDetailData
+        +createDocumentAttachmentContainer(): DocumentAttachmentContainer
+        +createDocumentAttachment(): DocumentAttachment
+        +createDocumentReferenceContainer(): DocumentReferenceContainer
+        +createDocumentReferenceData(): DocumentReferenceData
+        +createDocumentPersonReferenceContainer(): DocumentPersonReferenceContainer
+        +createDocumentPersonReferenceData(): DocumentPersonReferenceData
+        +createDokumentstatus(DocumentStatusContainer): JAXBElement<DocumentStatusContainer>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

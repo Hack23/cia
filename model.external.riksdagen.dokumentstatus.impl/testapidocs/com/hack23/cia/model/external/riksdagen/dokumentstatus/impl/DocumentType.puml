@@ -1,0 +1,43 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>DocumentType\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType [[DocumentType.html]] {
+        {static} +BET
+        {static} +BILAGA
+        {static} +EUNBIL
+        {static} +DS
+        {static} +DIR
+        {static} +KF_LISTA
+        {static} +EUNPROT
+        {static} +EUNDOK
+        {static} +FPM
+        {static} +FRSRDG
+        {static} +F_LISTA
+        {static} +RIR
+        {static} +IP
+        {static} +KOMM
+        {static} +MINRÅD
+        {static} +MOT
+        {static} +PROP
+        {static} +PROT
+        {static} +RFR
+        {static} +RSKR
+        {static} +FR
+        {static} +SKR
+        {static} +SOU
+        {static} +FRS
+        {static} +SFS
+        {static} +T_LISTA
+        {static} +UTSKOTTSDOKUMENT
+        {static} +YTTR
+        {static} +PLAN
+        {static} +UTTAG
+        {static} +XXUTSKOTTSDOKUMENT
+        +value(): String
+        {static} +fromValue(String): DocumentType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

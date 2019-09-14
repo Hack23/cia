@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>DocumentPersonReferenceRoleType\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceRoleType [[DocumentPersonReferenceRoleType.html]] {
+        {static} +UNDERTECKNARE
+        {static} +STALLDTILL
+        {static} +BESVARADAV
+        +value(): String
+        {static} +fromValue(String): DocumentPersonReferenceRoleType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

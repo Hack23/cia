@@ -1,0 +1,49 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentStatusContainer\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer [[DocumentStatusContainer.html]] {
+        #document: DocumentData
+        #documentProposal: DocumentProposalContainer
+        #documentActivityContainer: DocumentActivityContainer
+        #documentDetailContainer: DocumentDetailContainer
+        #documentAttachmentContainer: DocumentAttachmentContainer
+        #documentReferenceContainer: DocumentReferenceContainer
+        #documentPersonReferenceContainer: DocumentPersonReferenceContainer
+        #documentCategory: String
+        #hjid: Long
+        +getDocument(): DocumentData
+        +setDocument(DocumentData): void
+        +getDocumentProposal(): DocumentProposalContainer
+        +setDocumentProposal(DocumentProposalContainer): void
+        +getDocumentActivityContainer(): DocumentActivityContainer
+        +setDocumentActivityContainer(DocumentActivityContainer): void
+        +getDocumentDetailContainer(): DocumentDetailContainer
+        +setDocumentDetailContainer(DocumentDetailContainer): void
+        +getDocumentAttachmentContainer(): DocumentAttachmentContainer
+        +setDocumentAttachmentContainer(DocumentAttachmentContainer): void
+        +getDocumentReferenceContainer(): DocumentReferenceContainer
+        +setDocumentReferenceContainer(DocumentReferenceContainer): void
+        +getDocumentPersonReferenceContainer(): DocumentPersonReferenceContainer
+        +setDocumentPersonReferenceContainer(DocumentPersonReferenceContainer): void
+        +getDocumentCategory(): String
+        +setDocumentCategory(String): void
+        +withDocument(DocumentData): DocumentStatusContainer
+        +withDocumentProposal(DocumentProposalContainer): DocumentStatusContainer
+        +withDocumentActivityContainer(DocumentActivityContainer): DocumentStatusContainer
+        +withDocumentDetailContainer(DocumentDetailContainer): DocumentStatusContainer
+        +withDocumentAttachmentContainer(DocumentAttachmentContainer): DocumentStatusContainer
+        +withDocumentReferenceContainer(DocumentReferenceContainer): DocumentStatusContainer
+        +withDocumentPersonReferenceContainer(DocumentPersonReferenceContainer): DocumentStatusContainer
+        +withDocumentCategory(String): DocumentStatusContainer
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

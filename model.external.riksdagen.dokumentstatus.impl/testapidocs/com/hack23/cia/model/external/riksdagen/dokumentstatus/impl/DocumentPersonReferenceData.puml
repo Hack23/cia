@@ -1,0 +1,37 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentPersonReferenceData\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData [[DocumentPersonReferenceData.html]] {
+        #personReferenceId: String
+        #referenceName: String
+        #partyShortCode: String
+        #orderNumber: int
+        #roleDescription: DocumentPersonReferenceRoleType
+        #hjid: Long
+        +getPersonReferenceId(): String
+        +setPersonReferenceId(String): void
+        +getReferenceName(): String
+        +setReferenceName(String): void
+        +getPartyShortCode(): String
+        +setPartyShortCode(String): void
+        +getOrderNumber(): int
+        +setOrderNumber(int): void
+        +getRoleDescription(): DocumentPersonReferenceRoleType
+        +setRoleDescription(DocumentPersonReferenceRoleType): void
+        +withPersonReferenceId(String): DocumentPersonReferenceData
+        +withReferenceName(String): DocumentPersonReferenceData
+        +withPartyShortCode(String): DocumentPersonReferenceData
+        +withOrderNumber(int): DocumentPersonReferenceData
+        +withRoleDescription(DocumentPersonReferenceRoleType): DocumentPersonReferenceData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

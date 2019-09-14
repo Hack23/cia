@@ -1,0 +1,57 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentProposalData\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" as com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData [[DocumentProposalData.html]] {
+        #proposalNumber: int
+        #designation: int
+        #wording: String
+        #wording2: String
+        #wording3: String
+        #wording4: String
+        #committee: String
+        #chamber: String
+        #processedIn: String
+        #decisionType: String
+        #hjid: Long
+        +getProposalNumber(): int
+        +setProposalNumber(int): void
+        +getDesignation(): int
+        +setDesignation(int): void
+        +getWording(): String
+        +setWording(String): void
+        +getWording2(): String
+        +setWording2(String): void
+        +getWording3(): String
+        +setWording3(String): void
+        +getWording4(): String
+        +setWording4(String): void
+        +getCommittee(): String
+        +setCommittee(String): void
+        +getChamber(): String
+        +setChamber(String): void
+        +getProcessedIn(): String
+        +setProcessedIn(String): void
+        +getDecisionType(): String
+        +setDecisionType(String): void
+        +withProposalNumber(int): DocumentProposalData
+        +withDesignation(int): DocumentProposalData
+        +withWording(String): DocumentProposalData
+        +withWording2(String): DocumentProposalData
+        +withWording3(String): DocumentProposalData
+        +withWording4(String): DocumentProposalData
+        +withCommittee(String): DocumentProposalData
+        +withChamber(String): DocumentProposalData
+        +withProcessedIn(String): DocumentProposalData
+        +withDecisionType(String): DocumentProposalData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
