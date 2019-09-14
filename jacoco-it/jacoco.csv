@@ -316,4 +316,4 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pagecli
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,StartAgentClickListener,35,0,0,0,11,0,3,0,3,0
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,RuleViolationPageItemRendererClickListener,0,44,0,4,0,13,0,7,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,RefreshDataViewsClickListener,18,0,0,0,6,0,2,0,2,0
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,ChangePasswordClickListener,0,34,0,2,0,10,0,4,0,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,ChangePasswordClickListener,0,34,1,1,0,10,1,3,0,3
