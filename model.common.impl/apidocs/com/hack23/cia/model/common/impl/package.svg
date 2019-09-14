@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="247px" preserveAspectRatio="none" style="width:400px;height:247px;" version="1.1" viewBox="0 0 400 247" width="400px" zoomAndPan="magnify"><defs><filter height="300%" id="fnb9xbu2bu1qt" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--cluster com.hack23.cia.model.common.impl--><polygon fill="#FFFFFF" filter="url(#fnb9xbu2bu1qt)" points="14,124,304,124,311,146.2969,314,146.2969,314,207,14,207,14,124" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="14" x2="311" y1="146.2969" y2="146.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="284" x="18" y="138.9951">com.hack23.cia.model.common.impl</text><!--cluster com.hack23.cia.model.common.api--><polygon fill="#FFFFFF" filter="url(#fnb9xbu2bu1qt)" points="87,16,368,16,375,38.2969,378,38.2969,378,99,87,99,87,16" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="87" x2="375" y1="38.2969" y2="38.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="275" x="91" y="30.9951">com.hack23.cia.model.common.api</text><!--class com.hack23.cia.model.common.impl.AbstractModelObjectImpl--><a href="AbstractModelObjectImpl.html" target="_top" xlink:actuate="onRequest" xlink:show="new" xlink:title="AbstractModelObjectImpl.html" xlink:type="simple"><rect fill="#FEFECE" filter="url(#fnb9xbu2bu1qt)" height="48" id="com.hack23.cia.model.common.impl.AbstractModelObjectImpl" style="stroke: #A80036; stroke-width: 1.5;" width="186" x="71" y="151"/><ellipse cx="86" cy="167" fill="#A9DCDF" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M86.1094,162.3438 L84.9531,167.4219 L87.2813,167.4219 L86.1094,162.3438 Z M84.625,160.1094 L87.6094,160.1094 L90.9688,172.5 L88.5156,172.5 L87.75,169.4375 L84.4688,169.4375 L83.7188,172.5 L81.2813,172.5 L84.625,160.1094 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="154" x="100" y="171.1543">AbstractModelObjectImpl</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="72" x2="256" y1="183" y2="183"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="72" x2="256" y1="191" y2="191"/></a><!--class com.hack23.cia.model.common.api.ModelObject--><rect fill="#FEFECE" filter="url(#fnb9xbu2bu1qt)" height="48" id="com.hack23.cia.model.common.api.ModelObject" style="stroke: #A80036; stroke-width: 1.5;" width="108" x="110" y="43"/><ellipse cx="125" cy="59" fill="#B4A7E5" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M120.9219,54.7656 L120.9219,52.6094 L128.3125,52.6094 L128.3125,54.7656 L125.8438,54.7656 L125.8438,62.8438 L128.3125,62.8438 L128.3125,65 L120.9219,65 L120.9219,62.8438 L123.3906,62.8438 L123.3906,54.7656 L120.9219,54.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="76" x="139" y="63.1543">ModelObject</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="111" x2="217" y1="75" y2="75"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="111" x2="217" y1="83" y2="83"/><!--link com.hack23.cia.model.common.api.ModelObject to com.hack23.cia.model.common.impl.AbstractModelObjectImpl--><path d="M164,111.2911 C164,124.8171 164,139.1835 164,150.8436 " fill="none" id="com.hack23.cia.model.common.api.ModelObject-com.hack23.cia.model.common.impl.AbstractModelObjectImpl" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="157.0001,111.2373,164,91.2373,171.0001,111.2373,157.0001,111.2373" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="109" y="234.2822">UMLDoclet 2.0.5, PlantUML 1.2019.08</text><!--
+@startuml
+    namespace com.hack23.cia.model.common.impl {
+
+        abstract class AbstractModelObjectImpl [[AbstractModelObjectImpl.html]] {
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. AbstractModelObjectImpl
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
+
+PlantUML version 1.2019.08(Sat Jul 13 21:25:14 CEST 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.4+11-post-Ubuntu-1ubuntu219.04
+Operating System: Linux
+OS Version: 5.0.0-27-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

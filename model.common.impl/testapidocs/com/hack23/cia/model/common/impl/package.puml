@@ -1,0 +1,15 @@
+@startuml
+    namespace com.hack23.cia.model.common.impl {
+
+        abstract class AbstractModelObjectImpl [[AbstractModelObjectImpl.html]] {
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. AbstractModelObjectImpl
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

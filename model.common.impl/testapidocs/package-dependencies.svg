@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="148px" preserveAspectRatio="none" style="width:637px;height:148px;" version="1.1" viewBox="0 0 637 148" width="637px" zoomAndPan="magnify"><defs><filter height="300%" id="f1pxyp4w1wekjr" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class com.hack23.cia.model.common.impl--><a href="com/hack23/cia/model/common/impl/package-summary.html" target="_top" xlink:actuate="onRequest" xlink:show="new" xlink:title="com/hack23/cia/model/common/impl/package-summary.html" xlink:type="simple"><rect fill="#FEFECE" filter="url(#f1pxyp4w1wekjr)" height="23.9688" id="com.hack23.cia.model.common.impl" style="stroke: #A80036; stroke-width: 1.5;" width="232" x="70" y="8"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="226" x="73" y="24.1387">com.hack23.cia.model.common.impl</text></a><!--class com.hack23.cia.model.common.api--><rect fill="#FEFECE" filter="url(#f1pxyp4w1wekjr)" height="23.9688" id="com.hack23.cia.model.common.api" style="stroke: #A80036; stroke-width: 1.5;" width="226" x="6" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="220" x="9" y="108.1387">com.hack23.cia.model.common.api</text><!--class com.hack23.cia.testfoundation--><rect fill="#FEFECE" filter="url(#f1pxyp4w1wekjr)" height="23.9688" id="com.hack23.cia.testfoundation" style="stroke: #A80036; stroke-width: 1.5;" width="201" x="267.5" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="195" x="270.5" y="108.1387">com.hack23.cia.testfoundation</text><!--class com.hack23.cia.model.common.impl.xml--><a href="com/hack23/cia/model/common/impl/xml/package-summary.html" target="_top" xlink:actuate="onRequest" xlink:show="new" xlink:title="com/hack23/cia/model/common/impl/xml/package-summary.html" xlink:type="simple"><rect fill="#FEFECE" filter="url(#f1pxyp4w1wekjr)" height="23.9688" id="com.hack23.cia.model.common.impl.xml" style="stroke: #A80036; stroke-width: 1.5;" width="256" x="370" y="8"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="250" x="373" y="24.1387">com.hack23.cia.model.common.impl.xml</text></a><!--class org.slf4j--><rect fill="#FEFECE" filter="url(#f1pxyp4w1wekjr)" height="23.9688" id="org.slf4j" style="stroke: #A80036; stroke-width: 1.5;" width="56" x="504" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="507" y="108.1387">org.slf4j</text><!--link com.hack23.cia.model.common.impl to com.hack23.cia.model.common.api--><path d="M176.4005,32.0352 C164.6589,46.756 144.7436,71.7245 131.7318,88.0377 " fill="none" id="com.hack23.cia.model.common.impl-com.hack23.cia.model.common.api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="128.5817,91.9872,137.3209,87.4456,131.6995,88.0784,131.0667,82.457,128.5817,91.9872" style="stroke: #A80036; stroke-width: 1.0;"/><!--link com.hack23.cia.model.common.impl to com.hack23.cia.testfoundation--><path d="M212.0762,32.0352 C245.1877,47.3174 302.2282,73.6438 337.3747,89.8653 " fill="none" id="com.hack23.cia.model.common.impl-com.hack23.cia.testfoundation" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="341.9722,91.9872,335.4769,84.5837,337.4324,89.8918,332.1243,91.8473,341.9722,91.9872" style="stroke: #A80036; stroke-width: 1.0;"/><!--link com.hack23.cia.model.common.impl.xml to org.slf4j--><path d="M502.8714,32.0352 C508.7288,46.5065 518.5947,70.881 525.2004,87.2009 " fill="none" id="com.hack23.cia.model.common.impl.xml-org.slf4j" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="527.1377,91.9872,527.4687,82.1439,525.2617,87.3525,520.0531,85.1455,527.1377,91.9872" style="stroke: #A80036; stroke-width: 1.0;"/><!--link com.hack23.cia.model.common.impl.xml to com.hack23.cia.testfoundation--><path d="M479.3742,32.0352 C456.0127,47.1303 415.9751,73.0007 390.8044,89.2649 " fill="none" id="com.hack23.cia.model.common.impl.xml-com.hack23.cia.testfoundation" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="386.5913,91.9872,396.3214,90.4624,390.7909,89.2736,391.9797,83.7431,386.5913,91.9872" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="229" y="135.2822">UMLDoclet 2.0.5, PlantUML 1.2019.08</text><!--
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.model.common.impl - -> com.hack23.cia.model.common.api
+    com.hack23.cia.model.common.impl - -> com.hack23.cia.testfoundation
+    com.hack23.cia.model.common.impl.xml - -> org.slf4j
+    com.hack23.cia.model.common.impl.xml - -> com.hack23.cia.testfoundation
+
+    class "com.hack23.cia.model.common.impl" [[com/hack23/cia/model/common/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.common.impl.xml" [[com/hack23/cia/model/common/impl/xml/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
+
+PlantUML version 1.2019.08(Sat Jul 13 21:25:14 CEST 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.4+11-post-Ubuntu-1ubuntu219.04
+Operating System: Linux
+OS Version: 5.0.0-27-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

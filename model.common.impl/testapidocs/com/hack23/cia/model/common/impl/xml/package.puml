@@ -1,0 +1,32 @@
+@startuml
+    namespace com.hack23.cia.model.common.impl.xml {
+
+        class XmlDateTimeTypeAdapter [[XmlDateTimeTypeAdapter.html]] {
+            +unmarshal(String): Date
+            +marshal(Date): String
+        }
+
+        class XmlTimeTypeAdapter [[XmlTimeTypeAdapter.html]] {
+            +unmarshal(String): Date
+            +marshal(Date): String
+        }
+
+        class XmlDateTypeAdapter [[XmlDateTypeAdapter.html]] {
+            +unmarshal(String): Date
+            +marshal(Date): String
+        }
+
+        javax.xml.bind.annotation.adapters.XmlAdapter <|-- XmlDateTimeTypeAdapter
+        javax.xml.bind.annotation.adapters.XmlAdapter <|-- XmlTimeTypeAdapter
+        javax.xml.bind.annotation.adapters.XmlAdapter <|-- XmlDateTypeAdapter
+    }
+
+    namespace javax.xml.bind.annotation.adapters {
+        abstract class XmlAdapter<ValueType, BoundType> {
+            {abstract} +unmarshal(ValueType): BoundType
+            {abstract} +marshal(BoundType): ValueType
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
