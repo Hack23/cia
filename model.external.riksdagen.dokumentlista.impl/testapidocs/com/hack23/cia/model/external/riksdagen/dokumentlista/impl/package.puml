@@ -1,0 +1,265 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.dokumentlista.impl {
+
+        enum DocumentType [[DocumentType.html]] {
+            {static} +BET
+            {static} +BILAGA
+            {static} +EUNBIL
+            {static} +DS
+            {static} +DIR
+            {static} +KF_LISTA
+            {static} +EUNPROT
+            {static} +EUNDOK
+            {static} +FPM
+            {static} +FRSRDG
+            {static} +F_LISTA
+            {static} +RIR
+            {static} +IP
+            {static} +KOMM
+            {static} +MINRÅD
+            {static} +MOT
+            {static} +PROP
+            {static} +PROT
+            {static} +RFR
+            {static} +RSKR
+            {static} +FR
+            {static} +SKR
+            {static} +SOU
+            {static} +FRS
+            {static} +SFS
+            {static} +T_LISTA
+            {static} +UTSKOTTSDOKUMENT
+            {static} +YTTR
+            {static} +PLAN
+            {static} +UTTAG
+            {static} +XXUTSKOTTSDOKUMENT
+            +value(): String
+            {static} +fromValue(String): DocumentType
+        }
+
+        class DocumentContainerElement [[DocumentContainerElement.html]] {
+            #datum: String
+            #debug: String
+            #nextPage: String
+            #page: BigInteger
+            #totalPages: BigInteger
+            #created: String
+            #hitsFrom: BigInteger
+            #hitsTo: BigInteger
+            #hits: BigInteger
+            #documentVersion: String
+            #warning: String
+            #hjid: Long
+            +getDatum(): String
+            +setDatum(String): void
+            +getDebug(): String
+            +setDebug(String): void
+            +getNextPage(): String
+            +setNextPage(String): void
+            +getPage(): BigInteger
+            +setPage(BigInteger): void
+            +getTotalPages(): BigInteger
+            +setTotalPages(BigInteger): void
+            +getCreated(): String
+            +setCreated(String): void
+            +getHitsFrom(): BigInteger
+            +setHitsFrom(BigInteger): void
+            +getHitsTo(): BigInteger
+            +setHitsTo(BigInteger): void
+            +getHits(): BigInteger
+            +setHits(BigInteger): void
+            +getDocumentVersion(): String
+            +setDocumentVersion(String): void
+            +getWarning(): String
+            +setWarning(String): void
+            +withDokument(List<DocumentElement>): DocumentContainerElement
+            +withDatum(String): DocumentContainerElement
+            +withDebug(String): DocumentContainerElement
+            +withNextPage(String): DocumentContainerElement
+            +withPage(BigInteger): DocumentContainerElement
+            +withTotalPages(BigInteger): DocumentContainerElement
+            +withCreated(String): DocumentContainerElement
+            +withHitsFrom(BigInteger): DocumentContainerElement
+            +withHitsTo(BigInteger): DocumentContainerElement
+            +withHits(BigInteger): DocumentContainerElement
+            +withDocumentVersion(String): DocumentContainerElement
+            +withWarning(String): DocumentContainerElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class DocumentElement [[DocumentElement.html]] {
+            #hit: BigInteger
+            #id: String
+            #domainOrg: String
+            #documentName: String
+            #debateName: String
+            #noteTitle: String
+            #note: String
+            #summary: String
+            #databaseSource: String
+            #origin: String
+            #lang: String
+            #rm: String
+            #relatedId: String
+            #documentType: String
+            #docType: String
+            #subType: String
+            #status: String
+            #label: String
+            #tempLabel: String
+            #org: String
+            #numberValue: BigInteger
+            #title: String
+            #subTitle: String
+            #createdDate: String
+            #madePublicDate: String
+            #systemDate: String
+            #kallId: String
+            #documentFormat: String
+            #documentUrlText: String
+            #documentUrlHtml: String
+            #documentStatusUrlXml: String
+            #committeeReportUrlXml: String
+            +getHit(): BigInteger
+            +setHit(BigInteger): void
+            +getId(): String
+            +setId(String): void
+            +getDomainOrg(): String
+            +setDomainOrg(String): void
+            +getDocumentName(): String
+            +setDocumentName(String): void
+            +getDebateName(): String
+            +setDebateName(String): void
+            +getNoteTitle(): String
+            +setNoteTitle(String): void
+            +getNote(): String
+            +setNote(String): void
+            +getSummary(): String
+            +setSummary(String): void
+            +getDatabaseSource(): String
+            +setDatabaseSource(String): void
+            +getOrigin(): String
+            +setOrigin(String): void
+            +getLang(): String
+            +setLang(String): void
+            +getRm(): String
+            +setRm(String): void
+            +getRelatedId(): String
+            +setRelatedId(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +getDocType(): String
+            +setDocType(String): void
+            +getSubType(): String
+            +setSubType(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getTempLabel(): String
+            +setTempLabel(String): void
+            +getOrg(): String
+            +setOrg(String): void
+            +getNumberValue(): BigInteger
+            +setNumberValue(BigInteger): void
+            +getTitle(): String
+            +setTitle(String): void
+            +getSubTitle(): String
+            +setSubTitle(String): void
+            +getCreatedDate(): String
+            +setCreatedDate(String): void
+            +getMadePublicDate(): String
+            +setMadePublicDate(String): void
+            +getSystemDate(): String
+            +setSystemDate(String): void
+            +getKallId(): String
+            +setKallId(String): void
+            +getDocumentFormat(): String
+            +setDocumentFormat(String): void
+            +getDocumentUrlText(): String
+            +setDocumentUrlText(String): void
+            +getDocumentUrlHtml(): String
+            +setDocumentUrlHtml(String): void
+            +getDocumentStatusUrlXml(): String
+            +setDocumentStatusUrlXml(String): void
+            +getCommitteeReportUrlXml(): String
+            +setCommitteeReportUrlXml(String): void
+            +withHit(BigInteger): DocumentElement
+            +withId(String): DocumentElement
+            +withDomainOrg(String): DocumentElement
+            +withDocumentName(String): DocumentElement
+            +withDebateName(String): DocumentElement
+            +withNoteTitle(String): DocumentElement
+            +withNote(String): DocumentElement
+            +withSummary(String): DocumentElement
+            +withDatabaseSource(String): DocumentElement
+            +withOrigin(String): DocumentElement
+            +withLang(String): DocumentElement
+            +withRm(String): DocumentElement
+            +withRelatedId(String): DocumentElement
+            +withDocumentType(String): DocumentElement
+            +withDocType(String): DocumentElement
+            +withSubType(String): DocumentElement
+            +withStatus(String): DocumentElement
+            +withLabel(String): DocumentElement
+            +withTempLabel(String): DocumentElement
+            +withOrg(String): DocumentElement
+            +withNumberValue(BigInteger): DocumentElement
+            +withTitle(String): DocumentElement
+            +withSubTitle(String): DocumentElement
+            +withCreatedDate(String): DocumentElement
+            +withMadePublicDate(String): DocumentElement
+            +withSystemDate(String): DocumentElement
+            +withKallId(String): DocumentElement
+            +withDocumentFormat(String): DocumentElement
+            +withDocumentUrlText(String): DocumentElement
+            +withDocumentUrlHtml(String): DocumentElement
+            +withDocumentStatusUrlXml(String): DocumentElement
+            +withCommitteeReportUrlXml(String): DocumentElement
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createDocumentContainerElement(): DocumentContainerElement
+            +createDocumentElement(): DocumentElement
+            +createDokumentlista(DocumentContainerElement): JAXBElement<DocumentContainerElement>
+        }
+
+        enum DocumentSubType [[DocumentSubType.html]] {
+            {static} +KOMMITTEMOTION
+            {static} +BET
+            {static} +UTL
+            {static} +FLERPARTIMOTION
+            {static} +ENSKILD_MOTION
+            {static} +PROP
+            {static} +SKR
+            +value(): String
+            {static} +fromValue(String): DocumentSubType
+        }
+
+        class DefaultStringIdentifier [[DefaultStringIdentifier.html]] {
+            +fromDocumentIdentifier(String, IdentifierBridgeFromDocumentIdentifierContext): String
+            +toDocumentIdentifier(String, IdentifierBridgeToDocumentIdentifierContext): String
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentContainerElement
+        DocumentContainerElement --> "*" DocumentElement: dokument
+        com.hack23.cia.model.common.api.ModelObject <|.. DocumentElement
+        org.hibernate.search.mapper.pojo.bridge.IdentifierBridge <|.. DefaultStringIdentifier
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    namespace org.hibernate.search.mapper.pojo.bridge {
+        interface IdentifierBridge<​I> {
+            {abstract} +toDocumentIdentifier(I, IdentifierBridgeToDocumentIdentifierContext): String
+            {abstract} +fromDocumentIdentifier(String, IdentifierBridgeFromDocumentIdentifierContext): I
+            +isCompatibleWith(IdentifierBridge<?>): boolean
+            +close(): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

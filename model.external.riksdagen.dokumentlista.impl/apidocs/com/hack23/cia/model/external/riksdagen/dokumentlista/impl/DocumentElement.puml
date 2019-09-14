@@ -1,0 +1,142 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentElement\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentlista.impl" as com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement [[DocumentElement.html]] {
+        #hit: BigInteger
+        #id: String
+        #domainOrg: String
+        #documentName: String
+        #debateName: String
+        #noteTitle: String
+        #note: String
+        #summary: String
+        #databaseSource: String
+        #origin: String
+        #lang: String
+        #rm: String
+        #relatedId: String
+        #documentType: String
+        #docType: String
+        #subType: String
+        #status: String
+        #label: String
+        #tempLabel: String
+        #org: String
+        #numberValue: BigInteger
+        #title: String
+        #subTitle: String
+        #createdDate: String
+        #madePublicDate: String
+        #systemDate: String
+        #kallId: String
+        #documentFormat: String
+        #documentUrlText: String
+        #documentUrlHtml: String
+        #documentStatusUrlXml: String
+        #committeeReportUrlXml: String
+        +getHit(): BigInteger
+        +setHit(BigInteger): void
+        +getId(): String
+        +setId(String): void
+        +getDomainOrg(): String
+        +setDomainOrg(String): void
+        +getDocumentName(): String
+        +setDocumentName(String): void
+        +getDebateName(): String
+        +setDebateName(String): void
+        +getNoteTitle(): String
+        +setNoteTitle(String): void
+        +getNote(): String
+        +setNote(String): void
+        +getSummary(): String
+        +setSummary(String): void
+        +getDatabaseSource(): String
+        +setDatabaseSource(String): void
+        +getOrigin(): String
+        +setOrigin(String): void
+        +getLang(): String
+        +setLang(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getRelatedId(): String
+        +setRelatedId(String): void
+        +getDocumentType(): String
+        +setDocumentType(String): void
+        +getDocType(): String
+        +setDocType(String): void
+        +getSubType(): String
+        +setSubType(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getTempLabel(): String
+        +setTempLabel(String): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getNumberValue(): BigInteger
+        +setNumberValue(BigInteger): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getSubTitle(): String
+        +setSubTitle(String): void
+        +getCreatedDate(): String
+        +setCreatedDate(String): void
+        +getMadePublicDate(): String
+        +setMadePublicDate(String): void
+        +getSystemDate(): String
+        +setSystemDate(String): void
+        +getKallId(): String
+        +setKallId(String): void
+        +getDocumentFormat(): String
+        +setDocumentFormat(String): void
+        +getDocumentUrlText(): String
+        +setDocumentUrlText(String): void
+        +getDocumentUrlHtml(): String
+        +setDocumentUrlHtml(String): void
+        +getDocumentStatusUrlXml(): String
+        +setDocumentStatusUrlXml(String): void
+        +getCommitteeReportUrlXml(): String
+        +setCommitteeReportUrlXml(String): void
+        +withHit(BigInteger): DocumentElement
+        +withId(String): DocumentElement
+        +withDomainOrg(String): DocumentElement
+        +withDocumentName(String): DocumentElement
+        +withDebateName(String): DocumentElement
+        +withNoteTitle(String): DocumentElement
+        +withNote(String): DocumentElement
+        +withSummary(String): DocumentElement
+        +withDatabaseSource(String): DocumentElement
+        +withOrigin(String): DocumentElement
+        +withLang(String): DocumentElement
+        +withRm(String): DocumentElement
+        +withRelatedId(String): DocumentElement
+        +withDocumentType(String): DocumentElement
+        +withDocType(String): DocumentElement
+        +withSubType(String): DocumentElement
+        +withStatus(String): DocumentElement
+        +withLabel(String): DocumentElement
+        +withTempLabel(String): DocumentElement
+        +withOrg(String): DocumentElement
+        +withNumberValue(BigInteger): DocumentElement
+        +withTitle(String): DocumentElement
+        +withSubTitle(String): DocumentElement
+        +withCreatedDate(String): DocumentElement
+        +withMadePublicDate(String): DocumentElement
+        +withSystemDate(String): DocumentElement
+        +withKallId(String): DocumentElement
+        +withDocumentFormat(String): DocumentElement
+        +withDocumentUrlText(String): DocumentElement
+        +withDocumentUrlHtml(String): DocumentElement
+        +withDocumentStatusUrlXml(String): DocumentElement
+        +withCommitteeReportUrlXml(String): DocumentElement
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>DocumentSubType\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentlista.impl" as com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentSubType [[DocumentSubType.html]] {
+        {static} +KOMMITTEMOTION
+        {static} +BET
+        {static} +UTL
+        {static} +FLERPARTIMOTION
+        {static} +ENSKILD_MOTION
+        {static} +PROP
+        {static} +SKR
+        +value(): String
+        {static} +fromValue(String): DocumentSubType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

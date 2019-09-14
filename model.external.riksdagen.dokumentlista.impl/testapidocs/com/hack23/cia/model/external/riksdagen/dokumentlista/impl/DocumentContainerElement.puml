@@ -1,0 +1,65 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentContainerElement\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentlista.impl" as com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentContainerElement [[DocumentContainerElement.html]] {
+        #dokument: List<DocumentElement>
+        #datum: String
+        #debug: String
+        #nextPage: String
+        #page: BigInteger
+        #totalPages: BigInteger
+        #created: String
+        #hitsFrom: BigInteger
+        #hitsTo: BigInteger
+        #hits: BigInteger
+        #documentVersion: String
+        #warning: String
+        #hjid: Long
+        +getDokument(): List<DocumentElement>
+        +setDokument(List<DocumentElement>): void
+        +getDatum(): String
+        +setDatum(String): void
+        +getDebug(): String
+        +setDebug(String): void
+        +getNextPage(): String
+        +setNextPage(String): void
+        +getPage(): BigInteger
+        +setPage(BigInteger): void
+        +getTotalPages(): BigInteger
+        +setTotalPages(BigInteger): void
+        +getCreated(): String
+        +setCreated(String): void
+        +getHitsFrom(): BigInteger
+        +setHitsFrom(BigInteger): void
+        +getHitsTo(): BigInteger
+        +setHitsTo(BigInteger): void
+        +getHits(): BigInteger
+        +setHits(BigInteger): void
+        +getDocumentVersion(): String
+        +setDocumentVersion(String): void
+        +getWarning(): String
+        +setWarning(String): void
+        +withDokument(List<DocumentElement>): DocumentContainerElement
+        +withDatum(String): DocumentContainerElement
+        +withDebug(String): DocumentContainerElement
+        +withNextPage(String): DocumentContainerElement
+        +withPage(BigInteger): DocumentContainerElement
+        +withTotalPages(BigInteger): DocumentContainerElement
+        +withCreated(String): DocumentContainerElement
+        +withHitsFrom(BigInteger): DocumentContainerElement
+        +withHitsTo(BigInteger): DocumentContainerElement
+        +withHits(BigInteger): DocumentContainerElement
+        +withDocumentVersion(String): DocumentContainerElement
+        +withWarning(String): DocumentContainerElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentContainerElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

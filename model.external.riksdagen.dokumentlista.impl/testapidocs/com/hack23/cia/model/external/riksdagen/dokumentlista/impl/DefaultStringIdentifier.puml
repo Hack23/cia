@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DefaultStringIdentifier\n<size:10>com.hack23.cia.model.external.riksdagen.dokumentlista.impl" as com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DefaultStringIdentifier [[DefaultStringIdentifier.html]] {
+        +fromDocumentIdentifier(String, IdentifierBridgeFromDocumentIdentifierContext): String
+        +toDocumentIdentifier(String, IdentifierBridgeToDocumentIdentifierContext): String
+    }
+
+    interface "<size:14>IdentifierBridge\n<size:10>org.hibernate.search.mapper.pojo.bridge" as org.hibernate.search.mapper.pojo.bridge.IdentifierBridge<String> {
+        {abstract} +toDocumentIdentifier(String, IdentifierBridgeToDocumentIdentifierContext): String
+        {abstract} +fromDocumentIdentifier(String, IdentifierBridgeFromDocumentIdentifierContext): String
+    }
+
+    org.hibernate.search.mapper.pojo.bridge.IdentifierBridge <|.. com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DefaultStringIdentifier
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
