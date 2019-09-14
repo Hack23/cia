@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>SexType\n<size:10>com.hack23.cia.model.external.riksdagen.person.impl" as com.hack23.cia.model.external.riksdagen.person.impl.SexType [[SexType.html]] {
+        {static} +MAN
+        {static} +KVINNA
+        +value(): String
+        {static} +fromValue(String): SexType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

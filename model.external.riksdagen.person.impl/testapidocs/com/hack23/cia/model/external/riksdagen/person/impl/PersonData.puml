@@ -1,0 +1,78 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PersonData\n<size:10>com.hack23.cia.model.external.riksdagen.person.impl" as com.hack23.cia.model.external.riksdagen.person.impl.PersonData [[PersonData.html]] {
+        #hangarGuid: String
+        #id: String
+        #bornYear: int
+        #gender: SexType
+        #lastName: String
+        #firstName: String
+        #place: String
+        #party: String
+        #electionRegion: String
+        #status: String
+        #imageUrl192: String
+        #imageUrlMax: String
+        #imageUrl80: String
+        #personUrlXml: String
+        #personAssignmentData: PersonAssignmentData
+        #personDetailData: PersonDetailData
+        +getHangarGuid(): String
+        +setHangarGuid(String): void
+        +getId(): String
+        +setId(String): void
+        +getBornYear(): int
+        +setBornYear(int): void
+        +getGender(): SexType
+        +setGender(SexType): void
+        +getLastName(): String
+        +setLastName(String): void
+        +getFirstName(): String
+        +setFirstName(String): void
+        +getPlace(): String
+        +setPlace(String): void
+        +getParty(): String
+        +setParty(String): void
+        +getElectionRegion(): String
+        +setElectionRegion(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getImageUrl192(): String
+        +setImageUrl192(String): void
+        +getImageUrlMax(): String
+        +setImageUrlMax(String): void
+        +getImageUrl80(): String
+        +setImageUrl80(String): void
+        +getPersonUrlXml(): String
+        +setPersonUrlXml(String): void
+        +getPersonAssignmentData(): PersonAssignmentData
+        +setPersonAssignmentData(PersonAssignmentData): void
+        +getPersonDetailData(): PersonDetailData
+        +setPersonDetailData(PersonDetailData): void
+        +withHangarGuid(String): PersonData
+        +withId(String): PersonData
+        +withBornYear(int): PersonData
+        +withGender(SexType): PersonData
+        +withLastName(String): PersonData
+        +withFirstName(String): PersonData
+        +withPlace(String): PersonData
+        +withParty(String): PersonData
+        +withElectionRegion(String): PersonData
+        +withStatus(String): PersonData
+        +withImageUrl192(String): PersonData
+        +withImageUrlMax(String): PersonData
+        +withImageUrl80(String): PersonData
+        +withPersonUrlXml(String): PersonData
+        +withPersonAssignmentData(PersonAssignmentData): PersonData
+        +withPersonDetailData(PersonDetailData): PersonData
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.person.impl.PersonData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

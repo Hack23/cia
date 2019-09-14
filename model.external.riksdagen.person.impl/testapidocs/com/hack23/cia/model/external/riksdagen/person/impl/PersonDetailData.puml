@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PersonDetailData\n<size:10>com.hack23.cia.model.external.riksdagen.person.impl" as com.hack23.cia.model.external.riksdagen.person.impl.PersonDetailData [[PersonDetailData.html]] {
+        #detailList: List<DetailData>
+        #hjid: Long
+        +getDetailList(): List<DetailData>
+        +setDetailList(List<DetailData>): void
+        +withDetailList(List<DetailData>): PersonDetailData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.person.impl.PersonDetailData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

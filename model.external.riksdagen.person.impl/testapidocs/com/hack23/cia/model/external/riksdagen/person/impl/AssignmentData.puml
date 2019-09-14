@@ -1,0 +1,53 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AssignmentData\n<size:10>com.hack23.cia.model.external.riksdagen.person.impl" as com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData [[AssignmentData.html]] {
+        #orgCode: String
+        #roleCode: String
+        #orderNumber: String
+        #status: String
+        #assignmentType: String
+        #fromDate: Date
+        #toDate: Date
+        #detail: String
+        #intressentId: String
+        #hjid: Long
+        +getOrgCode(): String
+        +setOrgCode(String): void
+        +getRoleCode(): String
+        +setRoleCode(String): void
+        +getOrderNumber(): String
+        +setOrderNumber(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getAssignmentType(): String
+        +setAssignmentType(String): void
+        +getFromDate(): Date
+        +setFromDate(Date): void
+        +getToDate(): Date
+        +setToDate(Date): void
+        +getDetail(): String
+        +setDetail(String): void
+        +getIntressentId(): String
+        +setIntressentId(String): void
+        +withOrgCode(String): AssignmentData
+        +withRoleCode(String): AssignmentData
+        +withOrderNumber(String): AssignmentData
+        +withStatus(String): AssignmentData
+        +withAssignmentType(String): AssignmentData
+        +withFromDate(Date): AssignmentData
+        +withToDate(Date): AssignmentData
+        +withDetail(String): AssignmentData
+        +withIntressentId(String): AssignmentData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

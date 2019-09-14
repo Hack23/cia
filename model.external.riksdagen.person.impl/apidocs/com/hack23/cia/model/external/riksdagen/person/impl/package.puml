@@ -1,0 +1,183 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.person.impl {
+
+        class PersonDetailData [[PersonDetailData.html]] {
+            #hjid: Long
+            +withDetailList(List<DetailData>): PersonDetailData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class PersonContainerData [[PersonContainerData.html]] {
+            #hjid: Long
+            +withPerson(PersonData): PersonContainerData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createPersonContainerData(): PersonContainerData
+            +createPersonData(): PersonData
+            +createPersonAssignmentData(): PersonAssignmentData
+            +createPersonDetailData(): PersonDetailData
+            +createAssignmentData(): AssignmentData
+            +createDetailData(): DetailData
+            +createPersonlista(PersonContainerData): JAXBElement<PersonContainerData>
+        }
+
+        class DetailData [[DetailData.html]] {
+            #intressentId: String
+            #detailType: String
+            #detail: String
+            #code: String
+            #hjid: Long
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +getDetailType(): String
+            +setDetailType(String): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getCode(): String
+            +setCode(String): void
+            +withIntressentId(String): DetailData
+            +withDetailType(String): DetailData
+            +withDetail(String): DetailData
+            +withCode(String): DetailData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class AssignmentData [[AssignmentData.html]] {
+            #orgCode: String
+            #roleCode: String
+            #orderNumber: String
+            #status: String
+            #assignmentType: String
+            #fromDate: Date
+            #toDate: Date
+            #detail: String
+            #intressentId: String
+            #hjid: Long
+            +getOrgCode(): String
+            +setOrgCode(String): void
+            +getRoleCode(): String
+            +setRoleCode(String): void
+            +getOrderNumber(): String
+            +setOrderNumber(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getAssignmentType(): String
+            +setAssignmentType(String): void
+            +getFromDate(): Date
+            +setFromDate(Date): void
+            +getToDate(): Date
+            +setToDate(Date): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +withOrgCode(String): AssignmentData
+            +withRoleCode(String): AssignmentData
+            +withOrderNumber(String): AssignmentData
+            +withStatus(String): AssignmentData
+            +withAssignmentType(String): AssignmentData
+            +withFromDate(Date): AssignmentData
+            +withToDate(Date): AssignmentData
+            +withDetail(String): AssignmentData
+            +withIntressentId(String): AssignmentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum SexType [[SexType.html]] {
+            {static} +MAN
+            {static} +KVINNA
+            +value(): String
+            {static} +fromValue(String): SexType
+        }
+
+        class PersonData [[PersonData.html]] {
+            #hangarGuid: String
+            #id: String
+            #bornYear: int
+            #lastName: String
+            #firstName: String
+            #place: String
+            #party: String
+            #electionRegion: String
+            #status: String
+            #imageUrl192: String
+            #imageUrlMax: String
+            #imageUrl80: String
+            #personUrlXml: String
+            +getHangarGuid(): String
+            +setHangarGuid(String): void
+            +getId(): String
+            +setId(String): void
+            +getBornYear(): int
+            +setBornYear(int): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getPlace(): String
+            +setPlace(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getElectionRegion(): String
+            +setElectionRegion(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getImageUrl192(): String
+            +setImageUrl192(String): void
+            +getImageUrlMax(): String
+            +setImageUrlMax(String): void
+            +getImageUrl80(): String
+            +setImageUrl80(String): void
+            +getPersonUrlXml(): String
+            +setPersonUrlXml(String): void
+            +withHangarGuid(String): PersonData
+            +withId(String): PersonData
+            +withBornYear(int): PersonData
+            +withGender(SexType): PersonData
+            +withLastName(String): PersonData
+            +withFirstName(String): PersonData
+            +withPlace(String): PersonData
+            +withParty(String): PersonData
+            +withElectionRegion(String): PersonData
+            +withStatus(String): PersonData
+            +withImageUrl192(String): PersonData
+            +withImageUrlMax(String): PersonData
+            +withImageUrl80(String): PersonData
+            +withPersonUrlXml(String): PersonData
+            +withPersonAssignmentData(PersonAssignmentData): PersonData
+            +withPersonDetailData(PersonDetailData): PersonData
+        }
+
+        class PersonAssignmentData [[PersonAssignmentData.html]] {
+            #hjid: Long
+            +withAssignmentList(List<AssignmentData>): PersonAssignmentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonDetailData
+        PersonDetailData --> "*" DetailData: detailList
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonContainerData
+        PersonContainerData --> PersonData: person
+        com.hack23.cia.model.common.api.ModelObject <|.. DetailData
+        com.hack23.cia.model.common.api.ModelObject <|.. AssignmentData
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonData
+        PersonData --> SexType: gender
+        PersonData --> PersonAssignmentData: personAssignmentData
+        PersonData --> PersonDetailData: personDetailData
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonAssignmentData
+        PersonAssignmentData --> "*" AssignmentData: assignmentList
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
