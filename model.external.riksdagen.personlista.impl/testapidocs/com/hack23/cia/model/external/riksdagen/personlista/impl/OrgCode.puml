@@ -1,0 +1,35 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>OrgCode\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.OrgCode [[OrgCode.html]] {
+        {static} +AU
+        {static} +CU
+        {static} +FI_U
+        {static} +FO_U
+        {static} +JU_U
+        {static} +KU
+        {static} +KR_U
+        {static} +MJU
+        {static} +NU
+        {static} +SK_U
+        {static} +SF_U
+        {static} +SO_U
+        {static} +TU
+        {static} +UB_U
+        {static} +UU
+        {static} +JU_SO_U
+        {static} +KUU
+        {static} +U_FO_U
+        {static} +UMJU
+        {static} +U_SO_U
+        {static} +JO_U
+        {static} +BO_U
+        {static} +LU
+        +value(): String
+        {static} +fromValue(String): OrgCode
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

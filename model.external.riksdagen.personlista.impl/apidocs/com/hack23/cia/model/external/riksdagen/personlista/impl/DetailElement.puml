@@ -1,0 +1,33 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DetailElement\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.DetailElement [[DetailElement.html]] {
+        #intressentId: String
+        #detailType: String
+        #detail: String
+        #code: String
+        #hjid: Long
+        +getIntressentId(): String
+        +setIntressentId(String): void
+        +getDetailType(): String
+        +setDetailType(String): void
+        +getDetail(): String
+        +setDetail(String): void
+        +getCode(): String
+        +setCode(String): void
+        +withIntressentId(String): DetailElement
+        +withDetailType(String): DetailElement
+        +withDetail(String): DetailElement
+        +withCode(String): DetailElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.personlista.impl.DetailElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

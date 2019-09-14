@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>RoleDataType\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.RoleDataType [[RoleDataType.html]] {
+        {static} +EADRESS
+        {static} +KAMMARUPPDRAG
+        {static} +PARTIUPPDRAG
+        {static} +TALMANSUPPDRAG
+        {static} +TELEFONNUMMER
+        {static} +TITLAR
+        {static} +UPPDRAG
+        +value(): String
+        {static} +fromValue(String): RoleDataType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

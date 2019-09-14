@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ObjectFactory\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.ObjectFactory [[ObjectFactory.html]] {
+        +createPersonContainerElement(): PersonContainerElement
+        +createPersonElement(): PersonElement
+        +createPersonAssignmentElement(): PersonAssignmentElement
+        +createAssignmentElement(): AssignmentElement
+        +createPersonDetailElement(): PersonDetailElement
+        +createDetailElement(): DetailElement
+        +createPersonlista(PersonContainerElement): JAXBElement<PersonContainerElement>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

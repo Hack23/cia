@@ -1,0 +1,47 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>RoleStatus\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.RoleStatus [[RoleStatus.html]] {
+        {static} +ANDRE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+        {static} +AVGANGEN_RIKSDAGSLEDAMOT
+        {static} +AVLIDEN_2000_04_28
+        {static} +AVLIDEN_2003_09_11
+        {static} +AVLIDEN_2006_12_06
+        {static} +AVLIDEN_2007_05_17
+        {static} +AVLIDEN_2007_05_31
+        {static} +AVLIDEN_2007_06_30
+        {static} +ERSATTARE
+        {static} +FINANSMINISTER
+        {static} +FORSTE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+        {static} +FORSVARSMINISTER
+        {static} +INTEGRATIONS_OCH_JAMSTALLDHETSMINISTER
+        {static} +JORDBRUKSMINISTER
+        {static} +JUSTITIEMINISTER
+        {static} +KULTURMINISTER
+        {static} +LEDIG
+        {static} +MILJOMINISTER
+        {static} +NARINGSMINISTER
+        {static} +SOCIALMINISTER
+        {static} +STATSMINISTER
+        {static} +STATSRAD
+        {static} +TALMAN
+        {static} +TIDIGARE_ERSATTARE
+        {static} +TIDIGARE_RIKSDAGSLEDAMOT
+        {static} +TILLGANGLIG_ERSATTARE
+        {static} +TJANSTGORANDE_ERSATTARE
+        {static} +TJANSTGORANDE_RIKSDAGSLEDAMOT
+        {static} +TJANSTGORANDE_STATSRADSERSATTARE
+        {static} +TJANSTGORANDE
+        {static} +TJANSTGORANDE_TALMANSERSATTARE
+        {static} +TJANSTLEDIG_RIKSDAGSLEDAMOT
+        {static} +TREDJE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+        {static} +UTBILDNINGSMINISTER
+        {static} +UTRIKESMINISTER
+        +value(): String
+        {static} +fromValue(String): RoleStatus
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

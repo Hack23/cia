@@ -1,0 +1,53 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AssignmentElement\n<size:10>com.hack23.cia.model.external.riksdagen.personlista.impl" as com.hack23.cia.model.external.riksdagen.personlista.impl.AssignmentElement [[AssignmentElement.html]] {
+        #orgCode: OrgCode
+        #roleCode: RoleStatus
+        #orderNumber: String
+        #status: RoleStatus
+        #assignmentType: String
+        #fromDate: Date
+        #toDate: Date
+        #detail: String
+        #intressentId: String
+        #hjid: Long
+        +getOrgCode(): OrgCode
+        +setOrgCode(OrgCode): void
+        +getRoleCode(): RoleStatus
+        +setRoleCode(RoleStatus): void
+        +getOrderNumber(): String
+        +setOrderNumber(String): void
+        +getStatus(): RoleStatus
+        +setStatus(RoleStatus): void
+        +getAssignmentType(): String
+        +setAssignmentType(String): void
+        +getFromDate(): Date
+        +setFromDate(Date): void
+        +getToDate(): Date
+        +setToDate(Date): void
+        +getDetail(): String
+        +setDetail(String): void
+        +getIntressentId(): String
+        +setIntressentId(String): void
+        +withOrgCode(OrgCode): AssignmentElement
+        +withRoleCode(RoleStatus): AssignmentElement
+        +withOrderNumber(String): AssignmentElement
+        +withStatus(RoleStatus): AssignmentElement
+        +withAssignmentType(String): AssignmentElement
+        +withFromDate(Date): AssignmentElement
+        +withToDate(Date): AssignmentElement
+        +withDetail(String): AssignmentElement
+        +withIntressentId(String): AssignmentElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.personlista.impl.AssignmentElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

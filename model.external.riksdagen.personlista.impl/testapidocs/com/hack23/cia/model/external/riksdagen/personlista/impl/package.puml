@@ -1,0 +1,254 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.personlista.impl {
+
+        class PersonElement [[PersonElement.html]] {
+            #hangarGuid: String
+            #id: String
+            #bornYear: String
+            #lastName: String
+            #firstName: String
+            #place: String
+            #party: String
+            #electionRegion: String
+            #imageUrl192: String
+            #imageUrlMax: String
+            #imageUrl80: String
+            #personUrlXml: String
+            +getHangarGuid(): String
+            +setHangarGuid(String): void
+            +getId(): String
+            +setId(String): void
+            +getBornYear(): String
+            +setBornYear(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getPlace(): String
+            +setPlace(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getElectionRegion(): String
+            +setElectionRegion(String): void
+            +getImageUrl192(): String
+            +setImageUrl192(String): void
+            +getImageUrlMax(): String
+            +setImageUrlMax(String): void
+            +getImageUrl80(): String
+            +setImageUrl80(String): void
+            +getPersonUrlXml(): String
+            +setPersonUrlXml(String): void
+            +withHangarGuid(String): PersonElement
+            +withId(String): PersonElement
+            +withBornYear(String): PersonElement
+            +withGender(SexType): PersonElement
+            +withLastName(String): PersonElement
+            +withFirstName(String): PersonElement
+            +withPlace(String): PersonElement
+            +withParty(String): PersonElement
+            +withElectionRegion(String): PersonElement
+            +withStatus(RoleStatus): PersonElement
+            +withImageUrl192(String): PersonElement
+            +withImageUrlMax(String): PersonElement
+            +withImageUrl80(String): PersonElement
+            +withPersonUrlXml(String): PersonElement
+            +withPersonAssignmentElement(PersonAssignmentElement): PersonElement
+            +withPersonDetailElement(PersonDetailElement): PersonElement
+        }
+
+        class PersonDetailElement [[PersonDetailElement.html]] {
+            #hjid: Long
+            +withDetailList(DetailElement): PersonDetailElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum RoleStatus [[RoleStatus.html]] {
+            {static} +ANDRE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+            {static} +AVGANGEN_RIKSDAGSLEDAMOT
+            {static} +AVLIDEN_2000_04_28
+            {static} +AVLIDEN_2003_09_11
+            {static} +AVLIDEN_2006_12_06
+            {static} +AVLIDEN_2007_05_17
+            {static} +AVLIDEN_2007_05_31
+            {static} +AVLIDEN_2007_06_30
+            {static} +ERSATTARE
+            {static} +FINANSMINISTER
+            {static} +FORSTE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+            {static} +FORSVARSMINISTER
+            {static} +INTEGRATIONS_OCH_JAMSTALLDHETSMINISTER
+            {static} +JORDBRUKSMINISTER
+            {static} +JUSTITIEMINISTER
+            {static} +KULTURMINISTER
+            {static} +LEDIG
+            {static} +MILJOMINISTER
+            {static} +NARINGSMINISTER
+            {static} +SOCIALMINISTER
+            {static} +STATSMINISTER
+            {static} +STATSRAD
+            {static} +TALMAN
+            {static} +TIDIGARE_ERSATTARE
+            {static} +TIDIGARE_RIKSDAGSLEDAMOT
+            {static} +TILLGANGLIG_ERSATTARE
+            {static} +TJANSTGORANDE_ERSATTARE
+            {static} +TJANSTGORANDE_RIKSDAGSLEDAMOT
+            {static} +TJANSTGORANDE_STATSRADSERSATTARE
+            {static} +TJANSTGORANDE
+            {static} +TJANSTGORANDE_TALMANSERSATTARE
+            {static} +TJANSTLEDIG_RIKSDAGSLEDAMOT
+            {static} +TREDJE_VICE_TALMAN_TJANSTGORANDE_RIKSDAGSLEDAMOT
+            {static} +UTBILDNINGSMINISTER
+            {static} +UTRIKESMINISTER
+            +value(): String
+            {static} +fromValue(String): RoleStatus
+        }
+
+        enum RoleDataType [[RoleDataType.html]] {
+            {static} +EADRESS
+            {static} +KAMMARUPPDRAG
+            {static} +PARTIUPPDRAG
+            {static} +TALMANSUPPDRAG
+            {static} +TELEFONNUMMER
+            {static} +TITLAR
+            {static} +UPPDRAG
+            +value(): String
+            {static} +fromValue(String): RoleDataType
+        }
+
+        enum SexType [[SexType.html]] {
+            {static} +MAN
+            {static} +KVINNA
+            +value(): String
+            {static} +fromValue(String): SexType
+        }
+
+        class DetailElement [[DetailElement.html]] {
+            #intressentId: String
+            #detailType: String
+            #detail: String
+            #code: String
+            #hjid: Long
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +getDetailType(): String
+            +setDetailType(String): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getCode(): String
+            +setCode(String): void
+            +withIntressentId(String): DetailElement
+            +withDetailType(String): DetailElement
+            +withDetail(String): DetailElement
+            +withCode(String): DetailElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createPersonContainerElement(): PersonContainerElement
+            +createPersonElement(): PersonElement
+            +createPersonAssignmentElement(): PersonAssignmentElement
+            +createAssignmentElement(): AssignmentElement
+            +createPersonDetailElement(): PersonDetailElement
+            +createDetailElement(): DetailElement
+            +createPersonlista(PersonContainerElement): JAXBElement<PersonContainerElement>
+        }
+
+        class PersonContainerElement [[PersonContainerElement.html]] {
+            #hjid: Long
+            +withPerson(List<PersonElement>): PersonContainerElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class AssignmentElement [[AssignmentElement.html]] {
+            #orderNumber: String
+            #assignmentType: String
+            #fromDate: Date
+            #toDate: Date
+            #detail: String
+            #intressentId: String
+            #hjid: Long
+            +getOrderNumber(): String
+            +setOrderNumber(String): void
+            +getAssignmentType(): String
+            +setAssignmentType(String): void
+            +getFromDate(): Date
+            +setFromDate(Date): void
+            +getToDate(): Date
+            +setToDate(Date): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +withOrgCode(OrgCode): AssignmentElement
+            +withRoleCode(RoleStatus): AssignmentElement
+            +withOrderNumber(String): AssignmentElement
+            +withStatus(RoleStatus): AssignmentElement
+            +withAssignmentType(String): AssignmentElement
+            +withFromDate(Date): AssignmentElement
+            +withToDate(Date): AssignmentElement
+            +withDetail(String): AssignmentElement
+            +withIntressentId(String): AssignmentElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class PersonAssignmentElement [[PersonAssignmentElement.html]] {
+            #hjid: Long
+            +withUppdrag(List<AssignmentElement>): PersonAssignmentElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum OrgCode [[OrgCode.html]] {
+            {static} +AU
+            {static} +CU
+            {static} +FI_U
+            {static} +FO_U
+            {static} +JU_U
+            {static} +KU
+            {static} +KR_U
+            {static} +MJU
+            {static} +NU
+            {static} +SK_U
+            {static} +SF_U
+            {static} +SO_U
+            {static} +TU
+            {static} +UB_U
+            {static} +UU
+            {static} +JU_SO_U
+            {static} +KUU
+            {static} +U_FO_U
+            {static} +UMJU
+            {static} +U_SO_U
+            {static} +JO_U
+            {static} +BO_U
+            {static} +LU
+            +value(): String
+            {static} +fromValue(String): OrgCode
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonElement
+        PersonElement --> SexType: gender
+        PersonElement --> RoleStatus: status
+        PersonElement --> PersonAssignmentElement: personAssignmentElement
+        PersonElement --> PersonDetailElement: personDetailElement
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonDetailElement
+        PersonDetailElement --> DetailElement: detailList
+        com.hack23.cia.model.common.api.ModelObject <|.. DetailElement
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonContainerElement
+        PersonContainerElement --> "*" PersonElement: person
+        com.hack23.cia.model.common.api.ModelObject <|.. AssignmentElement
+        AssignmentElement --> OrgCode: orgCode
+        AssignmentElement --> RoleStatus: roleCode\nstatus
+        com.hack23.cia.model.common.api.ModelObject <|.. PersonAssignmentElement
+        PersonAssignmentElement --> "*" AssignmentElement: uppdrag
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

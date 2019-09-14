@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.model.external.riksdagen.personlista.impl --> com.hack23.cia.model.common.api
+
+    ' Package links
+    class "com.hack23.cia.model.external.riksdagen.personlista.impl" [[com/hack23/cia/model/external/riksdagen/personlista/impl/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
