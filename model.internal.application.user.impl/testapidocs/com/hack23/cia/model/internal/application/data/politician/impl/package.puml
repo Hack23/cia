@@ -1,0 +1,143 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.data.politician.impl {
+
+        class ViewRiksdagenPolitician [[ViewRiksdagenPolitician.html]] {
+            #personId: String
+            #firstName: String
+            #lastName: String
+            #party: String
+            #gender: String
+            #bornYear: int
+            #totalAssignments: long
+            #currentAssignments: long
+            #firstAssignmentDate: Date
+            #lastAssignmentDate: Date
+            #totalDaysServed: long
+            #totalDaysServedParliament: long
+            #totalDaysServedCommittee: long
+            #totalDaysServedGovernment: long
+            #totalDaysServedEu: long
+            #active: boolean
+            #activeEu: boolean
+            #activeGovernment: boolean
+            #activeCommittee: boolean
+            #activeParliament: boolean
+            #activeParty: boolean
+            #activeSpeaker: boolean
+            #totalDaysServedSpeaker: long
+            #totalDaysServedParty: long
+            #totalPartyAssignments: long
+            #totalMinistryAssignments: long
+            #totalCommitteeAssignments: long
+            #totalSpeakerAssignments: long
+            #currentPartyAssignments: long
+            #currentMinistryAssignments: long
+            #currentCommitteeAssignments: long
+            #currentSpeakerAssignments: long
+            +getPersonId(): String
+            +setPersonId(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getGender(): String
+            +setGender(String): void
+            +getBornYear(): int
+            +setBornYear(int): void
+            +getTotalAssignments(): long
+            +setTotalAssignments(long): void
+            +getCurrentAssignments(): long
+            +setCurrentAssignments(long): void
+            +getFirstAssignmentDate(): Date
+            +setFirstAssignmentDate(Date): void
+            +getLastAssignmentDate(): Date
+            +setLastAssignmentDate(Date): void
+            +getTotalDaysServed(): long
+            +setTotalDaysServed(long): void
+            +getTotalDaysServedParliament(): long
+            +setTotalDaysServedParliament(long): void
+            +getTotalDaysServedCommittee(): long
+            +setTotalDaysServedCommittee(long): void
+            +getTotalDaysServedGovernment(): long
+            +setTotalDaysServedGovernment(long): void
+            +getTotalDaysServedEu(): long
+            +setTotalDaysServedEu(long): void
+            +isActive(): boolean
+            +setActive(boolean): void
+            +isActiveEu(): boolean
+            +setActiveEu(boolean): void
+            +isActiveGovernment(): boolean
+            +setActiveGovernment(boolean): void
+            +isActiveCommittee(): boolean
+            +setActiveCommittee(boolean): void
+            +isActiveParliament(): boolean
+            +setActiveParliament(boolean): void
+            +isActiveParty(): boolean
+            +setActiveParty(boolean): void
+            +isActiveSpeaker(): boolean
+            +setActiveSpeaker(boolean): void
+            +getTotalDaysServedSpeaker(): long
+            +setTotalDaysServedSpeaker(long): void
+            +getTotalDaysServedParty(): long
+            +setTotalDaysServedParty(long): void
+            +getTotalPartyAssignments(): long
+            +setTotalPartyAssignments(long): void
+            +getTotalMinistryAssignments(): long
+            +setTotalMinistryAssignments(long): void
+            +getTotalCommitteeAssignments(): long
+            +setTotalCommitteeAssignments(long): void
+            +getTotalSpeakerAssignments(): long
+            +setTotalSpeakerAssignments(long): void
+            +getCurrentPartyAssignments(): long
+            +setCurrentPartyAssignments(long): void
+            +getCurrentMinistryAssignments(): long
+            +setCurrentMinistryAssignments(long): void
+            +getCurrentCommitteeAssignments(): long
+            +setCurrentCommitteeAssignments(long): void
+            +getCurrentSpeakerAssignments(): long
+            +setCurrentSpeakerAssignments(long): void
+            +withPersonId(String): ViewRiksdagenPolitician
+            +withFirstName(String): ViewRiksdagenPolitician
+            +withLastName(String): ViewRiksdagenPolitician
+            +withParty(String): ViewRiksdagenPolitician
+            +withGender(String): ViewRiksdagenPolitician
+            +withBornYear(int): ViewRiksdagenPolitician
+            +withTotalAssignments(long): ViewRiksdagenPolitician
+            +withCurrentAssignments(long): ViewRiksdagenPolitician
+            +withFirstAssignmentDate(Date): ViewRiksdagenPolitician
+            +withLastAssignmentDate(Date): ViewRiksdagenPolitician
+            +withTotalDaysServed(long): ViewRiksdagenPolitician
+            +withTotalDaysServedParliament(long): ViewRiksdagenPolitician
+            +withTotalDaysServedCommittee(long): ViewRiksdagenPolitician
+            +withTotalDaysServedGovernment(long): ViewRiksdagenPolitician
+            +withTotalDaysServedEu(long): ViewRiksdagenPolitician
+            +withActive(boolean): ViewRiksdagenPolitician
+            +withActiveEu(boolean): ViewRiksdagenPolitician
+            +withActiveGovernment(boolean): ViewRiksdagenPolitician
+            +withActiveCommittee(boolean): ViewRiksdagenPolitician
+            +withActiveParliament(boolean): ViewRiksdagenPolitician
+            +withActiveParty(boolean): ViewRiksdagenPolitician
+            +withActiveSpeaker(boolean): ViewRiksdagenPolitician
+            +withTotalDaysServedSpeaker(long): ViewRiksdagenPolitician
+            +withTotalDaysServedParty(long): ViewRiksdagenPolitician
+            +withTotalPartyAssignments(long): ViewRiksdagenPolitician
+            +withTotalMinistryAssignments(long): ViewRiksdagenPolitician
+            +withTotalCommitteeAssignments(long): ViewRiksdagenPolitician
+            +withTotalSpeakerAssignments(long): ViewRiksdagenPolitician
+            +withCurrentPartyAssignments(long): ViewRiksdagenPolitician
+            +withCurrentMinistryAssignments(long): ViewRiksdagenPolitician
+            +withCurrentCommitteeAssignments(long): ViewRiksdagenPolitician
+            +withCurrentSpeakerAssignments(long): ViewRiksdagenPolitician
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPolitician
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId [[ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.html]] {
+        #id: String
+        #intressentId: String
+        #hangarId: BigDecimal
+        #issue: String
+        #concern: String
+        +getId(): String
+        +setId(String): void
+        +getIntressentId(): String
+        +setIntressentId(String): void
+        +getHangarId(): BigDecimal
+        +setHangarId(BigDecimal): void
+        +getIssue(): String
+        +setIssue(String): void
+        +getConcern(): String
+        +setConcern(String): void
+        +withId(String): ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+        +withIntressentId(String): ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+        +withHangarId(BigDecimal): ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+        +withIssue(String): ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+        +withConcern(String): ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

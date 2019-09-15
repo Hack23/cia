@@ -1,0 +1,86 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenVoteDataBallotSummary\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary [[ViewRiksdagenVoteDataBallotSummary.html]] {
+        #embeddedId: RiksdagenVoteDataBallotEmbeddedId
+        #voteDate: Date
+        #rm: String
+        #ballotType: String
+        #label: String
+        #avgBornYear: BigDecimal
+        #totalVotes: long
+        #yesVotes: long
+        #noVotes: long
+        #abstainVotes: long
+        #absentVotes: long
+        #approved: boolean
+        #noWinner: boolean
+        #percentageYes: BigDecimal
+        #percentageNo: BigDecimal
+        #percentageAbsent: BigDecimal
+        #percentageAbstain: BigDecimal
+        #percentageMale: BigDecimal
+        +getEmbeddedId(): RiksdagenVoteDataBallotEmbeddedId
+        +setEmbeddedId(RiksdagenVoteDataBallotEmbeddedId): void
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getRm(): String
+        +setRm(String): void
+        +getBallotType(): String
+        +setBallotType(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getAvgBornYear(): BigDecimal
+        +setAvgBornYear(BigDecimal): void
+        +getTotalVotes(): long
+        +setTotalVotes(long): void
+        +getYesVotes(): long
+        +setYesVotes(long): void
+        +getNoVotes(): long
+        +setNoVotes(long): void
+        +getAbstainVotes(): long
+        +setAbstainVotes(long): void
+        +getAbsentVotes(): long
+        +setAbsentVotes(long): void
+        +isApproved(): boolean
+        +setApproved(boolean): void
+        +isNoWinner(): boolean
+        +setNoWinner(boolean): void
+        +getPercentageYes(): BigDecimal
+        +setPercentageYes(BigDecimal): void
+        +getPercentageNo(): BigDecimal
+        +setPercentageNo(BigDecimal): void
+        +getPercentageAbsent(): BigDecimal
+        +setPercentageAbsent(BigDecimal): void
+        +getPercentageAbstain(): BigDecimal
+        +setPercentageAbstain(BigDecimal): void
+        +getPercentageMale(): BigDecimal
+        +setPercentageMale(BigDecimal): void
+        +withEmbeddedId(RiksdagenVoteDataBallotEmbeddedId): ViewRiksdagenVoteDataBallotSummary
+        +withVoteDate(Date): ViewRiksdagenVoteDataBallotSummary
+        +withRm(String): ViewRiksdagenVoteDataBallotSummary
+        +withBallotType(String): ViewRiksdagenVoteDataBallotSummary
+        +withLabel(String): ViewRiksdagenVoteDataBallotSummary
+        +withAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+        +withTotalVotes(long): ViewRiksdagenVoteDataBallotSummary
+        +withYesVotes(long): ViewRiksdagenVoteDataBallotSummary
+        +withNoVotes(long): ViewRiksdagenVoteDataBallotSummary
+        +withAbstainVotes(long): ViewRiksdagenVoteDataBallotSummary
+        +withAbsentVotes(long): ViewRiksdagenVoteDataBallotSummary
+        +withApproved(boolean): ViewRiksdagenVoteDataBallotSummary
+        +withNoWinner(boolean): ViewRiksdagenVoteDataBallotSummary
+        +withPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+        +withPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+        +withPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+        +withPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+        +withPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

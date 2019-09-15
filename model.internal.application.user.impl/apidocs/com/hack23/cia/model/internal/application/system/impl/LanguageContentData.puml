@@ -1,0 +1,61 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>LanguageContentData\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.LanguageContentData [[LanguageContentData.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #fromLanguage: String
+        #toLanguage: String
+        #createdDate: Date
+        #keyGroup: String
+        #locationContext: String
+        #lastModifiedDate: Date
+        #refKey: String
+        #languageValue: String
+        #languageContentType: LanguageContentType
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getFromLanguage(): String
+        +setFromLanguage(String): void
+        +getToLanguage(): String
+        +setToLanguage(String): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getKeyGroup(): String
+        +setKeyGroup(String): void
+        +getLocationContext(): String
+        +setLocationContext(String): void
+        +getLastModifiedDate(): Date
+        +setLastModifiedDate(Date): void
+        +getRefKey(): String
+        +setRefKey(String): void
+        +getLanguageValue(): String
+        +setLanguageValue(String): void
+        +getLanguageContentType(): LanguageContentType
+        +setLanguageContentType(LanguageContentType): void
+        +withModelObjectId(Integer): LanguageContentData
+        +withModelObjectVersion(int): LanguageContentData
+        +withFromLanguage(String): LanguageContentData
+        +withToLanguage(String): LanguageContentData
+        +withCreatedDate(Date): LanguageContentData
+        +withKeyGroup(String): LanguageContentData
+        +withLocationContext(String): LanguageContentData
+        +withLastModifiedDate(Date): LanguageContentData
+        +withRefKey(String): LanguageContentData
+        +withLanguageValue(String): LanguageContentData
+        +withLanguageContentType(LanguageContentType): LanguageContentData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.LanguageContentData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.model.internal.application.user.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.committee.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.audit.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.party.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.document.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.politician.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.data.ministry.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.system.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.internal.application.secure.impl --> com.hack23.cia.model.common.impl
+
+    ' Package links
+    class "com.hack23.cia.model.internal.application.user.impl" [[com/hack23/cia/model/internal/application/user/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.committee.impl" [[com/hack23/cia/model/internal/application/data/committee/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.audit.impl" [[com/hack23/cia/model/internal/application/data/audit/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.party.impl" [[com/hack23/cia/model/internal/application/data/party/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.impl" [[com/hack23/cia/model/internal/application/data/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.document.impl" [[com/hack23/cia/model/internal/application/data/document/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.politician.impl" [[com/hack23/cia/model/internal/application/data/politician/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.data.ministry.impl" [[com/hack23/cia/model/internal/application/data/ministry/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.system.impl" [[com/hack23/cia/model/internal/application/system/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.model.internal.application.secure.impl" [[com/hack23/cia/model/internal/application/secure/impl/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

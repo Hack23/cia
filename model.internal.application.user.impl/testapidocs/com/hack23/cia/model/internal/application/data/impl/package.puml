@@ -1,0 +1,372 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.data.impl {
+
+        class ViewApplicationActionEventPageModeHourlySummary [[ViewApplicationActionEventPageModeHourlySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): ViewApplicationActionEventPageModeHourlySummary
+            +withHits(long): ViewApplicationActionEventPageModeHourlySummary
+            +withRank(long): ViewApplicationActionEventPageModeHourlySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageModeHourlySummary
+        }
+
+        class ViewWorldbankIndicatorDataCountrySummary [[ViewWorldbankIndicatorDataCountrySummary.html]] {
+            #indicatorName: String
+            #sourceNote: String
+            #sourceValue: String
+            #sourceOrganization: String
+            #startYear: Integer
+            #endYear: Integer
+            #dataPoint: long
+            #topics: String
+            +getIndicatorName(): String
+            +setIndicatorName(String): void
+            +getSourceNote(): String
+            +setSourceNote(String): void
+            +getSourceValue(): String
+            +setSourceValue(String): void
+            +getSourceOrganization(): String
+            +setSourceOrganization(String): void
+            +getStartYear(): Integer
+            +setStartYear(Integer): void
+            +getEndYear(): Integer
+            +setEndYear(Integer): void
+            +getDataPoint(): long
+            +setDataPoint(long): void
+            +getTopics(): String
+            +setTopics(String): void
+            +withEmbeddedId(WorldbankIndicatorDataCountrySummaryEmbeddedId): ViewWorldbankIndicatorDataCountrySummary
+            +withIndicatorName(String): ViewWorldbankIndicatorDataCountrySummary
+            +withSourceNote(String): ViewWorldbankIndicatorDataCountrySummary
+            +withSourceValue(String): ViewWorldbankIndicatorDataCountrySummary
+            +withSourceOrganization(String): ViewWorldbankIndicatorDataCountrySummary
+            +withStartYear(Integer): ViewWorldbankIndicatorDataCountrySummary
+            +withEndYear(Integer): ViewWorldbankIndicatorDataCountrySummary
+            +withDataPoint(long): ViewWorldbankIndicatorDataCountrySummary
+            +withTopics(String): ViewWorldbankIndicatorDataCountrySummary
+        }
+
+        class ViewApplicationActionEventPageAnnualSummary [[ViewApplicationActionEventPageAnnualSummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPagePeriodSummaryEmbeddedId): ViewApplicationActionEventPageAnnualSummary
+            +withHits(long): ViewApplicationActionEventPageAnnualSummary
+            +withRank(long): ViewApplicationActionEventPageAnnualSummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageAnnualSummary
+        }
+
+        class ViewApplicationActionEventPageElementHourlySummary [[ViewApplicationActionEventPageElementHourlySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageElementPeriodSummaryEmbeddedId): ViewApplicationActionEventPageElementHourlySummary
+            +withHits(long): ViewApplicationActionEventPageElementHourlySummary
+            +withRank(long): ViewApplicationActionEventPageElementHourlySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageElementHourlySummary
+        }
+
+        class ApplicationActionEventPagePeriodSummaryEmbeddedId [[ApplicationActionEventPagePeriodSummaryEmbeddedId.html]] {
+            #createdDate: Date
+            #page: String
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getPage(): String
+            +setPage(String): void
+            +withCreatedDate(Date): ApplicationActionEventPagePeriodSummaryEmbeddedId
+            +withPage(String): ApplicationActionEventPagePeriodSummaryEmbeddedId
+        }
+
+        class DataAgentWorkOrder [[DataAgentWorkOrder.html]] {
+            #hjid: Long
+            +withTarget(DataAgentTarget): DataAgentWorkOrder
+            +withOperation(DataAgentOperation): DataAgentWorkOrder
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ViewApplicationActionEventPageModeDailySummary [[ViewApplicationActionEventPageModeDailySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): ViewApplicationActionEventPageModeDailySummary
+            +withHits(long): ViewApplicationActionEventPageModeDailySummary
+            +withRank(long): ViewApplicationActionEventPageModeDailySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageModeDailySummary
+        }
+
+        class ViewApplicationActionEventPageElementDailySummary [[ViewApplicationActionEventPageElementDailySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageElementPeriodSummaryEmbeddedId): ViewApplicationActionEventPageElementDailySummary
+            +withHits(long): ViewApplicationActionEventPageElementDailySummary
+            +withRank(long): ViewApplicationActionEventPageElementDailySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageElementDailySummary
+        }
+
+        class ViewApplicationActionEventPageModeAnnualSummary [[ViewApplicationActionEventPageModeAnnualSummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): ViewApplicationActionEventPageModeAnnualSummary
+            +withHits(long): ViewApplicationActionEventPageModeAnnualSummary
+            +withRank(long): ViewApplicationActionEventPageModeAnnualSummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageModeAnnualSummary
+        }
+
+        enum DataAgentOperation [[DataAgentOperation.html]] {
+            {static} +IMPORT
+            +value(): String
+            {static} +fromValue(String): DataAgentOperation
+        }
+
+        class ViewApplicationActionEventPageElementWeeklySummary [[ViewApplicationActionEventPageElementWeeklySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageElementPeriodSummaryEmbeddedId): ViewApplicationActionEventPageElementWeeklySummary
+            +withHits(long): ViewApplicationActionEventPageElementWeeklySummary
+            +withRank(long): ViewApplicationActionEventPageElementWeeklySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageElementWeeklySummary
+        }
+
+        class ViewApplicationActionEventPageModeWeeklySummary [[ViewApplicationActionEventPageModeWeeklySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): ViewApplicationActionEventPageModeWeeklySummary
+            +withHits(long): ViewApplicationActionEventPageModeWeeklySummary
+            +withRank(long): ViewApplicationActionEventPageModeWeeklySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageModeWeeklySummary
+        }
+
+        class ViewApplicationActionEventPageElementAnnualSummary [[ViewApplicationActionEventPageElementAnnualSummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPageElementPeriodSummaryEmbeddedId): ViewApplicationActionEventPageElementAnnualSummary
+            +withHits(long): ViewApplicationActionEventPageElementAnnualSummary
+            +withRank(long): ViewApplicationActionEventPageElementAnnualSummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageElementAnnualSummary
+        }
+
+        enum RiksdagenDataSources [[RiksdagenDataSources.html]] {
+            {static} +DOCUMENT_LIST
+            {static} +DOCUMENT_STATUS
+            {static} +DOCUMENT_CONTENT
+            {static} +PERSONS
+            {static} +VOTES
+            {static} +BALLOT_LIST
+            {static} +COMMITTEE_PROPOSALS
+            +value(): String
+            {static} +fromValue(String): RiksdagenDataSources
+        }
+
+        enum WorldBankDataSources [[WorldBankDataSources.html]] {
+            {static} +COUNTRIES
+            {static} +DATA
+            {static} +INDICATORS
+            {static} +TOPIC
+            +value(): String
+            {static} +fromValue(String): WorldBankDataSources
+        }
+
+        class ApplicationActionEventPageModePeriodSummaryEmbeddedId [[ApplicationActionEventPageModePeriodSummaryEmbeddedId.html]] {
+            #createdDate: Date
+            #page: String
+            #pageMode: String
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getPage(): String
+            +setPage(String): void
+            +getPageMode(): String
+            +setPageMode(String): void
+            +withCreatedDate(Date): ApplicationActionEventPageModePeriodSummaryEmbeddedId
+            +withPage(String): ApplicationActionEventPageModePeriodSummaryEmbeddedId
+            +withPageMode(String): ApplicationActionEventPageModePeriodSummaryEmbeddedId
+        }
+
+        class WorldbankIndicatorDataCountrySummaryEmbeddedId [[WorldbankIndicatorDataCountrySummaryEmbeddedId.html]] {
+            #indicatorId: String
+            #countryId: String
+            +getIndicatorId(): String
+            +setIndicatorId(String): void
+            +getCountryId(): String
+            +setCountryId(String): void
+            +withIndicatorId(String): WorldbankIndicatorDataCountrySummaryEmbeddedId
+            +withCountryId(String): WorldbankIndicatorDataCountrySummaryEmbeddedId
+        }
+
+        class ApplicationActionEventPageElementPeriodSummaryEmbeddedId [[ApplicationActionEventPageElementPeriodSummaryEmbeddedId.html]] {
+            #createdDate: Date
+            #page: String
+            #elementId: String
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getPage(): String
+            +setPage(String): void
+            +getElementId(): String
+            +setElementId(String): void
+            +withCreatedDate(Date): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+            +withPage(String): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+            +withElementId(String): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+        }
+
+        enum ValDataSources [[ValDataSources.html]] {
+            {static} +PARTIES
+            +value(): String
+            {static} +fromValue(String): ValDataSources
+        }
+
+        class ViewApplicationActionEventPageWeeklySummary [[ViewApplicationActionEventPageWeeklySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPagePeriodSummaryEmbeddedId): ViewApplicationActionEventPageWeeklySummary
+            +withHits(long): ViewApplicationActionEventPageWeeklySummary
+            +withRank(long): ViewApplicationActionEventPageWeeklySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageWeeklySummary
+        }
+
+        enum DataAgentTarget [[DataAgentTarget.html]] {
+            {static} +MODEL_EXTERNAL_WORLDBANK
+            {static} +MODEL_EXTERNAL_RIKSDAGEN
+            +value(): String
+            {static} +fromValue(String): DataAgentTarget
+        }
+
+        class ViewApplicationActionEventPageHourlySummary [[ViewApplicationActionEventPageHourlySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPagePeriodSummaryEmbeddedId): ViewApplicationActionEventPageHourlySummary
+            +withHits(long): ViewApplicationActionEventPageHourlySummary
+            +withRank(long): ViewApplicationActionEventPageHourlySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageHourlySummary
+        }
+
+        class ViewApplicationActionEventPageDailySummary [[ViewApplicationActionEventPageDailySummary.html]] {
+            #hits: long
+            #rank: long
+            #rankPercentage: BigDecimal
+            +getHits(): long
+            +setHits(long): void
+            +getRank(): long
+            +setRank(long): void
+            +getRankPercentage(): BigDecimal
+            +setRankPercentage(BigDecimal): void
+            +withEmbeddedId(ApplicationActionEventPagePeriodSummaryEmbeddedId): ViewApplicationActionEventPageDailySummary
+            +withHits(long): ViewApplicationActionEventPageDailySummary
+            +withRank(long): ViewApplicationActionEventPageDailySummary
+            +withRankPercentage(BigDecimal): ViewApplicationActionEventPageDailySummary
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageModeHourlySummary
+        ViewApplicationActionEventPageModeHourlySummary --> ApplicationActionEventPageModePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewWorldbankIndicatorDataCountrySummary
+        ViewWorldbankIndicatorDataCountrySummary --> WorldbankIndicatorDataCountrySummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageAnnualSummary
+        ViewApplicationActionEventPageAnnualSummary --> ApplicationActionEventPagePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageElementHourlySummary
+        ViewApplicationActionEventPageElementHourlySummary --> ApplicationActionEventPageElementPeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationActionEventPagePeriodSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. DataAgentWorkOrder
+        DataAgentWorkOrder --> DataAgentTarget: target
+        DataAgentWorkOrder --> DataAgentOperation: operation
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageModeDailySummary
+        ViewApplicationActionEventPageModeDailySummary --> ApplicationActionEventPageModePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageElementDailySummary
+        ViewApplicationActionEventPageElementDailySummary --> ApplicationActionEventPageElementPeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageModeAnnualSummary
+        ViewApplicationActionEventPageModeAnnualSummary --> ApplicationActionEventPageModePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageElementWeeklySummary
+        ViewApplicationActionEventPageElementWeeklySummary --> ApplicationActionEventPageElementPeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageModeWeeklySummary
+        ViewApplicationActionEventPageModeWeeklySummary --> ApplicationActionEventPageModePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageElementAnnualSummary
+        ViewApplicationActionEventPageElementAnnualSummary --> ApplicationActionEventPageElementPeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationActionEventPageModePeriodSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. WorldbankIndicatorDataCountrySummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageWeeklySummary
+        ViewApplicationActionEventPageWeeklySummary --> ApplicationActionEventPagePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageHourlySummary
+        ViewApplicationActionEventPageHourlySummary --> ApplicationActionEventPagePeriodSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewApplicationActionEventPageDailySummary
+        ViewApplicationActionEventPageDailySummary --> ApplicationActionEventPagePeriodSummaryEmbeddedId: embeddedId
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

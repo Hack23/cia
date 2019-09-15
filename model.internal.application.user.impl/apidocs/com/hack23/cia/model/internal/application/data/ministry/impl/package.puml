@@ -1,0 +1,91 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.data.ministry.impl {
+
+        class ViewRiksdagenMinistry [[ViewRiksdagenMinistry.html]] {
+            #nameId: String
+            #totalAssignments: long
+            #firstAssignmentDate: Date
+            #lastAssignmentDate: Date
+            #totalDaysServed: long
+            #currentMemberSize: long
+            #active: boolean
+            +getNameId(): String
+            +setNameId(String): void
+            +getTotalAssignments(): long
+            +setTotalAssignments(long): void
+            +getFirstAssignmentDate(): Date
+            +setFirstAssignmentDate(Date): void
+            +getLastAssignmentDate(): Date
+            +setLastAssignmentDate(Date): void
+            +getTotalDaysServed(): long
+            +setTotalDaysServed(long): void
+            +getCurrentMemberSize(): long
+            +setCurrentMemberSize(long): void
+            +isActive(): boolean
+            +setActive(boolean): void
+            +withNameId(String): ViewRiksdagenMinistry
+            +withTotalAssignments(long): ViewRiksdagenMinistry
+            +withFirstAssignmentDate(Date): ViewRiksdagenMinistry
+            +withLastAssignmentDate(Date): ViewRiksdagenMinistry
+            +withTotalDaysServed(long): ViewRiksdagenMinistry
+            +withCurrentMemberSize(long): ViewRiksdagenMinistry
+            +withActive(boolean): ViewRiksdagenMinistry
+        }
+
+        class ViewRiksdagenGovermentRoleMember [[ViewRiksdagenGovermentRoleMember.html]] {
+            #roleId: long
+            #detail: String
+            #roleCode: String
+            #firstName: String
+            #lastName: String
+            #fromDate: Date
+            #toDate: Date
+            #personId: String
+            #party: String
+            #totalDaysServed: int
+            #active: boolean
+            +getRoleId(): long
+            +setRoleId(long): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getRoleCode(): String
+            +setRoleCode(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getFromDate(): Date
+            +setFromDate(Date): void
+            +getToDate(): Date
+            +setToDate(Date): void
+            +getPersonId(): String
+            +setPersonId(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getTotalDaysServed(): int
+            +setTotalDaysServed(int): void
+            +isActive(): boolean
+            +setActive(boolean): void
+            +withRoleId(long): ViewRiksdagenGovermentRoleMember
+            +withDetail(String): ViewRiksdagenGovermentRoleMember
+            +withRoleCode(String): ViewRiksdagenGovermentRoleMember
+            +withFirstName(String): ViewRiksdagenGovermentRoleMember
+            +withLastName(String): ViewRiksdagenGovermentRoleMember
+            +withFromDate(Date): ViewRiksdagenGovermentRoleMember
+            +withToDate(Date): ViewRiksdagenGovermentRoleMember
+            +withPersonId(String): ViewRiksdagenGovermentRoleMember
+            +withParty(String): ViewRiksdagenGovermentRoleMember
+            +withTotalDaysServed(int): ViewRiksdagenGovermentRoleMember
+            +withActive(boolean): ViewRiksdagenGovermentRoleMember
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenMinistry
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenGovermentRoleMember
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

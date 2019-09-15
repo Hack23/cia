@@ -1,0 +1,58 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenGovermentRoleMember\n<size:10>com.hack23.cia.model.internal.application.data.ministry.impl" as com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember [[ViewRiksdagenGovermentRoleMember.html]] {
+        #roleId: long
+        #detail: String
+        #roleCode: String
+        #firstName: String
+        #lastName: String
+        #fromDate: Date
+        #toDate: Date
+        #personId: String
+        #party: String
+        #totalDaysServed: int
+        #active: boolean
+        +getRoleId(): long
+        +setRoleId(long): void
+        +getDetail(): String
+        +setDetail(String): void
+        +getRoleCode(): String
+        +setRoleCode(String): void
+        +getFirstName(): String
+        +setFirstName(String): void
+        +getLastName(): String
+        +setLastName(String): void
+        +getFromDate(): Date
+        +setFromDate(Date): void
+        +getToDate(): Date
+        +setToDate(Date): void
+        +getPersonId(): String
+        +setPersonId(String): void
+        +getParty(): String
+        +setParty(String): void
+        +getTotalDaysServed(): int
+        +setTotalDaysServed(int): void
+        +isActive(): boolean
+        +setActive(boolean): void
+        +withRoleId(long): ViewRiksdagenGovermentRoleMember
+        +withDetail(String): ViewRiksdagenGovermentRoleMember
+        +withRoleCode(String): ViewRiksdagenGovermentRoleMember
+        +withFirstName(String): ViewRiksdagenGovermentRoleMember
+        +withLastName(String): ViewRiksdagenGovermentRoleMember
+        +withFromDate(Date): ViewRiksdagenGovermentRoleMember
+        +withToDate(Date): ViewRiksdagenGovermentRoleMember
+        +withPersonId(String): ViewRiksdagenGovermentRoleMember
+        +withParty(String): ViewRiksdagenGovermentRoleMember
+        +withTotalDaysServed(int): ViewRiksdagenGovermentRoleMember
+        +withActive(boolean): ViewRiksdagenGovermentRoleMember
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

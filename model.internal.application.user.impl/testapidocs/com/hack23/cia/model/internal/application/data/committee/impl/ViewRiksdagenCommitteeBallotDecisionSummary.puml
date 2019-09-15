@@ -1,0 +1,134 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenCommitteeBallotDecisionSummary\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary [[ViewRiksdagenCommitteeBallotDecisionSummary.html]] {
+        #embeddedId: ViewRiksdagenCommitteeBallotDecisionEmbeddedId
+        #committeeReport: String
+        #rm: String
+        #title: String
+        #subTitle: String
+        #endNumber: BigDecimal
+        #org: String
+        #createdDate: Date
+        #publicDate: Date
+        #ballotId: String
+        #decisionType: String
+        #againstProposalParties: String
+        #againstProposalNumber: BigDecimal
+        #winner: String
+        #ballotType: String
+        #label: String
+        #voteDate: Date
+        #avgBornYear: BigDecimal
+        #totalVotes: long
+        #yesVotes: long
+        #noVotes: long
+        #abstainVotes: long
+        #absentVotes: long
+        #approved: boolean
+        #noWinner: boolean
+        #percentageYes: BigDecimal
+        #percentageNo: BigDecimal
+        #percentageAbsent: BigDecimal
+        #percentageAbstain: BigDecimal
+        #percentageMale: BigDecimal
+        +getEmbeddedId(): ViewRiksdagenCommitteeBallotDecisionEmbeddedId
+        +setEmbeddedId(ViewRiksdagenCommitteeBallotDecisionEmbeddedId): void
+        +getCommitteeReport(): String
+        +setCommitteeReport(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getSubTitle(): String
+        +setSubTitle(String): void
+        +getEndNumber(): BigDecimal
+        +setEndNumber(BigDecimal): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getPublicDate(): Date
+        +setPublicDate(Date): void
+        +getBallotId(): String
+        +setBallotId(String): void
+        +getDecisionType(): String
+        +setDecisionType(String): void
+        +getAgainstProposalParties(): String
+        +setAgainstProposalParties(String): void
+        +getAgainstProposalNumber(): BigDecimal
+        +setAgainstProposalNumber(BigDecimal): void
+        +getWinner(): String
+        +setWinner(String): void
+        +getBallotType(): String
+        +setBallotType(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getAvgBornYear(): BigDecimal
+        +setAvgBornYear(BigDecimal): void
+        +getTotalVotes(): long
+        +setTotalVotes(long): void
+        +getYesVotes(): long
+        +setYesVotes(long): void
+        +getNoVotes(): long
+        +setNoVotes(long): void
+        +getAbstainVotes(): long
+        +setAbstainVotes(long): void
+        +getAbsentVotes(): long
+        +setAbsentVotes(long): void
+        +isApproved(): boolean
+        +setApproved(boolean): void
+        +isNoWinner(): boolean
+        +setNoWinner(boolean): void
+        +getPercentageYes(): BigDecimal
+        +setPercentageYes(BigDecimal): void
+        +getPercentageNo(): BigDecimal
+        +setPercentageNo(BigDecimal): void
+        +getPercentageAbsent(): BigDecimal
+        +setPercentageAbsent(BigDecimal): void
+        +getPercentageAbstain(): BigDecimal
+        +setPercentageAbstain(BigDecimal): void
+        +getPercentageMale(): BigDecimal
+        +setPercentageMale(BigDecimal): void
+        +withEmbeddedId(ViewRiksdagenCommitteeBallotDecisionEmbeddedId): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withCommitteeReport(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withRm(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withTitle(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withSubTitle(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withEndNumber(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withOrg(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withCreatedDate(Date): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPublicDate(Date): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withBallotId(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withDecisionType(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withAgainstProposalParties(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withAgainstProposalNumber(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withWinner(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withBallotType(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withLabel(String): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withVoteDate(Date): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withAvgBornYear(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withTotalVotes(long): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withYesVotes(long): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withNoVotes(long): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withAbstainVotes(long): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withAbsentVotes(long): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withApproved(boolean): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withNoWinner(boolean): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPercentageYes(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPercentageNo(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPercentageAbsent(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPercentageAbstain(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+        +withPercentageMale(BigDecimal): ViewRiksdagenCommitteeBallotDecisionSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

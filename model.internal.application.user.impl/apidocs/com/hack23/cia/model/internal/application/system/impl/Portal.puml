@@ -1,0 +1,41 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Portal\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.Portal [[Portal.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #portalName: String
+        #portalType: PortalType
+        #description: String
+        #googleMapApiKey: String
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getPortalName(): String
+        +setPortalName(String): void
+        +getPortalType(): PortalType
+        +setPortalType(PortalType): void
+        +getDescription(): String
+        +setDescription(String): void
+        +getGoogleMapApiKey(): String
+        +setGoogleMapApiKey(String): void
+        +withModelObjectId(Integer): Portal
+        +withModelObjectVersion(int): Portal
+        +withPortalName(String): Portal
+        +withPortalType(PortalType): Portal
+        +withDescription(String): Portal
+        +withGoogleMapApiKey(String): Portal
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.Portal
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

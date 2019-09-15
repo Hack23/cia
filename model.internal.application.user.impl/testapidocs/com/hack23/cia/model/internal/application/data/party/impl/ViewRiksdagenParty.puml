@@ -1,0 +1,38 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenParty\n<size:10>com.hack23.cia.model.internal.application.data.party.impl" as com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty [[ViewRiksdagenParty.html]] {
+        #partyId: String
+        #partyNumber: String
+        #partyName: String
+        #headCount: long
+        #website: String
+        #registeredDate: Date
+        +getPartyId(): String
+        +setPartyId(String): void
+        +getPartyNumber(): String
+        +setPartyNumber(String): void
+        +getPartyName(): String
+        +setPartyName(String): void
+        +getHeadCount(): long
+        +setHeadCount(long): void
+        +getWebsite(): String
+        +setWebsite(String): void
+        +getRegisteredDate(): Date
+        +setRegisteredDate(Date): void
+        +withPartyId(String): ViewRiksdagenParty
+        +withPartyNumber(String): ViewRiksdagenParty
+        +withPartyName(String): ViewRiksdagenParty
+        +withHeadCount(long): ViewRiksdagenParty
+        +withWebsite(String): ViewRiksdagenParty
+        +withRegisteredDate(Date): ViewRiksdagenParty
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

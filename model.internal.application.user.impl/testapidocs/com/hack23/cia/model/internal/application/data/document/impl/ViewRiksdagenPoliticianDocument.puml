@@ -1,0 +1,86 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenPoliticianDocument\n<size:10>com.hack23.cia.model.internal.application.data.document.impl" as com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument [[ViewRiksdagenPoliticianDocument.html]] {
+        #id: long
+        #docId: String
+        #documentType: String
+        #label: String
+        #madePublicDate: Date
+        #org: String
+        #numberValue: BigInteger
+        #rm: String
+        #status: String
+        #subTitle: String
+        #subType: String
+        #tempLabel: String
+        #title: String
+        #roleDescription: String
+        #personReferenceId: String
+        #referenceName: String
+        #partyShortCode: String
+        #orderNumber: Integer
+        +getId(): long
+        +setId(long): void
+        +getDocId(): String
+        +setDocId(String): void
+        +getDocumentType(): String
+        +setDocumentType(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getMadePublicDate(): Date
+        +setMadePublicDate(Date): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getNumberValue(): BigInteger
+        +setNumberValue(BigInteger): void
+        +getRm(): String
+        +setRm(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getSubTitle(): String
+        +setSubTitle(String): void
+        +getSubType(): String
+        +setSubType(String): void
+        +getTempLabel(): String
+        +setTempLabel(String): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getRoleDescription(): String
+        +setRoleDescription(String): void
+        +getPersonReferenceId(): String
+        +setPersonReferenceId(String): void
+        +getReferenceName(): String
+        +setReferenceName(String): void
+        +getPartyShortCode(): String
+        +setPartyShortCode(String): void
+        +getOrderNumber(): Integer
+        +setOrderNumber(Integer): void
+        +withId(long): ViewRiksdagenPoliticianDocument
+        +withDocId(String): ViewRiksdagenPoliticianDocument
+        +withDocumentType(String): ViewRiksdagenPoliticianDocument
+        +withLabel(String): ViewRiksdagenPoliticianDocument
+        +withMadePublicDate(Date): ViewRiksdagenPoliticianDocument
+        +withOrg(String): ViewRiksdagenPoliticianDocument
+        +withNumberValue(BigInteger): ViewRiksdagenPoliticianDocument
+        +withRm(String): ViewRiksdagenPoliticianDocument
+        +withStatus(String): ViewRiksdagenPoliticianDocument
+        +withSubTitle(String): ViewRiksdagenPoliticianDocument
+        +withSubType(String): ViewRiksdagenPoliticianDocument
+        +withTempLabel(String): ViewRiksdagenPoliticianDocument
+        +withTitle(String): ViewRiksdagenPoliticianDocument
+        +withRoleDescription(String): ViewRiksdagenPoliticianDocument
+        +withPersonReferenceId(String): ViewRiksdagenPoliticianDocument
+        +withReferenceName(String): ViewRiksdagenPoliticianDocument
+        +withPartyShortCode(String): ViewRiksdagenPoliticianDocument
+        +withOrderNumber(Integer): ViewRiksdagenPoliticianDocument
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

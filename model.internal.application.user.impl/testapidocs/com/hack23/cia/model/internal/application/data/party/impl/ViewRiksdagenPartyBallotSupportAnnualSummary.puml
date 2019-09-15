@@ -1,0 +1,34 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenPartyBallotSupportAnnualSummary\n<size:10>com.hack23.cia.model.internal.application.data.party.impl" as com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary [[ViewRiksdagenPartyBallotSupportAnnualSummary.html]] {
+        #embeddedId: ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+        #disagreCount: long
+        #agreeCount: long
+        #disagreePercentage: long
+        #totalBallots: long
+        +getEmbeddedId(): ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+        +setEmbeddedId(ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId): void
+        +getDisagreCount(): long
+        +setDisagreCount(long): void
+        +getAgreeCount(): long
+        +setAgreeCount(long): void
+        +getDisagreePercentage(): long
+        +setDisagreePercentage(long): void
+        +getTotalBallots(): long
+        +setTotalBallots(long): void
+        +withEmbeddedId(ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId): ViewRiksdagenPartyBallotSupportAnnualSummary
+        +withDisagreCount(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+        +withAgreeCount(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+        +withDisagreePercentage(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+        +withTotalBallots(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

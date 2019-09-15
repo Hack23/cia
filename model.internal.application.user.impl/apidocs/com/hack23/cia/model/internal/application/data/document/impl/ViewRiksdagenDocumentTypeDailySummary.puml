@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenDocumentTypeDailySummary\n<size:10>com.hack23.cia.model.internal.application.data.document.impl" as com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary [[ViewRiksdagenDocumentTypeDailySummary.html]] {
+        #embeddedId: RiksdagenDocumentTypeSummaryEmbeddedId
+        #total: long
+        +getEmbeddedId(): RiksdagenDocumentTypeSummaryEmbeddedId
+        +setEmbeddedId(RiksdagenDocumentTypeSummaryEmbeddedId): void
+        +getTotal(): long
+        +setTotal(long): void
+        +withEmbeddedId(RiksdagenDocumentTypeSummaryEmbeddedId): ViewRiksdagenDocumentTypeDailySummary
+        +withTotal(long): ViewRiksdagenDocumentTypeDailySummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>UserRole\n<size:10>com.hack23.cia.model.internal.application.user.impl" as com.hack23.cia.model.internal.application.user.impl.UserRole [[UserRole.html]] {
+        {static} +ADMIN
+        {static} +USER
+        {static} +EDITOR
+        +value(): String
+        {static} +fromValue(String): UserRole
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

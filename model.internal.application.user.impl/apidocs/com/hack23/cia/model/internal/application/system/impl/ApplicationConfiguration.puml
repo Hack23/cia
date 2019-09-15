@@ -1,0 +1,65 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ApplicationConfiguration\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration [[ApplicationConfiguration.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #configTitle: String
+        #configDescription: String
+        #configurationGroup: ConfigurationGroup
+        #component: String
+        #componentTitle: String
+        #componentDescription: String
+        #propertyId: String
+        #propertyValue: String
+        #createdDate: Date
+        #updatedDate: Date
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getConfigTitle(): String
+        +setConfigTitle(String): void
+        +getConfigDescription(): String
+        +setConfigDescription(String): void
+        +getConfigurationGroup(): ConfigurationGroup
+        +setConfigurationGroup(ConfigurationGroup): void
+        +getComponent(): String
+        +setComponent(String): void
+        +getComponentTitle(): String
+        +setComponentTitle(String): void
+        +getComponentDescription(): String
+        +setComponentDescription(String): void
+        +getPropertyId(): String
+        +setPropertyId(String): void
+        +getPropertyValue(): String
+        +setPropertyValue(String): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getUpdatedDate(): Date
+        +setUpdatedDate(Date): void
+        +withModelObjectId(Integer): ApplicationConfiguration
+        +withModelObjectVersion(int): ApplicationConfiguration
+        +withConfigTitle(String): ApplicationConfiguration
+        +withConfigDescription(String): ApplicationConfiguration
+        +withConfigurationGroup(ConfigurationGroup): ApplicationConfiguration
+        +withComponent(String): ApplicationConfiguration
+        +withComponentTitle(String): ApplicationConfiguration
+        +withComponentDescription(String): ApplicationConfiguration
+        +withPropertyId(String): ApplicationConfiguration
+        +withPropertyValue(String): ApplicationConfiguration
+        +withCreatedDate(Date): ApplicationConfiguration
+        +withUpdatedDate(Date): ApplicationConfiguration
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

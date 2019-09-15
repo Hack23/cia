@@ -1,0 +1,42 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenMinistry\n<size:10>com.hack23.cia.model.internal.application.data.ministry.impl" as com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry [[ViewRiksdagenMinistry.html]] {
+        #nameId: String
+        #totalAssignments: long
+        #firstAssignmentDate: Date
+        #lastAssignmentDate: Date
+        #totalDaysServed: long
+        #currentMemberSize: long
+        #active: boolean
+        +getNameId(): String
+        +setNameId(String): void
+        +getTotalAssignments(): long
+        +setTotalAssignments(long): void
+        +getFirstAssignmentDate(): Date
+        +setFirstAssignmentDate(Date): void
+        +getLastAssignmentDate(): Date
+        +setLastAssignmentDate(Date): void
+        +getTotalDaysServed(): long
+        +setTotalDaysServed(long): void
+        +getCurrentMemberSize(): long
+        +setCurrentMemberSize(long): void
+        +isActive(): boolean
+        +setActive(boolean): void
+        +withNameId(String): ViewRiksdagenMinistry
+        +withTotalAssignments(long): ViewRiksdagenMinistry
+        +withFirstAssignmentDate(Date): ViewRiksdagenMinistry
+        +withLastAssignmentDate(Date): ViewRiksdagenMinistry
+        +withTotalDaysServed(long): ViewRiksdagenMinistry
+        +withCurrentMemberSize(long): ViewRiksdagenMinistry
+        +withActive(boolean): ViewRiksdagenMinistry
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

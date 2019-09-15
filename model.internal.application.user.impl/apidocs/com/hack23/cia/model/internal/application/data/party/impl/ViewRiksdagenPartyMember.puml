@@ -1,0 +1,122 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenPartyMember\n<size:10>com.hack23.cia.model.internal.application.data.party.impl" as com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember [[ViewRiksdagenPartyMember.html]] {
+        #id: String
+        #hjid: long
+        #address: String
+        #city: String
+        #coAddress: String
+        #email: String
+        #faxNumber: String
+        #partyId: String
+        #partyName: String
+        #phoneNumber: String
+        #postCode: String
+        #registeredDate: Date
+        #shortCode: String
+        #website: String
+        #bornYear: int
+        #electionRegion: String
+        #firstName: String
+        #gender: String
+        #hangarGuid: String
+        #imageUrl192: String
+        #imageUrl80: String
+        #imageUrlMax: String
+        #lastName: String
+        #party: String
+        #personUrlXml: String
+        #place: String
+        #status: String
+        +getId(): String
+        +setId(String): void
+        +getHjid(): long
+        +setHjid(long): void
+        +getAddress(): String
+        +setAddress(String): void
+        +getCity(): String
+        +setCity(String): void
+        +getCoAddress(): String
+        +setCoAddress(String): void
+        +getEmail(): String
+        +setEmail(String): void
+        +getFaxNumber(): String
+        +setFaxNumber(String): void
+        +getPartyId(): String
+        +setPartyId(String): void
+        +getPartyName(): String
+        +setPartyName(String): void
+        +getPhoneNumber(): String
+        +setPhoneNumber(String): void
+        +getPostCode(): String
+        +setPostCode(String): void
+        +getRegisteredDate(): Date
+        +setRegisteredDate(Date): void
+        +getShortCode(): String
+        +setShortCode(String): void
+        +getWebsite(): String
+        +setWebsite(String): void
+        +getBornYear(): int
+        +setBornYear(int): void
+        +getElectionRegion(): String
+        +setElectionRegion(String): void
+        +getFirstName(): String
+        +setFirstName(String): void
+        +getGender(): String
+        +setGender(String): void
+        +getHangarGuid(): String
+        +setHangarGuid(String): void
+        +getImageUrl192(): String
+        +setImageUrl192(String): void
+        +getImageUrl80(): String
+        +setImageUrl80(String): void
+        +getImageUrlMax(): String
+        +setImageUrlMax(String): void
+        +getLastName(): String
+        +setLastName(String): void
+        +getParty(): String
+        +setParty(String): void
+        +getPersonUrlXml(): String
+        +setPersonUrlXml(String): void
+        +getPlace(): String
+        +setPlace(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +withId(String): ViewRiksdagenPartyMember
+        +withHjid(long): ViewRiksdagenPartyMember
+        +withAddress(String): ViewRiksdagenPartyMember
+        +withCity(String): ViewRiksdagenPartyMember
+        +withCoAddress(String): ViewRiksdagenPartyMember
+        +withEmail(String): ViewRiksdagenPartyMember
+        +withFaxNumber(String): ViewRiksdagenPartyMember
+        +withPartyId(String): ViewRiksdagenPartyMember
+        +withPartyName(String): ViewRiksdagenPartyMember
+        +withPhoneNumber(String): ViewRiksdagenPartyMember
+        +withPostCode(String): ViewRiksdagenPartyMember
+        +withRegisteredDate(Date): ViewRiksdagenPartyMember
+        +withShortCode(String): ViewRiksdagenPartyMember
+        +withWebsite(String): ViewRiksdagenPartyMember
+        +withBornYear(int): ViewRiksdagenPartyMember
+        +withElectionRegion(String): ViewRiksdagenPartyMember
+        +withFirstName(String): ViewRiksdagenPartyMember
+        +withGender(String): ViewRiksdagenPartyMember
+        +withHangarGuid(String): ViewRiksdagenPartyMember
+        +withImageUrl192(String): ViewRiksdagenPartyMember
+        +withImageUrl80(String): ViewRiksdagenPartyMember
+        +withImageUrlMax(String): ViewRiksdagenPartyMember
+        +withLastName(String): ViewRiksdagenPartyMember
+        +withParty(String): ViewRiksdagenPartyMember
+        +withPersonUrlXml(String): ViewRiksdagenPartyMember
+        +withPlace(String): ViewRiksdagenPartyMember
+        +withStatus(String): ViewRiksdagenPartyMember
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

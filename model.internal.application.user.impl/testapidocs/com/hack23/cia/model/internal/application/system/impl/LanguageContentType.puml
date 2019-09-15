@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>LanguageContentType\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.LanguageContentType [[LanguageContentType.html]] {
+        {static} +GOOGLE_TRANSLATION
+        {static} +HUMAN_TRANSLATION
+        +value(): String
+        {static} +fromValue(String): LanguageContentType
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

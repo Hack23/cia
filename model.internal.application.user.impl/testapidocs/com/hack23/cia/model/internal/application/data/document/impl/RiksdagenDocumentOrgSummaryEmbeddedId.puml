@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RiksdagenDocumentOrgSummaryEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.document.impl" as com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId [[RiksdagenDocumentOrgSummaryEmbeddedId.html]] {
+        #publicDate: String
+        #org: String
+        +getPublicDate(): String
+        +setPublicDate(String): void
+        +getOrg(): String
+        +setOrg(String): void
+        +withPublicDate(String): RiksdagenDocumentOrgSummaryEmbeddedId
+        +withOrg(String): RiksdagenDocumentOrgSummaryEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

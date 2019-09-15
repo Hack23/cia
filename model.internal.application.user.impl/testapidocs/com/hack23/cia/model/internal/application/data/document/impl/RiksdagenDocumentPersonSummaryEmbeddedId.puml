@@ -1,0 +1,26 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RiksdagenDocumentPersonSummaryEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.document.impl" as com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId [[RiksdagenDocumentPersonSummaryEmbeddedId.html]] {
+        #publicDate: Date
+        #personId: String
+        #documentType: String
+        +getPublicDate(): Date
+        +setPublicDate(Date): void
+        +getPersonId(): String
+        +setPersonId(String): void
+        +getDocumentType(): String
+        +setDocumentType(String): void
+        +withPublicDate(Date): RiksdagenDocumentPersonSummaryEmbeddedId
+        +withPersonId(String): RiksdagenDocumentPersonSummaryEmbeddedId
+        +withDocumentType(String): RiksdagenDocumentPersonSummaryEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

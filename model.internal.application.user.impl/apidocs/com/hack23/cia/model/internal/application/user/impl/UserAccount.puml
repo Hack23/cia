@@ -1,0 +1,73 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>UserAccount\n<size:10>com.hack23.cia.model.internal.application.user.impl" as com.hack23.cia.model.internal.application.user.impl.UserAccount [[UserAccount.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #country: String
+        #username: String
+        #email: String
+        #userId: String
+        #userpassword: String
+        #numberOfVisits: Integer
+        #address: List<String>
+        #userType: UserType
+        #userRole: UserRole
+        #userLockStatus: UserLockStatus
+        #userEmailStatus: UserEmailStatus
+        #createdDate: Date
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getCountry(): String
+        +setCountry(String): void
+        +getUsername(): String
+        +setUsername(String): void
+        +getEmail(): String
+        +setEmail(String): void
+        +getUserId(): String
+        +setUserId(String): void
+        +getUserpassword(): String
+        +setUserpassword(String): void
+        +getNumberOfVisits(): Integer
+        +setNumberOfVisits(Integer): void
+        +getAddress(): List<String>
+        +setAddress(List<String>): void
+        +getUserType(): UserType
+        +setUserType(UserType): void
+        +getUserRole(): UserRole
+        +setUserRole(UserRole): void
+        +getUserLockStatus(): UserLockStatus
+        +setUserLockStatus(UserLockStatus): void
+        +getUserEmailStatus(): UserEmailStatus
+        +setUserEmailStatus(UserEmailStatus): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +withModelObjectId(Integer): UserAccount
+        +withModelObjectVersion(int): UserAccount
+        +withCountry(String): UserAccount
+        +withUsername(String): UserAccount
+        +withEmail(String): UserAccount
+        +withUserId(String): UserAccount
+        +withUserpassword(String): UserAccount
+        +withNumberOfVisits(Integer): UserAccount
+        +withAddress(List<String>): UserAccount
+        +withUserType(UserType): UserAccount
+        +withUserRole(UserRole): UserAccount
+        +withUserLockStatus(UserLockStatus): UserAccount
+        +withUserEmailStatus(UserEmailStatus): UserAccount
+        +withCreatedDate(Date): UserAccount
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.user.impl.UserAccount
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

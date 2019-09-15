@@ -1,0 +1,37 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Agency\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.Agency [[Agency.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #agencyName: String
+        #description: String
+        #portals: List<Portal>
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getAgencyName(): String
+        +setAgencyName(String): void
+        +getDescription(): String
+        +setDescription(String): void
+        +getPortals(): List<Portal>
+        +setPortals(List<Portal>): void
+        +withModelObjectId(Integer): Agency
+        +withModelObjectVersion(int): Agency
+        +withAgencyName(String): Agency
+        +withDescription(String): Agency
+        +withPortals(List<Portal>): Agency
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.Agency
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

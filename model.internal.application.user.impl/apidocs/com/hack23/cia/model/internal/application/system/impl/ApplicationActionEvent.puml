@@ -1,0 +1,69 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ApplicationActionEvent\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent [[ApplicationActionEvent.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #applicationOperation: ApplicationOperationType
+        #eventGroup: ApplicationEventGroup
+        #page: String
+        #pageMode: String
+        #elementId: String
+        #actionName: String
+        #sessionId: String
+        #userId: String
+        #errorMessage: String
+        #applicationMessage: String
+        #createdDate: Date
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getApplicationOperation(): ApplicationOperationType
+        +setApplicationOperation(ApplicationOperationType): void
+        +getEventGroup(): ApplicationEventGroup
+        +setEventGroup(ApplicationEventGroup): void
+        +getPage(): String
+        +setPage(String): void
+        +getPageMode(): String
+        +setPageMode(String): void
+        +getElementId(): String
+        +setElementId(String): void
+        +getActionName(): String
+        +setActionName(String): void
+        +getSessionId(): String
+        +setSessionId(String): void
+        +getUserId(): String
+        +setUserId(String): void
+        +getErrorMessage(): String
+        +setErrorMessage(String): void
+        +getApplicationMessage(): String
+        +setApplicationMessage(String): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +withModelObjectId(Integer): ApplicationActionEvent
+        +withModelObjectVersion(int): ApplicationActionEvent
+        +withApplicationOperation(ApplicationOperationType): ApplicationActionEvent
+        +withEventGroup(ApplicationEventGroup): ApplicationActionEvent
+        +withPage(String): ApplicationActionEvent
+        +withPageMode(String): ApplicationActionEvent
+        +withElementId(String): ApplicationActionEvent
+        +withActionName(String): ApplicationActionEvent
+        +withSessionId(String): ApplicationActionEvent
+        +withUserId(String): ApplicationActionEvent
+        +withErrorMessage(String): ApplicationActionEvent
+        +withApplicationMessage(String): ApplicationActionEvent
+        +withCreatedDate(Date): ApplicationActionEvent
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

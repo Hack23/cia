@@ -1,0 +1,96 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.user.impl {
+
+        enum UserLockStatus [[UserLockStatus.html]] {
+            {static} +UNLOCKED
+            {static} +LOCKED
+            +value(): String
+            {static} +fromValue(String): UserLockStatus
+        }
+
+        enum UserEmailStatus [[UserEmailStatus.html]] {
+            {static} +VERIFIED
+            {static} +UNKNOWN
+            +value(): String
+            {static} +fromValue(String): UserEmailStatus
+        }
+
+        class UserAccount [[UserAccount.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #country: String
+            #username: String
+            #email: String
+            #userId: String
+            #userpassword: String
+            #numberOfVisits: Integer
+            #address: List<String>
+            #createdDate: Date
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getCountry(): String
+            +setCountry(String): void
+            +getUsername(): String
+            +setUsername(String): void
+            +getEmail(): String
+            +setEmail(String): void
+            +getUserId(): String
+            +setUserId(String): void
+            +getUserpassword(): String
+            +setUserpassword(String): void
+            +getNumberOfVisits(): Integer
+            +setNumberOfVisits(Integer): void
+            +getAddress(): List<String>
+            +setAddress(List<String>): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +withModelObjectId(Integer): UserAccount
+            +withModelObjectVersion(int): UserAccount
+            +withCountry(String): UserAccount
+            +withUsername(String): UserAccount
+            +withEmail(String): UserAccount
+            +withUserId(String): UserAccount
+            +withUserpassword(String): UserAccount
+            +withNumberOfVisits(Integer): UserAccount
+            +withAddress(List<String>): UserAccount
+            +withUserType(UserType): UserAccount
+            +withUserRole(UserRole): UserAccount
+            +withUserLockStatus(UserLockStatus): UserAccount
+            +withUserEmailStatus(UserEmailStatus): UserAccount
+            +withCreatedDate(Date): UserAccount
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum UserRole [[UserRole.html]] {
+            {static} +ADMIN
+            {static} +USER
+            {static} +EDITOR
+            +value(): String
+            {static} +fromValue(String): UserRole
+        }
+
+        enum UserType [[UserType.html]] {
+            {static} +ANONYMOUS
+            {static} +PRIVATE
+            {static} +BUSINESS
+            +value(): String
+            {static} +fromValue(String): UserType
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. UserAccount
+        UserAccount --> UserType: userType
+        UserAccount --> UserRole: userRole
+        UserAccount --> UserLockStatus: userLockStatus
+        UserAccount --> UserEmailStatus: userEmailStatus
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

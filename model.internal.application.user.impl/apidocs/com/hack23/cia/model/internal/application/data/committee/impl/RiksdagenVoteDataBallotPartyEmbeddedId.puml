@@ -1,0 +1,30 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RiksdagenVoteDataBallotPartyEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId [[RiksdagenVoteDataBallotPartyEmbeddedId.html]] {
+        #ballotId: String
+        #concern: String
+        #issue: String
+        #party: String
+        +getBallotId(): String
+        +setBallotId(String): void
+        +getConcern(): String
+        +setConcern(String): void
+        +getIssue(): String
+        +setIssue(String): void
+        +getParty(): String
+        +setParty(String): void
+        +withBallotId(String): RiksdagenVoteDataBallotPartyEmbeddedId
+        +withConcern(String): RiksdagenVoteDataBallotPartyEmbeddedId
+        +withIssue(String): RiksdagenVoteDataBallotPartyEmbeddedId
+        +withParty(String): RiksdagenVoteDataBallotPartyEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

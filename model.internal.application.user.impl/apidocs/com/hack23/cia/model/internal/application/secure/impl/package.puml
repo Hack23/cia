@@ -1,0 +1,24 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.secure.impl {
+
+        class EncryptedValue [[EncryptedValue.html]] {
+            +getId(): Long
+            +setId(Long): void
+            +getStorage(): String
+            +setStorage(String): void
+            +getUserId(): String
+            +setUserId(String): void
+            +getVaultName(): String
+            +setVaultName(String): void
+        }
+
+        com.hack23.cia.model.common.impl.AbstractModelObjectImpl <|-- EncryptedValue
+    }
+
+    namespace com.hack23.cia.model.common.impl {
+        abstract class AbstractModelObjectImpl {
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

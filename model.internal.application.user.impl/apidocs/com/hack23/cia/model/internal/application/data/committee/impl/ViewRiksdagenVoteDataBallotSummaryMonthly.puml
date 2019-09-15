@@ -1,0 +1,90 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenVoteDataBallotSummaryMonthly\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly [[ViewRiksdagenVoteDataBallotSummaryMonthly.html]] {
+        #voteDate: Date
+        #avgBornYear: BigDecimal
+        #totalVotes: BigDecimal
+        #yesVotes: BigDecimal
+        #noVotes: BigDecimal
+        #abstainVotes: BigDecimal
+        #absentVotes: BigDecimal
+        #percentageYes: BigDecimal
+        #percentageNo: BigDecimal
+        #percentageAbsent: BigDecimal
+        #percentageAbstain: BigDecimal
+        #numberBallots: BigDecimal
+        #approvedBallots: BigDecimal
+        #percentageApproved: BigDecimal
+        #avgPercentageYes: BigDecimal
+        #avgPercentageNo: BigDecimal
+        #avgPercentageAbsent: BigDecimal
+        #avgPercentageAbstain: BigDecimal
+        #avgPercentageMale: BigDecimal
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getAvgBornYear(): BigDecimal
+        +setAvgBornYear(BigDecimal): void
+        +getTotalVotes(): BigDecimal
+        +setTotalVotes(BigDecimal): void
+        +getYesVotes(): BigDecimal
+        +setYesVotes(BigDecimal): void
+        +getNoVotes(): BigDecimal
+        +setNoVotes(BigDecimal): void
+        +getAbstainVotes(): BigDecimal
+        +setAbstainVotes(BigDecimal): void
+        +getAbsentVotes(): BigDecimal
+        +setAbsentVotes(BigDecimal): void
+        +getPercentageYes(): BigDecimal
+        +setPercentageYes(BigDecimal): void
+        +getPercentageNo(): BigDecimal
+        +setPercentageNo(BigDecimal): void
+        +getPercentageAbsent(): BigDecimal
+        +setPercentageAbsent(BigDecimal): void
+        +getPercentageAbstain(): BigDecimal
+        +setPercentageAbstain(BigDecimal): void
+        +getNumberBallots(): BigDecimal
+        +setNumberBallots(BigDecimal): void
+        +getApprovedBallots(): BigDecimal
+        +setApprovedBallots(BigDecimal): void
+        +getPercentageApproved(): BigDecimal
+        +setPercentageApproved(BigDecimal): void
+        +getAvgPercentageYes(): BigDecimal
+        +setAvgPercentageYes(BigDecimal): void
+        +getAvgPercentageNo(): BigDecimal
+        +setAvgPercentageNo(BigDecimal): void
+        +getAvgPercentageAbsent(): BigDecimal
+        +setAvgPercentageAbsent(BigDecimal): void
+        +getAvgPercentageAbstain(): BigDecimal
+        +setAvgPercentageAbstain(BigDecimal): void
+        +getAvgPercentageMale(): BigDecimal
+        +setAvgPercentageMale(BigDecimal): void
+        +withVoteDate(Date): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withTotalVotes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withYesVotes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withNoVotes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAbstainVotes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAbsentVotes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withNumberBallots(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withApprovedBallots(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withPercentageApproved(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+        +withAvgPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotSummaryMonthly
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

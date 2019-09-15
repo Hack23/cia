@@ -1,0 +1,26 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ApplicationActionEventPageElementPeriodSummaryEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.impl" as com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageElementPeriodSummaryEmbeddedId [[ApplicationActionEventPageElementPeriodSummaryEmbeddedId.html]] {
+        #createdDate: Date
+        #page: String
+        #elementId: String
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getPage(): String
+        +setPage(String): void
+        +getElementId(): String
+        +setElementId(String): void
+        +withCreatedDate(Date): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+        +withPage(String): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+        +withElementId(String): ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageElementPeriodSummaryEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

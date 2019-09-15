@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DomainPortal\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.DomainPortal [[DomainPortal.html]] {
+        #domainName: String
+        +getDomainName(): String
+        +setDomainName(String): void
+        +withDomainName(String): DomainPortal
+    }
+
+    class "<size:14>Portal\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.Portal [[Portal.html]]
+
+    com.hack23.cia.model.internal.application.system.impl.Portal <|-- com.hack23.cia.model.internal.application.system.impl.DomainPortal
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

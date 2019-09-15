@@ -1,0 +1,53 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>LanguageData\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.LanguageData [[LanguageData.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #createdDate: Date
+        #languageName: String
+        #languageCode: String
+        #translationStatus: String
+        #languageEnabled: Boolean
+        #autoTranslationEnabled: Boolean
+        #lastModifiedDate: Date
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getLanguageName(): String
+        +setLanguageName(String): void
+        +getLanguageCode(): String
+        +setLanguageCode(String): void
+        +getTranslationStatus(): String
+        +setTranslationStatus(String): void
+        +isLanguageEnabled(): Boolean
+        +setLanguageEnabled(Boolean): void
+        +isAutoTranslationEnabled(): Boolean
+        +setAutoTranslationEnabled(Boolean): void
+        +getLastModifiedDate(): Date
+        +setLastModifiedDate(Date): void
+        +withModelObjectId(Integer): LanguageData
+        +withModelObjectVersion(int): LanguageData
+        +withCreatedDate(Date): LanguageData
+        +withLanguageName(String): LanguageData
+        +withLanguageCode(String): LanguageData
+        +withTranslationStatus(String): LanguageData
+        +withLanguageEnabled(Boolean): LanguageData
+        +withAutoTranslationEnabled(Boolean): LanguageData
+        +withLastModifiedDate(Date): LanguageData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.LanguageData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

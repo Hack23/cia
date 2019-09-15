@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId [[RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId.html]] {
+        #voteDate: Date
+        #party: String
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getParty(): String
+        +setParty(String): void
+        +withVoteDate(Date): RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId
+        +withParty(String): RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

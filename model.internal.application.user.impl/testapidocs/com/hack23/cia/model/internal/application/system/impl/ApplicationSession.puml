@@ -1,0 +1,73 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ApplicationSession\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.ApplicationSession [[ApplicationSession.html]] {
+        #modelObjectId: Integer
+        #modelObjectVersion: int
+        #createdDate: Date
+        #destroyedDate: Date
+        #ipInformation: String
+        #userAgentInformation: String
+        #sessionId: String
+        #userId: String
+        #locale: String
+        #operatingSystem: String
+        #screenSize: String
+        #timeZone: String
+        #sessionType: ApplicationSessionType
+        #events: List<ApplicationActionEvent>
+        #hjid: Long
+        +getModelObjectId(): Integer
+        +setModelObjectId(Integer): void
+        +getModelObjectVersion(): int
+        +setModelObjectVersion(int): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getDestroyedDate(): Date
+        +setDestroyedDate(Date): void
+        +getIpInformation(): String
+        +setIpInformation(String): void
+        +getUserAgentInformation(): String
+        +setUserAgentInformation(String): void
+        +getSessionId(): String
+        +setSessionId(String): void
+        +getUserId(): String
+        +setUserId(String): void
+        +getLocale(): String
+        +setLocale(String): void
+        +getOperatingSystem(): String
+        +setOperatingSystem(String): void
+        +getScreenSize(): String
+        +setScreenSize(String): void
+        +getTimeZone(): String
+        +setTimeZone(String): void
+        +getSessionType(): ApplicationSessionType
+        +setSessionType(ApplicationSessionType): void
+        +getEvents(): List<ApplicationActionEvent>
+        +setEvents(List<ApplicationActionEvent>): void
+        +withModelObjectId(Integer): ApplicationSession
+        +withModelObjectVersion(int): ApplicationSession
+        +withCreatedDate(Date): ApplicationSession
+        +withDestroyedDate(Date): ApplicationSession
+        +withIpInformation(String): ApplicationSession
+        +withUserAgentInformation(String): ApplicationSession
+        +withSessionId(String): ApplicationSession
+        +withUserId(String): ApplicationSession
+        +withLocale(String): ApplicationSession
+        +withOperatingSystem(String): ApplicationSession
+        +withScreenSize(String): ApplicationSession
+        +withTimeZone(String): ApplicationSession
+        +withSessionType(ApplicationSessionType): ApplicationSession
+        +withEvents(List<ApplicationActionEvent>): ApplicationSession
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.system.impl.ApplicationSession
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

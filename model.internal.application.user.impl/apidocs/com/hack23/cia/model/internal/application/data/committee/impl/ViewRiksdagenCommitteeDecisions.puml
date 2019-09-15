@@ -1,0 +1,74 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenCommitteeDecisions\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions [[ViewRiksdagenCommitteeDecisions.html]] {
+        #embeddedId: ViewRiksdagenCommitteeDecisionsEmbeddedId
+        #title: String
+        #header: String
+        #committeeReport: String
+        #rm: String
+        #endNumber: BigDecimal
+        #org: String
+        #createdDate: Date
+        #publicDate: Date
+        #committeeProposalUrlXml: String
+        #decisionType: String
+        #ballotId: String
+        #againstProposalParties: String
+        #againstProposalNumber: BigDecimal
+        #winner: String
+        +getEmbeddedId(): ViewRiksdagenCommitteeDecisionsEmbeddedId
+        +setEmbeddedId(ViewRiksdagenCommitteeDecisionsEmbeddedId): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getHeader(): String
+        +setHeader(String): void
+        +getCommitteeReport(): String
+        +setCommitteeReport(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getEndNumber(): BigDecimal
+        +setEndNumber(BigDecimal): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getPublicDate(): Date
+        +setPublicDate(Date): void
+        +getCommitteeProposalUrlXml(): String
+        +setCommitteeProposalUrlXml(String): void
+        +getDecisionType(): String
+        +setDecisionType(String): void
+        +getBallotId(): String
+        +setBallotId(String): void
+        +getAgainstProposalParties(): String
+        +setAgainstProposalParties(String): void
+        +getAgainstProposalNumber(): BigDecimal
+        +setAgainstProposalNumber(BigDecimal): void
+        +getWinner(): String
+        +setWinner(String): void
+        +withEmbeddedId(ViewRiksdagenCommitteeDecisionsEmbeddedId): ViewRiksdagenCommitteeDecisions
+        +withTitle(String): ViewRiksdagenCommitteeDecisions
+        +withHeader(String): ViewRiksdagenCommitteeDecisions
+        +withCommitteeReport(String): ViewRiksdagenCommitteeDecisions
+        +withRm(String): ViewRiksdagenCommitteeDecisions
+        +withEndNumber(BigDecimal): ViewRiksdagenCommitteeDecisions
+        +withOrg(String): ViewRiksdagenCommitteeDecisions
+        +withCreatedDate(Date): ViewRiksdagenCommitteeDecisions
+        +withPublicDate(Date): ViewRiksdagenCommitteeDecisions
+        +withCommitteeProposalUrlXml(String): ViewRiksdagenCommitteeDecisions
+        +withDecisionType(String): ViewRiksdagenCommitteeDecisions
+        +withBallotId(String): ViewRiksdagenCommitteeDecisions
+        +withAgainstProposalParties(String): ViewRiksdagenCommitteeDecisions
+        +withAgainstProposalNumber(BigDecimal): ViewRiksdagenCommitteeDecisions
+        +withWinner(String): ViewRiksdagenCommitteeDecisions
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

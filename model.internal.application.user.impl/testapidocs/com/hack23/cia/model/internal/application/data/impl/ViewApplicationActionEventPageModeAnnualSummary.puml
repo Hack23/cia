@@ -1,0 +1,30 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewApplicationActionEventPageModeAnnualSummary\n<size:10>com.hack23.cia.model.internal.application.data.impl" as com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary [[ViewApplicationActionEventPageModeAnnualSummary.html]] {
+        #embeddedId: ApplicationActionEventPageModePeriodSummaryEmbeddedId
+        #hits: long
+        #rank: long
+        #rankPercentage: BigDecimal
+        +getEmbeddedId(): ApplicationActionEventPageModePeriodSummaryEmbeddedId
+        +setEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): void
+        +getHits(): long
+        +setHits(long): void
+        +getRank(): long
+        +setRank(long): void
+        +getRankPercentage(): BigDecimal
+        +setRankPercentage(BigDecimal): void
+        +withEmbeddedId(ApplicationActionEventPageModePeriodSummaryEmbeddedId): ViewApplicationActionEventPageModeAnnualSummary
+        +withHits(long): ViewApplicationActionEventPageModeAnnualSummary
+        +withRank(long): ViewApplicationActionEventPageModeAnnualSummary
+        +withRankPercentage(BigDecimal): ViewApplicationActionEventPageModeAnnualSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

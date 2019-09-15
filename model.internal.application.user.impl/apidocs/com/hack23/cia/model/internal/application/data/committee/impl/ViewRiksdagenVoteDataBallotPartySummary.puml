@@ -1,0 +1,138 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenVoteDataBallotPartySummary\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary [[ViewRiksdagenVoteDataBallotPartySummary.html]] {
+        #embeddedId: RiksdagenVoteDataBallotPartyEmbeddedId
+        #voteDate: Date
+        #rm: String
+        #ballotType: String
+        #label: String
+        #avgBornYear: BigDecimal
+        #totalVotes: long
+        #yesVotes: long
+        #noVotes: long
+        #abstainVotes: long
+        #absentVotes: long
+        #approved: boolean
+        #noWinner: boolean
+        #percentageYes: BigDecimal
+        #percentageNo: BigDecimal
+        #percentageAbsent: BigDecimal
+        #percentageAbstain: BigDecimal
+        #percentageMale: BigDecimal
+        #partyAvgBornYear: BigDecimal
+        #partyTotalVotes: long
+        #partyYesVotes: long
+        #partyNoVotes: long
+        #partyAbstainVotes: long
+        #partyAbsentVotes: long
+        #partyApproved: boolean
+        #partyNoWinner: boolean
+        #partyPercentageYes: BigDecimal
+        #partyPercentageNo: BigDecimal
+        #partyPercentageAbsent: BigDecimal
+        #partyPercentageAbstain: BigDecimal
+        #partyPercentageMale: BigDecimal
+        +getEmbeddedId(): RiksdagenVoteDataBallotPartyEmbeddedId
+        +setEmbeddedId(RiksdagenVoteDataBallotPartyEmbeddedId): void
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getRm(): String
+        +setRm(String): void
+        +getBallotType(): String
+        +setBallotType(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getAvgBornYear(): BigDecimal
+        +setAvgBornYear(BigDecimal): void
+        +getTotalVotes(): long
+        +setTotalVotes(long): void
+        +getYesVotes(): long
+        +setYesVotes(long): void
+        +getNoVotes(): long
+        +setNoVotes(long): void
+        +getAbstainVotes(): long
+        +setAbstainVotes(long): void
+        +getAbsentVotes(): long
+        +setAbsentVotes(long): void
+        +isApproved(): boolean
+        +setApproved(boolean): void
+        +isNoWinner(): boolean
+        +setNoWinner(boolean): void
+        +getPercentageYes(): BigDecimal
+        +setPercentageYes(BigDecimal): void
+        +getPercentageNo(): BigDecimal
+        +setPercentageNo(BigDecimal): void
+        +getPercentageAbsent(): BigDecimal
+        +setPercentageAbsent(BigDecimal): void
+        +getPercentageAbstain(): BigDecimal
+        +setPercentageAbstain(BigDecimal): void
+        +getPercentageMale(): BigDecimal
+        +setPercentageMale(BigDecimal): void
+        +getPartyAvgBornYear(): BigDecimal
+        +setPartyAvgBornYear(BigDecimal): void
+        +getPartyTotalVotes(): long
+        +setPartyTotalVotes(long): void
+        +getPartyYesVotes(): long
+        +setPartyYesVotes(long): void
+        +getPartyNoVotes(): long
+        +setPartyNoVotes(long): void
+        +getPartyAbstainVotes(): long
+        +setPartyAbstainVotes(long): void
+        +getPartyAbsentVotes(): long
+        +setPartyAbsentVotes(long): void
+        +isPartyApproved(): boolean
+        +setPartyApproved(boolean): void
+        +isPartyNoWinner(): boolean
+        +setPartyNoWinner(boolean): void
+        +getPartyPercentageYes(): BigDecimal
+        +setPartyPercentageYes(BigDecimal): void
+        +getPartyPercentageNo(): BigDecimal
+        +setPartyPercentageNo(BigDecimal): void
+        +getPartyPercentageAbsent(): BigDecimal
+        +setPartyPercentageAbsent(BigDecimal): void
+        +getPartyPercentageAbstain(): BigDecimal
+        +setPartyPercentageAbstain(BigDecimal): void
+        +getPartyPercentageMale(): BigDecimal
+        +setPartyPercentageMale(BigDecimal): void
+        +withEmbeddedId(RiksdagenVoteDataBallotPartyEmbeddedId): ViewRiksdagenVoteDataBallotPartySummary
+        +withVoteDate(Date): ViewRiksdagenVoteDataBallotPartySummary
+        +withRm(String): ViewRiksdagenVoteDataBallotPartySummary
+        +withBallotType(String): ViewRiksdagenVoteDataBallotPartySummary
+        +withLabel(String): ViewRiksdagenVoteDataBallotPartySummary
+        +withAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withTotalVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withYesVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withNoVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withAbstainVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withAbsentVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withApproved(boolean): ViewRiksdagenVoteDataBallotPartySummary
+        +withNoWinner(boolean): ViewRiksdagenVoteDataBallotPartySummary
+        +withPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyTotalVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyYesVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyNoVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyAbstainVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyAbsentVotes(long): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyApproved(boolean): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyNoWinner(boolean): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+        +withPartyPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotPartySummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

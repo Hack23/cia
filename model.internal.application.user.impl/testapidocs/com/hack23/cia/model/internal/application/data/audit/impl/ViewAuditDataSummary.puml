@@ -1,0 +1,26 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewAuditDataSummary\n<size:10>com.hack23.cia.model.internal.application.data.audit.impl" as com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary [[ViewAuditDataSummary.html]] {
+        #id: long
+        #dataType: String
+        #dataSize: long
+        +getId(): long
+        +setId(long): void
+        +getDataType(): String
+        +setDataType(String): void
+        +getDataSize(): long
+        +setDataSize(long): void
+        +withId(long): ViewAuditDataSummary
+        +withDataType(String): ViewAuditDataSummary
+        +withDataSize(long): ViewAuditDataSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

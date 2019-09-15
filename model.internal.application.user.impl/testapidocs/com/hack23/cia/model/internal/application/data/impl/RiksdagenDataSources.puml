@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>RiksdagenDataSources\n<size:10>com.hack23.cia.model.internal.application.data.impl" as com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources [[RiksdagenDataSources.html]] {
+        {static} +DOCUMENT_LIST
+        {static} +DOCUMENT_STATUS
+        {static} +DOCUMENT_CONTENT
+        {static} +PERSONS
+        {static} +VOTES
+        {static} +BALLOT_LIST
+        {static} +COMMITTEE_PROPOSALS
+        +value(): String
+        {static} +fromValue(String): RiksdagenDataSources
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

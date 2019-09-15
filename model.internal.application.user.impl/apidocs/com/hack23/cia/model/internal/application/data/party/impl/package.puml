@@ -1,0 +1,387 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.data.party.impl {
+
+        class ViewRiksdagenPartyRoleMember [[ViewRiksdagenPartyRoleMember.html]] {
+            #roleId: long
+            #detail: String
+            #roleCode: String
+            #firstName: String
+            #lastName: String
+            #fromDate: Date
+            #toDate: Date
+            #personId: String
+            #party: String
+            #totalDaysServed: Integer
+            #active: boolean
+            +getRoleId(): long
+            +setRoleId(long): void
+            +getDetail(): String
+            +setDetail(String): void
+            +getRoleCode(): String
+            +setRoleCode(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getFromDate(): Date
+            +setFromDate(Date): void
+            +getToDate(): Date
+            +setToDate(Date): void
+            +getPersonId(): String
+            +setPersonId(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getTotalDaysServed(): Integer
+            +setTotalDaysServed(Integer): void
+            +isActive(): boolean
+            +setActive(boolean): void
+            +withRoleId(long): ViewRiksdagenPartyRoleMember
+            +withDetail(String): ViewRiksdagenPartyRoleMember
+            +withRoleCode(String): ViewRiksdagenPartyRoleMember
+            +withFirstName(String): ViewRiksdagenPartyRoleMember
+            +withLastName(String): ViewRiksdagenPartyRoleMember
+            +withFromDate(Date): ViewRiksdagenPartyRoleMember
+            +withToDate(Date): ViewRiksdagenPartyRoleMember
+            +withPersonId(String): ViewRiksdagenPartyRoleMember
+            +withParty(String): ViewRiksdagenPartyRoleMember
+            +withTotalDaysServed(Integer): ViewRiksdagenPartyRoleMember
+            +withActive(boolean): ViewRiksdagenPartyRoleMember
+        }
+
+        class ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId [[ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.html]] {
+            #date: String
+            #party: String
+            #otherParty: String
+            +getDate(): String
+            +setDate(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getOtherParty(): String
+            +setOtherParty(String): void
+            +withDate(String): ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+            +withParty(String): ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+            +withOtherParty(String): ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+        }
+
+        class ViewRiksdagenPartyCoalationAgainstAnnualSummary [[ViewRiksdagenPartyCoalationAgainstAnnualSummary.html]] {
+            #total: long
+            +getTotal(): long
+            +setTotal(long): void
+            +withEmbeddedId(ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId): ViewRiksdagenPartyCoalationAgainstAnnualSummary
+            +withTotal(long): ViewRiksdagenPartyCoalationAgainstAnnualSummary
+        }
+
+        class ViewRiksdagenPartySummary [[ViewRiksdagenPartySummary.html]] {
+            #party: String
+            #totalAssignments: long
+            #currentAssignments: long
+            #firstAssignmentDate: Date
+            #lastAssignmentDate: Date
+            #totalDaysServed: long
+            #totalDaysServedParliament: long
+            #totalDaysServedCommittee: long
+            #totalDaysServedGovernment: long
+            #totalDaysServedEu: long
+            #active: boolean
+            #activeEu: boolean
+            #activeGovernment: boolean
+            #activeCommittee: boolean
+            #activeParliament: boolean
+            #totalActiveEu: long
+            #totalActiveGovernment: long
+            #totalActiveCommittee: long
+            #totalActiveParliament: long
+            #activeParty: boolean
+            #activeSpeaker: boolean
+            #totalDaysServedSpeaker: long
+            #totalDaysServedParty: long
+            #totalPartyAssignments: long
+            #totalMinistryAssignments: long
+            #totalCommitteeAssignments: long
+            #totalSpeakerAssignments: long
+            #currentPartyAssignments: long
+            #currentMinistryAssignments: long
+            #currentCommitteeAssignments: long
+            #currentSpeakerAssignments: long
+            +getParty(): String
+            +setParty(String): void
+            +getTotalAssignments(): long
+            +setTotalAssignments(long): void
+            +getCurrentAssignments(): long
+            +setCurrentAssignments(long): void
+            +getFirstAssignmentDate(): Date
+            +setFirstAssignmentDate(Date): void
+            +getLastAssignmentDate(): Date
+            +setLastAssignmentDate(Date): void
+            +getTotalDaysServed(): long
+            +setTotalDaysServed(long): void
+            +getTotalDaysServedParliament(): long
+            +setTotalDaysServedParliament(long): void
+            +getTotalDaysServedCommittee(): long
+            +setTotalDaysServedCommittee(long): void
+            +getTotalDaysServedGovernment(): long
+            +setTotalDaysServedGovernment(long): void
+            +getTotalDaysServedEu(): long
+            +setTotalDaysServedEu(long): void
+            +isActive(): boolean
+            +setActive(boolean): void
+            +isActiveEu(): boolean
+            +setActiveEu(boolean): void
+            +isActiveGovernment(): boolean
+            +setActiveGovernment(boolean): void
+            +isActiveCommittee(): boolean
+            +setActiveCommittee(boolean): void
+            +isActiveParliament(): boolean
+            +setActiveParliament(boolean): void
+            +getTotalActiveEu(): long
+            +setTotalActiveEu(long): void
+            +getTotalActiveGovernment(): long
+            +setTotalActiveGovernment(long): void
+            +getTotalActiveCommittee(): long
+            +setTotalActiveCommittee(long): void
+            +getTotalActiveParliament(): long
+            +setTotalActiveParliament(long): void
+            +isActiveParty(): boolean
+            +setActiveParty(boolean): void
+            +isActiveSpeaker(): boolean
+            +setActiveSpeaker(boolean): void
+            +getTotalDaysServedSpeaker(): long
+            +setTotalDaysServedSpeaker(long): void
+            +getTotalDaysServedParty(): long
+            +setTotalDaysServedParty(long): void
+            +getTotalPartyAssignments(): long
+            +setTotalPartyAssignments(long): void
+            +getTotalMinistryAssignments(): long
+            +setTotalMinistryAssignments(long): void
+            +getTotalCommitteeAssignments(): long
+            +setTotalCommitteeAssignments(long): void
+            +getTotalSpeakerAssignments(): long
+            +setTotalSpeakerAssignments(long): void
+            +getCurrentPartyAssignments(): long
+            +setCurrentPartyAssignments(long): void
+            +getCurrentMinistryAssignments(): long
+            +setCurrentMinistryAssignments(long): void
+            +getCurrentCommitteeAssignments(): long
+            +setCurrentCommitteeAssignments(long): void
+            +getCurrentSpeakerAssignments(): long
+            +setCurrentSpeakerAssignments(long): void
+            +withParty(String): ViewRiksdagenPartySummary
+            +withTotalAssignments(long): ViewRiksdagenPartySummary
+            +withCurrentAssignments(long): ViewRiksdagenPartySummary
+            +withFirstAssignmentDate(Date): ViewRiksdagenPartySummary
+            +withLastAssignmentDate(Date): ViewRiksdagenPartySummary
+            +withTotalDaysServed(long): ViewRiksdagenPartySummary
+            +withTotalDaysServedParliament(long): ViewRiksdagenPartySummary
+            +withTotalDaysServedCommittee(long): ViewRiksdagenPartySummary
+            +withTotalDaysServedGovernment(long): ViewRiksdagenPartySummary
+            +withTotalDaysServedEu(long): ViewRiksdagenPartySummary
+            +withActive(boolean): ViewRiksdagenPartySummary
+            +withActiveEu(boolean): ViewRiksdagenPartySummary
+            +withActiveGovernment(boolean): ViewRiksdagenPartySummary
+            +withActiveCommittee(boolean): ViewRiksdagenPartySummary
+            +withActiveParliament(boolean): ViewRiksdagenPartySummary
+            +withTotalActiveEu(long): ViewRiksdagenPartySummary
+            +withTotalActiveGovernment(long): ViewRiksdagenPartySummary
+            +withTotalActiveCommittee(long): ViewRiksdagenPartySummary
+            +withTotalActiveParliament(long): ViewRiksdagenPartySummary
+            +withActiveParty(boolean): ViewRiksdagenPartySummary
+            +withActiveSpeaker(boolean): ViewRiksdagenPartySummary
+            +withTotalDaysServedSpeaker(long): ViewRiksdagenPartySummary
+            +withTotalDaysServedParty(long): ViewRiksdagenPartySummary
+            +withTotalPartyAssignments(long): ViewRiksdagenPartySummary
+            +withTotalMinistryAssignments(long): ViewRiksdagenPartySummary
+            +withTotalCommitteeAssignments(long): ViewRiksdagenPartySummary
+            +withTotalSpeakerAssignments(long): ViewRiksdagenPartySummary
+            +withCurrentPartyAssignments(long): ViewRiksdagenPartySummary
+            +withCurrentMinistryAssignments(long): ViewRiksdagenPartySummary
+            +withCurrentCommitteeAssignments(long): ViewRiksdagenPartySummary
+            +withCurrentSpeakerAssignments(long): ViewRiksdagenPartySummary
+        }
+
+        class ViewRiksdagenPartyMember [[ViewRiksdagenPartyMember.html]] {
+            #id: String
+            #hjid: long
+            #address: String
+            #city: String
+            #coAddress: String
+            #email: String
+            #faxNumber: String
+            #partyId: String
+            #partyName: String
+            #phoneNumber: String
+            #postCode: String
+            #registeredDate: Date
+            #shortCode: String
+            #website: String
+            #bornYear: int
+            #electionRegion: String
+            #firstName: String
+            #gender: String
+            #hangarGuid: String
+            #imageUrl192: String
+            #imageUrl80: String
+            #imageUrlMax: String
+            #lastName: String
+            #party: String
+            #personUrlXml: String
+            #place: String
+            #status: String
+            +getId(): String
+            +setId(String): void
+            +getHjid(): long
+            +setHjid(long): void
+            +getAddress(): String
+            +setAddress(String): void
+            +getCity(): String
+            +setCity(String): void
+            +getCoAddress(): String
+            +setCoAddress(String): void
+            +getEmail(): String
+            +setEmail(String): void
+            +getFaxNumber(): String
+            +setFaxNumber(String): void
+            +getPartyId(): String
+            +setPartyId(String): void
+            +getPartyName(): String
+            +setPartyName(String): void
+            +getPhoneNumber(): String
+            +setPhoneNumber(String): void
+            +getPostCode(): String
+            +setPostCode(String): void
+            +getRegisteredDate(): Date
+            +setRegisteredDate(Date): void
+            +getShortCode(): String
+            +setShortCode(String): void
+            +getWebsite(): String
+            +setWebsite(String): void
+            +getBornYear(): int
+            +setBornYear(int): void
+            +getElectionRegion(): String
+            +setElectionRegion(String): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getGender(): String
+            +setGender(String): void
+            +getHangarGuid(): String
+            +setHangarGuid(String): void
+            +getImageUrl192(): String
+            +setImageUrl192(String): void
+            +getImageUrl80(): String
+            +setImageUrl80(String): void
+            +getImageUrlMax(): String
+            +setImageUrlMax(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getPersonUrlXml(): String
+            +setPersonUrlXml(String): void
+            +getPlace(): String
+            +setPlace(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +withId(String): ViewRiksdagenPartyMember
+            +withHjid(long): ViewRiksdagenPartyMember
+            +withAddress(String): ViewRiksdagenPartyMember
+            +withCity(String): ViewRiksdagenPartyMember
+            +withCoAddress(String): ViewRiksdagenPartyMember
+            +withEmail(String): ViewRiksdagenPartyMember
+            +withFaxNumber(String): ViewRiksdagenPartyMember
+            +withPartyId(String): ViewRiksdagenPartyMember
+            +withPartyName(String): ViewRiksdagenPartyMember
+            +withPhoneNumber(String): ViewRiksdagenPartyMember
+            +withPostCode(String): ViewRiksdagenPartyMember
+            +withRegisteredDate(Date): ViewRiksdagenPartyMember
+            +withShortCode(String): ViewRiksdagenPartyMember
+            +withWebsite(String): ViewRiksdagenPartyMember
+            +withBornYear(int): ViewRiksdagenPartyMember
+            +withElectionRegion(String): ViewRiksdagenPartyMember
+            +withFirstName(String): ViewRiksdagenPartyMember
+            +withGender(String): ViewRiksdagenPartyMember
+            +withHangarGuid(String): ViewRiksdagenPartyMember
+            +withImageUrl192(String): ViewRiksdagenPartyMember
+            +withImageUrl80(String): ViewRiksdagenPartyMember
+            +withImageUrlMax(String): ViewRiksdagenPartyMember
+            +withLastName(String): ViewRiksdagenPartyMember
+            +withParty(String): ViewRiksdagenPartyMember
+            +withPersonUrlXml(String): ViewRiksdagenPartyMember
+            +withPlace(String): ViewRiksdagenPartyMember
+            +withStatus(String): ViewRiksdagenPartyMember
+        }
+
+        class ViewRiksdagenPartyBallotSupportAnnualSummary [[ViewRiksdagenPartyBallotSupportAnnualSummary.html]] {
+            #disagreCount: long
+            #agreeCount: long
+            #disagreePercentage: long
+            #totalBallots: long
+            +getDisagreCount(): long
+            +setDisagreCount(long): void
+            +getAgreeCount(): long
+            +setAgreeCount(long): void
+            +getDisagreePercentage(): long
+            +setDisagreePercentage(long): void
+            +getTotalBallots(): long
+            +setTotalBallots(long): void
+            +withEmbeddedId(ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId): ViewRiksdagenPartyBallotSupportAnnualSummary
+            +withDisagreCount(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+            +withAgreeCount(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+            +withDisagreePercentage(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+            +withTotalBallots(long): ViewRiksdagenPartyBallotSupportAnnualSummary
+        }
+
+        class ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId [[ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId.html]] {
+            #year: int
+            #groupAgainst: String
+            +getYear(): int
+            +setYear(int): void
+            +getGroupAgainst(): String
+            +setGroupAgainst(String): void
+            +withYear(int): ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
+            +withGroupAgainst(String): ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
+        }
+
+        class ViewRiksdagenParty [[ViewRiksdagenParty.html]] {
+            #partyId: String
+            #partyNumber: String
+            #partyName: String
+            #headCount: long
+            #website: String
+            #registeredDate: Date
+            +getPartyId(): String
+            +setPartyId(String): void
+            +getPartyNumber(): String
+            +setPartyNumber(String): void
+            +getPartyName(): String
+            +setPartyName(String): void
+            +getHeadCount(): long
+            +setHeadCount(long): void
+            +getWebsite(): String
+            +setWebsite(String): void
+            +getRegisteredDate(): Date
+            +setRegisteredDate(Date): void
+            +withPartyId(String): ViewRiksdagenParty
+            +withPartyNumber(String): ViewRiksdagenParty
+            +withPartyName(String): ViewRiksdagenParty
+            +withHeadCount(long): ViewRiksdagenParty
+            +withWebsite(String): ViewRiksdagenParty
+            +withRegisteredDate(Date): ViewRiksdagenParty
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyRoleMember
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyCoalationAgainstAnnualSummary
+        ViewRiksdagenPartyCoalationAgainstAnnualSummary --> ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartySummary
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyMember
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyBallotSupportAnnualSummary
+        ViewRiksdagenPartyBallotSupportAnnualSummary --> ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenParty
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

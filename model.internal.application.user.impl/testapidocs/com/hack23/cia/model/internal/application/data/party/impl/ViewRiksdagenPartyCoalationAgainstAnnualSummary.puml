@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenPartyCoalationAgainstAnnualSummary\n<size:10>com.hack23.cia.model.internal.application.data.party.impl" as com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary [[ViewRiksdagenPartyCoalationAgainstAnnualSummary.html]] {
+        #embeddedId: ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
+        #total: long
+        +getEmbeddedId(): ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId
+        +setEmbeddedId(ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId): void
+        +getTotal(): long
+        +setTotal(long): void
+        +withEmbeddedId(ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId): ViewRiksdagenPartyCoalationAgainstAnnualSummary
+        +withTotal(long): ViewRiksdagenPartyCoalationAgainstAnnualSummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

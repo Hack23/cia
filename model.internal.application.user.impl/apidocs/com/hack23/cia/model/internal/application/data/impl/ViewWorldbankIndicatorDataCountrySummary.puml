@@ -1,0 +1,50 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewWorldbankIndicatorDataCountrySummary\n<size:10>com.hack23.cia.model.internal.application.data.impl" as com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary [[ViewWorldbankIndicatorDataCountrySummary.html]] {
+        #embeddedId: WorldbankIndicatorDataCountrySummaryEmbeddedId
+        #indicatorName: String
+        #sourceNote: String
+        #sourceValue: String
+        #sourceOrganization: String
+        #startYear: Integer
+        #endYear: Integer
+        #dataPoint: long
+        #topics: String
+        +getEmbeddedId(): WorldbankIndicatorDataCountrySummaryEmbeddedId
+        +setEmbeddedId(WorldbankIndicatorDataCountrySummaryEmbeddedId): void
+        +getIndicatorName(): String
+        +setIndicatorName(String): void
+        +getSourceNote(): String
+        +setSourceNote(String): void
+        +getSourceValue(): String
+        +setSourceValue(String): void
+        +getSourceOrganization(): String
+        +setSourceOrganization(String): void
+        +getStartYear(): Integer
+        +setStartYear(Integer): void
+        +getEndYear(): Integer
+        +setEndYear(Integer): void
+        +getDataPoint(): long
+        +setDataPoint(long): void
+        +getTopics(): String
+        +setTopics(String): void
+        +withEmbeddedId(WorldbankIndicatorDataCountrySummaryEmbeddedId): ViewWorldbankIndicatorDataCountrySummary
+        +withIndicatorName(String): ViewWorldbankIndicatorDataCountrySummary
+        +withSourceNote(String): ViewWorldbankIndicatorDataCountrySummary
+        +withSourceValue(String): ViewWorldbankIndicatorDataCountrySummary
+        +withSourceOrganization(String): ViewWorldbankIndicatorDataCountrySummary
+        +withStartYear(Integer): ViewWorldbankIndicatorDataCountrySummary
+        +withEndYear(Integer): ViewWorldbankIndicatorDataCountrySummary
+        +withDataPoint(long): ViewWorldbankIndicatorDataCountrySummary
+        +withTopics(String): ViewWorldbankIndicatorDataCountrySummary
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,383 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.system.impl {
+
+        class LanguageContentData [[LanguageContentData.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #fromLanguage: String
+            #toLanguage: String
+            #createdDate: Date
+            #keyGroup: String
+            #locationContext: String
+            #lastModifiedDate: Date
+            #refKey: String
+            #languageValue: String
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getFromLanguage(): String
+            +setFromLanguage(String): void
+            +getToLanguage(): String
+            +setToLanguage(String): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getKeyGroup(): String
+            +setKeyGroup(String): void
+            +getLocationContext(): String
+            +setLocationContext(String): void
+            +getLastModifiedDate(): Date
+            +setLastModifiedDate(Date): void
+            +getRefKey(): String
+            +setRefKey(String): void
+            +getLanguageValue(): String
+            +setLanguageValue(String): void
+            +withModelObjectId(Integer): LanguageContentData
+            +withModelObjectVersion(int): LanguageContentData
+            +withFromLanguage(String): LanguageContentData
+            +withToLanguage(String): LanguageContentData
+            +withCreatedDate(Date): LanguageContentData
+            +withKeyGroup(String): LanguageContentData
+            +withLocationContext(String): LanguageContentData
+            +withLastModifiedDate(Date): LanguageContentData
+            +withRefKey(String): LanguageContentData
+            +withLanguageValue(String): LanguageContentData
+            +withLanguageContentType(LanguageContentType): LanguageContentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Portal [[Portal.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #portalName: String
+            #description: String
+            #googleMapApiKey: String
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getPortalName(): String
+            +setPortalName(String): void
+            +getDescription(): String
+            +setDescription(String): void
+            +getGoogleMapApiKey(): String
+            +setGoogleMapApiKey(String): void
+            +withModelObjectId(Integer): Portal
+            +withModelObjectVersion(int): Portal
+            +withPortalName(String): Portal
+            +withPortalType(PortalType): Portal
+            +withDescription(String): Portal
+            +withGoogleMapApiKey(String): Portal
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class LanguageData [[LanguageData.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #createdDate: Date
+            #languageName: String
+            #languageCode: String
+            #translationStatus: String
+            #languageEnabled: Boolean
+            #autoTranslationEnabled: Boolean
+            #lastModifiedDate: Date
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getLanguageName(): String
+            +setLanguageName(String): void
+            +getLanguageCode(): String
+            +setLanguageCode(String): void
+            +getTranslationStatus(): String
+            +setTranslationStatus(String): void
+            +isLanguageEnabled(): Boolean
+            +setLanguageEnabled(Boolean): void
+            +isAutoTranslationEnabled(): Boolean
+            +setAutoTranslationEnabled(Boolean): void
+            +getLastModifiedDate(): Date
+            +setLastModifiedDate(Date): void
+            +withModelObjectId(Integer): LanguageData
+            +withModelObjectVersion(int): LanguageData
+            +withCreatedDate(Date): LanguageData
+            +withLanguageName(String): LanguageData
+            +withLanguageCode(String): LanguageData
+            +withTranslationStatus(String): LanguageData
+            +withLanguageEnabled(Boolean): LanguageData
+            +withAutoTranslationEnabled(Boolean): LanguageData
+            +withLastModifiedDate(Date): LanguageData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum ApplicationOperationType [[ApplicationOperationType.html]] {
+            {static} +CREATE
+            {static} +READ
+            {static} +UPDATE
+            {static} +DELETE
+            {static} +AUTHENTICATION
+            {static} +AUTHORIZATION
+            +value(): String
+            {static} +fromValue(String): ApplicationOperationType
+        }
+
+        class ApplicationSession [[ApplicationSession.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #createdDate: Date
+            #destroyedDate: Date
+            #ipInformation: String
+            #userAgentInformation: String
+            #sessionId: String
+            #userId: String
+            #locale: String
+            #operatingSystem: String
+            #screenSize: String
+            #timeZone: String
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getDestroyedDate(): Date
+            +setDestroyedDate(Date): void
+            +getIpInformation(): String
+            +setIpInformation(String): void
+            +getUserAgentInformation(): String
+            +setUserAgentInformation(String): void
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getUserId(): String
+            +setUserId(String): void
+            +getLocale(): String
+            +setLocale(String): void
+            +getOperatingSystem(): String
+            +setOperatingSystem(String): void
+            +getScreenSize(): String
+            +setScreenSize(String): void
+            +getTimeZone(): String
+            +setTimeZone(String): void
+            +withModelObjectId(Integer): ApplicationSession
+            +withModelObjectVersion(int): ApplicationSession
+            +withCreatedDate(Date): ApplicationSession
+            +withDestroyedDate(Date): ApplicationSession
+            +withIpInformation(String): ApplicationSession
+            +withUserAgentInformation(String): ApplicationSession
+            +withSessionId(String): ApplicationSession
+            +withUserId(String): ApplicationSession
+            +withLocale(String): ApplicationSession
+            +withOperatingSystem(String): ApplicationSession
+            +withScreenSize(String): ApplicationSession
+            +withTimeZone(String): ApplicationSession
+            +withSessionType(ApplicationSessionType): ApplicationSession
+            +withEvents(List<ApplicationActionEvent>): ApplicationSession
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum PortalType [[PortalType.html]] {
+            {static} +DEFAULT
+            {static} +DOMAIN
+            +value(): String
+            {static} +fromValue(String): PortalType
+        }
+
+        class DomainPortal [[DomainPortal.html]] {
+            #domainName: String
+            +getDomainName(): String
+            +setDomainName(String): void
+            +withDomainName(String): DomainPortal
+        }
+
+        class ApplicationActionEvent [[ApplicationActionEvent.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #page: String
+            #pageMode: String
+            #elementId: String
+            #actionName: String
+            #sessionId: String
+            #userId: String
+            #errorMessage: String
+            #applicationMessage: String
+            #createdDate: Date
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getPage(): String
+            +setPage(String): void
+            +getPageMode(): String
+            +setPageMode(String): void
+            +getElementId(): String
+            +setElementId(String): void
+            +getActionName(): String
+            +setActionName(String): void
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getUserId(): String
+            +setUserId(String): void
+            +getErrorMessage(): String
+            +setErrorMessage(String): void
+            +getApplicationMessage(): String
+            +setApplicationMessage(String): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +withModelObjectId(Integer): ApplicationActionEvent
+            +withModelObjectVersion(int): ApplicationActionEvent
+            +withApplicationOperation(ApplicationOperationType): ApplicationActionEvent
+            +withEventGroup(ApplicationEventGroup): ApplicationActionEvent
+            +withPage(String): ApplicationActionEvent
+            +withPageMode(String): ApplicationActionEvent
+            +withElementId(String): ApplicationActionEvent
+            +withActionName(String): ApplicationActionEvent
+            +withSessionId(String): ApplicationActionEvent
+            +withUserId(String): ApplicationActionEvent
+            +withErrorMessage(String): ApplicationActionEvent
+            +withApplicationMessage(String): ApplicationActionEvent
+            +withCreatedDate(Date): ApplicationActionEvent
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class Agency [[Agency.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #agencyName: String
+            #description: String
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getAgencyName(): String
+            +setAgencyName(String): void
+            +getDescription(): String
+            +setDescription(String): void
+            +withModelObjectId(Integer): Agency
+            +withModelObjectVersion(int): Agency
+            +withAgencyName(String): Agency
+            +withDescription(String): Agency
+            +withPortals(List<Portal>): Agency
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ApplicationConfiguration [[ApplicationConfiguration.html]] {
+            #modelObjectId: Integer
+            #modelObjectVersion: int
+            #configTitle: String
+            #configDescription: String
+            #component: String
+            #componentTitle: String
+            #componentDescription: String
+            #propertyId: String
+            #propertyValue: String
+            #createdDate: Date
+            #updatedDate: Date
+            #hjid: Long
+            +getModelObjectId(): Integer
+            +setModelObjectId(Integer): void
+            +getModelObjectVersion(): int
+            +setModelObjectVersion(int): void
+            +getConfigTitle(): String
+            +setConfigTitle(String): void
+            +getConfigDescription(): String
+            +setConfigDescription(String): void
+            +getComponent(): String
+            +setComponent(String): void
+            +getComponentTitle(): String
+            +setComponentTitle(String): void
+            +getComponentDescription(): String
+            +setComponentDescription(String): void
+            +getPropertyId(): String
+            +setPropertyId(String): void
+            +getPropertyValue(): String
+            +setPropertyValue(String): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getUpdatedDate(): Date
+            +setUpdatedDate(Date): void
+            +withModelObjectId(Integer): ApplicationConfiguration
+            +withModelObjectVersion(int): ApplicationConfiguration
+            +withConfigTitle(String): ApplicationConfiguration
+            +withConfigDescription(String): ApplicationConfiguration
+            +withConfigurationGroup(ConfigurationGroup): ApplicationConfiguration
+            +withComponent(String): ApplicationConfiguration
+            +withComponentTitle(String): ApplicationConfiguration
+            +withComponentDescription(String): ApplicationConfiguration
+            +withPropertyId(String): ApplicationConfiguration
+            +withPropertyValue(String): ApplicationConfiguration
+            +withCreatedDate(Date): ApplicationConfiguration
+            +withUpdatedDate(Date): ApplicationConfiguration
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum ApplicationEventGroup [[ApplicationEventGroup.html]] {
+            {static} +ADMIN
+            {static} +USER
+            {static} +APPLICATION
+            {static} +ERROR
+            +value(): String
+            {static} +fromValue(String): ApplicationEventGroup
+        }
+
+        enum ConfigurationGroup [[ConfigurationGroup.html]] {
+            {static} +AUTHENTICATION
+            {static} +AUTHORIZATION
+            {static} +AGENT
+            {static} +EXTERNAL_SERVICES
+            +value(): String
+            {static} +fromValue(String): ConfigurationGroup
+        }
+
+        enum LanguageContentType [[LanguageContentType.html]] {
+            {static} +GOOGLE_TRANSLATION
+            {static} +HUMAN_TRANSLATION
+            +value(): String
+            {static} +fromValue(String): LanguageContentType
+        }
+
+        enum ApplicationSessionType [[ApplicationSessionType.html]] {
+            {static} +ANONYMOUS
+            {static} +REGISTERED_USER
+            {static} +SYSTEM
+            +value(): String
+            {static} +fromValue(String): ApplicationSessionType
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. LanguageContentData
+        LanguageContentData --> LanguageContentType: languageContentType
+        com.hack23.cia.model.common.api.ModelObject <|.. Portal
+        Portal --> PortalType: portalType
+        com.hack23.cia.model.common.api.ModelObject <|.. LanguageData
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationSession
+        ApplicationSession --> ApplicationSessionType: sessionType
+        ApplicationSession --> "*" ApplicationActionEvent: events
+        Portal <|-- DomainPortal
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationActionEvent
+        ApplicationActionEvent --> ApplicationOperationType: applicationOperation
+        ApplicationActionEvent --> ApplicationEventGroup: eventGroup
+        com.hack23.cia.model.common.api.ModelObject <|.. Agency
+        Agency --> "*" Portal: portals
+        com.hack23.cia.model.common.api.ModelObject <|.. ApplicationConfiguration
+        ApplicationConfiguration --> ConfigurationGroup: configurationGroup
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

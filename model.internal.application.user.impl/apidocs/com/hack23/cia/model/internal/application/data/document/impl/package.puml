@@ -1,0 +1,187 @@
+@startuml
+    namespace com.hack23.cia.model.internal.application.data.document.impl {
+
+        class RiksdagenDocumentTypeSummaryEmbeddedId [[RiksdagenDocumentTypeSummaryEmbeddedId.html]] {
+            #publicDate: String
+            #documentType: String
+            +getPublicDate(): String
+            +setPublicDate(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +withPublicDate(String): RiksdagenDocumentTypeSummaryEmbeddedId
+            +withDocumentType(String): RiksdagenDocumentTypeSummaryEmbeddedId
+        }
+
+        class RiksdagenDocumentOrgSummaryEmbeddedId [[RiksdagenDocumentOrgSummaryEmbeddedId.html]] {
+            #publicDate: String
+            #org: String
+            +getPublicDate(): String
+            +setPublicDate(String): void
+            +getOrg(): String
+            +setOrg(String): void
+            +withPublicDate(String): RiksdagenDocumentOrgSummaryEmbeddedId
+            +withOrg(String): RiksdagenDocumentOrgSummaryEmbeddedId
+        }
+
+        class ViewRiksdagenPoliticianDocument [[ViewRiksdagenPoliticianDocument.html]] {
+            #id: long
+            #docId: String
+            #documentType: String
+            #label: String
+            #madePublicDate: Date
+            #org: String
+            #numberValue: BigInteger
+            #rm: String
+            #status: String
+            #subTitle: String
+            #subType: String
+            #tempLabel: String
+            #title: String
+            #roleDescription: String
+            #personReferenceId: String
+            #referenceName: String
+            #partyShortCode: String
+            #orderNumber: Integer
+            +getId(): long
+            +setId(long): void
+            +getDocId(): String
+            +setDocId(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getMadePublicDate(): Date
+            +setMadePublicDate(Date): void
+            +getOrg(): String
+            +setOrg(String): void
+            +getNumberValue(): BigInteger
+            +setNumberValue(BigInteger): void
+            +getRm(): String
+            +setRm(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getSubTitle(): String
+            +setSubTitle(String): void
+            +getSubType(): String
+            +setSubType(String): void
+            +getTempLabel(): String
+            +setTempLabel(String): void
+            +getTitle(): String
+            +setTitle(String): void
+            +getRoleDescription(): String
+            +setRoleDescription(String): void
+            +getPersonReferenceId(): String
+            +setPersonReferenceId(String): void
+            +getReferenceName(): String
+            +setReferenceName(String): void
+            +getPartyShortCode(): String
+            +setPartyShortCode(String): void
+            +getOrderNumber(): Integer
+            +setOrderNumber(Integer): void
+            +withId(long): ViewRiksdagenPoliticianDocument
+            +withDocId(String): ViewRiksdagenPoliticianDocument
+            +withDocumentType(String): ViewRiksdagenPoliticianDocument
+            +withLabel(String): ViewRiksdagenPoliticianDocument
+            +withMadePublicDate(Date): ViewRiksdagenPoliticianDocument
+            +withOrg(String): ViewRiksdagenPoliticianDocument
+            +withNumberValue(BigInteger): ViewRiksdagenPoliticianDocument
+            +withRm(String): ViewRiksdagenPoliticianDocument
+            +withStatus(String): ViewRiksdagenPoliticianDocument
+            +withSubTitle(String): ViewRiksdagenPoliticianDocument
+            +withSubType(String): ViewRiksdagenPoliticianDocument
+            +withTempLabel(String): ViewRiksdagenPoliticianDocument
+            +withTitle(String): ViewRiksdagenPoliticianDocument
+            +withRoleDescription(String): ViewRiksdagenPoliticianDocument
+            +withPersonReferenceId(String): ViewRiksdagenPoliticianDocument
+            +withReferenceName(String): ViewRiksdagenPoliticianDocument
+            +withPartyShortCode(String): ViewRiksdagenPoliticianDocument
+            +withOrderNumber(Integer): ViewRiksdagenPoliticianDocument
+        }
+
+        class ViewRiksdagenPartyDocumentDailySummary [[ViewRiksdagenPartyDocumentDailySummary.html]] {
+            #total: long
+            +getTotal(): long
+            +setTotal(long): void
+            +withEmbeddedId(RiksdagenDocumentPartySummaryEmbeddedId): ViewRiksdagenPartyDocumentDailySummary
+            +withTotal(long): ViewRiksdagenPartyDocumentDailySummary
+        }
+
+        class ViewRiksdagenDocumentTypeDailySummary [[ViewRiksdagenDocumentTypeDailySummary.html]] {
+            #total: long
+            +getTotal(): long
+            +setTotal(long): void
+            +withEmbeddedId(RiksdagenDocumentTypeSummaryEmbeddedId): ViewRiksdagenDocumentTypeDailySummary
+            +withTotal(long): ViewRiksdagenDocumentTypeDailySummary
+        }
+
+        class RiksdagenDocumentPartySummaryEmbeddedId [[RiksdagenDocumentPartySummaryEmbeddedId.html]] {
+            #publicDate: Date
+            #partyShortCode: String
+            #documentType: String
+            +getPublicDate(): Date
+            +setPublicDate(Date): void
+            +getPartyShortCode(): String
+            +setPartyShortCode(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +withPublicDate(Date): RiksdagenDocumentPartySummaryEmbeddedId
+            +withPartyShortCode(String): RiksdagenDocumentPartySummaryEmbeddedId
+            +withDocumentType(String): RiksdagenDocumentPartySummaryEmbeddedId
+        }
+
+        class ViewRiksdagenPoliticianDocumentDailySummary [[ViewRiksdagenPoliticianDocumentDailySummary.html]] {
+            #total: long
+            +getTotal(): long
+            +setTotal(long): void
+            +withEmbeddedId(RiksdagenDocumentPersonSummaryEmbeddedId): ViewRiksdagenPoliticianDocumentDailySummary
+            +withTotal(long): ViewRiksdagenPoliticianDocumentDailySummary
+        }
+
+        class ViewRiksdagenOrgDocumentDailySummary [[ViewRiksdagenOrgDocumentDailySummary.html]] {
+            #documentType: String
+            #total: long
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +getTotal(): long
+            +setTotal(long): void
+            +withEmbeddedId(RiksdagenDocumentOrgSummaryEmbeddedId): ViewRiksdagenOrgDocumentDailySummary
+            +withDocumentType(String): ViewRiksdagenOrgDocumentDailySummary
+            +withTotal(long): ViewRiksdagenOrgDocumentDailySummary
+        }
+
+        class RiksdagenDocumentPersonSummaryEmbeddedId [[RiksdagenDocumentPersonSummaryEmbeddedId.html]] {
+            #publicDate: Date
+            #personId: String
+            #documentType: String
+            +getPublicDate(): Date
+            +setPublicDate(Date): void
+            +getPersonId(): String
+            +setPersonId(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +withPublicDate(Date): RiksdagenDocumentPersonSummaryEmbeddedId
+            +withPersonId(String): RiksdagenDocumentPersonSummaryEmbeddedId
+            +withDocumentType(String): RiksdagenDocumentPersonSummaryEmbeddedId
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. RiksdagenDocumentTypeSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. RiksdagenDocumentOrgSummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPoliticianDocument
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPartyDocumentDailySummary
+        ViewRiksdagenPartyDocumentDailySummary --> RiksdagenDocumentPartySummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenDocumentTypeDailySummary
+        ViewRiksdagenDocumentTypeDailySummary --> RiksdagenDocumentTypeSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. RiksdagenDocumentPartySummaryEmbeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenPoliticianDocumentDailySummary
+        ViewRiksdagenPoliticianDocumentDailySummary --> RiksdagenDocumentPersonSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. ViewRiksdagenOrgDocumentDailySummary
+        ViewRiksdagenOrgDocumentDailySummary --> RiksdagenDocumentOrgSummaryEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. RiksdagenDocumentPersonSummaryEmbeddedId
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

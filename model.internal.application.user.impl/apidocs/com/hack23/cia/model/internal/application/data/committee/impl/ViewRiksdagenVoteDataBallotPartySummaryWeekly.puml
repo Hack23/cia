@@ -1,0 +1,142 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ViewRiksdagenVoteDataBallotPartySummaryWeekly\n<size:10>com.hack23.cia.model.internal.application.data.committee.impl" as com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly [[ViewRiksdagenVoteDataBallotPartySummaryWeekly.html]] {
+        #embeddedId: RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId
+        #totalVotes: BigDecimal
+        #yesVotes: BigDecimal
+        #noVotes: BigDecimal
+        #numberBallots: BigDecimal
+        #abstainVotes: BigDecimal
+        #absentVotes: BigDecimal
+        #approvedTotal: BigDecimal
+        #approvedPercentage: BigDecimal
+        #percentageYes: BigDecimal
+        #percentageNo: BigDecimal
+        #percentageAbsent: BigDecimal
+        #percentageAbstain: BigDecimal
+        #partyAvgBornYear: BigDecimal
+        #partyTotalVotes: BigDecimal
+        #partyYesVotes: BigDecimal
+        #partyNoVotes: BigDecimal
+        #partyAbstainVotes: BigDecimal
+        #partyAbsentVotes: BigDecimal
+        #partyPercentageYes: BigDecimal
+        #partyPercentageNo: BigDecimal
+        #partyPercentageAbsent: BigDecimal
+        #partyPercentageAbstain: BigDecimal
+        #partyAvgPercentageMale: BigDecimal
+        #partyWonTotal: BigDecimal
+        #partyWonPercentage: BigDecimal
+        #avgPercentageYes: BigDecimal
+        #avgPercentageNo: BigDecimal
+        #avgPercentageAbsent: BigDecimal
+        #avgPercentageAbstain: BigDecimal
+        #avgPercentageMale: BigDecimal
+        #avgBornYear: BigDecimal
+        +getEmbeddedId(): RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId
+        +setEmbeddedId(RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId): void
+        +getTotalVotes(): BigDecimal
+        +setTotalVotes(BigDecimal): void
+        +getYesVotes(): BigDecimal
+        +setYesVotes(BigDecimal): void
+        +getNoVotes(): BigDecimal
+        +setNoVotes(BigDecimal): void
+        +getNumberBallots(): BigDecimal
+        +setNumberBallots(BigDecimal): void
+        +getAbstainVotes(): BigDecimal
+        +setAbstainVotes(BigDecimal): void
+        +getAbsentVotes(): BigDecimal
+        +setAbsentVotes(BigDecimal): void
+        +getApprovedTotal(): BigDecimal
+        +setApprovedTotal(BigDecimal): void
+        +getApprovedPercentage(): BigDecimal
+        +setApprovedPercentage(BigDecimal): void
+        +getPercentageYes(): BigDecimal
+        +setPercentageYes(BigDecimal): void
+        +getPercentageNo(): BigDecimal
+        +setPercentageNo(BigDecimal): void
+        +getPercentageAbsent(): BigDecimal
+        +setPercentageAbsent(BigDecimal): void
+        +getPercentageAbstain(): BigDecimal
+        +setPercentageAbstain(BigDecimal): void
+        +getPartyAvgBornYear(): BigDecimal
+        +setPartyAvgBornYear(BigDecimal): void
+        +getPartyTotalVotes(): BigDecimal
+        +setPartyTotalVotes(BigDecimal): void
+        +getPartyYesVotes(): BigDecimal
+        +setPartyYesVotes(BigDecimal): void
+        +getPartyNoVotes(): BigDecimal
+        +setPartyNoVotes(BigDecimal): void
+        +getPartyAbstainVotes(): BigDecimal
+        +setPartyAbstainVotes(BigDecimal): void
+        +getPartyAbsentVotes(): BigDecimal
+        +setPartyAbsentVotes(BigDecimal): void
+        +getPartyPercentageYes(): BigDecimal
+        +setPartyPercentageYes(BigDecimal): void
+        +getPartyPercentageNo(): BigDecimal
+        +setPartyPercentageNo(BigDecimal): void
+        +getPartyPercentageAbsent(): BigDecimal
+        +setPartyPercentageAbsent(BigDecimal): void
+        +getPartyPercentageAbstain(): BigDecimal
+        +setPartyPercentageAbstain(BigDecimal): void
+        +getPartyAvgPercentageMale(): BigDecimal
+        +setPartyAvgPercentageMale(BigDecimal): void
+        +getPartyWonTotal(): BigDecimal
+        +setPartyWonTotal(BigDecimal): void
+        +getPartyWonPercentage(): BigDecimal
+        +setPartyWonPercentage(BigDecimal): void
+        +getAvgPercentageYes(): BigDecimal
+        +setAvgPercentageYes(BigDecimal): void
+        +getAvgPercentageNo(): BigDecimal
+        +setAvgPercentageNo(BigDecimal): void
+        +getAvgPercentageAbsent(): BigDecimal
+        +setAvgPercentageAbsent(BigDecimal): void
+        +getAvgPercentageAbstain(): BigDecimal
+        +setAvgPercentageAbstain(BigDecimal): void
+        +getAvgPercentageMale(): BigDecimal
+        +setAvgPercentageMale(BigDecimal): void
+        +getAvgBornYear(): BigDecimal
+        +setAvgBornYear(BigDecimal): void
+        +withEmbeddedId(RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withTotalVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withYesVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withNoVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withNumberBallots(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAbstainVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAbsentVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withApprovedTotal(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withApprovedPercentage(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyTotalVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyYesVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyNoVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyAbstainVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyAbsentVotes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyAvgPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyWonTotal(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withPartyWonPercentage(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgPercentageYes(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgPercentageNo(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgPercentageAbsent(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgPercentageAbstain(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgPercentageMale(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+        +withAvgBornYear(BigDecimal): ViewRiksdagenVoteDataBallotPartySummaryWeekly
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

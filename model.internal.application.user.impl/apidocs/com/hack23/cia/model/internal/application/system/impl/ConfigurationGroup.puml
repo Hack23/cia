@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>ConfigurationGroup\n<size:10>com.hack23.cia.model.internal.application.system.impl" as com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup [[ConfigurationGroup.html]] {
+        {static} +AUTHENTICATION
+        {static} +AUTHORIZATION
+        {static} +AGENT
+        {static} +EXTERNAL_SERVICES
+        +value(): String
+        {static} +fromValue(String): ConfigurationGroup
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
