@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl","l":"ObjectFactory"},{"p":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl","l":"SwedenParliamentElectoralRegion"},{"p":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl","l":"SwedenParliamentElectoralRegionContainer"}]

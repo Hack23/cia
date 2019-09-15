@@ -1,0 +1,50 @@
+@startuml
+    namespace com.hack23.cia.model.external.val.riksdagsvalkrets.impl {
+
+        class SwedenParliamentElectoralRegion [[SwedenParliamentElectoralRegion.html]] {
+            #electionRegionName: String
+            #numberOfVoters: BigInteger
+            #firstRound: BigInteger
+            #rest: String
+            #secondRound: BigInteger
+            #numberOfSeats: BigInteger
+            #hjid: Long
+            +getElectionRegionName(): String
+            +setElectionRegionName(String): void
+            +getNumberOfVoters(): BigInteger
+            +setNumberOfVoters(BigInteger): void
+            +getFirstRound(): BigInteger
+            +setFirstRound(BigInteger): void
+            +getRest(): String
+            +setRest(String): void
+            +getSecondRound(): BigInteger
+            +setSecondRound(BigInteger): void
+            +getNumberOfSeats(): BigInteger
+            +setNumberOfSeats(BigInteger): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class SwedenParliamentElectoralRegionContainer [[SwedenParliamentElectoralRegionContainer.html]] {
+            #hjid: Long
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createSwedenParliamentElectoralRegionContainer(): SwedenParliamentElectoralRegionContainer
+            +createSwedenParliamentElectoralRegion(): SwedenParliamentElectoralRegion
+            +createRoot(SwedenParliamentElectoralRegionContainer): JAXBElement<SwedenParliamentElectoralRegionContainer>
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenParliamentElectoralRegion
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenParliamentElectoralRegionContainer
+        SwedenParliamentElectoralRegionContainer --> "*" SwedenParliamentElectoralRegion: parliamentElectoralRegions
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
