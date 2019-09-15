@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ObjectFactory\n<size:10>com.hack23.cia.model.external.val.landstingvalkrets.impl" as com.hack23.cia.model.external.val.landstingvalkrets.impl.ObjectFactory [[ObjectFactory.html]] {
+        +createSwedenCountyElectoralRegionContainer(): SwedenCountyElectoralRegionContainer
+        +createSwedenCountyElectoralRegion(): SwedenCountyElectoralRegion
+        +createSwedenCountyElectoralArea(): SwedenCountyElectoralArea
+        +createRoot(SwedenCountyElectoralRegionContainer): JAXBElement<SwedenCountyElectoralRegionContainer>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

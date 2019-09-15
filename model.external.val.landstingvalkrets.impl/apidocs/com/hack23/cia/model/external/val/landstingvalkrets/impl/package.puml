@@ -1,0 +1,71 @@
+@startuml
+    namespace com.hack23.cia.model.external.val.landstingvalkrets.impl {
+
+        class SwedenCountyElectoralArea [[SwedenCountyElectoralArea.html]] {
+            #code: BigInteger
+            #electoralAreaName: String
+            #numberOfVoters: BigInteger
+            #firstRound: BigInteger
+            #rest: String
+            #secondRound: BigInteger
+            #numberOfSeats: BigInteger
+            #hjid: Long
+            +getCode(): BigInteger
+            +setCode(BigInteger): void
+            +getElectoralAreaName(): String
+            +setElectoralAreaName(String): void
+            +getNumberOfVoters(): BigInteger
+            +setNumberOfVoters(BigInteger): void
+            +getFirstRound(): BigInteger
+            +setFirstRound(BigInteger): void
+            +getRest(): String
+            +setRest(String): void
+            +getSecondRound(): BigInteger
+            +setSecondRound(BigInteger): void
+            +getNumberOfSeats(): BigInteger
+            +setNumberOfSeats(BigInteger): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class SwedenCountyElectoralRegionContainer [[SwedenCountyElectoralRegionContainer.html]] {
+            #hjid: Long
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class SwedenCountyElectoralRegion [[SwedenCountyElectoralRegion.html]] {
+            #code: BigInteger
+            #countyName: String
+            #seats: BigInteger
+            #hjid: Long
+            +getCode(): BigInteger
+            +setCode(BigInteger): void
+            +getCountyName(): String
+            +setCountyName(String): void
+            +getSeats(): BigInteger
+            +setSeats(BigInteger): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createSwedenCountyElectoralRegionContainer(): SwedenCountyElectoralRegionContainer
+            +createSwedenCountyElectoralRegion(): SwedenCountyElectoralRegion
+            +createSwedenCountyElectoralArea(): SwedenCountyElectoralArea
+            +createRoot(SwedenCountyElectoralRegionContainer): JAXBElement<SwedenCountyElectoralRegionContainer>
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenCountyElectoralArea
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenCountyElectoralRegionContainer
+        SwedenCountyElectoralRegionContainer --> "*" SwedenCountyElectoralRegion: countyElectoralRegions
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenCountyElectoralRegion
+        SwedenCountyElectoralRegion --> "*" SwedenCountyElectoralArea: landstingsvalkrets
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

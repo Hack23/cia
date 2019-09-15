@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedenCountyElectoralRegionContainer\n<size:10>com.hack23.cia.model.external.val.landstingvalkrets.impl" as com.hack23.cia.model.external.val.landstingvalkrets.impl.SwedenCountyElectoralRegionContainer [[SwedenCountyElectoralRegionContainer.html]] {
+        #countyElectoralRegions: List<SwedenCountyElectoralRegion>
+        #hjid: Long
+        +getCountyElectoralRegions(): List<SwedenCountyElectoralRegion>
+        +setCountyElectoralRegions(List<SwedenCountyElectoralRegion>): void
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.val.landstingvalkrets.impl.SwedenCountyElectoralRegionContainer
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
