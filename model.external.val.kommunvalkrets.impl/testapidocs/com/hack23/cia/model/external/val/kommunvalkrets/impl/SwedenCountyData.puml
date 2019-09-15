@@ -1,0 +1,26 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedenCountyData\n<size:10>com.hack23.cia.model.external.val.kommunvalkrets.impl" as com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenCountyData [[SwedenCountyData.html]] {
+        #code: BigInteger
+        #countyName: String
+        #kommun: List<SwedenMunicipalityData>
+        #hjid: Long
+        +getCode(): BigInteger
+        +setCode(BigInteger): void
+        +getCountyName(): String
+        +setCountyName(String): void
+        +getKommun(): List<SwedenMunicipalityData>
+        +setKommun(List<SwedenMunicipalityData>): void
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenCountyData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

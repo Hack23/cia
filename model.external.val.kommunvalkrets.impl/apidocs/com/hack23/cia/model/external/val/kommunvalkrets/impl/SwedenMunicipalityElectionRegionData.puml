@@ -1,0 +1,38 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedenMunicipalityElectionRegionData\n<size:10>com.hack23.cia.model.external.val.kommunvalkrets.impl" as com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenMunicipalityElectionRegionData [[SwedenMunicipalityElectionRegionData.html]] {
+        #code: BigInteger
+        #electionRegionName: String
+        #numberOfVoters: BigInteger
+        #firstRound: BigInteger
+        #rest: String
+        #secondRound: BigInteger
+        #numberOfSeats: BigInteger
+        #hjid: Long
+        +getCode(): BigInteger
+        +setCode(BigInteger): void
+        +getElectionRegionName(): String
+        +setElectionRegionName(String): void
+        +getNumberOfVoters(): BigInteger
+        +setNumberOfVoters(BigInteger): void
+        +getFirstRound(): BigInteger
+        +setFirstRound(BigInteger): void
+        +getRest(): String
+        +setRest(String): void
+        +getSecondRound(): BigInteger
+        +setSecondRound(BigInteger): void
+        +getNumberOfSeats(): BigInteger
+        +setNumberOfSeats(BigInteger): void
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenMunicipalityElectionRegionData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
