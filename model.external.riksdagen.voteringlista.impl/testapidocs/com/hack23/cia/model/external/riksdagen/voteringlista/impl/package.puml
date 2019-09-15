@@ -1,0 +1,65 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.voteringlista.impl {
+
+        class VoteListContainerElement [[VoteListContainerElement.html]] {
+            #grouping: String
+            #condition: String
+            #numberValue: String
+            #hjid: Long
+            +getGrouping(): String
+            +setGrouping(String): void
+            +getCondition(): String
+            +setCondition(String): void
+            +getNumberValue(): String
+            +setNumberValue(String): void
+            +withVotering(List<BallotDocumentElement>): VoteListContainerElement
+            +withGrouping(String): VoteListContainerElement
+            +withCondition(String): VoteListContainerElement
+            +withNumberValue(String): VoteListContainerElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class BallotDocumentElement [[BallotDocumentElement.html]] {
+            #ballotId: String
+            #yesVotes: int
+            #noVotes: int
+            #absentVotes: int
+            #abstainedVotes: int
+            #hjid: Long
+            +getBallotId(): String
+            +setBallotId(String): void
+            +getYesVotes(): int
+            +setYesVotes(int): void
+            +getNoVotes(): int
+            +setNoVotes(int): void
+            +getAbsentVotes(): int
+            +setAbsentVotes(int): void
+            +getAbstainedVotes(): int
+            +setAbstainedVotes(int): void
+            +withBallotId(String): BallotDocumentElement
+            +withYesVotes(int): BallotDocumentElement
+            +withNoVotes(int): BallotDocumentElement
+            +withAbsentVotes(int): BallotDocumentElement
+            +withAbstainedVotes(int): BallotDocumentElement
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createVoteListContainerElement(): VoteListContainerElement
+            +createBallotDocumentElement(): BallotDocumentElement
+            +createVoteringlista(VoteListContainerElement): JAXBElement<VoteListContainerElement>
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. VoteListContainerElement
+        VoteListContainerElement --> "*" BallotDocumentElement: votering
+        com.hack23.cia.model.common.api.ModelObject <|.. BallotDocumentElement
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

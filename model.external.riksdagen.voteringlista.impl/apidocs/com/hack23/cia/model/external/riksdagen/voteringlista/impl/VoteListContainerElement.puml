@@ -1,0 +1,33 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>VoteListContainerElement\n<size:10>com.hack23.cia.model.external.riksdagen.voteringlista.impl" as com.hack23.cia.model.external.riksdagen.voteringlista.impl.VoteListContainerElement [[VoteListContainerElement.html]] {
+        #votering: List<BallotDocumentElement>
+        #grouping: String
+        #condition: String
+        #numberValue: String
+        #hjid: Long
+        +getVotering(): List<BallotDocumentElement>
+        +setVotering(List<BallotDocumentElement>): void
+        +getGrouping(): String
+        +setGrouping(String): void
+        +getCondition(): String
+        +setCondition(String): void
+        +getNumberValue(): String
+        +setNumberValue(String): void
+        +withVotering(List<BallotDocumentElement>): VoteListContainerElement
+        +withGrouping(String): VoteListContainerElement
+        +withCondition(String): VoteListContainerElement
+        +withNumberValue(String): VoteListContainerElement
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.voteringlista.impl.VoteListContainerElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

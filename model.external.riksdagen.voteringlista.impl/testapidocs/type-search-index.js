@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.hack23.cia.model.external.riksdagen.voteringlista.impl","l":"BallotDocumentElement"},{"p":"com.hack23.cia.model.external.riksdagen.voteringlista.impl","l":"ObjectFactory"},{"p":"com.hack23.cia.model.external.riksdagen.voteringlista.impl","l":"VoteListContainerElement"}]
