@@ -1,0 +1,29 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedenElectionRegion\n<size:10>com.hack23.cia.model.external.val.partier.impl" as com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion [[SwedenElectionRegion.html]] {
+        #countyId: String
+        #municipalId: String
+        #regionName: String
+        #parties: List<SwedenPoliticalParty>
+        #hjid: Long
+        +getCountyId(): String
+        +setCountyId(String): void
+        +getMunicipalId(): String
+        +setMunicipalId(String): void
+        +getRegionName(): String
+        +setRegionName(String): void
+        +getParties(): List<SwedenPoliticalParty>
+        +setParties(List<SwedenPoliticalParty>): void
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

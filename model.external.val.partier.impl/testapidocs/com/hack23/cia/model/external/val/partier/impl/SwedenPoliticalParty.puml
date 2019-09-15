@@ -1,0 +1,53 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedenPoliticalParty\n<size:10>com.hack23.cia.model.external.val.partier.impl" as com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty [[SwedenPoliticalParty.html]] {
+        #partyName: String
+        #shortCode: String
+        #partyId: String
+        #coAddress: String
+        #phoneNumber: String
+        #address: String
+        #faxNumber: String
+        #postCode: String
+        #city: String
+        #email: String
+        #website: String
+        #registeredDate: Date
+        #hjid: Long
+        +getPartyName(): String
+        +setPartyName(String): void
+        +getShortCode(): String
+        +setShortCode(String): void
+        +getPartyId(): String
+        +setPartyId(String): void
+        +getCoAddress(): String
+        +setCoAddress(String): void
+        +getPhoneNumber(): String
+        +setPhoneNumber(String): void
+        +getAddress(): String
+        +setAddress(String): void
+        +getFaxNumber(): String
+        +setFaxNumber(String): void
+        +getPostCode(): String
+        +setPostCode(String): void
+        +getCity(): String
+        +setCity(String): void
+        +getEmail(): String
+        +setEmail(String): void
+        +getWebsite(): String
+        +setWebsite(String): void
+        +getRegisteredDate(): Date
+        +setRegisteredDate(Date): void
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

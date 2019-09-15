@@ -1,0 +1,101 @@
+@startuml
+    namespace com.hack23.cia.model.external.val.partier.impl {
+
+        class SwedenElectionRegion [[SwedenElectionRegion.html]] {
+            #countyId: String
+            #municipalId: String
+            #regionName: String
+            #hjid: Long
+            +getCountyId(): String
+            +setCountyId(String): void
+            +getMunicipalId(): String
+            +setMunicipalId(String): void
+            +getRegionName(): String
+            +setRegionName(String): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createSwedenElectionTypeContainerElement(): SwedenElectionTypeContainerElement
+            +createSwedenElectionType(): SwedenElectionType
+            +createSwedenElectionRegion(): SwedenElectionRegion
+            +createSwedenPoliticalParty(): SwedenPoliticalParty
+            +createRoot(SwedenElectionTypeContainerElement): JAXBElement<SwedenElectionTypeContainerElement>
+        }
+
+        class SwedenPoliticalParty [[SwedenPoliticalParty.html]] {
+            #partyName: String
+            #shortCode: String
+            #partyId: String
+            #coAddress: String
+            #phoneNumber: String
+            #address: String
+            #faxNumber: String
+            #postCode: String
+            #city: String
+            #email: String
+            #website: String
+            #registeredDate: Date
+            #hjid: Long
+            +getPartyName(): String
+            +setPartyName(String): void
+            +getShortCode(): String
+            +setShortCode(String): void
+            +getPartyId(): String
+            +setPartyId(String): void
+            +getCoAddress(): String
+            +setCoAddress(String): void
+            +getPhoneNumber(): String
+            +setPhoneNumber(String): void
+            +getAddress(): String
+            +setAddress(String): void
+            +getFaxNumber(): String
+            +setFaxNumber(String): void
+            +getPostCode(): String
+            +setPostCode(String): void
+            +getCity(): String
+            +setCity(String): void
+            +getEmail(): String
+            +setEmail(String): void
+            +getWebsite(): String
+            +setWebsite(String): void
+            +getRegisteredDate(): Date
+            +setRegisteredDate(Date): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class SwedenElectionType [[SwedenElectionType.html]] {
+            #electionType: String
+            #electionCode: String
+            #hjid: Long
+            +getElectionType(): String
+            +setElectionType(String): void
+            +getElectionCode(): String
+            +setElectionCode(String): void
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class SwedenElectionTypeContainerElement [[SwedenElectionTypeContainerElement.html]] {
+            #hjid: Long
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenElectionRegion
+        SwedenElectionRegion --> "*" SwedenPoliticalParty: parties
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenPoliticalParty
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenElectionType
+        SwedenElectionType --> SwedenElectionRegion: region
+        com.hack23.cia.model.common.api.ModelObject <|.. SwedenElectionTypeContainerElement
+        SwedenElectionTypeContainerElement --> "*" SwedenElectionType: electionTypes
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
