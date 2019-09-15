@@ -1,0 +1,86 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CommitteeDocumentData\n<size:10>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl" as com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData [[CommitteeDocumentData.html]] {
+        #rm: String
+        #hangarId: BigInteger
+        #id: String
+        #label: String
+        #subType: String
+        #tempLabel: String
+        #org: String
+        #endNumber: BigInteger
+        #createdDate: Date
+        #publicDate: Date
+        #title: String
+        #subTitle: String
+        #status: String
+        #documentUrlText: String
+        #documentUrlHtml: String
+        #documentStatusUrlXml: String
+        #documentStatusUrlWww: String
+        #committeeProposalUrlXml: String
+        +getRm(): String
+        +setRm(String): void
+        +getHangarId(): BigInteger
+        +setHangarId(BigInteger): void
+        +getId(): String
+        +setId(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getSubType(): String
+        +setSubType(String): void
+        +getTempLabel(): String
+        +setTempLabel(String): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getEndNumber(): BigInteger
+        +setEndNumber(BigInteger): void
+        +getCreatedDate(): Date
+        +setCreatedDate(Date): void
+        +getPublicDate(): Date
+        +setPublicDate(Date): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getSubTitle(): String
+        +setSubTitle(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getDocumentUrlText(): String
+        +setDocumentUrlText(String): void
+        +getDocumentUrlHtml(): String
+        +setDocumentUrlHtml(String): void
+        +getDocumentStatusUrlXml(): String
+        +setDocumentStatusUrlXml(String): void
+        +getDocumentStatusUrlWww(): String
+        +setDocumentStatusUrlWww(String): void
+        +getCommitteeProposalUrlXml(): String
+        +setCommitteeProposalUrlXml(String): void
+        +withRm(String): CommitteeDocumentData
+        +withHangarId(BigInteger): CommitteeDocumentData
+        +withId(String): CommitteeDocumentData
+        +withLabel(String): CommitteeDocumentData
+        +withSubType(String): CommitteeDocumentData
+        +withTempLabel(String): CommitteeDocumentData
+        +withOrg(String): CommitteeDocumentData
+        +withEndNumber(BigInteger): CommitteeDocumentData
+        +withCreatedDate(Date): CommitteeDocumentData
+        +withPublicDate(Date): CommitteeDocumentData
+        +withTitle(String): CommitteeDocumentData
+        +withSubTitle(String): CommitteeDocumentData
+        +withStatus(String): CommitteeDocumentData
+        +withDocumentUrlText(String): CommitteeDocumentData
+        +withDocumentUrlHtml(String): CommitteeDocumentData
+        +withDocumentStatusUrlXml(String): CommitteeDocumentData
+        +withDocumentStatusUrlWww(String): CommitteeDocumentData
+        +withCommitteeProposalUrlXml(String): CommitteeDocumentData
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

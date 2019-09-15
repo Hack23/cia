@@ -1,0 +1,29 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CommitteeProposalComponentData\n<size:10>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl" as com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData [[CommitteeProposalComponentData.html]] {
+        #againstProposalContainer: AgainstProposalContainer
+        #document: CommitteeDocumentData
+        #committeeProposalContainer: CommitteeProposalContainer
+        #hjid: Long
+        +getAgainstProposalContainer(): AgainstProposalContainer
+        +setAgainstProposalContainer(AgainstProposalContainer): void
+        +getDocument(): CommitteeDocumentData
+        +setDocument(CommitteeDocumentData): void
+        +getCommitteeProposalContainer(): CommitteeProposalContainer
+        +setCommitteeProposalContainer(CommitteeProposalContainer): void
+        +withAgainstProposalContainer(AgainstProposalContainer): CommitteeProposalComponentData
+        +withDocument(CommitteeDocumentData): CommitteeProposalComponentData
+        +withCommitteeProposalContainer(CommitteeProposalContainer): CommitteeProposalComponentData
+        +getHjid(): Long
+        +setHjid(Long): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

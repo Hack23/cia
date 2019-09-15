@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.model.external.riksdagen.utskottsforslag.impl --> com.hack23.cia.model.common.api
+    com.hack23.cia.model.external.riksdagen.utskottsforslag.impl --> org.w3c.dom
+
+    ' Package links
+    class "com.hack23.cia.model.external.riksdagen.utskottsforslag.impl" [[com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

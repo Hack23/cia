@@ -1,0 +1,67 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CommitteeProposalData\n<size:10>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl" as com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData [[CommitteeProposalData.html]] {
+        #header: String
+        #issueNumber: BigInteger
+        #proposal: String
+        #decisionType: String
+        #againstProposalNumber: BigInteger
+        #againstProposalParties: String
+        #ballotId: String
+        #ballotSummary: Element
+        #ballotUrlXml: String
+        #committeeReport: String
+        #winner: String
+        #rm: String
+        #hjid: Long
+        +getHeader(): String
+        +setHeader(String): void
+        +getIssueNumber(): BigInteger
+        +setIssueNumber(BigInteger): void
+        +getProposal(): String
+        +setProposal(String): void
+        +getDecisionType(): String
+        +setDecisionType(String): void
+        +getAgainstProposalNumber(): BigInteger
+        +setAgainstProposalNumber(BigInteger): void
+        +getAgainstProposalParties(): String
+        +setAgainstProposalParties(String): void
+        +getBallotId(): String
+        +setBallotId(String): void
+        +getBallotSummary(): Element
+        +setBallotSummary(Element): void
+        +getBallotUrlXml(): String
+        +setBallotUrlXml(String): void
+        +getCommitteeReport(): String
+        +setCommitteeReport(String): void
+        +getWinner(): String
+        +setWinner(String): void
+        +getRm(): String
+        +setRm(String): void
+        +withHeader(String): CommitteeProposalData
+        +withIssueNumber(BigInteger): CommitteeProposalData
+        +withProposal(String): CommitteeProposalData
+        +withDecisionType(String): CommitteeProposalData
+        +withAgainstProposalNumber(BigInteger): CommitteeProposalData
+        +withAgainstProposalParties(String): CommitteeProposalData
+        +withBallotId(String): CommitteeProposalData
+        +withBallotSummary(Element): CommitteeProposalData
+        +withBallotUrlXml(String): CommitteeProposalData
+        +withCommitteeReport(String): CommitteeProposalData
+        +withWinner(String): CommitteeProposalData
+        +withRm(String): CommitteeProposalData
+        +getHjid(): Long
+        +setHjid(Long): void
+        +getBallotSummaryItem(): String
+        +setBallotSummaryItem(String): void
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

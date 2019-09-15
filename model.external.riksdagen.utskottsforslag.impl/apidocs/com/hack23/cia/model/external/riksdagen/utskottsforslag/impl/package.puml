@@ -1,0 +1,212 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.utskottsforslag.impl {
+
+        class CommitteeProposalComponentData [[CommitteeProposalComponentData.html]] {
+            #hjid: Long
+            +withAgainstProposalContainer(AgainstProposalContainer): CommitteeProposalComponentData
+            +withDocument(CommitteeDocumentData): CommitteeProposalComponentData
+            +withCommitteeProposalContainer(CommitteeProposalContainer): CommitteeProposalComponentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class CommitteeProposalContainer [[CommitteeProposalContainer.html]] {
+            #hjid: Long
+            +withCommitteeProposalList(List<CommitteeProposalData>): CommitteeProposalContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createCommitteeProposalComponentData(): CommitteeProposalComponentData
+            +createCommitteeDocumentData(): CommitteeDocumentData
+            +createAgainstProposalContainer(): AgainstProposalContainer
+            +createAgainstProposalData(): AgainstProposalData
+            +createCommitteeProposalContainer(): CommitteeProposalContainer
+            +createCommitteeProposalData(): CommitteeProposalData
+            +createUtskottsforslag(CommitteeProposalComponentData): JAXBElement<CommitteeProposalComponentData>
+        }
+
+        class CommitteeDocumentData [[CommitteeDocumentData.html]] {
+            #rm: String
+            #hangarId: BigInteger
+            #id: String
+            #label: String
+            #subType: String
+            #tempLabel: String
+            #org: String
+            #endNumber: BigInteger
+            #createdDate: Date
+            #publicDate: Date
+            #title: String
+            #subTitle: String
+            #status: String
+            #documentUrlText: String
+            #documentUrlHtml: String
+            #documentStatusUrlXml: String
+            #documentStatusUrlWww: String
+            #committeeProposalUrlXml: String
+            +getRm(): String
+            +setRm(String): void
+            +getHangarId(): BigInteger
+            +setHangarId(BigInteger): void
+            +getId(): String
+            +setId(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getSubType(): String
+            +setSubType(String): void
+            +getTempLabel(): String
+            +setTempLabel(String): void
+            +getOrg(): String
+            +setOrg(String): void
+            +getEndNumber(): BigInteger
+            +setEndNumber(BigInteger): void
+            +getCreatedDate(): Date
+            +setCreatedDate(Date): void
+            +getPublicDate(): Date
+            +setPublicDate(Date): void
+            +getTitle(): String
+            +setTitle(String): void
+            +getSubTitle(): String
+            +setSubTitle(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getDocumentUrlText(): String
+            +setDocumentUrlText(String): void
+            +getDocumentUrlHtml(): String
+            +setDocumentUrlHtml(String): void
+            +getDocumentStatusUrlXml(): String
+            +setDocumentStatusUrlXml(String): void
+            +getDocumentStatusUrlWww(): String
+            +setDocumentStatusUrlWww(String): void
+            +getCommitteeProposalUrlXml(): String
+            +setCommitteeProposalUrlXml(String): void
+            +withRm(String): CommitteeDocumentData
+            +withHangarId(BigInteger): CommitteeDocumentData
+            +withId(String): CommitteeDocumentData
+            +withLabel(String): CommitteeDocumentData
+            +withSubType(String): CommitteeDocumentData
+            +withTempLabel(String): CommitteeDocumentData
+            +withOrg(String): CommitteeDocumentData
+            +withEndNumber(BigInteger): CommitteeDocumentData
+            +withCreatedDate(Date): CommitteeDocumentData
+            +withPublicDate(Date): CommitteeDocumentData
+            +withTitle(String): CommitteeDocumentData
+            +withSubTitle(String): CommitteeDocumentData
+            +withStatus(String): CommitteeDocumentData
+            +withDocumentUrlText(String): CommitteeDocumentData
+            +withDocumentUrlHtml(String): CommitteeDocumentData
+            +withDocumentStatusUrlXml(String): CommitteeDocumentData
+            +withDocumentStatusUrlWww(String): CommitteeDocumentData
+            +withCommitteeProposalUrlXml(String): CommitteeDocumentData
+        }
+
+        class AgainstProposalData [[AgainstProposalData.html]] {
+            #numberValue: BigInteger
+            #header: String
+            #proposalType: String
+            #parties: String
+            #proposalIssueNumber: BigInteger
+            #hjid: Long
+            +getNumberValue(): BigInteger
+            +setNumberValue(BigInteger): void
+            +getHeader(): String
+            +setHeader(String): void
+            +getProposalType(): String
+            +setProposalType(String): void
+            +getParties(): String
+            +setParties(String): void
+            +getProposalIssueNumber(): BigInteger
+            +setProposalIssueNumber(BigInteger): void
+            +withNumberValue(BigInteger): AgainstProposalData
+            +withHeader(String): AgainstProposalData
+            +withProposalType(String): AgainstProposalData
+            +withParties(String): AgainstProposalData
+            +withProposalIssueNumber(BigInteger): AgainstProposalData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class AgainstProposalContainer [[AgainstProposalContainer.html]] {
+            #hjid: Long
+            +withAgainstProposalList(List<AgainstProposalData>): AgainstProposalContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class CommitteeProposalData [[CommitteeProposalData.html]] {
+            #header: String
+            #issueNumber: BigInteger
+            #proposal: String
+            #decisionType: String
+            #againstProposalNumber: BigInteger
+            #againstProposalParties: String
+            #ballotId: String
+            #ballotSummary: Element
+            #ballotUrlXml: String
+            #committeeReport: String
+            #winner: String
+            #rm: String
+            #hjid: Long
+            +getHeader(): String
+            +setHeader(String): void
+            +getIssueNumber(): BigInteger
+            +setIssueNumber(BigInteger): void
+            +getProposal(): String
+            +setProposal(String): void
+            +getDecisionType(): String
+            +setDecisionType(String): void
+            +getAgainstProposalNumber(): BigInteger
+            +setAgainstProposalNumber(BigInteger): void
+            +getAgainstProposalParties(): String
+            +setAgainstProposalParties(String): void
+            +getBallotId(): String
+            +setBallotId(String): void
+            +getBallotSummary(): Element
+            +setBallotSummary(Element): void
+            +getBallotUrlXml(): String
+            +setBallotUrlXml(String): void
+            +getCommitteeReport(): String
+            +setCommitteeReport(String): void
+            +getWinner(): String
+            +setWinner(String): void
+            +getRm(): String
+            +setRm(String): void
+            +withHeader(String): CommitteeProposalData
+            +withIssueNumber(BigInteger): CommitteeProposalData
+            +withProposal(String): CommitteeProposalData
+            +withDecisionType(String): CommitteeProposalData
+            +withAgainstProposalNumber(BigInteger): CommitteeProposalData
+            +withAgainstProposalParties(String): CommitteeProposalData
+            +withBallotId(String): CommitteeProposalData
+            +withBallotSummary(Element): CommitteeProposalData
+            +withBallotUrlXml(String): CommitteeProposalData
+            +withCommitteeReport(String): CommitteeProposalData
+            +withWinner(String): CommitteeProposalData
+            +withRm(String): CommitteeProposalData
+            +getHjid(): Long
+            +setHjid(Long): void
+            +getBallotSummaryItem(): String
+            +setBallotSummaryItem(String): void
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. CommitteeProposalComponentData
+        CommitteeProposalComponentData --> AgainstProposalContainer: againstProposalContainer
+        CommitteeProposalComponentData --> CommitteeDocumentData: document
+        CommitteeProposalComponentData --> CommitteeProposalContainer: committeeProposalContainer
+        com.hack23.cia.model.common.api.ModelObject <|.. CommitteeProposalContainer
+        CommitteeProposalContainer --> "*" CommitteeProposalData: committeeProposalList
+        com.hack23.cia.model.common.api.ModelObject <|.. CommitteeDocumentData
+        com.hack23.cia.model.common.api.ModelObject <|.. AgainstProposalData
+        com.hack23.cia.model.common.api.ModelObject <|.. AgainstProposalContainer
+        AgainstProposalContainer --> "*" AgainstProposalData: againstProposalList
+        com.hack23.cia.model.common.api.ModelObject <|.. CommitteeProposalData
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
