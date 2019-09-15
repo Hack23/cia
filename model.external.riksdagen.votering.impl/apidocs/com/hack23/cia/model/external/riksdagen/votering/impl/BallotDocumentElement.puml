@@ -1,0 +1,114 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>BallotDocumentElement\n<size:10>com.hack23.cia.model.external.riksdagen.votering.impl" as com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement [[BallotDocumentElement.html]] {
+        #hangarId: String
+        #docId: String
+        #htmlformat: String
+        #relatedId: String
+        #source: String
+        #sourceid: String
+        #rm: String
+        #label: String
+        #elementType: String
+        #documentType: String
+        #subType: String
+        #status: String
+        #tempLabel: String
+        #org: String
+        #numberValue: BigInteger
+        #endNumberValue: BigInteger
+        #title: String
+        #subTitle: String
+        #createdDate: String
+        #madePublicDate: String
+        #systemDate: String
+        #documentUrlText: String
+        #documentUrlHtml: String
+        #documentStatusUrlXml: String
+        #committeeReportUrlXml: String
+        +getHangarId(): String
+        +setHangarId(String): void
+        +getDocId(): String
+        +setDocId(String): void
+        +getHtmlformat(): String
+        +setHtmlformat(String): void
+        +getRelatedId(): String
+        +setRelatedId(String): void
+        +getSource(): String
+        +setSource(String): void
+        +getSourceid(): String
+        +setSourceid(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getElementType(): String
+        +setElementType(String): void
+        +getDocumentType(): String
+        +setDocumentType(String): void
+        +getSubType(): String
+        +setSubType(String): void
+        +getStatus(): String
+        +setStatus(String): void
+        +getTempLabel(): String
+        +setTempLabel(String): void
+        +getOrg(): String
+        +setOrg(String): void
+        +getNumberValue(): BigInteger
+        +setNumberValue(BigInteger): void
+        +getEndNumberValue(): BigInteger
+        +setEndNumberValue(BigInteger): void
+        +getTitle(): String
+        +setTitle(String): void
+        +getSubTitle(): String
+        +setSubTitle(String): void
+        +getCreatedDate(): String
+        +setCreatedDate(String): void
+        +getMadePublicDate(): String
+        +setMadePublicDate(String): void
+        +getSystemDate(): String
+        +setSystemDate(String): void
+        +getDocumentUrlText(): String
+        +setDocumentUrlText(String): void
+        +getDocumentUrlHtml(): String
+        +setDocumentUrlHtml(String): void
+        +getDocumentStatusUrlXml(): String
+        +setDocumentStatusUrlXml(String): void
+        +getCommitteeReportUrlXml(): String
+        +setCommitteeReportUrlXml(String): void
+        +withHangarId(String): BallotDocumentElement
+        +withDocId(String): BallotDocumentElement
+        +withHtmlformat(String): BallotDocumentElement
+        +withRelatedId(String): BallotDocumentElement
+        +withSource(String): BallotDocumentElement
+        +withSourceid(String): BallotDocumentElement
+        +withRm(String): BallotDocumentElement
+        +withLabel(String): BallotDocumentElement
+        +withElementType(String): BallotDocumentElement
+        +withDocumentType(String): BallotDocumentElement
+        +withSubType(String): BallotDocumentElement
+        +withStatus(String): BallotDocumentElement
+        +withTempLabel(String): BallotDocumentElement
+        +withOrg(String): BallotDocumentElement
+        +withNumberValue(BigInteger): BallotDocumentElement
+        +withEndNumberValue(BigInteger): BallotDocumentElement
+        +withTitle(String): BallotDocumentElement
+        +withSubTitle(String): BallotDocumentElement
+        +withCreatedDate(String): BallotDocumentElement
+        +withMadePublicDate(String): BallotDocumentElement
+        +withSystemDate(String): BallotDocumentElement
+        +withDocumentUrlText(String): BallotDocumentElement
+        +withDocumentUrlHtml(String): BallotDocumentElement
+        +withDocumentStatusUrlXml(String): BallotDocumentElement
+        +withCommitteeReportUrlXml(String): BallotDocumentElement
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,341 @@
+@startuml
+    namespace com.hack23.cia.model.external.riksdagen.votering.impl {
+
+        class BallotContainer [[BallotContainer.html]] {
+            #hjid: Long
+            +withBallotDocumentData(BallotDocumentData): BallotContainer
+            +withBallotDocumentElement(BallotDocumentElement): BallotContainer
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        enum VoteIssueType [[VoteIssueType.html]] {
+            {static} +SAKFRÅGAN
+            {static} +MOTIVFRÅGAN
+            +value(): String
+            {static} +fromValue(String): VoteIssueType
+        }
+
+        enum BallotType [[BallotType.html]] {
+            {static} +HUVUD
+            +value(): String
+            {static} +fromValue(String): BallotType
+        }
+
+        class VoteDataEmbeddedId [[VoteDataEmbeddedId.html]] {
+            #issue: String
+            #ballotId: String
+            #intressentId: String
+            +getIssue(): String
+            +setIssue(String): void
+            +getBallotId(): String
+            +setBallotId(String): void
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +withIssue(String): VoteDataEmbeddedId
+            +withBallotId(String): VoteDataEmbeddedId
+            +withIntressentId(String): VoteDataEmbeddedId
+            +withConcern(VoteIssueType): VoteDataEmbeddedId
+        }
+
+        class BallotDocumentElement [[BallotDocumentElement.html]] {
+            #hangarId: String
+            #docId: String
+            #htmlformat: String
+            #relatedId: String
+            #source: String
+            #sourceid: String
+            #rm: String
+            #label: String
+            #elementType: String
+            #documentType: String
+            #subType: String
+            #status: String
+            #tempLabel: String
+            #org: String
+            #numberValue: BigInteger
+            #endNumberValue: BigInteger
+            #title: String
+            #subTitle: String
+            #createdDate: String
+            #madePublicDate: String
+            #systemDate: String
+            #documentUrlText: String
+            #documentUrlHtml: String
+            #documentStatusUrlXml: String
+            #committeeReportUrlXml: String
+            +getHangarId(): String
+            +setHangarId(String): void
+            +getDocId(): String
+            +setDocId(String): void
+            +getHtmlformat(): String
+            +setHtmlformat(String): void
+            +getRelatedId(): String
+            +setRelatedId(String): void
+            +getSource(): String
+            +setSource(String): void
+            +getSourceid(): String
+            +setSourceid(String): void
+            +getRm(): String
+            +setRm(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getElementType(): String
+            +setElementType(String): void
+            +getDocumentType(): String
+            +setDocumentType(String): void
+            +getSubType(): String
+            +setSubType(String): void
+            +getStatus(): String
+            +setStatus(String): void
+            +getTempLabel(): String
+            +setTempLabel(String): void
+            +getOrg(): String
+            +setOrg(String): void
+            +getNumberValue(): BigInteger
+            +setNumberValue(BigInteger): void
+            +getEndNumberValue(): BigInteger
+            +setEndNumberValue(BigInteger): void
+            +getTitle(): String
+            +setTitle(String): void
+            +getSubTitle(): String
+            +setSubTitle(String): void
+            +getCreatedDate(): String
+            +setCreatedDate(String): void
+            +getMadePublicDate(): String
+            +setMadePublicDate(String): void
+            +getSystemDate(): String
+            +setSystemDate(String): void
+            +getDocumentUrlText(): String
+            +setDocumentUrlText(String): void
+            +getDocumentUrlHtml(): String
+            +setDocumentUrlHtml(String): void
+            +getDocumentStatusUrlXml(): String
+            +setDocumentStatusUrlXml(String): void
+            +getCommitteeReportUrlXml(): String
+            +setCommitteeReportUrlXml(String): void
+            +withHangarId(String): BallotDocumentElement
+            +withDocId(String): BallotDocumentElement
+            +withHtmlformat(String): BallotDocumentElement
+            +withRelatedId(String): BallotDocumentElement
+            +withSource(String): BallotDocumentElement
+            +withSourceid(String): BallotDocumentElement
+            +withRm(String): BallotDocumentElement
+            +withLabel(String): BallotDocumentElement
+            +withElementType(String): BallotDocumentElement
+            +withDocumentType(String): BallotDocumentElement
+            +withSubType(String): BallotDocumentElement
+            +withStatus(String): BallotDocumentElement
+            +withTempLabel(String): BallotDocumentElement
+            +withOrg(String): BallotDocumentElement
+            +withNumberValue(BigInteger): BallotDocumentElement
+            +withEndNumberValue(BigInteger): BallotDocumentElement
+            +withTitle(String): BallotDocumentElement
+            +withSubTitle(String): BallotDocumentElement
+            +withCreatedDate(String): BallotDocumentElement
+            +withMadePublicDate(String): BallotDocumentElement
+            +withSystemDate(String): BallotDocumentElement
+            +withDocumentUrlText(String): BallotDocumentElement
+            +withDocumentUrlHtml(String): BallotDocumentElement
+            +withDocumentStatusUrlXml(String): BallotDocumentElement
+            +withCommitteeReportUrlXml(String): BallotDocumentElement
+        }
+
+        class VoteDataDto [[VoteDataDto.html]] {
+            #bankNumber: String
+            #label: String
+            #lastName: String
+            #bornYear: int
+            #firstName: String
+            #intressentId: String
+            #place: String
+            #gender: String
+            #fullName: String
+            #party: String
+            #issue: String
+            #rm: String
+            #electoralRegion: String
+            #electoralRegionNumber: BigInteger
+            #ballotId: String
+            #voteDate: String
+            +getBankNumber(): String
+            +setBankNumber(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getBornYear(): int
+            +setBornYear(int): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +getPlace(): String
+            +setPlace(String): void
+            +getGender(): String
+            +setGender(String): void
+            +getFullName(): String
+            +setFullName(String): void
+            +getParty(): String
+            +setParty(String): void
+            +getIssue(): String
+            +setIssue(String): void
+            +getRm(): String
+            +setRm(String): void
+            +getElectoralRegion(): String
+            +setElectoralRegion(String): void
+            +getElectoralRegionNumber(): BigInteger
+            +setElectoralRegionNumber(BigInteger): void
+            +getBallotId(): String
+            +setBallotId(String): void
+            +getVoteDate(): String
+            +setVoteDate(String): void
+            +withConcern(VoteIssueType): VoteDataDto
+            +withBankNumber(String): VoteDataDto
+            +withLabel(String): VoteDataDto
+            +withLastName(String): VoteDataDto
+            +withBornYear(int): VoteDataDto
+            +withFirstName(String): VoteDataDto
+            +withIntressentId(String): VoteDataDto
+            +withPlace(String): VoteDataDto
+            +withGender(String): VoteDataDto
+            +withFullName(String): VoteDataDto
+            +withParty(String): VoteDataDto
+            +withIssue(String): VoteDataDto
+            +withRm(String): VoteDataDto
+            +withVote(VoteDecision): VoteDataDto
+            +withBallotType(BallotType): VoteDataDto
+            +withElectoralRegion(String): VoteDataDto
+            +withElectoralRegionNumber(BigInteger): VoteDataDto
+            +withBallotId(String): VoteDataDto
+            +withVoteDate(String): VoteDataDto
+        }
+
+        class ObjectFactory [[ObjectFactory.html]] {
+            +createBallotContainer(): BallotContainer
+            +createBallotDocumentElement(): BallotDocumentElement
+            +createBallotDocumentData(): BallotDocumentData
+            +createVoteDataDto(): VoteDataDto
+            +createVoteData(): VoteData
+            +createVoteDataEmbeddedId(): VoteDataEmbeddedId
+            +createVotering(BallotContainer): JAXBElement<BallotContainer>
+        }
+
+        class VoteData [[VoteData.html]] {
+            #bankNumber: String
+            #label: String
+            #lastName: String
+            #bornYear: int
+            #firstName: String
+            #place: String
+            #gender: String
+            #fullName: String
+            #voteDate: Date
+            #party: String
+            #rm: String
+            #electoralRegion: String
+            #electoralRegionNumber: BigInteger
+            +getBankNumber(): String
+            +setBankNumber(String): void
+            +getLabel(): String
+            +setLabel(String): void
+            +getLastName(): String
+            +setLastName(String): void
+            +getBornYear(): int
+            +setBornYear(int): void
+            +getFirstName(): String
+            +setFirstName(String): void
+            +getPlace(): String
+            +setPlace(String): void
+            +getGender(): String
+            +setGender(String): void
+            +getFullName(): String
+            +setFullName(String): void
+            +getVoteDate(): Date
+            +setVoteDate(Date): void
+            +getParty(): String
+            +setParty(String): void
+            +getRm(): String
+            +setRm(String): void
+            +getElectoralRegion(): String
+            +setElectoralRegion(String): void
+            +getElectoralRegionNumber(): BigInteger
+            +setElectoralRegionNumber(BigInteger): void
+            +withBankNumber(String): VoteData
+            +withLabel(String): VoteData
+            +withLastName(String): VoteData
+            +withBornYear(int): VoteData
+            +withFirstName(String): VoteData
+            +withPlace(String): VoteData
+            +withGender(String): VoteData
+            +withFullName(String): VoteData
+            +withVoteDate(Date): VoteData
+            +withParty(String): VoteData
+            +withRm(String): VoteData
+            +withVote(VoteDecision): VoteData
+            +withBallotType(BallotType): VoteData
+            +withElectoralRegion(String): VoteData
+            +withElectoralRegionNumber(BigInteger): VoteData
+            +withEmbeddedId(VoteDataEmbeddedId): VoteData
+        }
+
+        enum SexType [[SexType.html]] {
+            {static} +MAN
+            {static} +KVINNA
+            +value(): String
+            {static} +fromValue(String): SexType
+        }
+
+        enum VoteDecision [[VoteDecision.html]] {
+            {static} +FRÅNVARANDE
+            {static} +JA
+            {static} +NEJ
+            {static} +AVSTÅR
+            +value(): String
+            {static} +fromValue(String): VoteDecision
+        }
+
+        class BallotDocumentData [[BallotDocumentData.html]] {
+            #hjid: Long
+            +withVoteDataList(List<VoteDataDto>): BallotDocumentData
+            +getHjid(): Long
+            +setHjid(Long): void
+        }
+
+        class VoteDataDtoId [[VoteDataDtoId.html]] {
+            #intressentId: String
+            #issue: String
+            #ballotId: String
+            +getIntressentId(): String
+            +setIntressentId(String): void
+            +getIssue(): String
+            +setIssue(String): void
+            +getBallotId(): String
+            +setBallotId(String): void
+        }
+
+        com.hack23.cia.model.common.api.ModelObject <|.. BallotContainer
+        BallotContainer --> BallotDocumentData: ballotDocumentData
+        BallotContainer --> BallotDocumentElement: ballotDocumentElement
+        com.hack23.cia.model.common.api.ModelObject <|.. VoteDataEmbeddedId
+        VoteDataEmbeddedId --> VoteIssueType: concern
+        com.hack23.cia.model.common.api.ModelObject <|.. BallotDocumentElement
+        com.hack23.cia.model.common.api.ModelObject <|.. VoteDataDto
+        VoteDataDto --> VoteIssueType: concern
+        VoteDataDto --> VoteDecision: vote
+        VoteDataDto --> BallotType: ballotType
+        com.hack23.cia.model.common.api.ModelObject <|.. VoteData
+        VoteData --> VoteDecision: vote
+        VoteData --> BallotType: ballotType
+        VoteData --> VoteDataEmbeddedId: embeddedId
+        com.hack23.cia.model.common.api.ModelObject <|.. BallotDocumentData
+        BallotDocumentData --> "*" VoteDataDto: voteDataList
+        com.hack23.cia.model.common.api.ModelObject <|.. VoteDataDtoId
+    }
+
+    namespace com.hack23.cia.model.common.api {
+        interface ModelObject
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

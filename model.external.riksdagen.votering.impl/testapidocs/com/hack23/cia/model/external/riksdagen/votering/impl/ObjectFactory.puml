@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ObjectFactory\n<size:10>com.hack23.cia.model.external.riksdagen.votering.impl" as com.hack23.cia.model.external.riksdagen.votering.impl.ObjectFactory [[ObjectFactory.html]] {
+        +createBallotContainer(): BallotContainer
+        +createBallotDocumentElement(): BallotDocumentElement
+        +createBallotDocumentData(): BallotDocumentData
+        +createVoteDataDto(): VoteDataDto
+        +createVoteData(): VoteData
+        +createVoteDataEmbeddedId(): VoteDataEmbeddedId
+        +createVotering(BallotContainer): JAXBElement<BallotContainer>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

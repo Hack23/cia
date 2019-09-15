@@ -1,0 +1,90 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>VoteDataDto\n<size:10>com.hack23.cia.model.external.riksdagen.votering.impl" as com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto [[VoteDataDto.html]] {
+        #concern: VoteIssueType
+        #bankNumber: String
+        #label: String
+        #lastName: String
+        #bornYear: int
+        #firstName: String
+        #intressentId: String
+        #place: String
+        #gender: String
+        #fullName: String
+        #party: String
+        #issue: String
+        #rm: String
+        #vote: VoteDecision
+        #ballotType: BallotType
+        #electoralRegion: String
+        #electoralRegionNumber: BigInteger
+        #ballotId: String
+        #voteDate: String
+        +getConcern(): VoteIssueType
+        +setConcern(VoteIssueType): void
+        +getBankNumber(): String
+        +setBankNumber(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getLastName(): String
+        +setLastName(String): void
+        +getBornYear(): int
+        +setBornYear(int): void
+        +getFirstName(): String
+        +setFirstName(String): void
+        +getIntressentId(): String
+        +setIntressentId(String): void
+        +getPlace(): String
+        +setPlace(String): void
+        +getGender(): String
+        +setGender(String): void
+        +getFullName(): String
+        +setFullName(String): void
+        +getParty(): String
+        +setParty(String): void
+        +getIssue(): String
+        +setIssue(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getVote(): VoteDecision
+        +setVote(VoteDecision): void
+        +getBallotType(): BallotType
+        +setBallotType(BallotType): void
+        +getElectoralRegion(): String
+        +setElectoralRegion(String): void
+        +getElectoralRegionNumber(): BigInteger
+        +setElectoralRegionNumber(BigInteger): void
+        +getBallotId(): String
+        +setBallotId(String): void
+        +getVoteDate(): String
+        +setVoteDate(String): void
+        +withConcern(VoteIssueType): VoteDataDto
+        +withBankNumber(String): VoteDataDto
+        +withLabel(String): VoteDataDto
+        +withLastName(String): VoteDataDto
+        +withBornYear(int): VoteDataDto
+        +withFirstName(String): VoteDataDto
+        +withIntressentId(String): VoteDataDto
+        +withPlace(String): VoteDataDto
+        +withGender(String): VoteDataDto
+        +withFullName(String): VoteDataDto
+        +withParty(String): VoteDataDto
+        +withIssue(String): VoteDataDto
+        +withRm(String): VoteDataDto
+        +withVote(VoteDecision): VoteDataDto
+        +withBallotType(BallotType): VoteDataDto
+        +withElectoralRegion(String): VoteDataDto
+        +withElectoralRegionNumber(BigInteger): VoteDataDto
+        +withBallotId(String): VoteDataDto
+        +withVoteDate(String): VoteDataDto
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

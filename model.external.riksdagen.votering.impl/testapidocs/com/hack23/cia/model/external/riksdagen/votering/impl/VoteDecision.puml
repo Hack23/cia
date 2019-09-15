@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>VoteDecision\n<size:10>com.hack23.cia.model.external.riksdagen.votering.impl" as com.hack23.cia.model.external.riksdagen.votering.impl.VoteDecision [[VoteDecision.html]] {
+        {static} +FRÅNVARANDE
+        {static} +JA
+        {static} +NEJ
+        {static} +AVSTÅR
+        +value(): String
+        {static} +fromValue(String): VoteDecision
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

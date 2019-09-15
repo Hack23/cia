@@ -1,0 +1,78 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>VoteData\n<size:10>com.hack23.cia.model.external.riksdagen.votering.impl" as com.hack23.cia.model.external.riksdagen.votering.impl.VoteData [[VoteData.html]] {
+        #bankNumber: String
+        #label: String
+        #lastName: String
+        #bornYear: int
+        #firstName: String
+        #place: String
+        #gender: String
+        #fullName: String
+        #voteDate: Date
+        #party: String
+        #rm: String
+        #vote: VoteDecision
+        #ballotType: BallotType
+        #electoralRegion: String
+        #electoralRegionNumber: BigInteger
+        #embeddedId: VoteDataEmbeddedId
+        +getBankNumber(): String
+        +setBankNumber(String): void
+        +getLabel(): String
+        +setLabel(String): void
+        +getLastName(): String
+        +setLastName(String): void
+        +getBornYear(): int
+        +setBornYear(int): void
+        +getFirstName(): String
+        +setFirstName(String): void
+        +getPlace(): String
+        +setPlace(String): void
+        +getGender(): String
+        +setGender(String): void
+        +getFullName(): String
+        +setFullName(String): void
+        +getVoteDate(): Date
+        +setVoteDate(Date): void
+        +getParty(): String
+        +setParty(String): void
+        +getRm(): String
+        +setRm(String): void
+        +getVote(): VoteDecision
+        +setVote(VoteDecision): void
+        +getBallotType(): BallotType
+        +setBallotType(BallotType): void
+        +getElectoralRegion(): String
+        +setElectoralRegion(String): void
+        +getElectoralRegionNumber(): BigInteger
+        +setElectoralRegionNumber(BigInteger): void
+        +getEmbeddedId(): VoteDataEmbeddedId
+        +setEmbeddedId(VoteDataEmbeddedId): void
+        +withBankNumber(String): VoteData
+        +withLabel(String): VoteData
+        +withLastName(String): VoteData
+        +withBornYear(int): VoteData
+        +withFirstName(String): VoteData
+        +withPlace(String): VoteData
+        +withGender(String): VoteData
+        +withFullName(String): VoteData
+        +withVoteDate(Date): VoteData
+        +withParty(String): VoteData
+        +withRm(String): VoteData
+        +withVote(VoteDecision): VoteData
+        +withBallotType(BallotType): VoteData
+        +withElectoralRegion(String): VoteData
+        +withElectoralRegionNumber(BigInteger): VoteData
+        +withEmbeddedId(VoteDataEmbeddedId): VoteData
+    }
+
+    interface "<size:14>ModelObject\n<size:10>com.hack23.cia.model.common.api" as com.hack23.cia.model.common.api.ModelObject
+
+    com.hack23.cia.model.common.api.ModelObject <|.. com.hack23.cia.model.external.riksdagen.votering.impl.VoteData
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
