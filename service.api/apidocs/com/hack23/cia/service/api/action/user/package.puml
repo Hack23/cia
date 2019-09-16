@@ -1,0 +1,103 @@
+@startuml
+    namespace com.hack23.cia.service.api.action.user {
+
+        class SetGoogleAuthenticatorCredentialRequest [[SetGoogleAuthenticatorCredentialRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getUserpassword(): String
+            +setUserpassword(String): void
+        }
+
+        class SetGoogleAuthenticatorCredentialResponse [[SetGoogleAuthenticatorCredentialResponse.html]] {
+            +SetGoogleAuthenticatorCredentialResponse(ServiceResult)
+            +getGoogleAuthKey(): String
+            +setGoogleAuthKey(String): void
+            +getGoogleAuthVerificationCode(): Integer
+            +setGoogleAuthVerificationCode(Integer): void
+            +getGoogleAuthScratchCodes(): List<Integer>
+            +setGoogleAuthScratchCodes(List<Integer>): void
+            +getOtpAuthTotpURL(): String
+            +setOtpAuthTotpURL(String): void
+        }
+
+        class SearchDocumentResponse [[SearchDocumentResponse.html]] {
+            +SearchDocumentResponse(ServiceResult)
+            +getResultElement(): List<DocumentElement>
+            +setResultElement(List<DocumentElement>): void
+            +getStatusMap(): Map<String, DocumentStatusContainer>
+            +setStatusMap(Map<String, DocumentStatusContainer>): void
+            +getDataMap(): Map<String, DocumentContentData>
+            +setDataMap(Map<String, DocumentContentData>): void
+        }
+
+        class DocumentWordCountRequest [[DocumentWordCountRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getMaxResults(): int
+            +setMaxResults(int): void
+            +getDocumentId(): String
+            +setDocumentId(String): void
+        }
+
+        class ChangePasswordResponse [[ChangePasswordResponse.html]] {
+            +ChangePasswordResponse(ServiceResult)
+        }
+
+        class SearchDocumentRequest [[SearchDocumentRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getSearchExpression(): String
+            +setSearchExpression(String): void
+            +getMaxResults(): Integer
+            +setMaxResults(Integer): void
+        }
+
+        class ChangePasswordRequest [[ChangePasswordRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getCurrentPassword(): String
+            +setCurrentPassword(String): void
+            +getNewPassword(): String
+            +setNewPassword(String): void
+            +getRepeatNewPassword(): String
+            +setRepeatNewPassword(String): void
+        }
+
+        class DisableGoogleAuthenticatorCredentialRequest [[DisableGoogleAuthenticatorCredentialRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getUserpassword(): String
+            +setUserpassword(String): void
+        }
+
+        class DisableGoogleAuthenticatorCredentialResponse [[DisableGoogleAuthenticatorCredentialResponse.html]] {
+            +DisableGoogleAuthenticatorCredentialResponse(ServiceResult)
+        }
+
+        class DocumentWordCountResponse [[DocumentWordCountResponse.html]] {
+            +DocumentWordCountResponse(ServiceResult)
+            +getWordCountMap(): Map<String, Integer>
+            +setWordCountMap(Map<String, Integer>): void
+        }
+
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- SetGoogleAuthenticatorCredentialRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- SetGoogleAuthenticatorCredentialResponse
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- SearchDocumentResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- DocumentWordCountRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- ChangePasswordResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- SearchDocumentRequest
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- ChangePasswordRequest
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- DisableGoogleAuthenticatorCredentialRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- DisableGoogleAuthenticatorCredentialResponse
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- DocumentWordCountResponse
+    }
+
+    namespace com.hack23.cia.service.api.action.common {
+        abstract class AbstractRequest [[../common/AbstractRequest.html]] {
+        }
+        abstract class AbstractResponse [[../common/AbstractResponse.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

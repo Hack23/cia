@@ -1,0 +1,23 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RuleViolation\n<size:10>com.hack23.cia.service.api.action.kpi" as com.hack23.cia.service.api.action.kpi.RuleViolation [[RuleViolation.html]] {
+        +RuleViolation(String, String, ResourceType, String, String, String, Status, String)
+        +getId(): String
+        +getName(): String
+        +getRuleName(): String
+        +getRuleDescription(): String
+        +getRuleGroup(): String
+        +getStatus(): Status
+        +getResourceType(): ResourceType
+        +getPositive(): String
+    }
+
+    interface "<size:14>Serializable\n<size:10>java.io" as java.io.Serializable
+
+    java.io.Serializable <|.. com.hack23.cia.service.api.action.kpi.RuleViolation
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

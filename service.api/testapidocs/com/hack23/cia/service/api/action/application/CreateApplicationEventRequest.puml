@@ -1,0 +1,35 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CreateApplicationEventRequest\n<size:10>com.hack23.cia.service.api.action.application" as com.hack23.cia.service.api.action.application.CreateApplicationEventRequest [[CreateApplicationEventRequest.html]] {
+        +getEventGroup(): ApplicationEventGroup
+        +setEventGroup(ApplicationEventGroup): void
+        +getApplicationOperation(): ApplicationOperationType
+        +setApplicationOperation(ApplicationOperationType): void
+        +getSessionId(): String
+        +setSessionId(String): void
+        +getPage(): String
+        +setPage(String): void
+        +getPageMode(): String
+        +setPageMode(String): void
+        +getElementId(): String
+        +setElementId(String): void
+        +getActionName(): String
+        +setActionName(String): void
+        +getUserId(): String
+        +setUserId(String): void
+        +getErrorMessage(): String
+        +setErrorMessage(String): void
+        +getApplicationMessage(): String
+        +setApplicationMessage(String): void
+        {static} +getSerialversionuid(): long
+    }
+
+    abstract class "<size:14>AbstractRequest\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractRequest [[../common/AbstractRequest.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractRequest <|-- com.hack23.cia.service.api.action.application.CreateApplicationEventRequest
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

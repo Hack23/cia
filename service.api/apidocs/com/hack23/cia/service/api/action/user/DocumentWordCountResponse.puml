@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DocumentWordCountResponse\n<size:10>com.hack23.cia.service.api.action.user" as com.hack23.cia.service.api.action.user.DocumentWordCountResponse [[DocumentWordCountResponse.html]] {
+        +DocumentWordCountResponse(ServiceResult)
+        +getWordCountMap(): Map<String, Integer>
+        +setWordCountMap(Map<String, Integer>): void
+    }
+
+    abstract class "<size:14>AbstractResponse\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractResponse [[../common/AbstractResponse.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractResponse <|-- com.hack23.cia.service.api.action.user.DocumentWordCountResponse
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

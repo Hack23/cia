@@ -1,0 +1,47 @@
+@startuml
+    namespace com.hack23.cia.service.api.action.common {
+
+        interface ServiceMessage [[ServiceMessage.html]]
+
+        abstract class AbstractRequest [[AbstractRequest.html]] {
+        }
+
+        abstract class AbstractResponse [[AbstractResponse.html]] {
+            +AbstractResponse(ServiceResult)
+            +setErrorMessage(String): void
+            +getErrorMessage(): String
+        }
+
+        interface ServiceResponse [[ServiceResponse.html]] {
+            {abstract} +getErrorMessage(): String
+        }
+
+        enum com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult [[ServiceResponse.ServiceResult.html]] {
+            {static} +FAILURE
+            {static} +SUCCESS
+        }
+
+        abstract class AbstractMessage [[AbstractMessage.html]] {
+        }
+
+        interface ServiceRequest [[ServiceRequest.html]]
+
+        java.io.Serializable <|.. ServiceMessage
+        AbstractMessage <|-- AbstractRequest
+        ServiceRequest <|.. AbstractRequest
+        AbstractMessage <|-- AbstractResponse
+        ServiceResponse <|.. AbstractResponse
+        AbstractResponse --> com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult: result
+        ServiceMessage <|.. ServiceResponse
+        ServiceResponse --> com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult: result
+        ServiceResponse +-- com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult
+        ServiceMessage <|.. AbstractMessage
+        ServiceMessage <|.. ServiceRequest
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

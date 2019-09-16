@@ -1,0 +1,119 @@
+@startuml
+    namespace com.hack23.cia.service.api.action.admin {
+
+        class SendEmailResponse [[SendEmailResponse.html]] {
+            +SendEmailResponse(ServiceResult)
+        }
+
+        class UpdateSearchIndexResponse [[UpdateSearchIndexResponse.html]] {
+            +UpdateSearchIndexResponse(ServiceResult)
+        }
+
+        class UpdateSearchIndexRequest [[UpdateSearchIndexRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        class ManageUserAccountRequest [[ManageUserAccountRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getUserAcountId(): String
+            +setUserAcountId(String): void
+        }
+
+        enum com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation [[ManageUserAccountRequest.AccountOperation.html]] {
+            {static} +DELETE
+            {static} +LOCK
+            {static} +UNLOCK
+            {static} +VERIFY_EMAIL
+            {static} +PASSWORD_RECOVERY
+            {static} +RESET_MFA
+        }
+
+        class UpdateApplicationConfigurationRequest [[UpdateApplicationConfigurationRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getApplicationConfigurationId(): Long
+            +setApplicationConfigurationId(Long): void
+            +getConfigTitle(): String
+            +setConfigTitle(String): void
+            +getConfigDescription(): String
+            +setConfigDescription(String): void
+            +getComponentTitle(): String
+            +setComponentTitle(String): void
+            +getComponentDescription(): String
+            +setComponentDescription(String): void
+            +getPropertyValue(): String
+            +setPropertyValue(String): void
+        }
+
+        class UpdateApplicationConfigurationResponse [[UpdateApplicationConfigurationResponse.html]] {
+            +UpdateApplicationConfigurationResponse(ServiceResult)
+        }
+
+        class SendEmailRequest [[SendEmailRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getEmail(): String
+            +setEmail(String): void
+            +getSubject(): String
+            +setSubject(String): void
+            +getContent(): String
+            +setContent(String): void
+        }
+
+        class ManageUserAccountResponse [[ManageUserAccountResponse.html]] {
+            +ManageUserAccountResponse(ServiceResult)
+        }
+
+        class RemoveDataRequest [[RemoveDataRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        enum com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType [[RemoveDataRequest.DataType.html]] {
+            {static} +POLITICIAN
+            {static} +DOCUMENTS
+            {static} +APPLICATION_HISTORY
+        }
+
+        class RemoveDataResponse [[RemoveDataResponse.html]] {
+            +RemoveDataResponse(ServiceResult)
+        }
+
+        class RefreshDataViewsResponse [[RefreshDataViewsResponse.html]] {
+            +RefreshDataViewsResponse(ServiceResult)
+        }
+
+        class RefreshDataViewsRequest [[RefreshDataViewsRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- SendEmailResponse
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- UpdateSearchIndexResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- UpdateSearchIndexRequest
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- ManageUserAccountRequest
+        ManageUserAccountRequest --> com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation: accountOperation
+        ManageUserAccountRequest +-- com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- UpdateApplicationConfigurationRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- UpdateApplicationConfigurationResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- SendEmailRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- ManageUserAccountResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- RemoveDataRequest
+        RemoveDataRequest --> com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType: dataType
+        RemoveDataRequest +-- com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- RemoveDataResponse
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- RefreshDataViewsResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- RefreshDataViewsRequest
+    }
+
+    namespace com.hack23.cia.service.api.action.common {
+        abstract class AbstractResponse [[../common/AbstractResponse.html]] {
+        }
+        abstract class AbstractRequest [[../common/AbstractRequest.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

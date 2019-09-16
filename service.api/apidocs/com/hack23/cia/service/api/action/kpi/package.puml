@@ -1,0 +1,75 @@
+@startuml
+    namespace com.hack23.cia.service.api.action.kpi {
+
+        enum ResourceType [[ResourceType.html]] {
+            {static} +POLITICIAN
+            {static} +PARTY
+            {static} +PARTY_LEADER
+            {static} +COMMITTEE
+            {static} +MINISTRY
+            {static} +GOVERNMENT
+            {static} +MINISTER
+        }
+
+        class ComplianceCheckRequest [[ComplianceCheckRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        enum Status [[Status.html]] {
+            {static} +OK
+            {static} +MINOR
+            {static} +MAJOR
+            {static} +CRITICAL
+            {static} +NA
+        }
+
+        class RuleViolation [[RuleViolation.html]] {
+            +RuleViolation(String, String, ResourceType, String, String, String, Status, String)
+            +getId(): String
+            +getName(): String
+            +getRuleName(): String
+            +getRuleDescription(): String
+            +getRuleGroup(): String
+            +getPositive(): String
+        }
+
+        class ComplianceCheckResponse [[ComplianceCheckResponse.html]] {
+            +ComplianceCheckResponse(ServiceResult)
+            +getStatusMap(): Map<Status, List<RuleViolation>>
+            +setStatusMap(Map<Status, List<RuleViolation>>): void
+            +getResourceTypeMap(): Map<ResourceType, List<RuleViolation>>
+            +setResourceTypeMap(Map<ResourceType, List<RuleViolation>>): void
+        }
+
+        interface ComplianceCheck [[ComplianceCheck.html]] {
+            {abstract} +getNumberRuleViolations(): int
+            {abstract} +getRuleSummary(): String
+            {abstract} +getId(): String
+            {abstract} +getName(): String
+        }
+
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- ComplianceCheckRequest
+        java.io.Serializable <|.. RuleViolation
+        RuleViolation --> Status: status
+        RuleViolation --> ResourceType: resourceType
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- ComplianceCheckResponse
+        ComplianceCheckResponse --> "*" ComplianceCheck: list
+        java.io.Serializable <|.. ComplianceCheck
+        ComplianceCheck --> ResourceType: resourceType
+        ComplianceCheck --> "*" RuleViolation: ruleViolations
+    }
+
+    namespace com.hack23.cia.service.api.action.common {
+        abstract class AbstractRequest [[../common/AbstractRequest.html]] {
+        }
+        abstract class AbstractResponse [[../common/AbstractResponse.html]] {
+        }
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ComplianceCheckResponse\n<size:10>com.hack23.cia.service.api.action.kpi" as com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse [[ComplianceCheckResponse.html]] {
+        +ComplianceCheckResponse(ServiceResult)
+        +getList(): List<ComplianceCheck>
+        +setList(List<ComplianceCheck>): void
+        +getStatusMap(): Map<Status, List<RuleViolation>>
+        +setStatusMap(Map<Status, List<RuleViolation>>): void
+        +getResourceTypeMap(): Map<ResourceType, List<RuleViolation>>
+        +setResourceTypeMap(Map<ResourceType, List<RuleViolation>>): void
+    }
+
+    abstract class "<size:14>AbstractResponse\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractResponse [[../common/AbstractResponse.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractResponse <|-- com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>Status\n<size:10>com.hack23.cia.service.api.action.kpi" as com.hack23.cia.service.api.action.kpi.Status [[Status.html]] {
+        {static} +OK
+        {static} +MINOR
+        {static} +MAJOR
+        {static} +CRITICAL
+        {static} +NA
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

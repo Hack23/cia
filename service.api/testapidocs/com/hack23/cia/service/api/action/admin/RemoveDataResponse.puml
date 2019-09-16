@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RemoveDataResponse\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.RemoveDataResponse [[RemoveDataResponse.html]] {
+        +RemoveDataResponse(ServiceResult)
+    }
+
+    abstract class "<size:14>AbstractResponse\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractResponse [[../common/AbstractResponse.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractResponse <|-- com.hack23.cia.service.api.action.admin.RemoveDataResponse
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

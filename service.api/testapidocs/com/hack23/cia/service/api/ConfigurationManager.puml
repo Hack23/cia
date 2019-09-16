@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>ConfigurationManager\n<size:10>com.hack23.cia.service.api" as com.hack23.cia.service.api.ConfigurationManager [[ConfigurationManager.html]] {
+        {abstract} +getUserConfiguration(String, String): UserConfiguration
+        {abstract} +createDefaultConfigIfEmpty(): void
+        {abstract} +createDefaultLanguagesIfEmpty(): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

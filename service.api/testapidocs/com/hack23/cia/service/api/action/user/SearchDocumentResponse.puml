@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SearchDocumentResponse\n<size:10>com.hack23.cia.service.api.action.user" as com.hack23.cia.service.api.action.user.SearchDocumentResponse [[SearchDocumentResponse.html]] {
+        +SearchDocumentResponse(ServiceResult)
+        +getResultElement(): List<DocumentElement>
+        +setResultElement(List<DocumentElement>): void
+        +getStatusMap(): Map<String, DocumentStatusContainer>
+        +setStatusMap(Map<String, DocumentStatusContainer>): void
+        +getDataMap(): Map<String, DocumentContentData>
+        +setDataMap(Map<String, DocumentContentData>): void
+    }
+
+    abstract class "<size:14>AbstractResponse\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractResponse [[../common/AbstractResponse.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractResponse <|-- com.hack23.cia.service.api.action.user.SearchDocumentResponse
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

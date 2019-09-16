@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>ManageUserAccountRequest.AccountOperation\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation [[ManageUserAccountRequest.AccountOperation.html]] {
+        {static} +DELETE
+        {static} +LOCK
+        {static} +UNLOCK
+        {static} +VERIFY_EMAIL
+        {static} +PASSWORD_RECOVERY
+        {static} +RESET_MFA
+    }
+
+    class "<size:14>ManageUserAccountRequest\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.ManageUserAccountRequest [[ManageUserAccountRequest.html]]
+
+    com.hack23.cia.service.api.action.admin.ManageUserAccountRequest +-- com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

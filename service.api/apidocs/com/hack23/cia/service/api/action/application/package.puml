@@ -1,0 +1,141 @@
+@startuml
+    namespace com.hack23.cia.service.api.action.application {
+
+        class DestroyApplicationSessionResponse [[DestroyApplicationSessionResponse.html]] {
+            +DestroyApplicationSessionResponse(ServiceResult)
+        }
+
+        class CreateApplicationEventRequest [[CreateApplicationEventRequest.html]] {
+            +getEventGroup(): ApplicationEventGroup
+            +setEventGroup(ApplicationEventGroup): void
+            +getApplicationOperation(): ApplicationOperationType
+            +setApplicationOperation(ApplicationOperationType): void
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getPage(): String
+            +setPage(String): void
+            +getPageMode(): String
+            +setPageMode(String): void
+            +getElementId(): String
+            +setElementId(String): void
+            +getActionName(): String
+            +setActionName(String): void
+            +getUserId(): String
+            +setUserId(String): void
+            +getErrorMessage(): String
+            +setErrorMessage(String): void
+            +getApplicationMessage(): String
+            +setApplicationMessage(String): void
+            {static} +getSerialversionuid(): long
+        }
+
+        class LogoutRequest [[LogoutRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        class LogoutResponse [[LogoutResponse.html]] {
+            +LogoutResponse(ServiceResult)
+        }
+
+        class CreateApplicationSessionRequest [[CreateApplicationSessionRequest.html]] {
+            +getIpInformation(): String
+            +getSessionType(): ApplicationSessionType
+            +getUserAgentInformation(): String
+            +setIpInformation(String): void
+            +setSessionType(ApplicationSessionType): void
+            +setUserAgentInformation(String): void
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getLocale(): String
+            +setLocale(String): void
+            +getOperatingSystem(): String
+            +setOperatingSystem(String): void
+            +getScreenSize(): String
+            +setScreenSize(String): void
+            +getTimeZone(): String
+            +setTimeZone(String): void
+        }
+
+        class CreateApplicationEventResponse [[CreateApplicationEventResponse.html]] {
+            +CreateApplicationEventResponse(ServiceResult)
+        }
+
+        class LoginRequest [[LoginRequest.html]] {
+            +getEmail(): String
+            +setEmail(String): void
+            +getUserpassword(): String
+            +setUserpassword(String): void
+            +getSessionId(): String
+            +setSessionId(String): void
+            +getOtpCode(): String
+            +setOtpCode(String): void
+        }
+
+        class RegisterUserResponse [[RegisterUserResponse.html]] {
+            +RegisterUserResponse(ServiceResult)
+            +getUserAccount(): UserAccount
+            +setUserAccount(UserAccount): void
+        }
+
+        enum com.hack23.cia.service.api.action.application.RegisterUserResponse.ErrorMessage [[RegisterUserResponse.ErrorMessage.html]] {
+            {static} +USER_ALREADY_EXIST
+        }
+
+        class LoginResponse [[LoginResponse.html]] {
+            +LoginResponse(ServiceResult)
+        }
+
+        enum com.hack23.cia.service.api.action.application.LoginResponse.ErrorMessage [[LoginResponse.ErrorMessage.html]] {
+            {static} +USERNAME_OR_PASSWORD_DO_NOT_MATCH
+        }
+
+        class CreateApplicationSessionResponse [[CreateApplicationSessionResponse.html]] {
+            +CreateApplicationSessionResponse(ServiceResult)
+        }
+
+        class DestroyApplicationSessionRequest [[DestroyApplicationSessionRequest.html]] {
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        class RegisterUserRequest [[RegisterUserRequest.html]] {
+            +getCountry(): String
+            +setCountry(String): void
+            +getUsername(): String
+            +setUsername(String): void
+            +getEmail(): String
+            +setEmail(String): void
+            +getUserpassword(): String
+            +setUserpassword(String): void
+            +getUserType(): UserType
+            +setUserType(UserType): void
+            +getSessionId(): String
+            +setSessionId(String): void
+        }
+
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- DestroyApplicationSessionResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- CreateApplicationEventRequest
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- LogoutRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- LogoutResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- CreateApplicationSessionRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- CreateApplicationEventResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- LoginRequest
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- RegisterUserResponse
+        RegisterUserResponse +-- com.hack23.cia.service.api.action.application.RegisterUserResponse.ErrorMessage
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- LoginResponse
+        LoginResponse +-- com.hack23.cia.service.api.action.application.LoginResponse.ErrorMessage
+        com.hack23.cia.service.api.action.common.AbstractResponse <|-- CreateApplicationSessionResponse
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- DestroyApplicationSessionRequest
+        com.hack23.cia.service.api.action.common.AbstractRequest <|-- RegisterUserRequest
+    }
+
+    namespace com.hack23.cia.service.api.action.common {
+        abstract class AbstractResponse [[../common/AbstractResponse.html]] {
+        }
+        abstract class AbstractRequest [[../common/AbstractRequest.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

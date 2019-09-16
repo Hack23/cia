@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>RemoveDataRequest.DataType\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType [[RemoveDataRequest.DataType.html]] {
+        {static} +POLITICIAN
+        {static} +DOCUMENTS
+        {static} +APPLICATION_HISTORY
+    }
+
+    class "<size:14>RemoveDataRequest\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.RemoveDataRequest [[RemoveDataRequest.html]]
+
+    com.hack23.cia.service.api.action.admin.RemoveDataRequest +-- com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

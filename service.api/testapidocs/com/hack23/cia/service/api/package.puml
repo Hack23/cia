@@ -1,0 +1,47 @@
+@startuml
+    namespace com.hack23.cia.service.api {
+
+        interface UserConfiguration [[UserConfiguration.html]] {
+            {abstract} +getAgency(): Agency
+            {abstract} +getPortal(): Portal
+            {abstract} +getLanguage(): LanguageData
+        }
+
+        interface AgentContainer [[AgentContainer.html]] {
+            {abstract} +execute(DataAgentWorkOrder): void
+        }
+
+        interface ApplicationManager [[ApplicationManager.html]] {
+            {abstract} +getDataContainer(Class<T extends Serializable>): DataContainer<T extends Serializable, V extends Serializable>
+            {abstract} +service(ServiceRequest): ServiceResponse
+            {abstract} +asyncService(ServiceRequest): Future<ServiceResponse>
+        }
+
+        interface ConfigurationManager [[ConfigurationManager.html]] {
+            {abstract} +getUserConfiguration(String, String): UserConfiguration
+            {abstract} +createDefaultConfigIfEmpty(): void
+            {abstract} +createDefaultLanguagesIfEmpty(): void
+        }
+
+        interface DataContainer<T extends Serializable, I extends Serializable> [[DataContainer.html]] {
+            {abstract} +getAll(): List<T extends Serializable>
+            {abstract} +getAllOrderBy(SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +getPage(int, int): List<T extends Serializable>
+            {abstract} +getPageOrderBy(int, int, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +getAllBy(SingularAttribute<T extends Serializable, ? extends Object>, Object): List<T extends Serializable>
+            {abstract} +findListByProperty(Object..., SingularAttribute<T extends Serializable, ? extends Object>...): List<T extends Serializable>
+            {abstract} +findOrderedListByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +findOrderedListByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object..., SingularAttribute<T extends Serializable, ? extends Object>...): List<T extends Serializable>
+            {abstract} +findByQueryProperty(Class<T>, SingularAttribute<T, ? extends Object>, Class<V>, SingularAttribute<V, ? extends Object>, Object): T
+            {abstract} +findListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object): List<T>
+            {abstract} +findOrderedListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<V, ? extends Object>): List<T>
+            {abstract} +findOrderedByPropertyListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<T, ? extends Object>): List<T>
+            {abstract} +load(I extends Serializable): T extends Serializable
+            {abstract} +getSize(): Long
+        }
+
+        ApplicationManager --> AgentContainer: agentContainer
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

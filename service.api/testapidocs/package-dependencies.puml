@@ -1,0 +1,32 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.service.api --> com.hack23.cia.model.internal.application.system.impl
+    com.hack23.cia.service.api --> com.hack23.cia.model.internal.application.data.impl
+    com.hack23.cia.service.api --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.api.action.admin --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.api.action.user --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.api.action.kpi --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.api.action.application --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.api.action.application --> com.hack23.cia.model.internal.application.system.impl
+    com.hack23.cia.service.api.action.application --> com.hack23.cia.model.internal.application.user.impl
+
+    ' Package links
+    class "com.hack23.cia.service.api" [[com/hack23/cia/service/api/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.api.action.common" [[com/hack23/cia/service/api/action/common/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.api.action.admin" [[com/hack23/cia/service/api/action/admin/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.api.action.user" [[com/hack23/cia/service/api/action/user/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.api.action.kpi" [[com/hack23/cia/service/api/action/kpi/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.api.action.application" [[com/hack23/cia/service/api/action/application/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

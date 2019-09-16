@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ManageUserAccountRequest\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.ManageUserAccountRequest [[ManageUserAccountRequest.html]] {
+        +getSessionId(): String
+        +setSessionId(String): void
+        +getUserAcountId(): String
+        +setUserAcountId(String): void
+        +getAccountOperation(): AccountOperation
+        +setAccountOperation(AccountOperation): void
+    }
+
+    abstract class "<size:14>AbstractRequest\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractRequest [[../common/AbstractRequest.html]]
+    enum "<size:14>ManageUserAccountRequest.AccountOperation\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation [[ManageUserAccountRequest.AccountOperation.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractRequest <|-- com.hack23.cia.service.api.action.admin.ManageUserAccountRequest
+    com.hack23.cia.service.api.action.admin.ManageUserAccountRequest +-- com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

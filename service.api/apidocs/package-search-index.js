@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.hack23.cia.service.api"},{"l":"com.hack23.cia.service.api.action.admin"},{"l":"com.hack23.cia.service.api.action.application"},{"l":"com.hack23.cia.service.api.action.common"},{"l":"com.hack23.cia.service.api.action.kpi"},{"l":"com.hack23.cia.service.api.action.user"}]

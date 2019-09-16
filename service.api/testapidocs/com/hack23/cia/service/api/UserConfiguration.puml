@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>UserConfiguration\n<size:10>com.hack23.cia.service.api" as com.hack23.cia.service.api.UserConfiguration [[UserConfiguration.html]] {
+        {abstract} +getAgency(): Agency
+        {abstract} +getPortal(): Portal
+        {abstract} +getLanguage(): LanguageData
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

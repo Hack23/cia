@@ -1,0 +1,28 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>UpdateApplicationConfigurationRequest\n<size:10>com.hack23.cia.service.api.action.admin" as com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest [[UpdateApplicationConfigurationRequest.html]] {
+        +getSessionId(): String
+        +setSessionId(String): void
+        +getApplicationConfigurationId(): Long
+        +setApplicationConfigurationId(Long): void
+        +getConfigTitle(): String
+        +setConfigTitle(String): void
+        +getConfigDescription(): String
+        +setConfigDescription(String): void
+        +getComponentTitle(): String
+        +setComponentTitle(String): void
+        +getComponentDescription(): String
+        +setComponentDescription(String): void
+        +getPropertyValue(): String
+        +setPropertyValue(String): void
+    }
+
+    abstract class "<size:14>AbstractRequest\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractRequest [[../common/AbstractRequest.html]]
+
+    com.hack23.cia.service.api.action.common.AbstractRequest <|-- com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

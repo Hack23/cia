@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractMessage\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.AbstractMessage [[AbstractMessage.html]] {
+    }
+
+    interface "<size:14>ServiceMessage\n<size:10>com.hack23.cia.service.api.action.common" as com.hack23.cia.service.api.action.common.ServiceMessage [[ServiceMessage.html]]
+
+    com.hack23.cia.service.api.action.common.ServiceMessage <|.. com.hack23.cia.service.api.action.common.AbstractMessage
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
