@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DataSearchMapping\n<size:10>com.hack23.cia.service.data.impl" as com.hack23.cia.service.data.impl.DataSearchMapping [[DataSearchMapping.html]] {
+        +configure(HibernateOrmMappingConfigurationContext): void
+    }
+
+    interface "<size:14>HibernateOrmSearchMappingConfigurer\n<size:10>org.hibernate.search.mapper.orm.mapping" as org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer {
+        {abstract} +configure(HibernateOrmMappingConfigurationContext): void
+    }
+
+    org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer <|.. com.hack23.cia.service.data.impl.DataSearchMapping
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

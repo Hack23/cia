@@ -1,0 +1,32 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.service.data.impl --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.data.impl --> org.javers.core
+    com.hack23.cia.service.data.impl --> org.springframework.transaction
+    com.hack23.cia.service.data.impl --> org.javers.spring.auditable.aspect
+    com.hack23.cia.service.data.impl --> org.javers.spring.auditable
+    com.hack23.cia.service.data.impl --> com.hack23.cia.model.internal.application.system.impl
+    com.hack23.cia.service.data.impl --> org.hibernate.search.mapper.orm.session
+    com.hack23.cia.service.data.impl --> org.slf4j
+    com.hack23.cia.service.data.impl --> org.hibernate.boot.model.naming
+    com.hack23.cia.service.data.impl --> org.hibernate.engine.jdbc.env.spi
+    com.hack23.cia.service.data.impl --> org.hibernate.search.backend.lucene.analysis
+    com.hack23.cia.service.data.impl --> org.hibernate.search.mapper.orm.mapping
+    com.hack23.cia.service.data.impl --> com.hack23.cia.testfoundation
+    com.hack23.cia.service.data.impl.util --> org.slf4j
+    com.hack23.cia.service.data.impl.util --> com.amazonaws.secretsmanager.caching
+    com.hack23.cia.service.data.impl.util --> org.postgresql.xa
+    com.hack23.cia.service.data.impl.util --> com.hack23.cia.testfoundation
+
+    ' Package links
+    class "com.hack23.cia.service.data.impl" [[com/hack23/cia/service/data/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.data.impl.util" [[com/hack23/cia/service/data/impl/util/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

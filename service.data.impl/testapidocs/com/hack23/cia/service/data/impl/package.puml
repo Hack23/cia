@@ -1,0 +1,59 @@
+@startuml
+    namespace com.hack23.cia.service.data.impl {
+
+        class AuditableAspectConfiguration [[AuditableAspectConfiguration.html]] {
+            +getJavers(PlatformTransactionManager): Javers
+            +javersAuditableAspect(Javers, AuthorProvider, CommitPropertiesProvider): JaversAuditableAspect
+            +authorProvider(): AuthorProvider
+            +commitPropertiesProvider(): CommitPropertiesProvider
+        }
+
+        class LegacyNamingStrategy [[LegacyNamingStrategy.html]] {
+            +toPhysicalCatalogName(Identifier, JdbcEnvironment): Identifier
+            +toPhysicalColumnName(Identifier, JdbcEnvironment): Identifier
+            +toPhysicalSchemaName(Identifier, JdbcEnvironment): Identifier
+            +toPhysicalSequenceName(Identifier, JdbcEnvironment): Identifier
+            +toPhysicalTableName(Identifier, JdbcEnvironment): Identifier
+        }
+
+        class DataSearchAnalysisConfigurer [[DataSearchAnalysisConfigurer.html]] {
+            +configure(LuceneAnalysisConfigurationContext): void
+        }
+
+        class DataSearchMapping [[DataSearchMapping.html]] {
+            +configure(HibernateOrmMappingConfigurationContext): void
+        }
+
+        class QueryHelper [[QueryHelper.html]] {
+            {static} +equalsIgnoreCaseIfStringPredicate(CriteriaBuilder, Path<T>, Object, SingularAttribute<T, ? extends Object>): Predicate
+        }
+
+        org.hibernate.boot.model.naming.PhysicalNamingStrategy <|.. LegacyNamingStrategy
+        org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer <|.. DataSearchAnalysisConfigurer
+        org.hibernate.search.mapper.orm.mapping.HibernateOrmSearchMappingConfigurer <|.. DataSearchMapping
+    }
+
+    namespace org.hibernate.boot.model.naming {
+        interface PhysicalNamingStrategy {
+            {abstract} +toPhysicalCatalogName(Identifier, JdbcEnvironment): Identifier
+            {abstract} +toPhysicalSchemaName(Identifier, JdbcEnvironment): Identifier
+            {abstract} +toPhysicalTableName(Identifier, JdbcEnvironment): Identifier
+            {abstract} +toPhysicalSequenceName(Identifier, JdbcEnvironment): Identifier
+            {abstract} +toPhysicalColumnName(Identifier, JdbcEnvironment): Identifier
+        }
+    }
+
+    namespace org.hibernate.search.backend.lucene.analysis {
+        interface LuceneAnalysisConfigurer {
+            {abstract} +configure(LuceneAnalysisConfigurationContext): void
+        }
+    }
+
+    namespace org.hibernate.search.mapper.orm.mapping {
+        interface HibernateOrmSearchMappingConfigurer {
+            {abstract} +configure(HibernateOrmMappingConfigurationContext): void
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

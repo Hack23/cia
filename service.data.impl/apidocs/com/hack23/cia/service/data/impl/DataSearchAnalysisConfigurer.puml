@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DataSearchAnalysisConfigurer\n<size:10>com.hack23.cia.service.data.impl" as com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer [[DataSearchAnalysisConfigurer.html]] {
+        +configure(LuceneAnalysisConfigurationContext): void
+    }
+
+    interface "<size:14>LuceneAnalysisConfigurer\n<size:10>org.hibernate.search.backend.lucene.analysis" as org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer {
+        {abstract} +configure(LuceneAnalysisConfigurationContext): void
+    }
+
+    org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer <|.. com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

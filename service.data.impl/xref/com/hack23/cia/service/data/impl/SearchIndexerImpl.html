@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../apidocs/com/hack23/cia/service/data/impl/SearchIndexerImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -29,7 +29,7 @@
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> javax.persistence.EntityManager;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> javax.persistence.PersistenceContext;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.jpa.Search;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.mapper.orm.Search;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Repository;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.data.api.SearchIndexer;
@@ -56,11 +56,11 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	@Override
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateSearchIndex() <strong class="jxr_keyword">throws</strong> InterruptedException {
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		Search.getFullTextEntityManager(entityManager).createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		Search.session(entityManager).massIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	}
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

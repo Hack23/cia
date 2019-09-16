@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractGenericDAOImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">AbstractGenericDAOImpl.java</span></div><h1>AbstractGenericDAOImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.CacheMode;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.javers.spring.annotation.JaversAuditable;
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
@@ -125,8 +125,8 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 
 <span class="fc" id="L126">		final List&lt;T&gt; resultList = typedQuery.getResultList();</span>
 
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">		if (resultList.isEmpty()) {</span>
-<span class="nc" id="L129">			return null;</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">		if (resultList.isEmpty()) {</span>
+<span class="fc" id="L129">			return null;</span>
 		} else {
 <span class="fc" id="L131">			return LoadHelper.recursiveInitialize(resultList.get(0));</span>
 		}
@@ -195,7 +195,7 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 	@Override
 	public &lt;V&gt; List&lt;T&gt; findListByEmbeddedProperty(final SingularAttribute&lt;T, V&gt; property, final Class&lt;V&gt; clazz2,
 			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
-<span class="nc" id="L198">		return findOrderedByPropertyListByEmbeddedProperty(property,clazz2,property2,value,null);</span>
+<span class="fc" id="L198">		return findOrderedByPropertyListByEmbeddedProperty(property,clazz2,property2,value,null);</span>
 
 	}
 
@@ -203,31 +203,31 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 	public &lt;V&gt; List&lt;T&gt; findOrderedByPropertyListByEmbeddedProperty(final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
 			final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
-<span class="nc" id="L206">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
-<span class="nc" id="L207">				.createQuery(persistentClass);</span>
-<span class="nc" id="L208">		final Root&lt;T&gt; root = criteriaQuery.from(persistentClass);</span>
-<span class="nc" id="L209">		criteriaQuery.select(root);</span>
+<span class="fc" id="L206">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L207">				.createQuery(persistentClass);</span>
+<span class="fc" id="L208">		final Root&lt;T&gt; root = criteriaQuery.from(persistentClass);</span>
+<span class="fc" id="L209">		criteriaQuery.select(root);</span>
 
-<span class="nc bnc" id="L211" title="All 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
 <span class="nc" id="L212">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
 		}
 
 
-<span class="nc" id="L216">		final Join&lt;T, V&gt; join = root.join(property);</span>
+<span class="fc" id="L216">		final Join&lt;T, V&gt; join = root.join(property);</span>
 
-<span class="nc" id="L218">		final Path&lt;? extends Object&gt; path = join.get(property2);</span>
+<span class="fc" id="L218">		final Path&lt;? extends Object&gt; path = join.get(property2);</span>
 
-<span class="nc" id="L220">		final Predicate condition = criteriaBuilder.equal(path, value);</span>
+<span class="fc" id="L220">		final Predicate condition = criteriaBuilder.equal(path, value);</span>
 
-<span class="nc" id="L222">		criteriaQuery.where(condition);</span>
+<span class="fc" id="L222">		criteriaQuery.where(condition);</span>
 
-<span class="nc" id="L224">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
-<span class="nc" id="L225">				.createQuery(criteriaQuery);</span>
+<span class="fc" id="L224">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L225">				.createQuery(criteriaQuery);</span>
 
-<span class="nc" id="L227">		addCacheHints(typedQuery, &quot;findListByEmbeddedProperty.&quot; + persistentClass.getSimpleName());</span>
+<span class="fc" id="L227">		addCacheHints(typedQuery, &quot;findListByEmbeddedProperty.&quot; + persistentClass.getSimpleName());</span>
 
 
-<span class="nc" id="L230">		return typedQuery.getResultList();</span>
+<span class="fc" id="L230">		return typedQuery.getResultList();</span>
 	}
 
 
@@ -264,10 +264,10 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 	 *
 	 * @return the full text entity manager
 	 */
-	protected final FullTextEntityManager getFullTextEntityManager() {
-<span class="nc" id="L268">		return Search.getFullTextEntityManager(getEntityManager());</span>
+	protected final SearchSession getFullTextEntityManager() {
+<span class="fc" id="L268">		return Search.session(getEntityManager());</span>
 	}
-
+	
 	/**
 	 * Gets the metamodel.
 	 *
@@ -350,10 +350,10 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 	@Override
 	@JaversAuditable
 	public final void persist(final List&lt;T&gt; list) {
-<span class="nc bnc" id="L353" title="All 2 branches missed.">		for (final T t : list) {</span>
-<span class="nc" id="L354">			getEntityManager().persist(t);</span>
-<span class="nc" id="L355">		}</span>
-<span class="nc" id="L356">	}</span>
+<span class="fc bfc" id="L353" title="All 2 branches covered.">		for (final T t : list) {</span>
+<span class="fc" id="L354">			getEntityManager().persist(t);</span>
+<span class="fc" id="L355">		}</span>
+<span class="fc" id="L356">	}</span>
 
 	@Override
 	@JaversAuditable
@@ -363,11 +363,7 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 
 	@Override
 	public final List&lt;T&gt; search(final String searchExpression, final Integer maxResults, final String... fields) {
-<span class="nc" id="L366">		return getFullTextEntityManager().createFullTextQuery(</span>
-<span class="nc" id="L367">				getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get()</span>
-<span class="nc" id="L368">						.keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),</span>
-<span class="nc" id="L369">				persistentClass).setMaxResults(maxResults).getResultList();</span>
+<span class="fc" id="L366">		return getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -&gt; t.match().onFields(fields).matching(searchExpression)).fetchHits(maxResults);</span>
 	}
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

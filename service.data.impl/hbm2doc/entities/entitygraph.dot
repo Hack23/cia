@@ -217,13 +217,6 @@ digraph EntityGraph {
      
      
      
-  /* Node com.hack23.cia.model.internal.application.view.impl.PerformanceIndicatorContent */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.PerformanceIndicatorContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/PerformanceIndicatorContent.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.PerformanceIndicatorContent */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent */
-     
-     
   /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
   com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountriesElement| page\l pages\l perPage\l total\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountriesElement.html" ]
   /* Subclass edges for com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
@@ -710,32 +703,6 @@ digraph EntityGraph {
         label="person" 
         ]
      
-  /* Node com.hack23.cia.model.internal.application.view.impl.ApplicationView */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.ApplicationView| dataSourceInformation\l operationalInformation\l performanceIndicators\l perspective\l qualityAssurance\l targetProfile\l }", URL="com/hack23/cia/model/internal/application/view/impl/ApplicationView.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.ApplicationView */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView */
-     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent [ 
-        label="dataSourceInformation" 
-        ]
-     
-     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent [ 
-        label="operationalInformation" 
-        ]
-     
-     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent [ 
-        label="performanceIndicators" 
-        ]
-     
-     
-     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent [ 
-        label="qualityAssurance" 
-        ]
-     
-     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent [ 
-        label="targetProfile" 
-        ]
-     
   /* Node com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary */
   com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_audit_dot_impl_dot_ViewAuditAuthorSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.audit\.impl\.ViewAuditAuthorSummary| author\l changes\l firstDate\l lastDate\l }", URL="com/hack23/cia/model/internal/application/data/audit/impl/ViewAuditAuthorSummary.html" ]
   /* Subclass edges for com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary */
@@ -769,13 +736,6 @@ digraph EntityGraph {
      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topics [ 
         label="topics" 
         ]
-     
-  /* Node com.hack23.cia.model.internal.application.view.impl.DataSourceContent */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.DataSourceContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/DataSourceContent.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.DataSourceContent */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent */
-     
      
   /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountryElement */
   com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountryElement| adminregion\l capitalCity\l countryName\l id\l incomeLevel\l iso2Code\l latitude\l lendingType\l longitude\l region\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountryElement.html" ]
@@ -1179,13 +1139,6 @@ digraph EntityGraph {
      
      
      
-  /* Node com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.QualityAssuranceContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/QualityAssuranceContent.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent */
-     
-     
   /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary */
   com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisionTypeDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeDecisionTypeDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeDecisionTypeDailySummary.html" ]
   /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary */
@@ -1451,6 +1404,12 @@ digraph EntityGraph {
      
      
      
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyCoalationAgainstAnnualSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyCoalationAgainstAnnualSummary| total\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyCoalationAgainstAnnualSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyCoalationAgainstAnnualSummary */
+     
   /* Node com.hack23.cia.model.external.riksdagen.votering.impl.VoteData */
   com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.VoteData| ballotType\l bankNumber\l bornYear\l electoralRegion\l electoralRegionNumber\l firstName\l fullName\l gender\l label\l lastName\l party\l place\l rm\l vote\l voteDate\l }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/VoteData.html" ]
   /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.VoteData */
@@ -1481,13 +1440,6 @@ digraph EntityGraph {
      
      
      
-     
-     
-  /* Node com.hack23.cia.model.internal.application.view.impl.TargetProfileContent */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.TargetProfileContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/TargetProfileContent.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.TargetProfileContent */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent */
      
      
   /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary */
@@ -1913,13 +1865,6 @@ digraph EntityGraph {
      
      
      
-  /* Node com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.OperationalInformationContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/OperationalInformationContent.html" ]
-  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent */
-  
-  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent */
-     
-     
   /* Node com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData */
   com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_dokumentstatus_dot_impl_dot_DocumentData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.dokumentstatus\.impl\.DocumentData| committeeReportUrlXml\l documentStatusUrlWWW\l documentStatusUrlXml\l documentType\l documentUrlHtml\l documentUrlText\l finalNumber\l hangarId\l label\l madePublicDate\l numberValue\l org\l rm\l status\l subTitle\l subType\l tempLabel\l title\l }", URL="com/hack23/cia/model/external/riksdagen/dokumentstatus/impl/DocumentData.html" ]
   /* Subclass edges for com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData */
@@ -1959,6 +1904,15 @@ digraph EntityGraph {
      com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalContainer -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalData [ 
         label="committeeProposalList" 
         ]
+     
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyBallotSupportAnnualSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyBallotSupportAnnualSummary| agreeCount\l disagreCount\l disagreePercentage\l totalBallots\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyBallotSupportAnnualSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyBallotSupportAnnualSummary */
+     
+     
+     
      
   /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions */
   com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisions [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeDecisions| againstProposalNumber\l againstProposalParties\l ballotId\l committeeProposalUrlXml\l committeeReport\l createdDate\l decisionType\l endNumber\l header\l org\l publicDate\l rm\l title\l winner\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeDecisions.html" ]

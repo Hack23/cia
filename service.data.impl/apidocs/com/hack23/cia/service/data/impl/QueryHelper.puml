@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>QueryHelper\n<size:10>com.hack23.cia.service.data.impl" as com.hack23.cia.service.data.impl.QueryHelper [[QueryHelper.html]] {
+        {static} +equalsIgnoreCaseIfStringPredicate(CriteriaBuilder, Path<T>, Object, SingularAttribute<T, ? extends Object>): Predicate
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../apidocs/com/hack23/cia/service/data/impl/AbstractGenericDAOImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -44,8 +44,8 @@
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> javax.persistence.metamodel.SingularAttribute;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> org.hibernate.CacheMode;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.jpa.FullTextEntityManager;
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.jpa.Search;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.mapper.orm.Search;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.hibernate.search.mapper.orm.session.SearchSession;
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> org.javers.spring.annotation.JaversAuditable;
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.service.data.api.AbstractGenericDAO;
@@ -272,10 +272,10 @@
 <a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">	 *</em>
 <a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">	 * @return the full text entity manager</em>
 <a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> FullTextEntityManager getFullTextEntityManager() {
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> 		<strong class="jxr_keyword">return</strong> Search.getFullTextEntityManager(getEntityManager());
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> SearchSession getFullTextEntityManager() {
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> 		<strong class="jxr_keyword">return</strong> Search.session(getEntityManager());
 <a class="jxr_linenumber" name="L269" href="#L269">269</a> 	}
-<a class="jxr_linenumber" name="L270" href="#L270">270</a> 
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 	
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">	 * Gets the metamodel.</em>
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">	 *</em>
@@ -371,15 +371,11 @@
 <a class="jxr_linenumber" name="L363" href="#L363">363</a> 
 <a class="jxr_linenumber" name="L364" href="#L364">364</a> 	@Override
 <a class="jxr_linenumber" name="L365" href="#L365">365</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> List&lt;T&gt; search(<strong class="jxr_keyword">final</strong> String searchExpression, <strong class="jxr_keyword">final</strong> Integer maxResults, <strong class="jxr_keyword">final</strong> String... fields) {
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> 		<strong class="jxr_keyword">return</strong> getFullTextEntityManager().createFullTextQuery(
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> 				getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get()
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> 						.keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> 				persistentClass).setMaxResults(maxResults).getResultList();
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> 	}
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> 
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> }
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> 		<strong class="jxr_keyword">return</strong> getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -&gt; t.match().onFields(fields).matching(searchExpression)).fetchHits(maxResults);
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> 	}
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

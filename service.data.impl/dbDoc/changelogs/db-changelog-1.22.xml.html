@@ -1,0 +1,28 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"&gt;
+
+	&lt;changeSet author="javersAddColumn" id="2414872417007-317" failOnError="false"&gt;		
+		 &lt;addColumn tableName="jv_commit"&gt;
+	        &lt;column name="commit_date_instant" type="TIMESTAMP WITH TIME ZONE"/&gt;
+	    &lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="javersChangeType" id="2414872417007-318" failOnError="true"&gt;		
+	        &lt;modifyDataType tableName="jv_commit" columnName="commit_date_instant" newDataType="VARCHAR(200)"/&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="javersDefaultValue2" id="2414872417007-319" failOnError="true"&gt;		
+	        &lt;sql&gt;update jv_commit set commit_date_instant='2000-01-01T12:00:00.001Z'&lt;/sql&gt;
+	&lt;/changeSet&gt;
+	            
+	&lt;changeSet author="javersDefaultValue" id="2414872417007-320" failOnError="true"&gt;		
+	        &lt;addDefaultValue tableName="jv_commit" columnName="commit_date_instant"  defaultValue="2000-01-01T12:00:00.001Z"/&gt;
+	&lt;/changeSet&gt;
+	
+	            
+&lt;/databaseChangeLog&gt;
+</pre></body></html>

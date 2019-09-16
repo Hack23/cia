@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>LegacyNamingStrategy\n<size:10>com.hack23.cia.service.data.impl" as com.hack23.cia.service.data.impl.LegacyNamingStrategy [[LegacyNamingStrategy.html]] {
+        +toPhysicalCatalogName(Identifier, JdbcEnvironment): Identifier
+        +toPhysicalColumnName(Identifier, JdbcEnvironment): Identifier
+        +toPhysicalSchemaName(Identifier, JdbcEnvironment): Identifier
+        +toPhysicalSequenceName(Identifier, JdbcEnvironment): Identifier
+        +toPhysicalTableName(Identifier, JdbcEnvironment): Identifier
+    }
+
+    interface "<size:14>PhysicalNamingStrategy\n<size:10>org.hibernate.boot.model.naming" as org.hibernate.boot.model.naming.PhysicalNamingStrategy {
+        {abstract} +toPhysicalCatalogName(Identifier, JdbcEnvironment): Identifier
+        {abstract} +toPhysicalSchemaName(Identifier, JdbcEnvironment): Identifier
+        {abstract} +toPhysicalTableName(Identifier, JdbcEnvironment): Identifier
+        {abstract} +toPhysicalSequenceName(Identifier, JdbcEnvironment): Identifier
+        {abstract} +toPhysicalColumnName(Identifier, JdbcEnvironment): Identifier
+    }
+
+    org.hibernate.boot.model.naming.PhysicalNamingStrategy <|.. com.hack23.cia.service.data.impl.LegacyNamingStrategy
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

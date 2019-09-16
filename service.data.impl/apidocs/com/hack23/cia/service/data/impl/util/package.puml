@@ -1,0 +1,57 @@
+@startuml
+    namespace com.hack23.cia.service.data.impl.util {
+
+        interface SecretCredentialsManager [[SecretCredentialsManager.html]] {
+            {abstract} +getPassword(): String
+            {abstract} +getUsername(): String
+        }
+
+        class SecretPGXADataSourceFactory [[SecretPGXADataSourceFactory.html]] {
+            +getObjectInstance(Object, Name, Context, Hashtable<?, ?>): Object
+        }
+
+        class LoadHelper [[LoadHelper.html]] {
+            {static} +recursiveInitialize(T): T
+        }
+
+        class SecretPGXADataSource [[SecretPGXADataSource.html]] {
+            +SecretPGXADataSource(SecretCredentialsManager)
+            +getXAConnection(): XAConnection
+            #createReference(): Reference
+        }
+
+        class com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReference [[SecretPGXADataSource.SecretReference.html]] {
+            +SecretReference(SecretCredentialsManager, String, String, String)
+        }
+
+        class SecretCredentialsManagerImpl [[SecretCredentialsManagerImpl.html]] {
+            +SecretCredentialsManagerImpl(String, String, String, String)
+            +getPassword(): String
+            +getUsername(): String
+            #getSecretCache(): SecretCache
+        }
+
+        org.postgresql.xa.PGXADataSourceFactory <|-- SecretPGXADataSourceFactory
+        org.postgresql.xa.PGXADataSource <|-- SecretPGXADataSource
+        javax.naming.Reference <|-- com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReference
+        SecretPGXADataSource +-- com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReference
+        com.hack23.cia.service.data.impl.util.SecretPGXADataSource.SecretReference --> SecretCredentialsManager: secretCredentialsManager
+        SecretCredentialsManager <|.. SecretCredentialsManagerImpl
+    }
+
+    namespace org.postgresql.xa {
+        class PGXADataSourceFactory
+        class PGXADataSource
+    }
+
+    namespace javax.naming {
+        class Reference {
+            #className: String
+            #addrs: Vector<RefAddr>
+            #classFactory: String
+            #classFactoryLocation: String
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

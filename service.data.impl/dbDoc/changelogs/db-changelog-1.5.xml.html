@@ -13,13 +13,13 @@
 		&lt;dropView viewName="view_riksdagen_committee_decisions" /&gt;
 
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_decisions"&gt;select id as embedded_id_id,title,header,hangar_id as embedded_id_hangar_id,label as committee_report,committee_document_data.rm,end_number,issue_number as embedded_id_issue_nummer,org,created_date,public_date,committee_proposal_url_xml,decision_type,ballot_id,against_proposal_parties,against_proposal_number,winner from committee_proposal_data LEFT JOIN committee_document_data ON committee_document_data.label=committee_report and committee_proposal_data.rm=committee_document_data.rm&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_decision_type_summary"&gt;select upper(decision_type) as embedded_id_decision_type,public_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),public_date order by public_date&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_decision_type_org_summary"&gt;select upper(decision_type) as embedded_id_decision_type,org as embedded_id_org,public_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),public_date,org&lt;/createView&gt;
 
 	&lt;/changeSet&gt;
@@ -28,22 +28,22 @@
 
 	&lt;changeSet author="pether" id="1414872417007-258"&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_summary"&gt;select embedded_id_id,embedded_id_issue,embedded_id_hangar_id,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer	::text=view_riksdagen_vote_data_ballot_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_party_summary"&gt;select embedded_id_party,embedded_id_id,embedded_id_issue,embedded_id_hangar_id,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male,party_avg_born_year,party_total_votes,party_yes_votes,party_no_votes,party_abstain_votes,party_absent_votes,party_approved,party_no_winner,party_percentage_yes,party_percentage_no,party_percentage_absent,party_percentage_abstain,party_percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_party_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_party_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer::text=view_riksdagen_vote_data_ballot_party_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_politician_summary"&gt;select embedded_id_intressent_id,party,embedded_id_id,embedded_id_issue,embedded_id_hangar_id,first_name,last_name,born_year,vote,won,rebel,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male,party_avg_born_year,party_total_votes,party_yes_votes,party_no_votes,party_abstain_votes,party_absent_votes,party_approved,party_no_winner,party_percentage_yes,party_percentage_no,party_percentage_absent,party_percentage_abstain,party_percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_politician_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_politician_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer::text=view_riksdagen_vote_data_ballot_politician_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
 	&lt;/changeSet&gt;
 
 	&lt;changeSet author="pether" id="1414872417007-259"&gt;
-		&lt;createView replaceIfExists="true"
+		&lt;dropView viewName="view_riksdagen_committee_decision_type_summary" /&gt; &lt;createView
 			viewName="view_riksdagen_committee_decision_type_summary"&gt;select upper(decision_type) as embedded_id_decision_type,created_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),created_date order by created_date&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;dropView viewName="view_riksdagen_committee_decision_type_org_summary" /&gt; &lt;createView
 			viewName="view_riksdagen_committee_decision_type_org_summary"&gt;select upper(decision_type) as embedded_id_decision_type,org as embedded_id_org,created_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),created_date,org&lt;/createView&gt;
 	&lt;/changeSet&gt;
 
@@ -60,41 +60,41 @@
 			viewName="view_riksdagen_committee_ballot_decision_politician_summary" /&gt;
 
 
-		&lt;createView replaceIfExists="true"
+		&lt;dropView viewName="view_riksdagen_committee_decisions" /&gt; &lt;createView
 			viewName="view_riksdagen_committee_decisions"&gt;select id as embedded_id_id,title,header,hangar_id as embedded_id_hangar_id,label as committee_report,committee_document_data.rm,end_number,issue_number as embedded_id_issue_nummer,upper(org) as org,created_date,public_date,committee_proposal_url_xml,decision_type,ballot_id,against_proposal_parties,against_proposal_number,winner from committee_proposal_data LEFT JOIN committee_document_data ON committee_document_data.label=committee_report and committee_proposal_data.rm=committee_document_data.rm&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_summary"&gt;select embedded_id_id,embedded_id_issue,embedded_id_hangar_id,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,upper(org) as org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer	::text=view_riksdagen_vote_data_ballot_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_party_summary"&gt;select embedded_id_party,embedded_id_id,embedded_id_issue,embedded_id_hangar_id,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,upper(org) as org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male,party_avg_born_year,party_total_votes,party_yes_votes,party_no_votes,party_abstain_votes,party_absent_votes,party_approved,party_no_winner,party_percentage_yes,party_percentage_no,party_percentage_absent,party_percentage_abstain,party_percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_party_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_party_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer::text=view_riksdagen_vote_data_ballot_party_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_ballot_decision_politician_summary"&gt;select embedded_id_intressent_id,party,embedded_id_id,embedded_id_issue,embedded_id_hangar_id,first_name,last_name,born_year,vote,won,rebel,committee_report,view_riksdagen_committee_decisions.rm,title,header as sub_title,end_number,upper(org) as org,created_date,public_date,ballot_id,decision_type,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,ballot_type,label,vote_date,avg_born_year,total_votes,yes_votes,no_votes,abstain_votes,absent_votes,approved,no_winner,percentage_yes,percentage_no,percentage_absent,percentage_abstain,percentage_male,party_avg_born_year,party_total_votes,party_yes_votes,party_no_votes,party_abstain_votes,party_absent_votes,party_approved,party_no_winner,party_percentage_yes,party_percentage_no,party_percentage_absent,party_percentage_abstain,party_percentage_male from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_politician_summary on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_politician_summary.rm  and view_riksdagen_committee_decisions.embedded_id_issue_nummer::text=view_riksdagen_vote_data_ballot_politician_summary.embedded_id_issue where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id is not null&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_decision_type_summary"&gt;select upper(decision_type) as embedded_id_decision_type,created_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),created_date order by created_date&lt;/createView&gt;
 
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_riksdagen_committee_decision_type_org_summary"&gt;select upper(decision_type) as embedded_id_decision_type,upper(org) as embedded_id_org,created_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),created_date,upper(org)&lt;/createView&gt;
 	&lt;/changeSet&gt;
 
 
 	&lt;changeSet author="pether" id="1414872417007-261"&gt;
-		&lt;createView replaceIfExists="true"
+		&lt;createView
 			viewName="view_worldbank_indicator_data_country_summary"&gt;select indicator_id as embedded_id_indicator_id,country_id as embedded_id_country_id,max(indicator_name) as indicator_name,max(source_id) as source_id,max(source_value) as source_value,max(source_note) as source_note,max(source_organization) as source_organization,min(year_date) as start_year, max(year_date) as end_year,count(*) as data_point from world_bank_data  left join indicator_element on indicator_id = indicator_element.id where data_value!='' group by indicator_id,country_id&lt;/createView&gt;
 
 	&lt;/changeSet&gt;
 
 	&lt;changeSet author="pether" id="1414872417007-262"&gt;
-		&lt;createView replaceIfExists="true"
+		&lt;dropView viewName="view_worldbank_indicator_data_country_summary" /&gt; &lt;createView
 			viewName="view_worldbank_indicator_data_country_summary"&gt;select indicator_id as embedded_id_indicator_id,country_id as embedded_id_country_id,max(indicator_name) as indicator_name,max(source_id) as source_id,max(source_value) as source_value,max(source_note) as source_note,max(source_organization) as source_organization,min(year_date) as start_year, max(year_date) as end_year,count(*) as data_point from world_bank_data  left join indicator_element on indicator_id = indicator_element.id where data_value!='' and data_value!='0' and year_date is not null and source_organization is not null and source_organization !='' group by indicator_id,country_id&lt;/createView&gt;
 
 	&lt;/changeSet&gt;
 
 
 	&lt;changeSet author="pether" id="1414872417007-263"&gt;
-		&lt;createView replaceIfExists="true"
+		&lt;dropView viewName="view_worldbank_indicator_data_country_summary" /&gt; &lt;createView
 			viewName="view_worldbank_indicator_data_country_summary"&gt;select indicator_id as embedded_id_indicator_id,country_id as embedded_id_country_id,max(indicator_name) as indicator_name,max(source_id) as source_id,max(source_value) as source_value,max(source_note) as source_note,max(source_organization) as source_organization,min(year_date) as start_year, max(year_date) as end_year,count(*) as data_point,max(topics::text) as topics from world_bank_data  left join (select * from indicator_element   inner join (select topic_topics_hjid,string_agg(distinct value_,';') as topics,count(*) as number_of_topics from topic group by topic_topics_hjid) AS derivedTable  on indicator_element.topics_indicator_element_hjid=derivedTable.topic_topics_hjid) as indicators on indicator_id = indicators.id where data_value!='' and data_value!='0' and year_date is not null and source_organization is not null and source_organization !='' group by indicator_id,country_id&lt;/createView&gt;
 
 	&lt;/changeSet&gt;
