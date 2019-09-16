@@ -1,0 +1,11 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.api {
+
+        interface DataAgentApi [[DataAgentApi.html]] {
+            {abstract} +execute(DataAgentWorkOrder): void
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

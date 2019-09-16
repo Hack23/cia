@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>DataAgentApi\n<size:10>com.hack23.cia.service.component.agent.api" as com.hack23.cia.service.component.agent.api.DataAgentApi [[DataAgentApi.html]] {
+        {abstract} +execute(DataAgentWorkOrder): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
