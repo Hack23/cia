@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateApplicationEventService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application</a> &gt; <span class="el_source">CreateApplicationEventService.java</span></div><h1>CreateApplicationEventService.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
-import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
+import com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
@@ -44,7 +44,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Transactional(propagation = Propagation.REQUIRED)
 @Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 public final class CreateApplicationEventService
-		extends AbstractBusinessServiceImpl&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt;
+		extends AbstractCommonBusinessServiceImpl&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt;
 		implements BusinessService&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt; {
 
 	/** The application session dao. */
@@ -77,7 +77,7 @@ public final class CreateApplicationEventService
 <span class="fc" id="L77">			applicationActionEvent.setActionName(serviceRequest.getActionName());</span>
 
 <span class="fc" id="L79">			applicationActionEvent.setUserId(serviceRequest.getUserId());</span>
-<span class="pc bpc" id="L80" title="1 of 4 branches missed.">			if (serviceRequest.getUserId() != null &amp;&amp; !&quot;anonymousUser&quot;.equalsIgnoreCase(serviceRequest.getUserId())</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">			if (serviceRequest.getUserId() != null &amp;&amp; !&quot;anonymousUser&quot;.equalsIgnoreCase(serviceRequest.getUserId())</span>
 <span class="fc bfc" id="L81" title="All 2 branches covered.">					&amp;&amp; ApplicationSessionType.ANONYMOUS == applicationSession.getSessionType()) {</span>
 <span class="fc" id="L82">				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);</span>
 <span class="fc" id="L83">				applicationSession.setUserId(serviceRequest.getUserId());</span>
@@ -96,16 +96,6 @@ public final class CreateApplicationEventService
 		}
 	}
 
-	@Override
-	protected CreateApplicationEventRequest createApplicationEventForService(
-			final CreateApplicationEventRequest serviceRequest) {
-<span class="nc" id="L102">		return new CreateApplicationEventRequest();</span>
-	}
-
-	@Override
-	protected CreateApplicationEventResponse createErrorResponse() {
-<span class="nc" id="L107">		return new CreateApplicationEventResponse(ServiceResult.FAILURE);</span>
-	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

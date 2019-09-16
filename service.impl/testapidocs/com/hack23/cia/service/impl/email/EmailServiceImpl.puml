@@ -1,0 +1,18 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>EmailServiceImpl\n<size:10>com.hack23.cia.service.impl.email" as com.hack23.cia.service.impl.email.EmailServiceImpl [[EmailServiceImpl.html]] {
+        +initSettings(): void
+        +sendEmail(String, String, String): void
+    }
+
+    interface "<size:14>EmailService\n<size:10>com.hack23.cia.service.impl.email" as com.hack23.cia.service.impl.email.EmailService [[EmailService.html]] {
+        {abstract} +sendEmail(String, String, String): void
+    }
+
+    com.hack23.cia.service.impl.email.EmailService <|.. com.hack23.cia.service.impl.email.EmailServiceImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

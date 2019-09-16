@@ -1,0 +1,17 @@
+@startuml
+    namespace com.hack23.cia.service.impl.email {
+
+        class EmailServiceImpl [[EmailServiceImpl.html]] {
+            +initSettings(): void
+            +sendEmail(String, String, String): void
+        }
+
+        interface EmailService [[EmailService.html]] {
+            {abstract} +sendEmail(String, String, String): void
+        }
+
+        EmailService <|.. EmailServiceImpl
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RemoveDataService\n<size:10>com.hack23.cia.service.impl.action.admin" as com.hack23.cia.service.impl.action.admin.RemoveDataService [[RemoveDataService.html]] {
+        +processService(RemoveDataRequest): RemoveDataResponse
+        #createApplicationEventForService(RemoveDataRequest): CreateApplicationEventRequest
+        #createErrorResponse(): RemoveDataResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<RemoveDataRequest, RemoveDataResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): RemoveDataResponse
+        {abstract} #createApplicationEventForService(RemoveDataRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<RemoveDataRequest, RemoveDataResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(RemoveDataRequest): RemoveDataResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.admin.RemoveDataService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.admin.RemoveDataService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

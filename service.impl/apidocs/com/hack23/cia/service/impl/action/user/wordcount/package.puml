@@ -1,0 +1,22 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.user.wordcount {
+
+        class SwedishStopWords [[SwedishStopWords.html]] {
+            +contains(String): boolean
+            +size(): int
+            +iterator(): Iterator<String>
+        }
+
+        interface WordCounter [[WordCounter.html]] {
+            {abstract} +calculateWordCount(DocumentContentData, int): Map<String, Integer>
+        }
+
+        smile.nlp.dictionary.StopWords <|.. SwedishStopWords
+    }
+
+    namespace smile.nlp.dictionary {
+        interface StopWords
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

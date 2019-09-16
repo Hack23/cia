@@ -1,0 +1,23 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>PartyComplianceCheckImpl\n<size:10>com.hack23.cia.service.impl.rules" as com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl [[PartyComplianceCheckImpl.html]] {
+        +PartyComplianceCheckImpl(ViewRiksdagenPartySummary, ViewRiksdagenVoteDataBallotPartySummaryAnnual, ViewRiksdagenVoteDataBallotPartySummaryMonthly, ViewRiksdagenVoteDataBallotPartySummaryDaily, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>)
+        +getParty(): ViewRiksdagenPartySummary
+        +getName(): String
+        +getId(): String
+        +supports(String, String, String): boolean
+        +against(String, String, String): boolean
+        +getDailySummary(): ViewRiksdagenVoteDataBallotPartySummaryDaily
+        +getMonthlySummary(): ViewRiksdagenVoteDataBallotPartySummaryMonthly
+        +getAnnualSummary(): ViewRiksdagenVoteDataBallotPartySummaryAnnual
+    }
+
+    abstract class "<size:14>AbstractComplianceCheckImpl\n<size:10>com.hack23.cia.service.impl.rules" as com.hack23.cia.service.impl.rules.AbstractComplianceCheckImpl [[AbstractComplianceCheckImpl.html]]
+
+    com.hack23.cia.service.impl.rules.AbstractComplianceCheckImpl <|-- com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

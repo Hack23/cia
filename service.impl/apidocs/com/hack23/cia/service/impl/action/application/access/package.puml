@@ -1,0 +1,23 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.application.access {
+
+        interface LoginBlockedAccess [[LoginBlockedAccess.html]] {
+            {abstract} +isBlocked(String, String): LoginBlockResult
+        }
+
+        interface com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult [[LoginBlockedAccess.LoginBlockResult.html]] {
+            {abstract} +isBlocked(): boolean
+            {abstract} +getMessages(): List<String>
+        }
+
+        class LoginBlockedAccessImpl [[LoginBlockedAccessImpl.html]] {
+            +initSettings(): void
+            +isBlocked(String, String): LoginBlockResult
+        }
+
+        LoginBlockedAccess +-- com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult
+        LoginBlockedAccess <|.. LoginBlockedAccessImpl
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

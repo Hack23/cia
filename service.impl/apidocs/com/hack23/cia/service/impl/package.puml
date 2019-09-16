@@ -1,0 +1,33 @@
+@startuml
+    namespace com.hack23.cia.service.impl {
+
+        class ViewRiksdagenCommitteeDataContainer [[ViewRiksdagenCommitteeDataContainer.html]] {
+            +ViewRiksdagenCommitteeDataContainer(DataViewer)
+            +load(String): ViewRiksdagenCommittee
+        }
+
+        interface ViewDataDataContainerFactory [[ViewDataDataContainerFactory.html]] {
+            {abstract} +createDataContainer(Class<T extends Serializable>): DataContainer<T extends Serializable, I extends Serializable>
+        }
+
+        class BootstrapDefaultConfig [[BootstrapDefaultConfig.html]] {
+            +createDefaultConfiguration(): void
+        }
+
+        class SecurityAuthenticationProvider [[SecurityAuthenticationProvider.html]] {
+            +authenticate(Authentication): Authentication
+            +supports(Class<?>): boolean
+        }
+
+        org.springframework.security.authentication.AuthenticationProvider <|.. SecurityAuthenticationProvider
+    }
+
+    namespace org.springframework.security.authentication {
+        interface AuthenticationProvider {
+            {abstract} +authenticate(Authentication): Authentication
+            {abstract} +supports(Class<?>): boolean
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

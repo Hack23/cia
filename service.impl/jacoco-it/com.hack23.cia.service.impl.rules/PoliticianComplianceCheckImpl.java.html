@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">PoliticianComplianceCheckImpl.java</span></div><h1>PoliticianComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  * 
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param annualSummary  the annual summary
 	 * @param decisionList   the decision list
 	 */
-	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
+	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, final List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
 <span class="fc" id="L75">		super(ResourceType.POLITICIAN);</span>
 <span class="fc" id="L76">		this.politician = politician;</span>
 <span class="fc" id="L77">		this.dailySummary = dailySummary;</span>
@@ -105,15 +105,16 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
-	public boolean supports(final String committeeReport,final String rm) {
-<span class="fc bfc" id="L111" title="All 2 branches covered.">		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
-<span class="pc bpc" id="L112" title="2 of 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
-<span class="fc" id="L113">				return YES.equalsIgnoreCase(summary.getVote());</span>
+	public boolean supports(final String committeeReport,final String rm,final String issue) {
+<span class="fc bfc" id="L112" title="All 2 branches covered.">		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
+<span class="pc bpc" id="L113" title="1 of 6 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {</span>
+<span class="fc" id="L114">				return YES.equalsIgnoreCase(summary.getVote());</span>
 			}			
-<span class="nc" id="L115">		}</span>
-<span class="fc" id="L116">		return false;</span>
+<span class="fc" id="L116">		}</span>
+<span class="fc" id="L117">		return false;</span>
 	}
 
 	/**
@@ -121,15 +122,16 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @param committeeReport the committee report
 	 * @param rm              the rm
+	 * @param issue the issue
 	 * @return true, if successful
 	 */
-	public boolean against(final String committeeReport,final String rm) {
-<span class="fc bfc" id="L127" title="All 2 branches covered.">		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
-<span class="pc bpc" id="L128" title="2 of 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
-<span class="fc" id="L129">				return NO.equalsIgnoreCase(summary.getVote());</span>
+	public boolean against(final String committeeReport,final String rm,final String issue) {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
+<span class="pc bpc" id="L130" title="1 of 6 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {</span>
+<span class="fc" id="L131">				return NO.equalsIgnoreCase(summary.getVote());</span>
 			}			
-<span class="nc" id="L131">		}</span>
-<span class="fc" id="L132">		return false;</span>
+<span class="fc" id="L133">		}</span>
+<span class="fc" id="L134">		return false;</span>
 	}
 	
 
@@ -139,7 +141,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the daily summary
 	 */
 	public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily getDailySummary() {
-<span class="fc" id="L142">		return dailySummary;</span>
+<span class="fc" id="L144">		return dailySummary;</span>
 	}
 
 	/**
@@ -148,7 +150,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the monthly summary
 	 */
 	public ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly getMonthlySummary() {
-<span class="fc" id="L151">		return monthlySummary;</span>
+<span class="fc" id="L153">		return monthlySummary;</span>
 	}
 
 
@@ -158,7 +160,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the annual summary
 	 */
 	public ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual getAnnualSummary() {
-<span class="fc" id="L161">		return annualSummary;</span>
+<span class="fc" id="L163">		return annualSummary;</span>
 	}
 
 	/**
@@ -167,7 +169,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the year
 	 */
 	public int getYear() {
-<span class="fc" id="L170">		return LocalDate.now(ZoneId.of(&quot;UTC&quot;)).getYear();</span>
+<span class="fc" id="L172">		return LocalDate.now(ZoneId.of(&quot;UTC&quot;)).getYear();</span>
 	}
 	
 	/**
@@ -176,8 +178,8 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the age
 	 */
 	public int getAge() {
-<span class="fc" id="L179">		return getYear() - politician.getBornYear();</span>
+<span class="fc" id="L181">		return getYear() - politician.getBornYear();</span>
 	}
 	
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

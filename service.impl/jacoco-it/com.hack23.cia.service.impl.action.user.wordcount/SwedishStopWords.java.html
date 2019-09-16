@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SwedishStopWords.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.user.wordcount</a> &gt; <span class="el_source">SwedishStopWords.java</span></div><h1>SwedishStopWords.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2019 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.user.wordcount;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Iterator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import smile.nlp.dictionary.StopWords;
+
+/**
+ * The Class SwedishStopWords.
+ */
+public final class SwedishStopWords implements StopWords {
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L41">	private static final Logger LOGGER = LoggerFactory.getLogger(SwedishStopWords.class);</span>
+
+	/**
+	 * A set of stop words.
+	 */
+<span class="fc" id="L46">	private final HashSet&lt;String&gt; dict = new HashSet&lt;&gt;();</span>
+
+	/**
+	 * Instantiates a new swedish stop words.
+	 */
+<span class="fc" id="L51">	public SwedishStopWords() {</span>
+		try {
+<span class="fc" id="L53">			final URL url = new URL(&quot;https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv&quot;);</span>
+<span class="fc" id="L54">			try (BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8))) {</span>
+<span class="fc" id="L55">				addWords(input);</span>
+<span class="nc" id="L56">			} catch (IOException ex) {</span>
+<span class="nc" id="L57">				LOGGER.warn(&quot;&quot;,ex);</span>
+<span class="fc" id="L58">			}</span>
+
+<span class="nc" id="L60">		} catch (MalformedURLException e) {</span>
+<span class="nc" id="L61">			LOGGER.warn(&quot;&quot;,e);</span>
+<span class="fc" id="L62">		}</span>
+<span class="fc" id="L63">	}</span>
+
+	/**
+	 * Adds the words.
+	 *
+	 * @param input the input
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	private void addWords(final BufferedReader input) throws IOException {
+<span class="fc" id="L72">		String line = null;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		while ((line = input.readLine()) != null) {</span>
+<span class="fc" id="L74">			line = line.trim();</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">			if (!line.isEmpty()) {</span>
+<span class="fc" id="L76">				dict.add(line);</span>
+			}
+		}
+<span class="fc" id="L79">	}</span>
+
+	/**
+	 * Contains.
+	 *
+	 * @param word the word
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean contains(final String word) {
+<span class="fc" id="L89">		return dict.contains(word);</span>
+	}
+
+	/**
+	 * Size.
+	 *
+	 * @return the int
+	 */
+	@Override
+	public int size() {
+<span class="fc" id="L99">		return dict.size();</span>
+	}
+
+	/**
+	 * Iterator.
+	 *
+	 * @return the iterator
+	 */
+	@Override
+	public Iterator&lt;String&gt; iterator() {
+<span class="fc" id="L109">		return dict.iterator();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

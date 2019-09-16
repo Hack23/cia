@@ -1,0 +1,22 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>JobContextHolderImpl\n<size:10>com.hack23.cia.service.impl.task" as com.hack23.cia.service.impl.task.JobContextHolderImpl [[JobContextHolderImpl.html]] {
+        +JobContextHolderImpl(DataAgentApi, SearchIndexer, ViewDataManager)
+        +getDataAgentApi(): DataAgentApi
+        +updateSearchIndex(): void
+        +refreshViews(): void
+    }
+
+    interface "<size:14>JobContextHolder\n<size:10>com.hack23.cia.service.impl.task" as com.hack23.cia.service.impl.task.JobContextHolder [[JobContextHolder.html]] {
+        {abstract} +getDataAgentApi(): DataAgentApi
+        {abstract} +updateSearchIndex(): void
+        {abstract} +refreshViews(): void
+    }
+
+    com.hack23.cia.service.impl.task.JobContextHolder <|.. com.hack23.cia.service.impl.task.JobContextHolderImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

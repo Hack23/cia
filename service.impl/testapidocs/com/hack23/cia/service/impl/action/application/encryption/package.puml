@@ -1,0 +1,21 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.application.encryption {
+
+        class VaultManagerImpl [[VaultManagerImpl.html]] {
+            +VaultManagerImpl(EncryptedValueDAO)
+            +getEncryptedValue(String, UserAccount): String
+            +encryptValue(String, String, String): String
+            +decryptValue(String, String, String): String
+        }
+
+        interface VaultManager [[VaultManager.html]] {
+            {abstract} +getEncryptedValue(String, UserAccount): String
+            {abstract} +encryptValue(String, String, String): String
+            {abstract} +decryptValue(String, String, String): String
+        }
+
+        VaultManager <|.. VaultManagerImpl
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

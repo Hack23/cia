@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RulesEngineImpl\n<size:10>com.hack23.cia.service.impl.rules" as com.hack23.cia.service.impl.rules.RulesEngineImpl [[RulesEngineImpl.html]] {
+        +checkRulesCompliance(): List<ComplianceCheck>
+    }
+
+    interface "<size:14>RulesEngine\n<size:10>com.hack23.cia.service.impl.rules" as com.hack23.cia.service.impl.rules.RulesEngine [[RulesEngine.html]] {
+        {abstract} +checkRulesCompliance(): List<ComplianceCheck>
+    }
+
+    com.hack23.cia.service.impl.rules.RulesEngine <|.. com.hack23.cia.service.impl.rules.RulesEngineImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

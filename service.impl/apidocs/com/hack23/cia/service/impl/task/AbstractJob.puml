@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractJob\n<size:10>com.hack23.cia.service.impl.task" as com.hack23.cia.service.impl.task.AbstractJob [[AbstractJob.html]] {
+        #getJobContextHolder(JobExecutionContext): JobContextHolder
+    }
+
+    abstract class "<size:14>QuartzJobBean\n<size:10>org.springframework.scheduling.quartz" as org.springframework.scheduling.quartz.QuartzJobBean {
+        {abstract} #executeInternal(JobExecutionContext): void
+    }
+    interface "<size:14>Serializable\n<size:10>java.io" as java.io.Serializable
+
+    org.springframework.scheduling.quartz.QuartzJobBean <|-- com.hack23.cia.service.impl.task.AbstractJob
+    java.io.Serializable <|.. com.hack23.cia.service.impl.task.AbstractJob
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

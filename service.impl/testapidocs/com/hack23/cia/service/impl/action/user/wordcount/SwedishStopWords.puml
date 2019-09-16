@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SwedishStopWords\n<size:10>com.hack23.cia.service.impl.action.user.wordcount" as com.hack23.cia.service.impl.action.user.wordcount.SwedishStopWords [[SwedishStopWords.html]] {
+        +contains(String): boolean
+        +size(): int
+        +iterator(): Iterator<String>
+    }
+
+    interface "<size:14>StopWords\n<size:10>smile.nlp.dictionary" as smile.nlp.dictionary.StopWords
+
+    smile.nlp.dictionary.StopWords <|.. com.hack23.cia.service.impl.action.user.wordcount.SwedishStopWords
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

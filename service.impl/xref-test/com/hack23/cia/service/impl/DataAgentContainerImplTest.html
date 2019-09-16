@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../testapidocs/com/hack23/cia/service/impl/DataAgentContainerImplTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -46,15 +46,15 @@
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	@Test
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> executeTest() {
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		DataAgentContainerImpl dataAgentContainerImpl = <strong class="jxr_keyword">new</strong> DataAgentContainerImpl(dataAgentApi);
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		DataAgentWorkOrder workOrder = <strong class="jxr_keyword">new</strong> DataAgentWorkOrder().withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN).withOperation(DataAgentOperation.IMPORT);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		<strong class="jxr_keyword">final</strong> DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		<strong class="jxr_keyword">final</strong> DataAgentContainerImpl dataAgentContainerImpl = <strong class="jxr_keyword">new</strong> DataAgentContainerImpl(dataAgentApi);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		<strong class="jxr_keyword">final</strong> DataAgentWorkOrder workOrder = <strong class="jxr_keyword">new</strong> DataAgentWorkOrder().withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN).withOperation(DataAgentOperation.IMPORT);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		dataAgentContainerImpl.execute(workOrder);
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  		Mockito.verify(dataAgentApi).execute(workOrder);
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	}
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  }	
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

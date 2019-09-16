@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SendEmailService\n<size:10>com.hack23.cia.service.impl.action.admin" as com.hack23.cia.service.impl.action.admin.SendEmailService [[SendEmailService.html]] {
+        +processService(SendEmailRequest): SendEmailResponse
+        #createApplicationEventForService(SendEmailRequest): CreateApplicationEventRequest
+        #createErrorResponse(): SendEmailResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): SendEmailResponse
+        {abstract} #createApplicationEventForService(SendEmailRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<SendEmailRequest, SendEmailResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(SendEmailRequest): SendEmailResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.admin.SendEmailService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.admin.SendEmailService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

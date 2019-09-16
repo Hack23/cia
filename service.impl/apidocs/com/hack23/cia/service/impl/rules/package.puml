@@ -1,0 +1,69 @@
+@startuml
+    namespace com.hack23.cia.service.impl.rules {
+
+        abstract class AbstractComplianceCheckImpl [[AbstractComplianceCheckImpl.html]] {
+            +AbstractComplianceCheckImpl(ResourceType)
+            +getResourceType(): ResourceType
+            +getRuleViolations(): List<RuleViolation>
+            +getNumberRuleViolations(): int
+            +getRuleSummary(): String
+            +addViolation(Status, String, String, String, String): void
+        }
+
+        class PartyComplianceCheckImpl [[PartyComplianceCheckImpl.html]] {
+            +PartyComplianceCheckImpl(ViewRiksdagenPartySummary, ViewRiksdagenVoteDataBallotPartySummaryAnnual, ViewRiksdagenVoteDataBallotPartySummaryMonthly, ViewRiksdagenVoteDataBallotPartySummaryDaily, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>)
+            +getParty(): ViewRiksdagenPartySummary
+            +getName(): String
+            +getId(): String
+            +supports(String, String, String): boolean
+            +against(String, String, String): boolean
+            +getDailySummary(): ViewRiksdagenVoteDataBallotPartySummaryDaily
+            +getMonthlySummary(): ViewRiksdagenVoteDataBallotPartySummaryMonthly
+            +getAnnualSummary(): ViewRiksdagenVoteDataBallotPartySummaryAnnual
+        }
+
+        class PoliticianComplianceCheckImpl [[PoliticianComplianceCheckImpl.html]] {
+            +PoliticianComplianceCheckImpl(ViewRiksdagenPolitician, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly, ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>)
+            +getPolitician(): ViewRiksdagenPolitician
+            +getName(): String
+            +getId(): String
+            +supports(String, String, String): boolean
+            +against(String, String, String): boolean
+            +getDailySummary(): ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+            +getMonthlySummary(): ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+            +getAnnualSummary(): ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+            +getYear(): int
+            +getAge(): int
+        }
+
+        class RulesEngineImpl [[RulesEngineImpl.html]] {
+            +checkRulesCompliance(): List<ComplianceCheck>
+        }
+
+        interface RulesEngine [[RulesEngine.html]] {
+            {abstract} +checkRulesCompliance(): List<ComplianceCheck>
+        }
+
+        class RulesConfiguration [[RulesConfiguration.html]] {
+            +kieContainer(): KieContainer
+        }
+
+        com.hack23.cia.service.api.action.kpi.ComplianceCheck <|.. AbstractComplianceCheckImpl
+        AbstractComplianceCheckImpl <|-- PartyComplianceCheckImpl
+        AbstractComplianceCheckImpl <|-- PoliticianComplianceCheckImpl
+        RulesEngine <|.. RulesEngineImpl
+    }
+
+    namespace com.hack23.cia.service.api.action.kpi {
+        interface ComplianceCheck {
+            {abstract} +getResourceType(): ResourceType
+            {abstract} +getRuleViolations(): List<RuleViolation>
+            {abstract} +getNumberRuleViolations(): int
+            {abstract} +getRuleSummary(): String
+            {abstract} +getId(): String
+            {abstract} +getName(): String
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

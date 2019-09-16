@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AgentJob\n<size:10>com.hack23.cia.service.impl.task" as com.hack23.cia.service.impl.task.AgentJob [[AgentJob.html]] {
+        #executeInternal(JobExecutionContext): void
+    }
+
+    abstract class "<size:14>AbstractJob\n<size:10>com.hack23.cia.service.impl.task" as com.hack23.cia.service.impl.task.AbstractJob [[AbstractJob.html]]
+
+    com.hack23.cia.service.impl.task.AbstractJob <|-- com.hack23.cia.service.impl.task.AgentJob
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

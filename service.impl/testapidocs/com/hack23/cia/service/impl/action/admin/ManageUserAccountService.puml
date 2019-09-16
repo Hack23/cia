@@ -1,0 +1,26 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ManageUserAccountService\n<size:10>com.hack23.cia.service.impl.action.admin" as com.hack23.cia.service.impl.action.admin.ManageUserAccountService [[ManageUserAccountService.html]] {
+        +initUserCommandMap(): void
+        +processService(ManageUserAccountRequest): ManageUserAccountResponse
+        #createApplicationEventForService(ManageUserAccountRequest): CreateApplicationEventRequest
+        #createErrorResponse(): ManageUserAccountResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): ManageUserAccountResponse
+        {abstract} #createApplicationEventForService(ManageUserAccountRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<ManageUserAccountRequest, ManageUserAccountResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(ManageUserAccountRequest): ManageUserAccountResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.admin.ManageUserAccountService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.admin.ManageUserAccountService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

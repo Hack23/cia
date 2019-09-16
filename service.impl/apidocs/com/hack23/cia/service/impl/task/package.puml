@@ -1,0 +1,52 @@
+@startuml
+    namespace com.hack23.cia.service.impl.task {
+
+        class JobContextHolderImpl [[JobContextHolderImpl.html]] {
+            +JobContextHolderImpl(DataAgentApi, SearchIndexer, ViewDataManager)
+            +getDataAgentApi(): DataAgentApi
+            +updateSearchIndex(): void
+            +refreshViews(): void
+        }
+
+        class RefreshViewsJob [[RefreshViewsJob.html]] {
+            #executeInternal(JobExecutionContext): void
+        }
+
+        class UpdateSearchIndexJob [[UpdateSearchIndexJob.html]] {
+            #executeInternal(JobExecutionContext): void
+        }
+
+        interface JobContextHolder [[JobContextHolder.html]] {
+            {abstract} +getDataAgentApi(): DataAgentApi
+            {abstract} +updateSearchIndex(): void
+            {abstract} +refreshViews(): void
+        }
+
+        abstract class AbstractJob [[AbstractJob.html]] {
+            #getJobContextHolder(JobExecutionContext): JobContextHolder
+        }
+
+        class AgentJob [[AgentJob.html]] {
+            #executeInternal(JobExecutionContext): void
+        }
+
+        JobContextHolder <|.. JobContextHolderImpl
+        AbstractJob <|-- RefreshViewsJob
+        AbstractJob <|-- UpdateSearchIndexJob
+        org.springframework.scheduling.quartz.QuartzJobBean <|-- AbstractJob
+        java.io.Serializable <|.. AbstractJob
+        AbstractJob <|-- AgentJob
+    }
+
+    namespace org.springframework.scheduling.quartz {
+        abstract class QuartzJobBean {
+            {abstract} #executeInternal(JobExecutionContext): void
+        }
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

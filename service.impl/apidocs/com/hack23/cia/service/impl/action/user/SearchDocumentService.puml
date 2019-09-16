@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SearchDocumentService\n<size:10>com.hack23.cia.service.impl.action.user" as com.hack23.cia.service.impl.action.user.SearchDocumentService [[SearchDocumentService.html]] {
+        +processService(SearchDocumentRequest): SearchDocumentResponse
+        #createApplicationEventForService(SearchDocumentRequest): CreateApplicationEventRequest
+        #createErrorResponse(): SearchDocumentResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<SearchDocumentRequest, SearchDocumentResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): SearchDocumentResponse
+        {abstract} #createApplicationEventForService(SearchDocumentRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<SearchDocumentRequest, SearchDocumentResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(SearchDocumentRequest): SearchDocumentResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.user.SearchDocumentService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.user.SearchDocumentService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

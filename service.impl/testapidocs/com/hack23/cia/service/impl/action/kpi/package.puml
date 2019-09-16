@@ -1,0 +1,27 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.kpi {
+
+        class ComplianceCheckServiceImpl [[ComplianceCheckServiceImpl.html]] {
+            +processService(ComplianceCheckRequest): ComplianceCheckResponse
+            #createApplicationEventForService(ComplianceCheckRequest): CreateApplicationEventRequest
+            #createErrorResponse(): ComplianceCheckResponse
+        }
+
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- ComplianceCheckServiceImpl
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. ComplianceCheckServiceImpl
+    }
+
+    namespace com.hack23.cia.service.impl.action.common {
+        abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+            #createApplicationEventService: BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>
+            {abstract} #createErrorResponse(): V extends ServiceResponse
+            {abstract} #createApplicationEventForService(T extends ServiceRequest): CreateApplicationEventRequest
+        }
+        interface BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[../common/BusinessService.html]] {
+            {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+            {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

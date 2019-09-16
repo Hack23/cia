@@ -1,0 +1,69 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.admin {
+
+        class RemoveDataService [[RemoveDataService.html]] {
+            +processService(RemoveDataRequest): RemoveDataResponse
+            #createApplicationEventForService(RemoveDataRequest): CreateApplicationEventRequest
+            #createErrorResponse(): RemoveDataResponse
+        }
+
+        class RefreshDataViewsService [[RefreshDataViewsService.html]] {
+            +processService(RefreshDataViewsRequest): RefreshDataViewsResponse
+            #createApplicationEventForService(RefreshDataViewsRequest): CreateApplicationEventRequest
+            #createErrorResponse(): RefreshDataViewsResponse
+        }
+
+        class ManageUserAccountService [[ManageUserAccountService.html]] {
+            +initUserCommandMap(): void
+            +processService(ManageUserAccountRequest): ManageUserAccountResponse
+            #createApplicationEventForService(ManageUserAccountRequest): CreateApplicationEventRequest
+            #createErrorResponse(): ManageUserAccountResponse
+        }
+
+        class UpdateSearchIndexService [[UpdateSearchIndexService.html]] {
+            +UpdateSearchIndexService(SearchIndexer)
+            +processService(UpdateSearchIndexRequest): UpdateSearchIndexResponse
+            #createApplicationEventForService(UpdateSearchIndexRequest): CreateApplicationEventRequest
+            #createErrorResponse(): UpdateSearchIndexResponse
+        }
+
+        class SendEmailService [[SendEmailService.html]] {
+            +processService(SendEmailRequest): SendEmailResponse
+            #createApplicationEventForService(SendEmailRequest): CreateApplicationEventRequest
+            #createErrorResponse(): SendEmailResponse
+        }
+
+        class UpdateApplicationConfigurationService [[UpdateApplicationConfigurationService.html]] {
+            +processService(UpdateApplicationConfigurationRequest): UpdateApplicationConfigurationResponse
+            #createApplicationEventForService(UpdateApplicationConfigurationRequest): CreateApplicationEventRequest
+            #createErrorResponse(): UpdateApplicationConfigurationResponse
+        }
+
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- RemoveDataService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. RemoveDataService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- RefreshDataViewsService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. RefreshDataViewsService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- ManageUserAccountService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. ManageUserAccountService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- UpdateSearchIndexService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. UpdateSearchIndexService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- SendEmailService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. SendEmailService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- UpdateApplicationConfigurationService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. UpdateApplicationConfigurationService
+    }
+
+    namespace com.hack23.cia.service.impl.action.common {
+        abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+            #createApplicationEventService: BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>
+            {abstract} #createErrorResponse(): V extends ServiceResponse
+            {abstract} #createApplicationEventForService(T extends ServiceRequest): CreateApplicationEventRequest
+        }
+        interface BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[../common/BusinessService.html]] {
+            {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+            {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

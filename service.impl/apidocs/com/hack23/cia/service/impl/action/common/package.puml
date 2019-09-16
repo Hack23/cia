@@ -1,0 +1,31 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.common {
+
+        abstract class AbstractCommonBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[AbstractCommonBusinessServiceImpl.html]] {
+            +AbstractCommonBusinessServiceImpl(Class<T extends ServiceRequest>)
+            +getSupportedService(): Class<? extends ServiceRequest>
+            #getUserAccountFromSecurityContext(): UserAccount
+            #getUserDAO(): UserDAO
+        }
+
+        abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[AbstractBusinessServiceImpl.html]] {
+            +AbstractBusinessServiceImpl(Class<T extends ServiceRequest>)
+            {abstract} #createErrorResponse(): V extends ServiceResponse
+            #inputValidation(T extends ServiceRequest): V extends ServiceResponse
+            #createBaseApplicationEventRequest(): CreateApplicationEventRequest
+            {abstract} #createApplicationEventForService(T extends ServiceRequest): CreateApplicationEventRequest
+        }
+
+        interface BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[BusinessService.html]] {
+            {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+            {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+        }
+
+        BusinessService <|.. AbstractCommonBusinessServiceImpl
+        AbstractCommonBusinessServiceImpl <|-- AbstractBusinessServiceImpl
+        BusinessService <|.. AbstractBusinessServiceImpl
+        AbstractBusinessServiceImpl --> BusinessService: createApplicationEventService
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractGenericDAOImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">AbstractGenericDAOImpl.java</span></div><h1>AbstractGenericDAOImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.CacheMode;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.javers.spring.annotation.JaversAuditable;
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
@@ -264,10 +264,10 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 	 *
 	 * @return the full text entity manager
 	 */
-	protected final FullTextEntityManager getFullTextEntityManager() {
-<span class="nc" id="L268">		return Search.getFullTextEntityManager(getEntityManager());</span>
+	protected final SearchSession getFullTextEntityManager() {
+<span class="nc" id="L268">		return Search.session(getEntityManager());</span>
 	}
-
+	
 	/**
 	 * Gets the metamodel.
 	 *
@@ -363,11 +363,7 @@ abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Seria
 
 	@Override
 	public final List&lt;T&gt; search(final String searchExpression, final Integer maxResults, final String... fields) {
-<span class="nc" id="L366">		return getFullTextEntityManager().createFullTextQuery(</span>
-<span class="nc" id="L367">				getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get()</span>
-<span class="nc" id="L368">						.keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),</span>
-<span class="nc" id="L369">				persistentClass).setMaxResults(maxResults).getResultList();</span>
+<span class="nc" id="L366">		return getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -&gt; t.match().onFields(fields).matching(searchExpression)).fetchHits(maxResults);</span>
 	}
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

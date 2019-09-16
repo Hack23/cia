@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>RefreshDataViewsService\n<size:10>com.hack23.cia.service.impl.action.admin" as com.hack23.cia.service.impl.action.admin.RefreshDataViewsService [[RefreshDataViewsService.html]] {
+        +processService(RefreshDataViewsRequest): RefreshDataViewsResponse
+        #createApplicationEventForService(RefreshDataViewsRequest): CreateApplicationEventRequest
+        #createErrorResponse(): RefreshDataViewsResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): RefreshDataViewsResponse
+        {abstract} #createApplicationEventForService(RefreshDataViewsRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(RefreshDataViewsRequest): RefreshDataViewsResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.admin.RefreshDataViewsService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.admin.RefreshDataViewsService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

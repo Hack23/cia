@@ -1,0 +1,104 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.service.impl --> com.hack23.cia.service.api
+    com.hack23.cia.service.impl --> org.springframework.context
+    com.hack23.cia.service.impl --> org.springframework.security.authentication
+    com.hack23.cia.service.impl --> com.hack23.cia.service.api.action.common
+    com.hack23.cia.service.impl --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl --> com.hack23.cia.model.internal.application.data.committee.impl
+    com.hack23.cia.service.impl --> com.hack23.cia.service.component.agent.api
+    com.hack23.cia.service.impl --> com.hack23.cia.model.internal.application.data.impl
+    com.hack23.cia.service.impl --> com.hack23.cia.model.internal.application.system.impl
+    com.hack23.cia.service.impl --> org.springframework.security.core
+    com.hack23.cia.service.impl.task --> com.hack23.cia.service.component.agent.api
+    com.hack23.cia.service.impl.task --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.task --> org.quartz
+    com.hack23.cia.service.impl.task --> org.springframework.scheduling.quartz
+    com.hack23.cia.service.impl.task --> org.slf4j
+    com.hack23.cia.service.impl.email --> org.slf4j
+    com.hack23.cia.service.impl.email --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.email --> org.springframework.mail.javamail
+    com.hack23.cia.service.impl.email --> com.hack23.cia.model.internal.application.system.impl
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.service.impl.action.common
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.service.api.action.admin
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.service.api.action.application
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.model.internal.application.user.impl
+    com.hack23.cia.service.impl.action.admin --> org.slf4j
+    com.hack23.cia.service.impl.action.admin --> com.hack23.cia.service.impl.email
+    com.hack23.cia.service.impl.action.common --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.common --> com.hack23.cia.model.internal.application.user.impl
+    com.hack23.cia.service.impl.action.common --> com.hack23.cia.service.api.action.application
+    com.hack23.cia.service.impl.action.user.wordcount --> smile.nlp.dictionary
+    com.hack23.cia.service.impl.action.user.wordcount --> org.slf4j
+    com.hack23.cia.service.impl.action.user.wordcount --> com.hack23.cia.model.external.riksdagen.documentcontent.impl
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.impl.action.common
+    com.hack23.cia.service.impl.action.user --> org.slf4j
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.user --> org.springframework.security.crypto.password
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.api.action.user
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.api.action.application
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.impl.action.user.wordcount
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.service.impl.action.application.encryption
+    com.hack23.cia.service.impl.action.user --> org.passay
+    com.hack23.cia.service.impl.action.user --> com.hack23.cia.model.internal.application.user.impl
+    com.hack23.cia.service.impl.action.kpi --> com.hack23.cia.service.impl.action.common
+    com.hack23.cia.service.impl.action.kpi --> org.slf4j
+    com.hack23.cia.service.impl.action.kpi --> com.hack23.cia.service.impl.rules
+    com.hack23.cia.service.impl.action.kpi --> com.hack23.cia.service.api.action.kpi
+    com.hack23.cia.service.impl.action.kpi --> com.hack23.cia.service.api.action.application
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.service.impl.action.common
+    com.hack23.cia.service.impl.action.application --> org.slf4j
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.service.api.action.application
+    com.hack23.cia.service.impl.action.application --> org.springframework.security.crypto.password
+    com.hack23.cia.service.impl.action.application --> org.passay
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.model.internal.application.user.impl
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.service.impl.action.application.access
+    com.hack23.cia.service.impl.action.application --> com.hack23.cia.service.impl.action.application.encryption
+    com.hack23.cia.service.impl.action.application.access --> org.slf4j
+    com.hack23.cia.service.impl.action.application.access --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.application.encryption --> org.slf4j
+    com.hack23.cia.service.impl.action.application.encryption --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.action.application.encryption --> com.hack23.cia.model.internal.application.user.impl
+    com.hack23.cia.service.impl.rules --> com.hack23.cia.service.api.action.kpi
+    com.hack23.cia.service.impl.rules --> com.hack23.cia.model.internal.application.data.party.impl
+    com.hack23.cia.service.impl.rules --> com.hack23.cia.model.internal.application.data.committee.impl
+    com.hack23.cia.service.impl.rules --> org.kie.api.event.rule
+    com.hack23.cia.service.impl.rules --> com.hack23.cia.model.internal.application.data.politician.impl
+    com.hack23.cia.service.impl.rules --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.impl.rules --> org.kie.api.runtime
+    com.hack23.cia.service.impl.rules --> org.slf4j
+
+    ' Package links
+    class "com.hack23.cia.service.impl" [[com/hack23/cia/service/impl/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.task" [[com/hack23/cia/service/impl/task/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.email" [[com/hack23/cia/service/impl/email/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.admin" [[com/hack23/cia/service/impl/action/admin/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.common" [[com/hack23/cia/service/impl/action/common/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.user.wordcount" [[com/hack23/cia/service/impl/action/user/wordcount/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.user" [[com/hack23/cia/service/impl/action/user/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.application.encryption" [[com/hack23/cia/service/impl/action/application/encryption/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.kpi" [[com/hack23/cia/service/impl/action/kpi/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.rules" [[com/hack23/cia/service/impl/rules/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.application" [[com/hack23/cia/service/impl/action/application/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.impl.action.application.access" [[com/hack23/cia/service/impl/action/application/access/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

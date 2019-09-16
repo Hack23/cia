@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../apidocs/com/hack23/cia/service/impl/rules/PoliticianComplianceCheckImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -79,7 +79,7 @@
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">	 * @param annualSummary  the annual summary</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">	 * @param decisionList   the decision list</em>
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/PoliticianComplianceCheckImpl.html#PoliticianComplianceCheckImpl">PoliticianComplianceCheckImpl</a>(<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician politician,<strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, <strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,<strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/PoliticianComplianceCheckImpl.html#PoliticianComplianceCheckImpl">PoliticianComplianceCheckImpl</a>(<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician politician,<strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, <strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,<strong class="jxr_keyword">final</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, <strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		<strong class="jxr_keyword">super</strong>(ResourceType.POLITICIAN);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">this</strong>.politician = politician;
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  		<strong class="jxr_keyword">this</strong>.dailySummary = dailySummary;
@@ -113,83 +113,85 @@
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">	 *</em>
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 * @param committeeReport the committee report</em>
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">	 * @param rm              the rm</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">	 * @return true, if successful</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> supports(<strong class="jxr_keyword">final</strong> String committeeReport,<strong class="jxr_keyword">final</strong> String rm) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		<strong class="jxr_keyword">for</strong> (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 			<strong class="jxr_keyword">if</strong> (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 				<strong class="jxr_keyword">return</strong> YES.equalsIgnoreCase(summary.getVote());
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 			}			
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		}
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		<strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 	}
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">	 * Against.</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">	 * @param committeeReport the committee report</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">	 * @param rm              the rm</em>
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">	 * @return true, if successful</em>
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> against(<strong class="jxr_keyword">final</strong> String committeeReport,<strong class="jxr_keyword">final</strong> String rm) {
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		<strong class="jxr_keyword">for</strong> (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 			<strong class="jxr_keyword">if</strong> (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 				<strong class="jxr_keyword">return</strong> NO.equalsIgnoreCase(summary.getVote());
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 			}			
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		}
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 		<strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 	}
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 	
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> <em class="jxr_javadoccomment">	 * Gets the daily summary.</em>
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">	 * @return the daily summary</em>
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryDaily getDailySummary() {
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 		<strong class="jxr_keyword">return</strong> dailySummary;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 	}
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">	 * Gets the monthly summary.</em>
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">	 * @return the monthly summary</em>
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly getMonthlySummary() {
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		<strong class="jxr_keyword">return</strong> monthlySummary;
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 	}
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">	 * Gets the annual summary.</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">	 * @return the annual summary</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual getAnnualSummary() {
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 		<strong class="jxr_keyword">return</strong> annualSummary;
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 	}
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">	 * Gets the year.</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">	 * @return the year</em>
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getYear() {
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		<strong class="jxr_keyword">return</strong> LocalDate.now(ZoneId.of(<span class="jxr_string">"UTC"</span>)).getYear();
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 	}
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 	
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_javadoccomment">	 * Gets the age.</em>
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">	 * @return the age</em>
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getAge() {
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		<strong class="jxr_keyword">return</strong> getYear() - politician.getBornYear();
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 	}
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 	
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">	 * @param issue the issue</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 * @return true, if successful</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> supports(<strong class="jxr_keyword">final</strong> String committeeReport,<strong class="jxr_keyword">final</strong> String rm,<strong class="jxr_keyword">final</strong> String issue) {
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 			<strong class="jxr_keyword">if</strong> (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 				<strong class="jxr_keyword">return</strong> YES.equalsIgnoreCase(summary.getVote());
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 			}			
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		}
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		<strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 	}
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">	 * Against.</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">	 * @param committeeReport the committee report</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">	 * @param rm              the rm</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">	 * @param issue the issue</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">	 * @return true, if successful</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> against(<strong class="jxr_keyword">final</strong> String committeeReport,<strong class="jxr_keyword">final</strong> String rm,<strong class="jxr_keyword">final</strong> String issue) {
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 			<strong class="jxr_keyword">if</strong> (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 				<strong class="jxr_keyword">return</strong> NO.equalsIgnoreCase(summary.getVote());
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 			}			
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 		}
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		<strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 	}
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 	
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">	 * Gets the daily summary.</em>
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">	 * @return the daily summary</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryDaily getDailySummary() {
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		<strong class="jxr_keyword">return</strong> dailySummary;
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 	}
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">	 * Gets the monthly summary.</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">	 * @return the monthly summary</em>
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly getMonthlySummary() {
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 		<strong class="jxr_keyword">return</strong> monthlySummary;
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 	}
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">	 * Gets the annual summary.</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">	 * @return the annual summary</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 	<strong class="jxr_keyword">public</strong> ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual getAnnualSummary() {
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 		<strong class="jxr_keyword">return</strong> annualSummary;
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 	}
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">	 * Gets the year.</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">	 * @return the year</em>
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getYear() {
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		<strong class="jxr_keyword">return</strong> LocalDate.now(ZoneId.of(<span class="jxr_string">"UTC"</span>)).getYear();
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 	}
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 	
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">	 * Gets the age.</em>
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">	 * @return the age</em>
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getAge() {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		<strong class="jxr_keyword">return</strong> getYear() - politician.getBornYear();
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 	}
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 	
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

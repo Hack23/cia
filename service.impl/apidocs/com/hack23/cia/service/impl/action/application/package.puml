@@ -1,0 +1,65 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.application {
+
+        class DestroyApplicationSessionService [[DestroyApplicationSessionService.html]] {
+            +processService(DestroyApplicationSessionRequest): DestroyApplicationSessionResponse
+            #createApplicationEventForService(DestroyApplicationSessionRequest): CreateApplicationEventRequest
+            #createErrorResponse(): DestroyApplicationSessionResponse
+        }
+
+        class CreateApplicationEventService [[CreateApplicationEventService.html]] {
+            +processService(CreateApplicationEventRequest): CreateApplicationEventResponse
+        }
+
+        class CreateApplicationSessionService [[CreateApplicationSessionService.html]] {
+            +processService(CreateApplicationSessionRequest): CreateApplicationSessionResponse
+        }
+
+        class LogoutService [[LogoutService.html]] {
+            +processService(LogoutRequest): LogoutResponse
+            #createApplicationEventForService(LogoutRequest): CreateApplicationEventRequest
+            #createErrorResponse(): LogoutResponse
+        }
+
+        class RegisterUserService [[RegisterUserService.html]] {
+            +processService(RegisterUserRequest): RegisterUserResponse
+            #createApplicationEventForService(RegisterUserRequest): CreateApplicationEventRequest
+            #createErrorResponse(): RegisterUserResponse
+        }
+
+        class LoginService [[LoginService.html]] {
+            +processService(LoginRequest): LoginResponse
+            #createApplicationEventForService(LoginRequest): CreateApplicationEventRequest
+            #createErrorResponse(): LoginResponse
+        }
+
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- DestroyApplicationSessionService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. DestroyApplicationSessionService
+        com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl <|-- CreateApplicationEventService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. CreateApplicationEventService
+        com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl <|-- CreateApplicationSessionService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. CreateApplicationSessionService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- LogoutService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. LogoutService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- RegisterUserService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. RegisterUserService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- LoginService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. LoginService
+    }
+
+    namespace com.hack23.cia.service.impl.action.common {
+        abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+            #createApplicationEventService: BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>
+            {abstract} #createErrorResponse(): V extends ServiceResponse
+            {abstract} #createApplicationEventForService(T extends ServiceRequest): CreateApplicationEventRequest
+        }
+        interface BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[../common/BusinessService.html]] {
+            {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+            {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+        }
+        abstract class AbstractCommonBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[../common/AbstractCommonBusinessServiceImpl.html]] {
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+    namespace com.hack23.cia.service.impl.action.user {
+
+        class DisableGoogleAuthenticatorCredentialService [[DisableGoogleAuthenticatorCredentialService.html]] {
+            +processService(DisableGoogleAuthenticatorCredentialRequest): DisableGoogleAuthenticatorCredentialResponse
+            #createApplicationEventForService(DisableGoogleAuthenticatorCredentialRequest): CreateApplicationEventRequest
+            #createErrorResponse(): DisableGoogleAuthenticatorCredentialResponse
+        }
+
+        class DocumentWordCountService [[DocumentWordCountService.html]] {
+            +processService(DocumentWordCountRequest): DocumentWordCountResponse
+            #createApplicationEventForService(DocumentWordCountRequest): CreateApplicationEventRequest
+            #createErrorResponse(): DocumentWordCountResponse
+        }
+
+        class SetGoogleAuthenticatorCredentialService [[SetGoogleAuthenticatorCredentialService.html]] {
+            +processService(SetGoogleAuthenticatorCredentialRequest): SetGoogleAuthenticatorCredentialResponse
+            #createApplicationEventForService(SetGoogleAuthenticatorCredentialRequest): CreateApplicationEventRequest
+            #createErrorResponse(): SetGoogleAuthenticatorCredentialResponse
+        }
+
+        class ChangePasswordService [[ChangePasswordService.html]] {
+            +processService(ChangePasswordRequest): ChangePasswordResponse
+            #createApplicationEventForService(ChangePasswordRequest): CreateApplicationEventRequest
+            #createErrorResponse(): ChangePasswordResponse
+        }
+
+        class SearchDocumentService [[SearchDocumentService.html]] {
+            +processService(SearchDocumentRequest): SearchDocumentResponse
+            #createApplicationEventForService(SearchDocumentRequest): CreateApplicationEventRequest
+            #createErrorResponse(): SearchDocumentResponse
+        }
+
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- DisableGoogleAuthenticatorCredentialService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. DisableGoogleAuthenticatorCredentialService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- DocumentWordCountService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. DocumentWordCountService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- SetGoogleAuthenticatorCredentialService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. SetGoogleAuthenticatorCredentialService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- ChangePasswordService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. ChangePasswordService
+        com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- SearchDocumentService
+        com.hack23.cia.service.impl.action.common.BusinessService <|.. SearchDocumentService
+    }
+
+    namespace com.hack23.cia.service.impl.action.common {
+        abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+            #createApplicationEventService: BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>
+            {abstract} #createErrorResponse(): V extends ServiceResponse
+            {abstract} #createApplicationEventForService(T extends ServiceRequest): CreateApplicationEventRequest
+        }
+        interface BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[../common/BusinessService.html]] {
+            {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+            {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+        }
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

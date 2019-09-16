@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractCommonBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse> [[AbstractCommonBusinessServiceImpl.html]] {
+        +AbstractCommonBusinessServiceImpl(Class<T extends ServiceRequest>)
+        +getSupportedService(): Class<? extends ServiceRequest>
+        #getUserAccountFromSecurityContext(): UserAccount
+        #getUserDAO(): UserDAO
+    }
+
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<T extends ServiceRequest, V extends ServiceResponse> [[BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(T extends ServiceRequest): V extends ServiceResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

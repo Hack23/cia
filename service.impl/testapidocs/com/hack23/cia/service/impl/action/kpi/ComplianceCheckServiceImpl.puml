@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ComplianceCheckServiceImpl\n<size:10>com.hack23.cia.service.impl.action.kpi" as com.hack23.cia.service.impl.action.kpi.ComplianceCheckServiceImpl [[ComplianceCheckServiceImpl.html]] {
+        +processService(ComplianceCheckRequest): ComplianceCheckResponse
+        #createApplicationEventForService(ComplianceCheckRequest): CreateApplicationEventRequest
+        #createErrorResponse(): ComplianceCheckResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<ComplianceCheckRequest, ComplianceCheckResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): ComplianceCheckResponse
+        {abstract} #createApplicationEventForService(ComplianceCheckRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<ComplianceCheckRequest, ComplianceCheckResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(ComplianceCheckRequest): ComplianceCheckResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.kpi.ComplianceCheckServiceImpl
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.kpi.ComplianceCheckServiceImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

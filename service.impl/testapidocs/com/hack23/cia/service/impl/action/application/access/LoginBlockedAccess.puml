@@ -1,0 +1,14 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>LoginBlockedAccess\n<size:10>com.hack23.cia.service.impl.action.application.access" as com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess [[LoginBlockedAccess.html]] {
+        {abstract} +isBlocked(String, String): LoginBlockResult
+    }
+    interface "<size:14>LoginBlockedAccess.LoginBlockResult\n<size:10>com.hack23.cia.service.impl.action.application.access" as com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult [[LoginBlockedAccess.LoginBlockResult.html]]
+
+    com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess +-- com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

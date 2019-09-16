@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>LogoutService\n<size:10>com.hack23.cia.service.impl.action.application" as com.hack23.cia.service.impl.action.application.LogoutService [[LogoutService.html]] {
+        +processService(LogoutRequest): LogoutResponse
+        #createApplicationEventForService(LogoutRequest): CreateApplicationEventRequest
+        #createErrorResponse(): LogoutResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<LogoutRequest, LogoutResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): LogoutResponse
+        {abstract} #createApplicationEventForService(LogoutRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<LogoutRequest, LogoutResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(LogoutRequest): LogoutResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.application.LogoutService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.application.LogoutService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

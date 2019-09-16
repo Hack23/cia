@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>DestroyApplicationSessionService\n<size:10>com.hack23.cia.service.impl.action.application" as com.hack23.cia.service.impl.action.application.DestroyApplicationSessionService [[DestroyApplicationSessionService.html]] {
+        +processService(DestroyApplicationSessionRequest): DestroyApplicationSessionResponse
+        #createApplicationEventForService(DestroyApplicationSessionRequest): CreateApplicationEventRequest
+        #createErrorResponse(): DestroyApplicationSessionResponse
+    }
+
+    abstract class "<size:14>AbstractBusinessServiceImpl\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> [[../common/AbstractBusinessServiceImpl.html]] {
+        {abstract} #createErrorResponse(): DestroyApplicationSessionResponse
+        {abstract} #createApplicationEventForService(DestroyApplicationSessionRequest): CreateApplicationEventRequest
+    }
+    interface "<size:14>BusinessService\n<size:10>com.hack23.cia.service.impl.action.common" as com.hack23.cia.service.impl.action.common.BusinessService<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> [[../common/BusinessService.html]] {
+        {abstract} +getSupportedService(): Class<? extends ServiceRequest>
+        {abstract} +processService(DestroyApplicationSessionRequest): DestroyApplicationSessionResponse
+    }
+
+    com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl <|-- com.hack23.cia.service.impl.action.application.DestroyApplicationSessionService
+    com.hack23.cia.service.impl.action.common.BusinessService <|.. com.hack23.cia.service.impl.action.application.DestroyApplicationSessionService
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

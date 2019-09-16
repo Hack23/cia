@@ -1,0 +1,27 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractComplianceCheckImpl\n<size:10>com.hack23.cia.service.impl.rules" as com.hack23.cia.service.impl.rules.AbstractComplianceCheckImpl [[AbstractComplianceCheckImpl.html]] {
+        +AbstractComplianceCheckImpl(ResourceType)
+        +getResourceType(): ResourceType
+        +getRuleViolations(): List<RuleViolation>
+        +getNumberRuleViolations(): int
+        +getRuleSummary(): String
+        +addViolation(Status, String, String, String, String): void
+    }
+
+    interface "<size:14>ComplianceCheck\n<size:10>com.hack23.cia.service.api.action.kpi" as com.hack23.cia.service.api.action.kpi.ComplianceCheck {
+        {abstract} +getResourceType(): ResourceType
+        {abstract} +getRuleViolations(): List<RuleViolation>
+        {abstract} +getNumberRuleViolations(): int
+        {abstract} +getRuleSummary(): String
+        {abstract} +getId(): String
+        {abstract} +getName(): String
+    }
+
+    com.hack23.cia.service.api.action.kpi.ComplianceCheck <|.. com.hack23.cia.service.impl.rules.AbstractComplianceCheckImpl
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
