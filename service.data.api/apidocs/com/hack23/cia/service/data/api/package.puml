@@ -1,0 +1,160 @@
+@startuml
+    namespace com.hack23.cia.service.data.api {
+
+        interface AgencyDAO [[AgencyDAO.html]]
+
+        interface PersonDataDAO [[PersonDataDAO.html]] {
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface ViewRiksdagenMinistryDAO [[ViewRiksdagenMinistryDAO.html]] {
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface ViewRiksdagenCommitteeDAO [[ViewRiksdagenCommitteeDAO.html]] {
+            {abstract} +getIdList(): List<RiksdagenCommitteeEmbeddedId>
+        }
+
+        interface ApplicationActionEventDAO [[ApplicationActionEventDAO.html]]
+
+        interface AbstractGenericDAO<T extends Serializable, I extends Serializable> [[AbstractGenericDAO.html]] {
+            {abstract} +delete(T extends Serializable): void
+            {abstract} +findFirstByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object): T extends Serializable
+            {abstract} +findListByProperty(Object..., SingularAttribute<T extends Serializable, ? extends Object>...): List<T extends Serializable>
+            {abstract} +findListByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object): List<T extends Serializable>
+            {abstract} +findListByPropertyInList(SingularAttribute<T extends Serializable, ? extends Object>, Object[]): List<T extends Serializable>
+            {abstract} +findListByEmbeddedProperty(SingularAttribute<T extends Serializable, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object): List<T extends Serializable>
+            {abstract} +findOrderedByPropertyListByEmbeddedProperty(SingularAttribute<T extends Serializable, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +getAll(): List<T extends Serializable>
+            {abstract} +getAllOrderBy(SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +getPage(int, int): List<T extends Serializable>
+            {abstract} +getPageOrderBy(int, int, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+            {abstract} +getSize(): Long
+            {abstract} +load(I extends Serializable): T extends Serializable
+            {abstract} +merge(T extends Serializable): T extends Serializable
+            {abstract} +persist(List<T extends Serializable>): void
+            {abstract} +persist(T extends Serializable): void
+            {abstract} +search(String, Integer, String...): List<T extends Serializable>
+        }
+
+        interface ApplicationSessionDAO [[ApplicationSessionDAO.html]]
+
+        interface IndicatorElementDAO [[IndicatorElementDAO.html]]
+
+        interface DataViewer [[DataViewer.html]] {
+            {abstract} +findByQueryProperty(Class<T>, SingularAttribute<T, ? extends Object>, Class<V>, SingularAttribute<V, ? extends Object>, Object): T
+            {abstract} +findFirstByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object): T
+            {abstract} +findListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object): List<T>
+            {abstract} +findListByProperty(Class<T>, Object..., SingularAttribute<T, ? extends Object>...): List<T>
+            {abstract} +findListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object): List<T>
+            {abstract} +findOrderedByPropertyListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<T, ? extends Object>): List<T>
+            {abstract} +findOrderedListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<V, ? extends Object>): List<T>
+            {abstract} +findOrderedListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object, SingularAttribute<T, ? extends Object>): List<T>
+            {abstract} +findOrderedListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object..., SingularAttribute<T, ? extends Object>...): List<T>
+            {abstract} +getAll(Class<T>): List<T>
+            {abstract} +getAllOrderBy(Class<T>, SingularAttribute<T, ? extends Object>): List<T>
+            {abstract} +getPage(Class<T>, int, int): List<T>
+            {abstract} +getPageOrderBy(Class<T>, int, int, SingularAttribute<T, ? extends Object>): List<T>
+            {abstract} +getSize(Class<T>): Long
+            {abstract} +load(Class<T>, Object): T
+        }
+
+        interface EncryptedValueDAO [[EncryptedValueDAO.html]]
+
+        interface ViewDataManager [[ViewDataManager.html]] {
+            {abstract} +refreshViews(): void
+        }
+
+        interface DocumentElementDAO [[DocumentElementDAO.html]] {
+            {abstract} +getAvaibleDocumentContent(): List<String>
+            {abstract} +getAvaibleDocumentStatus(): List<String>
+            {abstract} +getIdList(): List<String>
+            {abstract} +getMissingDocumentStartFromYear(int): int
+        }
+
+        interface ApplicationConfigurationDAO [[ApplicationConfigurationDAO.html]]
+
+        interface LanguageContentService [[LanguageContentService.html]] {
+            {abstract} +getLanguageResource(String, String, String, String): String
+        }
+
+        interface LanguageContentDataDAO [[LanguageContentDataDAO.html]] {
+            {abstract} +findTranslation(String, String, String): LanguageContentData
+        }
+
+        interface SearchIndexer [[SearchIndexer.html]] {
+            {abstract} +updateSearchIndex(): void
+        }
+
+        interface RemoveDataManager [[RemoveDataManager.html]] {
+            {abstract} +removePersonData(): void
+            {abstract} +removeCommitteeProposals(): void
+            {abstract} +removeDocumentStatus(): void
+            {abstract} +removeDocuments(): void
+            {abstract} +removeApplicationHistory(): void
+            {abstract} +removeUserAccountApplicationHistory(String): void
+        }
+
+        interface LanguageDataDAO [[LanguageDataDAO.html]]
+
+        interface CountryElementDAO [[CountryElementDAO.html]]
+
+        interface VoteDataDAO [[VoteDataDAO.html]] {
+            {abstract} +getBallotIdList(): List<VoteDataEmbeddedId>
+            {abstract} +getIdList(): List<VoteDataEmbeddedId>
+        }
+
+        interface DataDAO [[DataDAO.html]] {
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface UserDAO [[UserDAO.html]]
+
+        interface DocumentStatusContainerDAO [[DocumentStatusContainerDAO.html]] {
+            {abstract} +checkExistByDocumentId(String): int
+            {abstract} +getAvaibleCommitteeProposal(): List<String>
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface SwedenPoliticalPartyDAO [[SwedenPoliticalPartyDAO.html]] {
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface DocumentContentDataDAO [[DocumentContentDataDAO.html]] {
+            {abstract} +checkDocumentContentData(String): boolean
+            {abstract} +getIdList(): List<String>
+        }
+
+        interface ApplicationConfigurationService [[ApplicationConfigurationService.html]] {
+            {abstract} +checkValueOrLoadDefault(String, String, ConfigurationGroup, String, String, String, String, String): ApplicationConfiguration
+        }
+
+        interface CommitteeProposalComponentDataDAO [[CommitteeProposalComponentDataDAO.html]] {
+            {abstract} +checkCommitteeDocumentData(String): boolean
+            {abstract} +getIdList(): List<String>
+        }
+
+        AbstractGenericDAO <|.. AgencyDAO
+        AbstractGenericDAO <|.. PersonDataDAO
+        AbstractGenericDAO <|.. ViewRiksdagenMinistryDAO
+        AbstractGenericDAO <|.. ViewRiksdagenCommitteeDAO
+        AbstractGenericDAO <|.. ApplicationActionEventDAO
+        AbstractGenericDAO <|.. ApplicationSessionDAO
+        AbstractGenericDAO <|.. IndicatorElementDAO
+        AbstractGenericDAO <|.. EncryptedValueDAO
+        AbstractGenericDAO <|.. DocumentElementDAO
+        AbstractGenericDAO <|.. ApplicationConfigurationDAO
+        AbstractGenericDAO <|.. LanguageContentDataDAO
+        AbstractGenericDAO <|.. LanguageDataDAO
+        AbstractGenericDAO <|.. CountryElementDAO
+        AbstractGenericDAO <|.. VoteDataDAO
+        AbstractGenericDAO <|.. DataDAO
+        AbstractGenericDAO <|.. UserDAO
+        AbstractGenericDAO <|.. DocumentStatusContainerDAO
+        AbstractGenericDAO <|.. SwedenPoliticalPartyDAO
+        AbstractGenericDAO <|.. DocumentContentDataDAO
+        AbstractGenericDAO <|.. CommitteeProposalComponentDataDAO
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

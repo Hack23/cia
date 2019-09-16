@@ -1,0 +1,36 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>DocumentElementDAO\n<size:10>com.hack23.cia.service.data.api" as com.hack23.cia.service.data.api.DocumentElementDAO [[DocumentElementDAO.html]] {
+        {abstract} +getAvaibleDocumentContent(): List<String>
+        {abstract} +getAvaibleDocumentStatus(): List<String>
+        {abstract} +getIdList(): List<String>
+        {abstract} +getMissingDocumentStartFromYear(int): int
+    }
+
+    interface "<size:14>AbstractGenericDAO\n<size:10>com.hack23.cia.service.data.api" as com.hack23.cia.service.data.api.AbstractGenericDAO<DocumentElement, String> [[AbstractGenericDAO.html]] {
+        {abstract} +delete(DocumentElement): void
+        {abstract} +findFirstByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object): DocumentElement
+        {abstract} +findListByProperty(Object..., SingularAttribute<T extends Serializable, ? extends Object>...): List<T extends Serializable>
+        {abstract} +findListByProperty(SingularAttribute<T extends Serializable, ? extends Object>, Object): List<T extends Serializable>
+        {abstract} +findListByPropertyInList(SingularAttribute<T extends Serializable, ? extends Object>, Object[]): List<T extends Serializable>
+        {abstract} +findListByEmbeddedProperty(SingularAttribute<T extends Serializable, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object): List<T extends Serializable>
+        {abstract} +findOrderedByPropertyListByEmbeddedProperty(SingularAttribute<T extends Serializable, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+        {abstract} +getAll(): List<T extends Serializable>
+        {abstract} +getAllOrderBy(SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+        {abstract} +getPage(int, int): List<T extends Serializable>
+        {abstract} +getPageOrderBy(int, int, SingularAttribute<T extends Serializable, ? extends Object>): List<T extends Serializable>
+        {abstract} +getSize(): Long
+        {abstract} +load(DocumentElement): DocumentElement
+        {abstract} +merge(DocumentElement): DocumentElement
+        {abstract} +persist(List<T extends Serializable>): void
+        {abstract} +persist(DocumentElement): void
+        {abstract} +search(String, Integer, String...): List<T extends Serializable>
+    }
+
+    com.hack23.cia.service.data.api.AbstractGenericDAO <|.. com.hack23.cia.service.data.api.DocumentElementDAO
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

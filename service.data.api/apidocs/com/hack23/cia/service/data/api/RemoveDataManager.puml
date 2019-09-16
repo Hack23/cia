@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>RemoveDataManager\n<size:10>com.hack23.cia.service.data.api" as com.hack23.cia.service.data.api.RemoveDataManager [[RemoveDataManager.html]] {
+        {abstract} +removePersonData(): void
+        {abstract} +removeCommitteeProposals(): void
+        {abstract} +removeDocumentStatus(): void
+        {abstract} +removeDocuments(): void
+        {abstract} +removeApplicationHistory(): void
+        {abstract} +removeUserAccountApplicationHistory(String): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

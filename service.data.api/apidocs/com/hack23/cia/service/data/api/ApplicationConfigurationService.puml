@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>ApplicationConfigurationService\n<size:10>com.hack23.cia.service.data.api" as com.hack23.cia.service.data.api.ApplicationConfigurationService [[ApplicationConfigurationService.html]] {
+        {abstract} +checkValueOrLoadDefault(String, String, ConfigurationGroup, String, String, String, String, String): ApplicationConfiguration
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

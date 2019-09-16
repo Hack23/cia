@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>DataViewer\n<size:10>com.hack23.cia.service.data.api" as com.hack23.cia.service.data.api.DataViewer [[DataViewer.html]] {
+        {abstract} +findByQueryProperty(Class<T>, SingularAttribute<T, ? extends Object>, Class<V>, SingularAttribute<V, ? extends Object>, Object): T
+        {abstract} +findFirstByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object): T
+        {abstract} +findListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object): List<T>
+        {abstract} +findListByProperty(Class<T>, Object..., SingularAttribute<T, ? extends Object>...): List<T>
+        {abstract} +findListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object): List<T>
+        {abstract} +findOrderedByPropertyListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<T, ? extends Object>): List<T>
+        {abstract} +findOrderedListByEmbeddedProperty(Class<T>, SingularAttribute<T, V>, Class<V>, SingularAttribute<V, ? extends Object>, Object, SingularAttribute<V, ? extends Object>): List<T>
+        {abstract} +findOrderedListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object, SingularAttribute<T, ? extends Object>): List<T>
+        {abstract} +findOrderedListByProperty(Class<T>, SingularAttribute<T, ? extends Object>, Object..., SingularAttribute<T, ? extends Object>...): List<T>
+        {abstract} +getAll(Class<T>): List<T>
+        {abstract} +getAllOrderBy(Class<T>, SingularAttribute<T, ? extends Object>): List<T>
+        {abstract} +getPage(Class<T>, int, int): List<T>
+        {abstract} +getPageOrderBy(Class<T>, int, int, SingularAttribute<T, ? extends Object>): List<T>
+        {abstract} +getSize(Class<T>): Long
+        {abstract} +load(Class<T>, Object): T
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
