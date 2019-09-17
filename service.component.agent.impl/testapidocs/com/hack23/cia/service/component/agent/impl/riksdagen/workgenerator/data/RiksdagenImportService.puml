@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>RiksdagenImportService\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data" as com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService [[RiksdagenImportService.html]] {
+        {abstract} +getStartYearForDocumentElement(): int
+        {abstract} +getAvaibleCommitteeProposal(): List<String>
+        {abstract} +getAvaibleDocumentContent(): List<String>
+        {abstract} +getCommitteeProposalComponentDataMap(): Map<String, String>
+        {abstract} +getDocumentContentMap(): Map<String, String>
+        {abstract} +getDocumentElementMap(Date, List<DocumentType>, boolean): Map<String, String>
+        {abstract} +getDocumentStatusContainerMap(): Map<String, String>
+        {abstract} +getLoadedBallotIdMap(): Map<String, String>
+        {abstract} +getNoneCompletedDocumentStatusCommitteeReports(): List<DocumentStatusContainer>
+        {abstract} +getNoneCompletedCommitteeProposal(): List<CommitteeProposalComponentData>
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

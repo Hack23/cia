@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>WorldbankUpdateService\n<size:10>com.hack23.cia.service.component.agent.impl.worldbank.workers.data" as com.hack23.cia.service.component.agent.impl.worldbank.workers.data.WorldbankUpdateService [[WorldbankUpdateService.html]] {
+        {abstract} +updateCountryElement(CountryElement): void
+        {abstract} +updateData(List<WorldBankData>): void
+        {abstract} +updateIndicatorElement(IndicatorElement): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

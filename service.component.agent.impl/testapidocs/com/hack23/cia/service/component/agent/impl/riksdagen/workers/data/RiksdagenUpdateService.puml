@@ -1,0 +1,16 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>RiksdagenUpdateService\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workers.data" as com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService [[RiksdagenUpdateService.html]] {
+        {abstract} +update(PersonData): void
+        {abstract} +updateCommitteeProposalComponentData(CommitteeProposalComponentData): void
+        {abstract} +updateDocumentContentData(DocumentContentData): void
+        {abstract} +updateDocumentData(DocumentStatusContainer): void
+        {abstract} +updateDocumentElement(DocumentElement): void
+        {abstract} +updateVoteDataData(List<VoteData>): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

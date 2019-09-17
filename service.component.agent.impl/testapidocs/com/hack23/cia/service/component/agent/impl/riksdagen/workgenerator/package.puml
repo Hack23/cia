@@ -1,0 +1,20 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator {
+
+        abstract class AbstractRiksdagenDataSourcesWorkGenerator [[AbstractRiksdagenDataSourcesWorkGenerator.html]] {
+            +AbstractRiksdagenDataSourcesWorkGenerator(RiksdagenDataSources)
+            +matches(RiksdagenDataSources): boolean
+            +getJmsSender(): JmsSender
+        }
+
+        interface RiksdagenDataSourcesWorkGenerator [[RiksdagenDataSourcesWorkGenerator.html]] {
+            {abstract} +matches(RiksdagenDataSources): boolean
+            {abstract} +generateWorkOrders(): void
+        }
+
+        RiksdagenDataSourcesWorkGenerator <|.. AbstractRiksdagenDataSourcesWorkGenerator
+        AbstractRiksdagenDataSourcesWorkGenerator --> com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService: importService
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

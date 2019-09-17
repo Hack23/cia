@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>LoadDocumentWork\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workers" as com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork [[LoadDocumentWork.html]] {
+        +LoadDocumentWork(String, String)
+        +getFromDate(): String
+        +getToDate(): String
+    }
+
+    interface "<size:14>Serializable\n<size:10>java.io" as java.io.Serializable
+
+    java.io.Serializable <|.. com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

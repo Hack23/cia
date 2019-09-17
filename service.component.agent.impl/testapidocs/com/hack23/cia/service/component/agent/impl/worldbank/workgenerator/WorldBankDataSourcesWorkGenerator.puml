@@ -1,0 +1,12 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>WorldBankDataSourcesWorkGenerator\n<size:10>com.hack23.cia.service.component.agent.impl.worldbank.workgenerator" as com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.WorldBankDataSourcesWorkGenerator [[WorldBankDataSourcesWorkGenerator.html]] {
+        {abstract} +matches(WorldBankDataSources): boolean
+        {abstract} +generateWorkOrders(): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

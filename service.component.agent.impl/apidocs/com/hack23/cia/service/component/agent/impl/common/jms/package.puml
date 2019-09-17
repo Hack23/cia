@@ -1,0 +1,16 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.common.jms {
+
+        interface JmsSender [[JmsSender.html]] {
+            {abstract} +send(Destination, Serializable): void
+        }
+
+        abstract class AbstractMessageListener [[AbstractMessageListener.html]] {
+            {static} #clearAuthentication(): void
+            {static} #configureAuthentication(): void
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

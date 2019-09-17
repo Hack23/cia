@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractRiksdagenDataSourcesWorkGenerator\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator" as com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.AbstractRiksdagenDataSourcesWorkGenerator [[AbstractRiksdagenDataSourcesWorkGenerator.html]] {
+        +AbstractRiksdagenDataSourcesWorkGenerator(RiksdagenDataSources)
+        +matches(RiksdagenDataSources): boolean
+        +getJmsSender(): JmsSender
+        #getImportService(): RiksdagenImportService
+    }
+
+    interface "<size:14>RiksdagenDataSourcesWorkGenerator\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator" as com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenDataSourcesWorkGenerator [[RiksdagenDataSourcesWorkGenerator.html]] {
+        {abstract} +matches(RiksdagenDataSources): boolean
+        {abstract} +generateWorkOrders(): void
+    }
+
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenDataSourcesWorkGenerator <|.. com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.AbstractRiksdagenDataSourcesWorkGenerator
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

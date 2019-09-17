@@ -1,0 +1,15 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.val {
+
+        interface ValImportService [[ValImportService.html]] {
+            {abstract} +loadPoliticalParties(): void
+        }
+
+        class ValImportServiceAutoLoadAtStartup [[ValImportServiceAutoLoadAtStartup.html]] {
+            +autoLoad(): void
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

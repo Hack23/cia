@@ -1,0 +1,12 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>RiksdagenDataSourcesWorkGenerator\n<size:10>com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator" as com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenDataSourcesWorkGenerator [[RiksdagenDataSourcesWorkGenerator.html]] {
+        {abstract} +matches(RiksdagenDataSources): boolean
+        {abstract} +generateWorkOrders(): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

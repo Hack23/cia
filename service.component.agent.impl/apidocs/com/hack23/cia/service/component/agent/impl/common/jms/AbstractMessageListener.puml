@@ -1,0 +1,12 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractMessageListener\n<size:10>com.hack23.cia.service.component.agent.impl.common.jms" as com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener [[AbstractMessageListener.html]] {
+        {static} #clearAuthentication(): void
+        {static} #configureAuthentication(): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

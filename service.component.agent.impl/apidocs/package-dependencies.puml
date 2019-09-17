@@ -1,0 +1,63 @@
+@startuml
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator --> org.slf4j
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator --> com.hack23.cia.service.external.riksdagen.api
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator --> com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator --> com.hack23.cia.model.internal.application.data.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator --> com.hack23.cia.service.component.agent.impl.common.jms
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data --> org.slf4j
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data --> com.hack23.cia.model.external.riksdagen.dokumentlista.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.model.external.riksdagen.person.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.model.external.riksdagen.utskottsforslag.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.model.external.riksdagen.documentcontent.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.model.external.riksdagen.dokumentstatus.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers.data --> com.hack23.cia.model.external.riksdagen.dokumentlista.impl
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> com.hack23.cia.service.component.agent.impl.common.jms
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> org.slf4j
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> com.hack23.cia.service.component.agent.impl.riksdagen.workers.data
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> com.hack23.cia.service.external.riksdagen.api
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> com.hack23.cia.service.external.common.api
+    com.hack23.cia.service.component.agent.impl.riksdagen.workers --> com.hack23.cia.model.external.riksdagen.dokumentlista.impl
+    com.hack23.cia.service.component.agent.impl.common.jms --> org.springframework.jms.core
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> org.slf4j
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> com.hack23.cia.service.external.worldbank.api
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> com.hack23.cia.service.component.agent.impl.common.jms
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> com.hack23.cia.model.internal.application.data.impl
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.worldbank.workers.data --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.worldbank.workers.data --> com.hack23.cia.model.external.worldbank.countries.impl
+    com.hack23.cia.service.component.agent.impl.worldbank.workers.data --> com.hack23.cia.model.external.worldbank.indicators.impl
+    com.hack23.cia.service.component.agent.impl.val --> org.slf4j
+    com.hack23.cia.service.component.agent.impl.val --> com.hack23.cia.service.data.api
+    com.hack23.cia.service.component.agent.impl.val --> com.hack23.cia.service.external.val.api
+
+    ' Package links
+    class "com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator" [[com/hack23/cia/service/component/agent/impl/riksdagen/workgenerator/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data" [[com/hack23/cia/service/component/agent/impl/riksdagen/workgenerator/data/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.common.jms" [[com/hack23/cia/service/component/agent/impl/common/jms/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.riksdagen.workers.data" [[com/hack23/cia/service/component/agent/impl/riksdagen/workers/data/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.riksdagen.workers" [[com/hack23/cia/service/component/agent/impl/riksdagen/workers/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.worldbank.workgenerator" [[com/hack23/cia/service/component/agent/impl/worldbank/workgenerator/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data" [[com/hack23/cia/service/component/agent/impl/worldbank/workgenerator/data/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.worldbank.workers.data" [[com/hack23/cia/service/component/agent/impl/worldbank/workers/data/package-summary.html]] {
+    }
+    class "com.hack23.cia.service.component.agent.impl.val" [[com/hack23/cia/service/component/agent/impl/val/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

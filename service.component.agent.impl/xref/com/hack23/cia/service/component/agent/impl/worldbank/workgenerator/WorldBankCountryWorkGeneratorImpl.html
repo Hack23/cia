@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../apidocs/com/hack23/cia/service/component/agent/impl/worldbank/workgenerator/WorldBankCountryWorkGeneratorImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -58,36 +58,39 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> Destination countryElementWorkdestination;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<em class="jxr_javadoccomment">/** The worldbank country api. */</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Autowired
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">private</strong> WorldBankCountryApi worldbankCountryApi;
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 * Instantiates a new world bank country work generator impl.</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">public</strong> <a name="WorldBankCountryWorkGeneratorImpl" href="../../../../../../../../../com/hack23/cia/service/component/agent/impl/worldbank/workgenerator/WorldBankCountryWorkGeneratorImpl.html#WorldBankCountryWorkGeneratorImpl">WorldBankCountryWorkGeneratorImpl</a>() {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		<strong class="jxr_keyword">super</strong>(WorldBankDataSources.COUNTRIES);
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	}
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	@Override
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generateWorkOrders() {
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  			<strong class="jxr_keyword">final</strong> List&lt;CountryElement&gt; countryList = worldbankCountryApi.getCountries();
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  			<strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; currentSaved = getImportService().getWorldBankCountryMap();
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> CountryElement countryElement : countryList) {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  				<strong class="jxr_keyword">if</strong> (countryElement.getCapitalCity() != <strong class="jxr_keyword">null</strong> &amp;&amp; countryElement.getCapitalCity().length() &gt; 0 &amp;&amp; !currentSaved.containsKey(countryElement.getIso2Code())) {
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  					getJmsSender().send(countryElementWorkdestination,
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  							countryElement);
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  				}
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  			}
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> DataFailureException exception) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  			LOGGER.warn(<span class="jxr_string">"jms"</span>, exception);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		}
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	}
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> WorldBankCountryApi worldbankCountryApi;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 * Instantiates a new world bank country work generator impl.</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 * @param worldbankCountryApi the worldbank country api</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Autowired
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> <a name="WorldBankCountryWorkGeneratorImpl" href="../../../../../../../../../com/hack23/cia/service/component/agent/impl/worldbank/workgenerator/WorldBankCountryWorkGeneratorImpl.html#WorldBankCountryWorkGeneratorImpl">WorldBankCountryWorkGeneratorImpl</a>(<strong class="jxr_keyword">final</strong> WorldBankCountryApi worldbankCountryApi) {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">super</strong>(WorldBankDataSources.COUNTRIES);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		<strong class="jxr_keyword">this</strong>.worldbankCountryApi = worldbankCountryApi;
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	}
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	@Override
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generateWorkOrders() {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  			<strong class="jxr_keyword">final</strong> List&lt;CountryElement&gt; countryList = worldbankCountryApi.getCountries();
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  			<strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; currentSaved = getImportService().getWorldBankCountryMap();
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> CountryElement countryElement : countryList) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  				<strong class="jxr_keyword">if</strong> (countryElement.getCapitalCity() != <strong class="jxr_keyword">null</strong> &amp;&amp; countryElement.getCapitalCity().length() &gt; 0 &amp;&amp; !currentSaved.containsKey(countryElement.getIso2Code())) {
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  					getJmsSender().send(countryElementWorkdestination,
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  							countryElement);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  				}
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  			}
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> DataFailureException exception) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  			LOGGER.warn(<span class="jxr_string">"jms"</span>, exception);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		}
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	}
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

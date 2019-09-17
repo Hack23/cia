@@ -1,0 +1,18 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.riksdagen.workers {
+
+        class LoadDocumentWork [[LoadDocumentWork.html]] {
+            +LoadDocumentWork(String, String)
+            +getFromDate(): String
+            +getToDate(): String
+        }
+
+        java.io.Serializable <|.. LoadDocumentWork
+    }
+
+    namespace java.io {
+        interface Serializable
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

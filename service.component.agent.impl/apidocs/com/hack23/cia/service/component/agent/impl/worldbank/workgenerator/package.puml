@@ -1,0 +1,20 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.worldbank.workgenerator {
+
+        abstract class AbstractWorldBankDataSourcesWorkGenerator [[AbstractWorldBankDataSourcesWorkGenerator.html]] {
+            +AbstractWorldBankDataSourcesWorkGenerator(WorldBankDataSources)
+            +matches(WorldBankDataSources): boolean
+            #getJmsSender(): JmsSender
+        }
+
+        interface WorldBankDataSourcesWorkGenerator [[WorldBankDataSourcesWorkGenerator.html]] {
+            {abstract} +matches(WorldBankDataSources): boolean
+            {abstract} +generateWorkOrders(): void
+        }
+
+        WorldBankDataSourcesWorkGenerator <|.. AbstractWorldBankDataSourcesWorkGenerator
+        AbstractWorldBankDataSourcesWorkGenerator --> com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.WorldbankImportService: importService
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

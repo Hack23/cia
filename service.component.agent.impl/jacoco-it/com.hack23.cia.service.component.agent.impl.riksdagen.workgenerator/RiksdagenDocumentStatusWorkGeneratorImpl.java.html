@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenDocumentStatusWorkGeneratorImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator</a> &gt; <span class="el_source">RiksdagenDocumentStatusWorkGeneratorImpl.java</span></div><h1>RiksdagenDocumentStatusWorkGeneratorImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2010-2019 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 
 /**
@@ -44,7 +45,7 @@ import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L47">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentStatusWorkGeneratorImpl.class);</span>
+<span class="fc" id="L48">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentStatusWorkGeneratorImpl.class);</span>
 
 	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = &quot;yyyy-MM-dd HH:mm:ss&quot;;
@@ -59,43 +60,50 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 	 * Instantiates a new riksdagen document status work generator impl.
 	 */
 	public RiksdagenDocumentStatusWorkGeneratorImpl() {
-<span class="fc" id="L62">		super(RiksdagenDataSources.DOCUMENT_STATUS);</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L63">		super(RiksdagenDataSources.DOCUMENT_STATUS);</span>
+<span class="fc" id="L64">	}</span>
 
 	@Override
 	public void generateWorkOrders() {
 		try {
-<span class="fc" id="L68">			final Map&lt;String, String&gt; documentStatusContainerMap = getImportService()</span>
-<span class="fc" id="L69">					.getDocumentStatusContainerMap();</span>
+<span class="fc" id="L69">			final Map&lt;String, String&gt; documentStatusContainerMap = getImportService()</span>
+<span class="fc" id="L70">					.getDocumentStatusContainerMap();</span>
 
 
-<span class="fc" id="L72">			final List&lt;DocumentType&gt; selectedDocumentTypes = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L73">			selectedDocumentTypes.add(DocumentType.BET);</span>
-<span class="fc" id="L74">			selectedDocumentTypes.add(DocumentType.PROP);</span>
-<span class="fc" id="L75">			selectedDocumentTypes.add(DocumentType.MOT);</span>
+<span class="fc" id="L73">			final List&lt;DocumentType&gt; selectedDocumentTypes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L74">			selectedDocumentTypes.add(DocumentType.BET);</span>
+<span class="fc" id="L75">			selectedDocumentTypes.add(DocumentType.PROP);</span>
+<span class="fc" id="L76">			selectedDocumentTypes.add(DocumentType.MOT);</span>
 
 
 
-<span class="fc" id="L79">			final Map&lt;String, String&gt; documentElementMap = getImportService()</span>
-<span class="fc" id="L80">					.getDocumentElementMap(</span>
+<span class="fc" id="L80">			final Map&lt;String, String&gt; documentElementMap = getImportService()</span>
+<span class="fc" id="L81">					.getDocumentElementMap(</span>
 							new SimpleDateFormat(
-<span class="fc" id="L82">									RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT,Locale.ENGLISH).parse(&quot;1999-12-30 00:00:00&quot;),</span>
+<span class="fc" id="L83">									RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT,Locale.ENGLISH).parse(&quot;1999-12-30 00:00:00&quot;),</span>
 							selectedDocumentTypes, false);
 
-<span class="fc" id="L85">			final Set&lt;String&gt; avaibleDocumentStatus = documentElementMap</span>
-<span class="fc" id="L86">					.keySet();</span>
+<span class="fc" id="L86">			final Set&lt;String&gt; avaibleDocumentStatus = documentElementMap</span>
+<span class="fc" id="L87">					.keySet();</span>
 
-<span class="fc bfc" id="L88" title="All 2 branches covered.">			for (final String id : avaibleDocumentStatus) {</span>
-<span class="fc bfc" id="L89" title="All 2 branches covered.">				if (!documentStatusContainerMap.containsKey(id)) {</span>
-<span class="fc" id="L90">					getJmsSender().send(documentStatusContainerWorkdestination,</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">			for (final String id : avaibleDocumentStatus) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">				if (!documentStatusContainerMap.containsKey(id)) {</span>
+<span class="fc" id="L91">					getJmsSender().send(documentStatusContainerWorkdestination,</span>
 							id);
 				}
-<span class="fc" id="L93">			}</span>
+<span class="fc" id="L94">			}</span>
+			
+<span class="fc bfc" id="L96" title="All 2 branches covered.">			for (final DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">				 if (&quot;planerat&quot;.equals(container.getDocument().getStatus())) {</span>
+<span class="fc" id="L98">					 getJmsSender().send(documentStatusContainerWorkdestination,</span>
+<span class="fc" id="L99">							 container.getDocument().getId());</span>
+				 }
+<span class="fc" id="L101">			}		</span>
 
-<span class="nc" id="L95">		} catch (final ParseException e) {</span>
-<span class="nc" id="L96">			LOGGER.warn(&quot;Loading document status &quot;, e);</span>
-<span class="fc" id="L97">		}</span>
-<span class="fc" id="L98">	}</span>
+<span class="nc" id="L103">		} catch (final ParseException e) {</span>
+<span class="nc" id="L104">			LOGGER.warn(&quot;Loading document status &quot;, e);</span>
+<span class="fc" id="L105">		}</span>
+<span class="fc" id="L106">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

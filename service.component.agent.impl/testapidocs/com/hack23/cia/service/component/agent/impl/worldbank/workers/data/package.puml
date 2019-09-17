@@ -1,0 +1,13 @@
+@startuml
+    namespace com.hack23.cia.service.component.agent.impl.worldbank.workers.data {
+
+        interface WorldbankUpdateService [[WorldbankUpdateService.html]] {
+            {abstract} +updateCountryElement(CountryElement): void
+            {abstract} +updateData(List<WorldBankData>): void
+            {abstract} +updateIndicatorElement(IndicatorElement): void
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

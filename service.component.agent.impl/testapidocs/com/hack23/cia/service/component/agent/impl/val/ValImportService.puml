@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>ValImportService\n<size:10>com.hack23.cia.service.component.agent.impl.val" as com.hack23.cia.service.component.agent.impl.val.ValImportService [[ValImportService.html]] {
+        {abstract} +loadPoliticalParties(): void
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

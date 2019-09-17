@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../testapidocs/com/hack23/cia/service/component/agent/impl/riksdagen/workgenerator/RiksdagenBallotListWorkGeneratorImplITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -83,8 +83,8 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"jmsSender"</span>, jmsSenderMock);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"riksdagenApi"</span>, riksdagenApi);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;BallotDocumentElement&gt;();
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		String ballotId = UUID.randomUUID().toString();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">final</strong> ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">final</strong> String ballotId = UUID.randomUUID().toString();
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  		value.add(<strong class="jxr_keyword">new</strong> BallotDocumentElement().withBallotId(ballotId));
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		when(riksdagenApi.getBallotList()).thenReturn(value);
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  						
@@ -115,8 +115,8 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"jmsSender"</span>, jmsSenderMock);
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"riksdagenApi"</span>, riksdagenApi);
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;BallotDocumentElement&gt;();
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		<strong class="jxr_keyword">final</strong> ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		<strong class="jxr_keyword">final</strong> String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 		value.add(<strong class="jxr_keyword">new</strong> BallotDocumentElement().withBallotId(ballotId));
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 		when(riksdagenApi.getBallotList()).thenReturn(value);
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 								
@@ -140,8 +140,8 @@
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"jmsSender"</span>, jmsSenderMock);
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, <span class="jxr_string">"riksdagenApi"</span>, riksdagenApi);
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 		ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;BallotDocumentElement&gt;();
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 		<strong class="jxr_keyword">final</strong> ArrayList&lt;BallotDocumentElement&gt; value = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">final</strong> String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 		value.add(<strong class="jxr_keyword">new</strong> BallotDocumentElement().withBallotId(ballotId));
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 		when(riksdagenApi.getBallotList()).thenThrow(<strong class="jxr_keyword">new</strong> DataFailureException(<strong class="jxr_keyword">new</strong> RuntimeException()));
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 								
@@ -153,6 +153,6 @@
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>
