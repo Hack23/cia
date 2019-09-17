@@ -1,0 +1,15 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>XmlAgentException\n<size:10>com.hack23.cia.service.external.common.api" as com.hack23.cia.service.external.common.api.XmlAgentException [[XmlAgentException.html]] {
+        +XmlAgentException(Exception)
+    }
+
+    class "<size:14>Exception\n<size:10>java.lang" as java.lang.Exception
+
+    java.lang.Exception <|-- com.hack23.cia.service.external.common.api.XmlAgentException
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+    namespace com.hack23.cia.service.external.common.api {
+
+        interface XmlAgent [[XmlAgent.html]] {
+            {abstract} +unmarshallXml(Unmarshaller, String): Object
+            {abstract} +unmarshallXml(Unmarshaller, String, String, String, String): Object
+            {abstract} +retriveContent(String): String
+        }
+
+        interface ProcessDataStrategy<T> [[ProcessDataStrategy.html]] {
+            {abstract} +process(T): void
+        }
+
+        class XmlAgentException [[XmlAgentException.html]] {
+            +XmlAgentException(Exception)
+        }
+
+        java.lang.Exception <|-- XmlAgentException
+    }
+
+    namespace java.lang {
+        class Exception
+    }
+
+    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+@enduml
