@@ -103,7 +103,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.8</version>
+      <version>2.10.0.pr3</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate.search</groupId>
@@ -963,11 +963,11 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"/>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"/>
+            <hbm2doc destdir="target/site/hbm2doc"/>
+            <property key="dot.executable" value="${graphviz.dot.executable}"/>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
           </hibernatetool>
         </configuration>
       </plugin>
