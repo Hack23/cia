@@ -70,7 +70,7 @@
       <uniqueVersion>false</uniqueVersion>
       <id>cia-releases</id>
       <name>CIA Staging Repository</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
       <uniqueVersion>false</uniqueVersion>
@@ -107,7 +107,7 @@
     <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.M4/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.2.0.RC1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.RC3</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.11.631</cia.project.versions.aws>
+    <cia.project.versions.aws>1.11.633</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.25.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>5.7.2</cia.project.versions.javers>
@@ -149,7 +149,7 @@
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
-    <cia.project.versions.istack>3.0.8</cia.project.versions.istack>
+    <cia.project.versions.istack>3.0.9</cia.project.versions.istack>
     <cia.project.versions.jaxb.build>2.4.0</cia.project.versions.jaxb.build>
     <cia.project.versions.jaxb.api.runtime>2.4.0</cia.project.versions.jaxb.api.runtime>
     <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
@@ -167,7 +167,7 @@
     <cia.project.versions.xerces>2.12.0.SP02</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.19</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>10.0.0-alpha0</cia.project.versions.jetty>
+    <cia.project.versions.jetty>10.0.0.alpha1</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>9.4.15.v20190215</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
