@@ -33,11 +33,16 @@ public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer {
 
 	@Override
 	public void configure(LuceneAnalysisConfigurationContext context) {
+		
 		context.analyzer("ngram").custom().tokenizer(StandardTokenizerFactory.class)
 		.tokenFilter(LowerCaseFilterFactory.class).tokenFilter(NGramFilterFactory.class)
-		.param("minGramSize", "3").param("maxGramSize", "3").analyzer("se").custom()
+		.param("minGramSize", "3").param("maxGramSize", "3");
+		
+		context.analyzer("se").custom()
 		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
-		.tokenFilter(SwedishLightStemFilterFactory.class).analyzer("en").custom()
+		.tokenFilter(SwedishLightStemFilterFactory.class);
+		
+		context.analyzer("en").custom()
 		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
 		.tokenFilter(PorterStemFilterFactory.class);		
 	}

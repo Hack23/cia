@@ -202,7 +202,7 @@
 			<property name="hibernate.search.enable_configuration_property_tracking" value="false" />
 			<property name="hibernate.search.automatic_indexing.strategy" value="none" />
 			
-			<property name="hibernate.search.mapping_configurer" value="com.hack23.cia.service.data.impl.DataSearchMapping"/>
+			<property name="hibernate.search.mapping.configurer" value="com.hack23.cia.service.data.impl.DataSearchMapping"/>
 			<property name="hibernate.search.default_backend" value="myBackend"/>
 			<property name="hibernate.search.indexing_strategy" value="manual"/>
 			<property name="hibernate.search.autoregister_listeners" value="false"/>
@@ -213,7 +213,7 @@
 			<property name="hibernate.search.backends.myBackend.lucene_version" value="8.2.0"/>
 			<property name="hibernate.search.backends.myBackend.directory_provider" value="local_directory"/>
 			<property name="hibernate.search.backends.myBackend.directory.root" value=""/>
-			<property name="hibernate.search.backends.myBackend.analysis_configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
+			<property name="hibernate.search.backends.myBackend.analysis.configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
 
 
 		</properties>
