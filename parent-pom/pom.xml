@@ -103,7 +103,7 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <!-- <cia.project.versions.spring>5.1.6.RELEASE/5.2.0.RC1/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.2.0.RC2</cia.project.versions.spring>
+    <cia.project.versions.spring>5.2.0.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.M4/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.2.0.RC1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.2.0.RC3</cia.project.versions.spring.data>
