@@ -757,6 +757,10 @@
           <artifactId>jna</artifactId>
           <groupId>net.java.dev.jna</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>kotlin-stdlib</artifactId>
+          <groupId>org.jetbrains.kotlin</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
