@@ -47,7 +47,7 @@ final class WorldbankTopicApiImpl extends BaseWorldBankApiImpl implements WorldB
 	private static final String PROBLEM_GETTING_WORLDBANK_TOPIC_LIST = "Problem getting worldbank topic list";
 
 	/** The Constant TOPICS. */
-	private static final String TOPICS = "https://api.worldbank.org/topics?per_page=3000";
+	private static final String TOPICS = "https://api.worldbank.org/v2/topics?per_page=3000";
 
 	/**
 	 * The Constant

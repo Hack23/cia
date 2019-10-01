@@ -54,9 +54,11 @@ public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFuncti
 	@Test
 	public void getIndicatorsWithSwedishDataTest() throws Exception {
 		final List<IndicatorElement> indicators = worlbankApi.getIndicators();
+		assertFalse(indicators.isEmpty());
 		final List<String> indicatorsWithSwedishData = worlbankApi.getIndicatorsWithSwedishData();
 		assertNotNull("Expect indicators", indicatorsWithSwedishData);
-		assertTrue("Expect above 1500 indicators", indicatorsWithSwedishData.size() >= 1500);		
+		assertFalse(indicatorsWithSwedishData.isEmpty());
+		assertTrue("Expect above 1400 indicators", indicatorsWithSwedishData.size() >= 1400);		
 		assertNotEquals(indicators.size(), indicatorsWithSwedishData);
 	}
 	
