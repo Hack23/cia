@@ -129,7 +129,7 @@
     <cia.project.versions.hibernate>5.4.6.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.4.6.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.4.6.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.4.5.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.4.6.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.1.0.Alpha6</cia.project.versions.hibernate.build.validator>
@@ -195,7 +195,7 @@
       <dependency>
         <groupId>com.ibm.icu</groupId>
         <artifactId>icu4j</artifactId>
-        <version>64.2</version>
+        <version>65.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.ant</groupId>
