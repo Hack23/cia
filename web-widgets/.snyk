@@ -30,3 +30,8 @@ patch:
         patched: '2019-07-05T18:16:15.147Z'
     - npm-check-updates > snyk > snyk-go-plugin > graphlib > lodash:
         patched: '2019-07-05T18:16:15.147Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - npm-check-updates > pacote > make-fetch-happen > https-proxy-agent:
+        patched: '2019-10-03T15:52:25.003Z'
+    - npm-check-updates > pacote > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2019-10-03T15:52:25.003Z'
