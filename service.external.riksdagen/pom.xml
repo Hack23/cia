@@ -128,5 +128,5 @@
       <artifactId>logback-classic</artifactId>
     </dependency>
   </dependencies>
-  <reporting />
+  <reporting></reporting>
 </project>
