@@ -1,0 +1,8 @@
+workflow "Package" {
+  on = "push"
+}
+
+action "package" {
+  uses = "xlui/action-maven-cli/jdk11@master"
+  args = "clean package"
+}
