@@ -7,7 +7,6 @@ before_install:
 addons:
   sonarcloud:
     organization: "hack23"
-    github_token: "$GITHUB_TOKEN"
   chrome: stable
   apt:
     update: true    
