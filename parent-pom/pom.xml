@@ -145,7 +145,7 @@
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>3.1.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>3.2.1</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>3.3.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
@@ -176,7 +176,7 @@
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.27</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
-    <jacoco.version>0.8.4</jacoco.version>
+    <jacoco.version>0.8.5</jacoco.version>
     <compiler.plugin.version>3.8.1</compiler.plugin.version>
     <surefire.version>3.0.0-M3</surefire.version>
     <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
@@ -624,7 +624,7 @@
             <dependency>
               <groupId>org.jacoco</groupId>
               <artifactId>org.jacoco.report</artifactId>
-              <version>0.8.4</version>
+              <version>0.8.5</version>
               <exclusions>
                 <exclusion>
                   <artifactId>asm-debug-all</artifactId>
@@ -699,7 +699,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.2.1</version>
+              <version>3.3.0</version>
             </dependency>
           </dependencies>
           <inherited>true</inherited>
@@ -1031,7 +1031,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.2.1</version>
+              <version>3.3.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1475,7 +1475,7 @@
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
         <surefire.version>3.0.0-M3</surefire.version>
       </properties>
@@ -1496,7 +1496,7 @@
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
         <surefire.version>3.0.0-M3</surefire.version>
       </properties>
@@ -1517,7 +1517,7 @@
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
         <surefire.version>3.0.0-M3</surefire.version>
       </properties>
@@ -1538,7 +1538,7 @@
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
         <surefire.version>3.0.0-M3</surefire.version>
       </properties>
@@ -1938,7 +1938,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.4</version>
+            <version>0.8.5</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
