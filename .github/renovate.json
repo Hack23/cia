@@ -1,5 +1,0 @@
-{
-  "extends": ["config:base"],
-  "requiredStatusChecks": null,
-  "automerge": true
-}

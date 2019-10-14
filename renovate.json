@@ -1,6 +1,6 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
+  "requiredStatusChecks": null,
+  "automerge": true,
   "pinDigests": false  
 }
