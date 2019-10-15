@@ -20,7 +20,7 @@ pipeline {
 	   
 	   stage('QA:Test') {
 	      steps {
-	         sh "xvfb-run --server-args=""-screen 0 1280x800x24"" mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -DforkMode=once"
+	         sh "echo placeholder"
 	      }
 	   }
 	   	   
@@ -46,7 +46,7 @@ pipeline {
 		   	   
 	   stage ("publish QA result to sonarqube") { 
 	      steps {
-	         sh "##mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.reportPath=dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html"
+	         sh "echo placeholder"
 		      }
 	   
 	    }
