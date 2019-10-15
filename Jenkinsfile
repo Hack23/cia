@@ -27,6 +27,10 @@ pipeline {
 		}
 	
 	   stage ("SCA:Known vulnerabilities") {  
+	      tools { 
+		        jdk 'Java8' 
+		    }
+	   	
 	   
 	      steps {
 	         sh "mvn org.owasp:dependency-check-maven:5.2.2:check -Dformat=ALL -Dsuppression=$PWD/parent-pom/src/config/suppressions.xml -Dscan=$PWD/citizen-intelligence-agency/target/"
