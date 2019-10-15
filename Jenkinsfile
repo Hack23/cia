@@ -70,27 +70,17 @@ pipeline {
 	     
 	     
 	     
-	   stage ("Prepare cloud environment resources") {
-	   
-	   def branches = [:]
-	    branches["branch${0}"] = { try { stage ("Publish template S3") {} } catch (e) {}}
-	    branches["branch${1}"] = { try { stage ("Publish dist S3") {} } catch (e) {}}
+	   stage ("Prepare cloud environment resources") {}	   
+	   stage ("Publish template S3") {}
+	   stage ("Publish dist S3") {}
 	    
-	    parallel branches
-	   }
-	
 	   stage ("Setup cloud environment") {  }
 	   
-	   stage ("Cloud validation") {
-	   
-	    def branches = [:]
-	    
-	    branches["branch${0}"] = { try { stage ("Web Performance Rating") { } } catch (e) {}}
-	    branches["branch${1}"] = { try { stage ("System Roles Test") { } } catch (e) {}}
-	    branches["branch${2}"] = { try { stage ("Security SSL Rating") {} } catch (e) {}}
-	    branches["branch${3}"] = { try { stage ("Security Baselinescan") {  } } catch (e) {}}
-	    parallel branches
-	   }
+	   stage ("Cloud validation") {}	    
+	   stage ("Web Performance Rating") { }
+	   stage ("System Roles Test") { }
+       stage ("Security SSL Rating") {}
+	   stage ("Security Baselinescan") {  }
 	
 	   stage ("Tear down cloud environment") {
 	       
