@@ -8,15 +8,6 @@ pipeline {
         
    stages {
    
-	   stage ("SCA:Update CVE Database") { 
-	      tools { 
-    	    jdk 'Java8' 
-	    	}
-	    	   
-	      steps {
-	         sh "mvn org.owasp:dependency-check-maven:5.2.1:update-only"
-		      }
-	   }
 
 	   stage('Build') {
 	      steps {
@@ -25,8 +16,12 @@ pipeline {
 	   }
 	   
 	   stage('QA:Test') {
+	     environment {
+           MAVEN_OPTS = '-server -Xmx6048m -Xms6048m --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED'
+         }
+	   
 	      steps {
-	         sh "echo placeholder"
+	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
 	      }
 	   }
 	   	   
@@ -36,9 +31,17 @@ pipeline {
 		      }
 		}
 	
-
+	   stage ("SCA:Update CVE Database") { 
+	      tools { 
+    	    jdk 'Java8' 
+	    	}
+	    	   
+	      steps {
+	         sh "mvn org.owasp:dependency-check-maven:5.2.1:update-only"
+		      }
+	   }
 	
-	   stage ("SCA:Known vulnerabilities") { 
+	   stage ("SCA:Scan Known vulnerabilities report") { 
 	   	 tools { 
     	    jdk 'Java8' 
 	    }
@@ -49,15 +52,15 @@ pipeline {
 	   }
 	
 	
-		stage ("SAST:AWS Cloud setup") {  
+		stage ("SAST: Scan AWS Cloud report") {  
 	      steps {
-	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > cia-dist-cloudformation/target/cia-dist-cloudformation.yml.nagscan | true"
+	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan | true"
 		      }
 		}
 		   	   
-	   stage ("publish QA result to sonarqube") { 
+	   stage ("SAST: Scan code and submit reports") { 
 	      steps {
-	         sh "echo placeholder"
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.reportPath=dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html"
 		      }
 	   
 	    }
