@@ -20,7 +20,7 @@ pipeline {
 	   
 	   stage('QA:Test') {
 	      steps {
-	         sh "##xvfb-run --server-args="-screen 0 1280x800x24" mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
+	         sh "xvfb-run --server-args="-screen 0 1280x800x24" mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -DforkMode=once"
 	      }
 	   }
 	   	   
@@ -60,29 +60,69 @@ pipeline {
 	   }
 	          
 	   stage ("System test JDK12") {
-	   
+	   	   	      steps {
+	              sh "echo placeholder"
+		      }
 	    }
-	   stage ("System test JDK13") { 	   
+	   stage ("System test JDK13") { 	
+	   	   	   	      steps {
+	              sh "echo placeholder"
+		      }   
 	   
 	   }
 	   stage ("System test JDK14") {
+	   
+	   	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   
 	    }
 	     
 	     
 	     
-	   stage ("Prepare cloud environment resources") {}	   
-	   stage ("Publish template S3") {}
-	   stage ("Publish dist S3") {}
+	   stage ("Prepare cloud environment resources") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   }	   
+	   stage ("Publish template S3") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   }
+	   stage ("Publish dist S3") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   }
 	    
-	   stage ("Setup cloud environment") {  }
+	   stage ("Setup cloud environment") { 	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	    }
 	   
-	   stage ("Cloud validation") {}	    
-	   stage ("Web Performance Rating") { }
-	   stage ("System Roles Test") { }
-       stage ("Security SSL Rating") {}
-	   stage ("Security Baselinescan") {  }
+	   stage ("Cloud validation") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   }	    
+	   stage ("Web Performance Rating") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	    }
+	   stage ("System Roles Test") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	    }
+       stage ("Security SSL Rating") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+       }
+	   stage ("Security Baselinescan") {	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	     }
 	
 	   stage ("Tear down cloud environment") {
+	       	   	   	      steps {
+	              sh "echo placeholder"
+		      }
 	       
 	   }
 	   
