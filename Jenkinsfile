@@ -44,7 +44,7 @@ pipeline {
 	    }
 	    	   
 	      steps {
-	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -Dsuppression=$PWD/parent-pom/src/config/suppressions.xml -Dscan=$PWD/citizen-intelligence-agency/target/"
+	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=$PWD/parent-pom/src/config/suppressions.xml -Dscan=$PWD/citizen-intelligence-agency/target/"
 		      }
 	   }
 	
@@ -68,13 +68,14 @@ pipeline {
 	              sh "mvn com.hack23.maven:sonar-quality-gates-maven-plugin:1.0.0:inspect  -Dsonar.host.url=http://192.168.1.15:9000/sonar"
 		      }
 	   
-	   }
+	   }	     
 	          
 	   stage ("System test JDK12") {
 	   	   	      steps {
 	              sh "echo placeholder"
 		      }
 	    }
+	    
 	   stage ("System test JDK13") { 	
 	   	   	   	      steps {
 	              sh "echo placeholder"
@@ -82,12 +83,23 @@ pipeline {
 	   
 	   }
 	   stage ("System test JDK14") {
-	   
 	   	   	   	      steps {
 	              sh "echo placeholder"
-		      }
+		      }	   
+	   }
 	   
-	    }
+	   
+	   stage ("Build docker image") {
+	   	   steps {
+	              sh "echo placeholder"
+		 }
+	   }
+	   
+	   stage ("Security scan docker image") {
+	   	   steps {
+	              sh "echo placeholder"
+		 }
+	   }
 	     
 	     
 	     
