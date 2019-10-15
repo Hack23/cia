@@ -7,6 +7,11 @@ pipeline {
     }
         
    stages {
+	   stage ("SCA:Update CVE Database") {  	   
+	      steps {
+	         sh "mvn org.owasp:dependency-check-maven:5.2.1:update-only"
+		      }
+	   }
 
 	   stage('Build') {
 	      steps {
@@ -26,12 +31,9 @@ pipeline {
 		      }
 		}
 	
-	   stage ("SCA:Known vulnerabilities") {  
-	      tools { 
-		        jdk 'Java8' 
-		    }
-	   	
-	   
+
+	
+	   stage ("SCA:Known vulnerabilities") {  	   
 	      steps {
 	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -Dsuppression=$PWD/parent-pom/src/config/suppressions.xml -Dscan=$PWD/citizen-intelligence-agency/target/"
 		      }
