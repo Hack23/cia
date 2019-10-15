@@ -126,7 +126,10 @@ pipeline {
 	       
 	   }
 	   
-	   stage ("Completed") {}
+	   stage ("Completed") {	       	   	   	      steps {
+	              sh "echo placeholder"
+		      }
+	   }
           
    }
 }
