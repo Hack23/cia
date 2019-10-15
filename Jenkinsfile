@@ -20,7 +20,7 @@ pipeline {
 	   
 	   stage('QA:Test') {
 	      steps {
-	         sh "xvfb-run --server-args="-screen 0 1280x800x24" mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -DforkMode=once"
+	         sh "xvfb-run --server-args=""-screen 0 1280x800x24"" mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -DforkMode=once"
 	      }
 	   }
 	   	   
