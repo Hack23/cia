@@ -50,8 +50,37 @@ pipeline {
 	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
 		      }
 	   }
+
+		stage ("DAST: start app") {  
+	      steps {
+	          sh "echo zap baseline scan "
+		      }
+		}
 	
-	
+		stage ("DAST: Scan running app") {  
+	      steps {
+	          sh "echo zap baseline scan "
+		      }
+		}
+
+		stage ("DAST: stop app") {  
+	      steps {
+	          sh "echo zap baseline scan "
+		      }
+		}
+		
+	   stage ("Build docker image") {
+	   	   steps {
+	              sh "echo placeholder"
+		 }
+	   }
+	   
+	   stage ("Security scan docker image") {
+	   	   steps {
+	              sh "echo placeholder"
+		 }
+	   }
+		
 		stage ("SAST: Scan AWS Cloud report") {  
 	      steps {
 	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan | true"
@@ -100,21 +129,7 @@ pipeline {
 	   	   	   	      steps {
 	              sh "echo placeholder"
 		      }	   
-	   }
-	   
-	   
-	   stage ("Build docker image") {
-	   	   steps {
-	              sh "echo placeholder"
-		 }
-	   }
-	   
-	   stage ("Security scan docker image") {
-	   	   steps {
-	              sh "echo placeholder"
-		 }
-	   }
-	     
+	   }	     
 	     
 	     
 	   stage ("Prepare cloud environment resources") {	   	   	      steps {
