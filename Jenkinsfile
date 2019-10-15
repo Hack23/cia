@@ -44,7 +44,7 @@ pipeline {
 	    }
 	    	   
 	      steps {
-	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=$PWD/parent-pom/src/config/suppressions.xml -Dscan=$PWD/citizen-intelligence-agency/target/"
+	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
 		      }
 	   }
 	
@@ -71,18 +71,29 @@ pipeline {
 	   }	     
 	          
 	   stage ("System test JDK12") {
+	   	   	 tools { 
+    	    jdk 'JDK12' 
+	    }
+	   
 	   	   	      steps {
 	              sh "echo placeholder"
 		      }
 	    }
 	    
 	   stage ("System test JDK13") { 	
+	   	   	 tools { 
+    	    jdk 'JDK13' 
+	    }
+
 	   	   	   	      steps {
 	              sh "echo placeholder"
 		      }   
 	   
 	   }
 	   stage ("System test JDK14") {
+	   	   	 tools { 
+    	    jdk 'JDK14' 
+	    }
 	   	   	   	      steps {
 	              sh "echo placeholder"
 		      }	   
