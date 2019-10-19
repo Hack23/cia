@@ -73,13 +73,17 @@ pipeline {
 		
 	   stage ("Build docker image") {
 	   	   steps {
-	              sh "echo placeholder"
+	              sh "mvn -f cia-dist-docker/pom.xml clean install"
 		 }
 	   }
 	   
 	   stage ("Security scan docker image") {
-	   	   steps {
-	              sh "echo placeholder"
+	     environment {
+           VERSION = readMavenPom().getVersion()
+         }
+
+	   	  steps {
+	              sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL"
 		 }
 	   }
 		
