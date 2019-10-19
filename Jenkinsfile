@@ -59,7 +59,7 @@ pipeline {
 	
 		stage ("DAST: Scan running app") {  
 	      steps {
-	          sh "docker run -v ${pwd}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J baseline-scan-report.json report_json -x baseline-scan-report.xml -r baseline-scan-report.html"
+	          sh "docker run -v ${pwd}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J baseline-scan-report.json report_json -x baseline-scan-report.xml -r baseline-scan-report.html | true"
 		      }
 		}
 
