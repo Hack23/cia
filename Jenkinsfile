@@ -53,7 +53,7 @@ pipeline {
 
 		stage ("DAST: start app") {  
 	      steps {
-	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 ${JETTYPID} | true"	      
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} | true"	      
 	          sh "cd citizen-intelligence-agency; nohup mvn -e exec:java -Dexec.classpathScope='test' -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer > target/jettyzap.log 2>&1 &"
 		  }
 		}
@@ -67,7 +67,7 @@ pipeline {
 
 		stage ("DAST: stop app") {  
 	      steps {
-	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 ${JETTYPID} | true"
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} | true"
 		      }
 		}
 		
