@@ -21,7 +21,7 @@ pipeline {
          }
 	   
 	      steps {
-	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
+	         sh "echo xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
 	      }
 	   }
 	   	   
@@ -52,20 +52,20 @@ pipeline {
 	   }
 
 		stage ("DAST: start app") {  
-	      steps {
-	          sh "echo zap baseline scan "
-		      }
+	      steps {	      
+	          sh "cd citizen-intelligence-agency; nohup mvn -e exec:java -Dexec.classpathScope='test' -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer > target/jettyzap.log 2>&1 &"
+		  }
 		}
 	
 		stage ("DAST: Scan running app") {  
 	      steps {
-	          sh "echo zap baseline scan "
+	          sh "docker run -v ${pwd}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J baseline-scan-report.json report_json -x baseline-scan-report.xml -r baseline-scan-report.html"
 		      }
 		}
 
 		stage ("DAST: stop app") {  
 	      steps {
-	          sh "echo zap baseline scan "
+	          sh "jetty_pid=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 $jetty_pid"
 		      }
 		}
 		
@@ -89,9 +89,8 @@ pipeline {
 		   	   
 	   stage ("SAST: Scan code and submit reports") { 
 	      steps {
-	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.reportPath=dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html"
-		      }
-	   
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.reportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/site/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml"
+		      }	   
 	    }
 	
 	   stage ("Check Quality gate") { 
