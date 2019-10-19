@@ -53,7 +53,7 @@ pipeline {
 
 		stage ("DAST: start app") {  
 	      steps {
-	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} ; true"	      
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} || true"	      
 	          sh "cd citizen-intelligence-agency; nohup mvn -e exec:java -Dexec.classpathScope='test' -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer > target/jettyzap.log 2>&1 &"
 		  }
 		}
@@ -61,13 +61,13 @@ pipeline {
 		stage ("DAST: Scan running app") {  
 	      steps {
 	          sh "docker system prune -a -f"
-	          sh "docker run -v ${pwd}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J baseline-scan-report.json report_json -x baseline-scan-report.xml -r baseline-scan-report.html ; true"
+	          sh "docker run -v ${pwd}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J baseline-scan-report.json report_json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
 		      }
 		}
 
 		stage ("DAST: stop app") {  
 	      steps {
-	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} ; true"
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} || true"
 		      }
 		}
 		
@@ -85,7 +85,7 @@ pipeline {
 		
 		stage ("SAST: Scan AWS Cloud report") {  
 	      steps {
-	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan ; true"
+	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"
 		      }
 		}
 		   	   
