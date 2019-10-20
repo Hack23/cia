@@ -84,7 +84,6 @@ pipeline {
 
 	   	  steps {
 	              sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL"
-	              sh "curl -s https://ci-tools.anchore.io/inline_scan-v0.5.0 | bash -s -- -h hack23/cia:$VERSION"
 		 }
 	   }
 		
