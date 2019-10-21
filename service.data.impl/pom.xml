@@ -943,12 +943,12 @@
           <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${cia.project.versions.hibernate.build.validator}</version>
+            <version>${cia.project.versions.hibernate.validator}</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${cia.project.versions.hibernate.build}</version>
+            <version>${cia.project.versions.hibernate}</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate.search</groupId>

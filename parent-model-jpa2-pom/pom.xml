@@ -61,7 +61,7 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-jpamodelgen</artifactId>
-        <version>${cia.project.versions.hibernate.jpamodelgen}</version>
+        <version>${cia.project.versions.hibernate}</version>
         <exclusions>
           <exclusion>
             <artifactId>slf4j-api</artifactId>
@@ -117,7 +117,7 @@
             <dependency>
               <groupId>org.hibernate</groupId>
               <artifactId>hibernate-jpamodelgen</artifactId>
-              <version>${cia.project.versions.hibernate.jpamodelgen}</version>
+              <version>${cia.project.versions.hibernate}</version>
             </dependency>
             <dependency>
               <groupId>org.hibernate.search</groupId>

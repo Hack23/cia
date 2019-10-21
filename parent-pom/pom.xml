@@ -127,12 +127,10 @@
     <cia.project.versions.hibernate.search>6.0.0.Beta1</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.2.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.4.6.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.4.6.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.4.6.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.4.6.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>6.1.0.Alpha6</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.10.2</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.8</cia.project.versions.postgresql>
@@ -892,12 +890,12 @@
             <dependency>
               <groupId>org.hibernate</groupId>
               <artifactId>hibernate-entitymanager</artifactId>
-              <version>${cia.project.versions.hibernate.build}</version>
+              <version>${cia.project.versions.hibernate}</version>
             </dependency>
             <dependency>
               <groupId>org.hibernate</groupId>
               <artifactId>hibernate-entitymanager</artifactId>
-              <version>${cia.project.versions.hibernate.build}</version>
+              <version>${cia.project.versions.hibernate}</version>
             </dependency>
             <dependency>
               <groupId>javax.validation</groupId>
