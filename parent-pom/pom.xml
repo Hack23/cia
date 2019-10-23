@@ -127,7 +127,7 @@
     <cia.project.versions.hibernate.search>6.0.0.Beta1</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.2.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.4.7.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.tools>5.4.6.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.4.7.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
