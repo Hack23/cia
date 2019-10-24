@@ -223,8 +223,8 @@ $ sudo dpkg -i cia-dist-deb-2019.10.3.deb
 
 # Application package diagram overview
 
-![Package overview diagram](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/overview-summary.png)
-[Api docs](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/index.html)
+![Package overview diagram](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/package-dependencies.svg)
+[Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
 
 # Cloudformation template diagram
