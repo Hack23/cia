@@ -432,6 +432,10 @@
             <artifactId>jmxtools</artifactId>
             <groupId>com.sun.jdmk</groupId>
           </exclusion>
+          <exclusion>
+            <artifactId>checker-framework</artifactId>
+            <groupId>edu.washington.cs.types.checker</groupId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
