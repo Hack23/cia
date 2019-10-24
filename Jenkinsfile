@@ -12,6 +12,16 @@ pipeline {
 	   stage('Build') {
 	      steps {
 	         sh "mvn clean install -DskipTests"
+	      }
+	   }
+	   	   
+	   stage('QA:Test') {
+	     environment {
+           MAVEN_OPTS = '-server -Xmx6048m -Xms6048m --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED'
+         }
+	   
+	      steps {
+	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
 	         sh "rm -rf */target/site/jacoco-aggregate"
 	         sh "rm -rf */target/site/jacoco-ut"
 	         sh "rm -rf */target/site/jacoco-it"	         
@@ -31,7 +41,7 @@ pipeline {
             }
 	   }
 	   
-	    stage('Record Coverage') {
+	  stage('Record Coverage') {
             when { branch 'master' }
             steps {
                 script {
@@ -49,24 +59,8 @@ pipeline {
                  }
                 step([$class: 'CompareCoverageAction', publishResultAs: 'statusCheck', scmVars: [GIT_URL: env.GIT_URL]])
             }
-        }
-	   
-	   stage('QA:Test') {
-	     environment {
-           MAVEN_OPTS = '-server -Xmx6048m -Xms6048m --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED'
-         }
-	   
-	      steps {
-	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
-	      }
-	   }
-	   	   
-	   stage('Results') {
-	      steps {
-	          archive '**/target/*.deb'
-	      }
-	   }	   
-	   
+       }
+	   	   	   
 	   stage ("SCA:Dependency updates") {  
 	      steps {
 	         sh "mvn org.codehaus.mojo:versions-maven-plugin:2.7:dependency-updates-report -DdependencyUpdatesReportFormats=html,xml"
