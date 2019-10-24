@@ -12,8 +12,44 @@ pipeline {
 	   stage('Build') {
 	      steps {
 	         sh "mvn clean install -DskipTests"
+	         sh "rm -rf */target/site/jacoco-aggregate"
+	         sh "rm -rf */target/site/jacoco-ut"
+	         sh "rm -rf */target/site/jacoco-it"	         
 	      }
+	        post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                    
+                    jacoco( 
+				      execPattern: '**/target/*.exec',
+				      classPattern: '**/target/classes',
+				      sourcePattern: '**/src/main/java',
+				      exclusionPattern: '**/src/test*'
+				   )
+                    
+                }
+            }
 	   }
+	   
+	    stage('Record Coverage') {
+            when { branch 'master' }
+            steps {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                 }
+                step([$class: 'MasterCoverageAction', scmVars: [GIT_URL: env.GIT_URL]])
+            }
+        }
+        
+        stage('PR Coverage to Github') {
+            when { allOf {not { branch 'master' }; expression { return env.CHANGE_ID != null }} }
+            steps {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                 }
+                step([$class: 'CompareCoverageAction', publishResultAs: 'statusCheck', scmVars: [GIT_URL: env.GIT_URL]])
+            }
+        }
 	   
 	   stage('QA:Test') {
 	     environment {
@@ -25,6 +61,12 @@ pipeline {
 	      }
 	   }
 	   	   
+	   stage('Results') {
+	      steps {
+	          archive '**/target/*.deb'
+	      }
+	   }	   
+	   
 	   stage ("SCA:Dependency updates") {  
 	      steps {
 	         sh "mvn org.codehaus.mojo:versions-maven-plugin:2.7:dependency-updates-report -DdependencyUpdatesReportFormats=html,xml"
@@ -37,7 +79,7 @@ pipeline {
 	    	}
 	    	   
 	      steps {
-	         sh "mvn org.owasp:dependency-check-maven:5.2.1:update-only"
+	         sh "mvn org.owasp:dependency-check-maven:5.2.2:update-only"
 		      }
 	   }
 	
@@ -47,7 +89,7 @@ pipeline {
 	    }
 	    	   
 	      steps {
-	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.1:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
+	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.2:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
 		      }
 	   }
 
