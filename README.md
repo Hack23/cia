@@ -9,8 +9,8 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
 [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb)
-[![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/view/SystemQualityAssesment/job/Citizen-Intelligence-Agency-Complete-sonar-report.svg)](https://www.hack23.com/jenkins/)
-[![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/view/SystemQualityAssesment/job/Citizen-Intelligence-Agency-Complete-sonar-report.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-sonar-report/lastCompletedBuild/testReport/)
+[![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/)
+[![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastCompletedBuild/testReport/)
 [![SonarQube Coverage](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Acia-all)
 [![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![SonarQube Tech Debt](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=sqale_debt_ratio)](https://www.hack23.com/sonar/component_measures?id=com.hack23.cia%3Acia-all)
@@ -24,8 +24,6 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
-[![Anchore Image Overview](https://anchore.io/service/badges/image/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939)](https://anchore.io/image/dockerhub/hack23%2Fcia%3A2019.10.3)	
-[![Anchore Image Policy](https://anchore.io/service/badges/policy/e06eb7dba3cc942f15dbb385241750aa77737a44da7bb0b6a2ef76abbe7f2939?registry=dockerhub&repository=hack23/cia&tag=2019.10.3)](https://anchore.io)
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
 [![](https://codescene.io/projects/4166/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/4166/jobs/latest-successful/results)
@@ -235,4 +233,5 @@ $ sudo dpkg -i cia-dist-deb-2019.10.3.deb
 
 [![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)
 
-[![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg) [![Greenkeeper badge](https://badges.greenkeeper.io/Hack23/cia.svg)](https://greenkeeper.io/)
+[![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)
+
