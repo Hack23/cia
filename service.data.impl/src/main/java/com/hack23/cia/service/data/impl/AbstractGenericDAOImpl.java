@@ -363,6 +363,6 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	@Override
 	public final List<T> search(final String searchExpression, final Integer maxResults, final String... fields) {
-		return getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -> t.match().onFields(fields).matching(searchExpression)).fetchHits(maxResults);
+		return getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -> t.match().fields(fields).matching(searchExpression)).fetchHits(maxResults);
 	}
 }

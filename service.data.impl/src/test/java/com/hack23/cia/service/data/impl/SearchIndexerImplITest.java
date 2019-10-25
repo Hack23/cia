@@ -68,7 +68,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Transactional(timeout=30)
 	public void testSearchIndex() throws Exception {
 		final List<DocumentContentData> result = Search.session(entityManager).search(DocumentContentData.class).asEntity()
-	        .predicate(t -> t.match().onFields("content").matching("programmering")).fetchHits(500);
+	        .predicate(t -> t.match().fields("content").matching("programmering")).fetchHits(500);
 		assertTrue("expect some result",result.size()> 0);
 	}
 

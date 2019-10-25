@@ -124,13 +124,13 @@
     <cia.project.versions.logback>1.3.0-alpha5</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>7.28.0.Final</cia.project.versions.drools>
-    <cia.project.versions.hibernate.search>6.0.0.Beta1</cia.project.versions.hibernate.search>
+    <cia.project.versions.hibernate.search>6.0.0.Beta2</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.2.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.4.7.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.tools>5.4.7.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.validator>6.1.0.Alpha6</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.1.0.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.1.0.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.10.2</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.8</cia.project.versions.postgresql>

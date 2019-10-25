@@ -121,7 +121,7 @@
             </dependency>
             <dependency>
               <groupId>org.hibernate.search</groupId>
-              <artifactId>hibernate-search-mapper-pojo</artifactId>
+              <artifactId>hibernate-search-mapper-pojo-base</artifactId>
               <version>${cia.project.versions.hibernate.search}</version>
             </dependency>
           </dependencies>
