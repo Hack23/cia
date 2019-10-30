@@ -8,9 +8,9 @@ Requirements
 
  To build and run the Citizen Intelligence Agency you need to install the following software.
 
- * Compiler & Runtime : JDK 8 (1.8) & JDK 9 (9)  {{{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}download}}.
+ * Compiler & Runtime : JDK 11 & JDK 11-14  {{{https://adoptopenjdk.net/}https://adoptopenjdk.net/}}.
 
- * Database : PostgreSQL 10.x {{{http://www.postgresql.org/}download}}
+ * Database : PostgreSQL 11.x {{{http://www.postgresql.org/}download}}
 
  * Build System : Maven 3.5.3 {{{http://maven.apache.org/download.html}download}}
 
@@ -45,7 +45,6 @@ Build the application & run test
  Now everything should be ready for you to build the application,
  execute the following commands to build & run
 
- Install toolchain JDK8/JDK9 and install following in .m2 {{{https://github.com/Hack23/cia/blob/master/parent-pom/toolchain/toolchains.xml}https://github.com/Hack23/cia/blob/master/parent-pom/toolchain/toolchains.xml}}
 
  $ cd cia/citizen-intelligence-agency
 
@@ -53,8 +52,6 @@ Build the application & run test
 
  $ ant run
 
-
- NOTE: Set the variable MAVEN_OPTS="-Xmx1024m -Xms512m -XX:MaxPermSize=512m" if you get java memory exception.
 
 Test Citizen Intelligence Agency
 
