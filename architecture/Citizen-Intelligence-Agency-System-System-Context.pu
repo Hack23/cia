@@ -16,16 +16,16 @@ actor "Admin" <<Person>> as 2 #519823
 note right of 2
   Manager of the system
 end note
+actor "User" <<Person>> as 1 #519823
+note right of 1
+  User of the system
+end note
 rectangle 3 <<Software System>> #1168bd [
   Citizen Intelligence Agency System
   --
   Tracking politicians like
   bugs!
 ]
-actor "User" <<Person>> as 1 #519823
-note right of 1
-  User of the system
-end note
 rectangle 4 <<Software System>> #1168bd [
   data.riksdagen.se
   --
