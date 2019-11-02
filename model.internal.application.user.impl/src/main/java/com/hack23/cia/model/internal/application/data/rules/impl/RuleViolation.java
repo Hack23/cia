@@ -41,7 +41,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 @Entity(name = "RuleViolation")
 @Table(name = "RULE_VIOLATION")
-public final class RuleViolation implements Serializable {
+public class RuleViolation implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
