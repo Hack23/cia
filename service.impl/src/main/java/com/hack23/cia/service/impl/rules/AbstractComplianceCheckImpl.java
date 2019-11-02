@@ -29,10 +29,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
-import com.hack23.cia.service.api.action.kpi.RuleViolation;
-import com.hack23.cia.service.api.action.kpi.Status;
 
 /**
  * The Class AbstractComplianceCheckImpl.

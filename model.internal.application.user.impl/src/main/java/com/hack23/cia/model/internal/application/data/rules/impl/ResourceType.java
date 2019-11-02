@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.api.action.kpi;
+package com.hack23.cia.model.internal.application.data.rules.impl;
 
 /**
  * The Enum ResourceType.

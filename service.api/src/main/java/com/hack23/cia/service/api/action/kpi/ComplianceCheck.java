@@ -21,6 +21,9 @@ package com.hack23.cia.service.api.action.kpi;
 import java.io.Serializable;
 import java.util.List;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+
 /**
  * The Interface ComplianceCheck.
  */

@@ -25,8 +25,8 @@ import java.util.HashSet;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.hack23.cia.service.api.action.kpi.ResourceType;
-import com.hack23.cia.service.api.action.kpi.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.navigator.Navigator;

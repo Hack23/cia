@@ -27,6 +27,9 @@ import java.util.Map;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.MapUtils;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 /**

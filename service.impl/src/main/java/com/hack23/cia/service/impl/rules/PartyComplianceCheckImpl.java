@@ -26,7 +26,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 
 /**
  * The Class PartyComplianceCheckImpl.

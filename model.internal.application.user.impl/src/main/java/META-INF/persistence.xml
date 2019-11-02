@@ -76,7 +76,8 @@ http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistenc
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
-        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
+        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>        
+        <class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>      
         <class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
         <class>com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent</class>
         <class>com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration</class>

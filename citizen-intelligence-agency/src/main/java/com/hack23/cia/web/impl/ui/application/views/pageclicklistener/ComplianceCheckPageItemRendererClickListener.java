@@ -20,8 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.ui.UI;
