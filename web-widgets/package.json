@@ -1,5 +1,5 @@
 {
-  "name": "frontend-project",
+  "name": "web-widgets-test",
   "version": "0.0.1",
   "devDependencies": {
     "jasmine-core": "3.5.0",

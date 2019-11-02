@@ -73,7 +73,7 @@ pipeline {
 	    	}
 	    	   
 	      steps {
-	         sh "mvn org.owasp:dependency-check-maven:5.2.2:update-only"
+	         sh "mvn org.owasp:dependency-check-maven:update-only"
 		      }
 	   }
 	
@@ -83,7 +83,7 @@ pipeline {
 	    }
 	    	   
 	      steps {
-	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:5.2.2:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
+	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
 		      }
 	   }
 
