@@ -202,6 +202,10 @@
           <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>lucene-facet</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>lucene-queryparser</artifactId>
           <groupId>org.apache.lucene</groupId>
         </exclusion>
