@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,6 +40,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
+import com.hack23.cia.service.data.api.RuleViolationDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.hack23.cia.service.impl.rules.RulesEngine;
@@ -58,6 +60,10 @@ public final class ComplianceCheckServiceImpl
 	@Autowired
 	private RulesEngine rulesEngine;
 
+	@Autowired
+	@Qualifier("RuleViolationDAO")	
+	private RuleViolationDAO ruleViolationDAO;
+	
 	/**
 	 * Instantiates a new compliance check service.
 	 */
@@ -74,13 +80,12 @@ public final class ComplianceCheckServiceImpl
 			return inputValidation;
 		}
 
-
 		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
-
 		final List<RuleViolation> ruleViolations = new ArrayList<>();
-
-		for (final ComplianceCheck check : complianceList) {
-			ruleViolations.addAll(check.getRuleViolations());
+				
+		for (ComplianceCheck complianceCheck : complianceList) {
+			ruleViolationDAO.persist(complianceCheck.getRuleViolations());
+			ruleViolations.addAll(complianceCheck.getRuleViolations());
 		}
 
 		Collections.sort(complianceList, (o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));

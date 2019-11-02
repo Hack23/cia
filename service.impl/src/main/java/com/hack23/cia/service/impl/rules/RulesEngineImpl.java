@@ -84,6 +84,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		ksession.fireAllRules();
 		ksession.dispose();
+				
 		return new ArrayList<>(complianceChecks.values());
 	}
 

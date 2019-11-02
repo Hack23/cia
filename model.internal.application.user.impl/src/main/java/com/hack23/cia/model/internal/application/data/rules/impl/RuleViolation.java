@@ -105,6 +105,7 @@ public class RuleViolation implements Serializable {
 		this.ruleGroup = ruleGroup;
 		this.status = status;
 		this.positive = positive;
+		this.detectedDate = new Date();
 	}
 
 
