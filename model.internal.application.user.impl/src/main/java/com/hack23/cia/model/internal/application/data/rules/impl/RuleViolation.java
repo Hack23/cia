@@ -26,6 +26,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,7 +49,7 @@ public class RuleViolation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** The id. */
-	private long id;
+	private Long id;
 	
     private Date detectedDate;
 
@@ -117,7 +119,8 @@ public class RuleViolation implements Serializable {
 	 */
     @Id
     @Column(name = "ID")
-	public long getId() {
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
 		return id;
 	}
 
@@ -126,7 +129,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param id the new id
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

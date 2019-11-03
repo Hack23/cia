@@ -37,7 +37,12 @@
 			<column name="status" type="VARCHAR(255)" />
 			<column name="positive" type="VARCHAR(255)" />									
 		</createTable>
+	</changeSet>
 
+	<changeSet author="pether" id="2414872417007-327">
+		<addColumn tableName="rule_violation">
+			<column name="rule_name" type="varchar(255)" />
+		</addColumn>
 	</changeSet>
 
 </databaseChangeLog>

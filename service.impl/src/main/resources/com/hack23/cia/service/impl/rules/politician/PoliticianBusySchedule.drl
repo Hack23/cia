@@ -3,7 +3,7 @@ package com.hack23.cia.service.impl.rules.politician
 import org.kie.api.runtime.KieRuntime
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
-import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 import java.util.Date
 import java.util.concurrent.TimeUnit
