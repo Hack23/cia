@@ -18,10 +18,8 @@
 */
 package com.hack23.cia.service.impl.action.kpi;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +30,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -81,11 +78,9 @@ public final class ComplianceCheckServiceImpl
 		}
 
 		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
-		final List<RuleViolation> ruleViolations = new ArrayList<>();
 				
 		for (ComplianceCheck complianceCheck : complianceList) {
 			ruleViolationDAO.persist(complianceCheck.getRuleViolations());
-			ruleViolations.addAll(complianceCheck.getRuleViolations());
 		}
 
 		Collections.sort(complianceList, (o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
