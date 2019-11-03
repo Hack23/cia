@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -30,6 +31,7 @@ import com.github.markash.ui.component.card.CounterStatisticModel;
 import com.github.markash.ui.component.card.CounterStatisticsCard;
 import com.github.markash.ui.component.card.StatisticShow;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
@@ -79,13 +81,18 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		for (final Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
+		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
+				.getDataContainer(RuleViolation.class);
+
+		List<RuleViolation> ruleViolations = dataContainer.getAll();
+
+		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
-		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
+		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			

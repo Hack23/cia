@@ -20,16 +20,10 @@ package com.hack23.cia.service.api.action.kpi;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.collections4.MapUtils;
 
-import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
-import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
-import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 /**
@@ -42,12 +36,6 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 
 	/** The list. */
 	private List<ComplianceCheck> list = new ArrayList<>();
-
-	/** The status map. */
-	private Map<Status, List<RuleViolation>> statusMap = new EnumMap<>(Status.class);
-
-	/** The resource type map. */
-	private Map<ResourceType, List<RuleViolation>> resourceTypeMap = new EnumMap<>(ResourceType.class);
 
 	/**
 	 * Instantiates a new compliance check response.
@@ -77,43 +65,4 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	public void setList(final List<ComplianceCheck> list) {
 		this.list = Collections.unmodifiableList(ListUtils.emptyIfNull(list));
 	}
-
-	/**
-	 * Gets the status map.
-	 *
-	 * @return the status map
-	 */
-	public Map<Status, List<RuleViolation>> getStatusMap() {
-		return Collections.unmodifiableMap(statusMap);
-	}
-
-	/**
-	 * Sets the status map.
-	 *
-	 * @param statusMap
-	 *            the new status map
-	 */
-	public void setStatusMap(final Map<Status, List<RuleViolation>> statusMap) {
-		this.statusMap = Collections.unmodifiableMap(MapUtils.emptyIfNull(statusMap));
-	}
-
-	/**
-	 * Gets the resource type map.
-	 *
-	 * @return the resource type map
-	 */
-	public Map<ResourceType, List<RuleViolation>> getResourceTypeMap() {
-		return Collections.unmodifiableMap(resourceTypeMap);
-	}
-
-	/**
-	 * Sets the resource type map.
-	 *
-	 * @param resourceTypeMap
-	 *            the new resource type map
-	 */
-	public void setResourceTypeMap(final Map<ResourceType, List<RuleViolation>> resourceTypeMap) {
-		this.resourceTypeMap = Collections.unmodifiableMap(MapUtils.emptyIfNull(resourceTypeMap));
-	}
-
 }

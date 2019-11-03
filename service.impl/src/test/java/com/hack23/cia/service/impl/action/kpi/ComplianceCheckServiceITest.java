@@ -58,11 +58,6 @@ public final class ComplianceCheckServiceITest extends AbstractServiceFunctional
 		assertNotNull(EXPECT_A_RESULT,response.getList());
 		assertFalse(response.getList().isEmpty());
 
-		assertNotNull(EXPECT_A_RESULT,response.getStatusMap());
-		assertFalse(response.getStatusMap().isEmpty());
-
-		assertNotNull(EXPECT_A_RESULT,response.getResourceTypeMap());
-		assertFalse(response.getResourceTypeMap().isEmpty());
 	}
 
 	

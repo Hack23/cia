@@ -92,9 +92,6 @@ public final class ComplianceCheckServiceImpl
 
 		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
 		response.setList(complianceList);
-		response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
-		response.setResourceTypeMap(
-				ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
 
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
