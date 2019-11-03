@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -78,7 +79,11 @@ public final class ComplianceCheckServiceImpl
 		}
 
 		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
-				
+			
+		for (RuleViolation ruleViolation : ruleViolationDAO.getAll()) {
+			ruleViolationDAO.delete(ruleViolation);
+		}
+		
 		for (ComplianceCheck complianceCheck : complianceList) {
 			ruleViolationDAO.persist(complianceCheck.getRuleViolations());
 		}
