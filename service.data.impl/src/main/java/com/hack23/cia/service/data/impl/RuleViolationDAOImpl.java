@@ -26,7 +26,7 @@ import com.hack23.cia.service.data.api.RuleViolationDAO;
 /**
  * The Class RuleViolationDAOImpl.
  */
-@Repository("RuleViolationDAOI")
+@Repository("RuleViolationDAO")
 final class RuleViolationDAOImpl extends AbstractGenericDAOImpl<RuleViolation, Long> implements RuleViolationDAO {
 
 	/**
