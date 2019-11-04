@@ -54,9 +54,9 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	 */
 	private static void navigateToPage(final RuleViolation violation) {
 		if (violation.getResourceType() == ResourceType.PARTY) {			
-			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
+			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());
 		} else {
-			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
+			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());
 		}
 	}
 

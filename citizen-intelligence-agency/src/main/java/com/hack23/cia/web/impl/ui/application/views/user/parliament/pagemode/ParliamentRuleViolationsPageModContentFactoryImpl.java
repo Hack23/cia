@@ -97,7 +97,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		Collections.sort(ruleViolations, (o1, o2) -> o2.getStatus().compareTo(o1.getStatus()));
 		
 		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, "Risk",
-				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "id" }, CLICK_LISTENER, null, null);
+				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "referenceId" }, CLICK_LISTENER, null, null);
 
 		final String pageId = getPageId(parameters);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
