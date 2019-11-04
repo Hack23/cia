@@ -30,7 +30,6 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,7 +72,6 @@ public final class RulesEngineImpl implements RulesEngine {
 	}
 
 	@Override
-	@Cacheable("checkRulesCompliance")
 	public List<ComplianceCheck> checkRulesCompliance() {
 		final KieSession ksession = rulesContainer.newKieSession();
 		final Map<String, ComplianceCheck> complianceChecks = new HashMap<>();

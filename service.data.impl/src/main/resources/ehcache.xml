@@ -178,7 +178,6 @@
  <cache alias="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentContainerElement" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData" uses-template="defaultCacheTemplate"/>
- <cache alias="checkRulesCompliance" uses-template="defaultCacheTemplate"/>
  <cache alias="TranslationsToEnglish" uses-template="defaultCacheTemplate"/>
  <cache alias="TranslationsFromSwedish" uses-template="defaultCacheTemplate"/>
  <cache alias="Translations" uses-template="defaultCacheTemplate"/>
