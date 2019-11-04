@@ -106,6 +106,7 @@
 	            <ref bean="agentJob" />
 	            <ref bean="updateSearchIndexJob" />
 	            <ref bean="refreshViewsJob" />
+	            <ref bean="UpdateRuleViolationsJob" />	            
 	        </list>
 	    </property>
 	    <property name="triggers">
@@ -113,6 +114,7 @@
 	            <ref bean="agentJobCronTrigger" />
 	            <ref bean="updateSearchIndexJobCronTrigger" />
 	            <ref bean="refreshViewsJobCronTrigger" />
+	            <ref bean="UpdateRuleViolationsJobCronTrigger" />
 	        </list>
 	    </property>
 	</bean>
