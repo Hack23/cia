@@ -16,38 +16,16 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.task;
-
-import com.hack23.cia.service.component.agent.api.DataAgentApi;
+package com.hack23.cia.service.impl.rules;
 
 /**
- * The Interface JobContextHolder.
+ * The Interface RulesManager.
  */
-public interface JobContextHolder {
+public interface RulesManager {
 
 	/**
-	 * Gets the data agent api.
-	 *
-	 * @return the data agent api
+	 * Process service.
 	 */
-	DataAgentApi getDataAgentApi();
-
-	/**
-	 * Update search index.
-	 *
-	 * @throws InterruptedException
-	 *             the interrupted exception
-	 */
-	void updateSearchIndex() throws InterruptedException;
-
-	/**
-	 * Refresh views.
-	 */
-	void refreshViews();
-
-	/**
-	 * Update rule violations.
-	 */
-	void updateRuleViolations();
+	void processService();
 
 }

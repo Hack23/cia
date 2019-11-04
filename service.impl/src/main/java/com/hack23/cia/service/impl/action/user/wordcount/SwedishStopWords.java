@@ -53,11 +53,11 @@ public final class SwedishStopWords implements StopWords {
 			final URL url = new URL("https://raw.githubusercontent.com/peterdalle/svensktext/master/stoppord/stoppord.csv");
 			try (BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream(),StandardCharsets.UTF_8))) {
 				addWords(input);
-			} catch (IOException ex) {
+			} catch (final IOException ex) {
 				LOGGER.warn("",ex);
 			}
 
-		} catch (MalformedURLException e) {
+		} catch (final MalformedURLException e) {
 			LOGGER.warn("",e);
 		}
 	}

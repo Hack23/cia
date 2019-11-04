@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -25,19 +27,16 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.github.markash.ui.component.card.CounterStatisticModel;
 import com.github.markash.ui.component.card.CounterStatisticsCard;
 import com.github.markash.ui.component.card.StatisticShow;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
 import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.data.rules.impl.Status;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
@@ -73,19 +72,21 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 		final String pageId = getPageId(parameters);
-
-		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
-		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		final ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
-				.service(serviceRequest);
 		
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
 		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
 				.getDataContainer(RuleViolation.class);
 
-		List<RuleViolation> ruleViolations = dataContainer.getAll();
+		final List<RuleViolation> ruleViolations = dataContainer.getAll();
+		final List<ComplianceCheck> checks = new ArrayList<>();
 
+		for (final Entry<String, List<RuleViolation>> idMapViolations : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
+			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));
+		}
+		
+		Collections.sort(checks, (o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
+		
 		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
@@ -101,7 +102,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		
 		panelContent.addComponent(horizontalLayout);		
 		
-		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, serviceResponse.getList(), "Risk",
+		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, checks, "Risk",
 				new String[] { "name", "resourceType", "numberRuleViolations", "ruleSummary" }, new String[] { "id", "ruleViolations" }, CLICK_LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
@@ -111,6 +112,57 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		return panelContent;
 
 	}
+	
+	public static class ComplianceCheckImpl implements ComplianceCheck {
+
+		private static final long serialVersionUID = 1L;
+		private final List<RuleViolation> ruleViolations;
+		private final ResourceType resourceType;
+		private final String id;
+		private final String name;
+
+		public ComplianceCheckImpl(final List<RuleViolation> ruleViolations) {
+			this.ruleViolations = ruleViolations;
+			this.resourceType = ruleViolations.get(0).getResourceType();
+			this.id = ruleViolations.get(0).getReferenceId();
+			this.name = ruleViolations.get(0).getName();
+		}
+
+		@Override
+		public ResourceType getResourceType() {
+			return resourceType;
+		}
+
+		@Override
+		public List<RuleViolation> getRuleViolations() {
+			return ruleViolations;
+		}
+
+		@Override
+		public int getNumberRuleViolations() {
+			return ruleViolations.size();
+		}
+
+		@Override
+		public String getRuleSummary() {
+			final StringBuilder builder = new StringBuilder();
+			for (final RuleViolation ruleViolation : ruleViolations) {
+				builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');
+			}		
+			return builder.toString();
+		}
+
+		@Override
+		public String getId() {
+			return id;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}		
+	}
+	
 
 	@Override
 	public boolean matches(final String page, final String parameters) {

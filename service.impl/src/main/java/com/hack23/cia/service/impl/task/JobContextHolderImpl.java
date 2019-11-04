@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.data.api.SearchIndexer;
 import com.hack23.cia.service.data.api.ViewDataManager;
+import com.hack23.cia.service.impl.rules.RulesManager;
 
 /**
  * The Class JobContextHolder.
@@ -41,6 +42,9 @@ public final class JobContextHolderImpl implements JobContextHolder {
 
 	/** The view data manager. */
 	private final ViewDataManager viewDataManager;
+	
+	private final RulesManager rulesManager;
+
 
 	/**
 	 * Instantiates a new job context holder impl.
@@ -53,11 +57,12 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	 *            the view data manager
 	 */
 	@Autowired
-	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager) {
+	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager,final RulesManager rulesManager) {
 		super();
 		this.dataAgentApi = dataAgentApi;
 		this.searchIndexer = searchIndexer;
 		this.viewDataManager = viewDataManager;
+		this.rulesManager = rulesManager;
 	}
 
 
@@ -74,6 +79,12 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	@Override
 	public void refreshViews() {
 		this.viewDataManager.refreshViews();
+	}
+
+	
+	@Override
+	public void updateRuleViolations() {
+		this.rulesManager.processService();
 	}
 
 }

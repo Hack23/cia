@@ -16,48 +16,23 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.api.action.kpi;
+package com.hack23.cia.service.impl.task;
 
-import javax.validation.constraints.NotNull;
-
-import com.hack23.cia.service.api.action.common.AbstractRequest;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 /**
- * The Class ComplianceCheckRequest.
+ * The Class RefreshViewsJob.
  */
-public final class ComplianceCheckRequest extends AbstractRequest {
+public final class UpdateRuleViolationsJob extends AbstractJob {
+
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The session id. */
-	@NotNull
-	private String sessionId;
-
-	/**
-	 * Instantiates a new compliance check request.
-	 */
-	public ComplianceCheckRequest() {
-		super();
-	}
-
-	/**
-	 * Gets the session id.
-	 *
-	 * @return the session id
-	 */
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	/**
-	 * Sets the session id.
-	 *
-	 * @param sessionId
-	 *            the new session id
-	 */
-	public void setSessionId(final String sessionId) {
-		this.sessionId = sessionId;
+	@Override
+	protected void executeInternal(final JobExecutionContext jobContext) throws JobExecutionException {
+		getJobContextHolder(jobContext).updateRuleViolations();
 	}
 
 }

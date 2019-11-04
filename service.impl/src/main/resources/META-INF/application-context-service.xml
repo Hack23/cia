@@ -66,6 +66,16 @@
 	    <property name="cronExpression" value="0 30 3 * * ?" />
 	</bean>
 
+	<bean name="UpdateRuleViolationsJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean" depends-on="JobContextHolder">
+	        <property name="jobClass" value="com.hack23.cia.service.impl.task.UpdateRuleViolationsJob"/>
+	        <property name="durability" value="true" />
+	</bean>
+
+	<bean id="UpdateRuleViolationsJobCronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="jobDetail" ref="UpdateRuleViolationsJob" />
+	    <property name="cronExpression" value="0 30 4 * * ?" />
+	</bean>
+
 
 	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 

@@ -18,20 +18,17 @@
 */
 package com.hack23.cia.service.impl.task;
 
-import static org.mockito.Mockito.times;
-
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.quartz.JobExecutionContext;
 import org.springframework.context.ApplicationContext;
 
-import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
-import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import com.hack23.cia.service.impl.rules.RulesManager;
 
 /**
- * The Class AgentJobTest.
+ * The Class RefreshViewsJobTest.
  */
-public class AgentJobTest extends AbstractJobTest {
+public class UpdateRuleViolationsJobTest extends AbstractJobTest {
 
 	/**
 	 * Execute internal test.
@@ -43,12 +40,12 @@ public class AgentJobTest extends AbstractJobTest {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
-		final DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
-		final JobContextHolder jobContextHolder = new JobContextHolderImpl(dataAgentApi, null, null,null);
+		final RulesManager rulesManager = Mockito.mock(RulesManager.class);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, null,rulesManager);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
-		new AgentJob().executeInternal(jobContextMock);
-		Mockito.verify(dataAgentApi,times(2)).execute(Mockito.any(DataAgentWorkOrder.class));
+		new UpdateRuleViolationsJob().executeInternal(jobContextMock);
+		Mockito.verify(rulesManager).processService();
 	}
-	
+
 }

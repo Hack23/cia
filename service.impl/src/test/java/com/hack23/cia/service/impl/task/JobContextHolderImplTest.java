@@ -24,6 +24,7 @@ import org.mockito.Mockito;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.data.api.SearchIndexer;
 import com.hack23.cia.service.data.api.ViewDataManager;
+import com.hack23.cia.service.impl.rules.RulesManager;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**
@@ -39,7 +40,7 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void getDataAgentApiTest() throws Exception {
-		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(Mockito.mock(DataAgentApi.class),null,null);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(Mockito.mock(DataAgentApi.class),null,null,null);
 		assertNotNull(jobContextHolderImpl.getDataAgentApi());
 	}
 	
@@ -51,7 +52,7 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	@Test
 	public void updateSearchIndexTest() throws Exception {
 		final SearchIndexer searchIndexer = Mockito.mock(SearchIndexer.class);
-		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,searchIndexer,null);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,searchIndexer,null,null);
 		jobContextHolderImpl.updateSearchIndex();
 		Mockito.verify(searchIndexer,Mockito.only()).updateSearchIndex();
 	}
@@ -64,8 +65,22 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 	@Test
 	public void refreshViewsTest() throws Exception {
 		final ViewDataManager viewDataManager = Mockito.mock(ViewDataManager.class);
-		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,null,viewDataManager);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,null,viewDataManager,null);
 		jobContextHolderImpl.refreshViews();
 		Mockito.verify(viewDataManager,Mockito.only()).refreshViews();
 	}
+	
+	/**
+	 * Update rule violations test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void updateRuleViolationsTest() throws Exception {
+		final RulesManager rulesManager = Mockito.mock(RulesManager.class);
+		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(null,null,null,rulesManager);
+		jobContextHolderImpl.updateRuleViolations();
+		Mockito.verify(rulesManager,Mockito.only()).processService();
+	}
+
 }

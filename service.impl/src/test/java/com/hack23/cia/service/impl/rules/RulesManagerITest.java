@@ -16,38 +16,30 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.task;
+package com.hack23.cia.service.impl.rules;
 
-import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
- * The Interface JobContextHolder.
+ * The Class ComplianceCheckServiceITest.
  */
-public interface JobContextHolder {
+public final class RulesManagerITest extends AbstractServiceFunctionalIntegrationTest {
+
+	@Autowired
+	private RulesManager rulesManager;
 
 	/**
-	 * Gets the data agent api.
+	 * Process service test.
 	 *
-	 * @return the data agent api
+	 * @throws Exception the exception
 	 */
-	DataAgentApi getDataAgentApi();
-
-	/**
-	 * Update search index.
-	 *
-	 * @throws InterruptedException
-	 *             the interrupted exception
-	 */
-	void updateSearchIndex() throws InterruptedException;
-
-	/**
-	 * Refresh views.
-	 */
-	void refreshViews();
-
-	/**
-	 * Update rule violations.
-	 */
-	void updateRuleViolations();
+	@Test
+	public void processServiceTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+		rulesManager.processService();
+	}
 
 }

@@ -44,7 +44,7 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
 		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
-		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null,null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);
@@ -62,7 +62,7 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
 		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
-		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null,null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		Mockito.doThrow(new InterruptedException()).when(searchIndex).updateSearchIndex();

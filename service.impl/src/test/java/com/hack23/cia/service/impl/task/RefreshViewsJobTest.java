@@ -41,7 +41,7 @@ public class RefreshViewsJobTest extends AbstractJobTest {
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
 		
 		final ViewDataManager dataIndex = Mockito.mock(ViewDataManager.class);
-		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, dataIndex);
+		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, dataIndex,null);
 		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
 		
 		new RefreshViewsJob().executeInternal(jobContextMock);

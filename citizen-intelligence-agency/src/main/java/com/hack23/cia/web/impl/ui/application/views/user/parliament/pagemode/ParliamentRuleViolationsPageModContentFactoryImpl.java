@@ -76,7 +76,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
 				.getDataContainer(RuleViolation.class);
 
-		List<RuleViolation> ruleViolations = dataContainer.getAll();
+		final List<RuleViolation> ruleViolations = dataContainer.getAll();
 				
 		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
