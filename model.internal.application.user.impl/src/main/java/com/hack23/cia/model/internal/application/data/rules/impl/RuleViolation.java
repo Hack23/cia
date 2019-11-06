@@ -142,7 +142,7 @@ public class RuleViolation implements Serializable {
     @Column(name = "detected_date")
     @Temporal(TemporalType.DATE)
 	public Date getDetectedDate() {
-		return detectedDate;
+		return new Date(detectedDate.getTime());
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class RuleViolation implements Serializable {
 	 * @param detectedDate the new detected date
 	 */
 	public void setDetectedDate(Date detectedDate) {
-		this.detectedDate = detectedDate;
+		this.detectedDate = new Date(detectedDate.getTime());
 	}
 
 	/**

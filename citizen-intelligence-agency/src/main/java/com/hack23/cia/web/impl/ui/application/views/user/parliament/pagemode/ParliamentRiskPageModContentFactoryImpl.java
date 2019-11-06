@@ -122,7 +122,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		private final String name;
 
 		public ComplianceCheckImpl(final List<RuleViolation> ruleViolations) {
-			this.ruleViolations = ruleViolations;
+			this.ruleViolations = new ArrayList<>(ruleViolations);
 			this.resourceType = ruleViolations.get(0).getResourceType();
 			this.id = ruleViolations.get(0).getReferenceId();
 			this.name = ruleViolations.get(0).getName();
@@ -135,7 +135,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 		@Override
 		public List<RuleViolation> getRuleViolations() {
-			return ruleViolations;
+			return new ArrayList<>(ruleViolations);
 		}
 
 		@Override
