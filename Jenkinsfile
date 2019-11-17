@@ -125,8 +125,10 @@ pipeline {
 		
 		stage ("SAST: Scan AWS Cloud report") {  
 	      steps {
-	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"
-		      }
+	         dir("${env.WORKSPACE}/cia-dist-cloudformation") {
+	         	sh "cfn_nag --output-format=json src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"            
+	         }
+		  }
 		}
 		   	   
 	   stage ("SAST: Scan code and submit reports") { 
