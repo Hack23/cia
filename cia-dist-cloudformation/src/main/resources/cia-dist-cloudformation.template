@@ -2466,6 +2466,7 @@
                 }, 
                 "SecurityGroupIngress": [
                     {
+                        "Description": "QuickSight port not known",
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
@@ -2474,6 +2475,7 @@
                 ], 
                 "SecurityGroupEgress": [
                     {
+                        "Description": "QuickSight port not known",
                         "IpProtocol": "tcp", 
                         "FromPort": "1", 
                         "ToPort": "65535", 
@@ -2492,6 +2494,7 @@
                 }, 
                 "SecurityGroupIngress": [
                     {
+                        "Description": "Postgres inbound access from server",
                         "IpProtocol": "tcp", 
                         "FromPort": "5432", 
                         "ToPort": "5432", 
@@ -2500,6 +2503,7 @@
                         }
                     },
                     {
+                        "Description": "Postgres inbound access from quicksight enterprise vpc endpoint",
                         "IpProtocol": "tcp", 
                         "FromPort": "5432", 
                         "ToPort": "5432", 
@@ -2510,6 +2514,7 @@
                 ], 
                 "SecurityGroupEgress": [
                     {
+                        "Description": "Postgres outbound access to server",
                         "IpProtocol": "tcp", 
                         "FromPort": "5432", 
                         "ToPort": "5432", 
@@ -2518,6 +2523,7 @@
                         }
                     },
                     {
+                    	"Description": "Postgres outbound access to quicksight enterprise vpc endpoint",
                         "IpProtocol": "tcp", 
                         "FromPort": "5432", 
                         "ToPort": "5432", 
@@ -3812,6 +3818,7 @@
                 }, 
                 "SecurityGroupIngress": [
                     {
+                        "Description": "Loadbalancer inbound access",
                         "IpProtocol": "tcp", 
                         "FromPort": "8443", 
                         "ToPort": "8443", 
@@ -3822,6 +3829,7 @@
                 ], 
                 "SecurityGroupEgress": [
                     {
+                        "Description": "Loadbalancer outbound access",
                         "IpProtocol": "tcp", 
                         "FromPort": "8443", 
                         "ToPort": "8443", 
@@ -3830,18 +3838,21 @@
                         }
                     }, 
                     {
+                        "Description": "Server outbound http access",
                         "IpProtocol": "tcp", 
                         "FromPort": "80", 
                         "ToPort": "80", 
                         "CidrIp": "0.0.0.0/0"
                     }, 
                     {
+                        "Description": "Server outbound https access",
                         "IpProtocol": "tcp", 
                         "FromPort": "443", 
                         "ToPort": "443", 
                         "CidrIp": "0.0.0.0/0"
                     }, 
                     {
+                        "Description": "Server outbound postgres access",
                         "IpProtocol": "tcp", 
                         "FromPort": "5432", 
                         "ToPort": "5432", 
@@ -3854,18 +3865,21 @@
                         }
                     }, 
                     {
+                        "Description": "Server outbound ntp access",
                         "IpProtocol": "udp", 
                         "FromPort": "123", 
                         "ToPort": "123", 
                         "CidrIp": "0.0.0.0/0"
                     }, 
                     {
+                        "Description": "Server outbound udp dns access",
                         "IpProtocol": "udp", 
                         "FromPort": "53", 
                         "ToPort": "53", 
                         "CidrIp": "0.0.0.0/0"
                     }, 
                     {
+                        "Description": "Server outbound tcp dns access",
                         "IpProtocol": "tcp", 
                         "FromPort": "53", 
                         "ToPort": "53", 

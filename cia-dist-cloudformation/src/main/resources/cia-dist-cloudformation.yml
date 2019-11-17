@@ -1486,12 +1486,14 @@ Resources:
       GroupDescription: Quicksight Access from vpn connection
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - Description: QuickSight port not known
+          IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
           CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
-        - IpProtocol: tcp
+        - Description: QuickSight port not known
+          IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
           CidrIp: 0.0.0.0/0
@@ -1504,20 +1506,24 @@ Resources:
       GroupDescription: Database Access
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - Description: Postgres inbound access from server
+          IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
-        - IpProtocol: tcp
+        - Description: Postgres inbound access from quicksight enterprise vpc endpoint
+          IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'QuickSightVpnConnectionSecurityGroup'
       SecurityGroupEgress:
-        - IpProtocol: tcp
+        - Description: Postgres outbound access to server
+          IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
-        - IpProtocol: tcp
+        - Description: Postgres outbound access to quicksight enterprise vpc endpoint
+          IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !Ref 'QuickSightVpnConnectionSecurityGroup'
@@ -2343,39 +2349,47 @@ Resources:
         HTTP and HTTPS traffic
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - Description: Loadbalancer inbound access
+          IpProtocol: tcp
           FromPort: '8443'
           ToPort: '8443'
           SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
       SecurityGroupEgress:
-        - IpProtocol: tcp
+        - Description: Loadbalancer outbound access
+          IpProtocol: tcp
           FromPort: '8443'
           ToPort: '8443'
           SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
-        - IpProtocol: tcp
+        - Description: Server outbound http access
+          IpProtocol: tcp
           FromPort: '80'
           ToPort: '80'
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+        - Description: Server outbound https access
+          IpProtocol: tcp
           FromPort: '443'
           ToPort: '443'
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+        - Description: Server outbound postgres access
+          IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
-        - IpProtocol: udp
+        - Description: Server outbound ntp access
+          IpProtocol: udp
           FromPort: '123'
           ToPort: '123'
           CidrIp: 0.0.0.0/0
-        - IpProtocol: udp
+        - Description: Server outbound udp dns access
+          IpProtocol: udp
           FromPort: '53'
           ToPort: '53'
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+        - Description: Server outbound tcp dns access
+          IpProtocol: tcp
           FromPort: '53'
           ToPort: '53'
           CidrIp: 0.0.0.0/0
