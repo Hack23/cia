@@ -368,12 +368,6 @@ Resources:
       Path: /
   FlowLogsPolicy:
     Type: AWS::IAM::Policy
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W12
-            reason: None of the flow log API actions (ec2:*FlowLogs) support resource-level
-              permissions.
     Properties:
       PolicyName: FlowLogs
       PolicyDocument:
@@ -434,11 +428,6 @@ Resources:
           Value: cia
   StartContinuousAssessmentLambdaRole:
     Type: AWS::IAM::Role
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W11
-            reason: Should have access to * resources of specific type
     Properties:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
@@ -550,11 +539,6 @@ Resources:
       FunctionName: !GetAtt 'AnalyzeInspectorFindingsLambdaFunction.Arn'
   AnalyzeInspectorFindingsLambdaRole:
     Type: AWS::IAM::Role
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W11
-            reason: Should have access to * resources of specific type
     Properties:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
@@ -793,11 +777,6 @@ Resources:
                 s3:x-amz-acl: bucket-owner-full-control
   MaintenanceWindowServiceRole:
     Type: AWS::IAM::Role
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W11
-            reason: Should have access to * resources of specific type
     Properties:
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
@@ -1605,13 +1584,6 @@ Resources:
       Principal: secretsmanager.amazonaws.com
   Database:
     Type: AWS::RDS::DBInstance
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: F23
-            reason: SecretManager used.
-          - id: F24
-            reason: SecretManager used.
     DependsOn:
       - PrivateRoute
       - DatabaseSecurityGroup
@@ -1808,13 +1780,6 @@ Resources:
       - PublicElasticLoadBalancerV2
   PublicLoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W9
-            reason: Public access
-          - id: W2
-            reason: Public access
     Properties:
       GroupDescription: Public ELB Security Group with HTTPS access on port 443 from
         the internet
@@ -2372,11 +2337,6 @@ Resources:
             - "\n"
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W5
-            reason: Server in private subnet, using nat gateway
     DependsOn: PublicLoadBalancerSecurityGroup
     Properties:
       GroupDescription: Allow access from load balancer and bastion as well as outbound

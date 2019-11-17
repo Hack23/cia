@@ -44,20 +44,6 @@ public interface ComplianceCheck extends Serializable {
 	List<RuleViolation> getRuleViolations();
 
 	/**
-	 * Gets the number rule violations.
-	 *
-	 * @return the number rule violations
-	 */
-	int getNumberRuleViolations();
-
-	/**
-	 * Gets the rule summary.
-	 *
-	 * @return the rule summary
-	 */
-	String getRuleSummary();
-
-	/**
 	 * Gets the id.
 	 *
 	 * @return the id

@@ -79,7 +79,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 				.getDataContainer(RuleViolation.class);
 
 		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-		final List<ComplianceCheck> checks = new ArrayList<>();
+		final List<ComplianceCheckImpl> checks = new ArrayList<>();
 
 		for (final Entry<String, List<RuleViolation>> idMapViolations : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
 			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));
@@ -102,7 +102,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		
 		panelContent.addComponent(horizontalLayout);		
 		
-		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, checks, "Risk",
+		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheckImpl.class, checks, "Risk",
 				new String[] { "name", "resourceType", "numberRuleViolations", "ruleSummary" }, new String[] { "id", "ruleViolations" }, CLICK_LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
@@ -138,12 +138,11 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 			return new ArrayList<>(ruleViolations);
 		}
 
-		@Override
+		
 		public int getNumberRuleViolations() {
 			return ruleViolations.size();
 		}
 
-		@Override
 		public String getRuleSummary() {
 			final StringBuilder builder = new StringBuilder();
 			for (final RuleViolation ruleViolation : ruleViolations) {

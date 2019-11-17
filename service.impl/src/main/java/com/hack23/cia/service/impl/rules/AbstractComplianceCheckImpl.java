@@ -79,31 +79,6 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	public final List<RuleViolation> getRuleViolations() {
 		return new ArrayList<>(ruleViolationMap.values());
 	}
-
-	/**
-	 * Gets the number rule violations.
-	 *
-	 * @return the number rule violations
-	 */
-	@Override
-	public int getNumberRuleViolations() {
-		return ruleViolationMap.size();
-	}
-	
-	/**
-	 * Gets the rule summary.
-	 *
-	 * @return the rule summary
-	 */
-	@Override
-	public final String getRuleSummary() {
-		final Collection<RuleViolation> values = ruleViolationMap.values();
-		final StringBuilder builder = new StringBuilder();
-		for (final RuleViolation ruleViolation : values) {
-			builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');
-		}		
-		return builder.toString();
-	}
 	
 	/**
 	 * Adds the violation.
