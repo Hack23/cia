@@ -185,7 +185,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
 		for (final CSVRecord csvRecord : records) {
-			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replaceAll("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
+			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
 			
 			for (final String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
@@ -226,7 +226,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
 		
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {		
-			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replaceAll("-","") ,Collectors.collectingAndThen(
+			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replace("-","") ,Collectors.collectingAndThen(
                     Collectors.toList(), 
                     values -> values.get(0).getMinistry()))));
 		}
@@ -247,7 +247,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	private static void addResultForMonth(final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary, final int month,
 			final String value) {
 		if (value != null && value.length() >0 ) {
-			governmentBodyAnnualOutcomeSummary.addData(month,Double.valueOf(value.replaceAll(",", ".")));
+			governmentBodyAnnualOutcomeSummary.addData(month,Double.valueOf(value.replace(",", ".")));
 		}
 	}
 

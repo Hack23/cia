@@ -53,7 +53,7 @@ public final class ProposalCommitteeeSummary {
 		super();
 		this.org = org.trim().toUpperCase(Locale.ENGLISH);
 		this.docType = docType.toUpperCase(Locale.ENGLISH);
-		this.decision = decision.replace("=", "").replaceAll(",", "").trim().toUpperCase(Locale.ENGLISH);
+		this.decision = decision.replace("=", "").replace(",", "").trim().toUpperCase(Locale.ENGLISH);
 		this.hangarId = hangarId;
 	}
 

@@ -44,8 +44,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.google.common.collect.ImmutableMap;
-
 /**
  * The Class AuditableAspectConfiguration.
  */
@@ -128,7 +126,7 @@ public class AuditableAspectConfiguration {
 		return new CommitPropertiesProvider() {
             @Override
             public Map<String, String> provide() {
-                Map<String, String> props = new HashMap<>();
+                final Map<String, String> props = new HashMap<>();
                 props.put("key", "ok");	
                 return props;	
             }	            

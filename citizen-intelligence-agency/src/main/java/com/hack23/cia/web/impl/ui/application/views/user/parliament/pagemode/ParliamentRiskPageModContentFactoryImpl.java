@@ -113,6 +113,9 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 	}
 	
+	/**
+	 * The Class ComplianceCheckImpl.
+	 */
 	public static class ComplianceCheckImpl implements ComplianceCheck {
 
 		private static final long serialVersionUID = 1L;
@@ -121,6 +124,11 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		private final String id;
 		private final String name;
 
+		/**
+		 * Instantiates a new compliance check impl.
+		 *
+		 * @param ruleViolations the rule violations
+		 */
 		public ComplianceCheckImpl(final List<RuleViolation> ruleViolations) {
 			this.ruleViolations = new ArrayList<>(ruleViolations);
 			this.resourceType = ruleViolations.get(0).getResourceType();
@@ -139,10 +147,20 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		}
 
 		
+		/**
+		 * Gets the number rule violations.
+		 *
+		 * @return the number rule violations
+		 */
 		public int getNumberRuleViolations() {
 			return ruleViolations.size();
 		}
 
+		/**
+		 * Gets the rule summary.
+		 *
+		 * @return the rule summary
+		 */
 		public String getRuleSummary() {
 			final StringBuilder builder = new StringBuilder();
 			for (final RuleViolation ruleViolation : ruleViolations) {

@@ -49,12 +49,10 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	/**
 	 * Instantiates a new job context holder impl.
 	 *
-	 * @param dataAgentApi
-	 *            the data agent api
-	 * @param searchIndexer
-	 *            the search indexer
-	 * @param viewDataManager
-	 *            the view data manager
+	 * @param dataAgentApi            the data agent api
+	 * @param searchIndexer            the search indexer
+	 * @param viewDataManager            the view data manager
+	 * @param rulesManager the rules manager
 	 */
 	@Autowired
 	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager,final RulesManager rulesManager) {

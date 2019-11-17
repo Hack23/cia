@@ -140,7 +140,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
-		CommitteeProposalComponentData exist = committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+		final CommitteeProposalComponentData exist = committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				committeeProposal.getDocument());
 		if (exist == null) {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
