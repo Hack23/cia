@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 
 import smile.nlp.SimpleCorpus;
+import smile.nlp.Text;
 import smile.nlp.dictionary.EnglishPunctuations;
 import smile.nlp.tokenizer.SimpleSentenceSplitter;
 import smile.nlp.tokenizer.SimpleTokenizer;
@@ -53,7 +54,7 @@ final class WordCounterImpl implements WordCounter {
 		final SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
 				new SwedishStopWords(), EnglishPunctuations.getInstance());
 
-		simpleCorpus.add(documentContentData.getId(), documentContentData.getId(), Jsoup.clean(html, Whitelist.basic()));
+		simpleCorpus.add(new Text( Jsoup.clean(html, Whitelist.basic())));
 
 		final Iterator<String> terms = simpleCorpus.getTerms();
 
