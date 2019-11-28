@@ -20,8 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.ui.UI;
@@ -72,8 +72,8 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 	public void selectionChange(final SelectionEvent&lt;ComplianceCheck&gt; event) {
 <span class="fc" id="L73">		final Set&lt;ComplianceCheck&gt; added =event.getAllSelectedItems();</span>
 
-<span class="fc bfc" id="L75" title="All 2 branches covered.">		if (!added.isEmpty()) {</span>
-<span class="fc" id="L76">			navigateToPage(added.iterator().next());</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">		if (!added.isEmpty()) {</span>
+<span class="nc" id="L76">			navigateToPage(added.iterator().next());</span>
 		}
 <span class="fc" id="L78">	}</span>
 }

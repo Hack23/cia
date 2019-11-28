@@ -13,5 +13,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl.DecisionDataFactoryImpl
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml

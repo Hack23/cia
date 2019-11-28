@@ -18,24 +18,25 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.github.markash.ui.component.card.CounterStatisticModel;
 import com.github.markash.ui.component.card.CounterStatisticsCard;
 import com.github.markash.ui.component.card.StatisticShow;
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
-import com.hack23.cia.service.api.action.kpi.RuleViolation;
-import com.hack23.cia.service.api.action.kpi.Status;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
@@ -53,7 +54,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-<span class="fc" id="L56">	private static final ComplianceCheckPageItemRendererClickListener CLICK_LISTENER = new ComplianceCheckPageItemRendererClickListener();</span>
+<span class="fc" id="L57">	private static final ComplianceCheckPageItemRendererClickListener CLICK_LISTENER = new ComplianceCheckPageItemRendererClickListener();</span>
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String PARLIAMENT_RISK_SUMMARY = &quot;Parliament Risk Summary&quot;;
 
@@ -61,54 +62,129 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 	 * Instantiates a new parliament risk page mod content factory impl.
 	 */
 	public ParliamentRiskPageModContentFactoryImpl() {
-<span class="fc" id="L64">		super();</span>
-<span class="fc" id="L65">	}</span>
+<span class="fc" id="L65">		super();</span>
+<span class="fc" id="L66">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L71">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L71">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L72">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
-<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
-
-<span class="fc" id="L75">		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();</span>
-<span class="fc" id="L76">		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L77">		final ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()</span>
-<span class="fc" id="L78">				.service(serviceRequest);</span>
+<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
 		
-<span class="fc" id="L80">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L76">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
 
-<span class="fc bfc" id="L82" title="All 2 branches covered.">		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : serviceResponse.getStatusMap().entrySet()) {</span>
-<span class="fc" id="L83">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
-<span class="fc" id="L84">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
-<span class="fc" id="L85">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
-<span class="fc" id="L86">		}</span>
+<span class="fc" id="L78">		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L79">				.getDataContainer(RuleViolation.class);</span>
 
-<span class="fc bfc" id="L88" title="All 2 branches covered.">		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {</span>
-<span class="fc" id="L89">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
-<span class="fc" id="L90">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
-<span class="fc" id="L91">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
-<span class="fc" id="L92">		}</span>
+<span class="fc" id="L81">		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();</span>
+<span class="fc" id="L82">		final List&lt;ComplianceCheckImpl&gt; checks = new ArrayList&lt;&gt;();</span>
+
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">		for (final Entry&lt;String, List&lt;RuleViolation&gt;&gt; idMapViolations : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {</span>
+<span class="nc" id="L85">			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));</span>
+<span class="nc" id="L86">		}</span>
+		
+<span class="pc" id="L88">		Collections.sort(checks, (o1, o2) -&gt; Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));</span>
+		
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {</span>
+<span class="nc" id="L91">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
+<span class="nc" id="L92">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
+<span class="nc" id="L93">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
+<span class="nc" id="L94">		}</span>
+
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {</span>
+<span class="nc" id="L97">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
+<span class="nc" id="L98">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
+<span class="nc" id="L99">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
+<span class="nc" id="L100">		}</span>
 
 		
-<span class="fc" id="L95">		panelContent.addComponent(horizontalLayout);		</span>
+<span class="fc" id="L103">		panelContent.addComponent(horizontalLayout);		</span>
 		
-<span class="fc" id="L97">		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, serviceResponse.getList(), &quot;Risk&quot;,</span>
+<span class="fc" id="L105">		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheckImpl.class, checks, &quot;Risk&quot;,</span>
 				new String[] { &quot;name&quot;, &quot;resourceType&quot;, &quot;numberRuleViolations&quot;, &quot;ruleSummary&quot; }, new String[] { &quot;id&quot;, &quot;ruleViolations&quot; }, CLICK_LISTENER, null, null);
 
-<span class="fc" id="L100">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L108">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
-<span class="fc" id="L102">		panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(PARLIAMENT_RISK_SUMMARY).toString());</span>
+<span class="fc" id="L110">		panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(PARLIAMENT_RISK_SUMMARY).toString());</span>
 
-<span class="fc" id="L104">		return panelContent;</span>
+<span class="fc" id="L112">		return panelContent;</span>
 
 	}
+	
+	/**
+	 * The Class ComplianceCheckImpl.
+	 */
+	public static class ComplianceCheckImpl implements ComplianceCheck {
+
+		private static final long serialVersionUID = 1L;
+		private final List&lt;RuleViolation&gt; ruleViolations;
+		private final ResourceType resourceType;
+		private final String id;
+		private final String name;
+
+		/**
+		 * Instantiates a new compliance check impl.
+		 *
+		 * @param ruleViolations the rule violations
+		 */
+<span class="nc" id="L132">		public ComplianceCheckImpl(final List&lt;RuleViolation&gt; ruleViolations) {</span>
+<span class="nc" id="L133">			this.ruleViolations = new ArrayList&lt;&gt;(ruleViolations);</span>
+<span class="nc" id="L134">			this.resourceType = ruleViolations.get(0).getResourceType();</span>
+<span class="nc" id="L135">			this.id = ruleViolations.get(0).getReferenceId();</span>
+<span class="nc" id="L136">			this.name = ruleViolations.get(0).getName();</span>
+<span class="nc" id="L137">		}</span>
+
+		@Override
+		public ResourceType getResourceType() {
+<span class="nc" id="L141">			return resourceType;</span>
+		}
+
+		@Override
+		public List&lt;RuleViolation&gt; getRuleViolations() {
+<span class="nc" id="L146">			return new ArrayList&lt;&gt;(ruleViolations);</span>
+		}
+
+		
+		/**
+		 * Gets the number rule violations.
+		 *
+		 * @return the number rule violations
+		 */
+		public int getNumberRuleViolations() {
+<span class="nc" id="L156">			return ruleViolations.size();</span>
+		}
+
+		/**
+		 * Gets the rule summary.
+		 *
+		 * @return the rule summary
+		 */
+		public String getRuleSummary() {
+<span class="nc" id="L165">			final StringBuilder builder = new StringBuilder();</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">			for (final RuleViolation ruleViolation : ruleViolations) {</span>
+<span class="nc" id="L167">				builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');</span>
+<span class="nc" id="L168">			}		</span>
+<span class="nc" id="L169">			return builder.toString();</span>
+		}
+
+		@Override
+		public String getId() {
+<span class="nc" id="L174">			return id;</span>
+		}
+
+		@Override
+		public String getName() {
+<span class="nc" id="L179">			return name;</span>
+		}		
+	}
+	
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L110" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.RULES.toString())</span>
-<span class="fc bfc" id="L111" title="All 2 branches covered.">				&amp;&amp; parameters.contains(RiskIndicators.RISK_SUMMARY.toString());</span>
+<span class="pc bpc" id="L186" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.RULES.toString())</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">				&amp;&amp; parameters.contains(RiskIndicators.RISK_SUMMARY.toString());</span>
 	}
 
 }

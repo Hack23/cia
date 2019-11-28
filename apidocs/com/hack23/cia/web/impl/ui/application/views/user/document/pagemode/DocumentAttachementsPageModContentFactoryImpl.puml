@@ -14,5 +14,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentAttachementsPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml

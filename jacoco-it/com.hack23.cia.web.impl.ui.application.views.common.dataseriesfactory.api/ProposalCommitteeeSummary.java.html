@@ -53,7 +53,7 @@ public final class ProposalCommitteeeSummary {
 <span class="fc" id="L53">		super();</span>
 <span class="fc" id="L54">		this.org = org.trim().toUpperCase(Locale.ENGLISH);</span>
 <span class="fc" id="L55">		this.docType = docType.toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L56">		this.decision = decision.replace(&quot;=&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L56">		this.decision = decision.replace(&quot;=&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
 <span class="fc" id="L57">		this.hangarId = hangarId;</span>
 <span class="fc" id="L58">	}</span>
 

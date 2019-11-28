@@ -20,8 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
-import com.hack23.cia.service.api.action.kpi.ResourceType;
-import com.hack23.cia.service.api.action.kpi.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.ui.UI;
@@ -54,9 +54,9 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	 */
 	private static void navigateToPage(final RuleViolation violation) {
 <span class="fc bfc" id="L56" title="All 2 branches covered.">		if (violation.getResourceType() == ResourceType.PARTY) {			</span>
-<span class="fc" id="L57">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
+<span class="fc" id="L57">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
 		} else {
-<span class="fc" id="L59">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());</span>
+<span class="fc" id="L59">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
 		}
 <span class="fc" id="L61">	}</span>
 
@@ -71,8 +71,8 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	public void selectionChange(final SelectionEvent&lt;RuleViolation&gt; event) {
 <span class="fc" id="L72">		final Set&lt;RuleViolation&gt; added =event.getAllSelectedItems();</span>
 
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (!added.isEmpty()) {</span>
-<span class="fc" id="L75">			navigateToPage(added.iterator().next());</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		if (!added.isEmpty()) {</span>
+<span class="nc" id="L75">			navigateToPage(added.iterator().next());</span>
 		}
 <span class="fc" id="L77">	}</span>
 }

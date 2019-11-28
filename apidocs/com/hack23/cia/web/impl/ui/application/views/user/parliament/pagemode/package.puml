@@ -37,6 +37,16 @@
             +matches(String, String): boolean
         }
 
+        class com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl [[ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl.html]] {
+            +ComplianceCheckImpl(List<RuleViolation>)
+            +getResourceType(): ResourceType
+            +getRuleViolations(): List<RuleViolation>
+            +getNumberRuleViolations(): int
+            +getRuleSummary(): String
+            +getId(): String
+            +getName(): String
+        }
+
         class ParliamentOverviewPageModContentFactoryImpl [[ParliamentOverviewPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
@@ -59,6 +69,8 @@
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentDecisionFlowPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentRiskPageModContentFactoryImpl
+        com.hack23.cia.service.api.action.kpi.ComplianceCheck <|.. com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
+        ParliamentRiskPageModContentFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentOverviewPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyAgePageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl
@@ -68,5 +80,14 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    namespace com.hack23.cia.service.api.action.kpi {
+        interface ComplianceCheck {
+            {abstract} +getResourceType(): ResourceType
+            {abstract} +getRuleViolations(): List<RuleViolation>
+            {abstract} +getId(): String
+            {abstract} +getName(): String
+        }
+    }
+
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml

@@ -20,5 +20,5 @@
         {static} +VOTEHISTORY
     }
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml

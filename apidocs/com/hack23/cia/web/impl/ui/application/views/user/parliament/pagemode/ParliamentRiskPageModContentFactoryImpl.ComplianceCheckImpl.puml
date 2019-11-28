@@ -1,0 +1,28 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl [[ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl.html]] {
+        +ComplianceCheckImpl(List<RuleViolation>)
+        +getResourceType(): ResourceType
+        +getRuleViolations(): List<RuleViolation>
+        +getNumberRuleViolations(): int
+        +getRuleSummary(): String
+        +getId(): String
+        +getName(): String
+    }
+
+    interface "<size:14>ComplianceCheck\n<size:10>com.hack23.cia.service.api.action.kpi" as com.hack23.cia.service.api.action.kpi.ComplianceCheck {
+        {abstract} +getResourceType(): ResourceType
+        {abstract} +getRuleViolations(): List<RuleViolation>
+        {abstract} +getId(): String
+        {abstract} +getName(): String
+    }
+    class "<size:14>ParliamentRiskPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode" as com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl [[ParliamentRiskPageModContentFactoryImpl.html]]
+
+    com.hack23.cia.service.api.action.kpi.ComplianceCheck <|.. com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
+    com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
+
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
+@enduml

@@ -19,5 +19,5 @@
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager <|.. com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml

@@ -155,6 +155,8 @@
     com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode --> com.hack23.cia.web.impl.ui.application.views.pageclicklistener
     com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode --> com.hack23.cia.web.impl.ui.application.views.common.pagemode
     com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode --> com.hack23.cia.web.impl.ui.application.views.common.menufactory.api
+    com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode --> com.hack23.cia.service.api.action.kpi
+    com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode --> com.hack23.cia.model.internal.application.data.rules.impl
     com.hack23.cia.web.impl.ui.application.views.user.party --> com.hack23.cia.web.impl.ui.application.views.user.common
     com.hack23.cia.web.impl.ui.application.views.user.party --> org.springframework.context
     com.hack23.cia.web.impl.ui.application.views.user.party.pagemode --> com.hack23.cia.web.impl.ui.application.views.pageclicklistener
@@ -207,11 +209,12 @@
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api.action.application
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.vaadin.data
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api.action.admin
-    com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api.action.kpi
+    com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.model.internal.application.data.rules.impl
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.vaadin.ui.renderers
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.vaadin.event.selection
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api.action.user
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api
+    com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api.action.kpi
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.service.api
     com.hack23.cia.web.impl.ui.application.views.pageclicklistener --> com.hack23.cia.model.internal.application.data.impl
     com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl --> com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api
@@ -336,5 +339,5 @@
     class "com.hack23.cia.web.impl.ui.application.web.listener" [[com/hack23/cia/web/impl/ui/application/web/listener/package-summary.html]] {
     }
 
-    center footer UMLDoclet 2.0.5, PlantUML 1.2019.08
+    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
 @enduml
