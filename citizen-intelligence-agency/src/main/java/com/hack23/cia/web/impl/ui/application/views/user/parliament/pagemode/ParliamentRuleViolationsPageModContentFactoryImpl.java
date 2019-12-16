@@ -89,7 +89,6 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
-			ruleViolations.addAll(statusEntry.getValue());
 		}			
 		panelContent.addComponent(horizontalLayout);		
 		
