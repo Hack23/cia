@@ -17,5 +17,5 @@
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.AbstractMenuItemFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.CommitteeMenuItemFactoryImpl
     com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl.CommitteeMenuItemFactoryImpl
 
-    center footer UMLDoclet 2.0.6, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
 @enduml
