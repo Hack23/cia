@@ -1210,6 +1210,9 @@
             <goals>
               <goal>report-aggregate</goal>
             </goals>
+            <configuration>
+              <dataFile>${sonar.jacoco.execPath}</dataFile>
+            </configuration>
           </execution>
         </executions>
         <configuration>
