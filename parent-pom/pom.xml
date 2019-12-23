@@ -95,8 +95,7 @@
     <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-    <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.coverage.jacoco.xmlReportsPath>${project.basedir}/../parent-pom/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportsPath>
+    <sonar.jacoco.execPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.execPath>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
@@ -1190,7 +1189,7 @@
               <goal>prepare-agent</goal>
             </goals>
             <configuration>
-              <destFile>${sonar.jacoco.reportPath}</destFile>
+              <destFile>${sonar.jacoco.execPath}</destFile>
               <append>true</append>
               <propertyName>surefireArgLine</propertyName>
             </configuration>
@@ -1202,17 +1201,16 @@
               <goal>report</goal>
             </goals>
             <configuration>
-              <dataFile>${sonar.jacoco.reportPath}</dataFile>
-              <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+              <dataFile>${sonar.jacoco.execPath}</dataFile>
             </configuration>
           </execution>
- 		  <execution>
-          <id>reportaggregate</id>
-          <goals>
-            <goal>report-aggregate</goal>
-          </goals>
-          <phase>verify</phase>
-        </execution>
+          <execution>
+            <id>reportaggregate</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+          </execution>
         </executions>
         <configuration>
           <includes>
@@ -1963,8 +1961,7 @@
             <version>0.8.5</version>
             <inherited>true</inherited>
             <configuration>
-              <dataFile>${sonar.jacoco.reportPath}</dataFile>
-              <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+              <dataFile>${sonar.jacoco.execPath}</dataFile>
             </configuration>
           </plugin>
           <plugin>
