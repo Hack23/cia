@@ -96,6 +96,7 @@
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
+    <sonar.coverage.jacoco.xmlReportsPath>${project.basedir}/../parent-pom/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportsPath>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
@@ -1205,6 +1206,13 @@
               <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
             </configuration>
           </execution>
+ 		  <execution>
+          <id>reportaggregate</id>
+          <goals>
+            <goal>report-aggregate</goal>
+          </goals>
+          <phase>verify</phase>
+        </execution>
         </executions>
         <configuration>
           <includes>
