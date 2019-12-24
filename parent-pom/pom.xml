@@ -95,7 +95,7 @@
     <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-    <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
