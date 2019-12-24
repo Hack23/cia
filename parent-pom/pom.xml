@@ -95,7 +95,7 @@
     <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-    <sonar.jacoco.execPath>${project.basedir}/target/jacoco-ut.exec</sonar.jacoco.execPath>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
@@ -1189,20 +1189,16 @@
               <goal>prepare-agent</goal>
             </goals>
             <configuration>
-              <destFile>${sonar.jacoco.execPath}</destFile>
               <append>true</append>
               <propertyName>surefireArgLine</propertyName>
             </configuration>
           </execution>
           <execution>
             <id>post-unit-test</id>
-            <phase>verify</phase>
+            <phase>test</phase>
             <goals>
               <goal>report</goal>
             </goals>
-            <configuration>
-              <dataFile>${sonar.jacoco.execPath}</dataFile>
-            </configuration>
           </execution>
         </executions>
         <configuration>
@@ -1953,9 +1949,6 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.5</version>
             <inherited>true</inherited>
-            <configuration>
-              <dataFile>${sonar.jacoco.execPath}</dataFile>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
