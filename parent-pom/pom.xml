@@ -125,7 +125,7 @@
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>7.31.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.0.0.Beta3</cia.project.versions.hibernate.search>
-    <cia.project.versions.hibernate.lucene>8.3.1</cia.project.versions.hibernate.lucene>
+    <cia.project.versions.hibernate.lucene>8.4.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.4.10.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.tools>5.4.10.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final-redhat-1</cia.project.versions.hibernate.jpa2>
