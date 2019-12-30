@@ -27,4 +27,16 @@
     <sonar.zaproxy.reportPath>${project.basedir}/testreport.xml</sonar.zaproxy.reportPath>
     <root.dir>file:///${basedir}/</root.dir>
   </properties>
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<configuration>
+				<destFile>${project.basedir}/target/jacoco.exec</destFile>
+				<append>true</append>
+			</configuration>
+		</plugin>
+	</plugins>  
+  </build>
 </project>

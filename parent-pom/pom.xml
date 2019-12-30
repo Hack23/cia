@@ -95,7 +95,7 @@
     <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-    <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
     <sonar.dependencyCheck.reportPath></sonar.dependencyCheck.reportPath>
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
@@ -1182,6 +1182,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
+        <inherited>true</inherited>
         <executions>
           <execution>
             <id>pre-unit-test</id>
@@ -1189,7 +1190,6 @@
               <goal>prepare-agent</goal>
             </goals>
             <configuration>
-              <append>true</append>
               <propertyName>surefireArgLine</propertyName>
             </configuration>
           </execution>
@@ -1202,6 +1202,8 @@
           </execution>
         </executions>
         <configuration>
+          <destFile>${project.basedir}/../target/jacoco.exec</destFile>
+          <append>true</append>
           <includes>
             <include>com.hack23.*</include>
           </includes>
@@ -1970,6 +1972,10 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.5</version>
             <inherited>true</inherited>
+            <configuration>            
+                <destFile>${project.basedir}/../target/jacoco.exec</destFile>
+          		<append>true</append>
+            </configuration>           
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
