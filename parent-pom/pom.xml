@@ -1182,7 +1182,6 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <inherited>true</inherited>
         <executions>
           <execution>
             <id>pre-unit-test</id>
@@ -1201,6 +1200,7 @@
             </goals>
           </execution>
         </executions>
+        <inherited>true</inherited>
         <configuration>
           <destFile>${project.basedir}/../target/jacoco.exec</destFile>
           <append>true</append>
@@ -1972,10 +1972,10 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.5</version>
             <inherited>true</inherited>
-            <configuration>            
-                <destFile>${project.basedir}/../target/jacoco.exec</destFile>
-          		<append>true</append>
-            </configuration>           
+            <configuration>
+              <destFile>${project.basedir}/../target/jacoco.exec</destFile>
+              <append>true</append>
+            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>

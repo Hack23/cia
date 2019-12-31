@@ -22,12 +22,6 @@ pipeline {
 	   
 	      steps {
 	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
-	         sh "rm -rf target/site/jacoco-aggregate"
-	         sh "rm -rf target/site/jacoco-ut"
-	         sh "rm -rf */target/site/jacoco-it"	         
-	         sh "rm -rf */target/site/jacoco-aggregate"
-	         sh "rm -rf */target/site/jacoco-ut"
-	         sh "rm -rf */target/site/jacoco-it"	                
 	      }
 	        post {
                 always {
@@ -112,7 +106,7 @@ pipeline {
 		
 	   stage ("Build docker image") {
 	   	   steps {
-	              sh "mvn -f cia-dist-docker/pom.xml clean install"
+	              sh "mvn -f cia-dist-docker/pom.xml install"
 		 }
 	   }
 	   
