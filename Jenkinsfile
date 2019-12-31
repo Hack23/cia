@@ -21,7 +21,7 @@ pipeline {
          }
 	   
 	      steps {
-	         sh "mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once '-Dtest=!**.*ITest*' "
+	         sh "mvn clean install -Prelease-site,all-modules -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once '-Dtest=!**.*ITest*' -Dsurefire.reportNameSuffix=UNIT"
 	      }
 	        post {
                 always {
