@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.data.impl.util;
 
+import javax.naming.StringRefAddr;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -39,6 +41,8 @@ public class SecretPGXADataSourceFactoryTest extends AbstractUnitTest {
 	public void getObjectInstanceTest() throws Exception {
 		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
 		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();		
+		ref.add(new StringRefAddr("serverName","192.168.1.1"));
+		
 		assertNotNull(new SecretPGXADataSourceFactory().getObjectInstance(ref, null,null, null));
 	}
 
