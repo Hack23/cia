@@ -21,7 +21,7 @@ pipeline {
          }
 	   
 	      steps {
-	         sh "xvfb-run --server-args='-screen 0 1280x800x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
+	         sh "xvfb-run --server-args='-screen 0 1920x1080x24' mvn clean install -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once"
 	      }
 	        post {
                 always {
@@ -37,7 +37,97 @@ pipeline {
                 }
             }
 	   }
-	   		   	   
+	   
+	  stage('Record Coverage') {
+            when { branch 'master' }
+            steps {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                 }
+                step([$class: 'MasterCoverageAction', scmVars: [GIT_URL: env.GIT_URL]])
+            }
+        }
+        
+        stage('PR Coverage to Github') {
+            when { allOf {not { branch 'master' }; expression { return env.CHANGE_ID != null }} }
+            steps {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                 }
+                step([$class: 'CompareCoverageAction', publishResultAs: 'statusCheck', scmVars: [GIT_URL: env.GIT_URL]])
+            }
+       }
+	   	   	   
+	   stage ("SCA:Dependency updates") {  
+	      steps {
+	         sh "mvn org.codehaus.mojo:versions-maven-plugin:2.7:dependency-updates-report -DdependencyUpdatesReportFormats=html,xml"
+		      }
+		}
+	
+	   stage ("SCA:Update CVE Database") { 
+	      tools { 
+    	    jdk 'Java8' 
+	    	}
+	    	   
+	      steps {
+	         sh "mvn org.owasp:dependency-check-maven:update-only"
+		      }
+	   }
+	
+	   stage ("SCA:Scan Known vulnerabilities report") { 
+	   	 tools { 
+    	    jdk 'Java8' 
+	    }
+	    	   
+	      steps {
+	         sh "mvn -f citizen-intelligence-agency/pom.xml org.owasp:dependency-check-maven:check -Dformat=ALL -DskipSystemScope=true -DsuppressionFile=${WORKSPACE}/parent-pom/src/config/suppressions.xml -Dscan=${WORKSPACE}/citizen-intelligence-agency/target/"
+		      }
+	   }
+
+		stage ("DAST: start app") {  
+	      steps {
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} || true"	      
+	          sh "cd citizen-intelligence-agency; nohup mvn -e exec:java -Dexec.classpathScope='test' -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer > target/jettyzap.log 2>&1 &"
+		  }
+		}
+	
+		stage ("DAST: Scan running app") {  
+	      steps {
+	          sh "docker system prune -a -f"
+	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J ${WORKSPACE}/baseline-scan-report.json report_json -x ${WORKSPACE}/baseline-scan-report.xml -r ${WORKSPACE}/baseline-scan-report.html || true"
+		      }
+		}
+
+		stage ("DAST: stop app") {  
+	      steps {
+	          sh "JETTYPID=`ss -tanp | grep 28443 | grep LISTEN | cut -d',' -f2 | cut -d'=' -f2`; kill -9 \${JETTYPID} || true"
+		      }
+		}
+		
+	   stage ("Build docker image") {
+	   	   steps {
+	              sh "mvn -f cia-dist-docker/pom.xml install"
+		 }
+	   }
+	   
+	   stage ("Security scan docker image") {
+	     environment {
+           VERSION = readMavenPom().getVersion()
+         }
+
+	   	  steps {
+	              sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:\$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL || true"
+		 }
+	   }
+		
+		stage ("SAST: Scan AWS Cloud report") {  
+	      steps {
+	         dir("${env.WORKSPACE}/cia-dist-cloudformation") {
+	         	sh "cfn_nag --output-format=json src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"            
+	         }
+		  }
+		}
+		   	   
 	   stage ("SAST: Scan code and submit reports") { 
 	      steps {
 	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.reportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml"
@@ -136,8 +226,4 @@ pipeline {
    }
 }
 	   
-   
-     
-     
-     
  
