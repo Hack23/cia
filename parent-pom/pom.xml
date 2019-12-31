@@ -1198,16 +1198,15 @@
             <phase>verify</phase>
             <goals>
               <goal>report-aggregate</goal>
-              <goal>report</goal>             
+              <goal>report</goal>
             </goals>
             <configuration>
-            	<detail>true</detail>         
+              <detail>true</detail>
             </configuration>
           </execution>
         </executions>
         <inherited>true</inherited>
-        <configuration>          
-        </configuration>
+        <configuration></configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

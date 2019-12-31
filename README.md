@@ -11,6 +11,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb)
 [![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastCompletedBuild/testReport/)
+[![Build Status](https://travis-ci.org/Hack23/cia.svg?branch=master)](https://travis-ci.org/Hack23/cia)
 [![SonarQube Coverage](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Acia-all)
 [![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![SonarQube Tech Debt](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=sqale_debt_ratio)](https://www.hack23.com/sonar/component_measures?id=com.hack23.cia%3Acia-all)
@@ -25,6 +26,8 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=com.hack23.cia%3Acia-all)](https://sonarcloud.io/dashboard?id=com.hack23.cia%3Acia-all)
+
 
 
 # Runtime
