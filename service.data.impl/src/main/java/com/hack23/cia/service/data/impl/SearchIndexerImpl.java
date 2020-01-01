@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
+ * Copyright 2010-2020 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.SearchIndexer;
 final class SearchIndexerImpl implements SearchIndexer {
 
 	/** The Constant TIMEOUT_IN_SECONDS. */
-	private static final int TIMEOUT_IN_SECONDS = 900;
+	private static final int TIMEOUT_IN_SECONDS = 3600;
 
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")

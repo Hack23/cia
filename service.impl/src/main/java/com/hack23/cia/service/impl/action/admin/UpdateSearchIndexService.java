@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 James Pether Sörling
+ * Copyright 2010-2020 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  * The Class UpdateSearchIndexService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
+@Transactional(propagation = Propagation.REQUIRED,timeout=3600)
 public final class UpdateSearchIndexService extends
 		AbstractBusinessServiceImpl<UpdateSearchIndexRequest, UpdateSearchIndexResponse>
 		implements BusinessService<UpdateSearchIndexRequest, UpdateSearchIndexResponse> {

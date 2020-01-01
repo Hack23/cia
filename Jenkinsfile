@@ -11,6 +11,7 @@ pipeline {
 
 	   stage('Build') {
 	      steps {
+	         sh "git clean -x -f"
 	         sh "mvn clean install -DskipTests"
 	      }
 	   }
