@@ -33,9 +33,9 @@ import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**
- * The Class RiksdagenDateUtilITest.
+ * The Class RiksdagenDateUtilTest.
  */
-public final class RiksdagenDateUtilITest extends AbstractUnitTest {
+public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 
 	
 	/**
