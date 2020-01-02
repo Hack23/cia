@@ -39,7 +39,7 @@ Resources:
             ManagedRuleGroupStatement:
               VendorName: AWS
               Name: AWSManagedRulesCommonRuleSet
-              ExcludedRules: []
+              ExcludedRules: ['GenericLFI_BODY', 'GenericRFI_BODY']
         - Name: RuleWithAWSManagedRulesKnownBadInputsRuleSet #VendorName: AWS, Name: AWSManagedRulesKnownBadInputsRuleSet, WCU: 200
           Priority: 2
           OverrideAction:
