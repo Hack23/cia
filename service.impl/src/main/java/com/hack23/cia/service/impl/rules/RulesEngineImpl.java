@@ -53,7 +53,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class RulesEngineImpl.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED, timeout = 1800)
+@Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
 public final class RulesEngineImpl implements RulesEngine {
 
 	/** The data viewer. */
