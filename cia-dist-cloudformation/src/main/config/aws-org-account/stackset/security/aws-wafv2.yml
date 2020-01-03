@@ -79,21 +79,21 @@ Resources:
               VendorName: AWS
               Name: AWSManagedRulesUnixRuleSet
               ExcludedRules: []              
-#        - Name: BlockXssAttack
-#          Priority: 1
-#          Action:
-#            Block: {}
-#          VisibilityConfig:
-#            SampledRequestsEnabled: true
-#            CloudWatchMetricsEnabled: true
-#            MetricName: BlockXssAttackMetric
-#          Statement:
-#            XssMatchStatement:
-#              FieldToMatch:
-#                AllQueryArguments: {}
-#              TextTransformations:
-#                - Priority: 1
-#                  Type: NONE
+        - Name: BlockXssAttack
+          Priority: 5
+          Action:
+            Block: {}
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: BlockXssAttackMetric
+          Statement:
+            XssMatchStatement:
+              FieldToMatch:
+                AllQueryArguments: {}
+              TextTransformations:
+                - Priority: 1
+                  Type: NONE
 Outputs:
   BasicSecurityACLArn:
     Description: BasicSecurityACL arn
