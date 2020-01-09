@@ -554,7 +554,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.0.0-alpha-3</version>
+      <version>4.0.0-alpha-4</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -688,7 +688,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>4.0.0-alpha-3</version>
+      <version>4.0.0-alpha-4</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -781,7 +781,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>4.0.0-alpha-3</version>
+      <version>4.0.0-alpha-4</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
