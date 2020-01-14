@@ -1371,6 +1371,17 @@
               <target>${jdk.target.version}</target>
             </configuration>
           </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <jdkToolchain>
+                <version>${jdk.target.version}</version>
+              </jdkToolchain>
+              <source>${jdk.src.version}</source>
+              <target>${jdk.target.version}</target>
+              <proc>none</proc>
+            </configuration>
+          </execution>
           <!--           <execution>
             <id>base-compile</id>
             <goals>

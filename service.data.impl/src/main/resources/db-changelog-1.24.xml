@@ -44,5 +44,11 @@
 			<column name="rule_name" type="varchar(255)" />
 		</addColumn>
 	</changeSet>
+	
+	<changeSet author="pether (generated)" id="2414872417007-328">
+		<addPrimaryKey columnNames="hjid"
+			constraintName="application_configuration_pkey" tableName="application_configuration" />
+	</changeSet>
+	
 
 </databaseChangeLog>
