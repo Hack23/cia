@@ -161,7 +161,7 @@ pipeline {
 	   stage ("Check Quality gate") { 
 	   
 	   	      steps {
-	              sh "mvn com.hack23.maven:sonar-quality-gates-maven-plugin:1.0.0:inspect  -Dsonar.host.url=http://192.168.1.15:9000/sonar"
+	              sh "mvn com.hack23.maven:sonar-quality-gates-maven-plugin:1.0.4:inspect  -Dsonar.host.url=http://192.168.1.15:9000/sonar"
 		      }
 	   
 	   }	     
