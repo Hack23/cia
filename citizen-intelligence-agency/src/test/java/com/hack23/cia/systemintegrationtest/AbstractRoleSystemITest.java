@@ -179,7 +179,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
 			final ChromeOptions chromeOptions = new ChromeOptions();
-		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized","--disable-features=VizDisplayCompositor");	    
+		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");	    
 		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");			    
 			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {
