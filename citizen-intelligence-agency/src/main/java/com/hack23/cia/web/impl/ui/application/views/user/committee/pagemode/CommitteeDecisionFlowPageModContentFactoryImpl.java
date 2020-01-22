@@ -74,13 +74,13 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		String selectedYear = "2018/19";
+		String selectedYear = "2019/20";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		}
 
 		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(
-				Arrays.asList("2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
+				Arrays.asList("2019/20","2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 		comboBox.setSelectedItem(selectedYear);
