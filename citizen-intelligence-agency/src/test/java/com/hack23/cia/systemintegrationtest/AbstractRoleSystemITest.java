@@ -183,7 +183,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");			    
 			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_52);
+			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_68);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else if ("htmlunit-ie11".equals(browser)) {
