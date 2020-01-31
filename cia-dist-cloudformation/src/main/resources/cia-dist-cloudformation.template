@@ -2983,7 +2983,7 @@
                 ], 
                 "Port": 443, 
                 "Protocol": "HTTPS", 
-                "SslPolicy": "ELBSecurityPolicy-TLS-1-2-2017-01"
+                "SslPolicy": "ELBSecurityPolicy-FS-1-2-Res-2019-08"
             }
         }, 
         "TargetGroupHttps": {
