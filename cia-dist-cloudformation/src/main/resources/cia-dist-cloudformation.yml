@@ -1254,7 +1254,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp
         - CIDR
       PortRange:
         From: '5432'
@@ -1269,7 +1269,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp2
         - CIDR
       PortRange:
         From: '5432'
@@ -1284,7 +1284,7 @@ Resources:
       Egress: 'false'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp3
         - CIDR
       PortRange:
         From: '5432'
@@ -1293,13 +1293,13 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateNetworkAcl'
-      RuleNumber: '100'
+      RuleNumber: '400'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp
         - CIDR
       PortRange:
         From: '1024'
@@ -1308,13 +1308,13 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateNetworkAcl'
-      RuleNumber: '200'
+      RuleNumber: '500'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp
         - CIDR
       PortRange:
         From: '1024'
@@ -1323,13 +1323,13 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateNetworkAcl'
-      RuleNumber: '300'
+      RuleNumber: '600'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - VPC
+        - PrivateApp3
         - CIDR
       PortRange:
         From: '1024'
@@ -1344,91 +1344,79 @@ Resources:
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '80'
+        From: '1024'
         To: '65535'
   OutboundPrivateAppNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateAppNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '80'
+        To: '65535'
+  InboundHttpsPortPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
       RuleNumber: '100'
       Protocol: '6'
       RuleAction: allow
-      Egress: 'true'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '80'
-        To: '65535'
-  InboundUdpPrivateAppNetworkAclEntry:
-    Type: AWS::EC2::NetworkAclEntry
-    Properties:
-      NetworkAclId: !Ref 'PrivateAppNetworkAcl'
-      RuleNumber: '200'
-      Protocol: '17'
-      RuleAction: allow
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '53'
-        To: '65535'
-  OutboundUdpPrivateAppNetworkAclEntry:
-    Type: AWS::EC2::NetworkAclEntry
-    Properties:
-      NetworkAclId: !Ref 'PrivateAppNetworkAcl'
-      RuleNumber: '200'
-      Protocol: '17'
-      RuleAction: allow
-      Egress: 'true'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '53'
-        To: '65535'
-  InboundTcpPortPublicNetworkAclEntry:
-    Type: AWS::EC2::NetworkAclEntry
-    Properties:
-      NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '102'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '80'
-        To: '65535'
-  InboundUdpPortPublicNetworkAclEntry:
-    Type: AWS::EC2::NetworkAclEntry
-    Properties:
-      NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '103'
-      Protocol: '17'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: 0.0.0.0/0
-      PortRange:
-        From: '53'
-        To: '65535'
-  OutboundTcpPublicNetworkAclEntry:
+        From: '443'
+        To: '443'
+  InboundEphemeralPortPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
       RuleNumber: '200'
       Protocol: '6'
       RuleAction: allow
-      Egress: 'true'
+      Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '80'
+        From: '1024'
         To: '65535'
-  OutboundUdpPublicNetworkAclEntry:
+  OutboundHttpPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '201'
-      Protocol: '17'
+      RuleNumber: '300'
+      Protocol: '6'
       RuleAction: allow
       Egress: 'true'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '53'
+        From: '80'
+        To: '80'
+  OutboundHttpsPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '400'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '443'
+        To: '443'
+  OutboundEphemeralPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '500'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1024'
         To: '65535'
   PublicSubnetNetworkAclAssociation:
     Type: AWS::EC2::SubnetNetworkAclAssociation
