@@ -2889,7 +2889,7 @@
             "DependsOn": "LogsBucketPolicy"
         }, 
         "WebACLAssociation": {
-            "Type": "AWS::WAFRegional::WebACLAssociation", 
+            "Type": "AWS::WAFv2::WebACLAssociation", 
             "Condition": "useWebACL", 
             "DependsOn": "PublicElasticLoadBalancerV2", 
             "Properties": {
