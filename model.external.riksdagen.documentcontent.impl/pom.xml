@@ -102,7 +102,7 @@
           <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${cia.project.versions.hibernate}</version>
+            <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
         <configuration>

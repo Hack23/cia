@@ -952,7 +952,7 @@
           <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${cia.project.versions.hibernate}</version>
+            <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate.search</groupId>
