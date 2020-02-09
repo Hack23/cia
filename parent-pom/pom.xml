@@ -835,7 +835,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.0.1</version>
           <dependencies>
             <dependency>
               <groupId>org.apache.bcel</groupId>
@@ -852,7 +852,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1972,7 +1972,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
             <inherited>true</inherited>
             <configuration>
               <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
