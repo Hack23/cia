@@ -2896,7 +2896,7 @@
                 "ResourceArn": {
                     "Ref": "PublicElasticLoadBalancerV2"
                 }, 
-                "WebACLId": {
+                "WebACLArn": {
                     "Ref": "WAFWebACL"
                 }
             }
