@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: CIA CloudFormation demo runtime template. Create a HA(3 az LB,3 az servers,MultiAZ
+Description: >-
+  CIA CloudFormation demo runtime template. Create a HA(3 az LB,3 az servers,MultiAZ
   RDS) solution using a load balanced, auto scaled group in a VPC with where the EC2
   instances can directly access the internet, loadbalancers in public subnet with
   access to app servers and data stored in postgres RDS in private subnet. **WARNING**
@@ -1100,7 +1101,7 @@ Resources:
     DependsOn: GatewayToInternet
     Properties:
       RouteTableId: !Ref 'PublicRouteTable'
-      DestinationCidrBlock: 0.0.0.0/0
+      DestinationCidrBlock: '0.0.0.0/0'
       GatewayId: !Ref 'InternetGateway'
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1131,7 +1132,7 @@ Resources:
     DependsOn: GatewayToInternet
     Properties:
       RouteTableId: !Ref 'PrivateAppRouteTable'
-      DestinationCidrBlock: 0.0.0.0/0
+      DestinationCidrBlock: '0.0.0.0/0'
       NatGatewayId: !Ref 'NAT'
   PrivateAppSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1162,7 +1163,7 @@ Resources:
     DependsOn: NAT
     Properties:
       RouteTableId: !Ref 'PrivateRouteTable'
-      DestinationCidrBlock: 0.0.0.0/0
+      DestinationCidrBlock: '0.0.0.0/0'
       NatGatewayId: !Ref 'NAT'
   QuickSightVpnConnectionSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1219,7 +1220,7 @@ Resources:
       Protocol: '6'
       RuleAction: allow
       Egress: 'false'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '5432'
         To: '5432'
@@ -1231,7 +1232,7 @@ Resources:
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '1024'
         To: '65535'
@@ -1338,11 +1339,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateAppNetworkAcl'
-      RuleNumber: '100'
+      RuleNumber: '700'
       Protocol: '6'
       RuleAction: allow
       Egress: 'false'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '1024'
         To: '65535'
@@ -1350,11 +1351,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PrivateAppNetworkAcl'
-      RuleNumber: '200'
+      RuleNumber: '800'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '80'
         To: '65535'
@@ -1366,7 +1367,7 @@ Resources:
       Protocol: '6'
       RuleAction: allow
       Egress: 'false'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '443'
         To: '443'
@@ -1386,11 +1387,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '200'
+      RuleNumber: '300'
       Protocol: '6'
       RuleAction: allow
       Egress: 'false'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '1024'
         To: '65535'
@@ -1398,11 +1399,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '300'
+      RuleNumber: '400'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '80'
         To: '80'
@@ -1410,11 +1411,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '400'
+      RuleNumber: '500'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '443'
         To: '443'
@@ -1422,11 +1423,11 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '500'
+      RuleNumber: '600'
       Protocol: '6'
       RuleAction: allow
       Egress: 'true'
-      CidrBlock: 0.0.0.0/0
+      CidrBlock: '0.0.0.0/0'
       PortRange:
         From: '1024'
         To: '65535'
@@ -1490,13 +1491,13 @@ Resources:
           IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
       SecurityGroupEgress:
         - Description: QuickSight port not known
           IpProtocol: tcp
           FromPort: '1'
           ToPort: '65535'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
   DatabaseSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     DependsOn:
@@ -1711,12 +1712,12 @@ Resources:
           Value: '60'
     DependsOn: LogsBucketPolicy
   WebACLAssociation:
-    Type: AWS::WAFRegional::WebACLAssociation
+    Type: AWS::WAFv2::WebACLAssociation
     Condition: useWebACL
     DependsOn: PublicElasticLoadBalancerV2
     Properties:
       ResourceArn: !Ref 'PublicElasticLoadBalancerV2'
-      WebACLId: !Ref 'WAFWebACL'
+      WebACLArn: !Ref 'WAFWebACL'
   DNSRecordCNAME2PublicElasticLoadBalancerV2:
     Type: AWS::Route53::RecordSet
     Condition: useDomainName
@@ -1794,7 +1795,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: '443'
           ToPort: '443'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '8443'
@@ -2364,12 +2365,12 @@ Resources:
           IpProtocol: tcp
           FromPort: '80'
           ToPort: '80'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
         - Description: Server outbound https access
           IpProtocol: tcp
           FromPort: '443'
           ToPort: '443'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
         - Description: Server outbound postgres access
           IpProtocol: tcp
           FromPort: '5432'
@@ -2382,17 +2383,17 @@ Resources:
           IpProtocol: udp
           FromPort: '123'
           ToPort: '123'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
         - Description: Server outbound udp dns access
           IpProtocol: udp
           FromPort: '53'
           ToPort: '53'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
         - Description: Server outbound tcp dns access
           IpProtocol: tcp
           FromPort: '53'
           ToPort: '53'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '0.0.0.0/0'
   ElasticsearchDomain:
     Type: AWS::Elasticsearch::Domain
     Condition: useElasticSearch
