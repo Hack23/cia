@@ -28,7 +28,7 @@ link com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode to c
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode--><!--MD5=[411c0ba3b548e91343ea05434e49ae6d]
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews--><!--MD5=[dd22a337060a8da51acef62e21b5d75c]
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews to com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode--><!--MD5=[efe796cce00a11168bb6629a9fa68240]
-link com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="459" y="1179.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[d18d62e19769d78c1ed9fdfed716b48c]
+link com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="459" y="1179.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[59f9a2e144fb3d50403cf6fa772915ca]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.viewnames {
 
@@ -199,7 +199,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

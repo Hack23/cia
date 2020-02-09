@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../../apidocs/com/hack23/cia/web/impl/ui/application/views/user/govermentbody/pagemode/AbstractGovernmentBodyPageModContentFactoryImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2020 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -71,13 +71,13 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	@Override
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<strong class="jxr_keyword">protected</strong> List&lt;GovernmentBodyAnnualSummary&gt; getItem(<strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2019).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));		
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2020).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));		
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">return</strong> map.get(getPageId(parameters));
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2020 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

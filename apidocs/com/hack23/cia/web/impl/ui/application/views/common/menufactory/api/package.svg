@@ -30,7 +30,7 @@ link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Applica
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory--><!--MD5=[af5956942abcb2af4c7c9e193a278e75]
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory--><!--MD5=[c44885131899684a35271e139d1774b3]
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory--><!--MD5=[154142c1b4d91ceb912036df3a6a5dae]
-link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="613.5" y="602.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[bc648f94b1d179a8c92ae4fa9a28e566]
+link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="613.5" y="602.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[6aa0a0d363db6dd8bfbca74c31daa8e4]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.menufactory.api {
 
@@ -132,7 +132,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

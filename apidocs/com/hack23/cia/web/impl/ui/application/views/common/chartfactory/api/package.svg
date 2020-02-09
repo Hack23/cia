@@ -42,7 +42,7 @@ link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Commit
 link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager to com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager--><!--MD5=[c120dde0774f95241c49862a6bf34036]
 link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager to com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager--><!--MD5=[5687b3d426a96531cb7f4f2d857c1821]
 link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager to com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager--><!--MD5=[142d60503c0c3475b2431174467bcebf]
-link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager to com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="1273" y="840.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[90a1ada7ccc22269797689c0ab5b1609]
+link com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager to com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="1273" y="840.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[12e44bb42d300b72615712d71010d9a5]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api {
 
@@ -170,7 +170,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

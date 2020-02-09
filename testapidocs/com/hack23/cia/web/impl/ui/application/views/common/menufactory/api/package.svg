@@ -30,7 +30,7 @@ link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHom
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory--><!--MD5=[7c084248e950d4464637521b51581204]
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory--><!--MD5=[40583a0cf4a0c727ea0187c67ee000f8]
 link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory--><!--MD5=[3eb1ca0bf2aded2eed14c476660037bf]
-link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="607" y="602.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[a84a56e8441668ab8436e2c4f64a8121]
+link com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory to com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="607" y="602.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[17937e12c8f63c648aa9c77d4d2eac40]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.menufactory.api {
 
@@ -132,7 +132,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

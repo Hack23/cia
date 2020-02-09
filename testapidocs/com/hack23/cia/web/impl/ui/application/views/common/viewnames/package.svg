@@ -28,7 +28,7 @@ link com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews to 
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews--><!--MD5=[fe55360c58de798c6080be8f64bb9eac]
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators to com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode--><!--MD5=[9c4d9185e174fd7b812f5f3aa3ba4d14]
 link com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode--><!--MD5=[2fc443fe724f65fda4bdc9fc338f6ea4]
-link com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="483.5" y="1076.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[15c5f521a4b89f04a1ac8e3430206c6b]
+link com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode to com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="483.5" y="1076.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[0939d64c49b580b491c3d760723c0a18]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.viewnames {
 
@@ -199,7 +199,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

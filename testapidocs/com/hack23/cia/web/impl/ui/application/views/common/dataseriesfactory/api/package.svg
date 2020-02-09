@@ -8,7 +8,7 @@ class com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.
 link com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory to com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory--><!--MD5=[376e4d5eb4531ef74f83960e3ade654d]
 link com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory to com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory--><!--MD5=[6840bd25ef05daf853ed2dd46c81d42a]
 link com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory to com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory--><!--MD5=[a942856bac5cd252237322d7f4c48fc7]
-link com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory to com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.ProposalCommitteeeSummary--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="603" y="349.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[b98ea3f6c90141580b8498a4ec4158a7]
+link com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory to com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.ProposalCommitteeeSummary--><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="186" x="603" y="349.2822">UMLDoclet 2.0.7, PlantUML 1.2019.12</text><!--MD5=[1d1bbf5e0f02a5e26721b981f986f993]
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api {
 
@@ -52,7 +52,7 @@ PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
 (APACHE source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.5-ea+10-post-Ubuntu-0ubuntu1
+Java Version: 11.0.6+10-post-Ubuntu-1ubuntu119.10.1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
