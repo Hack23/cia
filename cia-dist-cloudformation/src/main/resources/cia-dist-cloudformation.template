@@ -2217,7 +2217,7 @@
                 "NetworkAclId": {
                     "Ref": "PrivateAppNetworkAcl"
                 }, 
-                "RuleNumber": "100", 
+                "RuleNumber": "700", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "false", 
@@ -2234,7 +2234,7 @@
                 "NetworkAclId": {
                     "Ref": "PrivateAppNetworkAcl"
                 }, 
-                "RuleNumber": "200", 
+                "RuleNumber": "800", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "true", 
@@ -2285,7 +2285,7 @@
                 "NetworkAclId": {
                     "Ref": "PublicNetworkAcl"
                 }, 
-                "RuleNumber": "200", 
+                "RuleNumber": "300", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "false", 
@@ -2302,7 +2302,7 @@
                 "NetworkAclId": {
                     "Ref": "PublicNetworkAcl"
                 }, 
-                "RuleNumber": "300", 
+                "RuleNumber": "400", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "true", 
@@ -2319,7 +2319,7 @@
                 "NetworkAclId": {
                     "Ref": "PublicNetworkAcl"
                 }, 
-                "RuleNumber": "400", 
+                "RuleNumber": "500", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "true", 
@@ -2336,7 +2336,7 @@
                 "NetworkAclId": {
                     "Ref": "PublicNetworkAcl"
                 }, 
-                "RuleNumber": "500", 
+                "RuleNumber": "600", 
                 "Protocol": "6", 
                 "RuleAction": "allow", 
                 "Egress": "true", 
