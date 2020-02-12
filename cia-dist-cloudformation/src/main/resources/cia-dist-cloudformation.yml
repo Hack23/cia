@@ -807,9 +807,9 @@ Resources:
       Description: Daily Maintenance Window
       AllowUnassociatedTargets: false
       Cutoff: 1
-      Schedule: rate(1 days)
+      Schedule: rate(6 hours)
       Duration: 2
-      Name: daily-patching
+      Name: regular-patching
   MaintenanceWindowTarget:
     Type: AWS::SSM::MaintenanceWindowTarget
     Properties:
@@ -877,7 +877,7 @@ Resources:
       OutputLocation:
         S3Location:
           OutputS3BucketName: !Ref 'ArtifactBucket'
-      ScheduleExpression: rate(30 minutes)
+      ScheduleExpression: rate(7 days)
       Targets:
         - Key: tag:UpdateSSMAgent
           Values:
@@ -899,7 +899,7 @@ Resources:
       OutputLocation:
         S3Location:
           OutputS3BucketName: !Ref 'ArtifactBucket'
-      ScheduleExpression: rate(60 minutes)
+      ScheduleExpression: rate(1 day)
       Targets:
         - Key: tag:GatherSoftwareInventory
           Values:
@@ -2363,7 +2363,10 @@ Resources:
             - "apt-get -y install apt-transport-https\n"
             - "apt-get update\n"
             - "apt-get -y dist-upgrade\n"
-            - "apt-get -y install python-pip unattended-upgrades\n"
+            - "apt-get -y install python-pip unattended-upgrades chrony\n"
+            - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >>\
+              \ /etc/chrony/chrony.conf \n"
+            - "sudo /etc/init.d/chrony restart\n"
             - "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n"
             - "cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n"
             - "chmod +x /etc/init.d/cfn-hup \n"
