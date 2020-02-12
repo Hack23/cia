@@ -1066,6 +1066,96 @@ Resources:
       PrivateDnsEnabled: true
       SecurityGroupIds:
         - !Ref 'SgForlogsVPCEndpoint'
+  SgForssmVPCEndpoint:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group to allow access to ssm VPC Endpoint
+      SecurityGroupIngress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+      SecurityGroupEgress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: '-1'
+      VpcId: !Ref 'VPC'
+  ssmVPCEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcEndpointType: Interface
+      ServiceName: !Join
+        - ''
+        - - com.amazonaws.
+          - !Ref 'AWS::Region'
+          - .ssm
+      VpcId: !Ref 'VPC'
+      SubnetIds:
+        - !Ref 'PrivateAppSubnet'
+        - !Ref 'PrivateAppSubnet2'
+        - !Ref 'PrivateAppSubnet3'
+      PrivateDnsEnabled: true
+      SecurityGroupIds:
+        - !Ref 'SgForssmVPCEndpoint'
+  SgForssmmessagesVPCEndpoint:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group to allow access to ssmmessages VPC Endpoint
+      SecurityGroupIngress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+      SecurityGroupEgress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: '-1'
+      VpcId: !Ref 'VPC'
+  ssmmessagesVPCEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcEndpointType: Interface
+      ServiceName: !Join
+        - ''
+        - - com.amazonaws.
+          - !Ref 'AWS::Region'
+          - .ssmmessages
+      VpcId: !Ref 'VPC'
+      SubnetIds:
+        - !Ref 'PrivateAppSubnet'
+        - !Ref 'PrivateAppSubnet2'
+        - !Ref 'PrivateAppSubnet3'
+      PrivateDnsEnabled: true
+      SecurityGroupIds:
+        - !Ref 'SgForssmmessagesVPCEndpoint'
+  SgForecmessagesVPCEndpoint:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group to allow access to ec2messages VPC Endpoint
+      SecurityGroupIngress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+      SecurityGroupEgress:
+        - CidrIp: '0.0.0.0/0'
+          IpProtocol: '-1'
+      VpcId: !Ref 'VPC'
+  ecmessagesVPCEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcEndpointType: Interface
+      ServiceName: !Join
+        - ''
+        - - com.amazonaws.
+          - !Ref 'AWS::Region'
+          - .ec2messages
+      VpcId: !Ref 'VPC'
+      SubnetIds:
+        - !Ref 'PrivateAppSubnet'
+        - !Ref 'PrivateAppSubnet2'
+        - !Ref 'PrivateAppSubnet3'
+      PrivateDnsEnabled: true
+      SecurityGroupIds:
+        - !Ref 'SgForecmessagesVPCEndpoint'
   sVPCEndpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
