@@ -1577,7 +1577,167 @@
                     }
                 ]
             }
-        }, 
+        },        
+        "SgFormonitoringVPCEndpoint": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Security group to allow access to monitoring VPC Endpoint",
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443"
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "VPC"
+                }
+            }
+        },
+        "monitoringVPCEndpoint": {
+            "Type": "AWS::EC2::VPCEndpoint",
+            "Properties": {
+                "VpcEndpointType": "Interface",
+                "ServiceName": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "com.amazonaws.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".monitoring"
+                        ]
+                    ]
+                },
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    }, 
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    }, 
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+                ],
+                "PrivateDnsEnabled": true,
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "SgFormonitoringVPCEndpoint"
+                    }
+                ]
+            }
+        },        
+        "SgForlogsVPCEndpoint": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Security group to allow access to logs VPC Endpoint",
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443"
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "VPC"
+                }
+            }
+        },
+        "logsVPCEndpoint": {
+            "Type": "AWS::EC2::VPCEndpoint",
+            "Properties": {
+                "VpcEndpointType": "Interface",
+                "ServiceName": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "com.amazonaws.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".logs"
+                        ]
+                    ]
+                },
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    }, 
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    }, 
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+                ],
+                "PrivateDnsEnabled": true,
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "SgForlogsVPCEndpoint"
+                    }
+                ]
+            }
+        },        
+        "sVPCEndpoint": {
+            "Type": "AWS::EC2::VPCEndpoint",
+            "Properties": {
+                "ServiceName": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "com.amazonaws.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".s3"
+                        ]
+                    ]
+                },
+                "VpcId": {
+                    "Ref": "VPC"
+                 },
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": "*",
+                            "Action": [
+                                "*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "RouteTableIds": [
+                    { "Ref": "PrivateAppRouteTable"}
+                ]
+            }
+        },        
         "QuickSightVpnConnectionSubnet": {
             "Type": "AWS::EC2::Subnet", 
             "Properties": {
