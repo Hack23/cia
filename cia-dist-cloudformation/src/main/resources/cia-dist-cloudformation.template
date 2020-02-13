@@ -1185,9 +1185,9 @@
             "Properties": {
                 "Description": "Daily Maintenance Window", 
                 "AllowUnassociatedTargets": false, 
-                "Cutoff": 1, 
-                "Schedule": "rate(1 days)", 
-                "Duration": 2, 
+                "Cutoff": 0, 
+                "Schedule": "rate(2 hours)", 
+                "Duration": 1, 
                 "Name": "daily-patching"
             }
         }, 
@@ -1314,7 +1314,7 @@
                         }
                     }
                 }, 
-                "ScheduleExpression": "rate(7 days)", 
+                "ScheduleExpression": "rate(1 hour)", 
                 "Targets": [
                     {
                         "Key": "tag:UpdateSSMAgent", 
@@ -1351,7 +1351,7 @@
                         }
                     }
                 }, 
-                "ScheduleExpression": "rate(60 minutes)", 
+                "ScheduleExpression": "rate(1 hour)", 
                 "Targets": [
                     {
                         "Key": "tag:GatherSoftwareInventory", 

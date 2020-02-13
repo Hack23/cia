@@ -806,9 +806,9 @@ Resources:
     Properties:
       Description: Daily Maintenance Window
       AllowUnassociatedTargets: false
-      Cutoff: 1
-      Schedule: rate(1 days)
-      Duration: 2
+      Cutoff: 0
+      Schedule: rate(2 hours)
+      Duration: 1
       Name: daily-patching
   MaintenanceWindowTarget:
     Type: AWS::SSM::MaintenanceWindowTarget
@@ -877,7 +877,7 @@ Resources:
       OutputLocation:
         S3Location:
           OutputS3BucketName: !Ref 'ArtifactBucket'
-      ScheduleExpression: rate(7 days)
+      ScheduleExpression: rate(1 hour)
       Targets:
         - Key: tag:UpdateSSMAgent
           Values:
@@ -899,7 +899,7 @@ Resources:
       OutputLocation:
         S3Location:
           OutputS3BucketName: !Ref 'ArtifactBucket'
-      ScheduleExpression: rate(60 minutes)
+      ScheduleExpression: rate(1 hour)
       Targets:
         - Key: tag:GatherSoftwareInventory
           Values:
