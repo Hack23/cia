@@ -1186,9 +1186,9 @@
                 "Description": "Daily Maintenance Window", 
                 "AllowUnassociatedTargets": false, 
                 "Cutoff": 0, 
-                "Schedule": "rate(2 hours)", 
+                "Schedule": "rate(1 hour)", 
                 "Duration": 1, 
-                "Name": "daily-patching"
+                "Name": "hourly-patching"
             }
         }, 
         "MaintenanceWindowTarget": {
