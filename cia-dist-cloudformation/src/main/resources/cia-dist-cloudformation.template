@@ -1314,6 +1314,34 @@
       "SyncName" : "WebFleet"
     }
 	},
+        "UpdateSSMAgent": {
+            "Type": "AWS::SSM::Association", 
+            "Properties": {
+                "AssociationName": "UpdateSSMAgent", 
+                "Name": "AWS-UpdateSSMAgent", 
+                "Parameters": {
+                    "allowDowngrade": [
+                        "false"
+                    ]
+                }, 
+                "OutputLocation": {
+                    "S3Location": {
+                        "OutputS3BucketName": {
+                            "Ref": "ArtifactBucket"
+                        }
+                    }
+                }, 
+                "ScheduleExpression": "rate(7 days)", 
+                "Targets": [
+                    {
+                        "Key": "tag:UpdateSSMAgent", 
+                        "Values": [
+                            "true"
+                        ]
+                    }
+                ]
+            }
+        }, 
         "GatherSoftwareInventory": {
             "Type": "AWS::SSM::Association",
             "DependsOn": "ArtifactBucket", 
@@ -3462,6 +3490,11 @@
                         "PropagateAtLaunch": "true"
                     }, 
                     {
+                        "Key": "UpdateSSMAgent", 
+                        "Value": "true", 
+                        "PropagateAtLaunch": "true"
+                    }, 
+                    {
                         "Key": "GatherSoftwareInventory", 
                         "Value": "true", 
                         "PropagateAtLaunch": "true"
@@ -3643,7 +3676,6 @@
                                         "ssm:UpdateInstanceInformation",
                                         "ssm:ListAssociations", 
                                         "ssm:DescribeAssociation",
-                						"ssm:GetDocument",
                 						"ssm:ListInstanceAssociations",
                 						"ec2:DescribeInstanceStatus",
                                         "ec2messages:AcknowledgeMessage",

@@ -875,6 +875,22 @@ Resources:
       KMSKeyArn: !GetAtt 'ArtifactBucketEncryptionKey.Arn'
       SyncFormat: JsonSerDe
       SyncName: WebFleet
+  UpdateSSMAgent:
+    Type: AWS::SSM::Association
+    Properties:
+      AssociationName: UpdateSSMAgent
+      Name: AWS-UpdateSSMAgent
+      Parameters:
+        allowDowngrade:
+          - 'false'
+      OutputLocation:
+        S3Location:
+          OutputS3BucketName: !Ref 'ArtifactBucket'
+      ScheduleExpression: rate(7 days)
+      Targets:
+        - Key: tag:UpdateSSMAgent
+          Values:
+            - 'true'
   GatherSoftwareInventory:
     Type: AWS::SSM::Association
     DependsOn: ArtifactBucket
@@ -1995,6 +2011,9 @@ Resources:
         - Key: SecurityBaselineCheck
           Value: 'true'
           PropagateAtLaunch: 'true'
+        - Key: UpdateSSMAgent
+          Value: 'true'
+          PropagateAtLaunch: 'true'
         - Key: GatherSoftwareInventory
           Value: 'true'
           PropagateAtLaunch: 'true'
@@ -2073,6 +2092,8 @@ Resources:
   EC2SSMRole:
     Type: AWS::IAM::Role
     Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -2104,6 +2125,10 @@ Resources:
                   - ssm:UpdateAssociationStatus
                   - ssm:UpdateInstanceAssociationStatus
                   - ssm:UpdateInstanceInformation
+                  - ssm:ListAssociations
+                  - ssm:DescribeAssociation
+                  - ssm:ListInstanceAssociations
+                  - ec2:DescribeInstanceStatus
                   - ec2messages:AcknowledgeMessage
                   - ec2messages:DeleteMessage
                   - ec2messages:FailMessage
