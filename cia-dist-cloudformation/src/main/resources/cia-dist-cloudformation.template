@@ -1070,7 +1070,7 @@
                         {
                             "Sid": "ssm-access-policy-statement", 
                             "Action": [
-                                "kms:GenerateDataKey"
+                                "kms:*"
                             ], 
                             "Effect": "Allow", 
                             "Principal": {
@@ -1297,36 +1297,26 @@
                 ]
             }
         }, 
-        "UpdateSSMAgent": {
-            "Type": "AWS::SSM::Association", 
-            "Properties": {
-                "AssociationName": "UpdateSSMAgent", 
-                "Name": "AWS-UpdateSSMAgent", 
-                "Parameters": {
-                    "allowDowngrade": [
-                        "false"
-                    ]
-                }, 
-                "OutputLocation": {
-                    "S3Location": {
-                        "OutputS3BucketName": {
-                            "Ref": "ArtifactBucket"
-                        }
-                    }
-                }, 
-                "ScheduleExpression": "rate(1 hour)", 
-                "Targets": [
-                    {
-                        "Key": "tag:UpdateSSMAgent", 
-                        "Values": [
-                            "true"
-                        ]
-                    }
-                ]
-            }
-        }, 
+    "SSMResourceDataSync" : {  
+      "Type" : "AWS::SSM::ResourceDataSync",
+      "DependsOn": "ArtifactBucket",     
+  	  "Properties" : {
+      "BucketName" : {
+                           "Ref": "ArtifactBucket"
+                      },
+      "BucketRegion" : {"Ref" : "AWS::Region"},
+      "KMSKeyArn" : {
+                        "Fn::GetAtt": [
+                            "ArtifactBucketEncryptionKey", 
+                            "Arn"
+                        ] },
+      "SyncFormat" : "JsonSerDe",
+      "SyncName" : "WebFleet"
+    }
+	},
         "GatherSoftwareInventory": {
-            "Type": "AWS::SSM::Association", 
+            "Type": "AWS::SSM::Association",
+            "DependsOn": "ArtifactBucket", 
             "Properties": {
                 "AssociationName": "GatherSoftwareInventory", 
                 "Name": "AWS-GatherSoftwareInventory", 
@@ -3468,11 +3458,6 @@
                     }, 
                     {
                         "Key": "SecurityBaselineCheck", 
-                        "Value": "true", 
-                        "PropagateAtLaunch": "true"
-                    }, 
-                    {
-                        "Key": "UpdateSSMAgent", 
                         "Value": "true", 
                         "PropagateAtLaunch": "true"
                     }, 

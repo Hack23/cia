@@ -741,7 +741,7 @@ Resources:
             Resource: '*'
           - Sid: ssm-access-policy-statement
             Action:
-              - kms:GenerateDataKey
+              - kms:*
             Effect: Allow
             Principal:
               Service: ssm.amazonaws.com
@@ -866,24 +866,18 @@ Resources:
         - Values:
             - !Ref 'MaintenanceWindowTarget'
           Key: WindowTargetIds
-  UpdateSSMAgent:
-    Type: AWS::SSM::Association
+  SSMResourceDataSync:
+    Type: AWS::SSM::ResourceDataSync
+    DependsOn: ArtifactBucket
     Properties:
-      AssociationName: UpdateSSMAgent
-      Name: AWS-UpdateSSMAgent
-      Parameters:
-        allowDowngrade:
-          - 'false'
-      OutputLocation:
-        S3Location:
-          OutputS3BucketName: !Ref 'ArtifactBucket'
-      ScheduleExpression: rate(1 hour)
-      Targets:
-        - Key: tag:UpdateSSMAgent
-          Values:
-            - 'true'
+      BucketName: !Ref 'ArtifactBucket'
+      BucketRegion: !Ref 'AWS::Region'
+      KMSKeyArn: !GetAtt 'ArtifactBucketEncryptionKey.Arn'
+      SyncFormat: JsonSerDe
+      SyncName: WebFleet
   GatherSoftwareInventory:
     Type: AWS::SSM::Association
+    DependsOn: ArtifactBucket
     Properties:
       AssociationName: GatherSoftwareInventory
       Name: AWS-GatherSoftwareInventory
@@ -1999,9 +1993,6 @@ Resources:
           Value: Public
           PropagateAtLaunch: 'true'
         - Key: SecurityBaselineCheck
-          Value: 'true'
-          PropagateAtLaunch: 'true'
-        - Key: UpdateSSMAgent
           Value: 'true'
           PropagateAtLaunch: 'true'
         - Key: GatherSoftwareInventory
