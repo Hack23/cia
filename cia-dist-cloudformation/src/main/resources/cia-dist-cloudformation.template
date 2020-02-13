@@ -1186,9 +1186,9 @@
                 "Description": "Daily Maintenance Window", 
                 "AllowUnassociatedTargets": false, 
                 "Cutoff": 1, 
-                "Schedule": "rate(6 hours)", 
+                "Schedule": "rate(1 days)", 
                 "Duration": 2, 
-                "Name": "regular-patching"
+                "Name": "daily-patching"
             }
         }, 
         "MaintenanceWindowTarget": {
@@ -1351,7 +1351,7 @@
                         }
                     }
                 }, 
-                "ScheduleExpression": "rate(1 day)", 
+                "ScheduleExpression": "rate(60 minutes)", 
                 "Targets": [
                     {
                         "Key": "tag:GatherSoftwareInventory", 
