@@ -1602,7 +1602,13 @@
                 "GroupDescription": "Security group to allow access to monitoring VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
-                        "CidrIp": "0.0.0.0/0",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig", 
+                        "VPC", 
+                        "CIDR"
+                    ]
+                	},
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1663,7 +1669,13 @@
                 "GroupDescription": "Security group to allow access to logs VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
-                        "CidrIp": "0.0.0.0/0",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig", 
+                        "VPC", 
+                        "CIDR"
+                    ]
+                },
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1724,7 +1736,13 @@
                 "GroupDescription": "Security group to allow access to ssm VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
-                        "CidrIp": "0.0.0.0/0",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig", 
+                        "VPC", 
+                        "CIDR"
+                    ]
+                },
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1785,7 +1803,13 @@
                 "GroupDescription": "Security group to allow access to ssmmessages VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
-                        "CidrIp": "0.0.0.0/0",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig", 
+                        "VPC", 
+                        "CIDR"
+                    ]
+                   },
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1846,7 +1870,13 @@
                 "GroupDescription": "Security group to allow access to ec2messages VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
-                        "CidrIp": "0.0.0.0/0",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig", 
+                        "VPC", 
+                        "CIDR"
+                    ]
+                },
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
