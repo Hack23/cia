@@ -866,15 +866,6 @@ Resources:
         - Values:
             - !Ref 'MaintenanceWindowTarget'
           Key: WindowTargetIds
-  SSMResourceDataSync:
-    Type: AWS::SSM::ResourceDataSync
-    DependsOn: ArtifactBucket
-    Properties:
-      BucketName: !Ref 'ArtifactBucket'
-      BucketRegion: !Ref 'AWS::Region'
-      KMSKeyArn: !GetAtt 'ArtifactBucketEncryptionKey.Arn'
-      SyncFormat: JsonSerDe
-      SyncName: WebFleet
   UpdateSSMAgent:
     Type: AWS::SSM::Association
     Properties:
