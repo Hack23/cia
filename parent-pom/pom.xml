@@ -1095,7 +1095,7 @@
         <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
-          <version>3.8.6</version>
+          <version>3.8.7</version>
         </plugin>
         <plugin>
           <groupId>org.walkmod.maven.plugins</groupId>
