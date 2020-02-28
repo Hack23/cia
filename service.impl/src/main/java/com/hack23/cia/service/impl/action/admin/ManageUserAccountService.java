@@ -40,7 +40,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.RemoveDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class ManageUserAccountService.
@@ -48,8 +47,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class ManageUserAccountService
-		extends AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse>
-		implements BusinessService<ManageUserAccountRequest, ManageUserAccountResponse> {
+		extends AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse> {
 
 	/** The remove data manager. */
 	@Autowired

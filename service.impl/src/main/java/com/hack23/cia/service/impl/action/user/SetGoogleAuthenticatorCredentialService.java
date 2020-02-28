@@ -40,7 +40,6 @@ import com.hack23.cia.service.data.api.AgencyDAO;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
 import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;
@@ -51,8 +50,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=600)
 public final class SetGoogleAuthenticatorCredentialService extends
-		AbstractBusinessServiceImpl<SetGoogleAuthenticatorCredentialRequest, SetGoogleAuthenticatorCredentialResponse>
-		implements BusinessService<SetGoogleAuthenticatorCredentialRequest, SetGoogleAuthenticatorCredentialResponse> {
+		AbstractBusinessServiceImpl<SetGoogleAuthenticatorCredentialRequest, SetGoogleAuthenticatorCredentialResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

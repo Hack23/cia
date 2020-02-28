@@ -38,7 +38,6 @@ import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
 import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.hack23.cia.service.impl.action.user.wordcount.WordCounter;
 
 /**
@@ -47,8 +46,7 @@ import com.hack23.cia.service.impl.action.user.wordcount.WordCounter;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class DocumentWordCountService
-		extends AbstractBusinessServiceImpl<DocumentWordCountRequest, DocumentWordCountResponse>
-		implements BusinessService<DocumentWordCountRequest, DocumentWordCountResponse> {
+		extends AbstractBusinessServiceImpl<DocumentWordCountRequest, DocumentWordCountResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentWordCountService.class);

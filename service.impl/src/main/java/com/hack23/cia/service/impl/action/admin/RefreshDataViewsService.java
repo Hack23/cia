@@ -32,7 +32,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class RefreshDataViewsService.
@@ -40,8 +39,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class RefreshDataViewsService extends
-		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
-		implements BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> {
+		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 
 	/** The View data manager. */
 	@Autowired

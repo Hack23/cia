@@ -39,7 +39,6 @@ import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredenti
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialResponse;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class DisableGoogleAuthenticatorCredentialService.
@@ -47,9 +46,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class DisableGoogleAuthenticatorCredentialService extends
-		AbstractBusinessServiceImpl<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse>
-		implements
-		BusinessService<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse> {
+		AbstractBusinessServiceImpl<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(DisableGoogleAuthenticatorCredentialService.class);

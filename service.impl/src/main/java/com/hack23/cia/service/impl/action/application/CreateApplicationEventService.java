@@ -35,7 +35,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventRespo
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class CreateApplicationEventService.
@@ -44,8 +43,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Transactional(propagation = Propagation.REQUIRED)
 @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 public final class CreateApplicationEventService
-		extends AbstractCommonBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
-		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
+		extends AbstractCommonBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse> {
 
 	/** The application session dao. */
 	@Autowired

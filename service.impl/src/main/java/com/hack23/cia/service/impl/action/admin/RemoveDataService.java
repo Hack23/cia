@@ -32,7 +32,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.RemoveDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class RemoveDataService.
@@ -40,8 +39,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service("RemoveDataService")
 @Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class RemoveDataService extends
-		AbstractBusinessServiceImpl<RemoveDataRequest, RemoveDataResponse>
-		implements BusinessService<RemoveDataRequest, RemoveDataResponse> {
+		AbstractBusinessServiceImpl<RemoveDataRequest, RemoveDataResponse> {
 
 	/** The remove data manager. */
 	@Autowired

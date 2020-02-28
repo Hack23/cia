@@ -39,15 +39,13 @@ import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.application.LogoutResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class LogoutService.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class LogoutService extends AbstractBusinessServiceImpl<LogoutRequest, LogoutResponse>
-		implements BusinessService<LogoutRequest, LogoutResponse> {
+public final class LogoutService extends AbstractBusinessServiceImpl<LogoutRequest, LogoutResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

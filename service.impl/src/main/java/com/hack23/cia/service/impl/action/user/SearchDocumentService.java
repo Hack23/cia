@@ -40,7 +40,6 @@ import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class SearchDocumentService.
@@ -48,8 +47,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=600)
 public final class SearchDocumentService extends
-		AbstractBusinessServiceImpl<SearchDocumentRequest, SearchDocumentResponse>
-		implements BusinessService<SearchDocumentRequest, SearchDocumentResponse> {
+		AbstractBusinessServiceImpl<SearchDocumentRequest, SearchDocumentResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

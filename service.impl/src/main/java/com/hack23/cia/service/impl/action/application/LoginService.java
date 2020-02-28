@@ -49,7 +49,6 @@ import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess;
 import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult;
 import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 
 /**
@@ -57,8 +56,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticator;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest, LoginResponse>
-		implements BusinessService<LoginRequest, LoginResponse> {
+public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest, LoginResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);

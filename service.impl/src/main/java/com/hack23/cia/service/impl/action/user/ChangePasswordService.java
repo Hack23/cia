@@ -47,7 +47,6 @@ import com.hack23.cia.service.api.action.user.ChangePasswordResponse;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
 import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class ChangePasswordService.
@@ -55,9 +54,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class ChangePasswordService extends
-		AbstractBusinessServiceImpl<ChangePasswordRequest, ChangePasswordResponse>
-		implements
-		BusinessService<ChangePasswordRequest, ChangePasswordResponse> {
+		AbstractBusinessServiceImpl<ChangePasswordRequest, ChangePasswordResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordService.class);

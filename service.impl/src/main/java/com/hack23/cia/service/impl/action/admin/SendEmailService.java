@@ -31,7 +31,6 @@ import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.hack23.cia.service.impl.email.EmailService;
 
 /**
@@ -39,8 +38,7 @@ import com.hack23.cia.service.impl.email.EmailService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
-public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse>
-		implements BusinessService<SendEmailRequest, SendEmailResponse> {
+public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse> {
 
 	/** The email service. */
 	@Autowired

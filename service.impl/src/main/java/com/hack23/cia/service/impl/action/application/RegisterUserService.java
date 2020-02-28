@@ -59,15 +59,13 @@ import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class RegisterUserService.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class RegisterUserService extends AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
-		implements BusinessService<RegisterUserRequest, RegisterUserResponse> {
+public final class RegisterUserService extends AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserService.class);

@@ -36,7 +36,6 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class DestroyApplicationSessionService.
@@ -44,8 +43,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class DestroyApplicationSessionService
-		extends AbstractBusinessServiceImpl<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse>
-		implements BusinessService<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> {
+		extends AbstractBusinessServiceImpl<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(DestroyApplicationSessionService.class);

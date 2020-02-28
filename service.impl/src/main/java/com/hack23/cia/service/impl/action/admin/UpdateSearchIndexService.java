@@ -34,7 +34,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.SearchIndexer;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class UpdateSearchIndexService.
@@ -42,8 +41,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=3600)
 public final class UpdateSearchIndexService extends
-		AbstractBusinessServiceImpl<UpdateSearchIndexRequest, UpdateSearchIndexResponse>
-		implements BusinessService<UpdateSearchIndexRequest, UpdateSearchIndexResponse> {
+		AbstractBusinessServiceImpl<UpdateSearchIndexRequest, UpdateSearchIndexResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

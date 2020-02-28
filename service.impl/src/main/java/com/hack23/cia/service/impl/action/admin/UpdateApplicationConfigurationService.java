@@ -33,7 +33,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class UpdateApplicationConfigurationService.
@@ -41,8 +40,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class UpdateApplicationConfigurationService extends
-		AbstractBusinessServiceImpl<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse>
-		implements BusinessService<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse> {
+		AbstractBusinessServiceImpl<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse> {
 
 	/** The application configuration dao. */
 	@Autowired

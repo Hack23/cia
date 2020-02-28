@@ -35,7 +35,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationSessionRes
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractCommonBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class CreateApplicationSessionService.
@@ -43,8 +42,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class CreateApplicationSessionService
-		extends AbstractCommonBusinessServiceImpl<CreateApplicationSessionRequest, CreateApplicationSessionResponse>
-		implements BusinessService<CreateApplicationSessionRequest, CreateApplicationSessionResponse> {
+		extends AbstractCommonBusinessServiceImpl<CreateApplicationSessionRequest, CreateApplicationSessionResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
