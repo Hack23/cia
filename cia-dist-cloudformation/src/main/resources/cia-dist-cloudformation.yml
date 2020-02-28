@@ -2597,6 +2597,9 @@ Resources:
     Condition: useElasticSearch
     Properties:
       DomainName: !Ref 'DomainNamePrefix'
+      EncryptionAtRestOptions:
+        Enabled: true
+        KmsKeyId: !Ref 'DBEncryptionKmsAlias'
       EBSOptions:
         EBSEnabled: true
         VolumeSize: 30
