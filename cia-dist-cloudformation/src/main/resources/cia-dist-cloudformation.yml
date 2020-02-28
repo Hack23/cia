@@ -1011,7 +1011,8 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to monitoring VPC Endpoint
       SecurityGroupIngress:
-        - CidrIp: !FindInMap
+        - Description: vpc endpoint inbound access
+          CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
@@ -1019,7 +1020,8 @@ Resources:
           FromPort: '443'
           ToPort: '443'
       SecurityGroupEgress:
-        - CidrIp: '0.0.0.0/0'
+        - Description: vpc endpoint outbound access
+          CidrIp: '0.0.0.0/0'
           IpProtocol: '-1'
       VpcId: !Ref 'VPC'
   monitoringVPCEndpoint:
@@ -1044,7 +1046,8 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to logs VPC Endpoint
       SecurityGroupIngress:
-        - CidrIp: !FindInMap
+        - Description: vpc endpoint inbound access
+          CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
@@ -1052,7 +1055,8 @@ Resources:
           FromPort: '443'
           ToPort: '443'
       SecurityGroupEgress:
-        - CidrIp: '0.0.0.0/0'
+        - Description: vpc endpoint outbound access
+          CidrIp: '0.0.0.0/0'
           IpProtocol: '-1'
       VpcId: !Ref 'VPC'
   logsVPCEndpoint:
@@ -1077,7 +1081,8 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssm VPC Endpoint
       SecurityGroupIngress:
-        - CidrIp: !FindInMap
+        - Description: vpc endpoint inbound access
+          CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
@@ -1085,7 +1090,8 @@ Resources:
           FromPort: '443'
           ToPort: '443'
       SecurityGroupEgress:
-        - CidrIp: '0.0.0.0/0'
+        - Description: vpc endpoint outbound access
+          CidrIp: '0.0.0.0/0'
           IpProtocol: '-1'
       VpcId: !Ref 'VPC'
   ssmVPCEndpoint:
@@ -1110,7 +1116,8 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssmmessages VPC Endpoint
       SecurityGroupIngress:
-        - CidrIp: !FindInMap
+        - Description: vpc endpoint inbound access
+          CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
@@ -1118,7 +1125,8 @@ Resources:
           FromPort: '443'
           ToPort: '443'
       SecurityGroupEgress:
-        - CidrIp: '0.0.0.0/0'
+        - Description: vpc endpoint outbound access
+          CidrIp: '0.0.0.0/0'
           IpProtocol: '-1'
       VpcId: !Ref 'VPC'
   ssmmessagesVPCEndpoint:
@@ -1143,7 +1151,8 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ec2messages VPC Endpoint
       SecurityGroupIngress:
-        - CidrIp: !FindInMap
+        - Description: vpc endpoint inbound access
+          CidrIp: !FindInMap
             - SubnetConfig
             - VPC
             - CIDR
@@ -1151,7 +1160,8 @@ Resources:
           FromPort: '443'
           ToPort: '443'
       SecurityGroupEgress:
-        - CidrIp: '0.0.0.0/0'
+        - Description: vpc endpoint outbound access
+          CidrIp: '0.0.0.0/0'
           IpProtocol: '-1'
       VpcId: !Ref 'VPC'
   ecmessagesVPCEndpoint:

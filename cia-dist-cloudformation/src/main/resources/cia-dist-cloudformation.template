@@ -1584,6 +1584,7 @@
                 "GroupDescription": "Security group to allow access to monitoring VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
+                        "Description": "vpc endpoint inbound access",
                         "CidrIp": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
@@ -1598,6 +1599,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description": "vpc endpoint outbound access",
                         "CidrIp": "0.0.0.0/0",
                         "IpProtocol": "-1"
                     }
@@ -1651,6 +1653,7 @@
                 "GroupDescription": "Security group to allow access to logs VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
+                        "Description": "vpc endpoint inbound access",
                         "CidrIp": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
@@ -1665,6 +1668,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description": "vpc endpoint outbound access",
                         "CidrIp": "0.0.0.0/0",
                         "IpProtocol": "-1"
                     }
@@ -1718,6 +1722,7 @@
                 "GroupDescription": "Security group to allow access to ssm VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
+                        "Description": "vpc endpoint inbound access",
                         "CidrIp": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
@@ -1732,6 +1737,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description": "vpc endpoint outbound access",
                         "CidrIp": "0.0.0.0/0",
                         "IpProtocol": "-1"
                     }
@@ -1785,6 +1791,7 @@
                 "GroupDescription": "Security group to allow access to ssmmessages VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
+                        "Description": "vpc endpoint inbound access",
                         "CidrIp": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
@@ -1799,6 +1806,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description": "vpc endpoint outbound access",
                         "CidrIp": "0.0.0.0/0",
                         "IpProtocol": "-1"
                     }
@@ -1852,6 +1860,7 @@
                 "GroupDescription": "Security group to allow access to ec2messages VPC Endpoint",
                 "SecurityGroupIngress": [
                     {
+                        "Description": "vpc endpoint inbound access",
                         "CidrIp": {
                     "Fn::FindInMap": [
                         "SubnetConfig", 
@@ -1866,6 +1875,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description": "vpc endpoint outbound access",
                         "CidrIp": "0.0.0.0/0",
                         "IpProtocol": "-1"
                     }
