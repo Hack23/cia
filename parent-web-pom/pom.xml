@@ -27,7 +27,6 @@
     <module>../web-widgets</module>
     <module>../encrypt.properties</module>
     <module>../citizen-intelligence-agency</module>
-    <!--  <module>../cia-dist-deb</module>-->
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>

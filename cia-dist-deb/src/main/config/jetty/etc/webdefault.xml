@@ -289,12 +289,6 @@
       <param-name>compilerSourceVM</param-name>
       <param-value>1.7</param-value>
     </init-param>
-    <!--  
-    <init-param>
-        <param-name>classpath</param-name>
-        <param-value>?</param-value>
-    </init-param>
-    -->
     <load-on-startup>0</load-on-startup>
   </servlet>
 

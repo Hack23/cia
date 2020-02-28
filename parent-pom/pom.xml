@@ -102,9 +102,7 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <!-- <cia.project.versions.spring>5.1.6.RELEASE/5.2.0.RC1/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.2.4.RELEASE</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>5.1.5.RELEASE/5.2.0.M4/5.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.3.0.RC1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.3.0.M3</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.11.732</cia.project.versions.aws>
@@ -168,8 +166,6 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0.alpha1</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
-    <!-- <cia.project.versions.jetty>9.4.15.v20190215</cia.project.versions.jetty>
-	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.81.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.10.1</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
@@ -444,8 +440,6 @@
         <artifactId>commons-collections</artifactId>
         <version>${cia.project.versions.commons.collections}</version>
       </dependency>
-      <!-- ConnectionPooling -->
-      <!-- Spring dependencies, IOC & MVC framework -->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-orm</artifactId>
@@ -990,7 +984,6 @@
               <artifactId>asm-tree</artifactId>
               <version>${cia.project.versions.asm}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-languages -->
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
@@ -1344,9 +1337,7 @@
             <id>bundle-sources</id>
             <phase>package</phase>
             <goals>
-              <!-- produce source artifact for main project sources -->
               <goal>jar</goal>
-              <!-- produce source artifact for project test sources -->
               <goal>test-jar</goal>
             </goals>
           </execution>
@@ -1393,21 +1384,6 @@
               <proc>none</proc>
             </configuration>
           </execution>
-          <!--           <execution>
-            <id>base-compile</id>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            recompile everything for target VM except the module-info.java
-            <configuration>
-              <excludes>
-                <exclude>**/module-info.java</exclude>
-              </excludes>
-              <source>${jdk.src.version}</source>
-              <target>${jdk.target.version}</target>
-            </configuration>
-          </execution>
- -->
         </executions>
         <inherited>true</inherited>
         <configuration>
@@ -1756,26 +1732,6 @@
             </executions>
             <inherited>true</inherited>
           </plugin>
-          <!--           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>3.1.1</version>
-            <executions>
-              <execution>
-                <id>unpack-dependencies</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>unpack-dependencies</goal>
-                </goals>
-                <configuration>
-                  <includeGroupIds>com.hack23.cia</includeGroupIds>
-                  <excludeArtifactIds>transactions,cia-dist-cloudformation,cia-dist-deb</excludeArtifactIds>
-                </configuration>
-              </execution>
-            </executions>
-            <inherited>true</inherited>
-          </plugin>
- -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -1786,7 +1742,6 @@
                 <phase>verify</phase>
                 <goals>
                   <goal>jar</goal>
-                  <!-- <goal>test-jar</goal>-->
                 </goals>
               </execution>
             </executions>
@@ -1831,9 +1786,7 @@
                 <id>bundle-sources</id>
                 <phase>package</phase>
                 <goals>
-                  <!-- produce source artifact for main project sources -->
                   <goal>jar-no-fork</goal>
-                  <!-- produce source artifact for project test sources -->
                   <goal>test-jar-no-fork</goal>
                 </goals>
               </execution>
@@ -1857,7 +1810,6 @@
         </plugins>
       </build>
       <properties>
-        <!-- <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase> -->
         <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
       </properties>
     </profile>

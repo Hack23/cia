@@ -221,8 +221,6 @@
       <artifactId>javers-spring-jpa</artifactId>
       <version>${cia.project.versions.javers}</version>
       <exclusions>
-        <!-- <exclusion> <groupId>org.springframework.data</groupId> <artifactId>spring-data-commons</artifactId> 
-					</exclusion> -->
         <exclusion>
           <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
@@ -553,7 +551,6 @@
       <artifactId>curvesapi</artifactId>
       <version>1.06</version>
     </dependency>
-    <!-- Spring dependencies, IOC & MVC framework -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>

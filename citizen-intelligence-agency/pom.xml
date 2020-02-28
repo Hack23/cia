@@ -543,7 +543,6 @@
       <artifactId>jackson-dataformat-cbor</artifactId>
       <version>${cia.project.versions.jackson}</version>
     </dependency>
-    <!-- Test -->
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib</artifactId>
@@ -974,7 +973,6 @@
       <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.http2/http2-server -->
     <dependency>
       <groupId>org.eclipse.jetty.http2</groupId>
       <artifactId>http2-server</artifactId>
@@ -1053,7 +1051,6 @@
       <artifactId>xml-apis</artifactId>
       <version>${cia.project.versions.xmlapis}</version>
     </dependency>
-    <!-- Monitoring -->
     <dependency>
       <groupId>net.bull.javamelody</groupId>
       <artifactId>javamelody-core</artifactId>
@@ -1128,7 +1125,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- Vaadin GUI Frameworks -->
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>web-widgets</artifactId>
@@ -1316,30 +1312,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    -->
-    <!--
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-user</artifactId>
-      <version>${cia.project.versions.vaadin.gwt.user}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>json</artifactId>
-          <groupId>org.json</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>validation-api</artifactId>
-          <groupId>javax.validation</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>-->
-    <!-- Service Layer -->
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>service.impl</artifactId>
@@ -1433,7 +1405,6 @@
       <artifactId>postgresql</artifactId>
       <version>${cia.project.versions.postgresql}</version>
     </dependency>
-    <!-- Spring web support classes -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
@@ -1448,7 +1419,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- Authentication and authorisation -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
@@ -1598,28 +1568,6 @@
           <skipIfExist>true</skipIfExist>
         </configuration>
       </plugin>
-      <!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jdeps-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>jdkinternals</goal>
-              <goal>test-jdkinternals</goal>
-            </goals>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-utils</artifactId>
-            <version>3.1.0</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
@@ -1800,34 +1748,10 @@
           <stopKey>stop</stopKey>
           <scanIntervalSeconds>0</scanIntervalSeconds>
           <webAppConfig>
-            <!--<defaultsDescriptor>src/main/config/jetty/webdefault.xml</defaultsDescriptor>
-							<overrideDescriptor></overrideDescriptor> -->
             <contextPath>/cia</contextPath>
-            <!-- <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-							<resourcesAsCSV>src/main/webapp,${project.build.directory}/classes,${project.build.directory}/${project.build.finalName}/</resourcesAsCSV>
-							</baseResource> -->
           </webAppConfig>
         </configuration>
       </plugin>
-      <!-- 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>vulnerability-checks</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <banVulnerable implementation="org.sonatype.ossindex.maven.enforcer.BanVulnerableDependencies"></banVulnerable>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>-->
     </plugins>
   </build>
   <reporting>
