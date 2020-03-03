@@ -20,10 +20,7 @@ package com.hack23.cia.service.impl.rules;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Collections;
-import java.util.List;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly;
@@ -35,20 +32,11 @@ import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
  */
 public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheckImpl {
 
-	/** The Constant NO. */
-	private static final String NO = "NEJ";
-
-	/** The Constant YES. */
-	private static final String YES = "JA";
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The politician. */
 	private final ViewRiksdagenPolitician politician;
-	
-	/** The ballot decisions. */
-	private final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions;
 	
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary;
@@ -69,15 +57,13 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param dailySummary   the daily summary
 	 * @param monthlySummary the monthly summary
 	 * @param annualSummary  the annual summary
-	 * @param decisionList   the decision list
 	 */
-	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
+	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
 		super(ResourceType.POLITICIAN);
 		this.politician = politician;
 		this.dailySummary = dailySummary;
 		this.monthlySummary = monthlySummary;
 		this.annualSummary = annualSummary;
-		this.ballotDecisions = Collections.unmodifiableList(decisionList);
 		this.name = politician.getFirstName() + " " + politician.getLastName() + " (" +politician.getParty() +")";
 	}
 
@@ -98,42 +84,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	@Override
 	public String getId() {
 		return politician.getPersonId();
-	}
-
-	/**
-	 * Supports.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean supports(final String committeeReport,final String rm,final String issue) {
-		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
-				return YES.equalsIgnoreCase(summary.getVote());
-			}			
-		}
-		return false;
-	}
-
-	/**
-	 * Against.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean against(final String committeeReport,final String rm,final String issue) {
-		for (final ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
-				return NO.equalsIgnoreCase(summary.getVote());
-			}			
-		}
-		return false;
-	}
-	
+	}	
 
 	/**
 	 * Gets the daily summary.

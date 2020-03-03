@@ -34,10 +34,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
@@ -105,34 +101,14 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
 
-		final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> importantDecisions = new ArrayList<>();
-
-		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
-				new String[] { "2017/18", "KU16" } };
-
-		for (final String[] decision : decisions) {
-			importantDecisions
-					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
-							decision, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.rm,
-							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.committeeReport));
-		}
-
-		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>> decisionMap = importantDecisions
-				.stream().collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
 
 		for (final ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
 
-				List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballots = decisionMap
-						.get(politicianData.getPersonId());
-				if (ballots == null) {
-					ballots = new ArrayList<>();
-				}
-
 				insertPolitician(ksession, politicianData,
 						politicanBallotSummaryDailyMap.get(politicianData.getPersonId()),
 						politicanBallotSummaryMontlyMap.get(politicianData.getPersonId()),
-						politicanBallotSummaryAnnualMap.get(politicianData.getPersonId()), ballots);
+						politicanBallotSummaryAnnualMap.get(politicianData.getPersonId()));
 			}
 		}
 	}
@@ -145,13 +121,11 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param dailyList      the daily list
 	 * @param monthlyList    the monthly list
 	 * @param annualList     the annual list
-	 * @param decisionList   the decision list
 	 */
 	private static void insertPolitician(final KieSession ksession, final ViewRiksdagenPolitician politicianData,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyList,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyList,
-			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList,
-			final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionList) {
+			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList) {
 		if (politicianData.isActiveParliament() && dailyList != null && monthlyList != null && annualList != null) {
 			Collections.sort(dailyList,
 					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
@@ -169,13 +143,12 @@ public final class RulesEngineImpl implements RulesEngine {
 
 			if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {
 				final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
-						politicianData, dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get(),
-						decisionList);
+						politicianData, dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get());
 				ksession.insert(politicianComplianceCheckImpl);
 			}
 		} else {
 			final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
-					politicianData, null, null, null, new ArrayList<>());
+					politicianData, null, null, null);
 			ksession.insert(politicianComplianceCheckImpl);
 		}
 	}
@@ -197,34 +170,12 @@ public final class RulesEngineImpl implements RulesEngine {
 				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
 
-		final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> importantDecisions = new ArrayList<>();
-
-		final String[][] decisions = new String[][] { new String[] { "2007/08", "FöU15" },
-				new String[] { "2017/18", "KU16" } };
-
-		for (final String[] decision : decisions) {
-			importantDecisions
-					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
-							decision, ViewRiksdagenCommitteeBallotDecisionPartySummary_.rm,
-							ViewRiksdagenCommitteeBallotDecisionPartySummary_.committeeReport));
-
-		}
-
-		final Map<String, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>> decisionMap = importantDecisions
-				.stream().collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
-
 		for (final ViewRiksdagenPartySummary partyData : list) {
 			if (partyData != null) {
 
-				List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions = decisionMap
-						.get(partyData.getParty());
-				if (ballotDecisions == null) {
-					ballotDecisions = new ArrayList<>();
-				}
-
 				insertParty(ksession, partyData, politicanBallotSummaryDailyMap.get(partyData.getParty()),
 						politicanBallotSummaryMontlyMap.get(partyData.getParty()),
-						politicanBallotSummaryAnnualMap.get(partyData.getParty()), ballotDecisions);
+						politicanBallotSummaryAnnualMap.get(partyData.getParty()));
 			}
 		}
 	}
@@ -237,13 +188,11 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param dailyList       the daily list
 	 * @param monthlyList     the monthly list
 	 * @param annualList      the annual list
-	 * @param ballotDecisions the ballot decisions
 	 */
 	private static void insertParty(final KieSession ksession, final ViewRiksdagenPartySummary partyData,
 			final List<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyList,
 			final List<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyList,
-			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList,
-			final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions) {
+			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList) {
 		if (partyData.isActiveParliament() && dailyList != null && monthlyList != null && annualList != null) {
 			Collections.sort(dailyList,
 					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
@@ -260,12 +209,12 @@ public final class RulesEngineImpl implements RulesEngine {
 
 			if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {
 				final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData,
-						dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get(), ballotDecisions);
+						dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get());
 				ksession.insert(politicianComplianceCheckImpl);
 			}
 		} else {
 			final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData, null,
-					null, null, new ArrayList<>());
+					null, null);
 			ksession.insert(politicianComplianceCheckImpl);
 		}
 	}

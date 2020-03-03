@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import static org.mockito.Mockito.times;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.junit.Test;
@@ -51,7 +50,7 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
 		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
-		Mockito.when(event.getItem()).thenReturn(new PartyComplianceCheckImpl(new ViewRiksdagenPartySummary().withParty("partyid"), null, null, null, new ArrayList<>()));
+		Mockito.when(event.getItem()).thenReturn(new PartyComplianceCheckImpl(new ViewRiksdagenPartySummary().withParty("partyid"), null, null, null));
 			
 		listener.click(event);
 		
@@ -71,7 +70,7 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
 				
 		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
-		Mockito.when(event.getItem()).thenReturn(new PoliticianComplianceCheckImpl(new ViewRiksdagenPolitician().withPersonId("personid"), null, null, null, new ArrayList<>()));
+		Mockito.when(event.getItem()).thenReturn(new PoliticianComplianceCheckImpl(new ViewRiksdagenPolitician().withPersonId("personid"), null, null, null));
 			
 		listener.click(event);
 		

@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import java.util.Collections;
-import java.util.List;
-
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
@@ -42,9 +38,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	/** The name. */
 	private final String name;
 	
-	/** The ballot decisions. */
-	private final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions;
-	
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
 	
@@ -61,16 +54,14 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @param annualSummary   the annual summary
 	 * @param monthlySummary  the monthly summary
 	 * @param dailySummary    the daily summary
-	 * @param ballotDecisions the ballot decisions
 	 */
-	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary,final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions) {
+	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
 		super(ResourceType.PARTY);
 		this.party = party;
 		this.annualSummary = annualSummary;
 		this.monthlySummary = monthlySummary;
 		this.dailySummary = dailySummary;
 		this.name = party.getParty();
-		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);
 	}
 
 	/**
@@ -90,40 +81,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	@Override
 	public String getId() {
 		return party.getParty();
-	}
-
-	/**
-	 * Supports.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean supports(final String committeeReport,final String rm, final String issue) {
-		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
-				return summary.isPartyApproved();
-			}			
-		}
-		return false;
-	}
-
-	/**
-	 * Against.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean against(final String committeeReport,final String rm, final String issue) {
-		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {
-			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport) && summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {
-				return !summary.isPartyApproved();
-			}			
-		}
-		return false;
 	}
 
 	/**
