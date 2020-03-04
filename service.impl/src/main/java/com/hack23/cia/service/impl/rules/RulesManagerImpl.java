@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.RuleViolationDAO;
  * The Class ComplianceCheckService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+@Transactional(propagation = Propagation.REQUIRED, timeout = 900)
 public final class RulesManagerImpl implements RulesManager {
 
 	/** The Constant LOGGER. */
