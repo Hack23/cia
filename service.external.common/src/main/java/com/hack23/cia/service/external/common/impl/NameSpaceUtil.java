@@ -54,6 +54,8 @@ final class NameSpaceUtil {
 	public static Source setNameSpaceOnXmlStream(final InputStream in, final String nameSpace)
 			throws JDOMException, IOException {
 		final SAXBuilder sb = new SAXBuilder(new XMLReaderSAX2Factory(false));
+		sb.setExpandEntities(false);
+		sb.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 		final Document doc = sb.build(in);
 		doc.getRootElement().setNamespace(Namespace.getNamespace(nameSpace));
 		return new JDOMSource(doc);
