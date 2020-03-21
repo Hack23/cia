@@ -1,5 +1,5 @@
 #!/bin/bash -xe
-exec > >(tee /var/log/user-data.log) 2>&1 
+exec > >(tee /var/log/user-data.log) 2>&1
 export DEBIAN_FRONTEND=noninteractive
 
 #
@@ -24,20 +24,20 @@ apt-get -y install gnupg2
 #
 apt-get -y install locales tzdata
 rm /etc/localtime
-ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime 
-dpkg-reconfigure -f noninteractive tzdata 
+ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+dpkg-reconfigure -f noninteractive tzdata
 echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale
-locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 
-dpkg-reconfigure --frontend=noninteractive locales 
+locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8
+dpkg-reconfigure --frontend=noninteractive locales
 
 #
 #
 #
- 
-apt-get -y install postgresql-11 postgresql-contrib
+
+apt-get -y install postgresql-12 postgresql-contrib
 service postgresql stop
 
-echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/11/main/pg_hba.conf
+echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/12/main/pg_hba.conf
 
 openssl rand -base64 48 > passphrase.txt
 openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
@@ -48,23 +48,23 @@ openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 rm passphrase.txt
 rm server.csr
 
-cp server.crt /var/lib/postgresql/11/main/server.crt
-cp server.key /var/lib/postgresql/11/main/server.key
+cp server.crt /var/lib/postgresql/12/main/server.crt
+cp server.key /var/lib/postgresql/12/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/11/main/server.key
-chmod 700 /var/lib/postgresql/11/main/server.crt
-chown -R postgres:postgres /var/lib/postgresql/11/main/
+chmod 700 /var/lib/postgresql/12/main/server.key
+chmod 700 /var/lib/postgresql/12/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/12/main/
 
-echo "ssl_cert_file = '/var/lib/postgresql/11/main/server.crt'" >> /etc/postgresql/11/main/postgresql.conf
-echo "ssl_key_file = '/var/lib/postgresql/11/main/server.key'" >> /etc/postgresql/11/main/postgresql.conf
-echo "max_prepared_transactions = 100" >> /etc/postgresql/11/main/postgresql.conf 
+echo "ssl_cert_file = '/var/lib/postgresql/12/main/server.crt'" >> /etc/postgresql/12/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/12/main/server.key'" >> /etc/postgresql/12/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/12/main/postgresql.conf
 
-echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/11/main/postgresql.conf 
-echo "pgaudit.log = ddl" >> /etc/postgresql/11/main/postgresql.conf 
-echo "pg_stat_statements.track = all" >> /etc/postgresql/11/main/postgresql.conf 
-echo "pg_stat_statements.max = 10000" >> /etc/postgresql/11/main/postgresql.conf
-echo "listen_addresses = '*'" >> /etc/postgresql/11/main/postgresql.conf
-echo "port = 6432" >> /etc/postgresql/11/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/12/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/12/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/12/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/12/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/12/main/postgresql.conf
+echo "port = 6432" >> /etc/postgresql/12/main/postgresql.conf
 
 service postgresql start
 
@@ -78,10 +78,10 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certificates-java wget
 
 
-wget https://download.java.net/java/GA/jdk14/076bab302c7b4508975440c56f6cc26a/36/GPL/openjdk-14_linux-x64_bin.tar.gz 
-tar xvfz openjdk-14_linux-x64_bin.tar.gz 
-mv jdk-14 /usr/lib/jvm/jdk-14
-rm openjdk-14_linux-x64_bin.tar.gz 
+wget https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14%2B36/OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
+tar xvfz OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
+mv jdk-14+36 /usr/lib/jvm/jdk-14
+rm OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
 
 
 dpkg -i /root/cia-dist-deb.deb
