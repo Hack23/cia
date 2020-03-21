@@ -164,7 +164,7 @@
     <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.20</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>10.0.0.alpha1</cia.project.versions.jetty>
+    <cia.project.versions.jetty>10.0.0.alpha2</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <cia.project.versions.javamelody>1.82.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.10.2</cia.project.versions.vaadin>
@@ -1265,7 +1265,7 @@
               </rules>
             </configuration>
           </execution>
-          <!-- 
+          <!--
           <execution>
             <id>enforce-java-source-encoding</id>
             <goals>
@@ -1457,11 +1457,11 @@
         <jdk>15</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-15/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
@@ -1478,11 +1478,11 @@
         <jdk>14</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-14/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
@@ -1499,11 +1499,11 @@
         <jdk>13</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-13/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
@@ -1520,11 +1520,11 @@
         <jdk>12</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
@@ -1541,11 +1541,11 @@
         <jdk>11</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED 
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED 
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist 
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist 
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
