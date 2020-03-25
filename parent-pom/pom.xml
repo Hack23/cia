@@ -146,7 +146,7 @@
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
-    <cia.project.versions.istack>3.0.11</cia.project.versions.istack>
+    <cia.project.versions.istack>4.0.0-M1</cia.project.versions.istack>
     <cia.project.versions.jaxb.build>2.4.0</cia.project.versions.jaxb.build>
     <cia.project.versions.jaxb.api.runtime>2.4.0</cia.project.versions.jaxb.api.runtime>
     <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
@@ -159,7 +159,7 @@
     <cia.project.versions.maven>3.5.3</cia.project.versions.maven>
     <cia.project.versions.httpclient>4.5.12</cia.project.versions.httpclient>
     <cia.project.versions.guava>28.2-jre</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.10.3</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.11.0.rc1</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.48.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.20</cia.project.versions.commons.compress>
