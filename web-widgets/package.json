@@ -18,7 +18,7 @@
   "dependencies": {
     "ncu": "0.2.1",
     "npm-check-updates": "4.0.6",
-    "snyk": "1.303.2"
+    "snyk": "1.305.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
