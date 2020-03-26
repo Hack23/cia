@@ -12,7 +12,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastCompletedBuild/testReport/)
 [![Build Status](https://travis-ci.org/Hack23/cia.svg?branch=master)](https://travis-ci.org/Hack23/cia)
-[![SonarQube Coverage](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Acia-all)
+[![Coverage](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![SonarQube Tech Debt](https://www.hack23.com/sonar/api/badges/measure?key=com.hack23.cia%3Acia-all&metric=sqale_debt_ratio)](https://www.hack23.com/sonar/component_measures?id=com.hack23.cia%3Acia-all)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
@@ -141,8 +141,8 @@ Israel
 
 
 # Running docker image
-  
- Docker repository : https://hub.docker.com/r/hack23/cia/ 
+
+ Docker repository : https://hub.docker.com/r/hack23/cia/
 
 1. docker run hack23/cia:2020.2.9 -p 28443:8443
 
@@ -178,7 +178,7 @@ postgres=# CREATE DATABASE cia_dev;
 postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 ```
 
-4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto 
+4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto
 
 Edit file "/etc/postgresql/11/main/postgresql.conf" set
 
