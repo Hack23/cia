@@ -218,7 +218,7 @@
     <dependency>
       <groupId>com.github.haifengl</groupId>
       <artifactId>smile-netlib</artifactId>
-      <version>2.2.2</version>
+      <version>2.3.0</version>
       <exclusions>
         <exclusion>
           <artifactId>all</artifactId>
