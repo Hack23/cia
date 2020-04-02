@@ -3062,7 +3062,7 @@
                     "Ref": "DBClass"
                 },
                 "Engine": "postgres",
-                "EngineVersion": "11.6",
+                "EngineVersion": "12.2",
                 "MultiAZ": "false",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
