@@ -2921,7 +2921,7 @@
             "Type": "AWS::RDS::DBParameterGroup",
             "Properties": {
                 "Description": "Database Parameter Group + pg_stat_statements",
-                "Family": "postgres11",
+                "Family": "postgres12",
                 "Parameters": {
                     "max_prepared_transactions": "LEAST({DBInstanceClassMemory/9531392},5000)",
                     "max_parallel_workers_per_gather": "4",
