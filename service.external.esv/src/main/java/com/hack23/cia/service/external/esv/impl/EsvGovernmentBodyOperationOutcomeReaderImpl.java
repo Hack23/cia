@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -105,7 +105,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	/** The esv excel reader. */
 	@Autowired
 	private EsvExcelReader esvExcelReader;
-	
+
 	private List<GovernmentBodyAnnualOutcomeSummary> incomeCsvValues;
 
 	private List<GovernmentBodyAnnualOutcomeSummary> outGoingCsvValues;
@@ -121,17 +121,17 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
 		if (incomeCsvValues == null) {
 			incomeCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20november%202019,%20definitivt.zip&year=2019&month=11&status=Definitiv")
+				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202020,%20definitivt.zip&year=2020&month=2&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
 		}
 		return Collections.unmodifiableList(incomeCsvValues);
 	}
-	
+
 	@Override
-	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
+	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {
 		if (outGoingCsvValues == null) {
 			outGoingCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20november%202019,%20definitivt.zip&year=2019&month=11&status=Definitiv")
+				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20februari%202020,%20definitivt.zip&year=2020&month=2&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
 		}
 		return Collections.unmodifiableList(outGoingCsvValues);
@@ -148,7 +148,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {		
+	private List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {
 		final BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
@@ -179,37 +179,37 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
-		
+
 		final Map<Integer, Map<String,String>> orgMinistryMap = createOrgMinistryMap(esvExcelReader.getDataPerMinistry(null));
-		
+
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
-		
+
 		for (final CSVRecord csvRecord : records) {
 			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
-			
-			for (final String field : specificFields) {				
+
+			for (final String field : specificFields) {
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
 			}
-			
+
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JANUARY.getValue(),csvRecord.get(UTFALL_JANUARI));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.FEBRUARY.getValue(),csvRecord.get(UTFALL_FEBRUARI));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MARCH.getValue(),csvRecord.get(UTFALL_MARS));
-			
+
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.APRIL.getValue(),csvRecord.get(UTFALL_APRIL));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MAY.getValue(),csvRecord.get(UTFALL_MAJ));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JUNE.getValue(),csvRecord.get(UTFALL_JUNI));
-			
+
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JULY.getValue(),csvRecord.get(UTFALL_JULI));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.AUGUST.getValue(),csvRecord.get(UTFALL_AUGUSTI));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.SEPTEMBER.getValue(),csvRecord.get(UTFALL_SEPTEMBER));
-			
+
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.OCTOBER.getValue(),csvRecord.get(UTFALL_OKTOBER));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.NOVEMBER.getValue(),csvRecord.get(UTFALL_NOVEMBER));
 			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.DECEMBER.getValue(),csvRecord.get(UTFALL_DECEMBER));
-			
+
 			list.add(governmentBodyAnnualOutcomeSummary);
 		}
-		
+
 		return list;
 	}
 
@@ -222,15 +222,15 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	private static Map<Integer, Map<String, String>> createOrgMinistryMap(
 			final Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
 		final Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
-		
+
 		final Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
-		
-		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {		
+
+		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {
 			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replace("-","") ,Collectors.collectingAndThen(
-                    Collectors.toList(), 
+                    Collectors.toList(),
                     values -> values.get(0).getMinistry()))));
 		}
-		
+
 		return orgMinistryMap;
 	}
 
