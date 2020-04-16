@@ -122,7 +122,7 @@
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
       <artifactId>jboss-logmanager</artifactId>
-      <version>2.1.14.Final-redhat-00001</version>
+      <version>2.1.15.Final</version>
     </dependency>
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
