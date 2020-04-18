@@ -313,7 +313,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.8.70</version>
+      <version>4.8.71</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
