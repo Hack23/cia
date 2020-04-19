@@ -75,7 +75,7 @@
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>model.common.impl</artifactId>
-      <version>2020.2.20-SNAPSHOT</version>
+      <version>2020.4.19</version>
     </dependency>
     <dependency>
       <groupId>org.jvnet.hyperjaxb3</groupId>
