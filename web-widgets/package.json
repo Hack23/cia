@@ -9,20 +9,7 @@
     "karma-jasmine": "3.1.1",
     "karma-junit-reporter": "2.0.1",
     "karma-mocha": "2.0.0",
-    "karma-phantomjs-launcher": "1.0.4",
     "karma-sinon-chai": "2.0.2",
-    "mocha": "7.1.1",
-    "phantomjs-prebuilt": "2.1.16",
-    "concat-stream": "2.0.0"
-  },
-  "dependencies": {
-    "ncu": "0.2.1",
-    "npm-check-updates": "4.1.2",
-    "snyk": "1.311.0"
-  },
-  "scripts": {
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
-  },
-  "snyk": true
+    "mocha": "7.1.1"
+  }
 }
