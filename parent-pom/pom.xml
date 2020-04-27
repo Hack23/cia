@@ -1090,7 +1090,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>2.7</version>
+        <version>3.0</version>
         <executions>
           <execution>
             <id>verify-forbidden-apis</id>
