@@ -27,7 +27,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=com.hack23.cia%3Acia-all)](https://sonarcloud.io/dashboard?id=com.hack23.cia%3Acia-all)
-
+[![SourceSpy Dashboard](https://sourcespy.com/shield.svg)](https://sourcespy.com/github/hack23cia/)
 
 
 # Runtime
