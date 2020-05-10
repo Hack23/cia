@@ -84,7 +84,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 			assertNotNull(governmentBodyAnnualSummary);
 			assertTrue(governmentBodyAnnualSummary.getAnnualWorkHeadCount()>= 0);
 			assertTrue(governmentBodyAnnualSummary.getConsecutiveNumber() > 0);
-			assertTrue(governmentBodyAnnualSummary.getYear() > 0);			
+			assertTrue(governmentBodyAnnualSummary.getYear() > 0);
 			assertNotNull(governmentBodyAnnualSummary.getComment());
 			assertNotNull(governmentBodyAnnualSummary.getGovermentBodyId());
 			assertNotNull(governmentBodyAnnualSummary.getVat());
@@ -122,7 +122,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
-	
+
 	/**
 	 * Gets the data finance ministry success test.
 	 *
@@ -202,7 +202,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyNamesSuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames();
 		assertNotNull(list);
-		assertEquals(336, list.size());
+		assertEquals(337, list.size());
 	}
 
 	/**
@@ -212,7 +212,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	 */
 	@Test
 	public void getMinistryNamesSuccessTest() {
-		final List<String> list = esvApi.getMinistryNames();		
+		final List<String> list = esvApi.getMinistryNames();
 		assertNotNull(list);
 		assertEquals(17, list.size());
 	}
@@ -296,7 +296,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets the report test.
 	 *
@@ -310,11 +310,11 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final List<GovernmentOperationPeriodOutcome> list = report.get(GovernmentOperationPeriodOutcome.Variables.BUDGET_BALANCE.toString());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
-		
+
 		final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = list.get(0);
 		assertEquals(0,governmentOperationPeriodOutcome.compareTo(governmentOperationPeriodOutcome));
 	}
-	
+
 
 	/**
 	 * Gets the government body report test.
@@ -329,7 +329,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
 		assertNotNull(summary.getYearTotal());
-		assertNotNull(summary.getValueMap());		
+		assertNotNull(summary.getValueMap());
 		assertTrue(summary.getYear() > 0);
 	}
 
@@ -346,7 +346,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
 		assertNotNull(summary.getYearTotal());
-		assertNotNull(summary.getValueMap());		
+		assertNotNull(summary.getValueMap());
 		assertTrue(summary.getYear() > 0);
 	}
 
@@ -387,5 +387,5 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertFalse(report.isEmpty());
 	}
 
-	
+
 }
