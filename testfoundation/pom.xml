@@ -177,7 +177,7 @@
     <dependency>
       <groupId>org.xmlunit</groupId>
       <artifactId>xmlunit-legacy</artifactId>
-      <version>2.6.4</version>
+      <version>2.7.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
@@ -209,7 +209,7 @@
     <dependency>
       <groupId>org.apache.xmlbeans</groupId>
       <artifactId>xmlbeans</artifactId>
-      <version>3.1.0</version>
+      <version>${cia.project.versions.xmlbeans}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -256,7 +256,16 @@
           <artifactId>xmlbeans</artifactId>
           <groupId>org.apache.xmlbeans</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>commons-compress</artifactId>
+          <groupId>org.apache.commons</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+      <version>${cia.project.versions.commons.compress}</version>
     </dependency>
     <dependency>
       <groupId>com.github.virtuald</groupId>
