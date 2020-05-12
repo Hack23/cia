@@ -46,8 +46,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 
-import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 /**
  * The Class AbstractRoleSystemITest.
@@ -179,8 +179,8 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
 			final ChromeOptions chromeOptions = new ChromeOptions();
-		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");	    
-		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");			    
+		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");
+		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");
 			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_68);
