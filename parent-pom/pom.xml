@@ -112,7 +112,7 @@
     <cia.project.versions.narayana>5.10.4.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>8.0.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
-    <cia.project.versions.commons.collections>20040616</cia.project.versions.commons.collections>
+    <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.10</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.8</cia.project.versions.commons.text>
@@ -164,7 +164,7 @@
     <cia.project.versions.netty>4.1.50.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.20</cia.project.versions.commons.compress>
-    <cia.project.versions.xmlapis>2.0.2</cia.project.versions.xmlapis>
+    <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.0.alpha2</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <cia.project.versions.javamelody>1.83.0</cia.project.versions.javamelody>
