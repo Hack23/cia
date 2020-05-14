@@ -24,7 +24,7 @@
   </distributionManagement>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vaadin.version>8.10.5</vaadin.version>
+    <vaadin.version>8.11.0.beta1</vaadin.version>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
   </properties>
   <dependencies>
@@ -353,7 +353,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.13.1</version>
+      <version>1.12.2</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -512,11 +512,11 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-elemental</artifactId>
       <version>${cia.project.versions.vaadin.gwt.user}</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>

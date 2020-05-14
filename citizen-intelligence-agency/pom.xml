@@ -1311,11 +1311,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-elemental</artifactId>
-      <version>${cia.project.versions.vaadin.gwt.user}</version>
-    </dependency>
-    <dependency>
       <groupId>javax.el</groupId>
       <artifactId>javax.el-api</artifactId>
       <version>3.0.0</version>
