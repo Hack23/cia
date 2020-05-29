@@ -817,7 +817,17 @@
           <artifactId>kotlin-stdlib</artifactId>
           <groupId>org.jetbrains.kotlin</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>reactor-core</artifactId>
+          <groupId>io.projectreactor</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-core</artifactId>
+      <version>3.3.5.RELEASE</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.java.dev.jna</groupId>

@@ -14095,6 +14095,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-table-body {
 	border: 2px solid #4a5d67;
+	overflow-anchor: none;
 	-webkit-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
