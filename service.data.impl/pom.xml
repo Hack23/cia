@@ -329,7 +329,16 @@
           <artifactId>failureaccess</artifactId>
           <groupId>com.google.guava</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>checker-qual</artifactId>
+          <groupId>org.checkerframework</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>3.4.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
