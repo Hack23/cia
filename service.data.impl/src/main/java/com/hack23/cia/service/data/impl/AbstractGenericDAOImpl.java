@@ -67,7 +67,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	/** The persistent class. */
 	private final Class<T> persistentClass;
-	
+
 	/**
 	 * Instantiates a new abstract generic dao impl.
 	 *
@@ -267,7 +267,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	protected final SearchSession getFullTextEntityManager() {
 		return Search.session(getEntityManager());
 	}
-	
+
 	/**
 	 * Gets the metamodel.
 	 *
@@ -363,6 +363,6 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	@Override
 	public final List<T> search(final String searchExpression, final Integer maxResults, final String... fields) {
-		return getFullTextEntityManager().search(persistentClass).asEntity().predicate(t -> t.match().fields(fields).matching(searchExpression)).fetchHits(maxResults);
+		return getFullTextEntityManager().search(persistentClass).selectEntity().where(t -> t.match().fields(fields).matching(searchExpression)).fetchHits(maxResults);
 	}
 }

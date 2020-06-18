@@ -23,13 +23,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -115,7 +115,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	}
 
 	@Override
-	public List<String> getIndicatorsWithSwedishData() throws DataFailureException {		
+	public List<String> getIndicatorsWithSwedishData() throws DataFailureException {
 		try {
 			return Collections.unmodifiableList(readUsingZipInputStream(Request.Get("http://api.worldbank.org/v2/en/country/SWE?downloadformat=csv").execute().returnContent().asStream()));
 		} catch (final IOException e) {
@@ -134,25 +134,25 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<String> readUsingZipInputStream(final InputStream inputStream) throws IOException {		
+	private static List<String> readUsingZipInputStream(final InputStream inputStream) throws IOException {
 		final BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
 		final List<String> list = new ArrayList<>();
 		try {
 			ZipEntry entry;
-			
+
 			while ((entry = is.getNextEntry()) != null) {
-				if (entry.getName().startsWith("API_SWE_")) {					
-					list.addAll(readCsvContent(is));					
-				}						
+				if (entry.getName().startsWith("API_SWE_")) {
+					list.addAll(readCsvContent(is));
+				}
 			}
 		} finally {
 			is.close();
 		}
 		return list;
 	}
-	
+
 	/**
 	 * Read csv content.
 	 *
@@ -162,25 +162,25 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<String> readCsvContent(final InputStream is) throws IOException {		
-		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
+	private static List<String> readCsvContent(final InputStream is) throws IOException {
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,StandardCharsets.UTF_8));
 		for (int i = 0; i < IGNORE_TOP_HEADERS_LINE; i++) {
-			final String ignoreFirstLinesWithHeaders = reader.readLine();			
+			final String ignoreFirstLinesWithHeaders = reader.readLine();
 		}
-		
+
 		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
-		
+
 		final List<String> list = new ArrayList<>();
-		
-		for (final CSVRecord csvRecord : records) {			
+
+		for (final CSVRecord csvRecord : records) {
 			list.add(csvRecord.get("Indicator Code"));
 		}
-		
+
 		return list;
 	}
 
-	
+
 
 }

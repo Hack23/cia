@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -125,11 +125,11 @@ public class AuditableAspectConfiguration {
 	public CommitPropertiesProvider commitPropertiesProvider() {
 		return new CommitPropertiesProvider() {
             @Override
-            public Map<String, String> provide() {
+            public Map<String, String>  provideForCommittedObject(Object domainObject) {
                 final Map<String, String> props = new HashMap<>();
-                props.put("key", "ok");	
-                return props;	
-            }	            
-        };	
+                props.put("key", "ok");
+                return props;
+            }
+        };
 	}
 }

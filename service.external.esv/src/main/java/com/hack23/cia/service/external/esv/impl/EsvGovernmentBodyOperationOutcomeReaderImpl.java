@@ -22,6 +22,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +35,6 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -176,7 +176,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
-		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
+		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,StandardCharsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 

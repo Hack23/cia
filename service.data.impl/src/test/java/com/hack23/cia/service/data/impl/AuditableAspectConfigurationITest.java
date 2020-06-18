@@ -35,7 +35,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
-import org.javers.spring.auditable.AuthorProvider;
 
 
 /**
@@ -47,7 +46,7 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	/** The application session DAO. */
 	@Autowired
 	private ApplicationSessionDAO applicationSessionDAO;
-	
+
 	@Autowired
 	private Javers javers;
 
@@ -59,13 +58,13 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	 */
 	@Before
 	public void beforeAuditTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();				
+		final ApplicationSession applicationSession = createApplicationSession();
 		final ApplicationSession applicationSessionClone = SerializationUtils.clone(applicationSession);
 		assertFalse(applicationSession == applicationSessionClone);
-		applicationSessionClone.setIpInformation("Changed" + UUID.randomUUID().toString());		
-		applicationSessionDAO.merge(applicationSessionClone);		
+		applicationSessionClone.setIpInformation("Changed" + UUID.randomUUID().toString());
+		applicationSessionDAO.merge(applicationSessionClone);
 	}
-	
+
 	/**
 	 * Audit find changes test.
 	 */
@@ -74,7 +73,7 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 		final Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
 		assertTrue(findFirst.isPresent());
 		final Changes changes = javers.findChanges(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
-		
+
 		assertTrue(changes.groupByCommit().size() > 0);
 		assertNotNull(changes.groupByCommit().get(0).getCommit().getAuthor());
 	}
@@ -86,10 +85,10 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	public void AuditFindSnapshotsTest() {
 		final Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
 		assertTrue(findFirst.isPresent());
-		final List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());		
+		final List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
 		assertTrue(snapshots.size()> 0);
 	}
-	
+
 	/**
 	 * Author provider system test.
 	 */
@@ -97,7 +96,7 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	public void authorProviderSystemTest() {
 		assertEquals("system",new AuditableAspectConfiguration().authorProvider().provide());
 	}
-	
+
 	private ApplicationSession createApplicationSession() {
 		final ApplicationSession applicationSession = new ApplicationSession();
 		applicationSession.withCreatedDate(new Date()).withIpInformation(UUID.randomUUID().toString()).withLocale("Locale").withSessionId(UUID.randomUUID().toString());
