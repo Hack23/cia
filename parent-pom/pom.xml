@@ -175,7 +175,7 @@
     <jacoco.version>0.8.5</jacoco.version>
     <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-    <surefire.version>3.0.0-RC1</surefire.version>
+    <surefire.version>3.0.0-M5</surefire.version>
     <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
     <jdk.src.version>11</jdk.src.version>
     <jdk.target.version>11</jdk.target.version>
@@ -1477,7 +1477,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M4</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1499,7 +1499,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M4</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1521,7 +1521,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M4</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1543,7 +1543,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M4</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1565,7 +1565,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M4</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
     <profile>
