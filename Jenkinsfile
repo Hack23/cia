@@ -6,6 +6,12 @@ pipeline {
         jdk 'Java11'
     }
 
+   parameters {
+       booleanParam(name: "RELEASE",
+               description: "Build a release from current commit.",
+               defaultValue: false)
+   }
+
    stages {
 
 
@@ -233,6 +239,17 @@ pipeline {
 		      }
 
 	   }
+
+	   stage('Release') {
+            when {
+                expression { params.RELEASE }
+            }
+            steps {
+                sh "mvn -B release:prepare"
+                sh "mvn -B release:perform"
+            }
+       }
+
 
 	   stage ("Completed") {	       	   	   	      steps {
 	              sh "echo placeholder"
