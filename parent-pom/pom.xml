@@ -124,7 +124,7 @@
     <cia.project.versions.drools>7.38.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.0.0.Beta8</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.5.2</cia.project.versions.hibernate.lucene>
-    <cia.project.versions.hibernate>5.4.17.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate>5.4.18.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.4.17.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.4.17.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final-redhat-1</cia.project.versions.hibernate.jpa2>
