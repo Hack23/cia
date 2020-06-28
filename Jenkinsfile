@@ -146,7 +146,7 @@ pipeline {
          }
 
 	   	  steps {
-	              sh "echo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:\$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL || true"
+	              sh "echo 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:\$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL || true'"
 		 }
 	   }
 
