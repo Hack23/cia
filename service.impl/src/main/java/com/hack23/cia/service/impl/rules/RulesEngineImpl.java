@@ -49,7 +49,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class RulesEngineImpl.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED, timeout = 90)
+@Transactional(propagation = Propagation.REQUIRED, timeout = 300)
 public final class RulesEngineImpl implements RulesEngine {
 
 	/** The data viewer. */
@@ -78,7 +78,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		ksession.fireAllRules();
 		ksession.dispose();
-				
+
 		return new ArrayList<>(complianceChecks.values());
 	}
 
