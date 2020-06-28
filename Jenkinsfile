@@ -146,7 +146,7 @@ pipeline {
          }
 
 	   	  steps {
-	              sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:\$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL || true"
+	              sh "echo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/:/root/.cache/ aquasec/trivy  hack23/cia:\$VERSION --exit-code 1 --severity MEDIUM,HIGH,CRITICAL || true"
 		 }
 	   }
 
@@ -245,11 +245,13 @@ pipeline {
                 expression { params.RELEASE }
             }
             steps {
-                sh "mvn -B release:prepare"
-                sh "mvn -B release:perform"
+                sh "git reset --hard origin/master"
+                sh "git checkout -f master"
+                sh "git reset --hard origin/master"
+                sh "mvn -B clean"
+                sh "mvn -B gitflow:release"
             }
        }
-
 
 	   stage ("Completed") {	       	   	   	      steps {
 	              sh "echo placeholder"
@@ -257,5 +259,11 @@ pipeline {
 	   }
 
    }
+   post {
+        always {
+            cleanWs()
+        }
+    }
+
 }
 
