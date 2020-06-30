@@ -176,7 +176,6 @@
     <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.0.0-M5</surefire.version>
-    <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
     <jdk.src.version>11</jdk.src.version>
     <jdk.target.version>11</jdk.target.version>
     <javadoc.src.version>8</javadoc.src.version>
@@ -1218,7 +1217,6 @@
         <inherited>true</inherited>
         <configuration>
           <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine}</argLine>
-          <jvm>${test.jvm.path}</jvm>
           <disableModules>false</disableModules>
           <useModulePath>false</useModulePath>
         </configuration>
@@ -1487,7 +1485,6 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/jdk-15/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
@@ -1509,7 +1506,6 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/jdk-14/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
@@ -1531,7 +1527,6 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/jdk-13/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
@@ -1553,7 +1548,6 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/jdk-12/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
@@ -1575,7 +1569,6 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <test.jvm.path>/usr/lib/jvm/java-11-openjdk-amd64/bin/java</test.jvm.path>
         <jdk.src.version>11</jdk.src.version>
         <jdk.target.version>11</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
