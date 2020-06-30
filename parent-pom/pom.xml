@@ -749,11 +749,11 @@
           <artifactId>gitflow-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-		<plugin>
-			<groupId>com.amashchenko.maven.plugin</groupId>
-			<artifactId>gitflow-maven-plugin</artifactId>
-			<version>1.14.0</version>
-		</plugin>
+        <plugin>
+          <groupId>com.amashchenko.maven.plugin</groupId>
+          <artifactId>gitflow-maven-plugin</artifactId>
+          <version>1.14.0</version>
+        </plugin>
         <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
           <artifactId>unix-maven-plugin</artifactId>
@@ -1460,18 +1460,18 @@
           <createBackupFile>false</createBackupFile>
         </configuration>
       </plugin>
-	  <plugin>
-			<groupId>com.amashchenko.maven.plugin</groupId>
-			<artifactId>gitflow-maven-plugin</artifactId>
-			<configuration>
-				<gitFlowConfig>
-					<developmentBranch>master</developmentBranch>
-				</gitFlowConfig>
-				<installProject>true</installProject>
-				<postReleaseGoals>deploy</postReleaseGoals>
-				<argLine>-DperformRelease=true -Dtest=no -DfailIfNoTests=false</argLine>
-			</configuration>
-		</plugin>
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <configuration>
+          <gitFlowConfig>
+            <developmentBranch>master</developmentBranch>
+          </gitFlowConfig>
+          <installProject>true</installProject>
+          <postReleaseGoals>deploy</postReleaseGoals>
+          <argLine>-DperformRelease=true -Dtest=no -DfailIfNoTests=false</argLine>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <profiles>

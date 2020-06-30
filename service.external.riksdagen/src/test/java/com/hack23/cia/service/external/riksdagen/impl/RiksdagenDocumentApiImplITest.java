@@ -60,7 +60,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 				"till statsrådet Cristina Husmark Pehrsson"));
 
 		final DocumentContentData documentContent2 = riksdagenApi
-				.getDocumentContent("GVA3FöU43");
+				.getDocumentContent("GVA3F%C3%B6U43");
 		assertNotNull(documentContent2);
 		assertTrue(documentContent2.getContent().contains(
 				"Försvarsutskottet"));
@@ -151,7 +151,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertTrue(dokumentList.size() >= 100);
 	}
 
-	
+
 	/**
 	 * Gets the document list by year failure test.
 	 *
@@ -200,7 +200,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 
 		dokumentstatus = riksdagenApi.getDocumentStatus("GVA3FöU43");
 		assertNotNull(dokumentstatus);
-				
+
 		dokumentstatus = riksdagenApi
 				.getDocumentStatus("GX02Ub453");
 		assertNotNull(dokumentstatus);
@@ -250,7 +250,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertTrue(dokumentList.size() >= 1 && dokumentList.size() != 10000);
 	}
 
-	
+
 	/**
 	 * Process document list by changed since failure.
 	 *
