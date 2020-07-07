@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -104,14 +104,14 @@ public class AppPublicSystemDocumentation {
 		componentFinderWeb.exclude(".*ui.application.views.common.pagelinks.*");
 		componentFinderWeb.exclude(".*ui.application.views.admin.*");
 		componentFinderWeb.exclude(".*ui.application.views.user.*");
-				
+
 		componentFinderWeb.exclude(".*service.external.*");
 		componentFinderWeb.exclude(".*service.component.*");
 		componentFinderWeb.exclude(".*package.*");
 		componentFinderWeb.exclude(".*service.impl.action.*");
 		componentFinderWeb.exclude(".*service.impl.email.*");
 		componentFinderWeb.exclude(".*service.impl.rules.*");
-		componentFinderWeb.exclude(".*service.impl.task.*");		
+		componentFinderWeb.exclude(".*service.impl.task.*");
 		componentFinderWeb.exclude(".*service.data.impl.*");
 
 		componentFinderWeb.findComponents();
@@ -334,7 +334,7 @@ public class AppPublicSystemDocumentation {
 			throws WorkspaceWriterException, IOException, InterruptedException {
 		final StringWriter stringWriter = new StringWriter();
 		final PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
-		plantUMLWriter.setSizeLimit(16384);
+		//plantUMLWriter.setSizeLimit(16384);
 		plantUMLWriter.write(workspace, stringWriter);
 		String allPlantUmlsString = stringWriter.toString();
 
