@@ -1455,6 +1455,14 @@
           <artifactId>checker-qual</artifactId>
           <groupId>org.checkerframework</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jna</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna-platform</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
