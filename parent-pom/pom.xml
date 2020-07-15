@@ -110,7 +110,7 @@
     <cia.project.versions.javassist>3.27.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>5.10.4</cia.project.versions.javers>
     <cia.project.versions.narayana>5.10.5.Final</cia.project.versions.narayana>
-    <cia.project.versions.asm>8.0.1</cia.project.versions.asm>
+    <cia.project.versions.asm>9.0-beta</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.11</cia.project.versions.commonslang3>
@@ -1473,6 +1473,27 @@
     </plugins>
   </build>
   <profiles>
+    <profile>
+      <id>java16</id>
+      <activation>
+        <jdk>16</jdk>
+      </activation>
+      <properties>
+        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
+					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
+					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        <jdk.src.version>11</jdk.src.version>
+        <jdk.target.version>11</jdk.target.version>
+        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+        <jacoco.version>0.8.5</jacoco.version>
+        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
+        <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
+        <surefire.version>3.0.0-M5</surefire.version>
+      </properties>
+    </profile>
     <profile>
       <id>java15</id>
       <activation>
