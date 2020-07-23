@@ -225,6 +225,10 @@
           <groupId>com.github.fommil.netlib</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>com.github.haifengl</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>core</artifactId>
           <groupId>com.github.fommil.netlib</groupId>
         </exclusion>
