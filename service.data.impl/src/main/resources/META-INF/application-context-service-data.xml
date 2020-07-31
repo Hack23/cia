@@ -18,7 +18,7 @@
 	      <property name="cacheManager" ref="jCacheManager" />
 	      <property name="transactionAware" value="true" />
 	</bean>
-	
+
 	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
 	     <property name="cacheManagerUri"   value="classpath:ehcache.xml" />
 	</bean>
@@ -43,25 +43,25 @@
 	<bean id="CoreEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoreEnvironmentBean">
 		<property name="nodeIdentifier" value="nodeIdentifier"/>
 	</bean>
-	
+
 	<bean id="CoordinatorEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean"/>
 	<bean id="JTAEnvironmentBean" class="com.arjuna.ats.jta.common.JTAEnvironmentBean">
 		<property name="supportSubtransactions" value="true"/>
 	</bean>
-	<bean id="RecoveryEnvironmentBean" class="com.arjuna.ats.arjuna.common.RecoveryEnvironmentBean"/>	
-				
+	<bean id="RecoveryEnvironmentBean" class="com.arjuna.ats.arjuna.common.RecoveryEnvironmentBean"/>
+
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager">
 		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }"/>
 		<property name="userTransaction" value="#{ JTAEnvironmentBean.userTransaction }"/>
 	</bean>
-	
+
 	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManagerImpl">
 		<constructor-arg name="secretName" value="${database.aws.secret.arn}"/>
 		<constructor-arg name="secretEnabled" value="${database.aws.secret}"/>
 		<constructor-arg name="username" value="${database.username}"/>
-		<constructor-arg name="password" value="${database.password}"/>	
-	</bean>		
+		<constructor-arg name="password" value="${database.password}"/>
+	</bean>
 
 	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource" depends-on="secretCredentialsManager">
 		<constructor-arg index="0" ref="secretCredentialsManager"/>
@@ -80,11 +80,11 @@
 		<property name="validationQuery" value="select 1" />
 		<property name="testOnBorrow" value="true"/>
 		<property name="testOnReturn" value="true"/>
-		<property name="testOnCreate" value="true"/>		
-		<property name="initialSize" value="20" />		
+		<property name="testOnCreate" value="true"/>
+		<property name="initialSize" value="20" />
 		<property name="maxTotal" value="200" />
 	</bean>
-	
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		depends-on="cacheManager,liquibase,transactionManager">
@@ -158,15 +158,15 @@
 
 				<prop key="hibernate.search.automatic_indexing.strategy">none</prop>
 	 			<prop key="hibernate.search.mapping.configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
-	 			<prop key="hibernate.search.default_backend">myBackend</prop> 		
-	 			
+	 			<prop key="hibernate.search.default_backend">myBackend</prop>
+
  				<prop key="hibernate.search.backends.myBackend.type">lucene</prop>
  				<prop key="hibernate.search.backends.myBackend.lucene_version">8.2.0</prop>
 	 			<prop key="hibernate.search.backends.myBackend.directory_provider">local_directory</prop>
-  				<prop key="hibernate.search.backends.myBackend.directory.root">${database.search.index.location}</prop>	 			
+  				<prop key="hibernate.search.backends.myBackend.directory.root">${database.search.index.location}</prop>
 	 			<prop key="hibernate.search.backends.myBackend.analysis.configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>
 	 			<prop key="hibernate.search.enable_annotation_mapping">true</prop>
-	 			<prop key="hibernate.search.autoregister_listeners">true</prop>
+	 			<!-- <prop key="hibernate.search.autoregister_listeners">true</prop> -->
 			</props>
 		</property>
 	</bean>
