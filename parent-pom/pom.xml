@@ -1028,7 +1028,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
-          <version>4.1-jdk8</version>
+          <version>4.2-jdk8</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
