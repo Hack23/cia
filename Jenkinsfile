@@ -90,7 +90,7 @@ pipeline {
 
 	   stage ("SCA:Dependency updates") {
 	      steps {
-	         sh "mvn org.codehaus.mojo:versions-maven-plugin:2.7:dependency-updates-report -DdependencyUpdatesReportFormats=html,xml"
+	         sh "mvn org.codehaus.mojo:versions-maven-plugin:2.8.1:dependency-updates-report -DdependencyUpdatesReportFormats=html,xml"
 		      }
 		}
 
