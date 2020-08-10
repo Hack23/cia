@@ -831,7 +831,7 @@
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>
-      <version>3.4.0-M1</version>
+      <version>3.4.0-M2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
