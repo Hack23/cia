@@ -25,8 +25,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.Session;
-import org.hibernate.internal.SessionImpl;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.javers.core.Javers;
 import org.javers.core.MappingStyle;
 import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;
@@ -74,8 +73,7 @@ public class AuditableAspectConfiguration {
 
 					@Override
 					public Connection getConnection() {
-						final SessionImpl session = (SessionImpl) entityManager.unwrap(Session.class);
-
+						SharedSessionContractImplementor session = entityManager.unwrap(SharedSessionContractImplementor.class);
 						return session.connection();
 					}
 				}).withDialect(DialectName.POSTGRES).build();
