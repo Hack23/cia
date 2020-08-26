@@ -628,7 +628,7 @@
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
-      <version>3.8.1</version>
+      <version>3.9.0</version>
       <exclusions>
         <exclusion>
           <artifactId>jaxb-runtime</artifactId>
