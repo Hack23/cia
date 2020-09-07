@@ -632,7 +632,7 @@
         <plugin>
           <groupId>org.owasp</groupId>
           <artifactId>dependency-check-maven</artifactId>
-          <version>5.3.2</version>
+          <version>6.0.0</version>
           <dependencies>
             <dependency>
               <groupId>com.h2database</groupId>
