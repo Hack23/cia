@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.12.0.alpha1";
+	content: "8.12.0.alpha2";
 }
 
 .v-widget {
@@ -15122,6 +15122,10 @@ div.v-layout.v-horizontal.v-widget {
 	margin-left: 0;
 }
 
+.cia .v-tabsheet-tabitemcell:not([aria-hidden="true"]) ~ td .v-caption {
+	margin-left: 10px;
+}
+
 .cia .v-tabsheet-tabitemcell:focus {
 	outline: none;
 }
@@ -15336,6 +15340,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer td:first-child .v-caption, .cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer [aria-hidden="true"] + td .v-caption {
 	margin-left: 0;
+}
+
+.cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer :not([aria-hidden="true"]) ~ td .v-caption {
+	margin-left: 2px;
 }
 
 .cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer .v-tabsheet-tabitem .v-caption {
