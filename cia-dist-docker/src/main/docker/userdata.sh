@@ -80,7 +80,7 @@ apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certifi
 
 wget https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14%2B36/OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
 tar xvfz OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
-mv jdk-14+36 /usr/lib/jvm/jdk-14
+mv jdk-14+36 /usr/lib/jvm/jdk-15
 rm OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz
 
 
