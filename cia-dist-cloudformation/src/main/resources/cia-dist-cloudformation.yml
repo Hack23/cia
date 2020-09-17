@@ -2463,10 +2463,10 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14%2B36/OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz\n"
-            - "tar xvfz OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz\n"
-            - "sudo mv jdk-14+36 /usr/lib/jvm/jdk-15\n"
-            - "rm OpenJDK14U-jdk_x64_linux_hotspot_14_36.tar.gz\n"
+            - "wget https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz\n"
+            - "tar xvfz OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz\n"
+            - "sudo mv jdk-15+36 /usr/lib/jvm/jdk-15\n"
+            - "rm OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
