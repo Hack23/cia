@@ -1214,7 +1214,14 @@
           </execution>
         </executions>
         <inherited>true</inherited>
-        <configuration></configuration>
+        <configuration>
+        <includes>
+        	<include>**/hack23/**</include>
+        </includes>
+        <excludes>
+        	<exclude>**/*.jar</exclude>
+        </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
