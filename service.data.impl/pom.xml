@@ -398,7 +398,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>4.0.0</version>
+      <version>4.1.0</version>
       <exclusions>
         <exclusion>
           <artifactId>jetty-servlet</artifactId>
