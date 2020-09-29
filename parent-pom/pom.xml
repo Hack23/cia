@@ -90,6 +90,8 @@
     <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
     <scm-publish.pubScmUrl>scm:git:https://github.com/Hack23/cia.git</scm-publish.pubScmUrl>
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
+    <cyclonedx.skipAttach>true</cyclonedx.skipAttach>
+    <cyclonedx.skip>true</cyclonedx.skip>
     <sonar.host.url>https://www.hack23.com/sonar/</sonar.host.url>
     <sonar.sources>.</sonar.sources>
     <sonar.inclusions>src/main/**,pom.xml</sonar.inclusions>
@@ -1215,12 +1217,12 @@
         </executions>
         <inherited>true</inherited>
         <configuration>
-        <includes>
-        	<include>**/hack23/**</include>
-        </includes>
-        <excludes>
-        	<exclude>**/*.jar</exclude>
-        </excludes>
+          <includes>
+            <include>**/hack23/**</include>
+          </includes>
+          <excludes>
+            <exclude>**/*.jar</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -1854,6 +1856,8 @@
       </build>
       <properties>
         <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
+        <cyclonedx.skipAttach>false</cyclonedx.skipAttach>
+        <cyclonedx.skip>false</cyclonedx.skip>
       </properties>
     </profile>
     <profile>
