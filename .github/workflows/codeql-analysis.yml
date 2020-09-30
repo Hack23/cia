@@ -14,6 +14,9 @@ on:
   schedule:
     - cron: '0 4 * * 3'
 
+env:
+  javaVersion: java11
+
 jobs:
   analyze:
     name: Analyze
