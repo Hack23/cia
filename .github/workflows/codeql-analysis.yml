@@ -74,9 +74,12 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    
+
+    - name: Install buildtools
+      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
+
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -DskipTests -Ddot.ignoreerror=true
+      run: mvn -B package --file pom.xml -DskipTests
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
