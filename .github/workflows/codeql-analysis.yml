@@ -76,7 +76,7 @@ jobs:
         java-version: 1.11
     
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -DskipTests -Ddot.ignoreerror=false
+      run: mvn -B package --file pom.xml -DskipTests -Ddot.ignoreerror=true
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
