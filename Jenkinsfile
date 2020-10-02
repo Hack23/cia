@@ -25,7 +25,7 @@ pipeline {
 	   stage('Generate OpsDoc') {
 	      steps {
 
-	         sh "cd cia-dist-cloudformation/src/main/config/; chmod a+x *.sh; ./cfn-cloudformation-flip.sh;./cfn-cloudformation-flip.sh;./generate-cloudformation-scan.sh"
+	         sh "cd cia-dist-cloudformation/src/main/config/; chmod a+x *.sh; ./cfn-cloudformation-flip.sh;./generate-cloudformation-doc.sh"
 	      }
 	   }
 
