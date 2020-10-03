@@ -26,7 +26,7 @@ pipeline {
 	      steps {
 
 	         sh "cd cia-dist-cloudformation/src/main/config/; chmod a+x *.sh; ./cfn-cloudformation-flip.sh;./generate-cloudformation-doc.sh"
-	         archive "cia-dist-cloudformation/target/cloudformation-doc/**"
+	         archiveArtifacts "cia-dist-cloudformation/target/cloudformation-doc/**"
 	      }
 	   }
 
