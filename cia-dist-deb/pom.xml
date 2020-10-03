@@ -26,7 +26,7 @@
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-distribution</artifactId>
+      <artifactId>jetty-home</artifactId>
       <version>${cia.project.versions.jetty}</version>
       <type>zip</type>
       <exclusions>
@@ -41,6 +41,22 @@
         <exclusion>
           <artifactId>test-proxy-webapp</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-tree</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-commons</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>asm-analysis</artifactId>
+          <groupId>org.ow2.asm</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -145,9 +161,9 @@
           </defaults>
           <assembly>
             <extract-artifact>
-              <artifact>org.eclipse.jetty:jetty-distribution:zip</artifact>
+              <artifact>org.eclipse.jetty:jetty-home:zip</artifact>
               <to>/opt/cia</to>
-              <pattern>jetty-distribution-${cia.project.versions.jetty}</pattern>
+              <pattern>jetty-home-${cia.project.versions.jetty}</pattern>
               <replacement>.</replacement>
               <excludes>
                 <exclude>**/demo-base/**</exclude>
