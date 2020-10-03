@@ -23,3 +23,4 @@ cat ../resources/cia-dist-cloudformation.template | /usr/local/bin/cfn-graph   |
 #/usr/local/bin/cfn-graph aws-org-account/stackset/Golden-AMI-Compliance-CFT.template | dot -Tpng -o$TARGET/aws-org-account-stackset-Golden-AMI-Compliance-CFT.png
 #/usr/local/bin/cfn-graph aws-account/op-center/Gold-AMi-Stack-CFT-CI.template | dot -Tpng -o$TARGET/aws-account-op-center-Gold-AMi-Stack-CFT-CI.png
 #/usr/local/bin/cfn-graph aws-account/op-center/simpleEC2-SSMParamInput.template | dot -Tpng -o$TARGET/aws-account-op-center-simpleEC2-SSMParamInput.png
+exit 0
