@@ -235,9 +235,7 @@ $ sudo dpkg -i cia-dist-deb-2020.4.19.deb
 
 # Cloudformation template diagram
 
-[![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)
-
-[![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)
+[![Cloudformation](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/89/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/89/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
