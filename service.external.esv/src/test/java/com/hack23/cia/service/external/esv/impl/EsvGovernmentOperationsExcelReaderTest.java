@@ -50,9 +50,6 @@ public final class EsvGovernmentOperationsExcelReaderTest extends AbstractEsvFun
 		final GovernmentOperationPeriodOutcome outcome = report.get(0);
 		assertNotNull(outcome.getVariableName());
 		assertNotNull(outcome.getPeriod());
-		assertTrue(outcome.getValue() >= 0.0);
-		assertTrue(outcome.getPercentageChangeFromPreviousToLatest()  >= 0.0);
-		assertTrue(outcome.getPercentageChangeFromSamePeriodLastYearToLatest()  >= 0.0);
 		assertNotNull(outcome.getObservationStatus());
 	}
 }
