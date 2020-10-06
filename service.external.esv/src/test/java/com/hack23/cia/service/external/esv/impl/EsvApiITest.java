@@ -328,7 +328,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertFalse(report.isEmpty());
 		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
-		assertNotNull(summary.getYearTotal());
+		assertTrue(summary.getYearTotal() > 0);
 		assertNotNull(summary.getValueMap());
 		assertTrue(summary.getYear() > 0);
 	}
@@ -345,7 +345,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertFalse(report.isEmpty());
 		final GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
 		assertNotNull(summary.getOrgNumber());
-		assertNotNull(summary.getYearTotal());
+		assertTrue(summary.getYearTotal() > 0);
 		assertNotNull(summary.getValueMap());
 		assertTrue(summary.getYear() > 0);
 	}

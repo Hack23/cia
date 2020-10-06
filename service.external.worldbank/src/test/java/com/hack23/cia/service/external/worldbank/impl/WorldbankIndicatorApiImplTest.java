@@ -50,7 +50,7 @@ public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFuncti
 		assertTrue("Expect above 15.000 indicators", indicators.size() >= 15000);
 	}
 
-	
+
 	@Test
 	public void getIndicatorsWithSwedishDataTest() throws Exception {
 		final List<IndicatorElement> indicators = worlbankApi.getIndicators();
@@ -58,11 +58,11 @@ public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFuncti
 		final List<String> indicatorsWithSwedishData = worlbankApi.getIndicatorsWithSwedishData();
 		assertNotNull("Expect indicators", indicatorsWithSwedishData);
 		assertFalse(indicatorsWithSwedishData.isEmpty());
-		assertTrue("Expect above 1400 indicators", indicatorsWithSwedishData.size() >= 1400);		
-		assertNotEquals(indicators.size(), indicatorsWithSwedishData);
+		assertTrue("Expect above 1400 indicators", indicatorsWithSwedishData.size() >= 1400);
+		assertNotEquals(indicators.size(), indicatorsWithSwedishData.size());
 	}
-	
-	
+
+
 	/**
 	 * Gets the indicators failure test.
 	 *
@@ -71,7 +71,7 @@ public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFuncti
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getIndicatorsFailureTest() throws Exception {		
+	public void getIndicatorsFailureTest() throws Exception {
 		new WorldbankIndicatorApiImpl(createMockXmlAgentThrowsException()).getIndicators();
 	}
 

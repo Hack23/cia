@@ -35,12 +35,12 @@ public final class EsvGovernmentOperationsExcelReaderTest extends AbstractEsvFun
 	@Autowired
 	private EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
 
-	
+
 	/**
 	 * Gets the report test.
 	 *
 	 * @return the report test
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@Test
 	public void getReportTest() throws IOException {
@@ -50,9 +50,9 @@ public final class EsvGovernmentOperationsExcelReaderTest extends AbstractEsvFun
 		final GovernmentOperationPeriodOutcome outcome = report.get(0);
 		assertNotNull(outcome.getVariableName());
 		assertNotNull(outcome.getPeriod());
-		assertNotNull(outcome.getValue());
-		assertNotNull(outcome.getPercentageChangeFromPreviousToLatest());
-		assertNotNull(outcome.getPercentageChangeFromSamePeriodLastYearToLatest());
+		assertTrue(outcome.getValue() >= 0.0);
+		assertTrue(outcome.getPercentageChangeFromPreviousToLatest()  >= 0.0);
+		assertTrue(outcome.getPercentageChangeFromSamePeriodLastYearToLatest()  >= 0.0);
 		assertNotNull(outcome.getObservationStatus());
 	}
 }
