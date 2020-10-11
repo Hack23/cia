@@ -37,6 +37,7 @@ pipeline {
 
 	      steps {
 	         sh "mvn clean install -Prelease-site,all-modules -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT"
+	         archiveArtifacts "citizen-intelligence-agency/target/site/architecture/*.png"
 	      }
 	        post {
                 always {
