@@ -27,11 +27,6 @@ import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 
 import com.structurizr.Workspace;
-import com.structurizr.analysis.ComponentFinder;
-import com.structurizr.analysis.FirstImplementationOfInterfaceSupportingTypesStrategy;
-import com.structurizr.analysis.ReferencedTypesInSamePackageSupportingTypesStrategy;
-import com.structurizr.analysis.ReferencedTypesSupportingTypesStrategy;
-import com.structurizr.analysis.SpringComponentFinderStrategy;
 import com.structurizr.io.WorkspaceWriterException;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Container;
@@ -95,26 +90,28 @@ public class AppPublicSystemDocumentation {
 				"ALB/ELB/Apache/Nginx/HaProxy");
 
 		final Container ciaWebContainer = ciaSystem.addContainer("Web Application", "Web Application", "Jetty/Java");
-		final SpringComponentFinderStrategy springComponentFinderStrategy = new SpringComponentFinderStrategy(new FirstImplementationOfInterfaceSupportingTypesStrategy()
-				,new ReferencedTypesSupportingTypesStrategy(),new ReferencedTypesInSamePackageSupportingTypesStrategy());
-		springComponentFinderStrategy.setIncludePublicTypesOnly(false);
-		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
-				springComponentFinderStrategy);
-		componentFinderWeb.exclude(".*ui.application.web.*");
-		componentFinderWeb.exclude(".*ui.application.views.common.pagelinks.*");
-		componentFinderWeb.exclude(".*ui.application.views.admin.*");
-		componentFinderWeb.exclude(".*ui.application.views.user.*");
 
-		componentFinderWeb.exclude(".*service.external.*");
-		componentFinderWeb.exclude(".*service.component.*");
-		componentFinderWeb.exclude(".*package.*");
-		componentFinderWeb.exclude(".*service.impl.action.*");
-		componentFinderWeb.exclude(".*service.impl.email.*");
-		componentFinderWeb.exclude(".*service.impl.rules.*");
-		componentFinderWeb.exclude(".*service.impl.task.*");
-		componentFinderWeb.exclude(".*service.data.impl.*");
+//		final SpringComponentFinderStrategy springComponentFinderStrategy = new SpringComponentFinderStrategy(new FirstImplementationOfInterfaceSupportingTypesStrategy()
+//				,new ReferencedTypesSupportingTypesStrategy(),new ReferencedTypesInSamePackageSupportingTypesStrategy());
+//		springComponentFinderStrategy.setIncludePublicTypesOnly(false);
 
-		componentFinderWeb.findComponents();
+//		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
+//				springComponentFinderStrategy);
+//		componentFinderWeb.exclude(".*ui.application.web.*");
+//		componentFinderWeb.exclude(".*ui.application.views.common.pagelinks.*");
+//		componentFinderWeb.exclude(".*ui.application.views.admin.*");
+//		componentFinderWeb.exclude(".*ui.application.views.user.*");
+//
+//		componentFinderWeb.exclude(".*service.external.*");
+//		componentFinderWeb.exclude(".*service.component.*");
+//		componentFinderWeb.exclude(".*package.*");
+//		componentFinderWeb.exclude(".*service.impl.action.*");
+//		componentFinderWeb.exclude(".*service.impl.email.*");
+//		componentFinderWeb.exclude(".*service.impl.rules.*");
+//		componentFinderWeb.exclude(".*service.impl.task.*");
+//		componentFinderWeb.exclude(".*service.data.impl.*");
+
+//		componentFinderWeb.findComponents();
 
 		final Container relationalDatabase = ciaSystem.addContainer("Database", "Stores information", "Postgresql");
 		relationalDatabase.addTags("Database");
