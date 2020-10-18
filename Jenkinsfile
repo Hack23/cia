@@ -159,7 +159,7 @@ pipeline {
 		 }
 	   }
 
-		stage ("SAST: Scan AWS Cloud report") {
+		stage ("SAST: Scan AWS Cloudformation ") {
 	      steps {
 	         dir("${env.WORKSPACE}/cia-dist-cloudformation") {
 	         	sh "cfn_nag --output-format=json src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"
@@ -172,36 +172,6 @@ pipeline {
 	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml"
 		      }
 	    }
-
-	   stage ("System test JDK12") {
-	   	   	 tools {
-    	    jdk 'JDK12'
-	    }
-
-	   	   	      steps {
-	              sh "echo placeholder"
-		      }
-	    }
-
-	   stage ("System test JDK13") {
-	   	   	 tools {
-    	    jdk 'JDK13'
-	    }
-
-	   	   	   	      steps {
-	              sh "echo placeholder"
-		      }
-
-	   }
-	   stage ("System test JDK14") {
-	   	   	 tools {
-    	    jdk 'JDK14'
-	    }
-	   	   	   	      steps {
-	              sh "echo placeholder"
-		      }
-	   }
-
 
 	   stage ("Prepare cloud environment resources") {	   	   	      steps {
 	              sh "echo placeholder"
@@ -263,7 +233,7 @@ pipeline {
        }
 
 	   stage ("Completed") {	       	   	   	      steps {
-	              sh "echo placeholder"
+	              sh "echo Completed"
 		      }
 	   }
 
