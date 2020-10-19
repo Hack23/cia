@@ -31,6 +31,8 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
@@ -47,6 +49,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class RulesEngineImpl.
  */
 @Service
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true, timeout = 300)
 public final class RulesEngineImpl implements RulesEngine {
 
 	/** The data viewer. */

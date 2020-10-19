@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenCommitteeDAO;
  * The Class ViewRiksdagenCommitteeDataContainer.
  */
 @Component("ViewRiksdagenCommitteeDataContainer")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class ViewRiksdagenCommitteeDataContainer extends GenericDataContainer<ViewRiksdagenCommittee,String>{
 

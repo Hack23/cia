@@ -35,7 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  * The Class CommitteeDataSeriesFactoryImpl.
  */
 @Service
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeriesFactory {
 
 	/** The application manager. */

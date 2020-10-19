@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class ViewDataDataContainerFactoryImpl.
  */
 @Component("ViewDataDataContainerFactory")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataContainerFactory {
 

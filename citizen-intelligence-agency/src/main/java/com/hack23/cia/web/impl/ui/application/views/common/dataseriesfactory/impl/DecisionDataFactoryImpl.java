@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,9 +38,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  * The Class DecisionDataFactoryImpl.
  */
 @Service
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
-	
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -51,7 +51,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	public DecisionDataFactoryImpl() {
 		super();
 	}
-	
+
 	/**
 	 * Adds the proposal committeee summary.
 	 *
@@ -71,7 +71,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().isEmpty()
 					&& proposal.getCommittee() != null && !proposal.getCommittee().isEmpty()
 					&& proposal.getProcessedIn().contains(processedIn) && proposal.getChamber().length() <= "återförvisning till utskottet".length() && proposal.getChamber().length() >= "avslag".length()) {
-				
+
 				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
 
 			}
@@ -98,7 +98,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 */
 	private static String getCommittteeShortName(final DocumentProposalData proposal) {
 		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").toUpperCase(Locale.ENGLISH);
-				
+
 		if (upperCase.contains(",")) {
 			return upperCase.substring(0, upperCase.indexOf(','));
 		} else {
@@ -121,7 +121,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 		} else {
 			return "Motion";
 		}
-		
+
 	}
 
 	@Override
@@ -137,5 +137,5 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 		}
 		return summary;
 	}
-	
+
 }
