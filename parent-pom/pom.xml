@@ -753,7 +753,7 @@
         <plugin>
           <groupId>com.amashchenko.maven.plugin</groupId>
           <artifactId>gitflow-maven-plugin</artifactId>
-          <version>1.14.0</version>
+          <version>1.14.1.hack23b</version>
         </plugin>
         <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
