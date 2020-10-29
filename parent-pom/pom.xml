@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2020.4.20-SNAPSHOT</version>
+  <version>2020-10-29-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -741,21 +741,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>external.atlassian.jgitflow</groupId>
-          <artifactId>jgitflow-maven-plugin</artifactId>
-          <version>1.0-m5.1</version>
-        </plugin>
-        <plugin>
-          <groupId>com.e-gineering</groupId>
-          <artifactId>gitflow-helper-maven-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <groupId>com.amashchenko.maven.plugin</groupId>
-          <artifactId>gitflow-maven-plugin</artifactId>
-          <version>1.14.0</version>
-        </plugin>
-        <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
           <artifactId>unix-maven-plugin</artifactId>
           <version>1.2.0</version>
@@ -1470,18 +1455,6 @@
         </executions>
         <configuration>
           <createBackupFile>false</createBackupFile>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.amashchenko.maven.plugin</groupId>
-        <artifactId>gitflow-maven-plugin</artifactId>
-        <configuration>
-          <gitFlowConfig>
-            <developmentBranch>master</developmentBranch>
-          </gitFlowConfig>
-          <installProject>true</installProject>
-          <postReleaseGoals>deploy</postReleaseGoals>
-          <argLine>-DperformRelease=true -Dtest=no -DfailIfNoTests=false</argLine>
         </configuration>
       </plugin>
     </plugins>

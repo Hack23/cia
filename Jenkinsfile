@@ -54,6 +54,21 @@ pipeline {
             }
 	  }
 
+	  stage('Release') {
+            when {
+                expression { params.RELEASE }
+            }
+            steps {
+                sh "git reset --hard origin/master"
+                sh "git checkout -f master"
+                sh "git reset --hard origin/master"
+                sh "mvn -B clean"
+                sh "mvn -B release:prepare -DskipTests"
+                sh "mvn -B release:perform -Dgoals=deploy -Darguments='-Dgoals=deploy -DskipTests' -DskipTests"
+            }
+       }
+
+
 	   stage('QA:System Test') {
 	     environment {
            MAVEN_OPTS = '-server -Xmx6048m -Xms6048m --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED'
@@ -219,18 +234,6 @@ pipeline {
 
 	   }
 
-	   stage('Release') {
-            when {
-                expression { params.RELEASE }
-            }
-            steps {
-                sh "git reset --hard origin/master"
-                sh "git checkout -f master"
-                sh "git reset --hard origin/master"
-                sh "mvn -B clean"
-                sh "mvn -B gitflow:release"
-            }
-       }
 
 	   stage ("Completed") {	       	   	   	      steps {
 	              sh "echo Completed"
