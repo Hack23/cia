@@ -1015,7 +1015,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>1.6</version>
         </plugin>
         <plugin>
           <groupId>org.bsc.maven</groupId>
@@ -1824,6 +1824,12 @@
               </execution>
             </executions>
             <inherited>true</inherited>
+            <configuration>
+                <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                </gpgArguments>
+            </configuration>
           </plugin>
         </plugins>
       </build>
