@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-external-pom</artifactId>
-    <version>2020-11-29-SNAPSHOT</version>
+    <version>2020.11.29-SNAPSHOT</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.riksdagen.documentcontent.impl</artifactId>
@@ -107,15 +107,15 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties" />
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql" />
-            <hbm2doc destdir="target/site/hbm2doc" />
-            <property key="dot.executable" value="${graphviz.dot.executable}" />
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  <reporting />
+  <reporting></reporting>
 </project>
