@@ -71,7 +71,7 @@
             </goals>
             <configuration>
               <alias>ciadistdebkeys</alias>
-              <dname>cn=cia.hack23.com, ou=None, L=None, ST=None, o=None, c=SE</dname>
+              <dname>cn=www.hack23.com, ou=None, L=None, ST=None, o=None, c=SE</dname>
               <sigalg>SHA256withRSA</sigalg>
               <ext></ext>
               <validity>365</validity>
