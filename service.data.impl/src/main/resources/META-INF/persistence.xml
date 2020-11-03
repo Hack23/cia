@@ -212,10 +212,9 @@
 
 
 			<property name="hibernate.search.backends.myBackend.type" value="lucene"/>
-			<property name="hibernate.search.backends.myBackend.lucene_version" value="8.4.1"/>
-			<property name="hibernate.search.backends.myBackend.directory_provider" value="local_directory"/>
+			<property name="hibernate.search.backends.myBackend.lucene_version" value="8.7.0"/>
 			<property name="hibernate.search.backends.myBackend.directory.root" value=""/>
-			<property name="hibernate.search.backends.myBackend.analysis.configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
+			<property name="hibernate.search.backend.analysis.configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
 
 
 		</properties>
