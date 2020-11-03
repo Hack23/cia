@@ -19,6 +19,8 @@
 package com.hack23.cia.service.impl.rules;
 
 import org.junit.Test;
+import org.junit.Ignore;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
@@ -37,6 +39,7 @@ public final class RulesManagerITest extends AbstractServiceFunctionalIntegratio
 	 * @throws Exception the exception
 	 */
 	@Test
+	@Ignore
 	public void processServiceTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 		rulesManager.processService();
