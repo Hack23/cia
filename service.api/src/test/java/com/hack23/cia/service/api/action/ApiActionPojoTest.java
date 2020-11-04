@@ -20,7 +20,6 @@ package com.hack23.cia.service.api.action;
 
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
@@ -37,7 +36,6 @@ public class ApiActionPojoTest extends AbstractUnitTest {
 	 * Are well implemented test.
 	 */
 	@Test
-	@Ignore
 	public void areWellImplementedTest() {
 		assertPojoMethodsFor(ManageUserAccountRequest.class).areWellImplemented();
 		assertPojoMethodsFor(ManageUserAccountResponse.class).areWellImplemented();

@@ -3,7 +3,7 @@ pipeline {
 
    tools {
         maven 'Maven'
-        jdk 'JDK15'
+        jdk 'Java11'
     }
 
    parameters {
@@ -100,7 +100,7 @@ pipeline {
 
 	   stage ("SCA:Update CVE Database") {
 	      tools {
-    	    jdk 'JDK15'
+    	    jdk 'Java8'
 	    	}
 
 	      steps {
@@ -110,7 +110,7 @@ pipeline {
 
 	   stage ("SCA:Scan Known vulnerabilities report") {
 	   	 tools {
-    	    jdk 'JDK15'
+    	    jdk 'Java8'
 	    }
 
 	      steps {
