@@ -96,13 +96,16 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The panel. */
 	private Panel panel;
-	
+
 	/** The top header right panel. */
 	private final HorizontalLayout topHeaderRightPanel = new HorizontalLayout();
 
 
 	/**
 	 * Instantiates a new abstract view.
+	 *
+	 * @param pageModeContentFactoryMap the page mode content factory map
+	 * @param pageName the page name
 	 */
 	protected AbstractView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super();
@@ -229,7 +232,7 @@ public abstract class AbstractView extends Panel implements View {
 		setSizeFull();
 
 	}
-	
+
 	/**
 	 * Creates the top header actions for user context.
 	 */
@@ -264,21 +267,21 @@ public abstract class AbstractView extends Panel implements View {
 		try {
 
 			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
-			
+
 			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {					
+				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {
 					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
 					return;
-				} 
+				}
 			}
 
 			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();
-			
+
 			menuItemFactory.createMainPageMenuBar(getBarmenu());
 
 			LabelFactory.createHeader2Label(panelContent,"Invalid reference, content not found:" +pageName+ "/"+ parameters);
-			
+
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Invalid Reference");
 		} catch (final AccessDeniedException e ) {

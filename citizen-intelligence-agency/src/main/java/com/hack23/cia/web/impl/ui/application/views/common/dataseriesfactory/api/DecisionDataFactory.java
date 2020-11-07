@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,9 +28,8 @@ public interface DecisionDataFactory {
 	/**
 	 * Creates a new DecisionData object.
 	 *
-	 * @param processedIn
-	 *            the processed in
-	 * @return the list< proposal committeee summary>
+	 * @param processedIn the processed in
+	 * @return the list
 	 */
 	List<ProposalCommitteeeSummary> createCommitteeSummary(String processedIn);
 
