@@ -84,12 +84,12 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
 	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
-	
+
 	/** The Constant COMMAND_APPLICATION_SESSION. */
 	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
 
-	
+
 	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
 			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
 
@@ -265,7 +265,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
 			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);
-			
+
 
 			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);
 
@@ -296,7 +296,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param description
 	 *            the description
 	 */
-	protected final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
+	protected final static void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
@@ -329,7 +329,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param menuBar
 	 *            the menu bar
 	 */
-	protected final void initApplicationMenuBar(final MenuBar menuBar) {
+	protected static final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
 		menuBar.setWidth(MENU_BAR_WIDTH);
 		menuBar.setStyleName(HEADER_STYLE_NAME);

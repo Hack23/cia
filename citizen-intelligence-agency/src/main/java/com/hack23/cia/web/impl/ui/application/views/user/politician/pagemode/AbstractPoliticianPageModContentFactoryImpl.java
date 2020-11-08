@@ -62,7 +62,7 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 *            the total days
 	 * @return the string
 	 */
-	protected final String convertToYearsString(final long totalDays) {
+	protected static final String convertToYearsString(final long totalDays) {
 		final long years = totalDays / DAYS_PER_STANDARD_YEAR;
 		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;
 

@@ -128,7 +128,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *
 	 * @return the vertical layout
 	 */
-	protected final VerticalLayout createPanelContent() {
+	protected static final VerticalLayout createPanelContent() {
 		final VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setMargin(true);
 		panelContent.setWidth(100, Unit.PERCENTAGE);
@@ -193,13 +193,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *            the parameters
 	 * @return the page id
 	 */
-	protected final String getPageId(final String parameters) {
+	protected static final String getPageId(final String parameters) {
 		if (parameters != null) {
 			String cleanedString = parameters;
 			if (parameters.contains("[")) {
 				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
-			} 
-			
+			}
+
 			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
 		} else {
 			return "";
@@ -221,7 +221,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @param parameters the parameters
 	 * @return the page nr
 	 */
-	protected final int getPageNr(final String parameters) {
+	protected static final int getPageNr(final String parameters) {
 		final String cleanedString = parameters;
 		String pageNrValue;
 		if (cleanedString != null && cleanedString.contains("[") && cleanedString.contains("]")) {

@@ -43,7 +43,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
  *            the value type
  */
 public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse>
-		extends AbstractCommonBusinessServiceImpl<T, V> implements BusinessService<T, V> {
+		extends AbstractCommonBusinessServiceImpl<T, V> {
 
 	/** The create application event service. */
 	@Autowired
@@ -67,7 +67,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	protected final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> getCreateApplicationEventService() {
 		return createApplicationEventService;
 	}
-	
+
 	/**
 	 * Creates the error response.
 	 *
@@ -75,7 +75,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 */
 	protected abstract V createErrorResponse();
 
-		
+
 	/**
 	 * Input validation.
 	 *
@@ -95,7 +95,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Creates the base application event request.
 	 *
@@ -104,14 +104,14 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	protected final CreateApplicationEventRequest createBaseApplicationEventRequest() {
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
-		
-		if (userAccount != null) {			
+
+		if (userAccount != null) {
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 		return eventRequest;
 	}
 
-	
+
 	/**
 	 * Creates the application event for service.
 	 *
@@ -120,7 +120,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 * @return the creates the application event request
 	 */
 	protected abstract CreateApplicationEventRequest createApplicationEventForService(final T serviceRequest);
-		
+
 	/**
 	 * Validate request.
 	 *
@@ -164,5 +164,5 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		eventRequest.setErrorMessage(errorMessage);
 	}
 
-	
+
 }
