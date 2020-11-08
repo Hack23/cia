@@ -99,7 +99,7 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	 * @param assignmentList the assignment list
 	 * @param viewRiksdagenPolitician the view riksdagen politician
 	 */
-	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
+	private static void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List<AssignmentData> assignmentList, final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
 		final VerticalLayout layout = new VerticalLayout();

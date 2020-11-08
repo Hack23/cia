@@ -86,7 +86,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	 * @param comment
 	 *            the comment
 	 */
-	protected final void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
+	protected static final void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
 		typedQuery.setHint("org.hibernate.cacheMode", CacheMode.NORMAL);
 		typedQuery.setHint("org.hibernate.cacheable", Boolean.TRUE);
 		typedQuery.setHint("org.hibernate.comment", comment);

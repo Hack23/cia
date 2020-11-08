@@ -119,7 +119,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @param fullPage
 	 *            the full page
 	 */
-	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
+	protected static final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
 		final int browserWindowWidth = getChartWindowWidth();

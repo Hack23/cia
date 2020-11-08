@@ -183,8 +183,6 @@
     <javadoc.src.version>8</javadoc.src.version>
     <javadoc.target.version>8</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-    <walkmod.chains>pmd</walkmod.chains>
-    <walkmod.properties>configurationFile=${pom.basedir}/../ruleset.xml</walkmod.properties>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
@@ -1081,11 +1079,6 @@
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>4.1.1</version>
         </plugin>
-        <plugin>
-          <groupId>org.walkmod.maven.plugins</groupId>
-          <artifactId>walkmod-maven-plugin</artifactId>
-          <version>2.0.1</version>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -1169,10 +1162,6 @@
             <version>${cia.project.versions.asm}</version>
           </dependency>
         </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.walkmod.maven.plugins</groupId>
-        <artifactId>walkmod-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -1647,29 +1636,6 @@
       <properties>
         <cia.project.phase.site>true</cia.project.phase.site>
       </properties>
-    </profile>
-    <profile>
-      <id>walkmod</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.walkmod.maven.plugins</groupId>
-            <artifactId>walkmod-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>patch</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <excludes>**/module-info.*,**/target/**/*.*</excludes>
-              <includes>**/src/main/java/**/*.*</includes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <id>cia-dev-windows</id>

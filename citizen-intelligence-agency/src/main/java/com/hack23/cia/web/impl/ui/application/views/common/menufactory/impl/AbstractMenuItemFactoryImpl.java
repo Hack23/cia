@@ -296,7 +296,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param description
 	 *            the description
 	 */
-	protected final static void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
+	protected static final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);

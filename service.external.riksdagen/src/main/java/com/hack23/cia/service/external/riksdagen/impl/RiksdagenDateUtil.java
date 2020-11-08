@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,7 +40,7 @@ final class RiksdagenDateUtil {
 	/** The Constant CONTAINS_ONE. */
 	private static final int CONTAINS_ONE = 1;
 
-	
+
 	/**
 	 * Instantiates a new riksdagen date util.
 	 */
@@ -115,7 +115,7 @@ final class RiksdagenDateUtil {
 	 * @throws ParseException
 	 *             the parse exception
 	 */
-	public Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List<VoteDataDto> voteDataList)
+	public static Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List<VoteDataDto> voteDataList)
 					throws ParseException {
 		Date ballotDate;
 		final Date sameDate = checkSameDate(voteDataList);

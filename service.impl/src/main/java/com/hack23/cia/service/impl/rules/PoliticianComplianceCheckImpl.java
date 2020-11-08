@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,19 +37,19 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 
 	/** The politician. */
 	private final ViewRiksdagenPolitician politician;
-	
+
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary;
-	
+
 	/** The monthly summary. */
 	private final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary;
-	
+
 	/** The annual summary. */
 	private final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary;
-	
+
 	/** The name. */
 	private final String name;
-	
+
 	/**
 	 * Instantiates a new politician compliance check impl.
 	 *
@@ -84,7 +84,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	@Override
 	public String getId() {
 		return politician.getPersonId();
-	}	
+	}
 
 	/**
 	 * Gets the daily summary.
@@ -119,10 +119,10 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @return the year
 	 */
-	public int getYear() {
+	public static int getYear() {
 		return LocalDate.now(ZoneId.of("UTC")).getYear();
 	}
-	
+
 	/**
 	 * Gets the age.
 	 *
@@ -131,5 +131,5 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	public int getAge() {
 		return getYear() - politician.getBornYear();
 	}
-	
+
 }

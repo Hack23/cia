@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2020 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,26 +33,26 @@ public final class EncryptProperty {
 
 	/** The Constant PBEWITHSHA256AND128BITAES_CBC_BC. */
 	private static final String PBEWITHSHA256AND128BITAES_CBC_BC = "PBEWITHSHA256AND128BITAES-CBC-BC";
-	
+
 	/** The Constant BC_PROVIDER_NAME. */
 	private static final String BC_PROVIDER_NAME = "BC";
-	
+
 	/** The Constant ENC_CONTENT_SUFFIX. */
 	private static final String ENC_CONTENT_SUFFIX = ")";
-	
+
 	/** The Constant ENC_CONTENT_PREFIX. */
 	private static final String ENC_CONTENT_PREFIX = "ENC(";
-	
+
 	/** The Constant ENCRYPTED_PROPERTY_VALUE. */
 	private static final String ENCRYPTED_PROPERTY_VALUE = "Encrypted property value:";
-	
+
 	/** The Constant ENCRYPTED_VALUE. */
 	private static final String ENCRYPTED_VALUE = "Encrypted value:";
-	
+
 	/** The Constant HELP_MESSAGE. */
 	private static final String HELP_MESSAGE = "Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]";
-	
-	
+
+
 	/**
 	 * Instantiates a new encrypt property.
 	 */
@@ -74,7 +74,7 @@ public final class EncryptProperty {
 			System.out.println(HELP_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Encrypt value.
 	 *
@@ -84,9 +84,9 @@ public final class EncryptProperty {
 	 *            the value
 	 * @return the string
 	 */
-	public String encryptValue(final String symmetricKey,final String value) {
+	public static String encryptValue(final String symmetricKey,final String value) {
 		return getEncryptor(symmetricKey).encrypt(value);
-		
+
 	}
 
 	/**
@@ -115,9 +115,9 @@ public final class EncryptProperty {
 	 *            the value
 	 * @return the string
 	 */
-	public String decryptValue(final String symmetricKey,final String value) {
+	public static String decryptValue(final String symmetricKey,final String value) {
 		return getEncryptor(symmetricKey).decrypt(value);
-		
+
 	}
 
 }

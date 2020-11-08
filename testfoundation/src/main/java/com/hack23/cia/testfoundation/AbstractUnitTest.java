@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -66,7 +66,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * @param string the string
 	 * @return true, if successful
 	 */
-	protected final boolean checkAllClassesInPackage(final String string) {
+	protected static final boolean checkAllClassesInPackage(final String string) {
 		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
 
@@ -91,7 +91,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * @param string the string
 	 * @return true, if successful
 	 */
-	protected final boolean checkAllDtoClassesInPackage(final String string) {
+	protected static final boolean checkAllDtoClassesInPackage(final String string) {
 
 		final List<PojoClass> pojoClassesRecursively = PojoClassFactory.getPojoClassesRecursively(string,
 				new FilterTestClasses());
@@ -132,14 +132,14 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 			Affirm.affirmFalse("EqualsCompareNullFailure", instance.equals(null));
 			Affirm.affirmFalse("EqualsCompareWrongClassFailure", instance.equals("WrongClass"));
-			Affirm.affirmTrue("EqualsCompareSelfFailure", instance.equals(instance));			
-			
+			Affirm.affirmTrue("EqualsCompareSelfFailure", instance.equals(instance));
+
 			final Object instance2 = randomValues(pojoClass);
 
 			instance.equals(instance2);
 		}
 
-		private Object randomValues(final PojoClass pojoClass) {
+		private static Object randomValues(final PojoClass pojoClass) {
 			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			randomValues(instance, pojoClass);
 
@@ -214,7 +214,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 						pojoMethod.invoke(classInstance);
 					} else {
 						final PojoParameter pojoParameter = pojoMethod.getPojoParameters().get(0);
-						
+
 						try {
 							pojoMethod.invoke(classInstance,pojoParameter.getType().getDeclaredConstructor().newInstance());
 						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
