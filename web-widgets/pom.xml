@@ -512,11 +512,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-elemental</artifactId>
-      <version>${cia.project.versions.vaadin.gwt.user}</version>
-    </dependency>-->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
