@@ -83,9 +83,9 @@ final class RiksdagenVoteDataWorkConsumerImpl extends AbstractMessageListener im
 			configureAuthentication();
 			updateService.updateVoteDataData(riksdagenApi.getBallot(ballotId));
 		} catch (final DataFailureException e) {
-			LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:", e);
+			LOGGER.warn("Eror loading riksdagen voteData:{} errorMessage:{}",ballotId, e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

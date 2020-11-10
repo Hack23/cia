@@ -78,9 +78,6 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/** The Constant PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE. */
 	private static final String PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE = "Problem getting ballot list from data.riksdagen.se";
 
-	/** The riksdagen date util. */
-	private final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-	
 	/** The riksdagen ballot list marshaller. */
 	@Autowired
 	@Qualifier("riksdagenBallotListMarshaller")
@@ -125,13 +122,13 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 
 			final List<VoteData> result = new ArrayList<>();
 			if (ballotContainer != null && ballotContainer.getBallotDocumentData() != null) {
-				
-				final List<VoteDataDto> voteDataList = ballotContainer.getBallotDocumentData().getVoteDataList();				
-				final Date ballotDate=riksdagenDateUtil.tryToFindValidVoteDate(ballotContainer, voteDataList);
-				
+
+				final List<VoteDataDto> voteDataList = ballotContainer.getBallotDocumentData().getVoteDataList();
+				final Date ballotDate = RiksdagenDateUtil.tryToFindValidVoteDate(ballotContainer, voteDataList);
+
 				for (final VoteDataDto voteDataDto: voteDataList) {
 					final VoteData voteData= new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(voteDataDto.getBallotId()).withIntressentId(voteDataDto.getIntressentId()).withIssue(voteDataDto.getIssue()).withConcern(voteDataDto.getConcern()));
-					
+
 					voteData.setBankNumber(voteDataDto.getBankNumber());
 					voteData.setLabel(voteDataDto.getLabel());
 					voteData.setLastName(voteDataDto.getLastName());
@@ -145,11 +142,11 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 					voteData.setVote(voteDataDto.getVote());
 					voteData.setBallotType(voteDataDto.getBallotType());
 					voteData.setElectoralRegionNumber(voteDataDto.getElectoralRegionNumber());
-					voteData.setElectoralRegion(voteDataDto.getElectoralRegion());				
+					voteData.setElectoralRegion(voteDataDto.getElectoralRegion());
 					voteData.setVoteDate(ballotDate);
-					
+
 					result.add(voteData);
-				}				
+				}
 			}
 
 			return result;

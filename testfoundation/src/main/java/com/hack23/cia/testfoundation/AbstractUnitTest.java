@@ -251,18 +251,20 @@ public abstract class AbstractUnitTest extends AbstractTest {
 				}
 			}
 		}
-	}
 
-	private static PojoMethod findMethod(final PojoClass pojoClass, final String name) {
-		final List<PojoMethod> methods = pojoClass.getPojoMethods();
+		private static PojoMethod findMethod(final PojoClass pojoClass, final String name) {
+			final List<PojoMethod> methods = pojoClass.getPojoMethods();
 
-		for (final PojoMethod pojoMethod : methods) {
-			if (name.equalsIgnoreCase(pojoMethod.getName())) {
-				return pojoMethod;
+			for (final PojoMethod pojoMethod : methods) {
+				if (name.equalsIgnoreCase(pojoMethod.getName())) {
+					return pojoMethod;
+				}
 			}
+			return null;
 		}
-		return null;
+
 	}
+
 
 	/**
 	 * The Class FilterTestClasses.
