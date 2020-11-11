@@ -827,17 +827,17 @@
           <groupId>io.projectreactor</groupId>
         </exclusion>
         <exclusion>
-		  <groupId>io.grpc</groupId>
-		  <artifactId>grpc-context</artifactId>
+          <artifactId>grpc-context</artifactId>
+          <groupId>io.grpc</groupId>
         </exclusion>
       </exclusions>
     </dependency>
-	<dependency>
-	  <groupId>io.grpc</groupId>
-	  <artifactId>grpc-context</artifactId>
-	  <version>1.33.1</version>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-context</artifactId>
+      <version>1.33.1</version>
       <scope>test</scope>
-	</dependency>
+    </dependency>
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>

@@ -182,18 +182,6 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");
 		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");
 			driver = new ChromeDriver(chromeOptions);
-		} else if ("htmlunit-firefox".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_68);
-			htmlUnitDriver.setJavascriptEnabled(true);
-			driver = htmlUnitDriver;
-		} else if ("htmlunit-ie11".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER);
-			htmlUnitDriver.setJavascriptEnabled(true);
-			driver = htmlUnitDriver;
-		} else if ("htmlunit-chrome".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
-			htmlUnitDriver.setJavascriptEnabled(true);
-			driver = htmlUnitDriver;
 		} else {
 			fail("No valid browser parameter:" + browser);
 		}
