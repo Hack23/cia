@@ -723,8 +723,6 @@ Resources:
       LoggingConfiguration:
         DestinationBucketName: !Ref 'LogsBucket'
         LogFilePrefix: /logs/ArtifactBucket/
-      VersioningConfiguration:
-        Status: Enabled
   ArtifactBucketEncryptionKey:
     Type: AWS::KMS::Key
     Properties:
@@ -2612,11 +2610,16 @@ Resources:
       EncryptionAtRestOptions:
         Enabled: true
         KmsKeyId: !Ref 'DBEncryptionKmsAlias'
+      DomainEndpointOptions:
+        EnforceHTTPS: true
+        TLSSecurityPolicy: Policy-Min-TLS-1-2-2019-07
+      NodeToNodeEncryptionOptions:
+        Enabled: true
       EBSOptions:
         EBSEnabled: true
         VolumeSize: 30
         VolumeType: gp2
-      ElasticsearchVersion: '6.0'
+      ElasticsearchVersion: '7.9'
       ElasticsearchClusterConfig:
         InstanceType: !Ref 'ElasticSearchInstanceType'
         InstanceCount: 1
