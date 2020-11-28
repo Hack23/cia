@@ -1011,7 +1011,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to monitoring VPC Endpoint
       SecurityGroupIngress:
-        - Description: vpc endpoint inbound access
+        - Description: Allow global inbound https access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1046,7 +1046,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to logs VPC Endpoint
       SecurityGroupIngress:
-        - Description: vpc endpoint inbound access
+        - Description: https inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1081,7 +1081,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssm VPC Endpoint
       SecurityGroupIngress:
-        - Description: vpc endpoint inbound access
+        - Description: https inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1116,7 +1116,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssmmessages VPC Endpoint
       SecurityGroupIngress:
-        - Description: vpc endpoint inbound access
+        - Description: https inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1151,7 +1151,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ec2messages VPC Endpoint
       SecurityGroupIngress:
-        - Description: vpc endpoint inbound access
+        - Description: https inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC

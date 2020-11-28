@@ -1592,6 +1592,7 @@
                         "CIDR"
                     ]
                 	},
+                	    "Description": "Allow global inbound https access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1661,6 +1662,7 @@
                         "CIDR"
                     ]
                 },
+                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1730,6 +1732,7 @@
                         "CIDR"
                     ]
                 },
+                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1799,6 +1802,7 @@
                         "CIDR"
                     ]
                    },
+                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1868,6 +1872,7 @@
                         "CIDR"
                     ]
                 },
+                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
