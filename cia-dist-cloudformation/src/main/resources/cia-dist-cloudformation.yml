@@ -723,6 +723,8 @@ Resources:
       LoggingConfiguration:
         DestinationBucketName: !Ref 'LogsBucket'
         LogFilePrefix: /logs/ArtifactBucket/
+      VersioningConfiguration:
+        Status: Enabled
   ArtifactBucketEncryptionKey:
     Type: AWS::KMS::Key
     Properties:
