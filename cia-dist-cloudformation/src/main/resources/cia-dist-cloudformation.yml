@@ -14,14 +14,14 @@ Parameters:
   WebServerInstanceType:
     Description: WebServer Server EC2 instance type
     Type: String
-    Default: t3.large
+    Default: t4g.large
     AllowedValues:
-      - t3.micro
-      - t3.small
-      - t3.medium
-      - t3.large
-      - t3.xlarge
-      - t3.2xlarge
+      - t4g.micro
+      - t4g.small
+      - t4g.medium
+      - t4g.large
+      - t4g.xlarge
+      - t4g.2xlarge
       - m6g.large
       - m6g.xlarge
       - m6g.2xlarge
@@ -667,6 +667,8 @@ Resources:
           - ServerSideEncryptionByDefault:
               KMSMasterKeyID: !Ref 'ArtifactBucketEncryptionKey'
               SSEAlgorithm: aws:kms
+      VersioningConfiguration:
+        Status: Enabled
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
@@ -963,7 +965,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to monitoring VPC Endpoint
       SecurityGroupIngress:
-        - Description: Allow global inbound https access
+        - Description: vpc endpoint inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -998,7 +1000,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to logs VPC Endpoint
       SecurityGroupIngress:
-        - Description: https inbound access
+        - Description: vpc endpoint inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1033,7 +1035,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssm VPC Endpoint
       SecurityGroupIngress:
-        - Description: https inbound access
+        - Description: vpc endpoint inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1068,7 +1070,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ssmmessages VPC Endpoint
       SecurityGroupIngress:
-        - Description: https inbound access
+        - Description: vpc endpoint inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1103,7 +1105,7 @@ Resources:
     Properties:
       GroupDescription: Security group to allow access to ec2messages VPC Endpoint
       SecurityGroupIngress:
-        - Description: https inbound access
+        - Description: vpc endpoint inbound access
           CidrIp: !FindInMap
             - SubnetConfig
             - VPC
@@ -1801,6 +1803,8 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -1939,12 +1943,14 @@ Resources:
         the internet
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - Description: Inbound https from public
+          IpProtocol: tcp
           FromPort: '443'
           ToPort: '443'
           CidrIp: '0.0.0.0/0'
       SecurityGroupEgress:
-        - IpProtocol: tcp
+        - Description: Outbound https from loadbalancer to server
+          IpProtocol: tcp
           FromPort: '8443'
           ToPort: '8443'
           CidrIp: !FindInMap
@@ -2319,7 +2325,7 @@ Resources:
     Properties:
       ImageId: !Ref 'WebServerAmi'
       IamInstanceProfile: !Ref 'InstanceProfile'
-      EbsOptimized: 'false'
+      EbsOptimized: 'true'
       SecurityGroups:
         - !Ref 'WebServerSecurityGroup'
       InstanceType: !Ref 'WebServerInstanceType'

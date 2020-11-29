@@ -10,14 +10,14 @@
         "WebServerInstanceType": {
             "Description": "WebServer Server EC2 instance type",
             "Type": "String",
-            "Default": "t3.large",
+            "Default": "t4g.large",
             "AllowedValues": [
-                "t3.micro",
-                "t3.small",
-                "t3.medium",
-                "t3.large",
-                "t3.xlarge",
-                "t3.2xlarge",
+                "t4g.micro",
+                "t4g.small",
+                "t4g.medium",
+                "t4g.large",
+                "t4g.xlarge",
+                "t4g.2xlarge",
                 "m6g.large",
                 "m6g.xlarge",
                 "m6g.2xlarge",
@@ -985,6 +985,9 @@
                         }
                     ]
                 },
+                "VersioningConfiguration": {
+                    "Status": "Enabled"
+                },
                 "PublicAccessBlockConfiguration": {
                     "BlockPublicAcls": true,
                     "BlockPublicPolicy": true,
@@ -1544,7 +1547,6 @@
                         "CIDR"
                     ]
                 	},
-                	    "Description": "Allow global inbound https access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1614,7 +1616,6 @@
                         "CIDR"
                     ]
                 },
-                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1684,7 +1685,6 @@
                         "CIDR"
                     ]
                 },
-                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1754,7 +1754,6 @@
                         "CIDR"
                     ]
                    },
-                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -1824,7 +1823,6 @@
                         "CIDR"
                     ]
                 },
-                        "Description": "https inbound access",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443"
@@ -3108,6 +3106,9 @@
                     "IgnorePublicAcls": true,
                     "RestrictPublicBuckets": true
                 },
+                "VersioningConfiguration": {
+                    "Status": "Enabled"
+                },
                 "BucketEncryption": {
                     "ServerSideEncryptionConfiguration": [
                         {
@@ -3384,6 +3385,7 @@
                 },
                 "SecurityGroupIngress": [
                     {
+                        "Description" : "Inbound https from public",
                         "IpProtocol": "tcp",
                         "FromPort": "443",
                         "ToPort": "443",
@@ -3392,6 +3394,7 @@
                 ],
                 "SecurityGroupEgress": [
                     {
+                        "Description" : "Outbound https from loadbalancer to server",
                         "IpProtocol": "tcp",
                         "FromPort": "8443",
                         "ToPort": "8443",
@@ -3952,7 +3955,7 @@
                 "IamInstanceProfile": {
                     "Ref": "InstanceProfile"
                 },
-                "EbsOptimized": "false",
+                "EbsOptimized": "true",
                 "SecurityGroups": [
                     {
                         "Ref": "WebServerSecurityGroup"
