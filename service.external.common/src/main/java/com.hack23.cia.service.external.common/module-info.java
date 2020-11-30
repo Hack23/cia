@@ -4,6 +4,7 @@ open module com.hack23.cia.service.external.common {
 			
 	requires org.slf4j;
 	requires java.xml.bind;
+	requires jakarta.activation;
 	requires jdom2;
 	requires spring.oxm;
 	requires spring.context;
