@@ -1,6 +1,10 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.web.listener {
 
+        class HttpSessionDestroyedEventListener [[HttpSessionDestroyedEventListener.html]] {
+            +onApplicationEvent(HttpSessionDestroyedEvent): void
+        }
+
         class AuthorizationFailureEventListener [[AuthorizationFailureEventListener.html]] {
             +onApplicationEvent(AuthorizationFailureEvent): void
         }
@@ -9,20 +13,17 @@
             +onApplicationEvent(HttpSessionCreatedEvent): void
         }
 
-        class HttpSessionDestroyedEventListener [[HttpSessionDestroyedEventListener.html]] {
-            +onApplicationEvent(HttpSessionDestroyedEvent): void
-        }
-
+        org.springframework.context.ApplicationListener <|.. HttpSessionDestroyedEventListener
         org.springframework.context.ApplicationListener <|.. AuthorizationFailureEventListener
         org.springframework.context.ApplicationListener <|.. HttpSessionCreatedEventListener
-        org.springframework.context.ApplicationListener <|.. HttpSessionDestroyedEventListener
     }
 
     namespace org.springframework.context {
         interface ApplicationListener<E extends ApplicationEvent> {
             {abstract} +onApplicationEvent(E extends ApplicationEvent): void
+            {static} +forPayload(Consumer<T>): ApplicationListener<PayloadApplicationEvent<T>>
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

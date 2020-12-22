@@ -1,54 +1,17 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode {
 
-        class PoliticianPageVisitHistoryPageModContentFactoryImpl [[PoliticianPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianIndicatorsPageModContentFactoryImpl [[PoliticianIndicatorsPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl [[PoliticianRankingChartsAllPartiesPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianRoleListPageModContentFactoryImpl [[PoliticianRoleListPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianRankingOverviewPageModContentFactoryImpl [[PoliticianRankingOverviewPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianDocumentActivityPageModContentFactoryImpl [[PoliticianDocumentActivityPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
         class PoliticianOverviewPageModContentFactoryImpl [[PoliticianOverviewPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class PoliticianRoleGhantPageModContentFactoryImpl [[PoliticianRoleGhantPageModContentFactoryImpl.html]] {
+        class PoliticianPageVisitHistoryPageModContentFactoryImpl [[PoliticianPageVisitHistoryPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class PoliticianVotesHistoryPageModContentFactoryImpl [[PoliticianVotesHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl [[PoliticianRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
+        class PoliticianRankingOverviewPageModContentFactoryImpl [[PoliticianRankingOverviewPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
@@ -65,7 +28,24 @@
             +matches(String, String): boolean
         }
 
-        class PoliticianBallotDecisionSummaryPageModContentFactoryImpl [[PoliticianBallotDecisionSummaryPageModContentFactoryImpl.html]] {
+        class PoliticianRoleGhantPageModContentFactoryImpl [[PoliticianRoleGhantPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl [[PoliticianRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianVotesHistoryPageModContentFactoryImpl [[PoliticianVotesHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl [[PoliticianRankingChartsAllPartiesPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -76,25 +56,45 @@
             +matches(String, String): boolean
         }
 
+        class PoliticianDocumentActivityPageModContentFactoryImpl [[PoliticianDocumentActivityPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianIndicatorsPageModContentFactoryImpl [[PoliticianIndicatorsPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianRoleListPageModContentFactoryImpl [[PoliticianRoleListPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PoliticianBallotDecisionSummaryPageModContentFactoryImpl [[PoliticianBallotDecisionSummaryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         class PoliticianDocumentHistoryPageModContentFactoryImpl [[PoliticianDocumentHistoryPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianIndicatorsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianRoleListPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingOverviewPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianDocumentActivityPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianOverviewPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianRoleGhantPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianVotesHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingOverviewPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingDataGridPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianRoleSummaryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianBallotDecisionSummaryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianRoleGhantPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianVotesHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianDocumentActivityPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianIndicatorsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianRoleListPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianBallotDecisionSummaryPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PoliticianDocumentHistoryPageModContentFactoryImpl
     }
 
@@ -105,5 +105,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

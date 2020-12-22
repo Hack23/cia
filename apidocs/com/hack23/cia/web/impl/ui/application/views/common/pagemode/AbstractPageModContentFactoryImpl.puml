@@ -8,16 +8,16 @@
         {static} +DEFAULT_RESULTS_PER_PAGE: int
         {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
         #createPageVisitHistory(String, String, VerticalLayout): void
-        #createPanelContent(): VerticalLayout
+        {static} #createPanelContent(): VerticalLayout
         #getAdminChartDataManager(): AdminChartDataManager
         #getApplicationManager(): ApplicationManager
         #getFormFactory(): FormFactory
         #getGridFactory(): GridFactory
         #getMenuItemFactory(): ApplicationMenuItemFactory
         #getPageActionEventHelper(): PageActionEventHelper
-        #getPageId(String): String
+        {static} #getPageId(String): String
         #getPageLinkFactory(): PageLinkFactory
-        #getPageNr(String): int
+        {static} #getPageNr(String): int
     }
 
     interface "<size:14>PageModeContentFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.pagemode" as com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory [[PageModeContentFactory.html]] {
@@ -28,5 +28,5 @@
 
     com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory <|.. com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

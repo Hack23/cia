@@ -6,12 +6,12 @@
             {abstract} +createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout, Class<T extends Serializable>, List<T extends Serializable>, String, String[], String[], String[], PageItemRendererClickListener<?>, String, ListPropertyConverter[]): void
         }
 
-        java.io.Serializable <|.. GridFactory
+        java.io.Serializable <|-- GridFactory
     }
 
     namespace java.io {
         interface Serializable
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

@@ -92,12 +92,12 @@
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/a<a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>mmon/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_APPLICATION_EVENTS_CHARTS = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  	
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_APPLICATION_SESSION. */</em>
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/imp<a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>ews/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_APPLICATION_SESSION = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, <span class="jxr_string">""</span>);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  	
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/im<a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>iews/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_AUTHOR_DATASUMMARY = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
@@ -273,7 +273,7 @@
 <a class="jxr_linenumber" name="L265" href="#L265">265</a> 
 <a class="jxr_linenumber" name="L266" href="#L266">266</a> 			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
 <a class="jxr_linenumber" name="L267" href="#L267">267</a> 			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> 			
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> 
 <a class="jxr_linenumber" name="L269" href="#L269">269</a> 
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 
@@ -304,7 +304,7 @@
 <a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">	 * @param description</em>
 <a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">	 *            the description</em>
 <a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L299" href="#L299">299</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> createButtonLink(<strong class="jxr_keyword">final</strong> ResponsiveRow row,<strong class="jxr_keyword">final</strong> String linkText,<strong class="jxr_keyword">final</strong> Resource icon, <strong class="jxr_keyword">final</strong> ClickListener command, <strong class="jxr_keyword">final</strong> String description) {
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> createButtonLink(<strong class="jxr_keyword">final</strong> ResponsiveRow row,<strong class="jxr_keyword">final</strong> String linkText,<strong class="jxr_keyword">final</strong> Resource icon, <strong class="jxr_keyword">final</strong> ClickListener command, <strong class="jxr_keyword">final</strong> String description) {
 <a class="jxr_linenumber" name="L300" href="#L300">300</a> 		<strong class="jxr_keyword">final</strong> CssLayout layout = <strong class="jxr_keyword">new</strong> CssLayout();
 <a class="jxr_linenumber" name="L301" href="#L301">301</a> 		layout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level2"</span>);
 <a class="jxr_linenumber" name="L302" href="#L302">302</a> 		Responsive.makeResponsive(layout);
@@ -337,7 +337,7 @@
 <a class="jxr_linenumber" name="L329" href="#L329">329</a> <em class="jxr_javadoccomment">	 * @param menuBar</em>
 <a class="jxr_linenumber" name="L330" href="#L330">330</a> <em class="jxr_javadoccomment">	 *            the menu bar</em>
 <a class="jxr_linenumber" name="L331" href="#L331">331</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L332" href="#L332">332</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> initApplicationMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar) {
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> initApplicationMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar) {
 <a class="jxr_linenumber" name="L333" href="#L333">333</a> 		menuBar.removeItems();
 <a class="jxr_linenumber" name="L334" href="#L334">334</a> 		menuBar.setWidth(MENU_BAR_WIDTH);
 <a class="jxr_linenumber" name="L335" href="#L335">335</a> 		menuBar.setStyleName(HEADER_STYLE_NAME);

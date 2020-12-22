@@ -1,14 +1,14 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl {
 
+        class DecisionDataFactoryImpl [[DecisionDataFactoryImpl.html]] {
+            +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
+        }
+
         class MinistryDataSeriesFactoryImpl [[MinistryDataSeriesFactoryImpl.html]] {
             +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
             +createMinistryChartTimeSeriesAll(): DataSeries
             +createMinistryChartTimeSeriesCurrent(): DataSeries
-        }
-
-        class DecisionDataFactoryImpl [[DecisionDataFactoryImpl.html]] {
-            +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
         }
 
         class PartyDataSeriesFactoryImpl [[PartyDataSeriesFactoryImpl.html]] {
@@ -24,20 +24,20 @@
             +createCommitteeChartTimeSeriesCurrent(): DataSeries
         }
 
-        com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory <|.. MinistryDataSeriesFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory <|.. DecisionDataFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory <|.. MinistryDataSeriesFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory <|.. PartyDataSeriesFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory <|.. CommitteeDataSeriesFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api {
+        interface DecisionDataFactory [[../api/DecisionDataFactory.html]] {
+            {abstract} +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
+        }
         interface MinistryDataSeriesFactory [[../api/MinistryDataSeriesFactory.html]] {
             {abstract} +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
             {abstract} +createMinistryChartTimeSeriesAll(): DataSeries
             {abstract} +createMinistryChartTimeSeriesCurrent(): DataSeries
-        }
-        interface DecisionDataFactory [[../api/DecisionDataFactory.html]] {
-            {abstract} +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
         }
         interface PartyDataSeriesFactory [[../api/PartyDataSeriesFactory.html]] {
             {abstract} +createChartTimeSeriesCurrentCommitteeByParty(): DataSeries
@@ -52,5 +52,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

@@ -95,13 +95,13 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-<span class="pc bpc" id="L98" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L98" title="2 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L100">			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="nc" id="L100">			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">			if (languageContentData != null) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if (languageContentData != null) {</span>
 
-<span class="fc" id="L104">				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,</span>
+<span class="nc" id="L104">				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,</span>
 						AS_LIST);
 			}
 		}
@@ -114,4 +114,4 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

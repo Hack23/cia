@@ -94,36 +94,36 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	@Override
 	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
 
-<span class="nc" id="L97">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
+<span class="fc" id="L97">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
 
-<span class="nc" id="L99">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L99">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="nc" id="L101">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L101">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="nc" id="L103">		final Series series = new Series();</span>
+<span class="fc" id="L103">		final Series series = new Series();</span>
 
-<span class="nc bnc" id="L105" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
 
-<span class="nc bnc" id="L107" title="All 2 branches missed.">			if (entry.getKey() != null) {</span>
-<span class="nc" id="L108">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">			if (entry.getKey() != null) {</span>
+<span class="fc" id="L108">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
 
-<span class="nc" id="L110">				dataSeries.newSeries();</span>
-<span class="nc" id="L111">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {</span>
-<span class="nc" id="L113">					dataSeries.add(</span>
-<span class="nc" id="L114">							simpleDateFormat.format(</span>
-<span class="nc" id="L115">									viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),</span>
-<span class="nc" id="L116">							viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());</span>
-<span class="nc" id="L117">				}</span>
+<span class="fc" id="L110">				dataSeries.newSeries();</span>
+<span class="fc" id="L111">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {</span>
+<span class="fc" id="L113">					dataSeries.add(</span>
+<span class="fc" id="L114">							simpleDateFormat.format(</span>
+<span class="fc" id="L115">									viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),</span>
+<span class="fc" id="L116">							viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());</span>
+<span class="fc" id="L117">				}</span>
 			}
 
-<span class="nc" id="L120">		}</span>
+<span class="fc" id="L120">		}</span>
 
-<span class="nc" id="L122">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
-<span class="nc" id="L123">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="nc" id="L124">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+<span class="fc" id="L122">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
+<span class="fc" id="L123">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L124">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
 				true);
-<span class="nc" id="L126">	}</span>
+<span class="fc" id="L126">	}</span>
 
 	@Override
 	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,
@@ -185,11 +185,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * @return the application action event page daily summary map
 	 */
 	private Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; getApplicationActionEventPageDailySummaryMap() {
-<span class="nc" id="L188">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L189">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
+<span class="fc" id="L188">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L189">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
 
-<span class="nc" id="L191">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
-<span class="nc" id="L192">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
+<span class="fc" id="L191">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
+<span class="fc" id="L192">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
 	}
 
 	/**
@@ -238,4 +238,4 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

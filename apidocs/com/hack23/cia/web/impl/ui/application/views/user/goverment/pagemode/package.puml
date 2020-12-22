@@ -1,42 +1,12 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode {
 
-        class MinistryGovernmentBodiesIncomeModContentFactoryImpl [[MinistryGovernmentBodiesIncomeModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MinistryGovernmentBodiesExpenditureModContentFactoryImpl [[MinistryGovernmentBodiesExpenditureModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MinistryDocumentHistoryPageModContentFactoryImpl [[MinistryDocumentHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MinistryPageVisitHistoryPageModContentFactoryImpl [[MinistryPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MinistryRankingAllPartiesChartsPageModContentFactoryImpl [[MinistryRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MinistryRankingOverviewPageModContentFactoryImpl [[MinistryRankingOverviewPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
         class MinistryOverviewPageModContentFactoryImpl [[MinistryOverviewPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl [[MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
+        class MinistryRankingAllRolesChartsPageModContentFactoryImpl [[MinistryRankingAllRolesChartsPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -46,17 +16,27 @@
             +matches(String, String): boolean
         }
 
-        class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl [[MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.html]] {
+        class MinistryCurrentMembersPageModContentFactoryImpl [[MinistryCurrentMembersPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRankingGovernmentOutcomePageModContentFactoryImpl [[MinistryRankingGovernmentOutcomePageModContentFactoryImpl.html]] {
+        class MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl [[MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRankingGovernmentBodiesPageModContentFactoryImpl [[MinistryRankingGovernmentBodiesPageModContentFactoryImpl.html]] {
+        class MinistryRankingOverviewPageModContentFactoryImpl [[MinistryRankingOverviewPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryRoleGhantPageModContentFactoryImpl [[MinistryRoleGhantPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryGovernmentBodiesExpenditureModContentFactoryImpl [[MinistryGovernmentBodiesExpenditureModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -66,7 +46,32 @@
             +matches(String, String): boolean
         }
 
-        class MinistryCurrentMembersPageModContentFactoryImpl [[MinistryCurrentMembersPageModContentFactoryImpl.html]] {
+        class MinistryGovernmentBodiesHeadcountModContentFactoryImpl [[MinistryGovernmentBodiesHeadcountModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryRankingAllPartiesChartsPageModContentFactoryImpl [[MinistryRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl [[MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryRankingGovernmentOutcomePageModContentFactoryImpl [[MinistryRankingGovernmentOutcomePageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryPageVisitHistoryPageModContentFactoryImpl [[MinistryPageVisitHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class MinistryMemberHistoryPageModContentFactoryImpl [[MinistryMemberHistoryPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -86,53 +91,48 @@
             +matches(String, String): boolean
         }
 
-        class MinistryMemberHistoryPageModContentFactoryImpl [[MinistryMemberHistoryPageModContentFactoryImpl.html]] {
+        class MinistryGovernmentBodiesIncomeModContentFactoryImpl [[MinistryGovernmentBodiesIncomeModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryGovernmentBodiesHeadcountModContentFactoryImpl [[MinistryGovernmentBodiesHeadcountModContentFactoryImpl.html]] {
+        class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl [[MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRankingAllRolesChartsPageModContentFactoryImpl [[MinistryRankingAllRolesChartsPageModContentFactoryImpl.html]] {
+        class MinistryRankingGovernmentBodiesPageModContentFactoryImpl [[MinistryRankingGovernmentBodiesPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl [[MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl.html]] {
+        class MinistryDocumentHistoryPageModContentFactoryImpl [[MinistryDocumentHistoryPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        class MinistryRoleGhantPageModContentFactoryImpl [[MinistryRoleGhantPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesIncomeModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesExpenditureModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryDocumentHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllPartiesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingOverviewPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryOverviewPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllRolesChartsPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentOutcomePageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodiesPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryCurrentMembersPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryRoleGhantPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesExpenditureModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesHeadcountModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllPartiesChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentOutcomePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryMemberHistoryPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryDocumentActivityPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingDataGridPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryMemberHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesHeadcountModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingAllRolesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryRoleGhantPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryGovernmentBodiesIncomeModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- MinistryRankingGovernmentBodiesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- MinistryDocumentHistoryPageModContentFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
@@ -142,5 +142,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

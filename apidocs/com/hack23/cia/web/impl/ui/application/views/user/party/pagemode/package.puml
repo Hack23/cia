@@ -1,107 +1,12 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.party.pagemode {
 
-        class PartyMemberHistoryPageModContentFactoryImpl [[PartyMemberHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyOverviewPageModContentFactoryImpl [[PartyOverviewPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyLeaderHistoryPageModContentFactoryImpl [[PartyLeaderHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl [[PartyRankingCurrentPartiesChartsPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl [[PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyVoteHistoryPageModContentFactoryImpl [[PartyVoteHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyCurrentLeadersPageModContentFactoryImpl [[PartyCurrentLeadersPageModContentFactoryImpl.html]] {
+        class PartyDocumentActivityPageModContentFactoryImpl [[PartyDocumentActivityPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
         class PartyPageVisitHistoryPageModContentFactoryImpl [[PartyPageVisitHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl [[PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRankingPageVisitHistoryPageModContentFactoryImpl [[PartyRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyGovernmentRolesPageModContentFactoryImpl [[PartyGovernmentRolesPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyCurrentMembersPageModContentFactoryImpl [[PartyCurrentMembersPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl [[PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRankingAllPartiesChartsPageModContentFactoryImpl [[PartyRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRankingDataGridPageModContentFactoryImpl [[PartyRankingDataGridPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartySupportAnnualSummaryChartPageModContentFactoryImpl [[PartySupportAnnualSummaryChartPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyDocumentHistoryPageModContentFactoryImpl [[PartyDocumentHistoryPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyRoleGhantPageModContentFactoryImpl [[PartyRoleGhantPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyCommitteeRolesPageModContentFactoryImpl [[PartyCommitteeRolesPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class PartyWonDailySummaryChartPageModContentFactoryImpl [[PartyWonDailySummaryChartPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -112,7 +17,53 @@
             +matches(String, String): boolean
         }
 
-        class PartyDocumentActivityPageModContentFactoryImpl [[PartyDocumentActivityPageModContentFactoryImpl.html]] {
+        class PartyVoteHistoryPageModContentFactoryImpl [[PartyVoteHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyCurrentMembersPageModContentFactoryImpl [[PartyCurrentMembersPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyCurrentLeadersPageModContentFactoryImpl [[PartyCurrentLeadersPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyWonDailySummaryChartPageModContentFactoryImpl [[PartyWonDailySummaryChartPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl [[PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRoleGhantPageModContentFactoryImpl [[PartyRoleGhantPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl [[PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRankingPageVisitHistoryPageModContentFactoryImpl [[PartyRankingPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartySupportAnnualSummaryChartPageModContentFactoryImpl [[PartySupportAnnualSummaryChartPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyOverviewPageModContentFactoryImpl [[PartyOverviewPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
@@ -123,29 +74,78 @@
             +matches(String, String): boolean
         }
 
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyMemberHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyOverviewPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyLeaderHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingCurrentPartiesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyVoteHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCurrentLeadersPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyGovernmentRolesPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCurrentMembersPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingAllPartiesChartsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingDataGridPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartySupportAnnualSummaryChartPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyDocumentHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyRoleGhantPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCommitteeRolesPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyWonDailySummaryChartPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingOverviewPageModContentFactoryImpl
+        class PartyGovernmentRolesPageModContentFactoryImpl [[PartyGovernmentRolesPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyLeaderHistoryPageModContentFactoryImpl [[PartyLeaderHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyCommitteeRolesPageModContentFactoryImpl [[PartyCommitteeRolesPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl [[PartyRankingCurrentPartiesChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyMemberHistoryPageModContentFactoryImpl [[PartyMemberHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRankingAllPartiesChartsPageModContentFactoryImpl [[PartyRankingAllPartiesChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl [[PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyDocumentHistoryPageModContentFactoryImpl [[PartyDocumentHistoryPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class PartyRankingDataGridPageModContentFactoryImpl [[PartyRankingDataGridPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyDocumentActivityPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingOverviewPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyVoteHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCurrentMembersPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCurrentLeadersPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyWonDailySummaryChartPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyRoleGhantPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartySupportAnnualSummaryChartPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyOverviewPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyGovernmentRolesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyLeaderHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyCommitteeRolesPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingCurrentPartiesChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyMemberHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingAllPartiesChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl <|-- PartyDocumentHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- PartyRankingDataGridPageModContentFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
@@ -155,5 +155,5 @@
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

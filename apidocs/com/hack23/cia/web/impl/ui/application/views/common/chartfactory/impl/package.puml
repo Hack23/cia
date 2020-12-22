@@ -1,56 +1,81 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl {
 
+        abstract class AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]] {
+            {static} #addChart(AbstractOrderedLayout, String, DCharts, boolean): void
+            #getApplicationManager(): ApplicationManager
+            #getChartOptions(): ChartOptions
+            #getPartyName(String): String
+        }
+
+        class BallotChartDataManagerImpl [[BallotChartDataManagerImpl.html]] {
+            +createChart(Tab, AbstractOrderedLayout, List<ViewRiksdagenVoteDataBallotPartySummary>): void
+            +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
+        }
+
+        class WorldIndicatorChartDataManagerImpl [[WorldIndicatorChartDataManagerImpl.html]] {
+            +createIndicatorChart(AbstractOrderedLayout, List<WorldBankData>, ViewWorldbankIndicatorDataCountrySummary): void
+        }
+
+        class CommitteeGhantChartManagerImpl [[CommitteeGhantChartManagerImpl.html]] {
+            #getComparator(): Comparator<ViewRiksdagenCommitteeRoleMember>
+            #getRoleMapping(): Function<ViewRiksdagenCommitteeRoleMember, String>
+            #getStepMapping(): StepMapping<ViewRiksdagenCommitteeRoleMember>
+        }
+
         class OrgDocumentChartDataManagerImpl [[OrgDocumentChartDataManagerImpl.html]] {
             +createDocumentHistoryChartByOrg(AbstractOrderedLayout, String): void
         }
 
-        class GovernmentOutcomeChartDataManagerImpl [[GovernmentOutcomeChartDataManagerImpl.html]] {
-            +createGovernmentOutcomeChart(AbstractOrderedLayout): void
+        class ChartDataManagerImpl [[ChartDataManagerImpl.html]] {
+            +createChartPanel(AbstractOrderedLayout, DataSeries, String): void
         }
 
-        class PartyDocumentChartDataManagerImpl [[PartyDocumentChartDataManagerImpl.html]] {
-            +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
+        class PartyChartDataManagerImpl [[PartyChartDataManagerImpl.html]] {
+            +createPartyAgeChart(AbstractOrderedLayout): void
+            +createPartyGenderChart(AbstractOrderedLayout): void
+            +createPartyLineChart(AbstractOrderedLayout, String): void
+            +createPartyWinnerChart(AbstractOrderedLayout): void
         }
 
-        class ChartOptionsImpl [[ChartOptionsImpl.html]] {
-            {static} +NUMBER_TICKS_DATE: int
-            {static} +YEAR_MONTH_DAY_FORMAT: String
-            +createOptionsCountryLineChart(Series): Options
-            +createOptionsDonoutChart(): Options
-            +createOptionsDonoutChartWithSeries(Series): Options
-            +createOptionsPartyLineChart(Series): Options
-            +createOptionsPersonLineChart(Series): Options
-            +createOptionsPieChart(): Options
-            +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
-            +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
-        }
-
-        class PersonDocumentChartDataManagerImpl [[PersonDocumentChartDataManagerImpl.html]] {
-            +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
-        }
-
-        class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl.html]] {
-            +findByValue(String): List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>
-        }
-
-        class ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl.html]] {
-            +findByValue(String): List<ViewRiksdagenVoteDataBallotPartySummary>
+        class DecisionChartDataManagerImpl [[DecisionChartDataManagerImpl.html]] {
+            +createDecisionTypeChart(AbstractOrderedLayout): void
+            +createDecisionTypeChart(AbstractOrderedLayout, String): void
         }
 
         class DocumentChartDataManagerImpl [[DocumentChartDataManagerImpl.html]] {
             +createDocumentTypeChart(AbstractOrderedLayout): void
         }
 
-        class CommitteeGhantChartManagerImpl [[CommitteeGhantChartManagerImpl.html]] {
-            #getComparator(): Comparator<ViewRiksdagenCommitteeRoleMember>
-            #getRoleMapping(): Function<ViewRiksdagenCommitteeRoleMember, String>
+        class PoliticianDataManagerImpl [[PoliticianDataManagerImpl.html]] {
+            +createPersonLineChart(AbstractOrderedLayout, String): void
+        }
+
+        class MinistryGhantChartManagerImpl [[MinistryGhantChartManagerImpl.html]] {
+            #getComparator(): Comparator<ViewRiksdagenGovermentRoleMember>
+            #getRoleMapping(): Function<ViewRiksdagenGovermentRoleMember, String>
+            #getStepMapping(): StepMapping<ViewRiksdagenGovermentRoleMember>
+        }
+
+        class PartyDocumentChartDataManagerImpl [[PartyDocumentChartDataManagerImpl.html]] {
+            +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
+        }
+
+        class AdminChartDataManagerImpl [[AdminChartDataManagerImpl.html]] {
+            +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
+            +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+            +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        }
+
+        class ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl.html]] {
+            +findByValue(String): List<ViewRiksdagenVoteDataBallotPartySummary>
         }
 
         abstract class AbstractGhantChartManagerImpl<T> [[AbstractGhantChartManagerImpl.html]] {
             +createRoleGhant(AbstractOrderedLayout, Collection<T>): void
             {abstract} #getComparator(): Comparator<T>
             {abstract} #getRoleMapping(): Function<T, String>
+            {abstract} #getStepMapping(): StepMapping<T>
         }
 
         interface com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping<T> [[AbstractGhantChartManagerImpl.StepMapping.html]] {
@@ -64,53 +89,24 @@
             {abstract} +getToDate(T): Date
         }
 
-        class ChartDataManagerImpl [[ChartDataManagerImpl.html]] {
-            +createChartPanel(AbstractOrderedLayout, DataSeries, String): void
-        }
-
-        class PartySupportsChartDataManagerImpl [[PartySupportsChartDataManagerImpl.html]] {
-            +createPartyChart(AbstractOrderedLayout, String): void
-        }
-
-        class PoliticianDataManagerImpl [[PoliticianDataManagerImpl.html]] {
-            +createPersonLineChart(AbstractOrderedLayout, String): void
-        }
-
-        abstract class AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]] {
-            #addChart(AbstractOrderedLayout, String, DCharts, boolean): void
-            #getApplicationManager(): ApplicationManager
-            #getChartOptions(): ChartOptions
-            #getPartyName(String): String
-        }
-
-        class MinistryGhantChartManagerImpl [[MinistryGhantChartManagerImpl.html]] {
-            #getComparator(): Comparator<ViewRiksdagenGovermentRoleMember>
-            #getRoleMapping(): Function<ViewRiksdagenGovermentRoleMember, String>
-        }
-
-        class DecisionChartDataManagerImpl [[DecisionChartDataManagerImpl.html]] {
-            +createDecisionTypeChart(AbstractOrderedLayout): void
-            +createDecisionTypeChart(AbstractOrderedLayout, String): void
-        }
-
-        class ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl.html]] {
-            +findByValue(String): List<ViewRiksdagenVoteDataBallotPoliticianSummary>
-        }
-
-        class WorldIndicatorChartDataManagerImpl [[WorldIndicatorChartDataManagerImpl.html]] {
-            +createIndicatorChart(AbstractOrderedLayout, List<WorldBankData>, ViewWorldbankIndicatorDataCountrySummary): void
-        }
-
         class PartyGhantChartManagerImpl [[PartyGhantChartManagerImpl.html]] {
             #getComparator(): Comparator<ViewRiksdagenPartyRoleMember>
             #getRoleMapping(): Function<ViewRiksdagenPartyRoleMember, String>
+            #getStepMapping(): StepMapping<ViewRiksdagenPartyRoleMember>
         }
 
-        class PartyChartDataManagerImpl [[PartyChartDataManagerImpl.html]] {
-            +createPartyAgeChart(AbstractOrderedLayout): void
-            +createPartyGenderChart(AbstractOrderedLayout): void
-            +createPartyLineChart(AbstractOrderedLayout, String): void
-            +createPartyWinnerChart(AbstractOrderedLayout): void
+        class PartyCoalationChartDataManagerImpl [[PartyCoalationChartDataManagerImpl.html]] {
+            +createPartyChart(AbstractOrderedLayout, String): void
+        }
+
+        class GovernmentOutcomeChartDataManagerImpl [[GovernmentOutcomeChartDataManagerImpl.html]] {
+            +createGovernmentOutcomeChart(AbstractOrderedLayout): void
+        }
+
+        class PoliticianGhantChartManagerImpl [[PoliticianGhantChartManagerImpl.html]] {
+            #getComparator(): Comparator<AssignmentData>
+            #getRoleMapping(): Function<AssignmentData, String>
+            #getStepMapping(): StepMapping<AssignmentData>
         }
 
         class GovernmentBodyChartDataManagerImpl [[GovernmentBodyChartDataManagerImpl.html]] {
@@ -128,9 +124,25 @@
             +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
         }
 
-        class BallotChartDataManagerImpl [[BallotChartDataManagerImpl.html]] {
-            +createChart(Tab, AbstractOrderedLayout, List<ViewRiksdagenVoteDataBallotPartySummary>): void
-            +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
+        class ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl.html]] {
+            +findByValue(String): List<ViewRiksdagenVoteDataBallotPoliticianSummary>
+        }
+
+        class ChartOptionsImpl [[ChartOptionsImpl.html]] {
+            {static} +NUMBER_TICKS_DATE: int
+            {static} +YEAR_MONTH_DAY_FORMAT: String
+            +createOptionsCountryLineChart(Series): Options
+            +createOptionsDonoutChart(): Options
+            +createOptionsDonoutChartWithSeries(Series): Options
+            +createOptionsPartyLineChart(Series): Options
+            +createOptionsPersonLineChart(Series): Options
+            +createOptionsPieChart(): Options
+            +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+            +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
+        }
+
+        class PartySupportsChartDataManagerImpl [[PartySupportsChartDataManagerImpl.html]] {
+            +createPartyChart(AbstractOrderedLayout, String): void
         }
 
         class DecisionFlowChartManagerImpl [[DecisionFlowChartManagerImpl.html]] {
@@ -139,109 +151,89 @@
             +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
         }
 
-        class PoliticianGhantChartManagerImpl [[PoliticianGhantChartManagerImpl.html]] {
-            #getComparator(): Comparator<AssignmentData>
-            #getRoleMapping(): Function<AssignmentData, String>
+        class PersonDocumentChartDataManagerImpl [[PersonDocumentChartDataManagerImpl.html]] {
+            +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
         }
 
-        class PartyCoalationChartDataManagerImpl [[PartyCoalationChartDataManagerImpl.html]] {
-            +createPartyChart(AbstractOrderedLayout, String): void
+        class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl.html]] {
+            +findByValue(String): List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>
         }
 
-        class AdminChartDataManagerImpl [[AdminChartDataManagerImpl.html]] {
-            +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
-            +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
-            +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
-        }
-
-        AbstractChartDataManagerImpl <|-- OrgDocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager <|.. OrgDocumentChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- GovernmentOutcomeChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager <|.. GovernmentOutcomeChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- PartyDocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager <|.. PartyDocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions <|.. ChartOptionsImpl
-        AbstractChartDataManagerImpl <|-- PersonDocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager <|.. PersonDocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- DocumentChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager <|.. DocumentChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- BallotChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager <|.. BallotChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- WorldIndicatorChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager <|.. WorldIndicatorChartDataManagerImpl
         AbstractGhantChartManagerImpl <|-- CommitteeGhantChartManagerImpl
         com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.CommitteeGhantChartManager <|.. CommitteeGhantChartManagerImpl
-        CommitteeGhantChartManagerImpl --> com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping: stepMapping
-        AbstractGhantChartManagerImpl --> com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping: stepMapping
-        AbstractGhantChartManagerImpl +-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping
+        AbstractChartDataManagerImpl <|-- OrgDocumentChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager <|.. OrgDocumentChartDataManagerImpl
         AbstractChartDataManagerImpl <|-- ChartDataManagerImpl
         com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager <|.. ChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- PartySupportsChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager <|.. PartySupportsChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- PartyChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager <|.. PartyChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- DecisionChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager <|.. DecisionChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- DocumentChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager <|.. DocumentChartDataManagerImpl
         AbstractChartDataManagerImpl <|-- PoliticianDataManagerImpl
         com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager <|.. PoliticianDataManagerImpl
         AbstractGhantChartManagerImpl <|-- MinistryGhantChartManagerImpl
         com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager <|.. MinistryGhantChartManagerImpl
-        MinistryGhantChartManagerImpl --> com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping: stepMapping
-        AbstractChartDataManagerImpl <|-- DecisionChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager <|.. DecisionChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- WorldIndicatorChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager <|.. WorldIndicatorChartDataManagerImpl
-        AbstractGhantChartManagerImpl <|-- PartyGhantChartManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyGhantChartManager <|.. PartyGhantChartManagerImpl
-        PartyGhantChartManagerImpl --> com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping: stepMapping
-        AbstractChartDataManagerImpl <|-- PartyChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager <|.. PartyChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- GovernmentBodyChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager <|.. GovernmentBodyChartDataManagerImpl
-        AbstractChartDataManagerImpl <|-- BallotChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager <|.. BallotChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager <|.. DecisionFlowChartManagerImpl
-        AbstractGhantChartManagerImpl <|-- PoliticianGhantChartManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianGhantChartManager <|.. PoliticianGhantChartManagerImpl
-        PoliticianGhantChartManagerImpl --> com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping: stepMapping
-        AbstractChartDataManagerImpl <|-- PartyCoalationChartDataManagerImpl
-        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyCoalationChartDataManager <|.. PartyCoalationChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- PartyDocumentChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager <|.. PartyDocumentChartDataManagerImpl
         AbstractChartDataManagerImpl <|-- AdminChartDataManagerImpl
         com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager <|.. AdminChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl
+        AbstractGhantChartManagerImpl +-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractGhantChartManagerImpl.StepMapping
+        AbstractGhantChartManagerImpl <|-- PartyGhantChartManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyGhantChartManager <|.. PartyGhantChartManagerImpl
+        AbstractChartDataManagerImpl <|-- PartyCoalationChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyCoalationChartDataManager <|.. PartyCoalationChartDataManagerImpl
+        AbstractChartDataManagerImpl <|-- GovernmentOutcomeChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager <|.. GovernmentOutcomeChartDataManagerImpl
+        AbstractGhantChartManagerImpl <|-- PoliticianGhantChartManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianGhantChartManager <|.. PoliticianGhantChartManagerImpl
+        AbstractChartDataManagerImpl <|-- GovernmentBodyChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager <|.. GovernmentBodyChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions <|.. ChartOptionsImpl
+        AbstractChartDataManagerImpl <|-- PartySupportsChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager <|.. PartySupportsChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager <|.. DecisionFlowChartManagerImpl
+        AbstractChartDataManagerImpl <|-- PersonDocumentChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager <|.. PersonDocumentChartDataManagerImpl
+        com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager <|.. ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api {
-        interface OrgDocumentChartDataManager [[../api/OrgDocumentChartDataManager.html]] {
-            {abstract} +createDocumentHistoryChartByOrg(AbstractOrderedLayout, String): void
+        interface BallotChartDataManager [[../api/BallotChartDataManager.html]] {
+            {abstract} +createChart(Tab, AbstractOrderedLayout, List<ViewRiksdagenVoteDataBallotPartySummary>): void
+            {abstract} +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
         }
-        interface GovernmentOutcomeChartDataManager [[../api/GovernmentOutcomeChartDataManager.html]] {
-            {abstract} +createGovernmentOutcomeChart(AbstractOrderedLayout): void
-        }
-        interface PartyDocumentChartDataManager [[../api/PartyDocumentChartDataManager.html]] {
-            {abstract} +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
-        }
-        interface ChartOptions [[../api/ChartOptions.html]] {
-            {abstract} +createOptionsCountryLineChart(Series): Options
-            {abstract} +createOptionsDonoutChart(): Options
-            {abstract} +createOptionsDonoutChartWithSeries(Series): Options
-            {abstract} +createOptionsPartyLineChart(Series): Options
-            {abstract} +createOptionsPersonLineChart(Series): Options
-            {abstract} +createOptionsPieChart(): Options
-            {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
-            {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
-        }
-        interface PersonDocumentChartDataManager [[../api/PersonDocumentChartDataManager.html]] {
-            {abstract} +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
-        }
-        interface GenericChartDataManager<T> [[../api/GenericChartDataManager.html]] {
-            {abstract} +findByValue(String): List<T>
-        }
-        interface DocumentChartDataManager [[../api/DocumentChartDataManager.html]] {
-            {abstract} +createDocumentTypeChart(AbstractOrderedLayout): void
+        interface WorldIndicatorChartDataManager [[../api/WorldIndicatorChartDataManager.html]] {
+            {abstract} +createIndicatorChart(AbstractOrderedLayout, List<WorldBankData>, ViewWorldbankIndicatorDataCountrySummary): void
         }
         interface CommitteeGhantChartManager [[../api/CommitteeGhantChartManager.html]] {
             {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenCommitteeRoleMember>): void
         }
+        interface OrgDocumentChartDataManager [[../api/OrgDocumentChartDataManager.html]] {
+            {abstract} +createDocumentHistoryChartByOrg(AbstractOrderedLayout, String): void
+        }
         interface ChartDataManager [[../api/ChartDataManager.html]] {
             {abstract} +createChartPanel(AbstractOrderedLayout, DataSeries, String): void
         }
-        interface PartySupportsChartDataManager [[../api/PartySupportsChartDataManager.html]] {
-            {abstract} +createPartyChart(AbstractOrderedLayout, String): void
+        interface PartyChartDataManager [[../api/PartyChartDataManager.html]] {
+            {abstract} +createPartyAgeChart(AbstractOrderedLayout): void
+            {abstract} +createPartyGenderChart(AbstractOrderedLayout): void
+            {abstract} +createPartyLineChart(AbstractOrderedLayout, String): void
+            {abstract} +createPartyWinnerChart(AbstractOrderedLayout): void
+        }
+        interface DecisionChartDataManager [[../api/DecisionChartDataManager.html]] {
+            {abstract} +createDecisionTypeChart(AbstractOrderedLayout): void
+            {abstract} +createDecisionTypeChart(AbstractOrderedLayout, String): void
+        }
+        interface DocumentChartDataManager [[../api/DocumentChartDataManager.html]] {
+            {abstract} +createDocumentTypeChart(AbstractOrderedLayout): void
         }
         interface PoliticianChartDataManager [[../api/PoliticianChartDataManager.html]] {
             {abstract} +createPersonLineChart(AbstractOrderedLayout, String): void
@@ -249,21 +241,28 @@
         interface MinistryGhantChartManager [[../api/MinistryGhantChartManager.html]] {
             {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenGovermentRoleMember>): void
         }
-        interface DecisionChartDataManager [[../api/DecisionChartDataManager.html]] {
-            {abstract} +createDecisionTypeChart(AbstractOrderedLayout): void
-            {abstract} +createDecisionTypeChart(AbstractOrderedLayout, String): void
+        interface PartyDocumentChartDataManager [[../api/PartyDocumentChartDataManager.html]] {
+            {abstract} +createDocumentHistoryPartyChart(AbstractOrderedLayout, String): void
         }
-        interface WorldIndicatorChartDataManager [[../api/WorldIndicatorChartDataManager.html]] {
-            {abstract} +createIndicatorChart(AbstractOrderedLayout, List<WorldBankData>, ViewWorldbankIndicatorDataCountrySummary): void
+        interface AdminChartDataManager [[../api/AdminChartDataManager.html]] {
+            {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
+            {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
+            {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        }
+        interface GenericChartDataManager<T> [[../api/GenericChartDataManager.html]] {
+            {abstract} +findByValue(String): List<T>
         }
         interface PartyGhantChartManager [[../api/PartyGhantChartManager.html]] {
             {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<ViewRiksdagenPartyRoleMember>): void
         }
-        interface PartyChartDataManager [[../api/PartyChartDataManager.html]] {
-            {abstract} +createPartyAgeChart(AbstractOrderedLayout): void
-            {abstract} +createPartyGenderChart(AbstractOrderedLayout): void
-            {abstract} +createPartyLineChart(AbstractOrderedLayout, String): void
-            {abstract} +createPartyWinnerChart(AbstractOrderedLayout): void
+        interface PartyCoalationChartDataManager [[../api/PartyCoalationChartDataManager.html]] {
+            {abstract} +createPartyChart(AbstractOrderedLayout, String): void
+        }
+        interface GovernmentOutcomeChartDataManager [[../api/GovernmentOutcomeChartDataManager.html]] {
+            {abstract} +createGovernmentOutcomeChart(AbstractOrderedLayout): void
+        }
+        interface PoliticianGhantChartManager [[../api/PoliticianGhantChartManager.html]] {
+            {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<AssignmentData>): void
         }
         interface GovernmentBodyChartDataManager [[../api/GovernmentBodyChartDataManager.html]] {
             {abstract} +createGovernmentBodyExpenditureSummaryChart(VerticalLayout): void
@@ -279,27 +278,28 @@
             {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout): void
             {abstract} +createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout, String): void
         }
-        interface BallotChartDataManager [[../api/BallotChartDataManager.html]] {
-            {abstract} +createChart(Tab, AbstractOrderedLayout, List<ViewRiksdagenVoteDataBallotPartySummary>): void
-            {abstract} +createChart(Tab, AbstractOrderedLayout, ViewRiksdagenVoteDataBallotSummary): void
+        interface ChartOptions [[../api/ChartOptions.html]] {
+            {abstract} +createOptionsCountryLineChart(Series): Options
+            {abstract} +createOptionsDonoutChart(): Options
+            {abstract} +createOptionsDonoutChartWithSeries(Series): Options
+            {abstract} +createOptionsPartyLineChart(Series): Options
+            {abstract} +createOptionsPersonLineChart(Series): Options
+            {abstract} +createOptionsPieChart(): Options
+            {abstract} +createOptionsXYDateFloatLegendInsideOneColumn(Series): Options
+            {abstract} +createOptionsXYDateFloatLogYAxisLegendOutside(Series): Options
+        }
+        interface PartySupportsChartDataManager [[../api/PartySupportsChartDataManager.html]] {
+            {abstract} +createPartyChart(AbstractOrderedLayout, String): void
         }
         interface DecisionFlowChartManager [[../api/DecisionFlowChartManager.html]] {
             {abstract} +createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
             {abstract} +createCommitteeDecisionFlow(ViewRiksdagenCommittee, Map<String, List<ViewRiksdagenCommittee>>, String): SankeyChart
             {abstract} +createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>>, String): TextArea
         }
-        interface PoliticianGhantChartManager [[../api/PoliticianGhantChartManager.html]] {
-            {abstract} +createRoleGhant(AbstractOrderedLayout, Collection<AssignmentData>): void
-        }
-        interface PartyCoalationChartDataManager [[../api/PartyCoalationChartDataManager.html]] {
-            {abstract} +createPartyChart(AbstractOrderedLayout, String): void
-        }
-        interface AdminChartDataManager [[../api/AdminChartDataManager.html]] {
-            {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
-            {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
-            {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        interface PersonDocumentChartDataManager [[../api/PersonDocumentChartDataManager.html]] {
+            {abstract} +createPersonDocumentHistoryChart(AbstractOrderedLayout, String): void
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

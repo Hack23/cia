@@ -1,25 +1,25 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode {
 
-        class DataSummaryOverviewPageModContentFactoryImpl [[DataSummaryOverviewPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
         class DataSummaryAuthorPageModContentFactoryImpl [[DataSummaryAuthorPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DataSummaryOverviewPageModContentFactoryImpl
+        class DataSummaryOverviewPageModContentFactoryImpl [[DataSummaryOverviewPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DataSummaryAuthorPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- DataSummaryOverviewPageModContentFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
         abstract class AbstractBasicPageModContentFactoryImpl [[../../../common/pagemode/AbstractBasicPageModContentFactoryImpl.html]]
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

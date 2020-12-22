@@ -1,24 +1,13 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application {
 
-        class VaadinSpringConfig [[VaadinSpringConfig.html]]
-
         class UiInstanceErrorHandler [[UiInstanceErrorHandler.html]] {
             +UiInstanceErrorHandler(UI)
             +error(ErrorEvent): void
         }
 
-        class CitizenIntelligenceAgencySpringVaadinServlet [[CitizenIntelligenceAgencySpringVaadinServlet.html]] {
-            #service(HttpServletRequest, HttpServletResponse): void
-            #servletInitialized(): void
-        }
-
         class CitizenIntelligenceAgencyUI [[CitizenIntelligenceAgencyUI.html]] {
             #init(VaadinRequest): void
-        }
-
-        class CitizenIntelligenceAgencyHealthCheckServlet [[CitizenIntelligenceAgencyHealthCheckServlet.html]] {
-            +doGet(HttpServletRequest, HttpServletResponse): void
         }
 
         class CustomSpringUIProvider [[CustomSpringUIProvider.html]] {
@@ -27,15 +16,26 @@
             #findSpringViewDisplay(UI): Object
         }
 
+        class CitizenIntelligenceAgencySpringVaadinServlet [[CitizenIntelligenceAgencySpringVaadinServlet.html]] {
+            #service(HttpServletRequest, HttpServletResponse): void
+            #servletInitialized(): void
+        }
+
+        class CitizenIntelligenceAgencyHealthCheckServlet [[CitizenIntelligenceAgencyHealthCheckServlet.html]] {
+            +doGet(HttpServletRequest, HttpServletResponse): void
+        }
+
+        class VaadinSpringConfig [[VaadinSpringConfig.html]]
+
         class ResourceServlet [[ResourceServlet.html]] {
             #service(HttpServletRequest, HttpServletResponse): void
         }
 
         com.vaadin.server.ErrorHandler <|.. UiInstanceErrorHandler
-        com.vaadin.spring.server.SpringVaadinServlet <|-- CitizenIntelligenceAgencySpringVaadinServlet
         com.vaadin.ui.UI <|-- CitizenIntelligenceAgencyUI
-        javax.servlet.http.HttpServlet <|-- CitizenIntelligenceAgencyHealthCheckServlet
         com.vaadin.spring.server.SpringUIProvider <|-- CustomSpringUIProvider
+        com.vaadin.spring.server.SpringVaadinServlet <|-- CitizenIntelligenceAgencySpringVaadinServlet
+        javax.servlet.http.HttpServlet <|-- CitizenIntelligenceAgencyHealthCheckServlet
         org.eclipse.jetty.servlet.DefaultServlet <|-- ResourceServlet
     }
 
@@ -45,18 +45,18 @@
         }
     }
 
-    namespace com.vaadin.spring.server {
-        class SpringVaadinServlet {
-        }
-        class SpringUIProvider {
-            #logger: Logger
-        }
-    }
-
     namespace com.vaadin.ui {
         abstract class UI {
             #actionManager: ActionManager
             {abstract} #init(VaadinRequest): void
+        }
+    }
+
+    namespace com.vaadin.spring.server {
+        class SpringUIProvider {
+            #logger: Logger
+        }
+        class SpringVaadinServlet {
         }
     }
 
@@ -71,5 +71,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

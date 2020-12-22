@@ -1,11 +1,6 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common {
 
-        class MainView [[MainView.html]] {
-            {static} +NAME: String
-            +MainView(ApplicationContext)
-        }
-
         abstract class AbstractView [[AbstractView.html]] {
             #pageActionEventHelper: PageActionEventHelper
             #AbstractView(Map<String, PageModeContentFactory>, String)
@@ -16,10 +11,15 @@
             +postConstruct(): void
         }
 
-        AbstractView <|-- MainView
+        class MainView [[MainView.html]] {
+            {static} +NAME: String
+            +MainView(ApplicationContext)
+        }
+
         com.vaadin.ui.Panel <|-- AbstractView
         com.vaadin.navigator.View <|.. AbstractView
         AbstractView --> com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory: pageLinkFactory
+        AbstractView <|-- MainView
     }
 
     namespace com.vaadin.ui {
@@ -36,5 +36,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

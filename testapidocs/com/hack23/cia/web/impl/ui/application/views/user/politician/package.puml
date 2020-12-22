@@ -1,26 +1,26 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.politician {
 
-        class PoliticianRankingView [[PoliticianRankingView.html]] {
-            {static} +NAME: String
-            +PoliticianRankingView(ApplicationContext)
-        }
-
         class PoliticianView [[PoliticianView.html]] {
             {static} +NAME: String
             +PoliticianView(ApplicationContext)
         }
 
-        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- PoliticianRankingView
+        class PoliticianRankingView [[PoliticianRankingView.html]] {
+            {static} +NAME: String
+            +PoliticianRankingView(ApplicationContext)
+        }
+
         com.hack23.cia.web.impl.ui.application.views.user.common.AbstractPersonView <|-- PoliticianView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- PoliticianRankingView
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.user.common {
-        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
-        }
         abstract class AbstractPersonView [[../common/AbstractPersonView.html]] {
+        }
+        abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

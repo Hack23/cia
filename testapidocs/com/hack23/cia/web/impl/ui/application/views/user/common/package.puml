@@ -1,31 +1,31 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.common {
 
-        abstract class AbstractActorView [[AbstractActorView.html]] {
-            +AbstractActorView(Map<String, PageModeContentFactory>, String)
-        }
-
         abstract class AbstractUserView [[AbstractUserView.html]] {
             #AbstractUserView(Map<String, PageModeContentFactory>, String)
-        }
-
-        abstract class AbstractPersonView [[AbstractPersonView.html]] {
-            +AbstractPersonView(Map<String, PageModeContentFactory>, String)
         }
 
         abstract class AbstractGroupView [[AbstractGroupView.html]] {
             +AbstractGroupView(Map<String, PageModeContentFactory>, String)
         }
 
+        abstract class AbstractActorView [[AbstractActorView.html]] {
+            +AbstractActorView(Map<String, PageModeContentFactory>, String)
+        }
+
         abstract class AbstractRankingView [[AbstractRankingView.html]] {
             #AbstractRankingView(Map<String, PageModeContentFactory>, String)
         }
 
-        AbstractUserView <|-- AbstractActorView
+        abstract class AbstractPersonView [[AbstractPersonView.html]] {
+            +AbstractPersonView(Map<String, PageModeContentFactory>, String)
+        }
+
         com.hack23.cia.web.impl.ui.application.views.common.AbstractView <|-- AbstractUserView
-        AbstractActorView <|-- AbstractPersonView
         AbstractActorView <|-- AbstractGroupView
+        AbstractUserView <|-- AbstractActorView
         AbstractUserView <|-- AbstractRankingView
+        AbstractActorView <|-- AbstractPersonView
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common {
@@ -35,5 +35,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

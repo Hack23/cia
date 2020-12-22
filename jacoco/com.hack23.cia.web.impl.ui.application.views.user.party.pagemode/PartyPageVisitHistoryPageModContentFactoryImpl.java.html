@@ -46,24 +46,24 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L51">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L51">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="nc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L59">		return panelContent;</span>
+<span class="nc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L59">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L65" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -128,7 +128,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *
 	 * @return the vertical layout
 	 */
-	protected final VerticalLayout createPanelContent() {
+	protected static final VerticalLayout createPanelContent() {
 <span class="fc" id="L132">		final VerticalLayout panelContent = new VerticalLayout();</span>
 <span class="fc" id="L133">		panelContent.setMargin(true);</span>
 <span class="fc" id="L134">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
@@ -193,13 +193,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *            the parameters
 	 * @return the page id
 	 */
-	protected final String getPageId(final String parameters) {
+	protected static final String getPageId(final String parameters) {
 <span class="pc bpc" id="L197" title="1 of 2 branches missed.">		if (parameters != null) {</span>
 <span class="fc" id="L198">			String cleanedString = parameters;</span>
 <span class="fc bfc" id="L199" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
 <span class="fc" id="L200">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
-			} 
-			
+			}
+
 <span class="fc" id="L203">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length(), cleanedString.length());</span>
 		} else {
 <span class="nc" id="L205">			return &quot;&quot;;</span>
@@ -221,7 +221,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @param parameters the parameters
 	 * @return the page nr
 	 */
-	protected final int getPageNr(final String parameters) {
+	protected static final int getPageNr(final String parameters) {
 <span class="fc" id="L225">		final String cleanedString = parameters;</span>
 		String pageNrValue;
 <span class="pc bpc" id="L227" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
@@ -239,4 +239,4 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,26 +1,26 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.govermentbody {
 
-        class GovernmenBodyView [[GovernmenBodyView.html]] {
-            {static} +NAME: String
-            +GovernmenBodyView(ApplicationContext)
-        }
-
         class GovernmentBodyRankingView [[GovernmentBodyRankingView.html]] {
             {static} +NAME: String
             +GovernmentBodyRankingView(ApplicationContext)
         }
 
-        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView <|-- GovernmenBodyView
+        class GovernmenBodyView [[GovernmenBodyView.html]] {
+            {static} +NAME: String
+            +GovernmenBodyView(ApplicationContext)
+        }
+
         com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView <|-- GovernmentBodyRankingView
+        com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView <|-- GovernmenBodyView
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.user.common {
-        abstract class AbstractGroupView [[../common/AbstractGroupView.html]] {
-        }
         abstract class AbstractRankingView [[../common/AbstractRankingView.html]] {
+        }
+        abstract class AbstractGroupView [[../common/AbstractGroupView.html]] {
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

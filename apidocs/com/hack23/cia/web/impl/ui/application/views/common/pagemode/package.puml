@@ -1,30 +1,7 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
 
-        abstract class AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]] {
-            {static} +CURRENT_PAGE_VISIT_HISTORY: String
-            {static} +DEFAULT_RESULTS_PER_PAGE: int
-            {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
-            #createPageVisitHistory(String, String, VerticalLayout): void
-            #createPanelContent(): VerticalLayout
-            #getAdminChartDataManager(): AdminChartDataManager
-            #getApplicationManager(): ApplicationManager
-            #getFormFactory(): FormFactory
-            #getGridFactory(): GridFactory
-            #getMenuItemFactory(): ApplicationMenuItemFactory
-            #getPageActionEventHelper(): PageActionEventHelper
-            #getPageId(String): String
-            #getPageLinkFactory(): PageLinkFactory
-            #getPageNr(String): int
-        }
-
         class MainViewRegisterPageModContentFactoryImpl [[MainViewRegisterPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class MainViewPageVisitHistoryPageModContentFactoryImpl [[MainViewPageVisitHistoryPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
@@ -36,6 +13,29 @@
             +matches(String, String): boolean
         }
 
+        interface PageModeContentFactory [[PageModeContentFactory.html]] {
+            {abstract} +createContent(String, MenuBar, Panel): Layout
+            {abstract} +matches(String, String): boolean
+            {abstract} +validReference(String): boolean
+        }
+
+        abstract class AbstractPageModContentFactoryImpl [[AbstractPageModContentFactoryImpl.html]] {
+            {static} +CURRENT_PAGE_VISIT_HISTORY: String
+            {static} +DEFAULT_RESULTS_PER_PAGE: int
+            {static} +GENERAL_PAGE_MODE_PAGE_VISIT: String
+            #createPageVisitHistory(String, String, VerticalLayout): void
+            {static} #createPanelContent(): VerticalLayout
+            #getAdminChartDataManager(): AdminChartDataManager
+            #getApplicationManager(): ApplicationManager
+            #getFormFactory(): FormFactory
+            #getGridFactory(): GridFactory
+            #getMenuItemFactory(): ApplicationMenuItemFactory
+            #getPageActionEventHelper(): PageActionEventHelper
+            {static} #getPageId(String): String
+            #getPageLinkFactory(): PageLinkFactory
+            {static} #getPageNr(String): int
+        }
+
         abstract class AbstractBasicPageModContentFactoryImpl [[AbstractBasicPageModContentFactoryImpl.html]] {
             +validReference(String): boolean
         }
@@ -45,26 +45,26 @@
             +validReference(String): boolean
         }
 
-        interface PageModeContentFactory [[PageModeContentFactory.html]] {
-            {abstract} +createContent(String, MenuBar, Panel): Layout
-            {abstract} +matches(String, String): boolean
-            {abstract} +validReference(String): boolean
-        }
-
         class MainViewOverviewPageModContentFactoryImpl [[MainViewOverviewPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        PageModeContentFactory <|.. AbstractPageModContentFactoryImpl
+        class MainViewPageVisitHistoryPageModContentFactoryImpl [[MainViewPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         AbstractBasicPageModContentFactoryImpl <|-- MainViewRegisterPageModContentFactoryImpl
-        AbstractBasicPageModContentFactoryImpl <|-- MainViewPageVisitHistoryPageModContentFactoryImpl
         AbstractBasicPageModContentFactoryImpl <|-- MainViewLoginPageModContentFactoryImpl
+        PageModeContentFactory <|.. AbstractPageModContentFactoryImpl
         AbstractPageModContentFactoryImpl <|-- AbstractBasicPageModContentFactoryImpl
         AbstractPageModContentFactoryImpl <|-- AbstractItemPageModContentFactoryImpl
         AbstractBasicPageModContentFactoryImpl <|-- MainViewOverviewPageModContentFactoryImpl
+        AbstractBasicPageModContentFactoryImpl <|-- MainViewPageVisitHistoryPageModContentFactoryImpl
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

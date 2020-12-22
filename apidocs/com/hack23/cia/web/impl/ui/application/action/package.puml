@@ -1,8 +1,8 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.action {
 
-        class PageActionEventHelperImpl [[PageActionEventHelperImpl.html]] {
-            +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
+        interface PageActionEventHelper [[PageActionEventHelper.html]] {
+            {abstract} +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
         }
 
         enum ViewAction [[ViewAction.html]] {
@@ -42,12 +42,12 @@
             {static} +VISIT_USER_HOME_VIEW
         }
 
-        interface PageActionEventHelper [[PageActionEventHelper.html]] {
-            {abstract} +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
+        class PageActionEventHelperImpl [[PageActionEventHelperImpl.html]] {
+            +createPageEvent(ViewAction, ApplicationEventGroup, String, String, String): void
         }
 
         PageActionEventHelper <|.. PageActionEventHelperImpl
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

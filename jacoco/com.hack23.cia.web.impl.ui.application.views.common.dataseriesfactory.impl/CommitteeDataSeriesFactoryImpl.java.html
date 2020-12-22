@@ -35,7 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  * The Class CommitteeDataSeriesFactoryImpl.
  */
 @Service
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeriesFactory {
 
 	/** The application manager. */
@@ -103,4 +103,4 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 <span class="fc" id="L103">		return dataSeries;</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,20 +1,9 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.menufactory.api {
 
-        interface MinistryMenuItemFactory [[MinistryMenuItemFactory.html]] {
-            {abstract} +createMinistryMenuBar(MenuBar, String): void
-            {abstract} +createOverviewPage(VerticalLayout, String): void
-        }
-
-        interface MinistryRankingMenuItemFactory [[MinistryRankingMenuItemFactory.html]] {
-            {abstract} +createMinistryRankingMenuBar(MenuBar): void
-            {abstract} +createMinistryRankingTopics(MenuItem): void
-            {abstract} +createOverviewPage(VerticalLayout): void
-        }
-
-        interface CountryMenuItemFactory [[CountryMenuItemFactory.html]] {
-            {abstract} +createCountryTopicMenu(MenuBar): void
-            {abstract} +createCountryTopicMenu(MenuItem): void
+        interface ApplicationMenuItemFactory [[ApplicationMenuItemFactory.html]] {
+            {abstract} +addRankingMenu(MenuBar): void
+            {abstract} +createMainPageMenuBar(MenuBar): MenuBar
             {abstract} +createOverviewPage(VerticalLayout): void
         }
 
@@ -28,26 +17,38 @@
             {abstract} +createUserHomeMenuBar(MenuBar, String): void
         }
 
+        interface GovernmentBodyMenuItemFactory [[GovernmentBodyMenuItemFactory.html]] {
+            {abstract} +createGovernmentBodyMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+
+        interface CountryMenuItemFactory [[CountryMenuItemFactory.html]] {
+            {abstract} +createCountryTopicMenu(MenuBar): void
+            {abstract} +createCountryTopicMenu(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
+        }
+
+        interface MinistryMenuItemFactory [[MinistryMenuItemFactory.html]] {
+            {abstract} +createMinistryMenuBar(MenuBar, String): void
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+        }
+
         interface PoliticianRankingMenuItemFactory [[PoliticianRankingMenuItemFactory.html]] {
             {abstract} +createOverviewPage(VerticalLayout): void
             {abstract} +createPoliticianRankingMenuBar(MenuBar): void
             {abstract} +createPoliticianRankingTopics(MenuItem): void
         }
 
-        interface GovernmentBodyMenuItemFactory [[GovernmentBodyMenuItemFactory.html]] {
-            {abstract} +createGovernmentBodyMenuBar(MenuBar, String): void
-            {abstract} +createOverviewPage(VerticalLayout, String): void
-        }
-
-        interface ParliamentMenuItemFactory [[ParliamentMenuItemFactory.html]] {
+        interface CommitteeRankingMenuItemFactory [[CommitteeRankingMenuItemFactory.html]] {
+            {abstract} +createCommitteeeRankingMenuBar(MenuBar): void
+            {abstract} +createCommitteeRankingTopics(MenuItem): void
             {abstract} +createOverviewPage(VerticalLayout): void
-            {abstract} +createParliamentTopicMenu(MenuBar): void
-            {abstract} +createParliamentTopicMenu(MenuItem): void
         }
 
-        interface PoliticianMenuItemFactory [[PoliticianMenuItemFactory.html]] {
-            {abstract} +createOverviewPage(VerticalLayout, String): void
-            {abstract} +createPoliticianMenuBar(MenuBar, String): void
+        interface MinistryRankingMenuItemFactory [[MinistryRankingMenuItemFactory.html]] {
+            {abstract} +createMinistryRankingMenuBar(MenuBar): void
+            {abstract} +createMinistryRankingTopics(MenuItem): void
+            {abstract} +createOverviewPage(VerticalLayout): void
         }
 
         interface GovernmentBodyRankingMenuItemFactory [[GovernmentBodyRankingMenuItemFactory.html]] {
@@ -56,16 +57,10 @@
             {abstract} +createOverviewPage(VerticalLayout): void
         }
 
-        interface ApplicationMenuItemFactory [[ApplicationMenuItemFactory.html]] {
-            {abstract} +addRankingMenu(MenuBar): void
-            {abstract} +createMainPageMenuBar(MenuBar): MenuBar
+        interface ParliamentMenuItemFactory [[ParliamentMenuItemFactory.html]] {
             {abstract} +createOverviewPage(VerticalLayout): void
-        }
-
-        interface CommitteeRankingMenuItemFactory [[CommitteeRankingMenuItemFactory.html]] {
-            {abstract} +createCommitteeeRankingMenuBar(MenuBar): void
-            {abstract} +createCommitteeRankingTopics(MenuItem): void
-            {abstract} +createOverviewPage(VerticalLayout): void
+            {abstract} +createParliamentTopicMenu(MenuBar): void
+            {abstract} +createParliamentTopicMenu(MenuItem): void
         }
 
         interface DocumentMenuItemFactory [[DocumentMenuItemFactory.html]] {
@@ -80,6 +75,11 @@
             {abstract} +createPartyRankingTopics(MenuItem): void
         }
 
+        interface PoliticianMenuItemFactory [[PoliticianMenuItemFactory.html]] {
+            {abstract} +createOverviewPage(VerticalLayout, String): void
+            {abstract} +createPoliticianMenuBar(MenuBar, String): void
+        }
+
         interface PartyMenuItemFactory [[PartyMenuItemFactory.html]] {
             {abstract} +createOverviewPage(VerticalLayout, String): void
             {abstract} +createPartyMenuBar(MenuBar, String): void
@@ -92,5 +92,5 @@
 
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

@@ -1,5 +1,4 @@
 @startuml(id="Container_view")
-scale max 16384x16384
 title Citizen Intelligence Agency System - Containers
 caption "Application Overview"
 
@@ -11,24 +10,27 @@ skinparam {
   rectangleBorderColor #707070
   noteBackgroundColor #ffffff
   noteBorderColor #707070
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
 }
 package "Citizen Intelligence Agency System" <<Software System>> {
-  database 166 <<Container>> #1168bd [
+  database 10 <<Container: Postgresql>> #1168bd [
     Database
     --
     Stores information
   ]
-  rectangle 8 <<Container>> #1168bd [
+  rectangle 8 <<Container: ALB/ELB/Apache/Nginx/HaProxy>> #1168bd [
     Loadbalancer
     --
     Loadbalancer
   ]
-  rectangle 9 <<Container>> #1168bd [
+  rectangle 9 <<Container: Jetty/Java>> #1168bd [
     Web Application
     --
     Web Application
   ]
 }
 8 .[#707070].> 9 : HTTPS/H2
-9 .[#707070].> 166 : JDBC
+9 .[#707070].> 10 : JDBC
 @enduml

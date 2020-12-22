@@ -1,37 +1,6 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode {
 
-        class ParliamentPageVisitHistoryPageModContentFactoryImpl [[ParliamentPageVisitHistoryPageModContentFactoryImpl.html]] {
-            {static} +NAME: String
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class ParliamentChartsPartyWinnerPageModContentFactoryImpl [[ParliamentChartsPartyWinnerPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class ParliamentRuleViolationsPageModContentFactoryImpl [[ParliamentRuleViolationsPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class ParliamentChartsPartyGenderPageModContentFactoryImpl [[ParliamentChartsPartyGenderPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class ParliamentDecisionFlowPageModContentFactoryImpl [[ParliamentDecisionFlowPageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
-        class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl [[ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.html]] {
-            +createContent(String, MenuBar, Panel): Layout
-            +matches(String, String): boolean
-        }
-
         class ParliamentRiskPageModContentFactoryImpl [[ParliamentRiskPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
@@ -47,6 +16,22 @@
             +getName(): String
         }
 
+        class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl [[ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class ParliamentPageVisitHistoryPageModContentFactoryImpl [[ParliamentPageVisitHistoryPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class ParliamentChartsPartyGenderPageModContentFactoryImpl [[ParliamentChartsPartyGenderPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         class ParliamentOverviewPageModContentFactoryImpl [[ParliamentOverviewPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
@@ -57,23 +42,38 @@
             +matches(String, String): boolean
         }
 
-        class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl [[ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl.html]] {
+        class ParliamentDecisionFlowPageModContentFactoryImpl [[ParliamentDecisionFlowPageModContentFactoryImpl.html]] {
             +createContent(String, MenuBar, Panel): Layout
             +matches(String, String): boolean
         }
 
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentPageVisitHistoryPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyWinnerPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentRuleViolationsPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyGenderPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentDecisionFlowPageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl
+        class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl [[ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class ParliamentRuleViolationsPageModContentFactoryImpl [[ParliamentRuleViolationsPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
+        class ParliamentChartsPartyWinnerPageModContentFactoryImpl [[ParliamentChartsPartyWinnerPageModContentFactoryImpl.html]] {
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentRiskPageModContentFactoryImpl
         com.hack23.cia.service.api.action.kpi.ComplianceCheck <|.. com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
         ParliamentRiskPageModContentFactoryImpl +-- com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentPageVisitHistoryPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyGenderPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentOverviewPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyAgePageModContentFactoryImpl
-        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentDecisionFlowPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentRuleViolationsPageModContentFactoryImpl
+        com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- ParliamentChartsPartyWinnerPageModContentFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
@@ -89,5 +89,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

@@ -4,11 +4,11 @@
     hide empty methods
 
     abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]] {
-        #addChart(AbstractOrderedLayout, String, DCharts, boolean): void
+        {static} #addChart(AbstractOrderedLayout, String, DCharts, boolean): void
         #getApplicationManager(): ApplicationManager
         #getChartOptions(): ChartOptions
         #getPartyName(String): String
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

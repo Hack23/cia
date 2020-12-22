@@ -1,11 +1,6 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.sizing {
 
-        class ContentSize [[ContentSize.html]] {
-            {static} +FULL_SIZE: String
-            {static} +HALF_SIZE: String
-        }
-
         class ContentRatio [[ContentRatio.html]] {
             {static} +CHART: float
             {static} +FULL_SIZE: float
@@ -18,7 +13,12 @@
             {static} +SMALL3: float
         }
 
+        class ContentSize [[ContentSize.html]] {
+            {static} +FULL_SIZE: String
+            {static} +HALF_SIZE: String
+        }
+
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

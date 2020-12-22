@@ -1,5 +1,4 @@
 @startuml(id="System_context")
-scale max 16384x16384
 title Citizen Intelligence Agency System - System Context
 caption "System context"
 
@@ -11,6 +10,9 @@ skinparam {
   rectangleBorderColor #707070
   noteBackgroundColor #ffffff
   noteBorderColor #707070
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
 }
 actor "Admin" <<Person>> as 2 #519823
 note right of 2
@@ -23,14 +25,12 @@ end note
 rectangle 3 <<Software System>> #1168bd [
   Citizen Intelligence Agency System
   --
-  Tracking politicians like
-  bugs!
+  Tracking politicians like bugs!
 ]
 rectangle 4 <<Software System>> #1168bd [
   data.riksdagen.se
   --
-  Public API Swedish Parliament
-  data
+  Public API Swedish Parliament data
 ]
 rectangle 5 <<Software System>> #1168bd [
   data.worldbank.org
@@ -40,14 +40,12 @@ rectangle 5 <<Software System>> #1168bd [
 rectangle 7 <<Software System>> #1168bd [
   www.esv.se
   --
-  Public Data Swedish public
-  sector spending data
+  Public Data Swedish public sector spending data
 ]
 rectangle 6 <<Software System>> #1168bd [
   www.val.se
   --
-  Public API Swedish Election
-  data
+  Public API Swedish Election data
 ]
 2 .[#707070].> 3 : Manages
 3 .[#707070].> 4 : Loads data

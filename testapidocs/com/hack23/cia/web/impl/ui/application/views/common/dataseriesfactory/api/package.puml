@@ -1,8 +1,28 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api {
 
+        class ProposalCommitteeeSummary [[ProposalCommitteeeSummary.html]] {
+            +ProposalCommitteeeSummary(String, String, String, String)
+            +getDecision(): String
+            +getDocType(): String
+            +getHangarId(): String
+            +getOrg(): String
+        }
+
+        interface MinistryDataSeriesFactory [[MinistryDataSeriesFactory.html]] {
+            {abstract} +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
+            {abstract} +createMinistryChartTimeSeriesAll(): DataSeries
+            {abstract} +createMinistryChartTimeSeriesCurrent(): DataSeries
+        }
+
         interface DecisionDataFactory [[DecisionDataFactory.html]] {
             {abstract} +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
+        }
+
+        interface CommitteeDataSeriesFactory [[CommitteeDataSeriesFactory.html]] {
+            {abstract} +createChartTimeSeriesTotalDaysServedCommitteeByParty(): DataSeries
+            {abstract} +createCommitteeChartTimeSeriesAll(): DataSeries
+            {abstract} +createCommitteeChartTimeSeriesCurrent(): DataSeries
         }
 
         interface PartyDataSeriesFactory [[PartyDataSeriesFactory.html]] {
@@ -12,27 +32,7 @@
             {abstract} +createPartyChartTimeSeriesCurrent(): DataSeries
         }
 
-        interface CommitteeDataSeriesFactory [[CommitteeDataSeriesFactory.html]] {
-            {abstract} +createChartTimeSeriesTotalDaysServedCommitteeByParty(): DataSeries
-            {abstract} +createCommitteeChartTimeSeriesAll(): DataSeries
-            {abstract} +createCommitteeChartTimeSeriesCurrent(): DataSeries
-        }
-
-        interface MinistryDataSeriesFactory [[MinistryDataSeriesFactory.html]] {
-            {abstract} +createChartTimeSeriesTotalDaysServedGovernmentByParty(): DataSeries
-            {abstract} +createMinistryChartTimeSeriesAll(): DataSeries
-            {abstract} +createMinistryChartTimeSeriesCurrent(): DataSeries
-        }
-
-        class ProposalCommitteeeSummary [[ProposalCommitteeeSummary.html]] {
-            +ProposalCommitteeeSummary(String, String, String, String)
-            +getDecision(): String
-            +getDocType(): String
-            +getHangarId(): String
-            +getOrg(): String
-        }
-
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

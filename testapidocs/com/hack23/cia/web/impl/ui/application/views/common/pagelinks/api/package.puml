@@ -1,6 +1,16 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api {
 
+        class PageModeMenuCommand [[PageModeMenuCommand.html]] {
+            +PageModeMenuCommand(String, PageMode)
+            +PageModeMenuCommand(String, PageMode, String)
+            +PageModeMenuCommand(String, String)
+            +PageModeMenuCommand(String, String, String)
+            +buttonClick(ClickEvent): void
+            +getPagePath(): String
+            +menuSelected(MenuItem): void
+        }
+
         interface PageLinkFactory [[PageLinkFactory.html]] {
             {abstract} +addCommitteePageLink(ViewRiksdagenCommittee): Link
             {abstract} +addMinistryPageLink(ViewRiksdagenMinistry): Link
@@ -11,16 +21,6 @@
             {abstract} +createPoliticianPageLink(PersonData): Link
             {abstract} +createRegisterPageLink(): Link
             {abstract} +createUserHomeViewPageLink(): Link
-        }
-
-        class PageModeMenuCommand [[PageModeMenuCommand.html]] {
-            +PageModeMenuCommand(String, PageMode)
-            +PageModeMenuCommand(String, PageMode, String)
-            +PageModeMenuCommand(String, String)
-            +PageModeMenuCommand(String, String, String)
-            +buttonClick(ClickEvent): void
-            +getPagePath(): String
-            +menuSelected(MenuItem): void
         }
 
         com.vaadin.ui.MenuBar.Command <|.. PageModeMenuCommand
@@ -37,5 +37,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml

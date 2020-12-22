@@ -1,14 +1,14 @@
 @startuml
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl {
 
-        class StreamSourceImplementation [[StreamSourceImplementation.html]] {
-            +StreamSourceImplementation(String)
-            +getStream(): InputStream
-        }
-
         class ExternalAttachmentDownloadLink [[ExternalAttachmentDownloadLink.html]] {
             +ExternalAttachmentDownloadLink(String, String, String)
             +attach(): void
+        }
+
+        class StreamSourceImplementation [[StreamSourceImplementation.html]] {
+            +StreamSourceImplementation(String)
+            +getStream(): InputStream
         }
 
         class PageLinkFactoryImpl [[PageLinkFactoryImpl.html]] {
@@ -23,15 +23,9 @@
             +createUserHomeViewPageLink(): Link
         }
 
-        com.vaadin.server.StreamResource.StreamSource <|.. StreamSourceImplementation
         com.vaadin.ui.Link <|-- ExternalAttachmentDownloadLink
+        com.vaadin.server.StreamResource.StreamSource <|.. StreamSourceImplementation
         com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory <|.. PageLinkFactoryImpl
-    }
-
-    namespace com.vaadin.server {
-        interface com.vaadin.server.StreamResource.StreamSource {
-            {abstract} +getStream(): InputStream
-        }
     }
 
     namespace com.vaadin.ui {
@@ -39,6 +33,12 @@
             {static} +--TARGET_BORDER_NONE--: BorderStyle
             {static} +--TARGET_BORDER_MINIMAL--: BorderStyle
             {static} +--TARGET_BORDER_DEFAULT--: BorderStyle
+        }
+    }
+
+    namespace com.vaadin.server {
+        interface com.vaadin.server.StreamResource.StreamSource {
+            {abstract} +getStream(): InputStream
         }
     }
 
@@ -56,5 +56,5 @@
         }
     }
 
-    center footer UMLDoclet 2.0.7, PlantUML 1.2019.12
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
 @enduml
