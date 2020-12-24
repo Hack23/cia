@@ -67,7 +67,7 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 
 	private static XSSFWorkbook createGovermentOperationsWorkBook() throws IOException {
 		return new XSSFWorkbook(EsvGovernmentOperationsExcelReaderImpl.class
-				.getResourceAsStream("/central-government-operations-sddsplus-february-2018.xlsx"));
+				.getResourceAsStream("/sdds-plus-august-20202.xlsx"));
 	}
 
 	@Override
