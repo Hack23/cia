@@ -1463,7 +1463,7 @@
     <dependency>
       <groupId>com.github.waffle</groupId>
       <artifactId>waffle-jna</artifactId>
-      <version>2.3.0</version>
+      <version>3.0.0</version>
       <exclusions>
         <exclusion>
           <artifactId>checker-qual</artifactId>
