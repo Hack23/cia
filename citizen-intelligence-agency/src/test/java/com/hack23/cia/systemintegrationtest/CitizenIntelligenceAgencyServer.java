@@ -86,8 +86,9 @@ public final class CitizenIntelligenceAgencyServer {
 		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
-		// System.setProperty("javax.net.debug", "all");
-
+		System.setProperty("jetty.sslContext.sniRequired", "false");
+		System.setProperty("jetty.ssl.sniRequired", "false");
+				
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
@@ -171,7 +172,7 @@ public final class CitizenIntelligenceAgencyServer {
 		http_config.setSendServerVersion(false);
 
 		final HttpConfiguration https_config = new HttpConfiguration(http_config);
-		https_config.addCustomizer(new SecureRequestCustomizer());
+		https_config.addCustomizer(new SecureRequestCustomizer(false));
 
 		final SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
 		sslContextFactory.setKeyStoreType("PKCS12");
