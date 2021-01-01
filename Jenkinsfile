@@ -22,9 +22,16 @@ pipeline {
 	      }
 	   }
 
+		stage ("DAST2: Scan running app2") {
+	      steps {
+	          sh "docker system prune -a -f"
+	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
+	          archiveArtifacts "${WORKSPACE}/baseline-scan-report.*"
+		   }
+		}
+
 	   stage('Generate OpsDoc') {
 	      steps {
-
 	         sh "cd cia-dist-cloudformation/src/main/config/; chmod a+x *.sh; ./cfn-cloudformation-flip.sh;./generate-cloudformation-doc.sh || true"
 	         archiveArtifacts "cia-dist-cloudformation/target/cloudformation-doc/**"
 	      }
@@ -128,8 +135,9 @@ pipeline {
 		stage ("DAST: Scan running app") {
 	      steps {
 	          sh "docker system prune -a -f"
-	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py  -t https://192.168.1.12:28443  -J ${WORKSPACE}/baseline-scan-report.json report_json -x ${WORKSPACE}/baseline-scan-report.xml -r ${WORKSPACE}/baseline-scan-report.html || true"
-		      }
+	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.12:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
+	          archiveArtifacts "${WORKSPACE}/baseline-scan-report.*"
+		   }
 		}
 
 		stage ("DAST: stop app") {
