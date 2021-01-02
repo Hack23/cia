@@ -25,8 +25,8 @@ pipeline {
 		stage ("DAST2: Scan running app2") {
 	      steps {
 	          sh "docker system prune -a -f"
-	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
-	          archiveArtifacts "${WORKSPACE}/baseline-scan-report.*"
+	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J ${WORKSPACE}/baseline-scan-report.json -x ${WORKSPACE}/baseline-scan-report.xml -r ${WORKSPACE}/baseline-scan-report.html || true"
+	          archiveArtifacts "**/baseline-scan-report.*"
 		   }
 		}
 
@@ -172,8 +172,8 @@ pipeline {
 
 	   stage ("SAST: Scan code and Check Quality gate") {
 	      steps {
-	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml"
-		      }
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=baseline-scan-report.html"
+		  }
 	    }
 
 	   stage ("Prepare cloud environment resources") {	   	   	      steps {
