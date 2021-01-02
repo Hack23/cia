@@ -18,7 +18,7 @@ pipeline {
 		stage ("DAST2: Scan running app2") {
 	      steps {
 	          sh "docker system prune -a -f"
-	          ss "echo $PWD"
+	          sh "echo $PWD"
 	          sh "docker run -v ${PWD}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
 	          archiveArtifacts "**/baseline-scan-report.*"
 		   }
