@@ -15,16 +15,6 @@ pipeline {
    stages {
 
 
-		stage ("DAST2: Scan running app2") {
-	      steps {
-	          sh "docker system prune -a -f"
-	          sh "mkdir  ${WORKSPACE}/zap-reports"
-	          sh "chmod 777 ${WORKSPACE}/zap-reports"
-	          sh "docker run -v ${WORKSPACE}/zap-reports:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
-	          archiveArtifacts "**/baseline-scan-report.*"
-		   }
-		}
-
 	   stage('Build') {
 	      steps {
 	         sh "git clean -x -f"
@@ -137,8 +127,10 @@ pipeline {
 		stage ("DAST: Scan running app") {
 	      steps {
 	          sh "docker system prune -a -f"
-	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.12:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
-	          archiveArtifacts "${WORKSPACE}/baseline-scan-report.*"
+	          sh "mkdir  ${WORKSPACE}/zap-reports"
+	          sh "chmod 777 ${WORKSPACE}/zap-reports"
+	          sh "docker run -v ${WORKSPACE}/zap-reports:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.12:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
+	          archiveArtifacts "**/baseline-scan-report.*"
 		   }
 		}
 
@@ -174,7 +166,7 @@ pipeline {
 
 	   stage ("SAST: Scan code and Check Quality gate") {
 	      steps {
-	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=baseline-scan-report.html"
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=${WORKSPACE}/zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=${WORKSPACE}/zap-reports/baseline-scan-report.html"
 		  }
 	    }
 
