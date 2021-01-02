@@ -15,20 +15,20 @@ pipeline {
    stages {
 
 
+		stage ("DAST2: Scan running app2") {
+	      steps {
+	          sh "docker system prune -a -f"
+	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
+	          archiveArtifacts "**/baseline-scan-report.*"
+		   }
+		}
+
 	   stage('Build') {
 	      steps {
 	         sh "git clean -x -f"
 	         sh "mvn clean install -DskipTests"
 	      }
 	   }
-
-		stage ("DAST2: Scan running app2") {
-	      steps {
-	          sh "docker system prune -a -f"
-	          sh "docker run -v ${WORKSPACE}:/zap/wrk/:rw owasp/zap2docker-weekly zap-baseline.py -t https://192.168.1.15:28443 -a -j -J ${WORKSPACE}/baseline-scan-report.json -x ${WORKSPACE}/baseline-scan-report.xml -r ${WORKSPACE}/baseline-scan-report.html || true"
-	          archiveArtifacts "**/baseline-scan-report.*"
-		   }
-		}
 
 	   stage('Generate OpsDoc') {
 	      steps {
