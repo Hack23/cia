@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -212,8 +213,8 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
-			if (committeeMap.containsKey(entry.getKey())
-					&& viewRiksdagenCommittee.getEmbeddedId().getOrgCode().equals(entry.getKey())) {
+			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))
+					&& viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH).equals(entry.getKey().toUpperCase(Locale.ENGLISH))) {
 				addDocTypeDecisionDataRows(chart, entry);
 			}
 		}
@@ -232,7 +233,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {			
-			if (committeeMap.containsKey(entry.getKey())) {
+			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))) {
 				addCommiteeSummary(stringBuilder, entry, committeeMap.get(entry.getKey()).stream().findFirst());
 			}
 		}
