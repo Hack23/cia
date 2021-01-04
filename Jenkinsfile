@@ -158,15 +158,14 @@ pipeline {
 
 		stage ("SAST: Scan AWS Cloudformation ") {
 	      steps {
-	         dir("${env.WORKSPACE}/cia-dist-cloudformation") {
-	         	sh "cfn_nag --output-format=json src/main/resources/cia-dist-cloudformation.yml > target/cia-dist-cloudformation.yml.nagscan || true"
-	         }
+	         sh "cfn_nag --output-format=json cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.yml > cia-dist-cloudformation.yml.nagscan || true"	         	
+	         archiveArtifacts "cia-dist-cloudformation.yml.nagscan"
 		  }
 		}
 
 	   stage ("SAST: Scan code and Check Quality gate") {
 	      steps {
-	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=target/cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=zap-reports/baseline-scan-report.html"
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.nag.reportFiles=cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=zap-reports/baseline-scan-report.html"
 		  }
 	    }
 
