@@ -67,7 +67,7 @@ before_script:
   - sudo pip3 install cfn_flip  
   - sudo npm install cloudformation-graph -g 
   - curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sudo sh
-  - sudo chmod 755 /home/travis/.soluble/cli-config.json
+  - sudo chmod 700 /home/travis/.soluble/cli-config.json
 
 
 script:
