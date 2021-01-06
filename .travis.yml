@@ -67,11 +67,11 @@ before_script:
   - sudo pip3 install cfn_flip  
   - sudo npm install cloudformation-graph -g 
   - curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sudo sh
-  - sudo chmod 700 /home/travis/.soluble/cli-config.json
-  - env
+  - sudo chown -R travis:travis /home/travis/.soluble
 
 
 script:
+  - soluble auth set-access-token --access-token $SOLUBLE_API_TOKEN
   - soluble iac-scan secrets --upload 
   - soluble iac-scan checkov --upload
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
