@@ -71,6 +71,8 @@ before_script:
 
 script:
   - soluble auth set-access-token --access-token $SOLUBLE_TOKEN
+  - soluble iac-scan secrets --upload 
+  - soluble iac-scan checkov --upload
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
   - mvn -v
