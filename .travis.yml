@@ -70,10 +70,7 @@ before_script:
 
 
 script:
-  - soluble login
-  - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
-  - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
-  - wget http://apache.mirrors.spacedump.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+  - soluble auth set-access-token --access-token $SOLUBLE_TOKEN
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
   - mvn -v
