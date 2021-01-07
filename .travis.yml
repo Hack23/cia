@@ -87,6 +87,7 @@ script:
   - xvfb-run --server-args="-screen 0 1920x1080x24" mvn clean install -Dtest=no -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -Dhttps.protocols=TLSv1.2 -q '-Dtest=!**.*ITest*'
   - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
   - mvn -f cia-dist-docker/pom.xml install
+  - soluble image-scan -i hack23/cia:2020.12.20 --upload
   - #cd cia-dist-cloudformation/src/main/config/
   - #chmod a+x *.sh
   - #./cfn-cloudformation-flip.sh
