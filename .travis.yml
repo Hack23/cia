@@ -68,12 +68,14 @@ before_script:
   - sudo gem install cfn-nag  
   - sudo pip3 install cfn_flip  
   - sudo npm install cloudformation-graph -g 
+  - curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sudo sh
+  - sudo chown -R travis:travis /home/travis/.soluble
 
 
 script:
-  - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
-  - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
-  - wget http://apache.mirrors.spacedump.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+  - soluble auth set-access-token --access-token $SOLUBLE_API_TOKEN
+  - soluble iac-scan secrets --upload 
+  - soluble iac-scan checkov --upload
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
   - mvn -v
