@@ -176,7 +176,7 @@
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <jacoco.version>0.8.6</jacoco.version>
     <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-    <cia.project.versions.compiler.plexus.java>1.0.5</cia.project.versions.compiler.plexus.java>
+    <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.0.0-M5</surefire.version>
     <jdk.src.version>11</jdk.src.version>
     <jdk.target.version>11</jdk.target.version>
@@ -922,7 +922,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>1.0.5</version>
+              <version>1.0.6</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -944,7 +944,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>1.0.5</version>
+              <version>1.0.6</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
