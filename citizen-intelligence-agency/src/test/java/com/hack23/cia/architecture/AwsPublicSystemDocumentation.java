@@ -45,7 +45,7 @@ import net.sourceforge.plantuml.Run;
 /**
  * The Class AwsPublicSystemDocumentation.
  */
-//public class AwsPublicSystemDocumentation {
+public class AwsPublicSystemDocumentation {
 
 	/**
 	 * The main method.
