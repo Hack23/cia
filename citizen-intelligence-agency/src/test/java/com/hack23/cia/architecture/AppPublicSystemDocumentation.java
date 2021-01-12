@@ -28,6 +28,7 @@ import org.apache.commons.io.FileUtils;
 
 import com.structurizr.Workspace;
 import com.structurizr.io.WorkspaceWriterException;
+import com.structurizr.io.plantuml.BasicPlantUMLWriter;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Container;
 import com.structurizr.model.DeploymentNode;
@@ -330,7 +331,7 @@ public class AppPublicSystemDocumentation {
 	private static void printPlantUml(final Workspace workspace)
 			throws WorkspaceWriterException, IOException, InterruptedException {
 		final StringWriter stringWriter = new StringWriter();
-		final PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
+		final PlantUMLWriter plantUMLWriter = new BasicPlantUMLWriter();
 		//plantUMLWriter.setSizeLimit(16384);
 		plantUMLWriter.write(workspace, stringWriter);
 		String allPlantUmlsString = stringWriter.toString();
