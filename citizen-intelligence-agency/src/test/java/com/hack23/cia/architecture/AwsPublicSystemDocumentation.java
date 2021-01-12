@@ -28,6 +28,7 @@ import org.apache.commons.io.FileUtils;
 
 import com.structurizr.Workspace;
 import com.structurizr.io.WorkspaceWriterException;
+import com.structurizr.io.plantuml.BasicPlantUMLWriter;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Container;
 import com.structurizr.model.DeploymentNode;
@@ -44,7 +45,7 @@ import net.sourceforge.plantuml.Run;
 /**
  * The Class AwsPublicSystemDocumentation.
  */
-public class AwsPublicSystemDocumentation {
+//public class AwsPublicSystemDocumentation {
 
 	/**
 	 * The main method.
@@ -144,7 +145,7 @@ public class AwsPublicSystemDocumentation {
 	private static void printPlantUml(final Workspace workspace)
 			throws WorkspaceWriterException, IOException, InterruptedException {
 		final StringWriter stringWriter = new StringWriter();
-		final PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
+		final PlantUMLWriter plantUMLWriter = new BasicPlantUMLWriter();
 		plantUMLWriter.write(workspace, stringWriter);
 		final String allPlantUmlsString = stringWriter.toString();
 
