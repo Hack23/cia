@@ -106,6 +106,14 @@
           <artifactId>commons-compress</artifactId>
           <groupId>org.apache.commons</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+          <groupId>jakarta.xml.bind</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

@@ -266,7 +266,25 @@
           <artifactId>commons-compress</artifactId>
           <groupId>org.apache.commons</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+          <groupId>jakarta.xml.bind</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>jakarta.activation</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>

@@ -6,8 +6,8 @@ open module com.hack23.cia.service.external.esv {
 	requires java.xml.bind;
 	requires spring.context;
 	requires spring.beans;
-	requires poi;
-	requires poi.ooxml;
+	requires org.apache.poi.poi;
+	requires org.apache.poi.ooxml;
 	
 
 	requires org.apache.commons.lang3;

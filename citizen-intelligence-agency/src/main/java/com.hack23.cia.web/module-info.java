@@ -61,9 +61,6 @@ open module com.hack23.cia.web {
 	requires vaadin.server;
 	requires responsive.layout;
 	
-	requires java.xml.bind;
-	requires jakarta.activation;
-	requires java.activation;
 	
 	requires java.annotation;
 	requires org.slf4j;

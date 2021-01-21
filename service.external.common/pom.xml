@@ -54,6 +54,12 @@
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>javax.activation-api</artifactId>
+          <groupId>javax.activation</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.sun.istack</groupId>

@@ -136,13 +136,13 @@
     <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.18</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
-    <cia.project.versions.poi>4.1.2</cia.project.versions.poi>
+    <cia.project.versions.poi>5.0.0</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.9</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.1</cia.project.versions.junit>
     <cia.project.versions.dbunit>2.7.0</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
-    <cia.project.versions.xmlbeans>3.1.1-sb-fixed</cia.project.versions.xmlbeans>
+    <cia.project.versions.xmlbeans>4.0.0</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.3.0</cia.project.versions.plexus.utils>
@@ -325,6 +325,12 @@
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
         <version>${cia.project.versions.jaxb.api.runtime}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>javax.activation-api</artifactId>
+            <groupId>javax.activation</groupId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>com.h2database</groupId>
