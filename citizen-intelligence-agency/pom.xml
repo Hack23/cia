@@ -54,7 +54,7 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-      <dependency>
+    <dependency>
       <groupId>com.sun.activation</groupId>
       <artifactId>jakarta.activation</artifactId>
       <version>1.2.2</version>
@@ -840,10 +840,10 @@
           <artifactId>grpc-context</artifactId>
           <groupId>io.grpc</groupId>
         </exclusion>
-		<exclusion>
-		  <groupId>com.sun.activation</groupId>
-		  <artifactId>javax.activation</artifactId>
-		</exclusion>
+        <exclusion>
+          <artifactId>javax.activation</artifactId>
+          <groupId>com.sun.activation</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -1453,8 +1453,8 @@
           <groupId>org.eclipse.jdt</groupId>
         </exclusion>
         <exclusion>
-            <groupId>javax.activation</groupId>
-    		<artifactId>javax.activation-api</artifactId>        
+          <artifactId>javax.activation-api</artifactId>
+          <groupId>javax.activation</groupId>
         </exclusion>
       </exclusions>
     </dependency>
