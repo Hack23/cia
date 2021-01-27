@@ -34,10 +34,10 @@ dpkg-reconfigure --frontend=noninteractive locales
 #
 #
 
-apt-get -y install postgresql-12 postgresql-contrib
+apt-get -y install postgresql-13 postgresql-contrib
 service postgresql stop
 
-echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/12/main/pg_hba.conf
+echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/13/main/pg_hba.conf
 
 openssl rand -base64 48 > passphrase.txt
 openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
@@ -48,23 +48,23 @@ openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 rm passphrase.txt
 rm server.csr
 
-cp server.crt /var/lib/postgresql/12/main/server.crt
-cp server.key /var/lib/postgresql/12/main/server.key
+cp server.crt /var/lib/postgresql/13/main/server.crt
+cp server.key /var/lib/postgresql/13/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/12/main/server.key
-chmod 700 /var/lib/postgresql/12/main/server.crt
-chown -R postgres:postgres /var/lib/postgresql/12/main/
+chmod 700 /var/lib/postgresql/13/main/server.key
+chmod 700 /var/lib/postgresql/13/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/13/main/
 
-echo "ssl_cert_file = '/var/lib/postgresql/12/main/server.crt'" >> /etc/postgresql/12/main/postgresql.conf
-echo "ssl_key_file = '/var/lib/postgresql/12/main/server.key'" >> /etc/postgresql/12/main/postgresql.conf
-echo "max_prepared_transactions = 100" >> /etc/postgresql/12/main/postgresql.conf
+echo "ssl_cert_file = '/var/lib/postgresql/13/main/server.crt'" >> /etc/postgresql/13/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/13/main/server.key'" >> /etc/postgresql/13/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/13/main/postgresql.conf
 
-echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/12/main/postgresql.conf
-echo "pgaudit.log = ddl" >> /etc/postgresql/12/main/postgresql.conf
-echo "pg_stat_statements.track = all" >> /etc/postgresql/12/main/postgresql.conf
-echo "pg_stat_statements.max = 10000" >> /etc/postgresql/12/main/postgresql.conf
-echo "listen_addresses = '*'" >> /etc/postgresql/12/main/postgresql.conf
-echo "port = 6432" >> /etc/postgresql/12/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/13/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/13/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/13/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/13/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/13/main/postgresql.conf
+echo "port = 6432" >> /etc/postgresql/13/main/postgresql.conf
 
 service postgresql start
 
@@ -78,10 +78,10 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certificates-java wget
 
 
-wget https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz
-tar xvfz OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz
-mv jdk-15+36 /usr/lib/jvm/jdk-15
-rm OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz
+wget https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15.0.2%2B7/OpenJDK15U-jdk_x64_linux_hotspot_15.0.2_7.tar.gz
+tar xvfz OpenJDK15U-jdk_x64_linux_hotspot_15.0.2_7.tar.gz
+mv jdk-15.0.2+7 /usr/lib/jvm/jdk-15
+rm OpenJDK15U-jdk_x64_linux_hotspot_15.0.2_7.tar.gz
 
 
 dpkg -i /root/cia-dist-deb.deb
