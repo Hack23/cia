@@ -112,7 +112,7 @@
     <cia.project.versions.javassist>3.27.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>5.14.0</cia.project.versions.javers>
     <cia.project.versions.narayana>5.10.6.Final</cia.project.versions.narayana>
-    <cia.project.versions.asm>9.0</cia.project.versions.asm>
+    <cia.project.versions.asm>9.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.11</cia.project.versions.commonslang3>
