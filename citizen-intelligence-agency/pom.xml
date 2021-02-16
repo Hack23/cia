@@ -844,6 +844,10 @@
           <artifactId>javax.activation</artifactId>
           <groupId>com.sun.activation</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jakarta.activation</artifactId>
+          <groupId>com.sun.activation</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
