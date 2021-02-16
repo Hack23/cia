@@ -22,8 +22,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,6 +48,9 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	@Autowired
 	protected BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
+	@Autowired
+	protected Validator validator;
+	
 	/**
 	 * Instantiates a new abstract business service impl.
 	 *
@@ -129,8 +131,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 * @return the sets the
 	 */
 	private Set<ConstraintViolation<T>> validateRequest(final T request) {
-        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        return factory.getValidator().validate( request );
+        return validator.validate( request );
 	}
 
 	/**
