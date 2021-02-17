@@ -23,6 +23,8 @@ import static org.mockito.Mockito.mock;
 
 import java.util.UUID;
 
+import javax.validation.Validation;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,6 +59,7 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 		
 		final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = (BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>) mock(BusinessService.class);
 		ReflectionTestUtils.setField(updateSearchIndexService, "createApplicationEventService", createApplicationEventService);
+		ReflectionTestUtils.setField(updateSearchIndexService, "validator", Validation.buildDefaultValidatorFactory().getValidator());
 		
 		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
 		serviceRequest.setSessionId(UUID.randomUUID().toString());
