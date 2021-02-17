@@ -57,7 +57,7 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
 abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializable>
 		implements AbstractGenericDAO<T, I> {
 
-	private static final int MAX_IN_VARIABLES = 10000;
+	private static final int MAX_IN_VARIABLES = 30000;
 
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
