@@ -19,6 +19,8 @@
 package com.hack23.cia.service.data.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +28,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Path;
@@ -40,6 +41,7 @@ import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.javers.spring.annotation.JaversAuditable;
 
+import com.google.common.collect.Lists;
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
 import com.hack23.cia.service.data.impl.util.LoadHelper;
 
@@ -54,6 +56,8 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
 
 abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializable>
 		implements AbstractGenericDAO<T, I> {
+
+	private static final int MAX_IN_VARIABLES = 10000;
 
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
@@ -178,14 +182,22 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	@Override
 	public final List<T> findListByPropertyInList(final SingularAttribute<T, ? extends Object> property, final Object[] values) {
-		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
-		final Root<T> root = criteriaQuery.from(getPersistentClass());
-		criteriaQuery.select(root);
-		final In<Object> in = criteriaBuilder.in((Path<Object>) root.get(property));
-		for (final Object object : values) {
-			in.value(object);
+		
+		List<T> result = new ArrayList<>();
+		List<List<Object>> partitionedValues = Lists.partition(Arrays.asList(values), MAX_IN_VARIABLES);
+		
+		for (List<Object> partitionQuoteIds: partitionedValues) {
+		  result.addAll(findListByPropertyInListInternal(property,partitionQuoteIds.toArray(new Object[partitionQuoteIds.size()])));
 		}
-		criteriaQuery.where(in);
+		
+		return result;
+	}
+
+	private final List<T> findListByPropertyInListInternal(final SingularAttribute<T, ? extends Object> property, final Object[] values) {		
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
+		final Root<T> root = criteriaQuery.from(getPersistentClass());		
+		criteriaQuery.select(root).where(root.get(property).in(values));
+				
 		final TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
 		addCacheHints(typedQuery, "findListByPropertyInList");
 		return typedQuery.getResultList();
