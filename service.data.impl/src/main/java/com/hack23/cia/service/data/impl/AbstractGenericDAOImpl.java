@@ -182,14 +182,12 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	@Override
 	public final List<T> findListByPropertyInList(final SingularAttribute<T, ? extends Object> property, final Object[] values) {
+		final List<T> result = new ArrayList<>();
+		final List<List<Object>> partitionedValues = Lists.partition(Arrays.asList(values), MAX_IN_VARIABLES);
 		
-		List<T> result = new ArrayList<>();
-		List<List<Object>> partitionedValues = Lists.partition(Arrays.asList(values), MAX_IN_VARIABLES);
-		
-		for (List<Object> partitionQuoteIds: partitionedValues) {
-		  result.addAll(findListByPropertyInListInternal(property,partitionQuoteIds.toArray(new Object[partitionQuoteIds.size()])));
-		}
-		
+		for (final List<Object> partitionQuoteIds: partitionedValues) {
+		  result.addAll(findListByPropertyInListInternal(property,partitionQuoteIds.toArray(new Object[0])));
+		}		
 		return result;
 	}
 

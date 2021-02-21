@@ -231,7 +231,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
 				final List<ApplicationActionEvent> applicationEventsWithIp = applicationActionEventDAO
 						.findListByPropertyInList(ApplicationActionEvent_.sessionId,
-								sessionIdsWithIp.toArray(new Object[sessionIdsWithIp.size()]));
+								sessionIdsWithIp.toArray(new Object[0]));
 
 				final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
 				final Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = applicationEventsWithIp

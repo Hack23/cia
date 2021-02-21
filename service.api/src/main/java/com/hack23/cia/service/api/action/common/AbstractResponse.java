@@ -23,11 +23,11 @@ package com.hack23.cia.service.api.action.common;
  */
 public abstract class AbstractResponse extends AbstractMessage implements ServiceResponse {
 
-	/** The result. */
-	private final ServiceResult result;
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The result. */
+	private final ServiceResult result;
 
 	/** The error message. */
 	private String errorMessage;

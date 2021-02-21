@@ -153,10 +153,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 
 			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
 				if (fieldEntry.hasSetter()) {
-					final Object value;
-
-					value = RandomFactory.getRandomValue(fieldEntry);
-					fieldEntry.invokeSetter(instance, value);
+					fieldEntry.invokeSetter(instance, RandomFactory.getRandomValue(fieldEntry));
 				}
 			}
 			randomValues(instance, pojoClass.getSuperClass());
