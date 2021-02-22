@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-web-pom</artifactId>
-    <version>2021.2.21</version>
+    <version>2021.2.22-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia.dist.docker</artifactId>
@@ -103,8 +103,7 @@
               <alias>application</alias>
               <registry>registry.hub.docker.com</registry>
               <build>
-                <dockerFile>Dockerfile</dockerFile>
-                <dockerFileDir>${project.basedir}/target/dockerfile</dockerFileDir>
+                <contextDir>${project.basedir}/target/dockerfile</contextDir>
               </build>
               <run>
                 <ports>

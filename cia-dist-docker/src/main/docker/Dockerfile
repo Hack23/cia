@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:latest
 
 ADD userdata.sh /root/userdata.sh
 ADD dependencies/cia-dist-deb-${project.version}.deb /root/cia-dist-deb.deb
