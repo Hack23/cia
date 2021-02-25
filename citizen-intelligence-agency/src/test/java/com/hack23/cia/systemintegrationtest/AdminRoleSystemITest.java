@@ -187,6 +187,27 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	
+	/**
+	 * Site admin application session charts test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Daily Active Users Chart"));
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
+
+	}
+
 	/**
 	 * Site admin application session last page test.
 	 *

@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -56,5 +57,13 @@ public interface AdminChartDataManager {
 	 *            the page
 	 */
 	void createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout content,String page);
+
+
+	/**
+	 * Creates the application session page daily summary chart.
+	 *
+	 * @param content the content
+	 */
+	void createApplicationSessionPageDailySummaryChart(VerticalLayout content);
 
 }

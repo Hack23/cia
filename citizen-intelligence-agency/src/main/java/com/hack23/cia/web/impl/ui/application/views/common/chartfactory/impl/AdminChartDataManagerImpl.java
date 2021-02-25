@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -43,9 +44,11 @@ import com.hack23.cia.model.internal.application.data.impl.ViewApplicationAction
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary_;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class ChartDataManagerImpl.
@@ -109,11 +112,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 				dataSeries.newSeries();
 				final List<ViewApplicationActionEventPageDailySummary> list = entry.getValue();
-				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
+				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {
 					dataSeries.add(
 							simpleDateFormat.format(
-									viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),
-							viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());
+									dataSummaryDaily.getEmbeddedId().getCreatedDate()),
+							dataSummaryDaily.getHits());
 				}
 			}
 
@@ -235,6 +238,30 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		return findOrderedListByEmbeddedProperty.parallelStream().filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPageMode()));
+	}
+
+	@Override
+	public void createApplicationSessionPageDailySummaryChart(VerticalLayout content) {
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
+		final DataContainer<ApplicationSession, Serializable> dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
+		Map <String,Long> sessionByDayMap = dataContainer.getAll().stream()
+	                .collect(Collectors.groupingBy(p -> simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));
+		
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+		series.addSeries(new XYseries().setLabel("Daily Active Users"));
+		dataSeries.newSeries();
+		for (final Entry<String, Long> entry : sessionByDayMap.entrySet()) {
+			dataSeries.add(
+					entry.getKey(),
+						entry.getValue());
+		}
+
+		addChart(content, "Application Active Daily Users",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
 	}
 
 }
