@@ -35,6 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -144,4 +145,8 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 	}
 
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
+	}
 }
