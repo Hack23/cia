@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.12.3";
+	content: "8.12.4";
 }
 
 .v-widget {
@@ -7608,7 +7608,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5.25px;
 }
 
-.cia .v-grid-editor-cells  > div input[type="checkbox"] {
+.cia .v-grid-editor-cells  > div :not(.v-assistive-device-only-label).v-widget > input[type="checkbox"] {
 	margin-left: 10.5px;
 }
 
@@ -7845,15 +7845,15 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5px;
 }
 
-.cia .v-grid-editor-cells > div .v-checkbox {
+.cia .v-grid-editor-cells > div .v-checkbox.v-widget {
 	margin: 0 5px 0 10.5px;
 }
 
-.cia .v-grid-editor-cells > div .v-checkbox  > input[type="checkbox"] {
+.cia .v-grid-editor-cells > div .v-checkbox.v-widget  > input[type="checkbox"] {
 	margin-left: 0;
 }
 
-.cia .v-grid-editor-cells > div .v-checkbox  > label {
+.cia .v-grid-editor-cells > div .v-checkbox.v-widget  > label {
 	white-space: nowrap;
 }
 
@@ -12269,7 +12269,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5.25px;
 }
 
-.cia .v-tree8-editor-cells  > div input[type="checkbox"] {
+.cia .v-tree8-editor-cells  > div :not(.v-assistive-device-only-label).v-widget > input[type="checkbox"] {
 	margin-left: 10.5px;
 }
 
@@ -12506,15 +12506,15 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5px;
 }
 
-.cia .v-tree8-editor-cells > div .v-checkbox {
+.cia .v-tree8-editor-cells > div .v-checkbox.v-widget {
 	margin: 0 5px 0 10.5px;
 }
 
-.cia .v-tree8-editor-cells > div .v-checkbox  > input[type="checkbox"] {
+.cia .v-tree8-editor-cells > div .v-checkbox.v-widget  > input[type="checkbox"] {
 	margin-left: 0;
 }
 
-.cia .v-tree8-editor-cells > div .v-checkbox  > label {
+.cia .v-tree8-editor-cells > div .v-checkbox.v-widget  > label {
 	white-space: nowrap;
 }
 
@@ -13400,7 +13400,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5.25px;
 }
 
-.cia .v-treegrid-editor-cells  > div input[type="checkbox"] {
+.cia .v-treegrid-editor-cells  > div :not(.v-assistive-device-only-label).v-widget > input[type="checkbox"] {
 	margin-left: 10.5px;
 }
 
@@ -13637,15 +13637,15 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5px;
 }
 
-.cia .v-treegrid-editor-cells > div .v-checkbox {
+.cia .v-treegrid-editor-cells > div .v-checkbox.v-widget {
 	margin: 0 5px 0 10.5px;
 }
 
-.cia .v-treegrid-editor-cells > div .v-checkbox  > input[type="checkbox"] {
+.cia .v-treegrid-editor-cells > div .v-checkbox.v-widget  > input[type="checkbox"] {
 	margin-left: 0;
 }
 
-.cia .v-treegrid-editor-cells > div .v-checkbox  > label {
+.cia .v-treegrid-editor-cells > div .v-checkbox.v-widget  > label {
 	white-space: nowrap;
 }
 
