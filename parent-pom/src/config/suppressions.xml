@@ -106,6 +106,12 @@
 		<cve>CVE-2020-13947</cve>
 		<cve>CVE-2021-26117</cve>
 		<cve>CVE-2020-10693</cve>
+		<cve>CVE-2020-26259</cve>
+		<cve>CVE-2020-26258</cve>
+		<cve>CVE-2020-26217</cve>
+		<cve>CVE-2017-7957</cve>
+		<cve>CVE-2016-3674</cve>
+		<cve>CVE-2013-7285</cve>
 	</suppress>
 	<suppress><notes><![CDATA[file name: lodash.merge:4.6.1]]></notes>
 		<packageUrl regex="true">^pkg:npm/lodash\.merge@.*$</packageUrl>
