@@ -6,8 +6,8 @@
 #JAVA_HOME=/usr/lib/jvm/jdk-12
 #JAVA_HOME=/usr/lib/jvm/jdk-13
 #JAVA_HOME=/usr/lib/jvm/jdk-14
-JAVA_HOME=/usr/lib/jvm/jdk-15
-#JAVA_HOME=/usr/lib/jvm/jdk-16
+#JAVA_HOME=/usr/lib/jvm/jdk-15
+JAVA_HOME=/usr/lib/jvm/jdk-16
 #JAVA_HOME=/usr/lib/jvm/jdk-17
 
 CIA_APP_ENCRYPTION_PASSWORD="allhaildiscordia"

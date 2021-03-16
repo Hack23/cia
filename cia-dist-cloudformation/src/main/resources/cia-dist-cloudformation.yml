@@ -2421,10 +2421,10 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15.0.1%2B9/OpenJDK15U-jdk_aarch64_linux_hotspot_15.0.1_9.tar.gz\n"
-            - "tar xvfz OpenJDK15U-jdk_aarch64_linux_hotspot_15.0.1_9.tar.gz\n"
-            - "sudo mv jdk-15.0.1+9 /usr/lib/jvm/jdk-15\n"
-            - "rm OpenJDK15U-jdk_aarch64_linux_hotspot_15.0.1_9.tar.gz\n"
+            - "wget https://download.java.net/java/GA/jdk16/7863447f0ab643c585b9bdebf67c69db/36/GPL/openjdk-16_linux-aarch64_bin.tar.gz\n"
+            - "tar xvfz openjdk-16_linux-aarch64_bin.tar.gz\n"
+            - "sudo mv jdk-16 /usr/lib/jvm/\n"
+            - "rm openjdk-16_linux-aarch64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
