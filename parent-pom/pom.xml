@@ -49,7 +49,7 @@
   </contributors>
   <mailingLists></mailingLists>
   <prerequisites>
-    <maven>3.5.3</maven>
+    <maven>3.6.3</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
@@ -788,6 +788,13 @@
               <version>0.1.55</version>
             </dependency>
           </dependencies>
+          <inherited>true</inherited>
+          <configuration>
+            <inputEncoding>UTF-8</inputEncoding>
+            <generateSitemap>true</generateSitemap>
+            <topSiteURL>http://hack23.github.io/cia/${project.version}/</topSiteURL>
+            <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
@@ -1037,7 +1044,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
-          <version>4.5</version>
+          <version>5.0-rc1</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
@@ -1859,18 +1866,6 @@
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
             <version>3.8.0.2131</version>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.9.1</version>
-            <inherited>true</inherited>
-            <configuration>
-              <inputEncoding>UTF-8</inputEncoding>
-              <generateSitemap>true</generateSitemap>
-              <topSiteURL>http://hack23.github.io/cia/${project.version}/</topSiteURL>
-              <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
