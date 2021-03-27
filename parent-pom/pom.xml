@@ -1499,7 +1499,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1520,7 +1520,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1541,7 +1541,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1562,7 +1562,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1583,7 +1583,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1604,7 +1604,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.6</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.6</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
