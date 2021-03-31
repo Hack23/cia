@@ -24,7 +24,7 @@
   </distributionManagement>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vaadin.version>8.13.0.alpha1</vaadin.version>
+    <vaadin.version>8.13.0.beta1</vaadin.version>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
   </properties>
   <dependencies>
