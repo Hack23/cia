@@ -24,8 +24,6 @@
   </distributionManagement>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vaadin.version>8.13.0.beta1</vaadin.version>
-    <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -338,7 +336,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-server</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -362,12 +360,12 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client-compiled</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
           <artifactId>gwt-elemental</artifactId>
@@ -382,22 +380,22 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-compatibility-server</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-compatibility-client</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-compatibility-shared</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client-compiler</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
           <artifactId>gwt-dev</artifactId>
@@ -535,7 +533,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-push</artifactId>
-      <version>${vaadin.version}</version>
+      <version>${cia.project.versions.vaadin}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
@@ -654,6 +652,7 @@
       <plugin>
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-maven-plugin</artifactId>
+        <version>${cia.project.versions.vaadin}</version>
         <executions>
           <execution>
             <goals>
