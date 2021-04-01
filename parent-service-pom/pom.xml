@@ -172,6 +172,21 @@
             <artifactId>stax-api</artifactId>
             <groupId>stax</groupId>
           </exclusion>
+          <exclusion>
+            <artifactId>pdfbox</artifactId>
+            <groupId>org.apache.pdfbox</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox</artifactId>
+        <version>${cia.project.versions.pdfbox}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
         </exclusions>
       </dependency>
     </dependencies>
