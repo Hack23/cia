@@ -131,7 +131,7 @@
     <cia.project.versions.hibernate.tools>5.4.30.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final-redhat-1</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.0.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.validator>6.2.0.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.2.0.Final-redhat-00004</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.10.22</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.19</cia.project.versions.postgresql>
