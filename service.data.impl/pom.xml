@@ -771,7 +771,7 @@
     <dependency>
       <groupId>org.hibernate.common</groupId>
       <artifactId>hibernate-commons-annotations</artifactId>
-      <version>5.1.2.Final</version>
+      <version>5.1.2.Final-redhat-00002</version>
     </dependency>
     <dependency>
       <groupId>net.bytebuddy</groupId>
