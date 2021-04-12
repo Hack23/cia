@@ -66,7 +66,8 @@ before_script:
   - #sudo -Hiu postgres psql -U postgres -c "create extension pgaudit" cia_dev
   - sudo -Hiu postgres psql -U postgres -c "create extension pg_stat_statements" cia_dev  
   - sudo gem install cfn-nag  
-  - sudo pip3 install cfn_flip  
+  - sudo pip3 install cfn_flip checkov
+  - sudo pip3 install checkov
   - sudo npm install cloudformation-graph -g 
 
 
@@ -80,7 +81,7 @@ script:
   - export PATH=$JAVA_HOME/bin:$PATH
   - export MAVEN_OPTS="-Duser.timezone=CET --illegal-access=warn --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED"
   - xvfb-run --server-args="-screen 0 1920x1080x24" mvn clean install -Dtest=no -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -Dhttps.protocols=TLSv1.2 -q '-Dtest=!**.*ITest*'
-  - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
+  - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
   - #cd cia-dist-cloudformation/src/main/config/
   - #chmod a+x *.sh
   - #./cfn-cloudformation-flip.sh
