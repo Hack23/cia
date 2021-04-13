@@ -129,7 +129,8 @@ pipeline {
 	          sh "docker system prune -a -f"
 	          sh "mkdir  ${WORKSPACE}/zap-reports"
 	          sh "chmod 777 ${WORKSPACE}/zap-reports"
-	          sh "docker run -v ${WORKSPACE}/zap-reports:/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -t https://192.168.1.4:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html -z '-addoninstallall -addonupdate' || true"
+	          sh "docker run -v ${WORKSPACE}/zap-reports:/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -t https://192.168.1.4:28443 -a -j -J baseline-scan-report.json -x baseline-scan-report.xml -r baseline-scan-report.html || true"
+	          # disabled -z '-addoninstallall -addonupdate' was unstable
 	          archiveArtifacts "**/baseline-scan-report.*"
 		   }
 		}
