@@ -32,12 +32,12 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -52,20 +52,20 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-collections4</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-collections4</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -80,12 +80,12 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -95,28 +95,28 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-compress</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jakarta.xml.bind-api</artifactId>
           <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>pdfbox</artifactId>
           <groupId>org.apache.pdfbox</groupId>
+          <artifactId>pdfbox</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -126,8 +126,8 @@
       <version>${cia.project.versions.pdfbox}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -157,12 +157,12 @@
       <version>${cia.project.versions.spring}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

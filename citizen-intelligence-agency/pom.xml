@@ -71,28 +71,28 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>reflections</artifactId>
           <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>om.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jackson-annotations</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>jackson-databind</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -102,20 +102,20 @@
       <version>5.23</version>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.commons</groupId>
           <artifactId>commons-text</artifactId>
-          <groupId>org.apache.commons</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.commons</groupId>
           <artifactId>commons-collections4</artifactId>
-          <groupId>org.apache.commons</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -126,32 +126,32 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>structurizr-core</artifactId>
           <groupId>com.structurizr</groupId>
+          <artifactId>structurizr-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>reflections</artifactId>
           <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>om.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jackson-annotations</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>jackson-databind</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -162,32 +162,32 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>reflections</artifactId>
           <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>om.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jackson-annotations</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpclient5</artifactId>
           <groupId>org.apache.httpcomponents.client5</groupId>
+          <artifactId>httpclient5</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -204,20 +204,20 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>javassist</artifactId>
           <groupId>org.javassist</groupId>
+          <artifactId>javassist</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.slf4j</groupId>
           <artifactId>slf4j-simple</artifactId>
-          <groupId>org.slf4j</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -228,8 +228,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>structurizr-core</artifactId>
           <groupId>com.structurizr</groupId>
+          <artifactId>structurizr-core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -240,8 +240,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>structurizr-core</artifactId>
           <groupId>com.structurizr</groupId>
+          <artifactId>structurizr-core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -252,40 +252,40 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-data-jpa</artifactId>
           <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-jpa</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>reflections</artifactId>
           <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-webmvc</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-aop</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-ws-core</artifactId>
           <groupId>org.springframework.ws</groupId>
+          <artifactId>spring-ws-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>structurizr-core</artifactId>
           <groupId>com.structurizr</groupId>
+          <artifactId>structurizr-core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -296,44 +296,44 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-orm</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-aop</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-instrument</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.aspectj</groupId>
           <artifactId>aspectjrt</artifactId>
-          <groupId>org.aspectj</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.aspectj</groupId>
           <artifactId>aspectjweaver</artifactId>
-          <groupId>org.aspectj</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-aspects</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-aspects</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -368,12 +368,12 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>js</artifactId>
           <groupId>rhino</groupId>
+          <artifactId>js</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>yuicompressor</artifactId>
           <groupId>com.yahoo.platform.yui</groupId>
+          <artifactId>yuicompressor</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -403,12 +403,12 @@
       <version>${cia.project.versions.spring}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -418,8 +418,8 @@
       <version>1.6</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-core</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -429,12 +429,12 @@
       <version>1.4.0</version>
       <exclusions>
         <exclusion>
-          <artifactId>logback-classic</artifactId>
           <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>aws-java-sdk-logs</artifactId>
           <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-logs</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -444,16 +444,16 @@
       <version>1.11</version>
       <exclusions>
         <exclusion>
-          <artifactId>logback-classic</artifactId>
           <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.amazonaws</groupId>
           <artifactId>aws-java-sdk-logs</artifactId>
-          <groupId>com.amazonaws</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>aws-java-sdk-ec2</artifactId>
           <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-ec2</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -463,24 +463,24 @@
       <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ion-java</artifactId>
           <groupId>software.amazon.ion</groupId>
+          <artifactId>ion-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -490,24 +490,24 @@
       <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ion-java</artifactId>
           <groupId>software.amazon.ion</groupId>
+          <artifactId>ion-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -522,20 +522,20 @@
       <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -545,32 +545,32 @@
       <version>1.4.4</version>
       <exclusions>
         <exclusion>
+          <groupId>com.amazonaws</groupId>
           <artifactId>aws-java-sdk-core</artifactId>
-          <groupId>com.amazonaws</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.amazonaws</groupId>
           <artifactId>aws-java-sdk-sts</artifactId>
-          <groupId>com.amazonaws</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.amazonaws</groupId>
           <artifactId>aws-java-sdk-kinesis</artifactId>
-          <groupId>com.amazonaws</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>logback-classic</artifactId>
           <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-core</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -584,12 +584,12 @@
       <artifactId>cglib</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>asm</artifactId>
           <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ant</artifactId>
           <groupId>org.apache.ant</groupId>
+          <artifactId>ant</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -599,16 +599,16 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
+          <artifactId>com.springsource.javax.persistence</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-expression</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-expression</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -619,124 +619,124 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.sourceforge.htmlunit</groupId>
           <artifactId>neko-htmlunit</artifactId>
-          <groupId>net.sourceforge.htmlunit</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.sourceforge.htmlunit</groupId>
           <artifactId>htmlunit-core-js</artifactId>
-          <groupId>net.sourceforge.htmlunit</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>htmlunit-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xalan</artifactId>
           <groupId>xalan</groupId>
+          <artifactId>xalan</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-client</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-http</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
           <artifactId>websocket-api</artifactId>
-          <groupId>org.eclipse.jetty.websocket</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-websocket</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-util</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xercesImpl</artifactId>
           <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
           <artifactId>websocket-server</artifactId>
-          <groupId>org.eclipse.jetty.websocket</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
           <artifactId>websocket-common</artifactId>
-          <groupId>org.eclipse.jetty.websocket</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
           <artifactId>websocket-client</artifactId>
-          <groupId>org.eclipse.jetty.websocket</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jetty-io</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-io</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>phantomjsdriver</artifactId>
           <groupId>com.github.detro.ghostdriver</groupId>
+          <artifactId>phantomjsdriver</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpclient</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>selenium-remote-driver</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-remote-driver</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>webbit</artifactId>
           <groupId>org.webbitserver</groupId>
+          <artifactId>webbit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
+          <artifactId>cglib-nodep</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna-platform</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>okio</artifactId>
           <groupId>com.squareup.okio</groupId>
+          <artifactId>okio</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -753,100 +753,100 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>okio</artifactId>
           <groupId>com.squareup.okio</groupId>
+          <artifactId>okio</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpcore</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpmime</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>htmlunit-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jetty-websocket</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-websocket</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>phantomjsdriver</artifactId>
           <groupId>com.github.detro.ghostdriver</groupId>
+          <artifactId>phantomjsdriver</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpclient</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>selenium-remote-driver</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-remote-driver</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>webbit</artifactId>
           <groupId>org.webbitserver</groupId>
+          <artifactId>webbit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
+          <artifactId>cglib-nodep</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna-platform</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>kotlin-stdlib</artifactId>
           <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>reactor-core</artifactId>
           <groupId>io.projectreactor</groupId>
+          <artifactId>reactor-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>grpc-context</artifactId>
           <groupId>io.grpc</groupId>
+          <artifactId>grpc-context</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.sun.activation</groupId>
           <artifactId>javax.activation</artifactId>
-          <groupId>com.sun.activation</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jakarta.activation</artifactId>
           <groupId>com.sun.activation</groupId>
+          <artifactId>jakarta.activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -874,40 +874,40 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>okio</artifactId>
           <groupId>com.squareup.okio</groupId>
+          <artifactId>okio</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
+          <artifactId>cglib-nodep</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna-platform</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -918,48 +918,48 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-api</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-support</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-websocket</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpclient</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>webbit</artifactId>
           <groupId>org.webbitserver</groupId>
+          <artifactId>webbit</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
+          <artifactId>cglib-nodep</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jetty-servlet</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlet</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jna-platform</artifactId>
           <groupId>net.java.dev.jna</groupId>
+          <artifactId>jna-platform</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -970,40 +970,40 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>htmlunit-driver</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-api</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
-          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>phantomjsdriver</artifactId>
           <groupId>com.codeborne</groupId>
+          <artifactId>phantomjsdriver</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-compress</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jsoup</artifactId>
           <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpclient5</artifactId>
           <groupId>org.apache.httpcomponents.client5</groupId>
+          <artifactId>httpclient5</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1019,8 +1019,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>netty</artifactId>
           <groupId>io.netty</groupId>
+          <artifactId>netty</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1066,16 +1066,16 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-commons</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>javax.annotation-api</artifactId>
           <groupId>javax.annotation</groupId>
+          <artifactId>javax.annotation-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1109,8 +1109,8 @@
       <version>${cia.project.versions.xerces}</version>
       <exclusions>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1124,8 +1124,8 @@
       <artifactId>javamelody-core</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jrobin</artifactId>
           <groupId>org.jrobin</groupId>
+          <artifactId>jrobin</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1140,8 +1140,8 @@
       <version>1.6.0</version>
       <exclusions>
         <exclusion>
-          <artifactId>junit</artifactId>
           <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1151,16 +1151,16 @@
       <version>1.3.25</version>
       <exclusions>
         <exclusion>
+          <groupId>org.bouncycastle</groupId>
           <artifactId>bcpkix-jdk15on</artifactId>
-          <groupId>org.bouncycastle</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.bouncycastle</groupId>
           <artifactId>bcprov-jdk15on</artifactId>
-          <groupId>org.bouncycastle</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-text</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-text</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1184,12 +1184,12 @@
       <artifactId>xstream</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>xmlpull</artifactId>
           <groupId>xmlpull</groupId>
+          <artifactId>xmlpull</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xpp3_min</artifactId>
           <groupId>xpp3</groupId>
+          <artifactId>xpp3_min</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1199,28 +1199,28 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>spring-web</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>validation-api</artifactId>
           <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-sass-compiler</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-sass-compiler</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.google.gwt</groupId>
           <artifactId>gwt-dev</artifactId>
-          <groupId>com.google.gwt</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.google.gwt</groupId>
           <artifactId>gwt-user</artifactId>
-          <groupId>com.google.gwt</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gwt-elemental</artifactId>
           <groupId>com.google.gwt</groupId>
+          <artifactId>gwt-elemental</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1230,64 +1230,64 @@
       <version>${cia.project.versions.vaadin.gwt.user}</version>
       <exclusions>
         <exclusion>
-          <artifactId>validation-api</artifactId>
           <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>apache-jsp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-webapp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-servlets</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-annotations</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-util</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-commons</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ant</artifactId>
           <groupId>ant</groupId>
+          <artifactId>ant</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>icu4j</artifactId>
           <groupId>com.ibm.icu</groupId>
+          <artifactId>icu4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>tapestry</artifactId>
           <groupId>tapestry</groupId>
+          <artifactId>tapestry</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>colt</artifactId>
           <groupId>colt</groupId>
+          <artifactId>colt</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jsr305</artifactId>
           <groupId>com.google.code.findbugs</groupId>
+          <artifactId>jsr305</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1312,48 +1312,48 @@
       <version>${cia.project.versions.vaadin.gwt.user}</version>
       <exclusions>
         <exclusion>
-          <artifactId>validation-api</artifactId>
           <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>apache-jsp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-webapp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-servlets</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-annotations</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-util</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-commons</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>javax.servlet-api</artifactId>
           <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1370,8 +1370,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>javax.el-api</artifactId>
           <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1381,84 +1381,84 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>activemq-protobuf</artifactId>
           <groupId>org.apache.activemq.protobuf</groupId>
+          <artifactId>activemq-protobuf</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.geronimo.specs</groupId>
           <artifactId>geronimo-j2ee-management_1.0_spec</artifactId>
-          <groupId>org.apache.geronimo.specs</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>aopalliance</artifactId>
           <groupId>aopalliance</groupId>
+          <artifactId>aopalliance</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
+          <artifactId>com.springsource.javax.persistence</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jdom</artifactId>
           <groupId>jdom</groupId>
+          <artifactId>jdom</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gt-shapefile</artifactId>
           <groupId>org.geotools</groupId>
+          <artifactId>gt-shapefile</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>stax-api</artifactId>
           <groupId>stax</groupId>
+          <artifactId>stax-api</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-analyzers</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-core</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>solr-analysis-extras</artifactId>
           <groupId>org.apache.solr</groupId>
+          <artifactId>solr-analysis-extras</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>org.springframework.context</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>org.springframework.beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>org.springframework.core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>com.springsource.org.aopalliance</artifactId>
           <groupId>org.aopalliance</groupId>
+          <artifactId>com.springsource.org.aopalliance</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
           <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ecj</artifactId>
           <groupId>org.eclipse.jdt</groupId>
+          <artifactId>ecj</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>javax.activation-api</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1473,12 +1473,12 @@
       <version>${cia.project.versions.postgresql}</version>
       <exclusions>
         <exclusion>
-          <artifactId>waffle-jna</artifactId>
           <groupId>com.github.waffle</groupId>
+          <artifactId>waffle-jna</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>checker-qual</artifactId>
           <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1488,20 +1488,20 @@
       <version>3.0.0</version>
       <exclusions>
         <exclusion>
-          <artifactId>checker-qual</artifactId>
           <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
+          <groupId>net.java.dev.jna</groupId>
           <artifactId>jna-platform</artifactId>
-          <groupId>net.java.dev.jna</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>error_prone_annotations</artifactId>
           <groupId>com.google.errorprone</groupId>
+          <artifactId>error_prone_annotations</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1510,12 +1510,12 @@
       <artifactId>spring-web</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>spring-expression</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-expression</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1524,16 +1524,16 @@
       <artifactId>spring-security-web</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>aopalliance</artifactId>
           <groupId>aopalliance</groupId>
+          <artifactId>aopalliance</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jdbc</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1543,8 +1543,8 @@
       <version>1.9.22</version>
       <exclusions>
         <exclusion>
-          <artifactId>xercesImpl</artifactId>
           <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1554,40 +1554,40 @@
       <version>${cia.project.versions.spring.security}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-aop</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-expression</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>aopalliance</artifactId>
           <groupId>aopalliance</groupId>
+          <artifactId>aopalliance</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -1637,10 +1637,10 @@
         <version>2.4.1</version>
         <executions>
           <execution>
-            <phase>verify</phase>
             <goals>
               <goal>makeAggregateBom</goal>
             </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
@@ -1648,13 +1648,20 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>keytool-maven-plugin</artifactId>
         <version>1.5</version>
+        <configuration>
+          <keystore>${project.build.directory}/keystore.p12</keystore>
+          <storepass>changeit</storepass>
+          <storetype>PKCS12</storetype>
+          <keypass>changeit</keypass>
+          <skipIfExist>true</skipIfExist>
+        </configuration>
         <executions>
           <execution>
             <id>generateKeyPair</id>
-            <phase>generate-resources</phase>
             <goals>
               <goal>generateKeyPair</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
               <alias>jetty</alias>
               <dname>cn=localhost, ou=None, L=None, ST=None, o=None, c=SE</dname>
@@ -1667,19 +1674,12 @@
           </execution>
           <execution>
             <id>removekeystore</id>
-            <phase>clean</phase>
             <goals>
               <goal>clean</goal>
             </goals>
+            <phase>clean</phase>
           </execution>
         </executions>
-        <configuration>
-          <keystore>${project.build.directory}/keystore.p12</keystore>
-          <storepass>changeit</storepass>
-          <storetype>PKCS12</storetype>
-          <keypass>changeit</keypass>
-          <skipIfExist>true</skipIfExist>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -1744,10 +1744,10 @@
         <version>3.0.0</version>
         <executions>
           <execution>
-            <phase>generate-sources</phase>
             <goals>
               <goal>java</goal>
             </goals>
+            <phase>generate-sources</phase>
             <configuration>
               <classpathScope>compile</classpathScope>
               <mainClass>com.vaadin.sass.SassCompiler</mainClass>
@@ -1765,10 +1765,10 @@
         <executions>
           <execution>
             <id>unpack</id>
-            <phase>${dependency.plugin.unpack.phase}</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
+            <phase>${dependency.plugin.unpack.phase}</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -1829,23 +1829,6 @@
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlets</artifactId>
-            <version>${cia.project.versions.jetty}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm-tree</artifactId>
-            <version>${cia.project.versions.asm}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>${cia.project.versions.asm}</version>
-          </dependency>
-        </dependencies>
         <configuration>
           <systemProperties>
             <systemProperty>
@@ -1864,6 +1847,23 @@
             <contextPath>/cia</contextPath>
           </webAppConfig>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>${cia.project.versions.jetty}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-tree</artifactId>
+            <version>${cia.project.versions.asm}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${cia.project.versions.asm}</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>

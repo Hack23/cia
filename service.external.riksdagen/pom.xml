@@ -32,12 +32,12 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -47,12 +47,12 @@
       <version>${cia.project.versions.spring}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -61,12 +61,12 @@
       <artifactId>jaxb2-basics-runtime</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-log4j12</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -128,8 +128,8 @@
       <artifactId>logback-classic</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>activation</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

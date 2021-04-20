@@ -33,44 +33,44 @@
       <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.hibernate</groupId>
           <artifactId>hibernate-entitymanager</artifactId>
-          <groupId>org.hibernate</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.hibernate</groupId>
           <artifactId>hibernate-core</artifactId>
-          <groupId>org.hibernate</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-backward-codecs</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-misc</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-facet</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-core</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-queryparser</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-analyzers-common</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-core</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+          <artifactId>hibernate-commons-annotations</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -80,14 +80,15 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
+        <configuration>
+          <hibernatetool destdir="target/classes">
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+          </hibernatetool>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.apache.ant</groupId>
@@ -105,15 +106,14 @@
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
-          </hibernatetool>
-        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

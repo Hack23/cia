@@ -31,14 +31,15 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
+        <configuration>
+          <hibernatetool destdir="target/classes">
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+          </hibernatetool>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.apache.ant</groupId>
@@ -56,15 +57,14 @@
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
-          </hibernatetool>
-        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

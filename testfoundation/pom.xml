@@ -39,8 +39,8 @@
         <version>${cia.project.versions.spring}</version>
         <exclusions>
           <exclusion>
-            <artifactId>spring-jcl</artifactId>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-jcl</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -58,12 +58,12 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -82,8 +82,8 @@
       <artifactId>spring-aspects</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
+          <artifactId>com.springsource.javax.persistence</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -92,12 +92,12 @@
       <artifactId>spring-context-support</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -122,8 +122,8 @@
       <artifactId>logback-classic</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>activation</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -138,16 +138,16 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>jboss-logging</artifactId>
           <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -191,8 +191,8 @@
       <version>2.8.2</version>
       <exclusions>
         <exclusion>
-          <artifactId>jakarta.xml.bind-api</artifactId>
           <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -202,24 +202,24 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-collections4</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-collections4</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xmlbeans</artifactId>
           <groupId>org.apache.xmlbeans</groupId>
+          <artifactId>xmlbeans</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -239,12 +239,12 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -254,40 +254,40 @@
       <version>${cia.project.versions.poi}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>curvesapi</artifactId>
           <groupId>com.github.virtuald</groupId>
+          <artifactId>curvesapi</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>stax-api</artifactId>
           <groupId>stax</groupId>
+          <artifactId>stax-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xmlbeans</artifactId>
           <groupId>org.apache.xmlbeans</groupId>
+          <artifactId>xmlbeans</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-compress</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jakarta.xml.bind-api</artifactId>
           <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>pdfbox</artifactId>
           <groupId>org.apache.pdfbox</groupId>
+          <artifactId>pdfbox</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -297,8 +297,8 @@
       <version>${cia.project.versions.pdfbox}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -327,12 +327,12 @@
       <artifactId>cglib</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>asm</artifactId>
           <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ant</artifactId>
           <groupId>org.apache.ant</groupId>
+          <artifactId>ant</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -360,12 +360,12 @@
       <version>3.9.3</version>
       <exclusions>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>byte-buddy-agent</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy-agent</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -380,8 +380,8 @@
       <version>${cia.project.versions.bytebuddy}</version>
       <exclusions>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -391,12 +391,12 @@
       <version>1.19.0</version>
       <exclusions>
         <exclusion>
-          <artifactId>hamcrest-core</artifactId>
           <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>junit-dep</artifactId>
           <groupId>junit</groupId>
+          <artifactId>junit-dep</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -411,20 +411,20 @@
       <version>0.7.6</version>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
-          <groupId>org.apache.commons</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.commons</groupId>
           <artifactId>commons-collections4</artifactId>
-          <groupId>org.apache.commons</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>javassist</artifactId>
           <groupId>org.javassist</groupId>
+          <artifactId>javassist</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -439,52 +439,52 @@
       <version>2.49.1</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xalan</artifactId>
           <groupId>xalan</groupId>
+          <artifactId>xalan</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xercesImpl</artifactId>
           <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jetty-websocket</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-websocket</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpclient</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpmime</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>nekohtml</artifactId>
           <groupId>net.sourceforge.nekohtml</groupId>
+          <artifactId>nekohtml</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
-          <groupId>org.apache.commons</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>websocket-client</artifactId>
           <groupId>org.eclipse.jetty.websocket</groupId>
+          <artifactId>websocket-client</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-text</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-text</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -499,12 +499,12 @@
       <version>${cia.project.versions.httpclient}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -514,8 +514,8 @@
       <version>${cia.project.versions.httpclient}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

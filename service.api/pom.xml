@@ -42,8 +42,8 @@
       <artifactId>hibernate-validator</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>classmate</artifactId>
           <groupId>com.fasterxml</groupId>
+          <artifactId>classmate</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -63,8 +63,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

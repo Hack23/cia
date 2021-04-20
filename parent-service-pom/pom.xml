@@ -58,8 +58,8 @@
         <scope>test</scope>
         <exclusions>
           <exclusion>
-            <artifactId>com.springsource.javax.persistence</artifactId>
             <groupId>javax.persistence</groupId>
+            <artifactId>com.springsource.javax.persistence</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -74,44 +74,44 @@
         <version>${cia.project.versions.spring.security}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
-            <artifactId>org.springframework.security-web</artifactId>
             <groupId>org.springframework.security</groupId>
+            <artifactId>org.springframework.security-web</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -131,12 +131,12 @@
         <version>${cia.project.versions.poi}</version>
         <exclusions>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>log4j</artifactId>
             <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -146,12 +146,12 @@
         <version>${cia.project.versions.poi}</version>
         <exclusions>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>log4j</artifactId>
             <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -161,20 +161,20 @@
         <version>${cia.project.versions.poi}</version>
         <exclusions>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>log4j</artifactId>
             <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>stax-api</artifactId>
             <groupId>stax</groupId>
+            <artifactId>stax-api</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>pdfbox</artifactId>
             <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -184,18 +184,18 @@
         <version>${cia.project.versions.pdfbox}</version>
         <exclusions>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions></extensions>
     <pluginManagement>
       <plugins></plugins>
     </pluginManagement>
     <plugins></plugins>
+    <extensions></extensions>
   </build>
 </project>

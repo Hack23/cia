@@ -32,12 +32,12 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -52,8 +52,8 @@
       <artifactId>jaxb-xjc</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jakarta.activation</artifactId>
           <groupId>com.sun.activation</groupId>
+          <artifactId>jakarta.activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -72,8 +72,8 @@
       <artifactId>jaxb-api</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>javax.activation-api</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -88,8 +88,8 @@
       <version>${cia.project.versions.httpclient}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -98,12 +98,12 @@
       <artifactId>spring-oxm</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -112,8 +112,8 @@
       <artifactId>spring-context</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -123,8 +123,8 @@
       <version>${cia.project.versions.spring}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

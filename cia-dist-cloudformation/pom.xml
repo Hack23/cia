@@ -39,10 +39,10 @@
         <executions>
           <execution>
             <id>attach-artifacts</id>
-            <phase>package</phase>
             <goals>
               <goal>attach-artifact</goal>
             </goals>
+            <phase>package</phase>
             <configuration>
               <artifacts>
                 <artifact>
@@ -64,10 +64,10 @@
         <executions>
           <execution>
             <id>copy</id>
-            <phase>install</phase>
             <goals>
               <goal>copy</goal>
             </goals>
+            <phase>install</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>

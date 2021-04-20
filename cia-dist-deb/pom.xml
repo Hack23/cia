@@ -31,8 +31,8 @@
       <type>zip</type>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
           <groupId>*</groupId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -51,10 +51,10 @@
         <version>2.4.1</version>
         <executions>
           <execution>
-            <phase>verify</phase>
             <goals>
               <goal>makeAggregateBom</goal>
             </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
@@ -62,13 +62,20 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>keytool-maven-plugin</artifactId>
         <version>1.5</version>
+        <configuration>
+          <keystore>${project.build.directory}/keystore.p12</keystore>
+          <storepass>changeit</storepass>
+          <storetype>PKCS12</storetype>
+          <keypass>changeit</keypass>
+          <skipIfExist>true</skipIfExist>
+        </configuration>
         <executions>
           <execution>
             <id>generateKeyPair</id>
-            <phase>generate-resources</phase>
             <goals>
               <goal>generateKeyPair</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
               <alias>ciadistdebkeys</alias>
               <dname>cn=www.hack23.com, ou=None, L=None, ST=None, o=None, c=SE</dname>
@@ -81,19 +88,12 @@
           </execution>
           <execution>
             <id>removekeystore</id>
-            <phase>clean</phase>
             <goals>
               <goal>clean</goal>
             </goals>
+            <phase>clean</phase>
           </execution>
         </executions>
-        <configuration>
-          <keystore>${project.build.directory}/keystore.p12</keystore>
-          <storepass>changeit</storepass>
-          <storetype>PKCS12</storetype>
-          <keypass>changeit</keypass>
-          <skipIfExist>true</skipIfExist>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>com.stratio.mojo.unix</groupId>

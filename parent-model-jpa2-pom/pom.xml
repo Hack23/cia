@@ -49,12 +49,12 @@
         <scope>test</scope>
         <exclusions>
           <exclusion>
-            <artifactId>com.springsource.javax.persistence</artifactId>
             <groupId>javax.persistence</groupId>
+            <artifactId>com.springsource.javax.persistence</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -64,8 +64,8 @@
         <version>${cia.project.versions.hibernate}</version>
         <exclusions>
           <exclusion>
-            <artifactId>slf4j-api</artifactId>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -83,8 +83,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>jboss-logging</artifactId>
           <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -113,6 +113,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
+          <inherited>true</inherited>
           <dependencies>
             <dependency>
               <groupId>org.hibernate</groupId>
@@ -125,7 +126,6 @@
               <version>${cia.project.versions.hibernate.search}</version>
             </dependency>
           </dependencies>
-          <inherited>true</inherited>
         </plugin>
       </plugins>
     </pluginManagement>

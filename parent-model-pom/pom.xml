@@ -41,10 +41,10 @@
   </distributionManagement>
   <dependencyManagement></dependencyManagement>
   <build>
-    <extensions></extensions>
     <pluginManagement>
       <plugins></plugins>
     </pluginManagement>
     <plugins></plugins>
+    <extensions></extensions>
   </build>
 </project>

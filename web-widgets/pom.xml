@@ -32,8 +32,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -43,16 +43,16 @@
       <version>3.2.1</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-server</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-server</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -72,28 +72,28 @@
       <version>2.1.1</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -103,44 +103,44 @@
       <version>0.3.2</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-shared</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-datatype-jdk8</artifactId>
           <groupId>com.fasterxml.jackson.datatype</groupId>
+          <artifactId>jackson-datatype-jdk8</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>javax.el-api</artifactId>
           <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -150,8 +150,8 @@
       <version>${cia.project.versions.jackson}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -161,32 +161,32 @@
       <version>0.5</version>
       <exclusions>
         <exclusion>
-          <artifactId>javax.el-api</artifactId>
           <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -196,28 +196,28 @@
       <version>2.1.1</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -227,28 +227,28 @@
       <version>2.0.0.hack23</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -258,24 +258,24 @@
       <version>1.0.4</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -285,24 +285,24 @@
       <version>1.4.0</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -312,24 +312,24 @@
       <version>2.0.1</version>
       <exclusions>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
           <groupId>com.vaadin</groupId>
+          <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -339,12 +339,12 @@
       <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jsoup</artifactId>
           <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -368,12 +368,12 @@
       <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
-          <artifactId>gwt-elemental</artifactId>
           <groupId>com.vaadin.external.gwt</groupId>
+          <artifactId>gwt-elemental</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gwt-elemental</artifactId>
           <groupId>com.google.gwt</groupId>
+          <artifactId>gwt-elemental</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -398,16 +398,16 @@
       <version>${cia.project.versions.vaadin}</version>
       <exclusions>
         <exclusion>
-          <artifactId>gwt-dev</artifactId>
           <groupId>com.vaadin.external.gwt</groupId>
+          <artifactId>gwt-dev</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.vaadin.external.gwt</groupId>
           <artifactId>gwt-elemental</artifactId>
-          <groupId>com.vaadin.external.gwt</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gwt-dev</artifactId>
           <groupId>com.google.gwt</groupId>
+          <artifactId>gwt-dev</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -417,48 +417,48 @@
       <version>${cia.project.versions.vaadin.gwt.user}</version>
       <exclusions>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>apache-jsp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-webapp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-servlets</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-annotations</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-util</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-commons</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ant</artifactId>
           <groupId>ant</groupId>
+          <artifactId>ant</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>colt</artifactId>
           <groupId>colt</groupId>
+          <artifactId>colt</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -473,40 +473,40 @@
       <version>${cia.project.versions.vaadin.gwt.user}</version>
       <exclusions>
         <exclusion>
-          <artifactId>htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>apache-jsp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-webapp</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-servlets</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-annotations</artifactId>
-          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-util</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.ow2.asm</groupId>
           <artifactId>asm-commons</artifactId>
-          <groupId>org.ow2.asm</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -653,19 +653,6 @@
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-maven-plugin</artifactId>
         <version>${cia.project.versions.vaadin}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>clean</goal>
-              <goal>resources</goal>
-              <goal>update-theme</goal>
-              <goal>update-widgetset</goal>
-              <goal>compile-theme</goal>
-              <goal>compile</goal>
-            </goals>
-            <configuration></configuration>
-          </execution>
-        </executions>
         <configuration>
           <generatedWidgetsetDirectory>${basedir}/src/main/java/</generatedWidgetsetDirectory>
           <widgetsetMode>local</widgetsetMode>
@@ -682,6 +669,19 @@
           <strict>true</strict>
           <runTarget>http://localhost:8080/</runTarget>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+              <goal>resources</goal>
+              <goal>update-theme</goal>
+              <goal>update-widgetset</goal>
+              <goal>compile-theme</goal>
+              <goal>compile</goal>
+            </goals>
+            <configuration></configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

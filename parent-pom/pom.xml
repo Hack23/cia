@@ -273,24 +273,24 @@
         <version>${cia.project.versions.hyperjaxb3}</version>
         <exclusions>
           <exclusion>
-            <artifactId>persistence-api</artifactId>
             <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-beanutils</artifactId>
             <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
             <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>junit</artifactId>
             <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>xmlunit</artifactId>
             <groupId>xmlunit</groupId>
+            <artifactId>xmlunit</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -310,8 +310,8 @@
         <version>${cia.project.versions.hyperjaxb3}</version>
         <exclusions>
           <exclusion>
-            <artifactId>persistence-api</artifactId>
             <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -331,8 +331,8 @@
         <version>${cia.project.versions.jaxb.api.runtime}</version>
         <exclusions>
           <exclusion>
-            <artifactId>javax.activation-api</artifactId>
             <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -347,44 +347,44 @@
         <version>${cia.project.versions.hibernate}</version>
         <exclusions>
           <exclusion>
-            <artifactId>jacc</artifactId>
             <groupId>javax.security</groupId>
+            <artifactId>jacc</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>asm</artifactId>
             <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>hsqldb</artifactId>
             <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>javassist</artifactId>
             <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>jacc</artifactId>
             <groupId>javax.security</groupId>
+            <artifactId>jacc</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>cglib</artifactId>
             <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>asm</artifactId>
             <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>slf4j-api</artifactId>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-collections</artifactId>
             <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>jboss-logging</artifactId>
             <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -394,8 +394,8 @@
         <version>${cia.project.versions.hibernate.validator}</version>
         <exclusions>
           <exclusion>
-            <artifactId>slf4j-api</artifactId>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -430,24 +430,24 @@
         <version>${cia.project.versions.logback}</version>
         <exclusions>
           <exclusion>
-            <artifactId>mail</artifactId>
             <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>jms</artifactId>
             <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>jmxri</artifactId>
             <groupId>com.sun.jmx</groupId>
+            <artifactId>jmxri</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>jmxtools</artifactId>
             <groupId>com.sun.jdmk</groupId>
+            <artifactId>jmxtools</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>checker-framework</artifactId>
             <groupId>edu.washington.cs.types.checker</groupId>
+            <artifactId>checker-framework</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -497,24 +497,24 @@
         <version>${cia.project.versions.spring}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-asm</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
-            <artifactId>spring-aop</artifactId>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -539,8 +539,8 @@
         <version>${cia.project.versions.cglib}</version>
         <exclusions>
           <exclusion>
-            <artifactId>asm</artifactId>
             <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -621,13 +621,6 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <extensions>
-      <extension>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${cia.project.versions.h2}</version>
-      </extension>
-    </extensions>
     <defaultGoal>install</defaultGoal>
     <resources>
       <resource>
@@ -672,8 +665,8 @@
               <version>${jacoco.version}</version>
               <exclusions>
                 <exclusion>
-                  <artifactId>asm-debug-all</artifactId>
                   <groupId>org.ow2.asm</groupId>
+                  <artifactId>asm-debug-all</artifactId>
                 </exclusion>
               </exclusions>
             </dependency>
@@ -710,6 +703,16 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.1.0</version>
+          <inherited>true</inherited>
+          <configuration>
+            <checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
+            <checkinComment>Publishing Site Docs for
+							${project.artifactId}:${project.version}</checkinComment>
+            <content>${project.build.directory}/staging</content>
+            <skipDeletedFiles>true</skipDeletedFiles>
+            <pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
+            <scmBranch>${scm-publish.scmBranch}</scmBranch>
+          </configuration>
           <dependencies>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
@@ -747,16 +750,6 @@
               <version>3.3.0</version>
             </dependency>
           </dependencies>
-          <inherited>true</inherited>
-          <configuration>
-            <checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
-            <checkinComment>Publishing Site Docs for
-							${project.artifactId}:${project.version}</checkinComment>
-            <content>${project.build.directory}/staging</content>
-            <skipDeletedFiles>true</skipDeletedFiles>
-            <pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
-            <scmBranch>${scm-publish.scmBranch}</scmBranch>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
@@ -767,6 +760,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.9.1</version>
+          <inherited>true</inherited>
+          <configuration>
+            <inputEncoding>UTF-8</inputEncoding>
+            <generateSitemap>true</generateSitemap>
+            <topSiteURL>http://hack23.github.io/cia/${project.version}/</topSiteURL>
+            <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
+          </configuration>
           <dependencies>
             <dependency>
               <groupId>xml-apis</groupId>
@@ -789,13 +789,6 @@
               <version>0.1.55</version>
             </dependency>
           </dependencies>
-          <inherited>true</inherited>
-          <configuration>
-            <inputEncoding>UTF-8</inputEncoding>
-            <generateSitemap>true</generateSitemap>
-            <topSiteURL>http://hack23.github.io/cia/${project.version}/</topSiteURL>
-            <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
@@ -1138,10 +1131,10 @@
         <executions>
           <execution>
             <id>verify-forbidden-apis</id>
-            <phase>compile</phase>
             <goals>
               <goal>check</goal>
             </goals>
+            <phase>compile</phase>
             <configuration>
               <targetVersion>${jdk.target.version}</targetVersion>
               <failOnUnsupportedJava>false</failOnUnsupportedJava>
@@ -1171,10 +1164,10 @@
           </execution>
           <execution>
             <id>verify-forbidden-test-apis</id>
-            <phase>test-compile</phase>
             <goals>
               <goal>testCheck</goal>
             </goals>
+            <phase>test-compile</phase>
             <configuration>
               <targetVersion>${jdk.target.version}</targetVersion>
               <failOnUnsupportedJava>false</failOnUnsupportedJava>
@@ -1198,6 +1191,15 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <configuration>
+          <includes>
+            <include>**/hack23/**</include>
+          </includes>
+          <excludes>
+            <exclude>**/*.jar</exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
             <id>pre-unit-test</id>
@@ -1211,25 +1213,16 @@
           </execution>
           <execution>
             <id>post-unit-test</id>
-            <phase>verify</phase>
             <goals>
               <goal>report-aggregate</goal>
               <goal>report</goal>
             </goals>
+            <phase>verify</phase>
             <configuration>
               <detail>true</detail>
             </configuration>
           </execution>
         </executions>
-        <inherited>true</inherited>
-        <configuration>
-          <includes>
-            <include>**/hack23/**</include>
-          </includes>
-          <excludes>
-            <exclude>**/*.jar</exclude>
-          </excludes>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -1350,20 +1343,20 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>bundle-sources</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
         <inherited>true</inherited>
         <configuration>
           <encoding>UTF-8</encoding>
         </configuration>
+        <executions>
+          <execution>
+            <id>bundle-sources</id>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -1380,6 +1373,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <inherited>true</inherited>
+        <configuration>
+          <jdkToolchain>
+            <version>${jdk.target.version}</version>
+          </jdkToolchain>
+          <source>${jdk.src.version}</source>
+          <target>${jdk.target.version}</target>
+        </configuration>
         <executions>
           <execution>
             <id>default-compile</id>
@@ -1403,14 +1404,6 @@
             </configuration>
           </execution>
         </executions>
-        <inherited>true</inherited>
-        <configuration>
-          <jdkToolchain>
-            <version>${jdk.target.version}</version>
-          </jdkToolchain>
-          <source>${jdk.src.version}</source>
-          <target>${jdk.target.version}</target>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
@@ -1466,19 +1459,26 @@
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
         <artifactId>sortpom-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>sort</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <createBackupFile>false</createBackupFile>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sort</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${cia.project.versions.h2}</version>
+      </extension>
+    </extensions>
   </build>
   <profiles>
     <profile>
@@ -1749,19 +1749,25 @@
           <value>true</value>
         </property>
       </activation>
+      <properties>
+        <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
+        <cyclonedx.skipAttach>false</cyclonedx.skipAttach>
+        <cyclonedx.skip>false</cyclonedx.skip>
+      </properties>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>3.0.0</version>
+            <inherited>true</inherited>
             <executions>
               <execution>
                 <id>createdepdir</id>
-                <phase>generate-sources</phase>
                 <goals>
                   <goal>run</goal>
                 </goals>
+                <phase>generate-sources</phase>
                 <configuration>
                   <target>
                     <mkdir dir="${project.build.directory}/dependency"></mkdir>
@@ -1769,21 +1775,11 @@
                 </configuration>
               </execution>
             </executions>
-            <inherited>true</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.2.0</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
             <inherited>true</inherited>
             <configuration>
               <source>${javadoc.src.version}</source>
@@ -1816,34 +1812,34 @@
               <docencoding>UTF-8</docencoding>
               <additionalOptions>-createPumlFiles</additionalOptions>
             </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <artifactId>maven-source-plugin</artifactId>
             <version>3.2.1</version>
+            <inherited>true</inherited>
             <executions>
               <execution>
                 <id>bundle-sources</id>
-                <phase>package</phase>
                 <goals>
                   <goal>jar-no-fork</goal>
                   <goal>test-jar-no-fork</goal>
                 </goals>
+                <phase>package</phase>
               </execution>
             </executions>
-            <inherited>true</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
             <inherited>true</inherited>
             <configuration>
               <gpgArguments>
@@ -1851,14 +1847,18 @@
                 <arg>loopback</arg>
               </gpgArguments>
             </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
-      <properties>
-        <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
-        <cyclonedx.skipAttach>false</cyclonedx.skipAttach>
-        <cyclonedx.skip>false</cyclonedx.skip>
-      </properties>
     </profile>
     <profile>
       <id>release-site</id>
@@ -1892,21 +1892,6 @@
             <groupId>org.jboss.tattletale</groupId>
             <artifactId>tattletale-maven</artifactId>
             <version>1.2.0.Beta2</version>
-            <executions>
-              <execution>
-                <phase>site</phase>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>${cia.project.versions.javassist}</version>
-              </dependency>
-            </dependencies>
             <inherited>true</inherited>
             <configuration>
               <reports>multiplejars</reports>
@@ -1915,6 +1900,21 @@
               <destination>${project.build.directory}/site/tattleTaleReport</destination>
               <graphvizDot>${graphviz.dot.executable}</graphvizDot>
             </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${cia.project.versions.javassist}</version>
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -1981,6 +1981,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
             <version>${surefire.version}</version>
+            <inherited>true</inherited>
             <reportSets>
               <reportSet>
                 <reports>
@@ -1988,7 +1989,6 @@
                 </reports>
               </reportSet>
             </reportSets>
-            <inherited>true</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -2000,6 +2000,11 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
             <version>2.8.1</version>
+            <inherited>true</inherited>
+            <configuration>
+              <allowSnapshots>true</allowSnapshots>
+              <rulesUri>${root.dir}parent-pom/src/config/version-rules.xml</rulesUri>
+            </configuration>
             <reportSets>
               <reportSet>
                 <reports>
@@ -2009,11 +2014,6 @@
                 </reports>
               </reportSet>
             </reportSets>
-            <inherited>true</inherited>
-            <configuration>
-              <allowSnapshots>true</allowSnapshots>
-              <rulesUri>${root.dir}parent-pom/src/config/version-rules.xml</rulesUri>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -2041,16 +2041,6 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
             <version>2.8.1</version>
-            <executions>
-              <execution>
-                <id>use-latest-versions</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>use-latest-versions</goal>
-                  <goal>update-properties</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
               <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava,cia.project.versions.aspectj,cia.project.versions.slf4j,cia.project.versions.commons.lang,cia.project.versions.jaxb2.commons</excludeProperties>
               <properties>
@@ -2140,6 +2130,16 @@
               </excludes>
               <rulesUri>${root.dir}parent-pom/src/config/version-rules.xml</rulesUri>
             </configuration>
+            <executions>
+              <execution>
+                <id>use-latest-versions</id>
+                <goals>
+                  <goal>use-latest-versions</goal>
+                  <goal>update-properties</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -2152,16 +2152,6 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
             <version>2.8.1</version>
-            <executions>
-              <execution>
-                <id>use-latest-snapshots</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>use-latest-snapshots</goal>
-                  <goal>update-properties</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
               <rulesUri>${root.dir}parent-pom/src/config/version-rules.xml</rulesUri>
               <excludeProperties>cia.project.versions.spring,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
@@ -2250,6 +2240,16 @@
                 <exclude>com.vaadin:vaadin-spring</exclude>
               </excludes>
             </configuration>
+            <executions>
+              <execution>
+                <id>use-latest-snapshots</id>
+                <goals>
+                  <goal>use-latest-snapshots</goal>
+                  <goal>update-properties</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>

@@ -68,40 +68,40 @@
         <version>${cia.project.versions.spring.security}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -111,40 +111,40 @@
         <version>${cia.project.versions.spring.security}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -154,40 +154,40 @@
         <version>${cia.project.versions.spring.security}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
+            <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <groupId>org.aspectj</groupId>
           </exclusion>
           <exclusion>
-            <artifactId>commons-logging</artifactId>
             <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -204,7 +204,6 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions></extensions>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -232,5 +231,6 @@
       </plugins>
     </pluginManagement>
     <plugins></plugins>
+    <extensions></extensions>
   </build>
 </project>

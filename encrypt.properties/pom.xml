@@ -29,8 +29,8 @@
       <version>1.9.3</version>
       <exclusions>
         <exclusion>
-          <artifactId>jasypt</artifactId>
           <groupId>org.jasypt</groupId>
+          <artifactId>jasypt</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -50,8 +50,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -62,15 +62,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>appassembler-maven-plugin</artifactId>
         <version>2.1.0</version>
-        <executions>
-          <execution>
-            <id>encryptProperty</id>
-            <phase>package</phase>
-            <goals>
-              <goal>assemble</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <assembleDirectory>${project.build.directory}/encrypt-property-app</assembleDirectory>
           <programs>
@@ -80,6 +71,15 @@
             </program>
           </programs>
         </configuration>
+        <executions>
+          <execution>
+            <id>encryptProperty</id>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

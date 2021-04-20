@@ -39,28 +39,28 @@
       <scope>compile</scope>
       <exclusions>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>classmate</artifactId>
           <groupId>com.fasterxml</groupId>
+          <artifactId>classmate</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>antlr</artifactId>
           <groupId>antlr</groupId>
+          <artifactId>antlr</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+          <artifactId>hibernate-commons-annotations</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>istack-commons-runtime</artifactId>
           <groupId>com.sun.istack</groupId>
+          <artifactId>istack-commons-runtime</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -75,24 +75,24 @@
       <version>${cia.project.versions.javers}</version>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>classgraph</artifactId>
           <groupId>io.github.classgraph</groupId>
+          <artifactId>classgraph</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -216,10 +216,10 @@
         <executions>
           <execution>
             <id>process-src-main-java</id>
-            <phase>process-sources</phase>
             <goals>
               <goal>process</goal>
             </goals>
+            <phase>process-sources</phase>
             <configuration>
               <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <outputDirectory>target/metamodel</outputDirectory>
@@ -234,14 +234,15 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
+        <configuration>
+          <hibernatetool destdir="target/classes">
+            <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+          </hibernatetool>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.apache.ant</groupId>
@@ -259,15 +260,14 @@
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
-          </hibernatetool>
-        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

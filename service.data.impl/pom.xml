@@ -43,24 +43,24 @@
       <version>${cia.project.versions.aws}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ion-java</artifactId>
           <groupId>software.amazon.ion</groupId>
+          <artifactId>ion-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -70,28 +70,28 @@
       <version>1.0.6</version>
       <exclusions>
         <exclusion>
-          <artifactId>aws-java-sdk-secretsmanager</artifactId>
           <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk-secretsmanager</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-databind</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-dataformat-cbor</artifactId>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>ion-java</artifactId>
           <groupId>software.amazon.ion</groupId>
+          <artifactId>ion-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -111,44 +111,44 @@
       <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.hibernate</groupId>
           <artifactId>hibernate-entitymanager</artifactId>
-          <groupId>org.hibernate</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.hibernate</groupId>
           <artifactId>hibernate-core</artifactId>
-          <groupId>org.hibernate</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-backward-codecs</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-misc</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-facet</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-core</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-queryparser</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-analyzers-common</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-core</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+          <artifactId>hibernate-commons-annotations</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -198,16 +198,16 @@
       <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-analyzers-common</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-facet</artifactId>
-          <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>lucene-queryparser</artifactId>
           <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-queryparser</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -222,56 +222,56 @@
       <version>${cia.project.versions.javers}</version>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>classgraph</artifactId>
           <groupId>io.github.classgraph</groupId>
+          <artifactId>classgraph</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-core</artifactId>
           <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-security-core</artifactId>
           <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-core</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-aop</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework.data</groupId>
           <artifactId>spring-data-jpa</artifactId>
-          <groupId>org.springframework.data</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework.data</groupId>
           <artifactId>spring-data-commons</artifactId>
-          <groupId>org.springframework.data</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>polyjdbc</artifactId>
           <groupId>org.polyjdbc</groupId>
+          <artifactId>polyjdbc</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -281,16 +281,16 @@
       <version>${cia.project.versions.spring.data}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-jcl</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-beans</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -300,8 +300,8 @@
       <version>0.7.6</version>
       <exclusions>
         <exclusion>
-          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -326,12 +326,12 @@
       <version>${cia.project.versions.guava}</version>
       <exclusions>
         <exclusion>
-          <artifactId>failureaccess</artifactId>
           <groupId>com.google.guava</groupId>
+          <artifactId>failureaccess</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>checker-qual</artifactId>
           <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -351,8 +351,8 @@
       <version>${cia.project.versions.hibernate.lucene}</version>
       <exclusions>
         <exclusion>
-          <artifactId>lucene-core</artifactId>
           <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -361,8 +361,8 @@
       <artifactId>lucene-analyzers-phonetic</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -401,12 +401,12 @@
       <version>4.3.3</version>
       <exclusions>
         <exclusion>
-          <artifactId>jetty-servlet</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlet</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>snakeyaml</artifactId>
           <groupId>org.yaml</groupId>
+          <artifactId>snakeyaml</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -420,8 +420,8 @@
       <artifactId>commons-beanutils</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -431,12 +431,12 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -445,16 +445,16 @@
       <artifactId>spring-security-config</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>aopalliance</artifactId>
           <groupId>aopalliance</groupId>
+          <artifactId>aopalliance</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jdbc</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -464,12 +464,12 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>hibernate-jpa-2.1-api</artifactId>
           <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.1-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-logging</artifactId>
           <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -486,8 +486,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>javax.el-api</artifactId>
           <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -501,20 +501,20 @@
       <artifactId>poi</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-collections4</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-collections4</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -528,12 +528,12 @@
       <artifactId>poi-scratchpad</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -542,28 +542,28 @@
       <artifactId>poi-ooxml</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>curvesapi</artifactId>
           <groupId>com.github.virtuald</groupId>
+          <artifactId>curvesapi</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jakarta.xml.bind-api</artifactId>
           <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>pdfbox</artifactId>
           <groupId>org.apache.pdfbox</groupId>
+          <artifactId>pdfbox</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -573,8 +573,8 @@
       <version>${cia.project.versions.pdfbox}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -588,12 +588,12 @@
       <artifactId>spring-orm</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -602,12 +602,12 @@
       <artifactId>spring-jdbc</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -616,8 +616,8 @@
       <artifactId>spring-aspects</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
+          <artifactId>com.springsource.javax.persistence</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -627,12 +627,12 @@
       <version>${cia.project.versions.spring}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -654,8 +654,8 @@
       <version>3.9.2</version>
       <exclusions>
         <exclusion>
-          <artifactId>jaxb-runtime</artifactId>
           <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -665,12 +665,12 @@
       <version>${cia.project.versions.hibernate}</version>
       <exclusions>
         <exclusion>
-          <artifactId>hibernate-core</artifactId>
           <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>cache-api</artifactId>
           <groupId>javax.cache</groupId>
+          <artifactId>cache-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -684,52 +684,52 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>istack-commons-runtime</artifactId>
           <groupId>com.sun.istack</groupId>
+          <artifactId>istack-commons-runtime</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>antlr</artifactId>
           <groupId>antlr</groupId>
+          <artifactId>antlr</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-jpa-2.1-api</artifactId>
           <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.1-api</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>geronimo-jta_1.1_spec</artifactId>
           <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jta_1.1_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>classmate</artifactId>
           <groupId>com.fasterxml</groupId>
+          <artifactId>classmate</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jandex</artifactId>
           <groupId>org.jboss</groupId>
+          <artifactId>jandex</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+          <artifactId>hibernate-commons-annotations</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jaxb-runtime</artifactId>
           <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>javax.activation-api</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -743,8 +743,8 @@
       <artifactId>jaxb-xjc</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jakarta.activation</artifactId>
           <groupId>com.sun.activation</groupId>
+          <artifactId>jakarta.activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -763,8 +763,8 @@
       <artifactId>jaxb-api</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>javax.activation-api</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -802,12 +802,12 @@
       <artifactId>hibernate-validator</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>jboss-logging</artifactId>
           <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>classmate</artifactId>
           <groupId>com.fasterxml</groupId>
+          <artifactId>classmate</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -850,8 +850,8 @@
       <version>${cia.project.versions.narayana}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jconsole</artifactId>
           <groupId>sun.jdk</groupId>
+          <artifactId>jconsole</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -861,8 +861,8 @@
       <version>${cia.project.versions.narayana}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jconsole</artifactId>
           <groupId>sun.jdk</groupId>
+          <artifactId>jconsole</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -872,12 +872,12 @@
       <version>7.6.0.Final-redhat-1</version>
       <exclusions>
         <exclusion>
-          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>jboss-connector-api_1.7_spec</artifactId>
           <groupId>org.jboss.spec.javax.resource</groupId>
+          <artifactId>jboss-connector-api_1.7_spec</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -887,12 +887,12 @@
       <version>2.8.0</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-pool2</artifactId>
           <groupId>org.apache.commons</groupId>
+          <artifactId>commons-pool2</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -914,8 +914,8 @@
       <artifactId>logback-classic</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>javax.mail</artifactId>
           <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -925,8 +925,8 @@
       <version>1.6.2</version>
       <exclusions>
         <exclusion>
-          <artifactId>activation</artifactId>
           <groupId>javax.activation</groupId>
+          <artifactId>activation</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -940,8 +940,8 @@
       <version>${cia.project.versions.postgresql}</version>
       <exclusions>
         <exclusion>
-          <artifactId>checker-qual</artifactId>
           <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -951,25 +951,6 @@
       <plugin>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>dbDoc</id>
-            <phase>site</phase>
-            <goals>
-              <goal>dbDoc</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/site/dbDoc</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${cia.project.versions.postgresql}</version>
-          </dependency>
-        </dependencies>
         <configuration>
           <changeLogFile>db-changelog.xml</changeLogFile>
           <driver>org.postgresql.Driver</driver>
@@ -977,18 +958,38 @@
           <username>eris</username>
           <password>discord</password>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${cia.project.versions.postgresql}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>dbDoc</id>
+            <goals>
+              <goal>dbDoc</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/dbDoc</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
+        <configuration>
+          <hibernatetool destdir="target/classes">
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+          </hibernatetool>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.apache.ant</groupId>
@@ -1016,15 +1017,14 @@
             <version>${cia.project.versions.javassist}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
-          </hibernatetool>
-        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-classes</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

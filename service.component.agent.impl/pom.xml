@@ -65,8 +65,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>javax.el-api</artifactId>
           <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -90,8 +90,8 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -100,16 +100,16 @@
       <artifactId>spring-security-config</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>aopalliance</artifactId>
           <groupId>aopalliance</groupId>
+          <artifactId>aopalliance</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
-          <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jdbc</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -118,12 +118,12 @@
       <artifactId>spring-orm</artifactId>
       <exclusions>
         <exclusion>
-          <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -133,8 +133,8 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>model.external.riksdagen.person.impl</artifactId>
           <groupId>com.hack23.cia</groupId>
+          <artifactId>model.external.riksdagen.person.impl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -154,8 +154,8 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>jdom</artifactId>
           <groupId>jdom</groupId>
+          <artifactId>jdom</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -165,8 +165,8 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
