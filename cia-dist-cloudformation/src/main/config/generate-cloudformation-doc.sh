@@ -3,7 +3,7 @@
 TARGET="../../../target/cloudformation-doc"
 mkdir -p $TARGET
 
-cat ../resources/cia-dist-cloudformation.template | /usr/local/bin/cfn-graph   | dot -Tpng -o$TARGET/cia-dist-cloudformation.png
+cat ../resources/cia-dist-cloudformation.json | /usr/local/bin/cfn-graph   | dot -Tpng -o$TARGET/cia-dist-cloudformation.png
 #/usr/local/bin/cfn-graph aws-org-account/AWSCloudFormationStackSetAdministrationRole.template | dot -Tpng -o$TARGET/aws-org-account-AWSCloudFormationStackSetAdministrationRole.png
 #/usr/local/bin/cfn-graph aws-org-account/stackset/CloudTrailAllAccounts.template | dot -Tpng -o$TARGET/aws-org-account-stackset-CloudTrailAllAccounts.png
 #/usr/local/bin/cfn-graph aws-org-account/stackset/vpc_flow_logs_enabled.template | dot -Tpng -o$TARGET/aws-org-account-stackset-vpc_flow_logs_enabled.png

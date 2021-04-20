@@ -46,7 +46,7 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>src/main/resources/cia-dist-cloudformation.template</file>
+                  <file>src/main/resources/cia-dist-cloudformation.json</file>
                   <type>template</type>
                 </artifact>
                 <artifact>

@@ -3,7 +3,7 @@
 TARGET="../../../target/cloudformation-nag-reports"
 mkdir -p $TARGET
 
-/usr/local/bin/cfn_nag_scan --input-path ../resources/cia-dist-cloudformation.template > $TARGET/cia-dist-cloudformation.template-nag-scan-report.txt
+/usr/local/bin/cfn_nag_scan --input-path ../resources/cia-dist-cloudformation.json > $TARGET/cia-dist-cloudformation.json-nag-scan-report.txt
 #/usr/local/bin/cfn_nag_scan --input-path aws-org-account/AWSCloudFormationStackSetAdministrationRole.template > $TARGET/aws-org-account-AWSCloudFormationStackSetAdministrationRole-nag-scan-report.txt
 #/usr/local/bin/cfn_nag_scan --input-path aws-org-account/stackset/CloudTrailAllAccounts.template > $TARGET/aws-org-account-stackset-CloudTrailAllAccounts-nag-scan-report.txt
 #/usr/local/bin/cfn_nag_scan --input-path aws-org-account/stackset/vpc_flow_logs_enabled.template > $TARGET/aws-org-account-stackset-vpc_flow_logs_enabled-nag-scan-report.txt
