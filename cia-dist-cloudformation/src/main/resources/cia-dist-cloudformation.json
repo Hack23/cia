@@ -668,10 +668,29 @@
                         ]
                     }
                 },
-                "Runtime": "python3.6",
+                "Runtime": "python3.8",
                 "Timeout": 300,
                 "Handler": "index.lambda_handler",
-                "MemorySize": 512
+                "MemorySize": 512,
+                "ReservedConcurrentExecutions" : 1,
+                "VpcConfig": {
+		          "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+		          ],
+		          "SecurityGroupIds": [
+		            {
+		              "Ref": "LambdaSecurityGroup"
+		            }
+		          ]
+		        }
             }
         },
         "ContinuousAssessmentResultsTopic": {
@@ -914,10 +933,30 @@
                         ]
                     }
                 },
-                "Runtime": "python3.6",
+                "Runtime": "python3.8",
                 "Timeout": 300,
                 "Handler": "index.lambda_handler",
-                "MemorySize": 512
+                "MemorySize": 512,
+                "ReservedConcurrentExecutions" : 1,
+                "VpcConfig": {
+		          "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+		          ],
+		          "SecurityGroupIds": [
+		            {
+		              "Ref": "LambdaSecurityGroup"
+		            }
+		          ]
+		        }
+                
             }
         },
         "InspectorScheduledRule": {
@@ -4244,6 +4283,80 @@
                 ]
             }
         },
+        "LambdaSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow access to Lambda",
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "SecurityGroupIngress": [
+                    {
+                        "Description": "vpc inbound access",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "CidrIp": {
+                            "Fn::FindInMap": [
+                                "SubnetConfig",
+                                "VPC",
+                                "CIDR"
+                            ]
+                        }
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "Description": "Server outbound https access",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            }
+        },
+        "ElasticsearchDomainSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Condition": "useElasticSearch",
+            "Properties": {
+                "GroupDescription": "Allow access to ElasticsearchDomain",
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "SecurityGroupIngress": [
+                    {
+                        "Description": "vpc inbound access",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "CidrIp": {
+                            "Fn::FindInMap": [
+                                "SubnetConfig",
+                                "VPC",
+                                "CIDR"
+                            ]
+                        }
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "Description": "Server outbound http access",
+                        "IpProtocol": "tcp",
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "Description": "Server outbound https access",
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            }
+        },
         "ElasticsearchDomain": {
             "Type": "AWS::Elasticsearch::Domain",
             "Condition": "useElasticSearch",
@@ -4267,13 +4380,31 @@
                     "VolumeSize": 30,
                     "VolumeType": "gp2"
                 },
-                "ElasticsearchVersion": "7.9",
+                "ElasticsearchVersion": "7.10",
                 "ElasticsearchClusterConfig": {
                     "InstanceType": {
                         "Ref": "ElasticSearchInstanceType"
                     },
                     "InstanceCount": 1
                 },
+		        "VPCOptions": {
+		          "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+		          ],
+		          "SecurityGroupIds": [
+		            {
+		              "Ref": "ElasticsearchDomainSecurityGroup"
+		            }
+		          ]
+		        },
                 "AccessPolicies": {
                     "Version": "2012-10-17",
                     "Statement": [
