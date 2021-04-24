@@ -146,7 +146,7 @@ Israel
 
  Docker repository : https://hub.docker.com/r/hack23/cia/
 
-1. docker run hack23/cia:2021.3.21 -p 28443:8443
+1. docker run hack23/cia:2021.4.24 -p 28443:8443
 
 2. Access server at https://localhost:28443/cia/ , register new user to get admin access
 
@@ -213,14 +213,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2021.3.21/cia-dist-deb-2021.3.21.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2021.4.24/cia-dist-deb-2021.4.24.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2021.3.21.deb
+$ sudo dpkg -i cia-dist-deb-2021.4.24.deb
 ```
 
 
