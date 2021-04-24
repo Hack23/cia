@@ -185,29 +185,32 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 
 		for (final CSVRecord csvRecord : records) {
-			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
-
-			for (final String field : specificFields) {
-				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
+			
+			if (csvRecord.get(ORGANISATIONSNUMMER) != null) {
+				final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
+	
+				for (final String field : specificFields) {
+					governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
+				}
+	
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JANUARY.getValue(),csvRecord.get(UTFALL_JANUARI));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.FEBRUARY.getValue(),csvRecord.get(UTFALL_FEBRUARI));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MARCH.getValue(),csvRecord.get(UTFALL_MARS));
+	
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.APRIL.getValue(),csvRecord.get(UTFALL_APRIL));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MAY.getValue(),csvRecord.get(UTFALL_MAJ));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JUNE.getValue(),csvRecord.get(UTFALL_JUNI));
+	
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JULY.getValue(),csvRecord.get(UTFALL_JULI));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.AUGUST.getValue(),csvRecord.get(UTFALL_AUGUSTI));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.SEPTEMBER.getValue(),csvRecord.get(UTFALL_SEPTEMBER));
+	
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.OCTOBER.getValue(),csvRecord.get(UTFALL_OKTOBER));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.NOVEMBER.getValue(),csvRecord.get(UTFALL_NOVEMBER));
+				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.DECEMBER.getValue(),csvRecord.get(UTFALL_DECEMBER));
+	
+				list.add(governmentBodyAnnualOutcomeSummary);
 			}
-
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JANUARY.getValue(),csvRecord.get(UTFALL_JANUARI));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.FEBRUARY.getValue(),csvRecord.get(UTFALL_FEBRUARI));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MARCH.getValue(),csvRecord.get(UTFALL_MARS));
-
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.APRIL.getValue(),csvRecord.get(UTFALL_APRIL));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MAY.getValue(),csvRecord.get(UTFALL_MAJ));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JUNE.getValue(),csvRecord.get(UTFALL_JUNI));
-
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JULY.getValue(),csvRecord.get(UTFALL_JULI));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.AUGUST.getValue(),csvRecord.get(UTFALL_AUGUSTI));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.SEPTEMBER.getValue(),csvRecord.get(UTFALL_SEPTEMBER));
-
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.OCTOBER.getValue(),csvRecord.get(UTFALL_OKTOBER));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.NOVEMBER.getValue(),csvRecord.get(UTFALL_NOVEMBER));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.DECEMBER.getValue(),csvRecord.get(UTFALL_DECEMBER));
-
-			list.add(governmentBodyAnnualOutcomeSummary);
 		}
 
 		return list;
