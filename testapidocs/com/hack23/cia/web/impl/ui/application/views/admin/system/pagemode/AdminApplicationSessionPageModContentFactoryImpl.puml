@@ -6,6 +6,7 @@
     class "<size:14>AdminApplicationSessionPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode" as com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminApplicationSessionPageModContentFactoryImpl [[AdminApplicationSessionPageModContentFactoryImpl.html]] {
         {static} +NAME: String
         +createContent(String, MenuBar, Panel): Layout
+        +matches(String, String): boolean
     }
 
     abstract class "<size:14>AbstractAdminSystemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode" as com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl [[AbstractAdminSystemPageModContentFactoryImpl.html]]

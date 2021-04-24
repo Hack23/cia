@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>AdminApplicationSessionChartsPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode" as com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminApplicationSessionChartsPageModContentFactoryImpl [[AdminApplicationSessionChartsPageModContentFactoryImpl.html]] {
+        {static} +NAME: String
+        +createContent(String, MenuBar, Panel): Layout
+        +matches(String, String): boolean
+    }
+
+    abstract class "<size:14>AbstractAdminSystemPageModContentFactoryImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode" as com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl [[AbstractAdminSystemPageModContentFactoryImpl.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl <|-- com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminApplicationSessionChartsPageModContentFactoryImpl
+
+    center footer UMLDoclet 2.0.12, PlantUML 1.2020.16
+@enduml

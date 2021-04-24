@@ -7,6 +7,7 @@
         {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
         {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
         {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        {abstract} +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
     }
 
     center footer UMLDoclet 2.0.12, PlantUML 1.2020.16

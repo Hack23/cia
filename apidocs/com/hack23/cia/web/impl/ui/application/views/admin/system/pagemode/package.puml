@@ -9,6 +9,7 @@
         class AdminApplicationSessionPageModContentFactoryImpl [[AdminApplicationSessionPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class AdminApplicationEventsPageModContentFactoryImpl [[AdminApplicationEventsPageModContentFactoryImpl.html]] {
@@ -47,6 +48,12 @@
             +createContent(String, MenuBar, Panel): Layout
         }
 
+        class AdminApplicationSessionChartsPageModContentFactoryImpl [[AdminApplicationSessionChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         class AdminApplicationEventsChartsPageModContentFactoryImpl [[AdminApplicationEventsChartsPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
@@ -77,6 +84,7 @@
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminMonitoringPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminLanguagePageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminLanguageContentPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationSessionChartsPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationEventsChartsPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminPortalPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminCountryPageModContentFactoryImpl

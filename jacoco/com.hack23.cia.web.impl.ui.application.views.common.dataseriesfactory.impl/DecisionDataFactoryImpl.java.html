@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DecisionDataFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl</a> &gt; <span class="el_source">DecisionDataFactoryImpl.java</span></div><h1>DecisionDataFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2020 James Pether Sörling
+ * Copyright 2010-2021 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 <span class="pc bpc" id="L71" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
 <span class="pc bpc" id="L72" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
-<span class="pc bpc" id="L73" title="1 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+<span class="pc bpc" id="L73" title="2 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
 
 <span class="fc" id="L75">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
 

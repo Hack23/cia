@@ -15,6 +15,7 @@
         class AdminApplicationSessionPageModContentFactoryImpl [[AdminApplicationSessionPageModContentFactoryImpl.html]] {
             {static} +NAME: String
             +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
         }
 
         class AdminLanguageContentPageModContentFactoryImpl [[AdminLanguageContentPageModContentFactoryImpl.html]] {
@@ -68,6 +69,12 @@
             +createContent(String, MenuBar, Panel): Layout
         }
 
+        class AdminApplicationSessionChartsPageModContentFactoryImpl [[AdminApplicationSessionChartsPageModContentFactoryImpl.html]] {
+            {static} +NAME: String
+            +createContent(String, MenuBar, Panel): Layout
+            +matches(String, String): boolean
+        }
+
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationEventsChartsPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationConfigurationPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationSessionPageModContentFactoryImpl
@@ -81,6 +88,7 @@
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminUserAccountPageModContentFactoryImpl
         com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl <|-- AbstractAdminSystemPageModContentFactoryImpl
         AbstractAdminSystemPageModContentFactoryImpl <|-- AdminMonitoringPageModContentFactoryImpl
+        AbstractAdminSystemPageModContentFactoryImpl <|-- AdminApplicationSessionChartsPageModContentFactoryImpl
     }
 
     namespace com.hack23.cia.web.impl.ui.application.views.common.pagemode {
