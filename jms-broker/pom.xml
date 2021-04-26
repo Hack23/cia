@@ -188,7 +188,7 @@
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jms_2.0_spec</artifactId>
-      <version>1.0-alpha-2-patched-auto-name</version>
+      <version>1.0.0.alpha-2-redhat-2</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
