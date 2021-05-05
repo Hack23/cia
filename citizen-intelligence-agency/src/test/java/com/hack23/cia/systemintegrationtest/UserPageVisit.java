@@ -57,10 +57,10 @@ public final class UserPageVisit extends Assert {
 	private static final String systemTestTargetUrl;
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 25000;
+	private static final int WAIT_FOR_PAGE_DELAY = 35000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 90000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 120000;
 
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");

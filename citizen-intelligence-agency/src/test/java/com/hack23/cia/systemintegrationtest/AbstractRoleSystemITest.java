@@ -186,8 +186,8 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			fail("No valid browser parameter:" + browser);
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-	    driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(90, TimeUnit.SECONDS);
+	    driver.manage().timeouts().setScriptTimeout(90, TimeUnit.SECONDS);
 
 
 	    webDriverMap.put(browser, driver);
