@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -168,6 +169,42 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		return typedQuery.getResultList();
 	}
 
+	@Override
+	public final List<T> findListByPropertyBeforeDate(final Date beforeDate, final SingularAttribute<T, Date> dateField, final Object[] values,
+			final SingularAttribute<T, ? extends Object>... properties) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(persistentClass);
+		final Root<T> root = criteriaQuery.from(persistentClass);
+		criteriaQuery.select(root);
+
+		final Object value = values[0];
+		final SingularAttribute<T, ? extends Object> property = properties[0];
+		Predicate condition;
+
+		condition = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root, value, property);
+
+		if (values.length > 1) {
+			for (int i = 1; i < properties.length; i++) {
+				final SingularAttribute<T, ? extends Object> property2 = properties[i];
+				final Object value2 = values[i];
+				final Predicate condition2 = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root,
+						value2, property2);
+
+				condition = criteriaBuilder.and(condition, condition2);
+			}
+		}
+
+		final Predicate beforeDateCondition = criteriaBuilder.greaterThan(root.get(dateField),beforeDate);
+		condition = criteriaBuilder.and(condition, beforeDateCondition);
+		
+		criteriaQuery.where(condition);
+
+		final TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
+		addCacheHints(typedQuery, "findListByProperty");
+
+		return typedQuery.getResultList();
+	}
+
+	
 	@Override
 	public final List<T> findListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());

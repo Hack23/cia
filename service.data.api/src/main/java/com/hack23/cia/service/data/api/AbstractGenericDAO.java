@@ -20,6 +20,7 @@
 package com.hack23.cia.service.data.api;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.metamodel.SingularAttribute;
@@ -64,6 +65,17 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 */
 	List<T> findListByProperty(Object[] values, SingularAttribute<T, ? extends Object>... properties);
 
+	/**
+	 * Find list by property before date.
+	 *
+	 * @param beforeDate the before date
+	 * @param dateField the date field
+	 * @param values the values
+	 * @param properties the properties
+	 * @return the list
+	 */
+	List<T> findListByPropertyBeforeDate(Date beforeDate, SingularAttribute<T, Date> dateField, Object[] values,
+			SingularAttribute<T, ? extends Object>... properties);
 
 	/**
 	 * Find list by property.
