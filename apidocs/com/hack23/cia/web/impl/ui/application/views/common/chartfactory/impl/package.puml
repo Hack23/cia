@@ -65,6 +65,7 @@
             +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
             +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
             +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+            +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
         }
 
         class ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl [[ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl.html]] {
@@ -248,6 +249,7 @@
             {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
             {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
             {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+            {abstract} +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
         }
         interface GenericChartDataManager<T> [[../api/GenericChartDataManager.html]] {
             {abstract} +findByValue(String): List<T>

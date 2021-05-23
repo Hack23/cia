@@ -70,10 +70,10 @@ public class UpdateApplicationConfigurationClickListener extends AbstractClickLi
 	@Override
 	public final void buttonClick(final ClickEvent event) {
 <span class="fc" id="L72">		final ServiceResponse response = getApplicationManager().service(request);</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="fc" id="L74">			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L74">			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());</span>
 
-<span class="fc" id="L76">			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + &quot;/&quot; + request.getApplicationConfigurationId());</span>
+<span class="nc" id="L76">			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + &quot;/&quot; + request.getApplicationConfigurationId());</span>
 
 		} else {
 <span class="fc" id="L79">			showNotification(UPDATE_APPLICATION_CONFIGURATION_FAILED,</span>
@@ -83,4 +83,4 @@ public class UpdateApplicationConfigurationClickListener extends AbstractClickLi
 		}
 <span class="fc" id="L84">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

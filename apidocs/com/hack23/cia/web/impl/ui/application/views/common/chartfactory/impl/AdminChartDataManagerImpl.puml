@@ -7,6 +7,7 @@
         +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
         +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
         +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
     }
 
     abstract class "<size:14>AbstractChartDataManagerImpl\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl [[AbstractChartDataManagerImpl.html]]
@@ -14,6 +15,7 @@
         {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
         {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
         {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+        {abstract} +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
     }
 
     com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AbstractChartDataManagerImpl <|-- com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.AdminChartDataManagerImpl

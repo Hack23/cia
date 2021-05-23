@@ -67,9 +67,9 @@ public class ManageUserAccountClickListener extends AbstractClickListener implem
 	@Override
 	public final void buttonClick(final ClickEvent event) {
 <span class="fc" id="L69">		final ServiceResponse response = getApplicationManager().service(manageUserAccountRequest);</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="fc" id="L71">			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());</span>
-<span class="fc" id="L72">			showNotification(OPERATION_COMPLETED, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L71">			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());</span>
+<span class="nc" id="L72">			showNotification(OPERATION_COMPLETED, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
 		} else {
 <span class="fc" id="L74">			showNotification(OPERATION_FAILED,</span>
 <span class="fc" id="L75">	                  response.getErrorMessage(),</span>
@@ -78,4 +78,4 @@ public class ManageUserAccountClickListener extends AbstractClickListener implem
 		}
 <span class="fc" id="L79">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -59,35 +59,35 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout content = createPanelContent();</span>
+<span class="nc" id="L62">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L64">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="nc" id="L64">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L66">		LabelFactory.createHeader2Label(content, ADMIN_AUTHOR_SUMMARY);</span>
+<span class="nc" id="L66">		LabelFactory.createHeader2Label(content, ADMIN_AUTHOR_SUMMARY);</span>
 
-<span class="fc" id="L68">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L69">		horizontalLayout.setSizeFull();</span>
+<span class="nc" id="L68">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L69">		horizontalLayout.setSizeFull();</span>
 
-<span class="fc" id="L71">		content.addComponent(horizontalLayout);</span>
-<span class="fc" id="L72">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
+<span class="nc" id="L71">		content.addComponent(horizontalLayout);</span>
+<span class="nc" id="L72">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L74">		final DataContainer&lt;ViewAuditAuthorSummary, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L75">				.getDataContainer(ViewAuditAuthorSummary.class);</span>
+<span class="nc" id="L74">		final DataContainer&lt;ViewAuditAuthorSummary, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L75">				.getDataContainer(ViewAuditAuthorSummary.class);</span>
 		
-<span class="fc" id="L77">		getGridFactory()</span>
-<span class="fc" id="L78">		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditAuthorSummary.class, dataContainer.getAll(),</span>
+<span class="nc" id="L77">		getGridFactory()</span>
+<span class="nc" id="L78">		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditAuthorSummary.class, dataContainer.getAll(),</span>
 				ADMIN_AUTHOR_SUMMARY,null,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				null, null, null);
 		
-<span class="fc" id="L83">		return content;</span>
+<span class="nc" id="L83">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L89" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(DataSummaryPageMode.AUTHORS.toString());</span>
+<span class="pc bpc" id="L89" title="3 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(DataSummaryPageMode.AUTHORS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

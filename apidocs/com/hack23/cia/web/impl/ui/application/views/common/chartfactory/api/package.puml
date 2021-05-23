@@ -70,6 +70,7 @@
             {abstract} +createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout): void
             {abstract} +createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout, String, String): void
             {abstract} +createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout, String): void
+            {abstract} +createApplicationSessionPageDailySummaryChart(VerticalLayout): void
         }
 
         interface OrgDocumentChartDataManager [[OrgDocumentChartDataManager.html]] {

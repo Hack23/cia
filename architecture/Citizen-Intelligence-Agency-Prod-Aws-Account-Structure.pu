@@ -68,6 +68,6 @@ node "Operation Center Account" <<Deployment Node: Aws Account>> as 8 {
 41 .[#707070].> 29 : create/restrict
 41 .[#707070].> 36 : create/restrict
 41 .[#707070].> 28 : create/restrict
-28 .[#707070].> 30 : Monitor event/audit
 28 .[#707070].> 30 : publish event/audit
+28 .[#707070].> 30 : Monitor event/audit
 @enduml

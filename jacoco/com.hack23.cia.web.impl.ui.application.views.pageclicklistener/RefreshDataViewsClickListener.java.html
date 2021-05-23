@@ -43,14 +43,14 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	 * @param serviceRequest the service request
 	 */
 	public RefreshDataViewsClickListener(final RefreshDataViewsRequest serviceRequest) {
-<span class="fc" id="L46">		super();</span>
-<span class="fc" id="L47">		this.serviceRequest = serviceRequest;</span>
-<span class="fc" id="L48">	}</span>
+<span class="nc" id="L46">		super();</span>
+<span class="nc" id="L47">		this.serviceRequest = serviceRequest;</span>
+<span class="nc" id="L48">	}</span>
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-<span class="fc" id="L52">		getApplicationManager().asyncService(serviceRequest);</span>
-<span class="fc" id="L53">		showNotification(REFRESH_VIEWS_STARTED, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
-<span class="fc" id="L54">	}</span>
+<span class="nc" id="L52">		getApplicationManager().asyncService(serviceRequest);</span>
+<span class="nc" id="L53">		showNotification(REFRESH_VIEWS_STARTED, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="nc" id="L54">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

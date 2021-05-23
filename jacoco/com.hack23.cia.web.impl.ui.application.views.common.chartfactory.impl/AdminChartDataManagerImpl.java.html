@@ -97,36 +97,36 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	@Override
 	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
 
-<span class="fc" id="L100">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
+<span class="nc" id="L100">		final Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; map = getApplicationActionEventPageDailySummaryMap();</span>
 
-<span class="fc" id="L102">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="nc" id="L102">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="fc" id="L104">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="nc" id="L104">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="fc" id="L106">		final Series series = new Series();</span>
+<span class="nc" id="L106">		final Series series = new Series();</span>
 
-<span class="fc bfc" id="L108" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; entry : map.entrySet()) {</span>
 
-<span class="pc bpc" id="L110" title="1 of 2 branches missed.">			if (entry.getKey() != null) {</span>
-<span class="fc" id="L111">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">			if (entry.getKey() != null) {</span>
+<span class="nc" id="L111">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
 
-<span class="fc" id="L113">				dataSeries.newSeries();</span>
-<span class="fc" id="L114">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
-<span class="fc bfc" id="L115" title="All 2 branches covered.">				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {</span>
-<span class="fc" id="L116">					dataSeries.add(</span>
-<span class="fc" id="L117">							simpleDateFormat.format(</span>
-<span class="fc" id="L118">									dataSummaryDaily.getEmbeddedId().getCreatedDate()),</span>
-<span class="fc" id="L119">							dataSummaryDaily.getHits());</span>
-<span class="fc" id="L120">				}</span>
+<span class="nc" id="L113">				dataSeries.newSeries();</span>
+<span class="nc" id="L114">				final List&lt;ViewApplicationActionEventPageDailySummary&gt; list = entry.getValue();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {</span>
+<span class="nc" id="L116">					dataSeries.add(</span>
+<span class="nc" id="L117">							simpleDateFormat.format(</span>
+<span class="nc" id="L118">									dataSummaryDaily.getEmbeddedId().getCreatedDate()),</span>
+<span class="nc" id="L119">							dataSummaryDaily.getHits());</span>
+<span class="nc" id="L120">				}</span>
 			}
 
-<span class="fc" id="L123">		}</span>
+<span class="nc" id="L123">		}</span>
 
-<span class="fc" id="L125">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
-<span class="fc" id="L126">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="fc" id="L127">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+<span class="nc" id="L125">		addChart(content, &quot;Application Action Events daily Summary&quot;,</span>
+<span class="nc" id="L126">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L127">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
 				true);
-<span class="fc" id="L129">	}</span>
+<span class="nc" id="L129">	}</span>
 
 	@Override
 	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,
@@ -188,11 +188,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * @return the application action event page daily summary map
 	 */
 	private Map&lt;String, List&lt;ViewApplicationActionEventPageDailySummary&gt;&gt; getApplicationActionEventPageDailySummaryMap() {
-<span class="fc" id="L191">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L192">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
+<span class="nc" id="L191">		final DataContainer&lt;ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L192">				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);</span>
 
-<span class="fc" id="L194">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
-<span class="fc" id="L195">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
+<span class="nc" id="L194">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
+<span class="nc" id="L195">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getPage()));</span>
 	}
 
 	/**
@@ -242,27 +242,27 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	@Override
 	public void createApplicationSessionPageDailySummaryChart(VerticalLayout content) {
-<span class="fc" id="L245">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="nc" id="L245">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="fc" id="L247">		final DataContainer&lt;ApplicationSession, Serializable&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);</span>
-<span class="fc" id="L248">		Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()</span>
-<span class="fc" id="L249">	                .collect(Collectors.groupingBy(p -&gt; simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));</span>
+<span class="nc" id="L247">		final DataContainer&lt;ApplicationSession, Serializable&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);</span>
+<span class="nc" id="L248">		Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()</span>
+<span class="nc" id="L249">	                .collect(Collectors.groupingBy(p -&gt; simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));</span>
 		
-<span class="fc" id="L251">		final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L252">		final Series series = new Series();</span>
-<span class="fc" id="L253">		series.addSeries(new XYseries().setLabel(&quot;Daily Active Users&quot;));</span>
-<span class="fc" id="L254">		dataSeries.newSeries();</span>
-<span class="fc bfc" id="L255" title="All 2 branches covered.">		for (final Entry&lt;String, Long&gt; entry : sessionByDayMap.entrySet()) {</span>
-<span class="fc" id="L256">			dataSeries.add(</span>
-<span class="fc" id="L257">					entry.getKey(),</span>
-<span class="fc" id="L258">						entry.getValue());</span>
-<span class="fc" id="L259">		}</span>
+<span class="nc" id="L251">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="nc" id="L252">		final Series series = new Series();</span>
+<span class="nc" id="L253">		series.addSeries(new XYseries().setLabel(&quot;Daily Active Users&quot;));</span>
+<span class="nc" id="L254">		dataSeries.newSeries();</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">		for (final Entry&lt;String, Long&gt; entry : sessionByDayMap.entrySet()) {</span>
+<span class="nc" id="L256">			dataSeries.add(</span>
+<span class="nc" id="L257">					entry.getKey(),</span>
+<span class="nc" id="L258">						entry.getValue());</span>
+<span class="nc" id="L259">		}</span>
 
-<span class="fc" id="L261">		addChart(content, &quot;Application Active Daily Users&quot;,</span>
-<span class="fc" id="L262">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="fc" id="L263">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
+<span class="nc" id="L261">		addChart(content, &quot;Application Active Daily Users&quot;,</span>
+<span class="nc" id="L262">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="nc" id="L263">						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),</span>
 				true);
-<span class="fc" id="L265">	}</span>
+<span class="nc" id="L265">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

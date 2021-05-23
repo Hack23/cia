@@ -55,27 +55,27 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout content = createPanelContent();</span>
+<span class="nc" id="L58">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L60">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L62">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="nc" id="L62">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L64">		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);</span>
+<span class="nc" id="L64">		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);</span>
 
-<span class="fc" id="L66">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
+<span class="nc" id="L66">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
 
-<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
+<span class="nc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L71">		return content;</span>
+<span class="nc" id="L71">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L77" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="pc bpc" id="L77" title="4 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
