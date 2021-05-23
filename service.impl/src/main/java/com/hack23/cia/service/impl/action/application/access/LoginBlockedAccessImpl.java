@@ -20,7 +20,6 @@ package com.hack23.cia.service.impl.action.application.access;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -218,25 +217,26 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);
 			}
 
-			if (!("0:0:0:0:0:0:0:1".equals(applicationSession.getIpInformation()) || "127.0.0.1".equals(applicationSession.getIpInformation()))) {
+			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
+			final List<ApplicationSession> applicationSessionsByIp = applicationSessionDAO
+					.findListByPropertyBeforeDate(oneHourAgo, ApplicationSession_.createdDate,new Object[] {applicationSession.getIpInformation()},ApplicationSession_.ipInformation);
 
-				final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
-				final List<ApplicationSession> applicationSessionsByIp = applicationSessionDAO
-						.findListByPropertyBeforeDate(oneHourAgo, ApplicationSession_.createdDate,new Object[] {applicationSession.getIpInformation()},ApplicationSession_.ipInformation);
+			final List<String> sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId)
+					.collect(Collectors.toList());
 
-				final List<String> sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId)
-						.collect(Collectors.toList());
+			final List<ApplicationActionEvent> applicationEventsWithIp = applicationActionEventDAO
+					.findListByPropertyInList(ApplicationActionEvent_.sessionId,
+							sessionIdsWithIp.toArray(new Object[0]));
 
-				final List<ApplicationActionEvent> recentFailedLogins = applicationActionEventDAO
-						.findListByPropertyInList(ApplicationActionEvent_.sessionId,
-								sessionIdsWithIp.toArray(new Object[0]));
+			List<ApplicationActionEvent> recentFailedLogins = applicationEventsWithIp
+					.stream()
+					.filter((final ApplicationActionEvent x) -> x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION
+							&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString())).collect(Collectors.toList());			
 
-
-				final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
-				if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {
-					loginBlockResultImpl.setBlocked(true);
-					loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
-				}
+			final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
+			if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {
+				loginBlockResultImpl.setBlocked(true);
+				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
 			}
 		}
 	}
