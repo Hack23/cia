@@ -229,13 +229,13 @@ $ sudo dpkg -i cia-dist-deb-2021.5.23.deb
 
 # Application package diagram overview
 
-![Package overview diagram](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/package-dependencies.svg)
+![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)
 [Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
 
 # Cloudformation template diagram
 
-[![Cloudformation](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/89/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/89/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)
+[![Cloudformation](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
