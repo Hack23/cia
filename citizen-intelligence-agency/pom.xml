@@ -427,7 +427,7 @@
     <dependency>
       <groupId>ca.pjer</groupId>
       <artifactId>logback-awslogs-appender</artifactId>
-      <version>1.4.0</version>
+      <version>1.5.0</version>
       <exclusions>
         <exclusion>
           <groupId>ch.qos.logback</groupId>
