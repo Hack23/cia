@@ -32,7 +32,7 @@ pipeline {
 
 	   stage ("SAST: Scan code and Check Quality gate") {
 	      steps {
-	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.checkov.reportFiles=cia-dist-cloudformation.checkov-report -Dsonar.cfn.nag.reportFiles=cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=zap-reports/baseline-scan-report.html"
+	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.checkov.reportFiless=cia-dist-cloudformation.checkov-report -Dsonar.cfn.nag.reportFiles=cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=zap-reports/baseline-scan-report.html"
 		  }
 	    }
 
