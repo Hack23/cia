@@ -457,8 +457,20 @@
           <artifactId>ant</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.ibm.icu</groupId>
+          <artifactId>icu4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>tapestry</groupId>
+          <artifactId>tapestry</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>colt</groupId>
           <artifactId>colt</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.code.findbugs</groupId>
+          <artifactId>jsr305</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
