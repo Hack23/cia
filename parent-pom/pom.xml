@@ -193,6 +193,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-bom</artifactId>
+        <version>${cia.project.versions.netty}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
         <groupId>com.ibm.icu</groupId>
         <artifactId>icu4j</artifactId>
         <version>69.1</version>
