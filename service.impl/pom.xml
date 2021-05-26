@@ -142,6 +142,10 @@
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-api</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>com.zaxxer</groupId>
+          <artifactId>HikariCP-java7</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -174,10 +178,6 @@
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>${cia.project.versions.antlr}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
