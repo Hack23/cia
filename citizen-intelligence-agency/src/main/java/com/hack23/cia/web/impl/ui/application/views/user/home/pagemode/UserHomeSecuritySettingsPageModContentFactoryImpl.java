@@ -29,6 +29,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.user.ChangePasswordRequest;
+import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -38,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ChangePasswordClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DeleteAccountClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -53,6 +55,9 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
+
+	/** The Constant DELETE_ACCOUNT. */
+	private static final String DELETE_ACCOUNT = "Delete Account";
 
 	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
@@ -132,6 +137,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		RowUtil.createRowComponent(grid, createChangePasswordButton(), "Change password");
 		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), "Enable MFA using google authenticator");
 		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), "Disable MFA using google authenticator");
+		RowUtil.createRowComponent(grid, createDeleteAccountButton(), "Delete Account");
 
 		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);
 
@@ -196,6 +202,30 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		return formLayout;
 	}
+	
+	private VerticalLayout createDeleteAccountButton() {
+
+		final VerticalLayout formLayout = new VerticalLayout();
+		formLayout.setSizeFull();
+
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		formLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+
+		final DeleteAccountRequest request = new DeleteAccountRequest();
+		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		request.setUserpassword("");
+		final ClickListener listener = new DeleteAccountClickListener(request);
+		getFormFactory().addRequestInputFormFields(formContent, request,
+				DeleteAccountRequest.class, AS_LIST, DELETE_ACCOUNT, listener);
+
+		return formLayout;
+	}
+
 	
 	@Override
 	public boolean matches(final String page, final String parameters) {

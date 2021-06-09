@@ -249,6 +249,15 @@ public final class UserPageVisit extends Assert {
 		performClickAction(enableGoogleAuthButton);
 	}
 
+	public void deleteAccount(final String password) throws Exception {
+		setFieldValue("Delete Account.userpassword",password);
+
+		final WebElement deleteButton = driver.findElement(By.id("Delete Account"));
+		assertNotNull("Expect to find a Delete Account Button",deleteButton);
+
+		performClickAction(deleteButton);
+	}
+
 	/**
 	 * Enable google authenticator.
 	 *

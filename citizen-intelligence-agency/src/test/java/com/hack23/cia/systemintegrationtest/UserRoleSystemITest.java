@@ -1323,6 +1323,42 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	@Test(timeout = 60000)
+	public void siteLoginDeleteAccountTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		userPageVisit.registerNewUser(username, password);
+
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
+
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
+
+
+		userPageVisit.deleteAccount(password);
+
+		final UserPageVisit failedLoginUserDeletedVisit = new UserPageVisit(driver, browser);
+
+		failedLoginUserDeletedVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		failedLoginUserDeletedVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
+
+		failedLoginUserDeletedVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
+	}
+
+	@Test(timeout = 60000)
 	public void siteLoginUserEnableGoogleAuthenticatorFailureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
