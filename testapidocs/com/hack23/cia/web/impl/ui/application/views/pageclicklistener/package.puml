@@ -75,6 +75,11 @@
             +selectionChange(SelectionEvent<ComplianceCheck>): void
         }
 
+        class DeleteAccountClickListener [[DeleteAccountClickListener.html]] {
+            +DeleteAccountClickListener(DeleteAccountRequest)
+            +buttonClick(ClickEvent): void
+        }
+
         class LogoutClickListener [[LogoutClickListener.html]] {
             +LogoutClickListener(LogoutRequest)
             +buttonClick(ClickEvent): void
@@ -121,6 +126,7 @@
         AbstractPageItemRendererClickListener <|-- PageItemPropertyClickListener
         com.vaadin.ui.Button.ClickListener <|.. ChangePasswordClickListener
         PageItemRendererClickListener <|.. ComplianceCheckPageItemRendererClickListener
+        com.vaadin.ui.Button.ClickListener <|.. DeleteAccountClickListener
         com.vaadin.ui.Button.ClickListener <|.. LogoutClickListener
         com.vaadin.ui.Button.ClickListener <|.. DisableGoogleAuthenticatorCredentialClickListener
         com.vaadin.ui.Button.ClickListener <|.. SendEmailClickListener

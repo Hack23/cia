@@ -267,7 +267,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.go
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,AbstractUserHomePageModContentFactoryImpl,0,15,0,0,0,6,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,UserHomeApplicationEventsPageModContentFactoryImpl,0,149,1,5,0,20,1,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,UserHomeOverviewPageModContentFactoryImpl,0,142,2,6,0,26,2,6,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,UserHomeSecuritySettingsPageModContentFactoryImpl,0,244,1,3,0,61,1,8,0,7
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,UserHomeSecuritySettingsPageModContentFactoryImpl,0,298,1,3,0,75,1,9,0,8
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.home.pagemode,UserHomeApplicationSessionsPageModContentFactoryImpl,0,149,1,5,0,21,1,6,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode,DataSummaryAuthorPageModContentFactoryImpl,51,36,3,1,12,5,3,3,1,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode,DataSummaryOverviewPageModContentFactoryImpl,204,28,5,1,45,6,4,3,1,3
@@ -312,6 +312,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pagecli
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,SendEmailClickListener,12,33,1,1,2,10,1,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,RegisterUserClickListener,0,44,0,2,0,12,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,ComplianceCheckPageItemRendererClickListener,0,44,0,4,0,13,0,7,0,5
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,DeleteAccountClickListener,0,33,0,2,0,10,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,LogoutClickListener,0,43,0,2,0,12,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,PageItemPropertyClickListener,0,37,0,0,0,9,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,DecisionFlowValueChangeListener,0,27,0,2,0,8,0,3,0,2

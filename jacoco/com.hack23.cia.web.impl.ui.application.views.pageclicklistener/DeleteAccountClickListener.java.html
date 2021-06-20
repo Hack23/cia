@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeleteAccountClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">DeleteAccountClickListener.java</span></div><h1>DeleteAccountClickListener.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2021 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
+import com.hack23.cia.service.api.action.user.DeleteAccountResponse;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
+
+/**
+ * The Class DeleteAccountClickListener.
+ */
+public class DeleteAccountClickListener extends AbstractClickListener implements ClickListener {
+
+	/** The Constant ERROR_MESSAGE. */
+	private static final String ERROR_MESSAGE = &quot;Error message&quot;;
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L40">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L41">			.getLogger(DeleteAccountClickListener.class);</span>
+
+	/** The Constant PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String PROBLEM_DELETE_ACCOUNT = &quot;Problem deleting account&quot;;
+
+	/** The Constant PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
+	private static final String PROBLEM_DELETE_ACCOUNT_SESSIONID = &quot;Problem deleting account, sessionid{}&quot;;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The google auth request. */
+	private final DeleteAccountRequest deleteAccountRequest;
+
+	/**
+	 * Instantiates a new delete account click listener.
+	 *
+	 * @param deleteAccountRequest the delete account request
+	 */
+<span class="fc" id="L60">	public DeleteAccountClickListener(final DeleteAccountRequest deleteAccountRequest) {</span>
+<span class="fc" id="L61">		this.deleteAccountRequest = deleteAccountRequest;</span>
+<span class="fc" id="L62">	}</span>
+
+	/**
+	 * Button click.
+	 *
+	 * @param event the event
+	 */
+	@Override
+	public final void buttonClick(final ClickEvent event) {
+<span class="fc" id="L71">		final DeleteAccountResponse response = (DeleteAccountResponse) getApplicationManager().service(deleteAccountRequest);</span>
+
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (ServiceResult.FAILURE == response.getResult()) {</span>
+<span class="fc" id="L74">			showNotification(PROBLEM_DELETE_ACCOUNT, ERROR_MESSAGE, Notification.Type.WARNING_MESSAGE);</span>
+<span class="fc" id="L75">			LOGGER.info(PROBLEM_DELETE_ACCOUNT_SESSIONID, deleteAccountRequest.getSessionId());</span>
+		}
+<span class="fc" id="L77">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

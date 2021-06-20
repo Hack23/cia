@@ -80,6 +80,11 @@
             +valueChange(ValueChangeEvent<String>): void
         }
 
+        class DeleteAccountClickListener [[DeleteAccountClickListener.html]] {
+            +DeleteAccountClickListener(DeleteAccountRequest)
+            +buttonClick(ClickEvent): void
+        }
+
         class SearchDocumentClickListener [[SearchDocumentClickListener.html]] {
             +SearchDocumentClickListener(SearchDocumentRequest, SearchDocumentResponseHandler)
             +buttonClick(ClickEvent): void
@@ -122,6 +127,7 @@
         com.vaadin.event.selection.SelectionListener <|-- PageItemRendererClickListener
         com.vaadin.ui.Button.ClickListener <|.. SetGoogleAuthenticatorCredentialClickListener
         com.vaadin.data.HasValue.ValueChangeListener <|.. DecisionFlowValueChangeListener
+        com.vaadin.ui.Button.ClickListener <|.. DeleteAccountClickListener
         com.vaadin.ui.Button.ClickListener <|.. SearchDocumentClickListener
         PageItemRendererClickListener <|.. ComplianceCheckPageItemRendererClickListener
         com.vaadin.ui.Button.ClickListener <|.. ApplicationLoginListener
