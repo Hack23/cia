@@ -24,6 +24,7 @@ open module com.hack23.cia.service.impl {
 	requires googleauth;
 
 	requires spring.security.core;
+	requires spring.security.crypto;
 	requires spring.core;
 	requires org.apache.commons.lang3;
 
