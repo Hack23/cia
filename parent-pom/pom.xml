@@ -128,7 +128,7 @@
     <cia.project.versions.hibernate.lucene>8.9.0</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.5.3.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.5.3.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.5.2.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.5.3.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final-redhat-1</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.0.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.0.Final</cia.project.versions.hibernate.validator>
