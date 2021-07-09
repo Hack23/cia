@@ -1321,7 +1321,7 @@
                 <requireEncoding>
                   <encoding>ISO-8859-1</encoding>
                   <includes>src/main/resources/**/*.properties</includes>
-                  <excludes>**/schema-mysql.properties,**/IAResources*.*,**/cia-service.properties</excludes>
+                  <excludes>**/schema-database.properties,**/IAResources*.*,**/cia-service.properties</excludes>
                 </requireEncoding>
               </rules>
             </configuration>

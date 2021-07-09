@@ -18,68 +18,6 @@
 		</layout>	
 	</appender>
 
-    <appender name="elasticsearch" class="com.internetitem.logback.elasticsearch.ElasticsearchAppender">
-        <url>${ELASTIC_SEARCH_URL:-http://localhost:9200/_bulk}</url>
-        <index>logs-%date{yyyy-MM-dd}</index>
-        <type>ciaruntime</type>
-        <loggerName>es-logger</loggerName> <!-- optional -->
-        <errorLoggerName>es-error-logger</errorLoggerName> <!-- optional -->
-        <connectTimeout>30000</connectTimeout> <!-- optional (in ms, default 30000) -->
-        <errorsToStderr>false</errorsToStderr> <!-- optional (default false) -->
-        <includeCallerData>false</includeCallerData> <!-- optional (default false) -->
-        <logsToStderr>false</logsToStderr> <!-- optional (default false) -->
-        <maxQueueSize>104857600</maxQueueSize> <!-- optional (default 104857600) -->
-        <maxRetries>3</maxRetries> <!-- optional (default 3) -->
-        <readTimeout>30000</readTimeout> <!-- optional (in ms, default 30000) -->
-        <sleepTime>250</sleepTime> <!-- optional (in ms, default 250) -->
-        <rawJsonMessage>false</rawJsonMessage> <!-- optional (default false) -->
-        <!-- <authentication class="com.internetitem.logback.elasticsearch.config.BasicAuthentication" />  optional -->
-        <properties>
-            <property>
-                <name>host</name>
-                <value>${HOSTNAME}</value>
-                <allowEmpty>false</allowEmpty>
-            </property>
-            <property>
-                <name>severity</name>
-                <value>%level</value>
-            </property>
-            <property>
-                <name>thread</name>
-                <value>%thread</value>
-            </property>
-            <property>
-                <name>stacktrace</name>
-                <value>%ex</value>
-            </property>
-            <property>
-                <name>logger</name>
-                <value>%logger</value>
-            </property>
-        </properties>
-        <headers>
-            <header>
-                <name>Content-Type</name>
-                <value>text/plain</value>
-            </header>
-        </headers>
-    </appender>
-
-
-    <logger name="es-error-logger" level="INFO" additivity="false">
-        <appender-ref ref="console" />
-    </logger>
-
-    <logger name="es-logger" level="INFO" additivity="false">
-        <appender name="ES_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <!-- ... -->
-            <encoder>
-                <pattern>%msg</pattern> <!-- This pattern is important, otherwise it won't be the raw Elasticsearch format anyomre -->
-            </encoder>
-        </appender>
-    </logger>
-
-
   <logger name="org.ehcache" level="error"/>
 
   <logger name="org.hibernate" level="error"/>
