@@ -66,10 +66,10 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		if (inputValidation != null) {
 			return inputValidation;
 		}
-		
+
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
-		
+
 		LogoutResponse response;
 		if (userAccount != null) {
 			eventRequest.setElementId(userAccount.getEmail());

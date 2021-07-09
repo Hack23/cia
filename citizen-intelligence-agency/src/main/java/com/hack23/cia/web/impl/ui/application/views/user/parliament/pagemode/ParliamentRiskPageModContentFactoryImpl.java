@@ -72,7 +72,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 		final String pageId = getPageId(parameters);
-		
+
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
 		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
@@ -84,24 +84,24 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		for (final Entry<String, List<RuleViolation>> idMapViolations : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
 			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));
 		}
-		
+
 		Collections.sort(checks, (o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
-		
+
 		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
 		}
 
 		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
 		}
 
-		
-		panelContent.addComponent(horizontalLayout);		
-		
+
+		panelContent.addComponent(horizontalLayout);
+
 		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheckImpl.class, checks, "Risk",
 				new String[] { "name", "resourceType", "numberRuleViolations", "ruleSummary" }, new String[] { "id", "ruleViolations" }, CLICK_LISTENER, null, null);
 
@@ -112,7 +112,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		return panelContent;
 
 	}
-	
+
 	/**
 	 * The Class ComplianceCheckImpl.
 	 */
@@ -146,7 +146,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 			return new ArrayList<>(ruleViolations);
 		}
 
-		
+
 		/**
 		 * Gets the number rule violations.
 		 *
@@ -165,7 +165,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 			final StringBuilder builder = new StringBuilder();
 			for (final RuleViolation ruleViolation : ruleViolations) {
 				builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');
-			}		
+			}
 			return builder.toString();
 		}
 
@@ -177,9 +177,9 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		@Override
 		public String getName() {
 			return name;
-		}		
+		}
 	}
-	
+
 
 	@Override
 	public boolean matches(final String page, final String parameters) {

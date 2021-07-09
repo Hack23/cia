@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,19 +32,19 @@ import org.hibernate.search.backend.lucene.analysis.LuceneAnalysisConfigurer;
 public class DataSearchAnalysisConfigurer implements LuceneAnalysisConfigurer {
 
 	@Override
-	public void configure(LuceneAnalysisConfigurationContext context) {
-		
+	public void configure(final LuceneAnalysisConfigurationContext context) {
+
 		context.analyzer("ngram").custom().tokenizer(StandardTokenizerFactory.class)
 		.tokenFilter(LowerCaseFilterFactory.class).tokenFilter(NGramFilterFactory.class)
 		.param("minGramSize", "3").param("maxGramSize", "3");
-		
+
 		context.analyzer("se").custom()
 		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
 		.tokenFilter(SwedishLightStemFilterFactory.class);
-		
+
 		context.analyzer("en").custom()
 		.tokenizer(StandardTokenizerFactory.class).tokenFilter(LowerCaseFilterFactory.class)
-		.tokenFilter(PorterStemFilterFactory.class);		
+		.tokenFilter(PorterStemFilterFactory.class);
 	}
 
 

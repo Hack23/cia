@@ -76,7 +76,7 @@ public enum ChartIndicators {
 
 	/** The partygender. */
 	PARTYGENDER,
-	
+
 	/** The partywinner. */
 	PARTYWINNER;
 

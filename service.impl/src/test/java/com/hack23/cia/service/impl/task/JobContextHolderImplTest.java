@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 		final JobContextHolderImpl jobContextHolderImpl = new JobContextHolderImpl(Mockito.mock(DataAgentApi.class),null,null,null);
 		assertNotNull(jobContextHolderImpl.getDataAgentApi());
 	}
-	
+
 	/**
 	 * Update search index test.
 	 *
@@ -69,7 +69,7 @@ public class JobContextHolderImplTest extends AbstractUnitTest {
 		jobContextHolderImpl.refreshViews();
 		Mockito.verify(viewDataManager,Mockito.only()).refreshViews();
 	}
-	
+
 	/**
 	 * Update rule violations test.
 	 *

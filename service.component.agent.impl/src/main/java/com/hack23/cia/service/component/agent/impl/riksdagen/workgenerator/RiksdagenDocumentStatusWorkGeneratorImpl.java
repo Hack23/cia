@@ -92,13 +92,13 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 							id);
 				}
 			}
-			
+
 			for (final DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {
 				 if ("planerat".equals(container.getDocument().getStatus())) {
 					 getJmsSender().send(documentStatusContainerWorkdestination,
 							 container.getDocument().getId());
 				 }
-			}		
+			}
 
 		} catch (final ParseException e) {
 			LOGGER.warn("Loading document status ", e);

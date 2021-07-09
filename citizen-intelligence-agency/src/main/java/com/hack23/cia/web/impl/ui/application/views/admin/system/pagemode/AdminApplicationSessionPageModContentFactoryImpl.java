@@ -61,16 +61,16 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 	private static final List<String> AS_LIST = Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
 			"ipInformation", "userAgentInformation");
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
+	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
 			"ipInformation", "userAgentInformation", "sessionId" };
 
-	private static final String[] COLUMN_ORDER2 = new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
+	private static final String[] COLUMN_ORDER2 = { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
 			"elementId", "errorMessage", "applicationMessage",
 			"modelObjectVersion" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"};
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"};
 
-	private static final String[] HIDE_COLUMNS2 = new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" };
+	private static final String[] HIDE_COLUMNS2 = { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;

@@ -151,14 +151,14 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		serviceRequest.setEmail(serviceRequest.getUsername() + "NoValidEmail");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
-		
+
 		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, errorResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
 		assertEquals("email must be a well-formed email address, userpassword must not be null", errorResponse.getErrorMessage());
 	}
-	
-	
+
+
 	/**
 	 * Service request validation failure test.
 	 *
@@ -175,7 +175,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		serviceRequest.setEmail(serviceRequest.getUsername()+"@hack23.com");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setUserpassword("Userpassword1!");
-		
+
 		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, errorResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());

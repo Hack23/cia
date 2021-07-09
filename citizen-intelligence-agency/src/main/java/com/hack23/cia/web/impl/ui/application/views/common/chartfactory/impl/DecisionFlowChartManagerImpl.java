@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -61,15 +61,15 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	 */
 	private static void addCommiteeSummary(final StringBuilder stringBuilder,
 			final Entry<String, List<ProposalCommitteeeSummary>> entry,
-			final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee) {		
+			final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee) {
 		if (vewRiksdagenCommittee.isPresent()) {
-			
+
 			final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
 					.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
-	
+
 			stringBuilder.append('\n').append(vewRiksdagenCommittee.get().getEmbeddedId().getDetail());
 			for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-				if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {					
+				if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
 					addEntry(stringBuilder, entry, docEntry);
 				}
 			}
@@ -161,15 +161,15 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	private static void addEntry(final StringBuilder stringBuilder,
 			final Entry<String, List<ProposalCommitteeeSummary>> entry,
 			final Entry<String, List<ProposalCommitteeeSummary>> docEntry) {
-		stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> "); 
-		
+		stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> ");
+
 		final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {									
+			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
 				stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
-				
+
 			}
 		}
 		stringBuilder.append(')');
@@ -178,13 +178,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	@Override
 	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {
 		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
-		
+
 
 		final SankeyChart chart = new SankeyChart();
 
 		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
-		
+
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
 
@@ -224,15 +224,15 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	}
 
 	@Override
-	public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {		
+	public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {
 		final TextArea area = new TextArea("Summary");
 		final StringBuilder stringBuilder = new StringBuilder();
 		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
-		
+
 		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {			
+		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
 			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))) {
 				addCommiteeSummary(stringBuilder, entry, committeeMap.get(entry.getKey()).stream().findFirst());
 			}

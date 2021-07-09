@@ -54,7 +54,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 
 	/** The Constant CLICK_LISTENER. */
 	private static final RuleViolationPageItemRendererClickListener CLICK_LISTENER = new RuleViolationPageItemRendererClickListener();
-	
+
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String PARLIAMENT_RULE_VIOLATIONS = "Parliament Rules violations";
 
@@ -70,31 +70,31 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-		
+
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
 		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
 				.getDataContainer(RuleViolation.class);
 
 		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-				
+
 		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
 		}
 
-		
+
 		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
-		}			
-		panelContent.addComponent(horizontalLayout);		
-		
-		
+		}
+		panelContent.addComponent(horizontalLayout);
+
+
 		Collections.sort(ruleViolations, (o1, o2) -> o2.getStatus().compareTo(o1.getStatus()));
-		
+
 		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, "Risk",
 				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "referenceId" }, CLICK_LISTENER, null, null);
 

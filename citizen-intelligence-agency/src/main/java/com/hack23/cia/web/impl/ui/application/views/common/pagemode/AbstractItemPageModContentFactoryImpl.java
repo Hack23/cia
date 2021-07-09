@@ -43,6 +43,6 @@ public abstract class AbstractItemPageModContentFactoryImpl<T> extends AbstractP
 	@Override
 	public final boolean validReference(final String parameters) {
 		return getItem(parameters) != null;
-	} 
-	
+	}
+
 }

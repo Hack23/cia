@@ -104,9 +104,9 @@ public final class DeleteAccountService extends
 
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
-				
-				List<ApplicationSession> applicationSessionsByUser = applicationSessionDAO.findListByProperty(ApplicationSession_.userId, userAccount.getUserId());
-				for (ApplicationSession applicationSession : applicationSessionsByUser) {
+
+				final List<ApplicationSession> applicationSessionsByUser = applicationSessionDAO.findListByProperty(ApplicationSession_.userId, userAccount.getUserId());
+				for (final ApplicationSession applicationSession : applicationSessionsByUser) {
 					if (!serviceRequest.getSessionId().equals(applicationSession.getSessionId())) {
 						applicationSessionDAO.delete(applicationSession);
 					} else {
@@ -116,22 +116,22 @@ public final class DeleteAccountService extends
 						applicationSession.setScreenSize("1280x1024");
 						applicationSession.setLocale(Locale.ENGLISH.toString());
 						applicationSession.setUserAgentInformation("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36\n");
-						List<ApplicationActionEvent> events = applicationSession.getEvents();
-						for (ApplicationActionEvent event : events) {
+						final List<ApplicationActionEvent> events = applicationSession.getEvents();
+						for (final ApplicationActionEvent event : events) {
 							event.setUserId(null);
 						}
 						applicationSessionDAO.persist(applicationSession);
 					}
 				}
-				
+
 				getUserDAO().delete(userAccount);
-				
+
 				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 				authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 				final AnonymousAuthenticationToken anonymousAuthenticationToken = new AnonymousAuthenticationToken(
 						serviceRequest.getSessionId(), "ROLE_ANONYMOUS", authorities);
 				SecurityContextHolder.getContext().setAuthentication(anonymousAuthenticationToken);
-				
+
 			} else {
 				response = new DeleteAccountResponse(ServiceResult.FAILURE);
 			}

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ import com.vaadin.server.WebBrowser;
  */
 public class WebBrowserUtilTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Gets the ip information null test.
 	 *
@@ -42,7 +42,7 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest("GET", "/path")));
 	    final WebBrowser webBrowser = new WebBrowser();
 		assertNull(WebBrowserUtil.getIpInformation(webBrowser));
-	}	
+	}
 
 	/**
 	 * Gets the ip information X forward proxy test.
@@ -56,7 +56,7 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 	    final WebBrowser webBrowser = new WebBrowser();
 		assertEquals("203.0.113.195",WebBrowserUtil.getIpInformation(webBrowser));
-	}	
+	}
 
 	/**
 	 * Gets the ip information X forward test.
@@ -70,6 +70,6 @@ public class WebBrowserUtilTest extends AbstractUnitTest {
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 	    final WebBrowser webBrowser = new WebBrowser();
 		assertEquals("203.0.113.195",WebBrowserUtil.getIpInformation(webBrowser));
-	}	
-	
+	}
+
 }

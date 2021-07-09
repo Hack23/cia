@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -65,7 +65,7 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 
 		assertNotNull("Expect a result",documentElementMap);
 	}
-	
+
 	/**
 	 * Gets the start year for document element test.
 	 *

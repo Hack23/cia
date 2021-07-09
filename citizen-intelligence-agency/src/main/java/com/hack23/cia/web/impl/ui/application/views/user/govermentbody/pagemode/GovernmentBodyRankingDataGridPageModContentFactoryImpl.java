@@ -45,12 +45,12 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "name", "ministry", "orgNumber",
+	private static final String[] COLUMN_ORDER = { "name", "ministry", "orgNumber",
 			"headCount", "annualWorkHeadCount" };
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 	private static final String GOVERNMENT_BODIES = "Government bodies";
-	private static final String[] HIDE_COLUMNS = new String[] { "vat", "consecutiveNumber", "comment", "mCode","govermentBodyId" };
+	private static final String[] HIDE_COLUMNS = { "vat", "consecutiveNumber", "comment", "mCode","govermentBodyId" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.GOVERNMENT_BODY_VIEW_NAME, "orgNumber");
 

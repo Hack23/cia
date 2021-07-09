@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,21 +39,21 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 		final String pageName = "pageName";
 		final String pageId = "pageId";
 		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
-		
+
 		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
-		
+
 		final HasValue hasValue = Mockito.mock(HasValue.class);
 		Mockito.when(hasValue.isEmpty()).thenReturn(true);
-		
+
 		Mockito.when(event.getSource()).thenReturn(hasValue);
-		
+
 		listener.valueChange(event);
-		
+
 		Mockito.verify(event,times(1)).getSource();
 
 	}
 
-	
+
 	/**
 	 * Selection value change test.
 	 */
@@ -64,22 +64,22 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 		final DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
 		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
-		
+
 		final Navigator navigatorMock = Mockito.mock(Navigator.class);
-		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
-				
+		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);
+
 		final ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
-		
+
 		final HasValue hasValue = Mockito.mock(HasValue.class);
 		Mockito.when(hasValue.isEmpty()).thenReturn(false);
-		
+
 		Mockito.when(event.getSource()).thenReturn(hasValue);
-		
+
 		final String value = "value";
 		Mockito.when(event.getValue()).thenReturn("value");
-			
+
 		listener.valueChange(event);
-		
+
 		Mockito.verify(navigatorMock, times(1)).navigateTo(pageName + "/CHARTS/DECISION_FLOW_CHART/" + pageId + "[" +value + "]");
 	}
 

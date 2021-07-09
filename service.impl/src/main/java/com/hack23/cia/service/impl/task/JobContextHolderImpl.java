@@ -42,7 +42,7 @@ public final class JobContextHolderImpl implements JobContextHolder {
 
 	/** The view data manager. */
 	private final ViewDataManager viewDataManager;
-	
+
 	private final RulesManager rulesManager;
 
 
@@ -79,7 +79,7 @@ public final class JobContextHolderImpl implements JobContextHolder {
 		this.viewDataManager.refreshViews();
 	}
 
-	
+
 	@Override
 	public void updateRuleViolations() {
 		this.rulesManager.processService();

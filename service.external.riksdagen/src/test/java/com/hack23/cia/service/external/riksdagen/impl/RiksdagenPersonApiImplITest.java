@@ -76,7 +76,7 @@ public final class RiksdagenPersonApiImplITest extends AbstractRiksdagenFunction
 		assertTrue(personList.getPerson().size() >= 1291);
 	}
 
-	
+
 	/**
 	 * Gets the person list failure test.
 	 *

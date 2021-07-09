@@ -39,22 +39,22 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 
 	/** The Constant STATUS_CELL. */
 	private static final int STATUS_CELL = 5;
-	
+
 	/** The Constant PERCENTAGE_CHANGE_PREVIOUS_CELL. */
 	private static final int PERCENTAGE_CHANGE_PREVIOUS_CELL = 3;
-	
+
 	/** The Constant PERCENTAGE_CHANGE_SAME_CELL. */
 	private static final int PERCENTAGE_CHANGE_SAME_CELL = 4;
-	
+
 	/** The Constant PERIOD_CELL. */
 	private static final int PERIOD_CELL = 1;
-	
+
 	/** The Constant VARIABLE_CELL. */
 	private static final int VARIABLE_CELL = 0;
-	
+
 	/** The Constant VALUE_CELL. */
 	private static final int VALUE_CELL = 2;
-	
+
 	/** The Constant ROW_LENGTH. */
 	private static final int ROW_LENGTH = 6;
 

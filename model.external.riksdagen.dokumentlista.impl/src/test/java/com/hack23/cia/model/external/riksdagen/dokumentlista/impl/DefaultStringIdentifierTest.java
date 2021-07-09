@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,10 +26,10 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  * The Class ModelSanityTest.
  */
 public final class DefaultStringIdentifierTest extends AbstractUnitTest {
-	
+
 	@Test
 	public void basicTest() {
-		String arg0 = "argo";
+		final String arg0 = "argo";
 		assertEquals(arg0,new DefaultStringIdentifier().fromDocumentIdentifier(arg0,null));
 		assertEquals(arg0,new DefaultStringIdentifier().toDocumentIdentifier(arg0,null));
 

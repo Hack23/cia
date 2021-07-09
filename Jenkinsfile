@@ -99,7 +99,7 @@ pipeline {
 
 	   stage ("SCA:Update CVE Database") {
 	      tools {
-    	    jdk 'JDK16'
+    	    jdk 'Java8'
 	    	}
 
 	      steps {
@@ -109,7 +109,7 @@ pipeline {
 
 	   stage ("SCA:Scan Known vulnerabilities report") {
 	   	 tools {
-    	    jdk 'JDK16'
+    	    jdk 'Java8'
 	    }
 
 	      steps {

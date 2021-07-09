@@ -49,7 +49,7 @@ public final class UserViews {
 
 	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
 	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
-	
+
 	/** The Constant MINISTRY_VIEW_NAME. */
 	public static final String MINISTRY_VIEW_NAME = "ministry";
 

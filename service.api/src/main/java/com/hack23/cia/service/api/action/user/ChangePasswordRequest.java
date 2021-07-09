@@ -49,7 +49,7 @@ public final class ChangePasswordRequest extends AbstractRequest {
 	@NotNull
 	@Size(min = 4, max = 64)
 	private String repeatNewPassword;
-	
+
 	/**
 	 * Instantiates a new change password request.
 	 */
@@ -89,7 +89,7 @@ public final class ChangePasswordRequest extends AbstractRequest {
 	 *
 	 * @param currentPassword the new current password
 	 */
-	public void setCurrentPassword(String currentPassword) {
+	public void setCurrentPassword(final String currentPassword) {
 		this.currentPassword = currentPassword;
 	}
 
@@ -107,7 +107,7 @@ public final class ChangePasswordRequest extends AbstractRequest {
 	 *
 	 * @param newPassword the new new password
 	 */
-	public void setNewPassword(String newPassword) {
+	public void setNewPassword(final String newPassword) {
 		this.newPassword = newPassword;
 	}
 
@@ -125,8 +125,8 @@ public final class ChangePasswordRequest extends AbstractRequest {
 	 *
 	 * @param repeatNewPassword the new repeat new password
 	 */
-	public void setRepeatNewPassword(String repeatNewPassword) {
+	public void setRepeatNewPassword(final String repeatNewPassword) {
 		this.repeatNewPassword = repeatNewPassword;
 	}
-	
+
 }

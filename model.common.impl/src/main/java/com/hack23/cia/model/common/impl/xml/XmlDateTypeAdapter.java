@@ -51,6 +51,7 @@ public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 	}
 
 
+	@Override
 	public Date unmarshal(final String s) {
 		if (s == null) {
 			return null;
@@ -68,7 +69,7 @@ public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 			}
 		} else if (dateStr.length() > YYYY_MM_DD.length()) {
 			try {
-				return DatatypeConverter.parseDate(s).getTime();	
+				return DatatypeConverter.parseDate(s).getTime();
 			} catch (final Exception e) {
 				LOGGER.warn("Problem parsing date from str:{}",s,e);
 				return null;
@@ -76,9 +77,10 @@ public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 		} else {
 			return null;
 		}
-		
+
 	}
 
+	@Override
 	public String marshal(final Date dt) {
 		if (dt == null) {
 			return null;

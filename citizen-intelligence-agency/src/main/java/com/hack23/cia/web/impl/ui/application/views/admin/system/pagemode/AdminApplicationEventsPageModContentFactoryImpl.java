@@ -53,9 +53,9 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 	private static final List<String> AS_LIST = Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage");
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" };
+	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 

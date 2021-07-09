@@ -8,13 +8,13 @@ Requirements
 
  To build and run the Citizen Intelligence Agency you need to install the following software.
 
- * Compiler & Runtime : JDK 11 & JDK 11-14  {{{https://adoptopenjdk.net/}https://adoptopenjdk.net/}}.
+ * Compiler & Runtime : JDK 16  {{{https://adoptopenjdk.net/}https://adoptopenjdk.net/}}.
 
- * Database : PostgreSQL 11.x {{{http://www.postgresql.org/}download}}
+ * Database : PostgreSQL 13.x {{{http://www.postgresql.org/}download}}
 
- * Build System : Maven 3.5.3 {{{http://maven.apache.org/download.html}download}}
+ * Build System : Maven 3.8.1 {{{http://maven.apache.org/download.html}download}}
 
- * Build tool : Ant 10.x {{{http://ant.apache.org/bindownload.cgi}download}}
+ * Build tool : Ant 1.10.10 {{{http://ant.apache.org/bindownload.cgi}download}}
 
  * Documentation generation : Graphviz {{{http://www.graphviz.org/}homepage}}
 

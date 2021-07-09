@@ -136,7 +136,7 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	 */
 	private ValApi createMockThrowsXmlAgentException() throws XmlAgentException {
 		final XmlAgent xmlAgent = mock(XmlAgent.class);
-		final ValApi valApiMockedXmlAgent = new ValApiImpl(xmlAgent);		
+		final ValApi valApiMockedXmlAgent = new ValApiImpl(xmlAgent);
 		Mockito.when(xmlAgent.unmarshallXml(isNull(),any(String.class),any(String.class),isNull(),isNull())).thenThrow(new XmlAgentException(new RuntimeException()));
 		return valApiMockedXmlAgent;
 	}
@@ -179,7 +179,7 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,29, list.size());
 	}
 
-	
+
 	/**
 	 * Test get parliament electoral regions failure.
 	 *

@@ -90,11 +90,11 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	/** The Constant COMMAND_GOVERNMENT_BODIES_INCOME. */
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
-	
+
 	/** The Constant COMMAND_GOVERNMENT_OUTCOME. */
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			MinistryPageMode.GOVERNMENT_OUTCOME.toString());
-	
+
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
@@ -104,10 +104,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	 * CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION.
 	 */
 	private static final String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION = "Current and past member and summary of total polticial days membership";
-	
+
 	/** The Constant CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT. */
 	private static final String CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT = "Current ministries, current members";
-	
+
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties active in ministries, head count";
 
@@ -178,17 +178,17 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
 
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS);
-		
+
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT);
-		
+
 		chartByTopic.addItem(GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
-		
+
 		chartByTopic.addItem(GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_INCOME);
-		
-		chartByTopic.addItem(GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);			
+
+		chartByTopic.addItem(GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
 
 		chartByTopic.addItem(GOVERNMENT_OUTCOME, VaadinIcons.GROUP, COMMAND_GOVERNMENT_OUTCOME);
-		
+
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
@@ -210,14 +210,14 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 				"Chart over all parties hold positons in ministries by headcount");
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");
 		createButtonLink(grid, GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_HEADCOUNT, "Chart over total headcount for all goverment bodies governed by ministries");
-		
+
 		createButtonLink(grid, GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_INCOME, "Chart over total income for all goverment bodies governed by ministries");
 
 		createButtonLink(grid, GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES_EXPENDITURE, "Chart over total spendingfor all goverment bodies governed by ministries");
-		
+
 		createButtonLink(grid, GOVERNMENT_OUTCOME, VaadinIcons.GROUP, COMMAND_GOVERNMENT_OUTCOME, "Economic and financial data for Sweden, SDDS Plus");
 
-		
+
 		createButtonLink(grid,GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT, "Gantt chart all goverment roles");
 
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");

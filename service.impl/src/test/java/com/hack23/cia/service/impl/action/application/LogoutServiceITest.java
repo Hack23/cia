@@ -96,7 +96,7 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 
 	}
-	
+
 	/**
 	 * Service request validation failure test.
 	 *

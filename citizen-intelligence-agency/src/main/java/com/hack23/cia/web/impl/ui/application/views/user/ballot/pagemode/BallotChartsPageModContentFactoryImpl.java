@@ -85,7 +85,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
 				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
-				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());				
+				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());
 				partySummarList.add(partySummary);
 			}
 		}

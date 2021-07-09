@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,7 +60,7 @@ public abstract class AbstractCommonBusinessServiceImpl<T extends ServiceRequest
 	public final Class<? extends ServiceRequest> getSupportedService() {
 		return clazz;
 	}
-	
+
 	/**
 	 * Gets the user account from security context.
 	 *
@@ -87,5 +87,5 @@ public abstract class AbstractCommonBusinessServiceImpl<T extends ServiceRequest
 		return userDAO;
 	}
 
-	
+
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -68,7 +68,7 @@ public class AwsPublicSystemDocumentation {
 
 		final DeploymentNode iamAccountNode = model.addDeploymentNode("IAM Account", "AWS", "Aws Account");
 		final Container iamAccountContainer = ciaSystem.addContainer("IAM Account", "AWS", "Aws Account");
-		
+
 		final DeploymentNode devAccountNode = model.addDeploymentNode("Development Account", "AWS", "Aws Account");
 		final Container devAccountContainer = ciaSystem.addContainer("Development Account", "AWS", "Aws Account");
 
@@ -77,24 +77,24 @@ public class AwsPublicSystemDocumentation {
 
 		final DeploymentNode auditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
 		final Container auditAccountContainer = ciaSystem.addContainer("Audit Account", "AWS", "Aws Account");
-		
+
 		final DeploymentNode appAccountNode = model.addDeploymentNode("Application Account", "AWS", "Aws Account");
 		final Container appAccountContainer = ciaSystem.addContainer("Application Account", "AWS", "Aws Account");
-		
+
 		awsAccountContainer.uses(iamAccountContainer, "create/restrict");
 		awsAccountContainer.uses(devAccountContainer, "create/restrict");
 		awsAccountContainer.uses(opCenterAccountContainer, "create/restrict");
 		awsAccountContainer.uses(auditAccountContainer, "create/restrict");
 		awsAccountContainer.uses(appAccountContainer, "create/restrict");
-		
+
 		awsAccountContainer.uses(auditAccountContainer, "publish event/audit");
 		iamAccountContainer.uses(auditAccountContainer, "publish event/audit");
 		devAccountContainer.uses(auditAccountContainer, "publish event/audit");
 		opCenterAccountContainer.uses(auditAccountContainer, "publish event/audit");
 		appAccountContainer.uses(auditAccountContainer, "publish event/audit");
-		
+
 		opCenterAccountContainer.uses(auditAccountContainer, "Monitor event/audit");
-		
+
 		iamAccountContainer.uses(devAccountContainer, "manage access");
 		iamAccountContainer.uses(appAccountContainer, "manage access");
 		iamAccountContainer.uses(opCenterAccountContainer, "manage access");
@@ -105,7 +105,7 @@ public class AwsPublicSystemDocumentation {
 		appAccountNode.add(appAccountContainer);
 		iamAccountNode.add(iamAccountContainer);
 		masterAccountNode.add(awsAccountContainer);
-		
+
 		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "\"Production Aws Account structure\"",
 				"\"Production Aws Account structure\"");
 
@@ -114,8 +114,8 @@ public class AwsPublicSystemDocumentation {
 		developmentDeploymentView.add(devAccountNode);
 		developmentDeploymentView.add(opCenterAccountNode);
 		developmentDeploymentView.add(auditAccountNode);
-		developmentDeploymentView.add(appAccountNode);		
-		
+		developmentDeploymentView.add(appAccountNode);
+
 
 		final Styles styles = viewSet.getConfiguration().getStyles();
 		styles.addElementStyle(Tags.COMPONENT).background("#1168bd").color("#ffffff");

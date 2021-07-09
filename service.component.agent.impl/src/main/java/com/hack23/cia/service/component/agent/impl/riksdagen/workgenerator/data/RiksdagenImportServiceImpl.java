@@ -153,7 +153,7 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	public Map<String, String> getCommitteeProposalComponentDataMap() {
 		return createMapFromList(committeeProposalComponentDataDAO.getIdList());
 	}
-	
+
 	@Override
 	public List<CommitteeProposalComponentData> getNoneCompletedCommitteeProposal() {
 		return committeeProposalComponentDataDAO.findListByEmbeddedProperty(CommitteeProposalComponentData_.document,CommitteeDocumentData.class,CommitteeDocumentData_.status,"planerat");
@@ -218,8 +218,8 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 						&& documentTypeValues.contains(documentElement.getDocumentType());
 			} else {
 				return getDate(documentElement.getCreatedDate()).after(after)
-						&& documentTypeValues.contains(documentElement.getDocumentType());				
-			}			
+						&& documentTypeValues.contains(documentElement.getDocumentType());
+			}
 		} catch (final ParseException e) {
 			LOGGER.warn("Problem getting date from{} : exception:{}", documentElement, e);
 			return false;

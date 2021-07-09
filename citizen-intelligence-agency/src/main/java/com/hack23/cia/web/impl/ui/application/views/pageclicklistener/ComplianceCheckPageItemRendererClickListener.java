@@ -54,7 +54,7 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 	 *            the violation
 	 */
 	private static void navigateToPage(final ComplianceCheck violation) {
-		if (violation.getResourceType() == ResourceType.PARTY) {			
+		if (violation.getResourceType() == ResourceType.PARTY) {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
 		} else {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
@@ -64,7 +64,7 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 	@Override
 	public void click(final RendererClickEvent<ComplianceCheck> event) {
 		navigateToPage(event.getItem());
-		
+
 	}
 
 

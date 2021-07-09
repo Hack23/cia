@@ -67,7 +67,7 @@ public final class DestroyApplicationSessionService
 			return inputValidation;
 		}
 
-		
+
 		final ApplicationSession applicationSession = applicationSessionDAO
 				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 

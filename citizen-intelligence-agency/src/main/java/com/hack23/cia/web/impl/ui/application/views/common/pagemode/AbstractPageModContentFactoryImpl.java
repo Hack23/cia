@@ -200,7 +200,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
 			}
 
-			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
+			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length());
 		} else {
 			return "";
 		}

@@ -274,5 +274,5 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 			return "";
 		}
 	}
-	
+
 }

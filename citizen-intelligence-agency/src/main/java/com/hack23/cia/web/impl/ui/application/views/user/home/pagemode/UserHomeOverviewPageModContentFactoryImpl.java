@@ -79,7 +79,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
 		final Optional<UserAccount> userAccount = getActiveUserAccount();
-		
+
 		if (userAccount.isPresent()) {
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
@@ -108,7 +108,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 			panel.setCaption(NAME + "::" + USERHOME);
 		}
-		
+
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
 

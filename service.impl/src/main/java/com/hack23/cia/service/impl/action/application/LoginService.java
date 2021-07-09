@@ -69,7 +69,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 	@Autowired
 	private VaultManager vaultManager;
-	
+
 	/**
 	 * Instantiates a new login service.
 	 */
@@ -84,20 +84,20 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		if (inputValidation != null) {
 			return inputValidation;
 		}
-		
+
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-		
+
 		final UserAccount userExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
 
-		
+
 		LoginResponse response;
 		if (!loginBlockResult.isBlocked() && userExist != null && userExist.getUserLockStatus() == UserLockStatus.UNLOCKED && passwordEncoder.matches(
 				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
 			final String authKey= vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), userExist);
-			
+
 			if (verifyOtp(serviceRequest, authKey)) {
 				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
@@ -114,13 +114,13 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 				userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
 				getUserDAO().persist(userExist);
-				response = new LoginResponse(ServiceResult.SUCCESS);	
+				response = new LoginResponse(ServiceResult.SUCCESS);
 			} else {
 				response = new LoginResponse(ServiceResult.FAILURE);
 				response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			}
-			
+
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
 			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
@@ -163,7 +163,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
 		eventRequest.setActionName(LoginRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
-		eventRequest.setElementId(serviceRequest.getEmail());		
+		eventRequest.setElementId(serviceRequest.getEmail());
 		return eventRequest;
 	}
 

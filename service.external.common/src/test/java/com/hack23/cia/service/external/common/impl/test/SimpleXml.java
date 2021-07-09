@@ -73,17 +73,17 @@ public final class SimpleXml {
     }
 
 	@Override
-	public final boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override
-	public final String toString() {
+	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.NO_FIELD_NAMES_STYLE);
 	}
 
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 

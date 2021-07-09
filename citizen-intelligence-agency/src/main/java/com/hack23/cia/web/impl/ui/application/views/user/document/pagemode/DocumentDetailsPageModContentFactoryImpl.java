@@ -43,11 +43,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "code", "detailName", "text" };
+	private static final String[] COLUMN_ORDER = { "code", "detailName", "text" };
 	/** The Constant DOCUMENT_DETAILS. */
 	private static final String DOCUMENT_DETAILS = "Document Details";
 	private static final String DOCUMENT_DETAILS2 = "Document details";
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**
 	 * Instantiates a new document details page mod content factory impl.

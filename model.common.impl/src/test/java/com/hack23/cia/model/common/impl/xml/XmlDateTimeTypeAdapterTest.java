@@ -38,9 +38,9 @@ public final class XmlDateTimeTypeAdapterTest extends AbstractTest {
 	 */
 	@Test
 	public void parseDateTimeTest() throws Exception {
-		String printTime = "2015-05-21T00:33:27.560+02:00";
-		XmlDateTimeTypeAdapter xmlDateTimeTypeAdapter = new XmlDateTimeTypeAdapter();
-		Date simpleSwedishDateForm = xmlDateTimeTypeAdapter.unmarshal(printTime);
+		final String printTime = "2015-05-21T00:33:27.560+02:00";
+		final XmlDateTimeTypeAdapter xmlDateTimeTypeAdapter = new XmlDateTimeTypeAdapter();
+		final Date simpleSwedishDateForm = xmlDateTimeTypeAdapter.unmarshal(printTime);
 		assertEquals("Expect specified time",printTime,xmlDateTimeTypeAdapter.marshal(simpleSwedishDateForm));
 
 		assertNull("Expect null",xmlDateTimeTypeAdapter.marshal(null));

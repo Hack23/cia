@@ -110,7 +110,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
 
 		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
-		
+
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}

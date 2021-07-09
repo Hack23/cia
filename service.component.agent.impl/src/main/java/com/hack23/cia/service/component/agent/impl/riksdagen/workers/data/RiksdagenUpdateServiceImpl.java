@@ -157,23 +157,23 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	 * @param committeeProposal the committee proposal
 	 */
 	private static void mergeCommitteeProposalComponentData(final CommitteeProposalComponentData exist,
-			final CommitteeProposalComponentData committeeProposal) {		
+			final CommitteeProposalComponentData committeeProposal) {
 		exist.getDocument().setStatus(committeeProposal.getDocument().getStatus());
 		exist.getDocument().setPublicDate(committeeProposal.getDocument().getPublicDate());
-	
+
 		exist.getDocument().setDocumentUrlText(committeeProposal.getDocument().getDocumentUrlText());
 		exist.getDocument().setDocumentUrlHtml(committeeProposal.getDocument().getDocumentUrlHtml());
 		exist.getDocument().setDocumentStatusUrlXml(committeeProposal.getDocument().getDocumentStatusUrlXml());
-		
+
 		exist.getDocument().setDocumentStatusUrlWww(committeeProposal.getDocument().getDocumentStatusUrlWww());
 		exist.getDocument().setCommitteeProposalUrlXml(committeeProposal.getDocument().getCommitteeProposalUrlXml());
-		
+
 		if (exist.getAgainstProposalContainer() == null) {
 			exist.setAgainstProposalContainer(committeeProposal.getAgainstProposalContainer());
 		} else if (exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty())  {
 			exist.getAgainstProposalContainer().setAgainstProposalList(committeeProposal.getAgainstProposalContainer().getAgainstProposalList());
 		}
-		
+
 		if (exist.getCommitteeProposalContainer() == null ) {
 			exist.setCommitteeProposalContainer(committeeProposal.getCommitteeProposalContainer());
 		} else if (exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
@@ -192,20 +192,20 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
 		final List<DocumentStatusContainer> exist = documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
 				DocumentData_.id, documentData.getDocument().getId());
-		if (exist.isEmpty()) {		
+		if (exist.isEmpty()) {
 			documentStatusContainerDAO.persist(documentData);
 		} else {
 			final DocumentStatusContainer existData = exist.get(0);
-						
+
 			mergeDocumentStatusContainer(existData,documentData);
-			
+
 			documentStatusContainerDAO.persist(existData);
 		}
 	}
 
-	private static void mergeDocumentStatusContainer(final DocumentStatusContainer existData, final DocumentStatusContainer documentData) {		
+	private static void mergeDocumentStatusContainer(final DocumentStatusContainer existData, final DocumentStatusContainer documentData) {
 			existData.getDocument().setStatus(documentData.getDocument().getStatus());
-			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());			
+			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());
 	}
 
 	@Override
@@ -213,13 +213,13 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		final DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());
 		if (existDocumentElement == null) {
 			documentElementDAO.persist(documentData);
-		} else {			
+		} else {
 			existDocumentElement.setCommitteeReportUrlXml(documentData.getCommitteeReportUrlXml());
 			existDocumentElement.setStatus(documentData.getStatus());
 			existDocumentElement.setDebateName(documentData.getDebateName());
 			existDocumentElement.setRelatedId(documentData.getRelatedId());
 			existDocumentElement.setSystemDate(documentData.getSystemDate());
-			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());			
+			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());
 			existDocumentElement.setLabel(documentData.getLabel());
 			existDocumentElement.setNote(documentData.getNote());
 			existDocumentElement.setNoteTitle(documentData.getNoteTitle());

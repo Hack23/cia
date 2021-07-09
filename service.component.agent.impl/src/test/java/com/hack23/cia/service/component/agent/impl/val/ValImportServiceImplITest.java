@@ -48,7 +48,7 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 
 	@Autowired
 	private ValImportService valImportService;
-	
+
 	/**
 	 * Load political parties success test.
 	 *
@@ -57,10 +57,10 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	 */
 	@Test
 	@Transactional
-	public void loadPoliticalPartiesSuccessTest() throws JMSException {		
-		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+	public void loadPoliticalPartiesSuccessTest() throws JMSException {
+		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {
 			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
-		}		
+		}
 		assertTrue(0 == swedenPoliticalPartyDAO.getSize());
 		valImportService.loadPoliticalParties();
 	}
@@ -73,11 +73,11 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	 */
 	@Test
 	@Transactional
-	public void loadPoliticalPartiesFinalSuccessTest() throws JMSException {				
+	public void loadPoliticalPartiesFinalSuccessTest() throws JMSException {
 		valImportService.loadPoliticalParties();
 		assertTrue(swedenPoliticalPartyDAO.getSize() > 0);
 	}
-	
+
 	/**
 	 * Load political parties val api failure test.
 	 *
@@ -87,17 +87,17 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	@Test
 	@Transactional
 	public void loadPoliticalPartiesFailureTest() throws ValApiException {
-		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {
 			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
-		}		
+		}
 
 		final ValApi valApi = mock(ValApi.class);
 		final ValImportServiceImpl valImportService = new ValImportServiceImpl(valApi,swedenPoliticalPartyDAO);
 
-		when(valApi.getSwedenPoliticalParties()).thenThrow(new ValApiException("",new RuntimeException()));		
+		when(valApi.getSwedenPoliticalParties()).thenThrow(new ValApiException("",new RuntimeException()));
 		valImportService.loadPoliticalParties();
 		verify(valApi, atLeastOnce()).getSwedenPoliticalParties();
 
-	}	
+	}
 
 }

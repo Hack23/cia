@@ -64,7 +64,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 
 		final List<GovernmentBodyAnnualSummary> item = getItem(parameters);
-		
+
 		if (item != null && !item.isEmpty()) {
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
 

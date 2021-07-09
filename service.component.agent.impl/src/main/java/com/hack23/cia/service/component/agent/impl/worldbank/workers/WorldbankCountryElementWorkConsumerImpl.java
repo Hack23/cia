@@ -66,7 +66,7 @@ MessageListener {
 		} catch (final JMSException e) {
 			LOGGER.warn("Error loading worldbank country:" , e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

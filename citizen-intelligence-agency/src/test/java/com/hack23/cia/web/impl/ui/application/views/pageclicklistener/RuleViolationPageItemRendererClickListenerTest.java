@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,15 +43,15 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
 		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
-		
+
 		final Navigator navigatorMock = Mockito.mock(Navigator.class);
-		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
-				
+		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);
+
 		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new RuleViolation("partyid", null, ResourceType.PARTY, null, null, null, null, null));
-			
+
 		listener.click(event);
-		
+
 		Mockito.verify(navigatorMock, times(1)).navigateTo("party/partyid");
 	}
 
@@ -63,31 +63,31 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
 		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
-		
+
 		final Navigator navigatorMock = Mockito.mock(Navigator.class);
-		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
-				
+		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);
+
 		final RendererClickEvent event = Mockito.mock(RendererClickEvent.class);
 		Mockito.when(event.getItem()).thenReturn(new RuleViolation("personid", null, ResourceType.POLITICIAN, null, null, null, null, null));
-			
+
 		listener.click(event);
-		
+
 		Mockito.verify(navigatorMock, times(1)).navigateTo("politician/personid");
 	}
 
-	
+
 	/**
 	 * Selection change event source empty test.
 	 */
 	@Test
 	public void selectionChangeEventSourceEmptyTest() {
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
-		
-		final SelectionEvent event = Mockito.mock(SelectionEvent.class);		
+
+		final SelectionEvent event = Mockito.mock(SelectionEvent.class);
 		Mockito.when(event.getAllSelectedItems()).thenReturn(new HashSet<>());
-		
+
 		listener.selectionChange(event);
-		
+
 		Mockito.verify(event,times(1)).getAllSelectedItems();
 
 	}

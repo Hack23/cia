@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -50,7 +50,7 @@ public class RuleViolation implements Serializable {
 
 	/** The id. */
 	private Long id;
-	
+
     private Date detectedDate;
 
 	/** The id. */
@@ -81,9 +81,9 @@ public class RuleViolation implements Serializable {
 	 * Instantiates a new rule violation.
 	 */
 	public RuleViolation() {
-		
+
 	}
-	
+
 	/**
 	 * Instantiates a new rule violation.
 	 *
@@ -129,7 +129,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param id the new id
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -150,7 +150,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param detectedDate the new detected date
 	 */
-	public void setDetectedDate(Date detectedDate) {
+	public void setDetectedDate(final Date detectedDate) {
 		this.detectedDate = new Date(detectedDate.getTime());
 	}
 
@@ -170,7 +170,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param referenceId the new reference id
 	 */
-	public void setReferenceId(String referenceId) {
+	public void setReferenceId(final String referenceId) {
 		this.referenceId = referenceId;
 	}
 
@@ -190,7 +190,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param name the new name
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -210,7 +210,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param resourceType the new resource type
 	 */
-	public void setResourceType(ResourceType resourceType) {
+	public void setResourceType(final ResourceType resourceType) {
 		this.resourceType = resourceType;
 	}
 
@@ -230,7 +230,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param ruleName the new rule name
 	 */
-	public void setRuleName(String ruleName) {
+	public void setRuleName(final String ruleName) {
 		this.ruleName = ruleName;
 	}
 
@@ -250,7 +250,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param ruleDescription the new rule description
 	 */
-	public void setRuleDescription(String ruleDescription) {
+	public void setRuleDescription(final String ruleDescription) {
 		this.ruleDescription = ruleDescription;
 	}
 
@@ -270,7 +270,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param ruleGroup the new rule group
 	 */
-	public void setRuleGroup(String ruleGroup) {
+	public void setRuleGroup(final String ruleGroup) {
 		this.ruleGroup = ruleGroup;
 	}
 
@@ -290,7 +290,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param status the new status
 	 */
-	public void setStatus(Status status) {
+	public void setStatus(final Status status) {
 		this.status = status;
 	}
 
@@ -310,7 +310,7 @@ public class RuleViolation implements Serializable {
 	 *
 	 * @param positive the new positive
 	 */
-	public void setPositive(String positive) {
+	public void setPositive(final String positive) {
 		this.positive = positive;
 	}
 

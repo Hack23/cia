@@ -101,7 +101,7 @@ public final class FormFactoryImpl implements FormFactory {
 					binder.forField(field).withConverter(converter).bind(property);
 				} else {
 					binder.forField(field).bind(property);
-				} 
+				}
 			}
 		}
 	}
@@ -120,7 +120,7 @@ public final class FormFactoryImpl implements FormFactory {
 			return new TextField();
 		}
 	}
-	
+
 
 	/**
 	 * Gets the converter for type.
@@ -131,7 +131,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 */
 	private static Converter getConverterForType(final Class<?> typeOfProperty) {
 		Converter converter;
-		
+
 		if (Date.class.equals(typeOfProperty)) {
 			converter = new StringToDateConverter();
 		} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
@@ -149,7 +149,7 @@ public final class FormFactoryImpl implements FormFactory {
 		} else {
 			converter = null;
 		}
-		
+
 		return converter;
 	}
 
@@ -237,8 +237,8 @@ public final class FormFactoryImpl implements FormFactory {
 		button.setIcon(VaadinIcons.BULLSEYE);
 		button.setEnabled(false);
 		binder.addStatusChangeListener(event -> button.setEnabled(event.getBinder().isValid()));
-		
-		
+
+
 		verticalLayout.addComponent(button);
 		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
 

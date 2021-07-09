@@ -84,7 +84,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 		comboBox.setSelectedItem(selectedYear);
-		
+
 		comboBox.addValueChangeListener(new DecisionFlowValueChangeListener(NAME,pageId));
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = getApplicationManager()

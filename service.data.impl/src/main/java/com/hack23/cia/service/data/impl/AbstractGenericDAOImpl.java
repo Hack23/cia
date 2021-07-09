@@ -195,7 +195,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 		final Predicate beforeDateCondition = criteriaBuilder.greaterThan(root.get(dateField),beforeDate);
 		condition = criteriaBuilder.and(condition, beforeDateCondition);
-		
+
 		criteriaQuery.where(condition);
 
 		final TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
@@ -204,7 +204,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		return typedQuery.getResultList();
 	}
 
-	
+
 	@Override
 	public final List<T> findListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
@@ -221,18 +221,18 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	public final List<T> findListByPropertyInList(final SingularAttribute<T, ? extends Object> property, final Object[] values) {
 		final List<T> result = new ArrayList<>();
 		final List<List<Object>> partitionedValues = Lists.partition(Arrays.asList(values), MAX_IN_VARIABLES);
-		
+
 		for (final List<Object> partitionQuoteIds: partitionedValues) {
 		  result.addAll(findListByPropertyInListInternal(property,partitionQuoteIds.toArray(new Object[0])));
-		}		
+		}
 		return result;
 	}
 
-	private final List<T> findListByPropertyInListInternal(final SingularAttribute<T, ? extends Object> property, final Object[] values) {		
+	private final List<T> findListByPropertyInListInternal(final SingularAttribute<T, ? extends Object> property, final Object[] values) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
-		final Root<T> root = criteriaQuery.from(getPersistentClass());		
+		final Root<T> root = criteriaQuery.from(getPersistentClass());
 		criteriaQuery.select(root).where(root.get(property).in(values));
-				
+
 		final TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
 		addCacheHints(typedQuery, "findListByPropertyInList");
 		return typedQuery.getResultList();

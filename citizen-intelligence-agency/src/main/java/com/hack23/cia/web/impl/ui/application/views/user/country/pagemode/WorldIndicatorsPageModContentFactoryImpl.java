@@ -78,7 +78,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 		final String pageId = getPageId(parameters);
 
-		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length(), parameters.length());
+		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length());
 
 		createDataIndicatorSummaryChartPanel(panelContent,indicator);
 

@@ -97,7 +97,7 @@ public final class DeleteAccountServiceITest extends AbstractServiceFunctionalIn
 		final List<UserAccount> checkUsernameList = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
 		assertEquals(0, checkUsernameList.size());
 	}
-	
+
 	/**
 	 * Service request validation failure test.
 	 *

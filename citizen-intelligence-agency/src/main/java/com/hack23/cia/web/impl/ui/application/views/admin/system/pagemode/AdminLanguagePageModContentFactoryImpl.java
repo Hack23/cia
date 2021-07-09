@@ -50,9 +50,9 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 	private static final List<String> AS_LIST = Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" );
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageName", "modelObjectVersion" };
+	private static final String[] COLUMN_ORDER = { "hjid", "languageName", "modelObjectVersion" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
 
 	private static final String LANGUAGE_DATA = "LanguageData";
 

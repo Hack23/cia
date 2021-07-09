@@ -56,10 +56,10 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String PARLIAMENT_DECISION_FLOW = "Parliament decision flow";
-	
+
 	@Autowired
 	private DecisionFlowChartManager decisionFlowChartManager;
-	
+
 	/**
 	 * Instantiates a new parliament decision flow page mod content factory impl.
 	 */
@@ -76,20 +76,20 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		String selectedYear = "2020/21";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
-		} 
-		
+		}
+
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
 		final List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
-		
+
 		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2020/21","2019/20","2018/19","2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
 		comboBox.setSelectedItem(selectedYear);
 		comboBox.addValueChangeListener(new DecisionFlowValueChangeListener(NAME,""));
-		
+
 		final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 		panelContent.addComponent(chart);
 		panelContent.setExpandRatio(chart, ContentRatio.LARGE);

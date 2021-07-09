@@ -32,12 +32,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 
 # Runtime
 
-[![JDK-11 or higher](https://img.shields.io/badge/jdk-11-green.svg)]
-[![JDK-12](https://img.shields.io/badge/jdk-12-green.svg)]
-[![JDK-13](https://img.shields.io/badge/jdk-13-green.svg)]
-[![JDK-14](https://img.shields.io/badge/jdk-14-green.svg)]
-[![JDK-15](https://img.shields.io/badge/jdk-15-green.svg)]
-[![JDK-16](https://img.shields.io/badge/jdk-16-green.svg)]
+[![JDK-16 or higher](https://img.shields.io/badge/jdk-16-green.svg)]
 [![JDK-17](https://img.shields.io/badge/jdk-17-orange.svg)]
 [![JDK-18](https://img.shields.io/badge/jdk-18-orange.svg)]
 
@@ -61,7 +56,7 @@ Limited functionality proper navigation, descriptions,content, ui and styling ar
 
 # Roadmap
 
-Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql 10.x, JDK10, Spring framework 5.x , Hibernate 6.x, Vaadin 8.x
+Plan to make it public some time after 2022.04, running Ubuntu 12.04, Postgresql 14.x, JDK17+, Spring framework 6.x , Hibernate 6.x, Vaadin 8.x
 
 
 #Resources
@@ -153,20 +148,20 @@ Israel
 
 # Installing Debian/Ubuntu package
 
- Currently only build a debian package, works with debian and ubuntu 14.04,16.04,16.10
+ Currently only build a debian package, works with debian and ubuntu 20.4+
 
 
 1. Installing database(postgres) and openjdk
 
 ```
-$ sudo apt-get install openjdk-11-jdk postgresql-11 pgadmin3
+$ sudo apt-get install openjdk-16-jdk postgresql-13 pgadmin3
 ```
 
 
 2. Installing Postgresql on Ubuntu
 
 ```
-$ sudo apt-get install postgresql-11 postgresql-contrib postgresql-11-pgaudit
+$ sudo apt-get install postgresql-13 postgresql-contrib postgresql-13-pgaudit
 ```
 
 3. Create empty database
@@ -183,7 +178,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 
 4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto
 
-Edit file "/etc/postgresql/11/main/postgresql.conf" set
+Edit file "/etc/postgresql/13/main/postgresql.conf" set
 
 ```
 max_prepared_transactions = 100
@@ -197,7 +192,7 @@ pg_stat_statements.max = 10000
 ```
 
 5. Modify postgres setting
-Edit file "/etc/postgresql/11/main/pg_hba.conf" add line
+Edit file "/etc/postgresql/13/main/pg_hba.conf" add line
 
 ```
 host all all ::1/128 md5

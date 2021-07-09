@@ -63,10 +63,10 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 	private static void addData(final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map, final Series series,
 			final DataSeries dataSeries) {
 		final Set<Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>>> entryMap = map.entrySet();
-		
+
 		for (final Entry<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> entry : entryMap) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
-			
+
 			dataSeries.newSeries();
 			for (final ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {
 					dataSeries.add(data.getEmbeddedId().getDate(),
@@ -82,19 +82,19 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 		final DataContainer<ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
 
-		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,				
+		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,
 				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
 
 		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
 		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
-					
+
 		final Series series = new Series();
 		final DataSeries dataSeries = new DataSeries();
-			
+
 		addData(map, series, dataSeries);
-			
+
 		addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
 

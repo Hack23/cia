@@ -160,7 +160,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		createButtonLink(grid,PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId), "Trend of agreements with other parties during ballots");
 
-		
+
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 
@@ -223,14 +223,14 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
 
-		
+
 		ballotItem.addItem(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId));
 
 		ballotItem.addItem(PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));
 
-		
+
 		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 

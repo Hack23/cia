@@ -43,12 +43,12 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentActivityPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "code", "activityName", "orderNumber",
+	private static final String[] COLUMN_ORDER = { "createdDate", "code", "activityName", "orderNumber",
 			"process", "status" };
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
 	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**
 	 * Instantiates a new document activity page mod content factory impl.

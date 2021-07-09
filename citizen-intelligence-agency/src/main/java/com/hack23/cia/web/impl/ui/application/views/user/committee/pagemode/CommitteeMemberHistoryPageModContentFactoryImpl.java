@@ -43,13 +43,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeMemberHistoryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName",
+	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
 			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail" };
+	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");

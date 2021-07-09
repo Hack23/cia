@@ -42,18 +42,18 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 
 	private static final String BALLOTS = "Ballots";
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
-	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "label", "embeddedId.concern",
+	private static final String[] COLUMN_ORDER = { "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "vote", "won", "partyWon", "rebel", "noWinner", "approved", "partyApproved",
 			"totalVotes", "partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
 			"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear", "partyAvgBornYear",
 			"avgBornYear", "gender", "partyPercentageMale", "percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
+	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes",
 			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", EMBEDDED_ID_BALLOT_ID,
 			"ballotType" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
-	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
+	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue" };
 	/**
 	 * The view riksdagen vote data ballot politician summary chart data

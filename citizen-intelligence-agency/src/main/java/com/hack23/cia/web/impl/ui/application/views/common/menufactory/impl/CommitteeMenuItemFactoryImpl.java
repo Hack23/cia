@@ -142,12 +142,12 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
 		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));		
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
 		ballotItem.addItem("Decision flow", VaadinIcons.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));		
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));
 
-		
+
 		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
@@ -184,9 +184,9 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Chart over decisions by decisions type, daily summary");
 
 		createButtonLink(grid,"Decision flow", VaadinIcons.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId),"desc");		
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId),"desc");
 
-		
+
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 

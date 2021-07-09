@@ -47,7 +47,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = "ballotId";
 
-	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "org", "embeddedId.id",
+	private static final String[] COLUMN_ORDER = { "voteDate", "rm", "org", "embeddedId.id",
 			"embeddedId.party", "committeeReport", "title", "subTitle", "winner", "partyApproved",
 			"againstProposalParties", "embeddedId.concern", "embeddedId.issue", "endNumber", "createdDate",
 			"publicDate", BALLOT_ID, "decisionType", "againstProposalNumber", "ballotType", "label", "avgBornYear",
@@ -63,7 +63,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "CommitteeBallotDecisionSummary";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", BALLOT_ID, "decisionType", "ballotType",
+	private static final String[] HIDE_COLUMNS = { "embeddedId", BALLOT_ID, "decisionType", "ballotType",
 			"againstProposalNumber", "embeddedId.id", "embeddedId.party", "createdDate", "publicDate", "label",
 			"endNumber", "org", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
 			"partyPercentageAbstain", "partyPercentageMale", "partyAvgBornYear", "avgBornYear", "percentageYes",
@@ -72,7 +72,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.id", "embeddedId.concern",
+	private static final String[] NESTED_PROPERTIES = { "embeddedId.id", "embeddedId.concern",
 			"embeddedId.issue", "embeddedId.party" };
 
 	/**
@@ -112,7 +112,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				BALLOT_ID, null);
 
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		
+
 		return panelContent;
 
 	}

@@ -69,7 +69,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	/** The Constant COMMITTEE. */
 	private static final String BALLOT = "Ballot:";
 
-	private static final String[] COLUMN_ORDER = new String[] { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
+	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
@@ -79,7 +79,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 	private static final int FIRST_OBJECT = 0;
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
 			"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
@@ -87,7 +87,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
 
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
+	private static final String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
 
 	/** The Constant OVERVIEW. */
@@ -111,14 +111,14 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = getItem(parameters);
 
-		if (!ballots.isEmpty()) {						
+		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
+
 			final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
-			
+
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 

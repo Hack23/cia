@@ -33,20 +33,20 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 
 	@Autowired
 	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
-	
+
 	@Test
 	public void readIncomeCsvTest() throws IOException {
 		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readIncomeCsv();
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
-		assertNotNull(list.get(0).getMinistry());		
+		assertNotNull(list.get(0).getMinistry());
 	}
 
 	@Test
 	public void readOutgoingCsvTest() throws IOException {
 		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv();
 		assertNotNull(list);
-		assertFalse(list.isEmpty());		
+		assertFalse(list.isEmpty());
 	}
 
 }

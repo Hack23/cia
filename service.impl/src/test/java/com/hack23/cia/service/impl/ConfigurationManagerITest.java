@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -81,7 +81,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 		when(agencyDAO.getAll()).thenReturn(list);
 		setAuthenticatedAdminuser();
 		configurationManager.createDefaultConfigIfEmpty();
-		verify(agencyDAO, never()).persist(Mockito.any(Agency.class));
+		verify(agencyDAO, never()).persist(ArgumentMatchers.any(Agency.class));
 	}
 
 	/**
@@ -97,7 +97,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 		when(agencyDAO.getAll()).thenReturn(new ArrayList<>());
 		setAuthenticatedAdminuser();
 		configurationManager.createDefaultConfigIfEmpty();
-		verify(agencyDAO, times(1)).persist(Mockito.any(Agency.class));
+		verify(agencyDAO, times(1)).persist(ArgumentMatchers.any(Agency.class));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 		when(languageDataDAO.getAll()).thenReturn(list);
 		setAuthenticatedAdminuser();
 		configurationManager.createDefaultLanguagesIfEmpty();
-		verify(languageDataDAO, never()).persist(Mockito.any(List.class));
+		verify(languageDataDAO, never()).persist(ArgumentMatchers.any(List.class));
 	}
 
 	/**
@@ -131,7 +131,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 		when(languageDataDAO.getAll()).thenReturn(new ArrayList<>());
 		setAuthenticatedAdminuser();
 		configurationManager.createDefaultLanguagesIfEmpty();
-		verify(languageDataDAO, times(1)).persist(Mockito.any(List.class));
+		verify(languageDataDAO, times(1)).persist(ArgumentMatchers.any(List.class));
 	}
 
 }

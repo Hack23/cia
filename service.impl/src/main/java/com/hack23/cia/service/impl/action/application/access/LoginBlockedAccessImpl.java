@@ -134,7 +134,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
-	
+
 	/**
 	 * Instantiates a new login blocked access impl.
 	 */
@@ -228,10 +228,10 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 					.findListByPropertyInList(ApplicationActionEvent_.sessionId,
 							sessionIdsWithIp.toArray(new Object[0]));
 
-			List<ApplicationActionEvent> recentFailedLogins = applicationEventsWithIp
+			final List<ApplicationActionEvent> recentFailedLogins = applicationEventsWithIp
 					.stream()
 					.filter((final ApplicationActionEvent x) -> x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION
-							&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString())).collect(Collectors.toList());			
+							&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString())).collect(Collectors.toList());
 
 			final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
 			if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {

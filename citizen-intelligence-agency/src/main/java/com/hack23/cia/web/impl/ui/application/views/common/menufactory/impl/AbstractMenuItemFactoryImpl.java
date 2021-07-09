@@ -66,8 +66,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = "Application Session";
-	
-	private static final String APPLICATION_SESSION_CHARTS = "Active Daily Users";	
+
+	private static final String APPLICATION_SESSION_CHARTS = "Active Daily Users";
 
 	/** The Constant COMMAND_AGENCY. */
 	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
@@ -279,7 +279,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);
 			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);
-			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);			
+			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);
 			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);
 			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);
 

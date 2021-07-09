@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,28 +29,28 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * The Class GovernmentOperationPeriodOutcome.
  */
 public final class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOperationPeriodOutcome>, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The variable name. */
 	private String variableName;
-	
+
 	/** The period. */
 	private String period;
-	
+
 	/** The value. */
 	private double value;
-	
+
 	/** The percentage change from previous to latest. */
 	private double percentageChangeFromPreviousToLatest;
-	
+
 	/** The Percentage change from same period last year to latest. */
 	private double percentageChangeFromSamePeriodLastYearToLatest;
-	
+
 	/** The observation status. */
 	private String observationStatus;
-	
+
 	/**
 	 * Instantiates a new government operation period outcome.
 	 */
@@ -186,40 +186,40 @@ public final class GovernmentOperationPeriodOutcome implements Comparable<Govern
 	public boolean equals(final Object o) {
 		return EqualsBuilder.reflectionEquals(this, o, false);
 	}
-	
+
 	@Override
 	public int compareTo(final GovernmentOperationPeriodOutcome o) {
 		return period.compareTo(o.getPeriod());
 	}
-	
+
 	/**
 	 * The Enum Variables.
 	 */
 	public enum Variables {
-	    
+
     	/** The total expenditures. */
     	TOTAL_EXPENDITURES ("Total expenditures"),
-	    
+
     	/** The expenditure excl interest gov debt. */
     	EXPENDITURE_EXCL_INTEREST_GOV_DEBT ("Expenditure, excl. interest on central government debt, etc."),
-	    
+
     	/** The interest on gov debt. */
     	INTEREST_ON_GOV_DEBT ("Interest on central government debt, etc."),
-	    
+
     	/** The net lending borrowing. */
     	NET_LENDING_BORROWING ("Net lending/borrowing by the National Debt Office"),
-	    
+
     	/** The adjustment to cash basis. */
     	ADJUSTMENT_TO_CASH_BASIS ("Adjustment to cash basis"),
-	    
+
     	/** The total revenue. */
     	TOTAL_REVENUE ("Total revenue"),
-	    
+
     	/** The budget balance. */
     	BUDGET_BALANCE ("Budget balance");
 
 	    /** The name. */
-    	private final String name;       
+    	private final String name;
 
 	    /**
 		 * Instantiates a new variables.

@@ -37,7 +37,7 @@ public enum MinistryPageMode {
 
 	/** The government bodies. */
 	GOVERNMENT_BODIES_HEADCOUNT,
-	
+
 	/** The government bodies income. */
 	GOVERNMENT_BODIES_INCOME,
 
@@ -46,7 +46,7 @@ public enum MinistryPageMode {
 
 	/** The memberhistory. */
 	MEMBERHISTORY,
-	
+
 	/** The roleghant. */
 	ROLEGHANT;
 }

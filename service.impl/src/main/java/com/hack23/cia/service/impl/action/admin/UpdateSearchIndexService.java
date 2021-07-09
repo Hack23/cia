@@ -93,7 +93,7 @@ public final class UpdateSearchIndexService extends
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(UpdateSearchIndexRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());		
+		eventRequest.setSessionId(serviceRequest.getSessionId());
 		return eventRequest;
 	}
 

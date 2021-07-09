@@ -72,11 +72,11 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
 
 		final String committeId = "committeId";
-		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
+		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));
 		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<String, String>() {{
 		    put(committeId,committeId);
 		}});
-		
+
 		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
@@ -106,11 +106,11 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 		final RiksdagenImportService riksdagenImportService = mock(RiksdagenImportService.class);
 
 		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "importService", riksdagenImportService);
-		
+
 		final String committeId = "committeId";
-		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));		
+		when(riksdagenImportService.getAvaibleCommitteeProposal()).thenReturn(Arrays.asList(committeId));
 		when(riksdagenImportService.getCommitteeProposalComponentDataMap()).thenReturn(new HashMap<>());
-		
+
 		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);

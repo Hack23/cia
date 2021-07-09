@@ -51,10 +51,10 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 	private static final List<String> AS_LIST = Arrays.asList("portalName", "description", "portalType",
 			"googleMapApiKey");
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
+	private static final String[] COLUMN_ORDER = { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
 			"modelObjectVersion" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;

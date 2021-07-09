@@ -62,7 +62,7 @@ public interface GovernmentBodyChartDataManager {
 	 */
 	void createGovernmentBodyHeadcountSummaryChart(VerticalLayout panelContent, String name);
 
-	
+
 	/**
 	 * Creates the government body income summary chart.
 	 *
@@ -95,7 +95,7 @@ public interface GovernmentBodyChartDataManager {
 	 * @param name         the name
 	 */
 	void createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
-	
+
 	/**
 	 * Creates the ministry government body headcount summary chart.
 	 *

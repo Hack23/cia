@@ -95,7 +95,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		loginRequest.setOtpCode("");
 		loginRequest.setEmail("");
 		loginRequest.setUserpassword("");
-		
+
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);
 		getFormFactory().addRequestInputFormFields(formContent, loginRequest,
@@ -108,9 +108,9 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		content.addComponent(overviewLayout);
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);		
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);
-		
+
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);

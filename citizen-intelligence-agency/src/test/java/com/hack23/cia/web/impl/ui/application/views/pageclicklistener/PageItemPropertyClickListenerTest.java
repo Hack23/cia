@@ -50,20 +50,20 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 		final String pageId = pageItemPropertyClickListener.getPageId(riksdagenPolitician);
 
 		assertEquals(personIdValue, pageId);
-		
+
 		final UI uiMock = Mockito.mock(UI.class);
 		UI.setCurrent(uiMock);
-		
+
 		final Navigator navigatorMock = Mockito.mock(Navigator.class);
-		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
-				
+		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);
+
 		pageItemPropertyClickListener.click(new RendererClickEvent(new Grid(), riksdagenPolitician, null, null) {
 
 			/**
-			 * 
+			 *
 			 */
 			private static final long serialVersionUID = 1L;});
-		
+
 		Mockito.verify(navigatorMock, times(1)).navigateTo(UserViews.POLITICIAN_VIEW_NAME + "/personId");
 	}
 

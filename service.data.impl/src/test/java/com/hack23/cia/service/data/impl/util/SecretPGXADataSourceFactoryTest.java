@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,9 +40,9 @@ public class SecretPGXADataSourceFactoryTest extends AbstractUnitTest {
 	@Test
 	public void getObjectInstanceTest() throws Exception {
 		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(Mockito.mock(SecretCredentialsManager.class));
-		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();		
+		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();
 		ref.add(new StringRefAddr("serverName","192.168.1.1"));
-		
+
 		assertNotNull(new SecretPGXADataSourceFactory().getObjectInstance(ref, null,null, null));
 	}
 

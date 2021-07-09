@@ -43,11 +43,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
+	private static final String[] COLUMN_ORDER = { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
 			"firstAssignmentDate", "lastAssignmentDate", "active" };
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
-	private static final String[] HIDE_COLUMNS = new String[] {"active"};
+	private static final String[] HIDE_COLUMNS = {"active"};
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId");
 	private static final String MINISTRIES = "Ministries";
 

@@ -67,10 +67,10 @@ public final class ApplicationManagerITest extends AbstractServiceFunctionalInte
 	@Test
 	public void getAgentContainerSuccessTest() throws Exception {
 		setAuthenticatedAdminuser();
-		
+
 		assertNotNull(applicationManager.getAgentContainer());
-		
+
 	}
 
-	
+
 }

@@ -67,7 +67,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
-	
+
 	/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
@@ -181,7 +181,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The party ranking menu item factory. */
 	@Autowired
 	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
-	
+
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
@@ -266,10 +266,10 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Ministry ranking overiew, contains data and charts.");
 
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
-		
+
 		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
-		
-		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");	
+
+		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");
 
 		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
 

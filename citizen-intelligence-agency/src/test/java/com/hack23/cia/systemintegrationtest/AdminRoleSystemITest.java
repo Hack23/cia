@@ -56,7 +56,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	 * @return the collection
 	 */
 	@Parameters(name = "AdminRoleSiteTest{index}: browser({0})")
-	public final static Collection<String[]> browsersStrings() {
+	public static Collection<String[]> browsersStrings() {
 		return Arrays.asList(new String[][] { { "chrome" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
@@ -187,7 +187,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site admin application session charts test.
 	 *
@@ -343,7 +343,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkNotificationMessage("Email Sentdesc");
 	}
 
-	
+
 	/**
 	 * Site admin language content test.
 	 *

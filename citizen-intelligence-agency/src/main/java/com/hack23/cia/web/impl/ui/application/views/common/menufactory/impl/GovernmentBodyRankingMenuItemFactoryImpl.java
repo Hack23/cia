@@ -60,7 +60,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
-	
+
 	private static final String EXPENDITURE = "Expenditure";
 
 	/** The Constant GOVERNMENT_BODIES. */
@@ -71,7 +71,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 
 	private static final String HEADCOUNT = "Headcount";
 
-	
+
 	private static final String INCOME = "Income";
 
 	/** The Constant OVERVIEW_TEXT. */
@@ -111,7 +111,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 		ministryMenuItem.addItem(HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT);
 		ministryMenuItem.addItem(INCOME, VaadinIcons.GROUP, COMMAND_INCOME);
 		ministryMenuItem.addItem(EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE);
-		
+
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
 
 	}
@@ -121,11 +121,11 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, "Current government bodies");
-		
+
 		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, "Desc");
 		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, "Desc");
-		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , "Desc");		
-		
+		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , "Desc");
+
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}

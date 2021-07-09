@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,11 +42,11 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 	public void executeInternalSuccessTest() throws Exception {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-		
+
 		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
 		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null,null);
-		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
-		
+		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);
+
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);
 		Mockito.verify(searchIndex).updateSearchIndex();
 	}
@@ -60,22 +60,22 @@ public class UpdateSearchIndexJobTest extends AbstractJobTest {
 	public void executeInternalFailureTest() throws Exception {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-		
+
 		final SearchIndexer searchIndex = Mockito.mock(SearchIndexer.class);
 		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, searchIndex, null,null);
-		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
-		
+		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);
+
 		Mockito.doThrow(new InterruptedException()).when(searchIndex).updateSearchIndex();
-		
+
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void executeInternalFailureNoJobContextTest() throws Exception {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
-		final Scheduler scheduler = Mockito.mock(Scheduler.class);		
+		final Scheduler scheduler = Mockito.mock(Scheduler.class);
 		Mockito.when(jobContextMock.getScheduler()).thenReturn(scheduler);
-		Mockito.when(scheduler.getContext()).thenThrow(new SchedulerException());	
+		Mockito.when(scheduler.getContext()).thenThrow(new SchedulerException());
 		new UpdateSearchIndexJob().executeInternal(jobContextMock);
 	}
 

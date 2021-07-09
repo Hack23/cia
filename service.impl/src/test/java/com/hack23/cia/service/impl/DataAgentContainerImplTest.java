@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public class DataAgentContainerImplTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Execute test.
 	 */
@@ -44,4 +44,4 @@ public class DataAgentContainerImplTest extends AbstractUnitTest {
 		dataAgentContainerImpl.execute(workOrder);
 		Mockito.verify(dataAgentApi).execute(workOrder);
 	}
-}	
+}

@@ -147,7 +147,7 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 				createAccountRequest.getUsername());
 		assertEquals(1, allByAfterDelete.size());
 		assertEquals(UserLockStatus.LOCKED,allByAfterDelete.get(0).getUserLockStatus());
-		
+
 	}
 
 	/**
@@ -191,7 +191,7 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 				createAccountRequest.getUsername());
 		assertEquals(1, allByAfterDelete.size());
 		assertEquals(UserLockStatus.UNLOCKED,allByAfterDelete.get(0).getUserLockStatus());
-		
+
 	}
 
 	/**
@@ -229,10 +229,10 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 		final ManageUserAccountResponse deleteAccountResponse = (ManageUserAccountResponse) applicationManager
 				.service(deleteAccountRequest);
 		assertNotNull(EXPECT_A_RESULT, deleteAccountResponse);
-		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE, deleteAccountResponse.getResult());		
+		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE, deleteAccountResponse.getResult());
 	}
 
-	
+
 	/**
 	 * Manage user account failure test.
 	 *

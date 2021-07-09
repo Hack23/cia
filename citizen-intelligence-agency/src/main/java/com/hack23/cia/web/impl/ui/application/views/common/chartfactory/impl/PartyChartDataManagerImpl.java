@@ -173,14 +173,14 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		if (list != null) {
 			final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))
 					.addSeries(new XYseries().setLabel(PARTY_ABSENT));
-	
+
 			final DataSeries dataSeries = new DataSeries();
-	
+
 			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-	
+
 			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
 			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
-	
+
 			addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 		}
 	}
@@ -199,7 +199,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			
+			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
 		}
 
 		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));

@@ -83,7 +83,7 @@ final class XmlAgentImpl implements XmlAgent {
 			final URL url = new URL(accessUrl.replace(" ", ""));
 
 			return readWithStringBuffer(new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)));
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new XmlAgentException(e);
 		}
 	}

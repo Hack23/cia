@@ -108,8 +108,8 @@ public final class DisableGoogleAuthenticatorCredentialServiceITest extends Abst
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, disableGoogleAuthenticatorCredentialResponse.getResult());
 
 		}
-		
-		
+
+
 
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(serviceRequest.getSessionId());

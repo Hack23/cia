@@ -234,7 +234,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			throws DataFailureException {
 		try {
 			return loadDocumentList(DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()), maxNumberPages);
-		} catch (final XmlAgentException e) {	
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year);
 			throw new DataFailureException(e);
 		}
@@ -268,7 +268,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
-		} 
+		}
 	}
 
 

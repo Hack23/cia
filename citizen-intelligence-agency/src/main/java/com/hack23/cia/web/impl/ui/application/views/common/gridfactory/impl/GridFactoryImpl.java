@@ -51,7 +51,7 @@ public final class GridFactoryImpl implements GridFactory {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -176,7 +176,7 @@ public final class GridFactoryImpl implements GridFactory {
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
 		createNestedProperties(grid, nestedProperties);
-		
+
 		setColumnConverters(collectionPropertyConverters, grid);
 
 		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);

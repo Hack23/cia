@@ -64,21 +64,21 @@ public final class RemoveDataService extends
 		}
 
 		final RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
-		
+
 		switch (serviceRequest.getDataType()) {
-			case POLITICIAN: 
+			case POLITICIAN:
 				removeDataManager.removePersonData();
 				break;
-			case DOCUMENTS: 
+			case DOCUMENTS:
 				removeDataManager.removeDocuments();
 				removeDataManager.removeCommitteeProposals();
 				removeDataManager.removeDocumentStatus();
 				break;
-			case APPLICATION_HISTORY: 
+			case APPLICATION_HISTORY:
 				removeDataManager.removeApplicationHistory();
 				break;
 		}
-		
+
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);

@@ -240,7 +240,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-			final Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
+			final Integer totalHeadcount = item.stream().collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
 
 			if (entry.getKey() != null && item != null) {
 				assertNotNull(totalHeadcount);
@@ -264,7 +264,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
 
 				if (entry.getKey() != null && item != null) {
 					assertNotNull(totalHeadcount);
@@ -288,7 +288,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
-						.collect(Collectors.summingInt(p -> p.getHeadCount()));
+						.collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
 
 				if (entry.getKey() != null && item != null) {
 					assertNotNull(totalHeadcount);

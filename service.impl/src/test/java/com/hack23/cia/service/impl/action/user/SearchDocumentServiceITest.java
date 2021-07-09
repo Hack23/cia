@@ -99,7 +99,7 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertTrue(EXPECT_A_RESULT,response.getResultElement().isEmpty());
 	}
-	
+
 	/**
 	 * Service request validation failure test.
 	 *

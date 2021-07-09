@@ -38,30 +38,30 @@ public final class XmlDateTypeAdapterTest extends AbstractTest {
 	@Test
 	public void parseDateTest() throws Exception {
 
-		XmlDateTypeAdapter xmlDateTypeAdapter = new XmlDateTypeAdapter();
-		Date simpleSwedishDateForm = xmlDateTypeAdapter.unmarshal("2015-05-20");
+		final XmlDateTypeAdapter xmlDateTypeAdapter = new XmlDateTypeAdapter();
+		final Date simpleSwedishDateForm = xmlDateTypeAdapter.unmarshal("2015-05-20");
 		assertNotNull("Expect a result",simpleSwedishDateForm);
 		assertEquals("Expect specified date","2015-05-20+02:00",xmlDateTypeAdapter.marshal(simpleSwedishDateForm));
 
-		Date simpleSwedishDateTimeFormat = xmlDateTypeAdapter.unmarshal("2001-01-01 00:00:00");
+		final Date simpleSwedishDateTimeFormat = xmlDateTypeAdapter.unmarshal("2001-01-01 00:00:00");
 		assertNotNull("Expect a result",simpleSwedishDateTimeFormat);
 		assertEquals("Expect specified date","2001-01-01+01:00",xmlDateTypeAdapter.marshal(simpleSwedishDateTimeFormat));
 
 
-		Date validDateForm = xmlDateTypeAdapter.unmarshal("2001-01-01+01:00");
+		final Date validDateForm = xmlDateTypeAdapter.unmarshal("2001-01-01+01:00");
 		assertNotNull("Expect specified date",validDateForm);
 		assertEquals("2001-01-01+01:00",xmlDateTypeAdapter.marshal(validDateForm));
 
 		assertNull("Expect null",xmlDateTypeAdapter.marshal(null));
 		assertNull("Expect null",xmlDateTypeAdapter.unmarshal(null));
-		
+
 		assertNull("Expect null",xmlDateTypeAdapter.unmarshal("wron-gd-at"));
-		
+
 		assertNull("Expect null",xmlDateTypeAdapter.unmarshal("wrong"));
-		
+
 
 		assertNull("Expect null",xmlDateTypeAdapter.unmarshal("wron-gd-at+e1:00"));
-		
+
 	}
 
 

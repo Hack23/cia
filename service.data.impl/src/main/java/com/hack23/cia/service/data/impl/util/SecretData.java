@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,24 +27,24 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * The Class SecretData.
  */
 final class SecretData {
-	
+
 	/** The username. */
 	private String username;
-	
+
 	/** The password. */
 	private String password;
-	
+
 	/** The engine. */
 	private String engine;
-	
+
 	/** The port. */
 	private String port;
-	
+
 	/** The host. */
 	private String host;
-	
+
 	/** The dbname. */
-	private String dbname;	
+	private String dbname;
 
 
 	/**
@@ -161,7 +161,7 @@ final class SecretData {
 	public void setPassword(final String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,11 +39,11 @@ public class UpdateRuleViolationsJobTest extends AbstractJobTest {
 	public void executeInternalTest() throws Exception {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-		
+
 		final RulesManager rulesManager = Mockito.mock(RulesManager.class);
 		final JobContextHolder jobContextHolder = new JobContextHolderImpl(null, null, null,rulesManager);
-		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
-		
+		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);
+
 		new UpdateRuleViolationsJob().executeInternal(jobContextMock);
 		Mockito.verify(rulesManager).processService();
 	}

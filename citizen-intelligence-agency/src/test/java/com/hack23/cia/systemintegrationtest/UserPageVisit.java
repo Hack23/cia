@@ -281,7 +281,7 @@ public final class UserPageVisit extends Assert {
 	 *            the button label
 	 * @return the web element
 	 */
-	public final WebElement findButton(final String buttonLabel) {
+	public WebElement findButton(final String buttonLabel) {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsButton(buttonLabel));
 
@@ -297,10 +297,9 @@ public final class UserPageVisit extends Assert {
 
 	private WebElement findClickable(final String id) {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
 
-		final WebElement registerButton = driver.findElement(By.id(id));
-		return registerButton;
+		return driver.findElement(By.id(id));
 	}
 
 
@@ -341,12 +340,11 @@ public final class UserPageVisit extends Assert {
 
 
 	private List<WebElement> getButtonElements() {
-		final List<WebElement> result = new ArrayList<>();
-		result.addAll(driver.findElements(By.className("v-nativebutton")));
+		final List<WebElement> result = new ArrayList<>(driver.findElements(By.className("v-nativebutton")));
 		result.addAll(driver.findElements(By.className("v-button")));
 		result.addAll(driver.findElements(By.className("v-button-caption")));
 		result.addAll(driver.findElements(By.tagName("a")));
-		
+
 		return result;
 	}
 
@@ -571,9 +569,9 @@ public final class UserPageVisit extends Assert {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 		driver.navigate().refresh();
 		action.pause(500L).perform();
-		
-		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-		
+
+		wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
@@ -629,7 +627,7 @@ public final class UserPageVisit extends Assert {
 			action.pause(250L).perform();
 		}
 
-		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+		wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		grabScreenshot(driver);
@@ -718,8 +716,8 @@ public final class UserPageVisit extends Assert {
 	 */
 	private void setFieldValue(final String id,final String value) {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
-		
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
+
 		final WebElement findElement = driver.findElement(By.id(id));
 		findElement.clear();
 		findElement.sendKeys(value);
@@ -835,12 +833,12 @@ public final class UserPageVisit extends Assert {
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
-		
+
 		action.pause(500L).perform();
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		
-		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-		
+
+		wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		grabScreenshot(driver);
@@ -958,7 +956,7 @@ public final class UserPageVisit extends Assert {
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
 
-	
+
 	/**
 	 * Visit politician ranking view.
 	 *
@@ -979,7 +977,7 @@ public final class UserPageVisit extends Assert {
 //		assertTrue(!actionIdsBy.isEmpty());
 	}
 
-	
+
 
 	/**
 	 * Visit politician view.

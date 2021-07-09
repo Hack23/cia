@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,10 +42,12 @@ public class EncryptPropertyTest {
 	 */
 	@Test
 	public void encryptPasswordSuccessTest() {
-		String symmetricKey = "password";
-		String value = "property";
-		String encryptValue = new EncryptProperty().encryptValue(symmetricKey, value);
-		assertEquals(value, new EncryptProperty().decryptValue(symmetricKey, encryptValue));
+		final String symmetricKey = "password";
+		final String value = "property";
+		new EncryptProperty();
+		final String encryptValue = EncryptProperty.encryptValue(symmetricKey, value);
+		new EncryptProperty();
+		assertEquals(value, EncryptProperty.decryptValue(symmetricKey, encryptValue));
 	}
 
 	/**
@@ -53,17 +55,17 @@ public class EncryptPropertyTest {
 	 */
 	@Test
 	public void encryptDemoDefaultTestValues() {
-		PrintStream out = mock(PrintStream.class);
+		final PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 
 		EncryptProperty.main(new String[] { "allhaildiscordia", "eris" });
 		EncryptProperty.main(new String[] { "allhaildiscordia", "discord" });
 
-		ArgumentCaptor<String> StringCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> StringCaptor = ArgumentCaptor.forClass(String.class);
 
 		verify(out, times(4)).println(StringCaptor.capture());
 
-		List<String> capturedStrings = StringCaptor.getAllValues();
+		final List<String> capturedStrings = StringCaptor.getAllValues();
 
 		assertTrue(capturedStrings.get(0).startsWith("Encrypted value:"));
 		assertTrue(capturedStrings.get(1).startsWith("Encrypted property value:"));
@@ -77,7 +79,7 @@ public class EncryptPropertyTest {
 	 */
 	@Test
 	public void encryptPropertyMainNoArgs() {
-		PrintStream out = mock(PrintStream.class);
+		final PrintStream out = mock(PrintStream.class);
 		assertNotNull(out);
 		System.setOut(out);
 

@@ -27,7 +27,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public class SwedishStopWordsTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Check stop words test.
 	 */

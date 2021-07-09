@@ -77,6 +77,6 @@ public final class ApplicationLoginListener extends AbstractClickListener implem
 					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,loginRequest.getEmail());
-		}		
+		}
 	}
 }

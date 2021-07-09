@@ -51,7 +51,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		final CommitteeProposalComponentData proposal2 = riksdagenApi
 				.getCommitteeProposal("GVA3FöU43");
 		assertNotNull(proposal2);
-		
+
 	}
 
 	/**

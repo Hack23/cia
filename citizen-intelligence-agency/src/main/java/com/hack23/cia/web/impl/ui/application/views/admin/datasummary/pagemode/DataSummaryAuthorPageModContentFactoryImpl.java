@@ -42,9 +42,9 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 	/** The Constant ADMIN_AUTHOR_SUMMARY. */
 	private static final String ADMIN_AUTHOR_SUMMARY = "Admin Author Summary";
 
-	private static final String[] COLUMN_ORDER = new String[] { "author", "changes", "firstDate", "lastDate" };
+	private static final String[] COLUMN_ORDER = { "author", "changes", "firstDate", "lastDate" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+	private static final String[] HIDE_COLUMNS = { "id" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
@@ -73,13 +73,13 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 		final DataContainer<ViewAuditAuthorSummary, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ViewAuditAuthorSummary.class);
-		
+
 		getGridFactory()
 		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditAuthorSummary.class, dataContainer.getAll(),
 				ADMIN_AUTHOR_SUMMARY,null,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				null, null, null);
-		
+
 		return content;
 
 	}

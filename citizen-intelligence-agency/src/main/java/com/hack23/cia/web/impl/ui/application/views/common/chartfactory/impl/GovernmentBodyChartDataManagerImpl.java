@@ -178,7 +178,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : collect.entrySet()) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
 			dataSeries.newSeries();
-			
+
 			addEntryData(dataSeries, simpleDateFormat, entry);
 		}
 
@@ -232,7 +232,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 		addAnnualData(content, name, ANNUAL_EXPENDITURE, collect);
 	}
-	
+
 	@Override
 	public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout content) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
@@ -285,19 +285,19 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name)
 				.stream().filter(p -> p.getDescriptionFields().get(INKOMSTTITELSNAMN) != null)
 				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(INKOMSTTITELSNAMN)));
-		
+
 		addAnnualData(content, name, ANNUAL_INCOME, collect);
-		
+
 	}
 
 	@Override
 	public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout content) {
-		createMinistrySummary(content,EXPENDITURE_GROUP_NAME,"MinistryGovernmentBodySpendingSummaryChart");		
+		createMinistrySummary(content,EXPENDITURE_GROUP_NAME,"MinistryGovernmentBodySpendingSummaryChart");
 	}
 
 	@Override
 	public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout content, final String name) {
-		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, name), content, ANNUAL_EXPENDITURE);		
+		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, name), content, ANNUAL_EXPENDITURE);
 	}
 
 	@Override
@@ -358,15 +358,15 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout content) {
-		createMinistrySummary(content,INKOMSTTITELGRUPPSNAMN,"MinistryGovernmentBodyIncomeSummaryChart");		
-		
+		createMinistrySummary(content,INKOMSTTITELGRUPPSNAMN,"MinistryGovernmentBodyIncomeSummaryChart");
+
 	}
 
-	
-	
+
+
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout content, final String name) {
-		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN,name), content, ANNUAL_INCOME);		
+		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN,name), content, ANNUAL_INCOME);
 	}
 
 	/**
@@ -379,21 +379,21 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	private void createMinistrySummary(final AbstractOrderedLayout content, final String field, final String label) {
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
-		
+
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
-		
+
 		for (final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : reportByMinistry.entrySet()) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
-			dataSeries.newSeries();			
-			final Map<Integer, Double> annualSummaryMap = entry.getValue().stream().filter(t -> t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
+			dataSeries.newSeries();
+			final Map<Integer, Double> annualSummaryMap = entry.getValue().stream().filter(t -> t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 
 			for (final Entry<Integer, Double> entryData : annualSummaryMap.entrySet()) {
 				if (entryData.getValue() != null && entryData.getValue().intValue() > 0) {
 					dataSeries.add(entryData.getKey() +1  +"-01-01" , entryData.getValue());
 				}
-			}			
+			}
 		}
-		
+
 		addChart(content, label,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),

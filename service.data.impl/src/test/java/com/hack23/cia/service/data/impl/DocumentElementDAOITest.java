@@ -101,8 +101,8 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	@Test
 	public void getMissingDocumentStartFromYearBeforeAnyDocumentsTest() {
 		final int startFromYear = 2900;
-		final int loadFromYear  = documentElementDAO.getMissingDocumentStartFromYear(startFromYear);		
+		final int loadFromYear  = documentElementDAO.getMissingDocumentStartFromYear(startFromYear);
 		assertEquals(startFromYear,loadFromYear);
 	}
-	
+
 }

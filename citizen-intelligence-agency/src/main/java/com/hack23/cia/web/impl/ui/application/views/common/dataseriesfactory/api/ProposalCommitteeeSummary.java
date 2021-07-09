@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,16 +27,16 @@ public final class ProposalCommitteeeSummary {
 
 	/** The decision. */
 	private final String decision;
-	
+
 	/** The doc type. */
 	private final String docType;
-	
+
 	/** The hangar id. */
 	private final String hangarId;
-	
+
 	/** The org. */
 	private final String org;
-	
+
 	/**
 	 * Instantiates a new proposal committeee summary.
 	 *
@@ -97,5 +97,5 @@ public final class ProposalCommitteeeSummary {
 	public String toString() {
 		return String.format(Locale.ENGLISH,"ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
 				docType, decision, hangarId);
-	}				
+	}
 }

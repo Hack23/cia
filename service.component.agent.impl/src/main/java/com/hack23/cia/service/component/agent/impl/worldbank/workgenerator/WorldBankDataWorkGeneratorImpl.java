@@ -48,7 +48,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WorldBankDataWorkGeneratorImpl.class);
 
-	
+
 	/** The data workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.worldbank.data.impl.Data")
@@ -57,7 +57,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
-	
+
 	@Autowired
 	private WorldBankIndicatorApi worldbankIndicatorApi;
 
@@ -80,7 +80,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 		try {
 			final List<String> indicatorlist = worldbankIndicatorApi.getIndicatorsWithSwedishData();
 			final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
-			
+
 			for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
 				if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(), country)) {
 					sendCountryIndicatorWorkOrder(currentSaved, indicatorlist, country);

@@ -46,20 +46,20 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
 	private static final String BALLOT_ID = "ballotId";
-	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "org", "committeeReport", "title",
+	private static final String[] COLUMN_ORDER = { "voteDate", "rm", "org", "committeeReport", "title",
 			"subTitle", "winner", "embeddedId.concern", "embeddedId.issue", "vote", "won", "rebel", "noWinner",
 			"approved", "partyApproved", "againstProposalNumber", "againstProposalParties", "totalVotes",
 			"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes",
 			"abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear", "partyAvgBornYear", "avgBornYear",
 			"ballotType", "decisionType", BALLOT_ID };
 	private static final String COMMITTEE_BALLOT_DECISION_POLITICIAN_SUMMARY = "Committee Ballot Decision Politician Summary";
-	private static final String[] HIDE_COLUMNS = new String[] { "label", "endNumber", "publicDate", "createdDate",
+	private static final String[] HIDE_COLUMNS = { "label", "endNumber", "publicDate", "createdDate",
 			"embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
 			"partyPercentageAbstain", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
 			"firstName", "lastName", "party", BALLOT_ID, "decisionType", "ballotType", "againstProposalNumber" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue" };
+	private static final String[] NESTED_PROPERTIES = { "embeddedId.concern", "embeddedId.issue" };
 
 	/**
 	 * Instantiates a new politician ballot decision summary page mod content
@@ -98,9 +98,9 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 				COMMITTEE_BALLOT_DECISION_POLITICIAN_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
 
-		
+
 		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-		
+
 		return panelContent;
 
 	}

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,10 +43,10 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
 	/** The resource type. */
 	private final ResourceType resourceType;
-			
+
 	/** The rule violation map. */
 	private final Map<String,RuleViolation> ruleViolationMap = new HashMap<>();
-	
+
 	/**
 	 * Instantiates a new abstract compliance check impl.
 	 *
@@ -68,7 +68,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
-	
+
 	/**
 	 * Gets the rule violations.
 	 *
@@ -78,7 +78,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	public final List<RuleViolation> getRuleViolations() {
 		return new ArrayList<>(ruleViolationMap.values());
 	}
-	
+
 	/**
 	 * Adds the violation.
 	 *
@@ -93,9 +93,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 * @param positive
 	 *            the positive
 	 */
-	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {	
+	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {
 		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);
-		if (currentRuleViolation == null || status.ordinal() > currentRuleViolation.getStatus().ordinal()) {		
+		if (currentRuleViolation == null || status.ordinal() > currentRuleViolation.getStatus().ordinal()) {
 			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));
 		}
 	}

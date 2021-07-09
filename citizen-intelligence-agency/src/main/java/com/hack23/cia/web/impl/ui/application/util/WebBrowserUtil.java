@@ -39,7 +39,7 @@ public final class WebBrowserUtil {
             .hideMatcherLoadStats()
             .withCache(10000)
             .build();
-	
+
 	/** The Constant X_FORWARDED_FOR. */
 	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
@@ -75,7 +75,7 @@ public final class WebBrowserUtil {
 	public static String getOperatingSystem(final WebBrowser webBrowser) {
 		synchronized (USER_AGENT_ANALYZER) {
 			final UserAgent userAgent = USER_AGENT_ANALYZER.parse(webBrowser.getBrowserApplication());
-			return userAgent.getValue(UserAgent.DEVICE_CLASS) + "." +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +"." + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);			
+			return userAgent.getValue(UserAgent.DEVICE_CLASS) + "." +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +"." + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);
 		}
 	}
 

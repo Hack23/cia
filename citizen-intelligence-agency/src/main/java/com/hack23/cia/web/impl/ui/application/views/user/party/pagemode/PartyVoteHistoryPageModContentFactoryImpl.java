@@ -44,13 +44,13 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
 
-	private static final String[] COLUMN_ORDER = new String[] { "embeddedId.party", "voteDate", "rm", "label",
+	private static final String[] COLUMN_ORDER = { "embeddedId.party", "voteDate", "rm", "label",
 			"embeddedId.concern", "embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
+	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes",
 			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,
 			"partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "noWinner" };
@@ -58,7 +58,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
-	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
+	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue", "embeddedId.party" };
 
 	/** The Constant VOTE_HISTORY. */

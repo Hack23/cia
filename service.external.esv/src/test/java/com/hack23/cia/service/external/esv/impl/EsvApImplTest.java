@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -48,7 +48,7 @@ public class EsvApImplTest extends AbstractUnitTest {
 		final EsvGovernmentOperationsExcelReader mock = Mockito.mock(EsvGovernmentOperationsExcelReader.class);
 		final EsvApi esvApi = new EsvApiImpl(null, mock,null);
 		Mockito.when(mock.getReport()).thenThrow(new IOException());
-		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();		
+		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();
 		assertTrue(report.isEmpty());
 		Mockito.verify(mock,times(1)).getReport();
 	}
@@ -64,11 +64,11 @@ public class EsvApImplTest extends AbstractUnitTest {
 		final EsvGovernmentBodyOperationOutcomeReader mock = Mockito.mock(EsvGovernmentBodyOperationOutcomeReader.class);
 		final EsvApi esvApi = new EsvApiImpl(null, null, mock);
 		Mockito.when(mock.readIncomeCsv()).thenThrow(new IOException());
-		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();		
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();
 		assertTrue(report.isEmpty());
 		Mockito.verify(mock,times(1)).readIncomeCsv();
 	}
-	
-	
-	
+
+
+
 }

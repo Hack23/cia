@@ -77,7 +77,7 @@ final class RiksdagenApiAgentWorkConsumerImpl extends AbstractMessageListener im
 		} catch (final JMSException exception) {
 			LOGGER.warn("jms", exception);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 
 	/** The secret name. */
 	private final String secretName;
-	
+
 	/** The secret enabled. */
 	private final String secretEnabled;
 
@@ -52,9 +52,9 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 
 	/** The password. */
 	private final String password;
-	
+
 	private SecretCache secretCache;
-	
+
 	/**
 	 * Instantiates a new secret credentials manager.
 	 *
@@ -72,27 +72,27 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 	}
 
 	@Override
-	public final String getPassword() {	   
-		return getSecretField(SecretData::getPassword,password);			
+	public final String getPassword() {
+		return getSecretField(SecretData::getPassword,password);
 	}
 
 	@Override
-	public final String getUsername() {	    
-		return getSecretField(SecretData::getUsername,username);	    			
+	public final String getUsername() {
+		return getSecretField(SecretData::getUsername,username);
 	}
 
 	private String getSecretField(final Function<SecretData, String> t, final String defaultStr) {
 		if (FALSE.equalsIgnoreCase(secretEnabled)) {
 			return defaultStr;
-		} 
+		}
 
 		try {
 			if (secretCache == null) {
 				secretCache = getSecretCache();
 			}
-			
-	    	final ObjectMapper mapper = new ObjectMapper();	   	 
-	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),SecretData.class));	    	
+
+	    	final ObjectMapper mapper = new ObjectMapper();
+	    	return t.apply(mapper.readValue(secretCache.getSecretString(secretName),SecretData.class));
 	    } catch (AWSSecretsManagerException | IOException e) {
 	    	LOGGER.error("Problem getting username from secretsmanager using secret:{} :{}:{}", secretName, e.getMessage(),e.getClass().getName());
 	    	throw new RuntimeException(e);

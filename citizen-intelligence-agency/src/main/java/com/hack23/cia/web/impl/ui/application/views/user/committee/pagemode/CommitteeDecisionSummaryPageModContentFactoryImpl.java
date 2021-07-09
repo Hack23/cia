@@ -49,7 +49,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = "ballotId";
 
-	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "publicDate", "committeeReport",
+	private static final String[] COLUMN_ORDER = { "createdDate", "publicDate", "committeeReport",
 			"embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",
 			"header", "endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties",
 			"againstProposalNumber" };
@@ -60,14 +60,14 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = "Decision Summary";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.hangarId", "embeddedId.id",
+	private static final String[] HIDE_COLUMNS = { "embeddedId", "embeddedId.hangarId", "embeddedId.id",
 			"endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties", "againstProposalNumber",
 			"createdDate" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.hangarId", "embeddedId.id",
+	private static final String[] NESTED_PROPERTIES = { "embeddedId.hangarId", "embeddedId.id",
 			"embeddedId.issueNummer" };
 
 	/**

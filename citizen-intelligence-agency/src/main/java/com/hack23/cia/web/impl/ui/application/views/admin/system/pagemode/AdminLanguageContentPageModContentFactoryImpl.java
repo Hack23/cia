@@ -51,10 +51,10 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 	private static final List<String> AS_LIST = Arrays.asList( "refKey", "fromLanguage", "toLanguage", "createdDate",
 			"languageValue");
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
+	private static final String[] COLUMN_ORDER = { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
 			"languageValue" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion" };
 
 	private static final String LANGUAGE_CONTENT_DATA = "LanguageContentData";
 

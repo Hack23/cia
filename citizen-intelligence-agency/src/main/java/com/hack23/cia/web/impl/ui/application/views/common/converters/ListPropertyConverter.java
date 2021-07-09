@@ -36,11 +36,11 @@ import com.vaadin.data.ValueProvider;
  * The Class ListPropertyRenderer.
  */
 public final class ListPropertyConverter implements Converter<String, List<?>>,ValueProvider<Object, String> {
-	
+
 	private static final char CONTENT_SEPARATOR = ' ';
 
 	private static final char END_TAG = ']';
-	
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);
 
@@ -141,7 +141,7 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 			return convertToPresentation(list,null);
 		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			LOGGER.warn("Problem getting list {}, object {} , exception {}", property, column, e);
-		} 
+		}
 		return "";
 	}
 

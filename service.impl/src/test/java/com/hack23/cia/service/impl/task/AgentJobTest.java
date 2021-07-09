@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,6 +21,7 @@ package com.hack23.cia.service.impl.task;
 import static org.mockito.Mockito.times;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.quartz.JobExecutionContext;
 import org.springframework.context.ApplicationContext;
@@ -42,13 +43,13 @@ public class AgentJobTest extends AbstractJobTest {
 	public void executeInternalTest() throws Exception {
 		final JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.class);
 		final ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-		
+
 		final DataAgentApi dataAgentApi = Mockito.mock(DataAgentApi.class);
 		final JobContextHolder jobContextHolder = new JobContextHolderImpl(dataAgentApi, null, null,null);
-		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);		
-		
+		Mockito.when(applicationContext.getBean(JobContextHolder.class)).thenReturn(jobContextHolder);
+
 		new AgentJob().executeInternal(jobContextMock);
-		Mockito.verify(dataAgentApi,times(2)).execute(Mockito.any(DataAgentWorkOrder.class));
+		Mockito.verify(dataAgentApi,times(2)).execute(ArgumentMatchers.any(DataAgentWorkOrder.class));
 	}
-	
+
 }

@@ -43,7 +43,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "id", "docId", "personReferenceId", "roleDescription",
+	private static final String[] COLUMN_ORDER = { "id", "docId", "personReferenceId", "roleDescription",
 			"org", "label", "rm", "madePublicDate", "numberValue", "title", "subTitle", "tempLabel", "orderNumber",
 			"documentType", "subType", "status", "partyShortCode", "referenceName" };
 
@@ -52,7 +52,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 	private static final String DOCUMENTS = "Documents";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
 			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(

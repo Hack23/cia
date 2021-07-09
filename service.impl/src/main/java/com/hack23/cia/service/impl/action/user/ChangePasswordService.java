@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -75,7 +75,7 @@ public final class ChangePasswordService extends
 			new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
 			new WhitespaceRule());
 
-	
+
 	/**
 	 * Instantiates a new change password service.
 	 */
@@ -105,25 +105,25 @@ public final class ChangePasswordService extends
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getCurrentPassword(), userAccount.getUserpassword()) && serviceRequest.getNewPassword().equals(serviceRequest.getRepeatNewPassword())) {
 
-				
+
 				final RuleResult passwordRuleResults = passwordValidator
 						.validate(new PasswordData(serviceRequest.getNewPassword()));
 
 				if (passwordRuleResults.isValid()) {
-						
-					userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getNewPassword()));				
+
+					userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getNewPassword()));
 					getUserDAO().merge(userAccount);
-					
+
 					reencryptVaultValues(serviceRequest, userAccount);
-					
-				} else {					
+
+				} else {
 					response = new ChangePasswordResponse(ServiceResult.FAILURE);
 					final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
 					response.setErrorMessage(errorMessage);
-					eventRequest.setErrorMessage(errorMessage);					
+					eventRequest.setErrorMessage(errorMessage);
 				}
-						
-				
+
+
 			} else {
 				response = new ChangePasswordResponse(
 						ServiceResult.FAILURE);
@@ -146,7 +146,7 @@ public final class ChangePasswordService extends
 	private void reencryptVaultValues(final ChangePasswordRequest serviceRequest, final UserAccount userAccount) {
 		final String authKey= vaultManager.getEncryptedValue(serviceRequest.getCurrentPassword(), userAccount);
 		if (authKey != null) {
-			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());					
+			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());
 			encryptedValue.setStorage(vaultManager.encryptValue(serviceRequest.getNewPassword(), userAccount.getUserId(), authKey));
 			encryptedValueDAO.merge(encryptedValue);
 		}

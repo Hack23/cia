@@ -43,7 +43,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
+	private static final String[] COLUMN_ORDER = { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
 			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
 			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
 			"totalDaysServedEu",
@@ -61,7 +61,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
 

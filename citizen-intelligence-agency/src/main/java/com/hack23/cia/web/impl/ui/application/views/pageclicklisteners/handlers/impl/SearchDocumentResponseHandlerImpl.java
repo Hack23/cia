@@ -38,10 +38,10 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 	private static final String DOCUMENT = "Document";
 
 	/** The Constant DOCUMENT_GRID_COLUMN_ORDER. */
-	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
 
 	/** The Constant DOCUMENT_GRID_HIDE_COLUMNS. */
-	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
+	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
 			"org", "documentType","docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
 			"committeeReportUrlXml" };

@@ -54,9 +54,9 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant ADMIN_DATA_SUMMARY. */
 	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
-	private static final String[] COLUMN_ORDER = new String[] { "dataType", "dataSize" };
+	private static final String[] COLUMN_ORDER = { "dataType", "dataSize" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+	private static final String[] HIDE_COLUMNS = { "id" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;

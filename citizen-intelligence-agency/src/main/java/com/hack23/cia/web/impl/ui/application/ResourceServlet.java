@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,7 @@ public class ResourceServlet extends DefaultServlet {
 	private static final long serialVersionUID = 1L;
 
 	 @Override
-	  protected void service(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {		 
+	  protected void service(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		 response.setHeader("Pragma", "cache");
 	     super.service(request, response);
 	  }

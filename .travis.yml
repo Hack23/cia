@@ -5,7 +5,7 @@ services:
 sudo: true
 install: true
 before_install:
-  - sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb postgresql-12 postgresql-client-12 postgresql-contrib-12 postgresql-12-pgaudit openssl locales tzdata ca-certificates-java ca-certificates wget openjdk-11-jdk-headless python3-pip ruby-full npm
+  - sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb postgresql-12 postgresql-client-12 postgresql-contrib-12 postgresql-12-pgaudit openssl locales tzdata ca-certificates-java ca-certificates wget openjdk-16-jdk-headless python3-pip ruby-full npm
 addons:
   sonarcloud:
     organization: "hack23"
@@ -79,9 +79,9 @@ script:
   - export PATH=`pwd`/apache-maven-3.8.1/bin:$PATH
   - mvn -v
   - export PATH=$JAVA_HOME/bin:$PATH
-  - export MAVEN_OPTS="-Duser.timezone=CET --illegal-access=warn --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED"
+  - export MAVEN_OPTS="-Duser.timezone=CET --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED"
   - xvfb-run --server-args="-screen 0 1920x1080x24" mvn clean install -Dtest=no -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433 -Dhttps.protocols=TLSv1.2 -q '-Dtest=!**.*ITest*'
-  - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
+  - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
   - #cd cia-dist-cloudformation/src/main/config/
   - #chmod a+x *.sh
   - #./cfn-cloudformation-flip.sh

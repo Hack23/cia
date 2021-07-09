@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Gets the username exception test.
 	 *
@@ -41,7 +41,8 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	@Test(expected=RuntimeException.class)
 	public void getUsernameExceptionTest() throws Exception {
 		new SecretCredentialsManagerImpl(null, "true", null, null) {
-			
+
+			@Override
 			protected SecretCache getSecretCache() {
 				throw new DecryptionFailureException(null);
 			}
@@ -57,11 +58,11 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	@Test
 	public void getPasswordSuccessTest() throws Exception {
 		final SecretCredentialsManagerImpl secretCredentialsManagerImpl = new SecretCredentialsManagerImpl(null, "true", null, null) {
-			
+
 			@Override
 			protected SecretCache getSecretCache() {
 				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
-									 
+
 					@Override
 					public String getSecretString(final String secretId) {
 						return "{ \"password\" : \"password\", \"username\" : \"username\" }";
@@ -82,11 +83,11 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	@Test
 	public void getUsernameSuccessTest() throws Exception {
 		assertNotNull(new SecretCredentialsManagerImpl(null, "true", null, null) {
-			
+
 			@Override
 			protected SecretCache getSecretCache() {
 				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
-									 
+
 					@Override
 					public String getSecretString(final String secretId) {
 						return "{ \"username\" : \"username\" }";
@@ -105,11 +106,11 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 	@Test(expected=RuntimeException.class)
 	public void getUsernameFailureInvalidContentTest() throws Exception {
 		assertNotNull(new SecretCredentialsManagerImpl(null, "true", null, null) {
-			
+
 			@Override
 			protected SecretCache getSecretCache() {
 				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
-									 
+
 					@Override
 					public String getSecretString(final String secretId) {
 						return "{ \"wrongusernamefield\" : \"username\" }";

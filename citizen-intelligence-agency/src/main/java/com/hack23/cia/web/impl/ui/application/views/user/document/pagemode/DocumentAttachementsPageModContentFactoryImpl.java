@@ -51,13 +51,13 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };
+	private static final String[] COLUMN_ORDER = { "fileName", "fileSize", "fileType", "fileUrl" };
 
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/** The Constant PDF. */
 	private static final String PDF = "pdf";

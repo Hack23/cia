@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public class StringToEnumConverterTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Convert to model test.
 	 */
@@ -35,5 +35,5 @@ public class StringToEnumConverterTest extends AbstractUnitTest {
 	public void convertToModelNoFailureTest() {
 		assertFalse(new StringToEnumConverter().convertToModel(null,null).isError());
 	}
-		
+
 }

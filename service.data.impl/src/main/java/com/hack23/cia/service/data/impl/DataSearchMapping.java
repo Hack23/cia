@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 - 2019 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 public class DataSearchMapping implements HibernateOrmSearchMappingConfigurer {
 
 	@Override
-	public void configure(HibernateOrmMappingConfigurationContext context) {
-		context.annotationMapping().add(DocumentContentData.class);		
+	public void configure(final HibernateOrmMappingConfigurationContext context) {
+		context.annotationMapping().add(DocumentContentData.class);
 	}
 }

@@ -69,11 +69,11 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 				LOGGER.info("load https://data.riksdagen.se/utskottsforslag/{}", id);
 			}
 		}
-		
+
 		for (final CommitteeProposalComponentData container : getImportService().getNoneCompletedCommitteeProposal()) {
 				 getJmsSender().send(committeeProposalComponentDataWorkdestination,container.getDocument().getId());
-			 
-		}		
+
+		}
 
 	}
 

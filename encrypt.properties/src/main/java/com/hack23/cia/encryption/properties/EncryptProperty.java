@@ -65,7 +65,7 @@ public final class EncryptProperty {
 	 *
 	 * @param args the arguments
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		if (args.length == EXPECTED_NUMBER_ARGS) {
 			final String encryptValue = EncryptProperty.encryptValue(args[0], args[1]);
 			System.out.println(ENCRYPTED_VALUE +encryptValue);

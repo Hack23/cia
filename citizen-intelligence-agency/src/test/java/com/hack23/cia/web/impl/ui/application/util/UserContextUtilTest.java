@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,7 +30,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public class UserContextUtilTest extends AbstractUnitTest {
 
-	
+
 	/**
 	 * Allow role in security context null context test.
 	 */
@@ -38,7 +38,7 @@ public class UserContextUtilTest extends AbstractUnitTest {
 	public void allowRoleInSecurityContextNullContextTest() {
 		assertFalse(UserContextUtil.allowRoleInSecurityContext("anyRole"));
 	}
-	
+
 	/**
 	 * Gets the request url null page test.
 	 *
@@ -59,6 +59,6 @@ public class UserContextUtilTest extends AbstractUnitTest {
 	public void getUserIdFromSecurityContextNullTest() {
 		assertNull(UserContextUtil.getUserIdFromSecurityContext());
 	}
-	
-	
+
+
 }

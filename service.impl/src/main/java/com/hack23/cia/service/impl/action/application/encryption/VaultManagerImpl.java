@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,7 +60,7 @@ public final class VaultManagerImpl implements VaultManager {
 
 	/** The Constant KEY_SIZE_IN_BYTES. */
 	private static final int KEY_SIZE_IN_BYTES = 32;
-	
+
 	/** The Constant ENCRYPT_VALUE. */
 	private static final String ENCRYPT_VALUE = "encryptValue";
 
@@ -114,16 +114,16 @@ public final class VaultManagerImpl implements VaultManager {
 	@Override
 	public String encryptValue(final String password, final String userId, final String value) {
 		if (password != null && userId != null && value!=null) {
-		
+
 			try {
-				final Key buildKey = buildKey(userId, password);			
+				final Key buildKey = buildKey(userId, password);
 				final SecureRandom secureRandom = new SecureRandom();
-				final byte[] iv = new byte[IV_BYTE_SIZE]; 
-				secureRandom.nextBytes(iv);			
+				final byte[] iv = new byte[IV_BYTE_SIZE];
+				secureRandom.nextBytes(iv);
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
-				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv); 
+				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv);
 				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);
-	
+
 				final byte[] cipherText = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));
 				final ByteBuffer byteBuffer = ByteBuffer.allocate(4 + iv.length + cipherText.length);
 				byteBuffer.putInt(iv.length);
@@ -137,13 +137,13 @@ public final class VaultManagerImpl implements VaultManager {
 		} else {
 			return null;
 		}
-			
+
 	}
 
 	@Override
 	public String decryptValue(final String password, final String userId, final String value) {
 		if (password != null && userId != null && value!=null) {
-			try {			
+			try {
 				final Key buildKey = buildKey(userId, password);
 				final ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(value.getBytes(StandardCharsets.UTF_8)));
 				final int ivLength = byteBuffer.getInt();
@@ -151,14 +151,14 @@ public final class VaultManagerImpl implements VaultManager {
 				byteBuffer.get(iv);
 				final byte[] cipherText = new byte[byteBuffer.remaining()];
 				byteBuffer.get(cipherText);
-				
+
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
 				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));
 				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
 			} catch (final GeneralSecurityException e) {
 				LOGGER.error(DECRYPT_VALUE,e);
 				return null;
-			}		
+			}
 		} else {
 			return null;
 		}

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,13 +33,13 @@ import com.hack23.cia.testfoundation.AbstractTest;
  * The Class VaultManagerTest.
  */
 public class VaultManagerTest extends AbstractTest {
-	
+
 	/**
 	 * Encrypt decrypt value success test.
 	 */
 	@Test
-	public void encryptDecryptValueSuccessTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptDecryptValueSuccessTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String userId = UUID.randomUUID().toString();
 		final String someSecureValue = "SomeSecureValue";
@@ -48,13 +48,13 @@ public class VaultManagerTest extends AbstractTest {
 		assertEquals(someSecureValue,decryptValue);
 	}
 
-	
+
 	/**
 	 * Encrypt value failure all null test.
 	 */
 	@Test
-	public void encryptValueFailureAllNullTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureAllNullTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String encryptValue = vaultManagerImpl.encryptValue(null, null, null);
 		assertNull(encryptValue);
 	}
@@ -63,8 +63,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure non null userid test.
 	 */
 	@Test
-	public void encryptValueFailureNonNullUseridTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNonNullUseridTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String userId = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(null, userId, null);
 		assertNull(encryptValue);
@@ -74,8 +74,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure non null password test.
 	 */
 	@Test
-	public void encryptValueFailureNonNullPasswordTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNonNullPasswordTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(password, null, null);
 		assertNull(encryptValue);
@@ -85,8 +85,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure non null value test.
 	 */
 	@Test
-	public void encryptValueFailureNonNullValueTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNonNullValueTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String value = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(null, null, value);
 		assertNull(encryptValue);
@@ -97,8 +97,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure null user id test.
 	 */
 	@Test
-	public void encryptValueFailureNullUserIdTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNullUserIdTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String value = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(password, null, value);
@@ -109,8 +109,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure null password test.
 	 */
 	@Test
-	public void encryptValueFailureNullPasswordTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNullPasswordTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String userId = UUID.randomUUID().toString();
 		final String value = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(null, userId, value);
@@ -121,21 +121,21 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt value failure null value test.
 	 */
 	@Test
-	public void encryptValueFailureNullValueTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptValueFailureNullValueTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String userId = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
 		final String encryptValue = vaultManagerImpl.encryptValue(password, userId, null);
 		assertNull(encryptValue);
 	}
 
-	
+
 	/**
 	 * Encrypt decrypt wrong password failure test.
 	 */
 	@Test
-	public void encryptDecryptWrongPasswordFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptDecryptWrongPasswordFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String userId = UUID.randomUUID().toString();
 		final String someSecureValue = "SomeSecureValue";
@@ -149,8 +149,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Encrypt decrypt wrong user id failure test.
 	 */
 	@Test
-	public void encryptDecryptWrongUserIdFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void encryptDecryptWrongUserIdFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String userId = UUID.randomUUID().toString();
 		final String someSecureValue = "SomeSecureValue";
@@ -164,8 +164,8 @@ public class VaultManagerTest extends AbstractTest {
 	 * Decrypt wrong null value failure test.
 	 */
 	@Test
-	public void decryptWrongNullValueFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void decryptWrongNullValueFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String decryptValue = vaultManagerImpl.decryptValue(password, UUID.randomUUID().toString(), null);
 		assertNull(decryptValue);
@@ -175,33 +175,33 @@ public class VaultManagerTest extends AbstractTest {
 	 * Decrypt wrong non null password failure test.
 	 */
 	@Test
-	public void decryptWrongNonNullPasswordFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void decryptWrongNonNullPasswordFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String decryptValue = vaultManagerImpl.decryptValue(password, null, null);
 		assertNull(decryptValue);
 	}
 
-	
+
 	/**
 	 * Decrypt wrong all null failure test.
 	 */
 	@Test
-	public void decryptWrongAllNullFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void decryptWrongAllNullFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String decryptValue = vaultManagerImpl.decryptValue(null, null, null);
 		assertNull(decryptValue);
 	}
 
-	
+
 	/**
 	 * Gets the encrypted value null failure test.
 	 *
 	 * @return the encrypted value null failure test
 	 */
 	@Test
-	public void getEncryptedValueNullFailureTest() {		
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));		
+	public void getEncryptedValueNullFailureTest() {
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(Mockito.mock(EncryptedValueDAO.class));
 		final String password = UUID.randomUUID().toString();
 		final String decryptValue = vaultManagerImpl.getEncryptedValue(password, null);
 		assertNull(decryptValue);
@@ -213,34 +213,34 @@ public class VaultManagerTest extends AbstractTest {
 	 * @return the encrypted value no user failure test
 	 */
 	@Test
-	public void getEncryptedValueNoUserFailureTest() {		
+	public void getEncryptedValueNoUserFailureTest() {
 		final EncryptedValueDAO encryptedValueDAO = Mockito.mock(EncryptedValueDAO.class);
 		Mockito.when(encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId,"-1")).thenReturn(null);
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(encryptedValueDAO);		
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(encryptedValueDAO);
 		final String password = UUID.randomUUID().toString();
 		final String decryptValue = vaultManagerImpl.getEncryptedValue(password, new UserAccount().withUserId("-1"));
 		assertNull(decryptValue);
 	}
 
-	
+
 	/**
 	 * Gets the encrypted value success test.
 	 *
 	 * @return the encrypted value success test
 	 */
 	@Test
-	public void getEncryptedValueSuccessTest() {		
+	public void getEncryptedValueSuccessTest() {
 		final String userId = UUID.randomUUID().toString();
 		final String someSecureValue = "SomeSecureValue";
 		final String password = UUID.randomUUID().toString();
 		final EncryptedValueDAO encryptedValueDAO = Mockito.mock(EncryptedValueDAO.class);
-		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(encryptedValueDAO);		
+		final VaultManagerImpl vaultManagerImpl = new VaultManagerImpl(encryptedValueDAO);
 		final String encryptValue = vaultManagerImpl.encryptValue(password, userId, someSecureValue);
-		
+
 		final EncryptedValue encryptedValue = new EncryptedValue();
 		encryptedValue.setStorage(encryptValue);
 		Mockito.when(encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId,userId)).thenReturn(encryptedValue);
-			
+
 		final String decryptValue = vaultManagerImpl.getEncryptedValue(password, new UserAccount().withUserId(userId));
 		assertEquals(someSecureValue,decryptValue);
 	}

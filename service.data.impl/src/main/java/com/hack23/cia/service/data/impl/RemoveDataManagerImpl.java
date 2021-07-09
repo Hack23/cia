@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -48,7 +48,7 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 		super();
 		this.dataSource = dataSource;
 	}
-	
+
 	@Override
 	public void removePersonData() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -65,7 +65,7 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 		jdbcTemplate.execute("delete from document_element");
 		jdbcTemplate.execute("delete from document_content_data");
 	}
-	
+
 	@Override
 	public void removeDocumentStatus() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -83,7 +83,7 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 		jdbcTemplate.execute("delete from document_detail_container");
 		jdbcTemplate.execute("delete from document_data");
 		jdbcTemplate.execute("delete from document_container_element");
-		jdbcTemplate.execute("delete from document_status_container");	
+		jdbcTemplate.execute("delete from document_status_container");
 	}
 
 	@Override
@@ -95,8 +95,8 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 		jdbcTemplate.execute("delete from against_proposal_container");
 		jdbcTemplate.execute("delete from committee_proposal_data");
 		jdbcTemplate.execute("delete from against_proposal_data");
-	}	
-	
+	}
+
 	@Override
 	public void removeApplicationHistory() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -106,9 +106,9 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 
 	@Override
 	public void removeUserAccountApplicationHistory(final String userId) {
-		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
+		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update("delete from application_action_event WHERE EVENTS_APPLICATION_SESSION_H_0 IN (SELECT hjid FROM application_session WHERE user_id = ?)", userId);
 		jdbcTemplate.update("delete from application_session WHERE user_id = ?", userId);
-	}	
-		
+	}
+
 }

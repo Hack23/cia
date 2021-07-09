@@ -58,7 +58,7 @@ public enum PartyPageMode {
 
  /** The partywondailysummarychart. */
 PARTYWONDAILYSUMMARYCHART,
- 
+
  /** The roleghant. */
  ROLEGHANT,
 

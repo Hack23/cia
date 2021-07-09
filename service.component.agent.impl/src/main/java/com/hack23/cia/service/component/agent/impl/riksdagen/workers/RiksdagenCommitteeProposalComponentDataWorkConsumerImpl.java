@@ -79,7 +79,7 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends Abst
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading CommitteeProposalComponentData" , e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

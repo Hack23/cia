@@ -44,7 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName",
+	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
 			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
 	/** The Constant COMMITTEE. */
@@ -53,7 +53,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail", "active" };
+	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail", "active" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");

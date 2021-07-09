@@ -108,7 +108,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setCurrentPassword("");
 		request.setNewPassword("");
 		request.setRepeatNewPassword("");
-		
+
 		final ClickListener listener = new ChangePasswordClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request,
 				ChangePasswordRequest.class, Arrays.asList("currentPassword","newPassword","repeatNewPassword"), "Change password", listener);
@@ -202,7 +202,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		return formLayout;
 	}
-	
+
 	private VerticalLayout createDeleteAccountButton() {
 
 		final VerticalLayout formLayout = new VerticalLayout();
@@ -226,7 +226,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		return formLayout;
 	}
 
-	
+
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());

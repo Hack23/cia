@@ -13,8 +13,6 @@
     <Arg>
       <New id="GzipHandler" class="org.eclipse.jetty.server.handler.gzip.GzipHandler">
         <Set name="minGzipSize" property="jetty.gzip.minGzipSize"/>
-        <Set name="checkGzExists" property="jetty.gzip.checkGzExists"/>
-        <Set name="compressionLevel" property="jetty.gzip.compressionLevel"/>
         <Set name="inflateBufferSize" property="jetty.gzip.inflateBufferSize"/>
         <Set name="inflaterPoolCapacity" property="jetty.gzip.inflaterPoolCapacity"/>
         <Set name="deflaterPoolCapacity" property="jetty.gzip.deflaterPoolCapacity"/>

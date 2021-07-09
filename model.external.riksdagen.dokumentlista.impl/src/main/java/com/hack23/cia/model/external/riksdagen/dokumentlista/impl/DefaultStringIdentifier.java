@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,5 +51,5 @@ public final class DefaultStringIdentifier implements IdentifierBridge<String> {
 	public String toDocumentIdentifier(final String arg0, final IdentifierBridgeToDocumentIdentifierContext arg1) {
 		return arg0;
 	}
-	
+
 }

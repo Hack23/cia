@@ -39,36 +39,36 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 @RunWith(MockitoJUnitRunner.class)
 public final class RemoveDataManagerTest extends AbstractUnitTest {
-	
+
 	@Mock
 	private DataSource dataSource;
 
 	@Mock
 	private Connection connection;
-	
+
 	@Mock
 	private Statement statement;
 
 	@Mock
 	private PreparedStatement preparedStatement;
-	
+
 	/**
 	 * Removes the person data test.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	@Test
-	public void removePersonDataTest() throws SQLException {		
+	public void removePersonDataTest() throws SQLException {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
-		Mockito.when(connection.createStatement()).thenReturn(statement);		
+		Mockito.when(connection.createStatement()).thenReturn(statement);
 		new RemoveDataManagerImpl(dataSource).removePersonData();
 		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(5)).execute(argCaptor.capture());
-		
+
 	}
 
 	/**
 	 * Removes the committee proposals test.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	@Test
 	public void removeCommitteeProposalsTest() throws SQLException {
@@ -81,7 +81,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 
 	/**
 	 * Removes the document status test.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	@Test
 	public void removeDocumentStatusTest() throws SQLException {
@@ -94,7 +94,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 
 	/**
 	 * Removes the documents test.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	@Test
 	public void removeDocumentsTest() throws SQLException {
@@ -107,7 +107,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 
 	/**
 	 * Removes the application history test.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	@Test
 	public void removeApplicationHistoryTest() throws SQLException {
@@ -128,7 +128,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 	public void removeUserAccountApplicationHistoryTest() throws SQLException {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		final ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
-		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);		
+		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);
 		new RemoveDataManagerImpl(dataSource).removeUserAccountApplicationHistory("userid");
 		Mockito.verify(preparedStatement,Mockito.never()).execute(ArgumentCaptor.forClass(String.class).capture());
 	}

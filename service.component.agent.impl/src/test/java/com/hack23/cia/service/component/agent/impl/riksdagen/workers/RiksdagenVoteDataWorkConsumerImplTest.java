@@ -55,9 +55,9 @@ public class RiksdagenVoteDataWorkConsumerImplTest extends AbstractUnitTest {
 		when(message.getObject()).thenReturn(ballotId);
 
 		final RiksdagenBallotApi riksdagenBallotApi = mock(RiksdagenBallotApi.class);
-		
+
 		when(riksdagenBallotApi.getBallot(ballotId)).thenThrow(new DataFailureException(new RuntimeException()));
-		
+
 		final RiksdagenUpdateService riksdagenUpdateService = mock(RiksdagenUpdateService.class);
 		new RiksdagenVoteDataWorkConsumerImpl(riksdagenUpdateService,riksdagenBallotApi).onMessage(message);
 

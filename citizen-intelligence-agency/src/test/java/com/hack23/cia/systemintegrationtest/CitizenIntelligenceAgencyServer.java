@@ -54,7 +54,7 @@ public final class CitizenIntelligenceAgencyServer {
 
 	/** The Constant ACCESS_URL. */
 	public static final String ACCESS_URL = "https://localhost:" + PORT + "/";
-	
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CitizenIntelligenceAgencyServer.class);
 
@@ -88,7 +88,7 @@ public final class CitizenIntelligenceAgencyServer {
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
 		System.setProperty("jetty.sslContext.sniRequired", "false");
 		System.setProperty("jetty.ssl.sniRequired", "false");
-				
+
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
@@ -130,7 +130,7 @@ public final class CitizenIntelligenceAgencyServer {
 	 *
 	 * @throws Exception the exception
 	 */
-	public static final synchronized void startTestServer() throws Exception {
+	public static synchronized void startTestServer() throws Exception {
 		serverStarted++;
 		if (testServer == null) {
 			testServer = new CitizenIntelligenceAgencyServer();
@@ -143,7 +143,7 @@ public final class CitizenIntelligenceAgencyServer {
 	 *
 	 * @throws Exception the exception
 	 */
-	public static final synchronized void stopTestServer() throws Exception {
+	public static synchronized void stopTestServer() throws Exception {
 		serverStarted--;
 		if (serverStarted == 0 && testServer != null) {
 			// testServer.stop();
@@ -156,7 +156,7 @@ public final class CitizenIntelligenceAgencyServer {
 	 *
 	 * @throws Exception the exception
 	 */
-	public final void init() throws Exception {
+	public void init() throws Exception {
 		initialised = true;
 		server = new Server();
 		Security.addProvider(new BouncyCastleProvider());
@@ -165,7 +165,7 @@ public final class CitizenIntelligenceAgencyServer {
 		server.addBean(mbContainer);
 
 		final org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
-				
+
 		final HttpConfiguration http_config = new HttpConfiguration();
 		http_config.setSecureScheme("https");
 		http_config.setSecurePort(28443);
@@ -213,7 +213,7 @@ public final class CitizenIntelligenceAgencyServer {
 	 *
 	 * @throws Exception the exception
 	 */
-	public final void start() throws Exception {
+	public void start() throws Exception {
 		if (!initialised) {
 			LOGGER.info("Exiting init not called before start");
 			System.exit(-1);
@@ -234,8 +234,9 @@ public final class CitizenIntelligenceAgencyServer {
 			initLogger();
 			init();
 			start();
-			while (!server.isStarted())
+			while (!server.isStarted()) {
 				;
+			}
 
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
@@ -247,9 +248,10 @@ public final class CitizenIntelligenceAgencyServer {
 	 *
 	 * @throws Exception the exception
 	 */
-	public final void stop() throws Exception {
+	public void stop() throws Exception {
 		server.stop();
-		while (!server.isStopped())
+		while (!server.isStopped()) {
 			;
+		}
 	}
 }

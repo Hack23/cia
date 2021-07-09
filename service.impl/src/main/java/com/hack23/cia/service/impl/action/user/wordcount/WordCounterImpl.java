@@ -47,10 +47,11 @@ final class WordCounterImpl implements WordCounter {
 		super();
 	}
 
+	@Override
 	public Map<String, Integer> calculateWordCount(final DocumentContentData documentContentData, final int maxResult) {
 
 		final String html = documentContentData.getContent();
-		
+
 		final SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
 				new SwedishStopWords(), EnglishPunctuations.getInstance());
 

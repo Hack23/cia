@@ -50,22 +50,22 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void serviceRequestInteruptExceptionFailureTest() throws Exception {	
+	public void serviceRequestInteruptExceptionFailureTest() throws Exception {
 		SecurityContextHolder.clearContext();
 		final SearchIndexer searchIndexer = mock(SearchIndexer.class);
 		doThrow(new InterruptedException("test exception")).when(searchIndexer).updateSearchIndex();
-		
+
 		final UpdateSearchIndexService updateSearchIndexService = new UpdateSearchIndexService(searchIndexer);
-		
-		final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = (BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse>) mock(BusinessService.class);
+
+		final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService = mock(BusinessService.class);
 		ReflectionTestUtils.setField(updateSearchIndexService, "createApplicationEventService", createApplicationEventService);
 		ReflectionTestUtils.setField(updateSearchIndexService, "validator", Validation.buildDefaultValidatorFactory().getValidator());
-		
+
 		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
 		serviceRequest.setSessionId(UUID.randomUUID().toString());
-		
-		final UpdateSearchIndexResponse response = updateSearchIndexService.processService(serviceRequest);		
-				
+
+		final UpdateSearchIndexResponse response = updateSearchIndexService.processService(serviceRequest);
+
 		assertNotNull(response);
 		assertEquals(ServiceResult.FAILURE,response.getResult());
 		Mockito.verify(searchIndexer).updateSearchIndex();

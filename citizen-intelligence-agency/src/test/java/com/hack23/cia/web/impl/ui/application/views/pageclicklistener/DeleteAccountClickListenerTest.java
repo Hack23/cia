@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,15 +43,15 @@ public class DeleteAccountClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationFailureTest() {
-		final DeleteAccountRequest request = new DeleteAccountRequest();		
+		final DeleteAccountRequest request = new DeleteAccountRequest();
 		final DeleteAccountClickListener listener = Mockito.spy(new DeleteAccountClickListener(request));
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-		
+
 		final DeleteAccountResponse response = new DeleteAccountResponse(ServiceResult.FAILURE);
 		response.setErrorMessage("errorMessage");
 		Mockito.when(applicationManager.service(request)).thenReturn(response);
-		
+
 		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
 		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
@@ -62,11 +62,11 @@ public class DeleteAccountClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationSuccessTest() {
-		final DeleteAccountRequest request = new DeleteAccountRequest();		
+		final DeleteAccountRequest request = new DeleteAccountRequest();
 		final DeleteAccountClickListener listener = Mockito.spy(new DeleteAccountClickListener(request));
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-		
+
 		final DeleteAccountResponse response = new DeleteAccountResponse(ServiceResult.SUCCESS);
 		Mockito.when(applicationManager.service(request)).thenReturn(response);
 		listener.buttonClick(new ClickEvent(new Panel()));

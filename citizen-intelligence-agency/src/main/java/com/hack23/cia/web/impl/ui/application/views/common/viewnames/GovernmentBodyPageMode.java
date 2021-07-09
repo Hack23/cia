@@ -28,7 +28,7 @@ public enum GovernmentBodyPageMode {
 
 	/** The headcount. */
 	HEADCOUNT,
-	
+
 	/** The income. */
 	INCOME;
 }

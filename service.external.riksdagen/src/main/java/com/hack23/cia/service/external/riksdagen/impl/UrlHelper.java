@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * The Class UrlHelper.
  */
 public final class UrlHelper {
-	
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(UrlHelper.class);
 
@@ -43,7 +43,7 @@ public final class UrlHelper {
 	public static String urlEncode(final String id, final String charset) {
 		try {
 			return URLEncoder.encode(id, charset);
-		} catch (UnsupportedEncodingException e) {
+		} catch (final UnsupportedEncodingException e) {
 			LOGGER.warn("Problem encoding {} : {}",id,e);
 			return id;
 		}

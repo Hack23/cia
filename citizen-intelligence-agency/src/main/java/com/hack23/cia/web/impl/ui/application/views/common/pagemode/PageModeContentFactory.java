@@ -39,7 +39,7 @@ public interface PageModeContentFactory {
 	 * @return the layout
 	 */
 	Layout createContent(String parameters,MenuBar menuBar,Panel panel);
-	
+
 	/**
 	 * Matches.
 	 *
@@ -50,7 +50,7 @@ public interface PageModeContentFactory {
 	 * @return true, if successful
 	 */
 	boolean matches(String page, String parameters);
-	
+
 	/**
 	 * Valid reference.
 	 *

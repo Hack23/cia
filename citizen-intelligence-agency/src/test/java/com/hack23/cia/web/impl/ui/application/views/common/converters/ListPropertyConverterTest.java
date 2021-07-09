@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 		final String emptyString = new ListPropertyConverter("party", "party").apply(new ViewRiksdagenCommittee());
 		assertEquals("",emptyString);
 	}
-	
+
 	/**
 	 * Convert to model verify dummy impl test.
 	 */
@@ -52,7 +52,7 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 		final ValueContext context = new ValueContext(Locale.ENGLISH);
 		final Result<List<?>> convertToModel = new ListPropertyConverter("", null).convertToModel("value", context);
 		assertNotNull(convertToModel);
-		assertFalse(convertToModel.isError());		
+		assertFalse(convertToModel.isError());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 		assertEquals("[ ]",emptyString);
 	}
 
-	
+
 	/**
 	 * Convert to presentation null value failure test.
 	 */

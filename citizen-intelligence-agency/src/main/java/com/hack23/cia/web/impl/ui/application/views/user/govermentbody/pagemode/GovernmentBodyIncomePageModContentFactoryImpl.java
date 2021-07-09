@@ -66,19 +66,19 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		
+
 		final List<GovernmentBodyAnnualSummary> list = getItem(parameters);
-		
+
 		if (list != null && !list.isEmpty()) {
 			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();
-			
-			if (governmentBodyAnnualSummary.isPresent()) {			
+
+			if (governmentBodyAnnualSummary.isPresent()) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
 				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
 				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
 				panel.setCaption(NAME + "::" + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());
 			}
-			
+
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

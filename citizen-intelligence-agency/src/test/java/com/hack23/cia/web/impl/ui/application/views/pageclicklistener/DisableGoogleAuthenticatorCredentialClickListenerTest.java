@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,15 +40,15 @@ public class DisableGoogleAuthenticatorCredentialClickListenerTest extends Abstr
 	 */
 	@Test
 	public void showNotificationFailureTest() {
-		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();		
+		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();
 		final DisableGoogleAuthenticatorCredentialClickListener listener = Mockito.spy(new DisableGoogleAuthenticatorCredentialClickListener(request));
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-		
+
 		final DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(ServiceResult.FAILURE);
 		response.setErrorMessage("errorMessage");
 		Mockito.when(applicationManager.service(request)).thenReturn(response);
-		
+
 		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
 		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
@@ -59,11 +59,11 @@ public class DisableGoogleAuthenticatorCredentialClickListenerTest extends Abstr
 	 */
 	@Test
 	public void showNotificationSuccessTest() {
-		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();		
+		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();
 		final DisableGoogleAuthenticatorCredentialClickListener listener = Mockito.spy(new DisableGoogleAuthenticatorCredentialClickListener(request));
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-		
+
 		final DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(ServiceResult.SUCCESS);
 		Mockito.when(applicationManager.service(request)).thenReturn(response);
 		listener.buttonClick(new ClickEvent(new Panel()));

@@ -72,7 +72,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	 * @return the collection
 	 */
 	@Parameters(name = "UserRoleSiteTest{index}: browser({0})")
-	public final static Collection<String[]> browsersStrings() {
+	public static Collection<String[]> browsersStrings() {
 		return Arrays.asList(new String[][] { { "chrome" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
@@ -520,7 +520,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site committee ranking view page visit history test.
 	 *
@@ -539,7 +539,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site committe role ghant test.
 	 *
@@ -557,7 +557,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), "UU"));
 
 	}
-	
+
 	/**
 	 * Site country ranking view indicators test.
 	 *
@@ -593,7 +593,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				DocumentPageMode.DOCUMENTDETAILS.toString(), "GZ02C343"));
 	}
 
-	
+
 	/**
 	 * Site document doc activity test.
 	 *
@@ -628,7 +628,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "H5024180"));
 
 	}
- 
+
 	/**
 	 * Site document doc attachment test.
 	 *
@@ -736,7 +736,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "GZ02C343"));
 	}
 
-	
+
 	/**
 	 * Site document page visit history test.
 	 *
@@ -789,7 +789,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.performClickAction(nextPageButton);
 	}
 
-	
+
 	/**
 	 * Site documents click next test.
 	 *
@@ -805,7 +805,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW));
 		final WebElement nextPageButton = userPageVisit.findButton("next page");
 		userPageVisit.performClickAction(nextPageButton);
-		
+
 	}
 
 	/**
@@ -824,7 +824,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW));
 	}
 
-	
+
 	/**
 	 * Site government body expenditure invalid reference test.
 	 *
@@ -858,7 +858,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), "202100-5026"));
 	}
-	
+
 	/**
 	 * Site government body headcount invalid reference test.
 	 *
@@ -927,7 +927,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), "202100-5026"));
 	}
 
-	
+
 	/**
 	 * Site government body overview invalid reference test.
 	 *
@@ -945,7 +945,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
 	}
 
-	
+
 	/**
 	 * Site government body overview test.
 	 *
@@ -1253,7 +1253,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
 	}
-	
+
 	@Test(timeout = 60000)
 	public void siteLoginUserDisableGoogleAuthenticatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1535,8 +1535,8 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
-	
+
+
 	/**
 	 * Site ministry current members invalid reference test.
 	 *
@@ -1571,7 +1571,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				MinistryPageMode.CURRENTMEMBERS.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
-	
+
 
 	/**
 	 * Site ministry document activity invalid reference test.
@@ -1760,7 +1760,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
 	}
 
-	
+
 	/**
 	 * Site ministry overview test.
 	 *
@@ -2421,7 +2421,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), "S"));
 	}
 
-	
+
 
 	/**
 	 * Site party leader history test.
@@ -2811,7 +2811,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				PoliticianPageMode.DOCUMENTACTIVITY.toString(), "0980681611418"));
 
 	}
-	
+
 	/**
 	 * Site politican document history missing test.
 	 *
@@ -2884,8 +2884,8 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
-	
+
+
 	/**
 	 * Site politican over view test.
 	 *
@@ -2902,7 +2902,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, "0980681611418"));
 	}
-	
+
 	/**
 	 * Site politican page visit history test.
 	 *
@@ -2936,7 +2936,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 				PoliticianPageMode.ROLEGHANT.toString(), "0473783431010"));
 	}
-	
+
 	/**
 	 * Site politican role ghant prime minister test.
 	 *
@@ -2952,7 +2952,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 				PoliticianPageMode.ROLEGHANT.toString(), "0218878014918"));
 	}
-	
+
 
 	/**
 	 * Site politican role ghant test.
@@ -3023,7 +3023,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site politican vote history test.
 	 *
@@ -3115,7 +3115,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site politician ranking view overview test.
 	 *
@@ -3132,7 +3132,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
-	
+
 	/**
 	 * Site politician ranking view page visit history test.
 	 *
@@ -3210,7 +3210,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkNotificationMessage("Register failed:" + "[Password must be 8 or more characters in length., Password must contain 1 or more uppercase characters., Password must contain 1 or more digit characters., Password must contain 1 or more special characters.]");
 	}
 
-	
+
 	/**
 	 * Site register user test.
 	 *
@@ -3253,7 +3253,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site test country ranking overview test.
 	 *
@@ -3270,7 +3270,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
-	
+
 	/**
 	 * Site test parliament overview test.
 	 *
@@ -3287,7 +3287,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
-	
+
 	/**
 	 * Site test parliament page visit history test.
 	 *
@@ -3303,7 +3303,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 	}
 
-	
+
 	/**
 	 * Site user home events no access not login sec test.
 	 *
@@ -3318,7 +3318,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		assertTrue("Should be denied",userPageVisit.checkHtmlBodyContainsText("Access denied:userhome"));
 	}
 
-	
+
 	/**
 	 * Site user home security setting no access not login sec test.
 	 *

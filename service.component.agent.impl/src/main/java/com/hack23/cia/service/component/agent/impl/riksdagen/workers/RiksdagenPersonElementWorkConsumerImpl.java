@@ -76,7 +76,7 @@ final class RiksdagenPersonElementWorkConsumerImpl extends AbstractMessageListen
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading PersonElement",e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

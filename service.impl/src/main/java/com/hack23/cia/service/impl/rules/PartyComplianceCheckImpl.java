@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,19 +31,19 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The party. */
 	private final ViewRiksdagenPartySummary party;
-	
+
 	/** The name. */
 	private final String name;
-	
+
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
-	
+
 	/** The monthly summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
-	
+
 	/** The annual summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
 

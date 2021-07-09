@@ -77,13 +77,13 @@ final class ValImportServiceImpl implements ValImportService {
 				final Authentication authentication = new UsernamePasswordAuthenticationToken("system.agent", "n/a", authorities);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				final List<SwedenPoliticalParty> swedenPoliticalParties = valApi.getSwedenPoliticalParties();
-				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);				
-				SecurityContextHolder.getContext().setAuthentication(null);				
+				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);
+				SecurityContextHolder.getContext().setAuthentication(null);
 				LOGGER.info("Sweden political persisted to database:{}",swedenPoliticalParties.size());
 			} catch (final ValApiException e) {
 				LOGGER.warn("Problem loading Sweden political parties",e);
 			}
-		} 
+		}
 	}
 
 }

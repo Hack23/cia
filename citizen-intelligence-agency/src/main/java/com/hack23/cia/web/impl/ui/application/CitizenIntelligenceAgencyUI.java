@@ -62,10 +62,10 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant CRLF_REPLACEMENT. */
 	private static final String CRLF_REPLACEMENT = "";
-	
+
 	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
-	
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(CitizenIntelligenceAgencyUI.class);

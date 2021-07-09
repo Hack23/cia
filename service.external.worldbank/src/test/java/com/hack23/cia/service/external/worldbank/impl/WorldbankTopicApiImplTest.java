@@ -58,7 +58,7 @@ public final class WorldbankTopicApiImplTest extends AbstractWorldbankFunctional
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getTopicsFailureTest() throws Exception {		
+	public void getTopicsFailureTest() throws Exception {
 		new WorldbankTopicApiImpl(createMockXmlAgentThrowsException()).getTopics();
 	}
 

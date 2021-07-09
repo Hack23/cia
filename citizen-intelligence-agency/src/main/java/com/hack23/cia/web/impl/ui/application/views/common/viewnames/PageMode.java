@@ -37,7 +37,7 @@ public enum PageMode {
 
 	/** The pagevisithistory. */
 	PAGEVISITHISTORY,
-	
+
 	/** The rules. */
 	RULES
 

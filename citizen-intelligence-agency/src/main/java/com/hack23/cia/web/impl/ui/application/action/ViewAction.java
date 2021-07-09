@@ -107,10 +107,10 @@ public enum ViewAction {
 
 	/** The visit politician view. */
 	VISIT_POLITICIAN_VIEW, VISIT_REGISTER,
-	
+
 	/** The visit search view. */
 	VISIT_SEARCH_VIEW,
-	
+
 	/** The visit user home view. */
 	VISIT_USER_HOME_VIEW;
 }

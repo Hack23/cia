@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,7 +33,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  * The Class SecretPGXADataSourceTest.
  */
 public class SecretPGXADataSourceTest extends AbstractUnitTest {
-	
+
 	/**
 	 * Creates the reference test.
 	 */
@@ -43,8 +43,8 @@ public class SecretPGXADataSourceTest extends AbstractUnitTest {
 		final SecretReference ref = (SecretReference) secretPGXADataSource.createReference();
 		assertNotNull(ref);
 	}
-	
-	
+
+
 	/**
 	 * Gets the XA connection test.
 	 *
@@ -55,24 +55,24 @@ public class SecretPGXADataSourceTest extends AbstractUnitTest {
 	public void getXAConnectionTest() throws SQLException {
 		final String secretuser = UUID.randomUUID().toString();
 		final String secretpassword = UUID.randomUUID().toString();
-		
-		
+
+
 		final SecretCredentialsManager secretCredentialsManager = Mockito.mock(SecretCredentialsManager.class);
-		
+
 		Mockito.when(secretCredentialsManager.getUsername()).thenReturn(secretuser);
 		Mockito.when(secretCredentialsManager.getPassword()).thenReturn(secretpassword);
-		
+
 		final SecretPGXADataSource secretPGXADataSource = new SecretPGXADataSource(secretCredentialsManager) {
-			
+
 			@Override
 			public XAConnection getXAConnection(final String user, final String password) throws SQLException {
 				assertEquals(secretuser,user);
-				assertEquals(secretpassword,password);				
+				assertEquals(secretpassword,password);
 				return Mockito.mock(XAConnection.class);
 			}
 		};
-		
-	
+
+
 		final XAConnection xaConnection = secretPGXADataSource.getXAConnection();
 		assertNotNull(xaConnection);
 	}

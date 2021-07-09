@@ -66,7 +66,7 @@ MessageListener {
 		} catch (final JMSException e) {
 			LOGGER.warn("Error loading riksdagen document" , e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

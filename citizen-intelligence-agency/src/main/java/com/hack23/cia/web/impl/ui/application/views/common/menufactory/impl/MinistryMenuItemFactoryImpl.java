@@ -161,7 +161,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), "All government bodies income");
 
 		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), "All government bodies expenditure");		
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), "All government bodies expenditure");
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart over document activity");

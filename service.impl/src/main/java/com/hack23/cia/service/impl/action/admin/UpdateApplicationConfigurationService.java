@@ -66,7 +66,7 @@ public final class UpdateApplicationConfigurationService extends
 				.load(serviceRequest.getApplicationConfigurationId());
 
 		UpdateApplicationConfigurationResponse response;
-		
+
 		if (applicationConfiguration != null) {
 
 			applicationConfiguration.setConfigTitle(serviceRequest.getConfigTitle());

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ public class TestModelObjectImplTest extends AbstractTest {
 
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
-		
+
 		/** The value. */
 		private String value;
 
@@ -55,7 +55,7 @@ public class TestModelObjectImplTest extends AbstractTest {
 		public void setValue(final String value) {
 			this.value = value;
 		}
-		
+
 		/**
 		 * With value.
 		 *
@@ -75,9 +75,9 @@ public class TestModelObjectImplTest extends AbstractTest {
 	@Test
 	public void basicTest() {
 		assertTrue(new TestModelObject().equals(new TestModelObject()));
-		assertFalse(new TestModelObject().equals(new TestModelObject().withValue("different")));		
+		assertFalse(new TestModelObject().equals(new TestModelObject().withValue("different")));
 		assertEquals("TestModelObjectImplTest.TestModelObject[value=someValue]", new TestModelObject().withValue("someValue").toString());
-		assertNotSame(new TestModelObject().hashCode(),new TestModelObject().withValue("someValue").hashCode());		
+		assertNotSame(new TestModelObject().hashCode(),new TestModelObject().withValue("someValue").hashCode());
 	}
 
 }

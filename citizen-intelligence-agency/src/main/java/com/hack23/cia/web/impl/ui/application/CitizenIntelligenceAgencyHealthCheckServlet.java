@@ -37,7 +37,7 @@ public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServl
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The Constant TEXT_HTML. */
 	private static final String TEXT_HTML = "text/html";
 

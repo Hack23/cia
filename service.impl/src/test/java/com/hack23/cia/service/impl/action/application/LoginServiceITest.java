@@ -52,7 +52,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 
 	@Autowired
 	private VaultManager vaultManager;
-	
+
 	/**
 	 * Service login request success test.
 	 *
@@ -122,7 +122,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 
 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
-		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());
 
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail(serviceRequest.getEmail());
@@ -163,23 +163,23 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 
 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
-		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());
 
 		final GoogleAuthenticator gAuth = new GoogleAuthenticator();
-				
+
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail(serviceRequest.getEmail());
 		loginRequest.setSessionId(serviceRequest.getSessionId());
 		loginRequest.setUserpassword(serviceRequest.getUserpassword());
 		loginRequest.setOtpCode(""+ gAuth.getTotpPassword(vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), allBy.get(0))));
-		
+
 		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
 
 		assertNotNull("Expect a result", loginResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 	}
 
-	
+
 	/**
 	 * Service login request user password do not match failure test.
 	 *

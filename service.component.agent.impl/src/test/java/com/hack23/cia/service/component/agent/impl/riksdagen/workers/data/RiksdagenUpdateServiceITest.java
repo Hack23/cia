@@ -84,14 +84,14 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
 
 		final String personId = "0542160909628";
-		
+
 		final PersonData existPersonData = new PersonData();
 		final List<AssignmentData> assignmentList = new ArrayList<>();
 		assignmentList.add(new AssignmentData().withOrgCode("OrgCode").withRoleCode("RoleCode").withFromDate(new Date())
 				.withToDate(new Date()).withIntressentId(personId));
 		existPersonData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(assignmentList));
 		existPersonData.setId(personId);
-		
+
 
 		final PersonData personData = new PersonData();
 		final List<AssignmentData> assignmentListNew = new ArrayList<>();
@@ -99,7 +99,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 				.withToDate(new Date()).withIntressentId(personId));
 		assignmentListNew.add(new AssignmentData().withOrgCode("OrgCodeNew").withRoleCode("RoleCodeNew").withFromDate(new Date())
 				.withToDate(new Date()).withIntressentId(personId));
-		
+
 		personData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(assignmentListNew));
 		personData.setId(personId);
 
@@ -193,7 +193,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 				committeeProposalComponentDataDAO);
 		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(new CommitteeProposalContainer()).withAgainstProposalContainer(new AgainstProposalContainer());
-				
+
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
@@ -215,10 +215,10 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		committeeProposalContainer.getCommitteeProposalList().add(new CommitteeProposalData());
 		final AgainstProposalContainer againstProposalContainer = new AgainstProposalContainer();
 		againstProposalContainer.getAgainstProposalList().add(new AgainstProposalData());
-		
+
 		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(committeeProposalContainer).withAgainstProposalContainer(againstProposalContainer);
-				
+
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
@@ -236,17 +236,17 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 				CommitteeProposalComponentDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
 				committeeProposalComponentDataDAO);
-		
+
 		final CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
 				.withDocument(new CommitteeDocumentData()).withCommitteeProposalContainer(null).withAgainstProposalContainer(null);
-				
+
 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				documentProposal.getDocument())).thenReturn(documentProposal);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
 		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
 	}
 
-	
+
 	/**
 	 * Update document element success test.
 	 *

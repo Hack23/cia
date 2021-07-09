@@ -57,7 +57,7 @@ public final class WorldbankDataApiImplTest extends AbstractWorldbankFunctionalI
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getDateFailureTest() throws Exception {		
+	public void getDateFailureTest() throws Exception {
 		new WorldbankDataApiImpl(createMockXmlAgentThrowsException()).getData("br", "SP.POP.TOTL");
 	}
 

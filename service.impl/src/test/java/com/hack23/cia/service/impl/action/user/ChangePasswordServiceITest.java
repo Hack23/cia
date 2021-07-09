@@ -81,9 +81,9 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 			loginRequest.setEmail(serviceRequest.getEmail());
 			loginRequest.setSessionId(serviceRequest.getSessionId());
 			loginRequest.setUserpassword(serviceRequest.getUserpassword());
-	
+
 			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-	
+
 			assertNotNull(EXPECT_A_RESULT, loginResponse);
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 		}
@@ -109,21 +109,21 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 
 		{
 			final CreateApplicationSessionRequest createApplicationSesstionAfterPasswordChange = createApplicationSesstionWithRoleAnonymous();
-	
+
 			final LoginRequest loginRequest = new LoginRequest();
 			loginRequest.setEmail(serviceRequest.getEmail());
 			loginRequest.setSessionId(createApplicationSesstionAfterPasswordChange.getSessionId());
 			loginRequest.setUserpassword(changePasswordRequest.getNewPassword());
-	
+
 			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-	
+
 			assertNotNull(EXPECT_A_RESULT, loginResponse);
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * Change password request failure wrong password test.
 	 *
@@ -155,9 +155,9 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 			loginRequest.setEmail(serviceRequest.getEmail());
 			loginRequest.setSessionId(serviceRequest.getSessionId());
 			loginRequest.setUserpassword(serviceRequest.getUserpassword());
-	
+
 			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-	
+
 			assertNotNull(EXPECT_A_RESULT, loginResponse);
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 		}
@@ -206,9 +206,9 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 			loginRequest.setEmail(serviceRequest.getEmail());
 			loginRequest.setSessionId(serviceRequest.getSessionId());
 			loginRequest.setUserpassword(serviceRequest.getUserpassword());
-	
+
 			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-	
+
 			assertNotNull(EXPECT_A_RESULT, loginResponse);
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 		}
@@ -257,9 +257,9 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 			loginRequest.setEmail(serviceRequest.getEmail());
 			loginRequest.setSessionId(serviceRequest.getSessionId());
 			loginRequest.setUserpassword(serviceRequest.getUserpassword());
-	
+
 			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-	
+
 			assertNotNull(EXPECT_A_RESULT, loginResponse);
 			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 		}
@@ -277,7 +277,7 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 
 	}
 
-	
+
 	/**
 	 * Change password request reencrypt MFA success test.
 	 *
@@ -336,9 +336,9 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, changePasswordResponse.getResult());
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * Service request validation failure test.
 	 *
@@ -352,7 +352,7 @@ public final class ChangePasswordServiceITest extends AbstractServiceFunctionalI
 		changePasswordRequest.setCurrentPassword("Userpassword1!");
 		changePasswordRequest.setNewPassword("NewUserpassword1!");
 		changePasswordRequest.setRepeatNewPassword("NewUserpassword1!");
-		
+
 		final ServiceResponse changePasswordResponse = applicationManager.service(changePasswordRequest);
 
 		assertNotNull(EXPECT_A_RESULT, changePasswordResponse);

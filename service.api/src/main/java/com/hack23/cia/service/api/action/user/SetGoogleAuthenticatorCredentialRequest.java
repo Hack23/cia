@@ -81,9 +81,9 @@ public final class SetGoogleAuthenticatorCredentialRequest extends AbstractReque
 	 * @param userpassword
 	 *            the new userpassword
 	 */
-	public void setUserpassword(String userpassword) {
+	public void setUserpassword(final String userpassword) {
 		this.userpassword = userpassword;
 	}
 
-	
+
 }

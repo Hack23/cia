@@ -61,5 +61,5 @@ public abstract class AbstractRiksdagenFunctionalIntegrationTest extends Abstrac
 		return xmlAgent;
 	}
 
-	
+
 }

@@ -39,7 +39,7 @@ public final class DisableGoogleAuthenticatorCredentialRequest extends AbstractR
 	@NotNull
 	@Size(min = 4, max = 64)
 	private String userpassword;
-	
+
 	/**
 	 * Instantiates a new disable google authenticator credential request.
 	 */
@@ -81,8 +81,8 @@ public final class DisableGoogleAuthenticatorCredentialRequest extends AbstractR
 	 * @param userpassword
 	 *            the new userpassword
 	 */
-	public void setUserpassword(String userpassword) {
+	public void setUserpassword(final String userpassword) {
 		this.userpassword = userpassword;
 	}
-	
+
 }

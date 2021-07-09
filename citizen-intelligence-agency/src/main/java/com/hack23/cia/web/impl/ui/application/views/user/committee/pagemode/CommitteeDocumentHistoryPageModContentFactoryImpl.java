@@ -44,7 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "id", "docId",
+	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "id", "docId",
 			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
 			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
 
@@ -56,7 +56,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 
 	private static final String DOCUMENTS = "Documents";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
 			"personReferenceId", "org", "docId", "label", "roleDescription" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(

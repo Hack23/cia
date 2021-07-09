@@ -52,7 +52,7 @@ public final class ManageUserAccountService
 	/** The remove data manager. */
 	@Autowired
 	private RemoveDataManager removeDataManager;
-	
+
 	/** The user command map. */
 	private final Map<ManageUserAccountRequest.AccountOperation,UserCommand> userCommandMap = new EnumMap<>(ManageUserAccountRequest.AccountOperation.class);
 
@@ -97,7 +97,7 @@ public final class ManageUserAccountService
 		}
 
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-		
+
 		final ManageUserAccountResponse response = performOperation(serviceRequest, eventRequest);
 		createApplicationEventService.processService(eventRequest);
 
@@ -123,13 +123,13 @@ public final class ManageUserAccountService
 		final UserAccount accountToModify = getUserDAO().findFirstByProperty(UserAccount_.userId,
 				serviceRequest.getUserAcountId());
 
-		final UserCommand userCommand = userCommandMap.get(serviceRequest.getAccountOperation());			
+		final UserCommand userCommand = userCommandMap.get(serviceRequest.getAccountOperation());
 		if (accountToModify != null && userCommand != null) {
 			response = userCommand.execute(accountToModify);
 		} else {
 			response = new ManageUserAccountResponse(ServiceResult.FAILURE);
 		}
-		
+
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		return response;
 	}
@@ -140,7 +140,7 @@ public final class ManageUserAccountService
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(ManageUserAccountRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());		
+		eventRequest.setSessionId(serviceRequest.getSessionId());
 		return eventRequest;
 	}
 
@@ -153,7 +153,7 @@ public final class ManageUserAccountService
 	 * The Interface UserCommand.
 	 */
 	interface UserCommand {
-		
+
 		/**
 		 * Execute.
 		 *
@@ -161,7 +161,7 @@ public final class ManageUserAccountService
 		 *            the account
 		 * @return the manage user account response
 		 */
-		ManageUserAccountResponse execute(UserAccount account);		
-	}	
+		ManageUserAccountResponse execute(UserAccount account);
+	}
 
 }

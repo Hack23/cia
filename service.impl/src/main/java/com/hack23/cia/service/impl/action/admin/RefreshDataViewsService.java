@@ -61,7 +61,7 @@ public final class RefreshDataViewsService extends
 		if (inputValidation != null) {
 			return inputValidation;
 		}
-		
+
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 		viewDataManager.refreshViews();
 

@@ -58,7 +58,7 @@ public final class WorldbankCountryApiImplTest extends AbstractWorldbankFunction
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getCountriesFailureTest() throws Exception {		
+	public void getCountriesFailureTest() throws Exception {
 		new WorldbankCountryApiImpl(createMockXmlAgentThrowsException()).getCountries();
 	}
 

@@ -40,9 +40,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleId", "roleCode", "personId", "firstName",
+	private static final String[] COLUMN_ORDER = { "roleId", "roleCode", "personId", "firstName",
 			"lastName", "party", "totalDaysServed", "active", "detail", "fromDate", "toDate" };
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party", "detail" };
+	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "party", "detail" };
 	/** The Constant LEADER_HISTORY. */
 	private static final String LEADER_HISTORY = "LeaderHistory";
 	private static final String LEADER_HISTORY2 = "Leader History";

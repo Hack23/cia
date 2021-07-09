@@ -65,10 +65,10 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 	private static final List<String> AS_LIST2 = Arrays.asList( "configTitle",
 			"configDescription", "componentTitle", "componentDescription", "propertyValue" );
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
+	private static final String[] COLUMN_ORDER = { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
 			 "componentDescription", "propertyId", "propertyValue" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"};
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"};
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;

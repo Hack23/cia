@@ -76,7 +76,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	
+
 	/** The password validator. */
 	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
 			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
@@ -138,7 +138,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 	 * @return the user account
 	 */
 	private UserAccount createUserAccount(final RegisterUserRequest serviceRequest) {
-		
+
 		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
 				.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
 						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
@@ -153,18 +153,18 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		userAccount.setUserpassword(
 				passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
 		userAccount.setNumberOfVisits(1);
-		
+
 		if ( serviceRequest.getUserType() == null) {
 			userAccount.setUserType(UserType.PRIVATE);
 		} else {
 			userAccount.setUserType(serviceRequest.getUserType());
 		}
-			
+
 		userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);
 		userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
 		userAccount.setCreatedDate(new Date());
 		getUserDAO().persist(userAccount);
-		
+
 		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
 			userAccount.setUserRole(UserRole.ADMIN);

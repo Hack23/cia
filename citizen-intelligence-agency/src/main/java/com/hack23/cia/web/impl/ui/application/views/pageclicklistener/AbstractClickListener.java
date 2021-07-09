@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,7 +42,7 @@ abstract class AbstractClickListener {
 						.getRequest().getSession(true).getServletContext())
 				.getBean(ApplicationManager.class);
 	}
-	
+
 	/**
 	 * Show notification.
 	 *
@@ -51,7 +51,7 @@ abstract class AbstractClickListener {
 	 * @param type        the type
 	 */
 	protected void showNotification(final String caption, final String description, final Type type) {
-		Notification.show(caption, description, type);		
+		Notification.show(caption, description, type);
 	}
 
 

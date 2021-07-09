@@ -45,9 +45,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+	private static final String[] COLUMN_ORDER = { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
 	private static final String DOCUMENT = "Document";
-	private static final String[] HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
+	private static final String[] HIDE_COLUMNS = { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
 			"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
 			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",

@@ -36,7 +36,7 @@ public final class ApiDtoSanityTest extends AbstractUnitTest {
 	@Test
 	public void apiDtoTest() {
 		checkAllDtoClassesInPackage("com.hack23.cia.service.external.esv.api");
-		
+
 	}
 
 }

@@ -54,10 +54,10 @@ final class ViewDataManagerImpl implements ViewDataManager {
 
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='M'");
 		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='K'");
-		
+
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='man'");
 		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='kvinna'");
-		
+
 
 		jdbcTemplate.execute("update vote_data set party='L' where party='FP'");
 

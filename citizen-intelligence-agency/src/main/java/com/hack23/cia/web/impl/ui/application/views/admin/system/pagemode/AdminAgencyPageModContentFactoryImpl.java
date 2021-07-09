@@ -58,13 +58,13 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 	private static final List<String> AGENCY_FORM_FIELDS = Arrays.asList( "agencyName", "description");
 
 	/** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
-	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter("portalName", "portals")};
+	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = { new ListPropertyConverter("portalName", "portals")};
 
 	/** The Constant AGENCY_GRID_COLUMN_ORDER. */
-	private static final String[] AGENCY_GRID_COLUMN_ORDER = new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" };
+	private static final String[] AGENCY_GRID_COLUMN_ORDER = { "hjid", "agencyName", "description", "portals", "modelObjectVersion" };
 
 	/** The Constant AGENCY_GRID_HIDE_COLUMNS. */
-	private static final String[] AGENCY_GRID_HIDE_COLUMNS = new String[] { "hjid","modelObjectId", "modelObjectVersion" };
+	private static final String[] AGENCY_GRID_HIDE_COLUMNS = { "hjid","modelObjectId", "modelObjectVersion" };
 
 	/** The Constant AGENCY_GRID_LISTENER. */
 	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid");
@@ -76,10 +76,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 	private static final String PORTAL = "Portal";
 
 	/** The Constant PORTAL_GRID_COLUMN_ORDER. */
-	private static final String[] PORTAL_GRID_COLUMN_ORDER = new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey", "modelObjectVersion" };
+	private static final String[] PORTAL_GRID_COLUMN_ORDER = { "hjid", "portalName", "description", "portalType", "googleMapApiKey", "modelObjectVersion" };
 
 	/** The Constant PORTAL_GRID_HIDE_COLUMNS. */
-	private static final String[] PORTAL_GRID_HIDE_COLUMNS = new String[] { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" };
+	private static final String[] PORTAL_GRID_HIDE_COLUMNS = { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" };
 
 	/** The Constant PORTAL_GRID_LISTENER. */
 	private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid");

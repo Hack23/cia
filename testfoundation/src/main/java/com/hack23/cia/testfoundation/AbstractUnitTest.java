@@ -107,6 +107,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class InvokeToStringTester.
 	 */
 	private static class InvokeToStringTester implements Tester {
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmNotNull("toStringFailure", instance.toString());
@@ -117,6 +118,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class InvokeHashcodeTester.
 	 */
 	private static class InvokeHashcodeTester implements Tester {
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object instance = RandomFactory.getRandomValue(pojoClass.getClazz());
 			Affirm.affirmFalse("hashCodeFailure", 0 == instance.hashCode());
@@ -127,11 +129,12 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class DummyEqualsTester.
 	 */
 	private static class DummyEqualsTester implements Tester {
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object instance = randomValues(pojoClass);
 
 			Affirm.affirmFalse("EqualsCompareNullFailure", instance.equals(null));
-			Affirm.affirmFalse("EqualsCompareWrongClassFailure", instance.equals("WrongClass"));
+			Affirm.affirmFalse("EqualsCompareWrongClassFailure", "WrongClass".equals(instance));
 			Affirm.affirmTrue("EqualsCompareSelfFailure", instance.equals(instance));
 
 			final Object instance2 = randomValues(pojoClass);
@@ -165,6 +168,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 */
 	private static class WithTester implements Tester {
 
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
 			for (final PojoField fieldEntry : pojoClass.getPojoFields()) {
@@ -200,6 +204,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class ObjectFactoryTester.
 	 */
 	private static class ObjectFactoryTester implements Tester {
+		@Override
 		public void run(final PojoClass pojoClass) {
 			final Object classInstance = ValidationHelper.getBasicInstance(pojoClass);
 
@@ -228,6 +233,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 */
 	private static class EnumTester implements Rule {
 
+		@Override
 		public void evaluate(final PojoClass pojoClass) {
 			if (pojoClass.isEnum()) {
 
@@ -267,9 +273,9 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class FilterTestClasses.
 	 */
 	private static class FilterTestClasses implements PojoClassFilter {
+		@Override
 		public boolean include(final PojoClass pojoClass) {
-			return !(pojoClass.getSourcePath().contains("/test-classes/")
-					|| pojoClass.getClazz().getName().contains("_") || pojoClass.isEnum() || pojoClass.isAbstract())
+			return (!pojoClass.getSourcePath().contains("/test-classes/") && !pojoClass.getClazz().getName().contains("_") && !pojoClass.isEnum() && !pojoClass.isAbstract())
 					&& FilterPackageInfo.include(pojoClass);
 		}
 	}
@@ -278,6 +284,7 @@ public abstract class AbstractUnitTest extends AbstractTest {
 	 * The Class FilterNonEnumClasses.
 	 */
 	private static class FilterNonEnumClasses implements PojoClassFilter {
+		@Override
 		public boolean include(final PojoClass pojoClass) {
 			return pojoClass.isEnum() && FilterPackageInfo.include(pojoClass);
 		}

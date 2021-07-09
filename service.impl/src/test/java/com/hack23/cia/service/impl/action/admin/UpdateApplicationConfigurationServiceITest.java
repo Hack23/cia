@@ -130,7 +130,7 @@ public final class UpdateApplicationConfigurationServiceITest extends AbstractSe
 		setAuthenticatedAdminuser();
 		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
 
-	
+
 		final UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
 		serviceRequest.setApplicationConfigurationId(-1L);
 		serviceRequest.setSessionId(createTestApplicationSession.getSessionId());

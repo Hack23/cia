@@ -51,12 +51,12 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	private static final List<String> AS_LIST = Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
 			"longitude", "latitude" );
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
+	private static final String[] COLUMN_ORDER = { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
 			"latitude" };
 
 	private static final String COUNTRY2 = "Country";
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" };
+	private static final String[] HIDE_COLUMNS = { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid");
 

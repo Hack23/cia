@@ -76,7 +76,7 @@ MessageListener {
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading worldbank data:" , e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

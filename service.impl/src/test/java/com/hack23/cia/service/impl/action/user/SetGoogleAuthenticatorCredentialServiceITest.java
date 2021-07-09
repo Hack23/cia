@@ -105,7 +105,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 
 	}
-	
+
 	/**
 	 * Service request validation failure test.
 	 *

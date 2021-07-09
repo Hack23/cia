@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,14 +40,14 @@ public class RemoveDataClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void showNotificationSuccessTest() {
-		final RemoveDataRequest request = new RemoveDataRequest();		
+		final RemoveDataRequest request = new RemoveDataRequest();
 		final RemoveDataClickListener listener = Mockito.spy(new RemoveDataClickListener(request));
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-		
+
 		final RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
 		Mockito.when(applicationManager.asyncService(request)).thenReturn(Mockito.mock(Future.class));
-		
+
 		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
 		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));

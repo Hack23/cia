@@ -49,8 +49,8 @@ MessageListener {
 
 	private final RiksdagenDocumentApi riksdagenApi;
 
-	
-	
+
+
 	/**
 	 * Instantiates a new riksdagen document content work consumer impl.
 	 *
@@ -78,7 +78,7 @@ MessageListener {
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading DocumentContent:", e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

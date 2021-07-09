@@ -56,8 +56,8 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 			final Series series) {
 		series.addSeries(new XYseries().setLabel(variables.toString()));
 		dataSeries.newSeries();
-		
-		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
+
+		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());
 		Collections.sort(list);
 		for (final GovernmentOperationPeriodOutcome entry : list) {
 
@@ -72,7 +72,7 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 		final Series series = new Series();
 
 		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);
-		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		
+		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);
 
 		addChart(content, "GovernmentOperationPeriodOutcome",
 				new DCharts().setDataSeries(dataSeries)

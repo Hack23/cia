@@ -49,11 +49,11 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "eventGroup",
+	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "eventGroup",
 			"applicationOperation", "actionName", "page", "pageMode", "elementId", "applicationMessage", "errorMessage",
 			"modelObjectVersion" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "userId", "sessionId", "modelObjectId",
+	private static final String[] HIDE_COLUMNS = { "hjid", "userId", "sessionId", "modelObjectId",
 			"modelObjectVersion" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(

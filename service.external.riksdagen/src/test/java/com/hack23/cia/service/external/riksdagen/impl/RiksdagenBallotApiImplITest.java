@@ -65,11 +65,11 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	 *             the exception
 	 */
 	@Test(expected =  DataFailureException.class)
-	public void getBallotFailureTest() throws Exception {		
+	public void getBallotFailureTest() throws Exception {
 		new RiksdagenBallotApiImpl(createMockXmlAgentThrowsException()).getBallot("E0B34EE1-3FD3-474A-81D7-781B04BB241E");
 	}
 
-	
+
 	/**
 	 * Gets the ballot list test.
 	 *
@@ -84,7 +84,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertNotNull(ballotList);
 		assertTrue(ballotList.size() >= 7888);
 	}
-	
+
 	/**
 	 * Gets the ballot list failure test.
 	 *
@@ -93,7 +93,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	 *             the exception
 	 */
 	@Test(expected =  DataFailureException.class)
-	public void getBallotListFailureTest() throws Exception {		
+	public void getBallotListFailureTest() throws Exception {
 		new RiksdagenBallotApiImpl(createMockXmlAgentThrowsException()).getBallotList();
 	}
 

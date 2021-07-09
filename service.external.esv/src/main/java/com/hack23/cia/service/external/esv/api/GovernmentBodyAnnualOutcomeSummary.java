@@ -42,13 +42,13 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 
 	/** The org number. */
 	private final String orgNumber;
-	
+
 	/** The ministry. */
 	private final String ministry;
 
 	/** The year. */
 	private final int year;
-	
+
 	/** The year total. */
 	private double yearTotal;
 
@@ -145,7 +145,7 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 		descriptionFields.put(field, value);
 	}
 
-	
+
 	/**
 	 * Gets the value map.
 	 *

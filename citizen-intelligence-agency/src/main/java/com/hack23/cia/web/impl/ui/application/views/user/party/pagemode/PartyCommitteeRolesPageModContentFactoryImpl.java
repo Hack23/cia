@@ -40,11 +40,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCommitteeRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleId", "personId", "firstName", "lastName", "detail",
+	private static final String[] COLUMN_ORDER = { "roleId", "personId", "firstName", "lastName", "detail",
 			"active", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant COMMITTEE_ROLES. */
 	private static final String COMMITTEE_ROLES = "CommitteeRoles";
-	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party" };
+	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "party" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 

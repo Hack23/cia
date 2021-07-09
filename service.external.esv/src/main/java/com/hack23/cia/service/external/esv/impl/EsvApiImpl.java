@@ -58,10 +58,10 @@ final class EsvApiImpl implements EsvApi {
 
 	/** The esv excel reader. */
 	private final EsvExcelReader esvExcelReader;
-	
+
 	/** The esv government operations excel reader. */
 	private final EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
-	
+
 	/** The esv government body operation outcome reader. */
 	private final EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
 
@@ -89,7 +89,7 @@ final class EsvApiImpl implements EsvApi {
 	public synchronized Map<Integer, List<GovernmentBodyAnnualSummary>> getData() {
 	  if (allData == null) {
 		allData = esvExcelReader.getDataPerMinistry(null);
-	  }		
+	  }
 	  return allData;
 	}
 
@@ -178,19 +178,19 @@ final class EsvApiImpl implements EsvApi {
 		} catch (final IOException e) {
 			LOGGER.error(GET_REPORT,e);
 			return new HashMap<>();
-		}		
+		}
 	}
 
 	@Override
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReport() {
-		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();
 		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
 	}
 
-	
+
 	@Override
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByMinistry() {
-		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();
 		return result.stream().filter(p -> p.getMinistry() != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getMinistry));
 	}
 
@@ -213,13 +213,13 @@ final class EsvApiImpl implements EsvApi {
 
 	@Override
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByField(final String string) {
-		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();
 		return result.stream().filter(p -> p.getDescriptionFields().get(string) != null) .collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(string)));
 	}
 
 	@Override
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByFieldAndMinistry(final String string,final String ministry) {
-		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();
 		return result.stream().filter(p -> p.getDescriptionFields().get(string) != null && ministry.equalsIgnoreCase(p.getMinistry())) .collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(string)));
 	}
 

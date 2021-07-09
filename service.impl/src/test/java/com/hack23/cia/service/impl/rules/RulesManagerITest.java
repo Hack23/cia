@@ -18,9 +18,8 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import org.junit.Test;
 import org.junit.Ignore;
-
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;

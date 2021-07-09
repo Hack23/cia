@@ -48,7 +48,7 @@ public final class DocumentContentDataDAOITest extends AbstractServiceDataFuncti
 		assertFalse(documentContentDataDAO.checkDocumentContentData("somemissingdocumentId"));
 	}
 
-	
+
 	/**
 	 * Gets the id list test.
 	 *

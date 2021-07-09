@@ -59,7 +59,7 @@ public final class DocumentWordCountServiceITest extends AbstractServiceFunction
 		assertTrue("Expect a result",response.getWordCountMap().size() > 0);
 	}
 
-	
+
 	/**
 	 * Service request failure no matching document test.
 	 *
@@ -81,7 +81,7 @@ public final class DocumentWordCountServiceITest extends AbstractServiceFunction
 		assertTrue("Expect no result",response.getWordCountMap().isEmpty());
 	}
 
-	
+
 	/**
 	 * Service request validation failure test.
 	 *

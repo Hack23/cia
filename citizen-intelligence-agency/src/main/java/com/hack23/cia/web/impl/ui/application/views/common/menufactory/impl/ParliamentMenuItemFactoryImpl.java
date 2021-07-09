@@ -183,7 +183,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, CHART_DECISIONS_BY_DECISION_TYPE);
 
 		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);
-		
+
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY, VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE);
@@ -222,13 +222,13 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);
 		addItem8.setDescription(RULE_VIOLATIONS);
 
-		
+
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
-		
+
 		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
-		
+
 		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 

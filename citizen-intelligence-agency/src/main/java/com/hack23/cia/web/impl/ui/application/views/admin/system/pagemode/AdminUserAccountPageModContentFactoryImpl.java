@@ -67,10 +67,10 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant BUTTON_PATTERN. */
 	private static final String BUTTON_PATTERN = "Perform {0}";
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
+	private static final String[] COLUMN_ORDER = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
 			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
 
@@ -78,7 +78,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
 
 	private static final String USER_ACCOUNT = "UserAccount";
-	
+
 	/**
 	 * Instantiates a new admin user account page mod content factory impl.
 	 */
@@ -122,14 +122,14 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 				getFormFactory()
 						.addFormPanelTextFields(content, userAccount, UserAccount.class,
 								AS_LIST);
-		
+
 				final VerticalLayout overviewLayout = new VerticalLayout();
 				overviewLayout.setSizeFull();
 				content.addComponent(overviewLayout);
 				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-			
+
 				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {
 					final ManageUserAccountRequest request = new ManageUserAccountRequest();
 					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -141,10 +141,10 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 					RowUtil.createRowItem(grid, accountOperationButton, "Will perform useraccount action");
 				}
 
-				
+
 			}
 		}
-		
+
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,
 				NAME, null, pageId);
 

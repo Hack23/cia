@@ -109,13 +109,13 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 
 		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), "Desc.");
-		
+
 		createButtonLink(grid,INCOME, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), "Desc.");
 
 		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), "Desc");
-		
+
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 

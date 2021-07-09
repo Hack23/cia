@@ -48,7 +48,7 @@ public final class CommitteeProposalComponentDataDAOITest extends AbstractServic
 		assertFalse(dao.checkCommitteeDocumentData("somemissingdocumentId"));
 	}
 
-	
+
 	/**
 	 * Gets the id list test.
 	 *

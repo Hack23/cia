@@ -30,11 +30,11 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  * The Class RuleEngineITest.
  */
 public final class RuleEngineITest extends AbstractServiceFunctionalIntegrationTest {
-		
+
 	/** The application manager. */
 	@Autowired
 	private RulesEngine rulesEngine;
-	
+
 	/**
 	 * Rule engine test.
 	 *

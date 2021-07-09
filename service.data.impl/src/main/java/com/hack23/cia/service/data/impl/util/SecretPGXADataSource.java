@@ -1,6 +1,6 @@
 /*
  * Copyright 2010-2021 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ public class SecretPGXADataSource extends PGXADataSource {
 
 	/** The secret credentials manager. */
 	private final SecretCredentialsManager secretCredentialsManager;
-	
+
 	/**
 	 * Instantiates a new secret PGXA data source.
 	 *
@@ -52,8 +52,8 @@ public class SecretPGXADataSource extends PGXADataSource {
 	protected Reference createReference() {
 		return new SecretReference(secretCredentialsManager,getClass().getName(), SecretPGXADataSourceFactory.class.getName(), null);
 	}
-	
-	
+
+
 	/**
 	 * The Class SecretReference.
 	 */
@@ -61,7 +61,7 @@ public class SecretPGXADataSource extends PGXADataSource {
 
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
-		
+
 		/** The secret credentials manager. */
 		private final SecretCredentialsManager secretCredentialsManager;
 
@@ -85,6 +85,6 @@ public class SecretPGXADataSource extends PGXADataSource {
 		 */
 		public final SecretCredentialsManager getSecretCredentialsManager() {
 			return secretCredentialsManager;
-		}		
+		}
 	}
 }

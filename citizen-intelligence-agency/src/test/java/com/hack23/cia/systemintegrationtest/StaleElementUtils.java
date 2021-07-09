@@ -1,6 +1,6 @@
 /*
  * From http://www.sahajamit.com/post/mystery-of-stale-element-reference-exception/
- * 
+ *
 */
 package com.hack23.cia.systemintegrationtest;
 
@@ -144,8 +144,9 @@ public class StaleElementUtils {
 	 * @return the web element
 	 */
 	public static WebElement refreshElement(final WebElement elem, final WebDriver driver) {
-		if (!isElementStale(elem))
+		if (!isElementStale(elem)) {
 			return elem;
+		}
 		Object lastObject = null;
 		try {
 			final String[] arr = elem.toString().split("->");
@@ -157,8 +158,9 @@ public class StaleElementUtils {
 				String value = parts[1];
 				final int leftBracketsCount = value.length() - value.replace("[", "").length();
 				final int rightBracketscount = value.length() - value.replace("]", "").length();
-				if (leftBracketsCount - rightBracketscount == 1)
+				if (leftBracketsCount - rightBracketscount == 1) {
 					value = value + "]";
+				}
 				if (lastObject == null) {
 					lastObject = driver;
 				} else {

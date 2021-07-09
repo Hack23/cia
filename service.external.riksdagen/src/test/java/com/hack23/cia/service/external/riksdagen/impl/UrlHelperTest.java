@@ -35,7 +35,8 @@ public class UrlHelperTest extends Assert {
 	 */
 	@Test
 	public void urlEncodeSuccesTest() throws Exception {
-		assertEquals("%26", new UrlHelper().urlEncode("&",StandardCharsets.UTF_8.toString()));
+		new UrlHelper();
+		assertEquals("%26", UrlHelper.urlEncode("&",StandardCharsets.UTF_8.toString()));
 	}
 
 	/**
@@ -45,7 +46,8 @@ public class UrlHelperTest extends Assert {
 	 */
 	@Test
 	public void urlEncodeFailureTest() throws Exception {
-		assertEquals("&", new UrlHelper().urlEncode("&","bad encoding"));
+		new UrlHelper();
+		assertEquals("&", UrlHelper.urlEncode("&","bad encoding"));
 	}
 
 }

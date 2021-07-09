@@ -40,12 +40,12 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyDocumentHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "title", "subTitle", "id",
+	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "title", "subTitle", "id",
 			"docId", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "documentType",
 			"subType", "org", "label", "numberValue", "status", "tempLabel", "orderNumber" };
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
+	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
 			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId");

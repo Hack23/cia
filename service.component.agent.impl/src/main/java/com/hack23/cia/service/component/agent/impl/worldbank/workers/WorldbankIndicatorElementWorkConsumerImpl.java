@@ -67,7 +67,7 @@ MessageListener {
 		} catch (final JMSException e) {
 			LOGGER.warn("Error loading worldbank indicator :" , e);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }

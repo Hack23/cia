@@ -25,7 +25,7 @@ public enum RiskIndicators {
 
 	/** The risk summary. */
 	RISK_SUMMARY,
-	
+
 	/** The rule violations. */
 	RULE_VIOLATIONS;
 }
