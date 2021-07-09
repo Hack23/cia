@@ -1494,7 +1494,7 @@
         <jdk>18</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
         			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
@@ -1523,8 +1523,8 @@
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>16</jdk.target.version>
+        <jdk.src.version>17</jdk.src.version>
+        <jdk.target.version>17</jdk.target.version>
         <!-- No Java 17 support yet for forbiddenapis.skip -->
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
