@@ -1540,98 +1540,16 @@
         <jdk>16</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
         			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
 					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
 					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>11</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.7</jacoco.version>
-        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M5</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java15</id>
-      <activation>
-        <jdk>15</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>11</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.7</jacoco.version>
-        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M5</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java14</id>
-      <activation>
-        <jdk>14</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>11</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.7</jacoco.version>
-        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M5</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java13</id>
-      <activation>
-        <jdk>13</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>11</jdk.target.version>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.7</jacoco.version>
-        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M5</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java12</id>
-      <activation>
-        <jdk>12</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--illegal-access=warn --add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>11</jdk.src.version>
-        <jdk.target.version>11</jdk.target.version>
+        <jdk.src.version>16</jdk.src.version>
+        <jdk.target.version>16</jdk.target.version>
+        <!-- No Java 17 support yet for forbiddenapis.skip -->
+        <forbiddenapis.skip>true</forbiddenapis.skip>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.7</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
