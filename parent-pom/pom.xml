@@ -184,8 +184,8 @@
     <surefire.version>3.0.0-M5</surefire.version>
     <jdk.src.version>16</jdk.src.version>
     <jdk.target.version>16</jdk.target.version>
-    <javadoc.src.version>8</javadoc.src.version>
-    <javadoc.target.version>8</javadoc.target.version>
+    <javadoc.src.version>16</javadoc.src.version>
+    <javadoc.target.version>16</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
@@ -1709,11 +1709,12 @@
             <configuration>
               <source>${javadoc.src.version}</source>
               <release>${javadoc.target.version}</release>
+              <sourcepath>src/main/java</sourcepath>
               <excludes>${jdk.src.exclude}</excludes>
               <sourceFileExcludes>
                 <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
               </sourceFileExcludes>
-              <debug>true</debug>
+              <debug>false</debug>
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
               <linksource>false</linksource>
@@ -1735,8 +1736,7 @@
               <encoding>UTF-8</encoding>
               <sourcepath>src/main/java</sourcepath>
               <docencoding>UTF-8</docencoding>
-              <additionalOptions>-createPumlFiles</additionalOptions>
-            </configuration>
+             </configuration>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -1853,7 +1853,7 @@
             <configuration>
               <source>${javadoc.src.version}</source>
               <release>${javadoc.target.version}</release>
-              <sourcepath>src/main/java</sourcepath>
+              <sourcepath>src/main/java</sourcepath>               
               <excludes>${jdk.src.exclude}</excludes>
               <sourceFileExcludes>
                 <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
@@ -1878,8 +1878,7 @@
               <charset>UTF-8</charset>
               <encoding>UTF-8</encoding>
               <docencoding>UTF-8</docencoding>
-              <additionalOptions>-createPumlFiles</additionalOptions>
-            </configuration>
+             </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
