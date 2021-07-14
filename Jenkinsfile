@@ -168,6 +168,10 @@ pipeline {
 		}
 
 	   stage ("SAST: Scan code and Check Quality gate") {
+	     environment {
+           MAVEN_OPTS = '-server -Xmx6048m -Xms6048m -Duser.timezone=CET --illegal-access=warn --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED'
+         }
+
 	      steps {
 	         sh "mvn sonar:sonar -Prelease-site,all-modules -Dmaven.test.failure.ignore=true -Djavamelody.storage-directory=/tmp/javamelody-jenkins/ -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports -Dsonar.host.url=http://192.168.1.15:9000/sonar/ -Dsonar.cfn.checkov.reportFiles=cia-dist-cloudformation.checkov-report -Dsonar.cfn.nag.reportFiles=cia-dist-cloudformation.yml.nagscan -Dsonar.dependencyCheck.xmlReportPath=citizen-intelligence-agency/target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=citizen-intelligence-agency/target/dependency-check-report.html -Dsonar.zaproxy.reportPath=zap-reports/baseline-scan-report.xml -Dsonar.zaproxy.htmlReportPath=zap-reports/baseline-scan-report.html"
 		  }
