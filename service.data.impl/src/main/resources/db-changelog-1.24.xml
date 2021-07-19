@@ -50,5 +50,19 @@
 			constraintName="application_configuration_pkey" tableName="application_configuration" />
 	</changeSet>
 	
+	<changeSet author="pether (generated)" id="1414872417007-329">
+	
+		<sql>DROP MATERIALIZED VIEW view_worldbank_indicator_data_country_summary</sql>
+	
+		<modifyDataType columnName="indicator_name" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" />
+		<modifyDataType columnName="source_id" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" />
+		<modifyDataType columnName="source_value" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" />
+		<sql>create materialized view view_worldbank_indicator_data_country_summary as select indicator_id as embedded_id_indicator_id,country_id as embedded_id_country_id,max(indicator_name) as indicator_name,max(source_id) as source_id,max(source_value) as source_value,max(source_note) as source_note,max(source_organization) as source_organization,min(year_date) as start_year, max(year_date) as end_year,count(*) as data_point,max(topics::text) as topics from world_bank_data  left join (select * from indicator_element   inner join (select topic_topics_hjid,string_agg(distinct value_,';') as topics,count(*) as number_of_topics from topic group by topic_topics_hjid) AS derivedTable  on indicator_element.topics_indicator_element_hjid=derivedTable.topic_topics_hjid) as indicators on indicator_id = indicators.id where data_value!='' and data_value!='0' and year_date is not null and source_organization is not null and source_organization !='' group by indicator_id,country_id</sql>
+
+	</changeSet>
+	
 
 </databaseChangeLog>
