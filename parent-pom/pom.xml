@@ -13,7 +13,6 @@
     <name>www.hack23.com</name>
     <url>http://www.hack23.com</url>
   </organization>
-  <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
@@ -187,6 +186,11 @@
     <javadoc.src.version>16</javadoc.src.version>
     <javadoc.target.version>16</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+	<testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
+		--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+		--add-opens java.base/java.lang=ALL-UNNAMED
+		--add-opens java.base/java.lang.reflect=ALL-UNNAMED
+		--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
@@ -1474,10 +1478,9 @@
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        			--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
+					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>17</jdk.src.version>
         <jdk.target.version>17</jdk.target.version>
         <!-- No Java 17 support yet for forbiddenapis.skip -->
@@ -1497,10 +1500,9 @@
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED,org.drools.core,spring.core,javassist
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED,spring.core,javassist
-					--add-opens java.base/java.util=ALL-UNNAMED,com.hack23.cia.web,spring.core,javassist
-					--add-opens com.hack23.cia.service.impl/com.hack23.cia.service.impl.rules=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        			--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
+					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>17</jdk.src.version>
         <jdk.target.version>17</jdk.target.version>
         <!-- No Java 17 support yet for forbiddenapis.skip -->
