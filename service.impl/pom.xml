@@ -393,7 +393,7 @@
     </dependency>
   </dependencies>
   <build>
-    <plugins />
-    <extensions />
+    <plugins></plugins>
+    <extensions></extensions>
   </build>
 </project>

@@ -39,12 +39,12 @@
       <url>github:http://hack23.github.io/cia/parent-model-pom</url>
     </site>
   </distributionManagement>
-  <dependencyManagement />
+  <dependencyManagement></dependencyManagement>
   <build>
     <pluginManagement>
-      <plugins />
+      <plugins></plugins>
     </pluginManagement>
-    <plugins />
-    <extensions />
+    <plugins></plugins>
+    <extensions></extensions>
   </build>
 </project>
