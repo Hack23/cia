@@ -23,7 +23,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -266,7 +266,7 @@ public abstract class AbstractView extends Panel implements View {
 	public final void enter(final ViewChangeEvent event) {
 		try {
 
-			final String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
+			final String parameters = Jsoup.clean(event.getParameters(), Safelist.basic());
 
 			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
 				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {

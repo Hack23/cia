@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
@@ -55,7 +55,7 @@ final class WordCounterImpl implements WordCounter {
 		final SimpleCorpus simpleCorpus = new SimpleCorpus(SimpleSentenceSplitter.getInstance(), new SimpleTokenizer(),
 				new SwedishStopWords(), EnglishPunctuations.getInstance());
 
-		simpleCorpus.add(new Text( Jsoup.clean(html, Whitelist.basic())));
+		simpleCorpus.add(new Text( Jsoup.clean(html, Safelist.basic())));
 
 		final Iterator<String> terms = simpleCorpus.getTerms();
 
