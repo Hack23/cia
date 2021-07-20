@@ -56,8 +56,15 @@ public enum ChartIndicators {
 	/** The currentministriesbyheadcount. */
 	CURRENTMINISTRIESBYHEADCOUNT,
 
+	/** The currentministriesleaderscorecard. */
+	CURRENTMINISTRIESLEADERSCORECARD,
+
 	/** The currentparties. */
 	CURRENTPARTIES,
+	
+	/** The currentpartyleaderscorecard. */
+	CURRENTPARTYLEADERSCORECARD,
+	
 
 	/** The currentpartiesbyheadcount. */
 	CURRENTPARTIESBYHEADCOUNT,

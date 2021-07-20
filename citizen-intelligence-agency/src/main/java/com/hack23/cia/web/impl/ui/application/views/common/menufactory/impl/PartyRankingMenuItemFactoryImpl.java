@@ -40,6 +40,9 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
 
+	/** The Constant PART_LEADERS_SCOREBOARD. */
+	private static final String PART_LEADERS_SCOREBOARD = "Part leaders scoreboard";
+
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties, total days served in parliament";
 
@@ -57,6 +60,9 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());
+
+	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
 
 	/** The Constant COMMAND_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
@@ -123,6 +129,11 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
+
+		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,
+				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, "Party leaders scoreboard");
+
+		
 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
 

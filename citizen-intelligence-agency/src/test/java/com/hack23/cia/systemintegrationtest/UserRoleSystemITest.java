@@ -1883,6 +1883,22 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	/**
+	 * Site ministry ranking current ministries leader score board test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryRankingCurrentMinistriesLeaderScoreBoardTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString()));
+
+	}
+
 
 	/**
 	 * Site ministry ranking current parties charts test.
@@ -2589,6 +2605,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString()));
+
+	}
+
+	
+	/**
+	 * Site party ranking view current parties leader scoreboard test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void sitePartyRankingViewCurrentPartiesLeaderScoreboardTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString()));
 
 	}
 

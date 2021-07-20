@@ -42,6 +42,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements MinistryRankingMenuItemFactory {
 
+	/** The Constant MINISTRIES_LEADER_SCOREBOARD. */
+	private static final String MINISTRIES_LEADER_SCOREBOARD = "Ministries leader scoreboard";
+
 	/** The Constant ALL_MINISTRIES_TOTAL_MEMBERS_TEXT. */
 	private static final String ALL_MINISTRIES_TOTAL_MEMBERS_TEXT = "All ministries, total members";
 
@@ -74,6 +77,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString());
+
+	/** The Constant COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());
 
 	/** The Constant COMMAND_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
@@ -174,6 +181,9 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
+		
+		chartByTopic.addItem(MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.GROUP,COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
+		
 		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
 
@@ -206,6 +216,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT,
 				"Chart over current parties active in ministries by headcount");
 
+
+		createButtonLink(grid, MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD,
+				"Ministry leaders scoreboard");
+		
 		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
 				"Chart over all parties hold positons in ministries by headcount");
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");
