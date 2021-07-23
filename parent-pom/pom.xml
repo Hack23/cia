@@ -107,7 +107,7 @@
     <cia.project.versions.spring>5.3.9</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.6.0-M1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.6.0-M1</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.29</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.30</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.7</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.28.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.2.3</cia.project.versions.javers>
@@ -141,7 +141,7 @@
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.11</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
-    <cia.project.versions.dbunit>2.7.0</cia.project.versions.dbunit>
+    <cia.project.versions.dbunit>2.7.1</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>5.0.1</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
