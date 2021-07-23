@@ -1539,7 +1539,7 @@
     </profile>
     <profile>
       <id>all-modules</id>
-     <activation>
+      <activation>
         <jdk>[16,18)</jdk>
       </activation>
       <modules>
