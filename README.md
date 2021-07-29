@@ -114,6 +114,7 @@ Norway
 
 UK
 [https://www.theyworkforyou.com/](https://www.theyworkforyou.com/)
+
 [http://www.publicwhip.org.uk/](http://www.publicwhip.org.uk/)
 
 Germany
@@ -124,7 +125,8 @@ Italy
 
 France
 [https://www.nosdeputes.fr/](https://www.nosdeputes.fr/)
-[https://www.projetarcadie.fr](https://projetarcadie.com
+
+[https://www.projetarcadie.fr](https://projetarcadie.com)
 
 Colombia
 [http://www.congresovisible.org/](http://www.congresovisible.org/)
