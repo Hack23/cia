@@ -1239,7 +1239,7 @@
               </rules>
             </configuration>
           </execution>
-          <execution>
+          <!--        <execution>
             <id>enforce-fixed-dependencies-and-classes</id>
             <goals>
               <goal>enforce</goal>
@@ -1257,7 +1257,8 @@
                     <exclude>org.apache.geronimo.specs:geronimo-jms_1.1_spec</exclude>
                   </excludes>
                 </bannedDependencies>
-                <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
+    -->
+          <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
 									<ignoreClasses> <ignoreClass>module-info.*</ignoreClass> <ignoreClass>*.module-info.*</ignoreClass>
 									<ignoreClass>org.xmlpull.v1.*</ignoreClass> <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
 									<ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass> <ignoreClass>org.apache.commons.io.*</ignoreClass>
@@ -1270,9 +1271,10 @@
 									<ignoreClass>javax.xml.namespace.QName</ignoreClass> <ignoreClass>org.apache.regexp.*</ignoreClass>
 									<ignoreClass>javax.annotation.*</ignoreClass> <ignoreClass>org.mozilla.classfile.*</ignoreClass>
 									</ignoreClasses> </banDuplicateClasses> -->
-              </rules>
+          <!--               </rules>
             </configuration>
           </execution>
+ -->
           <!--
           <execution>
             <id>enforce-java-source-encoding</id>
