@@ -160,8 +160,8 @@
     <cia.project.versions.jaxb.xjc.runtime>2.3.4</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.14.0</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
-    <cia.project.versions.jakarta.activation>2.0.1</cia.project.versions.jakarta.activation>
-    <cia.project.versions.com.sun.activation>2.0.1</cia.project.versions.com.sun.activation>
+    <cia.project.versions.jakarta.activation>1.2.2</cia.project.versions.jakarta.activation>
+    <cia.project.versions.com.sun.activation>1.2.2</cia.project.versions.com.sun.activation>
     <cia.project.versions.activation>1.1.1</cia.project.versions.activation>
     <cia.project.versions.maven>3.5.3</cia.project.versions.maven>
     <cia.project.versions.httpclient>4.5.13</cia.project.versions.httpclient>
@@ -278,6 +278,12 @@
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
         <version>3.4.2.Final</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jvnet.hyperjaxb3</groupId>
@@ -304,6 +310,18 @@
             <groupId>xmlunit</groupId>
             <artifactId>xmlunit</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -315,6 +333,16 @@
         <groupId>org.jvnet.jaxb2_commons</groupId>
         <artifactId>jaxb2-basics-runtime</artifactId>
         <version>${cia.project.versions.jaxb2.commons}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jvnet.hyperjaxb3</groupId>
@@ -324,6 +352,10 @@
           <exclusion>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -398,6 +430,10 @@
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -460,6 +496,10 @@
           <exclusion>
             <groupId>edu.washington.cs.types.checker</groupId>
             <artifactId>checker-framework</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -580,6 +620,12 @@
         <groupId>org.apache.xmlbeans</groupId>
         <artifactId>xmlbeans</artifactId>
         <version>${cia.project.versions.xmlbeans}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>net.sf.trove4j</groupId>
@@ -1239,7 +1285,7 @@
               </rules>
             </configuration>
           </execution>
-          <!--        <execution>
+          <execution>
             <id>enforce-fixed-dependencies-and-classes</id>
             <goals>
               <goal>enforce</goal>
@@ -1257,8 +1303,7 @@
                     <exclude>org.apache.geronimo.specs:geronimo-jms_1.1_spec</exclude>
                   </excludes>
                 </bannedDependencies>
-    -->
-          <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
+                <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
 									<ignoreClasses> <ignoreClass>module-info.*</ignoreClass> <ignoreClass>*.module-info.*</ignoreClass>
 									<ignoreClass>org.xmlpull.v1.*</ignoreClass> <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
 									<ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass> <ignoreClass>org.apache.commons.io.*</ignoreClass>
@@ -1271,10 +1316,9 @@
 									<ignoreClass>javax.xml.namespace.QName</ignoreClass> <ignoreClass>org.apache.regexp.*</ignoreClass>
 									<ignoreClass>javax.annotation.*</ignoreClass> <ignoreClass>org.mozilla.classfile.*</ignoreClass>
 									</ignoreClasses> </banDuplicateClasses> -->
-          <!--               </rules>
+              </rules>
             </configuration>
           </execution>
- -->
           <!--
           <execution>
             <id>enforce-java-source-encoding</id>
