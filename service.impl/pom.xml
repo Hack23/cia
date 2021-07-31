@@ -41,6 +41,14 @@
           <groupId>org.mvel</groupId>
           <artifactId>mvel2</artifactId>
         </exclusion>
+        <exclusion>
+        	<groupId>org.osgi</groupId>
+        	<artifactId>org.osgi.core</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>javax.enterprise</groupId>
+        	<artifactId>cdi-api</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -68,6 +76,14 @@
       <artifactId>kie-spring</artifactId>
       <version>${cia.project.versions.drools}</version>
       <exclusions>
+        <exclusion>
+        	<groupId>javax.enterprise</groupId>
+        	<artifactId>cdi-api</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.glassfish.jaxb</groupId>
+        	<artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
@@ -115,6 +131,14 @@
         <exclusion>
           <groupId>com.fasterxml.jackson.datatype</groupId>
           <artifactId>jackson-datatype-jsr310</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>com.github.javaparser</groupId>
+        	<artifactId>javaparser-core</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.osgi</groupId>
+        	<artifactId>org.osgi.core</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -243,13 +267,23 @@
         <exclusion>
           <groupId>com.github.fommil.netlib</groupId>
           <artifactId>core</artifactId>
-        </exclusion>
+        </exclusion>        
+      	<exclusion>
+      		<groupId>org.projectlombok</groupId>
+      		<artifactId>lombok</artifactId>
+      	</exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>com.github.fommil.netlib</groupId>
       <artifactId>core</artifactId>
       <version>1.1.2</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.projectlombok</groupId>
+      		<artifactId>lombok</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>javax.el</groupId>
@@ -300,6 +334,10 @@
           <groupId>org.apache.geronimo.specs</groupId>
           <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
         </exclusion>
+        <exclusion>
+        	<groupId>com.google.protobuf</groupId>
+        	<artifactId>protobuf-java</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -335,6 +373,14 @@
         <exclusion>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi-scratchpad</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>javax.interceptor</groupId>
+        	<artifactId>javax.interceptor-api</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.eclipse.jdt</groupId>
+        	<artifactId>ecj</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -390,6 +436,12 @@
       <artifactId>dumbster</artifactId>
       <version>1.7.1</version>
       <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.projectlombok</groupId>
+      		<artifactId>lombok</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <build>
