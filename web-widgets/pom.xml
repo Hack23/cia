@@ -219,6 +219,10 @@
           <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-shared</artifactId>
         </exclusion>
+        <exclusion>
+        	<groupId>com.vaadin</groupId>
+        	<artifactId>vaadin-client</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -249,6 +253,14 @@
         <exclusion>
           <groupId>com.vaadin</groupId>
           <artifactId>vaadin-compatibility-shared</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>com.vaadin</groupId>
+        	<artifactId>vaadin-client</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>com.google.gwt</groupId>
+        	<artifactId>gwt-user</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -345,6 +357,10 @@
         <exclusion>
           <groupId>org.jsoup</groupId>
           <artifactId>jsoup</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>com.google.gwt</groupId>
+        	<artifactId>gwt-elemental</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -546,10 +562,38 @@
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-push</artifactId>
       <version>${cia.project.versions.vaadin}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.jboss.xnio</groupId>
+      		<artifactId>xnio-api</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>org.eclipse.jetty</groupId>
+      		<artifactId>jetty-websocket</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>org.atmosphere.jboss.as</groupId>
+      		<artifactId>jboss-as-websocket</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>org.atmosphere.jboss.as</groupId>
+      		<artifactId>jboss-as-websockets</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-themes</artifactId>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.apache.commons</groupId>
+      		<artifactId>commons-math3</artifactId>
+      	</exclusion>
+      	<exclusion>
+      		<groupId>com.google.guava</groupId>
+      		<artifactId>guava</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
