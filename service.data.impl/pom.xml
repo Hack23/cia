@@ -406,7 +406,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>4.4.2</version>
+      <version>4.4.3</version>
       <exclusions>
         <exclusion>
           <groupId>org.eclipse.jetty</groupId>
