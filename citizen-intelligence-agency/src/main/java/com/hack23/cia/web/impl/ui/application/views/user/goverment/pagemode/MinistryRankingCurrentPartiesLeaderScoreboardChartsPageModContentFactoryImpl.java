@@ -18,11 +18,24 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -42,6 +55,10 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Ministries leader scoreboard";
+	
+	@Autowired
+	private EsvApi esvApi;
+
 
 	/**
 	 * Instantiates a new ministry ranking current parties leader scoreboard charts
@@ -63,6 +80,33 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
+
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
+
+		List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
+						new Object[] { Boolean.TRUE },
+						ViewRiksdagenGovermentRoleMember_.active);
+
+		
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
+		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2020);
+
+		
+		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPolitician.class);
+
+		
+		List<ViewRiksdagenPolitician> parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.active);
+
+		
+		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
+
+		List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer.findListByProperty(
+				new Object[] { Boolean.TRUE },ViewRiksdagenPartyRoleMember_.active);
+		
+		
 		panelContent.addComponent(chartLayout);
 
 		panel.setCaption(NAME + "::" + CHARTS + parameters);
