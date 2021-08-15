@@ -176,7 +176,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
-		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,StandardCharsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
+		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,StandardCharsets.UTF_8), CSVFormat.EXCEL.builder().setHeader().setDelimiter(';').build());
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 

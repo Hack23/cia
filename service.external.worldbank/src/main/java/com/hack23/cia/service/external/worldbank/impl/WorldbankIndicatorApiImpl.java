@@ -168,7 +168,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 			final String ignoreFirstLinesWithHeaders = reader.readLine();
 		}
 
-		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));
+		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.builder().setHeader().setDelimiter(',').build());
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 
