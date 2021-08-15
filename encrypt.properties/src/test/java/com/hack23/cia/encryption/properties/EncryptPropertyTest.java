@@ -84,8 +84,7 @@ public class EncryptPropertyTest {
 		System.setOut(out);
 
 		EncryptProperty.main(new String[] {});
-		verify(out).println(ArgumentMatchers.eq(
-				"Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]"));
+		verify(out).println("Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]");
 	}
 
 }
