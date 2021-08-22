@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.6.3</maven>
   </prerequisites>
@@ -98,10 +98,10 @@
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-    <sonar.dependencyCheck.htmlReportPath />
-    <sonar.dependencyCheck.xmlReportPath />
-    <sonar.zaproxy.htmlReportPath />
-    <sonar.zaproxy.reportPath />
+    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
+    <sonar.dependencyCheck.xmlReportPath></sonar.dependencyCheck.xmlReportPath>
+    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
+    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.9</cia.project.versions.spring>
@@ -1306,7 +1306,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1732,7 +1732,7 @@
                 <phase>generate-sources</phase>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency" />
+                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
                   </target>
                 </configuration>
               </execution>
