@@ -180,7 +180,7 @@
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <jacoco.version>0.8.7</jacoco.version>
     <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-    <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
+    <cia.project.versions.compiler.plexus.java>1.1.0</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.0.0-M5</surefire.version>
     <jdk.src.version>16</jdk.src.version>
     <jdk.target.version>16</jdk.target.version>
