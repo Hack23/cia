@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.14.0.alpha1";
+	content: "8.14.0.beta1";
 }
 
 .v-widget {
