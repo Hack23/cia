@@ -153,6 +153,10 @@
         <version>${cia.project.versions.poi}</version>
         <exclusions>
           <exclusion>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+          </exclusion>
+          <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
@@ -182,6 +186,10 @@
         <artifactId>poi-ooxml</artifactId>
         <version>${cia.project.versions.poi}</version>
         <exclusions>
+          <exclusion>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+          </exclusion>
           <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
