@@ -40,7 +40,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-tcnative</artifactId>
-      <version>2.0.41.Final</version>
+      <version>2.0.42.Final</version>
       <classifier>linux-x86_64</classifier>
     </dependency>
     <dependency>
