@@ -1382,7 +1382,17 @@
           <groupId>javax.activation</groupId>
           <artifactId>javax.activation-api</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>io.netty</groupId>
+          <artifactId>netty-tcnative</artifactId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-tcnative</artifactId>
+      <version>2.0.41.Final</version>
+      <classifier>linux-x86_64</classifier>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
