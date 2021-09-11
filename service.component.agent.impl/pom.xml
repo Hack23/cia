@@ -38,12 +38,6 @@
       <version>${cia.project.versions.antlr}</version>
     </dependency>
     <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-tcnative</artifactId>
-      <version>2.0.42.Final</version>
-      <classifier>linux-x86_64</classifier>
-    </dependency>
-    <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jms_2.0_spec</artifactId>
       <version>1.0-alpha-2-patched-auto-name</version>

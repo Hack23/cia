@@ -168,7 +168,6 @@
     <cia.project.versions.guava>30.1.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.13.0-rc2</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.68.Final</cia.project.versions.netty>
-    <tcnative.version>2.0.42.Final</tcnative.version>
     <cia.project.versions.xerces>2.12.1</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.21</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
@@ -1531,6 +1530,11 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${cia.project.versions.h2}</version>
+      </extension>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.0</version>
       </extension>
     </extensions>
   </build>

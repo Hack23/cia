@@ -397,7 +397,19 @@
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-facet</artifactId>
       <version>${cia.project.versions.hibernate.lucene}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.carrotsearch</groupId>
+          <artifactId>hppc</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+    <dependency>
+      <groupId>com.carrotsearch</groupId>
+      <artifactId>hppc</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
