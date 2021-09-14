@@ -1775,7 +1775,7 @@ Resources:
       AllocatedStorage: !Ref 'DBAllocatedStorage'
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: '13.3'
+      EngineVersion: '13.4'
       MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
@@ -2438,6 +2438,10 @@ Resources:
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
             - "sudo ln -s /usr/lib/jvm/java-16-openjdk-amd64 /usr/lib/jvm/jdk-16\n"
+            - "wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-17_linux-x64_bin.tar.gz\n"
+            - "sudo mv jdk-17 /usr/lib/jvm/\n"
+            - "rm openjdk-17_linux-x64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"

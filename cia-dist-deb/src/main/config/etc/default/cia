@@ -1,9 +1,8 @@
 # /etc/default/cia
 #
 
-#JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
-JAVA_HOME=/usr/lib/jvm/jdk-16
-#JAVA_HOME=/usr/lib/jvm/jdk-17
+#JAVA_HOME=/usr/lib/jvm/jdk-16
+JAVA_HOME=/usr/lib/jvm/jdk-17
 #JAVA_HOME=/usr/lib/jvm/jdk-18
 
 CIA_APP_ENCRYPTION_PASSWORD="allhaildiscordia"

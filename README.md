@@ -32,8 +32,7 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 
 # Runtime
 
-[![JDK-16 or higher](https://img.shields.io/badge/jdk-16-green.svg)]
-[![JDK-17](https://img.shields.io/badge/jdk-17-orange.svg)]
+[![JDK-17 or higher](https://img.shields.io/badge/jdk-17-green.svg)]
 [![JDK-18](https://img.shields.io/badge/jdk-18-orange.svg)]
 
 

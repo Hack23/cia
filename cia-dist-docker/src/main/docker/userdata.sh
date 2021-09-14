@@ -77,6 +77,11 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 #
 apt-get -y install software-properties-common openjdk-16-jdk-headless ca-certificates-java wget
 
+wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
+tar xvfz openjdk-17_linux-x64_bin.tar.gz
+mv jdk-17 /usr/lib/jvm/
+rm openjdk-17_linux-x64_bin.tar.gz
+
 ln -s /usr/lib/jvm/java-16-openjdk-amd64 /usr/lib/jvm/jdk-16
 
 dpkg -i /root/cia-dist-deb.deb
