@@ -1540,6 +1540,28 @@
   </build>
   <profiles>
     <profile>
+      <id>java19</id>
+      <activation>
+        <jdk>19</jdk>
+      </activation>
+      <properties>
+        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+        			--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
+					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        <jdk.src.version>17</jdk.src.version>
+        <jdk.target.version>17</jdk.target.version>
+        <!-- No Java 17 support yet for forbiddenapis.skip -->
+        <forbiddenapis.skip>true</forbiddenapis.skip>
+        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+        <jacoco.version>0.8.7</jacoco.version>
+        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
+        <cia.project.versions.compiler.plexus.java>1.1.0</cia.project.versions.compiler.plexus.java>
+        <surefire.version>3.0.0-M5</surefire.version>
+      </properties>
+    </profile>
+    <profile>
       <id>java18</id>
       <activation>
         <jdk>18</jdk>
@@ -1557,7 +1579,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.7</jacoco.version>
         <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.1.0</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.0.0-M5</surefire.version>
       </properties>
     </profile>
@@ -1565,28 +1587,6 @@
       <id>java17</id>
       <activation>
         <jdk>17</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>17</jdk.src.version>
-        <jdk.target.version>17</jdk.target.version>
-        <!-- No Java 17 support yet for forbiddenapis.skip -->
-        <forbiddenapis.skip>true</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.7</jacoco.version>
-        <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.0.7</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.0.0-M5</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java16</id>
-      <activation>
-        <jdk>16</jdk>
       </activation>
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
@@ -1608,7 +1608,7 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <jdk>[16,18)</jdk>
+        <jdk>[17,19)</jdk>
       </activation>
       <modules>
         <module>../testfoundation</module>
