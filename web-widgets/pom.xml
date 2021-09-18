@@ -158,7 +158,7 @@
     <dependency>
       <groupId>org.vaadin</groupId>
       <artifactId>easybinder</artifactId>
-      <version>0.5</version>
+      <version>0.6.0</version>
       <exclusions>
         <exclusion>
           <groupId>javax.el</groupId>
