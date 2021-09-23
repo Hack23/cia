@@ -194,7 +194,7 @@
     <dependency>
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
-      <version>0.9.12</version>
+      <version>0.10-RC1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
