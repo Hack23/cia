@@ -47,7 +47,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = &quot;ballotId&quot;;
 
-<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = new String[] { &quot;voteDate&quot;, &quot;rm&quot;, &quot;org&quot;, &quot;embeddedId.id&quot;,</span>
+<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;rm&quot;, &quot;org&quot;, &quot;embeddedId.id&quot;,</span>
 			&quot;embeddedId.party&quot;, &quot;committeeReport&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;winner&quot;, &quot;partyApproved&quot;,
 			&quot;againstProposalParties&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;, &quot;endNumber&quot;, &quot;createdDate&quot;,
 			&quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;againstProposalNumber&quot;, &quot;ballotType&quot;, &quot;label&quot;, &quot;avgBornYear&quot;,
@@ -63,7 +63,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = &quot;CommitteeBallotDecisionSummary&quot;;
 
-<span class="fc" id="L66">	private static final String[] HIDE_COLUMNS = new String[] { &quot;embeddedId&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;ballotType&quot;,</span>
+<span class="fc" id="L66">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;ballotType&quot;,</span>
 			&quot;againstProposalNumber&quot;, &quot;embeddedId.id&quot;, &quot;embeddedId.party&quot;, &quot;createdDate&quot;, &quot;publicDate&quot;, &quot;label&quot;,
 			&quot;endNumber&quot;, &quot;org&quot;, &quot;partyPercentageYes&quot;, &quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;,
 			&quot;partyPercentageAbstain&quot;, &quot;partyPercentageMale&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;percentageYes&quot;,
@@ -72,7 +72,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 <span class="fc" id="L72">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-<span class="fc" id="L75">	private static final String[] NESTED_PROPERTIES = new String[] { &quot;embeddedId.id&quot;, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L75">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.id&quot;, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot;, &quot;embeddedId.party&quot; };
 
 	/**
@@ -112,7 +112,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				BALLOT_ID, null);
 
 <span class="fc" id="L114">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-		
+
 <span class="fc" id="L116">		return panelContent;</span>
 
 	}

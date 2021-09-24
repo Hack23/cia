@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 *            the violation</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> navigateToPage(<strong class="jxr_keyword">final</strong> ComplianceCheck violation) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">if</strong> (violation.getResourceType() == ResourceType.PARTY) {			
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">if</strong> (violation.getResourceType() == ResourceType.PARTY) {
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getId());
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	@Override
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> click(<strong class="jxr_keyword">final</strong> RendererClickEvent&lt;ComplianceCheck&gt; event) {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  		navigateToPage(event.getItem());
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  

@@ -42,18 +42,18 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 
 	private static final String BALLOTS = &quot;Ballots&quot;;
 	private static final String EMBEDDED_ID_BALLOT_ID = &quot;embeddedId.ballotId&quot;;
-<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = new String[] { &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot;, &quot;vote&quot;, &quot;won&quot;, &quot;partyWon&quot;, &quot;rebel&quot;, &quot;noWinner&quot;, &quot;approved&quot;, &quot;partyApproved&quot;,
 			&quot;totalVotes&quot;, &quot;partyTotalVotes&quot;, &quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;,
 			&quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;, &quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;bornYear&quot;, &quot;partyAvgBornYear&quot;,
 			&quot;avgBornYear&quot;, &quot;gender&quot;, &quot;partyPercentageMale&quot;, &quot;percentageMale&quot;, &quot;ballotType&quot;, EMBEDDED_ID_BALLOT_ID };
-<span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = new String[] { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
+<span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
 			&quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
 			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, EMBEDDED_ID_BALLOT_ID,
 			&quot;ballotType&quot; };
 <span class="fc" id="L54">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
-<span class="fc" id="L56">	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L56">	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot; };
 	/**
 	 * The view riksdagen vote data ballot politician summary chart data

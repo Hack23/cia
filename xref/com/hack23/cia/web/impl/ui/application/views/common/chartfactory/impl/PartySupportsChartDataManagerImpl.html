@@ -71,10 +71,10 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> addData(<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; map, <strong class="jxr_keyword">final</strong> Series series,
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  			<strong class="jxr_keyword">final</strong> DataSeries dataSeries) {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> Set&lt;Entry&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt;&gt; entryMap = map.entrySet();
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; entry : entryMap) {
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  			series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(entry.getKey()));
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  			
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  			dataSeries.newSeries();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  					dataSeries.add(data.getEmbeddedId().getDate(),
@@ -90,19 +90,19 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId&gt; dataContainer = getApplicationManager()
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt; list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.<strong class="jxr_keyword">class</strong>,				
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt; list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.<strong class="jxr_keyword">class</strong>,
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.<strong class="jxr_keyword">class</strong>,
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; map = list.parallelStream().filter(Objects::nonNull)
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getOtherParty()));
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  					
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series();
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  		<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  			
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  		addData(map, series, dataSeries);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  			
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  		addChart(content,<span class="jxr_string">"Party support ballot"</span>, <strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), <strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  	}
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 

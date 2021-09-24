@@ -108,7 +108,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 <span class="fc" id="L108">		request.setCurrentPassword(&quot;&quot;);</span>
 <span class="fc" id="L109">		request.setNewPassword(&quot;&quot;);</span>
 <span class="fc" id="L110">		request.setRepeatNewPassword(&quot;&quot;);</span>
-		
+
 <span class="fc" id="L112">		final ClickListener listener = new ChangePasswordClickListener(request);</span>
 <span class="fc" id="L113">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
 <span class="fc" id="L114">				ChangePasswordRequest.class, Arrays.asList(&quot;currentPassword&quot;,&quot;newPassword&quot;,&quot;repeatNewPassword&quot;), &quot;Change password&quot;, listener);</span>
@@ -202,7 +202,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 <span class="fc" id="L203">		return formLayout;</span>
 	}
-	
+
 	private VerticalLayout createDeleteAccountButton() {
 
 <span class="fc" id="L208">		final VerticalLayout formLayout = new VerticalLayout();</span>
@@ -226,7 +226,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 <span class="fc" id="L226">		return formLayout;</span>
 	}
 
-	
+
 	@Override
 	public boolean matches(final String page, final String parameters) {
 <span class="pc bpc" id="L232" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());</span>

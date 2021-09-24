@@ -67,7 +67,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 <span class="fc" id="L68">	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
 			PageMode.OVERVIEW);
-	
+
 	/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
 <span class="fc" id="L72">	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,</span>
 			PageMode.DATAGRID);
@@ -181,7 +181,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The party ranking menu item factory. */
 	@Autowired
 	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
-	
+
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
@@ -266,10 +266,10 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 <span class="fc" id="L266">		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,&quot;Ministry ranking overiew, contains data and charts.&quot;);</span>
 
 <span class="fc" id="L268">		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,&quot;All ministries, scoreboard assignments and days served in committees&quot;);</span>
-		
+
 <span class="fc" id="L270">		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,&quot;All government bodies overview&quot;);</span>
-		
-<span class="fc" id="L272">		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,&quot;All government bodies, current headcount&quot;);	</span>
+
+<span class="fc" id="L272">		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,&quot;All government bodies, current headcount&quot;);</span>
 
 <span class="fc" id="L274">		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,&quot;Search parliament documents&quot;);</span>
 

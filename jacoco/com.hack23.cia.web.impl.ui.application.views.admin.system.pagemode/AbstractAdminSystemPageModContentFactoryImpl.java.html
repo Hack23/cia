@@ -32,7 +32,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	private PagingUtil pagingUtil;
 
 	private final String viewName;
-	
+
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.
 	 *

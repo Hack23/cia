@@ -101,7 +101,7 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L101">					binder.forField(field).withConverter(converter).bind(property);</span>
 				} else {
 <span class="fc" id="L103">					binder.forField(field).bind(property);</span>
-				} 
+				}
 			}
 <span class="fc" id="L106">		}</span>
 <span class="fc" id="L107">	}</span>
@@ -120,7 +120,7 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L120">			return new TextField();</span>
 		}
 	}
-	
+
 
 	/**
 	 * Gets the converter for type.
@@ -131,7 +131,7 @@ import com.vaadin.ui.VerticalLayout;
 	 */
 	private static Converter getConverterForType(final Class&lt;?&gt; typeOfProperty) {
 		Converter converter;
-		
+
 <span class="fc bfc" id="L135" title="All 2 branches covered.">		if (Date.class.equals(typeOfProperty)) {</span>
 <span class="fc" id="L136">			converter = new StringToDateConverter();</span>
 <span class="fc bfc" id="L137" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
@@ -149,7 +149,7 @@ import com.vaadin.ui.VerticalLayout;
 		} else {
 <span class="fc" id="L150">			converter = null;</span>
 		}
-		
+
 <span class="fc" id="L153">		return converter;</span>
 	}
 
@@ -237,8 +237,8 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L237">		button.setIcon(VaadinIcons.BULLSEYE);</span>
 <span class="fc" id="L238">		button.setEnabled(false);</span>
 <span class="fc" id="L239">		binder.addStatusChangeListener(event -&gt; button.setEnabled(event.getBinder().isValid()));</span>
-		
-		
+
+
 <span class="fc" id="L242">		verticalLayout.addComponent(button);</span>
 <span class="fc" id="L243">		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);</span>
 

@@ -40,7 +40,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = new String[] { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
+<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
 			&quot;bornYear&quot;, &quot;totalDaysServed&quot;, &quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;,
 			&quot;lastAssignmentDate&quot;, &quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,
 			&quot;totalDaysServedEu&quot;,
@@ -56,7 +56,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = &quot;Current Members&quot;;
-<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = new String[] { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;party&quot;,</span>
+<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;party&quot;,</span>
 			&quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot; };
 <span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);

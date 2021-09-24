@@ -61,16 +61,16 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 <span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;createdDate&quot;,&quot;sessionType&quot;, &quot;userId&quot;, &quot;sessionId&quot;, &quot;operatingSystem&quot;, &quot;locale&quot;,</span>
 			&quot;ipInformation&quot;, &quot;userAgentInformation&quot;);
 
-<span class="fc" id="L64">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;sessionType&quot;, &quot;userId&quot;, &quot;events&quot;, &quot;operatingSystem&quot;, &quot;locale&quot;,</span>
+<span class="fc" id="L64">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;sessionType&quot;, &quot;userId&quot;, &quot;events&quot;, &quot;operatingSystem&quot;, &quot;locale&quot;,</span>
 			&quot;ipInformation&quot;, &quot;userAgentInformation&quot;, &quot;sessionId&quot; };
 
-<span class="fc" id="L67">	private static final String[] COLUMN_ORDER2 = new String[] { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;eventGroup&quot;, &quot;actionName&quot;, &quot;applicationOperation&quot;, &quot;page&quot;, &quot;pageMode&quot;,</span>
+<span class="fc" id="L67">	private static final String[] COLUMN_ORDER2 = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;eventGroup&quot;, &quot;actionName&quot;, &quot;applicationOperation&quot;, &quot;page&quot;, &quot;pageMode&quot;,</span>
 			&quot;elementId&quot;, &quot;errorMessage&quot;, &quot;applicationMessage&quot;,
 			&quot;modelObjectVersion&quot; };
 
-<span class="fc" id="L71">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; ,&quot;userAgentInformation&quot;, &quot;sessionId&quot;,&quot;ipInformation&quot;};</span>
+<span class="fc" id="L71">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; ,&quot;userAgentInformation&quot;, &quot;sessionId&quot;,&quot;ipInformation&quot;};</span>
 
-<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS2 = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;,&quot;userId&quot;, &quot;sessionId&quot; };</span>
+<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS2 = { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;,&quot;userId&quot;, &quot;sessionId&quot; };</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;

@@ -39,7 +39,7 @@ import nl.basjes.parse.useragent.UserAgentAnalyzer;
 <span class="fc" id="L39">            .hideMatcherLoadStats()</span>
 <span class="fc" id="L40">            .withCache(10000)</span>
 <span class="fc" id="L41">            .build();</span>
-	
+
 	/** The Constant X_FORWARDED_FOR. */
 	public static final String X_FORWARDED_FOR = &quot;X-Forwarded-For&quot;;
 
@@ -75,7 +75,7 @@ import nl.basjes.parse.useragent.UserAgentAnalyzer;
 	public static String getOperatingSystem(final WebBrowser webBrowser) {
 <span class="fc" id="L76">		synchronized (USER_AGENT_ANALYZER) {</span>
 <span class="fc" id="L77">			final UserAgent userAgent = USER_AGENT_ANALYZER.parse(webBrowser.getBrowserApplication());</span>
-<span class="fc" id="L78">			return userAgent.getValue(UserAgent.DEVICE_CLASS) + &quot;.&quot; +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +&quot;.&quot; + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);			</span>
+<span class="fc" id="L78">			return userAgent.getValue(UserAgent.DEVICE_CLASS) + &quot;.&quot; +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +&quot;.&quot; + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);</span>
 		}
 	}
 

@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BALLOT_ID = <span class="jxr_string">"ballotId"</span>;
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] COLUMN_ORDER = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"voteDate"</span>, <span class="jxr_string">"rm"</span>, <span class="jxr_string">"org"</span>, <span class="jxr_string">"embeddedId.id"</span>,
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] COLUMN_ORDER = { <span class="jxr_string">"voteDate"</span>, <span class="jxr_string">"rm"</span>, <span class="jxr_string">"org"</span>, <span class="jxr_string">"embeddedId.id"</span>,
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  			<span class="jxr_string">"embeddedId.party"</span>, <span class="jxr_string">"committeeReport"</span>, <span class="jxr_string">"title"</span>, <span class="jxr_string">"subTitle"</span>, <span class="jxr_string">"winner"</span>, <span class="jxr_string">"partyApproved"</span>,
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  			<span class="jxr_string">"againstProposalParties"</span>, <span class="jxr_string">"embeddedId.concern"</span>, <span class="jxr_string">"embeddedId.issue"</span>, <span class="jxr_string">"endNumber"</span>, <span class="jxr_string">"createdDate"</span>,
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  			<span class="jxr_string">"publicDate"</span>, BALLOT_ID, <span class="jxr_string">"decisionType"</span>, <span class="jxr_string">"againstProposalNumber"</span>, <span class="jxr_string">"ballotType"</span>, <span class="jxr_string">"label"</span>, <span class="jxr_string">"avgBornYear"</span>,
@@ -71,7 +71,7 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String COMMITTEE_BALLOT_DECISION_SUMMARY = <span class="jxr_string">"CommitteeBallotDecisionSummary"</span>;
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] HIDE_COLUMNS = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"embeddedId"</span>, BALLOT_ID, <span class="jxr_string">"decisionType"</span>, <span class="jxr_string">"ballotType"</span>,
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] HIDE_COLUMNS = { <span class="jxr_string">"embeddedId"</span>, BALLOT_ID, <span class="jxr_string">"decisionType"</span>, <span class="jxr_string">"ballotType"</span>,
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  			<span class="jxr_string">"againstProposalNumber"</span>, <span class="jxr_string">"embeddedId.id"</span>, <span class="jxr_string">"embeddedId.party"</span>, <span class="jxr_string">"createdDate"</span>, <span class="jxr_string">"publicDate"</span>, <span class="jxr_string">"label"</span>,
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  			<span class="jxr_string">"endNumber"</span>, <span class="jxr_string">"org"</span>, <span class="jxr_string">"partyPercentageYes"</span>, <span class="jxr_string">"partyPercentageNo"</span>, <span class="jxr_string">"partyPercentageAbsent"</span>,
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  			<span class="jxr_string">"partyPercentageAbstain"</span>, <span class="jxr_string">"partyPercentageMale"</span>, <span class="jxr_string">"partyAvgBornYear"</span>, <span class="jxr_string">"avgBornYear"</span>, <span class="jxr_string">"percentageYes"</span>,
@@ -80,7 +80,7 @@
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a> LISTENER = <strong class="jxr_keyword">new</strong> <a name="PageItemPropertyClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/PageItemPropertyClickListener.html#PageItemPropertyClickListener">PageItemPropertyClickListener</a>(
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] NESTED_PROPERTIES = <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"embeddedId.id"</span>, <span class="jxr_string">"embeddedId.concern"</span>,
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] NESTED_PROPERTIES = { <span class="jxr_string">"embeddedId.id"</span>, <span class="jxr_string">"embeddedId.concern"</span>,
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  			<span class="jxr_string">"embeddedId.issue"</span>, <span class="jxr_string">"embeddedId.party"</span> };
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<em class="jxr_javadoccomment">/**</em>
@@ -120,7 +120,7 @@
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 				BALLOT_ID, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 		<strong class="jxr_keyword">return</strong> panelContent;
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 	}

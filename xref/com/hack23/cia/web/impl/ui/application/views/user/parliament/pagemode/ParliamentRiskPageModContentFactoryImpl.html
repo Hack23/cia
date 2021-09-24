@@ -80,7 +80,7 @@
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> HorizontalLayout horizontalLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()
@@ -92,24 +92,24 @@
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;String, List&lt;RuleViolation&gt;&gt; idMapViolations : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  			checks.add(<strong class="jxr_keyword">new</strong> ComplianceCheckImpl(idMapViolations.getValue()));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		}
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		Collections.sort(checks, (o1, o2) -&gt; Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  			horizontalLayout.addComponent(<strong class="jxr_keyword">new</strong> CounterStatisticsCard(
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  					VaadinIcons.WARNING,<strong class="jxr_keyword">new</strong> CounterStatisticModel(<span class="jxr_string">"ALL:"</span> +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>                      .withIconHidden().withShowOnlyStatistic(<strong class="jxr_keyword">true</strong>),<span class="jxr_string">"ALL:"</span> +statusEntry.getKey()));			
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>                      .withIconHidden().withShowOnlyStatistic(<strong class="jxr_keyword">true</strong>),<span class="jxr_string">"ALL:"</span> +statusEntry.getKey()));
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  		}
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  			horizontalLayout.addComponent(<strong class="jxr_keyword">new</strong> CounterStatisticsCard(
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  					VaadinIcons.WARNING,<strong class="jxr_keyword">new</strong> CounterStatisticModel(<span class="jxr_string">"ALL:"</span> +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>                      .withIconHidden().withShowOnlyStatistic(<strong class="jxr_keyword">true</strong>),<span class="jxr_string">"ALL:"</span> +statusEntry.getKey()));			
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>                      .withIconHidden().withShowOnlyStatistic(<strong class="jxr_keyword">true</strong>),<span class="jxr_string">"ALL:"</span> +statusEntry.getKey()));
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		}
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		panelContent.addComponent(horizontalLayout);		
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		panelContent.addComponent(horizontalLayout);
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheckImpl.<strong class="jxr_keyword">class</strong>, checks, <span class="jxr_string">"Risk"</span>,
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 				<strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"name"</span>, <span class="jxr_string">"resourceType"</span>, <span class="jxr_string">"numberRuleViolations"</span>, <span class="jxr_string">"ruleSummary"</span> }, <strong class="jxr_keyword">new</strong> String[] { <span class="jxr_string">"id"</span>, <span class="jxr_string">"ruleViolations"</span> }, CLICK_LISTENER, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 
@@ -120,7 +120,7 @@
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 		<strong class="jxr_keyword">return</strong> panelContent;
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 	}
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">	 * The Class ComplianceCheckImpl.</em>
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">	 */</em>
@@ -154,7 +154,7 @@
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(ruleViolations);
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 		}
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> 
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 		
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 		<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">		 * Gets the number rule violations.</em>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">		 *</em>
@@ -173,7 +173,7 @@
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> 			<strong class="jxr_keyword">final</strong> StringBuilder builder = <strong class="jxr_keyword">new</strong> StringBuilder();
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> RuleViolation ruleViolation : ruleViolations) {
 <a class="jxr_linenumber" name="L167" href="#L167">167</a> 				builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 			}		
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 			}
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 			<strong class="jxr_keyword">return</strong> builder.toString();
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 		}
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> 
@@ -185,9 +185,9 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 		@Override
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 		<strong class="jxr_keyword">public</strong> String getName() {
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 			<strong class="jxr_keyword">return</strong> name;
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		}		
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		}
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 	}
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 	
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 	@Override
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {

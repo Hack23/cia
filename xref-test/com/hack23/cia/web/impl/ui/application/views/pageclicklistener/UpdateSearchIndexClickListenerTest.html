@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../../../../../../../testapidocs/com/hack23/cia/web/impl/ui/application/views/pageclicklistener/UpdateSearchIndexClickListenerTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2021 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -51,14 +51,14 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  	@Test
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> showNotificationSuccessTest() {
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">final</strong> UpdateSearchIndexRequest request = <strong class="jxr_keyword">new</strong> UpdateSearchIndexRequest();		
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">final</strong> UpdateSearchIndexRequest request = <strong class="jxr_keyword">new</strong> UpdateSearchIndexRequest();
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  		<strong class="jxr_keyword">final</strong> UpdateSearchIndexClickListener listener = Mockito.spy(<strong class="jxr_keyword">new</strong> UpdateSearchIndexClickListener(request));
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  		<strong class="jxr_keyword">final</strong> ApplicationManager applicationManager = Mockito.mock(ApplicationManager.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  		<strong class="jxr_keyword">final</strong> UpdateSearchIndexResponse response = <strong class="jxr_keyword">new</strong> UpdateSearchIndexResponse(ServiceResult.SUCCESS);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		Mockito.when(applicationManager.asyncService(request)).thenReturn(Mockito.mock(Future.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  		
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  		listener.buttonClick(<strong class="jxr_keyword">new</strong> ClickEvent(<strong class="jxr_keyword">new</strong> Panel()));
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  		Mockito.verify(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.<strong class="jxr_keyword">class</strong>));

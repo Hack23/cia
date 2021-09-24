@@ -44,13 +44,13 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 	private static final String EMBEDDED_ID_BALLOT_ID = &quot;embeddedId.ballotId&quot;;
 
-<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = new String[] { &quot;embeddedId.party&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;,</span>
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.party&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;,</span>
 			&quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,
 			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,
 			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,
 			&quot;percentageMale&quot;, &quot;ballotType&quot;, EMBEDDED_ID_BALLOT_ID };
 
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = new String[] { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
+<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
 			&quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
 			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;ballotType&quot;, &quot;embeddedId.party&quot;, EMBEDDED_ID_BALLOT_ID,
 			&quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;, &quot;percentageMale&quot;, &quot;noWinner&quot; };
@@ -58,7 +58,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 <span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
-<span class="fc" id="L61">	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L61">	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot;, &quot;embeddedId.party&quot; };
 
 	/** The Constant VOTE_HISTORY. */

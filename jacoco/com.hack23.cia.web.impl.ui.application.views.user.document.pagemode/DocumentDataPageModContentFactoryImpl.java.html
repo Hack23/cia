@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document.OutputSettings;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -120,7 +120,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 <span class="fc" id="L120">			final FormLayout formContent = new FormLayout();</span>
 <span class="fc" id="L121">			formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L123">			final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(), &quot;&quot;, Whitelist.simpleText(),</span>
+<span class="fc" id="L123">			final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(), &quot;&quot;, Safelist.simpleText(),</span>
 <span class="fc" id="L124">					new OutputSettings().indentAmount(4));</span>
 
 <span class="fc" id="L126">			final Label htmlContent = new Label(cleanContent, ContentMode.PREFORMATTED);</span>

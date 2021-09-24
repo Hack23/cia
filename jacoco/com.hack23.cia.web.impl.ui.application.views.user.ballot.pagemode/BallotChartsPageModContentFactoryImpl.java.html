@@ -85,7 +85,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 <span class="pc bpc" id="L86" title="3 of 4 branches missed.">			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {</span>
 <span class="fc" id="L87">				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();</span>
-<span class="fc" id="L88">				final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());				</span>
+<span class="fc" id="L88">				final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());</span>
 <span class="fc" id="L89">				partySummarList.add(partySummary);</span>
 			}
 <span class="fc" id="L91">		}</span>

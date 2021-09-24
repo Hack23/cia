@@ -66,8 +66,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = &quot;Application Session&quot;;
-	
-	private static final String APPLICATION_SESSION_CHARTS = &quot;Active Daily Users&quot;;	
+
+	private static final String APPLICATION_SESSION_CHARTS = &quot;Active Daily Users&quot;;
 
 	/** The Constant COMMAND_AGENCY. */
 <span class="fc" id="L73">	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;&quot;);</span>
@@ -279,7 +279,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 <span class="nc" id="L280">			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);</span>
 <span class="nc" id="L281">			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);</span>
-<span class="nc" id="L282">			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);			</span>
+<span class="nc" id="L282">			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);</span>
 <span class="nc" id="L283">			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);</span>
 <span class="nc" id="L284">			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);</span>
 

@@ -66,19 +66,19 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 <span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
 
 <span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
-		
+
 <span class="fc" id="L70">		final List&lt;GovernmentBodyAnnualSummary&gt; list = getItem(parameters);</span>
-		
+
 <span class="pc bpc" id="L72" title="2 of 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()) {</span>
 <span class="fc" id="L73">			final Optional&lt;GovernmentBodyAnnualSummary&gt; governmentBodyAnnualSummary = list.stream().findFirst();</span>
-			
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">			if (governmentBodyAnnualSummary.isPresent()) {			</span>
+
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">			if (governmentBodyAnnualSummary.isPresent()) {</span>
 <span class="fc" id="L76">				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);</span>
 <span class="fc" id="L77">				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);</span>
 <span class="fc" id="L78">				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());</span>
 <span class="fc" id="L79">				panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());</span>
 			}
-			
+
 <span class="fc" id="L82">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 					parameters, pageId);
 

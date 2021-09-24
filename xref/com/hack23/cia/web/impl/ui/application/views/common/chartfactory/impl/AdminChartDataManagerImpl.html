@@ -249,13 +249,13 @@
 <a class="jxr_linenumber" name="L241" href="#L241">241</a> 	}
 <a class="jxr_linenumber" name="L242" href="#L242">242</a> 
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> 	@Override
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createApplicationSessionPageDailySummaryChart(VerticalLayout content) {
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createApplicationSessionPageDailySummaryChart(<strong class="jxr_keyword">final</strong> VerticalLayout content) {
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> 		<strong class="jxr_keyword">final</strong> SimpleDateFormat simpleDateFormat = <strong class="jxr_keyword">new</strong> SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> 
 <a class="jxr_linenumber" name="L247" href="#L247">247</a> 		<strong class="jxr_keyword">final</strong> DataContainer&lt;ApplicationSession, Serializable&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationSession.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 		Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> 		<strong class="jxr_keyword">final</strong> Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()
 <a class="jxr_linenumber" name="L249" href="#L249">249</a> 	                .collect(Collectors.groupingBy(p -&gt; simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> 
 <a class="jxr_linenumber" name="L251" href="#L251">251</a> 		<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> 		<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series();
 <a class="jxr_linenumber" name="L253" href="#L253">253</a> 		series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(<span class="jxr_string">"Daily Active Users"</span>));

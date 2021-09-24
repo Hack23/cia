@@ -112,7 +112,7 @@
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> addSourcesAndIndicatorsToMenu(<strong class="jxr_keyword">final</strong> MenuItem countryIndicators,
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 			<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sourceIndicatorMap) {
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sortedIndicatorMap = sourceIndicatorMap
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 				.entrySet().stream().sorted((e1, e2) -&gt; e1.getKey().compareTo(e2.getKey()))
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -&gt; e1, LinkedHashMap::<strong class="jxr_keyword">new</strong>));
@@ -121,7 +121,7 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 				.entrySet()) {
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 			<strong class="jxr_keyword">final</strong> MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 			
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 			<strong class="jxr_keyword">final</strong> List&lt;ViewWorldbankIndicatorDataCountrySummary&gt; sortedEntries = entry.getValue().stream()
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 					.sorted((e1, e2) -&gt; e1.getIndicatorName().compareTo(e2.getIndicatorName()))
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 					.collect(Collectors.toList());

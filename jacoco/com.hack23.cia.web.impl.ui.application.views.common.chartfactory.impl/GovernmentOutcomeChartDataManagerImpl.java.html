@@ -56,8 +56,8 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 			final Series series) {
 <span class="fc" id="L57">		series.addSeries(new XYseries().setLabel(variables.toString()));</span>
 <span class="fc" id="L58">		dataSeries.newSeries();</span>
-		
-<span class="fc" id="L60">		final List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());		</span>
+
+<span class="fc" id="L60">		final List&lt;GovernmentOperationPeriodOutcome&gt; list = map.get(variables.toString());</span>
 <span class="fc" id="L61">		Collections.sort(list);</span>
 <span class="fc bfc" id="L62" title="All 2 branches covered.">		for (final GovernmentOperationPeriodOutcome entry : list) {</span>
 
@@ -72,7 +72,7 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 <span class="fc" id="L72">		final Series series = new Series();</span>
 
 <span class="fc" id="L74">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);</span>
-<span class="fc" id="L75">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		</span>
+<span class="fc" id="L75">		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);</span>
 
 <span class="fc" id="L77">		addChart(content, &quot;GovernmentOperationPeriodOutcome&quot;,</span>
 <span class="fc" id="L78">				new DCharts().setDataSeries(dataSeries)</span>

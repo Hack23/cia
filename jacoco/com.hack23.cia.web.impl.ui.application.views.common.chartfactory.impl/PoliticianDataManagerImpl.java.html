@@ -112,7 +112,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 
 
-	
+
 	@Override
 	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
 

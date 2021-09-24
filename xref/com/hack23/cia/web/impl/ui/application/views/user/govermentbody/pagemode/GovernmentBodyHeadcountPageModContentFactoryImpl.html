@@ -75,15 +75,15 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualSummary&gt; list = getItem(parameters);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  		<strong class="jxr_keyword">if</strong> (list != <strong class="jxr_keyword">null</strong> &amp;&amp; !list.isEmpty()) {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  			<strong class="jxr_keyword">final</strong> Optional&lt;GovernmentBodyAnnualSummary&gt; governmentBodyAnnualSummary = list.stream().findFirst();
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  			
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  			<strong class="jxr_keyword">if</strong> (governmentBodyAnnualSummary.isPresent()) {
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  				panel.setCaption(NAME + <span class="jxr_string">"::"</span> + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());			
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  				panel.setCaption(NAME + <span class="jxr_string">"::"</span> + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  			}
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  					parameters, pageId);

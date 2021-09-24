@@ -173,14 +173,14 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 <span class="fc bfc" id="L173" title="All 2 branches covered.">		if (list != null) {</span>
 <span class="fc" id="L174">			final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))</span>
 <span class="fc" id="L175">					.addSeries(new XYseries().setLabel(PARTY_ABSENT));</span>
-	
+
 <span class="fc" id="L177">			final DataSeries dataSeries = new DataSeries();</span>
-	
+
 <span class="fc" id="L179">			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
-	
+
 <span class="fc" id="L181">			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);</span>
 <span class="fc" id="L182">			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);</span>
-	
+
 <span class="fc" id="L184">			addChart(content,&quot;Party result by&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);</span>
 		}
 <span class="fc" id="L186">	}</span>
@@ -199,7 +199,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 <span class="fc bfc" id="L200" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt;&gt; entry : map.entrySet()) {</span>
 <span class="fc" id="L201">			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));</span>
-<span class="fc" id="L202">			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			</span>
+<span class="fc" id="L202">			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);</span>
 <span class="fc" id="L203">		}</span>
 
 <span class="fc" id="L205">		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));</span>

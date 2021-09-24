@@ -241,13 +241,13 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 	@Override
-	public void createApplicationSessionPageDailySummaryChart(VerticalLayout content) {
+	public void createApplicationSessionPageDailySummaryChart(final VerticalLayout content) {
 <span class="nc" id="L245">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
 <span class="nc" id="L247">		final DataContainer&lt;ApplicationSession, Serializable&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);</span>
-<span class="nc" id="L248">		Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()</span>
+<span class="nc" id="L248">		final Map &lt;String,Long&gt; sessionByDayMap = dataContainer.getAll().stream()</span>
 <span class="nc" id="L249">	                .collect(Collectors.groupingBy(p -&gt; simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));</span>
-		
+
 <span class="nc" id="L251">		final DataSeries dataSeries = new DataSeries();</span>
 <span class="nc" id="L252">		final Series series = new Series();</span>
 <span class="nc" id="L253">		series.addSeries(new XYseries().setLabel(&quot;Daily Active Users&quot;));</span>

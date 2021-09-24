@@ -33,10 +33,10 @@ public class RemoveDataClickListener extends AbstractClickListener implements Cl
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The service request. */
 	private final RemoveDataRequest serviceRequest;
-	
+
 	/**
 	 * Instantiates a new removes the data click listener.
 	 *

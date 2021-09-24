@@ -129,7 +129,7 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 			}
 
 <span class="fc" id="L131">			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);</span>
-<span class="fc" id="L132">			sameRoleSubStep.setDescription(stepName + '.' + subStepName);			</span>
+<span class="fc" id="L132">			sameRoleSubStep.setDescription(stepName + '.' + subStepName);</span>
 <span class="fc" id="L133">			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));</span>
 
 <span class="fc" id="L135">			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());</span>
@@ -183,7 +183,7 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 
 <span class="fc" id="L184">		return gantt;</span>
 	}
-	
+
 
 	/**
 	 * Creates the role ghant.

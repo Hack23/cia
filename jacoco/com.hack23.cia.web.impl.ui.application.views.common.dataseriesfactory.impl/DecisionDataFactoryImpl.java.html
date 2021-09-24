@@ -70,7 +70,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 <span class="pc bpc" id="L71" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
 <span class="pc bpc" id="L72" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
-<span class="pc bpc" id="L73" title="2 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn) &amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length() &amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
 
 <span class="fc" id="L75">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));</span>
 

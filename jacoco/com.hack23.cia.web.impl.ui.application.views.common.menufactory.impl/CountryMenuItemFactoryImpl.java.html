@@ -104,7 +104,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 */
 	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
 			final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sourceIndicatorMap) {
-		
+
 <span class="fc" id="L108">		final Map&lt;String, List&lt;ViewWorldbankIndicatorDataCountrySummary&gt;&gt; sortedIndicatorMap = sourceIndicatorMap</span>
 <span class="fc" id="L109">				.entrySet().stream().sorted((e1, e2) -&gt; e1.getKey().compareTo(e2.getKey()))</span>
 <span class="pc" id="L110">				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -&gt; e1, LinkedHashMap::new));</span>
@@ -113,7 +113,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 <span class="fc" id="L113">				.entrySet()) {</span>
 
 <span class="fc" id="L115">			final MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), null, null);</span>
-			
+
 <span class="fc" id="L117">			final List&lt;ViewWorldbankIndicatorDataCountrySummary&gt; sortedEntries = entry.getValue().stream()</span>
 <span class="fc" id="L118">					.sorted((e1, e2) -&gt; e1.getIndicatorName().compareTo(e2.getIndicatorName()))</span>
 <span class="fc" id="L119">					.collect(Collectors.toList());</span>

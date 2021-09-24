@@ -67,15 +67,15 @@ public final class GovernmentBodyHeadcountPageModContentFactoryImpl extends Abst
 
 <span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
 <span class="fc" id="L69">		final List&lt;GovernmentBodyAnnualSummary&gt; list = getItem(parameters);</span>
-		
+
 <span class="pc bpc" id="L71" title="2 of 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()) {</span>
 <span class="fc" id="L72">			final Optional&lt;GovernmentBodyAnnualSummary&gt; governmentBodyAnnualSummary = list.stream().findFirst();</span>
-			
+
 <span class="pc bpc" id="L74" title="1 of 2 branches missed.">			if (governmentBodyAnnualSummary.isPresent()) {</span>
 <span class="fc" id="L75">				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);</span>
 <span class="fc" id="L76">				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);</span>
 <span class="fc" id="L77">				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());</span>
-<span class="fc" id="L78">				panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());			</span>
+<span class="fc" id="L78">				panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());</span>
 			}
 <span class="fc" id="L80">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 					parameters, pageId);

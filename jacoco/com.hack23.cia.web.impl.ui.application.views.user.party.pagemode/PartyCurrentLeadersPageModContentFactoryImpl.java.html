@@ -40,11 +40,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentLeadersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = new String[] { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
+<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
 			&quot;lastName&quot;, &quot;party&quot;, &quot;totalDaysServed&quot;, &quot;active&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
 	/** The Constant CURRENT_LEADERS. */
 	private static final String CURRENT_LEADERS = &quot;Current Leaders&quot;;
-<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = new String[] { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot;, &quot;party&quot; };</span>
+<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot;, &quot;party&quot; };</span>
 <span class="fc" id="L48">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
 

@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> javax.annotation.PostConstruct;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.jsoup.Jsoup;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.jsoup.safety.Whitelist;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.jsoup.safety.Safelist;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Autowired;
@@ -274,7 +274,7 @@
 <a class="jxr_linenumber" name="L266" href="#L266">266</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> enter(<strong class="jxr_keyword">final</strong> ViewChangeEvent event) {
 <a class="jxr_linenumber" name="L267" href="#L267">267</a> 		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L268" href="#L268">268</a> 
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> 			<strong class="jxr_keyword">final</strong> String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> 			<strong class="jxr_keyword">final</strong> String parameters = Jsoup.clean(event.getParameters(), Safelist.basic());
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="PageModeContentFactory" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagemode/PageModeContentFactory.html#PageModeContentFactory">PageModeContentFactory</a> pageModeContentFactory : pageModeContentFactoryMap.values()) {
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> 				<strong class="jxr_keyword">if</strong> (pageModeContentFactory.matches(pageName, parameters) &amp;&amp; pageModeContentFactory.validReference(parameters)) {

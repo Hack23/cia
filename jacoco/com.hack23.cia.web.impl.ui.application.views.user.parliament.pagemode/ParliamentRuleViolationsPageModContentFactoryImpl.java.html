@@ -54,7 +54,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 
 	/** The Constant CLICK_LISTENER. */
 <span class="fc" id="L56">	private static final RuleViolationPageItemRendererClickListener CLICK_LISTENER = new RuleViolationPageItemRendererClickListener();</span>
-	
+
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String PARLIAMENT_RULE_VIOLATIONS = &quot;Parliament Rules violations&quot;;
 
@@ -70,31 +70,31 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 <span class="fc" id="L71">		final VerticalLayout panelContent = createPanelContent();</span>
 <span class="fc" id="L72">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
-		
+
 <span class="fc" id="L74">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
 
 <span class="fc" id="L76">		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()</span>
 <span class="fc" id="L77">				.getDataContainer(RuleViolation.class);</span>
 
 <span class="fc" id="L79">		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();</span>
-				
+
 <span class="fc bfc" id="L81" title="All 2 branches covered.">		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {</span>
 <span class="fc" id="L82">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
 <span class="fc" id="L83">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
-<span class="fc" id="L84">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));			</span>
+<span class="fc" id="L84">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));</span>
 <span class="fc" id="L85">		}</span>
 
-		
+
 <span class="fc bfc" id="L88" title="All 2 branches covered.">		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {</span>
 <span class="fc" id="L89">			horizontalLayout.addComponent(new CounterStatisticsCard(</span>
 <span class="fc" id="L90">					VaadinIcons.WARNING,new CounterStatisticModel(&quot;ALL:&quot; +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)</span>
 <span class="fc" id="L91">                    .withIconHidden().withShowOnlyStatistic(true),&quot;ALL:&quot; +statusEntry.getKey()));</span>
-<span class="fc" id="L92">		}			</span>
-<span class="fc" id="L93">		panelContent.addComponent(horizontalLayout);		</span>
-		
-		
+<span class="fc" id="L92">		}</span>
+<span class="fc" id="L93">		panelContent.addComponent(horizontalLayout);</span>
+
+
 <span class="fc" id="L96">		Collections.sort(ruleViolations, (o1, o2) -&gt; o2.getStatus().compareTo(o1.getStatus()));</span>
-		
+
 <span class="fc" id="L98">		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, &quot;Risk&quot;,</span>
 				new String[] { &quot;name&quot;, &quot;status&quot;, &quot;resourceType&quot;, &quot;ruleName&quot;, &quot;ruleGroup&quot;, &quot;ruleDescription&quot;, &quot;positive&quot; }, new String[] { &quot;referenceId&quot; }, CLICK_LISTENER, null, null);
 

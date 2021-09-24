@@ -64,10 +64,10 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<em class="jxr_javadoccomment">/** The Constant PARLIAMENT_DECISION_FLOW. */</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PARLIAMENT_DECISION_FLOW = <span class="jxr_string">"Parliament decision flow"</span>;
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Autowired
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">private</strong> <a name="DecisionFlowChartManager" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/chartfactory/api/DecisionFlowChartManager.html#DecisionFlowChartManager">DecisionFlowChartManager</a> decisionFlowChartManager;
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * Instantiates a new parliament decision flow page mod content factory impl.</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 */</em>
@@ -84,20 +84,20 @@
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  		String selectedYear = <span class="jxr_string">"2020/21"</span>;
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  		<strong class="jxr_keyword">if</strong> (parameters != <strong class="jxr_keyword">null</strong> &amp;&amp; parameters.contains(<span class="jxr_string">"["</span>) &amp;&amp; parameters.contains(<span class="jxr_string">"]"</span>)) {
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		} 
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		}
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = getApplicationManager()
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  				.getDataContainer(ViewRiksdagenCommittee.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenCommittee&gt; allCommittess = dataContainer.getAll();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -&gt; c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		<strong class="jxr_keyword">final</strong> ComboBox&lt;String&gt; comboBox = <strong class="jxr_keyword">new</strong> ComboBox&lt;&gt;(<span class="jxr_string">"Select year"</span>, Collections.unmodifiableList(Arrays.asList(<span class="jxr_string">"2020/21"</span>,<span class="jxr_string">"2019/20"</span>,<span class="jxr_string">"2018/19"</span>,<span class="jxr_string">"2017/18"</span>,<span class="jxr_string">"2016/17"</span>,<span class="jxr_string">"2015/16"</span>,<span class="jxr_string">"2014/15"</span>,<span class="jxr_string">"2013/14"</span>,<span class="jxr_string">"2012/13"</span>,<span class="jxr_string">"2011/12"</span>,<span class="jxr_string">"2010/11"</span>)));
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		panelContent.addComponent(comboBox);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		comboBox.setSelectedItem(selectedYear);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		comboBox.addValueChangeListener(<strong class="jxr_keyword">new</strong> <a name="DecisionFlowValueChangeListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/DecisionFlowValueChangeListener.html#DecisionFlowValueChangeListener">DecisionFlowValueChangeListener</a>(NAME,<span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">final</strong> SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  		panelContent.addComponent(chart);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  		panelContent.setExpandRatio(chart, ContentRatio.LARGE);

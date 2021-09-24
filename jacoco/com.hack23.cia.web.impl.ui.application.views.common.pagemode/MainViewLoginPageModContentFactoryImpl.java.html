@@ -95,7 +95,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 <span class="fc" id="L95">		loginRequest.setOtpCode(&quot;&quot;);</span>
 <span class="fc" id="L96">		loginRequest.setEmail(&quot;&quot;);</span>
 <span class="fc" id="L97">		loginRequest.setUserpassword(&quot;&quot;);</span>
-		
+
 <span class="fc" id="L99">		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
 <span class="fc" id="L100">		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);</span>
 <span class="fc" id="L101">		getFormFactory().addRequestInputFormFields(formContent, loginRequest,</span>
@@ -108,9 +108,9 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 <span class="fc" id="L108">		content.addComponent(overviewLayout);</span>
 <span class="fc" id="L109">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L111">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);		</span>
+<span class="fc" id="L111">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 <span class="fc" id="L112">		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);</span>
-		
+
 <span class="fc" id="L114">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
 <span class="fc" id="L115">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);

@@ -116,7 +116,7 @@
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 		request.setCurrentPassword(<span class="jxr_string">""</span>);
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 		request.setNewPassword(<span class="jxr_string">""</span>);
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 		request.setRepeatNewPassword(<span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 		<strong class="jxr_keyword">final</strong> ClickListener listener = <strong class="jxr_keyword">new</strong> <a name="ChangePasswordClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/ChangePasswordClickListener.html#ChangePasswordClickListener">ChangePasswordClickListener</a>(request);
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 		getFormFactory().addRequestInputFormFields(formContent, request,
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 				ChangePasswordRequest.<strong class="jxr_keyword">class</strong>, Arrays.asList(<span class="jxr_string">"currentPassword"</span>,<span class="jxr_string">"newPassword"</span>,<span class="jxr_string">"repeatNewPassword"</span>), <span class="jxr_string">"Change password"</span>, listener);
@@ -210,7 +210,7 @@
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 		<strong class="jxr_keyword">return</strong> formLayout;
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 	}
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 	
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
 <a class="jxr_linenumber" name="L206" href="#L206">206</a> 	<strong class="jxr_keyword">private</strong> VerticalLayout createDeleteAccountButton() {
 <a class="jxr_linenumber" name="L207" href="#L207">207</a> 
 <a class="jxr_linenumber" name="L208" href="#L208">208</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout formLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
@@ -234,7 +234,7 @@
 <a class="jxr_linenumber" name="L226" href="#L226">226</a> 		<strong class="jxr_keyword">return</strong> formLayout;
 <a class="jxr_linenumber" name="L227" href="#L227">227</a> 	}
 <a class="jxr_linenumber" name="L228" href="#L228">228</a> 
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> 	
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 
 <a class="jxr_linenumber" name="L230" href="#L230">230</a> 	@Override
 <a class="jxr_linenumber" name="L231" href="#L231">231</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
 <a class="jxr_linenumber" name="L232" href="#L232">232</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());

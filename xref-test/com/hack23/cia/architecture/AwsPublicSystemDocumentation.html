@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../../testapidocs/com/hack23/cia/architecture/AwsPublicSystemDocumentation.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2021 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		<strong class="jxr_keyword">final</strong> DeploymentNode iamAccountNode = model.addDeploymentNode(<span class="jxr_string">"IAM Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">final</strong> Container iamAccountContainer = ciaSystem.addContainer(<span class="jxr_string">"IAM Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  		<strong class="jxr_keyword">final</strong> DeploymentNode devAccountNode = model.addDeploymentNode(<span class="jxr_string">"Development Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  		<strong class="jxr_keyword">final</strong> Container devAccountContainer = ciaSystem.addContainer(<span class="jxr_string">"Development Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
@@ -85,24 +85,24 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">final</strong> DeploymentNode auditAccountNode = model.addDeploymentNode(<span class="jxr_string">"Audit Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">final</strong> Container auditAccountContainer = ciaSystem.addContainer(<span class="jxr_string">"Audit Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> DeploymentNode appAccountNode = model.addDeploymentNode(<span class="jxr_string">"Application Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">final</strong> Container appAccountContainer = ciaSystem.addContainer(<span class="jxr_string">"Application Account"</span>, <span class="jxr_string">"AWS"</span>, <span class="jxr_string">"Aws Account"</span>);
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  		
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  		awsAccountContainer.uses(iamAccountContainer, <span class="jxr_string">"create/restrict"</span>);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		awsAccountContainer.uses(devAccountContainer, <span class="jxr_string">"create/restrict"</span>);
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		awsAccountContainer.uses(opCenterAccountContainer, <span class="jxr_string">"create/restrict"</span>);
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		awsAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"create/restrict"</span>);
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		awsAccountContainer.uses(appAccountContainer, <span class="jxr_string">"create/restrict"</span>);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		awsAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"publish event/audit"</span>);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		iamAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"publish event/audit"</span>);
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  		devAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"publish event/audit"</span>);
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  		opCenterAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"publish event/audit"</span>);
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  		appAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"publish event/audit"</span>);
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  		opCenterAccountContainer.uses(auditAccountContainer, <span class="jxr_string">"Monitor event/audit"</span>);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  		iamAccountContainer.uses(devAccountContainer, <span class="jxr_string">"manage access"</span>);
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  		iamAccountContainer.uses(appAccountContainer, <span class="jxr_string">"manage access"</span>);
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		iamAccountContainer.uses(opCenterAccountContainer, <span class="jxr_string">"manage access"</span>);
@@ -113,7 +113,7 @@
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 		appAccountNode.add(appAccountContainer);
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 		iamAccountNode.add(iamAccountContainer);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 		masterAccountNode.add(awsAccountContainer);
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 		<strong class="jxr_keyword">final</strong> DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, <span class="jxr_string">"\&quot;Production Aws Account structure\&quot;"</span>,
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 				<span class="jxr_string">"\&quot;Production Aws Account structure\&quot;"</span>);
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 
@@ -122,8 +122,8 @@
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 		developmentDeploymentView.add(devAccountNode);
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 		developmentDeploymentView.add(opCenterAccountNode);
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 		developmentDeploymentView.add(auditAccountNode);
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		developmentDeploymentView.add(appAccountNode);		
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 		
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		developmentDeploymentView.add(appAccountNode);
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">final</strong> Styles styles = viewSet.getConfiguration().getStyles();
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 		styles.addElementStyle(Tags.COMPONENT).background(<span class="jxr_string">"#1168bd"</span>).color(<span class="jxr_string">"#ffffff"</span>);

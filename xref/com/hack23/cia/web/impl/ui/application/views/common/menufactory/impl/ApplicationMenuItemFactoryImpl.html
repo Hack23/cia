@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  			PageMode.OVERVIEW);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_MINISTRY_RANKING_DATAGRID = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.MINISTRY_RANKING_VIEW_NAME,
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  			PageMode.DATAGRID);
@@ -189,7 +189,7 @@
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 	<em class="jxr_javadoccomment">/** The party ranking menu item factory. */</em>
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 	@Autowired
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 	<strong class="jxr_keyword">private</strong> <a name="PartyRankingMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/PartyRankingMenuItemFactory.html#PartyRankingMenuItemFactory">PartyRankingMenuItemFactory</a> partyRankingMenuItemFactory;
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 	
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 	<em class="jxr_javadoccomment">/** The politician ranking menu item factory. */</em>
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 	@Autowired
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 	<strong class="jxr_keyword">private</strong> <a name="PoliticianRankingMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/PoliticianRankingMenuItemFactory.html#PoliticianRankingMenuItemFactory">PoliticianRankingMenuItemFactory</a> politicianRankingMenuItemFactory;
@@ -274,10 +274,10 @@
 <a class="jxr_linenumber" name="L266" href="#L266">266</a> 		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,<span class="jxr_string">"Ministry ranking overiew, contains data and charts."</span>);
 <a class="jxr_linenumber" name="L267" href="#L267">267</a> 
 <a class="jxr_linenumber" name="L268" href="#L268">268</a> 		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,<span class="jxr_string">"All ministries, scoreboard assignments and days served in committees"</span>);
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> 		
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> 
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,<span class="jxr_string">"All government bodies overview"</span>);
-<a class="jxr_linenumber" name="L271" href="#L271">271</a> 		
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,<span class="jxr_string">"All government bodies, current headcount"</span>);	
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> 
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,<span class="jxr_string">"All government bodies, current headcount"</span>);
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> 
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> 		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,<span class="jxr_string">"Search parliament documents"</span>);
 <a class="jxr_linenumber" name="L275" href="#L275">275</a> 

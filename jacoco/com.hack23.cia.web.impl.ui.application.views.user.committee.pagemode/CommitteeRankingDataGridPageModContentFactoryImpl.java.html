@@ -42,7 +42,7 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = new String[] { &quot;embeddedId.detail&quot;, &quot;embeddedId&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;,</span>
+<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.detail&quot;, &quot;embeddedId&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;,</span>
 			&quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;, &quot;active&quot;, &quot;lastAssignmentDate&quot; };
 
 	private static final String COMMITTEES = &quot;Committees&quot;;
@@ -50,14 +50,14 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = &quot;Datagrid&quot;;
 
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = new String[] { &quot;active&quot;,&quot;embeddedId&quot; };</span>
+<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;active&quot;,&quot;embeddedId&quot; };</span>
 
 <span class="fc" id="L55">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, &quot;embeddedId.orgCode&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-<span class="fc" id="L60">	private static final String[] NESTED_PROPERTIES = new String[] {&quot;embeddedId.detail&quot;};</span>
+<span class="fc" id="L60">	private static final String[] NESTED_PROPERTIES = {&quot;embeddedId.detail&quot;};</span>
 
 
 	/**

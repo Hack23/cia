@@ -43,13 +43,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryCurrentMembersPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = new String[] { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
+<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
 			&quot;lastName&quot;, &quot;party&quot;, &quot;active&quot;, &quot;totalDaysServed&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
 
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = &quot;Current Members&quot;;
 
-<span class="fc" id="L52">	private static final String[] HIDE_COLUMNS = new String[] { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot; };</span>
+<span class="fc" id="L52">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot; };</span>
 
 <span class="fc" id="L54">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);

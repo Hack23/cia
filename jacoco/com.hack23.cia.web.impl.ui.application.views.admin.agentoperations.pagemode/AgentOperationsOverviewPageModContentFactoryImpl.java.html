@@ -78,21 +78,21 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 <span class="nc" id="L78">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
 <span class="nc" id="L80">		LabelFactory.createHeader2Label(content,ADMIN_AGENT_OPERATION);</span>
-				
+
 <span class="nc" id="L82">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
 <span class="nc" id="L83">		overviewLayout.setSizeFull();</span>
 <span class="nc" id="L84">		content.addComponent(overviewLayout);</span>
 <span class="nc" id="L85">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
 <span class="nc" id="L87">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
-	
+
 <span class="nc bnc" id="L89" title="All 2 branches missed.">		for (final DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {</span>
 <span class="nc" id="L90">			final Button importDataButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);</span>
 <span class="nc" id="L91">			importDataButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));</span>
 <span class="nc" id="L92">			importDataButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));</span>
 <span class="nc" id="L93">			RowUtil.createRowItem(grid, importDataButton, WILL_FETCH_DATA_FROM_SOURCE);</span>
 		}
-		
+
 <span class="nc" id="L96">		final String pageId = getPageId(parameters);</span>
 <span class="nc" id="L97">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);

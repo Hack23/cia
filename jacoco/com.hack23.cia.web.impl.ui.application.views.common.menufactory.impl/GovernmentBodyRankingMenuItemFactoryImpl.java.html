@@ -60,7 +60,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 <span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,</span>
 			PageMode.PAGEVISITHISTORY);
-	
+
 	private static final String EXPENDITURE = &quot;Expenditure&quot;;
 
 	/** The Constant GOVERNMENT_BODIES. */
@@ -71,7 +71,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 
 	private static final String HEADCOUNT = &quot;Headcount&quot;;
 
-	
+
 	private static final String INCOME = &quot;Income&quot;;
 
 	/** The Constant OVERVIEW_TEXT. */
@@ -111,7 +111,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 <span class="fc" id="L111">		ministryMenuItem.addItem(HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT);</span>
 <span class="fc" id="L112">		ministryMenuItem.addItem(INCOME, VaadinIcons.GROUP, COMMAND_INCOME);</span>
 <span class="fc" id="L113">		ministryMenuItem.addItem(EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE);</span>
-		
+
 <span class="fc" id="L115">		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);</span>
 
 <span class="fc" id="L117">	}</span>
@@ -121,11 +121,11 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 <span class="fc" id="L121">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
 <span class="fc" id="L123">		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, &quot;Current government bodies&quot;);</span>
-		
+
 <span class="fc" id="L125">		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, &quot;Desc&quot;);</span>
 <span class="fc" id="L126">		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, &quot;Desc&quot;);</span>
-<span class="fc" id="L127">		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , &quot;Desc&quot;);		</span>
-		
+<span class="fc" id="L127">		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , &quot;Desc&quot;);</span>
+
 <span class="fc" id="L129">		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);</span>
 
 <span class="fc" id="L131">	}</span>

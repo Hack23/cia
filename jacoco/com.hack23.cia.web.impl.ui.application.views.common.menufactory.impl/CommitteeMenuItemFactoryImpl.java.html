@@ -142,12 +142,12 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 <span class="fc" id="L142">				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));</span>
 
 <span class="fc" id="L144">		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(</span>
-<span class="fc" id="L145">				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));		</span>
+<span class="fc" id="L145">				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));</span>
 
 <span class="fc" id="L147">		ballotItem.addItem(&quot;Decision flow&quot;, VaadinIcons.GROUP, new PageModeMenuCommand(</span>
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId));		
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId));
 
-		
+
 <span class="fc" id="L151">		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
@@ -184,9 +184,9 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 <span class="fc" id="L184">				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), &quot;Chart over decisions by decisions type, daily summary&quot;);</span>
 
 <span class="fc" id="L186">		createButtonLink(grid,&quot;Decision flow&quot;, VaadinIcons.GROUP, new PageModeMenuCommand(</span>
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId),&quot;desc&quot;);		
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId),&quot;desc&quot;);
 
-		
+
 <span class="fc" id="L190">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);
 

@@ -181,14 +181,14 @@
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 		<strong class="jxr_keyword">if</strong> (list != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 			<strong class="jxr_keyword">final</strong> Series series = <strong class="jxr_keyword">new</strong> Series().addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(PARTY_WON))
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> 					.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(PARTY_ABSENT));
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 	
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 			<strong class="jxr_keyword">final</strong> DataSeries dataSeries = <strong class="jxr_keyword">new</strong> DataSeries();
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 	
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 			<strong class="jxr_keyword">final</strong> SimpleDateFormat simpleDateFormat = <strong class="jxr_keyword">new</strong> SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 	
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 	
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 			addChart(content,<span class="jxr_string">"Party result by"</span>, <strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), <strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 		}
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 	}
@@ -207,7 +207,7 @@
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> 
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Entry&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt;&gt; entry : map.entrySet()) {
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 			series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(getPartyName(entry.getKey())));
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 		}
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 		series.addSeries(<strong class="jxr_keyword">new</strong> XYseries().setLabel(NUMBER_BALLOTS));

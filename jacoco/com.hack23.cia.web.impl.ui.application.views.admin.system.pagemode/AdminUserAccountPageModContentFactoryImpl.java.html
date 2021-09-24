@@ -67,10 +67,10 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant BUTTON_PATTERN. */
 	private static final String BUTTON_PATTERN = &quot;Perform {0}&quot;;
 
-<span class="fc" id="L70">	private static final String[] COLUMN_ORDER = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
+<span class="fc" id="L70">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
 			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
 
-<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS = new String[] { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
+<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
 
 <span class="fc" id="L75">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
 
@@ -78,7 +78,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
 
 	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;
-	
+
 	/**
 	 * Instantiates a new admin user account page mod content factory impl.
 	 */
@@ -122,14 +122,14 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 <span class="nc" id="L122">				getFormFactory()</span>
 <span class="nc" id="L123">						.addFormPanelTextFields(content, userAccount, UserAccount.class,</span>
 								AS_LIST);
-		
+
 <span class="nc" id="L126">				final VerticalLayout overviewLayout = new VerticalLayout();</span>
 <span class="nc" id="L127">				overviewLayout.setSizeFull();</span>
 <span class="nc" id="L128">				content.addComponent(overviewLayout);</span>
 <span class="nc" id="L129">				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
 <span class="nc" id="L131">				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
-			
+
 <span class="nc bnc" id="L133" title="All 2 branches missed.">				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
 <span class="nc" id="L134">					final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
 <span class="nc" id="L135">					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
@@ -141,10 +141,10 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 <span class="nc" id="L141">					RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
 				}
 
-				
+
 			}
 		}
-		
+
 <span class="nc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
