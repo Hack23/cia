@@ -167,7 +167,7 @@
     <cia.project.versions.httpclient>4.5.13</cia.project.versions.httpclient>
     <cia.project.versions.guava>31.0.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.13.0</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.1.68.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.1.69.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.1</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.21</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
