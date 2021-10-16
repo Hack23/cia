@@ -131,53 +131,78 @@
               <to>/opt/cia</to>
               <pattern>jetty-home-${cia.project.versions.jetty}</pattern>
               <replacement>.</replacement>
-              <excludes>
-                <exclude>**/demo-base/**</exclude>
-                <exclude>**/start.ini</exclude>
-                <exclude>**/etc/jetty-gzip.xml</exclude>
-                <exclude>**/etc/jetty-ssl-context.xml</exclude>
-                <exclude>**/etc/webdefault.xml</exclude>
-              </excludes>
             </extract-artifact>
             <extract-artifact>
               <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
-              <to>/opt/cia/webapps/cia</to>
+              <to>/opt/cia/cia-base/webapps/cia</to>
             </extract-artifact>
             <copyFile>
-              <path>src/main/config/jetty/webapps/cia.xml</path>
-              <toFile>/opt/cia/webapps/cia.xml</toFile>
+              <path>src/main/config/jetty/cia-base/webapps/cia.xml</path>
+              <toFile>/opt/cia/cia-base/webapps/cia.xml</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/resources/jetty-logging.properties</path>
+              <toFile>/opt/cia/cia-base/resources/jetty-logging.properties</toFile>
+            </copyFile>
+
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/deploy.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/deploy.ini</toFile>
+            </copyFile>
+
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/gzip.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/gzip.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/http2c.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/http2c.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/http.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/http.ini</toFile>
+            </copyFile>
+
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/https.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/https.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/jmx.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/jmx.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/jsp.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/jsp.ini</toFile>
+            </copyFile>
+
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/jstl.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/jstl.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/resources.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/resources.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/server.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/server.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/ssl.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/ssl.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/threadpool.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/threadpool.ini</toFile>
             </copyFile>
             <copyFile>
               <path>src/main/config/etc/default/cia</path>
               <toFile>/etc/default/cia</toFile>
             </copyFile>
             <copyFile>
-              <path>src/main/config/jetty/start.ini</path>
-              <toFile>/opt/cia/start.ini</toFile>
-            </copyFile>
-            <copyFile>
               <path>${project.build.directory}/keystore.p12</path>
-              <toFile>/opt/cia/etc/keystore.p12</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/jetty-gzip.xml</path>
-              <toFile>/opt/cia/etc/jetty-gzip.xml</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/jetty-ssl-context.xml</path>
-              <toFile>/opt/cia/etc/jetty-ssl-context.xml</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/webdefault.xml</path>
-              <toFile>/opt/cia/etc/webdefault.xml</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/jetty-cia.policy</path>
-              <toFile>/opt/cia/etc/jetty-cia.policy</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/jetty-cia-kie-engine.policy</path>
-              <toFile>/opt/cia/etc/jetty-cia-kie-engine.policy</toFile>
+              <toFile>/opt/cia/cia-base/etc/keystore.p12</toFile>
             </copyFile>
           </assembly>
         </configuration>

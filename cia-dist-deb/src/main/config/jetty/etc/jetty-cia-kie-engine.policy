@@ -1,8 +1,0 @@
-grant {
-        permission java.io.FilePermission "${jetty.home}/-","read,write";
-		permission java.util.PropertyPermission "*","read";
-		permission java.lang.RuntimePermission "createClassLoader";
-		permission java.lang.RuntimePermission "accessDeclaredMembers";
-		permission java.lang.RuntimePermission "getClassLoader";
-		permission java.lang.RuntimePermission "setContextClassLoader";
-};

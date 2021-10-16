@@ -55,7 +55,7 @@ Limited functionality proper navigation, descriptions,content, ui and styling ar
 
 # Roadmap
 
-Plan to make it public some time after 2022.04, running Ubuntu 12.04, Postgresql 14.x, JDK17+, Spring framework 6.x , Hibernate 6.x, Vaadin 8.x
+Plan to make it public some time after 2022.04, running Ubuntu 22.04, Postgresql 14.x, JDK17+, Spring framework 6.x , Hibernate 6.x, Vaadin 8.x
 
 
 #Resources

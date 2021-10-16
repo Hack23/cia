@@ -3,16 +3,17 @@
 
 echo postinst
 
-mkdir -p /opt/cia/logs
-mkdir -p /opt/cia/temp
+mkdir -p /opt/cia/cia-base
+mkdir -p /opt/cia/cia-base/logs
+mkdir -p /opt/cia/cia-base/temp
 chown -R cia:cia /opt/cia
 mv /opt/cia/bin/jetty.sh /opt/cia/bin/cia.sh
 chmod a+x /opt/cia/bin/*.sh
 ln -s /opt/cia/bin/cia.sh /etc/init.d/cia
 
-echo 'database.search.index.location=/opt/cia/lucene-prod/indexes'  >> /opt/cia/webapps/cia/WEB-INF/database.properties
+echo 'database.search.index.location=/opt/cia/cia-base/lucene-prod/indexes'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties
 
-ln -s /etc/ssl/certs/java/cacerts /opt/cia/etc/cacerts
+ln -s /etc/ssl/certs/java/cacerts /opt/cia/cia-base/etc/cacerts
 
 /etc/init.d/cia start
 
