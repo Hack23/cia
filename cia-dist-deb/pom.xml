@@ -197,6 +197,19 @@
               <toFile>/opt/cia/cia-base/start.d/threadpool.ini</toFile>
             </copyFile>
             <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/console-capture.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/console-capture.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/logging-logback.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/logging-logback.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/cia-base/start.d/websocket.ini</path>
+              <toFile>/opt/cia/cia-base/start.d/websocket.ini</toFile>
+            </copyFile>
+            
+            <copyFile>
               <path>src/main/config/etc/default/cia</path>
               <toFile>/etc/default/cia</toFile>
             </copyFile>
