@@ -409,7 +409,7 @@
     <dependency>
       <groupId>com.j256.cloudwatchlogbackappender</groupId>
       <artifactId>cloudwatchlogbackappender</artifactId>
-      <version>1.11</version>
+      <version>2.1</version>
       <exclusions>
         <exclusion>
           <groupId>ch.qos.logback</groupId>
