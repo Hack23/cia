@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-external-pom</artifactId>
-    <version>2021.9.25-SNAPSHOT</version>
+    <version>2021.10.23-SNAPSHOT</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.riksdagen.person.impl</artifactId>

@@ -59,7 +59,7 @@ Running docker image
   
  Docker repository : https://hub.docker.com/r/hack23/cia/ 
 
- 1. docker run hack23/cia:2021.9.24 -p 28443:8443
+ 1. docker run hack23/cia:2021.10.23 -p 28443:8443
 
  2. Access server at https://localhost:28443/cia/ , register new user to get admin access
 
@@ -110,11 +110,11 @@ Installing Debian/Ubuntu package
 
  7. Get cia debian package and
 
- $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2021.9.24/cia-dist-deb-2021.9.24.deb
+ $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2021.10.23/cia-dist-deb-2021.10.23.deb
 
  8. Install debian package
 
- $ sudo dpkg -i cia-dist-deb-2021.9.24.deb
+ $ sudo dpkg -i cia-dist-deb-2021.10.23.deb
 
 
  9. Access the server at {{{https://localhost:28443/cia/}https://localhost:28443/cia/}}
