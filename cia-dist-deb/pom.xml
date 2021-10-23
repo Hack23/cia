@@ -131,11 +131,18 @@
               <to>/opt/cia</to>
               <pattern>jetty-home-${cia.project.versions.jetty}</pattern>
               <replacement>.</replacement>
+              <excludes>
+                <exclude>**/bin/jetty.sh</exclude>
+              </excludes>
             </extract-artifact>
             <extract-artifact>
               <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
               <to>/opt/cia/cia-base/webapps/cia</to>
             </extract-artifact>
+            <copyFile>
+              <path>src/main/config/jetty/bin-fix/jetty.sh</path>
+              <toFile>/opt/cia/bin/jetty.sh</toFile>
+            </copyFile>
             <copyFile>
               <path>src/main/config/jetty/cia-base/webapps/cia.xml</path>
               <toFile>/opt/cia/cia-base/webapps/cia.xml</toFile>
