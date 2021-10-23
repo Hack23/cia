@@ -209,8 +209,8 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.pa
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl,0,47,0,6,0,11,0,6,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRuleViolationsPageModContentFactoryImpl,0,211,2,8,0,28,2,8,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentOverviewPageModContentFactoryImpl,0,49,1,5,0,10,1,5,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl,82,0,2,0,16,0,8,0,7,0
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRiskPageModContentFactoryImpl,211,24,8,4,27,5,7,4,2,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl,0,82,0,2,0,16,0,8,0,7
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRiskPageModContentFactoryImpl,0,235,1,11,0,32,1,10,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.action,ViewAction,0,207,0,0,0,34,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.action,PageActionEventHelperImpl,0,76,4,8,0,20,4,4,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.country,CountryRankingView,0,7,0,0,0,2,0,1,0,1
@@ -281,7 +281,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.go
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl,0,61,0,6,0,15,0,6,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryRankingGovernmentBodiesPageModContentFactoryImpl,0,43,0,4,0,10,0,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryRankingPageVisitHistoryPageModContentFactoryImpl,0,43,1,3,0,10,1,4,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryMemberHistoryPageModContentFactoryImpl,0,138,0,4,0,19,0,6,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryMemberHistoryPageModContentFactoryImpl,53,85,0,4,13,6,1,5,1,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryGovernmentBodiesIncomeModContentFactoryImpl,0,54,0,4,0,13,0,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryRoleGhantPageModContentFactoryImpl,0,64,0,4,0,16,0,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode,MinistryRankingAllRolesChartsPageModContentFactoryImpl,0,63,0,6,0,16,0,6,0,3
@@ -313,7 +313,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pagecli
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,UpdateApplicationConfigurationClickListener,14,32,1,1,2,9,1,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,SendEmailClickListener,12,33,1,1,2,10,1,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,RegisterUserClickListener,0,44,0,2,0,12,0,4,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,ComplianceCheckPageItemRendererClickListener,5,39,1,3,1,12,1,6,0,5
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,ComplianceCheckPageItemRendererClickListener,0,44,0,4,0,13,0,7,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,DeleteAccountClickListener,0,33,0,2,0,10,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,LogoutClickListener,0,43,0,2,0,12,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.pageclicklistener,PageItemPropertyClickListener,0,37,0,0,0,9,0,3,0,3
