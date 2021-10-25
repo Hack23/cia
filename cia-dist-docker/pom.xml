@@ -24,8 +24,8 @@
       <type>deb</type>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
           <groupId>*</groupId>
+          <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -46,10 +46,10 @@
         <executions>
           <execution>
             <id>filter-resources</id>
-            <phase>validate</phase>
             <goals>
               <goal>resources</goal>
             </goals>
+            <phase>validate</phase>
             <configuration>
               <outputDirectory>${project.basedir}/target/dockerfile</outputDirectory>
               <resources>
@@ -78,10 +78,10 @@
         <executions>
           <execution>
             <id>copy-dependencies</id>
-            <phase>generate-resources</phase>
             <goals>
               <goal>copy-dependencies</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
               <copyPom>false</copyPom>
               <outputDirectory>${project.basedir}/target/dockerfile/dependencies</outputDirectory>
@@ -156,10 +156,10 @@
             <executions>
               <execution>
                 <id>docker:push</id>
-                <phase>install</phase>
                 <goals>
                   <goal>push</goal>
                 </goals>
+                <phase>install</phase>
               </execution>
             </executions>
           </plugin>
