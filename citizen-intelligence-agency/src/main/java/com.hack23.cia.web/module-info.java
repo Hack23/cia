@@ -87,7 +87,7 @@ open module com.hack23.cia.web {
 	requires jetty.servlet.api;
 
 	requires vaadin.grid.util;
-	requires yauaa;
+	requires nl.basjes.parse.useragent;
 	requires qrcode;
 
 	requires java.desktop;
