@@ -282,7 +282,7 @@
       <dependency>
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
-        <version>3.4.2.Final</version>
+        <version>3.4.2.Final-redhat-00002</version>
         <exclusions>
           <exclusion>
             <groupId>org.apache.logging.log4j</groupId>
