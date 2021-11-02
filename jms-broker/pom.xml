@@ -214,7 +214,7 @@
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
       <artifactId>jboss-logmanager</artifactId>
-      <version>2.1.18.Final</version>
+      <version>2.1.18.Final-redhat-00001</version>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.logging</groupId>
