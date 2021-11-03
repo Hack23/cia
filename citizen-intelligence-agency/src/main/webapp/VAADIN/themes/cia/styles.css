@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.14.1";
+	content: "8.14.2";
 }
 
 .v-widget {
@@ -14060,7 +14060,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-table-cell-content {
 	border-left: 2px solid #4a5d67;
 	overflow: hidden;
-	height: 20px;
+	height: 22px;
 	vertical-align: middle;
 }
 
@@ -14109,9 +14109,11 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-table-table td {
 	border-top: 2px solid #4a5d67;
+	box-sizing: border-box;
 }
 
 .cia .v-table-table tr:first-child > td {
+	height: 20px;
 	border-top: none;
 }
 
@@ -14372,7 +14374,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-table-row-drag-bottom td.v-table-cell-content {
 	border-bottom: 2px solid #008780;
-	height: 18px;
+	height: 20px;
 }
 
 .cia .v-table-row-drag-bottom .v-table-cell-wrapper {
@@ -14381,7 +14383,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-table-row-drag-top td.v-table-cell-content {
 	border-top: 2px solid #008780;
-	height: 20px;
+	height: 22px;
 }
 
 .cia .v-table-row-drag-top .v-table-cell-wrapper {
@@ -14407,7 +14409,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-table-no-horizontal-lines .v-table-row-drag-top .v-table-cell-content, .cia .v-table-no-horizontal-lines .v-table-row-drag-bottom .v-table-cell-content {
-	height: 19px;
+	height: 21px;
 }
 
 .cia .v-table-no-header .v-table-header-wrap {
