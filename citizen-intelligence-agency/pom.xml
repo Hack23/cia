@@ -188,7 +188,7 @@
     <dependency>
       <groupId>net.sourceforge.plantuml</groupId>
       <artifactId>plantuml</artifactId>
-      <version>1.2021.12</version>
+      <version>1.2021.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>
