@@ -18,13 +18,11 @@ pipeline {
 	   stage('CloudSetup') {
 	      steps {
 	         withAWS(region:'eu-west-1', credentials:'IDofAwsCredentialsDev') {
-	         	response = cfnValidate(file:'cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json')
-				echo "template description: ${response.description}"
+	         	cfnValidate(file:'cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json')
 				
 				// def createResponse = cfnUpdate(stack:'my-stack', file:'cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json', params:['WebServerInstanceType=t4g.xlarge'], pollInterval:1000)
 				// echo "Cloudformation launch: ${createResponse.description}"								
-				// WebServerAmi
-				
+				// WebServerAmi				
 			}
 	      }
 	   }
