@@ -873,7 +873,7 @@
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.9.0.2155</version>
+          <version>3.9.1.2184</version>
         </plugin>
         <plugin>
           <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -1848,7 +1848,7 @@
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.9.0.2155</version>
+            <version>3.9.1.2184</version>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -2002,7 +2002,7 @@
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.9.0.2155</version>
+            <version>3.9.1.2184</version>
           </plugin>
         </plugins>
       </reporting>
