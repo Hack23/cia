@@ -36,7 +36,7 @@ import org.javers.repository.sql.SqlRepositoryBuilder;
 import org.javers.spring.auditable.AuthorProvider;
 import org.javers.spring.auditable.CommitPropertiesProvider;
 import org.javers.spring.auditable.aspect.JaversAuditableAspect;
-import org.javers.spring.jpa.TransactionalJaversBuilder;
+import org.javers.spring.jpa.TransactionalJpaJaversBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContext;
@@ -78,7 +78,7 @@ public class AuditableAspectConfiguration {
 					}
 				}).withDialect(DialectName.POSTGRES).build();
 
-		return TransactionalJaversBuilder.javers().withTxManager(txManager)
+		return TransactionalJpaJaversBuilder.javers().withTxManager(txManager)
 				.withObjectAccessHook(new HibernateUnproxyObjectAccessHook()).registerJaversRepository(sqlRepository)
 				.withMappingStyle(MappingStyle.BEAN).build();
 	}
