@@ -90,65 +90,65 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L93">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L93">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="nc" id="L95">		final String pageId = getPageId(parameters);</span>
-<span class="nc" id="L96">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L95">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L96">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="nc" id="L98">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L98">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="nc" id="L100">		LabelFactory.createHeader2Label(content,ADMIN_USERACCOUNT);</span>
+<span class="fc" id="L100">		LabelFactory.createHeader2Label(content,ADMIN_USERACCOUNT);</span>
 
-<span class="nc" id="L102">		final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="nc" id="L103">				.getDataContainer(UserAccount.class);</span>
+<span class="fc" id="L102">		final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L103">				.getDataContainer(UserAccount.class);</span>
 
-<span class="nc" id="L105">		final List&lt;UserAccount&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);</span>
+<span class="fc" id="L105">		final List&lt;UserAccount&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);</span>
 
-<span class="nc" id="L107">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L107">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="nc" id="L109">		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,</span>
+<span class="fc" id="L109">		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,</span>
 				pageOrderBy,
 				USER_ACCOUNT,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
 
-<span class="nc bnc" id="L116" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L116" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="nc" id="L118">			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L118">			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="nc bnc" id="L120" title="All 2 branches missed.">			if (userAccount != null) {</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">			if (userAccount != null) {</span>
 
-<span class="nc" id="L122">				getFormFactory()</span>
-<span class="nc" id="L123">						.addFormPanelTextFields(content, userAccount, UserAccount.class,</span>
+<span class="fc" id="L122">				getFormFactory()</span>
+<span class="fc" id="L123">						.addFormPanelTextFields(content, userAccount, UserAccount.class,</span>
 								AS_LIST);
 
-<span class="nc" id="L126">				final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="nc" id="L127">				overviewLayout.setSizeFull();</span>
-<span class="nc" id="L128">				content.addComponent(overviewLayout);</span>
-<span class="nc" id="L129">				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L126">				final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L127">				overviewLayout.setSizeFull();</span>
+<span class="fc" id="L128">				content.addComponent(overviewLayout);</span>
+<span class="fc" id="L129">				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="nc" id="L131">				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L131">				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 
-<span class="nc bnc" id="L133" title="All 2 branches missed.">				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
-<span class="nc" id="L134">					final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
-<span class="nc" id="L135">					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="nc" id="L136">					request.setAccountOperation(accountOperation);</span>
-<span class="nc" id="L137">					request.setUserAcountId(userAccount.getUserId());</span>
-<span class="nc" id="L138">					final Button accountOperationButton = new Button(MessageFormat.format(BUTTON_PATTERN, accountOperation) , VaadinIcons.BULLSEYE);</span>
-<span class="nc" id="L139">					accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));</span>
-<span class="nc" id="L140">					accountOperationButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));</span>
-<span class="nc" id="L141">					RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
+<span class="fc" id="L134">					final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
+<span class="fc" id="L135">					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L136">					request.setAccountOperation(accountOperation);</span>
+<span class="fc" id="L137">					request.setUserAcountId(userAccount.getUserId());</span>
+<span class="fc" id="L138">					final Button accountOperationButton = new Button(MessageFormat.format(BUTTON_PATTERN, accountOperation) , VaadinIcons.BULLSEYE);</span>
+<span class="fc" id="L139">					accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));</span>
+<span class="fc" id="L140">					accountOperationButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));</span>
+<span class="fc" id="L141">					RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
 				}
 
 
 			}
 		}
 
-<span class="nc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="nc" id="L151">		return content;</span>
+<span class="fc" id="L151">		return content;</span>
 
 	}
 

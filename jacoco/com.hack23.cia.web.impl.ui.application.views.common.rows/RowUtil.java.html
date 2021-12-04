@@ -107,26 +107,26 @@ import com.vaadin.ui.Label;
 	 * @param description the description
 	 */
 	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
-<span class="nc" id="L110">		final CssLayout layout = new CssLayout();</span>
-<span class="nc" id="L111">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
-<span class="nc" id="L112">		Responsive.makeResponsive(layout);</span>
-<span class="nc" id="L113">		layout.setSizeUndefined();</span>
+<span class="fc" id="L110">		final CssLayout layout = new CssLayout();</span>
+<span class="fc" id="L111">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="fc" id="L112">		Responsive.makeResponsive(layout);</span>
+<span class="fc" id="L113">		layout.setSizeUndefined();</span>
 
-<span class="nc" id="L115">		button.addStyleName(ITEMBOX);</span>
-<span class="nc" id="L116">		button.addStyleName(TITLE);</span>
-<span class="nc" id="L117">		Responsive.makeResponsive(button);</span>
-<span class="nc" id="L118">		button.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L119">		layout.addComponent(button);</span>
+<span class="fc" id="L115">		button.addStyleName(ITEMBOX);</span>
+<span class="fc" id="L116">		button.addStyleName(TITLE);</span>
+<span class="fc" id="L117">		Responsive.makeResponsive(button);</span>
+<span class="fc" id="L118">		button.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L119">		layout.addComponent(button);</span>
 
-<span class="nc" id="L121">		final Label descriptionLabel = new Label(description);</span>
-<span class="nc" id="L122">		descriptionLabel.addStyleName(ITEMBOX);</span>
-<span class="nc" id="L123">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="nc" id="L124">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L125">		layout.addComponent(descriptionLabel);</span>
+<span class="fc" id="L121">		final Label descriptionLabel = new Label(description);</span>
+<span class="fc" id="L122">		descriptionLabel.addStyleName(ITEMBOX);</span>
+<span class="fc" id="L123">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L124">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L125">		layout.addComponent(descriptionLabel);</span>
 
-<span class="nc" id="L127">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
-<span class="nc" id="L128">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="nc" id="L129">	}</span>
+<span class="fc" id="L127">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L128">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L129">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
