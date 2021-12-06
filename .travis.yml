@@ -74,7 +74,7 @@ before_script:
 script:
   - wget https://support.comodo.com/index.php?/Knowledgebase/Article/GetAttachment/966/820689 -O comodorsaaddtrustca.crt
   - sudo keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias comodorsaaddtrustca -import -file comodorsaaddtrustca.crt | true  
-  - wget http://apache.mirrors.spacedump.net/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+  - wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
   - tar xzvf apache-maven-3.8.4-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.8.4/bin:$PATH
   - mvn -v
