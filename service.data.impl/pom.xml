@@ -181,6 +181,12 @@
       <groupId>io.netty</groupId>
       <artifactId>netty-handler</artifactId>
       <version>${cia.project.versions.netty}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>io.netty</groupId>
+          <artifactId>netty-tcnative-classes</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>

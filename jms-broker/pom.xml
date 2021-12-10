@@ -305,8 +305,14 @@
       <groupId>io.netty</groupId>
       <artifactId>netty-handler</artifactId>
       <version>${cia.project.versions.netty}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>io.netty</groupId>
+          <artifactId>netty-tcnative-classes</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <dependency>
+    <!--     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-transport-native-epoll</artifactId>
       <version>${cia.project.versions.netty}</version>
@@ -318,6 +324,7 @@
       <version>${cia.project.versions.netty}</version>
       <classifier>osx-x86_64</classifier>
     </dependency>
+ -->
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec</artifactId>
