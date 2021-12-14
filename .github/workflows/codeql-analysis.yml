@@ -17,15 +17,16 @@ on:
 env:
   javaVersion: java17
 
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
+
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      security-events: write
-      pull-requests: read
 
     strategy:
       fail-fast: false
