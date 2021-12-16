@@ -413,7 +413,7 @@
     <dependency>
       <groupId>com.carrotsearch</groupId>
       <artifactId>hppc</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
     </dependency>
 
     <dependency>
