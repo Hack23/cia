@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2021.11.25-SNAPSHOT</version>
+  <version>2021.12.21-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -105,9 +105,9 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.14</cia.project.versions.spring>
-    <cia.project.versions.spring.security>5.6.0</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>5.6.1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.6.0</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.129</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.130</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.8.RC3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.28.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.5.3</cia.project.versions.javers>

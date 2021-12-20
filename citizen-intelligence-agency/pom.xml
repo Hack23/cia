@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-web-pom</artifactId>
-    <version>2021.11.25-SNAPSHOT</version>
+    <version>2021.12.21-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>citizen-intelligence-agency</artifactId>
@@ -789,7 +789,7 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-context</artifactId>
-      <version>1.43.0</version>
+      <version>1.43.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>

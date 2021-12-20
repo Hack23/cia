@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2021.11.24</version>
+    <version>2021.12.21</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-rpm</artifactId>
