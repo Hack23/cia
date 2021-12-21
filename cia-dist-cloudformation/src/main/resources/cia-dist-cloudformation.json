@@ -4114,18 +4114,18 @@
                                 {
                                     "Ref": "DBName"
                                 },
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "echo 'database.username=allhaildiscordia",
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "echo 'database.password=legalizeit",
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "echo 'database.aws.secret.arn=",
                                 {
                                     "Ref": "RDSInstanceRotationSecret"
                                 },
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "echo 'database.aws.secret=true",
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "echo 'database.hostname=",
                                 {
                                     "Fn::GetAtt": [
@@ -4133,7 +4133,7 @@
                                         "Endpoint.Address"
                                     ]
                                 },
-                                "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n",
                                 "LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)\n",
                                 "HISTCONTROL=ignorespace\n",
@@ -4144,11 +4144,11 @@
                                 " -storepass $KEY_PWD -keypass $KEY_PWD\n",
                                 "chown cia:cia /opt/cia/etc/keystore.p12\n",
                                 "chmod 700 /opt/cia/etc/keystore.p12\n",
-                                " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/start.ini\n",
-                                " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/start.ini\n",
+                                " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
+                                " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
                                 "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
                                 "let JAVAMEMSIZE=$TOTAL_MEM_KB-3046*1024\n",
-                                "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",
+                                "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /etc/default/cia\n",
                                 "# sed -i -e 's/# -DUSE_LOG_APPENDER=",
                                 {
                                     "Ref": "WebServerAppLogAppender"
@@ -4157,9 +4157,9 @@
                                 {
                                     "Ref": "WebServerAppLogAppender"
                                 },
-                                "/' /opt/cia/start.ini\n",
-                                "sed -i -e 's/# -Djavamelody.cloudwatch-namespace=Hack23",
-                                "/ -Djavamelody.cloudwatch-namespace=Hack23",
+                                "/' /etc/default/cia\n",
+                                "sed -i -e 's/#JAVAMELODY",
+                                "/ JAVAMELODY",
                                 "/' /opt/cia/start.ini\n",
                                 "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
                                 "mkdir /opt/cia/.postgresql\n",
