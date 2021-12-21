@@ -68,10 +68,10 @@ public final class ApplicationLoginListener extends AbstractClickListener implem
 	@Override
 	public void buttonClick(final ClickEvent event) {
 <span class="fc" id="L70">		final LoginResponse response = (LoginResponse) getApplicationManager().service(loginRequest);</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="fc" id="L72">			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L72">			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());</span>
 
-<span class="fc" id="L74">			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);</span>
+<span class="nc" id="L74">			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);</span>
 		} else {
 <span class="fc" id="L76">			showNotification(LOGIN_FAILED,</span>
 <span class="fc" id="L77">					response.getErrorMessage(),</span>

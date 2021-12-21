@@ -202,80 +202,81 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 <span class="fc" id="L203">		countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);</span>
 
-<span class="fc" id="L205">		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L207">		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);</span>
+<span class="fc" id="L206">		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L209">		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);</span>
+<span class="fc" id="L208">		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);</span>
 
-<span class="fc" id="L211">		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);</span>
+<span class="fc" id="L210">		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L213">		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);</span>
+<span class="fc" id="L212">		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);</span>
 
-<span class="fc" id="L215">		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);</span>
+		
+<span class="fc" id="L215">		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L217">		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);</span>
+<span class="fc" id="L217">		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);</span>
+		
+<span class="fc" id="L219">		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L219">		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);</span>
+<span class="fc" id="L221">		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);</span>
 
-<span class="fc" id="L221">		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW);</span>
+<span class="fc" id="L223">		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L223">		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);</span>
+<span class="fc" id="L225">		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);</span>
+		
+<span class="fc" id="L227">		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);</span>
 
-<span class="fc" id="L225">		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);</span>
+<span class="fc" id="L229">		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);</span>
 
-<span class="fc" id="L227">		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);</span>
-
-<span class="fc" id="L229">		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
-<span class="fc" id="L230">		documentsMenuItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
-<span class="fc" id="L231">		documentsMenuItem.addItem(SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
-<span class="fc" id="L232">	}</span>
+<span class="fc" id="L231">		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
+<span class="fc" id="L232">		documentsMenuItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
+<span class="fc" id="L233">		documentsMenuItem.addItem(SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
+<span class="fc" id="L234">	}</span>
 
 	@Override
 	public MenuBar createMainPageMenuBar(final MenuBar menuBar) {
-<span class="fc" id="L236">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L238">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L238">		addRankingMenu(menuBar);</span>
+<span class="fc" id="L240">		addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L240">		return menuBar;</span>
+<span class="fc" id="L242">		return menuBar;</span>
 	}
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="fc" id="L245">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L247">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L247">		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,&quot;Indicators for Sweden overview, find data by topic or source.&quot;);</span>
+<span class="fc" id="L249">		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,&quot;Indicators for Sweden overview, find data by topic or source.&quot;);</span>
 
-<span class="fc" id="L249">		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,&quot;Charts over parlimentary ballots and document activity&quot;);</span>
+<span class="fc" id="L251">		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,&quot;Ministry ranking overiew, contains data and charts.&quot;);</span>
 
-<span class="fc" id="L251">		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,&quot;Politician ranking overiew, contains data and charts.&quot;);</span>
+<span class="fc" id="L253">		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,&quot;All ministries, scoreboard assignments and days served in committees&quot;);</span>
 
-<span class="fc" id="L253">		createButtonLink(grid,POLITICIANS_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,&quot;All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
+<span class="fc" id="L255">		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,&quot;All government bodies overview&quot;);</span>
+
+<span class="fc" id="L257">		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,&quot;All government bodies, current headcount&quot;);</span>
+
+				
+<span class="fc" id="L260">		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,&quot;Charts over parlimentary ballots and document activity&quot;);</span>
+
+<span class="fc" id="L262">		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,&quot;Committee ranking overiew, contains data and charts.&quot;);</span>
+
+<span class="fc" id="L264">		createButtonLink(grid,COMMITTEES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,&quot;All committees, scoreboard assignments and days served in committees&quot;);</span>
+
+<span class="fc" id="L266">		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,&quot;Party ranking overiew, contains data and charts.&quot;);</span>
+
+<span class="fc" id="L268">		createButtonLink(grid,PARTIES_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_DATAGRID,&quot;All parties, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
 
 
-<span class="fc" id="L256">		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,&quot;Party ranking overiew, contains data and charts.&quot;);</span>
+<span class="fc" id="L271">		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,&quot;Politician ranking overiew, contains data and charts.&quot;);</span>
 
-<span class="fc" id="L258">		createButtonLink(grid,PARTIES_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_DATAGRID,&quot;All parties, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
+<span class="fc" id="L273">		createButtonLink(grid,POLITICIANS_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,&quot;All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
 
+<span class="fc" id="L275">		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,&quot;Search parliament documents&quot;);</span>
 
-<span class="fc" id="L261">		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,&quot;Committee ranking overiew, contains data and charts.&quot;);</span>
+<span class="fc" id="L277">		createButtonLink(grid,DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS,&quot;List all parliament documents&quot;);</span>
 
-<span class="fc" id="L263">		createButtonLink(grid,COMMITTEES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,&quot;All committees, scoreboard assignments and days served in committees&quot;);</span>
-
-
-<span class="fc" id="L266">		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,&quot;Ministry ranking overiew, contains data and charts.&quot;);</span>
-
-<span class="fc" id="L268">		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,&quot;All ministries, scoreboard assignments and days served in committees&quot;);</span>
-
-<span class="fc" id="L270">		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,&quot;All government bodies overview&quot;);</span>
-
-<span class="fc" id="L272">		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,&quot;All government bodies, current headcount&quot;);</span>
-
-<span class="fc" id="L274">		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,&quot;Search parliament documents&quot;);</span>
-
-<span class="fc" id="L276">		createButtonLink(grid,DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS,&quot;List all parliament documents&quot;);</span>
-
-<span class="fc" id="L278">	}</span>
+<span class="fc" id="L279">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

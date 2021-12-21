@@ -141,12 +141,12 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter,
 			final Grid grid) {
-<span class="fc bfc" id="L144" title="All 2 branches covered.">		if (collectionPropertyConverter != null) {</span>
-<span class="fc bfc" id="L145" title="All 2 branches covered.">			for (final ListPropertyConverter converter : collectionPropertyConverter) {</span>
-<span class="fc" id="L146">				grid.removeColumn(converter.getColumn());</span>
-<span class="fc" id="L147">				final Column column = grid.addColumn(converter);</span>
-<span class="fc" id="L148">				column.setCaption(WordUtils.capitalize(converter.getColumn()));</span>
-<span class="fc" id="L149">				column.setId(converter.getColumn());</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">		if (collectionPropertyConverter != null) {</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">			for (final ListPropertyConverter converter : collectionPropertyConverter) {</span>
+<span class="nc" id="L146">				grid.removeColumn(converter.getColumn());</span>
+<span class="nc" id="L147">				final Column column = grid.addColumn(converter);</span>
+<span class="nc" id="L148">				column.setCaption(WordUtils.capitalize(converter.getColumn()));</span>
+<span class="nc" id="L149">				column.setId(converter.getColumn());</span>
 			}
 		}
 <span class="fc" id="L152">	}</span>

@@ -73,50 +73,50 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout content = createPanelContent();</span>
+<span class="nc" id="L76">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L79">		final int pageNr= getPageNr(parameters);</span>
+<span class="nc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L79">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L81">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
-
-
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_ACTION_EVENT);</span>
-
-<span class="fc" id="L86">		final DataContainer&lt;ApplicationActionEvent, Long&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);</span>
+<span class="nc" id="L81">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
 
-<span class="fc" id="L89">		final List&lt;ApplicationActionEvent&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate);</span>
+<span class="nc" id="L84">		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_ACTION_EVENT);</span>
 
-<span class="fc" id="L91">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="nc" id="L86">		final DataContainer&lt;ApplicationActionEvent, Long&gt; dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);</span>
 
-<span class="fc" id="L93">		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,</span>
+
+<span class="nc" id="L89">		final List&lt;ApplicationActionEvent&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate);</span>
+
+<span class="nc" id="L91">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+
+<span class="nc" id="L93">		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,</span>
 				APPLICATION_ACTION_EVENT,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-<span class="pc bpc" id="L98" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L100">			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="nc" id="L100">			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">			if (applicationActionEvent != null) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if (applicationActionEvent != null) {</span>
 
-<span class="fc" id="L104">				getFormFactory().addFormPanelTextFields(content, applicationActionEvent, ApplicationActionEvent.class,</span>
+<span class="nc" id="L104">				getFormFactory().addFormPanelTextFields(content, applicationActionEvent, ApplicationActionEvent.class,</span>
 					AS_LIST);
 			}
 		}
 
 
-<span class="fc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="nc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L113">		return content;</span>
+<span class="nc" id="L113">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L119" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));</span>
+<span class="pc bpc" id="L119" title="5 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));</span>
 	}
 
 }

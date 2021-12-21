@@ -237,7 +237,7 @@ public abstract class AbstractView extends Panel implements View {
 	 * Creates the top header actions for user context.
 	 */
 	private void createTopHeaderActionsForUserContext() {
-<span class="fc bfc" id="L240" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="pc bpc" id="L240" title="1 of 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
 <span class="fc" id="L241">			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();</span>
 <span class="fc" id="L242">			topHeaderRightPanel.addComponent(userHomePageLink);</span>
 <span class="fc" id="L243">			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);</span>

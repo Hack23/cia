@@ -137,8 +137,8 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	public String apply(final Object source) {
 		List&lt;?&gt; list;
 		try {
-<span class="fc" id="L140">			list = (List&lt;?&gt;) PROPERTY_UTILS_BEAN.getProperty(source, column);</span>
-<span class="fc" id="L141">			return convertToPresentation(list,null);</span>
+<span class="nc" id="L140">			list = (List&lt;?&gt;) PROPERTY_UTILS_BEAN.getProperty(source, column);</span>
+<span class="nc" id="L141">			return convertToPresentation(list,null);</span>
 <span class="fc" id="L142">		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
 <span class="fc" id="L143">			LOGGER.warn(&quot;Problem getting list {}, object {} , exception {}&quot;, property, column, e);</span>
 		}
@@ -172,7 +172,7 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 * @return the column
 	 */
 	public String getColumn() {
-<span class="fc" id="L175">		return column;</span>
+<span class="nc" id="L175">		return column;</span>
 	}
 
 }

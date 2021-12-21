@@ -83,29 +83,29 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L87">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L88">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
+<span class="nc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L87">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L88">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
 
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
-<span class="fc" id="L91">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
-<span class="fc" id="L92">			LabelFactory.createHeader2Label(panelContent, USER_VISITS);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		if (userAccount.isPresent()) {</span>
+<span class="nc" id="L91">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L92">			LabelFactory.createHeader2Label(panelContent, USER_VISITS);</span>
 
-<span class="fc" id="L94">			final DataContainer&lt;ApplicationSession, Long&gt; sessionDataContainer = getApplicationManager()</span>
-<span class="fc" id="L95">					.getDataContainer(ApplicationSession.class);</span>
+<span class="nc" id="L94">			final DataContainer&lt;ApplicationSession, Long&gt; sessionDataContainer = getApplicationManager()</span>
+<span class="nc" id="L95">					.getDataContainer(ApplicationSession.class);</span>
 
-<span class="fc" id="L97">			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,</span>
-<span class="fc" id="L98">					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,</span>
-<span class="fc" id="L99">							userAccount.get().getUserId(), ApplicationSession_.createdDate),</span>
+<span class="nc" id="L97">			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,</span>
+<span class="nc" id="L98">					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,</span>
+<span class="nc" id="L99">							userAccount.get().getUserId(), ApplicationSession_.createdDate),</span>
 					APPLICATION_SESSION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, COLLECTION_PROPERTY_CONVERTERS);
 
-<span class="fc" id="L102">			panel.setCaption(NAME + &quot;::&quot; + USERHOME + USER_VISITS);</span>
+<span class="nc" id="L102">			panel.setCaption(NAME + &quot;::&quot; + USERHOME + USER_VISITS);</span>
 		}
 
-<span class="fc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L108">		return panelContent;</span>
+<span class="nc" id="L108">		return panelContent;</span>
 
 	}
 
