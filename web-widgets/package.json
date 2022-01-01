@@ -2,7 +2,7 @@
   "name": "web-widgets-test",
   "version": "0.0.1",
   "devDependencies": {
-    "jasmine-core": "3.10.1",
+    "jasmine-core": "4.0.0",
     "karma": "6.3.9",
     "karma-chrome-launcher": "3.1.0",
     "karma-coverage": "2.1.0",
