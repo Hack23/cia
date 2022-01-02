@@ -180,10 +180,10 @@
     <compiler.plugin.version>3.9.0-SNAPSHOT</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.1.0</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.0.0-M5</surefire.version>
-    <jdk.src.version>16</jdk.src.version>
-    <jdk.target.version>16</jdk.target.version>
-    <javadoc.src.version>16</javadoc.src.version>
-    <javadoc.target.version>16</javadoc.target.version>
+    <jdk.src.version>17</jdk.src.version>
+    <jdk.target.version>17</jdk.target.version>
+    <javadoc.src.version>17</javadoc.src.version>
+    <javadoc.target.version>17</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
     <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
 		--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
@@ -1599,8 +1599,8 @@
         			--add-opens java.base/java.lang=ALL-UNNAMED
         			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
 					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>16</jdk.src.version>
-        <jdk.target.version>16</jdk.target.version>
+        <jdk.src.version>17</jdk.src.version>
+        <jdk.target.version>17</jdk.target.version>
         <!-- No Java 17 support yet for forbiddenapis.skip -->
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
