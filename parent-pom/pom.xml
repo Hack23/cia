@@ -131,7 +131,7 @@
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.12.6</cia.project.versions.bytebuddy>
-    <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
+    <cia.project.versions.h2>2.0.206</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.3.1</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>5.1.0</cia.project.versions.poi>
@@ -735,7 +735,7 @@
             <dependency>
               <groupId>com.h2database</groupId>
               <artifactId>h2</artifactId>
-              <version>2.0.204</version>
+              <version>2.0.206</version>
             </dependency>
           </dependencies>
         </plugin>
