@@ -110,9 +110,7 @@ public class StaleElementUtils {
 			final By by = getBy(key, value);
 			final Method m = getCaseInsensitiveDeclaredMethod(lastObject, "findElement");
 			element = (WebElement) m.invoke(lastObject, by);
-		} catch (final InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (final IllegalAccessException e) {
+		} catch (final InvocationTargetException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 		return element;

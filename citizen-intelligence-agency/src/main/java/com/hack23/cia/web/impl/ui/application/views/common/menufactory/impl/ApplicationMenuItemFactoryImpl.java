@@ -211,11 +211,11 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);
 
-		
+
 		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);
 
 		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);
-		
+
 		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
@@ -223,7 +223,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
-		
+
 		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
@@ -256,7 +256,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");
 
-				
+
 		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
 
 		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Committee ranking overiew, contains data and charts.");

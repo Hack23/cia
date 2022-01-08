@@ -64,10 +64,10 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		
-		
-		
-		
+
+
+
+
 		panelContent.addComponent(chartLayout);
 
 		panel.setCaption(NAME + "::" + CHARTS + parameters);

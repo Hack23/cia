@@ -61,10 +61,10 @@ public enum ChartIndicators {
 
 	/** The currentparties. */
 	CURRENTPARTIES,
-	
+
 	/** The currentpartyleaderscorecard. */
 	CURRENTPARTYLEADERSCORECARD,
-	
+
 
 	/** The currentpartiesbyheadcount. */
 	CURRENTPARTIESBYHEADCOUNT,

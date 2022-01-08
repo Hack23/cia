@@ -56,7 +56,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Ministries leader scoreboard";
-	
+
 	@Autowired
 	private EsvApi esvApi;
 
@@ -82,32 +82,32 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-		List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
+		final List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
 						new Object[] { Boolean.TRUE },
 						ViewRiksdagenGovermentRoleMember_.active);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
-		
-		List<ViewRiksdagenPolitician> parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);
-		Map<String, List<ViewRiksdagenPolitician>> parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
+
+		final List<ViewRiksdagenPolitician> parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);
+		final Map<String, List<ViewRiksdagenPolitician>> parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
 		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2020);
-		Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
+		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-		List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer.findListByProperty(
+		final List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer.findListByProperty(
 				new Object[] { Boolean.TRUE },ViewRiksdagenPartyRoleMember_.active);
-		
-		for (ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
-			ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);
-			
-			StringBuilder entryBuilder = new StringBuilder();
+
+		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
+			final ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);
+
+			final StringBuilder entryBuilder = new StringBuilder();
 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getRoleCode());
 			entryBuilder.append(" ");
 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getFirstName());
@@ -115,7 +115,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getLastName());
 			entryBuilder.append(" ");
 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getParty());
-					
+
 			entryBuilder.append("\nTotal days served ");
 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getTotalDaysServed());
 			entryBuilder.append(" , goverment experience ");
@@ -131,44 +131,44 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			entryBuilder.append(" days in ");
 			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedCommittee());
 			entryBuilder.append(" committes");
-			// Rate level experience EU,parliament,party, commmittee,speaker			
+			// Rate level experience EU,parliament,party, commmittee,speaker
 			//totalAssignments=8,totalCommitteeAssignments=3,totalDaysServed=259,totalDaysServedCommittee=28,totalDaysServedEu=0,totalDaysServedGovernment=217,totalDaysServedParliament=14,totalDaysServedParty=0,totalDaysServedSpeaker=0,totalMinistryAssignments=3,totalPartyAssignments=0,totalSpeakerAssignments=0]
-			
-			
+
+
 			if (viewRiksdagenGovermentRoleMember.getRoleCode().contains("minister")) {
-				List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());
+				final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());
 				entryBuilder.append("\nHead of ");
 				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
 				entryBuilder.append(": number of government bodies: ");
 				entryBuilder.append(governentBodies.size());
-			
-								
+
+
 				entryBuilder.append("\nTotal headcount :");
 				entryBuilder.append(governentBodies.stream().collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount)));
-				
-				
+
+
 				// Graph exist at https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and for specific ministries at https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet
-				
+
 				// Income https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet
-				
+
 				// Expenditure https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet
-				
-				
+
+
 			} else {
 				entryBuilder.append("Supports Head of");
 				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
 			}
-			
+
 			final VerticalLayout layout = new VerticalLayout();
 			layout.setSizeFull();
 
-			
-			Label entry = new Label(entryBuilder.toString());
+
+			final Label entry = new Label(entryBuilder.toString());
 			layout.addComponent(entry);
 			panelContent.addComponent(layout);
 		}
 
-	
+
 		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,

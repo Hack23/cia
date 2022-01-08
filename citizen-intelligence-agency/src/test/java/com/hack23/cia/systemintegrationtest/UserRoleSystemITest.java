@@ -2608,7 +2608,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site party ranking view current parties leader scoreboard test.
 	 *

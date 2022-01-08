@@ -133,7 +133,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, "Party leaders scoreboard");
 
-		
+
 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
 

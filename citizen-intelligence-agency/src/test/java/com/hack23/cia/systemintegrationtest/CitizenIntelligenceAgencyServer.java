@@ -235,7 +235,7 @@ public final class CitizenIntelligenceAgencyServer {
 			init();
 			start();
 			while (!server.isStarted()) {
-				;
+
 			}
 
 		} catch (final Exception e) {
@@ -251,7 +251,7 @@ public final class CitizenIntelligenceAgencyServer {
 	public void stop() throws Exception {
 		server.stop();
 		while (!server.isStopped()) {
-			;
+
 		}
 	}
 }

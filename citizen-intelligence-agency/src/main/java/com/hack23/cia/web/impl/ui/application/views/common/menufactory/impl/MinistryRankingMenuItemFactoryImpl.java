@@ -181,9 +181,9 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
-		
+
 		chartByTopic.addItem(MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.GROUP,COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
-		
+
 		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
 
@@ -219,7 +219,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		createButtonLink(grid, MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD,
 				"Ministry leaders scoreboard");
-		
+
 		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
 				"Chart over all parties hold positons in ministries by headcount");
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");

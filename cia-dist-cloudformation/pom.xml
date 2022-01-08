@@ -11,9 +11,6 @@
   <packaging>pom</packaging>
   <name>cia-dist-cloudformation</name>
   <url>github:http://hack23.github.io/cia/cia-dist-cloudformation</url>
-  <properties>
-  	<sonar.sources>pom.xml,src/main/resources</sonar.sources>
-  </properties>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
@@ -26,6 +23,9 @@
       <url>github:http://hack23.github.io/cia/cia-dist-cloudformation</url>
     </site>
   </distributionManagement>
+  <properties>
+    <sonar.sources>pom.xml,src/main/resources</sonar.sources>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.hack23.cia</groupId>
