@@ -795,7 +795,7 @@
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>
-      <version>3.4.13</version>
+      <version>3.4.14</version>
       <scope>test</scope>
     </dependency>
     <dependency>
