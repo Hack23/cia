@@ -861,7 +861,7 @@
     <dependency>
       <groupId>com.fasterxml</groupId>
       <artifactId>classmate</artifactId>
-      <version>1.5.1</version>
+      <version>1.5.1.redhat-00001</version>
     </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
