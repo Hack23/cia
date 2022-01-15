@@ -42,7 +42,7 @@
       <dependency>
         <groupId>org.reactivestreams</groupId>
         <artifactId>reactive-streams</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.3.redhat-00003</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
