@@ -114,7 +114,7 @@
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.12.0</cia.project.versions.commonslang3>
-    <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
+    <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.9</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.15</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
@@ -127,7 +127,7 @@
     <cia.project.versions.hibernate>5.6.3.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.6.3.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.6.2.Final</cia.project.versions.hibernate.tools>
-    <cia.project.versions.hibernate.jpa2>1.0.2.Final-redhat-1</cia.project.versions.hibernate.jpa2>
+    <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.12.6</cia.project.versions.bytebuddy>
@@ -337,7 +337,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.4.redhat-00002</version>
+        <version>1.9.4</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -1015,7 +1015,7 @@
             <dependency>
               <groupId>javax.validation</groupId>
               <artifactId>validation-api</artifactId>
-              <version>2.0.1.Final-redhat-1</version>
+              <version>2.0.1.Final</version>
             </dependency>
           </dependencies>
         </plugin>
