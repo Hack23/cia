@@ -648,7 +648,7 @@
     <dependency>
       <groupId>com.github.virtuald</groupId>
       <artifactId>curvesapi</artifactId>
-      <version>1.06</version>
+      <version>1.07</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
