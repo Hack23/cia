@@ -134,7 +134,16 @@
           <groupId>org.apache.santuario</groupId>
           <artifactId>xmlsec</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>com.github.virtuald</groupId>
+          <artifactId>curvesapi</artifactId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.virtuald</groupId>
+      <artifactId>curvesapi</artifactId>
+      <version>1.07</version>
     </dependency>
     <dependency>
       <groupId>org.apache.santuario</groupId>
