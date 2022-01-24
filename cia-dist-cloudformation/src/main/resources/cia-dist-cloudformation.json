@@ -2915,7 +2915,7 @@
             "Type": "AWS::RDS::DBParameterGroup",
             "Properties": {
                 "Description": "Database Parameter Group + pg_stat_statements",
-                "Family": "postgres13",
+                "Family": "postgres14",
                 "Parameters": {
                     "max_prepared_transactions": "LEAST({DBInstanceClassMemory/9531392},5000)",
                     "max_parallel_workers_per_gather": "4",
@@ -3056,7 +3056,7 @@
                     "Ref": "DBClass"
                 },
                 "Engine": "postgres",
-                "EngineVersion": "13.4",
+                "EngineVersion": "14.1",
                 "MultiAZ": "false",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
