@@ -10,6 +10,6 @@
     "karma-junit-reporter": "2.0.1",
     "karma-mocha": "2.0.1",
     "karma-sinon-chai": "2.0.2",
-    "mocha": "9.1.4"
+    "mocha": "9.2.0"
   }
 }
