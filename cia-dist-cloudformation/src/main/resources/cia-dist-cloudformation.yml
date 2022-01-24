@@ -22,26 +22,26 @@ Parameters:
       - t4g.large
       - t4g.xlarge
       - t4g.2xlarge
-      - m6g.large
-      - m6g.xlarge
-      - m6g.2xlarge
-      - c6g.8xlarge
-      - c6g.4xlarge
-      - m6g.12xlarge
-      - m6g.16xlarge
-      - c6g.large
-      - c6g.xlarge
-      - c6g.2xlarge
-      - c6g.4xlarge
-      - c6g.8xlarge
-      - c6g.12large
-      - c6g.16xlarge
+      - m7g.large
+      - m7g.xlarge
+      - m7g.2xlarge
+      - c7g.8xlarge
+      - c7g.4xlarge
+      - m7g.12xlarge
+      - m7g.16xlarge
+      - c7g.large
+      - c7g.xlarge
+      - c7g.2xlarge
+      - c7g.4xlarge
+      - c7g.8xlarge
+      - c7g.12large
+      - c7g.16xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
-    Description: Web server ami ubuntu 16.04+, recommend ebs encrypted ami based on
-      ubuntu hvm-ssd server
-    Type: String
-    Default: ''
+    Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based
+      on ubuntu hvm-ssd server
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id
   WebServerCount:
     Description: Number of EC2 instances to launch for the WebServer server
     Type: Number
@@ -350,328 +350,6 @@ Resources:
       ResourceId: !Ref 'VPC'
       ResourceType: VPC
       TrafficType: ALL
-  InspectorTargetResourceGroup:
-    Type: AWS::Inspector::ResourceGroup
-    Properties:
-      ResourceGroupTags:
-        - Key: SecurityBaselineCheck
-          Value: 'true'
-  InspectorTarget:
-    Type: AWS::Inspector::AssessmentTarget
-    Properties:
-      AssessmentTargetName: !Join
-        - '-'
-        - - !Ref 'AWS::StackId'
-          - SecurityAssessmentTarget
-      ResourceGroupArn: !Ref 'InspectorTargetResourceGroup'
-  SecurityBaseLineAssesmentTemplate:
-    Type: AWS::Inspector::AssessmentTemplate
-    Properties:
-      AssessmentTargetArn: !Ref 'InspectorTarget'
-      DurationInSeconds: 3600
-      AssessmentTemplateName: SecurityBaseLineAssesmentTemplate
-      RulesPackageArns:
-        - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh
-        - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6
-        - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-sJBhCr0F
-        - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SPzU33xe
-      UserAttributesForFindings:
-        - Key: Service
-          Value: cia
-  StartContinuousAssessmentLambdaRole:
-    Type: AWS::IAM::Role
-    Properties:
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        - arn:aws:iam::aws:policy/AmazonInspectorFullAccess
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - lambda.amazonaws.com
-            Action:
-              - sts:AssumeRole
-      Path: /
-      Policies:
-        - PolicyName: StartContinuousAssessmentLambdaPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Sid: StartContinuousAssessmentLambdaPolicyStmt
-                Effect: Allow
-                Action:
-                  - ssm:GetParameter
-                  - ec2:DescribeImages
-                  - ec2:RunInstances
-                  - ec2:CreateTags
-                Resource:
-                  - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
-                  - !Sub 'arn:aws:ssm:eu-west-1:${AWS::AccountId}:*'
-  StartContinuousAssessmentLambdaFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      Role: !GetAtt 'StartContinuousAssessmentLambdaRole.Arn'
-      Code:
-        ZipFile: !Join
-          - ''
-          - - "\n"
-            - import json
-            - "\n"
-            - import urllib.parse
-            - "\n"
-            - import boto3
-            - "\n"
-            - import time
-            - "\n"
-            - import os
-            - "\n"
-            - 'def lambda_handler(event, context):'
-            - "\n"
-            - '    region=os.environ[''AWS_DEFAULT_REGION'']'
-            - "\n"
-            - '    inspector = boto3.client(''inspector'',region)'
-            - "\n"
-            - '    existingTemplates = inspector.list_assessment_templates(filter={''namePattern'':
-              ''SecurityBaseLineAssesmentTemplate''})'
-            - "\n"
-            - '    print(''Total templates found:''+str(len(existingTemplates[''assessmentTemplateArns''])))'
-            - "\n"
-            - '    if len(existingTemplates[''assessmentTemplateArns''])==0:'
-            - "\n"
-            - '        return ''Failure'''
-            - "\n"
-            - '    assessmentTemplateArn=existingTemplates.get(''assessmentTemplateArns'')[0]'
-            - "\n"
-            - '    millis = int(round(time.time() * 1000))'
-            - "\n"
-            - '    response = inspector.subscribe_to_event(event=''ASSESSMENT_RUN_COMPLETED'',resourceArn=assessmentTemplateArn,topicArn='''
-            - !Ref 'ContinuousAssessmentCompleteTopic'
-            - ''') '
-            - "\n"
-            - '    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName=''ContinuousAssessment''+''-''+str(millis))'
-            - "\n"
-            - '    return ''Done'''
-      Runtime: python3.8
-      Timeout: 300
-      Handler: index.lambda_handler
-      MemorySize: 512
-      ReservedConcurrentExecutions: 1
-      VpcConfig:
-        SubnetIds:
-          - !Ref 'PrivateAppSubnet'
-          - !Ref 'PrivateAppSubnet2'
-          - !Ref 'PrivateAppSubnet3'
-        SecurityGroupIds:
-          - !Ref 'LambdaSecurityGroup'
-  ContinuousAssessmentResultsTopic:
-    Type: AWS::SNS::Topic
-  ContinuousAssessmentCompleteTopicSubscription:
-    Type: AWS::SNS::Subscription
-    Properties:
-      Endpoint: !GetAtt 'AnalyzeInspectorFindingsLambdaFunction.Arn'
-      Protocol: lambda
-      TopicArn: !Ref 'ContinuousAssessmentCompleteTopic'
-  ContinuousAssessmentCompleteTopic:
-    Type: AWS::SNS::Topic
-  ContinuousAssessmentCompleteTopicPolicy:
-    Type: AWS::SNS::TopicPolicy
-    Properties:
-      PolicyDocument:
-        Id: MyTopicPolicy
-        Version: '2012-10-17'
-        Statement:
-          - Sid: My-statement-id
-            Effect: Allow
-            Principal:
-              Service: inspector.amazonaws.com
-            Action: sns:Publish
-            Resource: !Ref 'ContinuousAssessmentCompleteTopic'
-      Topics:
-        - !Ref 'ContinuousAssessmentCompleteTopic'
-  LambdaInvokePermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      Principal: sns.amazonaws.com
-      SourceArn: !Ref 'ContinuousAssessmentCompleteTopic'
-      FunctionName: !GetAtt 'AnalyzeInspectorFindingsLambdaFunction.Arn'
-  AnalyzeInspectorFindingsLambdaRole:
-    Type: AWS::IAM::Role
-    Properties:
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - lambda.amazonaws.com
-            Action:
-              - sts:AssumeRole
-      Path: /
-      Policies:
-        - PolicyName: AnalyzeInspectorFindingsLambdaPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Sid: AnalyzeInspectorFindingsLambdaPolicyStmt
-                Effect: Allow
-                Action:
-                  - sns:Publish
-                  - ec2:DescribeInstances
-                  - ec2:TerminateInstances
-                  - inspector:AddAttributesToFindings
-                  - inspector:DescribeFindings
-                  - inspector:ListFindings
-                Resource:
-                  - !Sub 'arn:aws:ec2:eu-west-1:${AWS::AccountId}:*'
-                  - !Sub 'arn:aws:inspector:eu-west-1:${AWS::AccountId}:*'
-                  - !Sub 'arn:aws:sns:eu-west-1:${AWS::AccountId}:*'
-  AnalyzeInspectorFindingsLambdaFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      Role: !GetAtt 'AnalyzeInspectorFindingsLambdaRole.Arn'
-      Code:
-        ZipFile: !Join
-          - ''
-          - - "\n"
-            - 'import json '
-            - "\n"
-            - import os
-            - "\n"
-            - import boto3
-            - "\n"
-            - import collections
-            - "\n"
-            - import ast
-            - "\n"
-            - 'def lambda_handler(event, context): '
-            - "\n"
-            - '    message = event[''Records''][0][''Sns''][''Message''] '
-            - "\n"
-            - '    jsonVal = json.loads(message);'
-            - "\n"
-            - '    assessmentArn =jsonVal[''run'']  '
-            - "\n"
-            - '    region=os.environ[''AWS_DEFAULT_REGION'']'
-            - "\n"
-            - '    ec2 = boto3.client(''ec2'',region) '
-            - "\n"
-            - '    sns = boto3.client(''sns'',region) '
-            - "\n"
-            - '    inspector = boto3.client(''inspector'',region) '
-            - "\n"
-            - '    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal[''run'']],maxResults=5000)'
-            - "\n"
-            - '    aggregateData={}'
-            - "\n"
-            - '    for findingArn in findingArns[''findingArns'']:'
-            - "\n"
-            - '        finding = inspector.describe_findings(findingArns=[findingArn]) '
-            - "\n"
-            - '        for result in finding[''findings'']: '
-            - "\n"
-            - '            instanceId =result[''assetAttributes''][''agentId'']'
-            - "\n"
-            - '            severity =result[''severity'']'
-            - "\n"
-            - '            cveName=result[''id'']'
-            - "\n"
-            - '            if not (instanceId) in aggregateData:'
-            - "\n"
-            - '                aggregateData[instanceId]={}'
-            - "\n"
-            - '                aggregateData[instanceId][''findings'']={}'
-            - "\n"
-            - '                aggregateData[instanceId][''findings''][severity]=0'
-            - "\n"
-            - '                instance=ec2.describe_instances(InstanceIds=[instanceId]);'
-            - "\n"
-            - '                tagsStr=str(instance[''Reservations''][0][''Instances''][0][''Tags'']) '
-            - "\n"
-            - '                tagsStr =tagsStr.replace(''Key'',''key'').replace(''Value'',''value'')  '
-            - "\n"
-            - '                aggregateData[instanceId][''tags'']= ast.literal_eval(tagsStr)'
-            - "\n"
-            - '            elif not (severity) in aggregateData[instanceId][''findings'']:'
-            - "\n"
-            - '                aggregateData[instanceId][''findings''][severity]=0'
-            - "\n"
-            - '            aggregateData[instanceId][''findings''][severity]=aggregateData[instanceId][''findings''][severity]+1; '
-            - "\n"
-            - '            inspector.add_attributes_to_findings(findingArns=[result[''arn'']],attributes=aggregateData[instanceId][''tags''])'
-            - "\n"
-            - '    tagsList=[]'
-            - "\n"
-            - '    for key  in aggregateData: '
-            - "\n"
-            - '        outputJson=[] '
-            - "\n"
-            - '        for tag in aggregateData[key][''tags'']:'
-            - "\n"
-            - '            if tag[''key''] != ''continuous-assessment-instance'':'
-            - "\n"
-            - '                outputJson.append("\""+tag[''key'']+"\""+":"+"\""+tag[''value'']+"\"")'
-            - "\n"
-            - '        for sev in aggregateData[key][''findings'']:'
-            - "\n"
-            - '            outputJson.append("\"Finding-Severity-"+sev+"-Count\""+":"+"\""+str(aggregateData[key][''findings''][sev])+"\"")'
-            - "\n"
-            - '        outputJson.sort()'
-            - "\n"
-            - '        print(outputJson)'
-            - "\n"
-            - '        tagsList.append(''{''+'', ''.join(outputJson)+''}'')'
-            - "\n"
-            - '        print(''Terminating:''+key)'
-            - "\n"
-            - '        ec2.terminate_instances(InstanceIds=[key],DryRun=False)'
-            - "\n"
-            - '    sns.publish(TopicArn='''
-            - !Ref 'ContinuousAssessmentResultsTopic'
-            - ''',Message=''[''+'', ''.join(tagsList)+'']'')'
-            - "\n"
-            - '    return jsonVal[''run'']'
-      Runtime: python3.8
-      Timeout: 300
-      Handler: index.lambda_handler
-      MemorySize: 512
-      ReservedConcurrentExecutions: 1
-      VpcConfig:
-        SubnetIds:
-          - !Ref 'PrivateAppSubnet'
-          - !Ref 'PrivateAppSubnet2'
-          - !Ref 'PrivateAppSubnet3'
-        SecurityGroupIds:
-          - !Ref 'LambdaSecurityGroup'
-  InspectorScheduledRule:
-    Type: AWS::Events::Rule
-    Properties:
-      Description: ScheduledRule
-      ScheduleExpression: cron(0 4 * * ? *)
-      State: ENABLED
-      Targets:
-        - Arn: !GetAtt 'StartContinuousAssessmentLambdaFunction.Arn'
-          Id: TargetFunctionV1
-  InspectorPermissionForEventsToInvokeLambda:
-    Type: AWS::Lambda::Permission
-    Properties:
-      FunctionName: !Ref 'StartContinuousAssessmentLambdaFunction'
-      Action: lambda:InvokeFunction
-      Principal: events.amazonaws.com
-      SourceArn: !GetAtt 'InspectorScheduledRule.Arn'
-  NotificationTopic:
-    Type: AWS::SNS::Topic
-    Properties: {}
-  InspectorScheduleTopic:
-    Type: AWS::SNS::Topic
-    Properties: {}
-  InspectorResultActionTopic:
-    Type: AWS::SNS::Topic
-    Properties: {}
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DependsOn: LogsBucket
@@ -1697,7 +1375,7 @@ Resources:
     Type: AWS::RDS::DBParameterGroup
     Properties:
       Description: Database Parameter Group + pg_stat_statements
-      Family: postgres13
+      Family: postgres14
       Parameters:
         max_prepared_transactions: LEAST({DBInstanceClassMemory/9531392},5000)
         max_parallel_workers_per_gather: '4'
@@ -1775,7 +1453,7 @@ Resources:
       AllocatedStorage: !Ref 'DBAllocatedStorage'
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: '13.4'
+      EngineVersion: '14.1'
       MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
@@ -2418,8 +2096,6 @@ Resources:
               \ \n"
             - "sysctl -p\n"
             - "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n"
-            - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
-            - "sudo bash install\n"
             - "sudo snap install amazon-ssm-agent --classic\n"
             - "sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n"
             - "sudo apt-get -y install curl python software-properties-common xz-utils\
@@ -2449,19 +2125,19 @@ Resources:
             - "/etc/init.d/cia stop\n"
             - echo 'database.name=
             - !Ref 'DBName'
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.username=allhaildiscordia
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.password=legalizeit
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.aws.secret.arn=
             - !Ref 'RDSInstanceRotationSecret'
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.aws.secret=true
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - echo 'database.hostname=
             - !GetAtt 'Database.Endpoint.Address'
-            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
             - "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n"
             - "LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)\n"
             - "HISTCONTROL=ignorespace\n"
@@ -2475,19 +2151,19 @@ Resources:
             - "chown cia:cia /opt/cia/etc/keystore.p12\n"
             - "chmod 700 /opt/cia/etc/keystore.p12\n"
             - " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_'\
-              \ /opt/cia/start.ini\n"
+              \ /opt/cia/cia-base/start.d/ssl.ini\n"
             - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_'\
-              \ /opt/cia/start.ini\n"
+              \ /opt/cia/cia-base/start.d/ssl.ini\n"
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
             - "let JAVAMEMSIZE=$TOTAL_MEM_KB-3046*1024\n"
-            - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n"
+            - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /etc/default/cia\n"
             - '# sed -i -e ''s/# -DUSE_LOG_APPENDER='
             - !Ref 'WebServerAppLogAppender'
             - / -DUSE_LOG_APPENDER=
             - !Ref 'WebServerAppLogAppender'
-            - "/' /opt/cia/start.ini\n"
-            - sed -i -e 's/# -Djavamelody.cloudwatch-namespace=Hack23
-            - / -Djavamelody.cloudwatch-namespace=Hack23
+            - "/' /etc/default/cia\n"
+            - sed -i -e 's/#JAVAMELODY
+            - / JAVAMELODY
             - "/' /opt/cia/start.ini\n"
             - "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n"
             - "mkdir /opt/cia/.postgresql\n"
