@@ -15,7 +15,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.do
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl.BeanNestedPropertyValueProvider,21,11,0,0,3,4,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl,35,175,6,16,5,42,5,15,0,9
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.common,AbstractAdminView,0,5,0,0,0,2,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.paging,PagingUtilImpl,0,148,3,11,0,33,3,7,0,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.paging,PagingUtilImpl,0,148,5,9,0,33,5,5,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,AbstractChartDataManagerImpl,2,140,1,3,1,38,1,9,0,8
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl,0,17,0,0,0,5,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,CommitteeGhantChartManagerImpl.RoleMapping,0,6,0,0,0,1,0,1,0,1

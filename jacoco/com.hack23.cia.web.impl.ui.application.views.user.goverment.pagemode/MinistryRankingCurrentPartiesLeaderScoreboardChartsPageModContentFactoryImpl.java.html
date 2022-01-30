@@ -56,7 +56,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = &quot;Ministries leader scoreboard&quot;;
-	
+
 	@Autowired
 	private EsvApi esvApi;
 
@@ -82,32 +82,32 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 <span class="fc" id="L82">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
 <span class="fc" id="L83">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
 
-<span class="fc" id="L85">		List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(</span>
+<span class="fc" id="L85">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(</span>
 						new Object[] { Boolean.TRUE },
 						ViewRiksdagenGovermentRoleMember_.active);
 
 <span class="fc" id="L89">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
 <span class="fc" id="L90">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-		
-<span class="fc" id="L93">		List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);</span>
-<span class="fc" id="L94">		Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
+
+<span class="fc" id="L93">		final List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);</span>
+<span class="fc" id="L94">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
 
 
 <span class="fc" id="L97">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
 <span class="fc" id="L98">		final List&lt;GovernmentBodyAnnualSummary&gt; headCountGovermentBodies = dataMap.get(2020);</span>
-<span class="fc" id="L99">		Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
+<span class="fc" id="L99">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
 
 <span class="fc" id="L101">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
 <span class="fc" id="L102">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L104">		List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer.findListByProperty(</span>
+<span class="fc" id="L104">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer.findListByProperty(</span>
 				new Object[] { Boolean.TRUE },ViewRiksdagenPartyRoleMember_.active);
-		
-<span class="fc bfc" id="L107" title="All 2 branches covered.">		for (ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {</span>
-<span class="fc" id="L108">			ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);</span>
-			
-<span class="fc" id="L110">			StringBuilder entryBuilder = new StringBuilder();</span>
+
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {</span>
+<span class="fc" id="L108">			final ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);</span>
+
+<span class="fc" id="L110">			final StringBuilder entryBuilder = new StringBuilder();</span>
 <span class="fc" id="L111">			entryBuilder.append(viewRiksdagenGovermentRoleMember.getRoleCode());</span>
 <span class="fc" id="L112">			entryBuilder.append(&quot; &quot;);</span>
 <span class="fc" id="L113">			entryBuilder.append(viewRiksdagenGovermentRoleMember.getFirstName());</span>
@@ -115,7 +115,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 <span class="fc" id="L115">			entryBuilder.append(viewRiksdagenGovermentRoleMember.getLastName());</span>
 <span class="fc" id="L116">			entryBuilder.append(&quot; &quot;);</span>
 <span class="fc" id="L117">			entryBuilder.append(viewRiksdagenGovermentRoleMember.getParty());</span>
-					
+
 <span class="fc" id="L119">			entryBuilder.append(&quot;\nTotal days served &quot;);</span>
 <span class="fc" id="L120">			entryBuilder.append(viewRiksdagenGovermentRoleMember.getTotalDaysServed());</span>
 <span class="fc" id="L121">			entryBuilder.append(&quot; , goverment experience &quot;);</span>
@@ -131,44 +131,44 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 <span class="fc" id="L131">			entryBuilder.append(&quot; days in &quot;);</span>
 <span class="fc" id="L132">			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedCommittee());</span>
 <span class="fc" id="L133">			entryBuilder.append(&quot; committes&quot;);</span>
-			// Rate level experience EU,parliament,party, commmittee,speaker			
+			// Rate level experience EU,parliament,party, commmittee,speaker
 			//totalAssignments=8,totalCommitteeAssignments=3,totalDaysServed=259,totalDaysServedCommittee=28,totalDaysServedEu=0,totalDaysServedGovernment=217,totalDaysServedParliament=14,totalDaysServedParty=0,totalDaysServedSpeaker=0,totalMinistryAssignments=3,totalPartyAssignments=0,totalSpeakerAssignments=0]
-			
-			
+
+
 <span class="fc bfc" id="L138" title="All 2 branches covered.">			if (viewRiksdagenGovermentRoleMember.getRoleCode().contains(&quot;minister&quot;)) {</span>
-<span class="fc" id="L139">				List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
+<span class="fc" id="L139">				final List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
 <span class="fc" id="L140">				entryBuilder.append(&quot;\nHead of &quot;);</span>
 <span class="fc" id="L141">				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());</span>
 <span class="fc" id="L142">				entryBuilder.append(&quot;: number of government bodies: &quot;);</span>
 <span class="fc" id="L143">				entryBuilder.append(governentBodies.size());</span>
-			
-								
+
+
 <span class="fc" id="L146">				entryBuilder.append(&quot;\nTotal headcount :&quot;);</span>
 <span class="fc" id="L147">				entryBuilder.append(governentBodies.stream().collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount)));</span>
-				
-				
+
+
 				// Graph exist at https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and for specific ministries at https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet
-				
+
 				// Income https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet
-				
+
 				// Expenditure https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet
-				
-				
+
+
 <span class="fc" id="L157">			} else {</span>
 <span class="fc" id="L158">				entryBuilder.append(&quot;Supports Head of&quot;);</span>
 <span class="fc" id="L159">				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());</span>
 			}
-			
+
 <span class="fc" id="L162">			final VerticalLayout layout = new VerticalLayout();</span>
 <span class="fc" id="L163">			layout.setSizeFull();</span>
 
-			
-<span class="fc" id="L166">			Label entry = new Label(entryBuilder.toString());</span>
+
+<span class="fc" id="L166">			final Label entry = new Label(entryBuilder.toString());</span>
 <span class="fc" id="L167">			layout.addComponent(entry);</span>
 <span class="fc" id="L168">			panelContent.addComponent(layout);</span>
 <span class="fc" id="L169">		}</span>
 
-	
+
 <span class="fc" id="L172">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
 
 <span class="fc" id="L174">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>

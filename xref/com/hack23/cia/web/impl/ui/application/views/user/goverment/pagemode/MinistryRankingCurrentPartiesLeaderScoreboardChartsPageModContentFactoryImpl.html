@@ -64,7 +64,7 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<em class="jxr_javadoccomment">/** The Constant CHARTS. */</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CHARTS = <span class="jxr_string">"Ministries leader scoreboard"</span>;
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Autowired
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">private</strong> EsvApi esvApi;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
@@ -90,32 +90,32 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  				.getDataContainer(ViewRiksdagenGovermentRoleMember.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  						<strong class="jxr_keyword">new</strong> Object[] { Boolean.TRUE },
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  						ViewRiksdagenGovermentRoleMember_.active);
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  				.getDataContainer(ViewRiksdagenPolitician.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer.findListByProperty(<strong class="jxr_keyword">new</strong> Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer.findListByProperty(<strong class="jxr_keyword">new</strong> Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  		<strong class="jxr_keyword">final</strong> Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualSummary&gt; headCountGovermentBodies = dataMap.get(2020);
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> 				.getDataContainer(ViewRiksdagenPartyRoleMember.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer.findListByProperty(
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		<strong class="jxr_keyword">final</strong> List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer.findListByProperty(
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 				<strong class="jxr_keyword">new</strong> Object[] { Boolean.TRUE },ViewRiksdagenPartyRoleMember_.active);
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		<strong class="jxr_keyword">for</strong> (ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 			ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 			
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 			StringBuilder entryBuilder = <strong class="jxr_keyword">new</strong> StringBuilder();
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 			<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 			<strong class="jxr_keyword">final</strong> StringBuilder entryBuilder = <strong class="jxr_keyword">new</strong> StringBuilder();
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getRoleCode());
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 			entryBuilder.append(<span class="jxr_string">" "</span>);
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getFirstName());
@@ -123,7 +123,7 @@
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getLastName());
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 			entryBuilder.append(<span class="jxr_string">" "</span>);
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getParty());
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 					
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 			entryBuilder.append(<span class="jxr_string">"\nTotal days served "</span>);
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> 			entryBuilder.append(viewRiksdagenGovermentRoleMember.getTotalDaysServed());
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 			entryBuilder.append(<span class="jxr_string">" , goverment experience "</span>);
@@ -139,44 +139,44 @@
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> 			entryBuilder.append(<span class="jxr_string">" days in "</span>);
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> 			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedCommittee());
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 			entryBuilder.append(<span class="jxr_string">" committes"</span>);
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 			<em class="jxr_comment">// Rate level experience EU,parliament,party, commmittee,speaker			</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 			<em class="jxr_comment">// Rate level experience EU,parliament,party, commmittee,speaker</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 			<em class="jxr_comment">//totalAssignments=8,totalCommitteeAssignments=3,totalDaysServed=259,totalDaysServedCommittee=28,totalDaysServedEu=0,totalDaysServedGovernment=217,totalDaysServedParliament=14,totalDaysServedParty=0,totalDaysServedSpeaker=0,totalMinistryAssignments=3,totalPartyAssignments=0,totalSpeakerAssignments=0]</em>
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 			
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 			
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 			<strong class="jxr_keyword">if</strong> (viewRiksdagenGovermentRoleMember.getRoleCode().contains(<span class="jxr_string">"minister"</span>)) {
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 				List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> 				<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> 				entryBuilder.append(<span class="jxr_string">"\nHead of "</span>);
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 				entryBuilder.append(<span class="jxr_string">": number of government bodies: "</span>);
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 				entryBuilder.append(governentBodies.size());
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 			
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 								
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 				entryBuilder.append(<span class="jxr_string">"\nTotal headcount :"</span>);
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 				entryBuilder.append(governentBodies.stream().collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount)));
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 				
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 				
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 				<em class="jxr_comment">// Graph exist at https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and for specific ministries at https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 				
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> 
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 				<em class="jxr_comment">// Income https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet</em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 				
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 				<em class="jxr_comment">// Expenditure https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 				
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 				
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 			} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 				entryBuilder.append(<span class="jxr_string">"Supports Head of"</span>);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 			}
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 			
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 			<strong class="jxr_keyword">final</strong> VerticalLayout layout = <strong class="jxr_keyword">new</strong> VerticalLayout();
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 			layout.setSizeFull();
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 			
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 			Label entry = <strong class="jxr_keyword">new</strong> Label(entryBuilder.toString());
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 			<strong class="jxr_keyword">final</strong> Label entry = <strong class="jxr_keyword">new</strong> Label(entryBuilder.toString());
 <a class="jxr_linenumber" name="L167" href="#L167">167</a> 			layout.addComponent(entry);
 <a class="jxr_linenumber" name="L168" href="#L168">168</a> 			panelContent.addComponent(layout);
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 		}
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 	
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 		panel.setCaption(NAME + <span class="jxr_string">"::"</span> + CHARTS + parameters);
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
@@ -195,6 +195,6 @@
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2021 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>
