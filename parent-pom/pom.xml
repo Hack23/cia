@@ -119,7 +119,7 @@
     <cia.project.versions.commons.codec>1.16</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.0-alpha6</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.3.0-alpha13</cia.project.versions.logback>
+    <cia.project.versions.logback>1.3.0-alpha14</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>7.65.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.1.Final</cia.project.versions.hibernate.search>
@@ -139,7 +139,7 @@
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.12</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
-    <cia.project.versions.dbunit>2.7.2</cia.project.versions.dbunit>
+    <cia.project.versions.dbunit>2.7.3</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>5.0.3</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
