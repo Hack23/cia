@@ -102,10 +102,10 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <cia.project.versions.spring>5.3.15</cia.project.versions.spring>
+    <cia.project.versions.spring>5.3.16</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.6.1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.6.1</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.157</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.160</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.8</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.28.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.6.2</cia.project.versions.javers>
@@ -119,7 +119,7 @@
     <cia.project.versions.commons.codec>1.16</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.0-alpha6</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.3.0-alpha13</cia.project.versions.logback>
+    <cia.project.versions.logback>1.3.0-alpha14</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>7.65.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.1.Final</cia.project.versions.hibernate.search>
@@ -132,14 +132,14 @@
     <cia.project.versions.hibernate.validator>6.2.2.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.12.8</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.200</cia.project.versions.h2>
-    <cia.project.versions.postgresql>42.3.2</cia.project.versions.postgresql>
+    <cia.project.versions.postgresql>42.3.3</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>5.2.0</cia.project.versions.poi>
     <cia.project.versions.pdfbox>2.0.25</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.12</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
-    <cia.project.versions.dbunit>2.7.2</cia.project.versions.dbunit>
+    <cia.project.versions.dbunit>2.7.3</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>5.0.3</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
@@ -844,7 +844,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.10.0</version>
+          <version>3.11.0</version>
           <inherited>true</inherited>
           <configuration>
             <inputEncoding>UTF-8</inputEncoding>
