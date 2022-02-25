@@ -39,7 +39,15 @@
       <url>github:http://hack23.github.io/cia/parent-model-pom</url>
     </site>
   </distributionManagement>
-  <dependencyManagement></dependencyManagement>
+  <dependencyManagement>
+  <dependencies>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${cia.project.versions.h2}</version>
+      </dependency>  
+  </dependencies>
+  </dependencyManagement>
   <build>
     <pluginManagement>
       <plugins></plugins>
