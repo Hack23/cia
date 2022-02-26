@@ -40,13 +40,13 @@
     </site>
   </distributionManagement>
   <dependencyManagement>
-  <dependencies>
+    <dependencies>
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${cia.project.versions.h2}</version>
-      </dependency>  
-  </dependencies>
+      </dependency>
+    </dependencies>
   </dependencyManagement>
   <build>
     <pluginManagement>

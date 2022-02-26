@@ -55,7 +55,7 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${cia.project.versions.h2}</version>
-      </dependency>  
+      </dependency>
       <dependency>
         <groupId>com.hack23.cia</groupId>
         <artifactId>testfoundation</artifactId>
