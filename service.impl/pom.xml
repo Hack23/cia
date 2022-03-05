@@ -287,45 +287,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.github.haifengl</groupId>
-      <artifactId>smile-nlp</artifactId>
-      <version>2.6.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.haifengl</groupId>
-      <artifactId>smile-netlib</artifactId>
-      <version>2.4.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.github.fommil.netlib</groupId>
-          <artifactId>all</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.haifengl</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.fommil.netlib</groupId>
-          <artifactId>core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.github.fommil.netlib</groupId>
-      <artifactId>core</artifactId>
-      <version>1.1.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>javax.el</groupId>
       <artifactId>javax.el-api</artifactId>
       <version>3.0.0</version>

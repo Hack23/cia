@@ -19,8 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -28,14 +26,11 @@ import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Safelist;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
-import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -57,24 +52,6 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document Data";
 
-	/** The Constant END_FONT. */
-	private static final String END_FONT = "</font> ";
-
-	/** The Constant END_FONT_SIZE. */
-	private static final String END_FONT_SIZE = ")\">";
-
-	/** The Constant END_PARAGRAPH. */
-	private static final String END_PARAGRAPH = "</p>";
-
-	/** The Constant MAX_RESULTS. */
-	private static final int MAX_RESULTS = 60;
-
-	/** The Constant START_FONT_SIZE. */
-	private static final String START_FONT_SIZE = "<font size=\"";
-
-	/** The Constant START_PARAGRAPH. */
-	private static final String START_PARAGRAPH = "<p>";
-
 	/**
 	 * Instantiates a new document data page mod content factory impl.
 	 */
@@ -82,16 +59,6 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 		super();
 	}
 
-	private static String createWordCloud(final Map<String, Integer> wordMap) {
-		final StringBuilder builder = new StringBuilder();
-		builder.append(START_PARAGRAPH);
-		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
-			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey())
-					.append(END_FONT);
-		}
-		builder.append(END_PARAGRAPH);
-		return builder.toString();
-	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -127,17 +94,6 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			formContent.addComponent(htmlContent);
 
-			final DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
-			documentWordCountRequest.setDocumentId(pageId);
-			documentWordCountRequest.setMaxResults(MAX_RESULTS);
-			documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-			final DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager()
-					.service(documentWordCountRequest);
-
-			if (resp.getWordCountMap() != null) {
-				final Label wordCloud = new Label(createWordCloud(resp.getWordCountMap()), ContentMode.HTML);
-				formContent.addComponent(wordCloud);
-			}
 
 			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
