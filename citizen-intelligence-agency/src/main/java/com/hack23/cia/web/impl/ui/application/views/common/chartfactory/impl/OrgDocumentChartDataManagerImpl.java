@@ -27,7 +27,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;

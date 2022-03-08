@@ -70,7 +70,6 @@ open module com.hack23.cia.web {
 	requires spring.messaging;
 	requires spring.context.support;
 	requires quartz;
-	requires commons.lang;
 
 	requires spring.security.core;
 	requires spring.security.web;

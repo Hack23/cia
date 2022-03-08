@@ -15,7 +15,6 @@ open module com.hack23.cia.service.impl {
 	requires spring.messaging;
 	requires spring.context.support;
 	requires quartz;
-	requires commons.lang;
 	requires com.google.common;
 	requires org.jsoup;
 

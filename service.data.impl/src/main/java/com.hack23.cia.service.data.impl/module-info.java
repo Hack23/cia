@@ -36,7 +36,6 @@ open module com.hack23.cia.service.data.impl {
 	requires aws.java.sdk.core;
 	requires aws.secretsmanager.caching.java;
 	
-	requires commons.lang;
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;
 
