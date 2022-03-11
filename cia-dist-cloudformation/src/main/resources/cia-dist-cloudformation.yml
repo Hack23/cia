@@ -1,11 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: >-
-  CIA CloudFormation demo runtime template. Create a HA(3 az LB,3 az servers,MultiAZ
-  RDS) solution using a load balanced, auto scaled group in a VPC with where the EC2
-  instances can directly access the internet, loadbalancers in public subnet with
-  access to app servers and data stored in postgres RDS in private subnet. **WARNING**
-  This template creates Elastic Load Balancers and Amazon EC2 instances. You will
-  be billed for the AWS resources used if you create a stack from this template.
+Description: CIA CloudFormation runtime
 Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
@@ -22,20 +16,18 @@ Parameters:
       - t4g.large
       - t4g.xlarge
       - t4g.2xlarge
-      - m7g.large
-      - m7g.xlarge
-      - m7g.2xlarge
-      - c7g.8xlarge
-      - c7g.4xlarge
-      - m7g.12xlarge
-      - m7g.16xlarge
-      - c7g.large
-      - c7g.xlarge
-      - c7g.2xlarge
-      - c7g.4xlarge
-      - c7g.8xlarge
-      - c7g.12large
-      - c7g.16xlarge
+      - m6g.large
+      - m6g.xlarge
+      - m6g.2xlarge
+      - c6g.8xlarge
+      - c6g.4xlarge
+      - m6g.12xlarge
+      - m6g.16xlarge
+      - c6g.large
+      - c6g.xlarge
+      - c6g.2xlarge
+      - c6g.4xlarge
+      - c6g.8xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
     Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based
@@ -67,11 +59,6 @@ Parameters:
       and DomainName is also included '
     Type: String
     Default: arn:aws:acm:eu-west-1:172017021075:certificate/ce58dc65-4a13-4ca5-8ddc-ccf7a71cf29d
-  SubNetPrefix:
-    Description: The prefix for all subnets, only change if you need vpn connection
-      and prefer other prefix.
-    Type: String
-    Default: '10.40'
   DBEncryptionKmsAlias:
     Description: The alias for Key Management Service encryption key alias
     Type: String
@@ -130,7 +117,7 @@ Parameters:
       - db.m6g.xlarge
       - db.m6g.2xlarge
       - db.m6g.4xlarge
-      - db.m6g.10xlarge
+      - db.m6g.12xlarge
       - db.m6g.16xlarge
       - db.r6g.large
       - db.r6g.xlarge
@@ -140,36 +127,12 @@ Parameters:
       - db.r6g.16xlarge
     ConstraintDescription: must select a valid database instance type.
   DBAllocatedStorage:
-    Default: '100'
+    Default: '200'
     Description: The size of the database (Gb)
     Type: Number
     MinValue: '100'
     MaxValue: '6144'
     ConstraintDescription: must be between 10+
-  UseElasticSearch:
-    Default: 'false'
-    Description: Set to true to enable
-    Type: String
-  ElasticSearchInstanceType:
-    Default: t2.medium.elasticsearch
-    Description: ElasticSearch instance type
-    Type: String
-    AllowedValues:
-      - t3.micro.elasticsearch
-      - t3.small.elasticsearch
-      - t3.medium.elasticsearch
-      - t3.large.elasticsearch
-      - m5.large.elasticsearch
-      - m5.xlarge.elasticsearch
-      - m5.2xlarge.elasticsearch
-      - m5.4xlarge.elasticsearch
-      - m5.10xlarge.elasticsearch
-      - r5.large.elasticsearch
-      - r5.xlarge.elasticsearch
-      - r5.2xlarge.elasticsearch
-      - r5.4xlarge.elasticsearch
-      - r5.8xlarge.elasticsearch
-    ConstraintDescription: must select a valid elastic search instance type.
 Mappings:
   SubnetConfig:
     VPC:
@@ -239,29 +202,6 @@ Mappings:
       FIRST: cn-north-1a
       SECOND: cn-north-1b
       THIRD: cn-north-1c
-  Region2ARNPrefix:
-    us-east-1:
-      ARNPrefix: 'arn:aws:'
-    us-west-1:
-      ARNPrefix: 'arn:aws:'
-    us-west-2:
-      ARNPrefix: 'arn:aws:'
-    eu-west-1:
-      ARNPrefix: 'arn:aws:'
-    eu-north-1:
-      ARNPrefix: 'arn:aws:'
-    ap-northeast-1:
-      ARNPrefix: 'arn:aws:'
-    ap-southeast-1:
-      ARNPrefix: 'arn:aws:'
-    ap-southeast-2:
-      ARNPrefix: 'arn:aws:'
-    sa-east-1:
-      ARNPrefix: 'arn:aws:'
-    cn-north-1:
-      ARNPrefix: 'arn:aws-cn:'
-    eu-central-1:
-      ARNPrefix: 'arn:aws:'
 Conditions:
   useDBSnapshot: !Not
     - !Equals
@@ -287,10 +227,6 @@ Conditions:
     - !Equals
       - !Ref 'WAFWebACL'
       - ''
-  useElasticSearch: !Not
-    - !Equals
-      - !Ref 'UseElasticSearch'
-      - 'false'
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -404,7 +340,7 @@ Resources:
     Properties:
       Bucket: !Ref 'ArtifactBucket'
       PolicyDocument:
-        Version: '2008-10-17'
+        Version: '2012-10-17'
         Statement:
           - Sid: ArtifactBucketPermissionsCheck
             Effect: Allow
@@ -1510,7 +1446,7 @@ Resources:
     Properties:
       Bucket: !Ref 'LogsBucket'
       PolicyDocument:
-        Version: '2008-10-17'
+        Version: '2012-10-17'
         Statement:
           - Sid: ELBAccessLogs20130930
             Effect: Allow
@@ -2246,89 +2182,6 @@ Resources:
           FromPort: '53'
           ToPort: '53'
           CidrIp: '0.0.0.0/0'
-  LambdaSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Allow access to Lambda
-      VpcId: !Ref 'VPC'
-      SecurityGroupIngress:
-        - Description: vpc inbound access
-          IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: !FindInMap
-            - SubnetConfig
-            - VPC
-            - CIDR
-      SecurityGroupEgress:
-        - Description: Server outbound https access
-          IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: '0.0.0.0/0'
-  ElasticsearchDomainSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Condition: useElasticSearch
-    Properties:
-      GroupDescription: Allow access to ElasticsearchDomain
-      VpcId: !Ref 'VPC'
-      SecurityGroupIngress:
-        - Description: vpc inbound access
-          IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: !FindInMap
-            - SubnetConfig
-            - VPC
-            - CIDR
-      SecurityGroupEgress:
-        - Description: Server outbound http access
-          IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
-          CidrIp: '0.0.0.0/0'
-        - Description: Server outbound https access
-          IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: '0.0.0.0/0'
-  ElasticsearchDomain:
-    Type: AWS::Elasticsearch::Domain
-    Condition: useElasticSearch
-    Properties:
-      DomainName: !Ref 'DomainNamePrefix'
-      EncryptionAtRestOptions:
-        Enabled: true
-        KmsKeyId: !Ref 'DBEncryptionKmsAlias'
-      DomainEndpointOptions:
-        EnforceHTTPS: true
-        TLSSecurityPolicy: Policy-Min-TLS-1-2-2019-07
-      NodeToNodeEncryptionOptions:
-        Enabled: true
-      EBSOptions:
-        EBSEnabled: true
-        VolumeSize: 30
-        VolumeType: gp2
-      ElasticsearchVersion: '7.10'
-      ElasticsearchClusterConfig:
-        InstanceType: !Ref 'ElasticSearchInstanceType'
-        InstanceCount: 1
-      VPCOptions:
-        SubnetIds:
-          - !Ref 'PrivateAppSubnet'
-          - !Ref 'PrivateAppSubnet2'
-          - !Ref 'PrivateAppSubnet3'
-        SecurityGroupIds:
-          - !Ref 'ElasticsearchDomainSecurityGroup'
-      AccessPolicies:
-        Version: '2012-10-17'
-        Statement:
-          - Sid: ''
-            Effect: Allow
-            Principal:
-              AWS: '*'
-            Action: es:*
-            Resource: arn:aws:es:*
 Outputs:
   WebSite:
     Description: URL of the website
@@ -2346,26 +2199,3 @@ Outputs:
         - !GetAtt 'Database.Endpoint.Port'
         - /
         - !Ref 'DBName'
-  ElasticSearchName:
-    Description: Elasticsearch domain name
-    Value: !Ref 'ElasticsearchDomain'
-    Condition: useElasticSearch
-  ElasticSearchDomain:
-    Description: Elasticsearch domain endpoint
-    Value: !GetAtt 'ElasticsearchDomain.DomainEndpoint'
-    Condition: useElasticSearch
-  ElasticSearchURL:
-    Value: !Join
-      - ''
-      - - https://
-        - !GetAtt 'ElasticsearchDomain.DomainEndpoint'
-    Description: Elasticsearch domain URL
-    Condition: useElasticSearch
-  KibanaURL:
-    Value: !Join
-      - ''
-      - - https://
-        - !GetAtt 'ElasticsearchDomain.DomainEndpoint'
-        - _plugin/kibana/
-    Description: Elasticsearch domain URL
-    Condition: useElasticSearch
