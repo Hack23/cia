@@ -59,7 +59,7 @@ pipeline {
             }
             steps {
                 sh "git reset --hard origin/master"
-                sh "git pull"
+                sh "git checkout -f master"
                 sh "git reset --hard origin/master"
                 sh "mvn -B clean"
                 sh "mvn -B release:prepare -Dgoals=deploy -Darguments='-Dgoals=deploy -DskipTests -Prelease-site,all-modules -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT' -DskipTests -Prelease-site,all-modules -Djavamelody.storage-directory=/tmp/javamelody-jenkins/  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT"
