@@ -21,7 +21,6 @@ package com.hack23.cia.service.api.action.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
@@ -61,7 +60,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 * @return the result element
 	 */
 	public List<DocumentElement> getResultElement() {
-		return resultElement.stream().collect(Collectors.toList());
+		return resultElement.stream().toList();
 	}
 
 	/**
@@ -72,7 +71,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 */
 	public void setResultElement(final List<DocumentElement> resultElement) {
 		if (resultElement != null) {
-			this.resultElement = resultElement.stream().collect(Collectors.toList());
+			this.resultElement = resultElement.stream().toList();
 		}
 	}
 

@@ -20,7 +20,6 @@ package com.hack23.cia.service.api.action.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
@@ -95,7 +94,7 @@ public final class DeleteAccountResponse extends AbstractResponse {
 	 * @return the google auth scratch codes
 	 */
 	public List<Integer> getGoogleAuthScratchCodes() {
-		return googleAuthScratchCodes.stream().collect(Collectors.toList());
+		return googleAuthScratchCodes.stream().toList();
 	}
 
 	/**
@@ -105,7 +104,7 @@ public final class DeleteAccountResponse extends AbstractResponse {
 	 */
 	public void setGoogleAuthScratchCodes(final List<Integer> googleAuthScratchCodes) {
 		if (googleAuthScratchCodes != null) {
-			this.googleAuthScratchCodes = googleAuthScratchCodes.stream().collect(Collectors.toList());
+			this.googleAuthScratchCodes = googleAuthScratchCodes.stream().toList();
 		}
 	}
 
