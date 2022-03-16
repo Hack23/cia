@@ -2,11 +2,6 @@
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "CIA CloudFormation runtime",
     "Parameters": {
-        "KeyName": {
-            "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instances",
-            "Type": "AWS::EC2::KeyPair::KeyName",
-            "ConstraintDescription": "must be the name of an existing EC2 KeyPair."
-        },
         "WebServerInstanceType": {
             "Description": "WebServer Server EC2 instance type",
             "Type": "String",
@@ -3410,9 +3405,6 @@
                 ],
                 "InstanceType": {
                     "Ref": "WebServerInstanceType"
-                },
-                "KeyName": {
-                    "Ref": "KeyName"
                 },
                 "AssociatePublicIpAddress": "false",
                 "UserData": {
