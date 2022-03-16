@@ -1365,10 +1365,7 @@ Resources:
         - useDBSnapshot
         - !Ref 'AWS::NoValue'
         - !Ref 'DBName'
-      StorageEncrypted: !If
-        - useDBEncryptionKmsAlias
-        - 'true'
-        - 'false'
+      StorageEncrypted: 'true'
       KmsKeyId: !If
         - useDBEncryptionKmsAlias
         - !Ref 'DBEncryptionKmsAlias'

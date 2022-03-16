@@ -2428,13 +2428,7 @@
                         }
                     ]
                 },
-                "StorageEncrypted": {
-                    "Fn::If": [
-                        "useDBEncryptionKmsAlias",
-                        "true",
-                        "false"
-                    ]
-                },
+                "StorageEncrypted": "true",
                 "KmsKeyId": {
                     "Fn::If": [
                         "useDBEncryptionKmsAlias",
