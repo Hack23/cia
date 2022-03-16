@@ -58,11 +58,6 @@
             "Type": "String",
             "Default": "hack23.com"
         },
-        "CertificateArn": {
-            "Description": "Certificate (optional) used to configure loadbalancer if DomainNamePrefix and DomainName is also included ",
-            "Type": "String",
-            "Default": "arn:aws:acm:eu-west-1:172017021075:certificate/ce58dc65-4a13-4ca5-8ddc-ccf7a71cf29d"
-        },
         "DBEncryptionKmsAlias": {
             "Description": "The alias for Key Management Service encryption key alias",
             "Type": "String",
@@ -246,18 +241,6 @@
                     "Fn::Equals": [
                         {
                             "Ref": "DBSnapshotName"
-                        },
-                        ""
-                    ]
-                }
-            ]
-        },
-        "useCertificate": {
-            "Fn::Not": [
-                {
-                    "Fn::Equals": [
-                        {
-                            "Ref": "CertificateArn"
                         },
                         ""
                     ]
@@ -2753,9 +2736,30 @@
                 ]
             }
         },
+        "LoadBalancerListenerHttpsCert": {
+			  "Type" : "AWS::CertificateManager::Certificate",
+			  "Properties" : {
+			      "CertificateTransparencyLoggingPreference" : "ENABLED",
+			      "DomainName" : {
+                    "Fn::Join": [
+                        "",
+                        [
+                            {
+                                "Ref": "DomainNamePrefix"
+                            },
+                            ".",
+                            {
+                                "Ref": "DomainName"
+                            },
+                            "."
+                        ]
+                    ]
+                },
+			     "ValidationMethod" : "DNS"
+			    }
+		},        
         "LoadBalancerListenerHttpsV2": {
             "Type": "AWS::ElasticLoadBalancingV2::Listener",
-            "Condition": "useCertificate",
             "Properties": {
                 "DefaultActions": [
                     {
@@ -2771,7 +2775,7 @@
                 "Certificates": [
                     {
                         "CertificateArn": {
-                            "Ref": "CertificateArn"
+                            "Ref": "LoadBalancerListenerHttpsCert"
                         }
                     }
                 ],

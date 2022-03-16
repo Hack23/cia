@@ -50,11 +50,6 @@ Parameters:
     Description: Domain name (optional), used to setup route53 dns
     Type: String
     Default: hack23.com
-  CertificateArn:
-    Description: 'Certificate (optional) used to configure loadbalancer if DomainNamePrefix
-      and DomainName is also included '
-    Type: String
-    Default: arn:aws:acm:eu-west-1:172017021075:certificate/ce58dc65-4a13-4ca5-8ddc-ccf7a71cf29d
   DBEncryptionKmsAlias:
     Description: The alias for Key Management Service encryption key alias
     Type: String
@@ -202,10 +197,6 @@ Conditions:
   useDBSnapshot: !Not
     - !Equals
       - !Ref 'DBSnapshotName'
-      - ''
-  useCertificate: !Not
-    - !Equals
-      - !Ref 'CertificateArn'
       - ''
   useDBEncryptionKmsAlias: !Not
     - !Equals
@@ -1520,16 +1511,26 @@ Resources:
       TTL: '900'
       ResourceRecords:
         - !GetAtt 'PublicElasticLoadBalancerV2.DNSName'
+  LoadBalancerListenerHttpsCert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      CertificateTransparencyLoggingPreference: ENABLED
+      DomainName: !Join
+        - ''
+        - - !Ref 'DomainNamePrefix'
+          - .
+          - !Ref 'DomainName'
+          - .
+      ValidationMethod: DNS
   LoadBalancerListenerHttpsV2:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    Condition: useCertificate
     Properties:
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref 'TargetGroupHttps'
       LoadBalancerArn: !Ref 'PublicElasticLoadBalancerV2'
       Certificates:
-        - CertificateArn: !Ref 'CertificateArn'
+        - CertificateArn: !Ref 'LoadBalancerListenerHttpsCert'
       Port: 443
       Protocol: HTTPS
       SslPolicy: ELBSecurityPolicy-FS-1-2-Res-2019-08
