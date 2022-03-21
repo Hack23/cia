@@ -370,6 +370,14 @@
           <groupId>com.google.gwt</groupId>
           <artifactId>gwt-elemental</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>net.java.dev.jna</groupId>
+          <artifactId>jna-platform</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.java.dev.jna</groupId>
+          <artifactId>jna</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
