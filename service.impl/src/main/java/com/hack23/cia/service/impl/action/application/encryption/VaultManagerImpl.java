@@ -67,6 +67,7 @@ public final class VaultManagerImpl implements VaultManager {
 	/** The Constant DECRYPT_VALUE. */
 	private static final String DECRYPT_VALUE = "decryptValue";
 
+	private final SecureRandom SECURE_RANDOM= new SecureRandom();
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
@@ -117,9 +118,8 @@ public final class VaultManagerImpl implements VaultManager {
 
 			try {
 				final Key buildKey = buildKey(userId, password);
-				final SecureRandom secureRandom = new SecureRandom();
 				final byte[] iv = new byte[IV_BYTE_SIZE];
-				secureRandom.nextBytes(iv);
+				SECURE_RANDOM.nextBytes(iv);
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
 				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv);
 				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);

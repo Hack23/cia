@@ -85,9 +85,9 @@ final class DataViewerImpl implements DataViewer {
 		final Root<V> root = criteriaQuery.from(clazz2);
 		criteriaQuery.select(root);
 
-		if (value instanceof String) {
+		if (value instanceof String strValue) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property2);
-			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
+			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), strValue.toUpperCase(Locale.ENGLISH));
 			criteriaQuery.where(condition);
 		} else {
 			final Predicate condition = criteriaBuilder.equal(root.get(property2), value);
@@ -224,9 +224,9 @@ final class DataViewerImpl implements DataViewer {
 			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
 		}
 
-		if (value instanceof String) {
+		if (value instanceof String strValue) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property);
-			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
+			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject),strValue.toUpperCase(Locale.ENGLISH));
 			criteriaQuery.where(condition);
 
 		} else {

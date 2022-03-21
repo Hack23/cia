@@ -22,7 +22,6 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.text.WordUtils;
@@ -171,7 +170,7 @@ public final class GridFactoryImpl implements GridFactory {
 		final Grid<T> grid = Grid.withPropertySet(BeanPropertySet.get(dataType));
 		grid.setCaption(caption);
 
-		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+		grid.setItems(datasource.stream().filter(Objects::nonNull).toList());
 
 		grid.setSelectionMode(SelectionMode.SINGLE);
 

@@ -108,9 +108,7 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 			serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
 		}
 
-		if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation) {
-			final ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent
-					.getSource();
+		if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation methodInvocation) {
 			if (methodInvocation != null && methodInvocation.getThis() != null) {
 				methodInfo = new StringBuilder().append(methodInvocation.getThis().getClass().getSimpleName())
 						.append('.').append(methodInvocation.getMethod().getName()).toString();

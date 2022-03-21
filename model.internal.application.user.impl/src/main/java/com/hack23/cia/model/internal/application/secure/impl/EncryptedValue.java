@@ -80,7 +80,6 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 *
 	 * @return the storage
 	 */
-	/** The storage. */
 	@Column(columnDefinition = "bytea")
 	@DiffIgnore
 	public String getStorage() {

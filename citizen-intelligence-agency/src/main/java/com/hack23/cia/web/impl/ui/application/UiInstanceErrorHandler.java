@@ -59,8 +59,7 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 
 	@Override
 	public void error(final ErrorEvent event) {
-		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof AccessDeniedException) {
-			final AccessDeniedException accessDeniedException = (AccessDeniedException) ExceptionUtils.getRootCause(event.getThrowable());
+		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof AccessDeniedException accessDeniedException) {
 			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {

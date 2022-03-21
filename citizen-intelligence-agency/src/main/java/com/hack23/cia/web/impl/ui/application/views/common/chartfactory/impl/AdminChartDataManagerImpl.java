@@ -215,7 +215,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
 
 		return findOrderedListByEmbeddedProperty.parallelStream()
-				.filter(t -> t != null && t.getEmbeddedId().getPage().equals(page)).collect(Collectors.toList());
+				.filter(t -> t != null && t.getEmbeddedId().getPage().equals(page)).toList();
 	}
 
 	/**

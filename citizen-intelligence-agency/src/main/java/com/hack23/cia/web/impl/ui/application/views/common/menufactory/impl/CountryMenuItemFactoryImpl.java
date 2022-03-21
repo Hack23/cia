@@ -116,7 +116,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 			final List<ViewWorldbankIndicatorDataCountrySummary> sortedEntries = entry.getValue().stream()
 					.sorted((e1, e2) -> e1.getIndicatorName().compareTo(e2.getIndicatorName()))
-					.collect(Collectors.toList());
+					.toList();
 
 			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {
 				final MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),

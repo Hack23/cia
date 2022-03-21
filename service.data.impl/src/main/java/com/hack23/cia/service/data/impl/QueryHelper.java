@@ -56,9 +56,9 @@ public final class QueryHelper {
 	public static <T> Predicate equalsIgnoreCaseIfStringPredicate(final CriteriaBuilder criteriaBuilder,final Path<T> path,
 			final Object value, final SingularAttribute<T, ? extends Object> property) {
 		Predicate condition;
-		if (value instanceof String) {
+		if (value instanceof String strValue) {
 			final Expression<String> propertyObject = (Expression<String>) path.get(property);
-			condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
+			condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject),strValue.toUpperCase(Locale.ENGLISH));
 
 		} else {
 			condition = criteriaBuilder.equal(path.get(property), value);
