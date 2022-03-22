@@ -67,11 +67,11 @@ public final class VaultManagerImpl implements VaultManager {
 	/** The Constant DECRYPT_VALUE. */
 	private static final String DECRYPT_VALUE = "decryptValue";
 
-	private final SecureRandom SECURE_RANDOM= new SecureRandom();
+	/** The Constant SECURE_RANDOM. */
+	private static final SecureRandom SECURE_RANDOM= new SecureRandom();
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(VaultManagerImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(VaultManagerImpl.class);
 
 	/** The Constant AES_GCM_NO_PADDING. */
 	private static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";

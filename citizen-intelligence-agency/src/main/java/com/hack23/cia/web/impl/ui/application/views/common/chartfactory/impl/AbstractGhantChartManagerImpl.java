@@ -197,7 +197,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 		final List<T> list = assignmentList.stream().filter(
 				(final T x) -> new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() > FILTER_DATA_BEFORE_YEAR)
-				.toList();
+				.collect(Collectors.toList());
 
 		Collections.sort(list, compare);
 
