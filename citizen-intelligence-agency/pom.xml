@@ -92,7 +92,7 @@
     <dependency>
       <groupId>nl.basjes.parse.useragent</groupId>
       <artifactId>yauaa</artifactId>
-      <version>6.11</version>
+      <version>6.12</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.commons</groupId>
