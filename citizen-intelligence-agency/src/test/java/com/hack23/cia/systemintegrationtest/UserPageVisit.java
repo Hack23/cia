@@ -20,6 +20,7 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +61,7 @@ public final class UserPageVisit extends Assert {
 	private static final int WAIT_FOR_PAGE_DELAY = 35000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 120000;
+	private static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(120000);
 
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
@@ -615,7 +616,7 @@ public final class UserPageVisit extends Assert {
 	private void performClickAction(final WebElement clickElement, final int waitDelay)
 			throws InterruptedException {
 		assertNotNull(clickElement);
-		final WebDriverWait wait = new WebDriverWait(driver, waitDelay);
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(waitDelay));
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(clickElement,driver)));
 
