@@ -1533,7 +1533,6 @@ Resources:
       SslPolicy: ELBSecurityPolicy-FS-1-2-Res-2019-08
   TargetGroupHttps:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Condition: useCertificate
     Properties:
       Name: !Join
         - '-'

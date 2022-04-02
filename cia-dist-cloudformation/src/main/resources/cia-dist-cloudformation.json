@@ -2780,7 +2780,6 @@
         },
         "TargetGroupHttps": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-            "Condition": "useCertificate",
             "Properties": {
                 "Name": {
                     "Fn::Join": [
