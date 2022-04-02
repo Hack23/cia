@@ -1517,7 +1517,6 @@ Resources:
         - - !Ref 'DomainNamePrefix'
           - .
           - !Ref 'DomainName'
-          - .
       ValidationMethod: DNS
   LoadBalancerListenerHttpsV2:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -1536,8 +1535,8 @@ Resources:
     Properties:
       Name: !Join
         - '-'
-        - - !Ref 'AWS::StackName'
-          - TargetGroupHttps
+        - - !Ref 'DomainName'
+          - Https
       Port: 8443
       Protocol: HTTPS
       VpcId: !Ref 'VPC'

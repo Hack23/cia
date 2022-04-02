@@ -2745,7 +2745,7 @@
                             {
                                 "Ref": "DomainName"
                             },
-                            "."
+                            ""
                         ]
                     ]
                 },
@@ -2786,9 +2786,9 @@
                         "-",
                         [
                             {
-                                "Ref": "AWS::StackName"
+                                "Ref": "DomainName"
                             },
-                            "TargetGroupHttps"
+                            "Https"
                         ]
                     ]
                 },
