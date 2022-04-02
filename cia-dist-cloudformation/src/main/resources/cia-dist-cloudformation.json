@@ -2781,17 +2781,7 @@
         "TargetGroupHttps": {
             "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
             "Properties": {
-                "Name": {
-                    "Fn::Join": [
-                        "-",
-                        [
-                            {
-                                "Ref": "DomainName"
-                            },
-                            "Https"
-                        ]
-                    ]
-                },
+                "Name": "CIA-Https",
                 "Port": 8443,
                 "Protocol": "HTTPS",
                 "VpcId": {
