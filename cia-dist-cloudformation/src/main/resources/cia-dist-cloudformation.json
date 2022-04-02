@@ -3417,7 +3417,7 @@
                                 "apt-get -y install apt-transport-https\n",
                                 "apt-get update\n",
                                 "apt-get -y dist-upgrade\n",
-                                "apt-get -y install python-pip unattended-upgrades chrony\n",
+                                "apt-get -y install python3-pip unattended-upgrades chrony\n",
                                 "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
                                 "sudo /etc/init.d/chrony restart\n",
                                 "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
