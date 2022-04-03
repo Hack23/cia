@@ -1967,7 +1967,7 @@ Resources:
             - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >>\
               \ /etc/chrony/chrony.conf \n"
             - "sudo /etc/init.d/chrony restart\n"
-            - "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n"
+            - "pip3 install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n"
             - "cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n"
             - "chmod +x /etc/init.d/cfn-hup \n"
             - "update-rc.d cfn-hup defaults \n "
