@@ -541,7 +541,7 @@
                                 }
                             }
                         },
-                        {
+                        {	"Sid": "ArtifactBucketDeliveryDenyHttp",
                             "Principal": {
                                 "AWS": "*"
                             },
@@ -2643,6 +2643,7 @@
                             ]
                         },
                         {
+                            "Sid": "ELBAccessLogs20130930DenyHttp",
                             "Principal": {
                                 "AWS": "*"
                             },

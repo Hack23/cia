@@ -352,7 +352,8 @@ Resources:
             Condition:
               StringEquals:
                 s3:x-amz-acl: bucket-owner-full-control
-          - Principal:
+          - Sid: ArtifactBucketDeliveryDenyHttp
+            Principal:
               AWS: '*'
             Action:
               - s3:*
@@ -1471,7 +1472,8 @@ Resources:
                 - '156460612806'
             Action:
               - s3:PutObject
-          - Principal:
+          - Sid: ELBAccessLogs20130930DenyHttp
+            Principal:
               AWS: '*'
             Action:
               - s3:*
