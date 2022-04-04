@@ -26,8 +26,7 @@ Parameters:
       - c6g.8xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
-    Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based
-      on ubuntu hvm-ssd server
+    Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id
   WebServerCount:
@@ -61,8 +60,7 @@ Parameters:
     MinLength: '1'
     MaxLength: '8'
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric
-      characters.
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
   DBUsername:
     Default: root
     NoEcho: 'true'
@@ -71,8 +69,7 @@ Parameters:
     MinLength: '1'
     MaxLength: '16'
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
-    ConstraintDescription: must begin with a letter and contain only alphanumeric
-      characters.
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
   DBPassword:
     Default: root1234
     NoEcho: 'true'
@@ -84,8 +81,7 @@ Parameters:
     Default: ''
     Type: String
   DBSnapshotName:
-    Description: The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170711
-      supplied DBUsername,DBPassword need to eris,discord23)
+    Description: The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170711 supplied DBUsername,DBPassword need to eris,discord23)
     Default: ''
     Type: String
   DebPackageUrl:
@@ -1517,6 +1513,7 @@ Resources:
         - - !Ref 'DomainNamePrefix'
           - .
           - !Ref 'DomainName'
+          - ''
       ValidationMethod: DNS
   LoadBalancerListenerHttpsV2:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -1533,7 +1530,7 @@ Resources:
   TargetGroupHttps:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name: 'CIA-HTTPS'
+      Name: CIA-Https
       Port: 8443
       Protocol: HTTPS
       VpcId: !Ref 'VPC'
@@ -1558,8 +1555,7 @@ Resources:
   PublicLoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Public ELB Security Group with HTTPS access on port 443 from
-        the internet
+      GroupDescription: Public ELB Security Group with HTTPS access on port 443 from the internet
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
         - Description: Inbound https from public
@@ -1798,7 +1794,7 @@ Resources:
                   - region=
                   - !Ref 'AWS::Region'
                   - "\n"
-              mode: '000644'
+              mode: '000400'
               owner: root
               group: root
             /etc/cfn/hooks.d/cfn-auto-reloader.conf:
@@ -1815,12 +1811,17 @@ Resources:
                   - !Ref 'AWS::Region'
                   - "\n"
                   - "runas=root\n"
-            /etc/cron.d/cloudwatch-monitor:
+            /lib/systemd/system/cfn-hup.service:
               content: !Join
                 - ''
-                - - "*/5 * * * * root /opt/aws-scripts-mon/mon-put-instance-data.pl\
-                    \ --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-space-util\
-                    \ --disk-space-used --disk-space-avail --disk-path=/ --from-cron\n"
+                - - "[Unit]\n"
+                  - "Description=cfn-hup daemon\n\n"
+                  - "[Service]\n"
+                  - "Type=simple\n"
+                  - "ExecStart=/opt/aws/bin/cfn-hup\n"
+                  - "Restart=always\n\n"
+                  - "[Install]\n"
+                  - WantedBy=multi-user.target
             /etc/awslogs.conf:
               content: !Join
                 - ''
@@ -1964,16 +1965,14 @@ Resources:
             - "apt-get update\n"
             - "apt-get -y dist-upgrade\n"
             - "apt-get -y install python3-pip unattended-upgrades chrony\n"
-            - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >>\
-              \ /etc/chrony/chrony.conf \n"
+            - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n"
             - "sudo /etc/init.d/chrony restart\n"
             - "mkdir -p /opt/aws/bin\n"
             - "wget https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n"
             - "python3 -m easy_install --script-dir /opt/aws/bin aws-cfn-bootstrap-py3-latest.tar.gz\n"
-            - "ln -s /root/aws-cfn-bootstrap-latest/init/ubuntu/cfn-hup /etc/init.d/cfn-hup\n"
-            - "chmod +x /etc/init.d/cfn-hup \n"
             - "update-rc.d cfn-hup defaults \n "
-            - "service cfn-hup start \n"
+            - "systemctl enable cfn-hup.service \n"
+            - "systemctl start cfn-hup.service \n"
             - "# Install the sample application\n"
             - '/opt/aws/bin/cfn-init -v '
             - '    --stack '
@@ -1999,26 +1998,22 @@ Resources:
             - "echo 'net.ipv4.conf.all.rp_filter = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.default = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
-              \ \n"
+            - "echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.default.log_martians = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.conf.all.send_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv4.conf.default.accept_source_route = 0' >> /etc/sysctl.conf\
-              \ \n"
+            - "echo 'net.ipv4.conf.default.accept_source_route = 0' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.tcp_syncookies = 1' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv4.tcp_timestamps = 0' >> /etc/sysctl.conf \n"
             - "echo 'net.ipv6.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n"
-            - "echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf\
-              \ \n"
+            - "echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n"
             - "sysctl -p\n"
             - "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n"
             - "sudo snap install amazon-ssm-agent --classic\n"
             - "sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n"
-            - "sudo apt-get -y install curl python software-properties-common xz-utils\
-              \ bzip2 gnupg wget graphviz\n"
+            - "sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n"
             - "sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
             - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
             - "sudo mkdir -p /var/awslogs/etc/\n"
@@ -2051,17 +2046,13 @@ Resources:
             - "HISTCONTROL=ignorespace\n"
             - "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n"
             - "rm -rf /opt/cia/etc/keystore.p12\n"
-            - '/usr/lib/jvm/jdk-14/bin/keytool -genkey -noprompt -deststoretype pkcs12
-              -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
-            - ' -alias jetty  -dname ''CN=$LOCAL_IP, OU=None, O=None, L=None, S=None,
-              C=SE'' -keystore /opt/cia/etc/keystore.p12 '
+            - '/usr/lib/jvm/jdk-14/bin/keytool -genkey -noprompt -deststoretype pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
+            - ' -alias jetty  -dname ''CN=$LOCAL_IP, OU=None, O=None, L=None, S=None, C=SE'' -keystore /opt/cia/etc/keystore.p12 '
             - " -storepass $KEY_PWD -keypass $KEY_PWD\n"
             - "chown cia:cia /opt/cia/etc/keystore.p12\n"
             - "chmod 700 /opt/cia/etc/keystore.p12\n"
-            - " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_'\
-              \ /opt/cia/cia-base/start.d/ssl.ini\n"
-            - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_'\
-              \ /opt/cia/cia-base/start.d/ssl.ini\n"
+            - " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n"
+            - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n"
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
             - "let JAVAMEMSIZE=$TOTAL_MEM_KB-3046*1024\n"
             - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /etc/default/cia\n"
@@ -2078,14 +2069,11 @@ Resources:
             - "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n"
             - "chown -R cia:cia /opt/cia/.postgresql\n"
             - "chmod -R 700 /opt/cia/.postgresql\n"
-            - "/usr/lib/jvm/jdk-14/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts\
-              \ -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias\
-              \ aws-rds-2016\n"
+            - "/usr/lib/jvm/jdk-14/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - "/etc/init.d/cia stop\n"
             - "/etc/init.d/cia start\n"
             - "update-rc.d cia defaults\n"
-            - "# TODO setup  cron jobs for security auditing, intrusion detection,\
-              \ system hardening#\n"
+            - "# TODO setup  cron jobs for security auditing, intrusion detection, system hardening#\n"
             - "sudo apt-get -y install lsb-invalid-mta\n"
             - "sudo apt-get -y install acct auditd audispd-plugins\n"
             - "sudo apt-get -y install aide rkhunter chkrootkit lynis\n"
@@ -2113,8 +2101,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     DependsOn: PublicLoadBalancerSecurityGroup
     Properties:
-      GroupDescription: Allow access from load balancer and bastion as well as outbound
-        HTTP and HTTPS traffic
+      GroupDescription: Allow access from load balancer and bastion as well as outbound HTTP and HTTPS traffic
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
         - Description: Loadbalancer inbound access
