@@ -342,6 +342,17 @@ Resources:
             Condition:
               StringEquals:
                 s3:x-amz-acl: bucket-owner-full-control
+          - Principal:
+              AWS: '*'
+            Action:
+              - s3:*
+            Resource:
+              - arn:aws:s3:::/*
+              - 'arn:aws:s3:::'
+            Effect: Deny
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'
   MaintenanceWindowServiceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -1440,6 +1451,17 @@ Resources:
                 - '156460612806'
             Action:
               - s3:PutObject
+          - Principal:
+              AWS: '*'
+            Action:
+              - s3:*
+            Resource:
+              - arn:aws:s3:::/*
+              - 'arn:aws:s3:::'
+            Effect: Deny
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'
   NAT:
     DependsOn: GatewayToInternet
     Type: AWS::EC2::NatGateway
