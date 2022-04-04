@@ -3216,7 +3216,7 @@
                                         ]
                                     ]
                                 },
-                                "mode": "000644",
+                                "mode": "000400",
                                 "owner": "root",
                                 "group": "root"
                             },
@@ -3240,16 +3240,6 @@
                                             },
                                             "\n",
                                             "runas=root\n"
-                                        ]
-                                    ]
-                                }
-                            },
-                            "/etc/cron.d/cloudwatch-monitor": {
-                                "content": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "*/5 * * * * root /opt/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-space-util --disk-space-used --disk-space-avail --disk-path=/ --from-cron\n"
                                         ]
                                     ]
                                 }
@@ -3428,7 +3418,7 @@
                                 "update-rc.d cfn-hup defaults \n ",
                                 "service cfn-hup start \n",
                                 "# Install the sample application\n",
-                                "cfn-init -v ",
+                                "/opt/aws/bin/cfn-init -v ",
                                 "    --stack ",
                                 {
                                     "Ref": "AWS::StackId"
@@ -3563,7 +3553,7 @@
                                 "sudo apt-get -y install procinfo\n",
                                 "sudo socklist\n",
                                 "# Signal completion\n",
-                                "cfn-signal -e $? ",
+                                "/opt/aws/bin/cfn-signal -e $? ",
                                 "    --stack ",
                                 {
                                     "Ref": "AWS::StackId"

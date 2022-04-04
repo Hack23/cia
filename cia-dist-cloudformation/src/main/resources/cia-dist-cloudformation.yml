@@ -1975,7 +1975,7 @@ Resources:
             - "update-rc.d cfn-hup defaults \n "
             - "service cfn-hup start \n"
             - "# Install the sample application\n"
-            - 'cfn-init -v '
+            - '/opt/aws/bin/cfn-init -v '
             - '    --stack '
             - !Ref 'AWS::StackId'
             - '    --resource WebServerLaunchConfig '
@@ -2102,7 +2102,7 @@ Resources:
             - "sudo apt-get -y install procinfo\n"
             - "sudo socklist\n"
             - "# Signal completion\n"
-            - 'cfn-signal -e $? '
+            - '/opt/aws/bin/cfn-signal -e $? '
             - '    --stack '
             - !Ref 'AWS::StackId'
             - '    --resource WebServerFleet '
