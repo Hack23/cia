@@ -540,24 +540,6 @@
                                     "s3:x-amz-acl": "bucket-owner-full-control"
                                 }
                             }
-                        },
-                        {	"Sid": "ArtifactBucketDeliveryDenyHttp",
-                            "Principal": {
-                                "AWS": "*"
-                            },
-                            "Action": [
-                                "s3:*"
-                            ],
-                            "Resource": [
-                                "arn:aws:s3:::/*",
-                                "arn:aws:s3:::"
-                            ],
-                            "Effect": "Deny",
-                            "Condition": {
-                                "Bool": {
-                                    "aws:SecureTransport": "false"
-                                }
-                            }
                         }
                     ]
                 }
@@ -2641,25 +2623,6 @@
                             "Action": [
                                 "s3:PutObject"
                             ]
-                        },
-                        {
-                            "Sid": "ELBAccessLogs20130930DenyHttp",
-                            "Principal": {
-                                "AWS": "*"
-                            },
-                            "Action": [
-                                "s3:*"
-                            ],
-                            "Resource": [
-                                "arn:aws:s3:::/*",
-                                "arn:aws:s3:::"
-                            ],
-                            "Effect": "Deny",
-                            "Condition": {
-                                "Bool": {
-                                    "aws:SecureTransport": "false"
-                                }
-                            }
                         }
                     ]
                 }
