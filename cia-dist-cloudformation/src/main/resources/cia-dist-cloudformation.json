@@ -3218,7 +3218,7 @@
                     "config": {
                         "packages": {
                             "apt": {
-                                "openjdk-17-jdk": [],
+                                "openjdk-17-jdk-headless": [],
                                 "ntp": [],
                                 "ntpdate": [],
                                 "ufw": [],
@@ -3521,7 +3521,7 @@
                                 "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",
                                 "sudo apt-get -y install libwww-perl libdatetime-perl\n",
                                 "# INSTALL OPEN JDK\n",
-                                "sudo ln -s /usr/lib/jvm/java-17-openjdk-amd64 /usr/lib/jvm/jdk-17\n",                                
+                                "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n",                                
                                 "wget ",
                                 {
                                     "Ref": "DebPackageUrl"
