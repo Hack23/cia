@@ -46,6 +46,9 @@ final class SecretData {
 	/** The dbname. */
 	private String dbname;
 
+	/** The db instance identifier. */
+	private String dbInstanceIdentifier;
+
 
 	/**
 	 * Instantiates a new secret data.
@@ -160,6 +163,24 @@ final class SecretData {
 	 */
 	public void setPassword(final String password) {
 		this.password = password;
+	}
+
+	/**
+	 * Gets the db instance identifier.
+	 *
+	 * @return the db instance identifier
+	 */
+	public String getDbInstanceIdentifier() {
+		return dbInstanceIdentifier;
+	}
+
+	/**
+	 * Sets the db instance identifier.
+	 *
+	 * @param dbInstanceIdentifier the new db instance identifier
+	 */
+	public void setDbInstanceIdentifier(final String dbInstanceIdentifier) {
+		this.dbInstanceIdentifier = dbInstanceIdentifier;
 	}
 
 	@Override
