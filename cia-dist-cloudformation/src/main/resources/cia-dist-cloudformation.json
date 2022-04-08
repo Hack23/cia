@@ -5,7 +5,7 @@
         "WebServerInstanceType": {
             "Description": "WebServer Server EC2 instance type",
             "Type": "String",
-            "Default": "t4g.large",
+            "Default": "t4g.xlarge",
             "AllowedValues": [
                 "t4g.micro",
                 "t4g.small",
