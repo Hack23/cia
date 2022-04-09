@@ -4,7 +4,7 @@ Parameters:
   WebServerInstanceType:
     Description: WebServer Server EC2 instance type
     Type: String
-    Default: t4g.large
+    Default: t4g.xlarge
     AllowedValues:
       - t4g.micro
       - t4g.small
@@ -352,18 +352,6 @@ Resources:
             Condition:
               StringEquals:
                 s3:x-amz-acl: bucket-owner-full-control
-          - Sid: ArtifactBucketDeliveryDenyHttp
-            Principal:
-              AWS: '*'
-            Action:
-              - s3:*
-            Resource:
-              - arn:aws:s3:::/*
-              - 'arn:aws:s3:::'
-            Effect: Deny
-            Condition:
-              Bool:
-                aws:SecureTransport: 'false'
   MaintenanceWindowServiceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -1472,18 +1460,6 @@ Resources:
                 - '156460612806'
             Action:
               - s3:PutObject
-          - Sid: ELBAccessLogs20130930DenyHttp
-            Principal:
-              AWS: '*'
-            Action:
-              - s3:*
-            Resource:
-              - arn:aws:s3:::/*
-              - 'arn:aws:s3:::'
-            Effect: Deny
-            Condition:
-              Bool:
-                aws:SecureTransport: 'false'
   NAT:
     DependsOn: GatewayToInternet
     Type: AWS::EC2::NatGateway
@@ -1813,7 +1789,7 @@ Resources:
         config:
           packages:
             apt:
-              openjdk-17-jdk: []
+              openjdk-17-jdk-headless: []
               ntp: []
               ntpdate: []
               ufw: []
@@ -2014,9 +1990,8 @@ Resources:
             - "mkdir -p /opt/aws/bin\n"
             - "wget https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n"
             - "python3 -m easy_install --script-dir /opt/aws/bin aws-cfn-bootstrap-py3-latest.tar.gz\n"
-            - "update-rc.d cfn-hup defaults \n "
-            - "systemctl enable cfn-hup.service \n"
-            - "systemctl start cfn-hup.service \n"
+            - "##systemctl enable cfn-hup.service \n"
+            - "##systemctl start cfn-hup.service \n"
             - "# Install the sample application\n"
             - '/opt/aws/bin/cfn-init -v '
             - '    --stack '
@@ -2064,7 +2039,7 @@ Resources:
             - "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
             - "sudo apt-get -y install libwww-perl libdatetime-perl\n"
             - "# INSTALL OPEN JDK\n"
-            - "sudo ln -s /usr/lib/jvm/java-17-openjdk-amd64 /usr/lib/jvm/jdk-17\n"
+            - "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
@@ -2085,16 +2060,16 @@ Resources:
             - echo 'database.hostname=
             - !GetAtt 'Database.Endpoint.Address'
             - "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n"
-            - "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n"
+            - "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/cia-base/webapps/cia.xml\n"
             - "LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)\n"
             - "HISTCONTROL=ignorespace\n"
             - "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n"
-            - "rm -rf /opt/cia/etc/keystore.p12\n"
-            - '/usr/lib/jvm/jdk-14/bin/keytool -genkey -noprompt -deststoretype pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
-            - ' -alias jetty  -dname ''CN=$LOCAL_IP, OU=None, O=None, L=None, S=None, C=SE'' -keystore /opt/cia/etc/keystore.p12 '
+            - "rm -rf /opt/cia/cia-base/etc/keystore.p12\n"
+            - '/usr/lib/jvm/jdk-17/bin/keytool -genkey -noprompt -deststoretype pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 '
+            - ' -alias jetty  -dname ''CN=$LOCAL_IP, OU=None, O=None, L=None, S=None, C=SE'' -keystore /opt/cia/cia-base/etc/keystore.p12 '
             - " -storepass $KEY_PWD -keypass $KEY_PWD\n"
-            - "chown cia:cia /opt/cia/etc/keystore.p12\n"
-            - "chmod 700 /opt/cia/etc/keystore.p12\n"
+            - "chown cia:cia /opt/cia/cia-base/etc/keystore.p12\n"
+            - "chmod 700 /opt/cia/cia-base/etc/keystore.p12\n"
             - " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n"
             - " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n"
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
@@ -2105,34 +2080,15 @@ Resources:
             - / -DUSE_LOG_APPENDER=
             - !Ref 'WebServerAppLogAppender'
             - "/' /etc/default/cia\n"
-            - sed -i -e 's/#JAVAMELODY
-            - / JAVAMELODY
-            - "/' /opt/cia/start.ini\n"
             - "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n"
             - "mkdir /opt/cia/.postgresql\n"
             - "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n"
             - "chown -R cia:cia /opt/cia/.postgresql\n"
             - "chmod -R 700 /opt/cia/.postgresql\n"
-            - "/usr/lib/jvm/jdk-14/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
+            - "/usr/lib/jvm/jdk-17/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - "/etc/init.d/cia stop\n"
             - "/etc/init.d/cia start\n"
             - "update-rc.d cia defaults\n"
-            - "# TODO setup  cron jobs for security auditing, intrusion detection, system hardening#\n"
-            - "sudo apt-get -y install lsb-invalid-mta\n"
-            - "sudo apt-get -y install acct auditd audispd-plugins\n"
-            - "sudo apt-get -y install aide rkhunter chkrootkit lynis\n"
-            - "sudo chkrootkit\n"
-            - "#sudo rkhunter --update --cronjob\n"
-            - "#sudo rkhunter --propupd --cronjob\n"
-            - "#sudo rkhunter --cronjob --check --quiet\n"
-            - "sudo lynis -c --cronjob\n"
-            - "sudo aideinit\n"
-            - "sudo cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db \n"
-            - "sudo update-aide.conf\n"
-            - "sudo cp /var/lib/aide/aide.conf.autogenerated /etc/aide/aide.conf\n"
-            - "# Baseline processes open sockets #\n"
-            - "sudo apt-get -y install procinfo\n"
-            - "sudo socklist\n"
             - "# Signal completion\n"
             - '/opt/aws/bin/cfn-signal -e $? '
             - '    --stack '
