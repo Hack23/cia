@@ -40,8 +40,8 @@
       <url>github:http://hack23.github.io/cia/parent-model-external-pom</url>
     </site>
   </distributionManagement>
-  <properties />
-  <dependencyManagement />
+  <properties></properties>
+  <dependencyManagement></dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.hack23.cia</groupId>

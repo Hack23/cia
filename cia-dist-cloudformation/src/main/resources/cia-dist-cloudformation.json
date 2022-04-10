@@ -171,9 +171,6 @@
             },
             "Private3": {
                 "CIDR": "10.40.22.0/24"
-            },
-            "QuickSightVpn": {
-                "CIDR": "10.40.40.0/24"
             }
         },
         "AWSRegionAvailabilityZone": {
@@ -1371,42 +1368,6 @@
                 ]
             }
         },
-        "QuickSightVpnConnectionSubnet": {
-            "Type": "AWS::EC2::Subnet",
-            "Properties": {
-                "VpcId": {
-                    "Ref": "VPC"
-                },
-                "AvailabilityZone": {
-                    "Fn::FindInMap": [
-                        "AWSRegionAvailabilityZone",
-                        {
-                            "Ref": "AWS::Region"
-                        },
-                        "FIRST"
-                    ]
-                },
-                "CidrBlock": {
-                    "Fn::FindInMap": [
-                        "SubnetConfig",
-                        "QuickSightVpn",
-                        "CIDR"
-                    ]
-                },
-                "Tags": [
-                    {
-                        "Key": "Application",
-                        "Value": {
-                            "Ref": "AWS::StackId"
-                        }
-                    },
-                    {
-                        "Key": "Network",
-                        "Value": "VPN"
-                    }
-                ]
-            }
-        },
         "PrivateSubnet": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
@@ -1708,17 +1669,6 @@
                 }
             }
         },
-        "QuickSightVpnConnectionSubnetRouteTableAssociation": {
-            "Type": "AWS::EC2::SubnetRouteTableAssociation",
-            "Properties": {
-                "SubnetId": {
-                    "Ref": "QuickSightVpnConnectionSubnet"
-                },
-                "RouteTableId": {
-                    "Ref": "PrivateRouteTable"
-                }
-            }
-        },
         "PrivateSubnetRouteTableAssociation": {
             "Type": "AWS::EC2::SubnetRouteTableAssociation",
             "Properties": {
@@ -1790,60 +1740,6 @@
                         "Value": "Public"
                     }
                 ]
-            }
-        },
-        "QuickSightVpnNetworkAcl": {
-            "Type": "AWS::EC2::NetworkAcl",
-            "Properties": {
-                "VpcId": {
-                    "Ref": "VPC"
-                },
-                "Tags": [
-                    {
-                        "Key": "Application",
-                        "Value": {
-                            "Ref": "AWS::StackId"
-                        }
-                    },
-                    {
-                        "Key": "Network",
-                        "Value": "VPN"
-                    }
-                ]
-            }
-        },
-        "InboundPostgresqlQuickSightVpnNetworkAclEntry": {
-            "Type": "AWS::EC2::NetworkAclEntry",
-            "Properties": {
-                "NetworkAclId": {
-                    "Ref": "QuickSightVpnNetworkAcl"
-                },
-                "RuleNumber": "100",
-                "Protocol": "6",
-                "RuleAction": "allow",
-                "Egress": "false",
-                "CidrBlock": "0.0.0.0/0",
-                "PortRange": {
-                    "From": "5432",
-                    "To": "5432"
-                }
-            }
-        },
-        "OutboundPostgresqlQuickSightVpnNetworkAclEntry": {
-            "Type": "AWS::EC2::NetworkAclEntry",
-            "Properties": {
-                "NetworkAclId": {
-                    "Ref": "QuickSightVpnNetworkAcl"
-                },
-                "RuleNumber": "200",
-                "Protocol": "6",
-                "RuleAction": "allow",
-                "Egress": "true",
-                "CidrBlock": "0.0.0.0/0",
-                "PortRange": {
-                    "From": "1024",
-                    "To": "65535"
-                }
             }
         },
         "PrivateNetworkAcl": {
@@ -2206,17 +2102,6 @@
                 }
             }
         },
-        "QuickSightVpnConnectionSubnetNetworkAclAssociation": {
-            "Type": "AWS::EC2::SubnetNetworkAclAssociation",
-            "Properties": {
-                "SubnetId": {
-                    "Ref": "QuickSightVpnConnectionSubnet"
-                },
-                "NetworkAclId": {
-                    "Ref": "QuickSightVpnNetworkAcl"
-                }
-            }
-        },
         "PrivateSubnetNetworkAclAssociation": {
             "Type": "AWS::EC2::SubnetNetworkAclAssociation",
             "Properties": {
@@ -2250,36 +2135,9 @@
                 }
             }
         },
-        "QuickSightVpnConnectionSecurityGroup": {
-            "Type": "AWS::EC2::SecurityGroup",
-            "Properties": {
-                "GroupDescription": "Quicksight Access from vpn connection",
-                "VpcId": {
-                    "Ref": "VPC"
-                },
-                "SecurityGroupIngress": [
-                    {
-                        "Description": "QuickSight port not known",
-                        "IpProtocol": "tcp",
-                        "FromPort": "1",
-                        "ToPort": "65535",
-                        "CidrIp": "0.0.0.0/0"
-                    }
-                ],
-                "SecurityGroupEgress": [
-                    {
-                        "Description": "QuickSight port not known",
-                        "IpProtocol": "tcp",
-                        "FromPort": "1",
-                        "ToPort": "65535",
-                        "CidrIp": "0.0.0.0/0"
-                   }
-                ]
-            }
-        },
         "DatabaseSecurityGroup": {
             "Type": "AWS::EC2::SecurityGroup",
-            "DependsOn": [ "WebServerSecurityGroup","QuickSightVpnConnectionSecurityGroup"],
+            "DependsOn": [ "WebServerSecurityGroup"],
             "Properties": {
                 "GroupDescription": "Database Access",
                 "VpcId": {
@@ -2294,15 +2152,6 @@
                         "SourceSecurityGroupId": {
                             "Ref": "WebServerSecurityGroup"
                         }
-                    },
-                    {
-                        "Description": "Postgres inbound access from quicksight enterprise vpc endpoint",
-                        "IpProtocol": "tcp",
-                        "FromPort": "5432",
-                        "ToPort": "5432",
-                        "SourceSecurityGroupId": {
-                            "Ref": "QuickSightVpnConnectionSecurityGroup"
-                        }
                     }
                 ],
                 "SecurityGroupEgress": [
@@ -2313,15 +2162,6 @@
                         "ToPort": "5432",
                         "SourceSecurityGroupId": {
                             "Ref": "WebServerSecurityGroup"
-                        }
-                    },
-                    {
-                    	"Description": "Postgres outbound access to quicksight enterprise vpc endpoint",
-                        "IpProtocol": "tcp",
-                        "FromPort": "5432",
-                        "ToPort": "5432",
-                        "SourceSecurityGroupId": {
-                            "Ref": "QuickSightVpnConnectionSecurityGroup"
                         }
                     }
                 ]
