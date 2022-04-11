@@ -520,6 +520,18 @@
                                 "s3:GetBucketAcl"
                             ]
                         },
+ 				        {
+				            "Sid": "ArtifactBucketDeliveryDenyHttp",
+				            "Effect": "Deny",
+				            "Principal": "*",
+				            "Action": "s3:GetObject",
+				            "Resource": "arn:aws:s3:::/*",
+				            "Condition": {
+				                "Bool": {
+				                    "aws:SecureTransport": "false"
+				                }
+				            }
+				        },
                         {
                             "Sid": "ArtifactBucketDelivery",
                             "Effect": "Allow",
@@ -2441,7 +2453,7 @@
                     "Version": "2012-10-17",
                     "Statement": [
                         {
-                            "Sid": "ELBAccessLogs20130930",
+                            "Sid": "ELBAccessLogsAllowAws",
                             "Effect": "Allow",
                             "Resource": {
                                 "Fn::Join": [
@@ -2463,7 +2475,19 @@
                             "Action": [
                                 "s3:PutObject"
                             ]
-                        }
+                        },
+                        {
+				            "Sid": "ELBAccessLogsDenyHttp",
+				            "Effect": "Deny",
+				            "Principal": "*",
+				            "Action": "s3:GetObject",
+				            "Resource": "arn:aws:s3:::/*",
+				            "Condition": {
+				                "Bool": {
+				                    "aws:SecureTransport": "false"
+				                }
+				            }
+				        }
                     ]
                 }
             }
