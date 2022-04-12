@@ -524,8 +524,10 @@
 				            "Sid": "ArtifactBucketDeliveryDenyHttp",
 				            "Effect": "Deny",
 				            "Principal": "*",
-				            "Action": "s3:GetObject",
-				            "Resource": "arn:aws:s3:::/*",
+				            "Action": [ "s3:GetObject" ],
+				            "Resource": {
+                                "Fn::Sub": "${ArtifactBucket.Arn}/*"
+                            },
 				            "Condition": {
 				                "Bool": {
 				                    "aws:SecureTransport": "false"
@@ -2480,8 +2482,19 @@
 				            "Sid": "ELBAccessLogsDenyHttp",
 				            "Effect": "Deny",
 				            "Principal": "*",
-				            "Action": "s3:GetObject",
-				            "Resource": "arn:aws:s3:::/*",
+				            "Action": [ "s3:GetObject" ],
+				            "Resource": {
+                                "Fn::Join": [
+                                    "",
+                                    [
+                                        "arn:aws:s3:::",
+                                        {
+                                            "Ref": "LogsBucket"
+                                        },
+                                        "/*"
+                                    ]
+                                ]
+                            },
 				            "Condition": {
 				                "Bool": {
 				                    "aws:SecureTransport": "false"
