@@ -61,7 +61,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static final String FLOAT_FORMAT = "%.2f";
 
 	/** The Constant FONT_FAMILY. */
-	private static final String FONT_FAMILY = "Inconsolata";
+	private static final String FONT_FAMILY = "Arial";
 
 	/** The Constant FONT_SIZE. */
 	private static final String FONT_SIZE = "8px";

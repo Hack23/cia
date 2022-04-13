@@ -15,7 +15,7 @@ http://www.color-hex.com/color/A8BDFF
 
 $v-background-color: #13303f;
 $v-focus-color: #008780;
-$v-font-size: 14px;
+$v-font-size: 12px;
 $v-font-weight: 600;
 $v-unit-size: 20px;
 $v-bevel: false;
@@ -27,7 +27,7 @@ $v-border-radius: 0;
 $v-border: 2px solid v-tone;
 $v-overlay-shadow: 0 0 0 2px (v-tint 10);
 $v-focus-style: $v-focus-color;
-$v-font-family: 'Inconsolata';
+$v-font-family: 'Arial';
 $v-font-weight--header: 600;
 	
 @import "../valo/valo";

@@ -2739,7 +2739,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .gantt .year, .cia .gantt .month, .cia .gantt .day {
 	border-right: none;
 	background-color: #071218;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 }
 
@@ -2762,7 +2762,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .gantt .col {
 	border-right: none;
 	background-color: #071218;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .gantt .col.weekend {
@@ -2770,7 +2770,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .gantt .row {
-	height: 21px;
+	height: 18px;
 }
 
 .cia .gantt .gantt-container {
@@ -4457,7 +4457,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia.v-app, .cia.v-app-loading {
-	font: 600 14px/1.55 "Inconsolata";
+	font: 600 12px/1.55 "Arial";
 	color: #afcad8;
 	background-color: #13303f;
 	cursor: default;
@@ -4557,7 +4557,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 }
@@ -4837,7 +4837,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 7px 8px;
 	background-color: #444;
 	background-color: rgba(68, 68, 68, 0.9);
-	line-height: 20px;
+	line-height: 17px;
 	text-align: center;
 }
 
@@ -5277,7 +5277,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0 6px;
 	
 	
-	font-size: 11px;
+	font-size: 9px;
 	
 	border-radius: 0;
 }
@@ -5295,7 +5295,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0 7px;
 	
 	
-	font-size: 12px;
+	font-size: 11px;
 	
 	border-radius: 0;
 }
@@ -5313,7 +5313,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0 10px;
 	
 	
-	font-size: 17px;
+	font-size: 15px;
 	
 	border-radius: 0;
 }
@@ -5331,7 +5331,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0 13px;
 	
 	
-	font-size: 23px;
+	font-size: 20px;
 	
 	border-radius: 0;
 }
@@ -5450,7 +5450,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 11px;
+	font-size: 10px;
 	text-align: center;
 }
 
@@ -5528,7 +5528,7 @@ div.v-layout.v-horizontal.v-widget {
 	position: relative;
 	line-height: 9px;
 	white-space: nowrap;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-checkbox-small.v-has-width label {
@@ -5572,7 +5572,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 10px;
+	font-size: 8px;
 	text-align: center;
 }
 
@@ -5650,7 +5650,7 @@ div.v-layout.v-horizontal.v-widget {
 	position: relative;
 	line-height: 12px;
 	white-space: nowrap;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-checkbox-large.v-has-width label {
@@ -5694,7 +5694,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -6104,7 +6104,7 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 0 0 0 0;
 	height: 12px;
 	bottom: -12px;
-	font-size: 11px;
+	font-size: 9px;
 	line-height: 12px;
 	padding: 0 3px;
 	cursor: default;
@@ -6288,7 +6288,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-filterselect-tiny {
 	height: 15px;
 	
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .v-filterselect-tiny [class*="input"] {
@@ -6565,13 +6565,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-filterselect-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-filterselect-large {
 	height: 24px;
 	
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-filterselect-large [class*="input"] {
@@ -6711,7 +6711,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-filterselect-huge {
 	height: 32px;
 	
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-filterselect-huge [class*="input"] {
@@ -7228,7 +7228,7 @@ div.v-layout.v-horizontal.v-widget {
 	white-space: nowrap;
 	box-sizing: border-box;
 	overflow: hidden;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-grid-cell.frozen {
@@ -7333,7 +7333,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0c9";
 	display: block;
 	font-family: ThemeIcons, sans-serif;
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-grid-sidebar.v-contextmenu.closed {
@@ -7346,7 +7346,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
 	content: "\f0c9";
-	font-size: 12px;
+	font-size: 10px;
 	line-height: 1;
 }
 
@@ -7427,7 +7427,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-grid-header th {
 	position: relative;
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-bottom: 2px solid #4a5d67;
@@ -7440,7 +7440,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-grid-header .sort-asc, .cia .v-grid-header .sort-desc {
-	padding-right: 24.5px;
+	padding-right: 22.5px;
 }
 
 .cia .v-grid-header .sort-asc:after, .cia .v-grid-header .sort-desc:after {
@@ -7448,7 +7448,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0de" " " attr(sort-order);
 	position: absolute;
 	right: 10.5px;
-	font-size: 10px;
+	font-size: 9px;
 }
 
 .cia .v-grid-header .sort-desc:after {
@@ -7487,7 +7487,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-grid-footer td {
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-top: 2px solid #4a5d67;
@@ -7786,7 +7786,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-grid-editor-footer {
-	font-size: 12px;
+	font-size: 11px;
 	padding: 0 4px;
 	background: #13303f;
 	-webkit-animation: valo-grid-editor-footer-animate-in 200ms 120ms backwards;
@@ -8136,7 +8136,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .v-textfield-compact, .cia .v-textfield-small {
@@ -8165,7 +8165,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-textfield-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-textfield-large {
@@ -8191,7 +8191,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-textfield-huge {
@@ -8217,7 +8217,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-slot-inline-icon {
@@ -8229,7 +8229,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8246,7 +8246,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 20px;
 	line-height: 16px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-caption-inline-icon img.v-icon {
@@ -8267,7 +8267,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-tiny .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8284,7 +8284,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 15px;
 	line-height: 11px;
 	text-align: center;
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .v-caption-inline-icon.v-caption-tiny img.v-icon {
@@ -8305,7 +8305,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-compact .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8322,7 +8322,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 17px;
 	line-height: 13px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-caption-inline-icon.v-caption-compact img.v-icon {
@@ -8343,7 +8343,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-small .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8360,7 +8360,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 17px;
 	line-height: 13px;
 	text-align: center;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-caption-inline-icon.v-caption-small img.v-icon {
@@ -8381,7 +8381,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-large .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8398,7 +8398,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 24px;
 	line-height: 20px;
 	text-align: center;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-caption-inline-icon.v-caption-large img.v-icon {
@@ -8419,7 +8419,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-huge .v-captiontext {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 	margin: 0;
@@ -8436,7 +8436,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 32px;
 	line-height: 28px;
 	text-align: center;
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-caption-inline-icon.v-caption-huge img.v-icon {
@@ -8572,7 +8572,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: auto;
 	resize: none;
 	white-space: pre-wrap;
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .v-textarea-small {
@@ -8602,7 +8602,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: auto;
 	resize: none;
 	white-space: pre-wrap;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-textarea-large {
@@ -8632,7 +8632,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: auto;
 	resize: none;
 	white-space: pre-wrap;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-textarea-huge {
@@ -8662,7 +8662,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: auto;
 	resize: none;
 	white-space: pre-wrap;
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-textarea-align-right {
@@ -8904,7 +8904,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-datefield-full {
-	width: 210px;
+	width: 180px;
 }
 
 .cia .v-datefield-day {
@@ -8912,11 +8912,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-datefield-month {
-	width: 105px;
+	width: 90px;
 }
 
 .cia .v-datefield-year {
-	width: 91px;
+	width: 78px;
 }
 
 .cia .v-datefield-popup {
@@ -8960,7 +8960,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-datefield-popup .v-datefield-calendarpanel {
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -8975,7 +8975,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px solid transparent;
 	line-height: 14px;
 	text-align: center;
-	font-size: 13px;
+	font-size: 11px;
 	background: #13303f;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
@@ -9024,7 +9024,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-datefield-popup .v-datefield-calendarpanel-weekdays strong {
 	font: inherit;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .v-datefield-popup .v-datefield-calendarpanel-header {
@@ -9053,8 +9053,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-datefield-popup td[class*="year"] button:before, .cia .v-datefield-popup td[class*="month"] button:before {
 	color: #617d8b;
-	font-size: 18px;
-	line-height: 21px;
+	font-size: 16px;
+	line-height: 18px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -9111,7 +9111,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-datefield-popup .v-datefield-calendarpanel-weeknumber, .cia .v-datefield-popup .v-datefield-calendarpanel-weekdays.v-datefield-calendarpanel-weeknumbers td:first-child {
 	width: 16px;
 	color: rgba(120, 148, 162, 0.85);
-	font-size: 13px;
+	font-size: 11px;
 	display: inline-block;
 	text-align: left;
 }
@@ -9136,7 +9136,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-datefield-popup td.v-datefield-calendarpanel-time {
 	width: 100%;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .v-datefield-popup td.v-datefield-calendarpanel-time .v-label {
@@ -9146,7 +9146,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-datefield-calendarpanel {
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -9161,7 +9161,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px solid transparent;
 	line-height: 14px;
 	text-align: center;
-	font-size: 13px;
+	font-size: 11px;
 	background: #13303f;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
@@ -9210,7 +9210,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-datefield-calendarpanel-weekdays strong {
 	font: inherit;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .v-datefield-calendarpanel-header {
@@ -9239,8 +9239,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia td[class*="year"] button:before, .cia td[class*="month"] button:before {
 	color: #617d8b;
-	font-size: 18px;
-	line-height: 21px;
+	font-size: 16px;
+	line-height: 18px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -9297,7 +9297,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-datefield-calendarpanel-weeknumber, .cia .v-datefield-calendarpanel-weekdays.v-datefield-calendarpanel-weeknumbers td:first-child {
 	width: 16px;
 	color: rgba(120, 148, 162, 0.85);
-	font-size: 13px;
+	font-size: 11px;
 	display: inline-block;
 	text-align: left;
 }
@@ -9322,7 +9322,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia td.v-datefield-calendarpanel-time {
 	width: 100%;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia td.v-datefield-calendarpanel-time .v-label {
@@ -9369,7 +9369,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-datefield-tiny {
 	height: 15px;
 	border-radius: 0;
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .v-datefield-tiny [class*="textfield"] {
@@ -9620,13 +9620,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-datefield-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-datefield-large {
 	height: 24px;
 	border-radius: 0;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-datefield-large [class*="textfield"] {
@@ -9753,7 +9753,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-datefield-huge {
 	height: 32px;
 	border-radius: 0;
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-datefield-huge [class*="textfield"] {
@@ -9878,7 +9878,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-inline-datefield-calendarpanel {
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -9893,7 +9893,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px solid transparent;
 	line-height: 14px;
 	text-align: center;
-	font-size: 13px;
+	font-size: 11px;
 	background: #13303f;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
@@ -9942,7 +9942,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-inline-datefield-calendarpanel-weekdays strong {
 	font: inherit;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .v-inline-datefield-calendarpanel-header {
@@ -9971,8 +9971,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia td[class*="year"] button:before, .cia td[class*="month"] button:before {
 	color: #617d8b;
-	font-size: 18px;
-	line-height: 21px;
+	font-size: 16px;
+	line-height: 18px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -10029,7 +10029,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-inline-datefield-calendarpanel-weeknumber, .cia .v-inline-datefield-calendarpanel-weekdays.v-inline-datefield-calendarpanel-weeknumbers td:first-child {
 	width: 16px;
 	color: rgba(120, 148, 162, 0.85);
-	font-size: 13px;
+	font-size: 11px;
 	display: inline-block;
 	text-align: left;
 }
@@ -10054,7 +10054,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia td.v-inline-datefield-calendarpanel-time {
 	width: 100%;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia td.v-inline-datefield-calendarpanel-time .v-label {
@@ -10414,7 +10414,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0;
 	text-align: left;
 	line-height: 13px;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-menubar-small:after {
@@ -10547,7 +10547,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 11px;
+	font-size: 10px;
 	text-align: center;
 }
 
@@ -10636,7 +10636,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-select-optiongroup .v-radiobutton, .cia .v-select-optiongroup .v-checkbox {
 	display: block;
-	margin: 5px 14px 0 0;
+	margin: 5px 12px 0 0;
 }
 
 .cia .v-select-optiongroup .v-radiobutton:first-child, .cia .v-select-optiongroup .v-checkbox:first-child {
@@ -10652,7 +10652,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-select-optiongroup-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-select-optiongroup-small .v-checkbox {
@@ -10702,7 +10702,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 10px;
+	font-size: 8px;
 	text-align: center;
 }
 
@@ -10823,7 +10823,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 10px;
+	font-size: 8px;
 	text-align: center;
 }
 
@@ -10912,7 +10912,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-select-optiongroup-small .v-radiobutton, .cia .v-select-optiongroup-small .v-checkbox {
 	display: block;
-	margin: 4px 14px 0 0;
+	margin: 4px 12px 0 0;
 }
 
 .cia .v-select-optiongroup-small .v-radiobutton:first-child, .cia .v-select-optiongroup-small .v-checkbox:first-child {
@@ -10928,7 +10928,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-select-optiongroup-large {
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-select-optiongroup-large .v-checkbox {
@@ -10978,7 +10978,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -11099,7 +11099,7 @@ div.v-layout.v-horizontal.v-widget {
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -11188,7 +11188,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-select-optiongroup-large .v-radiobutton, .cia .v-select-optiongroup-large .v-checkbox {
 	display: block;
-	margin: 6px 14px 0 0;
+	margin: 6px 12px 0 0;
 }
 
 .cia .v-select-optiongroup-large .v-radiobutton:first-child, .cia .v-select-optiongroup-large .v-checkbox:first-child {
@@ -11268,11 +11268,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-link-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-link-large {
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-window {
@@ -11403,7 +11403,7 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: 17px;
 	text-align: center;
 	cursor: pointer;
-	font-size: 18px;
+	font-size: 16px;
 	color: #5596b7;
 	-webkit-transition: color 140ms;
 	-moz-transition: color 140ms;
@@ -11760,10 +11760,10 @@ div.v-layout.v-horizontal.v-widget {
 	height: 2px;
 	width: 100%;
 	background: #008780;
-	font-size: 28px;
+	font-size: 24px;
 	line-height: 2px;
 	color: #008780;
-	text-indent: -4px;
+	text-indent: -3px;
 	text-shadow: 0 0 1px #13303f, 0 0 1px #13303f;
 	opacity: 1;
 	visibility: visible;
@@ -11889,7 +11889,7 @@ div.v-layout.v-horizontal.v-widget {
 	white-space: nowrap;
 	box-sizing: border-box;
 	overflow: hidden;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-tree8-cell.frozen {
@@ -11994,7 +11994,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0c9";
 	display: block;
 	font-family: ThemeIcons, sans-serif;
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-tree8-sidebar.v-contextmenu.closed {
@@ -12007,7 +12007,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tree8-sidebar.v-contextmenu.open .v-tree8-sidebar-button:after {
 	content: "\f0c9";
-	font-size: 12px;
+	font-size: 10px;
 	line-height: 1;
 }
 
@@ -12088,7 +12088,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-tree8-header th {
 	position: relative;
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-bottom: 2px solid #4a5d67;
@@ -12101,7 +12101,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-tree8-header .sort-asc, .cia .v-tree8-header .sort-desc {
-	padding-right: 24.5px;
+	padding-right: 22.5px;
 }
 
 .cia .v-tree8-header .sort-asc:after, .cia .v-tree8-header .sort-desc:after {
@@ -12109,7 +12109,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0de" " " attr(sort-order);
 	position: absolute;
 	right: 10.5px;
-	font-size: 10px;
+	font-size: 9px;
 }
 
 .cia .v-tree8-header .sort-desc:after {
@@ -12148,7 +12148,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tree8-footer td {
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-top: 2px solid #4a5d67;
@@ -12447,7 +12447,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-tree8-editor-footer {
-	font-size: 12px;
+	font-size: 11px;
 	padding: 0 4px;
 	background: #13303f;
 	-webkit-animation: valo-grid-editor-footer-animate-in 200ms 120ms backwards;
@@ -13020,7 +13020,7 @@ div.v-layout.v-horizontal.v-widget {
 	white-space: nowrap;
 	box-sizing: border-box;
 	overflow: hidden;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-treegrid-cell.frozen {
@@ -13125,7 +13125,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0c9";
 	display: block;
 	font-family: ThemeIcons, sans-serif;
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-treegrid-sidebar.v-contextmenu.closed {
@@ -13138,7 +13138,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-treegrid-sidebar.v-contextmenu.open .v-treegrid-sidebar-button:after {
 	content: "\f0c9";
-	font-size: 12px;
+	font-size: 10px;
 	line-height: 1;
 }
 
@@ -13219,7 +13219,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-treegrid-header th {
 	position: relative;
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-bottom: 2px solid #4a5d67;
@@ -13232,7 +13232,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-treegrid-header .sort-asc, .cia .v-treegrid-header .sort-desc {
-	padding-right: 24.5px;
+	padding-right: 22.5px;
 }
 
 .cia .v-treegrid-header .sort-asc:after, .cia .v-treegrid-header .sort-desc:after {
@@ -13240,7 +13240,7 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f0de" " " attr(sort-order);
 	position: absolute;
 	right: 10.5px;
-	font-size: 10px;
+	font-size: 9px;
 }
 
 .cia .v-treegrid-header .sort-desc:after {
@@ -13279,7 +13279,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-treegrid-footer td {
 	background-color: #13303f;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: inherit;
 	border-left: 2px solid #4a5d67;
 	border-top: 2px solid #4a5d67;
@@ -13578,7 +13578,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-treegrid-editor-footer {
-	font-size: 12px;
+	font-size: 11px;
 	padding: 0 4px;
 	background: #13303f;
 	-webkit-animation: valo-grid-editor-footer-animate-in 200ms 120ms backwards;
@@ -13998,7 +13998,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px solid #4a5d67;
 	background: #13303f;
 	white-space: nowrap;
-	font-size: 12px;
+	font-size: 10px;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -14029,7 +14029,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-table-footer-container {
-	padding: 2px 7px 4px;
+	padding: 3px 7px 5px;
 	float: right;
 }
 
@@ -14038,7 +14038,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-table-caption-container, .cia .v-table-header-drag {
-	padding: 4px 7px 2px;
+	padding: 5px 7px 3px;
 	border-left: 2px solid #4a5d67;
 }
 
@@ -14429,16 +14429,16 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-table-compact .v-table-header-wrap, .cia .v-table-compact .v-table-footer-wrap, .cia .v-table-compact .v-table-header-drag, .cia .v-table-small .v-table-header-wrap, .cia .v-table-small .v-table-footer-wrap, .cia .v-table-small .v-table-header-drag {
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-table-compact .v-table-footer-container, .cia .v-table-small .v-table-footer-container {
-	padding: 1px 6px 3px;
+	padding: 2px 6px 4px;
 }
 
 .cia .v-table-compact .v-table-caption-container, .cia .v-table-compact .v-table-header-drag, .cia .v-table-small .v-table-caption-container, .cia .v-table-small .v-table-header-drag {
-	padding-top: 3px;
-	padding-bottom: 1px;
+	padding-top: 4px;
+	padding-bottom: 2px;
 	padding-left: 4px;
 	padding-right: 4px;
 }
@@ -14485,7 +14485,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-table-compact.v-treetable .v-table-cell-wrapper, .cia .v-table-small.v-treetable .v-table-cell-wrapper {
 	padding-left: 0;
 	padding-right: 0;
-	min-height: 14px;
+	min-height: 12px;
 }
 
 .cia .v-table-compact.v-treetable .v-table-cell-content, .cia .v-table-small.v-treetable .v-table-cell-content {
@@ -14507,11 +14507,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-table-small {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .cia .v-table-small.v-treetable .v-table-cell-wrapper {
-	min-height: 12px;
+	min-height: 11px;
 }
 
 .cia .v-treetable [class*="caption-container"], .cia .v-treetable [class*="footer-container"], .cia .v-treetable [class*="cell-wrapper"] {
@@ -14521,11 +14521,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-treetable [class*="caption-container"], .cia .v-treetable [class*="footer-container"] {
-	min-height: 14px;
+	min-height: 12px;
 }
 
 .cia .v-treetable [class*="cell-wrapper"] {
-	min-height: 14px;
+	min-height: 12px;
 }
 
 .cia .v-treetable [class*="caption-container"] {
@@ -15088,7 +15088,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	text-align: center;
 	line-height: 20px;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	color: #83b0c7;
 	width: auto !important;
@@ -15142,7 +15142,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-tabsheet-tabitemcell .v-caption-closable {
-	padding-right: 17px;
+	padding-right: 15px;
 }
 
 .cia .v-tabsheet-tabitemcell.icons-on-top .v-caption-closable {
@@ -15153,10 +15153,10 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	right: 0;
 	top: 50%;
-	margin: -7px 0 0;
-	font-size: 15px;
-	line-height: 15px;
-	width: 15px;
+	margin: -6px 0 0;
+	font-size: 13px;
+	line-height: 13px;
+	width: 13px;
 	text-align: center;
 	border-radius: 0;
 	color: #4890b5;
@@ -15331,12 +15331,12 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer .v-caption-closable {
-	padding-right: 22px;
+	padding-right: 20px;
 }
 
 .cia .v-tabsheet-framed  > .v-tabsheet-tabcontainer .v-tabsheet-caption-close {
-	top: 4px;
-	right: 4px;
+	top: 3px;
+	right: 3px;
 	margin-top: 0;
 }
 
@@ -15418,7 +15418,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-tabsheet-icons-on-top  > .v-tabsheet-tabcontainer .v-tabsheet-caption-close {
-	top: 4px;
+	top: 3px;
 	margin-top: 0;
 }
 
@@ -15453,22 +15453,22 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-colorpicker-popup [class$="sliders"] .v-has-caption {
 	white-space: nowrap;
-	padding-left: 42px;
+	padding-left: 36px;
 }
 
 .cia .v-colorpicker-popup [class$="sliders"] .v-caption {
 	display: inline-block;
-	margin-left: -42px;
-	width: 42px;
+	margin-left: -36px;
+	width: 36px;
 }
 
 .cia .v-colorpicker-popup [class$="sliders"] .v-slot-hue-slider + .v-slot .v-has-caption {
-	padding-left: 70px;
+	padding-left: 60px;
 }
 
 .cia .v-colorpicker-popup [class$="sliders"] .v-slot-hue-slider + .v-slot .v-caption {
-	margin-left: -70px;
-	width: 70px;
+	margin-left: -60px;
+	width: 60px;
 }
 
 .cia .v-colorpicker-popup .v-slider-red .v-slider-base:after {
@@ -15579,7 +15579,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: linear-gradient(to bottom,#13303f 0%, #13303f 100%);
 	color: #afcad8;
 	font-weight: 600;
-	font-size: 13px;
+	font-size: 11px;
 	
 	
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
@@ -15726,7 +15726,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: linear-gradient(to bottom,#13303f 0%, #13303f 100%);
 	color: #afcad8;
 	font-weight: 600;
-	font-size: 13px;
+	font-size: 11px;
 	
 	
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
@@ -15816,7 +15816,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-select-twincol-caption-left, .cia .v-select-twincol-caption-right {
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 600;
 	padding-bottom: 0.3em;
 }
@@ -16009,7 +16009,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-calendar-bottom-spacer, .cia .v-calendar-spacer, .cia .v-calendar-bottom-spacer-empty {
-	height: 17px;
+	height: 14px;
 	margin-bottom: 2px;
 }
 
@@ -16025,7 +16025,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-calendar-day-number {
 	line-height: 13px;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: right;
 	margin: 0 3px;
 	white-space: nowrap;
@@ -16068,7 +16068,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-calendar-weekly-longevents .v-calendar-event-all-day {
-	height: 19px;
+	height: 16px;
 	line-height: 1.6;
 	margin-bottom: 2px;
 }
@@ -16091,8 +16091,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-calendar-time {
 	text-align: right;
 	padding-right: 5px;
-	margin-top: -6px;
-	padding-bottom: 6px;
+	margin-top: -5px;
+	padding-bottom: 5px;
 }
 
 .cia .v-calendar-day-times, .cia .v-calendar-day-times-today {
@@ -16173,14 +16173,14 @@ div.v-layout.v-horizontal.v-widget {
 	margin-bottom: 2px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	height: 17px;
-	line-height: 17px;
+	height: 14px;
+	line-height: 14px;
 }
 
 .cia .v-calendar-event-month .v-calendar-event-time {
 	float: right;
 	font-size: 0.9em;
-	line-height: 17px;
+	line-height: 14px;
 	opacity: 0.5;
 	filter: alpha(opacity=50) ;
 }
@@ -16193,8 +16193,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-calendar-event-all-day {
 	padding: 0 3px;
 	box-sizing: border-box;
-	height: 17px;
-	line-height: 17px;
+	height: 14px;
+	line-height: 14px;
 	border-radius: 0;
 	margin-left: -1px;
 	white-space: nowrap;
@@ -16391,7 +16391,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia h4, .cia .v-label-h4 {
 	line-height: 1.1;
 	font-weight: 800;
-	font-size: 12px;
+	font-size: 11px;
 	color: #b5cdda;
 	text-transform: uppercase;
 	letter-spacing: 0;
@@ -16400,11 +16400,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-csslayout  > h1:first-child, .cia .v-csslayout  > h2:first-child, .cia .v-csslayout  > h3:first-child, .cia .v-csslayout  > h4 > .v-label-h1:first-child, .cia .v-csslayout  > .v-label-h2:first-child, .cia .v-csslayout  > .v-label-h3:first-child, .cia .v-csslayout  > .v-label-h4:first-child {
-	margin-top: 14px;
+	margin-top: 12px;
 }
 
 .cia .v-verticallayout > .v-slot:first-child h1, .cia .v-verticallayout > .v-slot:first-child .v-label-h1, .cia .v-verticallayout > .v-slot:first-child h2, .cia .v-verticallayout > .v-slot:first-child .v-label-h2, .cia .v-verticallayout > .v-slot:first-child h3, .cia .v-verticallayout > .v-slot:first-child .v-label-h3, .cia .v-verticallayout > .v-slot:first-child h4, .cia .v-verticallayout > .v-slot:first-child .v-label-h4, .cia .v-verticallayout > div > .v-slot:first-child h1, .cia .v-verticallayout > div > .v-slot:first-child .v-label-h1, .cia .v-verticallayout > div > .v-slot:first-child h2, .cia .v-verticallayout > div > .v-slot:first-child .v-label-h2, .cia .v-verticallayout > div > .v-slot:first-child h3, .cia .v-verticallayout > div > .v-slot:first-child .v-label-h3, .cia .v-verticallayout > div > .v-slot:first-child h4, .cia .v-verticallayout > div > .v-slot:first-child .v-label-h4 {
-	margin-top: 14px;
+	margin-top: 12px;
 }
 
 .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell h1, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell .v-label-h1, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell h2, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell .v-label-h2, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell h3, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell .v-label-h3, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell h4, .cia .v-verticallayout > .v-slot:first-child .v-formlayout-contentcell .v-label-h4, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell h1, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell .v-label-h1, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell h2, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell .v-label-h2, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell h3, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell .v-label-h3, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell h4, .cia .v-verticallayout > div > .v-slot:first-child .v-formlayout-contentcell .v-label-h4 {
@@ -16420,19 +16420,19 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-label-large {
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .cia .v-label-small {
-	font-size: 12px;
-}
-
-.cia .v-label-tiny {
 	font-size: 11px;
 }
 
+.cia .v-label-tiny {
+	font-size: 9px;
+}
+
 .cia .v-label-huge {
-	font-size: 23px;
+	font-size: 20px;
 }
 
 .cia .v-label-bold {
@@ -16472,7 +16472,7 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 0;
 	padding: 4px 10px 4px 20px;
 	font-weight: 700;
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .cia .v-label-success:before, .cia .v-label-failure:before {
@@ -16846,7 +16846,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-richtextarea .gwt-RichTextToolbar-bottom {
-	font-size: 11px;
+	font-size: 10px;
 	padding: 0 5px 5px 0;
 }
 
@@ -16956,7 +16956,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-Notification .v-Notification-caption {
 	color: #008780;
-	font-size: 17px;
+	font-size: 14px;
 	line-height: 1;
 }
 
@@ -16985,11 +16985,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-Notification-caption ~ .v-Notification-description, .cia .v-Notification-caption ~ .v-Notification-details {
-	margin-left: 21px;
+	margin-left: 18px;
 }
 
 .cia .v-icon + .v-Notification-caption {
-	margin-left: 14px;
+	margin-left: 12px;
 }
 
 .cia .v-Notification-system {
@@ -17004,7 +17004,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #444;
 	background-color: rgba(68, 68, 68, 0.9);
 	font-weight: 700;
-	line-height: 20px;
+	line-height: 17px;
 }
 
 .cia .v-Notification-system .v-Notification-description, .cia .v-Notification-system .v-Notification-details {
@@ -17148,7 +17148,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #444;
 	background-color: rgba(68, 68, 68, 0.9);
 	font-weight: 700;
-	line-height: 20px;
+	line-height: 17px;
 }
 
 .cia .v-Notification.dark .v-Notification-caption {
@@ -17212,11 +17212,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-Notification.small .v-Notification-caption {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-Notification.small .v-Notification-description {
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-Notification.critical-error {
@@ -17333,7 +17333,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: -webkit-linear-gradient(right, #060e13 0%, #060e13 5px);
 	background-image: linear-gradient(to left,#060e13 0%, #060e13 5px);
 	color: #5595b6;
-	font-size: 13px;
+	font-size: 11px;
 	line-height: 16px;
 	border-right: 2px solid #505659;
 	white-space: nowrap;
@@ -17377,7 +17377,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 7px 10px;
-	font-size: 13px;
+	font-size: 11px;
 	border-bottom: 2px solid #4caba6;
 	
 	
@@ -17398,7 +17398,7 @@ div.v-layout.v-horizontal.v-widget {
 	
 	
 	text-shadow: inherit;
-	font-size: 14px;
+	font-size: 12px;
 	border-color: inherit;
 }
 
@@ -17585,9 +17585,9 @@ div.v-layout.v-horizontal.v-widget {
 	transition: background-color 300ms;
 	line-height: 1;
 	padding: 2px 3px;
-	min-width: 9px;
+	min-width: 8px;
 	text-align: center;
-	top: -0.5px;
+	top: 0.5px;
 	border-radius: 0;
 }
 
@@ -17598,7 +17598,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .valo-menu-part.large-icons .valo-menu-title {
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .valo-menu-part.large-icons .valo-menu-title .v-label-undef-w {
@@ -17608,7 +17608,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .valo-menu-part.large-icons .v-menubar-user-menu {
 	margin-left: 0;
 	margin-right: 0;
-	font-size: 10px;
+	font-size: 8px;
 }
 
 .cia .valo-menu-part.large-icons .v-menubar-user-menu img.v-icon {
@@ -17624,7 +17624,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	background: black;
-	font-size: 11px;
+	font-size: 10px;
 	
 }
 
@@ -17638,7 +17638,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .valo-menu-part.large-icons .valo-menu-item {
 	display: block;
-	font-size: 22px;
+	font-size: 19px;
 	line-height: 1;
 	padding: 7px;
 	text-align: center;
@@ -17654,7 +17654,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: auto;
 	margin: 0.3em 0 0;
 	padding: 0;
-	font-size: 10px;
+	font-size: 8px;
 	line-height: 1.3;
 }
 
@@ -17713,7 +17713,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-title {
-	font-size: 11px;
+	font-size: 9px;
 }
 
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-title .v-label-undef-w {
@@ -17723,7 +17723,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .v-menubar-user-menu {
 	margin-left: 0;
 	margin-right: 0;
-	font-size: 10px;
+	font-size: 8px;
 }
 
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .v-menubar-user-menu img.v-icon {
@@ -17739,7 +17739,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	background: black;
-	font-size: 11px;
+	font-size: 10px;
 	
 }
 
@@ -17753,7 +17753,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item {
 	display: block;
-	font-size: 22px;
+	font-size: 19px;
 	line-height: 1;
 	padding: 7px;
 	text-align: center;
@@ -17769,7 +17769,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: auto;
 	margin: 0.3em 0 0;
 	padding: 0;
-	font-size: 10px;
+	font-size: 8px;
 	line-height: 1.3;
 }
 
@@ -17872,7 +17872,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: -webkit-linear-gradient(right, #060e13 0%, #060e13 5px);
 	background-image: linear-gradient(to left,#060e13 0%, #060e13 5px);
 	color: #5595b6;
-	font-size: 13px;
+	font-size: 11px;
 	line-height: 16px;
 	border-right: 2px solid #505659;
 	white-space: nowrap;
@@ -17937,7 +17937,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-layout-content-overview-panel-level2 .title {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 	height: 40px;
 	text-align: center;
 }
@@ -17956,7 +17956,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-layout-content-overview-panel-level2[width-range~="0-600px"] .title {
 	width: 100%;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	height: 30px;
 	text-align: center;
 }
@@ -17993,7 +17993,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-layout-content-pagemode-panel-level2 .title {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 	height: 40px;
 	width: 100%;
 	text-align: center;
@@ -18007,13 +18007,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-label-Header {
-	font-size: 16px;
+	font-size: 14px;
 	color: #fed552;
 	border-radius: 6px;
 }
 
 .cia .v-label-HeaderSlogan {
-	font-size: 16px;
+	font-size: 14px;
 	color: #2deff9;
 	border-radius: 6px;
 }
@@ -18044,41 +18044,41 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-menubar-menuitem-Header {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-menubar-menuitem-caption-Header {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-menubar-submenu-Header {
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-menubar-selected-Header {
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .cia .v-menubar-menuitem-RestrictedHeader {
-	font-size: 12px;
+	font-size: 10px;
 	width: 320px;
 	overflow: auto;
 }
 
 .cia .v-menubar-menuitem-caption-RestrictedHeader {
-	font-size: 12px;
+	font-size: 10px;
 	width: 320px;
 	overflow: auto;
 }
 
 .cia .v-menubar-submenu-RestrictedHeader {
-	font-size: 12px;
+	font-size: 10px;
 	width: 320px;
 	overflow: auto;
 }
 
 .cia .v-menubar-selected-RestrictedHeader {
-	font-size: 12px;
+	font-size: 10px;
 	width: 320px;
 	overflow: auto;
 }

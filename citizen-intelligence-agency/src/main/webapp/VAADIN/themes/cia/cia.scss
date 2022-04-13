@@ -49,7 +49,7 @@
 
 	    .title {
 	    	font-weight: bold;
-	    	font-size: 20px;
+	    	font-size: 18px;
 			height: 40px;
 			text-align: center;
 	    }
@@ -68,7 +68,7 @@
 		.title {
 			width: 100%;
 			font-weight: bold;
-	    	font-size: 16px;
+	    	font-size: 14px;
 			height: 30px;
 			text-align: center;
 
@@ -109,7 +109,7 @@
 
 	    .title {
 	    	font-weight: bold;
-	    	font-size: 20px;
+	    	font-size: 18px;
 			height: 40px;
 			width: 100%;
 			text-align: center;
@@ -126,13 +126,13 @@
 
 
 	.v-label-Header {
-	 font-size: 16px;
+	 font-size: 14px;
 	 color: #fed552;
 	 border-radius: $headerBorderRadius;
 	}
 
 	.v-label-HeaderSlogan {
-	 font-size: 16px;
+	 font-size: 14px;
 	 color: #2deff9;
 	 border-radius: $headerBorderRadius;
 	}
@@ -167,41 +167,41 @@
 	}
 
 	.v-menubar-menuitem-Header {
-	 font-size: 14px;
+	 font-size: 12px;
 	}
 
 	.v-menubar-menuitem-caption-Header {
-	 font-size: 14px;
+	 font-size: 12px;
 	}
 
 	.v-menubar-submenu-Header {
-	 font-size: 12px;
+	 font-size: 10px;
 	}
 
 	.v-menubar-selected-Header {
-	 font-size: 12px;
+	 font-size: 10px;
 	}
 
 	.v-menubar-menuitem-RestrictedHeader {
-	 font-size: 12px;
+	 font-size: 10px;
      width:320px;
      overflow: auto;
 	}
 
 	.v-menubar-menuitem-caption-RestrictedHeader {
-	 font-size: 12px;
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}
 	
 	.v-menubar-submenu-RestrictedHeader {
-	 font-size: 12px;
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}
 
 	.v-menubar-selected-RestrictedHeader {
-	 font-size: 12px;
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}

@@ -32,7 +32,6 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.vaadin.annotations.Push;
-import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Viewport;
 import com.vaadin.server.Page;
@@ -53,7 +52,6 @@ import com.vaadin.ui.UI;
 @SpringViewDisplay
 @Theme("cia")
 @Push(transport = Transport.WEBSOCKET_XHR)
-@StyleSheet({"https://fonts.googleapis.com/css?family=Inconsolata"})
 @Viewport("width=device-width, initial-scale=1")
 public final class CitizenIntelligenceAgencyUI extends UI {
 
