@@ -17,7 +17,7 @@ Resources:
         - Name: RuleWithAWSManagedRulesAmazonIpReputationList #VendorName: AWS, Name: AWSManagedRulesAmazonIpReputationList, WCU: 25
           Priority: 0
           OverrideAction:
-            Count: {}
+            None: {}
           VisibilityConfig:
             SampledRequestsEnabled: true
             CloudWatchMetricsEnabled: true
@@ -27,10 +27,23 @@ Resources:
               VendorName: AWS
               Name: AWSManagedRulesAmazonIpReputationList
               ExcludedRules: []
-        - Name: RuleWithAWSManagedRulesCommonRuleSet #VendorName: AWS, Name: AWSManagedRulesCommonRuleSet, WCU: 700
+        - Name: RuleWithAWSManagedRulesAnonymousIpList #VendorName: AWS, Name: AWSManagedRulesAnonymousIpList, WCU: 50
           Priority: 1
           OverrideAction:
-            Count: {}
+            None: {}
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: RuleWithAWSManagedRulesAnonymousIpList
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesAnonymousIpList
+              ExcludedRules: []
+        - Name: RuleWithAWSManagedRulesCommonRuleSet #VendorName: AWS, Name: AWSManagedRulesCommonRuleSet, WCU: 700
+          Priority: 2
+          OverrideAction:
+            None: {}
           VisibilityConfig:
             SampledRequestsEnabled: true
             CloudWatchMetricsEnabled: true
@@ -41,9 +54,9 @@ Resources:
               Name: AWSManagedRulesCommonRuleSet
               ExcludedRules: ['GenericLFI_BODY', 'GenericRFI_BODY']
         - Name: RuleWithAWSManagedRulesKnownBadInputsRuleSet #VendorName: AWS, Name: AWSManagedRulesKnownBadInputsRuleSet, WCU: 200
-          Priority: 2
+          Priority: 3
           OverrideAction:
-            Count: {}
+            None: {}
           VisibilityConfig:
             SampledRequestsEnabled: true
             CloudWatchMetricsEnabled: true
@@ -54,9 +67,9 @@ Resources:
               Name: AWSManagedRulesKnownBadInputsRuleSet
               ExcludedRules: []
         - Name: RuleWithAWSManagedRulesLinuxRuleSet #VendorName: AWS, Name: AWSManagedRulesLinuxRuleSet, WCU: 200
-          Priority: 3
+          Priority: 4
           OverrideAction:
-            Count: {}
+            None: {}
           VisibilityConfig:
             SampledRequestsEnabled: true
             CloudWatchMetricsEnabled: true
@@ -67,9 +80,9 @@ Resources:
               Name: AWSManagedRulesLinuxRuleSet
               ExcludedRules: []
         - Name: RuleWithAWSManagedRulesUnixRuleSet #VendorName: AWS, Name: AWSManagedRulesUnixRuleSet, WCU: 100
-          Priority: 4
+          Priority: 5
           OverrideAction:
-            Count: {}
+            None: {}
           VisibilityConfig:
             SampledRequestsEnabled: true
             CloudWatchMetricsEnabled: true
@@ -79,21 +92,6 @@ Resources:
               VendorName: AWS
               Name: AWSManagedRulesUnixRuleSet
               ExcludedRules: []              
-        - Name: BlockXssAttack
-          Priority: 5
-          Action:
-            Block: {}
-          VisibilityConfig:
-            SampledRequestsEnabled: true
-            CloudWatchMetricsEnabled: true
-            MetricName: BlockXssAttackMetric
-          Statement:
-            XssMatchStatement:
-              FieldToMatch:
-                AllQueryArguments: {}
-              TextTransformations:
-                - Priority: 1
-                  Type: NONE
 Outputs:
   BasicSecurityACLArn:
     Description: BasicSecurityACL arn
