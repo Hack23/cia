@@ -27,6 +27,9 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.server.Responsive;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -62,6 +65,13 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		LabelFactory.createHeader2Label(panelContent, "MainOverview");
+
+		
+		final Label descriptionLabel = new Label("Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		panelContent.addComponent(descriptionLabel);
 
 		getMenuItemFactory().createOverviewPage(panelContent);
 
