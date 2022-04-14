@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-web-pom</artifactId>
-    <version>2022.4.14</version>
+    <version>2022.4.15-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>web-widgets</artifactId>
@@ -13,7 +13,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2022.4.14</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
@@ -649,7 +649,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -759,7 +759,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration></configuration>
+            <configuration />
           </execution>
         </executions>
       </plugin>
