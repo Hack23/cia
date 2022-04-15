@@ -34,10 +34,10 @@ dpkg-reconfigure --frontend=noninteractive locales
 #
 #
 
-apt-get -y install postgresql-13 postgresql-contrib-13
+apt-get -y install postgresql-14 postgresql-contrib-14 postgresql-14-pgaudit
 service postgresql stop
 
-echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/13/main/pg_hba.conf
+echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/14/main/pg_hba.conf
 
 openssl rand -base64 48 > passphrase.txt
 openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
@@ -48,23 +48,23 @@ openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 rm passphrase.txt
 rm server.csr
 
-cp server.crt /var/lib/postgresql/13/main/server.crt
-cp server.key /var/lib/postgresql/13/main/server.key
+cp server.crt /var/lib/postgresql/14/main/server.crt
+cp server.key /var/lib/postgresql/14/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/13/main/server.key
-chmod 700 /var/lib/postgresql/13/main/server.crt
-chown -R postgres:postgres /var/lib/postgresql/13/main/
+chmod 700 /var/lib/postgresql/14/main/server.key
+chmod 700 /var/lib/postgresql/14/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/14/main/
 
-echo "ssl_cert_file = '/var/lib/postgresql/13/main/server.crt'" >> /etc/postgresql/13/main/postgresql.conf
-echo "ssl_key_file = '/var/lib/postgresql/13/main/server.key'" >> /etc/postgresql/13/main/postgresql.conf
-echo "max_prepared_transactions = 100" >> /etc/postgresql/13/main/postgresql.conf
+echo "ssl_cert_file = '/var/lib/postgresql/14/main/server.crt'" >> /etc/postgresql/14/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/14/main/server.key'" >> /etc/postgresql/14/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/14/main/postgresql.conf
 
-echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/13/main/postgresql.conf
-echo "pgaudit.log = ddl" >> /etc/postgresql/13/main/postgresql.conf
-echo "pg_stat_statements.track = all" >> /etc/postgresql/13/main/postgresql.conf
-echo "pg_stat_statements.max = 10000" >> /etc/postgresql/13/main/postgresql.conf
-echo "listen_addresses = '*'" >> /etc/postgresql/13/main/postgresql.conf
-echo "port = 6432" >> /etc/postgresql/13/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" >> /etc/postgresql/14/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/14/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/14/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/14/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/14/main/postgresql.conf
+echo "port = 6432" >> /etc/postgresql/14/main/postgresql.conf
 
 service postgresql start
 
