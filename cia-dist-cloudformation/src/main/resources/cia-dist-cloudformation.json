@@ -3398,7 +3398,7 @@
                                             "\n",
                                             "datetime_format = %Y-%m-%d %H:%M:%S",
                                             "\n",
-                                            "file = /opt/cia/logs/*.log",
+                                            "file = /opt/cia/cia-base/logs/*.log",
                                             "\n",
                                             "buffer_duration = 5000",
                                             "\n",
