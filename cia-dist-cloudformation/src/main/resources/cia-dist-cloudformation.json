@@ -2552,6 +2552,14 @@
                     {
                         "Key": "idle_timeout.timeout_seconds",
                         "Value": "60"
+                    },
+                    {
+                        "Key": "routing.http.drop_invalid_header_fields.enabled",
+                        "Value": "true"
+                    },
+                    {
+                        "Key": "routing.http.desync_mitigation_mode",
+                        "Value": "strictest"
                     }
                 ]
             },
@@ -3398,7 +3406,7 @@
                                             "\n",
                                             "datetime_format = %Y-%m-%d %H:%M:%S",
                                             "\n",
-                                            "file = /opt/cia/logs/*.log",
+                                            "file = /opt/cia/cia-base/logs/*.log",
                                             "\n",
                                             "buffer_duration = 5000",
                                             "\n",
