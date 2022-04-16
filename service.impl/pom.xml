@@ -185,7 +185,7 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
-      <version>4.10</version>
+      <version>4.10.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.protobuf</groupId>
