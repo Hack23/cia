@@ -2367,6 +2367,20 @@
                 "AllocatedStorage": {
                     "Ref": "DBAllocatedStorage"
                 },
+                "copyTagsToSnapshot": "true",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "DomainName"
+                        }
+                    },
+                    {
+                        "Key": "Data",
+                        "Value": "Public"
+                    }
+                ]
+                
                 "DBInstanceClass": {
                     "Ref": "DBClass"
                 },
