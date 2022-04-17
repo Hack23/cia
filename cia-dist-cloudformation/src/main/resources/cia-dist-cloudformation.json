@@ -1914,6 +1914,23 @@
                 }
             }
         },
+        "InboundDenyRdpPrivateAppNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": {
+                    "Ref": "PrivateAppNetworkAcl"
+                },
+                "RuleNumber": "70",
+                "Protocol": "6",
+                "RuleAction": "deny",
+                "Egress": "false",
+                "CidrBlock": "0.0.0.0/0",
+                "PortRange": {
+                    "From": "3389",
+                    "To": "3389"
+                }
+            }
+        },
         "OutboundPrivateAppNetworkAclEntry": {
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
@@ -1928,6 +1945,23 @@
                 "PortRange": {
                     "From": "80",
                     "To": "65535"
+                }
+            }
+        },
+        "OutboundDenyRdpPrivateAppNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": {
+                    "Ref": "PrivateAppNetworkAcl"
+                },
+                "RuleNumber": "80",
+                "Protocol": "6",
+                "RuleAction": "deny",
+                "Egress": "true",
+                "CidrBlock": "0.0.0.0/0",
+                "PortRange": {
+                    "From": "3389",
+                    "To": "3389"
                 }
             }
         },
@@ -1982,6 +2016,23 @@
                 }
             }
         },
+       "InboundEphemeralPortDenyRdpPublicNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": {
+                    "Ref": "PublicNetworkAcl"
+                },
+                "RuleNumber": "30",
+                "Protocol": "6",
+                "RuleAction": "deny",
+                "Egress": "false",
+                "CidrBlock": "0.0.0.0/0",
+                "PortRange": {
+                    "From": "3389",
+                    "To": "3389"
+                }
+            }
+        },
         "OutboundHttpPublicNetworkAclEntry": {
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
@@ -2030,6 +2081,23 @@
                 "PortRange": {
                     "From": "1024",
                     "To": "65535"
+                }
+            }
+        },
+         "OutboundEphemeralDenyRdpPublicNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": {
+                    "Ref": "PublicNetworkAcl"
+                },
+                "RuleNumber": "60",
+                "Protocol": "6",
+                "RuleAction": "deny",
+                "Egress": "true",
+                "CidrBlock": "0.0.0.0/0",
+                "PortRange": {
+                    "From": "3389",
+                    "To": "3389"
                 }
             }
         },
