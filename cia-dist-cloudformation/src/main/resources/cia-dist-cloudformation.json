@@ -432,7 +432,27 @@
                 "LoggingConfiguration": {
                     "DestinationBucketName": { "Ref": "LogsBucket" },
                     "LogFilePrefix": "/logs/ArtifactBucket/"
-                }
+                },
+                "Tags": [
+                    {
+                        "Key": "DomainName",
+                        "Value": {
+                            "Ref": "DomainName"
+                        }
+                    },
+                    {
+                        "Key": "DataClassificationConfidentiality",
+                        "Value": "Proprietary"
+                    },
+                    {
+                        "Key": "DataClassificationIntegrity",
+                        "Value": "Standard"
+                    },
+                    {
+                        "Key": "DataClassificationAvailability",
+                        "Value": "Standard"
+                    }
+                ] 
             }
         },
         "ArtifactBucketEncryptionKey": {
@@ -2367,6 +2387,27 @@
                 "AllocatedStorage": {
                     "Ref": "DBAllocatedStorage"
                 },
+                "copyTagsToSnapshot": "true",
+                "Tags": [
+                    {
+                        "Key": "DomainName",
+                        "Value": {
+                            "Ref": "DomainName"
+                        }
+                    },
+                    {
+                        "Key": "DataClassificationConfidentiality",
+                        "Value": "Proprietary"
+                    },
+                    {
+                        "Key": "DataClassificationIntegrity",
+                        "Value": "Standard"
+                    },
+                    {
+                        "Key": "DataClassificationAvailability",
+                        "Value": "Standard"
+                    }
+                ],
                 "DBInstanceClass": {
                     "Ref": "DBClass"
                 },
@@ -2493,7 +2534,27 @@
                 },
                 "LoggingConfiguration": {
                     "LogFilePrefix": "/logs/LogsBucket/"
-                }
+                },
+                "Tags": [
+                    {
+                        "Key": "DomainName",
+                        "Value": {
+                            "Ref": "DomainName"
+                        }
+                    },
+                    {
+                        "Key": "DataClassificationConfidentiality",
+                        "Value": "Proprietary"
+                    },
+                    {
+                        "Key": "DataClassificationIntegrity",
+                        "Value": "Standard"
+                    },
+                    {
+                        "Key": "DataClassificationAvailability",
+                        "Value": "Standard"
+                    }
+                ]
             }
         },
         "LogsBucketPolicy": {
