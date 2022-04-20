@@ -81,7 +81,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.4.14/cia-dist-deb-2022.4.14.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.4.20/cia-dist-deb-2022.4.20.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -290,6 +290,15 @@ Resources:
       LoggingConfiguration:
         DestinationBucketName: !Ref 'LogsBucket'
         LogFilePrefix: /logs/ArtifactBucket/
+      Tags:
+        - Key: DomainName
+          Value: !Ref 'DomainName'
+        - Key: DataClassificationConfidentiality
+          Value: Proprietary
+        - Key: DataClassificationIntegrity
+          Value: Standard
+        - Key: DataClassificationAvailability
+          Value: Standard
   ArtifactBucketEncryptionKey:
     Type: AWS::KMS::Key
     Properties:
@@ -1063,6 +1072,18 @@ Resources:
       PortRange:
         From: '1024'
         To: '65535'
+  InboundDenyRdpPrivateAppNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateAppNetworkAcl'
+      RuleNumber: '70'
+      Protocol: '6'
+      RuleAction: deny
+      Egress: 'false'
+      CidrBlock: '0.0.0.0/0'
+      PortRange:
+        From: '3389'
+        To: '3389'
   OutboundPrivateAppNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
@@ -1075,6 +1096,18 @@ Resources:
       PortRange:
         From: '80'
         To: '65535'
+  OutboundDenyRdpPrivateAppNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateAppNetworkAcl'
+      RuleNumber: '80'
+      Protocol: '6'
+      RuleAction: deny
+      Egress: 'true'
+      CidrBlock: '0.0.0.0/0'
+      PortRange:
+        From: '3389'
+        To: '3389'
   InboundHttpsPortPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
@@ -1111,6 +1144,18 @@ Resources:
       PortRange:
         From: '1024'
         To: '65535'
+  InboundEphemeralPortDenyRdpPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '30'
+      Protocol: '6'
+      RuleAction: deny
+      Egress: 'false'
+      CidrBlock: '0.0.0.0/0'
+      PortRange:
+        From: '3389'
+        To: '3389'
   OutboundHttpPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
@@ -1147,6 +1192,18 @@ Resources:
       PortRange:
         From: '1024'
         To: '65535'
+  OutboundEphemeralDenyRdpPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '60'
+      Protocol: '6'
+      RuleAction: deny
+      Egress: 'true'
+      CidrBlock: '0.0.0.0/0'
+      PortRange:
+        From: '3389'
+        To: '3389'
   PublicSubnetNetworkAclAssociation:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties:
@@ -1288,6 +1345,16 @@ Resources:
         - !Ref 'DBEncryptionKmsAlias'
         - !Ref 'AWS::NoValue'
       AllocatedStorage: !Ref 'DBAllocatedStorage'
+      CopyTagsToSnapshot: 'true'
+      Tags:
+        - Key: DomainName
+          Value: !Ref 'DomainName'
+        - Key: DataClassificationConfidentiality
+          Value: Proprietary
+        - Key: DataClassificationIntegrity
+          Value: Standard
+        - Key: DataClassificationAvailability
+          Value: Standard
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
       EngineVersion: '14.2'
@@ -1352,6 +1419,15 @@ Resources:
               SSEAlgorithm: AES256
       LoggingConfiguration:
         LogFilePrefix: /logs/LogsBucket/
+      Tags:
+        - Key: DomainName
+          Value: !Ref 'DomainName'
+        - Key: DataClassificationConfidentiality
+          Value: Proprietary
+        - Key: DataClassificationIntegrity
+          Value: Standard
+        - Key: DataClassificationAvailability
+          Value: Standard
   LogsBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
@@ -1415,6 +1491,10 @@ Resources:
           Value: Logs
         - Key: idle_timeout.timeout_seconds
           Value: '60'
+        - Key: routing.http.drop_invalid_header_fields.enabled
+          Value: 'true'
+        - Key: routing.http.desync_mitigation_mode
+          Value: strictest
     DependsOn: LogsBucketPolicy
   WebACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation

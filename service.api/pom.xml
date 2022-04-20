@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-service-pom</artifactId>
-    <version>2022.4.15-SNAPSHOT</version>
+    <version>2022.4.20-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.api</artifactId>
