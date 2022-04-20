@@ -649,7 +649,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -759,7 +759,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration />
+            <configuration></configuration>
           </execution>
         </executions>
       </plugin>
