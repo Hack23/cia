@@ -23,7 +23,7 @@
 			<hsts include-subdomains="true"	max-age-seconds="31536000" />
 			<referrer-policy policy="no-referrer"/>
 			<header name="Feature-Policy" value="geolocation 'none'; camera 'none'; microphone 'none'"/>
-			<content-security-policy policy-directives="default-src 'unsafe-inline' 'self'; connect-src 'unsafe-inline' 'unsafe-eval' 'self' wss:; script-src 'unsafe-inline' 'unsafe-eval' 'self' ; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' https://data.riksdagen.se data:"/>
+			<content-security-policy policy-directives="default-src 'unsafe-inline' 'self'; connect-src 'unsafe-inline' 'unsafe-eval' 'self' wss:; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://www.gstatic.com; style-src 'unsafe-inline' 'self' https://fonts.gstatic.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://data.riksdagen.se https://www.gstatic.com data:"/>
 			
 			<content-type-options/>
 		</headers>
