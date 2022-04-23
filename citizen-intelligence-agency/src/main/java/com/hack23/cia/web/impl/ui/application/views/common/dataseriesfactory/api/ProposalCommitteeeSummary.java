@@ -20,8 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.ap
 
 import java.util.Locale;
 
-import javax.xml.bind.annotation.XmlElement;
-
 /**
  * The Class ProposalCommitteeeSummary.
  */
