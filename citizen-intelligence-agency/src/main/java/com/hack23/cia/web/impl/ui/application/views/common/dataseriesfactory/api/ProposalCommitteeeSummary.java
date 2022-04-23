@@ -20,6 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.ap
 
 import java.util.Locale;
 
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * The Class ProposalCommitteeeSummary.
  */
@@ -36,25 +38,37 @@ public final class ProposalCommitteeeSummary {
 
 	/** The org. */
 	private final String org;
+	
+    /** The wording. */
+    private String wording;
+
+    /** The wording 2. */
+    private String wording2;
+
+    /** The decision type. */
+    private String decisionType;
+
 
 	/**
 	 * Instantiates a new proposal committeee summary.
 	 *
-	 * @param org
-	 *            the org
-	 * @param docType
-	 *            the doc type
-	 * @param decision
-	 *            the decision
-	 * @param hangarId
-	 *            the hangar id
+	 * @param org the org
+	 * @param docType the doc type
+	 * @param decision the decision
+	 * @param hangarId the hangar id
+	 * @param wording the wording
+	 * @param wording2 the wording 2
+	 * @param decisionType the decision type
 	 */
-	public ProposalCommitteeeSummary(final String org, final String docType, final String decision, final String hangarId) {
+	public ProposalCommitteeeSummary(final String org, final String docType, final String decision, final String hangarId, final String wording, final String wording2, final String decisionType) {
 		super();
 		this.org = org.trim().toUpperCase(Locale.ENGLISH);
 		this.docType = docType.toUpperCase(Locale.ENGLISH);
 		this.decision = decision.replace("=", "").replace(",", "").trim().toUpperCase(Locale.ENGLISH);
 		this.hangarId = hangarId;
+		this.wording = wording;
+		this.wording2 = wording2;
+		this.decisionType = decisionType;
 	}
 
 	/**
@@ -93,6 +107,68 @@ public final class ProposalCommitteeeSummary {
 		return org;
 	}
 
+	
+	
+	
+	/**
+	 * Gets the wording.
+	 *
+	 * @return the wording
+	 */
+	public String getWording() {
+		return wording;
+	}
+
+	/**
+	 * Sets the wording.
+	 *
+	 * @param wording the new wording
+	 */
+	public void setWording(String wording) {
+		this.wording = wording;
+	}
+
+	/**
+	 * Gets the wording 2.
+	 *
+	 * @return the wording 2
+	 */
+	public String getWording2() {
+		return wording2;
+	}
+
+	/**
+	 * Sets the wording 2.
+	 *
+	 * @param wording2 the new wording 2
+	 */
+	public void setWording2(String wording2) {
+		this.wording2 = wording2;
+	}
+
+	/**
+	 * Gets the decision type.
+	 *
+	 * @return the decision type
+	 */
+	public String getDecisionType() {
+		return decisionType;
+	}
+
+	/**
+	 * Sets the decision type.
+	 *
+	 * @param decisionType the new decision type
+	 */
+	public void setDecisionType(String decisionType) {
+		this.decisionType = decisionType;
+	}
+
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return String.format(Locale.ENGLISH,"ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,

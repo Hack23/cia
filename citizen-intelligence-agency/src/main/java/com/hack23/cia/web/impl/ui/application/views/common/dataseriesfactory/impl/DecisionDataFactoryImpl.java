@@ -38,7 +38,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  * The Class DecisionDataFactoryImpl.
  */
 @Service
-@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 	/** The application manager. */
@@ -55,25 +55,25 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	/**
 	 * Adds the proposal committeee summary.
 	 *
-	 * @param processedIn
-	 *            the processed in
-	 * @param summary
-	 *            the summary
-	 * @param document
-	 *            the document
+	 * @param processedIn the processed in
+	 * @param summary     the summary
+	 * @param document    the document
 	 */
-	private static void addProposalCommitteeeSummary(final String processedIn, final List<ProposalCommitteeeSummary> summary,
-			final DocumentStatusContainer document) {
+	private static void addProposalCommitteeeSummary(final String processedIn,
+			final List<ProposalCommitteeeSummary> summary, final DocumentStatusContainer document) {
 		if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
 
 			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
 
 			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().isEmpty()
 					&& proposal.getCommittee() != null && !proposal.getCommittee().isEmpty()
-					&& proposal.getProcessedIn().contains(processedIn) && proposal.getChamber().length() <= "återförvisning till utskottet".length() && proposal.getChamber().length() >= "avslag".length()) {
+					&& proposal.getProcessedIn().contains(processedIn)
+					&& proposal.getChamber().length() <= "återförvisning till utskottet".length()
+					&& proposal.getChamber().length() >= "avslag".length()) {
 
-				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
-
+				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document),
+						cleanupDecision(proposal.getChamber()), document.getDocument().getHangarId(),
+						proposal.getWording(), proposal.getWording2(), proposal.getDecisionType()));
 			}
 		}
 	}
@@ -81,23 +81,24 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	/**
 	 * Cleanup decision.
 	 *
-	 * @param chamber
-	 *            the chamber
+	 * @param chamber the chamber
 	 * @return the string
 	 */
 	private static String cleanupDecision(final String chamber) {
-		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET").replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").replace("(", "").replace(")","");
+		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET")
+				.replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").replace("(", "")
+				.replace(")", "");
 	}
 
 	/**
 	 * Gets the committtee short name.
 	 *
-	 * @param proposal
-	 *            the proposal
+	 * @param proposal the proposal
 	 * @return the committtee short name
 	 */
 	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").toUpperCase(Locale.ENGLISH);
+		final String upperCase = proposal.getProcessedIn().replaceAll("\\d", "").replace("/:", "")
+				.toUpperCase(Locale.ENGLISH);
 
 		if (upperCase.contains(",")) {
 			return upperCase.substring(0, upperCase.indexOf(','));
@@ -109,14 +110,14 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	/**
 	 * Gets the document name.
 	 *
-	 * @param document
-	 *            the document
+	 * @param document the document
 	 * @return the document name
 	 */
 	private static String getDocumentName(final DocumentStatusContainer document) {
 		if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
 			return "Proposition";
-		} else if (document.getDocument().getSubType() != null && document.getDocument().getSubType().length() > "motion".length()) {
+		} else if (document.getDocument().getSubType() != null
+				&& document.getDocument().getSubType().length() > "motion".length()) {
 			return document.getDocument().getSubType();
 		} else {
 			return "Motion";

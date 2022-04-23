@@ -161,14 +161,21 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	private static void addEntry(final StringBuilder stringBuilder,
 			final Entry<String, List<ProposalCommitteeeSummary>> entry,
 			final Entry<String, List<ProposalCommitteeeSummary>> docEntry) {
-		stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> ");
+		stringBuilder.append("\n ( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> ");
 
 		final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
 			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-				stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
+				stringBuilder.append("\n   ").append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
+				
+				List<ProposalCommitteeeSummary> decisionSummaryList = decisionEntry.getValue();
+				
+				for (ProposalCommitteeeSummary proposalCommitteeeSummary : decisionSummaryList) {
+					stringBuilder.append("\n    ").append(proposalCommitteeeSummary.getDecision()).append(':').append(proposalCommitteeeSummary.getWording()).append(' ').append(proposalCommitteeeSummary.getWording2()).append(' ');
+					
+				}
 
 			}
 		}
