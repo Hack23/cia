@@ -132,11 +132,4 @@
 		<packageUrl regex="true">^pkg:npm/lodash\.merge@.*$</packageUrl>
 		<vulnerabilityName>1066</vulnerabilityName>
 	</suppress>
-	<suppress>
-   <notes><![CDATA[
-   file name: nekohtml-1.9.22.jar
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/net\.sourceforge\.nekohtml/nekohtml@.*$</packageUrl>
-   <cpe>cpe:/a:nekohtml_project:nekohtml</cpe>
-</suppress>
 </suppressions>
