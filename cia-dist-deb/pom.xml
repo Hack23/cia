@@ -59,6 +59,21 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.spdx</groupId>
+        <artifactId>spdx-maven-plugin</artifactId>
+        <version>0.5.5</version>
+        <configuration></configuration>
+        <executions>
+          <execution>
+            <id>build-spdx</id>
+            <goals>
+              <goal>createSPDX</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>keytool-maven-plugin</artifactId>
         <version>1.5</version>
