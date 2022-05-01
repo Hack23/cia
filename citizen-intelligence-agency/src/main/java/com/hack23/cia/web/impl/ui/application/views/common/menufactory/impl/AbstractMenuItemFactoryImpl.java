@@ -129,6 +129,11 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.OVERVIEW);
 
+	
+	/** The Constant COMMAND_DASHBOARDVIEW_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_DASHBOARDVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.DASHBOARD_VIEW_NAME,
+			PageMode.OVERVIEW);
+
 	/** The Constant COMMAND_MAINVIEW_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
@@ -342,6 +347,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);
 
 		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);
+
+		mainViewItem.addItem("Dashboard", VaadinIcons.STAR, COMMAND_DASHBOARDVIEW_OVERVIEW);
 
 		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
 

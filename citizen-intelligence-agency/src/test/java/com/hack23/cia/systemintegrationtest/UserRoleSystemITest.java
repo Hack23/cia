@@ -1536,6 +1536,25 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 
+	@Test(timeout = 60000)
+	public void siteDashboardViewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.DASHBOARD_VIEW_NAME, PageMode.OVERVIEW));
+
+		final WebElement applicationMenuItem = userPageVisit.getMenuItem("Application");
+		assertNotNull(applicationMenuItem);
+		userPageVisit.performClickAction(applicationMenuItem);
+
+		final WebElement overviewMenuItem = userPageVisit.getMenuItem("Dashboard");
+		assertNotNull(overviewMenuItem);
+		userPageVisit.performClickAction(overviewMenuItem);
+
+	}
+
 
 	/**
 	 * Site ministry current members invalid reference test.

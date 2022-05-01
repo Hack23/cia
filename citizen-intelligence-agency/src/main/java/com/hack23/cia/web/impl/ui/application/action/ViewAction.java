@@ -74,11 +74,13 @@ public enum ViewAction {
 	/** The visit committee view. */
 	VISIT_COMMITTEE_VIEW,
 
+	/** The visit country view. */
 	VISIT_COUNTRY_VIEW,
 
 	/** The visit document view. */
 	VISIT_DOCUMENT_VIEW,
 
+	/** The visit documents view. */
 	VISIT_DOCUMENTS_VIEW,
 
 	/** The visit government body ranking view. */
@@ -87,6 +89,7 @@ public enum ViewAction {
 	/** The visit government body view. */
 	VISIT_GOVERNMENT_BODY_VIEW,
 
+	/** The visit login. */
 	VISIT_LOGIN,
 
 	/** The visit main view. */
@@ -101,8 +104,12 @@ public enum ViewAction {
 	VISIT_PARLIAMENT_RANKING_VIEW,
 
 	/** The visit party ranking view. */
-	VISIT_PARTY_RANKING_VIEW, /** The visit party view. */
-	VISIT_PARTY_VIEW, /** The visit politician ranking view. */
+	VISIT_PARTY_RANKING_VIEW, 
+
+	/** The visit party view. */
+	VISIT_PARTY_VIEW, 
+
+	/** The visit politician ranking view. */
 	VISIT_POLITICIAN_RANKING_VIEW,
 
 	/** The visit politician view. */
@@ -112,5 +119,8 @@ public enum ViewAction {
 	VISIT_SEARCH_VIEW,
 
 	/** The visit user home view. */
-	VISIT_USER_HOME_VIEW;
+	VISIT_USER_HOME_VIEW, 
+	
+	/** The visit dashboard view. */
+	VISIT_DASHBOARD_VIEW;
 }
