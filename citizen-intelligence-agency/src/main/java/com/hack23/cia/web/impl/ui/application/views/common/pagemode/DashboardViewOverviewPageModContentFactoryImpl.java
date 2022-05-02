@@ -49,7 +49,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentRiskPageModContentFactoryImpl.ComplianceCheckImpl;
+import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.risk.ComplianceCheckImpl;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
