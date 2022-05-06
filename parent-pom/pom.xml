@@ -1776,7 +1776,7 @@
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
                 <artifactId>umldoclet</artifactId>
-                <version>2.0.16</version>
+                <version>2.0.17</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
@@ -1919,7 +1919,7 @@
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
                 <artifactId>umldoclet</artifactId>
-                <version>2.0.16</version>
+                <version>2.0.17</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
