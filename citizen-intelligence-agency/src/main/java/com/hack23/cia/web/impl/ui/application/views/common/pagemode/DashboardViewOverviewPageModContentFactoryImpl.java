@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -31,6 +29,8 @@ import org.springframework.stereotype.Component;
 import com.github.markash.ui.component.card.CounterStatisticModel;
 import com.github.markash.ui.component.card.CounterStatisticsCard;
 import com.github.markash.ui.component.card.StatisticShow;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
@@ -49,7 +49,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.risk.ComplianceCheckImpl;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
@@ -228,6 +227,16 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Parties", listparties.size())
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Parties"));
 
+		final DataContainer<ViewRiksdagenCommittee, String> committeeDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenCommittee.class);
+
+		final List<ViewRiksdagenCommittee> listCommittees = committeeDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenCommittee_.active);
+
+		horizontalLayout.addComponent(
+					new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Committees", listCommittees.size())
+							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Committees"));		
+		
 		layout.addComponent(horizontalLayout);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
@@ -256,15 +265,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				.getDataContainer(RuleViolation.class);
 
 		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-		final List<ComplianceCheckImpl> checks = new ArrayList<>();
-
-		for (final Entry<String, List<RuleViolation>> idMapViolations : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
-			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));
-		}
-
-		Collections.sort(checks,
-				(o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
 
 		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : ruleViolations.stream()
 				.collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
@@ -301,15 +301,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				.getDataContainer(RuleViolation.class);
 
 		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-		final List<ComplianceCheckImpl> checks = new ArrayList<>();
-
-		for (final Entry<String, List<RuleViolation>> idMapViolations : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getReferenceId)).entrySet()) {
-			checks.add(new ComplianceCheckImpl(idMapViolations.getValue()));
-		}
-
-		Collections.sort(checks,
-				(o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
 
 		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream()
 				.collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
