@@ -39,6 +39,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -80,6 +81,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
+	/** The Constant EXPENDITURE_GROUP_NAME. */
+	private static final String EXPENDITURE_GROUP_NAME = "Utgiftsområdesnamn";
+
+	/** The Constant INKOMSTTITELGRUPPSNAMN. */
+	private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
+	
 	@Autowired
 	private EsvApi esvApi;
 
@@ -157,7 +164,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
 		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
@@ -169,65 +176,40 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
 
+		
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry(); 
+		
+		createMinistryRoleSummary(reportByMinistry, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
+		createPoliticaExperienceSummary(governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
+		
+
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
+
+	private void createMinistryRoleSummary(Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 		String ministryTitle = "";
-		if (viewRiksdagenGovermentRoleMember.getRoleCode().toLowerCase().contains("minister")) {
+		if (viewRiksdagenGovermentRoleMember.getRoleCode().contains("minister")) {
 			ministryTitle = "Head of " + viewRiksdagenGovermentRoleMember.getDetail() + " for " + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + "(days)";
 		} else {
 			ministryTitle = "Supports head of " + viewRiksdagenGovermentRoleMember.getDetail()  + " for " + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + "(days)";
 		}
-
 		final Label ministryTitleLabel = new Label(ministryTitle);
 		Responsive.makeResponsive(ministryTitleLabel);
-		//ministryTitleLabel.addStyleName("title");
 		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(ministryTitleLabel);
-
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
-
-		final StringBuilder entryBuilder = new StringBuilder();
-		entryBuilder.append(viewRiksdagenPolitician.getTotalMinistryAssignments());
-
-		horizontalLayout
-		.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING,
-						new CounterStatisticModel("Parliament(year)", viewRiksdagenPolitician.getTotalDaysServedParliament() / 365)
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-						"Parliament(days)"));
-		
-		horizontalLayout
-		.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING,
-						new CounterStatisticModel("Government(year)", viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365)
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-						"Government(year)"));
-		
 		final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap
 				.get(viewRiksdagenGovermentRoleMember.getDetail());
-
-		
-		// Graph exist at
-		// https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and
-		// for specific ministries at
-		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet
-
-		// Income
-		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet
-
-		// Expenditure
-		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet
-
-		
-		
-		
-		
 		horizontalLayout
 				.addComponent(
 						new CounterStatisticsCard(VaadinIcons.WARNING,
 								new CounterStatisticModel("Government bodies", governentBodies.size())
 										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 								"Government bodies"));
-		
 		horizontalLayout
 				.addComponent(new CounterStatisticsCard(
 						VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())
@@ -235,12 +217,71 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 						"Headcount"));
 
 
-		layout.addComponent(horizontalLayout);
+		
+		List<GovernmentBodyAnnualOutcomeSummary> listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+
+		final Map<Integer, Double> annualIncomeSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
+		final Map<Integer, Double> annualSpendingSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
+					
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", annualIncomeSummaryMap.get(2021) /1000)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Income"));
+		
+		
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", annualSpendingSummaryMap.get(2021)/1000)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Spending"));
+		
+		
+		layout.addComponent(horizontalLayout);
 	}
 
+	
+	private void createPoliticaExperienceSummary(final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
+
+		final Label ministryTitleLabel = new Label("Political Experience");
+		Responsive.makeResponsive(ministryTitleLabel);
+		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(ministryTitleLabel);
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+		horizontalLayout
+		.addComponent(
+				new CounterStatisticsCard(VaadinIcons.WARNING,
+						new CounterStatisticModel("Parliament(year)", viewRiksdagenPolitician.getTotalDaysServedParliament() / 365)
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Parliament(days)"));
+		horizontalLayout
+		.addComponent(
+				new CounterStatisticsCard(VaadinIcons.WARNING,
+						new CounterStatisticModel("Government(year)", viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365)
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Government(year)"));
+
+		horizontalLayout
+				.addComponent(
+						new CounterStatisticsCard(VaadinIcons.WARNING,
+								new CounterStatisticModel("Party(year)", viewRiksdagenPolitician.getTotalDaysServedParty() / 365)
+										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+								"Party(year)"));
+		horizontalLayout
+				.addComponent(new CounterStatisticsCard(
+						VaadinIcons.WARNING, new CounterStatisticModel("Speaker(year)", viewRiksdagenPolitician.getTotalDaysServedSpeaker() / 365)
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Speaker(year)"));
+		layout.addComponent(horizontalLayout);
+	}
+
+	
+	
+	
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
