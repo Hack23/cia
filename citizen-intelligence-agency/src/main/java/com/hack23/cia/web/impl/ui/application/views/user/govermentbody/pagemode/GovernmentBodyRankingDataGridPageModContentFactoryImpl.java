@@ -77,7 +77,7 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
 
-		final List<GovernmentBodyAnnualSummary> list = dataMap.get(2020);
+		final List<GovernmentBodyAnnualSummary> list = dataMap.get(2022);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, GovernmentBodyAnnualSummary.class, list,
 				GOVERNMENT_BODIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);

@@ -27,6 +27,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.github.markash.ui.component.card.CounterStatisticModel;
+import com.github.markash.ui.component.card.CounterStatisticsCard;
+import com.github.markash.ui.component.card.StatisticShow;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
@@ -38,8 +41,16 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -57,9 +68,20 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Ministries leader scoreboard";
 
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
 	@Autowired
 	private EsvApi esvApi;
-
 
 	/**
 	 * Instantiates a new ministry ranking current parties leader scoreboard charts
@@ -78,96 +100,47 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		final String pageId = getPageId(parameters);
 
+		LabelFactory.createHeader2Label(panelContent, "Dashboard Government members");
+
+		final Label descriptionLabel = new Label(
+				"Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		panelContent.addComponent(descriptionLabel);
+
+		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-		final List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer.findListByProperty(
-						new Object[] { Boolean.TRUE },
-						ViewRiksdagenGovermentRoleMember_.active);
+		final List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
-
-		final List<ViewRiksdagenPolitician> parliamentDataList = politicianDataContainer.findListByProperty(new Object[] { Boolean.TRUE },ViewRiksdagenPolitician_.activeGovernment);
-		final Map<String, List<ViewRiksdagenPolitician>> parliamentMap = parliamentDataList.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
-
+		final List<ViewRiksdagenPolitician> parliamentDataList = politicianDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);
+		final Map<String, List<ViewRiksdagenPolitician>> parliamentMap = parliamentDataList.stream()
+				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
-		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2020);
-		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
+		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2022);
+		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies
+				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-		final List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer.findListByProperty(
-				new Object[] { Boolean.TRUE },ViewRiksdagenPartyRoleMember_.active);
+		final List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.active);
 
 		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0);
+			createDashboardGovernmentMember(row, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember,
+					parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0));
 
-			final StringBuilder entryBuilder = new StringBuilder();
-			entryBuilder.append(viewRiksdagenGovermentRoleMember.getRoleCode());
-			entryBuilder.append(" ");
-			entryBuilder.append(viewRiksdagenGovermentRoleMember.getFirstName());
-			entryBuilder.append(" ");
-			entryBuilder.append(viewRiksdagenGovermentRoleMember.getLastName());
-			entryBuilder.append(" ");
-			entryBuilder.append(viewRiksdagenGovermentRoleMember.getParty());
-
-			entryBuilder.append("\nTotal days served ");
-			entryBuilder.append(viewRiksdagenGovermentRoleMember.getTotalDaysServed());
-			entryBuilder.append(" , goverment experience ");
-			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedGovernment());
-			entryBuilder.append(" days in ");
-			entryBuilder.append(viewRiksdagenPolitician.getTotalMinistryAssignments());
-			entryBuilder.append(" assignments");
-
-			entryBuilder.append("\nExperience from EU ");
-			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedEu());
-			entryBuilder.append(" , parliament experience ");
-			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedParliament());
-			entryBuilder.append(" days in ");
-			entryBuilder.append(viewRiksdagenPolitician.getTotalDaysServedCommittee());
-			entryBuilder.append(" committes");
-			// Rate level experience EU,parliament,party, commmittee,speaker
-			//totalAssignments=8,totalCommitteeAssignments=3,totalDaysServed=259,totalDaysServedCommittee=28,totalDaysServedEu=0,totalDaysServedGovernment=217,totalDaysServedParliament=14,totalDaysServedParty=0,totalDaysServedSpeaker=0,totalMinistryAssignments=3,totalPartyAssignments=0,totalSpeakerAssignments=0]
-
-
-			if (viewRiksdagenGovermentRoleMember.getRoleCode().contains("minister")) {
-				final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap.get(viewRiksdagenGovermentRoleMember.getDetail());
-				entryBuilder.append("\nHead of ");
-				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
-				entryBuilder.append(": number of government bodies: ");
-				entryBuilder.append(governentBodies.size());
-
-
-				entryBuilder.append("\nTotal headcount :");
-				entryBuilder.append(governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum());
-
-
-				// Graph exist at https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and for specific ministries at https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet
-
-				// Income https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet
-
-				// Expenditure https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet
-
-
-			} else {
-				entryBuilder.append("Supports Head of");
-				entryBuilder.append(viewRiksdagenGovermentRoleMember.getDetail());
-			}
-
-			final VerticalLayout layout = new VerticalLayout();
-			layout.setSizeFull();
-
-
-			final Label entry = new Label(entryBuilder.toString());
-			layout.addComponent(entry);
-			panelContent.addComponent(layout);
 		}
-
 
 		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
@@ -176,6 +149,96 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		return panelContent;
 
+	}
+
+	private void createDashboardGovernmentMember(final ResponsiveRow row,
+			final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
+
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName("v-layout-content-overview-panel-level2");
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
+
+		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + " "
+				+ viewRiksdagenGovermentRoleMember.getFirstName() + " " + viewRiksdagenGovermentRoleMember.getLastName()
+				+ " (" + viewRiksdagenGovermentRoleMember.getParty() +")");
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.addStyleName("title");
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+
+		String ministryTitle = "";
+		if (viewRiksdagenGovermentRoleMember.getRoleCode().toLowerCase().contains("minister")) {
+			ministryTitle = "Head of " + viewRiksdagenGovermentRoleMember.getDetail() + " for " + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + "(days)";
+		} else {
+			ministryTitle = "Supports head of " + viewRiksdagenGovermentRoleMember.getDetail()  + " for " + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + "(days)";
+		}
+
+		final Label ministryTitleLabel = new Label(ministryTitle);
+		Responsive.makeResponsive(ministryTitleLabel);
+		//ministryTitleLabel.addStyleName("title");
+		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(ministryTitleLabel);
+
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+
+		final StringBuilder entryBuilder = new StringBuilder();
+		entryBuilder.append(viewRiksdagenPolitician.getTotalMinistryAssignments());
+
+		horizontalLayout
+		.addComponent(
+				new CounterStatisticsCard(VaadinIcons.WARNING,
+						new CounterStatisticModel("Parliament(year)", viewRiksdagenPolitician.getTotalDaysServedParliament() / 365)
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Parliament(days)"));
+		
+		horizontalLayout
+		.addComponent(
+				new CounterStatisticsCard(VaadinIcons.WARNING,
+						new CounterStatisticModel("Government(year)", viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365)
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Government(year)"));
+		
+		final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap
+				.get(viewRiksdagenGovermentRoleMember.getDetail());
+
+		
+		// Graph exist at
+		// https://192.168.1.15:28443/#!ministryranking/GOVERNMENT_BODIES_HEADCOUNT and
+		// for specific ministries at
+		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_HEADCOUNT/Kulturdepartementet
+
+		// Income
+		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_INCOME/Kulturdepartementet
+
+		// Expenditure
+		// https://192.168.1.15:28443/#!ministry/GOVERNMENT_BODIES_EXPENDITURE/Kulturdepartementet
+
+		
+		
+		
+		
+		horizontalLayout
+				.addComponent(
+						new CounterStatisticsCard(VaadinIcons.WARNING,
+								new CounterStatisticModel("Government bodies", governentBodies.size())
+										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+								"Government bodies"));
+		
+		horizontalLayout
+				.addComponent(new CounterStatisticsCard(
+						VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Headcount"));
+
+
+		layout.addComponent(horizontalLayout);
+
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
 	@Override
