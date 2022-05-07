@@ -256,9 +256,6 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 		
-		System.out.println(viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH));
-		System.out.println(orgProposalMap.keySet());
-
 		List<ProposalCommitteeeSummary> list = orgProposalMap.get(viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH));
 				
 		addCommiteeSummary(stringBuilder, list,viewRiksdagenCommittee );
