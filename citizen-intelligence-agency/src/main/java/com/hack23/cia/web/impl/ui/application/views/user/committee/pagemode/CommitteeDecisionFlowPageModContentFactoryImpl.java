@@ -43,6 +43,7 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -80,7 +81,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		}
 
 		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(
-				Arrays.asList("2020/21","2019/20","2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
+				Arrays.asList("2021/22","2020/21","2019/20","2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 		comboBox.setSelectedItem(selectedYear);
@@ -96,6 +97,13 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		panelContent.addComponent(chart);
 		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
 
+		final TextArea textarea = decisionFlowChartManager.createCommitteeeDecisionSummary(viewRiksdagenCommittee,comboBox.getSelectedItem().orElse(selectedYear));
+		textarea.setSizeFull();
+		panelContent.addComponent(textarea);
+		panelContent.setExpandRatio(textarea, ContentRatio.SMALL_GRID);
+
+		
+		
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		panel.setCaption(new StringBuilder().append(NAME).append("::").append(COMMITTEE_DECISION_FLOW).toString());

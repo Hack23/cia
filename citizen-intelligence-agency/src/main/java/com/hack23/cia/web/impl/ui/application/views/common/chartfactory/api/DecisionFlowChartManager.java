@@ -64,4 +64,13 @@ public interface DecisionFlowChartManager {
 	 */
 	TextArea createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
 
+	/**
+	 * Creates the committeee decision summary.
+	 *
+	 * @param viewRiksdagenCommittee the view riksdagen committee
+	 * @param rm the rm
+	 * @return the text area
+	 */
+	TextArea createCommitteeeDecisionSummary(ViewRiksdagenCommittee viewRiksdagenCommittee, String rm);
+
 }
