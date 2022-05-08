@@ -87,6 +87,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	/** The Constant INKOMSTTITELGRUPPSNAMN. */
 	private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
 	
+	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
 

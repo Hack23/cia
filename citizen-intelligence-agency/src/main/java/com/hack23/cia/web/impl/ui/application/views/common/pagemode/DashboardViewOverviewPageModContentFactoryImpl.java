@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,8 @@ import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -85,6 +88,10 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
+	/** The esv api. */
+	@Autowired
+	private EsvApi esvApi;
+	
 	/**
 	 * Instantiates a new dashboard view overview page mod content factory impl.
 	 */
@@ -129,7 +136,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	private void createDashboardGovernment(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
@@ -167,7 +174,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 						VaadinIcons.WARNING, new CounterStatisticModel("Ministries", listMinistries.size())
 								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 						"Ministries"));
-
+	
 		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
@@ -177,17 +184,98 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		horizontalLayout.addComponent(
 				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Parties", listparties.size())
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Parties"));
+		
+		
+		List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
+		horizontalLayout
+		.addComponent(
+				new CounterStatisticsCard(VaadinIcons.WARNING,
+						new CounterStatisticModel("Government bodies", governmentBodies.size())
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Government bodies"));
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Headcount"));
+
 
 		layout.addComponent(horizontalLayout);
+		
+		addIncomeSpending(layout);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
+	
+	private void addIncomeSpending(final CssLayout layout) {
+		final Label titleLabel = new Label("Government bodies financial 2021");
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+									
+		//https://www.hack23.com/cia/#!governmentbody/202100-0852
+		
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", 1191)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Income"));
+		
+		
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", 1216)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Spending"));
+
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Result(B SEK)", -70)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Result"));
+
+		
+		layout.addComponent(horizontalLayout);
+	}
+
+
+	private void addParliamentIncomeSpending(final CssLayout layout) {
+		final Label titleLabel = new Label("Riksdagen financial 2021");
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+
+		//https://www.hack23.com/cia/#!governmentbody/EXPENDITURE/202100-2627
+
+	
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 713)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Headcount"));
+		
+		
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 1719)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Spending"));
+		
+		layout.addComponent(horizontalLayout);
+	}
+
+	
+	
 	private void createDashboardParliament(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
@@ -239,6 +327,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		
 		layout.addComponent(horizontalLayout);
 
+		
+		addParliamentIncomeSpending(layout);
+		
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
@@ -246,7 +337,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	private void createDashboardPartRiskByType(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
@@ -283,7 +374,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-panel-level2");
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
