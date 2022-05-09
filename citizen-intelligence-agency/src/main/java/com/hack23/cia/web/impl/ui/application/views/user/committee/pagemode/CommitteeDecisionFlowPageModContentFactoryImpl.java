@@ -75,7 +75,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		String selectedYear = "2020/21";
+		String selectedYear = "2021/22";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		}

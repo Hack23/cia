@@ -73,7 +73,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
-		String selectedYear = "2020/21";
+		String selectedYear = "2021/22";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		}
