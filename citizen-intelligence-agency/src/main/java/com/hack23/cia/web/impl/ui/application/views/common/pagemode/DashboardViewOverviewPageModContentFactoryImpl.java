@@ -120,8 +120,11 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
+		createDashboardMonarch(row);
+		
 		createDashboardGovernment(row);
 		createDashboardParliament(row);
+		
 		createDashboardPartRiskByType(row);
 		createDashboardPartRiskBySeverity(row);
 
@@ -133,6 +136,37 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	}
 
+	
+	private void createDashboardMonarch(final ResponsiveRow row) {
+
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
+
+		final Label titleLabel = new Label("Monarch");
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.addStyleName("title");
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+
+		final Label headOfStateLabel = new Label("Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973");
+		Responsive.makeResponsive(headOfStateLabel);
+		headOfStateLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(headOfStateLabel);
+		final Label nextHeadOfStateLabel = new Label("Future head of state(Queen): Victoria Ingrid Alice Désirée;");
+		Responsive.makeResponsive(nextHeadOfStateLabel);
+		nextHeadOfStateLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(nextHeadOfStateLabel);
+
+		
+		addMonarchIncomeSpending(layout);
+
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
+
+	
 	private void createDashboardGovernment(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
@@ -264,6 +298,33 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 1719)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Spending"));
+		
+		layout.addComponent(horizontalLayout);
+	}
+
+	private void addMonarchIncomeSpending(final CssLayout layout) {
+		final Label titleLabel = new Label("The Royal Court financial 2021");
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+
+		//https://www.hack23.com/cia/#!governmentbody/202100-3484
+
+	
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 185)
+						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				"Headcount"));
+		
+		
+		horizontalLayout
+		.addComponent(new CounterStatisticsCard(
+				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 148)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Spending"));
 		

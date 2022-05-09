@@ -169,6 +169,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
+		
+		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
+
+			
 		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + " "
 				+ viewRiksdagenGovermentRoleMember.getFirstName() + " " + viewRiksdagenGovermentRoleMember.getLastName()
 				+ " (" + viewRiksdagenGovermentRoleMember.getParty() +")");
@@ -176,6 +181,18 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		titleLabel.addStyleName("title");
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
+
+		
+		List<ViewRiksdagenPartyRoleMember> partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);
+
+		if (partyRole.size()> 0) {
+			final Label partyRoleLabel = new Label(partyRole.get(0).getRoleCode() + " (" + viewRiksdagenGovermentRoleMember.getParty() +")  since " +partyRole.get(0).getFromDate() );
+			Responsive.makeResponsive(partyRoleLabel);
+			partyRoleLabel.addStyleName("title");
+			partyRoleLabel.setWidth(100, Unit.PERCENTAGE);
+			layout.addComponent(partyRoleLabel);
+			
+		}
 
 		
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry(); 
