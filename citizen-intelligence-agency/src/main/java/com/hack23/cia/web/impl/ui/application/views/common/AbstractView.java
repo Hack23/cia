@@ -27,6 +27,7 @@ import org.jsoup.safety.Safelist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -39,9 +40,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLin
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
+import com.lowagie.text.alignment.HorizontalAlignment;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -91,6 +94,18 @@ public abstract class AbstractView extends Panel implements View {
 	/** The page mode content factory map. */
 	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
+	/** The application name. */
+	@Value("${application.name}")
+	protected String applicationName;
+
+	/** The application version. */
+	@Value("${application.version}")
+	protected String applicationVersion;
+
+	/** The application url. */
+	@Value("${application.url}")
+	protected String applicationUrl;
+	
 	/** The page name. */
 	private final String pageName;
 
@@ -224,7 +239,17 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.addComponent(panel);
 		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
 
-		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
+		HorizontalLayout footer = new HorizontalLayout();
+		footer.addComponent(pageLinkFactory.createMainViewPageLink());
+		footer.addComponent(new Label(applicationName + " (" + applicationVersion +")"));
+		footer.addComponent(new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt")));
+		footer.addComponent(new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia")));
+		footer.addComponent(new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.5.15/citizen-intelligence-agency-2022.5.15-cyclonedx.json")));
+		footer.addComponent(new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.5.15/citizen-intelligence-agency-2022.5.15.spdx.rdf.xml")));
+		
+		pageModeContent.addComponent(footer);
+		
+		
 		setContent(layout);
 
 		setWidth(100, Unit.PERCENTAGE);
