@@ -78,7 +78,7 @@ jobs:
         java-version: '17'
 
     - name: Install buildtools
-      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget maven
+      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
 
     - name: Download Maven
       run: wget https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
@@ -86,11 +86,11 @@ jobs:
     - name: Unpack Maven
       run: tar xzvf apache-maven-3.8.5-bin.tar.gz
 
-    - name: Download Maven
-      run: export PATH=`pwd`/apache-maven-3.8.5/bin:$PATH
-
+    - name: Set Maven
+      run: mv apache-maven-3.8.5 maven
+      
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -DskipTests
+      run: maven/bin/mvn -B package --file pom.xml -DskipTests
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
