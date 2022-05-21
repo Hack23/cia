@@ -1,11 +1,11 @@
-dist: focal
+dist: yammy
 language: java
 services:
   - docker
 sudo: true
 install: true
 before_install:
-  - sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb postgresql-12 postgresql-client-12 postgresql-contrib-12 postgresql-12-pgaudit openssl locales tzdata ca-certificates-java ca-certificates wget openjdk-17-jdk-headless python3-pip ruby-full npm
+  - sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb postgresql-14 postgresql-client-14 postgresql-contrib-14 postgresql-14-pgaudit openssl locales tzdata ca-certificates-java ca-certificates wget openjdk-17-jdk-headless python3-pip ruby-full npm
 addons:
   sonarcloud:
     organization: "hack23"
@@ -30,8 +30,8 @@ before_script:
   - sudo echo 'LANG=\"en_US.UTF-8\"' | sudo tee --append /etc/default/locale
   - sudo locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 
   - sudo dpkg-reconfigure --frontend=noninteractive locales
-  - sudo service postgresql stop 12 | true
-  - sudo sh -c "echo 'host all all 0.0.0.0/0 md5' | sudo tee --append /etc/postgresql/12/main/pg_hba.conf"
+  - sudo service postgresql stop 14 | true
+  - sudo sh -c "echo 'host all all 0.0.0.0/0 md5' | sudo tee --append /etc/postgresql/14/main/pg_hba.conf"
   - openssl rand -base64 48 > passphrase.txt
   - openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
   - openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
@@ -40,25 +40,25 @@ before_script:
   - openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
   - rm passphrase.txt
   - rm server.csr
-  - sudo cp server.crt /var/lib/postgresql/12/main/server.crt
-  - sudo cp server.key /var/lib/postgresql/12/main/server.key
+  - sudo cp server.crt /var/lib/postgresql/14/main/server.crt
+  - sudo cp server.key /var/lib/postgresql/14/main/server.key
   - rm server.key
   - mkdir ~/.postgresql
   - cp server.crt ~/.postgresql/root.crt
   - chmod 700 ~/.postgresql/root.crt
   - rm server.crt
-  - sudo chmod 700 /var/lib/postgresql/12/main/server.key
-  - sudo chmod 700 /var/lib/postgresql/12/main/server.crt  
-  - sudo chown -R postgres:postgres /var/lib/postgresql/12/main/
-  - echo "ssl_cert_file = '/var/lib/postgresql/12/main/server.crt'" | sudo tee --append /etc/postgresql/12/main/postgresql.conf
-  - echo "ssl_key_file = '/var/lib/postgresql/12/main/server.key'" | sudo tee --append /etc/postgresql/12/main/postgresql.conf
-  - echo "max_prepared_transactions = 100" | sudo tee --append /etc/postgresql/12/main/postgresql.conf 
-  - echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" | sudo tee --append /etc/postgresql/12/main/postgresql.conf 
-  - #echo "pgaudit.log = ddl" | sudo tee --append /etc/postgresql/12/main/postgresql.conf 
-  - echo "pg_stat_statements.track = all" | sudo tee --append /etc/postgresql/12/main/postgresql.conf 
-  - echo "pg_stat_statements.max = 10000" | sudo tee --append /etc/postgresql/12/main/postgresql.conf
-  - echo "listen_addresses = '*'" | sudo tee --append /etc/postgresql/12/main/postgresql.conf
-  - sudo service postgresql start 12
+  - sudo chmod 700 /var/lib/postgresql/14/main/server.key
+  - sudo chmod 700 /var/lib/postgresql/14/main/server.crt  
+  - sudo chown -R postgres:postgres /var/lib/postgresql/14/main/
+  - echo "ssl_cert_file = '/var/lib/postgresql/14/main/server.crt'" | sudo tee --append /etc/postgresql/14/main/postgresql.conf
+  - echo "ssl_key_file = '/var/lib/postgresql/14/main/server.key'" | sudo tee --append /etc/postgresql/14/main/postgresql.conf
+  - echo "max_prepared_transactions = 100" | sudo tee --append /etc/postgresql/14/main/postgresql.conf 
+  - echo "shared_preload_libraries = 'pg_stat_statements, pgcrypto'" | sudo tee --append /etc/postgresql/14/main/postgresql.conf 
+  - #echo "pgaudit.log = ddl" | sudo tee --append /etc/postgresql/14/main/postgresql.conf 
+  - echo "pg_stat_statements.track = all" | sudo tee --append /etc/postgresql/14/main/postgresql.conf 
+  - echo "pg_stat_statements.max = 10000" | sudo tee --append /etc/postgresql/14/main/postgresql.conf
+  - echo "listen_addresses = '*'" | sudo tee --append /etc/postgresql/14/main/postgresql.conf
+  - sudo service postgresql start 14
   - sudo -Hiu postgres psql -c "CREATE USER eris WITH password 'discord';" -U postgres
   - sudo -Hiu postgres psql -c "create database cia_dev" -U postgres
   - sudo -Hiu postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;" -U postgres
