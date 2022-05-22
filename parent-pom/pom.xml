@@ -37,7 +37,7 @@
       <name>Peter Larsson</name>
       <email>peter.larsson(at)idg.se</email>
       <roles>
-        <role>Feedback &amp; bug seeker</role>
+        <role>Feedback&amp;bug seeker</role>
       </roles>
     </contributor>
     <contributor>
@@ -186,10 +186,8 @@
     <javadoc.target.version>17</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
     <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
-		--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-		--add-opens java.base/java.lang=ALL-UNNAMED
-		--add-opens java.base/java.lang.reflect=ALL-UNNAMED
-		--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+		--add-exports java.base/jdk.internal.ref=ALL-UNNAMED--add-opens java.base/java.lang=ALL-UNNAMED
+		--add-opens java.base/java.lang.reflect=ALL-UNNAMED--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
@@ -1546,10 +1544,8 @@
       </activation>
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>17</jdk.src.version>
         <jdk.target.version>17</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>
@@ -1567,10 +1563,8 @@
       </activation>
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>17</jdk.src.version>
         <jdk.target.version>17</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>
@@ -1588,10 +1582,8 @@
       </activation>
       <properties>
         <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED
-        			--add-opens java.base/java.lang=ALL-UNNAMED
-        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED
-					--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED--add-opens java.base/java.lang=ALL-UNNAMED
+        			--add-opens java.base/java.lang.reflect=ALL-UNNAMED--add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>17</jdk.src.version>
         <jdk.target.version>17</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>
