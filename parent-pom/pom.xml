@@ -729,6 +729,9 @@
               <version>2.1.212</version>
             </dependency>
           </dependencies>
+          <configuration>
+          	<ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
