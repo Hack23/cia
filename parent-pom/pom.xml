@@ -722,6 +722,9 @@
           <groupId>org.owasp</groupId>
           <artifactId>dependency-check-maven</artifactId>
           <version>7.1.0</version>
+          <configuration>
+            <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
+          </configuration>
           <dependencies>
             <dependency>
               <groupId>com.h2database</groupId>
@@ -729,9 +732,6 @@
               <version>2.1.212</version>
             </dependency>
           </dependencies>
-          <configuration>
-          	<ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
