@@ -44,7 +44,7 @@ Visualize political activity in Sweden, present key performance indicators and m
 
 # Demo https://www.hack23.com/cia/
 
-Still prototype, live demo running at [https:/www.hack23.com/cia/](https:/www.hack23.com/cia/).
+Still prototype, live demo running at [https:/www.hack23.com/cia/](https:/www.hack23.com/cia/) and [https://riksdagsmonitor.com/](https://riksdagsmonitor.com/)
 
 Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
 
