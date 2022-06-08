@@ -110,6 +110,14 @@
           <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpcore</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>com.google.errorprone</groupId>
+          <artifactId>error_prone_annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -1057,6 +1065,10 @@
           <groupId>org.jrobin</groupId>
           <artifactId>jrobin</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>javax.activation</groupId>
+          <artifactId>activation</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -1416,6 +1428,10 @@
       <artifactId>waffle-jna</artifactId>
       <version>3.1.1</version>
       <exclusions>
+        <exclusion>
+          <groupId>com.github.ben-manes.caffeine</groupId>
+          <artifactId>caffeine</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>org.checkerframework</groupId>
           <artifactId>checker-qual</artifactId>
