@@ -20,7 +20,6 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Hack23/cia?branch=master)](https://bettercodehub.com/results/Hack23/cia)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
-[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Hack23/cia.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Hack23/cia/context:java)
 [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master)
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
