@@ -36,7 +36,7 @@ public final class ProposalCommitteeeSummary {
 
 	/** The org. */
 	private final String org;
-	
+
     /** The wording. */
     private String wording;
 
@@ -105,9 +105,9 @@ public final class ProposalCommitteeeSummary {
 		return org;
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * Gets the wording.
 	 *
@@ -122,7 +122,7 @@ public final class ProposalCommitteeeSummary {
 	 *
 	 * @param wording the new wording
 	 */
-	public void setWording(String wording) {
+	public void setWording(final String wording) {
 		this.wording = wording;
 	}
 
@@ -140,7 +140,7 @@ public final class ProposalCommitteeeSummary {
 	 *
 	 * @param wording2 the new wording 2
 	 */
-	public void setWording2(String wording2) {
+	public void setWording2(final String wording2) {
 		this.wording2 = wording2;
 	}
 
@@ -158,7 +158,7 @@ public final class ProposalCommitteeeSummary {
 	 *
 	 * @param decisionType the new decision type
 	 */
-	public void setDecisionType(String decisionType) {
+	public void setDecisionType(final String decisionType) {
 		this.decisionType = decisionType;
 	}
 

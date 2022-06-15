@@ -102,8 +102,8 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		panelContent.addComponent(textarea);
 		panelContent.setExpandRatio(textarea, ContentRatio.SMALL_GRID);
 
-		
-		
+
+
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		panel.setCaption(new StringBuilder().append(NAME).append("::").append(COMMITTEE_DECISION_FLOW).toString());

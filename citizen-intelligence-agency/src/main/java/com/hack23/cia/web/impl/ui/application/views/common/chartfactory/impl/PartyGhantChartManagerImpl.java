@@ -55,7 +55,7 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 	@Override
 	protected StepMapping<ViewRiksdagenPartyRoleMember> getStepMapping() {
-		return new StepMapping<ViewRiksdagenPartyRoleMember>() {
+		return new StepMapping<>() {
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {

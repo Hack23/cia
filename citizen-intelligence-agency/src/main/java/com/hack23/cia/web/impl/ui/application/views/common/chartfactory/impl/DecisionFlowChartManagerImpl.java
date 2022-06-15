@@ -168,12 +168,12 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
 			if (decisionEntry.getKey().length() > 0) {
 				stringBuilder.append("\n   ").append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
-				
-				List<ProposalCommitteeeSummary> decisionSummaryList = decisionEntry.getValue();
-				
-				for (ProposalCommitteeeSummary proposalCommitteeeSummary : decisionSummaryList) {
+
+				final List<ProposalCommitteeeSummary> decisionSummaryList = decisionEntry.getValue();
+
+				for (final ProposalCommitteeeSummary proposalCommitteeeSummary : decisionSummaryList) {
 					stringBuilder.append("\n    ").append(proposalCommitteeeSummary.getDecision()).append(':').append(proposalCommitteeeSummary.getWording()).append(' ').append(proposalCommitteeeSummary.getWording2()).append(' ');
-					
+
 				}
 
 			}
@@ -248,23 +248,23 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	}
 
 	@Override
-	public TextArea createCommitteeeDecisionSummary(ViewRiksdagenCommittee viewRiksdagenCommittee, String rm) {
+	public TextArea createCommitteeeDecisionSummary(final ViewRiksdagenCommittee viewRiksdagenCommittee, final String rm) {
 		final TextArea area = new TextArea("Summary");
 		final StringBuilder stringBuilder = new StringBuilder();
 		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
 
 		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
-		
-		List<ProposalCommitteeeSummary> list = orgProposalMap.get(viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH));
-				
+
+		final List<ProposalCommitteeeSummary> list = orgProposalMap.get(viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH));
+
 		addCommiteeSummary(stringBuilder, list,viewRiksdagenCommittee );
-		
+
 		area.setValue(stringBuilder.toString());
 		return area;
 	}
 
-	
+
 	/**
 	 * Adds the commitee summary.
 	 *
@@ -287,5 +287,5 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 		}
 	}
 
-	
+
 }

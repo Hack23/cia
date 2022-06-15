@@ -63,7 +63,7 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 
 	@Override
 	protected StepMapping<AssignmentData> getStepMapping() {
-		return new StepMapping<AssignmentData>() {
+		return new StepMapping<>() {
 
 			@Override
 			public String getBackgroundColor(final AssignmentData t) {

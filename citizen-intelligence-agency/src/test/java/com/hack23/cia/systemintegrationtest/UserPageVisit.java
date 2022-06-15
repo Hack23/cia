@@ -178,7 +178,7 @@ public final class UserPageVisit extends Assert {
 
 
 	public ExpectedCondition<Boolean> containsButton(final String value) {
-		return new ExpectedCondition<Boolean>() {
+		return new ExpectedCondition<>() {
 
 			@Override
 			public Boolean apply(final WebDriver driver) {
@@ -201,7 +201,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	public ExpectedCondition<Boolean> containsMenuItem(final WebElement element,final String... caption) {
-		return new ExpectedCondition<Boolean>() {
+		return new ExpectedCondition<>() {
 			@Override
 			public Boolean apply(final WebDriver driver) {
 				return !ExpectedConditions.stalenessOf(element).apply(driver) && getMenuItem(element, 1,caption) != null;
@@ -211,7 +211,7 @@ public final class UserPageVisit extends Assert {
 
 
 	public ExpectedCondition<Boolean> containsText(final String value) {
-		return new ExpectedCondition<Boolean>() {
+		return new ExpectedCondition<>() {
 
 			@Override
 			public Boolean apply(final WebDriver driver) {
@@ -227,7 +227,7 @@ public final class UserPageVisit extends Assert {
 
 
 	public ExpectedCondition<Boolean> containsViewAction(final ViewAction value) {
-		return new ExpectedCondition<Boolean>() {
+		return new ExpectedCondition<>() {
 
 			@Override
 			public Boolean apply(final WebDriver driver) {

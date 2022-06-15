@@ -55,7 +55,7 @@ public final class CommitteeGhantChartManagerImpl
 
 	@Override
 	protected StepMapping<ViewRiksdagenCommitteeRoleMember> getStepMapping() {
-		return new StepMapping<ViewRiksdagenCommitteeRoleMember>() {
+		return new StepMapping<>() {
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {

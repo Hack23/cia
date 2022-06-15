@@ -104,10 +104,10 @@ public enum ViewAction {
 	VISIT_PARLIAMENT_RANKING_VIEW,
 
 	/** The visit party ranking view. */
-	VISIT_PARTY_RANKING_VIEW, 
+	VISIT_PARTY_RANKING_VIEW,
 
 	/** The visit party view. */
-	VISIT_PARTY_VIEW, 
+	VISIT_PARTY_VIEW,
 
 	/** The visit politician ranking view. */
 	VISIT_POLITICIAN_RANKING_VIEW,
@@ -119,8 +119,8 @@ public enum ViewAction {
 	VISIT_SEARCH_VIEW,
 
 	/** The visit user home view. */
-	VISIT_USER_HOME_VIEW, 
-	
+	VISIT_USER_HOME_VIEW,
+
 	/** The visit dashboard view. */
 	VISIT_DASHBOARD_VIEW;
 }

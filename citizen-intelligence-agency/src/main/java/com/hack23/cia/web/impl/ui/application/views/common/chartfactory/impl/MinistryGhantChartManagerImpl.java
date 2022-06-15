@@ -55,7 +55,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 	@Override
 	protected StepMapping<ViewRiksdagenGovermentRoleMember> getStepMapping() {
-		return new StepMapping<ViewRiksdagenGovermentRoleMember>() {
+		return new StepMapping<>() {
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {

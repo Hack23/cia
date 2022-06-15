@@ -129,7 +129,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	
+
 	/** The Constant COMMAND_DASHBOARDVIEW_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_DASHBOARDVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.DASHBOARD_VIEW_NAME,
 			PageMode.OVERVIEW);

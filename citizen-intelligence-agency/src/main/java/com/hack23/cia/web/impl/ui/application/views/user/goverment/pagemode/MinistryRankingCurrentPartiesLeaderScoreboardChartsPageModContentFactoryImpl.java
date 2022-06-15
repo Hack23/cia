@@ -86,7 +86,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 	/** The Constant INKOMSTTITELGRUPPSNAMN. */
 	private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
-	
+
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
@@ -169,11 +169,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
-		
+
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			
+
 		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + " "
 				+ viewRiksdagenGovermentRoleMember.getFirstName() + " " + viewRiksdagenGovermentRoleMember.getLastName()
 				+ " (" + viewRiksdagenGovermentRoleMember.getParty() +")");
@@ -182,8 +182,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
 
-		
-		List<ViewRiksdagenPartyRoleMember> partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);
+
+		final List<ViewRiksdagenPartyRoleMember> partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);
 
 		if (partyRole.size()> 0) {
 			final Label partyRoleLabel = new Label(partyRole.get(0).getRoleCode() + " (" + viewRiksdagenGovermentRoleMember.getParty() +")  since " +partyRole.get(0).getFromDate() );
@@ -191,21 +191,21 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			partyRoleLabel.addStyleName("title");
 			partyRoleLabel.setWidth(100, Unit.PERCENTAGE);
 			layout.addComponent(partyRoleLabel);
-			
+
 		}
 
-		
-		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry(); 
-		
+
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
+
 		createMinistryRoleSummary(reportByMinistry, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
 		createPoliticaExperienceSummary(governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
-		
+
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
-	private void createMinistryRoleSummary(Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
+	private void createMinistryRoleSummary(final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 		String ministryTitle = "";
@@ -235,31 +235,31 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 						"Headcount"));
 
 
-		
-		List<GovernmentBodyAnnualOutcomeSummary> listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
+
+		final List<GovernmentBodyAnnualOutcomeSummary> listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
 
 
 		final Map<Integer, Double> annualIncomeSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 		final Map<Integer, Double> annualSpendingSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
-					
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", annualIncomeSummaryMap.get(2021) /1000)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Income"));
-		
-		
+
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", annualSpendingSummaryMap.get(2021)/1000)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Spending"));
-		
-		
+
+
 		layout.addComponent(horizontalLayout);
 	}
 
-	
+
 	private void createPoliticaExperienceSummary(final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
@@ -297,9 +297,9 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		layout.addComponent(horizontalLayout);
 	}
 
-	
-	
-	
+
+
+
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())

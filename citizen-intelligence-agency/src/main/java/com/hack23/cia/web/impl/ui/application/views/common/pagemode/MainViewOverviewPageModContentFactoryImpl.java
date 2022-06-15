@@ -66,7 +66,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 
 		LabelFactory.createHeader2Label(panelContent, "MainOverview");
 
-		
+
 		final Label descriptionLabel = new Label("Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
 		descriptionLabel.addStyleName("itembox");
 		Responsive.makeResponsive(descriptionLabel);

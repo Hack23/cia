@@ -25,7 +25,7 @@ public final class CommonsViews {
 
 	/** The Constant MAIN_VIEW_NAME. */
 	public static final String MAIN_VIEW_NAME = "main";
-	
+
 	/** The Constant DASHBOARD_VIEW_NAME. */
 	public static final String DASHBOARD_VIEW_NAME = "dashboard";
 

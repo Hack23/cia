@@ -91,7 +91,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
-	
+
 	/**
 	 * Instantiates a new dashboard view overview page mod content factory impl.
 	 */
@@ -121,10 +121,10 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
 		createDashboardMonarch(row);
-		
+
 		createDashboardGovernment(row);
 		createDashboardParliament(row);
-		
+
 		createDashboardPartRiskByType(row);
 		createDashboardPartRiskBySeverity(row);
 
@@ -136,7 +136,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	}
 
-	
+
 	private void createDashboardMonarch(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
@@ -159,14 +159,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		nextHeadOfStateLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(nextHeadOfStateLabel);
 
-		
+
 		addMonarchIncomeSpending(layout);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
-	
+
 	private void createDashboardGovernment(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
@@ -208,7 +208,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 						VaadinIcons.WARNING, new CounterStatisticModel("Ministries", listMinistries.size())
 								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 						"Ministries"));
-	
+
 		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
@@ -218,9 +218,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		horizontalLayout.addComponent(
 				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Parties", listparties.size())
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Parties"));
-		
-		
-		List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
+
+
+		final List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
 		horizontalLayout
 		.addComponent(
 				new CounterStatisticsCard(VaadinIcons.WARNING,
@@ -235,14 +235,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 
 		layout.addComponent(horizontalLayout);
-		
+
 		addIncomeSpending(layout);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
-	
+
 	private void addIncomeSpending(final CssLayout layout) {
 		final Label titleLabel = new Label("Government bodies financial 2021");
 		Responsive.makeResponsive(titleLabel);
@@ -250,16 +250,16 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		layout.addComponent(titleLabel);
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
-									
+
 		//https://www.hack23.com/cia/#!governmentbody/202100-0852
-		
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", 1191)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Income"));
-		
-		
+
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", 1216)
@@ -272,7 +272,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Result"));
 
-		
+
 		layout.addComponent(horizontalLayout);
 	}
 
@@ -287,20 +287,20 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		//https://www.hack23.com/cia/#!governmentbody/EXPENDITURE/202100-2627
 
-	
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 713)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Headcount"));
-		
-		
+
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 1719)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Spending"));
-		
+
 		layout.addComponent(horizontalLayout);
 	}
 
@@ -314,25 +314,25 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		//https://www.hack23.com/cia/#!governmentbody/202100-3484
 
-	
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 185)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Headcount"));
-		
-		
+
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 148)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Spending"));
-		
+
 		layout.addComponent(horizontalLayout);
 	}
 
-	
-	
+
+
 	private void createDashboardParliament(final ResponsiveRow row) {
 
 		final CssLayout layout = new CssLayout();
@@ -384,13 +384,13 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		horizontalLayout.addComponent(
 					new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Committees", listCommittees.size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Committees"));		
-		
+							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Committees"));
+
 		layout.addComponent(horizontalLayout);
 
-		
+
 		addParliamentIncomeSpending(layout);
-		
+
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}

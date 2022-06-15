@@ -104,7 +104,7 @@ public abstract class AbstractView extends Panel implements View {
 	/** The application url. */
 	@Value("${application.url}")
 	protected String applicationUrl;
-	
+
 	/** The page name. */
 	private final String pageName;
 
@@ -238,17 +238,17 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.addComponent(panel);
 		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
 
-		HorizontalLayout footer = new HorizontalLayout();
+		final HorizontalLayout footer = new HorizontalLayout();
 		footer.addComponent(pageLinkFactory.createMainViewPageLink());
 		footer.addComponent(new Label(applicationName + " (" + applicationVersion +")"));
 		footer.addComponent(new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt")));
 		footer.addComponent(new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia")));
-		footer.addComponent(new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.5.15/citizen-intelligence-agency-2022.5.15-cyclonedx.json")));
-		footer.addComponent(new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.5.15/citizen-intelligence-agency-2022.5.15.spdx.rdf.xml")));
-		
+		footer.addComponent(new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.6.15/citizen-intelligence-agency-2022.6.15-cyclonedx.json")));
+		footer.addComponent(new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.6.15/citizen-intelligence-agency-2022.6.15.spdx.rdf.xml")));
+
 		pageModeContent.addComponent(footer);
-		
-		
+
+
 		setContent(layout);
 
 		setWidth(100, Unit.PERCENTAGE);
