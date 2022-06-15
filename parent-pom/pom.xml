@@ -102,7 +102,7 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <cia.project.versions.spring>5.3.20</cia.project.versions.spring>
+    <cia.project.versions.spring>5.3.21</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.7.1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.0</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.240</cia.project.versions.aws>
@@ -165,7 +165,7 @@
     <cia.project.versions.httpclient>4.5.13</cia.project.versions.httpclient>
     <cia.project.versions.guava>31.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.13.3</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.1.77.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.1.78.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.21</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
