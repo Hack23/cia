@@ -55,6 +55,12 @@ public final class TestInstanceTest extends AbstractUnitTest {
 		}.executeTestPhases();
 		assertEquals(3,order);
 	}
+	
+	@Test
+	public void checkAllClassesInPackageTest() throws Exception {
+		assertTrue(checkAllClassesInPackage("com.hack23.cia.testfoundation.pojo"));
+		assertTrue(checkAllDtoClassesInPackage("com.hack23.cia.testfoundation.pojo"));
+	}
 
 
 }
