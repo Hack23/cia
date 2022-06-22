@@ -2,23 +2,10 @@
 
 	@include valo;
 
-/*
-	$color1: $panelCaptionColor;
+
+	$color1: #ffffff;
     @include valo-panel-caption-style($background-color: $color1);
 	@include valo-caption-style($background-color: $color1);
-
-
-	HeaderText
-	http://www.color-hex.com/color/003cf0
-
-
-	http://www.color-hex.com/color/00b4f0
-	http://www.color-hex.com/color/ccf2ff
-
-	http://www.color-hex.com/color/40b527
-	http://www.color-hex.com/color/deffd7
-
-*/
 
 
 	$headerBorderRadius : 6px;
@@ -31,7 +18,7 @@
 	.v-layout-content-overview-panel-level1 {
 		overflow: scroll;
 		background-color: rgba(0, 0, 0, .6);
-		border: 2px inset #2deff9;
+		border: 2px inset rgb(98, 160, 234);
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		padding: 6px;
 		margin: 4px;
@@ -44,7 +31,7 @@
 
 		background-color: rgba(0, 0, 0, .6);
 		color: white;
-		border: 2px inset #2deff9;
+		border: 2px inset rgb(98, 160, 234);
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 200px;
         display: inline-block;
@@ -69,7 +56,7 @@
 
 		background-color: rgba(0, 0, 0, .6);
 		color: white;
-		border: 2px inset #2deff9;
+		border: 2px inset rgb(98, 160, 234);
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 100px;
         display: inline-block;
@@ -129,7 +116,7 @@
 
 		background-color: rgba(0, 0, 0, .6);
 		color: white;
-		border: 2px inset #2deff9;
+		border: 2px inset rgb(98, 160, 234);
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 100%;
         display: inline-block;
@@ -166,14 +153,14 @@
 
 
 	.v-label-Level2Header {
-	 color: #2debf5;
+	 color: #ffffff;
 	 background-color: #213f49;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
 	}
 
 	.v-panel-caption {
-	 color : #2bed1b;
+	 color : #ffffff;
 	 /* color: #2debf5;
 	 background-color: #213f49; */
 	 background-image: none;
@@ -183,7 +170,7 @@
 
 
 	.v-caption-Level2Header {
-	 color: #2debf5;
+	 color: #ffffff;
 	 background-color: #213f49;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
