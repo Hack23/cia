@@ -1169,7 +1169,7 @@
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-dev</artifactId>
-      <version>${cia.project.versions.vaadin.gwt.user}</version>
+      <version>${cia.project.versions.vaadin.gwt.user.run}</version>
       <exclusions>
         <exclusion>
           <groupId>javax.validation</groupId>
@@ -1234,6 +1234,17 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-elemental</artifactId>
+      <version>2.9.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.gwt</groupId>
+          <artifactId>gwt-user</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.blazegraph</groupId>
       <artifactId>colt</artifactId>
       <version>2.1.4</version>
@@ -1246,7 +1257,7 @@
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
-      <version>${cia.project.versions.vaadin.gwt.user}</version>
+      <version>${cia.project.versions.vaadin.gwt.user.run}</version>
       <exclusions>
         <exclusion>
           <groupId>javax.validation</groupId>
