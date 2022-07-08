@@ -105,7 +105,7 @@
     <cia.project.versions.spring>5.3.21</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.7.2</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.1</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.254</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.256</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.9.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.0-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.6.5</cia.project.versions.javers>
@@ -124,7 +124,7 @@
     <cia.project.versions.drools>7.72.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.5.Final</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.11.2</cia.project.versions.hibernate.lucene>
-    <cia.project.versions.hibernate>5.6.9.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate>5.6.10.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.6.9.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.6.9.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
