@@ -3,25 +3,32 @@
 	@include valo;
 
 
-	$color1: #ffffff;
-    @include valo-panel-caption-style($background-color: $color1);
-	@include valo-caption-style($background-color: $color1);
-
-
+	$backGroundColor: $v-background-color;
+	$backGroundColorLevel1: #FFffff;
+	$backGroundColorLevel2: #1C5170;
+	$borderColorLevel: rgb(98, 160, 234);
+	$backGroundColorPanelCaption: #91BB46;
+	$backGroundColorLevel2Header : #91BB46;
+	$backGroundColorCaptionLevel2Header : #91BB46;	
+	
 	$headerBorderRadius : 6px;
 	$headerFontSize : 16px;
 
+    @include valo-panel-caption-style($background-color: $backGroundColor);
+	@include valo-caption-style($background-color: $backGroundColor);
+
+
+
 	.v-panel-page-panel {
-		border: 1px solid rgba(0, 0, 0, .6);
+		color: #FFFFFF;
+		background-color: rgb(189, 198, 210);
 	}
 
 	.v-layout-content-overview-panel-level1 {
 		overflow: scroll;
-		background-color: rgba(0, 0, 0, .6);
-		border: 2px inset rgb(98, 160, 234);
+		background-color: $backGroundColorLevel1;
+		border: 2px inset $borderColorLevel;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
-		padding: 6px;
-		margin: 4px;
 	}
 
 
@@ -29,9 +36,8 @@
 	.v-layout-content-overview-dashboard-panel-level2 {
 		width: 100%;
 
-		background-color: rgba(0, 0, 0, .6);
-		color: white;
-		border: 2px inset rgb(98, 160, 234);
+		background-color: $backGroundColorLevel2;
+		border: 2px inset $borderColorLevel;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 200px;
         display: inline-block;
@@ -54,9 +60,8 @@
 	.v-layout-content-overview-panel-level2 {
 		width: 100%;
 
-		background-color: rgba(0, 0, 0, .6);
-		color: white;
-		border: 2px inset rgb(98, 160, 234);
+		background-color: $backGroundColorLevel2;;
+		border: 2px inset $borderColorLevel;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 100px;
         display: inline-block;
@@ -76,9 +81,6 @@
 	}
 
 	.v-layout-content-overview-panel-level2[width-range~="0-600px"] {
-		padding: 4px;
-		margin: 2px;
-
 		.title {
 			width: 100%;
 			font-weight: bold;
@@ -99,9 +101,6 @@
 	}
 
 	.v-layout-content-overview-panel-level2[width-range~="600px-"] {
-		padding: 6px;
-		margin: 4px;
-
 	    .title {
 			width: 100%;
 	    }
@@ -114,9 +113,8 @@
 	.v-layout-content-pagemode-panel-level2 {
 		width: 100%;
 
-		background-color: rgba(0, 0, 0, .6);
-		color: white;
-		border: 2px inset rgb(98, 160, 234);
+		background-color: $backGroundColorLevel2;;
+		border: 2px inset $borderColorLevel;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 100%;
         display: inline-block;
@@ -141,28 +139,25 @@
 
 	.v-label-Header {
 	 font-size: 14px;
-	 color: #fed552;
+	 color: #000000;
 	 border-radius: $headerBorderRadius;
 	}
 
 	.v-label-HeaderSlogan {
 	 font-size: 14px;
-	 color: #2deff9;
+	 color: #006666;
 	 border-radius: $headerBorderRadius;
 	}
 
 
 	.v-label-Level2Header {
-	 color: #ffffff;
-	 background-color: #213f49;
+	 background-color: $backGroundColorLevel2Header;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
 	}
 
 	.v-panel-caption {
-	 color : #ffffff;
-	 /* color: #2debf5;
-	 background-color: #213f49; */
+	 background-color: $backGroundColorPanelCaption;
 	 background-image: none;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
@@ -170,8 +165,7 @@
 
 
 	.v-caption-Level2Header {
-	 color: #ffffff;
-	 background-color: #213f49;
+	 background-color: $backGroundColorCaptionLevel2Header;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
 	}

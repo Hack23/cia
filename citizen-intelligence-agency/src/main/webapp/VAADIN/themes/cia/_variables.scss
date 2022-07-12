@@ -1,13 +1,14 @@
 $v-app-loading-text: "Loading Citizen Intelligence Agency:: Tracking politicians like bugs!";
-
-$v-background-color: #13303f;
-$v-focus-color: #008780;
+$v-app-background-color: #FFFFFF;
+$v-background-color: #1C5170;
+$v-focus-color: #91BB46;
+$v-color: #FFFFFF;
 $v-font-size: 12px;
 $v-font-weight: 600;
 $v-unit-size: 20px;
-$v-bevel: false;
-$v-shadow: false;
-$v-gradient: false;
+$v-bevel: true;
+$v-shadow: true;
+$v-gradient: true;
 $v-textfield-bevel: false;
 $v-textfield-shadow: false;
 $v-border-radius: 0;

@@ -66,7 +66,10 @@ public final class RowUtil {
 		layout.setHeight(100, Unit.PERCENTAGE);
 		panelContent.addComponent(layout);
 		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
-		return layout.addRow();
+		final ResponsiveRow row = layout.addRow();
+		row.setVerticalSpacing(true);
+		row.setHorizontalSpacing(true);
+		return row;
 	}
 
 	/**
