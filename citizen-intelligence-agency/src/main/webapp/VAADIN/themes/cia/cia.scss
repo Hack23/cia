@@ -4,14 +4,15 @@
 
 
 	$backGroundColor: $v-background-color;
-	$backGroundColorLevel1: #FFffff;
-	$backGroundColorLevel2: #1C5170;
-	$borderColorLevel: rgb(98, 160, 234);
-	$backGroundColorPanelCaption: #91BB46;
-	$backGroundColorLevel2Header : #91BB46;
-	$backGroundColorCaptionLevel2Header : #91BB46;	
+	$backGroundColorLevel1: #000000;
+	$backGroundColorLevel2: $v-background-color;
+	$borderColorLevel: #ACDAF1;
+	$backGroundColorPanelCaption: $v-background-color;
+	$backGroundColorLevel2Header : $v-background-color;
+	$backGroundColorCaptionLevel2Header : $v-background-color;	
 	
 	$headerBorderRadius : 6px;
+	$panelBorderRadius: 8px;
 	$headerFontSize : 16px;
 
     @include valo-panel-caption-style($background-color: $backGroundColor);
@@ -21,14 +22,14 @@
 
 	.v-panel-page-panel {
 		color: #FFFFFF;
-		background-color: rgb(189, 198, 210);
+		background-color: $backGroundColorLevel1;
 	}
 
 	.v-layout-content-overview-panel-level1 {
 		overflow: scroll;
 		background-color: $backGroundColorLevel1;
 		border: 2px inset $borderColorLevel;
-		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		border-radius: $panelBorderRadius;
 	}
 
 
@@ -38,7 +39,7 @@
 
 		background-color: $backGroundColorLevel2;
 		border: 2px inset $borderColorLevel;
-		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		border-radius: $panelBorderRadius;
 		height: 200px;
         display: inline-block;
 
@@ -62,7 +63,7 @@
 
 		background-color: $backGroundColorLevel2;;
 		border: 2px inset $borderColorLevel;
-		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		border-radius: $panelBorderRadius;
 		height: 100px;
         display: inline-block;
 
@@ -115,7 +116,7 @@
 
 		background-color: $backGroundColorLevel2;;
 		border: 2px inset $borderColorLevel;
-		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		border-radius: $panelBorderRadius;
 		height: 100%;
         display: inline-block;
 
@@ -158,6 +159,7 @@
 
 	.v-panel-caption {
 	 background-color: $backGroundColorPanelCaption;
+	 color : #FFFFFF;
 	 background-image: none;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
