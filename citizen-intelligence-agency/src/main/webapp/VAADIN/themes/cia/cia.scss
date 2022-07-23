@@ -19,10 +19,11 @@
 	@include valo-caption-style($background-color: $backGroundColor);
 
 
-
 	.v-panel-page-panel {
 		color: #FFFFFF;
 		background-color: $backGroundColorLevel1;
+		padding : 5px;
+ 		margin : 5px;
 	}
 
 	.v-layout-content-overview-panel-level1 {
@@ -30,6 +31,7 @@
 		background-color: $backGroundColorLevel1;
 		border: 2px inset $borderColorLevel;
 		border-radius: $panelBorderRadius;
+		padding : 5px;
 	}
 
 
@@ -40,6 +42,7 @@
 		background-color: $backGroundColorLevel2;
 		border: 2px inset $borderColorLevel;
 		border-radius: $panelBorderRadius;
+		padding : 10px;
 		height: 200px;
         display: inline-block;
 
@@ -64,6 +67,7 @@
 		background-color: $backGroundColorLevel2;;
 		border: 2px inset $borderColorLevel;
 		border-radius: $panelBorderRadius;
+		padding : 10px;
 		height: 100px;
         display: inline-block;
 
@@ -119,6 +123,7 @@
 		border-radius: $panelBorderRadius;
 		height: 100%;
         display: inline-block;
+        padding : 15px;
 
 	    .title {
 	    	font-weight: bold;
@@ -142,6 +147,7 @@
 	 font-size: 14px;
 	 color: #000000;
 	 border-radius: $headerBorderRadius;
+	 padding : 2px;
 	}
 
 	.v-label-HeaderSlogan {
@@ -155,6 +161,7 @@
 	 background-color: $backGroundColorLevel2Header;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
+	 padding : 2px;
 	}
 
 	.v-panel-caption {
@@ -170,6 +177,7 @@
 	 background-color: $backGroundColorCaptionLevel2Header;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
+	 padding : 2px;
 	}
 
 	.v-menubar-Header {

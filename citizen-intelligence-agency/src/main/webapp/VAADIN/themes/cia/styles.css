@@ -18130,6 +18130,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-panel-page-panel {
 	color: #FFFFFF;
 	background-color: #000000;
+	padding: 5px;
+	margin: 5px;
 }
 
 .cia .v-layout-content-overview-panel-level1 {
@@ -18137,6 +18139,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #000000;
 	border: 2px inset #ACDAF1;
 	border-radius: 8px;
+	padding: 5px;
 }
 
 .cia .v-layout-content-overview-dashboard-panel-level2 {
@@ -18144,6 +18147,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #006666;
 	border: 2px inset #ACDAF1;
 	border-radius: 8px;
+	padding: 10px;
 	height: 200px;
 	display: inline-block;
 }
@@ -18166,6 +18170,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #006666;
 	border: 2px inset #ACDAF1;
 	border-radius: 8px;
+	padding: 10px;
 	height: 100px;
 	display: inline-block;
 }
@@ -18213,6 +18218,7 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 8px;
 	height: 100%;
 	display: inline-block;
+	padding: 15px;
 }
 
 .cia .v-layout-content-pagemode-panel-level2 .title {
@@ -18234,6 +18240,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 14px;
 	color: #000000;
 	border-radius: 6px;
+	padding: 2px;
 }
 
 .cia .v-label-HeaderSlogan {
@@ -18246,6 +18253,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #006666;
 	font-size: 16px;
 	border-radius: 6px;
+	padding: 2px;
 }
 
 .cia .v-panel-caption {
@@ -18260,6 +18268,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #006666;
 	font-size: 16px;
 	border-radius: 6px;
+	padding: 2px;
 }
 
 .cia .v-menubar-Header {
