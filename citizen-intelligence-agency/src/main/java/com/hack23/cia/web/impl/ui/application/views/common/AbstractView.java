@@ -243,8 +243,8 @@ public abstract class AbstractView extends Panel implements View {
 		footer.addComponent(new Label(applicationName + " (" + applicationVersion +")"));
 		footer.addComponent(new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt")));
 		footer.addComponent(new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia")));
-		footer.addComponent(new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.7.1/citizen-intelligence-agency-2022.7.1-cyclonedx.json")));
-		footer.addComponent(new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.7.1/citizen-intelligence-agency-2022.7.1.spdx.rdf.xml")));
+		footer.addComponent(new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.7.23/citizen-intelligence-agency-2022.7.23-cyclonedx.json")));
+		footer.addComponent(new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.7.23/citizen-intelligence-agency-2022.7.23.spdx.rdf.xml")));
 
 		pageModeContent.addComponent(footer);
 
