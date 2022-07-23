@@ -1891,7 +1891,7 @@
                 "CidrBlock": {
                     "Fn::FindInMap": [
                         "SubnetConfig",
-                        "PrivateApp",
+                        "PrivateApp2",
                         "CIDR"
                     ]
                 },

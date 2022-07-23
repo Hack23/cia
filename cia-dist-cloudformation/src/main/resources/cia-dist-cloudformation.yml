@@ -1047,7 +1047,7 @@ Resources:
       Egress: 'true'
       CidrBlock: !FindInMap
         - SubnetConfig
-        - PrivateApp
+        - PrivateApp2
         - CIDR
       PortRange:
         From: '1024'
