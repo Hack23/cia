@@ -5,7 +5,7 @@
         "WebServerInstanceType": {
             "Description": "WebServer Server EC2 instance type",
             "Type": "String",
-            "Default": "t4g.xlarge",
+            "Default": "c7g.2xlarge",
             "AllowedValues": [
                 "t4g.micro",
                 "t4g.small",
@@ -3568,6 +3568,11 @@
                 "ImageId": {
                     "Ref": "WebServerAmi"
                 },
+			    "MetadataOptions": {
+			       "HttpEndpoint": "enabled",
+			       "HttpPutResponseHopLimit": 1,
+			       "HttpTokens": "required"
+			    },
                 "IamInstanceProfile": {
                     "Ref": "InstanceProfile"
                 },
@@ -3604,7 +3609,7 @@
                                 "apt-get -y install apt-transport-https\n",
                                 "apt-get update\n",
                                 "apt-get -y dist-upgrade\n",
-                                "apt-get -y install python3-pip unattended-upgrades chrony\n",
+                                "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n",
                                 "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
                                 "sudo /etc/init.d/chrony restart\n",
                                 "mkdir -p /opt/aws/bin\n",
@@ -3696,7 +3701,8 @@
                                 },
                                 "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
                                 "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/cia-base/webapps/cia.xml\n",
-                                "LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)\n",
+                                "TOKEN=$(curl -X PUT 'http://169.254.169.254/latest/api/token' -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600')\n",
+                                "LOCAL_IP=$(curl -H 'X-aws-ec2-metadata-token: $TOKEN' http://169.254.169.254/latest/meta-data/local-ipv4)\n",                                
                                 "HISTCONTROL=ignorespace\n",
                                 "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n",
                                 "rm -rf /opt/cia/cia-base/etc/keystore.p12\n",
