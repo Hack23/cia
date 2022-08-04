@@ -1285,6 +1285,75 @@
                 ]
             }
         },
+        "SgForecVPCEndpoint": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Security group to allow access to ec2 VPC Endpoint",
+                "SecurityGroupIngress": [
+                    {
+                        "Description": "vpc endpoint inbound access",
+                        "CidrIp": {
+                    "Fn::FindInMap": [
+                        "SubnetConfig",
+                        "VPC",
+                        "CIDR"
+                    ]
+                },
+                        "IpProtocol": "tcp",
+                        "FromPort": "443",
+                        "ToPort": "443"
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "Description": "vpc endpoint outbound access",
+                        "CidrIp": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "VPC"
+                }
+            }
+        },
+        "ecVPCEndpoint": {
+            "Type": "AWS::EC2::VPCEndpoint",
+            "Properties": {
+                "VpcEndpointType": "Interface",
+                "ServiceName": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "com.amazonaws.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".ec2"
+                        ]
+                    ]
+                },
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "SubnetIds": [
+                    {
+                        "Ref": "PrivateAppSubnet"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet2"
+                    },
+                    {
+                        "Ref": "PrivateAppSubnet3"
+                    }
+                ],
+                "PrivateDnsEnabled": true,
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "SgForecVPCEndpoint"
+                    }
+                ]
+            }
+        },
         "SgForecmessagesVPCEndpoint": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
