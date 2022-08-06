@@ -1,13 +1,18 @@
 {
-  "Type" : "AWS::ResilienceHub::ResiliencyPolicy",
-  "Properties" : {
-      "DataLocationConstraint" : "AnyLocation",
-      "Policy" : {
-	     "RpoInSecs" : 10,
-		 "RtoInSecs" :10
-		},
-      "PolicyDescription" : "MissionCritical",
-      "PolicyName" : "MissionCritical",
-      "Tier" : "MissionCritical"
-    }
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Resources": {
+		"AppPolicy": {
+			"Type": "AWS::ResilienceHub::ResiliencyPolicy",
+			"Properties": {
+				"DataLocationConstraint": "AnyLocation",
+				"Policy": {
+					"RpoInSecs": 10,
+					"RtoInSecs": 10
+				},
+				"PolicyDescription": "MissionCriticalCloudformation",
+				"PolicyName": "MissionCriticalMissionCriticalCloudformation",
+				"Tier": "MissionCritical"
+			}
+		}
+	}
 }
