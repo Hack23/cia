@@ -1,0 +1,13 @@
+{
+  "Type" : "AWS::ResilienceHub::ResiliencyPolicy",
+  "Properties" : {
+      "DataLocationConstraint" : "AnyLocation",
+      "Policy" : {
+	     "RpoInSecs" : 10,
+		 "RtoInSecs" :10
+		},
+      "PolicyDescription" : "MissionCritical",
+      "PolicyName" : "MissionCritical",
+      "Tier" : "MissionCritical"
+    }
+}
