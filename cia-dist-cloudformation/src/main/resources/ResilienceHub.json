@@ -6,8 +6,22 @@
 			"Properties": {
 				"DataLocationConstraint": "AnyLocation",
 				"Policy": {
-					"RpoInSecs": 10,
-					"RtoInSecs": 10
+					"Software": {
+						"RpoInSecs": 300,
+						"RtoInSecs": 300
+					},
+					"Hardware": {
+						"RpoInSecs": 300,
+						"RtoInSecs": 300
+					},
+					"AZ": {
+						"RpoInSecs": 300,
+						"RtoInSecs": 300
+					},
+					"Region": {
+						"RpoInSecs": 300,
+						"RtoInSecs": 300
+					}
 				},
 				"PolicyDescription": "MissionCriticalCloudformation",
 				"PolicyName": "MissionCriticalMissionCriticalCloudformation",
