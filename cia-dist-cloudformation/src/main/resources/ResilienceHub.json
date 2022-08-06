@@ -27,6 +27,17 @@
 				"PolicyName": "MissionCriticalMissionCriticalCloudformation",
 				"Tier": "MissionCritical"
 			}
+		},
+		"Application": {
+			"Type": "AWS::ResilienceHub::App",
+			"Properties": {
+				"AppAssessmentSchedule": "",
+				"AppTemplateBody": "",
+				"Description": "",
+				"Name": "",
+				"ResiliencyPolicyArn": "",
+				"ResourceMappings": []
+			}
 		}
 	}
 }
