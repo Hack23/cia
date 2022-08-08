@@ -19,8 +19,8 @@
 						"RtoInSecs": 300
 					},
 					"Region": {
-						"RpoInSecs": 300,
-						"RtoInSecs": 300
+						"RpoInSecs": 0,
+						"RtoInSecs": 0
 					}
 				},
 				"PolicyDescription": "MissionCriticalCloudformation",
@@ -30,13 +30,69 @@
 		},
 		"Application": {
 			"Type": "AWS::ResilienceHub::App",
+			"DependsOn": "DNSRecordCNAME2PublicElasticLoadBalancerV2",
 			"Properties": {
-				"AppAssessmentSchedule": "",
-				"AppTemplateBody": "",
-				"Description": "",
-				"Name": "",
-				"ResiliencyPolicyArn": "",
-				"ResourceMappings": []
+				"AppAssessmentSchedule": "Daily",
+				"AppTemplateBody": "{\"resources\":[],\"appComponents\":[{\"name\":\"appcommon\",\"type\":\"AWS::ResilienceHub::AppCommonAppComponent\",\"resourceNames\":[]}],\"excludedResources\":{\"logicalResourceIds\":[]},\"version\":2.0}",
+				"Description": "Citizen Intelligence Agency",
+				"Name": "CIA",
+				"ResiliencyPolicyArn": {"Ref": "AppPolicy"},
+				"ResourceMappings": [
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${WebServerFleet.Arn}"},
+						  "Type" : "AWS::AutoScaling::AutoScalingGroup"
+					   },
+					  "ResourceName" : "WebServerFleet"
+					},
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${Database.Arn}"},
+						  "Type" : "AWS::RDS::DBInstance"
+					   },
+					  "ResourceName" : "Database"
+					},					
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${NAT.Arn}"},
+						  "Type" : "AWS::EC2::NatGateway"
+					   },
+					  "ResourceName" : "NAT"
+					},					
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${DNSRecordCNAME2PublicElasticLoadBalancerV2.Arn}"},
+						  "Type" : "AWS::Route53::RecordSet"
+					   },
+					  "ResourceName" : "DNS"
+					},					
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${ArtifactBucket.Arn}"},
+						  "Type" : "AWS::S3::Bucket"
+					   },
+					  "ResourceName" : "SystemInventory"
+					},
+					{
+					  "LogicalStackName" : {"Ref": "AWS::StackName"},
+					  "MappingType" : "CfnStack",
+					  "PhysicalResourceId" : {
+						  "Identifier" : {"Fn::Sub": "${LogsBucket.Arn}"},
+						  "Type" : "AWS::S3::Bucket"
+					   },
+					  "ResourceName" : "WebFleetLogs"
+					}
+				]
 			}
 		}
 	}
