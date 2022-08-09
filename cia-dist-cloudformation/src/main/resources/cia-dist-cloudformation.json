@@ -2769,7 +2769,64 @@
                 ]
             },
             "DependsOn": "LogsBucketPolicy"
-        },
+        },        
+		"AppPolicy": {
+			"Type": "AWS::ResilienceHub::ResiliencyPolicy",
+			"Properties": {
+				"DataLocationConstraint": "AnyLocation",
+				"Policy": {
+					"Software": {
+						"RpoInSecs": 60,
+						"RtoInSecs": 300
+					},
+					"Hardware": {
+						"RpoInSecs": 60,
+						"RtoInSecs": 300
+					},
+					"AZ": {
+						"RpoInSecs": 60,
+						"RtoInSecs": 300
+					},
+					"Region": {
+						"RpoInSecs": 60,
+						"RtoInSecs": 300
+					}
+				},
+				"PolicyDescription": "MissionCritical",
+				"PolicyName": "MissionCritical",
+				"Tier": "MissionCritical"
+			}
+		},
+		"Application": {
+			"Type": "AWS::ResilienceHub::App",
+			"DependsOn": "DNSRecordCNAME2PublicElasticLoadBalancerV2",
+			"Properties": {
+				"AppAssessmentSchedule": "Daily",
+				"AppTemplateBody": {
+					"Fn::Sub": "\"resources\":[{\"logicalResourceId\":{\"identifier\":\"WebServerFleet\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::AutoScaling::AutoScalingGroup\",\"name\":\"WebServerFleet\"},{\"logicalResourceId\":{\"identifier\":\"DNS\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::Route53::RecordSet\",\"name\":\"DNS\"},{\"logicalResourceId\":{\"identifier\":\"Database\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::RDS::DBInstance\",\"name\":\"Database\"},{\"logicalResourceId\":{\"identifier\":\"ArtifactBucket\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::S3::Bucket\",\"name\":\"ArtifactBucket\"},{\"logicalResourceId\":{\"identifier\":\"LogsBucket\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::S3::Bucket\",\"name\":\"LogsBucket\"},{\"logicalResourceId\":{\"identifier\":\"NAT\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::EC2::NatGateway\",\"name\":\"NAT\"}],\"appComponents\":[{\"name\":\"computeappcomponent-app\",\"type\":\"AWS::ResilienceHub::ComputeAppComponent\",\"resourceNames\":[\"WebServerFleet\"]},{\"name\":\"networkingappcomponent-nat\",\"type\":\"AWS::ResilienceHub::NetworkingAppComponent\",\"resourceNames\":[\"DNSRecordCNAME2PublicElasticLoadBalancerV2\"]},{\"name\":\"databaseappcomponent-rds\",\"type\":\"AWS::ResilienceHub::DatabaseAppComponent\",\"resourceNames\":[\"Database\"]},{\"name\":\"storageappcomponent-systeminventory\",\"type\":\"AWS::ResilienceHub::StorageAppComponent\",\"resourceNames\":[\"ArtifactBucket\"]},{\"name\":\"storageappcomponent-logs\",\"type\":\"AWS::ResilienceHub::StorageAppComponent\",\"resourceNames\":[\"LogsBucket\"]},{\"name\":\"networkingappcomponent-nat\",\"type\":\"AWS::ResilienceHub::NetworkingAppComponent\",\"resourceNames\":[\"NAT\"]},{\"name\":\"appcommon\",\"type\":\"AWS::ResilienceHub::AppCommonAppComponent\",\"resourceNames\":[]}],\"excludedResources\":{\"logicalResourceIds\":[]},\"version\":2.0}"
+				},
+				"Description": "Citizen Intelligence Agency",
+				"Name": "CIA",
+				"ResiliencyPolicyArn": {
+					"Ref": "AppPolicy"
+				},
+				"ResourceMappings": [
+					{
+						"LogicalStackName": {
+							"Ref": "AWS::StackName"
+						},
+						"MappingType": "CfnStack",
+						"PhysicalResourceId": {
+							"Identifier": {
+								"Fn::Sub": "${AWS::StackId}"
+							},
+							"Type": "Arn"
+						},
+						"ResourceName": "WebServerFleet"
+					}
+				]
+			}
+		},
         "WebACLAssociation": {
             "Type": "AWS::WAFv2::WebACLAssociation",
             "DependsOn": "BasicSecurityACL",
