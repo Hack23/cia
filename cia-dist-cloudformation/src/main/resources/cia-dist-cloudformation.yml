@@ -1399,7 +1399,7 @@ Resources:
           Value: Standard
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: '14.3'
+      EngineVersion: '14.4'
       MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
