@@ -4,10 +4,12 @@
 
 
 	$backGroundColor: $v-background-color;
-	$backGroundColorLevel1: #000000;
-	$backGroundColorLevel2: $v-background-color;
-	$borderColorLevel: #ACDAF1;
+	$groundColor: #000000;	
+	$backGroundColorLevel1: rgb(255, 255, 255);
+	$backGroundColorLevel2: #ACDAF1;
+	$borderColorLevel: rgb(246, 245, 244);
 	$backGroundColorPanelCaption: $v-background-color;
+	$groundColorPanelCaption: #FFFFFF;
 	$backGroundColorLevel2Header : $v-background-color;
 	$backGroundColorCaptionLevel2Header : $v-background-color;	
 	
@@ -20,7 +22,7 @@
 
 
 	.v-panel-page-panel {
-		color: #FFFFFF;
+		color: $groundColor;
 		background-color: $backGroundColorLevel1;
 		padding : 5px;
  		margin : 5px;
@@ -156,8 +158,8 @@
 	 border-radius: $headerBorderRadius;
 	}
 
-
 	.v-label-Level2Header {
+	 color : groundColorPanelCaption;
 	 background-color: $backGroundColorLevel2Header;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
@@ -166,7 +168,7 @@
 
 	.v-panel-caption {
 	 background-color: $backGroundColorPanelCaption;
-	 color : #FFFFFF;
+	 color : $groundColorPanelCaption;
 	 background-image: none;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
