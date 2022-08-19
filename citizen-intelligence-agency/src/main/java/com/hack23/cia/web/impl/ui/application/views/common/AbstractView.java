@@ -60,16 +60,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractView extends Panel implements View {
 
-	private static final Link SPDX_LINK = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4.spdx.rdf.xml"));
-
-	private static final Link CYCLONEDX_LINK = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4-cyclonedx.json"));
-
-	/** The Constant SOURCE_CODE_LINK. */
-	private static final Link SOURCE_CODE_LINK = new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia"));
-
-	/** The Constant LICENSE_LINK. */
-	private static final Link LICENSE_LINK = new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt"));
-
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);
 
@@ -250,23 +240,28 @@ public abstract class AbstractView extends Panel implements View {
 
 		final HorizontalLayout footer = new HorizontalLayout();
 		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
-		footer.addComponent(createMainViewPageLink);
 		final Label appVersion = new Label(applicationName + " (" + applicationVersion +")");
+		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4.spdx.rdf.xml"));
+		final Link cyclonedxLink = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4-cyclonedx.json"));
+		final Link sourcCodeLink = new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia"));
+		final Link licenseLink = new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt"));
+
+		footer.addComponent(createMainViewPageLink);
 		footer.addComponent(appVersion);
-		footer.addComponent(LICENSE_LINK);
-		footer.addComponent(SOURCE_CODE_LINK);
-		footer.addComponent(CYCLONEDX_LINK);
-		footer.addComponent(SPDX_LINK);
+		footer.addComponent(licenseLink);
+		footer.addComponent(sourcCodeLink);
+		footer.addComponent(cyclonedxLink);
+		footer.addComponent(spdxLink);
 		footer.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
 		footer.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
 		
-		footer.setComponentAlignment(LICENSE_LINK, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(SOURCE_CODE_LINK, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(CYCLONEDX_LINK, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(SPDX_LINK, Alignment.MIDDLE_LEFT);
+		footer.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
+		footer.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
+		footer.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);
+		footer.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
 
 		footer.setWidth("100%");
-		footer.setHeight("50px");
+		footer.setHeight("40px");
 
 		pageModeContent.addComponent(footer);
 
