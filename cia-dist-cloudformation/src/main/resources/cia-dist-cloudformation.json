@@ -36,9 +36,9 @@
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
         "WebServerAmi": {
-            "Description": "Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
+            "Description": "Web server ami ubuntu arm 22.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
             "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
-            "Default": "/aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id"
+            "Default": "/aws/service/canonical/ubuntu/server/22.04/stable/current/arm64/hvm/ebs-gp2/ami-id"
         },
         "WebServerCount": {
             "Description": "Number of EC2 instances to launch for the WebServer server",
@@ -3498,7 +3498,8 @@
                                 "sysstat": [],
                                 "debsecan": [],
                                 "debsums": [],
-                                "fail2ban": []
+                                "fail2ban": [],
+                                "heat-cfntools": [] 
                             }
                         },
                         "files": {
@@ -3533,7 +3534,7 @@
                                             "[cfn-auto-reloader-hook]\n",
                                             "triggers=post.update\n",
                                             "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n",
-                                            "action=/opt/aws/bin/cfn-init -v ",
+                                            "action=/usr/bin/cfn-init -v ",
                                             "         --stack ",
                                             {
                                                 "Ref": "AWS::StackName"
@@ -3558,7 +3559,7 @@
                                             "Description=cfn-hup daemon\n\n",
                                             "[Service]\n",
                                             "Type=simple\n",
-                                            "ExecStart=/opt/aws/bin/cfn-hup\n",
+                                            "ExecStart=/usr/bin/cfn-hup\n",
                                             "Restart=always\n\n",
                                             "[Install]\n",
                                             "WantedBy=multi-user.target"
@@ -3737,13 +3738,10 @@
                                 "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n",
                                 "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
                                 "sudo /etc/init.d/chrony restart\n",
-                                "mkdir -p /opt/aws/bin\n",
-                                "wget https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n",
-                                "python3 -m easy_install --script-dir /opt/aws/bin aws-cfn-bootstrap-py3-latest.tar.gz\n",
                                 "##systemctl enable cfn-hup.service \n",
                                 "##systemctl start cfn-hup.service \n",
                                 "# Install the sample application\n",
-                                "/opt/aws/bin/cfn-init -v ",
+                                "/usr/bin/cfn-init -v ",
                                 "    --stack ",
                                 {
                                     "Ref": "AWS::StackId"
@@ -3860,7 +3858,7 @@
                                 "/etc/init.d/cia start\n",
                                 "update-rc.d cia defaults\n",
                                 "# Signal completion\n",
-                                "/opt/aws/bin/cfn-signal -e $? ",
+                                "/usr/bin/cfn-signal -e $? ",
                                 "    --stack ",
                                 {
                                     "Ref": "AWS::StackId"
