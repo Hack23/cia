@@ -1614,7 +1614,7 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <jdk>[17,19)</jdk>
+        <jdk>[17,20)</jdk>
       </activation>
       <modules>
         <module>../testfoundation</module>
