@@ -3502,70 +3502,6 @@
                             }
                         },
                         "files": {
-                            "/etc/cfn/cfn-hup.conf": {
-                                "content": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "[main]\n",
-                                            "stack=",
-                                            {
-                                                "Ref": "AWS::StackId"
-                                            },
-                                            "\n",
-                                            "region=",
-                                            {
-                                                "Ref": "AWS::Region"
-                                            },
-                                            "\n"
-                                        ]
-                                    ]
-                                },
-                                "mode": "000400",
-                                "owner": "root",
-                                "group": "root"
-                            },
-                            "/etc/cfn/hooks.d/cfn-auto-reloader.conf": {
-                                "content": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "[cfn-auto-reloader-hook]\n",
-                                            "triggers=post.update\n",
-                                            "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n",
-                                            "action=/usr/bin/cfn-init",
-                                            "         --stack ",
-                                            {
-                                                "Ref": "AWS::StackName"
-                                            },
-                                            "         --resource WebServerLaunchConfig ",
-                                            "         --region ",
-                                            {
-                                                "Ref": "AWS::Region"
-                                            },
-                                            "\n",
-                                            "runas=root\n"
-                                        ]
-                                    ]
-                                }
-                            },
-                             "/lib/systemd/system/cfn-hup.service": {
-                                "content": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "[Unit]\n",
-                                            "Description=cfn-hup daemon\n\n",
-                                            "[Service]\n",
-                                            "Type=simple\n",
-                                            "ExecStart=/usr/bin/cfn-hup\n",
-                                            "Restart=always\n\n",
-                                            "[Install]\n",
-                                            "WantedBy=multi-user.target"
-                                        ]
-                                    ]
-                                }
-                           },
                            "/etc/awslogs.conf": {
                                 "content": {
                                     "Fn::Join": [
@@ -3734,17 +3670,16 @@
                                 "apt-get -y install apt-transport-https\n",
                                 "apt-get update\n",
                                 "apt-get -y dist-upgrade\n",
-                                "apt-get -y install heat-cfntools python3-pip python3-setuptools unattended-upgrades chrony\n",
+                                "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n",
+                                "pip3 install heat-cfntools\n",
+                                "apt-get -y install heat-cfntools\n",
                                 "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
                                 "sudo /etc/init.d/chrony restart\n",
-                                "sudo pip3 install heat-cfntools\n",
-                                "##systemctl enable cfn-hup.service \n",
-                                "##systemctl start cfn-hup.service \n",
                                 "# Install the sample application\n",
                                 "/usr/bin/cfn-init",
                                 "    --stack ",
                                 {
-                                    "Ref": "AWS::StackId"
+                                    "Ref": "AWS::StackName"
                                 },
                                 "    --resource WebServerLaunchConfig ",
                                 "    --region ",
