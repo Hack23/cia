@@ -33,9 +33,9 @@ Parameters:
       - c7g.16xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
-    Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server
+    Description: Web server ami ubuntu arm 22.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-    Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id
+    Default: /aws/service/canonical/ubuntu/server/22.04/stable/current/arm64/hvm/ebs-gp2/ami-id
   WebServerCount:
     Description: Number of EC2 instances to launch for the WebServer server
     Type: Number
@@ -88,7 +88,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.8.4/cia-dist-deb-2022.8.4.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.8.28/cia-dist-deb-2022.8.28.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -1538,6 +1538,41 @@ Resources:
         - Key: routing.http.desync_mitigation_mode
           Value: strictest
     DependsOn: LogsBucketPolicy
+  AppPolicy:
+    Type: AWS::ResilienceHub::ResiliencyPolicy
+    Properties:
+      DataLocationConstraint: AnyLocation
+      Policy:
+        Software:
+          RpoInSecs: 60
+          RtoInSecs: 300
+        Hardware:
+          RpoInSecs: 60
+          RtoInSecs: 300
+        AZ:
+          RpoInSecs: 60
+          RtoInSecs: 300
+        Region:
+          RpoInSecs: 60
+          RtoInSecs: 300
+      PolicyDescription: MissionCritical
+      PolicyName: MissionCritical
+      Tier: MissionCritical
+  Application:
+    Type: AWS::ResilienceHub::App
+    DependsOn: DNSRecordCNAME2PublicElasticLoadBalancerV2
+    Properties:
+      AppAssessmentSchedule: Daily
+      AppTemplateBody: !Sub '{"resources":[{"logicalResourceId":{"identifier":"LogsBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-logs"},{"logicalResourceId":{"identifier":"NAT","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc"},{"logicalResourceId":{"identifier":"WebServerFleet","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::AutoScaling::AutoScalingGroup","name":"autoscalinggroup-fleet"},{"logicalResourceId":{"identifier":"ArtifactBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-art"},{"logicalResourceId":{"identifier":"Database","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::RDS::DBInstance","name":"rdsdbinstance-app"},{"logicalResourceId":{"identifier":"DNSRecordCNAME2PublicElasticLoadBalancerV2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::Route53::RecordSet","name":"route53recordset-app"}],"appComponents":[{"name":"storageappcomponent-wur","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-logs"]},{"name":"networkingappcomponent-uch","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["natgateway-vpc"]},{"name":"computeappcomponent-rin","type":"AWS::ResilienceHub::ComputeAppComponent","resourceNames":["autoscalinggroup-fleet"]},{"name":"storageappcomponent-hbk","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-art"]},{"name":"databaseappcomponent-rds","type":"AWS::ResilienceHub::DatabaseAppComponent","resourceNames":["rdsdbinstance-app"]},{"name":"networkingappcomponent-dns","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["route53recordset-app"]},{"name":"appcommon","type":"AWS::ResilienceHub::AppCommonAppComponent","resourceNames":[]}],"excludedResources":{"logicalResourceIds":[]},"version":2.0}'
+      Description: Citizen Intelligence Agency
+      Name: CIA
+      ResiliencyPolicyArn: !Ref 'AppPolicy'
+      ResourceMappings:
+        - LogicalStackName: !Ref 'AWS::StackName'
+          MappingType: CfnStack
+          PhysicalResourceId:
+            Identifier: !Sub '${AWS::StackId}'
+            Type: Arn
   WebACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
     DependsOn: BasicSecurityACL
@@ -1962,7 +1997,7 @@ Resources:
                 - - "[cfn-auto-reloader-hook]\n"
                   - "triggers=post.update\n"
                   - "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n"
-                  - 'action=/opt/aws/bin/cfn-init -v '
+                  - 'action=/usr/bin/cfn-init -v '
                   - '         --stack '
                   - !Ref 'AWS::StackName'
                   - '         --resource WebServerLaunchConfig '
@@ -1977,7 +2012,7 @@ Resources:
                   - "Description=cfn-hup daemon\n\n"
                   - "[Service]\n"
                   - "Type=simple\n"
-                  - "ExecStart=/opt/aws/bin/cfn-hup\n"
+                  - "ExecStart=/usr/bin/cfn-hup\n"
                   - "Restart=always\n\n"
                   - "[Install]\n"
                   - WantedBy=multi-user.target
@@ -2127,16 +2162,13 @@ Resources:
             - "apt-get -y install apt-transport-https\n"
             - "apt-get update\n"
             - "apt-get -y dist-upgrade\n"
-            - "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n"
+            - "apt-get -y install heat-cfntools python3-pip python3-setuptools unattended-upgrades chrony\n"
             - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n"
             - "sudo /etc/init.d/chrony restart\n"
-            - "mkdir -p /opt/aws/bin\n"
-            - "wget https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n"
-            - "python3 -m easy_install --script-dir /opt/aws/bin aws-cfn-bootstrap-py3-latest.tar.gz\n"
             - "##systemctl enable cfn-hup.service \n"
             - "##systemctl start cfn-hup.service \n"
             - "# Install the sample application\n"
-            - '/opt/aws/bin/cfn-init -v '
+            - '/usr/bin/cfn-init -v '
             - '    --stack '
             - !Ref 'AWS::StackId'
             - '    --resource WebServerLaunchConfig '
@@ -2234,7 +2266,7 @@ Resources:
             - "/etc/init.d/cia start\n"
             - "update-rc.d cia defaults\n"
             - "# Signal completion\n"
-            - '/opt/aws/bin/cfn-signal -e $? '
+            - '/usr/bin/cfn-signal -e $? '
             - '    --stack '
             - !Ref 'AWS::StackId'
             - '    --resource WebServerFleet '

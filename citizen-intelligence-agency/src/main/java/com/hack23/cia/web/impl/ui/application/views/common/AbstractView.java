@@ -241,8 +241,8 @@ public abstract class AbstractView extends Panel implements View {
 		final HorizontalLayout footer = new HorizontalLayout();
 		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		final Label appVersion = new Label(applicationName + " (" + applicationVersion +")");
-		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4.spdx.rdf.xml"));
-		final Link cyclonedxLink = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.4/citizen-intelligence-agency-2022.8.4-cyclonedx.json"));
+		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.28/citizen-intelligence-agency-2022.8.28.spdx.rdf.xml"));
+		final Link cyclonedxLink = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.28/citizen-intelligence-agency-2022.8.28-cyclonedx.json"));
 		final Link sourcCodeLink = new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia"));
 		final Link licenseLink = new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt"));
 
