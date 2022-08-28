@@ -3533,7 +3533,7 @@
                                             "[cfn-auto-reloader-hook]\n",
                                             "triggers=post.update\n",
                                             "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n",
-                                            "action=/usr/bin/cfn-init -v ",
+                                            "action=/usr/bin/cfn-init",
                                             "         --stack ",
                                             {
                                                 "Ref": "AWS::StackName"
@@ -3737,10 +3737,11 @@
                                 "apt-get -y install heat-cfntools python3-pip python3-setuptools unattended-upgrades chrony\n",
                                 "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
                                 "sudo /etc/init.d/chrony restart\n",
+                                "sudo pip3 install heat-cfntools\n",
                                 "##systemctl enable cfn-hup.service \n",
                                 "##systemctl start cfn-hup.service \n",
                                 "# Install the sample application\n",
-                                "/usr/bin/cfn-init -v ",
+                                "/usr/bin/cfn-init",
                                 "    --stack ",
                                 {
                                     "Ref": "AWS::StackId"
