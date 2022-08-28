@@ -2799,7 +2799,7 @@
 		},
 		"Application": {
 			"Type": "AWS::ResilienceHub::App",
-			"DependsOn": "DNSRecordCNAME2PublicElasticLoadBalancerV2",
+			"DependsOn": "WebServerFleet",
 			"Properties": {
 				"AppAssessmentSchedule": "Daily",
 				"AppTemplateBody": {
