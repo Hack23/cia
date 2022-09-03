@@ -238,32 +238,36 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.addComponent(panel);
 		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
 
-		final HorizontalLayout footer = new HorizontalLayout();
+		final HorizontalLayout footerTop = new HorizontalLayout();
+		final HorizontalLayout footerBottom = new HorizontalLayout();
 		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
-		final Label appVersion = new Label(applicationName + " (" + applicationVersion +")");
+		final Label appVersion = new Label(applicationName + " (" + applicationVersion +")(Apache License 2.0)");
 		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.28/citizen-intelligence-agency-2022.8.28.spdx.rdf.xml"));
 		final Link cyclonedxLink = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.8.28/citizen-intelligence-agency-2022.8.28-cyclonedx.json"));
-		final Link sourcCodeLink = new Link("Source Code", new ExternalResource("https://github.com/Hack23/cia"));
-		final Link licenseLink = new Link("Open Source, Apache License 2.0", new ExternalResource("https://github.com/Hack23/cia/blob/master/LICENSE.txt"));
+		final Link sourcCodeLink = new Link("https://github.com/Hack23/cia", new ExternalResource("https://github.com/Hack23/cia"));
+		final Label licenseLink = new Label("Open Source");
 
-		footer.addComponent(createMainViewPageLink);
-		footer.addComponent(appVersion);
-		footer.addComponent(licenseLink);
-		footer.addComponent(sourcCodeLink);
-		footer.addComponent(cyclonedxLink);
-		footer.addComponent(spdxLink);
-		footer.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
+		footerTop.addComponent(createMainViewPageLink);
+		footerTop.addComponent(appVersion);
+		footerBottom.addComponent(licenseLink);
+		footerBottom.addComponent(sourcCodeLink);
+		footerBottom.addComponent(cyclonedxLink);
+		footerBottom.addComponent(spdxLink);
+		footerTop.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
+		footerTop.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
 		
-		footer.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);
-		footer.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
+		footerBottom.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
+		footerBottom.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
+		footerBottom.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);
+		footerBottom.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
 
-		footer.setWidth("100%");
-		footer.setHeight("40px");
+		footerTop.setWidth("100%");
+		footerTop.setHeight("25px");
+		footerBottom.setWidth("100%");
+		footerBottom.setHeight("25px");
 
-		pageModeContent.addComponent(footer);
+		pageModeContent.addComponent(footerTop);
+		pageModeContent.addComponent(footerBottom);
 
 		setContent(layout);
 
