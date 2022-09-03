@@ -2776,20 +2776,20 @@
 				"DataLocationConstraint": "AnyLocation",
 				"Policy": {
 					"Software": {
-						"RpoInSecs": 60,
-						"RtoInSecs": 300
+						"RpoInSecs": 300,
+						"RtoInSecs": 14400
 					},
 					"Hardware": {
-						"RpoInSecs": 60,
-						"RtoInSecs": 300
+						"RpoInSecs": 300,
+						"RtoInSecs": 14400
 					},
 					"AZ": {
-						"RpoInSecs": 60,
-						"RtoInSecs": 300
+						"RpoInSecs": 300,
+						"RtoInSecs": 14400
 					},
 					"Region": {
-						"RpoInSecs": 60,
-						"RtoInSecs": 300
+						"RpoInSecs": 86400,
+						"RtoInSecs": 14400
 					}
 				},
 				"PolicyDescription": "MissionCritical",
