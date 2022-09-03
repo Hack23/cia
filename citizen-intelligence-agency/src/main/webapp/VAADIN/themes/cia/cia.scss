@@ -4,12 +4,12 @@
 
 
 	$backGroundColor: $v-background-color;
-	$groundColor: #000000;	
-	$backGroundColorLevel1: rgb(255, 255, 255);
-	$backGroundColorLevel2: #ACDAF1;
+	$groundColor: #FFFFFF;	
+	$backGroundColorLevel1: $v-background-color;
+	$backGroundColorLevel2: $v-background-color;
 	$borderColorLevel: rgb(246, 245, 244);
-	$backGroundColorPanelCaption: $v-background-color;
-	$groundColorPanelCaption: #FFFFFF;
+	$backGroundColorPanelCaption: #FFFFFF;
+	$groundColorPanelCaption: rgb(52,124,29);
 	$backGroundColorLevel2Header : $v-background-color;
 	$backGroundColorCaptionLevel2Header : $v-background-color;	
 	
@@ -147,14 +147,14 @@
 
 	.v-label-Header {
 	 font-size: 14px;
-	 color: #000000;
+	 color: #FFFFFF;
 	 border-radius: $headerBorderRadius;
 	 padding : 2px;
 	}
 
 	.v-label-HeaderSlogan {
 	 font-size: 14px;
-	 color: #006666;
+	 color: #FFFFFF;
 	 border-radius: $headerBorderRadius;
 	}
 
