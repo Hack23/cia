@@ -1696,6 +1696,79 @@
                 }
             }
         },
+
+
+
+
+
+
+
+        "PrivateAppRouteTable2": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Network",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "PrivateAppRoute2": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "GatewayToInternet",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateAppRouteTable2"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": {
+                    "Ref": "NAT2"
+                }
+            }
+        },
+        "PrivateAppRouteTable3": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Network",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "PrivateAppRoute3": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "GatewayToInternet",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateAppRouteTable3"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": {
+                    "Ref": "NAT3"
+                }
+            }
+        },
         "PrivateAppSubnetRouteTableAssociation": {
             "Type": "AWS::EC2::SubnetRouteTableAssociation",
             "Properties": {
@@ -1714,7 +1787,7 @@
                     "Ref": "PrivateAppSubnet2"
                 },
                 "RouteTableId": {
-                    "Ref": "PrivateAppRouteTable"
+                    "Ref": "PrivateAppRouteTable2"
                 }
             }
         },
@@ -1725,7 +1798,7 @@
                     "Ref": "PrivateAppSubnet3"
                 },
                 "RouteTableId": {
-                    "Ref": "PrivateAppRouteTable"
+                    "Ref": "PrivateAppRouteTable3"
                 }
             }
         },
@@ -1761,6 +1834,72 @@
                     "Ref": "NAT"
                 }
             }
+        }, 
+        "PrivateRouteTable2": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Network",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "PrivateRoute2": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "NAT",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": {
+                    "Ref": "NAT2"
+                }
+            }
+        }, 
+        "PrivateRouteTable3": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Network",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "PrivateRoute3": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "NAT",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable3"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": {
+                    "Ref": "NAT3"
+                }
+            }
         },
         "PrivateSubnetRouteTableAssociation": {
             "Type": "AWS::EC2::SubnetRouteTableAssociation",
@@ -1780,7 +1919,7 @@
                     "Ref": "PrivateSubnet2"
                 },
                 "RouteTableId": {
-                    "Ref": "PrivateRouteTable"
+                    "Ref": "PrivateRouteTable2"
                 }
             }
         },
@@ -1791,7 +1930,7 @@
                     "Ref": "PrivateSubnet3"
                 },
                 "RouteTableId": {
-                    "Ref": "PrivateRouteTable"
+                    "Ref": "PrivateRouteTable3"
                 }
             }
         },
@@ -2705,6 +2844,48 @@
                 },
                 "SubnetId": {
                     "Ref": "PublicSubnet"
+                },
+                "Tags": [
+                    {
+                        "Key": "Network",
+                        "Value": "NAT"
+                    }
+                ]
+            }
+        },
+        "NAT2": {
+            "DependsOn": "GatewayToInternet",
+            "Type": "AWS::EC2::NatGateway",
+            "Properties": {
+                "AllocationId": {
+                    "Fn::GetAtt": [
+                        "EIP",
+                        "AllocationId"
+                    ]
+                },
+                "SubnetId": {
+                    "Ref": "PublicSubnet2"
+                },
+                "Tags": [
+                    {
+                        "Key": "Network",
+                        "Value": "NAT"
+                    }
+                ]
+            }
+        },
+        "NAT3": {
+            "DependsOn": "GatewayToInternet",
+            "Type": "AWS::EC2::NatGateway",
+            "Properties": {
+                "AllocationId": {
+                    "Fn::GetAtt": [
+                        "EIP",
+                        "AllocationId"
+                    ]
+                },
+                "SubnetId": {
+                    "Ref": "PublicSubnet3"
                 },
                 "Tags": [
                     {
