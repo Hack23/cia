@@ -2859,7 +2859,7 @@
             "Properties": {
                 "AllocationId": {
                     "Fn::GetAtt": [
-                        "EIP",
+                        "EIP2",
                         "AllocationId"
                     ]
                 },
@@ -2880,7 +2880,7 @@
             "Properties": {
                 "AllocationId": {
                     "Fn::GetAtt": [
-                        "EIP",
+                        "EIP3",
                         "AllocationId"
                     ]
                 },
@@ -2901,6 +2901,18 @@
                 "Domain": "vpc"
             }
         },
+        "EIP2": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc"
+            }
+        },
+        "EIP3": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc"
+            }
+        },        
         "PublicElasticLoadBalancerV2": {
             "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
             "Properties": {
