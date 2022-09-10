@@ -33,9 +33,9 @@ Parameters:
       - c7g.16xlarge
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
-    Description: Web server ami ubuntu arm 22.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server
+    Description: Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-    Default: /aws/service/canonical/ubuntu/server/22.04/stable/current/arm64/hvm/ebs-gp2/ami-id
+    Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id
   WebServerCount:
     Description: Number of EC2 instances to launch for the WebServer server
     Type: Number
@@ -88,7 +88,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.8.28/cia-dist-deb-2022.8.28.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.9.10/cia-dist-deb-2022.9.10.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -939,6 +939,38 @@ Resources:
       RouteTableId: !Ref 'PrivateAppRouteTable'
       DestinationCidrBlock: '0.0.0.0/0'
       NatGatewayId: !Ref 'NAT'
+  PrivateAppRouteTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateAppRoute2:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+      RouteTableId: !Ref 'PrivateAppRouteTable2'
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NAT2'
+  PrivateAppRouteTable3:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateAppRoute3:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+      RouteTableId: !Ref 'PrivateAppRouteTable3'
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NAT3'
   PrivateAppSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -948,12 +980,12 @@ Resources:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref 'PrivateAppSubnet2'
-      RouteTableId: !Ref 'PrivateAppRouteTable'
+      RouteTableId: !Ref 'PrivateAppRouteTable2'
   PrivateApp3SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref 'PrivateAppSubnet3'
-      RouteTableId: !Ref 'PrivateAppRouteTable'
+      RouteTableId: !Ref 'PrivateAppRouteTable3'
   PrivateRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -970,6 +1002,38 @@ Resources:
       RouteTableId: !Ref 'PrivateRouteTable'
       DestinationCidrBlock: '0.0.0.0/0'
       NatGatewayId: !Ref 'NAT'
+  PrivateRouteTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateRoute2:
+    Type: AWS::EC2::Route
+    DependsOn: NAT
+    Properties:
+      RouteTableId: !Ref 'PrivateRouteTable2'
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NAT2'
+  PrivateRouteTable3:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateRoute3:
+    Type: AWS::EC2::Route
+    DependsOn: NAT
+    Properties:
+      RouteTableId: !Ref 'PrivateRouteTable3'
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref 'NAT3'
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -979,12 +1043,12 @@ Resources:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref 'PrivateSubnet2'
-      RouteTableId: !Ref 'PrivateRouteTable'
+      RouteTableId: !Ref 'PrivateRouteTable2'
   Private3SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref 'PrivateSubnet3'
-      RouteTableId: !Ref 'PrivateRouteTable'
+      RouteTableId: !Ref 'PrivateRouteTable3'
   PublicNetworkAcl:
     Type: AWS::EC2::NetworkAcl
     Properties:
@@ -1400,7 +1464,7 @@ Resources:
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
       EngineVersion: '14.4'
-      MultiAZ: 'false'
+      MultiAZ: 'true'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
       EnablePerformanceInsights: 'true'
@@ -1511,7 +1575,33 @@ Resources:
       Tags:
         - Key: Network
           Value: NAT
+  NAT2:
+    DependsOn: GatewayToInternet
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt 'EIP2.AllocationId'
+      SubnetId: !Ref 'PublicSubnet2'
+      Tags:
+        - Key: Network
+          Value: NAT
+  NAT3:
+    DependsOn: GatewayToInternet
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt 'EIP3.AllocationId'
+      SubnetId: !Ref 'PublicSubnet3'
+      Tags:
+        - Key: Network
+          Value: NAT
   EIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  EIP2:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  EIP3:
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
@@ -1544,26 +1634,26 @@ Resources:
       DataLocationConstraint: AnyLocation
       Policy:
         Software:
-          RpoInSecs: 60
-          RtoInSecs: 300
+          RpoInSecs: 300
+          RtoInSecs: 14400
         Hardware:
-          RpoInSecs: 60
-          RtoInSecs: 300
+          RpoInSecs: 300
+          RtoInSecs: 3600
         AZ:
-          RpoInSecs: 60
-          RtoInSecs: 300
+          RpoInSecs: 300
+          RtoInSecs: 3600
         Region:
-          RpoInSecs: 60
-          RtoInSecs: 300
+          RpoInSecs: -1
+          RtoInSecs: -1
       PolicyDescription: MissionCritical
       PolicyName: MissionCritical
       Tier: MissionCritical
   Application:
     Type: AWS::ResilienceHub::App
-    DependsOn: DNSRecordCNAME2PublicElasticLoadBalancerV2
+    DependsOn: WebServerFleet
     Properties:
       AppAssessmentSchedule: Daily
-      AppTemplateBody: !Sub '{"resources":[{"logicalResourceId":{"identifier":"LogsBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-logs"},{"logicalResourceId":{"identifier":"NAT","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc"},{"logicalResourceId":{"identifier":"WebServerFleet","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::AutoScaling::AutoScalingGroup","name":"autoscalinggroup-fleet"},{"logicalResourceId":{"identifier":"ArtifactBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-art"},{"logicalResourceId":{"identifier":"Database","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::RDS::DBInstance","name":"rdsdbinstance-app"},{"logicalResourceId":{"identifier":"DNSRecordCNAME2PublicElasticLoadBalancerV2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::Route53::RecordSet","name":"route53recordset-app"}],"appComponents":[{"name":"storageappcomponent-wur","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-logs"]},{"name":"networkingappcomponent-uch","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["natgateway-vpc"]},{"name":"computeappcomponent-rin","type":"AWS::ResilienceHub::ComputeAppComponent","resourceNames":["autoscalinggroup-fleet"]},{"name":"storageappcomponent-hbk","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-art"]},{"name":"databaseappcomponent-rds","type":"AWS::ResilienceHub::DatabaseAppComponent","resourceNames":["rdsdbinstance-app"]},{"name":"networkingappcomponent-dns","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["route53recordset-app"]},{"name":"appcommon","type":"AWS::ResilienceHub::AppCommonAppComponent","resourceNames":[]}],"excludedResources":{"logicalResourceIds":[]},"version":2.0}'
+      AppTemplateBody: !Sub '{"resources":[{"logicalResourceId":{"identifier":"LogsBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-logs"},{"logicalResourceId":{"identifier":"NAT","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc"},{"logicalResourceId":{"identifier":"NAT2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc2"},{"logicalResourceId":{"identifier":"NAT3","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc3"},{"logicalResourceId":{"identifier":"WebServerFleet","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::AutoScaling::AutoScalingGroup","name":"autoscalinggroup-fleet"},{"logicalResourceId":{"identifier":"ArtifactBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-art"},{"logicalResourceId":{"identifier":"Database","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::RDS::DBInstance","name":"rdsdbinstance-app"},{"logicalResourceId":{"identifier":"DNSRecordCNAME2PublicElasticLoadBalancerV2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::Route53::RecordSet","name":"route53recordset-app"}],"appComponents":[{"name":"storage-s3bucket-logs","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-logs"]},{"name":"networking-nat","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["natgateway-vpc","natgateway-vpc2","natgateway-vpc3"]},{"name":"compute-app-fleet","type":"AWS::ResilienceHub::ComputeAppComponent","resourceNames":["autoscalinggroup-fleet"]},{"name":"storage-s3bucket-art","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-art"]},{"name":"database-rds","type":"AWS::ResilienceHub::DatabaseAppComponent","resourceNames":["rdsdbinstance-app"]},{"name":"networking-dns","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["route53recordset-app"]},{"name":"appcommon","type":"AWS::ResilienceHub::AppCommonAppComponent","resourceNames":[]}],"excludedResources":{"logicalResourceIds":[]},"version":2.0}'
       Description: Citizen Intelligence Agency
       Name: CIA
       ResiliencyPolicyArn: !Ref 'AppPolicy'
@@ -1997,7 +2087,7 @@ Resources:
                 - - "[cfn-auto-reloader-hook]\n"
                   - "triggers=post.update\n"
                   - "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n"
-                  - 'action=/usr/bin/cfn-init -v '
+                  - 'action=/opt/aws/bin/cfn-init -v '
                   - '         --stack '
                   - !Ref 'AWS::StackName'
                   - '         --resource WebServerLaunchConfig '
@@ -2012,7 +2102,7 @@ Resources:
                   - "Description=cfn-hup daemon\n\n"
                   - "[Service]\n"
                   - "Type=simple\n"
-                  - "ExecStart=/usr/bin/cfn-hup\n"
+                  - "ExecStart=/opt/aws/bin/cfn-hup\n"
                   - "Restart=always\n\n"
                   - "[Install]\n"
                   - WantedBy=multi-user.target
@@ -2162,15 +2252,18 @@ Resources:
             - "apt-get -y install apt-transport-https\n"
             - "apt-get update\n"
             - "apt-get -y dist-upgrade\n"
-            - "apt-get -y install heat-cfntools python3-pip python3-setuptools unattended-upgrades chrony\n"
+            - "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n"
             - "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n"
             - "sudo /etc/init.d/chrony restart\n"
+            - "sudo pip3 install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n"
+            - "mkdir -p /opt/aws/bin\n"
+            - "sudo ln -s /usr/local/bin/cfn* /opt/aws/bin\n"
             - "##systemctl enable cfn-hup.service \n"
             - "##systemctl start cfn-hup.service \n"
             - "# Install the sample application\n"
-            - '/usr/bin/cfn-init -v '
+            - '/opt/aws/bin/cfn-init -v '
             - '    --stack '
-            - !Ref 'AWS::StackId'
+            - !Ref 'AWS::StackName'
             - '    --resource WebServerLaunchConfig '
             - '    --region '
             - !Ref 'AWS::Region'
@@ -2266,7 +2359,7 @@ Resources:
             - "/etc/init.d/cia start\n"
             - "update-rc.d cia defaults\n"
             - "# Signal completion\n"
-            - '/usr/bin/cfn-signal -e $? '
+            - '/opt/aws/bin/cfn-signal -e $? '
             - '    --stack '
             - !Ref 'AWS::StackId'
             - '    --resource WebServerFleet '
