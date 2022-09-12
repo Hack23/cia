@@ -47,7 +47,7 @@ import com.vaadin.ui.UI;
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {
 
 	/** The Constant ACCESS_DENIED. */
-	private static final String ACCESS_DENIED = "SECURITY:Access Denied";
+	private static final String ACCESS_DENIED = "Access Denied";
 
 	/** The Constant AUTHORITIES. */
 	private static final String AUTHORITIES = "Authorities:";
@@ -59,7 +59,7 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	private static final String CRLF_REPLACEMENT = "";
 
 	/** The Constant ERROR_MESSAGE_FORMAT. */
-	private static final String ERROR_MESSAGE_FORMAT = "Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
+	private static final String ERROR_MESSAGE_FORMAT = "SECURITY:Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
 
 	/**
 	 * The Constant
