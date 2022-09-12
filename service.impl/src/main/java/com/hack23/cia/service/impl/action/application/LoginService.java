@@ -58,6 +58,8 @@ import com.warrenstrange.googleauth.GoogleAuthenticator;
 @Transactional(propagation = Propagation.REQUIRED)
 public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest, LoginResponse> {
 
+	private static final String SECURITY_PREFIX = "Security:";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 
@@ -118,16 +120,16 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 			} else {
 				response = new LoginResponse(ServiceResult.FAILURE);
 				response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
-				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
+				eventRequest.setErrorMessage(SECURITY_PREFIX + "Failed MFA" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			}
 
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
 			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			if (loginBlockResult.isBlocked()) {
-				eventRequest.setErrorMessage(loginBlockResult.getMessages().toString());
+				eventRequest.setErrorMessage(SECURITY_PREFIX+ loginBlockResult.getMessages().toString());
 			}else {
-				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
+				eventRequest.setErrorMessage(SECURITY_PREFIX+ LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			}
 		}
 		eventRequest.setApplicationMessage(response.getResult().toString());

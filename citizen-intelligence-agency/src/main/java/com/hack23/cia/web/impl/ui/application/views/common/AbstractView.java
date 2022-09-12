@@ -319,7 +319,7 @@ public abstract class AbstractView extends Panel implements View {
 				}
 			}
 
-			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
+			LOGGER.warn("SECURITY:Invalid reference, content not found:{}/{}",pageName, parameters);
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();
 
 			menuItemFactory.createMainPageMenuBar(getBarmenu());
@@ -329,7 +329,7 @@ public abstract class AbstractView extends Panel implements View {
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Invalid Reference");
 		} catch (final AccessDeniedException e ) {
-			LOGGER.warn("Authorization Failure:: {} : {}  exception : {}",e.getMessage(),pageName,e.getClass().getName());
+			LOGGER.warn("Security:Authorization Failure:: {} : {}  exception : {}",e.getMessage(),pageName,e.getClass().getName());
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();
 			LabelFactory.createHeader2Label(panelContent,"Access denied:" +pageName);
 			getPanel().setContent(panelContent);

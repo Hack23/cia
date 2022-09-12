@@ -47,7 +47,7 @@ import com.vaadin.ui.UI;
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {
 
 	/** The Constant ACCESS_DENIED. */
-	private static final String ACCESS_DENIED = "Access Denied";
+	private static final String ACCESS_DENIED = "SECURITY:Access Denied";
 
 	/** The Constant AUTHORITIES. */
 	private static final String AUTHORITIES = "Authorities:";
@@ -65,7 +65,7 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	 * The Constant
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
 	 */
-	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
+	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "SECURITY:Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationFailureEventListener.class);
