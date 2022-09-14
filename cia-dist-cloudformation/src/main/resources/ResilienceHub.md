@@ -223,3 +223,40 @@ TargetS3Bucket:
 ``` 
 where ${S3BucketName} is the value of the target bucket.  
   - Relevant Resource Ids: riksdagsmonitor-logsbucket-1mcp1y1l1wbi6
+  
+The following was generated to be added to your application.
+
+## compute recommendations:
+
+
+### Sops:
+
+- AWSResilienceHub-ScaleUpAsgSOP_2020-07-01
+  - Description: SOP by AWS ResilienceHub. Scale-up ASG by modifying ASG to use larger instances.  
+  - Relevant Resource Ids: riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY
+- AWSResilienceHub-ScaleOutAsgSOP_2020-07-01
+  - Description: SOP by AWS ResilienceHub. Manually force an ASG to scale out, increase the number of instances.  
+  - Relevant Resource Ids: riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY
+---
+
+## rds recommendations:
+
+
+### Sops:
+
+- AWSResilienceHub-RestoreFromRdsBackupSOP_2020-04-01
+  - Description: SOP by AWS ResilienceHub to restore an RDS DB from backup  
+  - Relevant Resource Ids: rotation-instance
+---
+
+## s3 recommendations:
+
+
+### Sops:
+
+- AWSResilienceHub-RestoreS3ObjectToPreviousVersionSOP_2020-09-21
+  - Description: Used to restore an S3 object into previous version  
+  - Relevant Resource Ids: riksdagsmonitor-artifactbucket-2weuaw1rh2ad
+- AWSResilienceHub-RestoreS3ObjectToPreviousVersionSOP_2020-09-21
+  - Description: Used to restore an S3 object into previous version  
+  - Relevant Resource Ids: riksdagsmonitor-logsbucket-1mcp1y1l1wbi6
