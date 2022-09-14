@@ -1,0 +1,361 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Outputs" : {
+    "AWSResilienceHubAsgScaleUpAssumeRole" : {
+      "Description" : "AWSResilienceHubAsgScaleUp Automation Assume Role ARN",
+      "Value" : {
+        "Fn::GetAtt" : "AWSResilienceHubAsgScaleUpAssumeRole.Arn"
+      },
+      "Export" : {
+        "Name" : "AWSResilienceHubAsgScaleUpAssumeRole"
+      }
+    },
+    "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumeRole" : {
+      "Description" : "AWSResilienceHub-RestoreS3ObjectToPreviousVersionSOP_2020-09-21 Automation Assume Role ARN",
+      "Value" : {
+        "Fn::GetAtt" : "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumeRole.Arn"
+      }
+    },
+    "AWSResilienceHubRdsRestoreFromBackupAssumeRole" : {
+      "Description" : "AWSResilienceHubRdsRestoreFromBackup Automation Assume Role ARN",
+      "Value" : {
+        "Fn::GetAtt" : "AWSResilienceHubRdsRestoreFromBackupAssumeRole.Arn"
+      },
+      "Export" : {
+        "Name" : "AWSResilienceHubRdsRestoreFromBackupAssumeRole"
+      }
+    },
+    "AWSResilienceHubAsgScaleOutAssumeRole" : {
+      "Description" : "AWSResilienceHubAsgScaleOut Automation Assume Role ARN",
+      "Value" : {
+        "Fn::GetAtt" : "AWSResilienceHubAsgScaleOutAssumeRole.Arn"
+      },
+      "Export" : {
+        "Name" : "AWSResilienceHubAsgScaleOutAssumeRole"
+      }
+    }
+  },
+  "Resources" : {
+    "AWSResilienceHubAsgScaleUpAssumeRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "ssm.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        }
+      }
+    },
+    "AWSResilienceHubAsgScaleUpAssumePolicy" : {
+      "Type" : "AWS::IAM::Policy",
+      "Properties" : {
+        "PolicyName" : "AWSResilienceHubAsgScaleUpAssumePolicy",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Resource" : "*",
+            "Action" : [ "autoscaling:UpdateAutoScalingGroup", "autoscaling:DescribeAutoScalingGroups", "autoscaling:DescribeLaunchConfigurations", "autoscaling:CreateLaunchConfiguration", "autoscaling:DeleteLaunchConfiguration", "autoscaling:StartInstanceRefresh", "autoscaling:DescribeInstanceRefreshes", "ec2:DescribeLaunchTemplateVersions", "ec2:DescribeInstanceTypeOfferings", "ec2:CreateLaunchTemplateVersion", "ec2:DeleteLaunchTemplateVersions", "ec2:RunInstances" ]
+          }, {
+            "Effect" : "Allow",
+            "Resource" : "*",
+            "Action" : [ "iam:PassRole" ],
+            "Condition" : {
+              "StringEquals" : {
+                "iam:PassedToService" : "ec2.amazonaws.com"
+              }
+            }
+          } ]
+        },
+        "Roles" : [ {
+          "Ref" : "AWSResilienceHubAsgScaleUpAssumeRole"
+        } ]
+      }
+    },
+    "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumeRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "ssm.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        }
+      }
+    },
+    "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumePolicy" : {
+      "Type" : "AWS::IAM::Policy",
+      "Properties" : {
+        "PolicyName" : "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumePolicy",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Resource" : "*",
+            "Action" : [ "s3:PutObject", "s3:GetObject", "s3:GetObject*", "s3:ListBucket", "s3:ListBucketVersions" ]
+          } ]
+        },
+        "Roles" : [ {
+          "Ref" : "AWSResilienceHubRestoreS3ObjectToPreviousVersionSOPAssumeRole"
+        } ]
+      }
+    },
+    "AWSResilienceHubRdsRestoreFromBackupAssumeRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "ssm.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        }
+      }
+    },
+    "AWSResilienceHubRdsRestoreFromBackupAssumePolicy" : {
+      "Type" : "AWS::IAM::Policy",
+      "Properties" : {
+        "PolicyName" : "AWSResilienceHubRdsRestoreFromBackupAssumePolicy",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Resource" : "*",
+            "Action" : [ "rds:DeleteDBInstance", "rds:DescribeDBInstances", "rds:DescribeDBSnapshots", "rds:ModifyDBInstance", "rds:RestoreDBInstanceFromDBSnapshot", "kms:DescribeKey", "kms:CreateGrant" ]
+          } ]
+        },
+        "Roles" : [ {
+          "Ref" : "AWSResilienceHubRdsRestoreFromBackupAssumeRole"
+        } ]
+      }
+    },
+    "computesopasgscaleup20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AYSopInfoSSMParameter" : {
+      "Type" : "AWS::SSM::Parameter",
+      "Properties" : {
+        "Name" : "/ResilienceHub/Info/Sop/147703f1-b04b-4a94-a08e-5b5254778c44/compute-sop-asg-scale-up-2020-07-01_riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY",
+        "Type" : "String",
+        "Value" : {
+          "Fn::Sub" : "{\"documentName\":\"AWSResilienceHub-ScaleUpAsgSOP_2020-07-01\",\"experimentId\":\"${AWSResilienceHubScaleUpAsgSOP20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AY}\",\"referenceId\":\"compute:sop:asg-scale_up:2020-07-01\",\"resourceId\":\"riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY\",\"description\":\"SOP by AWS ResilienceHub. Scale-up ASG by modifying ASG to use larger instances.\"}"
+        },
+        "Description" : "SSM Parameter for identifying installed resources."
+      }
+    },
+    "AWSResilienceHubScaleOutAsgSOP20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AY" : {
+      "Type" : "AWS::FIS::ExperimentTemplate",
+      "Properties" : {
+        "Description" : "Runs AWSResilienceHub-ScaleOutAsgSOP_2020-07-01 for resource riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY. SOP by AWS ResilienceHub. Manually force an ASG to scale out, increase the number of instances.",
+        "Actions" : {
+          "RunSsmDocument" : {
+            "ActionId" : "aws:ssm:start-automation-execution",
+            "Description" : "run SSM document AWSResilienceHub-ScaleOutAsgSOP_2020-07-01",
+            "Parameters" : {
+              "documentArn" : "arn:aws:ssm:eu-west-1::document/AWSResilienceHub-ScaleOutAsgSOP_2020-07-01",
+              "documentParameters" : {
+                "Fn::Sub" : "{\"AutomationAssumeRole\": \"${AWSResilienceHubAsgScaleOutAssumeRole.Arn}\", \"AutoScalingGroupName\": \"riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY\", \"Dryrun\": true}"
+              },
+              "documentVersion" : "$LATEST",
+              "maxDuration" : "PT60M"
+            },
+            "Targets" : { }
+          }
+        },
+        "RoleArn" : {
+          "Fn::GetAtt" : "FisExecutionRole.Arn"
+        },
+        "StopConditions" : [ {
+          "Source" : "aws:cloudwatch:alarm",
+          "Value" : {
+            "Fn::Sub" : "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:${CanaryAlarmName}"
+          }
+        } ],
+        "Tags" : { },
+        "Targets" : { }
+      }
+    },
+    "s3soprestoretopreviousversions20200921riksdagsmonitorartifactbucket2weuaw1rh2adSopInfoSSMParameter" : {
+      "Type" : "AWS::SSM::Parameter",
+      "Properties" : {
+        "Name" : "/ResilienceHub/Info/Sop/147703f1-b04b-4a94-a08e-5b5254778c44/s3-sop-restore-to-previous-versions-2020-09-21_riksdagsmonitor-artifactbucket-2weuaw1rh2ad",
+        "Type" : "String",
+        "Value" : {
+          "Fn::Sub" : "{\"documentName\":\"AWSResilienceHub-RestoreS3ObjectToPreviousVersionSOP_2020-09-21\",\"referenceId\":\"s3:sop:restore_to_previous_versions:2020-09-21\",\"resourceId\":\"riksdagsmonitor-artifactbucket-2weuaw1rh2ad\",\"description\":\"Used to restore an S3 object into previous version\"}"
+        },
+        "Description" : "SSM Parameter for identifying installed resources."
+      }
+    },
+    "AWSResilienceHubAsgScaleOutAssumeRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "ssm.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        }
+      }
+    },
+    "AWSResilienceHubAsgScaleOutAssumePolicy" : {
+      "Type" : "AWS::IAM::Policy",
+      "Properties" : {
+        "PolicyName" : "AWSResilienceHubAsgScaleOutAssumePolicy",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Resource" : "*",
+            "Action" : [ "autoscaling:UpdateAutoScalingGroup", "autoscaling:DescribeAutoScalingGroups" ]
+          } ]
+        },
+        "Roles" : [ {
+          "Ref" : "AWSResilienceHubAsgScaleOutAssumeRole"
+        } ]
+      }
+    },
+    "AWSResilienceHubRestoreFromRdsBackupSOP20200401rotationinstance" : {
+      "Type" : "AWS::FIS::ExperimentTemplate",
+      "Properties" : {
+        "Description" : "Runs AWSResilienceHub-RestoreFromRdsBackupSOP_2020-04-01 for resource rotation-instance. SOP by AWS ResilienceHub to restore an RDS DB from backup",
+        "Actions" : {
+          "RunSsmDocument" : {
+            "ActionId" : "aws:ssm:start-automation-execution",
+            "Description" : "run SSM document AWSResilienceHub-RestoreFromRdsBackupSOP_2020-04-01",
+            "Parameters" : {
+              "documentArn" : "arn:aws:ssm:eu-west-1::document/AWSResilienceHub-RestoreFromRdsBackupSOP_2020-04-01",
+              "documentParameters" : {
+                "Fn::Sub" : "{\"AutomationAssumeRole\": \"${AWSResilienceHubRdsRestoreFromBackupAssumeRole.Arn}\", \"DbInstanceIdentifier\": \"rotation-instance\", \"SnapshotId\": \"$LATEST\", \"Dryrun\": true}"
+              },
+              "documentVersion" : "$LATEST",
+              "maxDuration" : "PT60M"
+            },
+            "Targets" : { }
+          }
+        },
+        "RoleArn" : {
+          "Fn::GetAtt" : "FisExecutionRole.Arn"
+        },
+        "StopConditions" : [ {
+          "Source" : "aws:cloudwatch:alarm",
+          "Value" : {
+            "Fn::Sub" : "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:${CanaryAlarmName}"
+          }
+        } ],
+        "Tags" : { },
+        "Targets" : { }
+      }
+    },
+    "s3soprestoretopreviousversions20200921riksdagsmonitorlogsbucket1mcp1y1l1wbi6SopInfoSSMParameter" : {
+      "Type" : "AWS::SSM::Parameter",
+      "Properties" : {
+        "Name" : "/ResilienceHub/Info/Sop/147703f1-b04b-4a94-a08e-5b5254778c44/s3-sop-restore-to-previous-versions-2020-09-21_riksdagsmonitor-logsbucket-1mcp1y1l1wbi6",
+        "Type" : "String",
+        "Value" : {
+          "Fn::Sub" : "{\"documentName\":\"AWSResilienceHub-RestoreS3ObjectToPreviousVersionSOP_2020-09-21\",\"referenceId\":\"s3:sop:restore_to_previous_versions:2020-09-21\",\"resourceId\":\"riksdagsmonitor-logsbucket-1mcp1y1l1wbi6\",\"description\":\"Used to restore an S3 object into previous version\"}"
+        },
+        "Description" : "SSM Parameter for identifying installed resources."
+      }
+    },
+    "computesopasgscaleout20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AYSopInfoSSMParameter" : {
+      "Type" : "AWS::SSM::Parameter",
+      "Properties" : {
+        "Name" : "/ResilienceHub/Info/Sop/147703f1-b04b-4a94-a08e-5b5254778c44/compute-sop-asg-scale-out-2020-07-01_riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY",
+        "Type" : "String",
+        "Value" : {
+          "Fn::Sub" : "{\"documentName\":\"AWSResilienceHub-ScaleOutAsgSOP_2020-07-01\",\"experimentId\":\"${AWSResilienceHubScaleOutAsgSOP20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AY}\",\"referenceId\":\"compute:sop:asg-scale_out:2020-07-01\",\"resourceId\":\"riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY\",\"description\":\"SOP by AWS ResilienceHub. Manually force an ASG to scale out, increase the number of instances.\"}"
+        },
+        "Description" : "SSM Parameter for identifying installed resources."
+      }
+    },
+    "rdssoprestorefrombackup20200401rotationinstanceSopInfoSSMParameter" : {
+      "Type" : "AWS::SSM::Parameter",
+      "Properties" : {
+        "Name" : "/ResilienceHub/Info/Sop/147703f1-b04b-4a94-a08e-5b5254778c44/rds-sop-restore-from-backup-2020-04-01_rotation-instance",
+        "Type" : "String",
+        "Value" : {
+          "Fn::Sub" : "{\"documentName\":\"AWSResilienceHub-RestoreFromRdsBackupSOP_2020-04-01\",\"experimentId\":\"${AWSResilienceHubRestoreFromRdsBackupSOP20200401rotationinstance}\",\"referenceId\":\"rds:sop:restore_from_backup:2020-04-01\",\"resourceId\":\"rotation-instance\",\"description\":\"SOP by AWS ResilienceHub to restore an RDS DB from backup\"}"
+        },
+        "Description" : "SSM Parameter for identifying installed resources."
+      }
+    },
+    "AWSResilienceHubScaleUpAsgSOP20200701riksdagsmonitorWebServerFleet1IX1MMPQZF3AY" : {
+      "Type" : "AWS::FIS::ExperimentTemplate",
+      "Properties" : {
+        "Description" : "Runs AWSResilienceHub-ScaleUpAsgSOP_2020-07-01 for resource riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY. SOP by AWS ResilienceHub. Scale-up ASG by modifying ASG to use larger instances.",
+        "Actions" : {
+          "RunSsmDocument" : {
+            "ActionId" : "aws:ssm:start-automation-execution",
+            "Description" : "run SSM document AWSResilienceHub-ScaleUpAsgSOP_2020-07-01",
+            "Parameters" : {
+              "documentArn" : "arn:aws:ssm:eu-west-1::document/AWSResilienceHub-ScaleUpAsgSOP_2020-07-01",
+              "documentParameters" : {
+                "Fn::Sub" : "{\"AutomationAssumeRole\": \"${AWSResilienceHubAsgScaleUpAssumeRole.Arn}\", \"AutoScalingGroupName\": \"riksdagsmonitor-WebServerFleet-1IX1MMPQZF3AY\", \"Dryrun\": true}"
+              },
+              "documentVersion" : "$LATEST",
+              "maxDuration" : "PT60M"
+            },
+            "Targets" : { }
+          }
+        },
+        "RoleArn" : {
+          "Fn::GetAtt" : "FisExecutionRole.Arn"
+        },
+        "StopConditions" : [ {
+          "Source" : "aws:cloudwatch:alarm",
+          "Value" : {
+            "Fn::Sub" : "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:${CanaryAlarmName}"
+          }
+        } ],
+        "Tags" : { },
+        "Targets" : { }
+      }
+    },
+    "FisExecutionRole" : {
+      "Type" : "AWS::IAM::Role",
+      "Properties" : {
+        "AssumeRolePolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Effect" : "Allow",
+            "Principal" : {
+              "Service" : [ "fis.amazonaws.com", "ssm.amazonaws.com" ]
+            },
+            "Action" : [ "sts:AssumeRole" ]
+          } ]
+        },
+        "Policies" : [ {
+          "PolicyName" : "FISPolicy",
+          "PolicyDocument" : {
+            "Version" : "2012-10-17",
+            "Statement" : [ {
+              "Effect" : "Allow",
+              "Resource" : "*",
+              "Action" : [ "iam:PassRole", "ssm:GetAutomationExecution", "ssm:StartAutomationExecution", "ssm:StopAutomationExecution" ]
+            } ]
+          }
+        } ]
+      }
+    }
+  },
+  "Parameters" : {
+    "CanaryAlarmName" : {
+      "Type" : "String",
+      "Description" : "Name of a CloudWatch alarm indicating application-level health. Alarm status should be OK after test/SOP execution.",
+      "AllowedPattern" : "^(?!arn:aws:cloudwatch:).{1,255}$"
+    }
+  }
+}
