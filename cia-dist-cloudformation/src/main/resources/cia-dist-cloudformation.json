@@ -2973,12 +2973,12 @@
 						"RtoInSecs": 14400
 					},
 					"Hardware": {
-						"RpoInSecs": 300,
-						"RtoInSecs": 3600
+						"RpoInSecs": 0,
+						"RtoInSecs": 120
 					},
 					"AZ": {
-						"RpoInSecs": 300,
-						"RtoInSecs": 3600
+						"RpoInSecs": 0,
+						"RtoInSecs": 120
 					}
 				},
 				"PolicyDescription": "MissionCritical",
