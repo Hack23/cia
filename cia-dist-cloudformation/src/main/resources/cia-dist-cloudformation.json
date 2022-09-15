@@ -2979,10 +2979,6 @@
 					"AZ": {
 						"RpoInSecs": 300,
 						"RtoInSecs": 3600
-					},
-					"Region": {
-						"RpoInSecs": 0,
-						"RtoInSecs": 0
 					}
 				},
 				"PolicyDescription": "MissionCritical",
