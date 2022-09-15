@@ -3040,7 +3040,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when database CPU utilization is over 90%",
-        "AlarmName" : "AWSResilienceHub-RDSInstanceOverUtilizedCpuAlarm-2020-04-01_CIA_rotation-instance",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceOverUtilizedCpuAlarm-2020-04-01_CIA-${DomainName}_rotation-instance"},
         "ComparisonOperator" : "GreaterThanThreshold",
         "DatapointsToAlarm" : 3,
         "Dimensions" : [ {
@@ -3064,7 +3064,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when database free memory is under 10MB",
-        "AlarmName" : "AWSResilienceHub-RDSInstanceLowMemoryAlarm-2020-04-01_CIA_rotation-instance",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceLowMemoryAlarm-2020-04-01_CIA-${DomainName}_rotation-instance"},
         "ComparisonOperator" : "LessThanOrEqualToThreshold",
         "DatapointsToAlarm" : 3,
         "Dimensions" : [ {
@@ -3083,7 +3083,7 @@
     "AWSResilienceHubApplicationLoadBalancerElbHttp4xxCountAlarm" : {
       "Type" : "AWS::CloudWatch::Alarm",
       "Properties" : {
-        "AlarmName" : "AWSResilienceHub-ApplicationLoadBalancerElbHttp4xxCountAlarm-2020-04-01_CIA",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-ApplicationLoadBalancerElbHttp4xxCountAlarm-2020-04-01_CIA"},
         "AlarmDescription" : "Alerts when the number of HTTP 4XX server error codes, which originate from the Application Load Balancer, is greater than or equal to the specified threshold",
         "AlarmActions" : [ {
           "Ref" : "AppAlarmTopic"
@@ -3107,7 +3107,7 @@
     "AWSResilienceHubApplicationLoadBalancerElbHttp5xxCountAlarm" : {
       "Type" : "AWS::CloudWatch::Alarm",
       "Properties" : {
-        "AlarmName" : "AWSResilienceHub-ApplicationLoadBalancerElbHttp5xxCountAlarm-2020-04-01_CIA",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-ApplicationLoadBalancerElbHttp5xxCountAlarm-2020-04-01_CIA"},
         "AlarmDescription" : "Alerts when the number of HTTP 5XX server error codes, which originate from the Application Load Balancer, is greater than or equal to the specified threshold",
         "AlarmActions" : [ {
           "Ref" : "AppAlarmTopic"
@@ -3135,7 +3135,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when target group request count is anomalous with band width 1",
-        "AlarmName" : "AWSResilienceHub-AsgAbnormalRequestPerTargetAlarm-2020-07-13_CIA-Https",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-AsgAbnormalRequestPerTargetAlarm-2020-07-13_CIA-Https"},
         "ComparisonOperator" : "GreaterThanUpperThreshold",
         "EvaluationPeriods" : 15,
         "DatapointsToAlarm" : 10,
@@ -3168,7 +3168,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when over time an ASG has many unhealthy hosts",
-        "AlarmName" : "AWSResilienceHub-AsgManyDyingHostsAlarm-2020-07-13_CIA_WebServerFleet",
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-AsgManyDyingHostsAlarm-2020-07-13_CIA_WebServerFleet"},
         "ComparisonOperator" : "GreaterThanThreshold",
         "EvaluationPeriods" : 180,
         "DatapointsToAlarm" : 5,
