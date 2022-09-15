@@ -3029,7 +3029,6 @@
                         "Protocol": "email"
                     }
                 ],
-                "TopicName": {"Fn::Sub": "application-alarm-${DomainName}"},
                 "KmsMasterKeyId": "alias/aws/sns"
             }
         },						
