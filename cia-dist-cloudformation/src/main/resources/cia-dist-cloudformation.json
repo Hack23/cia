@@ -2628,7 +2628,7 @@
                 },
                 "Engine": "postgres",
                 "EngineVersion": "14.4",
-                "MultiAZ": "true",
+                "MultiAZ": "false",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
                 "EnablePerformanceInsights": "true",
@@ -2981,8 +2981,8 @@
 						"RtoInSecs": 3600
 					},
 					"Region": {
-						"RpoInSecs": -1,
-						"RtoInSecs": -1
+						"RpoInSecs": 0,
+						"RtoInSecs": 0
 					}
 				},
 				"PolicyDescription": "MissionCritical",
