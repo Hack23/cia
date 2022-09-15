@@ -2999,7 +2999,7 @@
 					"Fn::Sub": "{\"resources\":[{\"logicalResourceId\":{\"identifier\":\"LogsBucket\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::S3::Bucket\",\"name\":\"s3bucket-logs\"},{\"logicalResourceId\":{\"identifier\":\"NAT\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::EC2::NatGateway\",\"name\":\"natgateway-vpc\"},{\"logicalResourceId\":{\"identifier\":\"NAT2\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::EC2::NatGateway\",\"name\":\"natgateway-vpc2\"},{\"logicalResourceId\":{\"identifier\":\"NAT3\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::EC2::NatGateway\",\"name\":\"natgateway-vpc3\"},{\"logicalResourceId\":{\"identifier\":\"WebServerFleet\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::AutoScaling::AutoScalingGroup\",\"name\":\"autoscalinggroup-fleet\"},{\"logicalResourceId\":{\"identifier\":\"ArtifactBucket\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::S3::Bucket\",\"name\":\"s3bucket-art\"},{\"logicalResourceId\":{\"identifier\":\"Database\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::RDS::DBInstance\",\"name\":\"rdsdbinstance-app\"},{\"logicalResourceId\":{\"identifier\":\"DNSRecordCNAME2PublicElasticLoadBalancerV2\",\"logicalStackName\":\"${AWS::StackName}\",\"resourceGroupName\":null},\"type\":\"AWS::Route53::RecordSet\",\"name\":\"route53recordset-app\"}],\"appComponents\":[{\"name\":\"storage-s3bucket-logs\",\"type\":\"AWS::ResilienceHub::StorageAppComponent\",\"resourceNames\":[\"s3bucket-logs\"]},{\"name\":\"networking-nat\",\"type\":\"AWS::ResilienceHub::NetworkingAppComponent\",\"resourceNames\":[\"natgateway-vpc\",\"natgateway-vpc2\",\"natgateway-vpc3\"]},{\"name\":\"compute-app-fleet\",\"type\":\"AWS::ResilienceHub::ComputeAppComponent\",\"resourceNames\":[\"autoscalinggroup-fleet\"]},{\"name\":\"storage-s3bucket-art\",\"type\":\"AWS::ResilienceHub::StorageAppComponent\",\"resourceNames\":[\"s3bucket-art\"]},{\"name\":\"database-rds\",\"type\":\"AWS::ResilienceHub::DatabaseAppComponent\",\"resourceNames\":[\"rdsdbinstance-app\"]},{\"name\":\"networking-dns\",\"type\":\"AWS::ResilienceHub::NetworkingAppComponent\",\"resourceNames\":[\"route53recordset-app\"]},{\"name\":\"appcommon\",\"type\":\"AWS::ResilienceHub::AppCommonAppComponent\",\"resourceNames\":[]}],\"excludedResources\":{\"logicalResourceIds\":[]},\"version\":2.0}"
 				},
 				"Description": "Citizen Intelligence Agency",
-				"Name": {"Fn::Sub": "CIA-${DomainName}"},
+				"Name": {"Fn::Sub": "CIA"},
 				"ResiliencyPolicyArn": {
 					"Ref": "AppPolicy"
 				},
@@ -3040,7 +3040,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when database CPU utilization is over 90%",
-        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceOverUtilizedCpuAlarm-2020-04-01_CIA-${DomainName}_rotation-instance"},
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceOverUtilizedCpuAlarm-2020-04-01_CIA_rotation-instance"},
         "ComparisonOperator" : "GreaterThanThreshold",
         "DatapointsToAlarm" : 3,
         "Dimensions" : [ {
@@ -3064,7 +3064,7 @@
           "Ref" : "AppAlarmTopic"
         } ],
         "AlarmDescription" : "Alarm by AWS Resilience Hub that reports when database free memory is under 10MB",
-        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceLowMemoryAlarm-2020-04-01_CIA-${DomainName}_rotation-instance"},
+        "AlarmName" : {"Fn::Sub": "AWSResilienceHub-RDSInstanceLowMemoryAlarm-2020-04-01_CIA_rotation-instance"},
         "ComparisonOperator" : "LessThanOrEqualToThreshold",
         "DatapointsToAlarm" : 3,
         "Dimensions" : [ {
