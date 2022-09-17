@@ -88,7 +88,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.9.10/cia-dist-deb-2022.9.10.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.9.17/cia-dist-deb-2022.9.17.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -1464,7 +1464,7 @@ Resources:
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
       EngineVersion: '14.4'
-      MultiAZ: 'true'
+      MultiAZ: 'false'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
       EnablePerformanceInsights: 'true'
@@ -1637,14 +1637,11 @@ Resources:
           RpoInSecs: 300
           RtoInSecs: 14400
         Hardware:
-          RpoInSecs: 300
-          RtoInSecs: 3600
+          RpoInSecs: 0
+          RtoInSecs: 120
         AZ:
-          RpoInSecs: 300
-          RtoInSecs: 3600
-        Region:
-          RpoInSecs: -1
-          RtoInSecs: -1
+          RpoInSecs: 0
+          RtoInSecs: 120
       PolicyDescription: MissionCritical
       PolicyName: MissionCritical
       Tier: MissionCritical
@@ -1655,7 +1652,7 @@ Resources:
       AppAssessmentSchedule: Daily
       AppTemplateBody: !Sub '{"resources":[{"logicalResourceId":{"identifier":"LogsBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-logs"},{"logicalResourceId":{"identifier":"NAT","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc"},{"logicalResourceId":{"identifier":"NAT2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc2"},{"logicalResourceId":{"identifier":"NAT3","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::EC2::NatGateway","name":"natgateway-vpc3"},{"logicalResourceId":{"identifier":"WebServerFleet","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::AutoScaling::AutoScalingGroup","name":"autoscalinggroup-fleet"},{"logicalResourceId":{"identifier":"ArtifactBucket","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::S3::Bucket","name":"s3bucket-art"},{"logicalResourceId":{"identifier":"Database","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::RDS::DBInstance","name":"rdsdbinstance-app"},{"logicalResourceId":{"identifier":"DNSRecordCNAME2PublicElasticLoadBalancerV2","logicalStackName":"${AWS::StackName}","resourceGroupName":null},"type":"AWS::Route53::RecordSet","name":"route53recordset-app"}],"appComponents":[{"name":"storage-s3bucket-logs","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-logs"]},{"name":"networking-nat","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["natgateway-vpc","natgateway-vpc2","natgateway-vpc3"]},{"name":"compute-app-fleet","type":"AWS::ResilienceHub::ComputeAppComponent","resourceNames":["autoscalinggroup-fleet"]},{"name":"storage-s3bucket-art","type":"AWS::ResilienceHub::StorageAppComponent","resourceNames":["s3bucket-art"]},{"name":"database-rds","type":"AWS::ResilienceHub::DatabaseAppComponent","resourceNames":["rdsdbinstance-app"]},{"name":"networking-dns","type":"AWS::ResilienceHub::NetworkingAppComponent","resourceNames":["route53recordset-app"]},{"name":"appcommon","type":"AWS::ResilienceHub::AppCommonAppComponent","resourceNames":[]}],"excludedResources":{"logicalResourceIds":[]},"version":2.0}'
       Description: Citizen Intelligence Agency
-      Name: CIA
+      Name: !Sub 'CIA'
       ResiliencyPolicyArn: !Ref 'AppPolicy'
       ResourceMappings:
         - LogicalStackName: !Ref 'AWS::StackName'
@@ -1663,6 +1660,139 @@ Resources:
           PhysicalResourceId:
             Identifier: !Sub '${AWS::StackId}'
             Type: Arn
+  AppAlarmTopic:
+    Type: AWS::SNS::Topic
+    DependsOn: Application
+    Properties:
+      Subscription:
+        - Endpoint: !Sub 'admin@${DomainName}'
+          Protocol: email
+      KmsMasterKeyId: alias/aws/sns
+  AWSResilienceHubRDSInstanceOverUtilizedCpuAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      AlarmDescription: Alarm by AWS Resilience Hub that reports when database CPU utilization is over 90%
+      AlarmName: !Sub 'AWSResilienceHub-RDSInstanceOverUtilizedCpuAlarm-2020-04-01_CIA_rotation-instance'
+      ComparisonOperator: GreaterThanThreshold
+      DatapointsToAlarm: 3
+      Dimensions:
+        - Name: DBInstanceIdentifier
+          Value: rotation-instance
+      EvaluationPeriods: 5
+      MetricName: CPUUtilization
+      Namespace: AWS/RDS
+      Period: 60
+      Statistic: Maximum
+      Threshold: 90
+      TreatMissingData: missing
+      Unit: Percent
+  AWSResilienceHubRDSInstanceLowMemoryAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      AlarmDescription: Alarm by AWS Resilience Hub that reports when database free memory is under 10MB
+      AlarmName: !Sub 'AWSResilienceHub-RDSInstanceLowMemoryAlarm-2020-04-01_CIA_rotation-instance'
+      ComparisonOperator: LessThanOrEqualToThreshold
+      DatapointsToAlarm: 3
+      Dimensions:
+        - Name: DBInstanceIdentifier
+          Value: rotation-instance
+      EvaluationPeriods: 5
+      MetricName: FreeableMemory
+      Namespace: AWS/RDS
+      Period: 60
+      Statistic: Minimum
+      Threshold: 10485760
+      TreatMissingData: missing
+  AWSResilienceHubApplicationLoadBalancerElbHttp4xxCountAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'AWSResilienceHub-ApplicationLoadBalancerElbHttp4xxCountAlarm-2020-04-01_CIA'
+      AlarmDescription: Alerts when the number of HTTP 4XX server error codes, which originate from the Application Load Balancer, is greater than or equal to the specified threshold
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      MetricName: HTTPCode_ELB_4XX_Count
+      Namespace: AWS/ApplicationELB
+      Dimensions:
+        - Name: LoadBalancer
+          Value: !Ref 'PublicElasticLoadBalancerV2'
+      Period: 60
+      Statistic: Sum
+      Threshold: 100
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 3
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Unit: Count
+  AWSResilienceHubApplicationLoadBalancerElbHttp5xxCountAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'AWSResilienceHub-ApplicationLoadBalancerElbHttp5xxCountAlarm-2020-04-01_CIA'
+      AlarmDescription: Alerts when the number of HTTP 5XX server error codes, which originate from the Application Load Balancer, is greater than or equal to the specified threshold
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      MetricName: HTTPCode_ELB_5XX_Count
+      Namespace: AWS/ApplicationELB
+      Dimensions:
+        - Name: LoadBalancer
+          Value: !Ref 'PublicElasticLoadBalancerV2'
+      Period: 60
+      Statistic: Sum
+      Threshold: 100
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 3
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Unit: Count
+  AWSResilienceHubAsgAbnormalRequestPerTargetAlarmCIAHttpsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      AlarmDescription: Alarm by AWS Resilience Hub that reports when target group request count is anomalous with band width 1
+      AlarmName: !Sub 'AWSResilienceHub-AsgAbnormalRequestPerTargetAlarm-2020-07-13_CIA-Https'
+      ComparisonOperator: GreaterThanUpperThreshold
+      EvaluationPeriods: 15
+      DatapointsToAlarm: 10
+      Metrics:
+        - Expression: ANOMALY_DETECTION_BAND(m1,1)
+          Id: ad1
+        - Id: m1
+          MetricStat:
+            Metric:
+              MetricName: RequestCountPerTarget
+              Namespace: AWS/ApplicationELB
+              Dimensions:
+                - Name: TargetGroup
+                  Value: !Ref 'TargetGroupHttps'
+            Period: 60
+            Stat: Average
+      ThresholdMetricId: ad1
+      TreatMissingData: missing
+  AWSResilienceHubAsgManyDyingHostsAlarmrWebServerFleetAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmActions:
+        - !Ref 'AppAlarmTopic'
+      AlarmDescription: Alarm by AWS Resilience Hub that reports when over time an ASG has many unhealthy hosts
+      AlarmName: !Sub 'AWSResilienceHub-AsgManyDyingHostsAlarm-2020-07-13_CIA_WebServerFleet'
+      ComparisonOperator: GreaterThanThreshold
+      EvaluationPeriods: 180
+      DatapointsToAlarm: 5
+      Dimensions:
+        - Name: TargetGroup
+          Value: !Ref 'TargetGroupHttps'
+        - Name: LoadBalancer
+          Value: !Ref 'PublicElasticLoadBalancerV2'
+      MetricName: UnHealthyHostCount
+      Namespace: AWS/ApplicationELB
+      Period: 60
+      Statistic: Maximum
+      Threshold: 1
+      TreatMissingData: missing
   WebACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
     DependsOn: BasicSecurityACL
