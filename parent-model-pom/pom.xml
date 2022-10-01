@@ -36,7 +36,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/parent-model-pom</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/parent-model-pom</url>
     </site>
   </distributionManagement>
   <dependencyManagement>

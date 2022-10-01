@@ -22,7 +22,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/service.external.riksdagen</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/service.external.riksdagen</url>
     </site>
   </distributionManagement>
   <dependencies>

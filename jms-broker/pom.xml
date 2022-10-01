@@ -28,7 +28,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/jms-broker</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/jms-broker</url>
     </site>
   </distributionManagement>
   <dependencies>

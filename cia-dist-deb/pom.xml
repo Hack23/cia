@@ -10,7 +10,7 @@
   <artifactId>cia-dist-deb</artifactId>
   <packaging>deb</packaging>
   <name>cia-dist-deb</name>
-  <url>github:http://hack23.github.io/cia/cia-dist-deb</url>
+  <url>scm:git:ssh://git@github.com/Hack23/cia.git/cia-dist-deb</url>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
@@ -20,7 +20,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/cia-dist-deb</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/cia-dist-deb</url>
     </site>
   </distributionManagement>
   <dependencies>

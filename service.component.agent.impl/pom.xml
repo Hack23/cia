@@ -28,7 +28,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/service.component.agent.impl</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/service.component.agent.impl</url>
     </site>
   </distributionManagement>
   <dependencies>

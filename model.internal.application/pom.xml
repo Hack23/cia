@@ -25,7 +25,7 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:http://hack23.github.io/cia/model.internal.application</url>
+      <url>scm:git:ssh://git@github.com/Hack23/cia.git/model.internal.application</url>
     </site>
   </distributionManagement>
 </project>
