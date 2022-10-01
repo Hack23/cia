@@ -58,25 +58,25 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L67">		LabelFactory.createHeader2Label(panelContent, CURRENT_LEADERS);</span>
+<span class="nc" id="L67">		LabelFactory.createHeader2Label(panelContent, CURRENT_LEADERS);</span>
 
-<span class="fc" id="L69">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L70">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="nc" id="L69">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="nc" id="L70">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
-<span class="fc" id="L73">				partyRoleMemberDataContainer.findListByProperty(</span>
-<span class="fc" id="L74">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
+<span class="nc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
+<span class="nc" id="L73">				partyRoleMemberDataContainer.findListByProperty(</span>
+<span class="nc" id="L74">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
 						ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active),
 				CURRENT_LEADERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="nc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L79">		return panelContent;</span>
 
 	}
 
@@ -86,4 +86,4 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

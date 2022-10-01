@@ -61,27 +61,27 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L68">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="nc" id="L68">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
 
-<span class="fc" id="L70">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L70">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L72">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
+<span class="nc" id="L72">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
 
-<span class="fc" id="L74">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
-<span class="fc" id="L75">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
+<span class="nc" id="L74">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
+<span class="nc" id="L75">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
 
-<span class="fc" id="L77">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
-<span class="fc" id="L78">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
-<span class="fc" id="L79">						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),</span>
+<span class="nc" id="L77">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
+<span class="nc" id="L78">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
+<span class="nc" id="L79">						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),</span>
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L83">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L84">		return panelContent;</span>
+<span class="nc" id="L83">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="nc" id="L84">		return panelContent;</span>
 
 	}
 
@@ -90,4 +90,4 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 <span class="fc bfc" id="L90" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -67,45 +67,45 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L72">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L72">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L74">		final DocumentElement documentElement = getItem(parameters);</span>
-<span class="fc" id="L75">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L74">		final DocumentElement documentElement = getItem(parameters);</span>
+<span class="nc" id="L75">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="nc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="nc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="nc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="nc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="nc" id="L84">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
 
-<span class="fc" id="L86">		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);</span>
+<span class="nc" id="L86">		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);</span>
 
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (documentStatusContainer != null) {</span>
-<span class="fc" id="L89">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		if (documentStatusContainer != null) {</span>
+<span class="nc" id="L89">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,</span>
 					DocumentStatusContainer.class, AS_LIST3);
 
-<span class="fc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),</span>
+<span class="nc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),</span>
 					DocumentData.class, AS_LIST2);
 		}
 
-<span class="fc" id="L96">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L97">		overviewLayout.setSizeFull();</span>
+<span class="nc" id="L96">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L97">		overviewLayout.setSizeFull();</span>
 
-<span class="fc" id="L99">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L100">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="nc" id="L99">		panelContent.addComponent(overviewLayout);</span>
+<span class="nc" id="L100">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L102">		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="nc" id="L102">		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
-<span class="fc" id="L104">		panel.setContent(panelContent);</span>
-<span class="fc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L104">		panel.setContent(panelContent);</span>
+<span class="nc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L108">		return panelContent;</span>
+<span class="nc" id="L108">		return panelContent;</span>
 
 	}
 
@@ -117,4 +117,4 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

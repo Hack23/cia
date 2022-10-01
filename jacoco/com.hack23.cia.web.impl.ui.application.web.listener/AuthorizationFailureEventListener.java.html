@@ -59,13 +59,13 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	private static final String CRLF_REPLACEMENT = &quot;&quot;;
 
 	/** The Constant ERROR_MESSAGE_FORMAT. */
-	private static final String ERROR_MESSAGE_FORMAT = &quot;Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}&quot;;
+	private static final String ERROR_MESSAGE_FORMAT = &quot;SECURITY:Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}&quot;;
 
 	/**
 	 * The Constant
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
 	 */
-	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = &quot;Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}&quot;;
+	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = &quot;SECURITY:Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}&quot;;
 
 	/** The Constant LOGGER. */
 <span class="fc" id="L71">	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationFailureEventListener.class);</span>
@@ -108,29 +108,27 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 <span class="fc" id="L108">			serviceRequest.setPageMode(currentPageIfAny.getUriFragment());</span>
 		}
 
-<span class="pc bpc" id="L111" title="1 of 2 branches missed.">		if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation) {</span>
-<span class="fc" id="L112">			final ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent</span>
-<span class="fc" id="L113">					.getSource();</span>
-<span class="pc bpc" id="L114" title="2 of 4 branches missed.">			if (methodInvocation != null &amp;&amp; methodInvocation.getThis() != null) {</span>
-<span class="fc" id="L115">				methodInfo = new StringBuilder().append(methodInvocation.getThis().getClass().getSimpleName())</span>
-<span class="fc" id="L116">						.append('.').append(methodInvocation.getMethod().getName()).toString();</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">		if (authorizationFailureEvent.getSource() instanceof final ReflectiveMethodInvocation methodInvocation) {</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">			if (methodInvocation.getThis() != null) {</span>
+<span class="fc" id="L113">				methodInfo = new StringBuilder().append(methodInvocation.getThis().getClass().getSimpleName())</span>
+<span class="fc" id="L114">						.append('.').append(methodInvocation.getMethod().getName()).toString();</span>
 			}
 		}
 
-<span class="fc" id="L120">		final Collection&lt;? extends GrantedAuthority&gt; authorities = authorizationFailureEvent.getAuthentication()</span>
-<span class="fc" id="L121">				.getAuthorities();</span>
-<span class="fc" id="L122">		final Collection&lt;ConfigAttribute&gt; configAttributes = authorizationFailureEvent.getConfigAttributes();</span>
+<span class="fc" id="L118">		final Collection&lt;? extends GrantedAuthority&gt; authorities = authorizationFailureEvent.getAuthentication()</span>
+<span class="fc" id="L119">				.getAuthorities();</span>
+<span class="fc" id="L120">		final Collection&lt;ConfigAttribute&gt; configAttributes = authorizationFailureEvent.getConfigAttributes();</span>
 
-<span class="fc" id="L124">		serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, requestUrl, methodInfo, AUTHORITIES,</span>
-<span class="fc" id="L125">				authorities, REQUIRED_AUTHORITIES, configAttributes, authorizationFailureEvent.getSource()));</span>
-<span class="fc" id="L126">		serviceRequest.setApplicationMessage(ACCESS_DENIED);</span>
+<span class="fc" id="L122">		serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, requestUrl, methodInfo, AUTHORITIES,</span>
+<span class="fc" id="L123">				authorities, REQUIRED_AUTHORITIES, configAttributes, authorizationFailureEvent.getSource()));</span>
+<span class="fc" id="L124">		serviceRequest.setApplicationMessage(ACCESS_DENIED);</span>
 
-<span class="fc" id="L128">		applicationManager.service(serviceRequest);</span>
+<span class="fc" id="L126">		applicationManager.service(serviceRequest);</span>
 
-<span class="fc" id="L130">		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,</span>
-<span class="fc" id="L131">				requestUrl.replaceAll(CRLF, CRLF_REPLACEMENT), methodInfo.replaceAll(CRLF, CRLF_REPLACEMENT),</span>
-<span class="fc" id="L132">				sessionId.replaceAll(CRLF, CRLF_REPLACEMENT), authorities, configAttributes);</span>
-<span class="fc" id="L133">	}</span>
+<span class="fc" id="L128">		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,</span>
+<span class="fc" id="L129">				requestUrl.replaceAll(CRLF, CRLF_REPLACEMENT), methodInfo.replaceAll(CRLF, CRLF_REPLACEMENT),</span>
+<span class="fc" id="L130">				sessionId.replaceAll(CRLF, CRLF_REPLACEMENT), authorities, configAttributes);</span>
+<span class="fc" id="L131">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

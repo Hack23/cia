@@ -61,22 +61,22 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 <span class="fc" id="L61">		final DataSeries dataSeries = new DataSeries();</span>
 
 
-<span class="fc bfc" id="L64" title="All 2 branches covered.">		for (final Entry&lt;Country, List&lt;WorldBankData&gt;&gt; entry : countryIndicatorsMap.entrySet() ) {</span>
-<span class="fc" id="L65">			series.addSeries(new XYseries().setLabel(entry.getKey().getValue()));</span>
+<span class="pc bnc" id="L64" title="All 2 branches missed.">		for (final Entry&lt;Country, List&lt;WorldBankData&gt;&gt; entry : countryIndicatorsMap.entrySet() ) {</span>
+<span class="nc" id="L65">			series.addSeries(new XYseries().setLabel(entry.getKey().getValue()));</span>
 
-<span class="fc" id="L67">			dataSeries.newSeries();</span>
+<span class="nc" id="L67">			dataSeries.newSeries();</span>
 
-<span class="fc bfc" id="L69" title="All 2 branches covered.">			for (final WorldBankData item : entry.getValue()) {</span>
-<span class="pc bpc" id="L70" title="3 of 6 branches missed.">				if (item != null &amp;&amp; item.getYearDate() != null &amp;&amp; item.getDataValue() != null</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">						&amp;&amp; !item.getDataValue().isEmpty()) {</span>
-<span class="fc" id="L72">					dataSeries.add(item.getYearDate() + &quot;-01-01&quot;, Float.valueOf(item.getDataValue()));</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			for (final WorldBankData item : entry.getValue()) {</span>
+<span class="nc bnc" id="L70" title="All 6 branches missed.">				if (item != null &amp;&amp; item.getYearDate() != null &amp;&amp; item.getDataValue() != null</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">						&amp;&amp; !item.getDataValue().isEmpty()) {</span>
+<span class="nc" id="L72">					dataSeries.add(item.getYearDate() + &quot;-01-01&quot;, Float.valueOf(item.getDataValue()));</span>
 				}
-<span class="fc" id="L74">			}</span>
-<span class="fc" id="L75">		}</span>
+<span class="nc" id="L74">			}</span>
+<span class="nc" id="L75">		}</span>
 
-<span class="fc" id="L77">		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), false);</span>
-<span class="fc" id="L78">	}</span>
+<span class="nc" id="L77">		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), false);</span>
+<span class="nc" id="L78">	}</span>
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

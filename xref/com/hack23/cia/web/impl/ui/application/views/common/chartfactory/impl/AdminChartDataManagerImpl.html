@@ -223,7 +223,7 @@
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 						ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> 
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 		<strong class="jxr_keyword">return</strong> findOrderedListByEmbeddedProperty.parallelStream()
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 				.filter(t -&gt; t != <strong class="jxr_keyword">null</strong> &amp;&amp; t.getEmbeddedId().getPage().equals(page)).collect(Collectors.toList());
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 				.filter(t -&gt; t != <strong class="jxr_keyword">null</strong> &amp;&amp; t.getEmbeddedId().getPage().equals(page)).toList();
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 	}
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 	<em class="jxr_javadoccomment">/**</em>

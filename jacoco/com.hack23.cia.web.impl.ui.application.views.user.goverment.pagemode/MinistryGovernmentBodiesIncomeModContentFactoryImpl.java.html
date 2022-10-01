@@ -59,23 +59,23 @@ public final class MinistryGovernmentBodiesIncomeModContentFactoryImpl extends A
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L64">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L67">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L66">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="nc" id="L67">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);</span>
+<span class="nc" id="L69">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);</span>
 
-<span class="fc" id="L71">		governmentBodyChartDataManager.createMinistryGovernmentBodyIncomeSummaryChart(panelContent,</span>
-<span class="fc" id="L72">				viewRiksdagenMinistry.getNameId());</span>
+<span class="nc" id="L71">		governmentBodyChartDataManager.createMinistryGovernmentBodyIncomeSummaryChart(panelContent,</span>
+<span class="nc" id="L72">				viewRiksdagenMinistry.getNameId());</span>
 
-<span class="fc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
+<span class="nc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L78">		return panelContent;</span>
+<span class="nc" id="L78">		return panelContent;</span>
 
 	}
 
@@ -85,4 +85,4 @@ public final class MinistryGovernmentBodiesIncomeModContentFactoryImpl extends A
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

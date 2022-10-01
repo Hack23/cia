@@ -46,17 +46,17 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L51">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L51">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="nc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L59">		return panelContent;</span>
+<span class="nc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L59">		return panelContent;</span>
 
 	}
 
@@ -66,4 +66,4 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

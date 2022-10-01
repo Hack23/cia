@@ -48,6 +48,7 @@ com.hack23.cia.web.impl.ui.application.views.user.home
 com.hack23.cia.web.impl.ui.application.views.user.home.pagemode
 com.hack23.cia.web.impl.ui.application.views.user.parliament
 com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode
+com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.risk
 com.hack23.cia.web.impl.ui.application.views.user.party
 com.hack23.cia.web.impl.ui.application.views.user.party.pagemode
 com.hack23.cia.web.impl.ui.application.views.user.politician

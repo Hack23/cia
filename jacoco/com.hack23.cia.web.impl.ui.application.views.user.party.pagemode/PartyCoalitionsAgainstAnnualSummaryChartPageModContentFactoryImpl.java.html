@@ -54,18 +54,18 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L59">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L61">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L62">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L61">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L62">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, TITLE);</span>
-<span class="fc" id="L65">		chartDataManager.createPartyChart(panelContent,pageId);</span>
+<span class="nc" id="L64">		LabelFactory.createHeader2Label(panelContent, TITLE);</span>
+<span class="nc" id="L65">		chartDataManager.createPartyChart(panelContent,pageId);</span>
 
-<span class="fc" id="L67">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L68">		return panelContent;</span>
+<span class="nc" id="L67">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L68">		return panelContent;</span>
 
 	}
 
@@ -75,4 +75,4 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

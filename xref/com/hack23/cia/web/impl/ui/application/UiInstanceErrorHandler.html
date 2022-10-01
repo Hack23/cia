@@ -67,16 +67,15 @@
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Override
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> error(<strong class="jxr_keyword">final</strong> ErrorEvent event) {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">if</strong> (ExceptionUtils.getRootCause(event.getThrowable()) instanceof AccessDeniedException) {
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  			<strong class="jxr_keyword">final</strong> AccessDeniedException accessDeniedException = (AccessDeniedException) ExceptionUtils.getRootCause(event.getThrowable());
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		}
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  }
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">if</strong> (ExceptionUtils.getRootCause(event.getThrowable()) instanceof <strong class="jxr_keyword">final</strong> AccessDeniedException accessDeniedException) {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		}
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>

@@ -62,22 +62,22 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L67">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L69">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L70">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L69">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="nc" id="L70">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L72">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
+<span class="nc" id="L72">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
 
-<span class="fc" id="L74">		chartDataManager.createDocumentHistoryChartByOrg(panelContent,</span>
-<span class="fc" id="L75">				viewRiksdagenCommittee.getEmbeddedId().getOrgCode());</span>
+<span class="nc" id="L74">		chartDataManager.createDocumentHistoryChartByOrg(panelContent,</span>
+<span class="nc" id="L75">				viewRiksdagenCommittee.getEmbeddedId().getOrgCode());</span>
 
-<span class="fc" id="L77">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L78">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L77">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="nc" id="L78">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L80">		return panelContent;</span>
+<span class="nc" id="L80">		return panelContent;</span>
 
 	}
 
@@ -87,4 +87,4 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

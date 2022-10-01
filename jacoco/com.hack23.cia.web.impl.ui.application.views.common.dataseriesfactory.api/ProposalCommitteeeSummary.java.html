@@ -37,25 +37,37 @@ public final class ProposalCommitteeeSummary {
 	/** The org. */
 	private final String org;
 
+    /** The wording. */
+    private String wording;
+
+    /** The wording 2. */
+    private String wording2;
+
+    /** The decision type. */
+    private String decisionType;
+
+
 	/**
 	 * Instantiates a new proposal committeee summary.
 	 *
-	 * @param org
-	 *            the org
-	 * @param docType
-	 *            the doc type
-	 * @param decision
-	 *            the decision
-	 * @param hangarId
-	 *            the hangar id
+	 * @param org the org
+	 * @param docType the doc type
+	 * @param decision the decision
+	 * @param hangarId the hangar id
+	 * @param wording the wording
+	 * @param wording2 the wording 2
+	 * @param decisionType the decision type
 	 */
-	public ProposalCommitteeeSummary(final String org, final String docType, final String decision, final String hangarId) {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">		this.org = org.trim().toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L55">		this.docType = docType.toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L56">		this.decision = decision.replace(&quot;=&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L57">		this.hangarId = hangarId;</span>
-<span class="fc" id="L58">	}</span>
+	public ProposalCommitteeeSummary(final String org, final String docType, final String decision, final String hangarId, final String wording, final String wording2, final String decisionType) {
+<span class="nc" id="L62">		super();</span>
+<span class="nc" id="L63">		this.org = org.trim().toUpperCase(Locale.ENGLISH);</span>
+<span class="nc" id="L64">		this.docType = docType.toUpperCase(Locale.ENGLISH);</span>
+<span class="nc" id="L65">		this.decision = decision.replace(&quot;=&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
+<span class="nc" id="L66">		this.hangarId = hangarId;</span>
+<span class="nc" id="L67">		this.wording = wording;</span>
+<span class="nc" id="L68">		this.wording2 = wording2;</span>
+<span class="nc" id="L69">		this.decisionType = decisionType;</span>
+<span class="nc" id="L70">	}</span>
 
 	/**
 	 * Gets the decision.
@@ -63,7 +75,7 @@ public final class ProposalCommitteeeSummary {
 	 * @return the decision
 	 */
 	public String getDecision() {
-<span class="fc" id="L66">		return decision;</span>
+<span class="nc" id="L78">		return decision;</span>
 	}
 
 	/**
@@ -72,7 +84,7 @@ public final class ProposalCommitteeeSummary {
 	 * @return the doc type
 	 */
 	public String getDocType() {
-<span class="fc" id="L75">		return docType;</span>
+<span class="nc" id="L87">		return docType;</span>
 	}
 
 	/**
@@ -81,7 +93,7 @@ public final class ProposalCommitteeeSummary {
 	 * @return the hangar id
 	 */
 	public String getHangarId() {
-<span class="nc" id="L84">		return hangarId;</span>
+<span class="nc" id="L96">		return hangarId;</span>
 	}
 
 	/**
@@ -90,13 +102,75 @@ public final class ProposalCommitteeeSummary {
 	 * @return the org
 	 */
 	public String getOrg() {
-<span class="fc" id="L93">		return org;</span>
+<span class="nc" id="L105">		return org;</span>
 	}
 
+
+
+
+	/**
+	 * Gets the wording.
+	 *
+	 * @return the wording
+	 */
+	public String getWording() {
+<span class="nc" id="L117">		return wording;</span>
+	}
+
+	/**
+	 * Sets the wording.
+	 *
+	 * @param wording the new wording
+	 */
+	public void setWording(final String wording) {
+<span class="nc" id="L126">		this.wording = wording;</span>
+<span class="nc" id="L127">	}</span>
+
+	/**
+	 * Gets the wording 2.
+	 *
+	 * @return the wording 2
+	 */
+	public String getWording2() {
+<span class="nc" id="L135">		return wording2;</span>
+	}
+
+	/**
+	 * Sets the wording 2.
+	 *
+	 * @param wording2 the new wording 2
+	 */
+	public void setWording2(final String wording2) {
+<span class="nc" id="L144">		this.wording2 = wording2;</span>
+<span class="nc" id="L145">	}</span>
+
+	/**
+	 * Gets the decision type.
+	 *
+	 * @return the decision type
+	 */
+	public String getDecisionType() {
+<span class="nc" id="L153">		return decisionType;</span>
+	}
+
+	/**
+	 * Sets the decision type.
+	 *
+	 * @param decisionType the new decision type
+	 */
+	public void setDecisionType(final String decisionType) {
+<span class="nc" id="L162">		this.decisionType = decisionType;</span>
+<span class="nc" id="L163">	}</span>
+
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
-<span class="nc" id="L98">		return String.format(Locale.ENGLISH,&quot;ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]&quot;, org,</span>
+<span class="nc" id="L172">		return String.format(Locale.ENGLISH,&quot;ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]&quot;, org,</span>
 				docType, decision, hangarId);
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

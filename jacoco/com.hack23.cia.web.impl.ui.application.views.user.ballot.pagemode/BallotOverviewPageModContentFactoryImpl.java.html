@@ -112,59 +112,59 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 <span class="fc" id="L112">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
 
 <span class="pc bpc" id="L114" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
-<span class="fc" id="L115">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L115">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L117">			LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
+<span class="nc" id="L117">			LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
 
-<span class="fc" id="L119">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
-<span class="fc" id="L120">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
+<span class="nc" id="L119">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
+<span class="nc" id="L120">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
 
-<span class="fc" id="L122">			final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId&gt; dataDecisionContainer = getApplicationManager()</span>
-<span class="fc" id="L123">					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
+<span class="nc" id="L122">			final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId&gt; dataDecisionContainer = getApplicationManager()</span>
+<span class="nc" id="L123">					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
 
-<span class="fc" id="L125">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(</span>
+<span class="nc" id="L125">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(</span>
 					ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
 					RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
-<span class="fc" id="L129">			final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionSummaries = dataDecisionContainer</span>
-<span class="fc" id="L130">					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);</span>
+<span class="nc" id="L129">			final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionSummaries = dataDecisionContainer</span>
+<span class="nc" id="L130">					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);</span>
 
 
-<span class="fc bfc" id="L133" title="All 2 branches covered.">			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
 
-<span class="fc bfc" id="L135" title="All 2 branches covered.">				if (!decisionSummaries.isEmpty()) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">				if (!decisionSummaries.isEmpty()) {</span>
 
-<span class="fc" id="L137">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
+<span class="nc" id="L137">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							AS_LIST);
 
 				} else {
 
-<span class="fc" id="L143">					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,</span>
+<span class="nc" id="L143">					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,</span>
 							ViewRiksdagenVoteDataBallotSummary.class,
 							AS_LIST2);
 				}
 
-<span class="fc" id="L148">			}</span>
+<span class="nc" id="L148">			}</span>
 
 
-<span class="fc" id="L151">			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,</span>
+<span class="nc" id="L151">			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,</span>
 					partyBallotList, PARTY_BALLOT_SUMMARY,
 					NESTED_PROPERTIES,
 					COLUMN_ORDER,
 					HIDE_COLUMNS,
 					LISTENER, EMBEDDED_ID_PARTY, null);
 
-<span class="fc" id="L158">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L159">			overviewLayout.setSizeFull();</span>
+<span class="nc" id="L158">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L159">			overviewLayout.setSizeFull();</span>
 
-<span class="fc" id="L161">			panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L162">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
-<span class="fc" id="L163">			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="nc" id="L161">			panelContent.addComponent(overviewLayout);</span>
+<span class="nc" id="L162">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="nc" id="L163">			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
 
-<span class="fc" id="L166">			panel.setCaption(NAME + &quot;::&quot; + BALLOT + pageId);</span>
-<span class="fc" id="L167">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L166">			panel.setCaption(NAME + &quot;::&quot; + BALLOT + pageId);</span>
+<span class="nc" id="L167">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 					parameters, pageId);
 		}
 <span class="fc" id="L170">		return panelContent;</span>
@@ -179,4 +179,4 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

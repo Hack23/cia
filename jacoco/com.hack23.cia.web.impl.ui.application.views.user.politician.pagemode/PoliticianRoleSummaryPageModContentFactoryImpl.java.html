@@ -72,23 +72,23 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L75">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L75">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L77">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L78">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L79">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L77">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L78">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="nc" id="L79">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L81">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLESUMMARY.toString());</span>
+<span class="nc" id="L81">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLESUMMARY.toString());</span>
 
-<span class="fc" id="L83">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="fc" id="L84">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="nc" id="L83">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="nc" id="L84">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L86">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+<span class="nc" id="L86">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
 
-<span class="fc" id="L88">		createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);</span>
+<span class="nc" id="L88">		createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);</span>
 
-<span class="fc" id="L90">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L91">		return panelContent;</span>
+<span class="nc" id="L90">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="nc" id="L91">		return panelContent;</span>
 
 	}
 
@@ -102,31 +102,31 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	private static void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List&lt;AssignmentData&gt; assignmentList, final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-<span class="fc" id="L105">		final VerticalLayout layout = new VerticalLayout();</span>
-<span class="fc" id="L106">		layout.setSizeFull();</span>
+<span class="nc" id="L105">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="nc" id="L106">		layout.setSizeFull();</span>
 
-<span class="fc" id="L108">		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));</span>
+<span class="nc" id="L108">		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));</span>
 
-<span class="pc bpc" id="L110" title="1 of 2 branches missed.">		if (viewRiksdagenPolitician != null) {</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		if (viewRiksdagenPolitician != null) {</span>
 
-<span class="fc" id="L112">			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE</span>
-<span class="fc" id="L113">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));</span>
-<span class="fc" id="L114">			layout.addComponent(new Label(</span>
-<span class="fc" id="L115">					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));</span>
-<span class="fc" id="L116">			layout.addComponent(new Label(COMMITTEE_EXPERIENCE</span>
-<span class="fc" id="L117">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));</span>
-<span class="fc" id="L118">			layout.addComponent(</span>
-<span class="fc" id="L119">					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));</span>
-<span class="fc" id="L120">			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE</span>
-<span class="fc" id="L121">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));</span>
-<span class="fc" id="L122">			layout.addComponent(new Label(</span>
-<span class="fc" id="L123">					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));</span>
+<span class="nc" id="L112">			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE</span>
+<span class="nc" id="L113">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));</span>
+<span class="nc" id="L114">			layout.addComponent(new Label(</span>
+<span class="nc" id="L115">					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));</span>
+<span class="nc" id="L116">			layout.addComponent(new Label(COMMITTEE_EXPERIENCE</span>
+<span class="nc" id="L117">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));</span>
+<span class="nc" id="L118">			layout.addComponent(</span>
+<span class="nc" id="L119">					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));</span>
+<span class="nc" id="L120">			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE</span>
+<span class="nc" id="L121">					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));</span>
+<span class="nc" id="L122">			layout.addComponent(new Label(</span>
+<span class="nc" id="L123">					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));</span>
 		}
 
-<span class="fc" id="L126">		roleSummaryLayoutTabsheet.addComponent(layout);</span>
-<span class="fc" id="L127">		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);</span>
+<span class="nc" id="L126">		roleSummaryLayoutTabsheet.addComponent(layout);</span>
+<span class="nc" id="L127">		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);</span>
 
-<span class="fc" id="L129">	}</span>
+<span class="nc" id="L129">	}</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
@@ -134,4 +134,4 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

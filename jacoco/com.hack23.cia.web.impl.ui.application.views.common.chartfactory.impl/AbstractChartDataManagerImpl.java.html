@@ -91,10 +91,10 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the chart window height
 	 */
 	private static int getChartWindowHeight(final boolean fullPage) {
-<span class="fc bfc" id="L94" title="All 2 branches covered.">		if (fullPage) {</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		if (fullPage) {</span>
 <span class="fc" id="L95">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);</span>
 		} else {
-<span class="fc" id="L97">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);</span>
+<span class="nc" id="L97">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);</span>
 		}
 	}
 
@@ -178,15 +178,15 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the party name
 	 */
 	protected final String getPartyName(final String party) {
-<span class="fc" id="L181">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
-<span class="fc" id="L182">				.getDataContainer(ViewRiksdagenParty.class);</span>
+<span class="nc" id="L181">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L182">				.getDataContainer(ViewRiksdagenParty.class);</span>
 
-<span class="fc" id="L184">		final Optional&lt;ViewRiksdagenParty&gt; matchingObjects =dataContainer.getAll().stream().</span>
-<span class="fc" id="L185">			    filter((final ViewRiksdagenParty p) -&gt; p.getPartyId().equalsIgnoreCase(party)).</span>
-<span class="fc" id="L186">			    findFirst();</span>
+<span class="nc" id="L184">		final Optional&lt;ViewRiksdagenParty&gt; matchingObjects =dataContainer.getAll().stream().</span>
+<span class="nc" id="L185">			    filter((final ViewRiksdagenParty p) -&gt; p.getPartyId().equalsIgnoreCase(party)).</span>
+<span class="nc" id="L186">			    findFirst();</span>
 
-<span class="pc bpc" id="L188" title="1 of 2 branches missed.">		if (matchingObjects.isPresent()) {</span>
-<span class="fc" id="L189">			return matchingObjects.get().getPartyName();</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">		if (matchingObjects.isPresent()) {</span>
+<span class="nc" id="L189">			return matchingObjects.get().getPartyName();</span>
 
 		} else {
 <span class="nc" id="L192">			return party;</span>
@@ -195,4 +195,4 @@ public abstract class AbstractChartDataManagerImpl {
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

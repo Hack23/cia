@@ -49,27 +49,27 @@ public final class ExternalAttachmentDownloadLink extends Link {
 	 *            the file url
 	 */
 	public ExternalAttachmentDownloadLink(final String fileName, final String fileType, final String fileUrl) {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">		this.fileName = fileName;</span>
-<span class="fc" id="L54">		this.fileType = fileType;</span>
-<span class="fc" id="L55">		this.fileUrl = fileUrl;</span>
-<span class="fc" id="L56">		setCaption(fileName);</span>
-<span class="fc" id="L57">		setDescription(&quot;Download &quot; + fileName);</span>
-<span class="fc" id="L58">		setTargetName(&quot;_blank&quot;);</span>
-<span class="fc" id="L59">	}</span>
+<span class="nc" id="L52">		super();</span>
+<span class="nc" id="L53">		this.fileName = fileName;</span>
+<span class="nc" id="L54">		this.fileType = fileType;</span>
+<span class="nc" id="L55">		this.fileUrl = fileUrl;</span>
+<span class="nc" id="L56">		setCaption(fileName);</span>
+<span class="nc" id="L57">		setDescription(&quot;Download &quot; + fileName);</span>
+<span class="nc" id="L58">		setTargetName(&quot;_blank&quot;);</span>
+<span class="nc" id="L59">	}</span>
 
 	@Override
 	public void attach() {
-<span class="fc" id="L63">		super.attach();</span>
+<span class="nc" id="L63">		super.attach();</span>
 
-<span class="fc" id="L65">		final StreamResource.StreamSource source = new StreamSourceImplementation(fileUrl);</span>
-<span class="fc" id="L66">		final StreamResource resource = new StreamResource(source, fileName);</span>
+<span class="nc" id="L65">		final StreamResource.StreamSource source = new StreamSourceImplementation(fileUrl);</span>
+<span class="nc" id="L66">		final StreamResource resource = new StreamResource(source, fileName);</span>
 
-<span class="fc" id="L68">		resource.getStream().setParameter(&quot;Content-Disposition&quot;, &quot;attachment;filename=\&quot;&quot; + fileName + &quot;\&quot;&quot;);</span>
-<span class="fc" id="L69">		resource.setMIMEType(&quot;application/&quot; + fileType);</span>
-<span class="fc" id="L70">		resource.setCacheTime(0);</span>
+<span class="nc" id="L68">		resource.getStream().setParameter(&quot;Content-Disposition&quot;, &quot;attachment;filename=\&quot;&quot; + fileName + &quot;\&quot;&quot;);</span>
+<span class="nc" id="L69">		resource.setMIMEType(&quot;application/&quot; + fileType);</span>
+<span class="nc" id="L70">		resource.setCacheTime(0);</span>
 
-<span class="fc" id="L72">		setResource(resource);</span>
-<span class="fc" id="L73">	}</span>
+<span class="nc" id="L72">		setResource(resource);</span>
+<span class="nc" id="L73">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

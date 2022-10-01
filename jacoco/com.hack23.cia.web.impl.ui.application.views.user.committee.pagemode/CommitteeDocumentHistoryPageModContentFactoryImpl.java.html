@@ -73,31 +73,31 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L78">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L80">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="nc" id="L80">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
 
-<span class="fc" id="L82">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L82">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);</span>
+<span class="nc" id="L84">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);</span>
 
-<span class="fc" id="L86">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
-<span class="fc" id="L87">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
+<span class="nc" id="L86">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
+<span class="nc" id="L87">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
 
-<span class="fc" id="L89">		getGridFactory()</span>
-<span class="fc" id="L90">				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
-<span class="fc" id="L91">						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,</span>
-<span class="fc" id="L92">								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(&quot; &quot;, &quot;&quot;).replace(&quot;_&quot;, &quot;&quot;)</span>
-<span class="fc" id="L93">										.trim(),</span>
+<span class="nc" id="L89">		getGridFactory()</span>
+<span class="nc" id="L90">				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
+<span class="nc" id="L91">						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,</span>
+<span class="nc" id="L92">								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(&quot; &quot;, &quot;&quot;).replace(&quot;_&quot;, &quot;&quot;)</span>
+<span class="nc" id="L93">										.trim(),</span>
 								ViewRiksdagenPoliticianDocument_.madePublicDate),
 						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="nc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L100">		return panelContent;</span>
+<span class="nc" id="L100">		return panelContent;</span>
 
 	}
 
@@ -107,4 +107,4 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

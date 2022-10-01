@@ -81,10 +81,10 @@ import com.vaadin.ui.Link;
 	 * @param pagingControls the paging controls
 	 */
 	private void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
-<span class="fc" id="L84">		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));</span>
-<span class="fc" id="L85">		pagingControls.addComponent(previousPageLink);</span>
-<span class="fc" id="L86">		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);</span>
-<span class="fc" id="L87">	}</span>
+<span class="nc" id="L84">		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));</span>
+<span class="nc" id="L85">		pagingControls.addComponent(previousPageLink);</span>
+<span class="nc" id="L86">		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);</span>
+<span class="nc" id="L87">	}</span>
 
 	/**
 	 * Creates the paging controls.
@@ -120,20 +120,20 @@ import com.vaadin.ui.Link;
 <span class="fc" id="L120">				pagingControls.setExpandRatio(pageInfo, ContentRatio.SMALL);</span>
 
 
-<span class="fc bfc" id="L123" title="All 2 branches covered.">				if (pageNr &gt; PAGE_ONE) {</span>
-<span class="fc" id="L124">					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">				if (pageNr &gt; PAGE_ONE) {</span>
+<span class="nc" id="L124">					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);</span>
 				}
 
-<span class="pc bpc" id="L127" title="2 of 4 branches missed.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
-<span class="fc" id="L128">					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);</span>
+<span class="pc bpc" id="L127" title="3 of 4 branches missed.">				if (maxPages &gt; PAGE_ONE &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="nc" id="L128">					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);</span>
 				}
 
-<span class="pc bpc" id="L131" title="1 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
-<span class="fc" id="L132">					addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);</span>
+<span class="pc bpc" id="L131" title="3 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &gt; PAGE_ONE) {</span>
+<span class="nc" id="L132">					addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);</span>
 				}
 
-<span class="pc bpc" id="L135" title="2 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
-<span class="fc" id="L136">					addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);</span>
+<span class="pc bpc" id="L135" title="3 of 4 branches missed.">				if (maxPages &gt; LIMIT_FOR_DISPLAYING_START_END_LINKS &amp;&amp; pageNr &lt; maxPages) {</span>
+<span class="nc" id="L136">					addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);</span>
 				}
 
 <span class="fc" id="L139">				content.addComponent(pagingControls);</span>
@@ -142,4 +142,4 @@ import com.vaadin.ui.Link;
 <span class="fc" id="L142">			}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -66,20 +66,20 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L71">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L73">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L74">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L73">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="nc" id="L74">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L76">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="fc" id="L77">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="nc" id="L76">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="nc" id="L77">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L79">		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);</span>
+<span class="nc" id="L79">		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);</span>
 
-<span class="fc" id="L81">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L82">		return panelContent;</span>
+<span class="nc" id="L81">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="nc" id="L82">		return panelContent;</span>
 
 	}
 
@@ -93,43 +93,43 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
-<span class="fc" id="L96">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="nc" id="L96">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
 
-<span class="fc" id="L98">		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);</span>
-<span class="fc" id="L99">		panelContent.addComponent(createPoliticianPageLink);</span>
+<span class="nc" id="L98">		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);</span>
+<span class="nc" id="L99">		panelContent.addComponent(createPoliticianPageLink);</span>
 
-<span class="fc" id="L101">		final Image image = new Image(&quot;&quot;,</span>
-<span class="fc" id="L102">				new ExternalResource(personData.getImageUrl192().replace(&quot;http://&quot;, &quot;https://&quot;)));</span>
+<span class="nc" id="L101">		final Image image = new Image(&quot;&quot;,</span>
+<span class="nc" id="L102">				new ExternalResource(personData.getImageUrl192().replace(&quot;http://&quot;, &quot;https://&quot;)));</span>
 
-<span class="fc" id="L104">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L105">		horizontalLayout.setSizeFull();</span>
+<span class="nc" id="L104">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L105">		horizontalLayout.setSizeFull();</span>
 
-<span class="fc" id="L107">		panelContent.addComponent(horizontalLayout);</span>
+<span class="nc" id="L107">		panelContent.addComponent(horizontalLayout);</span>
 
-<span class="fc" id="L109">		horizontalLayout.addComponent(image);</span>
+<span class="nc" id="L109">		horizontalLayout.addComponent(image);</span>
 
-<span class="fc" id="L111">		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,</span>
+<span class="nc" id="L111">		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,</span>
 				ViewRiksdagenPolitician.class, AS_LIST);
 
-<span class="fc" id="L114">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L115">		overviewLayout.setSizeFull();</span>
+<span class="nc" id="L114">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L115">		overviewLayout.setSizeFull();</span>
 
-<span class="fc" id="L117">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L118">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="nc" id="L117">		panelContent.addComponent(overviewLayout);</span>
+<span class="nc" id="L118">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L120">		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="nc" id="L120">		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
-<span class="fc" id="L122">		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);</span>
-<span class="fc" id="L123">		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);</span>
+<span class="nc" id="L122">		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);</span>
+<span class="nc" id="L123">		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);</span>
 
-<span class="fc" id="L125">	}</span>
+<span class="nc" id="L125">	}</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 <span class="fc" id="L129">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L130" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="pc bpc" id="L130" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
 <span class="fc bfc" id="L131" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -86,34 +86,34 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L89">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L89">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L91">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L91">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L93">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L93">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
 
-<span class="fc" id="L95">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L95">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L97">		LabelFactory.createHeader2Label(panelContent, COMMITTEE_BALLOT_DECISION_SUMMARY);</span>
+<span class="nc" id="L97">		LabelFactory.createHeader2Label(panelContent, COMMITTEE_BALLOT_DECISION_SUMMARY);</span>
 
-<span class="fc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);</span>
+<span class="nc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);</span>
 
-<span class="fc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
-<span class="fc" id="L103">				.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,</span>
+<span class="nc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
+<span class="nc" id="L103">				.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,</span>
 						ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId,
 						ViewRiksdagenCommitteeBallotDecisionPartySummary_.voteDate);
 
-<span class="fc" id="L109">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+<span class="nc" id="L109">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
 				ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList,
 				COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
 
-<span class="fc" id="L114">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L114">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
 
-<span class="fc" id="L116">		return panelContent;</span>
+<span class="nc" id="L116">		return panelContent;</span>
 
 	}
 
@@ -123,4 +123,4 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

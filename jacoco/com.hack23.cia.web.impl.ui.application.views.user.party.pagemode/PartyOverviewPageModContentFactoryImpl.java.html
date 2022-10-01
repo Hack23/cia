@@ -65,45 +65,45 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L68">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L68">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L70">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L70">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L72">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L72">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
 
-<span class="fc" id="L74">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L74">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L76">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="nc" id="L76">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
 
-<span class="fc" id="L78">		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);</span>
-<span class="fc" id="L79">		panelContent.addComponent(addPartyPageLink);</span>
+<span class="nc" id="L78">		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);</span>
+<span class="nc" id="L79">		panelContent.addComponent(addPartyPageLink);</span>
 
-<span class="fc" id="L81">		panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);</span>
+<span class="nc" id="L81">		panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);</span>
 
-<span class="fc" id="L83">		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class, AS_LIST);</span>
+<span class="nc" id="L83">		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class, AS_LIST);</span>
 
-<span class="fc" id="L85">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partySummarydataContainer = getApplicationManager()</span>
-<span class="fc" id="L86">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
+<span class="nc" id="L85">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partySummarydataContainer = getApplicationManager()</span>
+<span class="nc" id="L86">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
 
-<span class="fc" id="L88">		final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);</span>
+<span class="nc" id="L88">		final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);</span>
 
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		if (viewRiksdagenPartySummary != null) {</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		if (viewRiksdagenPartySummary != null) {</span>
 
-<span class="fc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenPartySummary,</span>
+<span class="nc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenPartySummary,</span>
 					ViewRiksdagenPartySummary.class, AS_LIST2);
 
 		}
 
-<span class="fc" id="L97">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L98">		overviewLayout.setSizeFull();</span>
+<span class="nc" id="L97">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L98">		overviewLayout.setSizeFull();</span>
 
-<span class="fc" id="L100">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L101">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="nc" id="L100">		panelContent.addComponent(overviewLayout);</span>
+<span class="nc" id="L101">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L103">		getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="nc" id="L103">		getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
-<span class="fc" id="L105">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L106">		return panelContent;</span>
+<span class="nc" id="L105">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L106">		return panelContent;</span>
 
 	}
 
@@ -115,4 +115,4 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -63,9 +63,9 @@ abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractI
 
 	@Override
 	protected List&lt;GovernmentBodyAnnualSummary&gt; getItem(final String parameters) {
-<span class="fc" id="L66">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2020).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));</span>
+<span class="fc" id="L66">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));</span>
 <span class="fc" id="L67">		return map.get(getPageId(parameters));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

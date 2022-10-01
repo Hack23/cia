@@ -58,25 +58,25 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L68">		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);</span>
+<span class="nc" id="L68">		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);</span>
 
-<span class="fc" id="L70">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L71">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="nc" id="L70">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="nc" id="L71">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L73">		final List&lt;ViewRiksdagenPartyRoleMember&gt; allMembers = partyRoleMemberDataContainer</span>
-<span class="fc" id="L74">				.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());</span>
+<span class="nc" id="L73">		final List&lt;ViewRiksdagenPartyRoleMember&gt; allMembers = partyRoleMemberDataContainer</span>
+<span class="nc" id="L74">				.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());</span>
 
-<span class="fc" id="L76">		partyGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
+<span class="nc" id="L76">		partyGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
 
-<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="nc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L79">		return panelContent;</span>
 
 	}
 
@@ -86,4 +86,4 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

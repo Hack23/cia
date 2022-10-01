@@ -55,26 +55,26 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L60">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L62">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L63">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L62">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L63">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L65">		LabelFactory.createHeader2Label(panelContent, PARTY_WON_DAILY_SUMMARY_CHART);</span>
+<span class="nc" id="L65">		LabelFactory.createHeader2Label(panelContent, PARTY_WON_DAILY_SUMMARY_CHART);</span>
 
-<span class="fc" id="L67">		chartDataManager.createPartyLineChart(panelContent, pageId);</span>
+<span class="nc" id="L67">		chartDataManager.createPartyLineChart(panelContent, pageId);</span>
 
-<span class="fc" id="L69">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L70">		return panelContent;</span>
+<span class="nc" id="L69">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L70">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L76" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());</span>
+<span class="fc bfc" id="L76" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

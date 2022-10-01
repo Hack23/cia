@@ -63,13 +63,13 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 
 <span class="fc" id="L64">		partySummarydataContainer.getAll();</span>
 
-<span class="fc bfc" id="L66" title="All 2 branches covered.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
-<span class="fc" id="L67">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
-<span class="pc bpc" id="L68" title="1 of 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L67">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
 
-<span class="fc" id="L70">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveCommittee());</span>
+<span class="nc" id="L70">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveCommittee());</span>
 			}
-<span class="fc" id="L72">		}</span>
+<span class="nc" id="L72">		}</span>
 <span class="fc" id="L73">		return dataSeries;</span>
 	}
 
@@ -85,13 +85,13 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 
 <span class="fc" id="L86">		partySummarydataContainer.getAll();</span>
 
-<span class="fc bfc" id="L88" title="All 2 branches covered.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
-<span class="fc" id="L89">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
-<span class="pc bpc" id="L90" title="1 of 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L89">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
 
-<span class="fc" id="L92">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveGovernment());</span>
+<span class="nc" id="L92">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveGovernment());</span>
 			}
-<span class="fc" id="L94">		}</span>
+<span class="nc" id="L94">		}</span>
 <span class="fc" id="L95">		return dataSeries;</span>
 	}
 
@@ -102,10 +102,10 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 <span class="fc" id="L102">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
 <span class="fc" id="L103">				.getDataContainer(ViewRiksdagenParty.class);</span>
 
-<span class="fc bfc" id="L105" title="All 2 branches covered.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
-<span class="fc" id="L106">			dataSeries = dataSeries.newSeries().add(data.getPartyName(),</span>
-<span class="fc" id="L107">					data.getHeadCount());</span>
-<span class="fc" id="L108">		}</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L106">			dataSeries = dataSeries.newSeries().add(data.getPartyName(),</span>
+<span class="nc" id="L107">					data.getHeadCount());</span>
+<span class="nc" id="L108">		}</span>
 <span class="fc" id="L109">		return dataSeries;</span>
 	}
 
@@ -117,13 +117,13 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 <span class="fc" id="L117">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; dataContainer = applicationManager</span>
 <span class="fc" id="L118">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
 
-<span class="fc bfc" id="L120" title="All 2 branches covered.">		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {</span>
-<span class="fc bfc" id="L121" title="All 4 branches covered.">			if (data != null &amp;&amp; data.isActiveParliament()) {</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">			if (data != null &amp;&amp; data.isActiveParliament()) {</span>
 
-<span class="fc" id="L123">				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),</span>
-<span class="fc" id="L124">						data.getTotalActiveParliament());</span>
+<span class="nc" id="L123">				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),</span>
+<span class="nc" id="L124">						data.getTotalActiveParliament());</span>
 			}
-<span class="fc" id="L126">		}</span>
+<span class="nc" id="L126">		}</span>
 <span class="fc" id="L127">		return dataSeries;</span>
 	}
 
@@ -135,15 +135,15 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 	 * @return the party name
 	 */
 	private String getPartyName(final String party) {
-<span class="fc" id="L138">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
-<span class="fc" id="L139">				.getDataContainer(ViewRiksdagenParty.class);</span>
+<span class="nc" id="L138">		final DataContainer&lt;ViewRiksdagenParty, String&gt; dataContainer = applicationManager</span>
+<span class="nc" id="L139">				.getDataContainer(ViewRiksdagenParty.class);</span>
 
-<span class="fc" id="L141">		final Optional&lt;ViewRiksdagenParty&gt; matchingObjects =dataContainer.getAll().stream().</span>
-<span class="fc" id="L142">			    filter(p -&gt; p.getPartyId().equalsIgnoreCase(party)).</span>
-<span class="fc" id="L143">			    findFirst();</span>
+<span class="nc" id="L141">		final Optional&lt;ViewRiksdagenParty&gt; matchingObjects =dataContainer.getAll().stream().</span>
+<span class="nc" id="L142">			    filter(p -&gt; p.getPartyId().equalsIgnoreCase(party)).</span>
+<span class="nc" id="L143">			    findFirst();</span>
 
-<span class="pc bpc" id="L145" title="1 of 2 branches missed.">		if (matchingObjects.isPresent()) {</span>
-<span class="fc" id="L146">			return matchingObjects.get().getPartyName();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">		if (matchingObjects.isPresent()) {</span>
+<span class="nc" id="L146">			return matchingObjects.get().getPartyName();</span>
 
 		} else {
 <span class="nc" id="L149">			return party;</span>
@@ -151,4 +151,4 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

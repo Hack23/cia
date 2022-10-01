@@ -87,31 +87,31 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L90">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L90">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L92">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L92">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L94">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L95">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L94">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="nc" id="L95">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L97">		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);</span>
+<span class="nc" id="L97">		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);</span>
 
-<span class="fc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
+<span class="nc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
 
-<span class="fc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
-<span class="fc" id="L103">				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,</span>
-<span class="fc" id="L104">						pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);</span>
+<span class="nc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
+<span class="nc" id="L103">				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,</span>
+<span class="nc" id="L104">						pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);</span>
 
-<span class="fc" id="L106">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+<span class="nc" id="L106">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
 				ViewRiksdagenCommitteeBallotDecisionSummary.class, decisionPartySummaryList,
 				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
 				null);
 
-<span class="fc" id="L111">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L111">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="nc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L114">		return panelContent;</span>
+<span class="nc" id="L114">		return panelContent;</span>
 
 	}
 
@@ -121,4 +121,4 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -47,18 +47,18 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L50">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L50">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L52">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L53">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L52">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L53">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L55">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="nc" id="L55">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L57">		panel.setContent(panelContent);</span>
-<span class="fc" id="L58">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L57">		panel.setContent(panelContent);</span>
+<span class="nc" id="L58">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L61">		return panelContent;</span>
+<span class="nc" id="L61">		return panelContent;</span>
 
 	}
 
@@ -68,4 +68,4 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

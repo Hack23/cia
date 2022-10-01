@@ -212,7 +212,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page link factory
 	 */
 	protected final PageLinkFactory getPageLinkFactory() {
-<span class="fc" id="L215">		return pageLinkFactory;</span>
+<span class="nc" id="L215">		return pageLinkFactory;</span>
 	}
 
 	/**
@@ -224,19 +224,19 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected static final int getPageNr(final String parameters) {
 <span class="fc" id="L225">		final String cleanedString = parameters;</span>
 		String pageNrValue;
-<span class="pc bpc" id="L227" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
-<span class="fc" id="L228">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
+<span class="pc bpc" id="L227" title="4 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L228">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
 		} else {
 <span class="fc" id="L230">			pageNrValue = &quot;&quot;;</span>
 		}
 
 <span class="fc" id="L233">		int pageNr = 1;</span>
 
-<span class="pc bpc" id="L235" title="1 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
-<span class="fc" id="L236">			pageNr = Integer.parseInt(pageNrValue);</span>
+<span class="pc bpc" id="L235" title="3 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
+<span class="nc" id="L236">			pageNr = Integer.parseInt(pageNrValue);</span>
 		}
 <span class="fc" id="L238">		return pageNr;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -64,7 +64,7 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 * @return the party menu item factory
 	 */
 	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
-<span class="fc" id="L67">		return partyMenuItemFactory;</span>
+<span class="nc" id="L67">		return partyMenuItemFactory;</span>
 	}
 
 	/**
@@ -81,11 +81,11 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 */
 	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
-<span class="fc" id="L84">		panel.setCaption(new StringBuilder().append(NAME).append(CAPTION_SEPARATOR).append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());</span>
+<span class="nc" id="L84">		panel.setCaption(new StringBuilder().append(NAME).append(CAPTION_SEPARATOR).append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());</span>
 
-<span class="fc" id="L86">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+<span class="nc" id="L86">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
 				pageId);
-<span class="fc" id="L88">	}</span>
+<span class="nc" id="L88">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

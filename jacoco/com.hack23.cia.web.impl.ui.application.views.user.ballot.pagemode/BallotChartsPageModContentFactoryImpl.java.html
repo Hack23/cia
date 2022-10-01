@@ -80,17 +80,17 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	 * @return the map
 	 */
 	private static Map&lt;String,List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; createIssueConcernMap(final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList) {
-<span class="fc" id="L83">		final Map&lt;String,List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; concernIssuePartyBallotSummaryMap = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {</span>
+<span class="nc" id="L83">		final Map&lt;String,List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; concernIssuePartyBallotSummaryMap = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {</span>
 
-<span class="pc bpc" id="L86" title="3 of 4 branches missed.">			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {</span>
-<span class="fc" id="L87">				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();</span>
-<span class="fc" id="L88">				final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());</span>
-<span class="fc" id="L89">				partySummarList.add(partySummary);</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {</span>
+<span class="nc" id="L87">				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();</span>
+<span class="nc" id="L88">				final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());</span>
+<span class="nc" id="L89">				partySummarList.add(partySummary);</span>
 			}
-<span class="fc" id="L91">		}</span>
+<span class="nc" id="L91">		}</span>
 
-<span class="fc" id="L93">		return concernIssuePartyBallotSummaryMap;</span>
+<span class="nc" id="L93">		return concernIssuePartyBallotSummaryMap;</span>
 	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
@@ -104,48 +104,48 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 
 <span class="pc bpc" id="L106" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
-<span class="fc" id="L107">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L107">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L109">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
-<span class="fc" id="L110">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
+<span class="nc" id="L109">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
+<span class="nc" id="L110">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
 
-<span class="fc" id="L112">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);</span>
-
-
-<span class="fc" id="L115">				LabelFactory.createHeader2Label(panelContent,CHARTS);</span>
-
-<span class="fc" id="L117">				final TabSheet tabsheet = new TabSheet();</span>
-<span class="fc" id="L118">				tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L119">				tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
-
-<span class="fc" id="L121">				panelContent.addComponent(tabsheet);</span>
-<span class="fc" id="L122">				panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
-
-<span class="fc" id="L124">				Collections.sort(ballots, (Comparator&lt;ViewRiksdagenVoteDataBallotSummary&gt;) (o1, o2) -&gt; (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));</span>
-
-<span class="fc bfc" id="L126" title="All 2 branches covered.">				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
-<span class="fc" id="L127">					final HorizontalLayout tabContent = new HorizontalLayout();</span>
-<span class="fc" id="L128">					tabContent.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L129">					tabContent.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L130">					final Tab tab = tabsheet.addTab(tabContent);</span>
-
-<span class="fc" id="L132">					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);</span>
-<span class="fc" id="L133">				}</span>
-
-<span class="fc" id="L135">				final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);</span>
-
-<span class="fc bfc" id="L137" title="All 2 branches covered.">				for (final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {</span>
-<span class="fc" id="L138">					final HorizontalLayout tabContent = new HorizontalLayout();</span>
-<span class="fc" id="L139">					tabContent.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L140">					tabContent.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L141">					final Tab tab = tabsheet.addTab(tabContent);</span>
-
-<span class="fc" id="L143">					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);</span>
-<span class="fc" id="L144">				}</span>
+<span class="nc" id="L112">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);</span>
 
 
-<span class="fc" id="L147">				panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(BALLOT).append(pageId).toString());</span>
-<span class="fc" id="L148">				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
+<span class="nc" id="L115">				LabelFactory.createHeader2Label(panelContent,CHARTS);</span>
+
+<span class="nc" id="L117">				final TabSheet tabsheet = new TabSheet();</span>
+<span class="nc" id="L118">				tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L119">				tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
+
+<span class="nc" id="L121">				panelContent.addComponent(tabsheet);</span>
+<span class="nc" id="L122">				panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L124">				Collections.sort(ballots, (Comparator&lt;ViewRiksdagenVoteDataBallotSummary&gt;) (o1, o2) -&gt; (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));</span>
+
+<span class="nc bnc" id="L126" title="All 2 branches missed.">				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
+<span class="nc" id="L127">					final HorizontalLayout tabContent = new HorizontalLayout();</span>
+<span class="nc" id="L128">					tabContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L129">					tabContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L130">					final Tab tab = tabsheet.addTab(tabContent);</span>
+
+<span class="nc" id="L132">					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);</span>
+<span class="nc" id="L133">				}</span>
+
+<span class="nc" id="L135">				final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);</span>
+
+<span class="nc bnc" id="L137" title="All 2 branches missed.">				for (final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {</span>
+<span class="nc" id="L138">					final HorizontalLayout tabContent = new HorizontalLayout();</span>
+<span class="nc" id="L139">					tabContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L140">					tabContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L141">					final Tab tab = tabsheet.addTab(tabContent);</span>
+
+<span class="nc" id="L143">					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);</span>
+<span class="nc" id="L144">				}</span>
+
+
+<span class="nc" id="L147">				panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(BALLOT).append(pageId).toString());</span>
+<span class="nc" id="L148">				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
 		}
 <span class="fc" id="L150">		return panelContent;</span>
 
@@ -157,4 +157,4 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -73,28 +73,28 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L79">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L80">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L79">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="nc" id="L80">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L82">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.VOTEHISTORY.toString());</span>
+<span class="nc" id="L82">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.VOTEHISTORY.toString());</span>
 
-<span class="fc" id="L84">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+<span class="nc" id="L84">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
 				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 				viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager
-<span class="fc" id="L87">						.findByValue(viewRiksdagenPolitician.getPersonId()),</span>
+<span class="nc" id="L87">						.findByValue(viewRiksdagenPolitician.getPersonId()),</span>
 				BALLOTS, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
-<span class="fc" id="L90">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L91">		return panelContent;</span>
+<span class="nc" id="L90">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="nc" id="L91">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L97" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.VOTEHISTORY.toString());</span>
+<span class="fc bfc" id="L97" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.VOTEHISTORY.toString());</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

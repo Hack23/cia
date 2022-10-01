@@ -52,10 +52,10 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerI
 
 	@Override
 	public List&lt;ViewRiksdagenVoteDataBallotPoliticianSummary&gt; findByValue(final String id) {
-<span class="fc" id="L55">		final DataContainer&lt;ViewRiksdagenVoteDataBallotPoliticianSummary, RiksdagenVoteDataBallotPoliticianEmbeddedId&gt; politicianBallotSummaryDailyDataContainer = applicationManager</span>
-<span class="fc" id="L56">				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummary.class);</span>
+<span class="nc" id="L55">		final DataContainer&lt;ViewRiksdagenVoteDataBallotPoliticianSummary, RiksdagenVoteDataBallotPoliticianEmbeddedId&gt; politicianBallotSummaryDailyDataContainer = applicationManager</span>
+<span class="nc" id="L56">				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummary.class);</span>
 
-<span class="fc" id="L58">		return politicianBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(</span>
+<span class="nc" id="L58">		return politicianBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(</span>
 				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 				ViewRiksdagenVoteDataBallotPoliticianSummary_.embeddedId,
 				RiksdagenVoteDataBallotPoliticianEmbeddedId.class,
@@ -65,4 +65,4 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerI
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

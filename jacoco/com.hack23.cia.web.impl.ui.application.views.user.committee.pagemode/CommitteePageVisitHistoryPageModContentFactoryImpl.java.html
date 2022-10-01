@@ -52,19 +52,19 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L57">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L59">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L60">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L59">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="nc" id="L60">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L62">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="nc" id="L62">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L64">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L64">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="nc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L67">		return panelContent;</span>
+<span class="nc" id="L67">		return panelContent;</span>
 
 	}
 
@@ -74,4 +74,4 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

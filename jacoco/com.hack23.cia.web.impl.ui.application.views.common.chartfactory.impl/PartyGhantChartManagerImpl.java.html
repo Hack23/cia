@@ -45,68 +45,68 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 	@Override
 	protected Comparator&lt;ViewRiksdagenPartyRoleMember&gt; getComparator() {
-<span class="fc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+<span class="nc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
 	}
 
 	@Override
 	protected Function&lt;ViewRiksdagenPartyRoleMember, String&gt; getRoleMapping() {
-<span class="fc" id="L53">		return new RoleMapping();</span>
+<span class="nc" id="L53">		return new RoleMapping();</span>
 	}
 
 	@Override
 	protected StepMapping&lt;ViewRiksdagenPartyRoleMember&gt; getStepMapping() {
-<span class="fc" id="L58">		return new StepMapping&lt;ViewRiksdagenPartyRoleMember&gt;() {</span>
+<span class="nc" id="L58">		return new StepMapping&lt;&gt;() {</span>
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
 				String color;
 
-<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;vice&quot;)) {</span>
-<span class="fc" id="L65">					color = &quot;A8D999&quot;;</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partiledare&quot;)</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;språkrör&quot;)</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partisekreterare&quot;)) {</span>
-<span class="fc" id="L69">					color = &quot;3271c8&quot;;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;vice&quot;)) {</span>
+<span class="nc" id="L65">					color = &quot;A8D999&quot;;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partiledare&quot;)</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;språkrör&quot;)</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partisekreterare&quot;)) {</span>
+<span class="nc" id="L69">					color = &quot;3271c8&quot;;</span>
 				} else {
-<span class="fc" id="L71">					color = &quot;0eab76&quot;;</span>
+<span class="nc" id="L71">					color = &quot;0eab76&quot;;</span>
 				}
 
-<span class="fc" id="L74">				return color;</span>
+<span class="nc" id="L74">				return color;</span>
 			}
 
 			@Override
 			public Object getFirstName(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L79">				return t.getFirstName();</span>
+<span class="nc" id="L79">				return t.getFirstName();</span>
 			}
 
 			@Override
 			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L84">				return t.getFromDate();</span>
+<span class="nc" id="L84">				return t.getFromDate();</span>
 			}
 
 			@Override
 			public Object getLastName(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L89">				return t.getLastName();</span>
+<span class="nc" id="L89">				return t.getLastName();</span>
 			}
 
 			@Override
 			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L94">				return t.getDetail();</span>
+<span class="nc" id="L94">				return t.getDetail();</span>
 			}
 
 			@Override
 			public String getParty(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L99">				return t.getParty();</span>
+<span class="nc" id="L99">				return t.getParty();</span>
 			}
 
 			@Override
 			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L104">				return t.getRoleCode();</span>
+<span class="nc" id="L104">				return t.getRoleCode();</span>
 			}
 
 			@Override
 			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L109">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
+<span class="nc" id="L109">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
 			}
 
 		};
@@ -119,9 +119,9 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 		@Override
 		public String apply(final ViewRiksdagenPartyRoleMember t) {
-<span class="fc" id="L122">			return t.getRoleCode();</span>
+<span class="nc" id="L122">			return t.getRoleCode();</span>
 		}
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

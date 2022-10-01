@@ -54,11 +54,11 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 	@Override
 	public InputStream getStream() {
 		try {
-<span class="fc" id="L57">			return new URL(url).openStream();</span>
+<span class="nc" id="L57">			return new URL(url).openStream();</span>
 <span class="fc" id="L58">		} catch (final IOException e) {</span>
 <span class="fc" id="L59">			LOGGER.warn(url, e);</span>
 <span class="fc" id="L60">			return new ByteArrayInputStream(new byte[0]);</span>
 		}
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -60,34 +60,34 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L65">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L67">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L67">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L70">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="nc" id="L69">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="nc" id="L70">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L72">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L73">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="nc" id="L72">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="nc" id="L73">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L76">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
+<span class="nc" id="L76">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
 
-<span class="pc bpc" id="L78" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
-<span class="pc bpc" id="L79" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
 
-<span class="fc" id="L81">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
-<span class="fc" id="L82">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
+<span class="nc" id="L81">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
+<span class="nc" id="L82">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
 					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 		}
 
-<span class="fc" id="L87">		panel.setContent(panelContent);</span>
-<span class="fc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L87">		panel.setContent(panelContent);</span>
+<span class="nc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L90">		return panelContent;</span>
+<span class="nc" id="L90">		return panelContent;</span>
 
 	}
 
@@ -97,4 +97,4 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

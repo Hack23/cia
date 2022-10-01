@@ -57,27 +57,27 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L62">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="nc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L67">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_ROLES);</span>
+<span class="nc" id="L67">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_ROLES);</span>
 
-<span class="fc" id="L69">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L70">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="nc" id="L69">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="nc" id="L70">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
 
-<span class="fc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,</span>
-<span class="fc" id="L73">				govermentRoleMemberDataContainer.findListByProperty(</span>
-<span class="fc" id="L74">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
+<span class="nc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,</span>
+<span class="nc" id="L73">				govermentRoleMemberDataContainer.findListByProperty(</span>
+<span class="nc" id="L74">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
 						ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
 				GOVERNMENT_ROLES, COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, PERSON_ID), null, null);
 
-<span class="fc" id="L79">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L80">		return panelContent;</span>
+<span class="nc" id="L79">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="nc" id="L80">		return panelContent;</span>
 
 	}
 
@@ -87,4 +87,4 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

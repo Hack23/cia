@@ -89,7 +89,7 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc bfc" id="L89" title="All 2 branches covered.">		for (final String property : displayProperties) {</span>
 <span class="fc" id="L90">			final Class&lt;?&gt; typeOfProperty = getTypeOfProperty(propertyDescriptors, property);</span>
 
-<span class="fc bfc" id="L92" title="All 2 branches covered.">			if (typeOfProperty != null) {</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">			if (typeOfProperty != null) {</span>
 <span class="fc" id="L93">				final AbstractField&lt;?&gt; field = new TextField();</span>
 <span class="fc" id="L94">				field.setReadOnly(true);</span>
 <span class="fc" id="L95">				field.setCaption(property);</span>
@@ -134,16 +134,16 @@ import com.vaadin.ui.VerticalLayout;
 
 <span class="fc bfc" id="L135" title="All 2 branches covered.">		if (Date.class.equals(typeOfProperty)) {</span>
 <span class="fc" id="L136">			converter = new StringToDateConverter();</span>
-<span class="fc bfc" id="L137" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="pc bpc" id="L137" title="1 of 4 branches missed.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="fc" id="L138">			converter = new StringToIntegerConverter(&quot;Input value should be an integer&quot;);</span>
-<span class="pc bpc" id="L139" title="1 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L140">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
-<span class="fc bfc" id="L141" title="All 2 branches covered.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L142">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
-<span class="fc bfc" id="L143" title="All 2 branches covered.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L144">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
-<span class="pc bpc" id="L145" title="1 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L146">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
+<span class="pc bpc" id="L139" title="2 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="nc" id="L140">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
+<span class="nc" id="L142">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
+<span class="nc" id="L144">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
+<span class="pc bpc" id="L145" title="2 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="nc" id="L146">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
 <span class="fc bfc" id="L147" title="All 2 branches covered.">		} else if (typeOfProperty.isEnum()) {</span>
 <span class="fc" id="L148">			converter = new StringToEnumConverter();</span>
 		} else {
@@ -164,12 +164,12 @@ import com.vaadin.ui.VerticalLayout;
 	 */
 	private static Class&lt;?&gt; getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
 
-<span class="fc bfc" id="L167" title="All 2 branches covered.">		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {</span>
+<span class="pc bpc" id="L167" title="1 of 2 branches missed.">		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {</span>
 <span class="fc bfc" id="L168" title="All 2 branches covered.">			if (propertyDescriptor.getName().equalsIgnoreCase(property)) {</span>
 <span class="fc" id="L169">				return propertyDescriptor.getPropertyType();</span>
 			}
 		}
-<span class="fc" id="L172">		return null;</span>
+<span class="nc" id="L172">		return null;</span>
 	}
 
 	@Override
@@ -182,8 +182,8 @@ import com.vaadin.ui.VerticalLayout;
 
 
 <span class="fc" id="L184">		panelContent.addComponent(formPanel);</span>
-<span class="fc bfc" id="L185" title="All 2 branches covered.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
-<span class="fc" id="L186">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
+<span class="nc" id="L186">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
 		}
 		else {
 <span class="fc" id="L189">			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);</span>
@@ -246,4 +246,4 @@ import com.vaadin.ui.VerticalLayout;
 <span class="fc" id="L246">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

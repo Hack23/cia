@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>/home/pether/git/cia/citizen-intelligence-agency/src/main/java/com.hack23.cia.web/module-info.java xref</title>
+<title>module-info xref</title>
 <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../apidocs">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../apidocs/module-info.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   open module com.hack23.cia.web {
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   	exports com.hack23.cia.web.impl.ui.application;
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   	exports com.hack23.cia.web.impl.ui.application.action;
@@ -78,70 +78,67 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  	requires spring.messaging;
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  	requires spring.context.support;
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  	requires quartz;
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	requires commons.lang;
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	requires spring.security.core;
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	requires spring.security.web;
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	requires org.apache.commons.lang3;
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	requires org.bouncycastle.provider;
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	requires smile.core;
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	requires smile.nlp;	
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	requires passay;
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	requires wt.pdf.viewer;
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	requires spring.aop;
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	requires statistics.card;
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  	requires org.eclipse.jetty.servlet;
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  	requires jetty.servlet.api;
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  	requires vaadin.grid.util;
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	requires nl.basjes.parse.useragent;
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	requires qrcode;
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  	requires java.desktop;
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  	requires org.apache.commons.text;
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  	requires gantt.addon;
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	requires dcharts;
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  	requires commons.beanutils;
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  	requires org.jsoup;
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	requires vaadin.spring;
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	requires spring.web;
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 	requires java.logging;
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	requires java.management;
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 	
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	requires transitive com.hack23.cia.web.widgets;
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 	requires transitive com.hack23.cia.service.api;
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	requires transitive com.hack23.cia.service.impl;
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 	requires transitive com.hack23.cia.service.external.esv;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	requires spring.security.core;
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	requires spring.security.web;
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	requires org.apache.commons.lang3;
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	requires org.bouncycastle.provider;
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	requires passay;
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	requires wt.pdf.viewer;
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	requires spring.aop;
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	requires statistics.card;
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	requires org.eclipse.jetty.servlet;
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	requires jetty.servlet.api;
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  	requires vaadin.grid.util;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  	requires nl.basjes.parse.useragent;
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	requires qrcode;
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	requires java.desktop;
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	requires org.apache.commons.text;
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  	requires gantt.addon;
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  	requires dcharts;
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  	requires commons.beanutils;
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  	requires org.jsoup;
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	requires vaadin.spring;
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  	requires spring.web;
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  	requires java.logging;
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	requires java.management;
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 	requires transitive com.hack23.cia.web.widgets;
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	requires transitive com.hack23.cia.service.api;
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 	requires transitive com.hack23.cia.service.impl;
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	requires transitive com.hack23.cia.service.external.esv;
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	requires transitive com.hack23.cia.service.component.agent.api;
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 	requires transitive com.hack23.cia.service.component.agent.impl;
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	requires transitive com.hack23.cia.service.component.agent.api;
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	requires transitive com.hack23.cia.service.component.agent.impl;
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 	requires transitive com.hack23.cia.service.external.common;
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>     requires transitive com.hack23.cia.service.data.api;
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	requires transitive com.hack23.cia.service.external.riksdagen;
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	requires transitive com.hack23.cia.service.external.val;
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 	requires transitive com.hack23.cia.service.external.worldbank;
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 	requires transitive com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 	requires transitive com.hack23.cia.model.external.riksdagen.voteringlista.impl;
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 	requires transitive com.hack23.cia.model.external.val.kommunvalkrets.impl;
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 	requires transitive com.hack23.cia.model.external.worldbank.topic.impl;
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 	requires transitive com.hack23.cia.model.external.worldbank.indicators.impl;
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 	requires transitive com.hack23.cia.model.external.riksdagen.documentcontent.impl;
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 	requires transitive com.hack23.cia.model.external.worldbank.data.impl;
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 	requires transitive com.hack23.cia.model.external.riksdagen.person.impl;
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 	requires transitive com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 	requires transitive com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 	requires transitive com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 	requires transitive com.hack23.cia.model.external.val.partier.impl;
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 	requires transitive com.hack23.cia.model.external.riksdagen.personlista.impl;
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> }
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	requires transitive com.hack23.cia.service.external.common;
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>     requires transitive com.hack23.cia.service.data.api;
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	requires transitive com.hack23.cia.service.external.riksdagen;
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 	requires transitive com.hack23.cia.service.external.val;
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 	requires transitive com.hack23.cia.service.external.worldbank;
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	requires transitive com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 	requires transitive com.hack23.cia.model.external.riksdagen.voteringlista.impl;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 	requires transitive com.hack23.cia.model.external.val.kommunvalkrets.impl;
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 	requires transitive com.hack23.cia.model.external.worldbank.topic.impl;
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 	requires transitive com.hack23.cia.model.external.worldbank.indicators.impl;
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 	requires transitive com.hack23.cia.model.external.riksdagen.documentcontent.impl;
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 	requires transitive com.hack23.cia.model.external.worldbank.data.impl;
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 	requires transitive com.hack23.cia.model.external.riksdagen.person.impl;
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 	requires transitive com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 	requires transitive com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 	requires transitive com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 	requires transitive com.hack23.cia.model.external.val.partier.impl;
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 	requires transitive com.hack23.cia.model.external.riksdagen.personlista.impl;
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>

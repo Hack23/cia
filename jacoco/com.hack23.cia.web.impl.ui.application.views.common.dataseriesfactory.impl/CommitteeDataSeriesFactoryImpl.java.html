@@ -62,13 +62,13 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 
 <span class="fc" id="L63">		partySummarydataContainer.getAll();</span>
 
-<span class="fc bfc" id="L65" title="All 2 branches covered.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
-<span class="fc" id="L66">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
-<span class="pc bpc" id="L67" title="1 of 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">		for (final ViewRiksdagenParty data : dataContainer.getAll()) {</span>
+<span class="nc" id="L66">			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">			if (summary != null &amp;&amp; summary.isActive()) {</span>
 
-<span class="fc" id="L69">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalDaysServedCommittee());</span>
+<span class="nc" id="L69">				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalDaysServedCommittee());</span>
 			}
-<span class="fc" id="L71">		}</span>
+<span class="nc" id="L71">		}</span>
 <span class="fc" id="L72">		return dataSeries;</span>
 	}
 
@@ -80,9 +80,9 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 <span class="fc" id="L80">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = applicationManager</span>
 <span class="fc" id="L81">				.getDataContainer(ViewRiksdagenCommittee.class);</span>
 
-<span class="fc bfc" id="L83" title="All 2 branches covered.">		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {</span>
-<span class="fc" id="L84">			dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getTotalAssignments());</span>
-<span class="fc" id="L85">		}</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {</span>
+<span class="nc" id="L84">			dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getTotalAssignments());</span>
+<span class="nc" id="L85">		}</span>
 <span class="fc" id="L86">		return dataSeries;</span>
 	}
 
@@ -95,12 +95,12 @@ public final class CommitteeDataSeriesFactoryImpl implements CommitteeDataSeries
 <span class="fc" id="L95">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = applicationManager</span>
 <span class="fc" id="L96">				.getDataContainer(ViewRiksdagenCommittee.class);</span>
 
-<span class="fc bfc" id="L98" title="All 2 branches covered.">		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {</span>
-<span class="fc bfc" id="L99" title="All 2 branches covered.">			if (data.isActive()) {</span>
-<span class="fc" id="L100">				dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getCurrentMemberSize());</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">		for (final ViewRiksdagenCommittee data : dataContainer.getAll()) {</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">			if (data.isActive()) {</span>
+<span class="nc" id="L100">				dataSeries =dataSeries.newSeries().add(data.getEmbeddedId().getDetail(),data.getCurrentMemberSize());</span>
 			}
-<span class="fc" id="L102">		}</span>
+<span class="nc" id="L102">		}</span>
 <span class="fc" id="L103">		return dataSeries;</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

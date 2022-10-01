@@ -22,10 +22,9 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ import com.vaadin.ui.Grid.SelectionMode;
 public final class GridFactoryImpl implements GridFactory {
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L53">	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);</span>
+<span class="fc" id="L52">	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -59,8 +58,8 @@ public final class GridFactoryImpl implements GridFactory {
 	 * Instantiates a new grid factory impl.
 	 */
 	public GridFactoryImpl() {
-<span class="fc" id="L62">		super();</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L61">		super();</span>
+<span class="fc" id="L62">	}</span>
 
 	/**
 	 * Configure column orders and hidden fields.
@@ -74,16 +73,16 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	private static void configureColumnOrdersAndHiddenFields(final String[] columnOrder, final String[] hideColumns,
 			final Grid grid) {
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">		if (columnOrder != null) {</span>
-<span class="fc" id="L78">			grid.setColumnOrder(columnOrder);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		if (columnOrder != null) {</span>
+<span class="fc" id="L77">			grid.setColumnOrder(columnOrder);</span>
 		}
 
-<span class="pc bpc" id="L81" title="1 of 2 branches missed.">		if (hideColumns != null) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">			for (final String o : hideColumns) {</span>
-<span class="fc" id="L83">				grid.removeColumn(o);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">		if (hideColumns != null) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">			for (final String o : hideColumns) {</span>
+<span class="fc" id="L82">				grid.removeColumn(o);</span>
 			}
 		}
-<span class="fc" id="L86">	}</span>
+<span class="fc" id="L85">	}</span>
 
 	/**
 	 * Configure listeners.
@@ -95,10 +94,10 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	private static void configureListeners(final SelectionListener listener, final Grid grid) {
 
-<span class="fc bfc" id="L98" title="All 2 branches covered.">		if (listener != null) {</span>
-<span class="fc" id="L99">			grid.addSelectionListener(listener);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">		if (listener != null) {</span>
+<span class="fc" id="L98">			grid.addSelectionListener(listener);</span>
 		}
-<span class="fc" id="L101">	}</span>
+<span class="fc" id="L100">	}</span>
 
 	/**
 	 * Creates the grid cell filter.
@@ -111,25 +110,25 @@ public final class GridFactoryImpl implements GridFactory {
 	 *            the data type
 	 */
 	private static void createGridCellFilter(final String[] columnOrder, final Grid grid, final Class dataType) {
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">		if (columnOrder != null) {</span>
-<span class="fc" id="L115">			final GridCellFilter filter = new GridCellFilter(grid, dataType);</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">			for (final String column : columnOrder) {</span>
-<span class="fc bfc" id="L117" title="All 2 branches covered.">				if (grid.getColumn(column) != null) {</span>
-<span class="fc" id="L118">					filter.setTextFilter(column, true, true);</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		if (columnOrder != null) {</span>
+<span class="fc" id="L114">			final GridCellFilter filter = new GridCellFilter(grid, dataType);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">			for (final String column : columnOrder) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">				if (grid.getColumn(column) != null) {</span>
+<span class="fc" id="L117">					filter.setTextFilter(column, true, true);</span>
 				}
 			}
 		}
-<span class="fc" id="L122">	}</span>
+<span class="fc" id="L121">	}</span>
 
 	private static &lt;T extends Serializable&gt; void createNestedProperties(final Grid&lt;T&gt; grid,
 			final String[] nestedProperties) {
-<span class="fc bfc" id="L126" title="All 2 branches covered.">		if (nestedProperties != null) {</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">			for (final String property : nestedProperties) {</span>
-<span class="fc" id="L128">				final Column&lt;T, ?&gt; addColumn = grid.addColumn(new BeanNestedPropertyValueProvider&lt;T&gt;(property));</span>
-<span class="fc" id="L129">				addColumn.setId(property);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		if (nestedProperties != null) {</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">			for (final String property : nestedProperties) {</span>
+<span class="fc" id="L127">				final Column&lt;T, ?&gt; addColumn = grid.addColumn(new BeanNestedPropertyValueProvider&lt;T&gt;(property));</span>
+<span class="fc" id="L128">				addColumn.setId(property);</span>
 			}
 		}
-<span class="fc" id="L132">	}</span>
+<span class="fc" id="L131">	}</span>
 
 	/**
 	 * Sets the column converters.
@@ -141,25 +140,25 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter,
 			final Grid grid) {
-<span class="pc bpc" id="L144" title="1 of 2 branches missed.">		if (collectionPropertyConverter != null) {</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">			for (final ListPropertyConverter converter : collectionPropertyConverter) {</span>
-<span class="nc" id="L146">				grid.removeColumn(converter.getColumn());</span>
-<span class="nc" id="L147">				final Column column = grid.addColumn(converter);</span>
-<span class="nc" id="L148">				column.setCaption(WordUtils.capitalize(converter.getColumn()));</span>
-<span class="nc" id="L149">				column.setId(converter.getColumn());</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">		if (collectionPropertyConverter != null) {</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">			for (final ListPropertyConverter converter : collectionPropertyConverter) {</span>
+<span class="nc" id="L145">				grid.removeColumn(converter.getColumn());</span>
+<span class="nc" id="L146">				final Column column = grid.addColumn(converter);</span>
+<span class="nc" id="L147">				column.setCaption(WordUtils.capitalize(converter.getColumn()));</span>
+<span class="nc" id="L148">				column.setId(converter.getColumn());</span>
 			}
 		}
-<span class="fc" id="L152">	}</span>
+<span class="fc" id="L151">	}</span>
 
 	@Override
 	public &lt;T extends Serializable&gt; void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,
 			final Class&lt;T&gt; dataType, final List&lt;T&gt; datasource, final String caption, final String[] columnOrder,
 			final String[] hideColumns, final PageItemRendererClickListener&lt;?&gt; listener, final String actionId,
 			final ListPropertyConverter[] collectionPropertyConverters) {
-<span class="fc" id="L159">		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,</span>
+<span class="fc" id="L158">		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,</span>
 				hideColumns, listener, actionId, collectionPropertyConverters);
 
-<span class="fc" id="L162">	}</span>
+<span class="fc" id="L161">	}</span>
 
 	@Override
 	public &lt;T extends Serializable&gt; void createBasicBeanItemNestedPropertiesGrid(
@@ -168,33 +167,33 @@ public final class GridFactoryImpl implements GridFactory {
 			final String[] hideColumns, final PageItemRendererClickListener&lt;?&gt; listener, final String actionId,
 			final ListPropertyConverter[] collectionPropertyConverters) {
 
-<span class="fc" id="L171">		final Grid&lt;T&gt; grid = Grid.withPropertySet(BeanPropertySet.get(dataType));</span>
-<span class="fc" id="L172">		grid.setCaption(caption);</span>
+<span class="fc" id="L170">		final Grid&lt;T&gt; grid = Grid.withPropertySet(BeanPropertySet.get(dataType));</span>
+<span class="fc" id="L171">		grid.setCaption(caption);</span>
 
-<span class="fc" id="L174">		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));</span>
+<span class="fc" id="L173">		grid.setItems(datasource.stream().filter(Objects::nonNull).toList());</span>
 
-<span class="fc" id="L176">		grid.setSelectionMode(SelectionMode.SINGLE);</span>
+<span class="fc" id="L175">		grid.setSelectionMode(SelectionMode.SINGLE);</span>
 
-<span class="fc" id="L178">		createNestedProperties(grid, nestedProperties);</span>
+<span class="fc" id="L177">		createNestedProperties(grid, nestedProperties);</span>
 
-<span class="fc" id="L180">		setColumnConverters(collectionPropertyConverters, grid);</span>
+<span class="fc" id="L179">		setColumnConverters(collectionPropertyConverters, grid);</span>
 
-<span class="fc" id="L182">		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);</span>
+<span class="fc" id="L181">		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);</span>
 
-<span class="fc" id="L184">		configureListeners(listener, grid);</span>
+<span class="fc" id="L183">		configureListeners(listener, grid);</span>
 
 
-<span class="fc" id="L187">		grid.setSizeFull();</span>
+<span class="fc" id="L186">		grid.setSizeFull();</span>
 
-<span class="fc" id="L189">		grid.setStyleName(&quot;Level2Header&quot;);</span>
+<span class="fc" id="L188">		grid.setStyleName(&quot;Level2Header&quot;);</span>
 
-<span class="fc" id="L191">		createGridCellFilter(columnOrder, grid, dataType);</span>
+<span class="fc" id="L190">		createGridCellFilter(columnOrder, grid, dataType);</span>
 
-<span class="fc" id="L193">		grid.setResponsive(true);</span>
+<span class="fc" id="L192">		grid.setResponsive(true);</span>
 
-<span class="fc" id="L195">		panelContent.addComponent(grid);</span>
-<span class="fc" id="L196">		panelContent.setExpandRatio(grid, ContentRatio.GRID);</span>
-<span class="fc" id="L197">	}</span>
+<span class="fc" id="L194">		panelContent.addComponent(grid);</span>
+<span class="fc" id="L195">		panelContent.setExpandRatio(grid, ContentRatio.GRID);</span>
+<span class="fc" id="L196">	}</span>
 
 	/**
 	 * The Class BeanNestedPropertyValueProvider.
@@ -217,21 +216,21 @@ public final class GridFactoryImpl implements GridFactory {
 		 *            the property
 		 */
 		public BeanNestedPropertyValueProvider(final String property) {
-<span class="fc" id="L220">			super();</span>
-<span class="fc" id="L221">			this.property = property;</span>
-<span class="fc" id="L222">		}</span>
+<span class="fc" id="L219">			super();</span>
+<span class="fc" id="L220">			this.property = property;</span>
+<span class="fc" id="L221">		}</span>
 
 		@Override
 		public String apply(final T source) {
 			try {
-<span class="fc" id="L227">				return BeanUtils.getProperty(source, property);</span>
-<span class="nc" id="L228">			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="nc" id="L229">				LOGGER.warn(&quot;Problem getting property : {} from source : {} , exception: {}&quot;, property, source, e);</span>
-<span class="nc" id="L230">				return &quot;&quot;;</span>
+<span class="nc" id="L226">				return BeanUtils.getProperty(source, property);</span>
+<span class="nc" id="L227">			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L228">				LOGGER.warn(&quot;Problem getting property : {} from source : {} , exception: {}&quot;, property, source, e);</span>
+<span class="nc" id="L229">				return &quot;&quot;;</span>
 			}
 		}
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

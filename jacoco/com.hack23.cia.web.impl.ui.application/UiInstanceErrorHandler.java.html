@@ -59,14 +59,13 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 
 	@Override
 	public void error(final ErrorEvent event) {
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof AccessDeniedException) {</span>
-<span class="nc" id="L63">			final AccessDeniedException accessDeniedException = (AccessDeniedException) ExceptionUtils.getRootCause(event.getThrowable());</span>
-<span class="nc" id="L64">			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);</span>
-<span class="nc" id="L65">			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);</span>
-<span class="nc" id="L66">		} else {</span>
-<span class="fc" id="L67">			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof final AccessDeniedException accessDeniedException) {</span>
+<span class="nc" id="L63">			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);</span>
+<span class="nc" id="L64">			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);</span>
+		} else {
+<span class="fc" id="L66">			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());</span>
 		}
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L68">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

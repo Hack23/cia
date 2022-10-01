@@ -71,11 +71,11 @@ public abstract class AbstractPageItemRendererClickListener&lt;T&gt; implements 
 	public final void selectionChange(final SelectionEvent&lt;T&gt; event) {
 <span class="fc" id="L72">		final Set&lt;T&gt; added =event.getAllSelectedItems();</span>
 
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (!added.isEmpty()) {</span>
-<span class="fc" id="L75">			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		if (!added.isEmpty()) {</span>
+<span class="nc" id="L75">			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));</span>
 
 		}
 <span class="fc" id="L78">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

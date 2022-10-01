@@ -45,7 +45,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 	@Override
 	protected Comparator&lt;ViewRiksdagenGovermentRoleMember&gt; getComparator() {
-<span class="fc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+<span class="pc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
 	}
 
 	@Override
@@ -55,56 +55,56 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 	@Override
 	protected StepMapping&lt;ViewRiksdagenGovermentRoleMember&gt; getStepMapping() {
-<span class="fc" id="L58">		return new StepMapping&lt;ViewRiksdagenGovermentRoleMember&gt;() {</span>
+<span class="fc" id="L58">		return new StepMapping&lt;&gt;() {</span>
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
 				String color;
 
-<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsråd&quot;)) {</span>
-<span class="fc" id="L65">					color = &quot;ded858&quot;;</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsminister&quot;)) {</span>
-<span class="fc" id="L67">					color = &quot;3271c8&quot;;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsråd&quot;)) {</span>
+<span class="nc" id="L65">					color = &quot;ded858&quot;;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;statsminister&quot;)) {</span>
+<span class="nc" id="L67">					color = &quot;3271c8&quot;;</span>
 				} else {
-<span class="fc" id="L69">					color = &quot;0eab76&quot;;</span>
+<span class="nc" id="L69">					color = &quot;0eab76&quot;;</span>
 				}
 
-<span class="fc" id="L72">				return color;</span>
+<span class="nc" id="L72">				return color;</span>
 			}
 
 			@Override
 			public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L77">				return t.getFirstName();</span>
+<span class="nc" id="L77">				return t.getFirstName();</span>
 			}
 
 			@Override
 			public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L82">				return t.getFromDate();</span>
+<span class="nc" id="L82">				return t.getFromDate();</span>
 			}
 
 			@Override
 			public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L87">				return t.getLastName();</span>
+<span class="nc" id="L87">				return t.getLastName();</span>
 			}
 
 			@Override
 			public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L92">				return t.getDetail();</span>
+<span class="nc" id="L92">				return t.getDetail();</span>
 			}
 
 			@Override
 			public String getParty(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L97">				return t.getParty();</span>
+<span class="nc" id="L97">				return t.getParty();</span>
 			}
 
 			@Override
 			public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L102">				return t.getRoleCode();</span>
+<span class="nc" id="L102">				return t.getRoleCode();</span>
 			}
 
 			@Override
 			public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L107">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
+<span class="nc" id="L107">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
 			}
 
 		};
@@ -117,9 +117,9 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 		@Override
 		public String apply(final ViewRiksdagenGovermentRoleMember t) {
-<span class="fc" id="L120">			return t.getRoleCode()+ &quot;.[&quot;+ t.getPersonId() +&quot;].&quot; + t.getDetail();</span>
+<span class="nc" id="L120">			return t.getRoleCode()+ &quot;.[&quot;+ t.getPersonId() +&quot;].&quot; + t.getDetail();</span>
 		}
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
