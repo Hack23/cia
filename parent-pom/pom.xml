@@ -1160,7 +1160,7 @@
         <plugin>
           <groupId>de.thetaphi</groupId>
           <artifactId>forbiddenapis</artifactId>
-          <version>3.3</version>
+          <version>3.4</version>
           <dependencies>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -1185,7 +1185,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>3.3</version>
+        <version>3.4</version>
         <executions>
           <execution>
             <id>verify-forbidden-apis</id>
