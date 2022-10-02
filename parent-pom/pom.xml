@@ -81,7 +81,7 @@
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
-      <url>>scm:git:ssh://git@github.com/Hack23/cia.git</url>
+      <url>&gt;scm:git:ssh://git@github.com/Hack23/cia.git</url>
     </site>
   </distributionManagement>
   <properties>
@@ -853,26 +853,26 @@
               <artifactId>xml-apis</artifactId>
               <version>1.4.01</version>
             </dependency>
-			<dependency>
-			    <groupId>org.apache.maven.wagon</groupId>
-			    <artifactId>wagon-ssh</artifactId>
-			    <version>3.5.2</version>
-			</dependency>
-   			<dependency>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-scm</artifactId>
-                <version>3.5.2</version>
-            </dependency>			
-		 	<dependency>
-		        <groupId>org.apache.maven.scm</groupId>
-		        <artifactId>maven-scm-manager-plexus</artifactId>
-		        <version>1.11.1</version>
-		      </dependency>
-		      <dependency>
-		        <groupId>org.apache.maven.scm</groupId>
-		        <artifactId>maven-scm-provider-gitexe</artifactId>
-		        <version>1.11.1</version>
-		      </dependency>	
+            <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-ssh</artifactId>
+              <version>3.5.2</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-scm</artifactId>
+              <version>3.5.2</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-manager-plexus</artifactId>
+              <version>1.11.1</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-gitexe</artifactId>
+              <version>1.11.1</version>
+            </dependency>
           </dependencies>
         </plugin>
         <plugin>
