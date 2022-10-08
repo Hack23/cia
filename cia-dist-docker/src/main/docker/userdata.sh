@@ -79,6 +79,12 @@ apt-get -y install software-properties-common openjdk-17-jdk-headless ca-certifi
 
 ln -s /usr/lib/jvm/java-17-openjdk-amd64 /usr/lib/jvm/jdk-17
 
+wget https://corretto.aws/downloads/latest/amazon-corretto-19-x64-linux-jdk.deb 
+dpkg -i amazon-corretto-19-x64-linux-jdk.deb
+rm amazon-corretto-19-x64-linux-jdk.deb
+
+ln -s /usr/lib/jvm/java-19-amazon-corretto /usr/lib/jvm/jdk-19
+
 dpkg -i /root/cia-dist-deb.deb
 
 mkdir /opt/cia/.postgresql

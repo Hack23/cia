@@ -1464,7 +1464,7 @@ Resources:
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
       EngineVersion: '14.4'
-      MultiAZ: 'false'
+      MultiAZ: 'true'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'
       EnablePerformanceInsights: 'true'
@@ -2001,8 +2001,8 @@ Resources:
         - !Ref 'PrivateAppSubnet2'
         - !Ref 'PrivateAppSubnet3'
       LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
-      MinSize: '1'
-      MaxSize: '2'
+      MinSize: '2'
+      MaxSize: '3'
       DesiredCapacity: !Ref 'WebServerCount'
       TargetGroupARNs:
         - !Ref 'TargetGroupHttps'
@@ -2438,6 +2438,10 @@ Resources:
             - "sudo apt-get -y install libwww-perl libdatetime-perl\n"
             - "# INSTALL OPEN JDK\n"
             - "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n"
+            - "wget https://corretto.aws/downloads/latest/amazon-corretto-19-x64-linux-jdk.deb\n"
+            - "dpkg -i amazon-corretto-19-x64-linux-jdk.deb\n"
+            - "rm amazon-corretto-19-x64-linux-jdk.deb\n"
+            - "ln -s /usr/lib/jvm/java-19-amazon-corretto /usr/lib/jvm/jdk-19\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
