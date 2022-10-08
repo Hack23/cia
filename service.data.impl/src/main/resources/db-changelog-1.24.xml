@@ -65,4 +65,29 @@
 	</changeSet>
 	
 
+	<changeSet author="pether (generated)" id="1414872417007-330">
+		
+		<createIndex indexName="application_action_event_created_date_idx" tableName="application_action_event">
+            <column name="created_date"/>
+        </createIndex>
+	
+		<createIndex indexName="application_action_event_sessionid_idx" tableName="application_action_event">
+            <column name="session_id"/>
+        </createIndex>
+
+		<createIndex indexName="application_action_event_element_idx" tableName="application_action_event">
+            <column name="element_id"/>
+        </createIndex>
+
+		<createIndex indexName="application_session_ip_idx" tableName="application_session">
+            <column name="ip_information"/>
+        </createIndex>
+
+		<createIndex indexName="application_session_created_date_idx" tableName="application_session">
+            <column name="created_date"/>
+        </createIndex>
+        
+        
+	</changeSet>
+
 </databaseChangeLog>
