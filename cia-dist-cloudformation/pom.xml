@@ -12,8 +12,8 @@
   <name>cia-dist-cloudformation</name>
   <url>scm:git:ssh://git@github.com/Hack23/cia.git/cia-dist-cloudformation</url>
   <scm>
-    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>

@@ -14,8 +14,8 @@
   <url>github:https://hack23.github.io/cia/model.external.worldbank.data.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>

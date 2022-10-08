@@ -11,8 +11,8 @@
   <packaging>jar</packaging>
   <name>cia-dist-docker-release-test</name>
   <scm>
-    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-docker-release-test</url>
   </scm>
