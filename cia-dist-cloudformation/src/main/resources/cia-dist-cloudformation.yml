@@ -88,7 +88,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.10.8/cia-dist-deb-2022.10.8.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.10.9/cia-dist-deb-2022.10.9.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
