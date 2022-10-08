@@ -233,7 +233,7 @@ public final class FormFactoryImpl implements FormFactory {
 
 		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(binder,buttonListener));
 		button.setId(buttonLabel);
-		button.setWidth("25%");
+		button.setWidth("100%");
 		button.setIcon(VaadinIcons.BULLSEYE);
 		button.setEnabled(false);
 		binder.addStatusChangeListener(event -> button.setEnabled(event.getBinder().isValid()));
