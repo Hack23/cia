@@ -52,14 +52,17 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -75,6 +78,12 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
+
+	/** The Constant PAGE_PREFIX. */
+	private static final String PAGE_PREFIX = "#!";
+
+	/** The Constant PAGE_SEPARATOR. */
+	private static final Character PAGE_SEPARATOR = '/';
 
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
@@ -244,14 +253,25 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 
 	private void addIncomeSpending(final CssLayout layout) {
-		final Label titleLabel = new Label("Government bodies financial 2021");
+
+		final Link pageLink = new Link("Regeringskansliet(Government Offices)", new ExternalResource(PAGE_PREFIX
+				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-3831"));
+		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+				+ "202100-3831");
+		pageLink.setIcon(VaadinIcons.GROUP);
+		Responsive.makeResponsive(pageLink);
+		pageLink.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(pageLink);
+
+
+		final Label titleLabel = new Label("Financial");
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
-		//https://www.hack23.com/cia/#!governmentbody/202100-0852
+		//https://www.hack23.com/cia/#!governmentbody/202100-3831
 
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
@@ -278,7 +298,17 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 
 	private void addParliamentIncomeSpending(final CssLayout layout) {
-		final Label titleLabel = new Label("Riksdagen financial 2021");
+
+		final Link pageLink = new Link("Riksdagsförvaltningen(the Riksdag administration)", new ExternalResource(PAGE_PREFIX
+						+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-2627"));
+		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+				+ "202100-2627");
+		pageLink.setIcon(VaadinIcons.GROUP);
+		Responsive.makeResponsive(pageLink);
+		pageLink.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(pageLink);
+
+		final Label titleLabel = new Label("Financial");
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
@@ -305,15 +335,22 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	}
 
 	private void addMonarchIncomeSpending(final CssLayout layout) {
-		final Label titleLabel = new Label("The Royal Court financial 2021");
+
+		final Link pageLink = new Link("Kungliga hov- och slottsstaten(The Royal Court)", new ExternalResource(PAGE_PREFIX
+				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-3484"));
+		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+				+ "202100-3484");
+		pageLink.setIcon(VaadinIcons.GROUP);
+		Responsive.makeResponsive(pageLink);
+		pageLink.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(pageLink);
+
+		final Label titleLabel = new Label("Financial");
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
-
-		//https://www.hack23.com/cia/#!governmentbody/202100-3484
-
 
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
@@ -342,7 +379,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		final Label titleLabel = new Label("Parliament");
 		Responsive.makeResponsive(titleLabel);
-//		button.setStyleName(LINK_STYLE_NAME);
 		titleLabel.addStyleName("title");
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);

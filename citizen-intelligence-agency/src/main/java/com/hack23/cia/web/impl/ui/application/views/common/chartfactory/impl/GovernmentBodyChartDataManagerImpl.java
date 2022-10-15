@@ -182,7 +182,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			addEntryData(dataSeries, simpleDateFormat, entry);
 		}
 
-		addChart(content, name + label,
+		addChart(content, name + " " + label,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -269,7 +269,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			addDataSerieValue(dataSeries, entry, entry.getValue().getHeadCount());
 		}
 
-		addChart(content, name + ANNUAL_HEADCOUNT,
+		addChart(content, name + " "+ ANNUAL_HEADCOUNT,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -349,7 +349,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			}
 		}
 
-		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
+		addChart(content, name + " "+  ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);

@@ -75,14 +75,14 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	}
 
 	@Override
-	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId) {
+	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId, final String title ) {
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.GROUP,null));
 
-		final MenuItem governmentBodyItem = menuBar.addItem("GovernmentBody "+ pageId, VaadinIcons.GROUP,null);
+		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.GROUP,null);
 
 
 		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,

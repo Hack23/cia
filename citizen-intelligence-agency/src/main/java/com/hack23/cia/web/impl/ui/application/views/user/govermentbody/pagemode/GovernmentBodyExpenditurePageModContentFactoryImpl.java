@@ -44,7 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends AbstractGovernmentBodyPageModContentFactoryImpl {
 
 	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government body Expenditure";
+	private static final String GOVERNMENT_BODIES = "Expenditure:";
 
 	/** The Constant GOVERNMENT_BODY. */
 	private static final String GOVERNMENT_BODY = "GovernmentBody:";
@@ -73,13 +73,13 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();
 
 			if (governmentBodyAnnualSummary.isPresent()) {
-				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
+				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.get().getName());
 
-				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
+				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.get().getName());
 
 				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
 
-				panel.setCaption(NAME + "::" + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());
+				panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.get().getName());
 
 			}
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

@@ -58,7 +58,8 @@ public final class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
+
+		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 

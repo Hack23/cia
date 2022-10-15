@@ -255,7 +255,7 @@ public abstract class AbstractView extends Panel implements View {
 		footerBottom.addComponent(spdxLink);
 		footerTop.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
 		footerTop.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
-		
+
 		footerBottom.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
 		footerBottom.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
 		footerBottom.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);

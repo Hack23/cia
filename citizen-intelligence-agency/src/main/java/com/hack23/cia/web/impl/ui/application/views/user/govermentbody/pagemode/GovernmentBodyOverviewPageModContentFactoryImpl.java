@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -46,7 +47,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	private static final String GOVERNMENT_BODY = "GovernmentBody:";
 
 	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	private static final String OVERVIEW = "Overview:";
 
 	/**
 	 * Instantiates a new government body overview page mod content factory
@@ -65,12 +66,13 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 		final List<GovernmentBodyAnnualSummary> item = getItem(parameters);
 
+
 		if (item != null && !item.isEmpty()) {
-			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
+			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = item.stream().findFirst();
+			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.get().getName());
 
-			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
-
-			panel.setCaption(NAME + "::" + GOVERNMENT_BODY + pageId);
+			LabelFactory.createHeader2Label(panelContent, OVERVIEW + " " +governmentBodyAnnualSummary.get().getName());
+			panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.get().getName());
 
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
