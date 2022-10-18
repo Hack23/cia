@@ -6,7 +6,7 @@ open module com.hack23.cia.service.external.worldbank {
 	requires spring.beans;
 	requires org.slf4j;
 	requires org.apache.commons.codec;
-	requires commons.csv;
+	requires org.apache.commons.csv;
 
 
 	requires com.hack23.cia.service.external.common;
