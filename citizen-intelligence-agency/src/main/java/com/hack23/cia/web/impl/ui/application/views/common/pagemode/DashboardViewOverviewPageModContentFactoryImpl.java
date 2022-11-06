@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -70,11 +69,18 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DashboardViewOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class DashboardViewOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+
+	/** The Constant ORG_CODE_GOV_OFFICES. */
+	private static final String ORG_CODE_GOV_OFFICES = "202100-3831";
+
+	/** The Constant FINANCIAL. */
+	private static final String FINANCIAL = "Financial";
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Dashboard";
@@ -116,6 +122,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		super();
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -154,18 +168,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	}
 
 
+	/**
+	 * Creates the dashboard monarch.
+	 *
+	 * @param row the row
+	 */
 	private void createDashboardMonarch(final ResponsiveRow row) {
 
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
-		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
-
-		final Label titleLabel = new Label("Monarch");
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.addStyleName("title");
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
+		final CssLayout layout = createLayoutWithTitle("Monarch");
 
 		final Label headOfStateLabel = new Label("Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973");
 		Responsive.makeResponsive(headOfStateLabel);
@@ -183,20 +193,35 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
-
-	private void createDashboardGovernment(final ResponsiveRow row) {
-
+	/**
+	 * Creates the layout with title.
+	 *
+	 * @param title the title
+	 * @return the css layout
+	 */
+	private static CssLayout createLayoutWithTitle(final String title) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
-		final Label titleLabel = new Label("Government");
+		final Label titleLabel = new Label(title);
 		Responsive.makeResponsive(titleLabel);
-//		button.setStyleName(LINK_STYLE_NAME);
 		titleLabel.addStyleName("title");
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
+		return layout;
+	}
+
+
+	/**
+	 * Creates the dashboard government.
+	 *
+	 * @param row the row
+	 */
+	private void createDashboardGovernment(final ResponsiveRow row) {
+
+		final CssLayout layout = createLayoutWithTitle("Government");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
@@ -260,19 +285,24 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	}
 
 
+	/**
+	 * Adds the income spending.
+	 *
+	 * @param layout the layout
+	 */
 	private void addIncomeSpending(final CssLayout layout) {
 
 		final Link pageLink = new Link("Regeringskansliet(Government Offices)", new ExternalResource(PAGE_PREFIX
-				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-3831"));
+				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + ORG_CODE_GOV_OFFICES));
 		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
-				+ "202100-3831");
+				+ ORG_CODE_GOV_OFFICES);
 		pageLink.setIcon(VaadinIcons.GROUP);
 		Responsive.makeResponsive(pageLink);
 		pageLink.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(pageLink);
 
 
-		final Label titleLabel = new Label("Financial");
+		final Label titleLabel = new Label(FINANCIAL);
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
@@ -305,6 +335,11 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	}
 
 
+	/**
+	 * Adds the parliament income spending.
+	 *
+	 * @param layout the layout
+	 */
 	private void addParliamentIncomeSpending(final CssLayout layout) {
 
 		final Link pageLink = new Link("Riksdagsförvaltningen(the Riksdag administration)", new ExternalResource(PAGE_PREFIX
@@ -316,7 +351,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		pageLink.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(pageLink);
 
-		final Label titleLabel = new Label("Financial");
+		final Label titleLabel = new Label(FINANCIAL);
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
@@ -342,6 +377,11 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		layout.addComponent(horizontalLayout);
 	}
 
+	/**
+	 * Adds the monarch income spending.
+	 *
+	 * @param layout the layout
+	 */
 	private void addMonarchIncomeSpending(final CssLayout layout) {
 
 		final Link pageLink = new Link("Kungliga hov- och slottsstaten(The Royal Court)", new ExternalResource(PAGE_PREFIX
@@ -353,7 +393,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		pageLink.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(pageLink);
 
-		final Label titleLabel = new Label("Financial");
+		final Label titleLabel = new Label(FINANCIAL);
 		Responsive.makeResponsive(titleLabel);
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
@@ -378,18 +418,13 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 
 
+	/**
+	 * Creates the dashboard parliament.
+	 *
+	 * @param row the row
+	 */
 	private void createDashboardParliament(final ResponsiveRow row) {
-
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
-		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
-
-		final Label titleLabel = new Label("Parliament");
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.addStyleName("title");
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
+		final CssLayout layout = createLayoutWithTitle("Parliament");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
@@ -443,21 +478,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
+	/**
+	 * Creates the dashboard part risk by type.
+	 *
+	 * @param row the row
+	 */
 	private void createDashboardPartRiskByType(final ResponsiveRow row) {
-
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
-		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
-
-		final Label titleLabel = new Label("Number of risk by each type");
-		Responsive.makeResponsive(titleLabel);
-//		button.setStyleName(LINK_STYLE_NAME);
-		titleLabel.addStyleName("title");
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-
-		layout.addComponent(titleLabel);
-
+		final CssLayout layout = createLayoutWithTitle("Number of risk by each type");
+		
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
@@ -480,19 +508,13 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
+	/**
+	 * Creates the dashboard part risk by severity.
+	 *
+	 * @param row the row
+	 */
 	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
-
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
-		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
-
-		final Label titleLabel = new Label("Number of risk by severity");
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.addStyleName("title");
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-
-		layout.addComponent(titleLabel);
+		final CssLayout layout = createLayoutWithTitle("Number of risk by severity");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
@@ -516,21 +538,34 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	}
 
 	
+	/**
+	 * Creates the head count chart.
+	 *
+	 * @param panelContent the panel content
+	 * @param orgId the org id
+	 */
 	private void createHeadCountChart(final VerticalLayout panelContent, final String orgId) {
 		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		final List<GovernmentBodyAnnualSummary> list = map.get(getPageId(orgId));
 		
 		if (list != null && !list.isEmpty()) {
-			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.get(0);
 			
-			if (governmentBodyAnnualSummary.isPresent()) {
-				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
+			if (governmentBodyAnnualSummary != null) {
+				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 			}
 		}
 	}
 	
 
 	
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)

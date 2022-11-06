@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,16 +69,16 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 		final List<GovernmentBodyAnnualSummary> list = getItem(parameters);
 
 		if (list != null && !list.isEmpty()) {
-			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.get(0);
 
-			if (governmentBodyAnnualSummary.isPresent()) {
-				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.get().getName());
+			if (governmentBodyAnnualSummary != null) {
+				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
-				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.get().getName());
+				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.getName());
 
-				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
+				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 
-				panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.get().getName());
+				panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.getName());
 
 			}
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

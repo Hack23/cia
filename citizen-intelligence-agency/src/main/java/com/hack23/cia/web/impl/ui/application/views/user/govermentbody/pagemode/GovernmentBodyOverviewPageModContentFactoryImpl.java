@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -68,11 +67,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 
 		if (item != null && !item.isEmpty()) {
-			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = item.stream().findFirst();
-			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.get().getName());
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = item.get(0);
+			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
-			LabelFactory.createHeader2Label(panelContent, OVERVIEW + " " +governmentBodyAnnualSummary.get().getName());
-			panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.get().getName());
+			LabelFactory.createHeader2Label(panelContent, OVERVIEW + " " +governmentBodyAnnualSummary.getName());
+			panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.getName());
 
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
