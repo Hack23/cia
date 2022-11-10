@@ -105,7 +105,7 @@
     <cia.project.versions.spring>5.3.23</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.7.5</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.5</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.338</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.339</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.9.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.8.0</cia.project.versions.javers>
@@ -165,7 +165,7 @@
     <cia.project.versions.httpclient>4.5.13</cia.project.versions.httpclient>
     <cia.project.versions.guava>31.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.14.0</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.1.84.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.1.85.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.22</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
@@ -445,7 +445,7 @@
       <dependency>
         <groupId>org.jboss</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.3</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
