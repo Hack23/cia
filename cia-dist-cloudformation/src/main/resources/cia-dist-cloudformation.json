@@ -36,9 +36,9 @@
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
         "WebServerAmi": {
-            "Description": "Web server ami ubuntu arm 20.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
+            "Description": "Web server ami ubuntu arm 22.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
             "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
-            "Default": "/aws/service/canonical/ubuntu/server/20.04/stable/current/arm64/hvm/ebs-gp2/ami-id"
+            "Default": "/aws/service/canonical/ubuntu/server/22.04/stable/current/arm64/hvm/ebs-gp2/ami-id"
         },
         "WebServerCount": {
             "Description": "Number of EC2 instances to launch for the WebServer server",
@@ -4150,7 +4150,7 @@
                                 "sudo apt-get -y install libwww-perl libdatetime-perl\n",
                                 "# INSTALL OPEN JDK\n",
                                 "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n",
-                                "wget https://corretto.aws/downloads/latest/amazon-corretto-19-aarch64-linux-jdk.deb\n",
+                                "wget -O amazon-corretto-19-aarch64-linux-jdk.deb https://corretto.aws/downloads/latest/amazon-corretto-19-aarch64-linux-jdk.deb\n",
                                 "dpkg -i amazon-corretto-19-aarch64-linux-jdk.deb\n",
                                 "rm amazon-corretto-19-aarch64-linux-jdk.deb\n",
                                 "ln -s /usr/lib/jvm/java-19-amazon-corretto /usr/lib/jvm/jdk-19\n",
