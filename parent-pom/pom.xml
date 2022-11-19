@@ -104,7 +104,7 @@
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.24</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.7.5</cia.project.versions.spring.security>
-    <cia.project.versions.spring.data>2.7.5</cia.project.versions.spring.data>
+    <cia.project.versions.spring.data>2.7.6</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.345</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.9.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
@@ -722,7 +722,7 @@
         <plugin>
           <groupId>org.owasp</groupId>
           <artifactId>dependency-check-maven</artifactId>
-          <version>7.3.1</version>
+          <version>7.3.2</version>
           <configuration>
             <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
           </configuration>
