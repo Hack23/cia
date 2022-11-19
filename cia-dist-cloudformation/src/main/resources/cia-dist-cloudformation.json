@@ -4142,7 +4142,7 @@
                                 "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n",
                                 "sudo snap install amazon-ssm-agent --classic\n",
                                 "sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n",
-                                "sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
+                                "sudo apt-get -y install curl python3 software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
                                 "sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
                                 "sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
                                 "sudo mkdir -p /var/awslogs/etc/\n",
