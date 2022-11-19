@@ -102,7 +102,7 @@
             "Type": "String"
         },
         "DebPackageUrl": {
-            "Default": "https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.11.5/cia-dist-deb-2022.11.5.deb",
+            "Default": "https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2022.11.19/cia-dist-deb-2022.11.19.deb",
             "Description": "The debian package url",
             "Type": "String",
             "MinLength": "8"
