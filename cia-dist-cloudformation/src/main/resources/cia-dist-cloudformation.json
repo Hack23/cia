@@ -2963,8 +2963,25 @@
             },
             "DependsOn": "LogsBucketPolicy"
         },        
+        "ResourceGroup": {
+            "Type": "AWS::ResourceGroups::Group",
+            "Properties": {
+                "Name": { "Ref": "DomainName" }
+            }
+        },
+        "AppInsightsApp": {
+            "Type": "AWS::ApplicationInsights::Application",
+            "Properties": {
+                "ResourceGroupName": { "Ref": "DomainName" },
+                 "AutoConfigurationEnabled": true,
+                 "CWEMonitorEnabled": true,
+                 "OpsCenterEnabled": true
+            },
+            "DependsOn" : "WebServerFleet"
+        },              
 		"AppPolicy": {
 			"Type": "AWS::ResilienceHub::ResiliencyPolicy",
+			"DependsOn" : "WebServerFleet",
 			"Properties": {
 				"DataLocationConstraint": "AnyLocation",
 				"Policy": {
@@ -2988,7 +3005,7 @@
 		},
 		"Application": {
 			"Type": "AWS::ResilienceHub::App",
-			"DependsOn": "WebServerFleet",
+			"DependsOn": "AppPolicy",
 			"Properties": {
 				"AppAssessmentSchedule": "Daily",
 				"AppTemplateBody": {
