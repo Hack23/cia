@@ -18,9 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -309,8 +311,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
-		//https://www.hack23.com/cia/#!governmentbody/202100-3831
-
+		
+		createHeadCountCard(horizontalLayout,"202100-3831");
+				
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", 1191)
@@ -358,15 +361,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
-		//https://www.hack23.com/cia/#!governmentbody/EXPENDITURE/202100-2627
-
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 713)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Headcount"));
-
+		createHeadCountCard(horizontalLayout,"202100-2627");
 
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
@@ -400,11 +395,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", 185)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Headcount"));
+		createHeadCountCard(horizontalLayout,"202100-3484");
 
 
 		horizontalLayout
@@ -471,7 +462,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		
 		VerticalLayout layoutPanel = createPanelContent();
 		
-		createHeadCountChart(layoutPanel,"202100-2627");
 		layout.addComponent(layoutPanel);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
@@ -544,15 +534,23 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param panelContent the panel content
 	 * @param orgId the org id
 	 */
-	private void createHeadCountChart(final VerticalLayout panelContent, final String orgId) {
+	private void createHeadCountCard(final Layout panelContent, final String orgId) {
+		
+
 		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		final List<GovernmentBodyAnnualSummary> list = map.get(getPageId(orgId));
 		
 		if (list != null && !list.isEmpty()) {
-			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.get(0);
+			final GovernmentBodyAnnualSummary findName = list.get(0);
 			
-			if (governmentBodyAnnualSummary != null) {
-				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
+			if (findName != null) {
+				Map<Integer,GovernmentBodyAnnualSummary> dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
+				Set<Integer> keySet = dataPerGovernmentBody.keySet();
+				GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));
+				panelContent.addComponent(new CounterStatisticsCard(
+						VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governmentBodyAnnualSummary.getHeadCount())
+								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+						"Headcount"));
 			}
 		}
 	}
