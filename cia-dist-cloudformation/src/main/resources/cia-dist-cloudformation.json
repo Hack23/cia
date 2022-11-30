@@ -5,7 +5,7 @@
         "WebServerInstanceType": {
             "Description": "WebServer Server EC2 instance type",
             "Type": "String",
-            "Default": "c7g.2xlarge",
+            "Default": "t4g.large",
             "AllowedValues": [
                 "t4g.micro",
                 "t4g.small",
@@ -16,15 +16,10 @@
                 "m6g.large",
                 "m6g.xlarge",
                 "m6g.2xlarge",
-                "c6g.8xlarge",
-                "c6g.4xlarge",                
+                "m6g.8xlarge",
+                "m6g.4xlarge",                
                 "m6g.12xlarge",
                 "m6g.16xlarge",
-                "c6g.large",
-                "c6g.xlarge",
-                "c6g.2xlarge",
-                "c6g.4xlarge",
-                "c6g.8xlarge",
                 "c7g.large",
                 "c7g.xlarge",
                 "c7g.2xlarge",
@@ -43,7 +38,7 @@
         "WebServerCount": {
             "Description": "Number of EC2 instances to launch for the WebServer server",
             "Type": "Number",
-            "Default": "1"
+            "Default": "2"
         },
         "WebServerAppLogAppender": {
             "Description": "App log output appender console/elasticsearch/cloudwatch/awslogs/kinesis",
@@ -108,16 +103,16 @@
             "MinLength": "8"
         },
         "DBClass": {
-            "Default": "db.m6g.xlarge",
+            "Default": "db.t4g.medium",
             "Description": "Database instance class",
             "Type": "String",
             "AllowedValues": [
-                "db.t3.micro",
-                "db.t3.small",
-                "db.t3.medium",
-                "db.t3.large",
-                "db.t3.xlarge",
-                "db.t3.2xlarge",
+                "db.t4g.micro",
+                "db.t4g.small",
+                "db.t4g.medium",
+                "db.t4g.large",
+                "db.t4g.xlarge",
+                "db.t4g.2xlarge",
                 "db.m6g.large",
                 "db.m6g.xlarge",
                 "db.m6g.2xlarge",
