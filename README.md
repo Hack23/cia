@@ -9,25 +9,22 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
 [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://api.securityscorecards.dev/projects/github.com/Hack23/cia)
 [![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastCompletedBuild/testReport/)
 [![Build Status](https://travis-ci.org/Hack23/cia.svg?branch=master)](https://travis-ci.org/Hack23/cia)
 [![Coverage](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![Technical Debt](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=sqale_index)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
-[![BCH compliance](https://bettercodehub.com/edge/badge/Hack23/cia?branch=master)](https://bettercodehub.com/results/Hack23/cia)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
-[![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master)
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 [![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=com.hack23.cia%3Acia-all)](https://sonarcloud.io/dashboard?id=com.hack23.cia%3Acia-all)
-[![SourceSpy Dashboard](https://sourcespy.com/shield.svg)](https://sourcespy.com/github/hack23cia/)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://api.securityscorecards.dev/projects/github.com/Hack23/cia)
 
 # Runtime
 
@@ -235,9 +232,3 @@ $ sudo dpkg -i cia-dist-deb-2022.11.19.deb
 # Cloudformation template diagram
 
 [![Cloudformation](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)
-
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_large)
-
-
-[![](https://codescene.io/projects/4166/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/4166/jobs/latest-successful/results)
