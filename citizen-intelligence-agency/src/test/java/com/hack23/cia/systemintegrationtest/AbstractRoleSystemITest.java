@@ -36,7 +36,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
@@ -173,13 +172,11 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		if ("firefox".equals(browser)) {
 			final DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("marionette", true);
-			capabilities.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");
 			driver = new FirefoxDriver(new FirefoxOptions(capabilities));
 			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
 			final ChromeOptions chromeOptions = new ChromeOptions();
 		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");
-		    chromeOptions.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, "true");
 			driver = new ChromeDriver(chromeOptions);
 		} else {
 			fail("No valid browser parameter:" + browser);
