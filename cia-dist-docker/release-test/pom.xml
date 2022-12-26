@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2022.12.10</version>
+    <version>2022.12.26</version>
     <relativePath>../../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-docker-release-test</artifactId>
