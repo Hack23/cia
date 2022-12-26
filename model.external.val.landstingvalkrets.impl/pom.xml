@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-external-pom</artifactId>
-    <version>2022.12.26</version>
+    <version>2022.12.27-SNAPSHOT</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val.landstingvalkrets.impl</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2022.12.26</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
@@ -33,11 +33,11 @@
         <artifactId>hibernate3-maven-plugin</artifactId>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-database.properties" />
+            <hbm2ddl export="false" outputfilename="schema-database.sql" />
+            <hbm2doc destdir="target/site/hbm2doc" />
+            <property key="dot.executable" value="${graphviz.dot.executable}" />
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
           </hibernatetool>
         </configuration>
         <dependencies>
@@ -68,5 +68,5 @@
       </plugin>
     </plugins>
   </build>
-  <reporting></reporting>
+  <reporting />
 </project>
