@@ -1152,11 +1152,11 @@
         <artifactId>hibernate3-maven-plugin</artifactId>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties" />
-            <hbm2ddl export="false" outputfilename="schema-database.sql" />
-            <hbm2doc destdir="target/site/hbm2doc" />
-            <property key="dot.executable" value="${graphviz.dot.executable}" />
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>
         </configuration>
         <dependencies>

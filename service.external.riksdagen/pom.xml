@@ -139,5 +139,5 @@
       <version>${cia.project.versions.activation}</version>
     </dependency>
   </dependencies>
-  <reporting />
+  <reporting></reporting>
 </project>
