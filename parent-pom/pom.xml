@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2022.12.26-SNAPSHOT</version>
+  <version>2022.12.26</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -54,7 +54,7 @@
   <scm>
     <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>cia-all-2022.12.26</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <issueManagement>
