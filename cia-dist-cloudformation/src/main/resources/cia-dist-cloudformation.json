@@ -2973,7 +2973,23 @@
                  "OpsCenterEnabled": true
             },
             "DependsOn" : "WebServerFleet"
-        },              
+        },
+        "AppRgistry" : {
+		  "Type" : "AWS::ServiceCatalogAppRegistry::Application",
+		   "DependsOn" : "WebServerFleet",
+		  "Properties" : {
+		      "Description" : { "Ref": "DomainName" },
+		      "Name" : { "Ref": "DomainName" }
+		    }
+		},        
+	    "AppRgistryResourceAssociation" : {
+		  "Type" : "AWS::ServiceCatalogAppRegistry::ResourceAssociation",
+		  "Properties" : {
+		      "Application" : { "Ref" : "AppRgistry"},
+		      "Resource" : {"Ref" : "AWS::StackId"},
+		      "ResourceType" : "CFN_STACK"
+		    }
+		},
 		"AppPolicy": {
 			"Type": "AWS::ResilienceHub::ResiliencyPolicy",
 			"DependsOn" : "WebServerFleet",
