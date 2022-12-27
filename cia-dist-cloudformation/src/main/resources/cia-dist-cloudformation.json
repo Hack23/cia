@@ -2964,16 +2964,6 @@
                 "Name": { "Ref": "DomainName" }
             }
         },
-        "AppInsightsApp": {
-            "Type": "AWS::ApplicationInsights::Application",
-            "Properties": {
-                "ResourceGroupName": { "Ref": "DomainName" },
-                 "AutoConfigurationEnabled": true,
-                 "CWEMonitorEnabled": true,
-                 "OpsCenterEnabled": true
-            },
-            "DependsOn" : "WebServerFleet"
-        },
         "AppRgistry" : {
 		  "Type" : "AWS::ServiceCatalogAppRegistry::Application",
 		   "DependsOn" : "WebServerFleet",
