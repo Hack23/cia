@@ -175,7 +175,7 @@
     <cia.project.versions.vaadin>8.14.3</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
-    <cia.project.versions.vaadin.cssparser>0.9.29</cia.project.versions.vaadin.cssparser>
+    <cia.project.versions.vaadin.cssparser>0.9.30</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <jacoco.version>0.8.8</jacoco.version>
     <compiler.plugin.version>3.10.1</compiler.plugin.version>
