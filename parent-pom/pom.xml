@@ -149,8 +149,8 @@
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.istack>3.0.12</cia.project.versions.istack>
-    <cia.project.versions.jaxb.build>2.4.0</cia.project.versions.jaxb.build>
-    <cia.project.versions.jaxb.api.runtime>2.4.0</cia.project.versions.jaxb.api.runtime>
+    <cia.project.versions.jaxb.build>2.4.0-b180830.0359</cia.project.versions.jaxb.build>
+    <cia.project.versions.jaxb.api.runtime>2.4.0-b180830.0359</cia.project.versions.jaxb.api.runtime>
     <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.3.6</cia.project.versions.jaxb.impl.build>
     <cia.project.versions.jaxb.impl.runtime>2.3.7</cia.project.versions.jaxb.impl.runtime>
