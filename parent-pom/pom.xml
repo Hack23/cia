@@ -124,12 +124,12 @@
     <cia.project.versions.drools>7.73.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.7.Final</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.11.2</cia.project.versions.hibernate.lucene>
-    <cia.project.versions.hibernate>5.6.14.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate>6.1.6.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.6.14.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.6.14.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>8.0.0.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.12.20</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.1.214</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.5.1</cia.project.versions.postgresql>
