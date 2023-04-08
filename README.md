@@ -2,7 +2,13 @@
 
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
-Using Statistical Machine Intelligence and Learning Engine and Business Rules Management System to track politicians.
+# Project no longer maintained, feel free to fork!
+
+# Goal
+
+Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
+
+Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
 
 
 [![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
@@ -11,19 +17,12 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://api.securityscorecards.dev/projects/github.com/Hack23/cia)
-[![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/)
-[![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/job/Hack23/job/cia/job/master.svg)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastCompletedBuild/testReport/)
-[![Build Status](https://travis-ci.org/Hack23/cia.svg?branch=master)](https://travis-ci.org/Hack23/cia)
-[![Coverage](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=coverage)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
-[![Lines of Code](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=ncloc)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
-[![Technical Debt](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=sqale_index)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
-[![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
 
 
 # Runtime
@@ -34,28 +33,6 @@ Using Statistical Machine Intelligence and Learning Engine and Business Rules Ma
 [![JDK-20](https://img.shields.io/badge/jdk-20-orange.svg)]
 
 
-# Goal
-
-Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
-
-
-# Demo https://www.hack23.com/cia/
-
-Still prototype, live demo running at [https:/www.hack23.com/cia/](https:/www.hack23.com/cia/) and [https://riksdagsmonitor.com/](https://riksdagsmonitor.com/)
-
-Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
-
-Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries, government members and political parties.
-
-Limited functionality proper navigation, descriptions,content, ui and styling are still not in place.
-
-
-
-# Roadmap
-
-Plan to make it public some time after 2022.04, running Ubuntu 22.04, Postgresql 14.x, JDK17+, Spring framework 6.x , Hibernate 6.x, Vaadin 8.x
-
-
 #Resources
 
 Project documentation [http://hack23.github.io/cia/](http://hack23.github.io/cia//)
@@ -64,15 +41,7 @@ Project Architecture [http://hack23.github.io/cia/architecture.html](http://hack
 
 Project Architecture(old) [https://structurizr.com/share/37264#Enterprise](https://structurizr.com/share/37264#Enterprise)
 
-3D project view [https://www.hack23.com/sonar/project/extension/softvis3d/overview_page?id=com.hack23.cia:cia-all&qualifier=TRK&metricFootprint=complexity&metricHeight=ncloc&metricColor=coverage&layout=district&scale=logarithmic&cameraX=0&cameraY=1551&cameraZ=1570&colorTheme=default](https://www.hack23.com/sonar/project/extension/softvis3d/overview_page?id=com.hack23.cia:cia-all&qualifier=TRK&metricFootprint=complexity&metricHeight=ncloc&metricColor=coverage&layout=district&scale=logarithmic&cameraX=0&cameraY=1551&cameraZ=1570&colorTheme=default)
-
 Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
-
-Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/jenkins/)
-
-QA report, sonarqube [https://www.hack23.com/sonar/](https://www.hack23.com/sonar/)
-
-Repository manager, nexus [https://www.hack23.com/nexus/](https://www.hack23.com/nexus/)
 
 
 # Reporting Security Issues
@@ -137,14 +106,6 @@ South Korea
 Israel
 [https://oknesset.org/](https://oknesset.org/)
 
-
-# Running docker image
-
- Docker repository : https://hub.docker.com/r/hack23/cia/
-
-1. docker run hack23/cia:2022.12.26 -p 28443:8443
-
-2. Access server at https://localhost:28443/cia/ , register new user to get admin access
 
 # Installing Debian/Ubuntu package
 
@@ -228,7 +189,3 @@ $ sudo dpkg -i cia-dist-deb-2022.12.26.deb
 ![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)
 [Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
-
-# Cloudformation template diagram
-
-[![Cloudformation](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)](https://www.hack23.com/jenkins/job/Hack23/job/cia/job/master/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cloudformation-doc/cia-dist-cloudformation.png)
