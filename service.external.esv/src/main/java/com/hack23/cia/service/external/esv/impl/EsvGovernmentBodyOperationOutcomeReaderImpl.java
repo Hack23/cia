@@ -98,10 +98,10 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 
 	/** The Constant SPECIFIC_OUTGOING_FIELDS. */
 	private static final String[] SPECIFIC_OUTGOING_FIELDS = { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
-
+	
 	/** The Constant SPECIFIC_INCOMING_FIELDS. */
 	private static final String[] SPECIFIC_INCOMING_FIELDS = { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
-
+	
 	/** The esv excel reader. */
 	@Autowired
 	private EsvExcelReader esvExcelReader;
@@ -121,7 +121,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
 		if (incomeCsvValues == null) {
 			incomeCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20oktober%202022,%20definitivt.zip&year=2022&month=10&status=Definitiv")
+				"https://www.esv.se/statistik-och-data/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20mars%202023,%20definitivt.zip&year=2023&month=3&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
 		}
 		return Collections.unmodifiableList(incomeCsvValues);
@@ -131,7 +131,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {
 		if (outGoingCsvValues == null) {
 			outGoingCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20oktober%202022,%20definitivt.zip&year=2022&month=10&status=Definitiv")
+				"https://www.esv.se/statistik-och-data/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20mars%202023,%20definitivt.zip&year=2023&month=3&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
 		}
 		return Collections.unmodifiableList(outGoingCsvValues);
@@ -186,7 +186,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 
 		for (final CSVRecord csvRecord : records) {
 
-			if (csvRecord.get(ORGANISATIONSNUMMER) != null) {
+			if (csvRecord.get(ORGANISATIONSNUMMER) != null && orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))) != null) {
 				final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
 
 				for (final String field : specificFields) {

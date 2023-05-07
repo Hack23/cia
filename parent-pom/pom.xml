@@ -49,7 +49,7 @@
   </contributors>
   <mailingLists></mailingLists>
   <prerequisites>
-    <maven>3.8.4</maven>
+    <maven>3.9.1</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
@@ -61,24 +61,7 @@
     <system>github</system>
     <url>https://github.com/Hack23/cia/issues</url>
   </issueManagement>
-  <ciManagement>
-    <system>jenkins</system>
-    <url>https://www.hack23.com/jenkins/</url>
-  </ciManagement>
   <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>cia-releases</id>
-      <name>CIA Staging Repository</name>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>hack23nexus</id>
-      <name>CIA hack23 Snapshot Repository</name>
-      <url>https://www.hack23.com/nexus/repository/maven-snapshots/</url>
-    </snapshotRepository>
-    <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
       <url>&gt;scm:git:ssh://git@github.com/Hack23/cia.git</url>
