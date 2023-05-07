@@ -71,7 +71,7 @@
       <dependency>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-bom</artifactId>
-        <version>1.8.0</version>
+        <version>1.8.21</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
