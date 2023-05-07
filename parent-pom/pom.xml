@@ -137,7 +137,7 @@
     <cia.project.versions.poi>5.2.3</cia.project.versions.poi>
     <cia.project.versions.pdfbox>2.0.27</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.10.12</cia.project.versions.ant>
+    <cia.project.versions.ant>1.10.13</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
     <cia.project.versions.dbunit>2.7.8</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
@@ -167,11 +167,11 @@
     <cia.project.versions.jackson>2.15.0</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.92.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
-    <cia.project.versions.commons.compress>1.22</cia.project.versions.commons.compress>
+    <cia.project.versions.commons.compress>1.23.0</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.15</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
-    <cia.project.versions.javamelody>1.91.0</cia.project.versions.javamelody>
+    <cia.project.versions.javamelody>1.94.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.14.3</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
@@ -224,7 +224,7 @@
       <dependency>
         <groupId>org.apache.ant</groupId>
         <artifactId>ant</artifactId>
-        <version>1.10.12</version>
+        <version>1.10.13</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>

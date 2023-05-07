@@ -92,7 +92,7 @@
     <dependency>
       <groupId>nl.basjes.parse.useragent</groupId>
       <artifactId>yauaa</artifactId>
-      <version>7.9.1</version>
+      <version>7.19.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.commons</groupId>
@@ -195,7 +195,7 @@
     <dependency>
       <groupId>net.sourceforge.plantuml</groupId>
       <artifactId>plantuml</artifactId>
-      <version>1.2022.14</version>
+      <version>1.2023.6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -809,7 +809,7 @@
     <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna-platform</artifactId>
-      <version>5.12.1</version>
+      <version>5.13.0</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
