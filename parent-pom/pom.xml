@@ -657,6 +657,47 @@
     </dependencies>
   </dependencyManagement>
   <repositories>
+
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>hack23.ciamodified</id>
+      <url>https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>vaadin.addons</id>
+      <url>https://maven.vaadin.com/vaadin-addons/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>opennms</id>
+      <url>https://repo.opennms.org/maven2/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>mulesoft</id>
+      <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+    </repository>
     <repository>
       <releases>
         <enabled>true</enabled>
