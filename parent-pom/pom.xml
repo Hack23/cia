@@ -102,7 +102,7 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <cia.project.versions.spring>5.3.24</cia.project.versions.spring>
+    <cia.project.versions.spring>5.3.27</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.1</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.6</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.376</cia.project.versions.aws>
@@ -178,7 +178,7 @@
     <cia.project.versions.vaadin.cssparser>0.9.30</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <jacoco.version>0.8.8</jacoco.version>
-    <compiler.plugin.version>3.10.1</compiler.plugin.version>
+    <compiler.plugin.version>3.11.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.0.0</surefire.version>
     <jdk.src.version>17</jdk.src.version>
@@ -908,12 +908,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.4.0</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.7.0</version>
+          <version>3.8.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -923,7 +923,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -933,7 +933,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.4.3</version>
           <dependencies>
             <dependency>
               <groupId>org.apache.bcel</groupId>
@@ -955,22 +955,22 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1128,7 +1128,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.bsc.maven</groupId>
@@ -1143,7 +1143,7 @@
         <plugin>
           <groupId>com.github.ekryd.sortpom</groupId>
           <artifactId>sortpom-maven-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.2.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1153,7 +1153,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.3.0</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
@@ -1170,7 +1170,7 @@
         <plugin>
           <groupId>de.thetaphi</groupId>
           <artifactId>forbiddenapis</artifactId>
-          <version>3.4</version>
+          <version>3.5.1</version>
           <dependencies>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -1195,7 +1195,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>3.4</version>
+        <version>3.5.1</version>
         <executions>
           <execution>
             <id>verify-forbidden-apis</id>
@@ -1775,7 +1775,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.4.1</version>
+            <version>3.5.0</version>
             <inherited>true</inherited>
             <configuration>
               <source>${javadoc.src.version}</source>
@@ -1919,7 +1919,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.4.1</version>
+            <version>3.5.0</version>
             <inherited>true</inherited>
             <configuration>
               <source>${javadoc.src.version}</source>
@@ -1954,7 +1954,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>3.4.1</version>
+            <version>3.4.3</version>
             <inherited>true</inherited>
             <configuration>
               <dependencyLocationsEnabled>false</dependencyLocationsEnabled>

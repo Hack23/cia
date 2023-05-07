@@ -61,7 +61,7 @@
       <plugin>
         <groupId>org.spdx</groupId>
         <artifactId>spdx-maven-plugin</artifactId>
-        <version>0.6.3</version>
+        <version>0.6.5</version>
         <configuration></configuration>
         <executions>
           <execution>
@@ -76,7 +76,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>keytool-maven-plugin</artifactId>
-        <version>1.6</version>
+        <version>1.7</version>
         <configuration>
           <keystore>${project.build.directory}/keystore.p12</keystore>
           <storepass>changeit</storepass>
