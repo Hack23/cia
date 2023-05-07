@@ -657,7 +657,6 @@
     </dependencies>
   </dependencyManagement>
   <repositories>
-
     <repository>
       <releases>
         <enabled>true</enabled>
@@ -665,8 +664,8 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-      <id>hack23.ciamodified</id>
-      <url>https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/</url>
+      <id>javanet</id>
+      <url>https://maven.java.net/content/repositories/public/</url>
     </repository>
     <repository>
       <releases>
