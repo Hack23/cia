@@ -662,10 +662,10 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
-      <id>hack23.public</id>
-      <url>https://www.hack23.com/nexus/repository/maven-public/</url>
+      <id>hack23.ciamodified</id>
+      <url>https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -674,10 +674,10 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
-      <id>hack23.public</id>
-      <url>https://www.hack23.com/nexus/repository/maven-public/</url>
+      <id>hack23.ciamodified</id>
+      <url>https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
