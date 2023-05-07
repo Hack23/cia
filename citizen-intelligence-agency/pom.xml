@@ -797,13 +797,13 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-context</artifactId>
-      <version>1.51.1</version>
+      <version>1.54.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>
-      <version>3.5.1</version>
+      <version>3.5.5</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -910,7 +910,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.3.1</version>
+      <version>5.3.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
