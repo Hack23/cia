@@ -108,7 +108,7 @@
     <cia.project.versions.aws>1.12.464</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.19</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>6.8.1</cia.project.versions.javers>
+    <cia.project.versions.javers>6.14.0</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>9.5</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
@@ -135,7 +135,7 @@
     <cia.project.versions.postgresql>42.6.0</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>5.2.3</cia.project.versions.poi>
-    <cia.project.versions.pdfbox>2.0.27</cia.project.versions.pdfbox>
+    <cia.project.versions.pdfbox>2.0.28</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.13</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
@@ -144,7 +144,7 @@
     <cia.project.versions.xmlbeans>5.1.1</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>3.5.0</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>3.5.1</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.13.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
@@ -445,7 +445,7 @@
       <dependency>
         <groupId>org.jboss</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.1</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
@@ -800,22 +800,22 @@
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-api</artifactId>
-              <version>1.11.0</version>
+              <version>2.0.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-gitexe</artifactId>
-              <version>1.11.0</version>
+              <version>2.0.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svn-commons</artifactId>
-              <version>1.11.0</version>
+              <version>2.0.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svnexe</artifactId>
-              <version>1.11.0</version>
+              <version>2.0.0</version>
             </dependency>
             <dependency>
               <groupId>commons-io</groupId>
@@ -830,7 +830,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.5.0</version>
+              <version>3.5.1</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1151,7 +1151,7 @@
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.6.1</version>
+              <version>1.6.2</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1561,7 +1561,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.1</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.1.0</surefire.version>
       </properties>
     </profile>
@@ -1579,7 +1579,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.1</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.1.0</surefire.version>
       </properties>
     </profile>
@@ -1597,7 +1597,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.1</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.1</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.1.0</surefire.version>
       </properties>
     </profile>
@@ -1615,7 +1615,7 @@
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.1</cia.project.versions.compiler.plexus.java>
+        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
         <surefire.version>3.1.0</surefire.version>
       </properties>
     </profile>
