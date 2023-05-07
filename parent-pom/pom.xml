@@ -105,7 +105,7 @@
     <cia.project.versions.spring>5.3.27</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.3</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.6</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.376</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.464</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.19</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>6.8.1</cia.project.versions.javers>
@@ -119,7 +119,7 @@
     <cia.project.versions.commons.codec>1.16</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.7</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.4.5</cia.project.versions.logback>
+    <cia.project.versions.logback>1.4.7</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>7.73.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.7.Final</cia.project.versions.hibernate.search>
@@ -164,7 +164,7 @@
     <cia.project.versions.maven>3.8.4</cia.project.versions.maven>
     <cia.project.versions.httpclient>4.5.14</cia.project.versions.httpclient>
     <cia.project.versions.guava>31.1-jre</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.14.1</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.15.0</cia.project.versions.jackson>
     <cia.project.versions.netty>4.1.92.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.22</cia.project.versions.commons.compress>
@@ -214,7 +214,7 @@
       <dependency>
         <groupId>com.ibm.icu</groupId>
         <artifactId>icu4j</artifactId>
-        <version>72.1</version>
+        <version>73.1</version>
       </dependency>
       <dependency>
         <groupId>com.sun.istack</groupId>
