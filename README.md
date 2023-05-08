@@ -1,15 +1,19 @@
 # Citizen Intelligence Agency
 
-Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
+The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project focusing on political activity in Sweden. By monitoring key political figures and institutions, the platform provides valuable insights into financial performance, risk metrics, and political trends. The dashboard features a ranking system, enabling users to objectively compare politicians based on performance. The initiative is independent and non-partisan, seeking to encourage informed decision-making, enhance transparency in governance, and cultivate an engaged and well-informed citizenry.
 
-# Project no longer maintained, feel free to fork!
+**Note: This project is no longer maintained. Feel free to fork and continue development!**
 
-# Goal
+## Data Sources
 
-Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
+The project relies on open data from various sources, including:
 
-Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
+- [Swedish Parliament Open Data](http://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
+- [Swedish Election Authority](http://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
+- [World Bank Open Data](http://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
+- [Swedish National Financial Management Authority (ESV) Public Sector Information (PSI) Data](https://www.esv.se/): Offers data on government finances, economic trends, and public sector operations in Sweden.
 
+## Badges
 
 [![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
@@ -25,91 +29,27 @@ Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 
 
-# Runtime
+## Runtime
 
 [![JDK-17 or higher](https://img.shields.io/badge/jdk-17-green.svg)]
 [![JDK-18](https://img.shields.io/badge/jdk-18-orange.svg)]
 [![JDK-19](https://img.shields.io/badge/jdk-19-green.svg)]
 [![JDK-20](https://img.shields.io/badge/jdk-20-orange.svg)]
+[![JDK-21](https://img.shields.io/badge/jdk-21-orange.svg)]
 
+## Resources
 
-#Resources
+- [Project Documentation](http://hack23.github.io/cia/)
+- [Project Architecture](http://hack23.github.io/cia/architecture.html)
 
-Project documentation [http://hack23.github.io/cia/](http://hack23.github.io/cia//)
+## Reporting Security Issues
 
-Project Architecture [http://hack23.github.io/cia/architecture.html](http://hack23.github.io/cia/architecture.html)
-
-Project Architecture(old) [https://structurizr.com/share/37264#Enterprise](https://structurizr.com/share/37264#Enterprise)
-
-Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
-
-
-# Reporting Security Issues
-
-[Follow instructions](https://github.com/Hack23/cia/blob/master/SECURITY.md)
-
-# Parlimentary informatics
-
-[https://en.wikipedia.org/wiki/Parliamentary_informatics](https://en.wikipedia.org/wiki/Parliamentary_informatics) list many good examples of other projects in the domain around the world.
-
-USA
-[https://www.govtrack.us/](https://www.govtrack.us/)
-
-Canada
-[http://OpenParliament.ca](http://OpenParliament.ca)
-
-European Union
-[http://www.votewatch.eu/](http://www.votewatch.eu/)
-
-Sweden
-[http://govdata.se/api](http://govdata.se/api)
-
-[http://riksdagsskolket.se/](http://riksdagsskolket.se/)
-
-[http://www.demokratikollen.se](http://www.demokratikollen.se)
-
-
-Denmark
-[http://www.hvemstemmerhvad.dk/](http://www.hvemstemmerhvad.dk/)
-
-Finland
-[http://kansanmuisti.fi/](http://kansanmuisti.fi/)
-
-Norway
-[https://www.holderdeord.no/](https://www.holderdeord.no/)
-
-UK
-[https://www.theyworkforyou.com/](https://www.theyworkforyou.com/)
-
-[http://www.publicwhip.org.uk/](http://www.publicwhip.org.uk/)
-
-Germany
-[http://offenesparlament.de](http://offenesparlament.de)
-
-Italy
-[http://parlamento17.openpolis.it/](http://parlamento17.openpolis.it/)
-
-France
-[https://www.nosdeputes.fr/](https://www.nosdeputes.fr/)
-
-[https://www.projetarcadie.fr](https://projetarcadie.com)
-
-Colombia
-[http://www.congresovisible.org/](http://www.congresovisible.org/)
-
-Jordanian
-[http://www.jpm.jo/](http://www.jpm.jo/)
-
-South Korea
-[http://pokr.kr/](http://pokr.kr/)
-
-Israel
-[https://oknesset.org/](https://oknesset.org/)
+Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
 
 
 # Installing Debian/Ubuntu package
 
- Currently only build a debian package, works with debian and ubuntu 20.4+
+ Currently only build a debian package, works with debian and ubuntu 22.4+
 
 
 1. Installing database(postgres) and openjdk
