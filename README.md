@@ -46,30 +46,31 @@ The project relies on open data from various sources, including:
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
 
-
 # Installing Debian/Ubuntu package
 
- Currently only build a debian package, works with debian and ubuntu 22.4+
+This guide will walk you through installing the CIA project on Debian and Ubuntu 22.4+ systems.
 
+## Prerequisites
 
-1. Installing database(postgres) and openjdk
+1. Install OpenJDK and PostgreSQL:
 
-```
-$ sudo apt-get install openjdk-16-jdk postgresql-13 pgadmin3
-```
-
-
-2. Installing Postgresql on Ubuntu
-
-```
-$ sudo apt-get install postgresql-13 postgresql-contrib postgresql-13-pgaudit
+```bash
+$ sudo apt-get install openjdk-17-jdk postgresql-15 pgadmin3
 ```
 
-3. Create empty database
+2. Install PostgreSQL on Ubuntu:
 
-Below description set the default username/password and database name used for development, recommend using custom credentials and update the configuration at /opt/cia/webapps/cia/WEB-INF/database.properties to define your own username/password and database name.
-
+```bash
+$ sudo apt-get install postgresql-15 postgresql-contrib postgresql-15-pgaudit
 ```
+
+## Database Setup
+
+3. Create an empty database:
+
+Below instructions set the default username/password and database name used for development. We recommend using custom credentials and updating the configuration at `/opt/cia/webapps/cia/WEB-INF/database.properties` to define your own username/password and database name.
+
+```bash
 $ sudo su - postgres
 $ psql
 postgres=# CREATE USER eris WITH password 'discord';
@@ -77,52 +78,54 @@ postgres=# CREATE DATABASE cia_dev;
 postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 ```
 
-4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto
+## PostgreSQL Configuration
 
-Edit file "/etc/postgresql/13/main/postgresql.conf" set
+4. Enable prepared transactions and required extensions:
 
-```
+Edit `/etc/postgresql/15/main/postgresql.conf` and set:
+
+```ini
 max_prepared_transactions = 100
 ```
 
-```
+```ini
 shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
 pgaudit.log = ddl
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
 ```
 
-5. Modify postgres setting
-Edit file "/etc/postgresql/13/main/pg_hba.conf" add line
+5. Modify PostgreSQL settings:
 
-```
+Edit `/etc/postgresql/15/main/pg_hba.conf` and add the following line:
+
+```ini
 host all all ::1/128 md5
 ```
 
+6. Restart PostgreSQL:
 
-6. Restart postgres
-
-```
+```bash
 $ service postgresql restart
 ```
 
-7. Get cia debian package and
+## Install CIA Debian Package
 
+7. Download the CIA Debian package:
 
-```
+```bash
 $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2022.12.26/cia-dist-deb-2022.12.26.deb
 ```
 
+8. Install the Debian package:
 
-8. Install debian package
-
-```
+```bash
 $ sudo dpkg -i cia-dist-deb-2022.12.26.deb
 ```
 
+## Access the Server
 
-9. Access the server at [https://localhost:28443/cia/](https://localhost:28443/cia/) .
-
+9. Access the server at [https://localhost:28443/cia/](https://localhost:28443/cia/).
 
 # Application package diagram overview
 
