@@ -52,7 +52,7 @@ Here's an updated `README.md` section with a link to the CloudFormation stack fi
 
 The Citizen Intelligence Agency (CIA) project can be deployed on AWS using the provided CloudFormation stack file. This file is located in the `cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json` folder.
 
-You can find the CloudFormation stack file [here](cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+You can find the CloudFormation stack file [here](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
 ### Launching the CloudFormation Stack
 
