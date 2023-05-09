@@ -46,6 +46,42 @@ The project relies on open data from various sources, including:
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
 
+Here's an updated `README.md` section with a link to the CloudFormation stack file and instructions on how to launch it in AWS:
+
+## Deploying to AWS using CloudFormation
+
+The Citizen Intelligence Agency (CIA) project can be deployed on AWS using the provided CloudFormation stack file. This file is located in the `cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json` folder.
+
+You can find the CloudFormation stack file [here](cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+
+### Launching the CloudFormation Stack
+
+To launch the CloudFormation stack, follow these steps:
+
+1. Log in to your AWS Management Console.
+
+2. Navigate to the CloudFormation service.
+
+3. Click on **Create stack**.
+
+4. In the **Select Template** section, choose **Upload a template file** and upload the `cia-dist-cloudformation.json` file.
+
+5. Click **Next**.
+
+6. Fill out the **Stack name** and any required parameters. The parameters are described in the CloudFormation stack file. Adjust them according to your requirements.
+
+7. Click **Next** to configure stack options. You can add tags or configure advanced options as needed.
+
+8. Click **Next** to review your stack settings. Make sure everything is set up as desired.
+
+9. In the **Capabilities** section, check the boxes for the following options:
+   - I acknowledge that AWS CloudFormation might create IAM resources.
+   - I acknowledge that AWS CloudFormation might create IAM resources with custom names.
+
+10. Click **Create stack** to start the stack creation process. AWS CloudFormation will create the required resources and deploy the CIA project.
+
+11. Once the stack creation process is complete, you can access the application by navigating to the output URL provided in the CloudFormation stack Outputs tab.
+
 # Installing Debian/Ubuntu package
 
 This guide will walk you through installing the CIA project on Debian and Ubuntu 22.4+ systems.
