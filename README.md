@@ -41,7 +41,7 @@ The project relies on open data from various sources, including:
 
 - [Project Documentation](http://hack23.github.io/cia/)
 - [Project Architecture](http://hack23.github.io/cia/architecture.html)
-- [Entity Model]([https://hack23.github.io/cia/apidocs/index.html](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html))
+- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html)
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
 ## Reporting Security Issues
