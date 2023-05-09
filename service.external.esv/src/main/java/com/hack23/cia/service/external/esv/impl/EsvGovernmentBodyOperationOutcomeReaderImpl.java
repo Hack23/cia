@@ -186,7 +186,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 
 		for (final CSVRecord csvRecord : records) {
 
-			if (csvRecord.get(ORGANISATIONSNUMMER) != null && orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))) != null) {
+			if (csvRecord.get(ORGANISATIONSNUMMER) != null) {
 				final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
 
 				for (final String field : specificFields) {
