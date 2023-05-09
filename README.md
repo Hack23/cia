@@ -41,8 +41,8 @@ The project relies on open data from various sources, including:
 
 - [Project Documentation](http://hack23.github.io/cia/)
 - [Project Architecture](http://hack23.github.io/cia/architecture.html)
-- ![Cloudformation stack Diagram](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.png)
-- ![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)[Api docs](https://hack23.github.io/cia/apidocs/index.html)
+- [Entity Model]([https://hack23.github.io/cia/apidocs/index.html](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html))
+- [Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
 ## Reporting Security Issues
 
@@ -164,3 +164,8 @@ $ sudo dpkg -i cia-dist-deb-2022.12.26.deb
 ## Access the Server
 
 9. Access the server at [https://localhost:28443/cia/](https://localhost:28443/cia/).
+
+## Diagrams
+
+- ![Cloudformation stack Diagram](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.png)
+- ![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)
