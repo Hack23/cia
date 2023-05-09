@@ -163,7 +163,7 @@
     <jacoco.version>0.8.10</jacoco.version>
     <compiler.plugin.version>3.11.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-    <surefire.version>3.0.0</surefire.version>
+    <surefire.version>3.1.0</surefire.version>
     <jdk.src.version>17</jdk.src.version>
     <jdk.target.version>17</jdk.target.version>
     <javadoc.src.version>17</javadoc.src.version>
