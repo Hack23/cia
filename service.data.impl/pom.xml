@@ -1034,7 +1034,7 @@
     <dependency>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-transaction-spi</artifactId>
-      <version>7.6.1.Final</version>
+      <version>8.0.0.Final</version>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.spec.javax.transaction</groupId>
