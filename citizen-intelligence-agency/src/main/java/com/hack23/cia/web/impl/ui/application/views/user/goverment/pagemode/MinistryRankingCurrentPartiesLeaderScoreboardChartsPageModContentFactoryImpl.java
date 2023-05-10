@@ -134,7 +134,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
-		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2022);
+		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2023);
 		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies
 				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
@@ -222,6 +222,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		Responsive.makeResponsive(horizontalLayout);
 		final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap
 				.get(viewRiksdagenGovermentRoleMember.getDetail());
+		
 		horizontalLayout
 				.addComponent(
 						new CounterStatisticsCard(VaadinIcons.WARNING,
@@ -234,8 +235,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 						"Headcount"));
 
-
-
 		final List<GovernmentBodyAnnualOutcomeSummary> listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
 
 
@@ -244,14 +243,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", annualIncomeSummaryMap.get(2021) /1000)
+				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", annualIncomeSummaryMap.get(2023) /1000)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Income"));
 
 
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", annualSpendingSummaryMap.get(2021)/1000)
+				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", annualSpendingSummaryMap.get(2023)/1000)
 						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 				"Spending"));
 
