@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
-  <kbase name="base" default="true" packages="com.hack23.cia.service.impl.rules.party, com.hack23.cia.service.impl.rules.politician">
+  <kbase name="KBase1" default="true" packages="com.hack23.cia.service.impl.rules.party, com.hack23.cia.service.impl.rules.politician">
       <ksession name="KieSession" default="true"/>
   </kbase>  
 </kmodule>

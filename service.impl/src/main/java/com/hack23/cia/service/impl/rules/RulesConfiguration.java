@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.rules;
 
 import org.kie.api.KieBase;
+import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
@@ -45,9 +46,10 @@ public class RulesConfiguration {
 	 */
 	@Bean
 	public KieContainer kieContainer() {
+		
 		final KieServices kieServices = KieServices.Factory.get();
-
 		final KieContainer kContainer = kieServices.getKieClasspathContainer();
+		
 		LOGGER.info("Using classloader {}, parent {}",kContainer.getClassLoader(),kContainer.getClassLoader().getParent());
 
 		final Results verifyResults = kContainer.verify();
@@ -56,6 +58,8 @@ public class RulesConfiguration {
 		}
 
 		final KieBase kieBase = kContainer.getKieBase();
+		
+		
 		for (final KiePackage kp : kieBase.getKiePackages()) {
 			for (final Rule rule : kp.getRules()) {
 				LOGGER.info("Loadded Rule: {} {}", kp, rule.getName());
