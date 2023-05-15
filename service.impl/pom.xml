@@ -32,12 +32,12 @@
     </site>
   </distributionManagement>
   <dependencies>
-	  
-	<dependency>
-	    <groupId>org.drools</groupId>
-	    <artifactId>drools-mvel</artifactId>
-	    <version>${cia.project.versions.drools}</version>
-	</dependency>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-mvel</artifactId>
+      <version>${cia.project.versions.drools}</version>
+    </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-engine</artifactId>
