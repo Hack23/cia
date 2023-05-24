@@ -125,7 +125,7 @@
     <cia.project.versions.dbunit>2.7.8</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>5.1.1</cia.project.versions.xmlbeans>
-    <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
+    <cia.project.versions.antlr>2.7.7-osgi</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.5.1</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.13.1</cia.project.versions.jaxb2.commons>
