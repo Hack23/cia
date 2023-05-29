@@ -11,6 +11,7 @@ open module com.hack23.cia.service.data.impl {
 	requires org.slf4j;
 	requires spring.context;
 	requires spring.context.support;
+	requires com.fasterxml.jackson.core;
 	
 	requires spring.beans;
 	requires spring.jdbc;
