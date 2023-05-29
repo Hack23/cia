@@ -22,6 +22,8 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Link;
 
 /**
@@ -108,4 +110,59 @@ public interface PageLinkFactory {
 	 */
 	Link createUserHomeViewPageLink();
 
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @param personData the person data
+	 * @return the link
+	 */
+	Link createPoliticianPageLink(ViewRiksdagenPolitician personData);
+
+	/**
+	 * Adds the ministry page link.
+	 *
+	 * @param name the name
+	 * @return the link
+	 */
+	Link addMinistryPageLink(String name);
+
+	
+	/**
+	 * Adds the ministry goverment bodies page link.
+	 *
+	 * @param name the name
+	 * @param size the size
+	 * @return the link
+	 */
+	Link addMinistryGovermentBodiesPageLink(String name, int size);
+
+	/**
+	 * Adds the ministry goverment bodies headcount page link.
+	 *
+	 * @param name the name
+	 * @param size the size
+	 * @return the link
+	 */
+	Link addMinistryGovermentBodiesHeadcountPageLink(String name, int size);
+
+	/**
+	 * Adds the ministry goverment bodies income page link.
+	 *
+	 * @param name the name
+	 * @param d the d
+	 * @return the link
+	 */
+	Link addMinistryGovermentBodiesIncomePageLink(String name, double d);
+
+	/**
+	 * Adds the ministr goverment bodies spending page link.
+	 *
+	 * @param name the name
+	 * @param d the d
+	 * @return the link
+	 */
+	Link addMinistrGovermentBodiesSpendingPageLink(String name , double d);
+	
+
+	
 }

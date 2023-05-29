@@ -24,10 +24,12 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
@@ -141,7 +143,19 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
+	@Override
+	public Link createPoliticianPageLink(final ViewRiksdagenPolitician personData) {
+		final Link pageLink = new Link(POLITICIAN
+				+ personData.getFirstName() + ' '
+				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX
+						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getPersonId()));
+		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
+				+ personData.getPersonId());
+		pageLink.setIcon(VaadinIcons.BUG);
+		return pageLink;
+	}
 
+	
 	@Override
 	public Link createRegisterPageLink() {
 		final Link pageLink = new Link("Register", new ExternalResource(
@@ -158,6 +172,57 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());
 			pageLink.setIcon(VaadinIcons.USER);
 			return pageLink;
+	}
+
+	@Override
+	public Link addMinistryPageLink(String name) {
+		final Link pageLink = new Link(MINISTRY + name,
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
+						+ name));
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
+				+ name);
+		pageLink.setIcon(VaadinIcons.GROUP);
+		return pageLink;
+	}
+
+	@Override
+	public Link addMinistryGovermentBodiesPageLink(String name, int size) {
+		final Link pageLink = new Link("Government bodies:" + size,
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
+				+ name);
+		pageLink.setIcon(VaadinIcons.GROUP);
+		return pageLink;
+	}
+
+	@Override
+	public Link addMinistryGovermentBodiesHeadcountPageLink(String name, int size) {
+		final Link pageLink = new Link("Headcount:" + size,
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
+				+ name);
+		pageLink.setIcon(VaadinIcons.GROUP);
+		return pageLink;
+	}
+
+	@Override
+	public Link addMinistryGovermentBodiesIncomePageLink(String name, double d) {
+		final Link pageLink = new Link("Income(B SEK):" + d,
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString() + PAGE_SEPARATOR +  name));
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
+				+ name);
+		pageLink.setIcon(VaadinIcons.GROUP);
+		return pageLink;
+	}	
+
+	@Override
+	public Link addMinistrGovermentBodiesSpendingPageLink(String name, double d) {
+		final Link pageLink = new Link("Spending(B SEK):" + d,
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString() + PAGE_SEPARATOR +  name));
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
+				+ name);
+		pageLink.setIcon(VaadinIcons.GROUP);
+		return pageLink;
 	}
 
 }
