@@ -128,7 +128,7 @@
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>4.0.0</cia.project.versions.plexus.utils>
-    <cia.project.versions.jaxb2.commons>0.13.1</cia.project.versions.jaxb2.commons>
+    <cia.project.versions.jaxb2.commons>1.11.1-PUBLISHED-BY-MISTAKE</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.istack>3.0.12</cia.project.versions.istack>
