@@ -41,8 +41,25 @@ jobs:
     - name: Harden Runner
       uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
       with:
-        egress-policy: audit
-
+        egress-policy: block
+        allowed-endpoints: >
+          api.adoptopenjdk.net:443
+          api.github.com:443
+          archive.apache.org:443
+          azure.archive.ubuntu.com:80
+          github.com:443
+          maven.java.net:443
+          maven.vaadin.com:443
+          objects.githubusercontent.com:443
+          oss.sonatype.org:443
+          raw.githubusercontent.com:443
+          repo.maven.apache.org:443
+          repo.opennms.org:443
+          repo1.maven.org:443
+          repository.mulesoft.org:443
+          tools.google.com:80
+          tools.vaadin.com:443
+          uploads.github.com:443
     - name: Checkout repository
       uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
       with:
