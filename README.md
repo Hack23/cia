@@ -44,6 +44,14 @@ The project relies on open data from various sources, including:
 - [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html)
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html)
 
+## Resources
+
+- [Project Documentation](http://hack23.github.io/cia/) 
+- [Project Architecture](http://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project&#8203;``oaicite:{"number":2,"metadata":{"title":"hack23.github.io","url":"http://hack23.github.io/cia/architecture.html","text":"Architecture Overview\n\n[Image]Enterprise Context[Image]System Context[Image]System Containers[Image]Web Application Components[Image]Deployment[Image]Aws account structure","pub_date":null}}``&#8203;.
+- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
+- [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API&#8203;``oaicite:{"number":3,"metadata":{"title":"hack23.github.io","url":"https://hack23.github.io/cia/apidocs/index.html","text":"Citizen Intelligence Agency 2022.9.18-SNAPSHOT API\n\nPackages\n\nPackage\n\nDescription","pub_date":null}}``&#8203;.
+
+
 ## Reporting Security Issues
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
