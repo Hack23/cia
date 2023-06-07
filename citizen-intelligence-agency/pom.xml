@@ -1667,7 +1667,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>2.0.1</version>
+        <version>2.1.0</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>
@@ -1864,7 +1864,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>2.0.1</version>
+        <version>2.1.0</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>
