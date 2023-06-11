@@ -2,7 +2,10 @@
 
 The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project focusing on political activity in Sweden. By monitoring key political figures and institutions, the platform provides valuable insights into financial performance, risk metrics, and political trends. The dashboard features a ranking system, enabling users to objectively compare politicians based on performance. The initiative is independent and non-partisan, seeking to encourage informed decision-making, enhance transparency in governance, and cultivate an engaged and well-informed citizenry.
 
-**Note: This project is no longer maintained. Feel free to fork and continue development!**
+## About Hack23
+
+- Website: [www.hack23.com](https://www.hack23.com/)
+- LinkedIn: [in/jamessorling](https://www.linkedin.com/in/jamessorling)
 
 ## Data Sources
 
