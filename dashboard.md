@@ -46,3 +46,7 @@ This project utilizes advanced AI technologies like [OpenAI](https://www.openai.
 
 The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project. We welcome contributions from anyone interested in promoting transparency and informed decision-making. 
 
+## About Hack23
+
+- Website: [www.hack23.com](https://www.hack23.com/)
+- LinkedIn: [in/jamessorling](https://www.linkedin.com/in/jamessorling)
