@@ -13,7 +13,7 @@ The Citizen Intelligence Agency provides a neutral and comprehensive dashboard f
 
 ### Headcount per Ministry
 
-![Headcount per Ministry](https://daigr.am/3c0e3e1c.svg)
+![Headcount per Ministry](https://daigr.am/c6e79c14.svg)
 
 This pie chart displays the total headcount in each ministry. The Utbildningsdepartementet (Education Department) has the highest headcount, followed by the Justitiedepartementet (Justice Department) and the Försvarsdepartementet (Defense Department).
 
