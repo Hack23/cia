@@ -47,6 +47,18 @@ The project relies on open data from various sources, including:
 - [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
 
+## Citizen Intelligence Agency - Sweden Political Activity Dashboard
+
+Welcome to the Citizen Intelligence Agency - Sweden Political Activity Dashboard repository. This project provides a comprehensive and neutral dashboard focusing on political activity in Sweden. By monitoring key political figures and institutions, we offer valuable insights into financial performance, risk metrics, and political trends. 
+
+## [Dashboard](https://github.com/Hack23/cia/blob/master/dashboard.md)
+
+Our [dashboard](https://github.com/Hack23/cia/blob/master/dashboard.md) offers a detailed overview of political figures, comprehensive data on various ministries, performance metrics, and visual data representation. Check out our [dashboard.md](https://github.com/Hack23/cia/blob/master/dashboard.md) for more details.
+
+## AI and Data Visualization
+
+This project is powered by advanced AI technologies like OpenAI for data processing and analysis. We use AI to process and analyze a large amount of data from various open sources such as the Swedish Parliament, Swedish Election Authority, World Bank, and the Swedish National Financial Management Authority. The analyzed data is then represented visually through data visualization tools like Daigram.
+
 ## Reporting Security Issues
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
