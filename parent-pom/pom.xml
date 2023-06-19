@@ -104,7 +104,7 @@
     <cia.project.versions.slf4j>2.0.7</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.4.7</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.drools>8.39.0.Final</cia.project.versions.drools>
+    <cia.project.versions.drools>8.40.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.1.8.Final</cia.project.versions.hibernate.search>
     <cia.project.versions.hibernate.lucene>8.11.2</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.6.15.Final</cia.project.versions.hibernate>
