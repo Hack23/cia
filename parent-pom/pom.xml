@@ -111,7 +111,7 @@
     <cia.project.versions.hibernate.build>5.6.15.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.6.15.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>8.0.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.14.5</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.1.214</cia.project.versions.h2>
