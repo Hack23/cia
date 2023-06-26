@@ -99,7 +99,7 @@
     <cia.project.versions.commonslang3>3.12.0</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.10.0</cia.project.versions.commons.text>
-    <cia.project.versions.commons.codec>1.15</cia.project.versions.commons.codec>
+    <cia.project.versions.commons.codec>1.16.0</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.7</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.4.8</cia.project.versions.logback>
