@@ -167,7 +167,7 @@
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
-      <version>3.5.1.Final</version>
+      <version>3.5.2.Final</version>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.logmanager</groupId>
