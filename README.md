@@ -55,6 +55,13 @@ Welcome to the Citizen Intelligence Agency - Sweden Political Activity Dashboard
 
 Our [dashboard](https://github.com/Hack23/cia/blob/master/dashboard.md) offers a detailed overview of political figures, comprehensive data on various ministries, performance metrics, and visual data representation. Check out our [dashboard.md](https://github.com/Hack23/cia/blob/master/dashboard.md) for more details.
 
+## Medborgarunderrättelsebyrån - Sverige Politisk aktivitetsdashboard
+
+Medborgarunderrättelsebyrån tillhandahåller en neutral och omfattande dashboard som fokuserar på politisk aktivitet i Sverige. Genom att övervaka nyckelpolitiska figurer och institutioner erbjuder plattformen värdefulla insikter i finansiell prestanda, riskmetriker och politiska trender. Detta projekt drivs av avancerade AI-teknologier som [OpenAI](https://www.openai.com/) och datavisualiseringsverktyg som [Daigram](https://daigr.am/).
+
+Vår [dashboard](https://github.com/Hack23/cia/blob/master/dashboard_sv.md) erbjuder en detaljerad översikt över politiska figurer, omfattande data om olika departement, prestandametriker och visuell datarepresentation. Kolla in vår [dashboard_sv.md](https://github.com/Hack23/cia/blob/master/dashboard_sv.md) för mer information.
+
+
 ## AI and Data Visualization
 
 This project is powered by advanced AI technologies like OpenAI for data processing and analysis. We use AI to process and analyze a large amount of data from various open sources such as the Swedish Parliament, Swedish Election Authority, World Bank, and the Swedish National Financial Management Authority. The analyzed data is then represented visually through data visualization tools like Daigram.
