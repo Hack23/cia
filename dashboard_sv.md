@@ -1,6 +1,6 @@
 # Medborgarunderrättelsebyrån - Sverige Politisk aktivitetsdashboard
 
-Medborgarunderrättelsebyrån tillhandahåller en neutral och omfattande dashboard som fokuserar på politisk aktivitet i Sverige. Genom att övervaka nyckelpolitiska figurer och institutioner erbjuder plattformen värdefulla insikter i finansiell prestanda, riskmetriker och politiska trender. Detta projekt drivs av avancerade AI-teknologier som OpenAI och datavisualiseringsverktyg som Daigram.
+Medborgarunderrättelsebyrån tillhandahåller en neutral och omfattande dashboard som fokuserar på politisk aktivitet i Sverige. Genom att övervaka nyckelpolitiska figurer och institutioner erbjuder plattformen värdefulla insikter i finansiell prestanda, riskmetriker och politiska trender. Detta projekt drivs av avancerade AI-teknologier som [OpenAI](https://www.openai.com/) och datavisualiseringsverktyg som [Daigram](https://daigr.am/).
 
 ## Huvudfunktioner
 
@@ -27,11 +27,11 @@ Detta stapeldiagram visar utgifterna i miljarder SEK för varje departement. Fin
 
 Projektet förlitar sig på öppna data från olika källor som:
 
-- Svenska riksdagens öppna data
-- Svenska valmyndigheten
-- Världsbankens öppna data
-- Svenska National Financial Management Authority (ESV) Public Sector Information (PSI) Data
+- [Svenska riksdagens öppna data](https://data.riksdagen.se/)
+- [Svenska valmyndigheten](https://www.val.se/)
+- [Världsbankens öppna data](https://data.worldbank.org/)
+- [Svenska National Financial Management Authority (ESV) Public Sector Information (PSI) Data](https://www.esv.se/psidata)
 
 ## Använda verktyg
 
-Detta projekt använder avancerade AI-teknologier som OpenAI för databehandling och analys, och Daigram för datavisualisering.
+Detta projekt använder avancerade AI-teknologier som [OpenAI](https://www.openai.com/) för databehandling och analys, och [Daigram](https://daigr.am/) för datavisualisering.
