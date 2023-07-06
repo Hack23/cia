@@ -92,7 +92,7 @@
     <cia.project.versions.aspectj>1.9.19</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.0.1</cia.project.versions.javers>
-    <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
+    <cia.project.versions.narayana>6.0.1.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>9.5</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
