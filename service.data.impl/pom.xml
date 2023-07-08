@@ -204,6 +204,10 @@
       <version>${cia.project.versions.hibernate.search}</version>
       <exclusions>
         <exclusion>
+          <groupId>com.carrotsearch</groupId>
+          <artifactId>hppc</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-analyzers-common</artifactId>
         </exclusion>
