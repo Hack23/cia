@@ -103,13 +103,13 @@ jobs:
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
 
     - name: Download Maven
-      run: wget https://archive.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+      run: wget https://archive.apache.org/dist/maven/maven-3/3.9.3/binaries/apache-maven-3.9.3-bin.tar.gz
 
     - name: Unpack Maven
-      run: tar xzvf apache-maven-3.9.1-bin.tar.gz
+      run: tar xzvf apache-maven-3.9.3-bin.tar.gz
 
     - name: Set Maven
-      run: mv apache-maven-3.9.1 maven
+      run: mv apache-maven-3.9.3 maven
       
     - name: Build with Maven
       run: maven/bin/mvn -B package --file pom.xml -DskipTests
