@@ -1585,7 +1585,7 @@
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.0</surefire.version>
+        <surefire.version>3.1.2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1603,7 +1603,7 @@
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.0</surefire.version>
+        <surefire.version>3.1.2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1621,7 +1621,7 @@
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.1</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.0</surefire.version>
+        <surefire.version>3.1.2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1639,7 +1639,7 @@
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.0</surefire.version>
+        <surefire.version>3.1.2</surefire.version>
       </properties>
     </profile>
     <profile>
