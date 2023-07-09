@@ -23,6 +23,15 @@ Observera att datan är baserad på den tillhandahållna informationen och kansk
 
 För en interaktiv vy av diagrammet, besök [länken](https://daigr.am/ec286ca6.svg).
 
+## Översikt över svenska regeringsdepartement
+
+Det här staplade stapeldiagrammet ger en jämförande vy över prestanda för varje departement i den svenska regeringen. De metriker som används för jämförelse inkluderar antalet regeringsorgan, totalt antal anställda, inkomster och utgifter.
+
+![Översikt över svenska regeringsdepartement](https://daigr.am/c2d8de64.svg)
+
+För en interaktiv vy av diagrammet, besök [länken](https://daigr.am/c2d8de64.svg).
+
+Observera att data är baserat på den tillhandahållna informationen och kanske inte återspeglar den mest aktuella situationen.
 
 ## Antal anställda per departement
 ![Antal anställda per departement](https://daigr.am/9293ac71.svg)
