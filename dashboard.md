@@ -11,6 +11,17 @@ The Citizen Intelligence Agency provides a neutral and comprehensive dashboard f
 
 ## Charts
 
+### Swedish Government Members' Performance
+
+The stacked bar chart provides a comparative view of the performance of each minister in the Swedish government. The metrics used for comparison include the number of days in position, government experience, party experience, parliament experience, income, and spending.
+
+![Swedish Government Members' Performance](https://daigr.am/1e59ff22.svg)
+
+For instance, you can observe that Ulf Kristersson (M), the Prime Minister, has the highest combined experience in government, party, and parliament. On the other hand, ministers like Romina Pourmokhtari (L), Peter Kullgren (KD), and Andreas Carlson (KD) have held their positions for fewer days and have less experience in government, party, and parliament.
+
+The chart also provides insights into the financial aspects of each department, showing the income and spending for each minister's department. This can be useful for understanding the financial management and budget allocation within the Swedish government.
+
+
 ### Headcount per Ministry
 
 ![Headcount per Ministry](https://daigr.am/c6e79c14.svg)
