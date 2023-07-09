@@ -23,19 +23,6 @@ Observera att datan är baserad på den tillhandahållna informationen och kansk
 
 För en interaktiv vy av diagrammet, besök [länken](https://daigr.am/ec286ca6.svg).
 
-### Swedish Government Departments Overview
-
-The stacked bar chart provides a comparative view of the performance of each department in the Swedish government. The metrics used for comparison include the number of government bodies, total headcount, income, and spending.
-
-![Swedish Government Departments Overview](https://daigr.am/12a372b0.svg)
-
-For instance, you can observe that the Utbildningsdepartementet has the highest total headcount and income, while the Socialdepartementet has the highest spending. On the other hand, departments like the Kulturdepartementet and Statsrådsberedningen have fewer government bodies and a lower total headcount.
-
-The chart also provides insights into the financial aspects of each department, showing the income and spending for each department. This can be useful for understanding the financial management and budget allocation within the Swedish government.
-
-Please note that the data is based on the information provided and may not reflect the most current state of affairs.
-
-For an interactive view of the chart, please visit the [link](https://daigr.am/12a372b0.svg).
 
 ## Antal anställda per departement
 ![Antal anställda per departement](https://daigr.am/9293ac71.svg)
@@ -48,18 +35,6 @@ Detta cirkeldiagram visar det totala antalet anställda i varje departement. Utb
 [Interaktiv version](https://daigr.am/6393ba66.svg)
 
 Detta stapeldiagram visar antalet regeringsorgan under varje departement. Utbildningsdepartementet har flest regeringsorgan, följt av Finansdepartementet och Socialdepartementet.
-
-## Utgifter (B SEK) per departement
-![Utgifter (B SEK) per departement](https://daigr.am/aa34d891.svg)
-[Interaktiv version](https://daigr.am/aa34d891.svg)
-
-Detta stapeldiagram visar utgifterna i miljarder SEK för varje departement. Finansdepartementet har de högsta utgifterna, följt av Socialdepartementet och Utbildningsdepartementet.
-
-## Inkomster (B SEK) per departement
-![Inkomster (B SEK) per departement](https://daigr.am/c9ab0b95.svg)
-[Interaktiv version](https://daigr.am/c9ab0b95.svg)
-
-Detta stapeldiagram visar inkomsterna i miljarder SEK för varje departement. Utbildningsdepartementet har de högsta inkomsterna, följt av Finansdepartementet och Socialdepartementet.
 
 
 
