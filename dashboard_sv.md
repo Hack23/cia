@@ -23,6 +23,21 @@ Observera att datan är baserad på den tillhandahållna informationen och kansk
 
 För en interaktiv vy av diagrammet, besök [länken](https://daigr.am/ec286ca6.svg).
 
+### Swedish Government Departments Overview
+
+The stacked bar chart provides a comparative view of the performance of each department in the Swedish government. The metrics used for comparison include the number of government bodies, total headcount, income, and spending.
+
+![Swedish Government Departments Overview](https://daigr.am/12a372b0.svg)
+
+For instance, you can observe that the Utbildningsdepartementet has the highest total headcount and income, while the Socialdepartementet has the highest spending. On the other hand, departments like the Kulturdepartementet and Statsrådsberedningen have fewer government bodies and a lower total headcount.
+
+The chart also provides insights into the financial aspects of each department, showing the income and spending for each department. This can be useful for understanding the financial management and budget allocation within the Swedish government.
+
+Please note that the data is based on the information provided and may not reflect the most current state of affairs.
+
+For an interactive view of the chart, please visit the [link](https://daigr.am/12a372b0.svg).
+
+
 ## Datakällor
 
 Projektet förlitar sig på öppna data från olika källor som:
