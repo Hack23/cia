@@ -25,15 +25,18 @@ För en interaktiv vy av diagrammet, besök [länken](https://daigr.am/ec286ca6.
 
 ## Diagram
 
-![Personalstyrka per Departement](https://daigr.am/ebd2858a.svg)
+### Antal anställda per departement
+![Antal anställda per departement](https://daigr.am/ec9a65a7.svg)
 
-Detta stapeldiagram visar den totala personalstyrkan i varje departement. Utbildningsdepartementet har den högsta personalstyrkan, följt av Justitiedepartementet och Försvarsdepartementet.
+Detta cirkeldiagram visar det totala antalet anställda i varje departement. Utbildningsdepartementet har det högsta antalet anställda, följt av Justitiedepartementet och Försvarsdepartementet.
 
-![Inkomst (B SEK) per Departement](https://daigr.am/8a447147.svg)
+### Antal regeringsorgan per departement
+![Antal regeringsorgan per departement](https://daigr.am/8c464793.svg)
 
-Detta stapeldiagram visar inkomsten i miljarder SEK för varje departement. Finansdepartementet har den högsta inkomsten, följt av Utbildningsdepartementet och Socialdepartementet.
+Detta stapeldiagram visar antalet regeringsorgan under varje departement. Utbildningsdepartementet har flest regeringsorgan, följt av Finansdepartementet och Socialdepartementet.
 
-![Utgifter (B SEK) per Departement](https://daigr.am/abd10ad7.svg)
+### Utgifter (B SEK) per departement
+![Utgifter (B SEK) per departement](https://daigr.am/9815c7ff.svg)
 
 Detta stapeldiagram visar utgifterna i miljarder SEK för varje departement. Finansdepartementet har de högsta utgifterna, följt av Socialdepartementet och Utbildningsdepartementet.
 
