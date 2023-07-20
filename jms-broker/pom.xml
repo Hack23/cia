@@ -218,7 +218,7 @@
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
       <artifactId>jboss-logmanager</artifactId>
-      <version>2.1.19.Final</version>
+      <version>3.0.0.Final</version>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.logging</groupId>
