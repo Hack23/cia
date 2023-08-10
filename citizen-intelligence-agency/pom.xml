@@ -1615,7 +1615,7 @@
       <plugin>
         <groupId>org.spdx</groupId>
         <artifactId>spdx-maven-plugin</artifactId>
-        <version>0.6.5</version>
+        <version>0.7.0</version>
         <configuration></configuration>
         <executions>
           <execution>
