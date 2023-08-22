@@ -120,7 +120,7 @@
     <cia.project.versions.poi>5.2.3</cia.project.versions.poi>
     <cia.project.versions.pdfbox>3.0.0</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.10.13</cia.project.versions.ant>
+    <cia.project.versions.ant>1.10.14</cia.project.versions.ant>
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
     <cia.project.versions.dbunit>2.7.8</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
@@ -207,7 +207,7 @@
       <dependency>
         <groupId>org.apache.ant</groupId>
         <artifactId>ant</artifactId>
-        <version>1.10.13</version>
+        <version>1.10.14</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
