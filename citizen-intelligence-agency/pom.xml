@@ -922,7 +922,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.4.1</version>
+      <version>5.5.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
