@@ -695,7 +695,7 @@
     <dependency>
       <groupId>com.squareup.okio</groupId>
       <artifactId>okio</artifactId>
-      <version>3.4.0</version>
+      <version>3.5.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -815,7 +815,7 @@
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>
-      <version>3.5.8</version>
+      <version>3.5.9</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -922,7 +922,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.5.0</version>
+      <version>5.5.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
