@@ -54,6 +54,15 @@ jobs:
     - name: Install buildtools
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
 
+    - name: Remove localtime
+      run: sudo rm /etc/localtime
+
+    - name: Set Swedish localtime
+      run: sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime 
+
+    - name: Update tzdata
+      run: sudo dpkg-reconfigure -f noninteractive tzdata 
+
     - name: Download Maven
       run: wget https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
 
