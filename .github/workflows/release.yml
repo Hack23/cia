@@ -74,3 +74,15 @@ jobs:
       
     - name: Build with Maven
       run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT
+
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
+      with:
+        github_token: ${{ github.token }}
+    - name: Create a GitHub release
+      uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5 # v1.13.0
+      with:
+        tag: ${{ steps.tag_version.outputs.new_tag }}
+        name: Release ${{ steps.tag_version.outputs.new_tag }}
+        body: ${{ steps.tag_version.outputs.changelog }}
