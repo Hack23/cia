@@ -38,6 +38,10 @@ jobs:
           tools.google.com:80
           tools.vaadin.com:443
           uploads.github.com:443
+          www.esv.se:443
+          data.riksdagen.se:443
+          api.worldbank.org:443
+          www.val.se:443
     - name: Checkout repository
       uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
       with:
