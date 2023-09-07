@@ -16,32 +16,6 @@ jobs:
       fail-fast: false
 
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09 # v2.5.1
-      with:
-        egress-policy: block
-        allowed-endpoints: >
-          api.adoptopenjdk.net:443
-          api.github.com:443
-          archive.apache.org:443
-          azure.archive.ubuntu.com:80
-          github.com:443
-          maven.java.net:443
-          maven.vaadin.com:443
-          objects.githubusercontent.com:443
-          oss.sonatype.org:443
-          raw.githubusercontent.com:443
-          repo.maven.apache.org:443
-          repo.opennms.org:443
-          repo1.maven.org:443
-          repository.mulesoft.org:443
-          tools.google.com:80
-          tools.vaadin.com:443
-          uploads.github.com:443
-          www.esv.se:443
-          data.riksdagen.se:443
-          api.worldbank.org:443
-          www.val.se:443
     - name: Checkout repository
       uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
       with:
