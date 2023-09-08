@@ -1,8 +1,10 @@
 name: Verify and Release
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Version to release'
+        required: true
 permissions: write-all
 env:
   javaVersion: java17
