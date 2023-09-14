@@ -18,7 +18,7 @@ env:
   javaVersion: java17
 
 permissions:
-  contents: read
+  contents: write
   security-events: write
   pull-requests: read
 
