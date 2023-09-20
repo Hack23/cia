@@ -7,7 +7,7 @@ on:
         required: true
 permissions: write-all
 env:
-  javaVersion: java17
+  javaVersion: java21
 
 jobs:
   release:
@@ -25,11 +25,11 @@ jobs:
         # a pull request then we can checkout the head.
         fetch-depth: 2
 
-    - name: Set up JDK 17
+    - name: Set up JDK 21
       uses: actions/setup-java@cd89f46ac9d01407894225f350157564c9c7cee2 # v3.12.0
       with:
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '21'
         cache: 'maven'
 
     - name: Install buildtools
