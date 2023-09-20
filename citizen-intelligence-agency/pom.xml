@@ -1345,6 +1345,10 @@
           <artifactId>activemq-protobuf</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>com.github.ben-manes.caffeine</groupId>
+          <artifactId>caffeine</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.apache.geronimo.specs</groupId>
           <artifactId>geronimo-j2ee-management_1.0_spec</artifactId>
         </exclusion>
