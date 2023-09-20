@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.external.worldbank.impl;
 
+import io.github.pixee.security.ZipSecurity;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -136,7 +137,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	 */
 	private static List<String> readUsingZipInputStream(final InputStream inputStream) throws IOException {
 		final BufferedInputStream bis = new BufferedInputStream(inputStream);
-		final ZipInputStream is = new ZipInputStream(bis);
+		final ZipInputStream is = ZipSecurity.createHardenedInputStream(bis);
 
 		final List<String> list = new ArrayList<>();
 		try {

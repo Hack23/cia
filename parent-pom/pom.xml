@@ -79,10 +79,10 @@
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
-    <sonar.dependencyCheck.xmlReportPath></sonar.dependencyCheck.xmlReportPath>
-    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
-    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
+    <sonar.dependencyCheck.htmlReportPath/>
+    <sonar.dependencyCheck.xmlReportPath/>
+    <sonar.zaproxy.htmlReportPath/>
+    <sonar.zaproxy.reportPath/>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.30</cia.project.versions.spring>
@@ -172,6 +172,7 @@
     <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
+    <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -653,6 +654,12 @@
         <groupId>org.apache.xmlgraphics</groupId>
         <artifactId>batik-all</artifactId>
         <version>1.17</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.pixee</groupId>
+        <artifactId>java-security-toolkit</artifactId>
+        
+        <version>${versions.java-security-toolkit}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -1782,7 +1789,7 @@
                 <phase>generate-sources</phase>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
+                    <mkdir dir="${project.build.directory}/dependency"/>
                   </target>
                 </configuration>
               </execution>

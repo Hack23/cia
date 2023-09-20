@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.external.esv.impl;
 
+import io.github.pixee.security.ZipSecurity;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -150,7 +151,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 */
 	private List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {
 		final BufferedInputStream bis = new BufferedInputStream(inputStream);
-		final ZipInputStream is = new ZipInputStream(bis);
+		final ZipInputStream is = ZipSecurity.createHardenedInputStream(bis);
 
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		try {
