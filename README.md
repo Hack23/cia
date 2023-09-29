@@ -32,7 +32,7 @@ The project relies on open data from various sources, including:
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 
 
-## Runtime
+## Runtime(JDK 21+)
 
 [![JDK-21](https://img.shields.io/badge/jdk-21-green.svg)]
 [![JDK-22](https://img.shields.io/badge/jdk-22-orange.svg)]
@@ -112,7 +112,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 1. Install OpenJDK and PostgreSQL:
 
 ```bash
-$ sudo apt-get install openjdk-17-jdk postgresql-15 pgadmin3
+$ sudo apt-get install openjdk-21-jdk postgresql-15 pgadmin3
 ```
 
 2. Install PostgreSQL on Ubuntu:
