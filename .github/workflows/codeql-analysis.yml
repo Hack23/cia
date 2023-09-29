@@ -98,7 +98,7 @@ jobs:
       uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
       with:
         distribution: 'temurin'
-        java-version: '21'
+        java-version: '21-ea'
         cache: 'maven'
 
     - name: Install buildtools
