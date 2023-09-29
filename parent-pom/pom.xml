@@ -164,12 +164,13 @@
     <compiler.plugin.version>3.11.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.1.2</surefire.version>
-    <jdk.src.version>17</jdk.src.version>
-    <jdk.target.version>17</jdk.target.version>
-    <javadoc.src.version>17</javadoc.src.version>
-    <javadoc.target.version>17</javadoc.target.version>
+    <jdk.src.version>21</jdk.src.version>
+    <jdk.target.version>21</jdk.target.version>
+    <javadoc.src.version>21</javadoc.src.version>
+    <javadoc.target.version>21</javadoc.target.version>
     <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-    <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+    <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
@@ -1588,82 +1589,10 @@
         <surefire.version>3.1.2</surefire.version>
       </properties>
     </profile>
-  <profile>
-      <id>java20</id>
-      <activation>
-        <jdk>20</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>17</jdk.src.version>
-        <jdk.target.version>17</jdk.target.version>
-        <forbiddenapis.skip>false</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.10</jacoco.version>
-        <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.2</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java19</id>
-      <activation>
-        <jdk>19</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>17</jdk.src.version>
-        <jdk.target.version>17</jdk.target.version>
-        <forbiddenapis.skip>false</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.10</jacoco.version>
-        <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.2</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java18</id>
-      <activation>
-        <jdk>18</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>17</jdk.src.version>
-        <jdk.target.version>17</jdk.target.version>
-        <forbiddenapis.skip>false</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.10</jacoco.version>
-        <compiler.plugin.version>3.11.1</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.2</surefire.version>
-      </properties>
-    </profile>
-    <profile>
-      <id>java17</id>
-      <activation>
-        <jdk>17</jdk>
-      </activation>
-      <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
-        <jdk.src.version>17</jdk.src.version>
-        <jdk.target.version>17</jdk.target.version>
-        <forbiddenapis.skip>false</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.8.10</jacoco.version>
-        <compiler.plugin.version>3.11.0</compiler.plugin.version>
-        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.1.2</surefire.version>
-      </properties>
-    </profile>
     <profile>
       <id>all-modules</id>
       <activation>
-        <jdk>[17,22)</jdk>
+        <jdk>[21,22)</jdk>
       </activation>
       <modules>
         <module>../testfoundation</module>
