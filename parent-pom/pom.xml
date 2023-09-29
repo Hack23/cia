@@ -1571,6 +1571,24 @@
   </build>
   <profiles>
     <profile>
+      <id>java21</id>
+      <activation>
+        <jdk>21</jdk>
+      </activation>
+      <properties>
+        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
+        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        <jdk.src.version>21</jdk.src.version>
+        <jdk.target.version>21</jdk.target.version>
+        <forbiddenapis.skip>true</forbiddenapis.skip>
+        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+        <jacoco.version>0.8.10</jacoco.version>
+        <compiler.plugin.version>3.11.0</compiler.plugin.version>
+        <cia.project.versions.compiler.plexus.java>1.1.2</cia.project.versions.compiler.plexus.java>
+        <surefire.version>3.1.2</surefire.version>
+      </properties>
+    </profile>
+  <profile>
       <id>java20</id>
       <activation>
         <jdk>20</jdk>
@@ -1645,7 +1663,7 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <jdk>[17,21)</jdk>
+        <jdk>[17,22)</jdk>
       </activation>
       <modules>
         <module>../testfoundation</module>
