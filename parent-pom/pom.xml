@@ -117,7 +117,7 @@
     <cia.project.versions.h2>2.2.224</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.6.0</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
-    <cia.project.versions.poi>5.2.3</cia.project.versions.poi>
+    <cia.project.versions.poi>5.2.4</cia.project.versions.poi>
     <cia.project.versions.pdfbox>3.0.0</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.14</cia.project.versions.ant>
