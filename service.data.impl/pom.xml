@@ -427,7 +427,6 @@
       <artifactId>hppc</artifactId>
       <version>0.9.1</version>
     </dependency>
-
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
@@ -436,7 +435,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>4.23.2</version>
+      <version>4.24.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.eclipse.jetty</groupId>
