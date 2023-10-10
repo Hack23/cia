@@ -61,6 +61,9 @@ jobs:
           tools.google.com:80
           tools.vaadin.com:443
           uploads.github.com:443
+          spdx.org:443
+          repository.jboss.org:443
+          repository.sonatype.org:443
     - name: Checkout repository
       uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
       with:
