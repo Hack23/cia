@@ -86,8 +86,8 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.30</cia.project.versions.spring>
-    <cia.project.versions.spring.security>5.8.5</cia.project.versions.spring.security>
-    <cia.project.versions.spring.data>2.7.14</cia.project.versions.spring.data>
+    <cia.project.versions.spring.security>5.8.7</cia.project.versions.spring.security>
+    <cia.project.versions.spring.data>2.7.16</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.565</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.20.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
@@ -136,9 +136,9 @@
     <cia.project.versions.jaxb.api.runtime>2.4.0-b180830.0359</cia.project.versions.jaxb.api.runtime>
     <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.3.6</cia.project.versions.jaxb.impl.build>
-    <cia.project.versions.jaxb.impl.runtime>2.3.7</cia.project.versions.jaxb.impl.runtime>
+    <cia.project.versions.jaxb.impl.runtime>2.3.8</cia.project.versions.jaxb.impl.runtime>
     <cia.project.versions.jaxb.xjc.build>2.3.6</cia.project.versions.jaxb.xjc.build>
-    <cia.project.versions.jaxb.xjc.runtime>2.3.7</cia.project.versions.jaxb.xjc.runtime>
+    <cia.project.versions.jaxb.xjc.runtime>2.3.8</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.14.0</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.jakarta.activation>2.1.0</cia.project.versions.jakarta.activation>
