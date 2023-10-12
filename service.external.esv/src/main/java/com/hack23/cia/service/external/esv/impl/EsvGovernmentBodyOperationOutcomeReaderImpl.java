@@ -121,7 +121,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
 		if (incomeCsvValues == null) {
 			incomeCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/statistik-och-data/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20mars%202023,%20definitivt.zip&year=2023&month=3&status=Definitiv")
+				"https://www.esv.se/OpenDataManadsUtfallPage/GetFile?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20augusti%202023,%20definitivt.zip&Year=2023&month=8&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
 		}
 		return Collections.unmodifiableList(incomeCsvValues);
@@ -131,7 +131,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {
 		if (outGoingCsvValues == null) {
 			outGoingCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/statistik-och-data/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20mars%202023,%20definitivt.zip&year=2023&month=3&status=Definitiv")
+				"https://www.esv.se/OpenDataManadsUtfallPage/GetFile?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20augusti%202023,%20definitivt.zip&Year=2023&month=8&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
 		}
 		return Collections.unmodifiableList(outGoingCsvValues);

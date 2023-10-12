@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URI;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,7 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 	@Override
 	public InputStream getStream() {
 		try {
-			return new URL(url).openStream();
+			return URI.create(url).toURL().openStream();
 		} catch (final IOException e) {
 			LOGGER.warn(url, e);
 			return new ByteArrayInputStream(new byte[0]);

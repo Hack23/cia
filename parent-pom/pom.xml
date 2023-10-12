@@ -1581,7 +1581,7 @@
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
-        <forbiddenapis.skip>true</forbiddenapis.skip>
+        <forbiddenapis.skip>false</forbiddenapis.skip>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.10</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>

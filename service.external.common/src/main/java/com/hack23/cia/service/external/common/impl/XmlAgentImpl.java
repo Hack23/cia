@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
@@ -80,8 +81,8 @@ final class XmlAgentImpl implements XmlAgent {
 	@Override
 	public String retriveContent(final String accessUrl) throws XmlAgentException {
 		try {
-			final URL url = new URL(accessUrl.replace(" ", ""));
-
+			final URL url = URI.create(accessUrl.replace(" ", "")).toURL(); 
+					
 			return readWithStringBuffer(new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)));
 		} catch (final IOException e) {
 			throw new XmlAgentException(e);
@@ -142,7 +143,7 @@ final class XmlAgentImpl implements XmlAgent {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private static String readInputStream(final String accessUrl) throws IOException {
-		final URL url = new URL(accessUrl.replace(" ", ""));
+		final URL url = URI.create(accessUrl.replace(" ", "")).toURL();
 		return readWithStringBuffer(new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), StandardCharsets.UTF_8)));
 	}
 }
