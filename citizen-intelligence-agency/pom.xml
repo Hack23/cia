@@ -30,7 +30,7 @@
     <cia.project.versions.structurizr>1.16.2</cia.project.versions.structurizr>
     <cia.project.versions.structurizr.addon.plantuml>1.6.3</cia.project.versions.structurizr.addon.plantuml>
     <cia.project.versions.structurizr.addon>1.3.5</cia.project.versions.structurizr.addon>
-    <cia.project.versions.selenium>4.14.0</cia.project.versions.selenium>
+    <cia.project.versions.selenium>4.14.1</cia.project.versions.selenium>
   </properties>
   <dependencyManagement>
     <dependencies>
