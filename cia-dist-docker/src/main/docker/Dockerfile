@@ -1,4 +1,4 @@
-FROM ubuntu:22.04@sha256:9b8dec3bf938bc80fbe758d856e96fdfab5f56c39d44b0cff351e847bb1b01ea
+FROM ubuntu:23.10@sha256:4c32aacd0f7d1d3a29e82bee76f892ba9bb6a63f17f9327ca0d97c3d39b9b0ee
 
 ADD userdata.sh /root/userdata.sh
 ADD dependencies/cia-dist-deb-${project.version}.deb /root/cia-dist-deb.deb
