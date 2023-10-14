@@ -54,7 +54,7 @@ jobs:
       run: mv apache-maven-3.9.5 maven
 
     - name: Set Version for release
-      run: maven/bin/mvn -B --file pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
+      run: maven/bin/mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
