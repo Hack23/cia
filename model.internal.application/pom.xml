@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-internal-pom</artifactId>
-    <version>2022.12.27-SNAPSHOT</version>
+    <version>2023.10.14</version>
     <relativePath>../parent-model-internal-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.internal.application</artifactId>
