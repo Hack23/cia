@@ -68,6 +68,7 @@ jobs:
     - name: Create a GitHub release
       uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5 # v1.13.0
       with:
-        tag: ${{ steps.tag_version.outputs.new_tag }}
-        name: Release ${{ steps.tag_version.outputs.new_tag }}
-        body: ${{ steps.tag_version.outputs.changelog }}
+        tag: '${{ github.event.inputs.release }}'
+        generateReleaseNotes: true
+        name: Release ${{ github.event.inputs.release }}
+        artifacts: "cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb,cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json,cia-dist-cloudformation/target/dependency/cia-dist-cloudformation-${{ github.event.inputs.release }}.template,citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json"
