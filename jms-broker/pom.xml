@@ -375,7 +375,7 @@
     <dependency>
       <groupId>org.apache.xbean</groupId>
       <artifactId>xbean-spring</artifactId>
-      <version>4.23</version>
+      <version>4.24</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
