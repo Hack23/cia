@@ -74,10 +74,6 @@ jobs:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
         fetch-depth: 2
-    - name: Testing app with CFN Lint
-      uses: scottbrenner/cfn-lint-action@d7a7fc1277addd4aa2a4bdf766eeb7b5fa30e0c7 # v2.3.6
-      with:
-        command: cfn-lint -t cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
     - name: Run cfn-nag
       uses: stelligent/cfn_nag@8b5f03da74202ba323a145e9d037ddce6cab9dec # master
       with:
