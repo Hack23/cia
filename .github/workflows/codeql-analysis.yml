@@ -64,13 +64,26 @@ jobs:
           spdx.org:443
           repository.jboss.org:443
           repository.sonatype.org:443
+          files.pythonhosted.org:443
+          pypi.org:443
+          www.bridgecrew.cloud:443
+          docs.github.com:433
     - name: Checkout repository
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       with:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
         fetch-depth: 2
-
+    - name: Run Checkov action
+      id: checkov
+      uses: bridgecrewio/checkov-action@defe079fd0a03179471fdca95535610fc46d4f0e # master
+      with:
+        file: cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
+        skip_check: CKV_AWS_111,CKV_AWS_109,CKV_AWS_149,CKV_AWS_364,CKV_AWS_161,CKV_AWS_118,CKV_AWS_111
+        framework: cloudformation
+        output_format: sarif
+        output_file_path: reports/results.sarif 
+        download_external_modules: true
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
