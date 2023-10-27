@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.hack23.cia</groupId>
+    <artifactId>parent-pom</artifactId>
+    <version>2022.12.27-SNAPSHOT</version>
+    <relativePath>parent-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>cia-all</artifactId>
+  <packaging>pom</packaging>
+  <name>cia-all</name>
+  <url>github:https://hack23.github.io/cia/</url>
+  <modules>
+    <module>parent-pom</module>
+  </modules>
+  <scm>
+    <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/Hack23/cia/tree/master/</url>
+  </scm>
+  <properties>
+    <sonar.dependencyCheck.htmlReportPath>${project.basedir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
+    <sonar.dependencyCheck.xmlReportPath>${project.basedir}/dependency-check-report.xml</sonar.dependencyCheck.xmlReportPath>
+    <root.dir>file:///${basedir}/</root.dir>
+  </properties>
+</project>
