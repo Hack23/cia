@@ -2466,9 +2466,9 @@
             "Type": "AWS::RDS::DBParameterGroup",
             "Properties": {
                 "Description": "Database Parameter Group + pg_stat_statements",
-                "Family": "postgres14",
+                "Family": "postgres15",
                 "Parameters": {
-                    "max_prepared_transactions": "LEAST({DBInstanceClassMemory/9531392},5000)",
+                    "max_prepared_transactions": "400",
                     "max_parallel_workers_per_gather": "4",
                     "rds.force_ssl": "1",
                     "rds.force_admin_logging_level": "notice",
@@ -2622,7 +2622,7 @@
                     "Ref": "DBClass"
                 },
                 "Engine": "postgres",
-                "EngineVersion": "14.5",
+                "EngineVersion": "15.4",
                 "MultiAZ": "true",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
@@ -4169,10 +4169,10 @@
                                 "sudo apt-get -y install libwww-perl libdatetime-perl\n",
                                 "# INSTALL OPEN JDK\n",
                                 "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n",
-                                "wget -O amazon-corretto-19-aarch64-linux-jdk.deb https://corretto.aws/downloads/latest/amazon-corretto-19-aarch64-linux-jdk.deb\n",
-                                "dpkg -i amazon-corretto-19-aarch64-linux-jdk.deb\n",
-                                "rm amazon-corretto-19-aarch64-linux-jdk.deb\n",
-                                "ln -s /usr/lib/jvm/java-19-amazon-corretto /usr/lib/jvm/jdk-19\n",
+                                "wget -O amazon-corretto-21-aarch64-linux-jdk.deb https://corretto.aws/downloads/latest/amazon-corretto-21-aarch64-linux-jdk.deb\n",
+                                "dpkg -i amazon-corretto-21-aarch64-linux-jdk.deb\n",
+                                "rm amazon-corretto-21-aarch64-linux-jdk.deb\n",
+                                "ln -s /usr/lib/jvm/java-21-amazon-corretto /usr/lib/jvm/jdk-21\n",
                                 "wget ",
                                 {
                                     "Ref": "DebPackageUrl"
