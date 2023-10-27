@@ -64,6 +64,10 @@ jobs:
           spdx.org:443
           repository.jboss.org:443
           repository.sonatype.org:443
+          files.pythonhosted.org:443
+          pypi.org:443
+          www.bridgecrew.cloud:443
+          docs.github.com:433
     - name: Checkout repository
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       with:
