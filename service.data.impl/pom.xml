@@ -168,27 +168,22 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec-http</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-common</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-buffer</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-resolver</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-handler</artifactId>
-      <version>${cia.project.versions.netty}</version>
       <exclusions>
         <exclusion>
           <groupId>io.netty</groupId>
@@ -199,12 +194,10 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-transport</artifactId>
-      <version>${cia.project.versions.netty}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate.search</groupId>
@@ -627,7 +620,6 @@
     <dependency>
       <groupId>org.apache.santuario</groupId>
       <artifactId>xmlsec</artifactId>
-      <version>4.0.0</version>
       <exclusions>
         <exclusion>
           <groupId>jakarta.xml.bind</groupId>
@@ -648,7 +640,6 @@
     <dependency>
       <groupId>org.apache.pdfbox</groupId>
       <artifactId>pdfbox</artifactId>
-      <version>${cia.project.versions.pdfbox}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -818,7 +809,6 @@
     <dependency>
       <groupId>com.sun.istack</groupId>
       <artifactId>istack-commons-runtime</artifactId>
-      <version>${cia.project.versions.istack}</version>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
@@ -877,7 +867,6 @@
     <dependency>
       <groupId>org.jboss</groupId>
       <artifactId>jandex</artifactId>
-      <version>3.1.5</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.logging</groupId>

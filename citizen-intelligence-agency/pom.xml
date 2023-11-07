@@ -1264,7 +1264,6 @@
     <dependency>
       <groupId>com.ibm.icu</groupId>
       <artifactId>icu4j</artifactId>
-      <version>74.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
@@ -1856,15 +1855,6 @@
   </build>
   <reporting>
     <plugins>
-      <plugin>
-        <groupId>com.github.jrh3k5</groupId>
-        <artifactId>l10n-maven-plugin</artifactId>
-        <version>1.4</version>
-        <configuration>
-          <messagesFile>${project.basedir}/src/main/resources/IAResources.properties</messagesFile>
-          <translatedMessagesPattern>src/main/resources/IAResources*.properties</translatedMessagesPattern>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>

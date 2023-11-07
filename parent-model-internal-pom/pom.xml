@@ -44,7 +44,6 @@
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
-      <version>${project.version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -155,7 +154,6 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.15.0</version>
     </dependency>
   </dependencies>
   <build>
@@ -199,7 +197,7 @@
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
-              <compilerArguments>-source ${jdk.src.version} -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
+              <compilerArguments>-source 8 -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
               <excludes>**/module-info.*</excludes>
             </configuration>
           </execution>
