@@ -54,7 +54,6 @@
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>${cia.project.versions.commons.codec}</version>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>

@@ -163,12 +163,13 @@
     <jacoco.version>0.8.11</jacoco.version>
     <compiler.plugin.version>3.11.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.2.0</cia.project.versions.compiler.plexus.java>
-    <surefire.version>3.2.1</surefire.version>
+    <surefire.version>3.2.2</surefire.version>
     <jdk.src.version>21</jdk.src.version>
     <jdk.target.version>21</jdk.target.version>
     <javadoc.src.version>21</javadoc.src.version>
     <javadoc.target.version>21</javadoc.target.version>
-    <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+    <!--    <jdk.src.exclude>module-info.*</jdk.src.exclude>
+-->
     <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
         			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
@@ -930,7 +931,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>3.10.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -982,7 +983,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.6.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1150,7 +1151,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
-          <version>5.0-jdk8</version>
+          <version>5.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -1212,7 +1213,6 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>3.6</version>
         <executions>
           <execution>
             <id>verify-forbidden-apis</id>
@@ -1303,9 +1303,6 @@
               <goal>report</goal>
             </goals>
             <phase>verify</phase>
-            <configuration>
-              <detail>true</detail>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -1315,7 +1312,6 @@
         <inherited>true</inherited>
         <configuration>
           <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine}</argLine>
-          <disableModules>false</disableModules>
           <useModulePath>false</useModulePath>
         </configuration>
       </plugin>
@@ -1429,9 +1425,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
         <inherited>true</inherited>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
         <executions>
           <execution>
             <id>bundle-sources</id>
@@ -1582,11 +1575,11 @@
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>
-        <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
+        <!--<jdk.src.exclude>module-info.*</jdk.src.exclude>-->
         <jacoco.version>0.8.11</jacoco.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
         <cia.project.versions.compiler.plexus.java>1.2.0</cia.project.versions.compiler.plexus.java>
-        <surefire.version>3.2.1</surefire.version>
+        <surefire.version>3.2.2</surefire.version>
       </properties>
     </profile>
     <profile>
@@ -1738,7 +1731,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.2</version>
             <inherited>true</inherited>
             <configuration>
               <source>${javadoc.src.version}</source>
@@ -1838,14 +1831,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
             <inherited>true</inherited>
-            <configuration>
-              <systemProperties>
-                <property>
-                  <name>maven.test.skip</name>
-                  <value>true</value>
-                </property>
-              </systemProperties>
-            </configuration>
+            <configuration></configuration>
           </plugin>
           <plugin>
             <groupId>org.jboss.tattletale</groupId>
@@ -1857,7 +1843,6 @@
               <profiles>*</profiles>
               <source>${project.build.directory}/${project.artifactId}-${project.version}</source>
               <destination>${project.build.directory}/site/tattleTaleReport</destination>
-              <graphvizDot>${graphviz.dot.executable}</graphvizDot>
             </configuration>
             <dependencies>
               <dependency>
@@ -1882,7 +1867,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.2</version>
             <inherited>true</inherited>
             <configuration>
               <source>${javadoc.src.version}</source>
@@ -1919,9 +1904,6 @@
             <artifactId>maven-project-info-reports-plugin</artifactId>
             <version>3.4.5</version>
             <inherited>true</inherited>
-            <configuration>
-              <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -1972,16 +1954,6 @@
                 </reports>
               </reportSet>
             </reportSets>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-changelog-plugin</artifactId>
-            <version>2.3</version>
-            <inherited>true</inherited>
-            <configuration>
-              <type>range</type>
-              <range>30</range>
-            </configuration>
           </plugin>
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>

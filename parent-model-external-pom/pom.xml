@@ -46,7 +46,6 @@
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
-      <version>${project.version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -236,12 +235,10 @@
             <configuration>
               <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <outputDirectory>target/metamodel</outputDirectory>
-              <skipSourcesUnchangedAnnotationProcessing>true</skipSourcesUnchangedAnnotationProcessing>
-              <skipSourcesUnchangedAnnotationProcessing>true</skipSourcesUnchangedAnnotationProcessing>
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
-              <compilerArguments>-source ${jdk.src.version} -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
+              <compilerArguments>-source 8 -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
               <excludes>**/module-info.*</excludes>
             </configuration>
           </execution>

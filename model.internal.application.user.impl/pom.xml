@@ -71,7 +71,6 @@
     <dependency>
       <groupId>com.sun.istack</groupId>
       <artifactId>istack-commons-runtime</artifactId>
-      <version>${cia.project.versions.istack}</version>
     </dependency>
     <dependency>
       <groupId>org.javers</groupId>
