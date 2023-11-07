@@ -1149,7 +1149,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
-          <version>5.0</version>
+          <version>5.0-jdk8</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
