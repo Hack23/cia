@@ -1734,10 +1734,6 @@
               <source>${javadoc.src.version}</source>
               <release>${javadoc.target.version}</release>
               <sourcepath>src/main/java</sourcepath>
-              <excludes>${jdk.src.exclude}</excludes>
-              <sourceFileExcludes>
-                <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
-              </sourceFileExcludes>
               <debug>false</debug>
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
@@ -1870,10 +1866,6 @@
               <source>${javadoc.src.version}</source>
               <release>${javadoc.target.version}</release>
               <sourcepath>src/main/java</sourcepath>
-              <excludes>${jdk.src.exclude}</excludes>
-              <sourceFileExcludes>
-                <sourceFileExclude>${jdk.src.exclude}</sourceFileExclude>
-              </sourceFileExcludes>
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
               <linksource>false</linksource>
