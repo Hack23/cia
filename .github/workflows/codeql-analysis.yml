@@ -55,7 +55,7 @@ jobs:
           oss.sonatype.org:443
           raw.githubusercontent.com:443
           repo.maven.apache.org:443
-          repo.opennms.org:443
+          maven.mirrors.opennms.org:443
           repo1.maven.org:443
           repository.mulesoft.org:443
           tools.google.com:80
