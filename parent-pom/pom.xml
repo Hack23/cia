@@ -685,7 +685,7 @@
         <enabled>false</enabled>
       </snapshots>
       <id>opennms</id>
-      <url>https://repo.opennms.org/maven2/</url>
+      <url>https://maven.mirrors.opennms.org/maven2/</url>
     </repository>
     <repository>
       <releases>
