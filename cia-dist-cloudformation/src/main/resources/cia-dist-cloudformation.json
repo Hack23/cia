@@ -2622,7 +2622,7 @@
                     "Ref": "DBClass"
                 },
                 "Engine": "postgres",
-                "EngineVersion": "15.4",
+                "EngineVersion": "15.5",
                 "MultiAZ": "true",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
@@ -2631,7 +2631,7 @@
                     "postgresql",
                     "upgrade"
                 ],
-                "StorageType": "gp2",
+                "StorageType": "gp3",
                 "DBInstanceIdentifier": "rotation-instance",
                 "MasterUsername": {
                     "Fn::If": [
