@@ -85,7 +85,7 @@
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <cia.project.versions.spring>5.3.31</cia.project.versions.spring>
+    <cia.project.versions.spring>6.1.0</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.8</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.17</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.590</cia.project.versions.aws>
