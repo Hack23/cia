@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2022.12.27-SNAPSHOT</version>
+  <version>2023-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -87,9 +87,9 @@
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.31</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.8</cia.project.versions.spring.security>
-    <cia.project.versions.spring.data>2.7.17</cia.project.versions.spring.data>
+    <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.607</cia.project.versions.aws>
-    <cia.project.versions.aspectj>1.9.20.1</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.21.RC1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.29.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.3.6</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
@@ -190,7 +190,7 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.21.1</version>
+        <version>2.22.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -217,7 +217,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.15.0</version>
+        <version>2.15.1</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
@@ -428,7 +428,7 @@
       <dependency>
         <groupId>org.jboss</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.1.5</version>
+        <version>3.1.6</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
@@ -848,7 +848,7 @@
             <dependency>
               <groupId>commons-io</groupId>
               <artifactId>commons-io</artifactId>
-              <version>2.15.0</version>
+              <version>2.15.1</version>
             </dependency>
             <dependency>
               <groupId>org.apache.commons</groupId>

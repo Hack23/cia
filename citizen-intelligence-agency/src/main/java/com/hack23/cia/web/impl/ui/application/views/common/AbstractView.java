@@ -242,8 +242,7 @@ public abstract class AbstractView extends Panel implements View {
 		final HorizontalLayout footerBottom = new HorizontalLayout();
 		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		final Label appVersion = new Label(applicationName + " (" + applicationVersion +")(Apache License 2.0)");
-		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.12.26/citizen-intelligence-agency-2022.12.26.spdx.rdf.xml"));
-		final Link cyclonedxLink = new Link("SBOM(cyclonedx)", new ExternalResource("https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.12.26/citizen-intelligence-agency-2022.12.26-cyclonedx.json"));
+		final Link spdxLink = new Link("SBOM(spdx)", new ExternalResource("https://github.com/Hack23/cia/releases/download/" + applicationVersion +"/com.hack23.cia_citizen-intelligence-agency-" + applicationVersion +".spdx.json"));
 		final Link sourcCodeLink = new Link("https://github.com/Hack23/cia", new ExternalResource("https://github.com/Hack23/cia"));
 		final Label licenseLink = new Label("Open Source");
 
@@ -251,14 +250,12 @@ public abstract class AbstractView extends Panel implements View {
 		footerTop.addComponent(appVersion);
 		footerBottom.addComponent(licenseLink);
 		footerBottom.addComponent(sourcCodeLink);
-		footerBottom.addComponent(cyclonedxLink);
 		footerBottom.addComponent(spdxLink);
 		footerTop.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
 		footerTop.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
 
 		footerBottom.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
 		footerBottom.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
-		footerBottom.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);
 		footerBottom.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
 
 		footerTop.setWidth("100%");
