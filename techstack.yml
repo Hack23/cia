@@ -1,11 +1,11 @@
 repo_name: Hack23/cia
-report_id: 456b6812aeb16e672b4e2e27295b7be4
+report_id: ece57d4c1746a68aa79501262798b6db
 repo_type: Public
-timestamp: '2023-11-09T15:25:26+00:00'
+timestamp: '2023-12-14T09:39:41+00:00'
 requested_by: pethers
 provider: github
 branch: master
-detected_tools_count: 44
+detected_tools_count: 221
 tools:
 - name: CSS 3
   description: The latest evolution of the Cascading Style Sheets language
@@ -54,7 +54,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/2271/default_068d33483bba6b81ee13fbd4dc7aab9780896a54.png
-  detection_source: service.data.impl/src/main/resources/remove-persondata.sql
+  detection_source: service.data.impl/src/main/resources/clean-documentstatus.sql
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-11-08 20:54:45.000000000 Z
 - name: Project Reactor
@@ -67,7 +67,7 @@ tools:
   image_url: https://img.stackshare.io/service/5807/default_cbd8ab670309059d7e315252d307d409aa40d793.png
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: dependabot[bot]
-  last_updated_on: 2023-11-01 23:17:44.000000000 Z
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
 - name: Protobuf
   description: Google's data interchange format
   website_url: https://developers.google.com/protocol-buffers/
@@ -87,7 +87,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/2971/UuHV6j99_400x400.jpg
-  detection_source: web-widgets/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
 - name: guava
@@ -99,7 +99,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Java Tools
   image_url: https://img.stackshare.io/service/2970/wBjKn0ol.png
-  detection_source: service.data.impl/pom.xml
+  detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 12:01:57.000000000 Z
 - name: Ehcache
@@ -112,7 +112,7 @@ tools:
   category: Data Stores
   sub_category: Cache
   image_url: https://img.stackshare.io/service/3093/EhcacheTwitterIcon.png
-  detection_source_url: service.data.impl/pom.xml
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-10-13 19:55:17.000000000 Z
@@ -124,7 +124,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/3105/h2-logo_square_400x400.png
-  detection_source: service.data.impl/pom.xml
+  detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
 - name: Hibernate
@@ -135,7 +135,7 @@ tools:
   category: Data Stores
   sub_category: Object Relational Mapper (ORM)
   image_url: https://img.stackshare.io/service/1756/1uNl_IZX.png
-  detection_source: testfoundation/pom.xml
+  detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-10-01 15:27:40.000000000 Z
 - name: Liquibase
@@ -158,7 +158,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1028/ASOhU5xJ.png
-  detection_source: service.data.impl/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
 - name: Spring Data
@@ -171,9 +171,20 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/7624/IG6D4Ro2_400x400.png
-  detection_source: service.data.impl/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: pgvector
+  description: Open-source vector similarity search for Postgres
+  website_url: https://github.com/pgvector/pgvector/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Database Tools
+  image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source: LICENSE.txt
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2016-09-06 16:59:18.000000000 Z
 - name: Chai
   description: A BDD / TDD assertion library
   website_url: http://chaijs.com/
@@ -184,7 +195,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Javascript Testing Framework
   image_url: https://img.stackshare.io/service/1725/chai.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-10-30 18:07:53.000000000 Z
@@ -226,9 +237,9 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
-  detection_source: ".github/workflows/scorecards.yml"
+  detection_source: ".github/workflows/codeql-analysis.yml"
   last_updated_by: dependabot[bot]
-  last_updated_on: 2023-11-09 09:20:00.000000000 Z
+  last_updated_on: 2023-12-14 02:31:47.000000000 Z
 - name: JBoss
   description: An open source Java EE-based application server
   website_url: https://developers.redhat.com/products/eap
@@ -237,7 +248,7 @@ tools:
   category: Application Hosting
   sub_category: Web Servers
   image_url: https://img.stackshare.io/service/2188/unnamed.jpg
-  detection_source: testfoundation/pom.xml
+  detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
 - name: JUnit
@@ -249,7 +260,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Testing Frameworks
   image_url: https://img.stackshare.io/service/2020/874086.png
-  detection_source: testfoundation/pom.xml
+  detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
 - name: Jasmine
@@ -273,7 +284,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Browser Testing
   image_url: https://img.stackshare.io/service/1420/TidYGd6a.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
@@ -286,7 +297,7 @@ tools:
   category: Monitoring
   sub_category: Logging Tools
   image_url: https://img.stackshare.io/service/2804/Coralogix-log4j-integration.jpg
-  detection_source: testfoundation/pom.xml
+  detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
 - name: Logback
@@ -297,7 +308,7 @@ tools:
   category: Monitoring
   sub_category: Log Management
   image_url: https://img.stackshare.io/service/2923/05518ecaa42841e834421e9d6987b04f_400x400.png
-  detection_source: web-widgets/src/test/resources/logback-test.xml
+  detection_source: citizen-intelligence-agency/src/main/resources/logback.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-01-13 19:10:00.000000000 Z
 - name: Mocha
@@ -311,21 +322,21 @@ tools:
   category: Build, Test, Deploy
   sub_category: Javascript Testing Framework
   image_url: https://img.stackshare.io/service/832/mocha.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: renovate[bot]
   last_updated_on: 2022-12-11 15:39:03.000000000 Z
 - name: Mockito
   description: Tasty mocking framework for unit tests in Java
   website_url: https://site.mockito.org/
-  version: 5.7.0
+  version: 5.8.0
   license: MIT
   open_source: true
   hosted_saas: false
   category: Build, Test, Deploy
   sub_category: Testing Frameworks
   image_url: https://img.stackshare.io/service/2021/4y634TJm_400x400.jpg
-  detection_source_url: testfoundation/pom.xml
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2016-11-08 17:06:15.000000000 Z
@@ -337,7 +348,7 @@ tools:
   category: Monitoring
   sub_category: Log Management
   image_url: https://img.stackshare.io/service/2805/05518ecaa42841e834421e9d6987b04f_400x400.png
-  detection_source: web-widgets/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
 - name: SinonJS
@@ -349,7 +360,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Javascript Testing Framework
   image_url: https://img.stackshare.io/service/3509/logo.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: Renovate Bot
   last_updated_on: 2018-10-30 18:08:30.000000000 Z
@@ -409,9 +420,20 @@ tools:
   category: Analytics
   sub_category: Business Intelligence
   image_url: https://img.stackshare.io/service/11236/Group_22__3_.png
-  detection_source: service.data.impl/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: LangChain
+  description: Build AI apps with LLMs through composability
+  website_url: https://github.com/hwchase17/langchain
+  open_source: true
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Model Tools
+  image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source: LICENSE.txt
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2016-09-06 16:59:18.000000000 Z
 - name: Shell
   description: A shell is a text-based terminal, used for manipulating programs and
     files. Shell scripts typically manage program execution.
@@ -433,6 +455,2058 @@ tools:
   detection_source: cia-dist-docker/src/main/docker/Dockerfile
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-10-13 09:41:26.000000000 Z
+- name: antlr:antlr
+  description: Antlr v3 repository
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2020-05-12 19:26:57.000000000 Z
+- name: cglib:cglib
+  description: Cglib is a powerful
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: ch.qos.logback:logback-classic
+  description: Logback-classic module
+  license: EPL-1.0,LGPL-2.1+
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: com.amazonaws:aws-java-sdk-cloudwatch
+  description: The AWS Java SDK for Amazon CloudWatch module holds the client classes
+    that are used for communicating with Amazon CloudWatch Service
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.amazonaws:aws-java-sdk-ec2
+  description: The AWS Java SDK for Amazon EC2 module holds the client classes that
+    are used for communicating with Amazon EC2 Service
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.amazonaws:aws-java-sdk-logs
+  description: The AWS Java SDK for Amazon CloudWatch Logs module holds the client
+    classes that are used for communicating with Amazon CloudWatch Logs Service
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.carrotsearch:hppc
+  description: High Performance Primitive Collections
+  version: 0.9.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-07-08 11:07:23.000000000 Z
+- name: com.fasterxml.jackson.core:jackson-core
+  description: Core Jackson processing abstractions
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 21:40:41.000000000 Z
+- name: com.fasterxml.jackson.core:jackson-databind
+  description: 'General data-binding functionality for Jackson: works on core streaming
+    API'
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-07-08 11:07:23.000000000 Z
+- name: com.fasterxml.jackson.dataformat:jackson-dataformat-cbor
+  description: Support for reading and writing Concise Binary Object Representation
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.fasterxml.jackson.datatype:jackson-datatype-jdk8
+  description: Add-on module for Jackson
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.fasterxml:classmate
+  description: Library for introspecting types with full generic information including
+    resolving of field and method types
+  version: 1.6.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.api/pom.xml
+  detection_source: service.api/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: com.github.stefanbirkner:system-rules
+  description: A collection of JUnit rules for testing code which uses java.lang.System
+  version: 1.19.0
+  license: CPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: com.google.code.gson:gson
+  description: Gson JSON library
+  version: 2.10.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.google.errorprone:error_prone_annotations
+  description: Sonatype helps open source projects to set up Maven repositories on
+    https://oss.sonatype.org/
+  version: 2.23.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-09-06 09:37:15.000000000 Z
+- name: com.google.guava:guava
+  description: Guava is a suite of core and expanded libraries that include utility
+    classes
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-08 18:05:19.000000000 Z
+- name: com.google.gwt:gwt-dev
+  license: Unicode-TOU
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.google.gwt:gwt-elemental
+  version: 2.9.0
+  license: Unicode-TOU
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.google.gwt:gwt-user
+  license: Unicode-TOU
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.google.jsinterop:jsinterop-annotations
+  version: 2.0.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: com.google.protobuf:protobuf-java
+  description: Core Protocol Buffers library
+  version: 3.25.1
+  license: BSD-1-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-15 16:25:01.000000000 Z
+- name: com.h2database:h2
+  description: H2 Database Engine
+  license: MIT-feh
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: com.hack23.cia:testfoundation
+  description: Testfoundation
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.ibm.icu:icu4j
+  description: International Component for Unicode for Java
+  license: Unicode-TOU,ICU
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.openpojo:openpojo
+  description: This project was born out of a need to validate all POJOs
+  version: 0.9.1
+  license: LGPL-3.0-only
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 12:56:55.000000000 Z
+- name: com.squareup.okio:okio
+  description: A modern I/O API for Java
+  version: 3.6.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.sun.mail:javax.mail
+  description: "${project.name}"
+  version: 1.6.2
+  license: CNRI-Python-GPL-Compatible
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-07-08 11:07:23.000000000 Z
+- name: com.sun.xml.bind:jaxb-xjc
+  description: JAXB
+  license: CDDL-1.1,CNRI-Python-GPL-Compatible
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-07-08 11:07:23.000000000 Z
+- name: com.thoughtworks.xstream:xstream
+  description: XStream is a serialization library from Java objects to XML and back
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.vaadin:vaadin-client
+  description: Vaadin is a web application framework for Rich Internet Applications
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.vaadin:vaadin-client-compiled
+  description: Vaadin client compiled
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.vaadin:vaadin-client-compiler
+  description: Vaadin client compiler
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.vaadin:vaadin-push
+  description: Vaadin server push support
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.vaadin:vaadin-sass-compiler
+  description: A pure Java implementation of the http://sass-lang.com compiler
+  version: 0.9.13
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.vaadin:vaadin-server
+  description: Vaadin server
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-23 14:53:16.000000000 Z
+- name: com.vaadin:vaadin-themes
+  description: Vaadin themes
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: com.yahoo.platform.yui:yuicompressor
+  description: POM was created by Sonatype Nexus
+  version: 2.4.8
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: commons-beanutils:commons-beanutils
+  description: Apache Commons BeanUtils provides an easy-to-use but flexible wrapper
+    around reflection and introspection
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-02 07:02:29.000000000 Z
+- name: commons-codec:commons-codec
+  description: The Apache Commons Codec package contains simple encoder and decoders
+    for various formats such as Base64 and Hexadecimal
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 12:56:55.000000000 Z
+- name: commons-collections:commons-collections
+  description: Types that extend and augment the Java Collections Framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-11-07 00:15:44.000000000 Z
+- name: commons-io:commons-io
+  description: The Apache Commons IO library contains utility classes
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: commons-net:commons-net
+  description: Apache Commons Net library contains a collection of network utilities
+    and protocol implementations
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-09-25 20:04:04.000000000 Z
+- name: io.github.bonigarcia:webdrivermanager
+  description: Automatic Selenium WebDriver binaries management in runtime for Java
+  version: 5.6.2
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-20 09:52:54.000000000 Z
+- name: io.github.classgraph:classgraph
+  description: The uber-fast
+  version: 4.8.165
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: io.grpc:grpc-context
+  description: 'GRPC: Context'
+  version: 1.60.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: io.netty:netty-buffer
+  description: Netty project - an event-driven asynchronous network application framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-10 13:38:15.000000000 Z
+- name: io.netty:netty-codec
+  description: Netty is an asynchronous event-driven network application framework
+    for rapid development of maintainable high performance protocol servers and clients
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-10 13:38:15.000000000 Z
+- name: io.netty:netty-codec-http
+  description: Netty project - an event-driven asynchronous network application framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-10 13:38:15.000000000 Z
+- name: io.netty:netty-common
+  description: Netty project - an event-driven asynchronous network application framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-10 13:38:15.000000000 Z
+- name: io.netty:netty-handler
+  description: Netty project - an event-driven asynchronous network application framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-10 13:38:15.000000000 Z
+- name: io.netty:netty-resolver
+  description: Netty project - an event-driven asynchronous network application framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: io.netty:netty-transport
+  description: Netty is an asynchronous event-driven network application framework
+    for rapid development of maintainable high performance protocol servers and clients
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-09-06 09:37:15.000000000 Z
+- name: io.projectreactor:reactor-core
+  description: Non-Blocking Reactive Foundation for the JVM
+  version: 3.6.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: javax.activation:activation
+  description: The JavaBeans
+  license: CDDL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-11-07 00:15:44.000000000 Z
+- name: javax.annotation:javax.annotation-api
+  description: Common Annotations for the JavaTM Platform API
+  version: 1.3.2
+  license: GPL-2.0-with-classpath-exception
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.component.agent.impl/pom.xml
+  detection_source: service.component.agent.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: javax.cache:cache-api
+  description: Sonatype helps open source projects to set up Maven repositories on
+    https://oss.sonatype.org/
+  version: 1.1.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-10-13 19:55:17.000000000 Z
+- name: javax.el:javax.el-api
+  version: 3.0.0
+  license: GPL-2.0-with-classpath-exception
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-08 18:05:19.000000000 Z
+- name: javax.inject:javax.inject
+  description: The javax.inject API
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: javax.interceptor:javax.interceptor-api
+  description: Project GlassFish Interceptor API
+  version: 1.2.2
+  license: GPL-2.0-with-classpath-exception
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
+  detection_source: service.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 21:40:41.000000000 Z
+- name: javax.persistence:javax.persistence-api
+  description: Java
+  version: '2.2'
+  license: EPL-1.0,AAL
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-jpa2-pom/pom.xml
+  detection_source: parent-model-jpa2-pom/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-12-08 11:05:24.000000000 Z
+- name: javax.servlet:javax.servlet-api
+  description: Java.net - The Source for Java Technology Collaboration
+  license: GPL-2.0-with-classpath-exception
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-10-13 19:55:17.000000000 Z
+- name: javax.xml.bind:jaxb-api
+  description: JAXB
+  license: CDDL-1.1,CNRI-Python-GPL-Compatible
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-10-13 19:55:17.000000000 Z
+- name: jdepend:jdepend
+  version: 1.2.4
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-10-13 19:55:17.000000000 Z
+- name: joda-time:joda-time
+  description: Date and time library to replace JDK date handling
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.component.agent.impl/pom.xml
+  last_updated_by: pether
+  last_updated_on: 2015-08-01 13:49:48.000000000 Z
+- name: junit:junit
+  description: JUnit is a unit testing framework for Java
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether
+  last_updated_on: 2015-08-01 13:49:48.000000000 Z
+- name: net.bytebuddy:byte-buddy
+  description: Byte Buddy is a Java library for creating Java classes at run time
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: net.bytebuddy:byte-buddy-agent
+  description: The Byte Buddy agent offers convenience for attaching an agent to the
+    local or a remote VM
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: net.java.dev.jna:jna-platform
+  description: Java Native Access Platform
+  version: 5.13.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-06-08 18:05:19.000000000 Z
+- name: net.sourceforge.htmlunit:htmlunit
+  description: A headless browser intended for use in testing web-based applications
+  version: 2.70.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+  vulnerabilities:
+  - name: HtmlUnit Code Injection vulnerability
+    cve_id: CVE-2023-26119
+    cve_url: https://github.com/advisories/GHSA-3xrr-7m6p-p7xh
+    detected_date: Jul 7
+    severity: critical
+    first_patched: 3.0.0
+- name: net.sourceforge.nekohtml:nekohtml
+  description: An HTML parser and tag balancer
+  version: 1.9.22
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: org.antlr:antlr4-runtime
+  description: The ANTLR 4 Runtime
+  version: 4.13.1
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-06-20 12:03:23.000000000 Z
+- name: org.apache.ant:ant
+  description: Master POM
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.apache.commons:commons-collections4
+  description: The Apache Commons Collections package contains types that extend and
+    augment the Java Collections Framework
+  version: '4.4'
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.api/pom.xml
+  detection_source: service.api/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: org.apache.commons:commons-compress
+  description: Apache Commons Compress software defines an API for working with compression
+    and archive formats
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.apache.commons:commons-configuration2
+  version: 2.9.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-09-06 09:37:15.000000000 Z
+- name: org.apache.commons:commons-csv
+  description: The Apache Commons CSV library provides a simple interface for reading
+    and writing CSV files of various types
+  version: 1.10.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.external.esv/pom.xml
+  detection_source: service.external.esv/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: org.apache.commons:commons-dbcp2
+  description: Apache Commons DBCP software implements Database Connection Pooling
+  version: 2.11.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: org.apache.commons:commons-lang3
+  description: Apache Commons Lang
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: model.common.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: org.apache.commons:commons-pool2
+  description: The Apache Commons Object Pooling Library
+  version: 2.12.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-08 17:38:51.000000000 Z
+- name: org.apache.commons:commons-text
+  description: Apache Commons Text is a library focused on algorithms working on strings
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.apache.httpcomponents:fluent-hc
+  description: HttpComponents Client fluent API
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.external.common/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2020-11-30 11:19:55.000000000 Z
+- name: org.apache.httpcomponents:httpclient
+  description: Apache HttpComponents Client
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.apache.httpcomponents:httpcore
+  description: Apache HttpComponents Core
+  version: 4.4.16
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.httpcomponents:httpmime
+  description: Apache HttpComponents HttpClient - MIME coded entities
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.apache.lucene:lucene-backward-codecs
+  description: Codecs for older versions of Lucene
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.lucene:lucene-core
+  description: Apache Lucene Java Core
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.apache.lucene:lucene-facet
+  description: Package for Faceted Indexing and Search
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.lucene:lucene-memory
+  description: High-performance single-document index to compare against Query
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.lucene:lucene-misc
+  description: Miscellaneous Lucene extensions
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.lucene:lucene-queryparser
+  description: Lucene QueryParsers module
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.pdfbox:pdfbox
+  description: The Apache PDFBox library is an open source Java tool for working with
+    PDF documents
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.poi:poi
+  description: Apache POI - Java API To Access Microsoft Format Files
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.poi:poi-ooxml
+  description: Apache POI - Java API To Access Microsoft Format Files
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.poi:poi-scratchpad
+  description: Apache POI - Java API To Access Microsoft Format Files
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.santuario:xmlsec
+  description: Apache XML Security for Java supports XML-Signature Syntax and Processing
+  version: 4.0.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.apache.xbean:xbean-spring
+  description: Xbean-spring provides a schema-driven proprietary namespace handler
+    for spring contexts
+  version: '4.24'
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+- name: org.apache.xmlbeans:xmlbeans
+  description: XmlBeans main jar
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.external.esv/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-02 07:02:29.000000000 Z
+- name: org.aspectj:aspectjweaver
+  description: The AspectJ weaver introduces advices to java classes
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.bouncycastle:bcpkix-jdk15on
+  description: The Bouncy Castle Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP,
+    and certificate generation
+  license: LAL-1.3
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.bouncycastle:bcprov-jdk15on
+  description: The Bouncy Castle Crypto package is a Java implementation of cryptographic
+    algorithms
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.checkerframework:checker-qual
+  description: Checker Qual is the set of annotations
+  version: 3.41.0
+  license: GPL-3.0-only,GPL-2.0-with-classpath-exception,MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+- name: org.codehaus.jackson:jackson-core-asl
+  description: Jackson is a high-performance JSON processor
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-06-20 12:03:23.000000000 Z
+- name: org.codehaus.plexus:plexus-utils
+  description: A collection of various utility classes to ease working with strings
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.databene:contiperf
+  description: ContiPerf is an open source testing utility that enables the user to
+    easily convert JUnit 4 test cases into performance tests
+  license: LGPL-2.1+,Apache-2.0,EPL-2.0,BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.eclipse.jetty.http2:http2-server
+  description: The Eclipse Jetty Project
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.eclipse.jetty:jetty-annotations
+  description: Annotation support for deploying servlets in jetty
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.eclipse.jetty:jetty-jmx
+  description: JMX management artifact for jetty
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.eclipse.jetty:jetty-plus
+  description: Jetty JavaEE style services
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.eclipse.jetty:jetty-servlet
+  description: Jetty Servlet Container
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.eclipse.jetty:jetty-servlets
+  description: Utility Servlets from Jetty
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.eclipse.jetty:jetty-webapp
+  description: Jetty web application support
+  license: Apache-2.0,EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.ehcache:ehcache
+  description: Ehcache single jar, containing all modules
+  version: 3.10.8
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate.common:hibernate-commons-annotations
+  description: Common reflection code used in support of annotation processing
+  license: LGPL-2.1+
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate.validator:hibernate-validator
+  description: Hibernate's Bean Validation
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.api/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: org.hibernate:hibernate-core
+  description: Hibernate's core ORM functionality
+  license: LGPL-2.0-only,GPL-3.0-or-later
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: model.internal.application.user.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate:hibernate-entitymanager
+  description: ''
+  license: LGPL-2.0-only,GPL-3.0-or-later
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate:hibernate-java8
+  description: Mainly support for Java8 Date/Time
+  license: LGPL-2.1+
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate:hibernate-jcache
+  description: Integration for javax.cache into Hibernate as a second-level caching
+    service
+  license: LGPL-2.0-only,GPL-3.0-or-later
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.hibernate:hibernate-jpamodelgen
+  description: Annotation Processor to generate JPA 2 static metamodel classes
+  license: LGPL-2.0-only,GPL-3.0-or-later
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-jpa2-pom/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-01 15:27:40.000000000 Z
+- name: org.javassist:javassist
+  description: Javassist
+  license: LGPL-2.1,Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: org.javers:javers-core
+  description: JaVers - object auditing and diff framework for Java
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: model.internal.application.user.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-12-08 11:05:24.000000000 Z
+- name: org.jboss.logging:jboss-logging
+  description: The JBoss Logging Framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: org.jboss.logmanager:jboss-logmanager
+  description: An implementation of java.util.logging.LogManager
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+- name: org.jboss.narayana.jts:narayana-jts-integration
+  description: 'Narayana: ArjunaJTS integration'
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec
+  description: The Java Transaction 1.2 API classes
+  license: CDDL-1.1,GPL-2.0-with-classpath-exception
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-09-06 09:37:15.000000000 Z
+- name: org.jboss:jandex
+  description: Parent POM for JBoss projects
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: James Pether Sörling
+  last_updated_on: 2023-09-22 14:57:59.000000000 Z
+- name: org.jboss:jboss-transaction-spi
+  description: The Java Transaction 7.0.0 SPI classes
+  license: Unlicense
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.jdom:jdom2
+  description: A complete
+  version: 2.0.6
+  license: zlib-acknowledgement
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.external.common/pom.xml
+  detection_source: service.external.common/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2018-02-20 22:58:14.000000000 Z
+- name: org.json:json
+  description: JSON is a light-weight, language independent, data interchange format
+  license: JSON
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-06-20 12:03:23.000000000 Z
+- name: org.jsoup:jsoup
+  description: Jsoup is a Java library for working with real-world HTML
+  version: 1.17.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-06-20 12:03:23.000000000 Z
+- name: org.junit.jupiter:junit-jupiter-engine
+  description: Module "junit-jupiter-engine" of JUnit 5
+  version: 5.10.1
+  license: EPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.junit.platform:junit-platform-launcher
+  description: Module "junit-platform-launcher" of JUnit 5
+  version: 1.10.1
+  license: EPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.junit.vintage:junit-vintage-engine
+  description: Module "junit-vintage-engine" of JUnit 5
+  version: 5.10.1
+  license: EPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.jvnet.hyperjaxb3:hyperjaxb3-ejb-runtime
+  description: Hyperjaxb3 provides relational persistence for JAXB objects
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: org.jvnet.jaxb2_commons:jaxb2-basics-runtime
+  description: Useful plugins and tools for JAXB2
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-external-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2022-01-12 20:50:53.000000000 Z
+- name: org.liquibase:liquibase-core
+  description: Liquibase is a tool for managing and executing database changes
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.mockito:mockito-core
+  description: Mockito mock objects library core API and implementation
+  version: 5.8.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.ow2.asm:asm
+  description: ASM
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 21:49:23.000000000 Z
+- name: org.ow2.asm:asm-commons
+  description: Usefull class adapters based on ASM
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.ow2.asm:asm-tree
+  description: Tree API of ASM
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.ow2.asm:asm-util
+  description: Utilities for ASM
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: web-widgets/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 21:49:23.000000000 Z
+- name: org.picocontainer:picocontainer
+  version: '2.15'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.postgresql:postgresql
+  description: The PostgreSQL Driver JDBC4
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.quartz-scheduler:quartz
+  description: Enterprise Job Scheduler
+  version: 2.3.2
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
+  detection_source: service.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-06-20 12:03:23.000000000 Z
+- name: org.reflections:reflections
+  description: Reflections - a Java runtime metadata analysis
+  version: 0.10.2
+  license: WTFPL
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.seleniumhq.selenium:htmlunit-driver
+  description: WebDriver compatible driver for HtmlUnit headless browser
+  version: 4.13.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.seleniumhq.selenium:selenium-java
+  description: Selenium automates browsers
+  version: 4.16.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.seleniumhq.selenium:selenium-remote-driver
+  description: A browser automation framework and ecosystem
+  version: 4.16.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.seleniumhq.selenium:selenium-support
+  description: Selenium automates browsers
+  version: 4.16.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-07 08:06:25.000000000 Z
+- name: org.slf4j:jcl-over-slf4j
+  description: JCL 1.2 implemented over SLF4J
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+- name: org.slf4j:jul-to-slf4j
+  description: JUL to SLF4J bridge
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.slf4j:log4j-over-slf4j
+  description: Log4j implemented over SLF4J
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.slf4j:slf4j-api
+  description: The slf4j API
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: model.common.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-01-21 00:24:22.000000000 Z
+- name: org.springframework.data:spring-data-commons
+  description: Global parent pom.xml to be used by Spring Data modules
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.springframework.data:spring-data-jpa
+  description: Spring Data module for JPA repositories
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.springframework.security:spring-security-config
+  description: Spring-security-config
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.component.agent.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: org.springframework.security:spring-security-taglibs
+  description: Spring-security-taglibs
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.springframework.security:spring-security-web
+  description: Spring-security-web
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.springframework:spring-aop
+  description: Spring AOP
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.springframework:spring-aspects
+  description: Spring Aspects
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.springframework:spring-context
+  description: Spring Context
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: parent-model-jpa2-pom/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: org.springframework:spring-context-support
+  description: Spring Context Support
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.springframework:spring-expression
+  description: Spring Expression Language
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-12-08 11:05:24.000000000 Z
+- name: org.springframework:spring-jdbc
+  description: Spring JDBC
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: org.springframework:spring-jms
+  description: Spring JMS
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: jms-broker/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-07-31 13:19:13.000000000 Z
+- name: org.springframework:spring-orm
+  description: Spring Object/Relational Mapping
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.component.agent.impl/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: org.springframework:spring-oxm
+  description: Spring Object/XML Marshalling
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: service.external.common/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: org.springframework:spring-test
+  description: Spring TestContext Framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-10-01 15:27:40.000000000 Z
+- name: org.springframework:spring-web
+  description: Spring Web
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.springframework:spring-webmvc
+  description: Spring Web MVC
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.webbitserver:webbit
+  description: A Java event based WebSocket and HTTP server
+  version: 0.4.15
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2023-05-09 20:43:44.000000000 Z
+- name: org.xmlunit:xmlunit-legacy
+  description: XMLUnit 1.x Compatibility Layer
+  version: 2.9.1
+  license: BSD-1-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
+  detection_source: testfoundation/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-12-14 23:29:26.000000000 Z
+- name: org.yaml:snakeyaml
+  description: YAML 1.1 parser and emitter for Java
+  version: '2.2'
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
+  detection_source: service.data.impl/pom.xml
+  last_updated_by: pethers
+  last_updated_on: 2022-12-26 16:19:09.000000000 Z
+- name: xerces:xercesImpl
+  description: Xerces2 is the next generation of high performance, fully compliant
+    XML parsers in the Apache Xerces family
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
+- name: xml-apis:xml-apis
+  description: Xml-commons provides an Apache-hosted set of DOM, SAX, and JAXP interfaces
+    for use in other xml-based projects
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source: citizen-intelligence-agency/pom.xml
+  last_updated_by: pether.sorling@gmail.com
+  last_updated_on: 2021-04-20 19:49:06.000000000 Z
 - name: jasmine-core
   description: Official packaging of Jasmine's core files for use by Node.js projects
   package_url: https://www.npmjs.com/jasmine-core
@@ -443,7 +2517,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15905/default_3af1504b6f77c55205ba630fe08c472f43b95f6e.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-08-25 10:05:10.000000000 Z
@@ -457,7 +2531,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15860/default_6743ba96cf149a3c3c68a185199f9705d6eff80e.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
@@ -471,7 +2545,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15951/default_b45165a5d30e541ab11711a34a78209b3e8ed7fd.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
@@ -485,7 +2559,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15886/default_7c39a83d4acd952df89b1ebfdb94c8646324fbf1.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-08-25 10:05:10.000000000 Z
@@ -499,7 +2573,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16695/default_4b738bf1758d38dddd276589bbea47fca5a990df.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
@@ -513,7 +2587,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15962/default_732016a20524708efe7a4c77497fe9bfeea19ba6.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
@@ -527,7 +2601,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16254/default_dc80ff0a17bac19253430a4f0f586714841116db.png
-  detection_source_url: web-widgets/package-lock.json
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package-lock.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-06-23 10:12:13.000000000 Z
