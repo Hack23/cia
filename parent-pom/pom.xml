@@ -200,6 +200,16 @@
         <version>74.2</version>
       </dependency>
       <dependency>
+        <groupId>com.squareup.okio</groupId>
+        <artifactId>okio</artifactId>
+        <version>3.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-core</artifactId>
+        <version>3.6.1</version>
+      </dependency>
+      <dependency>
         <groupId>com.sun.istack</groupId>
         <artifactId>istack-commons-runtime</artifactId>
         <version>${cia.project.versions.istack}</version>
@@ -657,7 +667,7 @@
       <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
-        <version>4.25.0</version>
+        <version>4.25.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
