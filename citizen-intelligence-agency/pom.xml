@@ -514,7 +514,6 @@
     <dependency>
       <groupId>com.squareup.okio</groupId>
       <artifactId>okio</artifactId>
-      <version>3.6.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -634,7 +633,6 @@
     <dependency>
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-core</artifactId>
-      <version>3.6.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
