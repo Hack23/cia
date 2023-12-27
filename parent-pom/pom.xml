@@ -90,7 +90,7 @@
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.625</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.21</cia.project.versions.aspectj>
-    <cia.project.versions.javassist>3.30.1-GA</cia.project.versions.javassist>
+    <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.3.6</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>9.6</cia.project.versions.asm>
