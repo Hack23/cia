@@ -49,6 +49,7 @@ jobs:
           archive.apache.org:443
           azure.archive.ubuntu.com:80
           azure.archive.ubuntu.com:443
+          security.ubuntu.com:80
           security.ubuntu.com:443
           github.com:443
           maven.java.net:443
