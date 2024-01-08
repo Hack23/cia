@@ -48,6 +48,9 @@ jobs:
           api.github.com:443
           archive.apache.org:443
           azure.archive.ubuntu.com:80
+          azure.archive.ubuntu.com:443
+          security.ubuntu.com:80
+          security.ubuntu.com:443
           github.com:443
           maven.java.net:443
           maven.vaadin.com:443
@@ -114,8 +117,11 @@ jobs:
       uses: actions/setup-java@387ac29b308b003ca37ba93a6cab5eb57c8f5f93 # v4.0.0
       with:
         distribution: 'temurin'
-        java-version: '21-ea'
+        java-version: '21'
         cache: 'maven'
+
+    - name: APT update
+      run: sudo apt-get update
 
     - name: Install buildtools
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
