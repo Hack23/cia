@@ -1,11 +1,12 @@
 repo_name: Hack23/cia
-report_id: ece57d4c1746a68aa79501262798b6db
+report_id: 456b6812aeb16e672b4e2e27295b7be4
+version: 0.1
 repo_type: Public
-timestamp: '2023-12-14T09:39:41+00:00'
+timestamp: '2024-01-11T12:24:04+00:00'
 requested_by: pethers
 provider: github
 branch: master
-detected_tools_count: 221
+detected_tools_count: 219
 tools:
 - name: CSS 3
   description: The latest evolution of the Cascading Style Sheets language
@@ -15,6 +16,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: Java
   description: A concurrent, class-based, object-oriented, language specifically designed
@@ -25,6 +27,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: JavaScript
   description: Lightweight, interpreted, object-oriented language with first-class
@@ -35,6 +38,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: Python
   description: A clear and powerful object-oriented programming language, comparable
@@ -45,6 +49,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: SQL
   description: It is a domain-specific language used in programming
@@ -54,6 +59,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/2271/default_068d33483bba6b81ee13fbd4dc7aab9780896a54.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/src/main/resources/clean-documentstatus.sql
   detection_source: service.data.impl/src/main/resources/clean-documentstatus.sql
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-11-08 20:54:45.000000000 Z
@@ -65,6 +71,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Java Tools
   image_url: https://img.stackshare.io/service/5807/default_cbd8ab670309059d7e315252d307d409aa40d793.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-12-07 08:06:25.000000000 Z
@@ -76,6 +83,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Serialization Frameworks
   image_url: https://img.stackshare.io/service/4393/ma2jqJKH_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
   detection_source: service.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 21:40:41.000000000 Z
@@ -87,6 +95,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/2971/UuHV6j99_400x400.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -99,6 +108,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Java Tools
   image_url: https://img.stackshare.io/service/2970/wBjKn0ol.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 12:01:57.000000000 Z
@@ -124,6 +134,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/3105/h2-logo_square_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -135,6 +146,7 @@ tools:
   category: Data Stores
   sub_category: Object Relational Mapper (ORM)
   image_url: https://img.stackshare.io/service/1756/1uNl_IZX.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-10-01 15:27:40.000000000 Z
@@ -147,6 +159,7 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/1398/y1As8_s5_400x400.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -158,6 +171,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1028/ASOhU5xJ.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -171,20 +185,10 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/7624/IG6D4Ro2_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
-- name: pgvector
-  description: Open-source vector similarity search for Postgres
-  website_url: https://github.com/pgvector/pgvector/
-  open_source: false
-  hosted_saas: false
-  category: Data Stores
-  sub_category: Database Tools
-  image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
-  detection_source: LICENSE.txt
-  last_updated_by: pether.sorling@gmail.com
-  last_updated_on: 2016-09-06 16:59:18.000000000 Z
 - name: Chai
   description: A BDD / TDD assertion library
   website_url: http://chaijs.com/
@@ -208,6 +212,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: Eclipse
   description: IDE for Java EE Developers
@@ -217,6 +222,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Integrated Development Environment
   image_url: https://img.stackshare.io/service/1446/8cyY6D_m.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -228,6 +234,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: GitHub Actions
   description: Automate your workflow from idea to production
@@ -237,9 +244,10 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/.github/workflows/codeql-analysis.yml
   detection_source: ".github/workflows/codeql-analysis.yml"
   last_updated_by: dependabot[bot]
-  last_updated_on: 2023-12-14 02:31:47.000000000 Z
+  last_updated_on: 2024-01-11 09:34:42.000000000 Z
 - name: JBoss
   description: An open source Java EE-based application server
   website_url: https://developers.redhat.com/products/eap
@@ -248,6 +256,7 @@ tools:
   category: Application Hosting
   sub_category: Web Servers
   image_url: https://img.stackshare.io/service/2188/unnamed.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -260,6 +269,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Testing Frameworks
   image_url: https://img.stackshare.io/service/2020/874086.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -271,6 +281,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Javascript Testing Framework
   image_url: https://img.stackshare.io/service/831/7c0b595409af531b9cdeb07f8c513e8b.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package.json
   detection_source: web-widgets/package.json
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-08-25 10:05:10.000000000 Z
@@ -297,6 +308,7 @@ tools:
   category: Monitoring
   sub_category: Logging Tools
   image_url: https://img.stackshare.io/service/2804/Coralogix-log4j-integration.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -308,6 +320,7 @@ tools:
   category: Monitoring
   sub_category: Log Management
   image_url: https://img.stackshare.io/service/2923/05518ecaa42841e834421e9d6987b04f_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/src/main/resources/logback.xml
   detection_source: citizen-intelligence-agency/src/main/resources/logback.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-01-13 19:10:00.000000000 Z
@@ -348,6 +361,7 @@ tools:
   category: Monitoring
   sub_category: Log Management
   image_url: https://img.stackshare.io/service/2805/05518ecaa42841e834421e9d6987b04f_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -373,6 +387,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/5326/6p1SNAJu.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/.snyk
   detection_source: web-widgets/.snyk
   last_updated_by: snyk-test
   last_updated_on: 2019-07-04 06:29:05.000000000 Z
@@ -385,6 +400,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/.travis.yml
   detection_source: ".travis.yml"
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-06-20 22:01:24.000000000 Z
@@ -396,6 +412,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/package.json
   detection_source: web-widgets/package.json
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2018-10-30 18:07:53.000000000 Z
@@ -408,6 +425,7 @@ tools:
   category: Application Hosting
   sub_category: Platform as a Service
   image_url: https://img.stackshare.io/service/3276/xWt1RFo6_400x400.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/src/main/resources/application.properties
   detection_source: citizen-intelligence-agency/src/main/resources/application.properties
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -420,20 +438,10 @@ tools:
   category: Analytics
   sub_category: Business Intelligence
   image_url: https://img.stackshare.io/service/11236/Group_22__3_.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
-- name: LangChain
-  description: Build AI apps with LLMs through composability
-  website_url: https://github.com/hwchase17/langchain
-  open_source: true
-  hosted_saas: false
-  category: Communications
-  sub_category: Large Language Model Tools
-  image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
-  detection_source: LICENSE.txt
-  last_updated_by: pether.sorling@gmail.com
-  last_updated_on: 2016-09-06 16:59:18.000000000 Z
 - name: Shell
   description: A shell is a text-based terminal, used for manipulating programs and
     files. Shell scripts typically manage program execution.
@@ -443,6 +451,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/Hack23/cia
   detection_source: Repo Metadata
 - name: Ubuntu
   description: The leading OS for PC, tablet, phone and cloud
@@ -452,6 +461,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Operating Systems
   image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
+  detection_source_url: https://github.com/Hack23/cia/blob/master/cia-dist-docker/src/main/docker/Dockerfile
   detection_source: cia-dist-docker/src/main/docker/Dockerfile
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-10-13 09:41:26.000000000 Z
@@ -463,6 +473,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2020-05-12 19:26:57.000000000 Z
@@ -474,6 +485,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -485,6 +497,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -497,6 +510,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -509,6 +523,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -521,6 +536,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -545,6 +561,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
   detection_source: service.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 21:40:41.000000000 Z
@@ -557,6 +574,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-07-08 11:07:23.000000000 Z
@@ -568,6 +586,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -579,13 +598,14 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
 - name: com.fasterxml:classmate
   description: Library for introspecting types with full generic information including
     resolving of field and method types
-  version: 1.6.0
+  version: 1.7.0
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -625,7 +645,7 @@ tools:
 - name: com.google.errorprone:error_prone_annotations
   description: Sonatype helps open source projects to set up Maven repositories on
     https://oss.sonatype.org/
-  version: 2.23.0
+  version: 2.24.1
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -645,6 +665,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-08 18:05:19.000000000 Z
@@ -655,6 +676,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -677,6 +699,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -693,7 +716,7 @@ tools:
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
 - name: com.google.protobuf:protobuf-java
   description: Core Protocol Buffers library
-  version: 3.25.1
+  version: 3.25.2
   license: BSD-1-Clause
   open_source: true
   hosted_saas: false
@@ -712,6 +735,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -723,6 +747,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -734,6 +759,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -752,7 +778,6 @@ tools:
   last_updated_on: 2021-07-31 12:56:55.000000000 Z
 - name: com.squareup.okio:okio
   description: A modern I/O API for Java
-  version: 3.6.0
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -784,6 +809,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-07-08 11:07:23.000000000 Z
@@ -795,6 +821,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -806,6 +833,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -817,6 +845,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -828,6 +857,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -839,6 +869,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -863,6 +894,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-06-23 14:53:16.000000000 Z
@@ -874,6 +906,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-20 09:52:54.000000000 Z
@@ -898,6 +931,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-02 07:02:29.000000000 Z
@@ -910,6 +944,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 12:56:55.000000000 Z
@@ -921,6 +956,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-11-07 00:15:44.000000000 Z
@@ -932,6 +968,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -944,12 +981,13 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
   detection_source: service.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-09-25 20:04:04.000000000 Z
 - name: io.github.bonigarcia:webdrivermanager
   description: Automatic Selenium WebDriver binaries management in runtime for Java
-  version: 5.6.2
+  version: 5.6.3
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -975,7 +1013,7 @@ tools:
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
 - name: io.grpc:grpc-context
   description: 'GRPC: Context'
-  version: 1.60.0
+  version: 1.60.1
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -994,6 +1032,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-10 13:38:15.000000000 Z
@@ -1006,6 +1045,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-10 13:38:15.000000000 Z
@@ -1017,6 +1057,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-10 13:38:15.000000000 Z
@@ -1028,6 +1069,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-10 13:38:15.000000000 Z
@@ -1039,6 +1081,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-10 13:38:15.000000000 Z
@@ -1050,6 +1093,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1062,12 +1106,12 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-09-06 09:37:15.000000000 Z
 - name: io.projectreactor:reactor-core
   description: Non-Blocking Reactive Foundation for the JVM
-  version: 3.6.0
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -1086,6 +1130,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-11-07 00:15:44.000000000 Z
@@ -1136,6 +1181,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-12-07 08:06:25.000000000 Z
@@ -1173,6 +1219,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-10-13 19:55:17.000000000 Z
@@ -1184,6 +1231,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-10-13 19:55:17.000000000 Z
@@ -1207,6 +1255,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.component.agent.impl/pom.xml
   detection_source: service.component.agent.impl/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -1218,6 +1267,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether
   last_updated_on: 2015-08-01 13:49:48.000000000 Z
@@ -1229,6 +1279,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -1241,12 +1292,13 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
 - name: net.java.dev.jna:jna-platform
   description: Java Native Access Platform
-  version: 5.13.0
+  version: 5.14.0
   license: Apache-2.0
   open_source: true
   hosted_saas: false
@@ -1311,6 +1363,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-14 23:29:26.000000000 Z
@@ -1337,6 +1390,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1386,6 +1440,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/model.common.impl/pom.xml
   detection_source: model.common.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-10-08 17:38:51.000000000 Z
@@ -1410,6 +1465,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1421,6 +1477,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.external.common/pom.xml
   detection_source: service.external.common/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2020-11-30 11:19:55.000000000 Z
@@ -1432,6 +1489,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-14 23:29:26.000000000 Z
@@ -1456,6 +1514,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-14 23:29:26.000000000 Z
@@ -1467,6 +1526,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1478,6 +1538,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1489,6 +1550,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1500,6 +1562,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1511,6 +1574,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1522,6 +1586,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1534,6 +1599,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1545,6 +1611,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1556,6 +1623,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1567,6 +1635,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1605,6 +1674,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.external.esv/pom.xml
   detection_source: service.external.esv/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-02 07:02:29.000000000 Z
@@ -1616,6 +1686,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1628,6 +1699,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1640,12 +1712,13 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
 - name: org.checkerframework:checker-qual
   description: Checker Qual is the set of annotations
-  version: 3.41.0
+  version: 3.42.0
   license: GPL-3.0-only,GPL-2.0-with-classpath-exception,MIT
   open_source: true
   hosted_saas: false
@@ -1664,6 +1737,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
   detection_source: service.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-06-20 12:03:23.000000000 Z
@@ -1675,6 +1749,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-14 23:29:26.000000000 Z
@@ -1687,6 +1762,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-12-14 23:29:26.000000000 Z
@@ -1698,6 +1774,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1709,6 +1786,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-12-07 08:06:25.000000000 Z
@@ -1720,6 +1798,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1731,6 +1810,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1742,6 +1822,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1753,6 +1834,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1764,6 +1846,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -1788,6 +1871,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1799,6 +1883,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.api/pom.xml
   detection_source: service.api/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -1810,6 +1895,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/model.internal.application.user.impl/pom.xml
   detection_source: model.internal.application.user.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1821,6 +1907,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1832,6 +1919,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1844,6 +1932,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1855,6 +1944,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-jpa2-pom/pom.xml
   detection_source: parent-model-jpa2-pom/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-10-01 15:27:40.000000000 Z
@@ -1866,6 +1956,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -1877,6 +1968,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/model.internal.application.user.impl/pom.xml
   detection_source: model.internal.application.user.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-12-08 11:05:24.000000000 Z
@@ -1888,6 +1980,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -1899,6 +1992,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 13:19:13.000000000 Z
@@ -1910,6 +2004,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1921,6 +2016,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-09-06 09:37:15.000000000 Z
@@ -1932,6 +2028,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: James Pether Sörling
   last_updated_on: 2023-09-22 14:57:59.000000000 Z
@@ -1943,6 +2040,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -1967,12 +2065,13 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.impl/pom.xml
   detection_source: service.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-06-20 12:03:23.000000000 Z
 - name: org.jsoup:jsoup
   description: Jsoup is a Java library for working with real-world HTML
-  version: 1.17.1
+  version: 1.17.2
   license: MIT
   open_source: true
   hosted_saas: false
@@ -2030,6 +2129,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -2041,6 +2141,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-external-pom/pom.xml
   detection_source: parent-model-external-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2022-01-12 20:50:53.000000000 Z
@@ -2052,6 +2153,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2076,6 +2178,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 21:49:23.000000000 Z
@@ -2087,6 +2190,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2098,6 +2202,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2109,6 +2214,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/web-widgets/pom.xml
   detection_source: web-widgets/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 21:49:23.000000000 Z
@@ -2132,6 +2238,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2221,6 +2328,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 13:19:13.000000000 Z
@@ -2232,6 +2340,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2243,6 +2352,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2254,6 +2364,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/model.common.impl/pom.xml
   detection_source: model.common.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-01-21 00:24:22.000000000 Z
@@ -2265,6 +2376,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2276,6 +2388,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2287,6 +2400,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.component.agent.impl/pom.xml
   detection_source: service.component.agent.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -2298,6 +2412,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2309,6 +2424,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2320,6 +2436,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2331,6 +2448,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2342,6 +2460,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/parent-model-jpa2-pom/pom.xml
   detection_source: parent-model-jpa2-pom/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -2353,6 +2472,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2364,9 +2484,10 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
-  last_updated_by: pethers
-  last_updated_on: 2023-12-08 11:05:24.000000000 Z
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2024-01-03 09:51:14.000000000 Z
 - name: org.springframework:spring-jdbc
   description: Spring JDBC
   license: Apache-2.0
@@ -2375,6 +2496,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.data.impl/pom.xml
   detection_source: service.data.impl/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-12-26 16:19:09.000000000 Z
@@ -2386,6 +2508,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/jms-broker/pom.xml
   detection_source: jms-broker/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-07-31 13:19:13.000000000 Z
@@ -2397,6 +2520,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.component.agent.impl/pom.xml
   detection_source: service.component.agent.impl/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -2408,6 +2532,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/service.external.common/pom.xml
   detection_source: service.external.common/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -2419,6 +2544,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/testfoundation/pom.xml
   detection_source: testfoundation/pom.xml
   last_updated_by: pethers
   last_updated_on: 2022-10-01 15:27:40.000000000 Z
@@ -2430,6 +2556,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2441,6 +2568,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pethers
   last_updated_on: 2023-05-09 20:43:44.000000000 Z
@@ -2492,6 +2620,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z
@@ -2504,6 +2633,7 @@ tools:
   category: Libraries
   sub_category: Maven Packages
   image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/pom.xml
   detection_source: citizen-intelligence-agency/pom.xml
   last_updated_by: pether.sorling@gmail.com
   last_updated_on: 2021-04-20 19:49:06.000000000 Z

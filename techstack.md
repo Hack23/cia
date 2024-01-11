@@ -35,8 +35,6 @@ Hack23/cia is built on the following main stack:
 - [Spring Data](https://spring.io/projects/spring-data) – Database Tools
 - [Dataform](https://dataform.co/) – Business Intelligence
 - [GitHub Actions](https://github.com/features/actions) – Continuous Integration
-- [LangChain](https://github.com/hwchase17/langchain) – Large Language Model Tools
-- [pgvector](https://github.com/pgvector/pgvector/) – Database Tools
 - [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 - [Travis CI](http://travis-ci.com/) – Continuous Integration
 
@@ -80,8 +78,6 @@ Hack23/cia is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/7624/IG6D4Ro2_400x400.png' alt='Spring Data'/> [Spring Data](https://spring.io/projects/spring-data) – Database Tools
 - <img width='25' height='25' src='https://img.stackshare.io/service/11236/Group_22__3_.png' alt='Dataform'/> [Dataform](https://dataform.co/) – Business Intelligence
 - <img width='25' height='25' src='https://img.stackshare.io/service/11563/actions.png' alt='GitHub Actions'/> [GitHub Actions](https://github.com/features/actions) – Continuous Integration
-- <img width='25' height='25' src='https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg' alt='LangChain'/> [LangChain](https://github.com/hwchase17/langchain) – Large Language Model Tools
-- <img width='25' height='25' src='https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png' alt='pgvector'/> [pgvector](https://github.com/pgvector/pgvector/) – Database Tools
 - <img width='25' height='25' src='https://img.stackshare.io/service/586/n4u37v9t_400x400.png' alt='Docker'/> [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 - <img width='25' height='25' src='https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png' alt='Travis CI'/> [Travis CI](http://travis-ci.com/) – Continuous Integration
 
@@ -94,7 +90,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [Hack23/cia](https://github.com/Hack23/cia)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|221<br/>Tools used|12/14/23 <br/>Report generated|
+|219<br/>Tools used|01/11/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -180,7 +176,7 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-## <img src='https://img.stackshare.io/databases.svg'/> Data (7)
+## <img src='https://img.stackshare.io/databases.svg'/> Data (6)
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/3093/EhcacheTwitterIcon.png' alt='Ehcache'>
@@ -226,14 +222,6 @@ Full tech stack [here](/techstack.md)
   <img width='36' height='36' src='https://img.stackshare.io/service/7624/IG6D4Ro2_400x400.png' alt='Spring Data'>
   <br>
   <sub><a href="https://spring.io/projects/spring-data">Spring Data</a></sub>
-  <br>
-  <sub></sub>
-</td>
-
-<td align='center'>
-  <img width='36' height='36' src='https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png' alt='pgvector'>
-  <br>
-  <sub><a href="https://github.com/pgvector/pgvector/">pgvector</a></sub>
   <br>
   <sub></sub>
 </td>
@@ -420,17 +408,9 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-## Other (3)
+## Other (2)
 <table><tr>
   <td align='center'>
-  <img width='36' height='36' src='https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg' alt='LangChain'>
-  <br>
-  <sub><a href="https://github.com/hwchase17/langchain">LangChain</a></sub>
-  <br>
-  <sub></sub>
-</td>
-
-<td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png' alt='Shell'>
   <br>
   <sub><a href="https://en.wikipedia.org/wiki/Shell_script">Shell</a></sub>
@@ -467,21 +447,21 @@ Full tech stack [here](/techstack.md)
 |[com.fasterxml.jackson.core:jackson-databind](http://github.com/FasterXML/jackson)|N/A|07/08/23|pethers |Apache-2.0|N/A|
 |[com.fasterxml.jackson.dataformat:jackson-dataformat-cbor](http://github.com/FasterXML/jackson-dataformats-binary)|N/A|09/20/23|James Pether Sörling |Apache-2.0|N/A|
 |[com.fasterxml.jackson.datatype:jackson-datatype-jdk8]()|N/A|06/23/22|pethers |Apache-2.0|N/A|
-|[com.fasterxml:classmate](http://github.com/FasterXML/java-classmate)|v1.6.0|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
+|[com.fasterxml:classmate](http://github.com/FasterXML/java-classmate)|v1.7.0|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[com.github.stefanbirkner:system-rules](http://stefanbirkner.github.com/system-rules/)|v1.19.0|10/08/22|pethers |CPL-1.0|N/A|
 |[com.google.code.gson:gson](https://github.com/google/gson)|v2.10.1|09/20/23|James Pether Sörling |Apache-2.0|N/A|
-|[com.google.errorprone:error_prone_annotations](http://nexus.sonatype.org/oss-repository-hosting.html)|v2.23.0|09/06/23|pethers |Apache-2.0|N/A|
+|[com.google.errorprone:error_prone_annotations](http://nexus.sonatype.org/oss-repository-hosting.html)|v2.24.1|09/06/23|pethers |Apache-2.0|N/A|
 |[com.google.guava:guava](https://github.com/google/guava)|N/A|06/08/22|pethers |Apache-2.0|N/A|
 |[com.google.gwt:gwt-dev]()|N/A|09/20/23|James Pether Sörling |Unicode-TOU|N/A|
 |[com.google.gwt:gwt-elemental]()|v2.9.0|09/20/23|James Pether Sörling |Unicode-TOU|N/A|
 |[com.google.gwt:gwt-user]()|N/A|09/20/23|James Pether Sörling |Unicode-TOU|N/A|
 |[com.google.jsinterop:jsinterop-annotations]()|v2.0.0|12/26/22|pethers |N/A|N/A|
-|[com.google.protobuf:protobuf-java](https://developers.google.com/protocol-buffers/)|v3.25.1|05/15/23|pethers |BSD-1-Clause|N/A|
+|[com.google.protobuf:protobuf-java](https://developers.google.com/protocol-buffers/)|v3.25.2|05/15/23|pethers |BSD-1-Clause|N/A|
 |[com.h2database:h2](http://www.h2database.com)|N/A|04/20/21|pether.sorling@gmail.com |MIT-feh|N/A|
 |[com.hack23.cia:testfoundation](github:https://hack23.github.io/cia/testfoundation/)|N/A|09/20/23|James Pether Sörling |Apache-2.0|N/A|
 |[com.ibm.icu:icu4j](http://icu-project.org/)|N/A|09/20/23|James Pether Sörling |Unicode-TOU,ICU|N/A|
 |[com.openpojo:openpojo](http://openpojo.com/)|v0.9.1|07/31/21|pether.sorling@gmail.com |LGPL-3.0-only|N/A|
-|[com.squareup.okio:okio](https://github.com/square/okio/)|v3.6.0|09/20/23|James Pether Sörling |Apache-2.0|N/A|
+|[com.squareup.okio:okio](https://github.com/square/okio/)|N/A|09/20/23|James Pether Sörling |Apache-2.0|N/A|
 |[com.sun.mail:javax.mail](http://eclipse-ee4j.github.io/javamail)|v1.6.2|07/08/23|pethers |CNRI-Python-GPL-Compatible|N/A|
 |[com.sun.xml.bind:jaxb-xjc](http://jaxb.java.net/)|N/A|07/08/23|pethers |CDDL-1.1,CNRI-Python-GPL-Compatible|N/A|
 |[com.thoughtworks.xstream:xstream](http://x-stream.github.io)|N/A|09/20/23|James Pether Sörling |BSD-3-Clause|N/A|
@@ -498,9 +478,9 @@ Full tech stack [here](/techstack.md)
 |[commons-collections:commons-collections](http://commons.apache.org/collections/)|N/A|11/07/23|pethers |Apache-2.0|N/A|
 |[commons-io:commons-io](http://commons.apache.org/proper/commons-io/)|N/A|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[commons-net:commons-net](http://commons.apache.org/proper/commons-net/)|N/A|09/25/22|pethers |Apache-2.0|N/A|
-|[io.github.bonigarcia:webdrivermanager](https://github.com/bonigarcia/webdrivermanager)|v5.6.2|09/20/23|James Pether Sörling |Apache-2.0|N/A|
+|[io.github.bonigarcia:webdrivermanager](https://github.com/bonigarcia/webdrivermanager)|v5.6.3|09/20/23|James Pether Sörling |Apache-2.0|N/A|
 |[io.github.classgraph:classgraph](https://github.com/classgraph/classgraph)|v4.8.165|12/26/22|pethers |MIT|N/A|
-|[io.grpc:grpc-context](https://github.com/grpc/grpc-java)|v1.60.0|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
+|[io.grpc:grpc-context](https://github.com/grpc/grpc-java)|v1.60.1|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[io.netty:netty-buffer](http://netty.io/)|N/A|12/10/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[io.netty:netty-codec](https://netty.io/)|N/A|12/10/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[io.netty:netty-codec-http](http://netty.io/)|N/A|12/10/21|pether.sorling@gmail.com |Apache-2.0|N/A|
@@ -508,7 +488,7 @@ Full tech stack [here](/techstack.md)
 |[io.netty:netty-handler](http://netty.io/)|N/A|12/10/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[io.netty:netty-resolver](http://netty.io/)|N/A|12/26/22|pethers |Apache-2.0|N/A|
 |[io.netty:netty-transport](https://netty.io/)|N/A|09/06/23|pethers |Apache-2.0|N/A|
-|[io.projectreactor:reactor-core](https://github.com/reactor/reactor-core)|v3.6.0|12/07/23|dependabot[bot] |Apache-2.0|N/A|
+|[io.projectreactor:reactor-core](https://github.com/reactor/reactor-core)|N/A|12/07/23|dependabot[bot] |Apache-2.0|N/A|
 |[javax.activation:activation](http://java.sun.com/javase/technologies/desktop/javabeans/jaf/index.jsp)|N/A|11/07/23|pethers |CDDL-1.0|N/A|
 |[javax.annotation:javax.annotation-api](http://jcp.org/en/jsr/detail?id=250)|v1.3.2|10/08/22|pethers |GPL-2.0-with-classpath-exception|N/A|
 |[javax.cache:cache-api](https://github.com/jsr107/jsr107spec)|v1.1.1|10/13/21|pether.sorling@gmail.com |Apache-2.0|N/A|
@@ -523,7 +503,7 @@ Full tech stack [here](/techstack.md)
 |[junit:junit](http://junit.org)|N/A|08/01/15|pether |EPL-1.0|N/A|
 |[net.bytebuddy:byte-buddy](http://bytebuddy.net)|N/A|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[net.bytebuddy:byte-buddy-agent](https://bytebuddy.net)|N/A|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
-|[net.java.dev.jna:jna-platform](https://github.com/java-native-access/jna)|v5.13.0|06/08/22|pethers |Apache-2.0|N/A|
+|[net.java.dev.jna:jna-platform](https://github.com/java-native-access/jna)|v5.14.0|06/08/22|pethers |Apache-2.0|N/A|
 |[net.sourceforge.htmlunit:htmlunit](http://htmlunit.sourceforge.net)|v2.70.0|07/31/21|pether.sorling@gmail.com |Apache-2.0|[CVE-2023-26119](https://github.com/advisories/GHSA-3xrr-7m6p-p7xh) (Critical)|
 |[net.sourceforge.nekohtml:nekohtml](http://nekohtml.sourceforge.net/)|v1.9.22|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[org.antlr:antlr4-runtime](http://antlr.org)|v4.13.1|06/20/23|pethers |BSD-3-Clause|N/A|
@@ -556,7 +536,7 @@ Full tech stack [here](/techstack.md)
 |[org.aspectj:aspectjweaver](http://www.aspectj.org)|N/A|05/09/23|pethers |EPL-1.0|N/A|
 |[org.bouncycastle:bcpkix-jdk15on](http://www.bouncycastle.org/java.html)|N/A|05/09/23|pethers |LAL-1.3|N/A|
 |[org.bouncycastle:bcprov-jdk15on](http://www.bouncycastle.org/java.html)|N/A|05/09/23|pethers |MIT|N/A|
-|[org.checkerframework:checker-qual](http://checkerframework.org)|v3.41.0|07/31/21|pether.sorling@gmail.com |GPL-3.0-only,GPL-2.0-with-classpath-exception,MIT|N/A|
+|[org.checkerframework:checker-qual](http://checkerframework.org)|v3.42.0|07/31/21|pether.sorling@gmail.com |GPL-3.0-only,GPL-2.0-with-classpath-exception,MIT|N/A|
 |[org.codehaus.jackson:jackson-core-asl](http://jackson.codehaus.org)|N/A|06/20/23|pethers |Apache-2.0|N/A|
 |[org.codehaus.plexus:plexus-utils](http://codehaus-plexus.github.io/)|N/A|12/14/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[org.databene:contiperf](http://databene.org/contiperf)|N/A|12/14/21|pether.sorling@gmail.com |LGPL-2.1+,Apache-2.0,EPL-2.0,BSD-3-Clause|N/A|
@@ -585,7 +565,7 @@ Full tech stack [here](/techstack.md)
 |[org.jboss:jboss-transaction-spi](http://www.jboss.org)|N/A|12/26/22|pethers |Unlicense|N/A|
 |[org.jdom:jdom2](http://www.jdom.org)|v2.0.6|02/20/18|pether.sorling@gmail.com |zlib-acknowledgement|N/A|
 |[org.json:json](https://github.com/douglascrockford/JSON-java)|N/A|06/20/23|pethers |JSON|N/A|
-|[org.jsoup:jsoup](https://jsoup.org/)|v1.17.1|06/20/23|pethers |MIT|N/A|
+|[org.jsoup:jsoup](https://jsoup.org/)|v1.17.2|06/20/23|pethers |MIT|N/A|
 |[org.junit.jupiter:junit-jupiter-engine](https://junit.org/junit5/)|v5.10.1|12/14/21|pether.sorling@gmail.com |EPL-2.0|N/A|
 |[org.junit.platform:junit-platform-launcher](https://junit.org/junit5/)|v1.10.1|12/14/21|pether.sorling@gmail.com |EPL-2.0|N/A|
 |[org.junit.vintage:junit-vintage-engine](https://junit.org/junit5/)|v5.10.1|12/14/21|pether.sorling@gmail.com |EPL-2.0|N/A|
@@ -618,7 +598,7 @@ Full tech stack [here](/techstack.md)
 |[org.springframework:spring-aspects](https://github.com/spring-projects/spring-framework)|N/A|12/26/22|pethers |Apache-2.0|N/A|
 |[org.springframework:spring-context](https://github.com/spring-projects/spring-framework)|N/A|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[org.springframework:spring-context-support](https://github.com/spring-projects/spring-framework)|N/A|12/26/22|pethers |Apache-2.0|N/A|
-|[org.springframework:spring-expression](https://github.com/spring-projects/spring-framework)|N/A|12/08/23|pethers |Apache-2.0|N/A|
+|[org.springframework:spring-expression](https://github.com/spring-projects/spring-framework)|N/A|01/03/24|dependabot[bot] |Apache-2.0|N/A|
 |[org.springframework:spring-jdbc](https://github.com/spring-projects/spring-framework)|N/A|12/26/22|pethers |Apache-2.0|N/A|
 |[org.springframework:spring-jms](https://github.com/spring-projects/spring-framework)|N/A|07/31/21|pether.sorling@gmail.com |Apache-2.0|N/A|
 |[org.springframework:spring-orm](https://github.com/spring-projects/spring-framework)|N/A|04/20/21|pether.sorling@gmail.com |Apache-2.0|N/A|
