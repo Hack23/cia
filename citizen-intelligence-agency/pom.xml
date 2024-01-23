@@ -27,7 +27,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.selenium>4.16.1</cia.project.versions.selenium>
+    <cia.project.versions.selenium>4.17.0</cia.project.versions.selenium>
   </properties>
   <dependencyManagement>
     <dependencies>
