@@ -101,7 +101,7 @@
     <cia.project.versions.commons.text>1.11.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.16.0</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.70</cia.project.versions.bouncycastle>
-    <cia.project.versions.slf4j>2.0.11</cia.project.versions.slf4j>
+    <cia.project.versions.slf4j>2.0.12</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.4.14</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>9.44.0.Final</cia.project.versions.drools>
