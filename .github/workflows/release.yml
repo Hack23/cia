@@ -66,7 +66,7 @@ jobs:
       run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT
 
     - name: Create a GitHub release
-      uses: ncipollo/release-action@6c75be85e571768fa31b40abf38de58ba0397db5 # v1.13.0
+      uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1.14.0
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
