@@ -25,9 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.amazonaws.secretsmanager.caching.SecretCache;
-import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.AWSSecretsManagerException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * The Class SecretCredentialsManager.
@@ -105,7 +105,7 @@ public class SecretCredentialsManagerImpl implements SecretCredentialsManager {
 	 * @return the secret cache
 	 */
 	protected SecretCache getSecretCache() {
-		return new SecretCache(AWSSecretsManagerClientBuilder.standard().withRegion("eu-west-1"));
+		return new SecretCache(	);
 	}
 
 }

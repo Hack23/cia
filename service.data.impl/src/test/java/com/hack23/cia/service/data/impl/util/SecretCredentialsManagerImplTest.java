@@ -22,9 +22,10 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.amazonaws.secretsmanager.caching.SecretCache;
-import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
+
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 
 /**
  * The Class SecretCredentialsManagerImplTest.
@@ -61,7 +62,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 
 			@Override
 			protected SecretCache getSecretCache() {
-				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
+				return new SecretCache(Mockito.mock(SecretsManagerClient.class)) {
 
 					@Override
 					public String getSecretString(final String secretId) {
@@ -86,7 +87,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 
 			@Override
 			protected SecretCache getSecretCache() {
-				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
+				return new SecretCache(Mockito.mock(SecretsManagerClient.class)) {
 
 					@Override
 					public String getSecretString(final String secretId) {
@@ -109,7 +110,7 @@ public class SecretCredentialsManagerImplTest extends AbstractUnitTest {
 
 			@Override
 			protected SecretCache getSecretCache() {
-				return new SecretCache(Mockito.mock(AWSSecretsManager.class)) {
+				return new SecretCache(Mockito.mock(SecretsManagerClient.class)) {
 
 					@Override
 					public String getSecretString(final String secretId) {

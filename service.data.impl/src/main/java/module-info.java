@@ -32,10 +32,14 @@ open module com.hack23.cia.service.data.impl {
 	requires org.hibernate.search.mapper.pojo;
 	requires org.hibernate.search.mapper.orm;	
 	
-	requires com.fasterxml.jackson.databind;
+	requires com.fasterxml.jackson.databind;	
+	requires aws.secretsmanager.caching.java;
+	requires aws.secretsmanager.jdbc;
 	requires aws.java.sdk.secretsmanager;
 	requires aws.java.sdk.core;
-	requires aws.secretsmanager.caching.java;
+	
+	
+	
 	
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;
