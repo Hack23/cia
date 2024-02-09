@@ -106,7 +106,7 @@
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>9.44.0.Final</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.2.2.Final</cia.project.versions.hibernate.search>
-    <cia.project.versions.hibernate.lucene>8.11.2</cia.project.versions.hibernate.lucene>
+    <cia.project.versions.hibernate.lucene>8.11.3</cia.project.versions.hibernate.lucene>
     <cia.project.versions.hibernate>5.6.15.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.6.15.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.6.15.Final</cia.project.versions.hibernate.tools>
@@ -667,7 +667,7 @@
       <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
-        <version>4.25.1</version>
+        <version>4.26.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

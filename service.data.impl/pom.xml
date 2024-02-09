@@ -67,7 +67,7 @@
     <dependency>
       <groupId>com.amazonaws.secretsmanager</groupId>
       <artifactId>aws-secretsmanager-jdbc</artifactId>
-      <version>1.0.14</version>
+      <version>2.0.2</version>
       <exclusions>
         <exclusion>
           <groupId>com.amazonaws</groupId>
@@ -215,6 +215,10 @@
         <exclusion>
           <groupId>org.apache.lucene</groupId>
           <artifactId>lucene-facet</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-highlighter</artifactId>
         </exclusion>
         <exclusion>
           <groupId>org.apache.lucene</groupId>
