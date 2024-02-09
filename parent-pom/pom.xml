@@ -1196,7 +1196,7 @@
         <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
-          <version>4.25.1</version>
+          <version>4.26.0</version>
         </plugin>
         <plugin>
           <groupId>de.thetaphi</groupId>
