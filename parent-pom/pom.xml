@@ -202,7 +202,7 @@
       <dependency>
         <groupId>com.squareup.okio</groupId>
         <artifactId>okio</artifactId>
-        <version>3.7.0</version>
+        <version>3.8.0</version>
       </dependency>
       <dependency>
         <groupId>io.projectreactor</groupId>
