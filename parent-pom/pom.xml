@@ -141,7 +141,7 @@
     <cia.project.versions.jaxb.xjc.runtime>2.3.9</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.14.0</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
-    <cia.project.versions.jakarta.activation>2.1.0</cia.project.versions.jakarta.activation>
+    <cia.project.versions.jakarta.activation>2.1.3</cia.project.versions.jakarta.activation>
     <cia.project.versions.com.sun.activation>2.0.1</cia.project.versions.com.sun.activation>
     <cia.project.versions.activation>1.1.1</cia.project.versions.activation>
     <cia.project.versions.maven>3.8.4</cia.project.versions.maven>
