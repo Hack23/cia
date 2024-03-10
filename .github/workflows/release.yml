@@ -32,6 +32,9 @@ jobs:
         java-version: '21-ea'
         cache: 'maven'
 
+    - name: APT update
+      run: sudo apt-get update
+
     - name: Install buildtools
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
 
