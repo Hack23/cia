@@ -109,7 +109,7 @@
           <groupId>net.bytebuddy</groupId>
           <artifactId>byte-buddy</artifactId>
         </exclusion>
-      </exclusions>      
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.hibernate.search</groupId>
@@ -638,12 +638,12 @@
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
-      <artifactId>bcpkix-jdk15on</artifactId>
+      <artifactId>bcpkix-jdk18on</artifactId>
       <version>${cia.project.versions.bouncycastle}</version>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
+      <artifactId>bcprov-jdk18on</artifactId>
       <version>${cia.project.versions.bouncycastle}</version>
     </dependency>
     <dependency>
