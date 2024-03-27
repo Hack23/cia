@@ -679,16 +679,6 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-      <id>javanet</id>
-      <url>https://maven.java.net/content/repositories/public/</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
       <id>vaadin.addons</id>
       <url>https://maven.vaadin.com/vaadin-addons/</url>
     </repository>
