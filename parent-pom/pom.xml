@@ -160,7 +160,7 @@
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
     <cia.project.versions.vaadin.cssparser>0.9.30</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
-    <jacoco.version>0.8.11</jacoco.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <compiler.plugin.version>3.13.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.2.0</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.2.5</surefire.version>
@@ -1904,7 +1904,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.11</version>
+            <version>0.8.12</version>
             <inherited>true</inherited>
           </plugin>
           <plugin>
