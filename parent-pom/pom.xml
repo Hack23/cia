@@ -88,7 +88,7 @@
     <cia.project.versions.spring>5.3.33</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.11</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.698</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.699</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.22</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.4.2</cia.project.versions.javers>
