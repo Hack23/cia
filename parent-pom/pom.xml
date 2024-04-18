@@ -242,7 +242,7 @@
       <dependency>
         <groupId>org.codehaus.jackson</groupId>
         <artifactId>jackson-core-asl</artifactId>
-        <version>1.9.13</version>
+        <version>1.9.14-MULE-001</version>
       </dependency>
       <dependency>
         <groupId>joda-time</groupId>
