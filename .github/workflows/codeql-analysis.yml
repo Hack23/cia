@@ -139,7 +139,7 @@ jobs:
       run: maven/bin/mvn -B install --file pom.xml -DskipTests
 
     - name: Submit Dependency Snapshot
-      uses: advanced-security/maven-dependency-submission-action@bfd2106013da0957cdede0b6c39fb5ca25ae375e
+      uses: advanced-security/maven-dependency-submission-action@5d0f9011b55d6268922128af45275986303459c3
   
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
