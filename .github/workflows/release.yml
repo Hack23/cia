@@ -76,7 +76,7 @@ jobs:
         name: Release ${{ github.event.inputs.release }}
         artifacts: "cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb,cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json,cia-dist-cloudformation/target/dependency/cia-dist-cloudformation-${{ github.event.inputs.release }}.template,citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json"
     - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@f8d5ea8082b0d9f5ab855907be308fbd7eefb155 # v1.1.0
+      uses: actions/attest-build-provenance@951c0c5f8e375ad4efad33405ab77f7ded2358e4 # v1.1.1
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
     - name: Generate SBOM attestation
