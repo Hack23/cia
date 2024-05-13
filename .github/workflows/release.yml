@@ -80,7 +80,7 @@ jobs:
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
     - name: Generate SBOM attestation
-      uses: actions/attest-sbom@7d87da1e33596bc5503e50993d8f68c7a9bdfb4d # v1.1.0
+      uses: actions/attest-sbom@c29e4e92259a5ed4629496ec6a5724e444389a1f # v1.1.1
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
         sbom-path: 'cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json'
