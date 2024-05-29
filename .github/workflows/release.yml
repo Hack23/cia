@@ -54,7 +54,7 @@ jobs:
       run: tar xzvf apache-maven-3.9.7-bin.tar.gz
 
     - name: Set Maven
-      run: mv apache-maven-3.9.6 maven
+      run: mv apache-maven-3.9.7 maven
 
     - name: Set Version for release
       run: maven/bin/mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
