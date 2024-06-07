@@ -91,7 +91,7 @@
     <cia.project.versions.aws>1.12.736</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.22.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>7.4.4</cia.project.versions.javers>
+    <cia.project.versions.javers>7.4.5</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
     <cia.project.versions.asm>9.7</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
