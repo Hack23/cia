@@ -86,7 +86,7 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.37</cia.project.versions.spring>
-    <cia.project.versions.spring.security>5.8.12</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>5.8.13</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.748</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.22.1</cia.project.versions.aspectj>
