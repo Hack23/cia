@@ -929,7 +929,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.6.1</version>
           <dependencies>
             <dependency>
               <groupId>org.apache.bcel</groupId>
@@ -1867,7 +1867,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.1</version>
             <inherited>true</inherited>
           </plugin>
           <plugin>
