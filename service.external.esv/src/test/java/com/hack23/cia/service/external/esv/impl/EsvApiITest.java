@@ -50,7 +50,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Försvarsdepartementet");
 		assertNotNull(governmentBodyAnnualSummaryData);
-		assertEquals(25, governmentBodyAnnualSummaryData.size());
+		assertEquals(26, governmentBodyAnnualSummaryData.size());
 		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
 			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
 				assertNotNull(governmentBodyAnnualSummary);
@@ -133,7 +133,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Finansdepartementet");
 		assertNotNull(governmentBodyAnnualSummaryData);
-		assertEquals(25, governmentBodyAnnualSummaryData.size());
+		assertEquals(26, governmentBodyAnnualSummaryData.size());
 		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
 			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
 				assertNotNull(governmentBodyAnnualSummary);
@@ -151,7 +151,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Utrikesdepartementet");
 		assertNotNull(governmentBodyAnnualSummaryData);
-		assertEquals(25, governmentBodyAnnualSummaryData.size());
+		assertEquals(26, governmentBodyAnnualSummaryData.size());
 		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
 			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
 				assertNotNull(governmentBodyAnnualSummary);
@@ -169,7 +169,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<Integer, GovernmentBodyAnnualSummary> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerGovernmentBody("Exportkreditnämnden");
 		assertNotNull(governmentBodyAnnualSummaryData);
-		assertEquals(25, governmentBodyAnnualSummaryData.size());
+		assertEquals(26, governmentBodyAnnualSummaryData.size());
 		for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : governmentBodyAnnualSummaryData.values()) {
 			assertNotNull(governmentBodyAnnualSummary);
 		}
@@ -184,7 +184,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	public void getDataSuccessTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi.getData();
 		assertNotNull(governmentBodyAnnualSummaryData);
-		assertEquals(25, governmentBodyAnnualSummaryData.size());
+		assertEquals(26, governmentBodyAnnualSummaryData.size());
 		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
 			//assertTrue(list.size() > 200);
 			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
@@ -202,7 +202,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyNamesSuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames();
 		assertNotNull(list);
-		assertEquals(342, list.size());
+		assertEquals(344, list.size());
 	}
 
 	/**

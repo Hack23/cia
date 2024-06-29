@@ -84,7 +84,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
 
-		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList"2023/24","2022/23","2021/22","2020/21","2019/20","2018/19","2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
+		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2023/24","2022/23","2021/22","2020/21","2019/20","2018/19","2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
 		comboBox.setSelectedItem(selectedYear);
