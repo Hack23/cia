@@ -129,7 +129,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
-		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2023);
+		final List<GovernmentBodyAnnualSummary> headCountGovermentBodies = dataMap.get(2024);
 		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies
 				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
@@ -224,7 +224,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final Map<Integer, Double> annualIncomeSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 		final Map<Integer, Double> annualSpendingSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 
-		final Label govBodiesFinanceLabel = new Label("Income(B SEK):" + governentBodies.size() + " , Spending(B SEK):" + annualSpendingSummaryMap.get(2023)/1000);
+		final Label govBodiesFinanceLabel = new Label("Income(B SEK):" + governentBodies.size() + " , Spending(B SEK):" + annualSpendingSummaryMap.get(2024)/1000);
 		Responsive.makeResponsive(govBodiesFinanceLabel);
 		govBodiesFinanceLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(govBodiesFinanceLabel);
