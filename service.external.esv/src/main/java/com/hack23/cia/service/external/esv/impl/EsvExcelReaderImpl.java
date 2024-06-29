@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,37 +42,37 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 final class EsvExcelReaderImpl implements EsvExcelReader {
 
 	/** The Constant COMMENT_CELL. */
-	private static final int COMMENT_CELL = 12;
+	private static final int COMMENT_CELL = 14;
 
 	/** The Constant VAT_CELL. */
-	private static final int VAT_CELL = 7;
+	private static final int VAT_CELL = 8;
 
 	/** The Constant ANNUAL_HEADCOUNT_CELL. */
-	private static final int ANNUAL_HEADCOUNT_CELL = 6;
+	private static final int ANNUAL_HEADCOUNT_CELL = 7;
 
 	/** The Constant HEADCOUNT_CELL. */
-	private static final int HEADCOUNT_CELL = 5;
+	private static final int HEADCOUNT_CELL = 6;
 
 	/** The Constant ORG_NUMBER_CELL. */
-	private static final int ORG_NUMBER_CELL = 4;
+	private static final int ORG_NUMBER_CELL = 5;
 
 	/** The Constant MINISTRY_CELL. */
-	private static final int MINISTRY_CELL = 3;
+	private static final int MINISTRY_CELL = 4;
 
 	/** The Constant MCODE_CELL. */
-	private static final int MCODE_CELL = 2;
+	private static final int MCODE_CELL = 3;
 
 	/** The Constant GOVERNMENT_BODY_ID_CELL. */
-	private static final int GOVERNMENT_BODY_ID_CELL = 2;
+	private static final int GOVERNMENT_BODY_ID_CELL = 3;
 
 	/** The Constant CONSECUTIVE_NUMBER_CELL. */
-	private static final int CONSECUTIVE_NUMBER_CELL = 1;
+	private static final int CONSECUTIVE_NUMBER_CELL = 2;
 
 	/** The Constant NAME_CELL. */
 	private static final int NAME_CELL = 0;
 
 	/** The Constant EXPECTED_COLUMN_LENGTH. */
-	private static final int EXPECTED_COLUMN_LENGTH = 12;
+	private static final int EXPECTED_COLUMN_LENGTH = 14;
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EsvExcelReaderImpl.class);
