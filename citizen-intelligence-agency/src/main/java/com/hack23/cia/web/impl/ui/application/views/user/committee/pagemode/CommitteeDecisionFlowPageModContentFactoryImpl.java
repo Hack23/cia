@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,13 +75,13 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		String selectedYear = "2021/22";
+		String selectedYear = "2022/23";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		}
 
 		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(
-				Arrays.asList("2022/23","2021/22","2020/21","2019/20","2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
+				Arrays.asList("2023/24", "2022/23","2021/22","2020/21","2019/20","2018/19","2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 		comboBox.setSelectedItem(selectedYear);
