@@ -48,7 +48,7 @@ jobs:
       run: sudo dpkg-reconfigure -f noninteractive tzdata 
 
     - name: Download Maven
-      run: wget https://archive.apache.org/dist/maven/maven-3/3.9.7/binaries/apache-maven-3.9.8-bin.tar.gz
+      run: wget https://archive.apache.org/dist/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.tar.gz
 
     - name: Unpack Maven
       run: tar xzvf apache-maven-3.9.8-bin.tar.gz
