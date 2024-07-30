@@ -32,6 +32,11 @@
     </site>
   </distributionManagement>
   <dependencies>
+   <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>artemis-jms-client</artifactId>
+      <version>2.35.0</version>
+   </dependency>    
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>artemis-server</artifactId>
