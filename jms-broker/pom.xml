@@ -34,8 +34,8 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.activemq</groupId>
-      <artifactId>artemis-spring-integration</artifactId>
-      <version>2.32.0</version>
+      <artifactId>artemis-server</artifactId>
+      <version>2.35.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.postgresql</groupId>
