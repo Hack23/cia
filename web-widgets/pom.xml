@@ -359,6 +359,11 @@
       <version>2.0.0</version>
     </dependency>
     <dependency>
+      <groupId>de.knightsoft-net</groupId>
+      <artifactId>gwt-commons-lang3</artifactId>
+      <version>3.15.0-0</version>
+    </dependency>
+    <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-elemental</artifactId>
       <version>2.9.0</version>
@@ -696,6 +701,11 @@
               <groupId>com.google.gwt</groupId>
               <artifactId>gwt-user</artifactId>
               <version>${cia.project.versions.vaadin.gwt.user}</version>
+            </dependency>
+            <dependency>
+              <groupId>de.knightsoft-net</groupId>
+              <artifactId>gwt-commons-lang3</artifactId>
+              <version>3.15.0-0</version>
             </dependency>
           </dependencies>
         </plugin>
