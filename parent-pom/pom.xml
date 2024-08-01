@@ -667,7 +667,7 @@
       <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
-        <version>4.28.0</version>
+        <version>4.29.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
