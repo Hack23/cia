@@ -32,21 +32,6 @@
       <timezone>0</timezone>
     </developer>
   </developers>
-  <contributors>
-    <contributor>
-      <name>Peter Larsson</name>
-      <email>peter.larsson(at)idg.se</email>
-      <roles>
-        <role>Feedback&amp;bug seeker</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <name>Klas Peter Sjögren</name>
-      <roles>
-        <role>Business Advisor</role>
-      </roles>
-    </contributor>
-  </contributors>
   <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.9.1</maven>
@@ -892,11 +877,6 @@
           <version>1.4.1</version>
         </plugin>
         <plugin>
-          <groupId>com.systemsplanet.plugin</groupId>
-          <artifactId>google-api-translate-java-maven-plugin</artifactId>
-          <version>1.5</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.17.1</version>
@@ -982,16 +962,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pdf-plugin</artifactId>
-          <version>1.6.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.15.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -1089,32 +1059,7 @@
               <artifactId>plexus-java</artifactId>
               <version>${cia.project.versions.compiler.plexus.java}</version>
             </dependency>
-            <dependency>
-              <groupId>javax.xml.bind</groupId>
-              <artifactId>jaxb-api</artifactId>
-              <version>${cia.project.versions.jaxb.build}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.glassfish.jaxb</groupId>
-              <artifactId>jaxb-runtime</artifactId>
-              <version>${cia.project.versions.jaxb.impl.runtime}</version>
-            </dependency>
-            <dependency>
-              <groupId>com.sun.activation</groupId>
-              <artifactId>javax.activation</artifactId>
-              <version>1.2.0</version>
-            </dependency>
-            <dependency>
-              <groupId>com.google.code.findbugs</groupId>
-              <artifactId>jsr305</artifactId>
-              <version>3.0.2</version>
-            </dependency>
           </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-eclipse-plugin</artifactId>
-          <version>2.10</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1504,15 +1449,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <inherited>true</inherited>
-        <configuration>
-          <downloadSources>true</downloadSources>
-          <downloadJavadocs>true</downloadJavadocs>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
         <artifactId>sortpom-maven-plugin</artifactId>
         <configuration>
@@ -1679,107 +1615,6 @@
         <cyclonedx.skipAttach>false</cyclonedx.skipAttach>
         <cyclonedx.skip>false</cyclonedx.skip>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>3.1.0</version>
-            <inherited>true</inherited>
-            <executions>
-              <execution>
-                <id>createdepdir</id>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <target>
-                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.8.0</version>
-            <inherited>true</inherited>
-            <configuration>
-              <source>${javadoc.src.version}</source>
-              <release>${javadoc.target.version}</release>
-              <sourcepath>src/main/java</sourcepath>
-              <debug>false</debug>
-              <detectJavaApiLink>false</detectJavaApiLink>
-              <detectOfflineLinks>false</detectOfflineLinks>
-              <linksource>false</linksource>
-              <includeDependencySources>true</includeDependencySources>
-              <dependencySourceIncludes>
-                <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>
-              </dependencySourceIncludes>
-              <dependencySourceExcludes>
-                <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
-              </dependencySourceExcludes>
-              <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
-              <docletArtifact>
-                <groupId>nl.talsmasoftware</groupId>
-                <artifactId>umldoclet</artifactId>
-                <version>2.0.20</version>
-              </docletArtifact>
-              <useStandardDocletOptions>true</useStandardDocletOptions>
-              <charset>UTF-8</charset>
-              <encoding>UTF-8</encoding>
-              <sourcepath>src/main/java</sourcepath>
-              <docencoding>UTF-8</docencoding>
-            </configuration>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>3.3.1</version>
-            <inherited>true</inherited>
-            <executions>
-              <execution>
-                <id>bundle-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                  <goal>test-jar-no-fork</goal>
-                </goals>
-                <phase>package</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <inherited>true</inherited>
-            <configuration>
-              <gpgArguments>
-                <arg>--pinentry-mode</arg>
-                <arg>loopback</arg>
-              </gpgArguments>
-            </configuration>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <id>release-site</id>
@@ -1791,11 +1626,6 @@
       </activation>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>4.0.0.4121</version>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
@@ -1919,11 +1749,6 @@
                 </reports>
               </reportSet>
             </reportSets>
-          </plugin>
-          <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>4.0.0.4121</version>
           </plugin>
         </plugins>
       </reporting>
