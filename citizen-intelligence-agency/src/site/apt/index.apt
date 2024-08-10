@@ -1,58 +1,67 @@
 Citizen Intelligence Agency
 
- Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
+  The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project focusing on political activity in Sweden. By monitoring key political figures and institutions, the platform provides valuable insights into financial performance, risk metrics, and political trends. The dashboard features a ranking system, enabling users to objectively compare politicians based on performance. The initiative is independent and non-partisan, seeking to encourage informed decision-making, enhance transparency in governance, and cultivate an engaged and well-informed citizenry.
 
+Section: About Hack23
 
-Goal
+  * Website: {{http://www.hack23.com}}.
+  
+  * LinkedIn: {{http://www.linkedin.com/in/jamessorling}}.
 
- Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
+Data Sources
 
+  The project relies on open data from various sources, including:
 
-Demo
+  * {{http://data.riksdagen.se/}}. Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
+  
+  * {{http://www.val.se/}}. Provides information on election processes, results, and political parties in Sweden.
+  
+  * {{http://data.worldbank.org/}}. Contains global development data, including economic indicators and demographic information.
+  
+  * {{https://www.esv.se/}}. Offers data on government finances, economic trends, and public sector operations in Sweden.
 
- Citizen Intelligence Agency Demo {{{https://www.hack23.com/cia/}https://www.hack23.com/cia/}}
+Badges
 
- Using open data from  {{{http://data.riksdagen.se/}http://data.riksdagen.se/}} , {{{http://www.val.se/}http://www.val.se/}} and {{{http://data.worldbank.org/}http://data.worldbank.org/}}.
+[https://img.shields.io/github/license/Hack23/cia.svg]
 
- Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries,
- government members and political parties.
+[https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield]  
 
- Limited functionality proper navigation, descriptions,content, ui and styling are still not in place.
+[https://cla-assistant.io/readme/badge/Hack23/cia]
 
+[https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg]
 
-Roadmap
+[https://bestpractices.coreinfrastructure.org/projects/770/badge]
 
- Plan to make it public some time after 2022.04, running Ubuntu 22.04, Postgresql 13+, JDK17, Spring framework 6.x , Hibernate 6.x, Vaadin 8.x.
+[https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge]
 
+[https://www.codefactor.io/repository/github/hack23/cia/badge]
 
-Resources
+[https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability]
 
- * Project homepage {{{http://sourceforge.net/projects/cia/}Sourceforge}}.
+[https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c]
 
- * Github source code location {{{https://github.com/Hack23/cia}https://github.com/Hack23/cia}}
+[https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg]
 
- * Build server, jenkins: {{{https://www.hack23.com/jenkins/}https://www.hack23.com/jenkins/}}
+[http://isitmaintained.com/badge/resolution/Hack23/cia.svg]
 
- * QA report, sonarqube: {{{https://www.hack23.com/sonar/}https://www.hack23.com/sonar/}}
+[http://isitmaintained.com/badge/open/Hack23/cia.svg]
+  
 
- * Repository manager, nexus: {{{https://www.hack23.com/nexus/}https://www.hack23.com/nexus/}}
+Runtime (JDK 21+)
 
- * Ohloh Project Summary {{{http://www.ohloh.net/p/citizenIntelligenceagency}Ohloh}}.
+[https://img.shields.io/badge/jdk-21-green.svg]
 
- * Principia Discordia {{{http://www.principiadiscordia.com/book/1.php} Read the book!}}
+[https://img.shields.io/badge/jdk-22-orange.svg]
 
+Section: Resources
 
-Project Documentation
-
- * Source Code {{{http://hack23.github.io/cia/xref/index.html}Cross-reference Java source code}}.
-
- * Javadoc & UML {{{http://hack23.github.io/cia/apidocs/index.html}Generated javadoc with UML diagrams}}.
-
- * Entity Model {{{.//service.data.impl/hbm2doc/entities/index.html}Hibernate Mapping Documentation}}.
-
- * Test Result {{{http://hack23.github.io/cia/surefire-report.html}Surefire test report}}.
-
- * Jar Usage Validation {{{http://hack23.github.io/cia/tattleTaleReport/index.html}Tattletale report}}.
+  * Project Documentation {{http://hack23.github.io/cia/}}.
+  
+  * Project Architecture {{http://hack23.github.io/cia/architecture.html}}. - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
+  
+  * Entity Model {{https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html}}. - Explore our Entity Model, which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
+  
+  * API Docs {{https://hack23.github.io/cia/apidocs/index.html}}. - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
 
 
 Running docker image
