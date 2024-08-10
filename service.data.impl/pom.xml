@@ -448,7 +448,7 @@
         <exclusion>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-text</artifactId>
-        </exclusion>        
+        </exclusion>
         <exclusion>
           <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-servlet</artifactId>
