@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../../apidocs/com/hack23/cia/web/impl/ui/application/views/common/chartfactory/impl/GovernmentBodyChartDataManagerImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2021 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -190,7 +190,7 @@
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 			addEntryData(dataSeries, simpleDateFormat, entry);
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 		}
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		addChart(content, name + label,
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		addChart(content, name + <span class="jxr_string">" "</span> + label,
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 				<strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries)
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 				<strong class="jxr_keyword">true</strong>);
@@ -277,7 +277,7 @@
 <a class="jxr_linenumber" name="L269" href="#L269">269</a> 			addDataSerieValue(dataSeries, entry, entry.getValue().getHeadCount());
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 		}
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		addChart(content, name + ANNUAL_HEADCOUNT,
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		addChart(content, name + <span class="jxr_string">" "</span>+ ANNUAL_HEADCOUNT,
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> 				<strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries)
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 <a class="jxr_linenumber" name="L275" href="#L275">275</a> 				<strong class="jxr_keyword">true</strong>);
@@ -357,7 +357,7 @@
 <a class="jxr_linenumber" name="L349" href="#L349">349</a> 			}
 <a class="jxr_linenumber" name="L350" href="#L350">350</a> 		}
 <a class="jxr_linenumber" name="L351" href="#L351">351</a> 
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> 		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> 		addChart(content, name + <span class="jxr_string">" "</span>+  ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
 <a class="jxr_linenumber" name="L353" href="#L353">353</a> 				<strong class="jxr_keyword">new</strong> DCharts().setDataSeries(dataSeries)
 <a class="jxr_linenumber" name="L354" href="#L354">354</a> 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 <a class="jxr_linenumber" name="L355" href="#L355">355</a> 				<strong class="jxr_keyword">true</strong>);
@@ -411,6 +411,6 @@
 <a class="jxr_linenumber" name="L403" href="#L403">403</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2024 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

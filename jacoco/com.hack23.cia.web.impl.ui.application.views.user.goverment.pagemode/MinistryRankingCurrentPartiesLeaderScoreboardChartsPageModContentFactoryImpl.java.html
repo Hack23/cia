@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode</a> &gt; <span class="el_source">MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</span></div><h1>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
-import com.github.markash.ui.component.card.CounterStatisticModel;
-import com.github.markash.ui.component.card.CounterStatisticsCard;
-import com.github.markash.ui.component.card.StatisticShow;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
@@ -38,7 +35,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.external.esv.api.EsvApi;
+<span class="nc" id="L38">import com.hack23.cia.service.external.esv.api.EsvApi;</span>
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -47,11 +44,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -96,215 +91,200 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	 * page mod content factory impl.
 	 */
 	public MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl() {
-<span class="fc" id="L99">		super();</span>
-<span class="fc" id="L100">	}</span>
+		super();
+	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L105">		final VerticalLayout panelContent = createPanelContent();</span>
+		final VerticalLayout panelContent = createPanelContent();
 
-<span class="fc" id="L107">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
-<span class="fc" id="L109">		final String pageId = getPageId(parameters);</span>
+		final String pageId = getPageId(parameters);
 
-<span class="fc" id="L111">		LabelFactory.createHeader2Label(panelContent, &quot;Dashboard Government members&quot;);</span>
+		LabelFactory.createHeader2Label(panelContent, &quot;Dashboard Government members&quot;);
 
-<span class="fc" id="L113">		final Label descriptionLabel = new Label(</span>
+		final Label descriptionLabel = new Label(
 				&quot;Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level&quot;);
-<span class="fc" id="L115">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
-<span class="fc" id="L116">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="fc" id="L117">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L118">		panelContent.addComponent(descriptionLabel);</span>
+		descriptionLabel.addStyleName(&quot;itembox&quot;);
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		panelContent.addComponent(descriptionLabel);
 
-<span class="fc" id="L120">		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);</span>
+		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
-<span class="fc" id="L122">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L123">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-<span class="fc" id="L125">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer</span>
-<span class="fc" id="L126">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);</span>
+		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
 
-<span class="fc" id="L128">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="fc" id="L129">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPolitician.class);
 
-<span class="fc" id="L131">		final List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer</span>
-<span class="fc" id="L132">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);</span>
-<span class="fc" id="L133">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream()</span>
-<span class="fc" id="L134">				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
+		final List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);
+		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream()
+				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 
-<span class="fc" id="L136">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
-<span class="fc" id="L137">		final List&lt;GovernmentBodyAnnualSummary&gt; headCountGovermentBodies = dataMap.get(2022);</span>
-<span class="fc" id="L138">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies</span>
-<span class="fc" id="L139">				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
+<span class="nc" id="L131">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
+		final List&lt;GovernmentBodyAnnualSummary&gt; headCountGovermentBodies = dataMap.get(2024);
+		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies
+				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
-<span class="fc" id="L141">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L142">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-<span class="fc" id="L144">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer</span>
-<span class="fc" id="L145">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.active);</span>
+		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyDataList = partyRoleMemberDataContainer
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.active);
 
-<span class="pc bpc" id="L147" title="1 of 2 branches missed.">		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {</span>
-<span class="nc" id="L148">			createDashboardGovernmentMember(row, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember,</span>
-<span class="nc" id="L149">					parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0));</span>
+		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
+			createDashboardGovernmentMember(row, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember,
+					parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0));
 
-<span class="nc" id="L151">		}</span>
+		}
 
-<span class="fc" id="L153">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
+		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);
 
-<span class="fc" id="L155">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
 
-<span class="fc" id="L158">		return panelContent;</span>
+		return panelContent;
 
 	}
 
 	private void createDashboardGovernmentMember(final ResponsiveRow row,
-			final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
+<span class="nc" id="L158">			final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-<span class="nc" id="L167">		final CssLayout layout = new CssLayout();</span>
-<span class="nc" id="L168">		layout.addStyleName(&quot;v-layout-content-overview-dashboard-panel-level2&quot;);</span>
-<span class="nc" id="L169">		Responsive.makeResponsive(layout);</span>
-<span class="nc" id="L170">		layout.setSizeUndefined();</span>
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName(&quot;v-layout-content-overview-dashboard-panel-level2&quot;);
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
 
 
-<span class="nc" id="L173">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="nc" id="L174">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
 
-<span class="nc" id="L177">		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + &quot; &quot;</span>
-<span class="nc" id="L178">				+ viewRiksdagenGovermentRoleMember.getFirstName() + &quot; &quot; + viewRiksdagenGovermentRoleMember.getLastName()</span>
-<span class="nc" id="L179">				+ &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)&quot;);</span>
-<span class="nc" id="L180">		Responsive.makeResponsive(titleLabel);</span>
-<span class="nc" id="L181">		titleLabel.addStyleName(&quot;title&quot;);</span>
-<span class="nc" id="L182">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L183">		layout.addComponent(titleLabel);</span>
+		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + &quot; &quot;
+				+ viewRiksdagenGovermentRoleMember.getFirstName() + &quot; &quot; + viewRiksdagenGovermentRoleMember.getLastName()
+				+ &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)&quot;);
+		layout.addComponent(getPageLinkFactory().createPoliticianPageLink(viewRiksdagenPolitician));
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.addStyleName(&quot;title&quot;);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
 
 
-<span class="nc" id="L186">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);</span>
+		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);
 
-<span class="nc bnc" id="L188" title="All 2 branches missed.">		if (partyRole.size()&gt; 0) {</span>
-<span class="nc" id="L189">			final Label partyRoleLabel = new Label(partyRole.get(0).getRoleCode() + &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)  since &quot; +partyRole.get(0).getFromDate() );</span>
-<span class="nc" id="L190">			Responsive.makeResponsive(partyRoleLabel);</span>
-<span class="nc" id="L191">			partyRoleLabel.addStyleName(&quot;title&quot;);</span>
-<span class="nc" id="L192">			partyRoleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L193">			layout.addComponent(partyRoleLabel);</span>
+		if (partyRole.size()&gt; 0) {
+			final Label partyRoleLabel = new Label(partyRole.get(0).getRoleCode() + &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)  since &quot; +partyRole.get(0).getFromDate() );
+			Responsive.makeResponsive(partyRoleLabel);
+			partyRoleLabel.addStyleName(&quot;title&quot;);
+			partyRoleLabel.setWidth(100, Unit.PERCENTAGE);
+			layout.addComponent(partyRoleLabel);
 
 		}
 
 
-<span class="nc" id="L198">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();</span>
+		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
 
-<span class="nc" id="L200">		createMinistryRoleSummary(reportByMinistry, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);</span>
-<span class="nc" id="L201">		createPoliticaExperienceSummary(governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);</span>
+		createPoliticaExperienceSummary(governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
+		createMinistryRoleSummary(reportByMinistry, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);
 
 
-<span class="nc" id="L204">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
-<span class="nc" id="L205">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="nc" id="L206">	}</span>
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
 
-	private void createMinistryRoleSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry, final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
+<span class="nc" id="L204">	private void createMinistryRoleSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry, final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
-<span class="nc" id="L211">		String ministryTitle = &quot;&quot;;</span>
-<span class="nc bnc" id="L212" title="All 2 branches missed.">		if (viewRiksdagenGovermentRoleMember.getRoleCode().contains(&quot;minister&quot;)) {</span>
-<span class="nc" id="L213">			ministryTitle = &quot;Head of &quot; + viewRiksdagenGovermentRoleMember.getDetail() + &quot; for &quot; + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + &quot;(days)&quot;;</span>
-		} else {
-<span class="nc" id="L215">			ministryTitle = &quot;Supports head of &quot; + viewRiksdagenGovermentRoleMember.getDetail()  + &quot; for &quot; + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + &quot;(days)&quot;;</span>
+
+		
+		final Label ministryTitleLabel = new Label(viewRiksdagenGovermentRoleMember.getDetail());
+		Responsive.makeResponsive(ministryTitleLabel);
+		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(ministryTitleLabel);
+
+
+		final List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap
+				.get(viewRiksdagenGovermentRoleMember.getDetail());
+		
+		final Label govBodiesLabel = new Label(&quot;Government bodies:&quot; + governentBodies.size() + &quot; , Total Headcount(all goverment bodies):&quot; + governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum());
+		Responsive.makeResponsive(govBodiesLabel);
+		govBodiesLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(govBodiesLabel);
+
+		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
+		final Map&lt;Integer, Double&gt; annualIncomeSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
+		final Map&lt;Integer, Double&gt; annualSpendingSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
+
+		final Label govBodiesFinanceLabel = new Label(&quot;Income(B SEK):&quot; + governentBodies.size() + &quot; , Spending(B SEK):&quot; + annualSpendingSummaryMap.get(2024)/1000);
+		Responsive.makeResponsive(govBodiesFinanceLabel);
+		govBodiesFinanceLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(govBodiesFinanceLabel);
+
+		layout.addComponent(getPageLinkFactory().addMinistryPageLink(viewRiksdagenGovermentRoleMember.getDetail()));
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));		
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum()));
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2023) /1000));		
+		layout.addComponent(getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualSpendingSummaryMap.get(2023)/1000));
+
+	}
+
+
+<span class="nc" id="L241">	private void createPoliticaExperienceSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
+
+		final Label ministryDaysServedLabel = new Label(&quot;Hold position for &quot; + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + &quot; (days) in &quot; + viewRiksdagenGovermentRoleMember.getDetail());
+		Responsive.makeResponsive(ministryDaysServedLabel);
+		ministryDaysServedLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(ministryDaysServedLabel);
+
+		final Label ministryTitleLabel = new Label(&quot;Political Experience&quot;);
+		Responsive.makeResponsive(ministryTitleLabel);
+		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(ministryTitleLabel);
+		
+		{		
+		final Label experienceLabel = new Label(&quot;Government(year):&quot; + viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365 + &quot; , Party(year):&quot; + viewRiksdagenPolitician.getTotalDaysServedParty() / 365 + &quot; , Parliament(year):&quot; + viewRiksdagenPolitician.getTotalDaysServedParliament() / 365);
+		Responsive.makeResponsive(experienceLabel);
+		experienceLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(experienceLabel);
 		}
-<span class="nc" id="L217">		final Label ministryTitleLabel = new Label(ministryTitle);</span>
-<span class="nc" id="L218">		Responsive.makeResponsive(ministryTitleLabel);</span>
-<span class="nc" id="L219">		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L220">		layout.addComponent(ministryTitleLabel);</span>
-<span class="nc" id="L221">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="nc" id="L222">		Responsive.makeResponsive(horizontalLayout);</span>
-<span class="nc" id="L223">		final List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap</span>
-<span class="nc" id="L224">				.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
-<span class="nc" id="L225">		horizontalLayout</span>
-<span class="nc" id="L226">				.addComponent(</span>
-						new CounterStatisticsCard(VaadinIcons.WARNING,
-<span class="nc" id="L228">								new CounterStatisticModel(&quot;Government bodies&quot;, governentBodies.size())</span>
-<span class="nc" id="L229">										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-								&quot;Government bodies&quot;));
-<span class="nc" id="L231">		horizontalLayout</span>
-<span class="nc" id="L232">				.addComponent(new CounterStatisticsCard(</span>
-<span class="nc" id="L233">						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Headcount&quot;, governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())</span>
-<span class="nc" id="L234">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-						&quot;Headcount&quot;));
+	}
 
-
-
-<span class="nc" id="L239">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
-
-
-<span class="nc bnc" id="L242" title="All 2 branches missed.">		final Map&lt;Integer, Double&gt; annualIncomeSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
-<span class="nc bnc" id="L243" title="All 2 branches missed.">		final Map&lt;Integer, Double&gt; annualSpendingSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
-
-<span class="nc" id="L245">		horizontalLayout</span>
-<span class="nc" id="L246">		.addComponent(new CounterStatisticsCard(</span>
-<span class="nc" id="L247">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Income(B SEK)&quot;, annualIncomeSummaryMap.get(2021) /1000)</span>
-<span class="nc" id="L248">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-				&quot;Income&quot;));
-
-
-<span class="nc" id="L252">		horizontalLayout</span>
-<span class="nc" id="L253">		.addComponent(new CounterStatisticsCard(</span>
-<span class="nc" id="L254">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(B SEK)&quot;, annualSpendingSummaryMap.get(2021)/1000)</span>
-<span class="nc" id="L255">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-				&quot;Spending&quot;));
-
-
-<span class="nc" id="L259">		layout.addComponent(horizontalLayout);</span>
-<span class="nc" id="L260">	}</span>
-
-
-	private void createPoliticaExperienceSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
+<span class="nc" id="L263">	private void createPoliticaRiskSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 
-<span class="nc" id="L267">		final Label ministryTitleLabel = new Label(&quot;Political Experience&quot;);</span>
-<span class="nc" id="L268">		Responsive.makeResponsive(ministryTitleLabel);</span>
-<span class="nc" id="L269">		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L270">		layout.addComponent(ministryTitleLabel);</span>
-<span class="nc" id="L271">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="nc" id="L272">		Responsive.makeResponsive(horizontalLayout);</span>
-<span class="nc" id="L273">		horizontalLayout</span>
-<span class="nc" id="L274">		.addComponent(</span>
-				new CounterStatisticsCard(VaadinIcons.WARNING,
-<span class="nc" id="L276">						new CounterStatisticModel(&quot;Parliament(year)&quot;, viewRiksdagenPolitician.getTotalDaysServedParliament() / 365)</span>
-<span class="nc" id="L277">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-						&quot;Parliament(days)&quot;));
-<span class="nc" id="L279">		horizontalLayout</span>
-<span class="nc" id="L280">		.addComponent(</span>
-				new CounterStatisticsCard(VaadinIcons.WARNING,
-<span class="nc" id="L282">						new CounterStatisticModel(&quot;Government(year)&quot;, viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365)</span>
-<span class="nc" id="L283">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-						&quot;Government(year)&quot;));
+	}
 
-<span class="nc" id="L286">		horizontalLayout</span>
-<span class="nc" id="L287">				.addComponent(</span>
-						new CounterStatisticsCard(VaadinIcons.WARNING,
-<span class="nc" id="L289">								new CounterStatisticModel(&quot;Party(year)&quot;, viewRiksdagenPolitician.getTotalDaysServedParty() / 365)</span>
-<span class="nc" id="L290">										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-								&quot;Party(year)&quot;));
-<span class="nc" id="L292">		horizontalLayout</span>
-<span class="nc" id="L293">				.addComponent(new CounterStatisticsCard(</span>
-<span class="nc" id="L294">						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Speaker(year)&quot;, viewRiksdagenPolitician.getTotalDaysServedSpeaker() / 365)</span>
-<span class="nc" id="L295">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
-						&quot;Speaker(year)&quot;));
-<span class="nc" id="L297">		layout.addComponent(horizontalLayout);</span>
-<span class="nc" id="L298">	}</span>
+<span class="nc" id="L269">	private void createPoliticaDocumentSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 
+	}
+
+<span class="nc" id="L275">	private void createPoliticaDecisionSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,</span>
+			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
+
+	}
 
 
 
 	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L305" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="pc bpc" id="L306" title="1 of 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());</span>
+<span class="nc" id="L284">	public boolean matches(final String page, final String parameters) {</span>
+		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())
+				&amp;&amp; parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

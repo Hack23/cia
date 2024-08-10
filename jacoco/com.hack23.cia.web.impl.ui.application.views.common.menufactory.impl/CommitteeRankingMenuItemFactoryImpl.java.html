@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">CommitteeRankingMenuItemFactoryImpl.java</span></div><h1>CommitteeRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -48,33 +48,33 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	private static final String CHART_BY_TOPIC_TEXT = &quot;Chart by topic&quot;;
 
 	/** The Constant COMMAND_ALL_COMMITTEES_BY_HEADCOUNT. */
-<span class="fc" id="L51">	private static final PageModeMenuCommand COMMAND_ALL_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L52">			PageMode.CHARTS,ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString());</span>
+<span class="nc" id="L51">	private static final PageModeMenuCommand COMMAND_ALL_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L52">			PageMode.CHARTS,ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString());</span>
 
 	/** The Constant COMMAND_COMMITTEES_BY_PARTY. */
-<span class="fc" id="L55">	private static final PageModeMenuCommand COMMAND_COMMITTEES_BY_PARTY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L56">			PageMode.CHARTS,ChartIndicators.COMMITTEESBYPARTY.toString());</span>
+<span class="nc" id="L55">	private static final PageModeMenuCommand COMMAND_COMMITTEES_BY_PARTY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L56">			PageMode.CHARTS,ChartIndicators.COMMITTEESBYPARTY.toString());</span>
 
 	/** The Constant COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT. */
-<span class="fc" id="L59">	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L60">			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());</span>
+<span class="nc" id="L59">	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L60">			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());</span>
 
 
 	/** The Constant COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT. */
-<span class="fc" id="L64">	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-<span class="fc" id="L65">			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());</span>
+<span class="nc" id="L64">	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L65">			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());</span>
 
 	/** The Constant COMMAND_DATAGRID. */
-<span class="fc" id="L68">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-			PageMode.DATAGRID);
+<span class="nc" id="L68">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L69">			PageMode.DATAGRID);</span>
 
 	/** The Constant COMMAND_OVERVIEW. */
-<span class="fc" id="L72">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-			PageMode.OVERVIEW);
+<span class="nc" id="L72">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L73">			PageMode.OVERVIEW);</span>
 
 	/** The Constant COMMAND_PAGEVISIT_HISTORY. */
-<span class="fc" id="L76">	private static final PageModeMenuCommand COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
-			PageMode.PAGEVISITHISTORY);
+<span class="nc" id="L76">	private static final PageModeMenuCommand COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,</span>
+<span class="nc" id="L77">			PageMode.PAGEVISITHISTORY);</span>
 
 	/** The Constant COMMITTEE_RANKING_TEXT. */
 	private static final String COMMITTEE_RANKING_TEXT = &quot;Committee Ranking&quot;;
@@ -106,7 +106,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	private static final String POLITICAL_WORK_SUMMARY_TEXT = &quot;Political Work Summary&quot;;
 
 	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;
+<span class="nc" id="L109">	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;</span>
 
 	/** The application menu item factory. */
 	@Autowired
@@ -116,8 +116,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 * Instantiates a new committee ranking menu item factory impl.
 	 */
 	public CommitteeRankingMenuItemFactoryImpl() {
-<span class="fc" id="L119">		super();</span>
-<span class="fc" id="L120">	}</span>
+<span class="nc" id="L119">		super();</span>
+<span class="nc" id="L120">	}</span>
 
 	/**
 	 * Creates the committeee ranking menu bar.
@@ -127,12 +127,12 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
-<span class="fc" id="L130">		initApplicationMenuBar(menuBar);</span>
+<span class="nc" id="L130">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L132">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="nc" id="L132">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L134">		createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));</span>
-<span class="fc" id="L135">	}</span>
+<span class="nc" id="L134">		createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));</span>
+<span class="nc" id="L135">	}</span>
 
 	/**
 	 * Creates the committee ranking topics.
@@ -142,25 +142,25 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-<span class="fc" id="L145">		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);</span>
+<span class="nc" id="L145">		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);</span>
 
-<span class="fc" id="L147">		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="nc" id="L147">		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="fc" id="L149">		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);</span>
-<span class="fc" id="L150">		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);</span>
+<span class="nc" id="L149">		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);</span>
+<span class="nc" id="L150">		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);</span>
 
-<span class="fc" id="L152">		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="nc" id="L152">		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
 
 
-<span class="fc" id="L155">		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);</span>
-<span class="fc" id="L156">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY);</span>
-<span class="fc" id="L157">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);</span>
+<span class="nc" id="L155">		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);</span>
+<span class="nc" id="L156">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY);</span>
+<span class="nc" id="L157">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);</span>
 
-<span class="fc" id="L159">		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);</span>
+<span class="nc" id="L159">		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);</span>
 
-<span class="fc" id="L161">		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);</span>
+<span class="nc" id="L161">		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);</span>
 
-<span class="fc" id="L163">	}</span>
+<span class="nc" id="L163">	}</span>
 
 	/**
 	 * Creates the overview page.
@@ -170,20 +170,20 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="fc" id="L173">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="nc" id="L173">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
 
-<span class="fc" id="L176">		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, &quot;Scoreboard over current member size, political days served and total assignments&quot;);</span>
-<span class="fc" id="L177">		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, &quot;Chart over current committees and member size&quot;);</span>
+<span class="nc" id="L176">		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, &quot;Scoreboard over current member size, political days served and total assignments&quot;);</span>
+<span class="nc" id="L177">		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, &quot;Chart over current committees and member size&quot;);</span>
 
-<span class="fc" id="L179">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, &quot;Chart over current parties active in committees and member size&quot;);</span>
-<span class="fc" id="L180">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, &quot;Chart over current parties active in committees days served&quot;);</span>
-<span class="fc" id="L181">		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, &quot;Chart over all committees and member size&quot;);</span>
+<span class="nc" id="L179">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, &quot;Chart over current parties active in committees and member size&quot;);</span>
+<span class="nc" id="L180">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, &quot;Chart over current parties active in committees days served&quot;);</span>
+<span class="nc" id="L181">		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, &quot;Chart over all committees and member size&quot;);</span>
 
-<span class="fc" id="L183">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, &quot;View history of page visit for this page.&quot;);</span>
+<span class="nc" id="L183">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, &quot;View history of page visit for this page.&quot;);</span>
 
-<span class="fc" id="L185">	}</span>
+<span class="nc" id="L185">	}</span>
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

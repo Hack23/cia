@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="155px" preserveAspectRatio="none" style="width:496px;height:155px;background:#FFFFFF;" version="1.1" viewBox="0 0 496 155" width="496px" zoomAndPan="magnify"><defs/><g><!--MD5=[bb1040bf537177642540291421ac7582]
+cluster com.hack23.cia.web.impl.ui.application.views.common.labelfactory--><g id="cluster_com.hack23.cia.web.impl.ui.application.views.common.labelfactory"><path d="M8.5,6.602 L476.5,6.602 A3.75,3.75 0 0 1 479,9.102 L486,31.6699 L486.5,31.6699 A2.5,2.5 0 0 1 489,34.1699 L489,125.102 A2.5,2.5 0 0 1 486.5,127.602 L8.5,127.602 A2.5,2.5 0 0 1 6,125.102 L6,9.102 A2.5,2.5 0 0 1 8.5,6.602 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="486" y1="31.6699" y2="31.6699"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="467" x="10" y="23.5679">com.hack23.cia.web.impl.ui.application.views.common.labelfactory</text></g><!--MD5=[7b70b02020a52aa6f7c7a62407045fa2]
+class com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory--><a href="LabelFactory.html" target="_top" title="LabelFactory.html" xlink:actuate="onRequest" xlink:href="LabelFactory.html" xlink:show="new" xlink:title="LabelFactory.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory"><rect codeLine="3" fill="#F1F1F1" height="67.0679" id="com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="411" x="41.5" y="44.602"/><ellipse cx="200.75" cy="60.602" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M203.7188,66.2426 Q203.1406,66.5395 202.5,66.6801 Q201.8594,66.8364 201.1563,66.8364 Q198.6563,66.8364 197.3281,65.1957 Q196.0156,63.5395 196.0156,60.4145 Q196.0156,57.2895 197.3281,55.6332 Q198.6563,53.977 201.1563,53.977 Q201.8594,53.977 202.5,54.1332 Q203.1563,54.2895 203.7188,54.5864 L203.7188,57.3051 Q203.0938,56.727 202.5,56.4614 Q201.9063,56.1801 201.2813,56.1801 Q199.9375,56.1801 199.25,57.2582 Q198.5625,58.3207 198.5625,60.4145 Q198.5625,62.5082 199.25,63.5864 Q199.9375,64.6489 201.2813,64.6489 Q201.9063,64.6489 202.5,64.3832 Q203.0938,64.102 203.7188,63.5239 L203.7188,66.2426 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="221.25" y="66.034">LabelFactory</text><line style="stroke:#181818;stroke-width:0.5;" x1="42.5" x2="451.5" y1="76.602" y2="76.602"/><line style="stroke:#181818;stroke-width:0.5;" x1="42.5" x2="451.5" y1="84.602" y2="84.602"/><ellipse cx="52.5" cy="99.6359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="385" x="61.5" y="103.5679">createHeader2Label(AbstractOrderedLayout, String): void</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="147" y="133.602"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="147" y="144.292">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[40c684f4cd961e1cb4e7e79c05da935c]
+@startuml
+    namespace com.hack23.cia.web.impl.ui.application.views.common.labelfactory {
+
+        class LabelFactory [[LabelFactory.html]] {
+            {static} +createHeader2Label(AbstractOrderedLayout, String): void
+        }
+
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

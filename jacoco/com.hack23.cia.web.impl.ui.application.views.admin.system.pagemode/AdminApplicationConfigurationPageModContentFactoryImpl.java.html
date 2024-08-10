@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminApplicationConfigurationPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminApplicationConfigurationPageModContentFactoryImpl.java</span></div><h1>AdminApplicationConfigurationPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -58,30 +58,30 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 	private static final String APPLICATION_CONFIGURATION = &quot;ApplicationConfiguration&quot;;
 
-<span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;configurationGroup&quot;, &quot;component&quot;,&quot;configTitle&quot; ,&quot;configDescription&quot;,</span>
-			&quot;propertyValue&quot;, &quot;createdDate&quot;,
-			&quot;updatedDate&quot; );
+<span class="nc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;configurationGroup&quot;, &quot;component&quot;,&quot;configTitle&quot; ,&quot;configDescription&quot;,</span>
+<span class="nc" id="L62">			&quot;propertyValue&quot;, &quot;createdDate&quot;,</span>
+<span class="nc" id="L63">			&quot;updatedDate&quot; );</span>
 
-<span class="fc" id="L65">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
-			&quot;configDescription&quot;, &quot;componentTitle&quot;, &quot;componentDescription&quot;, &quot;propertyValue&quot; );
+<span class="nc" id="L65">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
+<span class="nc" id="L66">			&quot;configDescription&quot;, &quot;componentTitle&quot;, &quot;componentDescription&quot;, &quot;propertyValue&quot; );</span>
 
-<span class="fc" id="L68">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
-			 &quot;componentDescription&quot;, &quot;propertyId&quot;, &quot;propertyValue&quot; };
+<span class="nc" id="L68">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
+<span class="nc" id="L69">			 &quot;componentDescription&quot;, &quot;propertyId&quot;, &quot;propertyValue&quot; };</span>
 
-<span class="fc" id="L71">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
+<span class="nc" id="L71">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
 
-	private static final String UPDATE_CONFIGURATION = &quot;Update Configuration&quot;;
+<span class="nc" id="L76">	private static final String UPDATE_CONFIGURATION = &quot;Update Configuration&quot;;</span>
 
 	/**
 	 * Instantiates a new admin application configuration page mod content
 	 * factory impl.
 	 */
 	public AdminApplicationConfigurationPageModContentFactoryImpl() {
-<span class="fc" id="L83">		super(NAME);</span>
-<span class="fc" id="L84">	}</span>
+<span class="nc" id="L83">		super(NAME);</span>
+<span class="nc" id="L84">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -104,10 +104,10 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 <span class="nc" id="L104">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
 <span class="nc" id="L106">		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,</span>
-				pageOrderBy,
-				APPLICATION_CONFIGURATION,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;hjid&quot;), null, null);
+<span class="nc" id="L107">				pageOrderBy,</span>
+<span class="nc" id="L108">				APPLICATION_CONFIGURATION,</span>
+<span class="nc" id="L109">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L110">				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;hjid&quot;), null, null);</span>
 
 <span class="nc bnc" id="L112" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
@@ -127,8 +127,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 
 <span class="nc" id="L129">				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,</span>
-						ApplicationConfiguration.class,
-						AS_LIST);
+<span class="nc" id="L130">						ApplicationConfiguration.class,</span>
+<span class="nc" id="L131">						AS_LIST);</span>
 
 <span class="nc" id="L133">				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();</span>
 <span class="nc" id="L134">				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
@@ -153,17 +153,17 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 <span class="nc" id="L153">				updateFormPanel.setContent(updateFormContent);</span>
 
 <span class="nc" id="L155">				getFormFactory().addRequestInputFormFields(updateFormContent, request,</span>
-						UpdateApplicationConfigurationRequest.class, AS_LIST2,
-						UPDATE_CONFIGURATION, buttonListener);
+<span class="nc" id="L156">						UpdateApplicationConfigurationRequest.class, AS_LIST2,</span>
+<span class="nc" id="L157">						UPDATE_CONFIGURATION, buttonListener);</span>
 
 			}
 		}
 
 <span class="nc" id="L162">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,</span>
-				ApplicationEventGroup.ADMIN, NAME, null, pageId);
+<span class="nc" id="L163">				ApplicationEventGroup.ADMIN, NAME, null, pageId);</span>
 
 <span class="nc" id="L165">		return content;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

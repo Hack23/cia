@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StreamSourceImplementation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl</a> &gt; <span class="el_source">StreamSourceImplementation.java</span></div><h1>StreamSourceImplementation.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
+import java.net.URI;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +37,7 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 <span class="fc" id="L37">	private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);</span>
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+<span class="fc" id="L40">	private static final long serialVersionUID = 1L;</span>
 
 	/** The url. */
 	private final String url;
@@ -54,11 +54,11 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 	@Override
 	public InputStream getStream() {
 		try {
-<span class="nc" id="L57">			return new URL(url).openStream();</span>
-<span class="fc" id="L58">		} catch (final IOException e) {</span>
-<span class="fc" id="L59">			LOGGER.warn(url, e);</span>
-<span class="fc" id="L60">			return new ByteArrayInputStream(new byte[0]);</span>
+<span class="fc" id="L57">			return URI.create(url).toURL().openStream();</span>
+<span class="nc" id="L58">		} catch (final IOException e) {</span>
+<span class="nc" id="L59">			LOGGER.warn(url, e);</span>
+<span class="nc" id="L60">			return new ByteArrayInputStream(new byte[0]);</span>
 		}
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminApplicationEventsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminApplicationEventsPageModContentFactoryImpl.java</span></div><h1>AdminApplicationEventsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -51,24 +51,24 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 	private static final String APPLICATION_ACTION_EVENT = &quot;ApplicationActionEvent&quot;;
 
-<span class="fc" id="L54">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;createdDate&quot;, &quot;eventGroup&quot;, &quot;applicationOperation&quot;,&quot;page&quot;,&quot;pageMode&quot;,&quot;elementId&quot;,&quot;actionName&quot;,&quot;userId&quot;,&quot;sessionId&quot;,&quot;errorMessage&quot;,&quot;applicationMessage&quot;);</span>
+<span class="nc" id="L54">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;createdDate&quot;, &quot;eventGroup&quot;, &quot;applicationOperation&quot;,&quot;page&quot;,&quot;pageMode&quot;,&quot;elementId&quot;,&quot;actionName&quot;,&quot;userId&quot;,&quot;sessionId&quot;,&quot;errorMessage&quot;,&quot;applicationMessage&quot;);</span>
 
-<span class="fc" id="L56">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;userId&quot;,&quot;actionName&quot;,&quot;errorMessage&quot;,&quot;applicationMessage&quot;, &quot;page&quot;,&quot;pageMode&quot;,&quot;elementId&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="nc" id="L56">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;userId&quot;,&quot;actionName&quot;,&quot;errorMessage&quot;,&quot;applicationMessage&quot;, &quot;page&quot;,&quot;pageMode&quot;,&quot;elementId&quot;, &quot;modelObjectVersion&quot; };</span>
 
-<span class="fc" id="L58">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;,&quot;sessionId&quot;, &quot;eventGroup&quot;, &quot;applicationOperation&quot; };</span>
+<span class="nc" id="L58">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;,&quot;sessionId&quot;, &quot;eventGroup&quot;, &quot;applicationOperation&quot; };</span>
 
-<span class="fc" id="L60">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="nc" id="L60">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
+<span class="nc" id="L63">	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;</span>
 
 	/**
 	 * Instantiates a new admin application events page mod content factory
 	 * impl.
 	 */
 	public AdminApplicationEventsPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super(NAME);</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L70">		super(NAME);</span>
+<span class="nc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -91,9 +91,9 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 <span class="nc" id="L91">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
 <span class="nc" id="L93">		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,</span>
-				APPLICATION_ACTION_EVENT,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				LISTENER, null, null);
+<span class="nc" id="L94">				APPLICATION_ACTION_EVENT,</span>
+<span class="nc" id="L95">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L96">				LISTENER, null, null);</span>
 
 <span class="nc bnc" id="L98" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
@@ -102,13 +102,13 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 <span class="nc bnc" id="L102" title="All 2 branches missed.">			if (applicationActionEvent != null) {</span>
 
 <span class="nc" id="L104">				getFormFactory().addFormPanelTextFields(content, applicationActionEvent, ApplicationActionEvent.class,</span>
-					AS_LIST);
+<span class="nc" id="L105">					AS_LIST);</span>
 			}
 		}
 
 
 <span class="nc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+<span class="nc" id="L111">				NAME, null, pageId);</span>
 
 <span class="nc" id="L113">		return content;</span>
 
@@ -116,8 +116,8 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L119" title="5 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));</span>
+<span class="nc bnc" id="L119" title="All 6 branches missed.">		return NAME.equals(page) &amp;&amp; (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractGhantChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">AbstractGhantChartManagerImpl.java</span></div><h1>AbstractGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -66,8 +66,8 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 	 * Instantiates a new abstract ghant chart manager impl.
 	 */
 	public AbstractGhantChartManagerImpl() {
-<span class="fc" id="L69">		super();</span>
-<span class="fc" id="L70">	}</span>
+<span class="nc" id="L69">		super();</span>
+<span class="nc" id="L70">	}</span>
 
 	/**
 	 * Creates the gantt.
@@ -75,14 +75,14 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 	 * @return the gantt
 	 */
 	private static final Gantt createGantt() {
-<span class="fc" id="L78">		final Gantt gantt = new Gantt();</span>
-<span class="fc" id="L79">		gantt.setSizeFull();</span>
-<span class="fc" id="L80">		gantt.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L81">		gantt.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L82">		gantt.setResizableSteps(false);</span>
-<span class="fc" id="L83">		gantt.setMovableSteps(false);</span>
-<span class="fc" id="L84">		gantt.setResolution(Resolution.Week);</span>
-<span class="fc" id="L85">		return gantt;</span>
+<span class="nc" id="L78">		final Gantt gantt = new Gantt();</span>
+<span class="nc" id="L79">		gantt.setSizeFull();</span>
+<span class="nc" id="L80">		gantt.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L81">		gantt.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L82">		gantt.setResizableSteps(false);</span>
+<span class="nc" id="L83">		gantt.setMovableSteps(false);</span>
+<span class="nc" id="L84">		gantt.setResolution(Resolution.Week);</span>
+<span class="nc" id="L85">		return gantt;</span>
 	}
 
 	/**
@@ -136,7 +136,7 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 <span class="nc" id="L136">			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());</span>
 
 <span class="nc" id="L138">			step.addSubStep(sameRoleSubStep);</span>
-<span class="nc" id="L139">		}</span>
+		}
 <span class="nc" id="L140">	}</span>
 
 	/**
@@ -153,12 +153,12 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 	private Gantt createGenericGantt(final List&lt;T&gt; assignmentList, final Function&lt;T, String&gt; roleMapping,
 			final StepMapping&lt;T&gt; stepMapping) {
 
-<span class="fc" id="L156">		final Map&lt;String, List&lt;T&gt;&gt; assignmentListMap = assignmentList.stream()</span>
-<span class="fc" id="L157">				.collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));</span>
+<span class="nc" id="L156">		final Map&lt;String, List&lt;T&gt;&gt; assignmentListMap = assignmentList.stream()</span>
+<span class="nc" id="L157">				.collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));</span>
 
-<span class="fc" id="L159">		final Gantt gantt = createGantt();</span>
+<span class="nc" id="L159">		final Gantt gantt = createGantt();</span>
 
-<span class="pc bpc" id="L161" title="1 of 2 branches missed.">		if (!assignmentList.isEmpty()) {</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">		if (!assignmentList.isEmpty()) {</span>
 
 <span class="nc" id="L163">			gantt.setStartDate(stepMapping.getFromDate(assignmentList.get(0)));</span>
 <span class="nc" id="L164">			gantt.setEndDate(</span>
@@ -178,10 +178,10 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 <span class="nc" id="L178">				addViewGenericRoleMemberToStep(stepName, step, assignments, stepMapping);</span>
 
 <span class="nc" id="L180">				gantt.addStep(step);</span>
-<span class="nc" id="L181">			}</span>
+			}
 		}
 
-<span class="fc" id="L184">		return gantt;</span>
+<span class="nc" id="L184">		return gantt;</span>
 	}
 
 
@@ -193,19 +193,19 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 	 */
 	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection&lt;T&gt; assignmentList) {
 
-<span class="fc" id="L196">		final Comparator&lt;T&gt; compare = getComparator();</span>
+<span class="nc" id="L196">		final Comparator&lt;T&gt; compare = getComparator();</span>
 
-<span class="fc" id="L198">		final List&lt;T&gt; list = assignmentList.stream().filter(</span>
+<span class="nc" id="L198">		final List&lt;T&gt; list = assignmentList.stream().filter(</span>
 <span class="nc bnc" id="L199" title="All 2 branches missed.">				(final T x) -&gt; new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() &gt; FILTER_DATA_BEFORE_YEAR)</span>
-<span class="fc" id="L200">				.collect(Collectors.toList());</span>
+<span class="nc" id="L200">				.collect(Collectors.toList());</span>
 
-<span class="fc" id="L202">		Collections.sort(list, compare);</span>
+<span class="nc" id="L202">		Collections.sort(list, compare);</span>
 
-<span class="fc" id="L204">		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());</span>
-<span class="fc" id="L205">		roleSummaryLayoutTabsheet.addComponent(createGantt);</span>
-<span class="fc" id="L206">		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);</span>
+<span class="nc" id="L204">		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());</span>
+<span class="nc" id="L205">		roleSummaryLayoutTabsheet.addComponent(createGantt);</span>
+<span class="nc" id="L206">		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);</span>
 
-<span class="fc" id="L208">	}</span>
+<span class="nc" id="L208">	}</span>
 
 	/**
 	 * Entries sorted by values.
@@ -349,4 +349,4 @@ public abstract class AbstractGhantChartManagerImpl&lt;T extends Object&gt; {
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

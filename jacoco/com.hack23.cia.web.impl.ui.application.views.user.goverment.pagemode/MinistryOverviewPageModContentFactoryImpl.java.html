@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode</a> &gt; <span class="el_source">MinistryOverviewPageModContentFactoryImpl.java</span></div><h1>MinistryOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -43,21 +43,21 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-<span class="fc" id="L46">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;nameId&quot;, &quot;active&quot;, &quot;firstAssignmentDate&quot;,</span>
-			&quot;lastAssignmentDate&quot;, &quot;totalAssignments&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;);
+<span class="nc" id="L46">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;nameId&quot;, &quot;active&quot;, &quot;firstAssignmentDate&quot;,</span>
+<span class="nc" id="L47">			&quot;lastAssignmentDate&quot;, &quot;totalAssignments&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;);</span>
 
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = &quot;Ministry:&quot;;
 
 	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
+<span class="nc" id="L53">	private static final String OVERVIEW = &quot;overview&quot;;</span>
 
 	/**
 	 * Instantiates a new ministry overview page mod content factory impl.
 	 */
 	public MinistryOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="nc" id="L59">		super();</span>
+<span class="nc" id="L60">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -75,7 +75,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 <span class="nc" id="L75">		panelContent.addComponent(addMinistryPageLink);</span>
 
 <span class="nc" id="L77">		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry, ViewRiksdagenMinistry.class,</span>
-				AS_LIST);
+<span class="nc" id="L78">				AS_LIST);</span>
 
 <span class="nc" id="L80">		panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);</span>
 
@@ -89,7 +89,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 <span class="nc" id="L89">		getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
 <span class="nc" id="L91">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
+<span class="nc" id="L92">				parameters, pageId);</span>
 
 <span class="nc" id="L94">		return panelContent;</span>
 
@@ -97,10 +97,10 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L100">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L101" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="nc" id="L100">		final String pageId = getPageId(parameters);</span>
+<span class="nc bnc" id="L101" title="All 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

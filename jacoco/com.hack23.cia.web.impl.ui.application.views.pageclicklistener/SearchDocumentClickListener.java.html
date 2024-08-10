@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchDocumentClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">SearchDocumentClickListener.java</span></div><h1>SearchDocumentClickListener.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class SearchDocumentClickListener extends AbstractClickListener implement
 	private static final String SEARCH_SUCCESS = &quot;Search success&quot;;
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+<span class="fc" id="L56">	private static final long serialVersionUID = 1L;</span>
 
 	/** The reqister request. */
 	private final SearchDocumentRequest reqisterRequest;
@@ -77,19 +77,19 @@ public class SearchDocumentClickListener extends AbstractClickListener implement
 	@Override
 	public final void buttonClick(final ClickEvent event) {
 <span class="fc" id="L79">		final SearchDocumentResponse response = (SearchDocumentResponse) getApplicationManager().service(reqisterRequest);</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="fc" id="L81">			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT,reqisterRequest.getSearchExpression());</span>
-<span class="fc" id="L82">			showNotification(SEARCH_SUCCESS,</span>
-<span class="fc" id="L83">	                  &quot;Found :&quot; + response.getResultElement().size(),</span>
-	                  Notification.Type.HUMANIZED_MESSAGE);
-<span class="fc" id="L85">			responseHandler.handle(response);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L81">			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT,reqisterRequest.getSearchExpression());</span>
+<span class="nc" id="L82">			showNotification(SEARCH_SUCCESS,</span>
+<span class="nc" id="L83">	                  &quot;Found :&quot; + response.getResultElement().size(),</span>
+<span class="nc" id="L84">	                  Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="nc" id="L85">			responseHandler.handle(response);</span>
 
-		} else {
+<span class="nc" id="L87">		} else {</span>
 <span class="fc" id="L88">			showNotification(SEARCH_FAILED,</span>
-	                  ERROR_MESSAGE,
-	                  Notification.Type.WARNING_MESSAGE);
+<span class="fc" id="L89">	                  ERROR_MESSAGE,</span>
+<span class="fc" id="L90">	                  Notification.Type.WARNING_MESSAGE);</span>
 <span class="fc" id="L91">			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT_FAILURE,reqisterRequest.getSearchExpression());</span>
 		}
 <span class="fc" id="L93">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

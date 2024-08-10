@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminCountryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminCountryPageModContentFactoryImpl.java</span></div><h1>AdminCountryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -48,27 +48,27 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	/** The Constant ADMIN_COUNTRY. */
 	private static final String ADMIN_COUNTRY = &quot;Admin Country&quot;;
 
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
-			&quot;longitude&quot;, &quot;latitude&quot; );
+<span class="nc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
+<span class="nc" id="L52">			&quot;longitude&quot;, &quot;latitude&quot; );</span>
 
-<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
-			&quot;latitude&quot; };
+<span class="nc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
+<span class="nc" id="L55">			&quot;latitude&quot; };</span>
 
 	private static final String COUNTRY2 = &quot;Country&quot;;
 
-<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
+<span class="nc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
 
-<span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="nc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_COUNTRY_VIEW_NAME;
+<span class="nc" id="L64">	public static final String NAME = AdminViews.ADMIN_COUNTRY_VIEW_NAME;</span>
 
 	/**
 	 * Instantiates a new admin country page mod content factory impl.
 	 */
 	public AdminCountryPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super(NAME);</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L70">		super(NAME);</span>
+<span class="nc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -91,9 +91,9 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 <span class="nc" id="L92">		getGridFactory()</span>
 <span class="nc" id="L93">				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,</span>
-						COUNTRY2,null,
-						COLUMN_ORDER, HIDE_COLUMNS,
-						LISTENER, null, null);
+<span class="nc" id="L94">						COUNTRY2,null,</span>
+<span class="nc" id="L95">						COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L96">						LISTENER, null, null);</span>
 
 <span class="nc bnc" id="L98" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
@@ -101,16 +101,16 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 <span class="nc bnc" id="L101" title="All 2 branches missed.">			if (country != null) {</span>
 
 <span class="nc" id="L103">				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,</span>
-						AS_LIST);
+<span class="nc" id="L104">						AS_LIST);</span>
 			}
 		}
 
 <span class="nc" id="L108">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_COUNTRY_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+<span class="nc" id="L109">				NAME, null, pageId);</span>
 
 <span class="nc" id="L111">		return content;</span>
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

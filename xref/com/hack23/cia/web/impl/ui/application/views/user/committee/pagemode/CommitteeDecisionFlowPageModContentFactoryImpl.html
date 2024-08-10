@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../../apidocs/com/hack23/cia/web/impl/ui/application/views/user/committee/pagemode/CommitteeDecisionFlowPageModContentFactoryImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2021 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -83,13 +83,13 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		String selectedYear = <span class="jxr_string">"2021/22"</span>;
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		String selectedYear = <span class="jxr_string">"2022/23"</span>;
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">if</strong> (parameters != <strong class="jxr_keyword">null</strong> &amp;&amp; parameters.contains(<span class="jxr_string">"["</span>) &amp;&amp; parameters.contains(<span class="jxr_string">"]"</span>)) {
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		}
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  		<strong class="jxr_keyword">final</strong> ComboBox&lt;String&gt; comboBox = <strong class="jxr_keyword">new</strong> ComboBox&lt;&gt;(<span class="jxr_string">"Select year"</span>, Collections.unmodifiableList(
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  				Arrays.asList(<span class="jxr_string">"2021/22"</span>,<span class="jxr_string">"2020/21"</span>,<span class="jxr_string">"2019/20"</span>,<span class="jxr_string">"2018/19"</span>,<span class="jxr_string">"2017/18"</span>, <span class="jxr_string">"2016/17"</span>, <span class="jxr_string">"2015/16"</span>, <span class="jxr_string">"2014/15"</span>, <span class="jxr_string">"2013/14"</span>, <span class="jxr_string">"2012/13"</span>, <span class="jxr_string">"2011/12"</span>, <span class="jxr_string">"2010/11"</span>)));
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  				Arrays.asList(<span class="jxr_string">"2023/24"</span>, <span class="jxr_string">"2022/23"</span>,<span class="jxr_string">"2021/22"</span>,<span class="jxr_string">"2020/21"</span>,<span class="jxr_string">"2019/20"</span>,<span class="jxr_string">"2018/19"</span>,<span class="jxr_string">"2017/18"</span>, <span class="jxr_string">"2016/17"</span>, <span class="jxr_string">"2015/16"</span>, <span class="jxr_string">"2014/15"</span>, <span class="jxr_string">"2013/14"</span>, <span class="jxr_string">"2012/13"</span>, <span class="jxr_string">"2011/12"</span>, <span class="jxr_string">"2010/11"</span>)));
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		panelContent.addComponent(comboBox);
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		comboBox.setSelectedItem(selectedYear);
@@ -129,6 +129,6 @@
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2024 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

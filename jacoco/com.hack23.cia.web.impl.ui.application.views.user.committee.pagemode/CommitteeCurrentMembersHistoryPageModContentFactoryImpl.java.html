@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeCurrentMembersHistoryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeCurrentMembersHistoryPageModContentFactoryImpl.java</span></div><h1>CommitteeCurrentMembersHistoryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -44,8 +44,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
-			&quot;lastName&quot;, &quot;party&quot;, &quot;active&quot;, &quot;totalDaysServed&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
+<span class="nc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;roleId&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
+<span class="nc" id="L48">			&quot;lastName&quot;, &quot;party&quot;, &quot;active&quot;, &quot;totalDaysServed&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };</span>
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = &quot;Committee:&quot;;
@@ -53,18 +53,18 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = &quot;Current Members&quot;;
 
-<span class="fc" id="L56">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot; };</span>
+<span class="nc" id="L56">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;detail&quot;, &quot;active&quot; };</span>
 
-<span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
+<span class="nc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="nc" id="L59">			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);</span>
 
 	/**
 	 * Instantiates a new committee current members history page mod content
 	 * factory impl.
 	 */
 	public CommitteeCurrentMembersHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L66">		super();</span>
-<span class="fc" id="L67">	}</span>
+<span class="nc" id="L66">		super();</span>
+<span class="nc" id="L67">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -84,20 +84,20 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 <span class="nc" id="L84">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,</span>
 <span class="nc" id="L85">				committeeRoleMemberDataContainer.findListByProperty(</span>
 <span class="nc" id="L86">						new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },</span>
-						ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),
-				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+<span class="nc" id="L87">						ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),</span>
+<span class="nc" id="L88">				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);</span>
 
 <span class="nc" id="L90">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
 <span class="nc" id="L91">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
+<span class="nc" id="L92">				parameters, pageId);</span>
 <span class="nc" id="L93">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L99" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,CommitteePageMode.CURRENT_MEMBERS.toString());</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,CommitteePageMode.CURRENT_MEMBERS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

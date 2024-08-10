@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HttpSessionDestroyedEventListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.web.listener</a> &gt; <span class="el_source">HttpSessionDestroyedEventListener.java</span></div><h1>HttpSessionDestroyedEventListener.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -49,13 +49,13 @@ public final class HttpSessionDestroyedEventListener implements ApplicationListe
 	private static final String LOG_MSG_SESSION_DESTROYED_SESSION_ID = &quot;Session destroyed SESSION_ID :{}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L52">	private static final Logger LOGGER = LoggerFactory.getLogger(HttpSessionDestroyedEventListener.class);</span>
+<span class="nc" id="L52">	private static final Logger LOGGER = LoggerFactory.getLogger(HttpSessionDestroyedEventListener.class);</span>
 
 	/** The Constant PRINCIPAL. */
 	private static final String PRINCIPAL = &quot;AnonymousUser&quot;;
 
 	/** The Constant ROLE_ANONYMOUS. */
-	private static final String ROLE_ANONYMOUS = &quot;ROLE_ANONYMOUS&quot;;
+<span class="nc" id="L58">	private static final String ROLE_ANONYMOUS = &quot;ROLE_ANONYMOUS&quot;;</span>
 
 	/** The application manager. */
 	@Autowired
@@ -65,24 +65,24 @@ public final class HttpSessionDestroyedEventListener implements ApplicationListe
 	 * Instantiates a new http session destroyed event listener.
 	 */
 	public HttpSessionDestroyedEventListener() {
-<span class="fc" id="L68">		super();</span>
-<span class="fc" id="L69">	}</span>
+<span class="nc" id="L68">		super();</span>
+<span class="nc" id="L69">	}</span>
 
 	@Override
 	public void onApplicationEvent(final HttpSessionDestroyedEvent event) {
-<span class="fc" id="L73">		final HttpSession httpSession = event.getSession();</span>
-<span class="fc" id="L74">		final Collection&lt;SimpleGrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L75">		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));</span>
-<span class="fc" id="L76">		final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();</span>
-<span class="fc" id="L77">		destroyApplicationSessionRequest.setSessionId(httpSession.getId());</span>
+<span class="nc" id="L73">		final HttpSession httpSession = event.getSession();</span>
+<span class="nc" id="L74">		final Collection&lt;SimpleGrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L75">		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));</span>
+<span class="nc" id="L76">		final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();</span>
+<span class="nc" id="L77">		destroyApplicationSessionRequest.setSessionId(httpSession.getId());</span>
 
-<span class="fc" id="L79">		SecurityContextHolder.getContext()</span>
-<span class="fc" id="L80">				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));</span>
-<span class="fc" id="L81">		applicationManager.service(destroyApplicationSessionRequest);</span>
-<span class="fc" id="L82">		SecurityContextHolder.getContext().setAuthentication(null);</span>
+<span class="nc" id="L79">		SecurityContextHolder.getContext()</span>
+<span class="nc" id="L80">				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));</span>
+<span class="nc" id="L81">		applicationManager.service(destroyApplicationSessionRequest);</span>
+<span class="nc" id="L82">		SecurityContextHolder.getContext().setAuthentication(null);</span>
 
-<span class="fc" id="L84">		LOGGER.info(LOG_MSG_SESSION_DESTROYED_SESSION_ID, httpSession.getId());</span>
-<span class="fc" id="L85">	}</span>
+<span class="nc" id="L84">		LOGGER.info(LOG_MSG_SESSION_DESTROYED_SESSION_ID, httpSession.getId());</span>
+<span class="nc" id="L85">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

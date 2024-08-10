@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="105px" preserveAspectRatio="none" style="width:398px;height:105px;background:#FFFFFF;" version="1.1" viewBox="0 0 398 105" width="398px" zoomAndPan="magnify"><defs/><g><!--MD5=[d34d823ddd4c9da1229a65f1e0095c2c]
+class com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager--><a href="GenericChartDataManager.html" target="_top" title="GenericChartDataManager.html" xlink:actuate="onRequest" xlink:href="GenericChartDataManager.html" xlink:show="new" xlink:title="GenericChartDataManager.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager"><rect codeLine="5" fill="#F1F1F1" height="69.7558" id="com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="377" x="7" y="7"/><ellipse cx="22" cy="28.344" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M17.9219,24.1096 L17.9219,21.9533 L25.3125,21.9533 L25.3125,24.1096 L22.8438,24.1096 L22.8438,32.1877 L25.3125,32.1877 L25.3125,34.344 L17.9219,34.344 L17.9219,32.1877 L20.3906,32.1877 L20.3906,24.1096 L17.9219,24.1096 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="169" x="119" y="26.9659">GenericChartDataManager</text><text fill="#000000" font-family="sans-serif" font-size="10" font-style="italic" lengthAdjust="spacing" textLength="335" x="36" y="41.7579">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api</text><rect fill="#FFFFFF" height="18.3441" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="8" x="379" y="4"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="6" x="380" y="17.8281">T</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="383" y1="49.6879" y2="49.6879"/><ellipse cx="18" cy="64.7219" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="173" x="27" y="68.6538">findByValue(String): List&lt;T&gt;</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="101" y="83.7558"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="101" y="94.4458">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[b82ac520155cbcbd4c28253297b94523]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>GenericChartDataManager\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager<T> [[GenericChartDataManager.html]] {
+        {abstract} +findByValue(String): List<T>
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

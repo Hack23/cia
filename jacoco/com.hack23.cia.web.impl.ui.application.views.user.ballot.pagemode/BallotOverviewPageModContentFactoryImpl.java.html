@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BallotOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode</a> &gt; <span class="el_source">BallotOverviewPageModContentFactoryImpl.java</span></div><h1>BallotOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -54,64 +54,64 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-<span class="fc" id="L57">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;embeddedId.id&quot;, &quot;ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;org&quot;,</span>
-			&quot;committeeReport&quot;, &quot;embeddedId.issue&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;decisionType&quot;,
-			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;winner&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot;, &quot;endNumber&quot;, &quot;againstProposalParties&quot;,
-			&quot;againstProposalNumber&quot; );
+<span class="nc" id="L57">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;embeddedId.id&quot;, &quot;ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;org&quot;,</span>
+<span class="nc" id="L58">			&quot;committeeReport&quot;, &quot;embeddedId.issue&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;decisionType&quot;,</span>
+<span class="nc" id="L59">			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;winner&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,</span>
+<span class="nc" id="L60">			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot;, &quot;endNumber&quot;, &quot;againstProposalParties&quot;,</span>
+<span class="nc" id="L61">			&quot;againstProposalNumber&quot; );</span>
 
-<span class="fc" id="L63">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;embeddedId.ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;embeddedId.issue&quot;,</span>
-			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;label&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot; );
+<span class="nc" id="L63">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;embeddedId.ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;embeddedId.issue&quot;,</span>
+<span class="nc" id="L64">			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;label&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,</span>
+<span class="nc" id="L65">			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot; );</span>
 
 	private static final String EMBEDDED_ID_PARTY = &quot;embeddedId.party&quot;;
 
 	/** The Constant COMMITTEE. */
 	private static final String BALLOT = &quot;Ballot:&quot;;
 
-<span class="fc" id="L72">	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
-			&quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,
-			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,
-			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,
-			&quot;percentageMale&quot;, &quot;ballotType&quot;, &quot;embeddedId.ballotId&quot; };
+<span class="nc" id="L72">	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
+<span class="nc" id="L73">			&quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,</span>
+<span class="nc" id="L74">			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,</span>
+<span class="nc" id="L75">			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,</span>
+<span class="nc" id="L76">			&quot;percentageMale&quot;, &quot;ballotType&quot;, &quot;embeddedId.ballotId&quot; };</span>
 
 
 
 	private static final int FIRST_OBJECT = 0;
 
-<span class="fc" id="L82">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;, &quot;partyPercentageNo&quot;,</span>
-			&quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
-			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,
-			&quot;totalVotes&quot;, &quot;approved&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;ballotType&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;embeddedId.ballotId&quot;, &quot;noWinner&quot; };
+<span class="nc" id="L82">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;, &quot;partyPercentageNo&quot;,</span>
+<span class="nc" id="L83">			&quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,</span>
+<span class="nc" id="L84">			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
+<span class="nc" id="L85">			&quot;totalVotes&quot;, &quot;approved&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;ballotType&quot;,</span>
+<span class="nc" id="L86">			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;embeddedId.ballotId&quot;, &quot;noWinner&quot; };</span>
 
-<span class="fc" id="L88">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);</span>
+<span class="nc" id="L88">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);</span>
 
-<span class="fc" id="L90">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.ballotId&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
-			EMBEDDED_ID_PARTY };
+<span class="nc" id="L90">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.ballotId&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
+<span class="nc" id="L91">			EMBEDDED_ID_PARTY };</span>
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = &quot;overview&quot;;
 
-	private static final String PARTY_BALLOT_SUMMARY = &quot;Party Ballot Summary&quot;;
+<span class="nc" id="L96">	private static final String PARTY_BALLOT_SUMMARY = &quot;Party Ballot Summary&quot;;</span>
 
 	/**
 	 * Instantiates a new ballot overview page mod content factory impl.
 	 */
 	public BallotOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L102">		super();</span>
-<span class="fc" id="L103">	}</span>
+<span class="nc" id="L102">		super();</span>
+<span class="nc" id="L103">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L108">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L108">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L110">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L110">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L112">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
+<span class="nc" id="L112">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
 
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		if (!ballots.isEmpty()) {</span>
 <span class="nc" id="L115">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
 <span class="nc" id="L117">			LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
@@ -123,8 +123,8 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 <span class="nc" id="L123">					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
 
 <span class="nc" id="L125">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(</span>
-					ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
-					RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+<span class="nc" id="L126">					ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,</span>
+<span class="nc" id="L127">					RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);</span>
 
 <span class="nc" id="L129">			final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionSummaries = dataDecisionContainer</span>
 <span class="nc" id="L130">					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);</span>
@@ -135,25 +135,25 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 <span class="nc bnc" id="L135" title="All 2 branches missed.">				if (!decisionSummaries.isEmpty()) {</span>
 
 <span class="nc" id="L137">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
-							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							AS_LIST);
+<span class="nc" id="L138">							ViewRiksdagenCommitteeBallotDecisionSummary.class,</span>
+<span class="nc" id="L139">							AS_LIST);</span>
 
-				} else {
+<span class="nc" id="L141">				} else {</span>
 
 <span class="nc" id="L143">					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,</span>
-							ViewRiksdagenVoteDataBallotSummary.class,
-							AS_LIST2);
+<span class="nc" id="L144">							ViewRiksdagenVoteDataBallotSummary.class,</span>
+<span class="nc" id="L145">							AS_LIST2);</span>
 				}
 
-<span class="nc" id="L148">			}</span>
+			}
 
 
 <span class="nc" id="L151">			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,</span>
-					partyBallotList, PARTY_BALLOT_SUMMARY,
-					NESTED_PROPERTIES,
-					COLUMN_ORDER,
-					HIDE_COLUMNS,
-					LISTENER, EMBEDDED_ID_PARTY, null);
+<span class="nc" id="L152">					partyBallotList, PARTY_BALLOT_SUMMARY,</span>
+<span class="nc" id="L153">					NESTED_PROPERTIES,</span>
+<span class="nc" id="L154">					COLUMN_ORDER,</span>
+<span class="nc" id="L155">					HIDE_COLUMNS,</span>
+<span class="nc" id="L156">					LISTENER, EMBEDDED_ID_PARTY, null);</span>
 
 <span class="nc" id="L158">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
 <span class="nc" id="L159">			overviewLayout.setSizeFull();</span>
@@ -165,18 +165,18 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 <span class="nc" id="L166">			panel.setCaption(NAME + &quot;::&quot; + BALLOT + pageId);</span>
 <span class="nc" id="L167">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,</span>
-					parameters, pageId);
+<span class="nc" id="L168">					parameters, pageId);</span>
 		}
-<span class="fc" id="L170">		return panelContent;</span>
+<span class="nc" id="L170">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L176">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L177" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="pc bnc" id="L178" title="All 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="nc" id="L176">		final String pageId = getPageId(parameters);</span>
+<span class="nc bnc" id="L177" title="All 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

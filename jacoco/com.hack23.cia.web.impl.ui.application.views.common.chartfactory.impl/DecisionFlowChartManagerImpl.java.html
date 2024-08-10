@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DecisionFlowChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DecisionFlowChartManagerImpl.java</span></div><h1>DecisionFlowChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -49,8 +49,8 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	 * Instantiates a new decision flow chart manager impl.
 	 */
 	public DecisionFlowChartManagerImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+<span class="nc" id="L52">		super();</span>
+<span class="nc" id="L53">	}</span>
 
 	/**
 	 * Adds the commitee summary.
@@ -72,7 +72,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc bnc" id="L72" title="All 4 branches missed.">				if (docEntry.getKey().length() &gt; 0 &amp;&amp; entry.getKey().length() &gt; 0) {</span>
 <span class="nc" id="L73">					addEntry(stringBuilder, docEntry);</span>
 				}
-<span class="nc" id="L75">			}</span>
+			}
 		}
 <span class="nc" id="L77">	}</span>
 
@@ -97,7 +97,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc" id="L97">				chart.addDataRow(vewRiksdagenCommittee.getEmbeddedId().getDetail(), decisionEntry.getKey(),</span>
 <span class="nc" id="L98">						decisionEntry.getValue().size());</span>
 			}
-<span class="nc" id="L100">		}</span>
+		}
 <span class="nc" id="L101">	}</span>
 
 	/**
@@ -122,7 +122,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc" id="L122">						docEntry.getValue().size());</span>
 
 			}
-<span class="nc" id="L125">		}</span>
+		}
 <span class="nc" id="L126">	}</span>
 
 	/**
@@ -147,8 +147,8 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc bnc" id="L147" title="All 4 branches missed.">				if (decisionEntry.getKey().length() &gt; 0 &amp;&amp; entry.getKey().length() &gt; 0) {</span>
 <span class="nc" id="L148">					chart.addDataRow(docEntry.getKey(), decisionEntry.getKey(), decisionEntry.getValue().size());</span>
 				}
-<span class="nc" id="L150">			}</span>
-<span class="nc" id="L151">		}</span>
+			}
+		}
 <span class="nc" id="L152">	}</span>
 
 	/**
@@ -174,25 +174,25 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc bnc" id="L174" title="All 2 branches missed.">				for (final ProposalCommitteeeSummary proposalCommitteeeSummary : decisionSummaryList) {</span>
 <span class="nc" id="L175">					stringBuilder.append(&quot;\n    &quot;).append(proposalCommitteeeSummary.getDecision()).append(':').append(proposalCommitteeeSummary.getWording()).append(' ').append(proposalCommitteeeSummary.getWording2()).append(' ');</span>
 
-<span class="nc" id="L177">				}</span>
+				}
 
 			}
-<span class="nc" id="L180">		}</span>
+		}
 <span class="nc" id="L181">		stringBuilder.append(')');</span>
 <span class="nc" id="L182">	}</span>
 
 	@Override
 	public SankeyChart createAllDecisionFlow(final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap,final String rm) {
-<span class="fc" id="L186">		final List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);</span>
+<span class="nc" id="L186">		final List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);</span>
 
 
-<span class="fc" id="L189">		final SankeyChart chart = new SankeyChart();</span>
+<span class="nc" id="L189">		final SankeyChart chart = new SankeyChart();</span>
 
-<span class="fc" id="L191">		final Map&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; orgProposalMap = createCommitteeSummary.stream()</span>
-<span class="fc" id="L192">				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));</span>
+<span class="nc" id="L191">		final Map&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; orgProposalMap = createCommitteeSummary.stream()</span>
+<span class="nc" id="L192">				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));</span>
 
 
-<span class="pc bpc" id="L195" title="1 of 2 branches missed.">		for (final Entry&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; entry : orgProposalMap.entrySet()) {</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; entry : orgProposalMap.entrySet()) {</span>
 
 <span class="nc bnc" id="L197" title="All 2 branches missed.">			if (committeeMap.containsKey(entry.getKey())) {</span>
 
@@ -202,10 +202,10 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc" id="L202">					addDecisionDataRows(chart, entry, vewRiksdagenCommittee.get());</span>
 				}
 			}
-<span class="nc" id="L205">		}</span>
+		}
 
-<span class="fc" id="L207">		chart.drawChart();</span>
-<span class="fc" id="L208">		return chart;</span>
+<span class="nc" id="L207">		chart.drawChart();</span>
+<span class="nc" id="L208">		return chart;</span>
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc bnc" id="L223" title="All 2 branches missed.">					&amp;&amp; viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH).equals(entry.getKey().toUpperCase(Locale.ENGLISH))) {</span>
 <span class="nc" id="L224">				addDocTypeDecisionDataRows(chart, entry);</span>
 			}
-<span class="nc" id="L226">		}</span>
+		}
 
 <span class="nc" id="L228">		chart.drawChart();</span>
 <span class="nc" id="L229">		return chart;</span>
@@ -231,20 +231,20 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
 	@Override
 	public TextArea createCommitteeeDecisionSummary(final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap,final String rm) {
-<span class="fc" id="L234">		final TextArea area = new TextArea(&quot;Summary&quot;);</span>
-<span class="fc" id="L235">		final StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="fc" id="L236">		final List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);</span>
+<span class="nc" id="L234">		final TextArea area = new TextArea(&quot;Summary&quot;);</span>
+<span class="nc" id="L235">		final StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="nc" id="L236">		final List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);</span>
 
-<span class="fc" id="L238">		final Map&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; orgProposalMap = createCommitteeSummary.stream()</span>
-<span class="fc" id="L239">				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));</span>
+<span class="nc" id="L238">		final Map&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; orgProposalMap = createCommitteeSummary.stream()</span>
+<span class="nc" id="L239">				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));</span>
 
-<span class="pc bpc" id="L241" title="1 of 2 branches missed.">		for (final Entry&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; entry : orgProposalMap.entrySet()) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; entry : orgProposalMap.entrySet()) {</span>
 <span class="nc bnc" id="L242" title="All 2 branches missed.">			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))) {</span>
 <span class="nc" id="L243">				addCommiteeSummary(stringBuilder, entry, committeeMap.get(entry.getKey()).stream().findFirst());</span>
 			}
-<span class="nc" id="L245">		}</span>
-<span class="fc" id="L246">		area.setValue(stringBuilder.toString());</span>
-<span class="fc" id="L247">		return area;</span>
+		}
+<span class="nc" id="L246">		area.setValue(stringBuilder.toString());</span>
+<span class="nc" id="L247">		return area;</span>
 	}
 
 	@Override
@@ -283,10 +283,10 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 <span class="nc" id="L283">			stringBuilder.append('\n').append(vewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
 <span class="nc bnc" id="L284" title="All 2 branches missed.">			for (final Entry&lt;String, List&lt;ProposalCommitteeeSummary&gt;&gt; docEntry : docTypeMap.entrySet()) {</span>
 <span class="nc" id="L285">					addEntry(stringBuilder, docEntry);</span>
-<span class="nc" id="L286">			}</span>
+			}
 		}
 <span class="nc" id="L288">	}</span>
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

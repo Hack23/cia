@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeDecisionFlowPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeDecisionFlowPageModContentFactoryImpl.java</span></div><h1>CommitteeDecisionFlowPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -63,8 +63,8 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 	 * impl.
 	 */
 	public CommitteeDecisionFlowPageModContentFactoryImpl() {
-<span class="fc" id="L66">		super();</span>
-<span class="fc" id="L67">	}</span>
+<span class="nc" id="L66">		super();</span>
+<span class="nc" id="L67">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -75,13 +75,13 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 <span class="nc" id="L75">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
 <span class="nc" id="L76">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L78">		String selectedYear = &quot;2021/22&quot;;</span>
+<span class="nc" id="L78">		String selectedYear = &quot;2022/23&quot;;</span>
 <span class="nc bnc" id="L79" title="All 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
 <span class="nc" id="L80">			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));</span>
 		}
 
 <span class="nc" id="L83">		final ComboBox&lt;String&gt; comboBox = new ComboBox&lt;&gt;(&quot;Select year&quot;, Collections.unmodifiableList(</span>
-<span class="nc" id="L84">				Arrays.asList(&quot;2021/22&quot;,&quot;2020/21&quot;,&quot;2019/20&quot;,&quot;2018/19&quot;,&quot;2017/18&quot;, &quot;2016/17&quot;, &quot;2015/16&quot;, &quot;2014/15&quot;, &quot;2013/14&quot;, &quot;2012/13&quot;, &quot;2011/12&quot;, &quot;2010/11&quot;)));</span>
+<span class="nc" id="L84">				Arrays.asList(&quot;2023/24&quot;, &quot;2022/23&quot;,&quot;2021/22&quot;,&quot;2020/21&quot;,&quot;2019/20&quot;,&quot;2018/19&quot;,&quot;2017/18&quot;, &quot;2016/17&quot;, &quot;2015/16&quot;, &quot;2014/15&quot;, &quot;2013/14&quot;, &quot;2012/13&quot;, &quot;2011/12&quot;, &quot;2010/11&quot;)));</span>
 <span class="nc" id="L85">		panelContent.addComponent(comboBox);</span>
 <span class="nc" id="L86">		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);</span>
 <span class="nc" id="L87">		comboBox.setSelectedItem(selectedYear);</span>
@@ -105,7 +105,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 
 <span class="nc" id="L107">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
+<span class="nc" id="L108">				parameters, pageId);</span>
 <span class="nc" id="L109">		panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(COMMITTEE_DECISION_FLOW).toString());</span>
 
 <span class="nc" id="L111">		return panelContent;</span>
@@ -114,9 +114,9 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L117" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="pc bpc" id="L118" title="1 of 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

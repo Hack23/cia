@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="105px" preserveAspectRatio="none" style="width:497px;height:105px;background:#FFFFFF;" version="1.1" viewBox="0 0 497 105" width="497px" zoomAndPan="magnify"><defs/><g><!--MD5=[e58212364706bf36ae022e9746bf297e]
+class com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory--><a href="DecisionDataFactory.html" target="_top" title="DecisionDataFactory.html" xlink:actuate="onRequest" xlink:href="DecisionDataFactory.html" xlink:show="new" xlink:title="DecisionDataFactory.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory"><rect codeLine="5" fill="#F1F1F1" height="69.7558" id="com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="476" x="7" y="7"/><ellipse cx="62.25" cy="28.344" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M58.1719,24.1096 L58.1719,21.9533 L65.5625,21.9533 L65.5625,24.1096 L63.0938,24.1096 L63.0938,32.1877 L65.5625,32.1877 L65.5625,34.344 L58.1719,34.344 L58.1719,32.1877 L60.6406,32.1877 L60.6406,24.1096 L58.1719,24.1096 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="129" x="196.75" y="26.9659">DecisionDataFactory</text><text fill="#000000" font-family="sans-serif" font-size="10" font-style="italic" lengthAdjust="spacing" textLength="357" x="82.75" y="41.7579">com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="482" y1="49.6879" y2="49.6879"/><ellipse cx="18" cy="64.7219" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="450" x="27" y="68.6538">createCommitteeSummary(String): List&lt;ProposalCommitteeeSummary&gt;</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="150.5" y="83.7558"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="150.5" y="94.4458">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[93ddb20a850872e0d7f657722db79026]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>DecisionDataFactory\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api" as com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory [[DecisionDataFactory.html]] {
+        {abstract} +createCommitteeSummary(String): List<ProposalCommitteeeSummary>
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

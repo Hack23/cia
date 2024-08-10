@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">AbstractPageModContentFactoryImpl.java</span></div><h1>AbstractPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -80,8 +80,8 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * Instantiates a new abstract page mod content factory impl.
 	 */
 	protected AbstractPageModContentFactoryImpl() {
-<span class="fc" id="L83">		super();</span>
-<span class="fc" id="L84">	}</span>
+<span class="nc" id="L83">		super();</span>
+<span class="nc" id="L84">	}</span>
 
 	/**
 	 * Creates the page visit history.
@@ -96,32 +96,32 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
 
-<span class="fc" id="L99">		final TabSheet tabsheet = new TabSheet();</span>
-<span class="fc" id="L100">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L101">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L99">		final TabSheet tabsheet = new TabSheet();</span>
+<span class="nc" id="L100">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L101">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
 
-<span class="fc" id="L103">		panelContent.addComponent(tabsheet);</span>
-<span class="fc" id="L104">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
+<span class="nc" id="L103">		panelContent.addComponent(tabsheet);</span>
+<span class="nc" id="L104">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L106">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
-<span class="fc" id="L107">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L108">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L109">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
+<span class="nc" id="L106">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
+<span class="nc" id="L107">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L108">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L109">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
 
-<span class="fc" id="L111">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
-<span class="fc" id="L112">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
-				pageName, pageId);
+<span class="nc" id="L111">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
+<span class="nc" id="L112">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
+<span class="nc" id="L113">				pageName, pageId);</span>
 
-<span class="fc" id="L115">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
-<span class="fc" id="L116">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L117">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L118">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
-<span class="fc" id="L119">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
+<span class="nc" id="L115">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
+<span class="nc" id="L116">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L117">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L118">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
+<span class="nc" id="L119">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
 
-<span class="fc" id="L121">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
-				pageName);
+<span class="nc" id="L121">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
+<span class="nc" id="L122">				pageName);</span>
 
-<span class="fc" id="L124">	}</span>
+<span class="nc" id="L124">	}</span>
 
 	/**
 	 * Creates the panel content.
@@ -129,16 +129,16 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the vertical layout
 	 */
 	protected static final VerticalLayout createPanelContent() {
-<span class="fc" id="L132">		final VerticalLayout panelContent = new VerticalLayout();</span>
-<span class="fc" id="L133">		panelContent.setMargin(true);</span>
-<span class="fc" id="L134">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L135">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L136">		panelContent.setStyleName(&quot;Header&quot;);</span>
-<span class="fc" id="L137">		return panelContent;</span>
+<span class="nc" id="L132">		final VerticalLayout panelContent = new VerticalLayout();</span>
+<span class="nc" id="L133">		panelContent.setMargin(true);</span>
+<span class="nc" id="L134">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L135">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L136">		panelContent.setStyleName(&quot;Header&quot;);</span>
+<span class="nc" id="L137">		return panelContent;</span>
 	}
 
 	protected final AdminChartDataManager getAdminChartDataManager() {
-<span class="fc" id="L141">		return adminChartDataManager;</span>
+<span class="nc" id="L141">		return adminChartDataManager;</span>
 	}
 
 	/**
@@ -147,7 +147,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the application manager
 	 */
 	protected final ApplicationManager getApplicationManager() {
-<span class="fc" id="L150">		return applicationManager;</span>
+<span class="nc" id="L150">		return applicationManager;</span>
 	}
 
 	/**
@@ -156,7 +156,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the form factory
 	 */
 	protected final FormFactory getFormFactory() {
-<span class="fc" id="L159">		return formFactory;</span>
+<span class="nc" id="L159">		return formFactory;</span>
 	}
 
 	/**
@@ -165,7 +165,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the grid factory
 	 */
 	protected final GridFactory getGridFactory() {
-<span class="fc" id="L168">		return gridFactory;</span>
+<span class="nc" id="L168">		return gridFactory;</span>
 	}
 
 	/**
@@ -174,7 +174,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the menu item factory
 	 */
 	protected final ApplicationMenuItemFactory getMenuItemFactory() {
-<span class="fc" id="L177">		return menuItemFactory;</span>
+<span class="nc" id="L177">		return menuItemFactory;</span>
 	}
 
 	/**
@@ -183,7 +183,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page action event helper
 	 */
 	protected final PageActionEventHelper getPageActionEventHelper() {
-<span class="fc" id="L186">		return pageActionEventHelper;</span>
+<span class="nc" id="L186">		return pageActionEventHelper;</span>
 	}
 
 	/**
@@ -194,13 +194,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page id
 	 */
 	protected static final String getPageId(final String parameters) {
-<span class="pc bpc" id="L197" title="1 of 2 branches missed.">		if (parameters != null) {</span>
-<span class="fc" id="L198">			String cleanedString = parameters;</span>
-<span class="fc bfc" id="L199" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
-<span class="fc" id="L200">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">		if (parameters != null) {</span>
+<span class="nc" id="L198">			String cleanedString = parameters;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">			if (parameters.contains(&quot;[&quot;)) {</span>
+<span class="nc" id="L200">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
 			}
 
-<span class="fc" id="L203">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length());</span>
+<span class="nc" id="L203">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length());</span>
 		} else {
 <span class="nc" id="L205">			return &quot;&quot;;</span>
 		}
@@ -222,21 +222,21 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page nr
 	 */
 	protected static final int getPageNr(final String parameters) {
-<span class="fc" id="L225">		final String cleanedString = parameters;</span>
+<span class="nc" id="L225">		final String cleanedString = parameters;</span>
 		String pageNrValue;
-<span class="pc bpc" id="L227" title="4 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
+<span class="nc bnc" id="L227" title="All 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
 <span class="nc" id="L228">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
-		} else {
-<span class="fc" id="L230">			pageNrValue = &quot;&quot;;</span>
+<span class="nc" id="L229">		} else {</span>
+<span class="nc" id="L230">			pageNrValue = &quot;&quot;;</span>
 		}
 
-<span class="fc" id="L233">		int pageNr = 1;</span>
+<span class="nc" id="L233">		int pageNr = 1;</span>
 
-<span class="pc bpc" id="L235" title="3 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
+<span class="nc bnc" id="L235" title="All 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
 <span class="nc" id="L236">			pageNr = Integer.parseInt(pageNrValue);</span>
 		}
-<span class="fc" id="L238">		return pageNr;</span>
+<span class="nc" id="L238">		return pageNr;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

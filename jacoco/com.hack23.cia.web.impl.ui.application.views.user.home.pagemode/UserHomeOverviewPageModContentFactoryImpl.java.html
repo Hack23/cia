@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserHomeOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.home.pagemode</a> &gt; <span class="el_source">UserHomeOverviewPageModContentFactoryImpl.java</span></div><h1>UserHomeOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;, &quot;userType&quot;,</span>
-			&quot;userRole&quot;, &quot;userEmailStatus&quot;, &quot;numberOfVisits&quot;);
+<span class="nc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;, &quot;userType&quot;,</span>
+<span class="nc" id="L54">			&quot;userRole&quot;, &quot;userEmailStatus&quot;, &quot;numberOfVisits&quot;);</span>
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = &quot;Logout&quot;;
@@ -60,7 +60,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	private static final String OVERVIEW = &quot;Overview&quot;;
 
 	/** The Constant USERHOME. */
-	private static final String USERHOME = &quot;Userhome:&quot;;
+<span class="nc" id="L63">	private static final String USERHOME = &quot;Userhome:&quot;;</span>
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -70,57 +70,57 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	 * Instantiates a new user home overview page mod content factory impl.
 	 */
 	public UserHomeOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L73">		super();</span>
-<span class="fc" id="L74">	}</span>
+<span class="nc" id="L73">		super();</span>
+<span class="nc" id="L74">	}</span>
 
 	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L80">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L81">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
+<span class="nc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L80">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L81">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
 
-<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (userAccount.isPresent()) {</span>
 
-<span class="fc" id="L85">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="nc" id="L85">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L87">			LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="nc" id="L87">			LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
 
-<span class="fc" id="L89">			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);</span>
+<span class="nc" id="L89">			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);</span>
 
-<span class="fc" id="L91">			final LogoutRequest logoutRequest = new LogoutRequest();</span>
-<span class="fc" id="L92">			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L93">			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));</span>
+<span class="nc" id="L91">			final LogoutRequest logoutRequest = new LogoutRequest();</span>
+<span class="nc" id="L92">			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="nc" id="L93">			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));</span>
 
-<span class="fc" id="L95">			panelContent.addComponent(logoutButton);</span>
+<span class="nc" id="L95">			panelContent.addComponent(logoutButton);</span>
 
-<span class="fc" id="L97">			getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);</span>
+<span class="nc" id="L97">			getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);</span>
 
-<span class="fc" id="L99">			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);</span>
+<span class="nc" id="L99">			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);</span>
 
-<span class="fc" id="L101">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L102">			overviewLayout.setSizeFull();</span>
+<span class="nc" id="L101">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="nc" id="L102">			overviewLayout.setSizeFull();</span>
 
-<span class="fc" id="L104">			panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L105">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="nc" id="L104">			panelContent.addComponent(overviewLayout);</span>
+<span class="nc" id="L105">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L107">			userHomeMenuItemFactory.createOverviewPage(overviewLayout);</span>
+<span class="nc" id="L107">			userHomeMenuItemFactory.createOverviewPage(overviewLayout);</span>
 
-<span class="fc" id="L109">			panel.setCaption(NAME + &quot;::&quot; + USERHOME);</span>
+<span class="nc" id="L109">			panel.setCaption(NAME + &quot;::&quot; + USERHOME);</span>
 		}
 
-<span class="fc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,</span>
-				NAME, parameters, pageId);
+<span class="nc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,</span>
+<span class="nc" id="L113">				NAME, parameters, pageId);</span>
 
-<span class="fc" id="L115">		return panelContent;</span>
+<span class="nc" id="L115">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L121" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="pc bpc" id="L122" title="1 of 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		return NAME.equals(page)</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

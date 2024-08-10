@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RuleViolationPageItemRendererClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">RuleViolationPageItemRendererClickListener.java</span></div><h1>RuleViolationPageItemRendererClickListener.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -34,17 +34,17 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 public final class RuleViolationPageItemRendererClickListener implements PageItemRendererClickListener&lt;RuleViolation&gt; {
 
 	/** The Constant PAGE_SEPARATOR. */
-<span class="fc" id="L37">	private static final Character PAGE_SEPARATOR = '/';</span>
+<span class="nc" id="L37">	private static final Character PAGE_SEPARATOR = '/';</span>
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+<span class="nc" id="L40">	private static final long serialVersionUID = 1L;</span>
 
 	/**
 	 * Instantiates a new rule violation page item renderer click listener.
 	 */
 	public RuleViolationPageItemRendererClickListener() {
-<span class="fc" id="L46">		super();</span>
-<span class="fc" id="L47">	}</span>
+<span class="nc" id="L46">		super();</span>
+<span class="nc" id="L47">	}</span>
 
 	/**
 	 * Navigate to page.
@@ -53,27 +53,27 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	 *            the violation
 	 */
 	private static void navigateToPage(final RuleViolation violation) {
-<span class="fc bfc" id="L56" title="All 2 branches covered.">		if (violation.getResourceType() == ResourceType.PARTY) {</span>
-<span class="fc" id="L57">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
-		} else {
-<span class="fc" id="L59">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (violation.getResourceType() == ResourceType.PARTY) {</span>
+<span class="nc" id="L57">			UI.getCurrent().getNavigator().navigateTo(UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
+<span class="nc" id="L58">		} else {</span>
+<span class="nc" id="L59">			UI.getCurrent().getNavigator().navigateTo(UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + violation.getReferenceId());</span>
 		}
-<span class="fc" id="L61">	}</span>
+<span class="nc" id="L61">	}</span>
 
 	@Override
 	public void click(final RendererClickEvent&lt;RuleViolation&gt; event) {
-<span class="fc" id="L65">		navigateToPage(event.getItem());</span>
+<span class="nc" id="L65">		navigateToPage(event.getItem());</span>
 
-<span class="fc" id="L67">	}</span>
+<span class="nc" id="L67">	}</span>
 
 
 	@Override
 	public void selectionChange(final SelectionEvent&lt;RuleViolation&gt; event) {
-<span class="fc" id="L72">		final Set&lt;RuleViolation&gt; added =event.getAllSelectedItems();</span>
+<span class="nc" id="L72">		final Set&lt;RuleViolation&gt; added =event.getAllSelectedItems();</span>
 
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		if (!added.isEmpty()) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">		if (!added.isEmpty()) {</span>
 <span class="nc" id="L75">			navigateToPage(added.iterator().next());</span>
 		}
-<span class="fc" id="L77">	}</span>
+<span class="nc" id="L77">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

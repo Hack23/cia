@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">CommitteeMenuItemFactoryImpl.java</span></div><h1>CommitteeMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -97,8 +97,8 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	 * Instantiates a new committee menu item factory impl.
 	 */
 	public CommitteeMenuItemFactoryImpl() {
-<span class="fc" id="L100">		super();</span>
-<span class="fc" id="L101">	}</span>
+<span class="nc" id="L100">		super();</span>
+<span class="nc" id="L101">	}</span>
 
 	@Override
 	public void createCommitteeeMenuBar(final MenuBar menuBar, final String pageId) {
@@ -112,7 +112,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 
 <span class="nc" id="L114">		committeeItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
+<span class="nc" id="L115">				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));</span>
 
 <span class="nc" id="L117">		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);</span>
 
@@ -145,11 +145,11 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 <span class="nc" id="L145">				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));</span>
 
 <span class="nc" id="L147">		ballotItem.addItem(&quot;Decision flow&quot;, VaadinIcons.GROUP, new PageModeMenuCommand(</span>
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId));
+<span class="nc" id="L148">				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId));</span>
 
 
 <span class="nc" id="L151">		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+<span class="nc" id="L152">				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));</span>
 
 <span class="nc" id="L154">	}</span>
 
@@ -184,15 +184,15 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 <span class="nc" id="L184">				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), &quot;Chart over decisions by decisions type, daily summary&quot;);</span>
 
 <span class="nc" id="L186">		createButtonLink(grid,&quot;Decision flow&quot;, VaadinIcons.GROUP, new PageModeMenuCommand(</span>
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId),&quot;desc&quot;);
+<span class="nc" id="L187">				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+&quot;/&quot;+ ChartIndicators.DECISION_FLOW_CHART, pageId),&quot;desc&quot;);</span>
 
 
 <span class="nc" id="L190">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);
+<span class="nc" id="L191">				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);</span>
 
 
 <span class="nc" id="L194">	}</span>
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

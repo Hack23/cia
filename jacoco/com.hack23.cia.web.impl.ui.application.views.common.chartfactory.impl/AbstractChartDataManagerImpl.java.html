@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">AbstractChartDataManagerImpl.java</span></div><h1>AbstractChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -81,8 +81,8 @@ public abstract class AbstractChartDataManagerImpl {
 	 * Instantiates a new abstract chart data manager impl.
 	 */
 	public AbstractChartDataManagerImpl() {
-<span class="fc" id="L84">		super();</span>
-<span class="fc" id="L85">	}</span>
+<span class="nc" id="L84">		super();</span>
+<span class="nc" id="L85">	}</span>
 
 	/**
 	 * Gets the chart window height.
@@ -91,8 +91,8 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the chart window height
 	 */
 	private static int getChartWindowHeight(final boolean fullPage) {
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		if (fullPage) {</span>
-<span class="fc" id="L95">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (fullPage) {</span>
+<span class="nc" id="L95">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);</span>
 		} else {
 <span class="nc" id="L97">			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);</span>
 		}
@@ -104,7 +104,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the chart window width
 	 */
 	private static int getChartWindowWidth() {
-<span class="fc" id="L107">		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);</span>
+<span class="nc" id="L107">		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);</span>
 	}
 
 	/**
@@ -120,37 +120,37 @@ public abstract class AbstractChartDataManagerImpl {
 	 *            the full page
 	 */
 	protected static final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
-<span class="fc" id="L123">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L123">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
 
-<span class="fc" id="L125">		final int browserWindowWidth = getChartWindowWidth();</span>
+<span class="nc" id="L125">		final int browserWindowWidth = getChartWindowWidth();</span>
 
-<span class="fc" id="L127">		final int browserWindowHeight = getChartWindowHeight(fullPage);</span>
+<span class="nc" id="L127">		final int browserWindowHeight = getChartWindowHeight(fullPage);</span>
 
-<span class="fc" id="L129">		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);</span>
-<span class="fc" id="L130">		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);</span>
-<span class="fc" id="L131">		horizontalLayout.setMargin(true);</span>
-<span class="fc" id="L132">		horizontalLayout.setSpacing(false);</span>
-<span class="fc" id="L133">		horizontalLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+<span class="nc" id="L129">		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);</span>
+<span class="nc" id="L130">		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);</span>
+<span class="nc" id="L131">		horizontalLayout.setMargin(true);</span>
+<span class="nc" id="L132">		horizontalLayout.setSpacing(false);</span>
+<span class="nc" id="L133">		horizontalLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L135">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L136">		formPanel.setSizeFull();</span>
-<span class="fc" id="L137">		formPanel.setContent(horizontalLayout);</span>
-<span class="fc" id="L138">		formPanel.setCaption(caption);</span>
+<span class="nc" id="L135">		final Panel formPanel = new Panel();</span>
+<span class="nc" id="L136">		formPanel.setSizeFull();</span>
+<span class="nc" id="L137">		formPanel.setContent(horizontalLayout);</span>
+<span class="nc" id="L138">		formPanel.setCaption(caption);</span>
 
-<span class="fc" id="L140">		content.addComponent(formPanel);</span>
-<span class="fc" id="L141">		content.setExpandRatio(formPanel, ContentRatio.LARGE);</span>
+<span class="nc" id="L140">		content.addComponent(formPanel);</span>
+<span class="nc" id="L141">		content.setExpandRatio(formPanel, ContentRatio.LARGE);</span>
 
 
-<span class="fc" id="L144">		chart.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L145">		chart.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L146">		chart.setMarginRight(CHART_RIGHT_MARGIN);</span>
-<span class="fc" id="L147">		chart.setMarginLeft(CHART_LEFT_MARGIN);</span>
-<span class="fc" id="L148">		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);</span>
-<span class="fc" id="L149">		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);</span>
+<span class="nc" id="L144">		chart.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L145">		chart.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="nc" id="L146">		chart.setMarginRight(CHART_RIGHT_MARGIN);</span>
+<span class="nc" id="L147">		chart.setMarginLeft(CHART_LEFT_MARGIN);</span>
+<span class="nc" id="L148">		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);</span>
+<span class="nc" id="L149">		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);</span>
 
-<span class="fc" id="L151">		horizontalLayout.addComponent(chart);</span>
-<span class="fc" id="L152">		chart.setCaption(caption);</span>
-<span class="fc" id="L153">	}</span>
+<span class="nc" id="L151">		horizontalLayout.addComponent(chart);</span>
+<span class="nc" id="L152">		chart.setCaption(caption);</span>
+<span class="nc" id="L153">	}</span>
 
 	/**
 	 * Gets the application manager.
@@ -158,7 +158,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the application manager
 	 */
 	protected final ApplicationManager getApplicationManager() {
-<span class="fc" id="L161">		return applicationManager;</span>
+<span class="nc" id="L161">		return applicationManager;</span>
 	}
 
 	/**
@@ -167,7 +167,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the chart options
 	 */
 	protected final ChartOptions getChartOptions() {
-<span class="fc" id="L170">		return chartOptions;</span>
+<span class="nc" id="L170">		return chartOptions;</span>
 	}
 
 	/**
@@ -195,4 +195,4 @@ public abstract class AbstractChartDataManagerImpl {
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

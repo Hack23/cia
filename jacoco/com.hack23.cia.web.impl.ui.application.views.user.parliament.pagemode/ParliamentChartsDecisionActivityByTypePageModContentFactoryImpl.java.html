@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode</a> &gt; <span class="el_source">ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.java</span></div><h1>ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -50,33 +50,33 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 	 * factory impl.
 	 */
 	public ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl() {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">	}</span>
+<span class="nc" id="L53">		super();</span>
+<span class="nc" id="L54">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L61">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L61">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L63">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="nc" id="L63">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
-<span class="fc" id="L65">		decisionChartDataManager.createDecisionTypeChart(panelContent);</span>
+<span class="nc" id="L65">		decisionChartDataManager.createDecisionTypeChart(panelContent);</span>
 
-<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
-				parameters, pageId);
-<span class="fc" id="L69">		panel.setCaption(NAME + &quot;::&quot; + DECISION_ACTIVIY_DESCRIPTION);</span>
+<span class="nc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="nc" id="L68">				parameters, pageId);</span>
+<span class="nc" id="L69">		panel.setCaption(NAME + &quot;::&quot; + DECISION_ACTIVIY_DESCRIPTION);</span>
 
-<span class="fc" id="L71">		return panelContent;</span>
+<span class="nc" id="L71">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

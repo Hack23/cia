@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WorldIndicatorsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.country.pagemode</a> &gt; <span class="el_source">WorldIndicatorsPageModContentFactoryImpl.java</span></div><h1>WorldIndicatorsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -50,14 +50,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
 
-<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;indicatorName&quot;,</span>
-			   &quot;sourceValue&quot;,
-			   &quot;topics&quot;,
-			   &quot;sourceNote&quot;,
-			   &quot;sourceOrganization&quot;);
+<span class="nc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;indicatorName&quot;,</span>
+<span class="nc" id="L54">			   &quot;sourceValue&quot;,</span>
+<span class="nc" id="L55">			   &quot;topics&quot;,</span>
+<span class="nc" id="L56">			   &quot;sourceNote&quot;,</span>
+<span class="nc" id="L57">			   &quot;sourceOrganization&quot;);</span>
 
 	/** The Constant WORLD_INDICATORS. */
-	private static final String WORLD_INDICATORS = &quot;World Indicators&quot;;
+<span class="nc" id="L60">	private static final String WORLD_INDICATORS = &quot;World Indicators&quot;;</span>
 
 	/** The chart data manager. */
 	@Autowired
@@ -67,18 +67,18 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	 * Instantiates a new world indicators page mod content factory impl.
 	 */
 	public WorldIndicatorsPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super();</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L70">		super();</span>
+<span class="nc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L77">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
+<span class="nc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L77">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
 
-<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L79">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L81">		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+&quot;/&quot;.length());</span>
+<span class="nc" id="L81">		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+&quot;/&quot;.length());</span>
 
 <span class="nc" id="L83">		createDataIndicatorSummaryChartPanel(panelContent,indicator);</span>
 
@@ -99,31 +99,31 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	 */
 	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator) {
 
-<span class="fc" id="L102">		final DataContainer&lt;ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId&gt; indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L103">				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);</span>
+<span class="nc" id="L102">		final DataContainer&lt;ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId&gt; indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="nc" id="L103">				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);</span>
 
 
-<span class="fc" id="L106">		final Optional&lt;ViewWorldbankIndicatorDataCountrySummary&gt; indicatorSummary = indicatorDataCountrSummaryDailyDataContainer</span>
-<span class="fc" id="L107">				.getAll()</span>
-<span class="fc" id="L108">				.parallelStream()</span>
-<span class="pc bnc" id="L109" title="All 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
+<span class="nc" id="L106">		final Optional&lt;ViewWorldbankIndicatorDataCountrySummary&gt; indicatorSummary = indicatorDataCountrSummaryDailyDataContainer</span>
+<span class="nc" id="L107">				.getAll()</span>
+<span class="nc" id="L108">				.parallelStream()</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
 
 
-<span class="fc" id="L112">		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;</span>
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		if (indicatorSummary.isPresent()) {</span>
+<span class="nc" id="L112">		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">		if (indicatorSummary.isPresent()) {</span>
 <span class="nc" id="L114">			indicatorSummaryValue = indicatorSummary.get();</span>
 
 <span class="nc" id="L116">			getFormFactory().addFormPanelTextFields(verticalLayout,</span>
-					indicatorSummaryValue,
-							ViewWorldbankIndicatorDataCountrySummary.class,
-							AS_LIST);
+<span class="nc" id="L117">					indicatorSummaryValue,</span>
+<span class="nc" id="L118">							ViewWorldbankIndicatorDataCountrySummary.class,</span>
+<span class="nc" id="L119">							AS_LIST);</span>
 		}
 
-<span class="fc" id="L122">		final DataContainer&lt;WorldBankData, Serializable&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L123">		.getDataContainer(WorldBankData.class);</span>
+<span class="nc" id="L122">		final DataContainer&lt;WorldBankData, Serializable&gt; dataContainer = getApplicationManager()</span>
+<span class="nc" id="L123">		.getDataContainer(WorldBankData.class);</span>
 
 
-<span class="fc" id="L126">		final List&lt;WorldBankData&gt; dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);</span>
+<span class="nc" id="L126">		final List&lt;WorldBankData&gt; dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);</span>
 
 <span class="nc" id="L128">		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);</span>
 
@@ -131,8 +131,8 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L134" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

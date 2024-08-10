@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">GovernmentBodyMenuItemFactoryImpl.java</span></div><h1>GovernmentBodyMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -71,55 +71,55 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	 * Instantiates a new government body menu item factory impl.
 	 */
 	public GovernmentBodyMenuItemFactoryImpl() {
-<span class="fc" id="L74">		super();</span>
-<span class="fc" id="L75">	}</span>
+<span class="nc" id="L74">		super();</span>
+<span class="nc" id="L75">	}</span>
 
 	@Override
-	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="fc" id="L79">		initApplicationMenuBar(menuBar);</span>
+	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId, final String title ) {
+<span class="nc" id="L79">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L81">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="nc" id="L81">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L83">		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.GROUP,null));</span>
+<span class="nc" id="L83">		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.GROUP,null));</span>
 
-<span class="fc" id="L85">		final MenuItem governmentBodyItem = menuBar.addItem(&quot;GovernmentBody &quot;+ pageId, VaadinIcons.GROUP,null);</span>
-
-
-<span class="fc" id="L88">		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-
-<span class="fc" id="L91">		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.GROUP,</span>
-<span class="fc" id="L92">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));</span>
-
-<span class="fc" id="L94">		governmentBodyItem.addItem(INCOME, VaadinIcons.GROUP,</span>
-<span class="fc" id="L95">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId));</span>
-
-<span class="fc" id="L97">		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.GROUP,</span>
-<span class="fc" id="L98">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));</span>
+<span class="nc" id="L85">		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.GROUP,null);</span>
 
 
-<span class="fc" id="L101">		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+<span class="nc" id="L88">		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
+<span class="nc" id="L89">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));</span>
 
-<span class="fc" id="L104">	}</span>
+<span class="nc" id="L91">		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.GROUP,</span>
+<span class="nc" id="L92">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));</span>
+
+<span class="nc" id="L94">		governmentBodyItem.addItem(INCOME, VaadinIcons.GROUP,</span>
+<span class="nc" id="L95">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId));</span>
+
+<span class="nc" id="L97">		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.GROUP,</span>
+<span class="nc" id="L98">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));</span>
+
+
+<span class="nc" id="L101">		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="nc" id="L102">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));</span>
+
+<span class="nc" id="L104">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L108">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="nc" id="L108">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L110">		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,</span>
-<span class="fc" id="L111">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), &quot;Desc.&quot;);</span>
+<span class="nc" id="L110">		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,</span>
+<span class="nc" id="L111">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), &quot;Desc.&quot;);</span>
 
-<span class="fc" id="L113">		createButtonLink(grid,INCOME, VaadinIcons.GROUP,</span>
-<span class="fc" id="L114">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), &quot;Desc.&quot;);</span>
+<span class="nc" id="L113">		createButtonLink(grid,INCOME, VaadinIcons.GROUP,</span>
+<span class="nc" id="L114">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), &quot;Desc.&quot;);</span>
 
-<span class="fc" id="L116">		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,</span>
-<span class="fc" id="L117">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), &quot;Desc&quot;);</span>
+<span class="nc" id="L116">		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,</span>
+<span class="nc" id="L117">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), &quot;Desc&quot;);</span>
 
-<span class="fc" id="L119">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);
+<span class="nc" id="L119">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="nc" id="L120">				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);</span>
 
-<span class="fc" id="L122">	}</span>
+<span class="nc" id="L122">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

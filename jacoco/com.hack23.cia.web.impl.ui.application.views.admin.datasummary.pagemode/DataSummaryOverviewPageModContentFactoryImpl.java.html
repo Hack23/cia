@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataSummaryOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode</a> &gt; <span class="el_source">DataSummaryOverviewPageModContentFactoryImpl.java</span></div><h1>DataSummaryOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,9 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant ADMIN_DATA_SUMMARY. */
 	private static final String ADMIN_DATA_SUMMARY = &quot;Admin Data Summary&quot;;
 
-<span class="fc" id="L57">	private static final String[] COLUMN_ORDER = { &quot;dataType&quot;, &quot;dataSize&quot; };</span>
+<span class="nc" id="L57">	private static final String[] COLUMN_ORDER = { &quot;dataType&quot;, &quot;dataSize&quot; };</span>
 
-<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
+<span class="nc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
@@ -80,14 +80,14 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = &quot;Update document search index&quot;;
 
 	/** The Constant UPDATE_SEARCH_INDEX. */
-	private static final String UPDATE_SEARCH_INDEX = &quot;Update Search Index&quot;;
+<span class="nc" id="L83">	private static final String UPDATE_SEARCH_INDEX = &quot;Update Search Index&quot;;</span>
 
 	/**
 	 * Instantiates a new data summary overview page mod content factory impl.
 	 */
 	public DataSummaryOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L89">		super();</span>
-<span class="fc" id="L90">	}</span>
+<span class="nc" id="L89">		super();</span>
+<span class="nc" id="L90">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -163,9 +163,9 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L166" title="1 of 2 branches missed.">		return NAME.equals(page)</span>
-<span class="pc bnc" id="L167" title="All 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">		return NAME.equals(page)</span>
+<span class="nc bnc" id="L167" title="All 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

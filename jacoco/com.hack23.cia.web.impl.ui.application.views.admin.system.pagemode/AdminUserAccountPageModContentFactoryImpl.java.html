@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminUserAccountPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminUserAccountPageModContentFactoryImpl.java</span></div><h1>AdminUserAccountPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -58,8 +58,8 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant ADMIN_USERACCOUNT. */
 	private static final String ADMIN_USERACCOUNT = &quot;Admin Useraccount&quot;;
 
-<span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;,</span>
-			&quot;numberOfVisits&quot; );
+<span class="nc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;,</span>
+<span class="nc" id="L62">			&quot;numberOfVisits&quot; );</span>
 
 	/** The Constant BUTTON_ID_PATTERN. */
 	private static final String BUTTON_ID_PATTERN = &quot;{0}.{1}&quot;;
@@ -67,24 +67,24 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 	/** The Constant BUTTON_PATTERN. */
 	private static final String BUTTON_PATTERN = &quot;Perform {0}&quot;;
 
-<span class="fc" id="L70">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
-			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
+<span class="nc" id="L70">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;username&quot;,</span>
+<span class="nc" id="L71">			&quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };</span>
 
-<span class="fc" id="L73">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
+<span class="nc" id="L73">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,&quot;userId&quot;,&quot;userpassword&quot;, &quot;address&quot; };</span>
 
-<span class="fc" id="L75">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="nc" id="L75">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
 
-	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;
+<span class="nc" id="L80">	private static final String USER_ACCOUNT = &quot;UserAccount&quot;;</span>
 
 	/**
 	 * Instantiates a new admin user account page mod content factory impl.
 	 */
 	public AdminUserAccountPageModContentFactoryImpl() {
-<span class="fc" id="L86">		super(NAME);</span>
-<span class="fc" id="L87">	}</span>
+<span class="nc" id="L86">		super(NAME);</span>
+<span class="nc" id="L87">	}</span>
 
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
@@ -107,10 +107,10 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 <span class="nc" id="L107">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
 <span class="nc" id="L109">		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,</span>
-				pageOrderBy,
-				USER_ACCOUNT,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				LISTENER, null, null);
+<span class="nc" id="L110">				pageOrderBy,</span>
+<span class="nc" id="L111">				USER_ACCOUNT,</span>
+<span class="nc" id="L112">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L113">				LISTENER, null, null);</span>
 
 
 <span class="nc bnc" id="L116" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
@@ -121,7 +121,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 <span class="nc" id="L122">				getFormFactory()</span>
 <span class="nc" id="L123">						.addFormPanelTextFields(content, userAccount, UserAccount.class,</span>
-								AS_LIST);
+<span class="nc" id="L124">								AS_LIST);</span>
 
 <span class="nc" id="L126">				final VerticalLayout overviewLayout = new VerticalLayout();</span>
 <span class="nc" id="L127">				overviewLayout.setSizeFull();</span>
@@ -146,11 +146,11 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 		}
 
 <span class="nc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+<span class="nc" id="L149">				NAME, null, pageId);</span>
 
 <span class="nc" id="L151">		return content;</span>
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

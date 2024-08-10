@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageModeMenuCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api</a> &gt; <span class="el_source">PageModeMenuCommand.java</span></div><h1>PageModeMenuCommand.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ import com.vaadin.ui.UI;
 public final class PageModeMenuCommand implements Command, ClickListener {
 
 	/** The Constant PAGE_SEPARATOR. */
-<span class="fc" id="L34">	private static final Character PAGE_SEPARATOR = '/';</span>
+<span class="nc" id="L34">	private static final Character PAGE_SEPARATOR = '/';</span>
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+<span class="nc" id="L37">	private static final long serialVersionUID = 1L;</span>
 
 	/** The page. */
 	private final String page;
@@ -52,10 +52,10 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *            the page mode
 	 */
 	public PageModeMenuCommand(final String page, final PageMode pageMode) {
-<span class="fc" id="L55">		super();</span>
-<span class="fc" id="L56">		this.page = page;</span>
-<span class="fc" id="L57">		pageReference = pageMode.toString();</span>
-<span class="fc" id="L58">	}</span>
+<span class="nc" id="L55">		super();</span>
+<span class="nc" id="L56">		this.page = page;</span>
+<span class="nc" id="L57">		pageReference = pageMode.toString();</span>
+<span class="nc" id="L58">	}</span>
 
 	/**
 	 * Instantiates a new page mode menu command.
@@ -68,10 +68,10 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *            the part
 	 */
 	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
-<span class="fc" id="L71">		super();</span>
-<span class="fc" id="L72">		this.page = page;</span>
-<span class="fc" id="L73">		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();</span>
-<span class="fc" id="L74">	}</span>
+<span class="nc" id="L71">		super();</span>
+<span class="nc" id="L72">		this.page = page;</span>
+<span class="nc" id="L73">		pageReference = new StringBuilder().append(pageMode).append(PAGE_SEPARATOR).append(part).toString();</span>
+<span class="nc" id="L74">	}</span>
 
 
 	/**
@@ -83,10 +83,10 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 *            the part
 	 */
 	public PageModeMenuCommand(final String page, final String part) {
-<span class="fc" id="L86">		super();</span>
-<span class="fc" id="L87">		this.page = page;</span>
-<span class="fc" id="L88">		pageReference = part;</span>
-<span class="fc" id="L89">	}</span>
+<span class="nc" id="L86">		super();</span>
+<span class="nc" id="L87">		this.page = page;</span>
+<span class="nc" id="L88">		pageReference = part;</span>
+<span class="nc" id="L89">	}</span>
 
 
 
@@ -100,10 +100,10 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 * @param part
 	 *            the part
 	 */
-<span class="fc" id="L103">	public PageModeMenuCommand(final String page, final String pageMode, final String part) {</span>
-<span class="fc" id="L104">		this.page = page;</span>
-<span class="fc" id="L105">		pageReference = pageMode + PAGE_SEPARATOR + part;</span>
-<span class="fc" id="L106">	}</span>
+<span class="nc" id="L103">	public PageModeMenuCommand(final String page, final String pageMode, final String part) {</span>
+<span class="nc" id="L104">		this.page = page;</span>
+<span class="nc" id="L105">		pageReference = pageMode + PAGE_SEPARATOR + part;</span>
+<span class="nc" id="L106">	}</span>
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
@@ -116,17 +116,17 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	 * @return the page path
 	 */
 	public String getPagePath() {
-<span class="pc bpc" id="L119" title="1 of 4 branches missed.">		if (pageReference != null &amp;&amp; !pageReference.isEmpty()) {</span>
-<span class="fc" id="L120">			return page + PAGE_SEPARATOR + pageReference;</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">		if (pageReference != null &amp;&amp; !pageReference.isEmpty()) {</span>
+<span class="nc" id="L120">			return page + PAGE_SEPARATOR + pageReference;</span>
 		} else {
-<span class="fc" id="L122">			return page;</span>
+<span class="nc" id="L122">			return page;</span>
 		}
 	}
 
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
-<span class="fc" id="L128">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
-<span class="fc" id="L129">	}</span>
+<span class="nc" id="L128">		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);</span>
+<span class="nc" id="L129">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

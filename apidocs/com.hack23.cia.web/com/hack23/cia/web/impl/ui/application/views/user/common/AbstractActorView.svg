@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="207px" preserveAspectRatio="none" style="width:486px;height:207px;background:#FFFFFF;" version="1.1" viewBox="0 0 486 207" width="486px" zoomAndPan="magnify"><defs/><g><!--MD5=[e5ab492ef72e0e56d61ba1726004a083]
+class com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView--><a href="AbstractActorView.html" target="_top" title="AbstractActorView.html" xlink:actuate="onRequest" xlink:href="AbstractActorView.html" xlink:show="new" xlink:title="AbstractActorView.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView"><rect codeLine="5" fill="#F1F1F1" height="69.7558" id="com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="472" x="7" y="110"/><ellipse cx="98.75" cy="131.344" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M98.8594,126.6877 L97.7031,131.7658 L100.0313,131.7658 L98.8594,126.6877 Z M97.375,124.4533 L100.3594,124.4533 L103.7188,136.844 L101.2656,136.844 L100.5,133.7815 L97.2188,133.7815 L96.4688,136.844 L94.0313,136.844 L97.375,124.4533 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="114" x="202.25" y="129.9659">AbstractActorView</text><text fill="#000000" font-family="sans-serif" font-size="10" font-style="italic" lengthAdjust="spacing" textLength="280" x="119.25" y="144.7579">com.hack23.cia.web.impl.ui.application.views.user.common</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="478" y1="152.6879" y2="152.6879"/><ellipse cx="18" cy="167.7219" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="446" x="27" y="171.6538">AbstractActorView(Map&lt;String, PageModeContentFactory&gt;, String)</text></g></a><!--MD5=[968b4da468365d2329577b3d306a41ed]
+class com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView--><a href="AbstractUserView.html" target="_top" title="AbstractUserView.html" xlink:actuate="onRequest" xlink:href="AbstractUserView.html" xlink:show="new" xlink:title="AbstractUserView.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView"><rect codeLine="9" fill="#F1F1F1" height="42.6879" id="com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="312" x="87" y="7"/><ellipse cx="102" cy="28.344" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M102.1094,23.6877 L100.9531,28.7658 L103.2813,28.7658 L102.1094,23.6877 Z M100.625,21.4533 L103.6094,21.4533 L106.9688,33.844 L104.5156,33.844 L103.75,30.7815 L100.4688,30.7815 L99.7188,33.844 L97.2813,33.844 L100.625,21.4533 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="109" x="201.5" y="26.9659">AbstractUserView</text><text fill="#000000" font-family="sans-serif" font-size="10" font-style="italic" lengthAdjust="spacing" textLength="280" x="116" y="41.7579">com.hack23.cia.web.impl.ui.application.views.user.common</text></g></a><!--MD5=[817ad3c11f6e5601ba3e22c8175d61f0]
+reverse link com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView to com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView--><g id="link_com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView_com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView"><path codeLine="11" d="M243,70.37 C243,83.33 243,97.51 243,109.94 " fill="none" id="com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView-backto-com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="236,70.24,243,50.24,250,70.24,236,70.24" style="stroke:#181818;stroke-width:1.0;"/></g><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="142" y="185.7558"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="142" y="196.4458">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[0eb9b80ca589ad318225d43c66354fb8]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>AbstractActorView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.common" as com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView [[AbstractActorView.html]] {
+        +AbstractActorView(Map<String, PageModeContentFactory>, String)
+    }
+
+    abstract class "<size:14>AbstractUserView\n<size:10>com.hack23.cia.web.impl.ui.application.views.user.common" as com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView [[AbstractUserView.html]]
+
+    com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView <|- - com.hack23.cia.web.impl.ui.application.views.user.common.AbstractActorView
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

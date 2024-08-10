@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BallotChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode</a> &gt; <span class="el_source">BallotChartsPageModContentFactoryImpl.java</span></div><h1>BallotChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -69,8 +69,8 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	 * Instantiates a new ballot charts page mod content factory impl.
 	 */
 	public BallotChartsPageModContentFactoryImpl() {
-<span class="fc" id="L72">		super();</span>
-<span class="fc" id="L73">	}</span>
+<span class="nc" id="L72">		super();</span>
+<span class="nc" id="L73">	}</span>
 
 	/**
 	 * Creates the issue concern map.
@@ -88,7 +88,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 <span class="nc" id="L88">				final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;());</span>
 <span class="nc" id="L89">				partySummarList.add(partySummary);</span>
 			}
-<span class="nc" id="L91">		}</span>
+		}
 
 <span class="nc" id="L93">		return concernIssuePartyBallotSummaryMap;</span>
 	}
@@ -96,14 +96,14 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L99">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="nc" id="L99">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L101">		final String pageId = getPageId(parameters);</span>
+<span class="nc" id="L101">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L103">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
+<span class="nc" id="L103">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
 
 
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		if (!ballots.isEmpty()) {</span>
 <span class="nc" id="L107">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
 <span class="nc" id="L109">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
@@ -130,7 +130,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 <span class="nc" id="L130">					final Tab tab = tabsheet.addTab(tabContent);</span>
 
 <span class="nc" id="L132">					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);</span>
-<span class="nc" id="L133">				}</span>
+				}
 
 <span class="nc" id="L135">				final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt;&gt; concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);</span>
 
@@ -141,20 +141,20 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 <span class="nc" id="L141">					final Tab tab = tabsheet.addTab(tabContent);</span>
 
 <span class="nc" id="L143">					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);</span>
-<span class="nc" id="L144">				}</span>
+				}
 
 
 <span class="nc" id="L147">				panel.setCaption(new StringBuilder().append(NAME).append(&quot;::&quot;).append(BALLOT).append(pageId).toString());</span>
 <span class="nc" id="L148">				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
 		}
-<span class="fc" id="L150">		return panelContent;</span>
+<span class="nc" id="L150">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L156" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="nc bnc" id="L156" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

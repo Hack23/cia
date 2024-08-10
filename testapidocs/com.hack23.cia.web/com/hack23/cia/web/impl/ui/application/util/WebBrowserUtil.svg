@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="151px" preserveAspectRatio="none" style="width:328px;height:151px;background:#FFFFFF;" version="1.1" viewBox="0 0 328 151" width="328px" zoomAndPan="magnify"><defs/><g><!--MD5=[19c8385d1fdf57ee4d6132838f75c4df]
+class com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil--><a href="WebBrowserUtil.html" target="_top" title="WebBrowserUtil.html" xlink:actuate="onRequest" xlink:href="WebBrowserUtil.html" xlink:show="new" xlink:title="WebBrowserUtil.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil"><rect codeLine="5" fill="#F1F1F1" height="115.8917" id="com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="307" x="7" y="7"/><ellipse cx="51.75" cy="28.344" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M54.7188,33.9846 Q54.1406,34.2815 53.5,34.4221 Q52.8594,34.5783 52.1563,34.5783 Q49.6563,34.5783 48.3281,32.9377 Q47.0156,31.2815 47.0156,28.1565 Q47.0156,25.0315 48.3281,23.3752 Q49.6563,21.719 52.1563,21.719 Q52.8594,21.719 53.5,21.8752 Q54.1563,22.0315 54.7188,22.3283 L54.7188,25.0471 Q54.0938,24.469 53.5,24.2033 Q52.9063,23.9221 52.2813,23.9221 Q50.9375,23.9221 50.25,25.0002 Q49.5625,26.0627 49.5625,28.1565 Q49.5625,30.2502 50.25,31.3283 Q50.9375,32.3908 52.2813,32.3908 Q52.9063,32.3908 53.5,32.1252 Q54.0938,31.844 54.7188,31.2658 L54.7188,33.9846 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="122.75" y="26.9659">WebBrowserUtil</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="209" x="72.25" y="41.7579">com.hack23.cia.web.impl.ui.application.util</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="313" y1="49.6879" y2="49.6879"/><ellipse cx="18" cy="64.7219" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="182" x="27" y="68.6538">X_FORWARDED_FOR: String</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="313" y1="76.7558" y2="76.7558"/><ellipse cx="18" cy="91.7898" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="258" x="27" y="95.7218">getIpInformation(WebBrowser): String</text><ellipse cx="18" cy="110.8577" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="281" x="27" y="114.7897">getOperatingSystem(WebBrowser): String</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="66" y="129.8917"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="66" y="140.5816">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[c1bf7fc9f74f2908ed2460a69b42b875]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>WebBrowserUtil\n<size:10>com.hack23.cia.web.impl.ui.application.util" as com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil [[WebBrowserUtil.html]] {
+        {static} +X_FORWARDED_FOR: String
+        {static} +getIpInformation(WebBrowser): String
+        {static} +getOperatingSystem(WebBrowser): String
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

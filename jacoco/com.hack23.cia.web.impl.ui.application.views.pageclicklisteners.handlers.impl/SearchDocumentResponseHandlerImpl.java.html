@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchDocumentResponseHandlerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl</a> &gt; <span class="el_source">SearchDocumentResponseHandlerImpl.java</span></div><h1>SearchDocumentResponseHandlerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+<span class="fc" id="L21">import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;</span>
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -38,16 +38,16 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 	private static final String DOCUMENT = &quot;Document&quot;;
 
 	/** The Constant DOCUMENT_GRID_COLUMN_ORDER. */
-<span class="fc" id="L41">	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = { &quot;rm&quot;, &quot;createdDate&quot;, &quot;documentName&quot;, &quot;subType&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;status&quot; };</span>
+	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = { &quot;rm&quot;, &quot;createdDate&quot;, &quot;documentName&quot;, &quot;subType&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;status&quot; };
 
 	/** The Constant DOCUMENT_GRID_HIDE_COLUMNS. */
-<span class="fc" id="L44">	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = { &quot;rm&quot;, &quot;lang&quot;, &quot;noteTitle&quot;, &quot;origin&quot;, &quot;subType&quot;,&quot;note&quot;, &quot;subTitle&quot;, &quot;status&quot;, &quot;label&quot;, &quot;id&quot;, &quot;hit&quot;, &quot;madePublicDate&quot;, &quot;databaseSource&quot;, &quot;domainOrg&quot;, &quot;relatedId&quot;,</span>
+	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = { &quot;rm&quot;, &quot;lang&quot;, &quot;noteTitle&quot;, &quot;origin&quot;, &quot;subType&quot;,&quot;note&quot;, &quot;subTitle&quot;, &quot;status&quot;, &quot;label&quot;, &quot;id&quot;, &quot;hit&quot;, &quot;madePublicDate&quot;, &quot;databaseSource&quot;, &quot;domainOrg&quot;, &quot;relatedId&quot;,
 			&quot;org&quot;, &quot;documentType&quot;,&quot;docType&quot;, &quot;debateName&quot;, &quot;tempLabel&quot;, &quot;numberValue&quot;, &quot;systemDate&quot;, &quot;kallId&quot;,
 			&quot;documentFormat&quot;, &quot;documentUrlText&quot;, &quot;documentUrlHtml&quot;, &quot;documentStatusUrlXml&quot;,
 			&quot;committeeReportUrlXml&quot; };
 
 	/** The Constant DOCUMENT_LISTENER. */
-<span class="fc" id="L50">	private static final PageItemPropertyClickListener DOCUMENT_LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, &quot;id&quot;);</span>
+	private static final PageItemPropertyClickListener DOCUMENT_LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, &quot;id&quot;);
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -71,24 +71,24 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 	 * @param searchresultLayout
 	 *            the searchresult layout
 	 */
-<span class="fc" id="L74">	public SearchDocumentResponseHandlerImpl(final GridFactory gridFactory, final Panel formPanel, final VerticalLayout searchresultLayout) {</span>
-<span class="fc" id="L75">		this.formPanel = formPanel;</span>
-<span class="fc" id="L76">		this.searchresultLayout = searchresultLayout;</span>
-<span class="fc" id="L77">		this.gridFactory = gridFactory;</span>
-<span class="fc" id="L78">	}</span>
+	public SearchDocumentResponseHandlerImpl(final GridFactory gridFactory, final Panel formPanel, final VerticalLayout searchresultLayout) {
+		this.formPanel = formPanel;
+		this.searchresultLayout = searchresultLayout;
+		this.gridFactory = gridFactory;
+	}
 
 	@Override
 	public void handle(final SearchDocumentResponse response) {
-<span class="fc" id="L82">		searchresultLayout.removeAllComponents();</span>
+		searchresultLayout.removeAllComponents();
 
-<span class="fc" id="L84">		searchresultLayout.addComponent(formPanel);</span>
-<span class="fc" id="L85">		searchresultLayout.setExpandRatio(formPanel, ContentRatio.SMALL3);</span>
+		searchresultLayout.addComponent(formPanel);
+		searchresultLayout.setExpandRatio(formPanel, ContentRatio.SMALL3);
 
-<span class="fc" id="L87">		gridFactory.createBasicBeanItemGrid(searchresultLayout, DocumentElement.class, response.getResultElement(), DOCUMENT,</span>
+<span class="nc" id="L87">		gridFactory.createBasicBeanItemGrid(searchresultLayout, DocumentElement.class, response.getResultElement(), DOCUMENT,</span>
 				DOCUMENT_GRID_COLUMN_ORDER,
 				DOCUMENT_GRID_HIDE_COLUMNS,
 				DOCUMENT_LISTENER, null, null);
 
-<span class="fc" id="L92">	}</span>
+	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

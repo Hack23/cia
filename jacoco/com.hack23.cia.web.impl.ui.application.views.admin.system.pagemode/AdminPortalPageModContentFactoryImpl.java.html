@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminPortalPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminPortalPageModContentFactoryImpl.java</span></div><h1>AdminPortalPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -48,25 +48,25 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 	/** The Constant ADMIN_PORTAL. */
 	private static final String ADMIN_PORTAL = &quot;Admin Portal&quot;;
 
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
-			&quot;googleMapApiKey&quot;);
+<span class="nc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
+<span class="nc" id="L52">			&quot;googleMapApiKey&quot;);</span>
 
-<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;,</span>
-			&quot;modelObjectVersion&quot; };
+<span class="nc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;,</span>
+<span class="nc" id="L55">			&quot;modelObjectVersion&quot; };</span>
 
-<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="nc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
 
-	private static final String PORTAL2 = &quot;Portal&quot;;
+<span class="nc" id="L62">	private static final String PORTAL2 = &quot;Portal&quot;;</span>
 
 	/**
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminPortalPageModContentFactoryImpl() {
-<span class="fc" id="L68">		super(NAME);</span>
-<span class="fc" id="L69">	}</span>
+<span class="nc" id="L68">		super(NAME);</span>
+<span class="nc" id="L69">	}</span>
 
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
@@ -89,10 +89,10 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 
 <span class="nc" id="L91">		getGridFactory().createBasicBeanItemGrid(content, Portal.class,</span>
-				pageOrderBy,
-				PORTAL2,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;), null, null);
+<span class="nc" id="L92">				pageOrderBy,</span>
+<span class="nc" id="L93">				PORTAL2,</span>
+<span class="nc" id="L94">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L95">				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;), null, null);</span>
 
 <span class="nc bnc" id="L97" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
@@ -101,16 +101,16 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 <span class="nc bnc" id="L101" title="All 2 branches missed.">			if (portal != null) {</span>
 
 <span class="nc" id="L103">				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,</span>
-						AS_LIST);
+<span class="nc" id="L104">						AS_LIST);</span>
 			}
 		}
 
 <span class="nc" id="L108">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_PORTAL_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+<span class="nc" id="L109">				NAME, null, pageId);</span>
 
 <span class="nc" id="L111">		return content;</span>
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

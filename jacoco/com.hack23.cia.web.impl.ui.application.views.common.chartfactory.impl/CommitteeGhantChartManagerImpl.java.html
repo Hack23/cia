@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeGhantChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">CommitteeGhantChartManagerImpl.java</span></div><h1>CommitteeGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -40,8 +40,8 @@ public final class CommitteeGhantChartManagerImpl
 	 * Instantiates a new committee ghant chart manager impl.
 	 */
 	public CommitteeGhantChartManagerImpl() {
-<span class="fc" id="L43">		super();</span>
-<span class="fc" id="L44">	}</span>
+<span class="nc" id="L43">		super();</span>
+<span class="nc" id="L44">	}</span>
 
 	@Override
 	protected Comparator&lt;ViewRiksdagenCommitteeRoleMember&gt; getComparator() {
@@ -55,56 +55,56 @@ public final class CommitteeGhantChartManagerImpl
 
 	@Override
 	protected StepMapping&lt;ViewRiksdagenCommitteeRoleMember&gt; getStepMapping() {
-<span class="nc" id="L58">		return new StepMapping&lt;&gt;() {</span>
+<span class="pc" id="L58">		return new StepMapping&lt;&gt;() {</span>
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {
 				String color;
 
-<span class="nc bnc" id="L64" title="All 2 branches missed.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;suppleant&quot;)) {</span>
-<span class="nc" id="L65">					color = &quot;ded858&quot;;</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;ordförande&quot;)) {</span>
-<span class="nc" id="L67">					color = &quot;3271c8&quot;;</span>
-				} else {
-<span class="nc" id="L69">					color = &quot;0eab76&quot;;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;suppleant&quot;)) {</span>
+<span class="fc" id="L65">					color = &quot;ded858&quot;;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;ordförande&quot;)) {</span>
+<span class="fc" id="L67">					color = &quot;3271c8&quot;;</span>
+<span class="fc" id="L68">				} else {</span>
+<span class="fc" id="L69">					color = &quot;0eab76&quot;;</span>
 				}
 
-<span class="nc" id="L72">				return color;</span>
+<span class="fc" id="L72">				return color;</span>
 			}
 
 			@Override
 			public Object getFirstName(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L77">				return t.getFirstName();</span>
+<span class="fc" id="L77">				return t.getFirstName();</span>
 			}
 
 			@Override
 			public Date getFromDate(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L82">				return t.getFromDate();</span>
+<span class="fc" id="L82">				return t.getFromDate();</span>
 			}
 
 			@Override
 			public Object getLastName(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L87">				return t.getLastName();</span>
+<span class="fc" id="L87">				return t.getLastName();</span>
 			}
 
 			@Override
 			public String getOrg(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L92">				return t.getDetail();</span>
+<span class="fc" id="L92">				return t.getDetail();</span>
 			}
 
 			@Override
 			public String getParty(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L97">				return t.getParty();</span>
+<span class="fc" id="L97">				return t.getParty();</span>
 			}
 
 			@Override
 			public String getRoleCode(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L102">				return t.getRoleCode();</span>
+<span class="fc" id="L102">				return t.getRoleCode();</span>
 			}
 
 			@Override
 			public Date getToDate(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L107">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
+<span class="fc" id="L107">				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);</span>
 			}
 
 		};
@@ -117,9 +117,9 @@ public final class CommitteeGhantChartManagerImpl
 
 		@Override
 		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
-<span class="nc" id="L120">			return t.getRoleCode() +&quot;.[&quot;+ t.getPersonId() +&quot;]&quot;;</span>
+<span class="fc" id="L120">			return t.getRoleCode() +&quot;.[&quot;+ t.getPersonId() +&quot;]&quot;;</span>
 		}
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

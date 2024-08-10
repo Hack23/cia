@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageItemPropertyClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">PageItemPropertyClickListener.java</span></div><h1>PageItemPropertyClickListener.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -37,11 +37,11 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	private static final String LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION = &quot;Problem getting property {} from object {} exception {}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L40">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="fc" id="L41">			.getLogger(PageItemPropertyClickListener.class);</span>
+<span class="nc" id="L40">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="nc" id="L41">			.getLogger(PageItemPropertyClickListener.class);</span>
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+<span class="nc" id="L44">	private static final long serialVersionUID = 1L;</span>
 
 
 	/** The property. */
@@ -56,20 +56,20 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	 *            the property
 	 */
 	public PageItemPropertyClickListener(final String page, final String property) {
-<span class="fc" id="L59">		super(page);</span>
-<span class="fc" id="L60">		this.property = property;</span>
-<span class="fc" id="L61">	}</span>
+<span class="nc" id="L59">		super(page);</span>
+<span class="nc" id="L60">		this.property = property;</span>
+<span class="nc" id="L61">	}</span>
 
 	@Override
 	protected String getPageId(final Serializable t) {
 		try {
-<span class="fc" id="L66">			return BeanUtils.getProperty(t, property);</span>
-<span class="fc" id="L67">		} catch (IllegalAccessException | InvocationTargetException |</span>
-	            NoSuchMethodException e) {
-<span class="fc" id="L69">			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);</span>
-<span class="fc" id="L70">			return ERROR_GETTING_PAGE_ID;</span>
+<span class="nc" id="L66">			return BeanUtils.getProperty(t, property);</span>
+		} catch (IllegalAccessException | InvocationTargetException |
+<span class="nc" id="L68">	            NoSuchMethodException e) {</span>
+<span class="nc" id="L69">			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);</span>
+<span class="nc" id="L70">			return ERROR_GETTING_PAGE_ID;</span>
 		}
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

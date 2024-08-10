@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="124px" preserveAspectRatio="none" style="width:348px;height:124px;background:#FFFFFF;" version="1.1" viewBox="0 0 348 124" width="348px" zoomAndPan="magnify"><defs/><g><!--MD5=[3133dfeb79c608cf5bf10fb9598e7c9c]
+class com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize--><a href="ContentSize.html" target="_top" title="ContentSize.html" xlink:actuate="onRequest" xlink:href="ContentSize.html" xlink:show="new" xlink:title="ContentSize.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize"><rect codeLine="5" fill="#F1F1F1" height="88.8237" id="com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="327" x="7" y="7"/><ellipse cx="22" cy="28.344" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M24.9688,33.9846 Q24.3906,34.2815 23.75,34.4221 Q23.1094,34.5783 22.4063,34.5783 Q19.9063,34.5783 18.5781,32.9377 Q17.2656,31.2815 17.2656,28.1565 Q17.2656,25.0315 18.5781,23.3752 Q19.9063,21.719 22.4063,21.719 Q23.1094,21.719 23.75,21.8752 Q24.4063,22.0315 24.9688,22.3283 L24.9688,25.0471 Q24.3438,24.469 23.75,24.2033 Q23.1563,23.9221 22.5313,23.9221 Q21.1875,23.9221 20.5,25.0002 Q19.8125,26.0627 19.8125,28.1565 Q19.8125,30.2502 20.5,31.3283 Q21.1875,32.3908 22.5313,32.3908 Q23.1563,32.3908 23.75,32.1252 Q24.3438,31.844 24.9688,31.2658 L24.9688,33.9846 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="143.5" y="26.9659">ContentSize</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="295" x="36" y="41.7579">com.hack23.cia.web.impl.ui.application.views.common.sizing</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="333" y1="49.6879" y2="49.6879"/><ellipse cx="18" cy="64.7219" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="115" x="27" y="68.6538">FULL_SIZE: String</text><ellipse cx="18" cy="83.7898" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="117" x="27" y="87.7218">HALF_SIZE: String</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="76" y="102.8237"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="76" y="113.5137">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[67f190a154a8b123874f814a331d2764]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ContentSize\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.sizing" as com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize [[ContentSize.html]] {
+        {static} +FULL_SIZE: String
+        {static} +HALF_SIZE: String
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

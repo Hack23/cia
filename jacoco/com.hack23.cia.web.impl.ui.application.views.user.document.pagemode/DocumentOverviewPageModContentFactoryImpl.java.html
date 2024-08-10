@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentOverviewPageModContentFactoryImpl.java</span></div><h1>DocumentOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+<span class="nc" id="L29">import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;</span>
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
@@ -48,12 +48,12 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,</span>
+	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,
 			&quot;title&quot;, &quot;subTitle&quot;, &quot;madePublicDate&quot;, &quot;createdDate&quot;, &quot;systemDate&quot;, &quot;relatedId&quot;, &quot;label&quot;, &quot;tempLabel&quot;,
 			&quot;numberValue&quot;, &quot;kallId&quot;, &quot;documentFormat&quot;);
-<span class="fc" id="L54">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,</span>
+	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,
 			&quot;title&quot;, &quot;subTitle&quot;, &quot;madePublicDate&quot;, &quot;label&quot;, &quot;tempLabel&quot;, &quot;numberValue&quot;, &quot;hangarId&quot;);
-<span class="fc" id="L56">	private static final List&lt;String&gt; AS_LIST3 = Collections.singletonList(&quot;documentCategory&quot;);</span>
+	private static final List&lt;String&gt; AS_LIST3 = Collections.singletonList(&quot;documentCategory&quot;);
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = &quot;overview&quot;;
 
@@ -61,60 +61,60 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 	 * Instantiates a new document overview page mod content factory impl.
 	 */
 	public DocumentOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L64">		super();</span>
-<span class="fc" id="L65">	}</span>
+		super();
+	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
+		final VerticalLayout panelContent = createPanelContent();
 
-<span class="nc" id="L72">		final String pageId = getPageId(parameters);</span>
+		final String pageId = getPageId(parameters);
 
 <span class="nc" id="L74">		final DocumentElement documentElement = getItem(parameters);</span>
-<span class="nc" id="L75">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-<span class="nc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="nc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
+		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-<span class="nc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="nc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="nc" id="L84">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-<span class="nc" id="L86">		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);</span>
+		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);
 
-<span class="nc bnc" id="L88" title="All 2 branches missed.">		if (documentStatusContainer != null) {</span>
-<span class="nc" id="L89">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,</span>
+		if (documentStatusContainer != null) {
+			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,
 					DocumentStatusContainer.class, AS_LIST3);
 
-<span class="nc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),</span>
+			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),
 					DocumentData.class, AS_LIST2);
 		}
 
-<span class="nc" id="L96">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="nc" id="L97">		overviewLayout.setSizeFull();</span>
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
 
-<span class="nc" id="L99">		panelContent.addComponent(overviewLayout);</span>
-<span class="nc" id="L100">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
-<span class="nc" id="L102">		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
-<span class="nc" id="L104">		panel.setContent(panelContent);</span>
-<span class="nc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 
-<span class="nc" id="L108">		return panelContent;</span>
+		return panelContent;
 
 	}
 
 	@Override
-	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L114">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L115" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="nc" id="L113">	public boolean matches(final String page, final String parameters) {</span>
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

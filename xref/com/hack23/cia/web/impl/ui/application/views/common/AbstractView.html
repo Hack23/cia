@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../apidocs/com/hack23/cia/web/impl/ui/application/views/common/AbstractView.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2021 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -250,131 +250,128 @@
 <a class="jxr_linenumber" name="L242" href="#L242">242</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout footerBottom = <strong class="jxr_keyword">new</strong> HorizontalLayout();
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> 		<strong class="jxr_keyword">final</strong> Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> 		<strong class="jxr_keyword">final</strong> Label appVersion = <strong class="jxr_keyword">new</strong> Label(applicationName + <span class="jxr_string">" ("</span> + applicationVersion +<span class="jxr_string">")(Apache License 2.0)"</span>);
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 		<strong class="jxr_keyword">final</strong> Link spdxLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"SBOM(spdx)"</span>, <strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.9.17/citizen-intelligence-agency-2022.9.17.spdx.rdf.xml"</span>));
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 		<strong class="jxr_keyword">final</strong> Link cyclonedxLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"SBOM(cyclonedx)"</span>, <strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"https://repo1.maven.org/maven2/com/hack23/cia/citizen-intelligence-agency/2022.9.17/citizen-intelligence-agency-2022.9.17-cyclonedx.json"</span>));
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> 		<strong class="jxr_keyword">final</strong> Link sourcCodeLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"https://github.com/Hack23/cia"</span>, <strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"https://github.com/Hack23/cia"</span>));
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 		<strong class="jxr_keyword">final</strong> Label licenseLink = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"Open Source"</span>);
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> 
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		footerTop.addComponent(createMainViewPageLink);
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 		footerTop.addComponent(appVersion);
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> 		footerBottom.addComponent(licenseLink);
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		footerBottom.addComponent(sourcCodeLink);
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> 		footerBottom.addComponent(cyclonedxLink);
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		footerBottom.addComponent(spdxLink);
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> 		footerTop.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> 		footerTop.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L258" href="#L258">258</a> 		
-<a class="jxr_linenumber" name="L259" href="#L259">259</a> 		footerBottom.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L260" href="#L260">260</a> 		footerBottom.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 		footerBottom.setComponentAlignment(cyclonedxLink, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 		footerBottom.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> 
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> 		footerTop.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> 		footerTop.setHeight(<span class="jxr_string">"25px"</span>);
-<a class="jxr_linenumber" name="L266" href="#L266">266</a> 		footerBottom.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> 		footerBottom.setHeight(<span class="jxr_string">"25px"</span>);
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> 		<strong class="jxr_keyword">final</strong> Link spdxLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"SBOM(spdx)"</span>, <strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"https://github.com/Hack23/cia/releases/download/"</span> + applicationVersion +<span class="jxr_string">"/com.hack23.cia_citizen-intelligence-agency-"</span> + applicationVersion +<span class="jxr_string">".spdx.json"</span>));
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> 		<strong class="jxr_keyword">final</strong> Link sourcCodeLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"https://github.com/Hack23/cia"</span>, <strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"https://github.com/Hack23/cia"</span>));
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> 		<strong class="jxr_keyword">final</strong> Label licenseLink = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"Open Source"</span>);
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 		footerTop.addComponent(createMainViewPageLink);
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		footerTop.addComponent(appVersion);
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 		footerBottom.addComponent(licenseLink);
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> 		footerBottom.addComponent(sourcCodeLink);
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		footerBottom.addComponent(spdxLink);
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 		footerTop.setComponentAlignment(createMainViewPageLink, Alignment.MIDDLE_LEFT);
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		footerTop.setComponentAlignment(appVersion, Alignment.MIDDLE_LEFT);
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> 
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> 		footerBottom.setComponentAlignment(licenseLink, Alignment.MIDDLE_LEFT);
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> 		footerBottom.setComponentAlignment(sourcCodeLink, Alignment.MIDDLE_LEFT);
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> 		footerBottom.setComponentAlignment(spdxLink, Alignment.MIDDLE_LEFT);
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> 
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> 		footerTop.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> 		footerTop.setHeight(<span class="jxr_string">"25px"</span>);
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> 		footerBottom.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> 		footerBottom.setHeight(<span class="jxr_string">"25px"</span>);
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> 
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> 		pageModeContent.addComponent(footerTop);
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> 		pageModeContent.addComponent(footerBottom);
 <a class="jxr_linenumber" name="L268" href="#L268">268</a> 
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> 		pageModeContent.addComponent(footerTop);
-<a class="jxr_linenumber" name="L270" href="#L270">270</a> 		pageModeContent.addComponent(footerBottom);
-<a class="jxr_linenumber" name="L271" href="#L271">271</a> 
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		setContent(layout);
-<a class="jxr_linenumber" name="L273" href="#L273">273</a> 
-<a class="jxr_linenumber" name="L274" href="#L274">274</a> 		setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> 		setHeight(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> 		setSizeFull();
-<a class="jxr_linenumber" name="L277" href="#L277">277</a> 
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> 	}
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> 
-<a class="jxr_linenumber" name="L280" href="#L280">280</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">	 * Creates the top header actions for user context.</em>
-<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> createTopHeaderActionsForUserContext() {
-<a class="jxr_linenumber" name="L284" href="#L284">284</a> 		<strong class="jxr_keyword">if</strong> (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 			<strong class="jxr_keyword">final</strong> Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();
-<a class="jxr_linenumber" name="L286" href="#L286">286</a> 			topHeaderRightPanel.addComponent(userHomePageLink);
-<a class="jxr_linenumber" name="L287" href="#L287">287</a> 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> 
-<a class="jxr_linenumber" name="L289" href="#L289">289</a> 			<strong class="jxr_keyword">final</strong> Button logoutButton = <strong class="jxr_keyword">new</strong> Button(LOGOUT,VaadinIcons.SIGN_OUT);
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> 
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> 			<strong class="jxr_keyword">final</strong> LogoutRequest logoutRequest = <strong class="jxr_keyword">new</strong> LogoutRequest();
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-<a class="jxr_linenumber" name="L293" href="#L293">293</a> 			logoutButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="LogoutClickListener" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/LogoutClickListener.html#LogoutClickListener">LogoutClickListener</a>(logoutRequest));
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> 		setContent(layout);
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> 		setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		setHeight(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> 		setSizeFull();
+<a class="jxr_linenumber" name="L274" href="#L274">274</a> 
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> 	}
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> 
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">	 * Creates the top header actions for user context.</em>
+<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> createTopHeaderActionsForUserContext() {
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> 		<strong class="jxr_keyword">if</strong> (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> 			<strong class="jxr_keyword">final</strong> Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> 			topHeaderRightPanel.addComponent(userHomePageLink);
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> 
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> 			<strong class="jxr_keyword">final</strong> Button logoutButton = <strong class="jxr_keyword">new</strong> Button(LOGOUT,VaadinIcons.SIGN_OUT);
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> 
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> 			<strong class="jxr_keyword">final</strong> LogoutRequest logoutRequest = <strong class="jxr_keyword">new</strong> LogoutRequest();
+<a class="jxr_linenumber" name="L289" href="#L289">289</a> 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> 			logoutButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="LogoutClickListener" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/LogoutClickListener.html#LogoutClickListener">LogoutClickListener</a>(logoutRequest));
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> 
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> 			topHeaderRightPanel.addComponent(logoutButton);
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> 			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);
 <a class="jxr_linenumber" name="L294" href="#L294">294</a> 
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> 			topHeaderRightPanel.addComponent(logoutButton);
-<a class="jxr_linenumber" name="L296" href="#L296">296</a> 			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> 
-<a class="jxr_linenumber" name="L298" href="#L298">298</a> 		} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L299" href="#L299">299</a> 			<strong class="jxr_keyword">final</strong> Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();
-<a class="jxr_linenumber" name="L300" href="#L300">300</a> 			topHeaderRightPanel.addComponent(createRegisterPageLink);
-<a class="jxr_linenumber" name="L301" href="#L301">301</a> 			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
-<a class="jxr_linenumber" name="L302" href="#L302">302</a> 
-<a class="jxr_linenumber" name="L303" href="#L303">303</a> 			<strong class="jxr_keyword">final</strong> Link createLoginPageLink = pageLinkFactory.createLoginPageLink();
-<a class="jxr_linenumber" name="L304" href="#L304">304</a> 			topHeaderRightPanel.addComponent(createLoginPageLink);
-<a class="jxr_linenumber" name="L305" href="#L305">305</a> 			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
-<a class="jxr_linenumber" name="L306" href="#L306">306</a> 		}
-<a class="jxr_linenumber" name="L307" href="#L307">307</a> 	}
-<a class="jxr_linenumber" name="L308" href="#L308">308</a> 
-<a class="jxr_linenumber" name="L309" href="#L309">309</a> 	@Override
-<a class="jxr_linenumber" name="L310" href="#L310">310</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> enter(<strong class="jxr_keyword">final</strong> ViewChangeEvent event) {
-<a class="jxr_linenumber" name="L311" href="#L311">311</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L312" href="#L312">312</a> 
-<a class="jxr_linenumber" name="L313" href="#L313">313</a> 			<strong class="jxr_keyword">final</strong> String parameters = Jsoup.clean(event.getParameters(), Safelist.basic());
-<a class="jxr_linenumber" name="L314" href="#L314">314</a> 
-<a class="jxr_linenumber" name="L315" href="#L315">315</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="PageModeContentFactory" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagemode/PageModeContentFactory.html#PageModeContentFactory">PageModeContentFactory</a> pageModeContentFactory : pageModeContentFactoryMap.values()) {
-<a class="jxr_linenumber" name="L316" href="#L316">316</a> 				<strong class="jxr_keyword">if</strong> (pageModeContentFactory.matches(pageName, parameters) &amp;&amp; pageModeContentFactory.validReference(parameters)) {
-<a class="jxr_linenumber" name="L317" href="#L317">317</a> 					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> 					<strong class="jxr_keyword">return</strong>;
-<a class="jxr_linenumber" name="L319" href="#L319">319</a> 				}
-<a class="jxr_linenumber" name="L320" href="#L320">320</a> 			}
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> 		} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 			<strong class="jxr_keyword">final</strong> Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> 			topHeaderRightPanel.addComponent(createRegisterPageLink);
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> 			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> 			<strong class="jxr_keyword">final</strong> Link createLoginPageLink = pageLinkFactory.createLoginPageLink();
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> 			topHeaderRightPanel.addComponent(createLoginPageLink);
+<a class="jxr_linenumber" name="L302" href="#L302">302</a> 			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
+<a class="jxr_linenumber" name="L303" href="#L303">303</a> 		}
+<a class="jxr_linenumber" name="L304" href="#L304">304</a> 	}
+<a class="jxr_linenumber" name="L305" href="#L305">305</a> 
+<a class="jxr_linenumber" name="L306" href="#L306">306</a> 	@Override
+<a class="jxr_linenumber" name="L307" href="#L307">307</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> enter(<strong class="jxr_keyword">final</strong> ViewChangeEvent event) {
+<a class="jxr_linenumber" name="L308" href="#L308">308</a> 		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L309" href="#L309">309</a> 
+<a class="jxr_linenumber" name="L310" href="#L310">310</a> 			<strong class="jxr_keyword">final</strong> String parameters = Jsoup.clean(event.getParameters(), Safelist.basic());
+<a class="jxr_linenumber" name="L311" href="#L311">311</a> 
+<a class="jxr_linenumber" name="L312" href="#L312">312</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="PageModeContentFactory" href="../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagemode/PageModeContentFactory.html#PageModeContentFactory">PageModeContentFactory</a> pageModeContentFactory : pageModeContentFactoryMap.values()) {
+<a class="jxr_linenumber" name="L313" href="#L313">313</a> 				<strong class="jxr_keyword">if</strong> (pageModeContentFactory.matches(pageName, parameters) &amp;&amp; pageModeContentFactory.validReference(parameters)) {
+<a class="jxr_linenumber" name="L314" href="#L314">314</a> 					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+<a class="jxr_linenumber" name="L315" href="#L315">315</a> 					<strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L316" href="#L316">316</a> 				}
+<a class="jxr_linenumber" name="L317" href="#L317">317</a> 			}
+<a class="jxr_linenumber" name="L318" href="#L318">318</a> 
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> 			LOGGER.warn(<span class="jxr_string">"SECURITY:Invalid reference, content not found:{}/{}"</span>,pageName, parameters);
+<a class="jxr_linenumber" name="L320" href="#L320">320</a> 			<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createFullSizeVerticalLayout();
 <a class="jxr_linenumber" name="L321" href="#L321">321</a> 
-<a class="jxr_linenumber" name="L322" href="#L322">322</a> 			LOGGER.warn(<span class="jxr_string">"SECURITY:Invalid reference, content not found:{}/{}"</span>,pageName, parameters);
-<a class="jxr_linenumber" name="L323" href="#L323">323</a> 			<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createFullSizeVerticalLayout();
-<a class="jxr_linenumber" name="L324" href="#L324">324</a> 
-<a class="jxr_linenumber" name="L325" href="#L325">325</a> 			menuItemFactory.createMainPageMenuBar(getBarmenu());
-<a class="jxr_linenumber" name="L326" href="#L326">326</a> 
-<a class="jxr_linenumber" name="L327" href="#L327">327</a> 			LabelFactory.createHeader2Label(panelContent,<span class="jxr_string">"Invalid reference, content not found:"</span> +pageName+ <span class="jxr_string">"/"</span>+ parameters);
-<a class="jxr_linenumber" name="L328" href="#L328">328</a> 
-<a class="jxr_linenumber" name="L329" href="#L329">329</a> 			getPanel().setContent(panelContent);
-<a class="jxr_linenumber" name="L330" href="#L330">330</a> 			getPanel().setCaption(<span class="jxr_string">"Invalid Reference"</span>);
-<a class="jxr_linenumber" name="L331" href="#L331">331</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> AccessDeniedException e ) {
-<a class="jxr_linenumber" name="L332" href="#L332">332</a> 			LOGGER.warn(<span class="jxr_string">"Security:Authorization Failure:: {} : {}  exception : {}"</span>,e.getMessage(),pageName,e.getClass().getName());
-<a class="jxr_linenumber" name="L333" href="#L333">333</a> 			<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createFullSizeVerticalLayout();
-<a class="jxr_linenumber" name="L334" href="#L334">334</a> 			LabelFactory.createHeader2Label(panelContent,<span class="jxr_string">"Access denied:"</span> +pageName);
-<a class="jxr_linenumber" name="L335" href="#L335">335</a> 			getPanel().setContent(panelContent);
-<a class="jxr_linenumber" name="L336" href="#L336">336</a> 			getPanel().setCaption(<span class="jxr_string">"Access denied"</span>);
-<a class="jxr_linenumber" name="L337" href="#L337">337</a> 		}
-<a class="jxr_linenumber" name="L338" href="#L338">338</a> 	}
-<a class="jxr_linenumber" name="L339" href="#L339">339</a> 
-<a class="jxr_linenumber" name="L340" href="#L340">340</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L341" href="#L341">341</a> <em class="jxr_javadoccomment">	 * Gets the barmenu.</em>
-<a class="jxr_linenumber" name="L342" href="#L342">342</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L343" href="#L343">343</a> <em class="jxr_javadoccomment">	 * @return the barmenu</em>
-<a class="jxr_linenumber" name="L344" href="#L344">344</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L345" href="#L345">345</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> MenuBar getBarmenu() {
-<a class="jxr_linenumber" name="L346" href="#L346">346</a> 		<strong class="jxr_keyword">return</strong> barmenu;
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> 	}
-<a class="jxr_linenumber" name="L348" href="#L348">348</a> 
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">	 * Gets the panel.</em>
-<a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">	 * @return the panel</em>
-<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> Panel getPanel() {
-<a class="jxr_linenumber" name="L355" href="#L355">355</a> 		<strong class="jxr_keyword">return</strong> panel;
-<a class="jxr_linenumber" name="L356" href="#L356">356</a> 	}
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> 
-<a class="jxr_linenumber" name="L358" href="#L358">358</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">	 * Post construct.</em>
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> 	@PostConstruct
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> postConstruct() {
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> 		setSizeFull();
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> 		createBasicLayoutWithPanelAndFooter(pageName);
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> 	}
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> 
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> }
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> 			menuItemFactory.createMainPageMenuBar(getBarmenu());
+<a class="jxr_linenumber" name="L323" href="#L323">323</a> 
+<a class="jxr_linenumber" name="L324" href="#L324">324</a> 			LabelFactory.createHeader2Label(panelContent,<span class="jxr_string">"Invalid reference, content not found:"</span> +pageName+ <span class="jxr_string">"/"</span>+ parameters);
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> 
+<a class="jxr_linenumber" name="L326" href="#L326">326</a> 			getPanel().setContent(panelContent);
+<a class="jxr_linenumber" name="L327" href="#L327">327</a> 			getPanel().setCaption(<span class="jxr_string">"Invalid Reference"</span>);
+<a class="jxr_linenumber" name="L328" href="#L328">328</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> AccessDeniedException e ) {
+<a class="jxr_linenumber" name="L329" href="#L329">329</a> 			LOGGER.warn(<span class="jxr_string">"Security:Authorization Failure:: {} : {}  exception : {}"</span>,e.getMessage(),pageName,e.getClass().getName());
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> 			<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createFullSizeVerticalLayout();
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> 			LabelFactory.createHeader2Label(panelContent,<span class="jxr_string">"Access denied:"</span> +pageName);
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 			getPanel().setContent(panelContent);
+<a class="jxr_linenumber" name="L333" href="#L333">333</a> 			getPanel().setCaption(<span class="jxr_string">"Access denied"</span>);
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> 		}
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> 	}
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> 
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L338" href="#L338">338</a> <em class="jxr_javadoccomment">	 * Gets the barmenu.</em>
+<a class="jxr_linenumber" name="L339" href="#L339">339</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L340" href="#L340">340</a> <em class="jxr_javadoccomment">	 * @return the barmenu</em>
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L342" href="#L342">342</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> MenuBar getBarmenu() {
+<a class="jxr_linenumber" name="L343" href="#L343">343</a> 		<strong class="jxr_keyword">return</strong> barmenu;
+<a class="jxr_linenumber" name="L344" href="#L344">344</a> 	}
+<a class="jxr_linenumber" name="L345" href="#L345">345</a> 
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">	 * Gets the panel.</em>
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L349" href="#L349">349</a> <em class="jxr_javadoccomment">	 * @return the panel</em>
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> Panel getPanel() {
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> 		<strong class="jxr_keyword">return</strong> panel;
+<a class="jxr_linenumber" name="L353" href="#L353">353</a> 	}
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> 
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">	 * Post construct.</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L358" href="#L358">358</a> 	@PostConstruct
+<a class="jxr_linenumber" name="L359" href="#L359">359</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> postConstruct() {
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> 		setSizeFull();
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> 		createBasicLayoutWithPanelAndFooter(pageName);
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> 	}
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2022 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2008&#x2013;2024 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
 </body>
 </html>

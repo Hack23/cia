@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewAction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.action</a> &gt; <span class="el_source">ViewAction.java</span></div><h1>ViewAction.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -21,107 +21,107 @@ package com.hack23.cia.web.impl.ui.application.action;
 /**
  * The Enum ViewAction.
  */
-<span class="fc" id="L24">public enum ViewAction {</span>
+<span class="nc" id="L24">public enum ViewAction {</span>
 
-	/** The start agent button. */
-<span class="fc" id="L27">	START_AGENT_BUTTON,</span>
+<span class="nc" id="L26">	/** The start agent button. */</span>
+<span class="nc" id="L27">	START_AGENT_BUTTON,</span>
 
-	/** The visit admin agency view. */
-<span class="fc" id="L30">	VISIT_ADMIN_AGENCY_VIEW,</span>
+<span class="nc" id="L29">	/** The visit admin agency view. */</span>
+<span class="nc" id="L30">	VISIT_ADMIN_AGENCY_VIEW,</span>
 
-	/** The visit admin agent operation view. */
-<span class="fc" id="L33">	VISIT_ADMIN_AGENT_OPERATION_VIEW,</span>
+<span class="nc" id="L32">	/** The visit admin agent operation view. */</span>
+<span class="nc" id="L33">	VISIT_ADMIN_AGENT_OPERATION_VIEW,</span>
 
-	/** The visit admin application configuration view. */
-<span class="fc" id="L36">	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,</span>
+<span class="nc" id="L35">	/** The visit admin application configuration view. */</span>
+<span class="nc" id="L36">	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,</span>
 
-	/** The visit admin application events view. */
-<span class="fc" id="L39">	VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
+<span class="nc" id="L38">	/** The visit admin application events view. */</span>
+<span class="nc" id="L39">	VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
 
-	/** The visit admin application session view. */
-<span class="fc" id="L42">	VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
+<span class="nc" id="L41">	/** The visit admin application session view. */</span>
+<span class="nc" id="L42">	VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
 
-	/** The visit admin country view. */
-<span class="fc" id="L45">	VISIT_ADMIN_COUNTRY_VIEW,</span>
+<span class="nc" id="L44">	/** The visit admin country view. */</span>
+<span class="nc" id="L45">	VISIT_ADMIN_COUNTRY_VIEW,</span>
 
-	/** The visit admin data summary view. */
-<span class="fc" id="L48">	VISIT_ADMIN_DATA_SUMMARY_VIEW,</span>
+<span class="nc" id="L47">	/** The visit admin data summary view. */</span>
+<span class="nc" id="L48">	VISIT_ADMIN_DATA_SUMMARY_VIEW,</span>
 
-	/** The visit admin email view. */
-<span class="fc" id="L51">	VISIT_ADMIN_EMAIL_VIEW,</span>
+<span class="nc" id="L50">	/** The visit admin email view. */</span>
+<span class="nc" id="L51">	VISIT_ADMIN_EMAIL_VIEW,</span>
 
-	/** The visit admin language content view. */
-<span class="fc" id="L54">	VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,</span>
+<span class="nc" id="L53">	/** The visit admin language content view. */</span>
+<span class="nc" id="L54">	VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,</span>
 
-	/** The visit admin language view. */
-<span class="fc" id="L57">	VISIT_ADMIN_LANGUAGE_VIEW,</span>
+<span class="nc" id="L56">	/** The visit admin language view. */</span>
+<span class="nc" id="L57">	VISIT_ADMIN_LANGUAGE_VIEW,</span>
 
-	/** The visit admin monitoring view. */
-<span class="fc" id="L60">	VISIT_ADMIN_MONITORING_VIEW,</span>
+<span class="nc" id="L59">	/** The visit admin monitoring view. */</span>
+<span class="nc" id="L60">	VISIT_ADMIN_MONITORING_VIEW,</span>
 
-	/** The visit admin portal view. */
-<span class="fc" id="L63">	VISIT_ADMIN_PORTAL_VIEW,</span>
+<span class="nc" id="L62">	/** The visit admin portal view. */</span>
+<span class="nc" id="L63">	VISIT_ADMIN_PORTAL_VIEW,</span>
 
-	/** The visit admin useraccount view. */
-<span class="fc" id="L66">	VISIT_ADMIN_USERACCOUNT_VIEW,</span>
+<span class="nc" id="L65">	/** The visit admin useraccount view. */</span>
+<span class="nc" id="L66">	VISIT_ADMIN_USERACCOUNT_VIEW,</span>
 
-	/** The visit ballot view. */
-<span class="fc" id="L69">	VISIT_BALLOT_VIEW,</span>
+<span class="nc" id="L68">	/** The visit ballot view. */</span>
+<span class="nc" id="L69">	VISIT_BALLOT_VIEW,</span>
 
-	/** The visit committee ranking view. */
-<span class="fc" id="L72">	VISIT_COMMITTEE_RANKING_VIEW,</span>
+<span class="nc" id="L71">	/** The visit committee ranking view. */</span>
+<span class="nc" id="L72">	VISIT_COMMITTEE_RANKING_VIEW,</span>
 
-	/** The visit committee view. */
-<span class="fc" id="L75">	VISIT_COMMITTEE_VIEW,</span>
+<span class="nc" id="L74">	/** The visit committee view. */</span>
+<span class="nc" id="L75">	VISIT_COMMITTEE_VIEW,</span>
 
-	/** The visit country view. */
-<span class="fc" id="L78">	VISIT_COUNTRY_VIEW,</span>
+<span class="nc" id="L77">	/** The visit country view. */</span>
+<span class="nc" id="L78">	VISIT_COUNTRY_VIEW,</span>
 
-	/** The visit document view. */
-<span class="fc" id="L81">	VISIT_DOCUMENT_VIEW,</span>
+<span class="nc" id="L80">	/** The visit document view. */</span>
+<span class="nc" id="L81">	VISIT_DOCUMENT_VIEW,</span>
 
-	/** The visit documents view. */
-<span class="fc" id="L84">	VISIT_DOCUMENTS_VIEW,</span>
+<span class="nc" id="L83">	/** The visit documents view. */</span>
+<span class="nc" id="L84">	VISIT_DOCUMENTS_VIEW,</span>
 
-	/** The visit government body ranking view. */
-<span class="fc" id="L87">	VISIT_GOVERNMENT_BODY_RANKING_VIEW,</span>
+<span class="nc" id="L86">	/** The visit government body ranking view. */</span>
+<span class="nc" id="L87">	VISIT_GOVERNMENT_BODY_RANKING_VIEW,</span>
 
-	/** The visit government body view. */
-<span class="fc" id="L90">	VISIT_GOVERNMENT_BODY_VIEW,</span>
+<span class="nc" id="L89">	/** The visit government body view. */</span>
+<span class="nc" id="L90">	VISIT_GOVERNMENT_BODY_VIEW,</span>
 
-	/** The visit login. */
-<span class="fc" id="L93">	VISIT_LOGIN,</span>
+<span class="nc" id="L92">	/** The visit login. */</span>
+<span class="nc" id="L93">	VISIT_LOGIN,</span>
 
-	/** The visit main view. */
-<span class="fc" id="L96">	VISIT_MAIN_VIEW,</span>
+<span class="nc" id="L95">	/** The visit main view. */</span>
+<span class="nc" id="L96">	VISIT_MAIN_VIEW,</span>
 
-	/** The visit ministry ranking view. */
-<span class="fc" id="L99">	VISIT_MINISTRY_RANKING_VIEW,</span>
+<span class="nc" id="L98">	/** The visit ministry ranking view. */</span>
+<span class="nc" id="L99">	VISIT_MINISTRY_RANKING_VIEW,</span>
 
-	/** The visit ministry view. */
-<span class="fc" id="L102">	VISIT_MINISTRY_VIEW,</span>
+<span class="nc" id="L101">	/** The visit ministry view. */</span>
+<span class="nc" id="L102">	VISIT_MINISTRY_VIEW,</span>
 
-<span class="fc" id="L104">	VISIT_PARLIAMENT_RANKING_VIEW,</span>
+<span class="nc" id="L104">	VISIT_PARLIAMENT_RANKING_VIEW,</span>
 
-	/** The visit party ranking view. */
-<span class="fc" id="L107">	VISIT_PARTY_RANKING_VIEW,</span>
+<span class="nc" id="L106">	/** The visit party ranking view. */</span>
+<span class="nc" id="L107">	VISIT_PARTY_RANKING_VIEW,</span>
 
-	/** The visit party view. */
-<span class="fc" id="L110">	VISIT_PARTY_VIEW,</span>
+<span class="nc" id="L109">	/** The visit party view. */</span>
+<span class="nc" id="L110">	VISIT_PARTY_VIEW,</span>
 
-	/** The visit politician ranking view. */
-<span class="fc" id="L113">	VISIT_POLITICIAN_RANKING_VIEW,</span>
+<span class="nc" id="L112">	/** The visit politician ranking view. */</span>
+<span class="nc" id="L113">	VISIT_POLITICIAN_RANKING_VIEW,</span>
 
-	/** The visit politician view. */
-<span class="fc" id="L116">	VISIT_POLITICIAN_VIEW, VISIT_REGISTER,</span>
+<span class="nc" id="L115">	/** The visit politician view. */</span>
+<span class="nc" id="L116">	VISIT_POLITICIAN_VIEW, VISIT_REGISTER,</span>
 
-	/** The visit search view. */
-<span class="fc" id="L119">	VISIT_SEARCH_VIEW,</span>
+<span class="nc" id="L118">	/** The visit search view. */</span>
+<span class="nc" id="L119">	VISIT_SEARCH_VIEW,</span>
 
-	/** The visit user home view. */
-<span class="fc" id="L122">	VISIT_USER_HOME_VIEW,</span>
+<span class="nc" id="L121">	/** The visit user home view. */</span>
+<span class="nc" id="L122">	VISIT_USER_HOME_VIEW,</span>
 
-	/** The visit dashboard view. */
-<span class="fc" id="L125">	VISIT_DASHBOARD_VIEW;</span>
+<span class="nc" id="L124">	/** The visit dashboard view. */</span>
+<span class="nc" id="L125">	VISIT_DASHBOARD_VIEW;</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

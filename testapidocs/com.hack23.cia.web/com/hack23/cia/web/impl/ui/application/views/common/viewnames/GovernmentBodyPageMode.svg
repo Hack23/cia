@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="143px" preserveAspectRatio="none" style="width:374px;height:143px;background:#FFFFFF;" version="1.1" viewBox="0 0 374 143" width="374px" zoomAndPan="magnify"><defs/><g><!--MD5=[f12716dcbff6f6ddcfa50dd4b5088471]
+class com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode--><a href="GovernmentBodyPageMode.html" target="_top" title="GovernmentBodyPageMode.html" xlink:actuate="onRequest" xlink:href="GovernmentBodyPageMode.html" xlink:show="new" xlink:title="GovernmentBodyPageMode.html" xlink:type="simple"><g id="elem_com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode"><rect codeLine="5" fill="#F1F1F1" height="107.8917" id="com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="353" x="7" y="7"/><ellipse cx="22" cy="28.344" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M26.1094,34.344 L18.3906,34.344 L18.3906,21.9533 L26.1094,21.9533 L26.1094,24.1096 L20.8438,24.1096 L20.8438,26.7815 L25.6094,26.7815 L25.6094,28.9377 L20.8438,28.9377 L20.8438,32.1877 L26.1094,32.1877 L26.1094,34.344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="187" x="103" y="26.9659">GovernmentBodyPageMode</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="321" x="36" y="41.7579">com.hack23.cia.web.impl.ui.application.views.common.viewnames</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="359" y1="49.6879" y2="49.6879"/><ellipse cx="18" cy="64.7219" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="93" x="27" y="68.6538">EXPENDITURE</text><ellipse cx="18" cy="83.7898" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="86" x="27" y="87.7218">HEADCOUNT</text><ellipse cx="18" cy="102.8577" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="57" x="27" y="106.7897">INCOME</text></g></a><rect fill="none" height="13.62" style="stroke:none;stroke-width:1.0;" width="188" x="89" y="121.8917"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="89" y="132.5816">UMLDoclet 2.0.20, PlantUML 1.2022.12</text><!--MD5=[c0e365f93d94e66cf413f723818b7ff1]
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    enum "<size:14>GovernmentBodyPageMode\n<size:10>com.hack23.cia.web.impl.ui.application.views.common.viewnames" as com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode [[GovernmentBodyPageMode.html]] {
+        {static} +EXPENDITURE
+        {static} +HEADCOUNT
+        {static} +INCOME
+    }
+
+    center footer UMLDoclet 2.0.20, PlantUML 1.2022.12
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 20:12:26 CEST 2022)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: 
+Country: 
+--></g></svg>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartySupportsChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PartySupportsChartDataManagerImpl.java</span></div><h1>PartySupportsChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 	 * Instantiates a new party supports chart data manager impl.
 	 */
 	public PartySupportsChartDataManagerImpl() {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">	}</span>
+<span class="nc" id="L53">		super();</span>
+<span class="nc" id="L54">	}</span>
 
 	/**
 	 * Adds the data.
@@ -71,9 +71,9 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 <span class="nc bnc" id="L71" title="All 2 branches missed.">			for (final ViewRiksdagenPartyBallotSupportAnnualSummary data : entry.getValue()) {</span>
 <span class="nc" id="L72">					dataSeries.add(data.getEmbeddedId().getDate(),</span>
 <span class="nc" id="L73">							100 - data.getDisagreePercentage());</span>
-<span class="nc" id="L74">			}</span>
+			}
 
-<span class="nc" id="L76">		}</span>
+		}
 <span class="nc" id="L77">	}</span>
 
 	@Override
@@ -83,9 +83,9 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 <span class="nc" id="L83">				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);</span>
 
 <span class="nc" id="L85">		final List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt; list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,</span>
-				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
-				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
-				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
+<span class="nc" id="L86">				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,</span>
+<span class="nc" id="L87">				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,</span>
+<span class="nc" id="L88">				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);</span>
 
 <span class="nc" id="L90">		final Map&lt;String, List&lt;ViewRiksdagenPartyBallotSupportAnnualSummary&gt;&gt; map = list.parallelStream().filter(Objects::nonNull)</span>
 <span class="nc" id="L91">		.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getOtherParty()));</span>
@@ -99,4 +99,4 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 <span class="nc" id="L99">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

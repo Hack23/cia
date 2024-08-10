@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PoliticianMenuItemFactoryImpl.java</span></div><h1>PoliticianMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -96,15 +96,15 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	 * Instantiates a new politician menu item factory impl.
 	 */
 	public PoliticianMenuItemFactoryImpl() {
-<span class="fc" id="L99">		super();</span>
-<span class="fc" id="L100">	}</span>
+<span class="nc" id="L99">		super();</span>
+<span class="nc" id="L100">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 <span class="nc" id="L104">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
 <span class="nc" id="L106">		createButtonLink(grid,INDICATORS_TEXT, VaadinIcons.BUG,</span>
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), &quot;Daily summary of ballots breakdown by won,party rebel,absent and number of ballots&quot;);
+<span class="nc" id="L107">				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), &quot;Daily summary of ballots breakdown by won,party rebel,absent and number of ballots&quot;);</span>
 
 
 <span class="nc" id="L110">		createButtonLink(grid,TOTAL_EXPERIENCE, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
@@ -131,7 +131,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 <span class="nc" id="L131">				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), &quot;Summary of all ballot decisions&quot;);</span>
 
 <span class="nc" id="L133">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,</span>
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), &quot;View history of page visit for this page.&quot;);
+<span class="nc" id="L134">				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), &quot;View history of page visit for this page.&quot;);</span>
 
 <span class="nc" id="L136">	}</span>
 
@@ -147,9 +147,9 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 
 <span class="nc" id="L149">			politicanItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
+<span class="nc" id="L150">					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));</span>
 <span class="nc" id="L151">			politicanItem.addItem(INDICATORS_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
+<span class="nc" id="L152">					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));</span>
 
 <span class="nc" id="L154">			final MenuItem rolesItem = politicanItem.addItem(ROLES_TEXT, VaadinIcons.BUG, null);</span>
 
@@ -179,9 +179,9 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 <span class="nc" id="L179">					PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));</span>
 
 <span class="nc" id="L181">			politicanItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
+<span class="nc" id="L182">					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));</span>
 
 <span class="nc" id="L184">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

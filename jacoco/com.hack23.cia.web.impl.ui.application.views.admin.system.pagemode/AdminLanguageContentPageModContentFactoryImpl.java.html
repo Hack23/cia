@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminLanguageContentPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminLanguageContentPageModContentFactoryImpl.java</span></div><h1>AdminLanguageContentPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -48,27 +48,27 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 	/** The Constant ADMIN_LANGUAGE_CONTENT. */
 	private static final String ADMIN_LANGUAGE_CONTENT = &quot;Admin Language Content&quot;;
 
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
-			&quot;languageValue&quot;);
+<span class="nc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
+<span class="nc" id="L52">			&quot;languageValue&quot;);</span>
 
-<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;languageContentType&quot;, &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
-			&quot;languageValue&quot; };
+<span class="nc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;languageContentType&quot;, &quot;refKey&quot;, &quot;fromLanguage&quot;, &quot;toLanguage&quot;, &quot;createdDate&quot;,</span>
+<span class="nc" id="L55">			&quot;languageValue&quot; };</span>
 
-<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="nc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	private static final String LANGUAGE_CONTENT_DATA = &quot;LanguageContentData&quot;;
 
-<span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="nc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME;
+<span class="nc" id="L64">	public static final String NAME = AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME;</span>
 
 	/**
 	 * Instantiates a new admin language content page mod content factory impl.
 	 */
 	public AdminLanguageContentPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super(NAME);</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L70">		super(NAME);</span>
+<span class="nc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -90,10 +90,10 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 <span class="nc" id="L90">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
 <span class="nc" id="L92">		getGridFactory().createBasicBeanItemGrid(content,</span>
-				LanguageContentData.class,pageOrderBy,
-				LANGUAGE_CONTENT_DATA,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				LISTENER, null, null);
+<span class="nc" id="L93">				LanguageContentData.class,pageOrderBy,</span>
+<span class="nc" id="L94">				LANGUAGE_CONTENT_DATA,</span>
+<span class="nc" id="L95">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L96">				LISTENER, null, null);</span>
 
 <span class="nc bnc" id="L98" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
@@ -102,16 +102,16 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 <span class="nc bnc" id="L102" title="All 2 branches missed.">			if (languageContentData != null) {</span>
 
 <span class="nc" id="L104">				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,</span>
-						AS_LIST);
+<span class="nc" id="L105">						AS_LIST);</span>
 			}
 		}
 
 <span class="nc" id="L109">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,</span>
-				ApplicationEventGroup.ADMIN, NAME, null, pageId);
+<span class="nc" id="L110">				ApplicationEventGroup.ADMIN, NAME, null, pageId);</span>
 
 <span class="nc" id="L112">		return content;</span>
 
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

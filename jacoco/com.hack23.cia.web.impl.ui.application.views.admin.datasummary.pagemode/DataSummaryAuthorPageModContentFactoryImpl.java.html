@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataSummaryAuthorPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode</a> &gt; <span class="el_source">DataSummaryAuthorPageModContentFactoryImpl.java</span></div><h1>DataSummaryAuthorPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2021 James Pether Sörling
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -42,19 +42,19 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 	/** The Constant ADMIN_AUTHOR_SUMMARY. */
 	private static final String ADMIN_AUTHOR_SUMMARY = &quot;Admin Author Summary&quot;;
 
-<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;author&quot;, &quot;changes&quot;, &quot;firstDate&quot;, &quot;lastDate&quot; };</span>
+<span class="nc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;author&quot;, &quot;changes&quot;, &quot;firstDate&quot;, &quot;lastDate&quot; };</span>
 
-<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
+<span class="nc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
+<span class="nc" id="L50">	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;</span>
 
 	/**
 	 * Instantiates a new data summary author page mod content factory impl.
 	 */
 	public DataSummaryAuthorPageModContentFactoryImpl() {
-<span class="fc" id="L56">		super();</span>
-<span class="fc" id="L57">	}</span>
+<span class="nc" id="L56">		super();</span>
+<span class="nc" id="L57">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
@@ -76,9 +76,9 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 <span class="nc" id="L77">		getGridFactory()</span>
 <span class="nc" id="L78">		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditAuthorSummary.class, dataContainer.getAll(),</span>
-				ADMIN_AUTHOR_SUMMARY,null,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				null, null, null);
+<span class="nc" id="L79">				ADMIN_AUTHOR_SUMMARY,null,</span>
+<span class="nc" id="L80">				COLUMN_ORDER, HIDE_COLUMNS,</span>
+<span class="nc" id="L81">				null, null, null);</span>
 
 <span class="nc" id="L83">		return content;</span>
 
@@ -86,8 +86,8 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L89" title="3 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(DataSummaryPageMode.AUTHORS.toString());</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(DataSummaryPageMode.AUTHORS.toString());</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
