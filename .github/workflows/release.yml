@@ -68,7 +68,7 @@ jobs:
     - name: Build with Maven
       run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT
     - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@210c1913531870065f03ce1f9440dd87bc0938cd # v1.4.0
+      uses: actions/attest-build-provenance@310b0a4a3b0b78ef57ecda988ee04b132db73ef8 # v1.4.1
       id: attest
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
