@@ -674,16 +674,6 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-      <id>opennms</id>
-      <url>https://maven.mirrors.opennms.org/maven2/</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
       <id>mulesoft</id>
       <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
     </repository>
