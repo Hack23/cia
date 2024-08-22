@@ -77,7 +77,7 @@ jobs:
       run: cp ${{ steps.attest.outputs.bundle-path }} cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl
     - name: Generate SBOM attestation
       id: attestsbom
-      uses: actions/attest-sbom@f19ab44411e02574a74181cec8eb584319d0f779 # v1.4.0
+      uses: actions/attest-sbom@5026d3663739160db546203eeaffa6aa1c51a4d6 # v1.4.1
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
         sbom-path: 'cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json'
