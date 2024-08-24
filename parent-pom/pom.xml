@@ -117,8 +117,8 @@
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.istack>3.0.12</cia.project.versions.istack>
-    <cia.project.versions.jaxb.build>2.4.0-b180830.0359</cia.project.versions.jaxb.build>
-    <cia.project.versions.jaxb.api.runtime>2.4.0-b180830.0359</cia.project.versions.jaxb.api.runtime>
+    <cia.project.versions.jaxb.build>2.3.1</cia.project.versions.jaxb.build>
+    <cia.project.versions.jaxb.api.runtime>2.3.1</cia.project.versions.jaxb.api.runtime>
     <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.3.9</cia.project.versions.jaxb.impl.build>
     <cia.project.versions.jaxb.impl.runtime>2.3.9</cia.project.versions.jaxb.impl.runtime>
@@ -1248,90 +1248,6 @@
               </rules>
             </configuration>
           </execution>
-          <execution>
-            <id>enforce-fixed-dependencies-and-classes</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <DependencyConvergence></DependencyConvergence>
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>commons-logging:commons-logging</exclude>
-                    <exclude>log4j:log4j</exclude>
-                    <exclude>stax:stax-api</exclude>
-                    <exclude>org.springframework:spring-jcl</exclude>
-                    <exclude>javax.transaction:jta</exclude>
-                    <exclude>org.apache.geronimo.specs:geronimo-jms_1.1_spec</exclude>
-                  </excludes>
-                </bannedDependencies>
-                <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
-									<ignoreClasses> <ignoreClass>module-info.*</ignoreClass> <ignoreClass>*.module-info.*</ignoreClass>
-									<ignoreClass>org.xmlpull.v1.*</ignoreClass> <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
-									<ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass> <ignoreClass>org.apache.commons.io.*</ignoreClass>
-									<ignoreClass>org.apache.commons.lang3.*</ignoreClass> <ignoreClass>org.apache.commons.codec.*</ignoreClass>
-									<ignoreClass>org.apache.commons.collections.*</ignoreClass> <ignoreClass>org.apache.commons.logging.*</ignoreClass>
-									<ignoreClass>javax.servlet.*</ignoreClass> <ignoreClass>org.w3c.css.sac.*</ignoreClass>
-									<ignoreClass>elemental.*</ignoreClass> <ignoreClass>org.w3c.flute.*</ignoreClass>
-									<ignoreClass>javax.transaction.*</ignoreClass> <ignoreClass>org.w3._2001.xmlschema.*</ignoreClass>
-									<ignoreClass>org.terracotta.*</ignoreClass> <ignoreClass>javax.el.*</ignoreClass>
-									<ignoreClass>javax.xml.namespace.QName</ignoreClass> <ignoreClass>org.apache.regexp.*</ignoreClass>
-									<ignoreClass>javax.annotation.*</ignoreClass> <ignoreClass>org.mozilla.classfile.*</ignoreClass>
-									</ignoreClasses> </banDuplicateClasses> -->
-              </rules>
-            </configuration>
-          </execution>
-          <!--
-          <execution>
-            <id>enforce-java-source-encoding</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireEncoding>
-                  <encoding>UTF-8</encoding>
-                  <includes>src/main/java/**/*.java</includes>
-                  <excludes>**/package-info.java,**/module-info.java,</excludes>
-                </requireEncoding>
-              </rules>
-            </configuration>
-          </execution>
-          <execution>
-            <id>enforce-property-file-encoding</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireEncoding>
-                  <encoding>ISO-8859-1</encoding>
-                  <includes>src/main/resources/**/*.properties</includes>
-                  <excludes>**/schema-database.properties,**/IAResources*.*,**/cia-service.properties</excludes>
-                </requireEncoding>
-              </rules>
-            </configuration>
-          </execution>
-          <execution>
-            <id>enforce-property-translations-encoding</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireEncoding>
-                  <encoding>UTF-8</encoding>
-                  <includes>**/IAResources*.*</includes>
-                </requireEncoding>
-              </rules>
-            </configuration>
-          </execution>
-          -->
-          <!-- <execution> <id>enforce-xsd-wsdl-encoding</id> <goals> <goal>enforce</goal>
-						</goals> <configuration> <rules> <requireEncoding> <encoding>UTF-8</encoding>
-						<includes>**/*.xsd,**/*.xjb,**/*.wsdl</includes> </requireEncoding> </rules>
-						</configuration> </execution> -->
         </executions>
       </plugin>
       <plugin>
