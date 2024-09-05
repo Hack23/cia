@@ -23,7 +23,7 @@ The project relies on open data from various sources, including:
 [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://api.securityscorecards.dev/projects/github.com/Hack23/cia)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
