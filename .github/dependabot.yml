@@ -15,13 +15,3 @@ updates:
     directory: /
     schedule:
       interval: daily
-
-  - package-ecosystem: docker
-    directory: /cia-dist-docker/src/main/docker
-    schedule:
-      interval: daily
-
-  - package-ecosystem: npm
-    directory: /web-widgets
-    schedule:
-      interval: daily
