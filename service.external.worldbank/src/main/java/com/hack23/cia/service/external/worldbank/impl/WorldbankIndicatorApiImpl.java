@@ -117,7 +117,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	@Override
 	public List<String> getIndicatorsWithSwedishData() throws DataFailureException {
 		try {
-			return Collections.unmodifiableList(readUsingZipInputStream(Request.Get("http://api.worldbank.org/v2/en/country/SWE?downloadformat=csv").execute().returnContent().asStream()));
+			return Collections.unmodifiableList(readUsingZipInputStream(Request.Get("https://api.worldbank.org/v2/en/country/SWE?downloadformat=csv").execute().returnContent().asStream()));
 		} catch (final IOException e) {
 			throw new DataFailureException(e);
 		}
