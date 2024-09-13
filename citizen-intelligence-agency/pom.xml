@@ -47,7 +47,7 @@
     <dependency>
       <groupId>org.apache.httpcomponents.core5</groupId>
       <artifactId>httpcore5</artifactId>
-      <version>5.2.5</version>
+      <version>5.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -69,7 +69,7 @@
     <dependency>
       <groupId>nl.basjes.parse.useragent</groupId>
       <artifactId>yauaa</artifactId>
-      <version>7.27.0</version>
+      <version>7.28.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.commons</groupId>
