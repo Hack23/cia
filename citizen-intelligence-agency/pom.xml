@@ -639,7 +639,7 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-context</artifactId>
-      <version>1.66.0</version>
+      <version>1.68.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
