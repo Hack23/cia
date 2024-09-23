@@ -1285,7 +1285,7 @@
     <dependency>
       <groupId>com.github.waffle</groupId>
       <artifactId>waffle-jna</artifactId>
-      <version>3.4.0</version>
+      <version>3.5.0</version>
       <exclusions>
         <exclusion>
           <groupId>com.github.ben-manes.caffeine</groupId>
