@@ -23,6 +23,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class CommonsViews {
 
+private CommonsViews() {
+}
+
 	/** The Constant MAIN_VIEW_NAME. */
 	public static final String MAIN_VIEW_NAME = "main";
 

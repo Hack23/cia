@@ -23,6 +23,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.sizing;
  */
 public final class ContentRatio {
 
+private ContentRatio() {
+}
+
 	/** The Constant CHART. */
 	public static final float CHART = 8;
 

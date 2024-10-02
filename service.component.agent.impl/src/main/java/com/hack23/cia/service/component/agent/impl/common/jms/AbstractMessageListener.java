@@ -31,6 +31,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public abstract class AbstractMessageListener {
 
+private AbstractMessageListener() {
+}
+
 	/**
 	 * Clear authentication.
 	 */

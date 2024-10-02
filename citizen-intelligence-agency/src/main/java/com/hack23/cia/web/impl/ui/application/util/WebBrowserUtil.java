@@ -33,6 +33,9 @@ import nl.basjes.parse.useragent.UserAgentAnalyzer;
  */
 public final class WebBrowserUtil {
 
+private WebBrowserUtil() {
+}
+
 	/** The Constant USER_AGENT_ANALYZER. */
 	private static final UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
             .newBuilder()

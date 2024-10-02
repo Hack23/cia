@@ -23,6 +23,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.sizing;
  */
 public final class ContentSize {
 
+private ContentSize() {
+}
+
 	/** The Constant FULL_SIZE. */
 	public static final String FULL_SIZE = "100%";
 

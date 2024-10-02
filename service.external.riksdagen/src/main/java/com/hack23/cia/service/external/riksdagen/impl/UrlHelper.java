@@ -29,6 +29,9 @@ import org.slf4j.LoggerFactory;
  */
 public final class UrlHelper {
 
+private UrlHelper() {
+}
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(UrlHelper.class);
 

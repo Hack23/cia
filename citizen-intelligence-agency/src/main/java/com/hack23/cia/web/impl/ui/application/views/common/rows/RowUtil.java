@@ -34,6 +34,9 @@ import com.vaadin.ui.Label;
  */
 public final class RowUtil {
 
+private RowUtil() {
+}
+
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
 

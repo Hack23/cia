@@ -23,6 +23,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class AdminViews {
 
+private AdminViews() {
+}
+
 	/** The Constant ADMIN_AGENCY_VIEW_NAME. */
 	public static final String ADMIN_AGENCY_VIEW_NAME = "adminagency";
 

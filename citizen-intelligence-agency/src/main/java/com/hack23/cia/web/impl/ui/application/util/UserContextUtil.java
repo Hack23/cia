@@ -36,6 +36,9 @@ import com.vaadin.server.Page;
  */
 public final class UserContextUtil {
 
+private UserContextUtil() {
+}
+
 	/**
 	 * Allow role in security context.
 	 *
