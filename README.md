@@ -29,7 +29,6 @@ The project relies on open data from various sources, including:
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
-[![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 
@@ -39,6 +38,8 @@ The project relies on open data from various sources, including:
 
 [![JDK-21](https://img.shields.io/badge/jdk-21-green.svg)]
 [![JDK-22](https://img.shields.io/badge/jdk-22-orange.svg)]
+[![JDK-23](https://img.shields.io/badge/jdk-23-orange.svg)]
+
 
 ## Resources
 
@@ -115,13 +116,13 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 1. Install OpenJDK and PostgreSQL:
 
 ```bash
-$ sudo apt-get install openjdk-21-jdk postgresql-15 pgadmin3
+$ sudo apt-get install openjdk-21-jdk postgresql-16 pgadmin3
 ```
 
 2. Install PostgreSQL on Ubuntu:
 
 ```bash
-$ sudo apt-get install postgresql-15 postgresql-contrib postgresql-15-pgaudit
+$ sudo apt-get install postgresql-16 postgresql-contrib postgresql-16-pgaudit
 ```
 
 ## Database Setup
@@ -174,13 +175,13 @@ $ service postgresql restart
 7. Download the CIA Debian package:
 
 ```bash
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2022.12.26/cia-dist-deb-2022.12.26.deb
+$ wget https://github.com/Hack23/cia/releases/download/2024.9.27/cia-dist-deb-2024.9.27.all.deb
 ```
 
 8. Install the Debian package:
 
 ```bash
-$ sudo dpkg -i cia-dist-deb-2022.12.26.deb
+$ sudo dpkg -i cia-dist-deb-2024.9.27.all.deb
 ```
 
 ## Access the Server
