@@ -80,11 +80,11 @@ Installing Debian/Ubuntu package
 
  Installing database(postgres) and openjdk
 
- $ sudo apt-get install openjdk-16-jdk postgresql-13 pgadmin3
+ $ sudo apt-get install openjdk-21-jdk postgresql-16 pgadmin3
 
  2.1 Installing Postgresql on Ubuntu
 
- $ sudo apt-get install postgresql-13 postgresql-contrib postgresql-13-pgaudit
+ $ sudo apt-get install postgresql-16 postgresql-contrib postgresql-16-pgaudit
 
  3. Create empty database
 
@@ -98,7 +98,7 @@ Installing Debian/Ubuntu package
 
  4. Modify postgres setting, enable prepared transactions
 
- Edit file "/etc/postgresql/13/main/postgresql.conf" set
+ Edit file "/etc/postgresql/16/main/postgresql.conf" set
 
  max_prepared_transactions = 100
  shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
@@ -108,7 +108,7 @@ Installing Debian/Ubuntu package
 
 
  5. Modify postgres setting
- Edit file "/etc/postgresql/13/main/pg_hba.conf" add line
+ Edit file "/etc/postgresql/16/main/pg_hba.conf" add line
 
  host all all ::1/128 md5
 
@@ -119,11 +119,11 @@ Installing Debian/Ubuntu package
 
  7. Get cia debian package and
 
- $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2022.12.26/cia-dist-deb-2022.12.26.deb
+ $ wget https://github.com/Hack23/cia/releases/download/2024.9.27/cia-dist-deb-2024.9.27.all.deb
 
  8. Install debian package
 
- $ sudo dpkg -i cia-dist-deb-2022.12.26.deb
+ $ sudo dpkg -i cia-dist-deb-2024.9.27.all.deb
 
 
  9. Access the server at {{{https://localhost:28443/cia/}https://localhost:28443/cia/}}
