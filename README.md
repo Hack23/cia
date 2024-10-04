@@ -29,7 +29,6 @@ The project relies on open data from various sources, including:
 [![CodeFactor](https://www.codefactor.io/repository/github/hack23/cia/badge)](https://www.codefactor.io/repository/github/hack23/cia)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability)](https://codeclimate.com/github/Hack23/cia/maintainability)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
-[![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Hack23/cia.svg)](http://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 
@@ -39,6 +38,8 @@ The project relies on open data from various sources, including:
 
 [![JDK-21](https://img.shields.io/badge/jdk-21-green.svg)]
 [![JDK-22](https://img.shields.io/badge/jdk-22-orange.svg)]
+[![JDK-23](https://img.shields.io/badge/jdk-23-orange.svg)]
+
 
 ## Resources
 
