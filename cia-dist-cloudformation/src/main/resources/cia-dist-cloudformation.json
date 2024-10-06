@@ -31,9 +31,9 @@
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
         "WebServerAmi": {
-            "Description": "Web server ami ubuntu arm 22.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
+            "Description": "Web server ami ubuntu arm 24.04, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
             "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
-            "Default": "/aws/service/canonical/ubuntu/server/22.04/stable/current/arm64/hvm/ebs-gp2/ami-id"
+            "Default": "/aws/service/canonical/ubuntu/server/24.04/stable/current/arm64/hvm/ebs-gp3/ami-id"
         },
         "WebServerCount": {
             "Description": "Number of EC2 instances to launch for the WebServer server",
