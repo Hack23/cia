@@ -78,7 +78,7 @@
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.6.2</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
-    <cia.project.versions.asm>9.7</cia.project.versions.asm>
+    <cia.project.versions.asm>9.7.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.17.0</cia.project.versions.commonslang3>
@@ -148,7 +148,7 @@
     <jacoco.version>0.8.12</jacoco.version>
     <compiler.plugin.version>3.13.0</compiler.plugin.version>
     <cia.project.versions.compiler.plexus.java>1.3.0</cia.project.versions.compiler.plexus.java>
-    <surefire.version>3.5.0</surefire.version>
+    <surefire.version>3.5.1</surefire.version>
     <jdk.src.version>21</jdk.src.version>
     <jdk.target.version>21</jdk.target.version>
     <javadoc.src.version>21</javadoc.src.version>
