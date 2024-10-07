@@ -3852,6 +3852,7 @@
 	        "LaunchTemplateData": {
 		    "IamInstanceProfile": { "Ref": "InstanceProfile"
                     },
+		    "Name" : "WebServerFleet",
 	            "ImageId": {
 	                "Ref": "WebServerAmi"
 	            },
@@ -3942,169 +3943,7 @@
                                 "/etc/init.d/cia stop\n",
                                 "/etc/init.d/cia start\n",
                                 "update-rc.d cia defaults\n",
-	                        ]
-	                    ]
-	                }
-	            }
-	        }
-	    }
-	}
-       },
-	"AssociatePublicIpAddress": "false",
-                "UserData": {
-                    "Fn::Base64": {
-                        "Fn::Join": [
-                            "",
-                            [
-                                "#!/bin/bash -xe\n",
-                                "exec > >(tee /var/log/user-data.log) 2>&1 \n",
-                                "export DEBIAN_FRONTEND=noninteractive\n",
-                                "apt_get_install()\n",
-                                "{\n",
-                                "DEBIAN_FRONTEND=noninteractive apt-get -y \\n",
-                                "-o DPkg::Options::=--force-confnew \\n",
-                                "install $@\n",
-                                "}\n",
-                                "timedatectl set-timezone Europe/Stockholm \n",
-                                "dpkg-reconfigure -f noninteractive tzdata \n",
-                                "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
-                                "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
-                                "dpkg-reconfigure --frontend=noninteractive locales \n",
-                                "apt-get update\n",
-                                "apt-get -y install apt-transport-https\n",
-                                "apt-get update\n",
-                                "apt-get -y dist-upgrade\n",
-                                "apt-get -y install python3-pip python3-setuptools unattended-upgrades chrony\n",
-                                "echo 'server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4' >> /etc/chrony/chrony.conf \n",
-                                "sudo /etc/init.d/chrony restart\n",
-                                "sudo pip3 install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz\n",
-								"mkdir -p /opt/aws/bin\n",
-								"sudo ln -s /usr/local/bin/cfn* /opt/aws/bin\n",	
-                                "##systemctl enable cfn-hup.service \n",
-                                "##systemctl start cfn-hup.service \n",
-                                "# Install the sample application\n",
-                                "/opt/aws/bin/cfn-init -v ",
-                                "    --stack ",
-                                {
-                                    "Ref": "AWS::StackName"
-                                },
-                                "    --resource WebServerLaunchConfig ",
-                                "    --region ",
-                                {
-                                    "Ref": "AWS::Region"
-                                },
-                                "\n",
-                                "ufw default allow outgoing\n",
-                                "ufw default deny incoming\n",
-                                "sudo /etc/init.d/ssh stop\n",
-                                "sudo apt-get -y purge openssh-server\n",
-                                "ufw allow 8443/tcp\n",
-                                "ufw allow 53\n",
-                                "ufw allow 123/udp\n",
-                                "ufw enable\n",
-                                "#ufw disable\n",
-                                "ufw status verbose\n",
-                                "echo 'Sysctl hardening'\n",
-                                "echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n",
-                                "echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n",
-                                "echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.rp_filter = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.default = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.default.log_martians = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.log_martians = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.all.send_redirects = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.conf.default.accept_source_route = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.tcp_syncookies = 1' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv4.tcp_timestamps = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv6.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n",
-                                "echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",
-                                "sysctl -p\n",
-                                "cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n",
-                                "sudo snap install amazon-ssm-agent --classic\n",
-                                "sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n",
-                                "sudo apt-get -y install curl python3 python2 software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
-                                "sudo ln -s /usr/bin/python2 /usr/bin/python\n",
-                                "sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
-                                "sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
-                                "sudo mkdir -p /var/awslogs/etc/\n",
-                                "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",
-                                "sudo apt-get -y install libwww-perl libdatetime-perl\n",
-                                "# INSTALL OPEN JDK\n",
-                                "sudo ln -s /usr/lib/jvm/java-17-openjdk-arm64 /usr/lib/jvm/jdk-17\n",
-                                "wget -O amazon-corretto-21-aarch64-linux-jdk.deb https://corretto.aws/downloads/latest/amazon-corretto-21-aarch64-linux-jdk.deb\n",
-                                "dpkg -i amazon-corretto-21-aarch64-linux-jdk.deb\n",
-                                "rm amazon-corretto-21-aarch64-linux-jdk.deb\n",
-                                "ln -s /usr/lib/jvm/java-21-amazon-corretto /usr/lib/jvm/jdk-21\n",
-                                "wget ",
-                                {
-                                    "Ref": "DebPackageUrl"
-                                },
-                                " -O cia-dist-deb.deb \n",
-                                "dpkg -i --force all cia-dist-deb.deb \n",
-                                "/etc/init.d/cia stop\n",
-                                "echo 'database.name=",
-                                {
-                                    "Ref": "DBName"
-                                },
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "echo 'database.username=allhaildiscordia",
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "echo 'database.password=legalizeit",
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "echo 'database.aws.secret.arn=",
-                                {
-                                    "Ref": "RDSInstanceRotationSecret"
-                                },
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "echo 'database.aws.secret=true",
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "echo 'database.hostname=",
-                                {
-                                    "Fn::GetAtt": [
-                                        "Database",
-                                        "Endpoint.Address"
-                                    ]
-                                },
-                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
-                                "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/cia-base/webapps/cia.xml\n",
-                                "TOKEN=$(curl -X PUT 'http://169.254.169.254/latest/api/token' -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600')\n",
-                                "LOCAL_IP=$(curl -H 'X-aws-ec2-metadata-token: $TOKEN' http://169.254.169.254/latest/meta-data/local-ipv4)\n",                                
-                                "HISTCONTROL=ignorespace\n",
-                                "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n",
-                                "rm -rf /opt/cia/cia-base/etc/keystore.p12\n",
-                                "/usr/lib/jvm/jdk-17/bin/keytool -genkey -noprompt -deststoretype pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 ",
-                                " -alias jetty  -dname 'CN=$LOCAL_IP, OU=None, O=None, L=None, S=None, C=SE' -keystore /opt/cia/cia-base/etc/keystore.p12 ",
-                                " -storepass $KEY_PWD -keypass $KEY_PWD\n",
-                                "chown cia:cia /opt/cia/cia-base/etc/keystore.p12\n",
-                                "chmod 700 /opt/cia/cia-base/etc/keystore.p12\n",
-                                " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
-                                " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
-                                "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
-                                "let JAVAMEMSIZE=$TOTAL_MEM_KB-3046*1024\n",
-                                "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /etc/default/cia\n",
-                                "# sed -i -e 's/# -DUSE_LOG_APPENDER=",
-                                {
-                                    "Ref": "WebServerAppLogAppender"
-                                },
-                                "/ -DUSE_LOG_APPENDER=",
-                                {
-                                    "Ref": "WebServerAppLogAppender"
-                                },
-                                "/' /etc/default/cia\n",
-                                "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
-                                "mkdir /opt/cia/.postgresql\n",
-                                "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n",
-                                "chown -R cia:cia /opt/cia/.postgresql\n",
-                                "chmod -R 700 /opt/cia/.postgresql\n",
-                                "/usr/lib/jvm/jdk-17/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
-                                "/etc/init.d/cia stop\n",
-                                "/etc/init.d/cia start\n",
-                                "update-rc.d cia defaults\n",
-                                "# Signal completion\n",
+				"# Signal completion\n",
                                 "/opt/aws/bin/cfn-signal -e $? ",
                                 "    --stack ",
                                 {
@@ -4116,12 +3955,15 @@
                                     "Ref": "AWS::Region"
                                 },
                                 "\n"
-                            ]
-                        ]
-                    }
-                }
-            }
-        },
+  
+	                        ]
+	                    ]
+	                }
+	            }
+	        }
+	    }
+	}
+       },
         "WebServerSecurityGroup": {
             "Type": "AWS::EC2::SecurityGroup",
             "DependsOn": "PublicLoadBalancerSecurityGroup",
