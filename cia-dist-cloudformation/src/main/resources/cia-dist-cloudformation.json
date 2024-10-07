@@ -3848,28 +3848,109 @@
         },
         "WebServerLaunchConfig": {
             "Type": "AWS::EC2::LaunchTemplate",
-            "Properties": {
-                "ImageId": {
-                    "Ref": "WebServerAmi"
-                },
-			    "MetadataOptions": {
+	   "Properties": {
+	        "LaunchTemplateData": {
+		    "IamInstanceProfile": { "Ref": "InstanceProfile"
+                    },
+	            "ImageId": {
+	                "Ref": "WebServerAmi"
+	            },
+		    "InstanceType": {
+                    "Ref": "WebServerInstanceType"
+                     },
+                     "EbsOptimized": "true",
+	            "SecurityGroupIds": [
+	                {
+	                    "Ref": "WebServerSecurityGroup"
+	                }
+	            ],
+		    "MetadataOptions": {
 			       "HttpEndpoint": "enabled",
 			       "HttpPutResponseHopLimit": 1,
 			       "HttpTokens": "required"
-			    },
-                "IamInstanceProfile": {
-                    "Ref": "InstanceProfile"
-                },
-                "EbsOptimized": "true",
-                "SecurityGroups": [
-                    {
-                        "Ref": "WebServerSecurityGroup"
-                    }
-                ],
-                "InstanceType": {
-                    "Ref": "WebServerInstanceType"
-                },
-                "AssociatePublicIpAddress": "false",
+		    },			
+	            "UserData": {
+	                "Fn::Base64": {
+	                    "Fn::Join": [
+	                        "",
+	                        [
+                                   "#!/bin/bash -xe\n",
+                                   "exec > >(tee /var/log/user-data.log) 2>&1 \n",
+                                   "export DEBIAN_FRONTEND=noninteractive\n",
+                                   "apt_get_install()\n",
+                                   "{\n",
+                                   "DEBIAN_FRONTEND=noninteractive apt-get -y \\n",
+                                   "-o DPkg::Options::=--force-confnew \\n",
+                                   "install $@\n",
+                                   "}\n",
+	                            "apt-get update -y\n",
+	                            "apt-get install -y openjdk-21-jdk-headless\n",
+	                            "sudo ln -s /usr/lib/jvm/java-21-openjdk-arm64 /usr/lib/jvm/jdk-21\n",
+				"wget ",
+                                {
+                                    "Ref": "DebPackageUrl"
+                                },
+                                " -O cia-dist-deb.deb \n",
+                                "dpkg -i --force all cia-dist-deb.deb \n",
+                                "/etc/init.d/cia stop\n",
+                                "echo 'database.name=",
+                                {
+                                    "Ref": "DBName"
+                                },
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "echo 'database.username=allhaildiscordia",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "echo 'database.password=legalizeit",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "echo 'database.aws.secret.arn=",
+                                {
+                                    "Ref": "RDSInstanceRotationSecret"
+                                },
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "echo 'database.aws.secret=true",
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "echo 'database.hostname=",
+                                {
+                                    "Fn::GetAtt": [
+                                        "Database",
+                                        "Endpoint.Address"
+                                    ]
+                                },
+                                "'  >> /opt/cia/cia-base/webapps/cia/WEB-INF/database.properties\n",
+                                "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/cia-base/webapps/cia.xml\n",
+                                "TOKEN=$(curl -X PUT 'http://169.254.169.254/latest/api/token' -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600')\n",
+                                "LOCAL_IP=$(curl -H 'X-aws-ec2-metadata-token: $TOKEN' http://169.254.169.254/latest/meta-data/local-ipv4)\n",                                
+                                "HISTCONTROL=ignorespace\n",
+                                "KEY_PWD=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo)\n",
+                                "rm -rf /opt/cia/cia-base/etc/keystore.p12\n",
+                                "/usr/lib/jvm/jdk-21/bin/keytool -genkey -noprompt -deststoretype pkcs12 -sigalg SHA256withRSA -validity 365 -keyalg RSA -keysize 4096 ",
+                                " -alias jetty  -dname 'CN=$LOCAL_IP, OU=None, O=None, L=None, S=None, C=SE' -keystore /opt/cia/cia-base/etc/keystore.p12 ",
+                                " -storepass $KEY_PWD -keypass $KEY_PWD\n",
+                                "chown cia:cia /opt/cia/cia-base/etc/keystore.p12\n",
+                                "chmod 700 /opt/cia/cia-base/etc/keystore.p12\n",
+                                " sed -i -e 's_jetty.sslContext.keyManagerPassword=changeit_jetty.sslContext.keyManagerPassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
+                                " sed -i -e 's_jetty.sslContext.keyStorePassword=changeit_jetty.sslContext.keyStorePassword='$KEY_PWD'_' /opt/cia/cia-base/start.d/ssl.ini\n",
+                                "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
+                                "let JAVAMEMSIZE=$TOTAL_MEM_KB-3046*1024\n",
+                                "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /etc/default/cia\n",
+                                "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
+                                "mkdir /opt/cia/.postgresql\n",
+                                "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n",
+                                "chown -R cia:cia /opt/cia/.postgresql\n",
+                                "chmod -R 700 /opt/cia/.postgresql\n",
+                                "/usr/lib/jvm/jdk-21/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
+                                "/etc/init.d/cia stop\n",
+                                "/etc/init.d/cia start\n",
+                                "update-rc.d cia defaults\n",
+	                        ]
+	                    ]
+	                }
+	            }
+	        }
+	    }
+	}
+       },
+	"AssociatePublicIpAddress": "false",
                 "UserData": {
                     "Fn::Base64": {
                         "Fn::Join": [
