@@ -3852,7 +3852,6 @@
 	        "LaunchTemplateData": {
 		    "IamInstanceProfile": { "Ref": "InstanceProfile"
                     },
-		    "Name" : "WebServerFleet",
 	            "ImageId": {
 	                "Ref": "WebServerAmi"
 	            },
