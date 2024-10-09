@@ -3850,15 +3850,14 @@
             "Type": "AWS::EC2::LaunchTemplate",
 	   "Properties": {
 	        "LaunchTemplateData": {
-		    "IamInstanceProfile": { "Ref": "InstanceProfile"
-                    },
+	            "IamInstanceProfile": { "Arn": { "Ref": "InstanceProfile" }},
 	            "ImageId": {
 	                "Ref": "WebServerAmi"
 	            },
 		    "InstanceType": {
                     "Ref": "WebServerInstanceType"
                      },
-                     "EbsOptimized": "true",
+                    "EbsOptimized": true,
 	            "SecurityGroupIds": [
 	                {
 	                    "Ref": "WebServerSecurityGroup"
@@ -3875,7 +3874,7 @@
 	                        "",
 	                        [
                                    "#!/bin/bash -xe\n",
-                                   "exec > >(tee /var/log/user-data.log) 2>&1 \n",
+				   "exec > >(tee /var/log/cloud-init-output.log|logger -t user-data -s 2>/dev/console) 2>&1\n",
                                    "export DEBIAN_FRONTEND=noninteractive\n",
                                    "apt_get_install()\n",
                                    "{\n",
@@ -3943,18 +3942,15 @@
                                 "/etc/init.d/cia start\n",
                                 "update-rc.d cia defaults\n",
 				"# Signal completion\n",
-                                "/opt/aws/bin/cfn-signal -e $? ",
-                                "    --stack ",
-                                {
-                                    "Ref": "AWS::StackId"
-                                },
-                                "    --resource WebServerFleet ",
-                                "    --region ",
-                                {
-                                    "Ref": "AWS::Region"
-                                },
-                                "\n"
-  
+                               "/opt/aws/bin/cfn-signal -e $? --stack ",
+                            {
+                                "Ref": "AWS::StackId"
+                            },
+                            " --resource WebServerFleet --region ",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            " || exit 1\n"  
 	                        ]
 	                    ]
 	                }
