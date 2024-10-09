@@ -3850,7 +3850,7 @@
             "Type": "AWS::EC2::LaunchTemplate",
 	   "Properties": {
 	        "LaunchTemplateData": {
-	            "IamInstanceProfile": { "Arn": { "Ref": "InstanceProfile" }},
+	            "IamInstanceProfile": { "Name": { "Ref": "InstanceProfile" }},
 	            "ImageId": {
 	                "Ref": "WebServerAmi"
 	            },
