@@ -36,7 +36,7 @@ jobs:
       run: sudo apt-get update
 
     - name: Install buildtools
-      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
+      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
     - name: Remove localtime
       run: sudo rm /etc/localtime
