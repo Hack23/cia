@@ -124,7 +124,7 @@ jobs:
       run: sudo apt-get update
 
     - name: Install buildtools
-      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make bzr-builddeb wget
+      run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
     - name: Download Maven
       run: wget https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
