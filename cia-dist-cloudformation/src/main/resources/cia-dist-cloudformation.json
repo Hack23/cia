@@ -3858,6 +3858,12 @@
                     "Ref": "WebServerInstanceType"
                      },
                     "EbsOptimized": true,
+		    "BlockDeviceMappings":[{
+	            "Ebs":{
+	              "Encrypted": true
+	            },
+	            "DeviceName":"/dev/xvda"
+	            }],
 	            "SecurityGroupIds": [
 	                {
 	                    "Ref": "WebServerSecurityGroup"
