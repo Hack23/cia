@@ -3860,9 +3860,11 @@
                     "EbsOptimized": true,
 		    "BlockDeviceMappings":[{
 	            "Ebs":{
-	              "Encrypted": true
+	              "Encrypted": true,
+		       "VolumeSize": 8,
+		       "KmsKeyId" : "aws/ebs"
 	            },
-	            "DeviceName":"/dev/xvda"
+	            "DeviceName":"/dev/sda1"
 	            }],
 	            "SecurityGroupIds": [
 	                {
