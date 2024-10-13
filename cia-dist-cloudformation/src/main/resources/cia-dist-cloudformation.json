@@ -3862,6 +3862,7 @@
 	            "Ebs":{
 	              "Encrypted": true,
 		       "VolumeSize": 8,
+		       "VolumeType": "gp3",
 		       "KmsKeyId" : "aws/ebs"
 	            },
 	            "DeviceName":"/dev/sda1"
