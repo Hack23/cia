@@ -3605,20 +3605,12 @@
                     }
                 ]
             },
-            "CreationPolicy": {
-                "ResourceSignal": {
-                    "Timeout": "PT45M",
-                    "Count": {
-                        "Ref": "WebServerCount"
-                    }
-                }
-            },
             "UpdatePolicy": {
                 "AutoScalingRollingUpdate": {
                     "MinInstancesInService": "1",
                     "MaxBatchSize": "1",
                     "PauseTime": "PT15M",
-                    "WaitOnResourceSignals": "true"
+                    "WaitOnResourceSignals": "false"
                 }
             }
         },
@@ -3947,31 +3939,7 @@
                                 "/usr/lib/jvm/jdk-21/bin/keytool -import -keystore /etc/ssl/certs/java/cacerts -file global-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-global\n",
                                 "/etc/init.d/cia stop\n",
                                 "/etc/init.d/cia start\n",
-                                "update-rc.d cia defaults\n",
-				"# Signal completion\n",
-				"export DEBIAN_FRONTEND=noninteractive\n",
-				"export VENV_DIR=/opt/aws/cfn-bootstrap-venv\n",
-				"export HELPER_SCRIPTS_BIN_DIR=/opt/aws/bin\n",
-				"sudo apt update\n",
-				"sudo apt-get install -y tzdata software-properties-common \n",
-				"sudo add-apt-repository -y ppa:deadsnakes/ppa \n",
-				"sudo apt update \n",
-				"sudo apt install -y python3.11 python3.11-venv python3-pip\n",
-				"sudo mkdir -p ${VENV_DIR}\n",
-				"sudo python3.11 -m venv ${VENV_DIR}\n",
-				". /opt/aws/cfn-bootstrap-venv/bin/activate\n",
-				"sudo pip3 install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz  \n",
-				"sudo mkdir -p ${HELPER_SCRIPTS_BIN_DIR}\n",
-				"sudo ln -s ${VENV_DIR}/bin/cfn-* ${HELPER_SCRIPTS_BIN_DIR}\n",
-                                "/opt/aws/bin/cfn-signal -e $? --stack ",
-                            {
-                                "Ref": "AWS::StackId"
-                            },
-                            " --resource WebServerFleet --region ",
-                            {
-                                "Ref": "AWS::Region"
-                            },
-                            " || exit 1\n"  
+                                "update-rc.d cia defaults\n"
 	                        ]
 	                    ]
 	                }
