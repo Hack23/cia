@@ -10,7 +10,7 @@
                 "t4g.micro",
                 "t4g.small",
                 "t4g.medium",
-                "t4g.large",
+                "t4g.large",We
                 "t4g.xlarge",
                 "t4g.2xlarge",
                 "m8g.large",
@@ -3278,9 +3278,13 @@
                                 "VendorName": "AWS",
                                 "Name": "AWSManagedRulesCommonRuleSet",
                                 "ExcludedRules": [
-                                    "GenericLFI_BODY",
-                                    "GenericRFI_BODY"
-                                ]
+				    {
+				        "Name": "GenericLFI_BODY"
+				    },
+				    {
+				        "Name": "GenericRFI_BODY"
+				    }
+				]
                             }
                         }
                     },
