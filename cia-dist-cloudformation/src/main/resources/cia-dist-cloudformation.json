@@ -2981,15 +2981,15 @@
 				"Policy": {
 					"Software": {
 						"RpoInSecs": 300,
-						"RtoInSecs": 14400
+						"RtoInSecs": 3600
 					},
 					"Hardware": {
-						"RpoInSecs": 0,
-						"RtoInSecs": 120
+						"RpoInSecs": 1,
+						"RtoInSecs": 300
 					},
 					"AZ": {
-						"RpoInSecs": 0,
-						"RtoInSecs": 120
+						"RpoInSecs": 1,
+						"RtoInSecs": 300
 					}
 				},
 				"PolicyDescription": "MissionCritical",
