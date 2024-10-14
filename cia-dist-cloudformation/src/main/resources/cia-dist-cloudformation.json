@@ -3278,13 +3278,9 @@
                                 "VendorName": "AWS",
                                 "Name": "AWSManagedRulesCommonRuleSet",
                                 "ExcludedRules": [
-				    {
-				        "Name": "GenericLFI_BODY"
-				    },
-				    {
-				        "Name": "GenericRFI_BODY"
-				    }
-				]
+                                    "GenericLFI_BODY",
+                                    "GenericRFI_BODY"
+                                ]
                             }
                         }
                     },
