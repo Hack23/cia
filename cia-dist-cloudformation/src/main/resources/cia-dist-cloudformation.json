@@ -3878,7 +3878,12 @@
 				   "exec > >(tee /var/log/cloud-init-output.log|logger -t user-data -s 2>/dev/console) 2>&1\n",
                                    "export DEBIAN_FRONTEND=noninteractive\n",
 	                            "apt-get update -y\n",
-	                            "apt-get install -y openjdk-21-jdk-headless\n",
+	                            "apt-get install -y openjdk-21-jdk-headless tzdata ntp ntpdate language-pack-en \n",
+	                             "timedatectl set-timezone Europe/Stockholm \n",
+	                             "dpkg-reconfigure -f noninteractive tzdata \n",
+	                             "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
+	                             "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
+	                             "dpkg-reconfigure --frontend=noninteractive locales \n",
 	                            "sudo ln -s /usr/lib/jvm/java-21-openjdk-arm64 /usr/lib/jvm/jdk-21\n",
 				"wget ",
                                 {
