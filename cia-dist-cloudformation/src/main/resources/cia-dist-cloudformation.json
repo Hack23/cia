@@ -26,7 +26,21 @@
                 "c8g.4xlarge",
                 "c8g.8xlarge",                
                 "c8g.12xlarge",               
-                "c8g.16xlarge"                
+                "c8g.16xlarge",
+                "m7g.large",
+                "m7g.xlarge",
+                "m7g.2xlarge",
+                "m7g.8xlarge",
+                "m7g.4xlarge",                
+                "m7g.12xlarge",
+                "m7g.16xlarge",
+                "c7g.large",
+                "c7g.xlarge",
+                "c7g.2xlarge",
+                "c7g.4xlarge",
+                "c7g.8xlarge",                
+                "c7g.12xlarge",               
+                "c7g.16xlarge"
             ],
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
@@ -405,17 +419,7 @@
                         {
                             "Id": "Rule for log prefix",
                             "Status": "Enabled",
-                            "Transitions": [
-                                {
-                                    "TransitionInDays": 30,
-                                    "StorageClass": "STANDARD_IA"
-                                },
-                                {
-                                    "TransitionInDays": 90,
-                                    "StorageClass": "GLACIER"
-                                }
-                            ],
-                            "ExpirationInDays": 365
+                            "ExpirationInDays": 30
                         }
                     ]
                 },               
@@ -2709,17 +2713,7 @@
                         {
                             "Id": "Rule for log prefix",
                             "Status": "Enabled",
-                            "Transitions": [
-                                {
-                                    "TransitionInDays": 30,
-                                    "StorageClass": "STANDARD_IA"
-                                },
-                                {
-                                    "TransitionInDays": 90,
-                                    "StorageClass": "GLACIER"
-                                }
-                            ],
-                            "ExpirationInDays": 365
+                            "ExpirationInDays": 30
                         }
                     ]
                 },
