@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
@@ -55,8 +54,8 @@ public final class StreamSourceImplementation implements StreamResource.StreamSo
 	public InputStream getStream() {
 		try {
 			return URI.create(url).toURL().openStream();
-		} catch (final IOException e) {
-			LOGGER.warn(url, e);
+		} catch (final Exception e) {
+			LOGGER.warn("Problem getting url :"+ url +" error:" + e.getClass().getCanonicalName());
 			return new ByteArrayInputStream(new byte[0]);
 		}
 	}
