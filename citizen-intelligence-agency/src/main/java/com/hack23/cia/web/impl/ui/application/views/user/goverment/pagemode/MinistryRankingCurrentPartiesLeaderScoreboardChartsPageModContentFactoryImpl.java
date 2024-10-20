@@ -260,25 +260,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		}
 	}
 
-	private void createPoliticaRiskSummary(final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
-
-	}
-
-	private void createPoliticaDocumentSummary(final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
-
-	}
-
-	private void createPoliticaDecisionSummary(final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
-
-	}
-
-
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
