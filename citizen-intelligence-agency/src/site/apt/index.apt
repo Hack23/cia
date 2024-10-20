@@ -28,23 +28,12 @@ Badges
 
 [https://cla-assistant.io/readme/badge/Hack23/cia]
 
-[https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg]
+[https://img.shields.io/github/v/release/Hack23/cia]
 
 [https://bestpractices.coreinfrastructure.org/projects/770/badge]
 
 [https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge]
 
-[https://www.codefactor.io/repository/github/hack23/cia/badge]
-
-[https://api.codeclimate.com/v1/badges/14cc2db98322e8338ef1/maintainability]
-
-[https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c]
-
-[https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg]
-
-[http://isitmaintained.com/badge/resolution/Hack23/cia.svg]
-
-[http://isitmaintained.com/badge/open/Hack23/cia.svg]
   
 
 Runtime (JDK 21+)
@@ -52,6 +41,10 @@ Runtime (JDK 21+)
 [https://img.shields.io/badge/jdk-21-green.svg]
 
 [https://img.shields.io/badge/jdk-22-orange.svg]
+
+[https://img.shields.io/badge/jdk-23-green.svg]
+
+
 
 Section: Resources
 
@@ -64,18 +57,10 @@ Section: Resources
   * API Docs {{https://hack23.github.io/cia/apidocs/index.html}}. - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
 
 
-Running docker image
-  
- Docker repository : https://hub.docker.com/r/hack23/cia/ 
-
- 1. docker run hack23/cia:2022.12.26 -p 28443:8443
-
- 2. Access server at https://localhost:28443/cia/ , register new user to get admin access
-
 
 Installing Debian/Ubuntu package
 
- Currently only build a debian package, works with debian and ubuntu 18.04+
+ Currently only build a debian package, works with debian and ubuntu 14.04+
 
 
  Installing database(postgres) and openjdk
@@ -119,11 +104,11 @@ Installing Debian/Ubuntu package
 
  7. Get cia debian package and
 
- $ wget https://github.com/Hack23/cia/releases/download/2024.9.27/cia-dist-deb-2024.9.27.all.deb
+ $ wget https://github.com/Hack23/cia/releases/download/2024.10.15/cia-dist-deb-2024.10.15.all.deb
 
  8. Install debian package
 
- $ sudo dpkg -i cia-dist-deb-2024.9.27.all.deb
+ $ sudo dpkg -i cia-dist-deb-2024.10.15.all.deb
 
 
  9. Access the server at {{{https://localhost:28443/cia/}https://localhost:28443/cia/}}
