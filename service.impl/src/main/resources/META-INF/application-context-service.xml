@@ -133,6 +133,4 @@
 
 	<import resource="classpath:META-INF/cia-jms-broker.xml" />
 	
-<!-- 	<bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor"/>
- -->
 </beans>
