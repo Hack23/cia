@@ -205,7 +205,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 
-		
+
 		final Label ministryTitleLabel = new Label(viewRiksdagenGovermentRoleMember.getDetail());
 		Responsive.makeResponsive(ministryTitleLabel);
 		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
@@ -214,7 +214,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap
 				.get(viewRiksdagenGovermentRoleMember.getDetail());
-		
+
 		final Label govBodiesLabel = new Label("Government bodies:" + governentBodies.size() + " , Total Headcount(all goverment bodies):" + governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum());
 		Responsive.makeResponsive(govBodiesLabel);
 		govBodiesLabel.setWidth(100, Unit.PERCENTAGE);
@@ -230,9 +230,9 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		layout.addComponent(govBodiesFinanceLabel);
 
 		layout.addComponent(getPageLinkFactory().addMinistryPageLink(viewRiksdagenGovermentRoleMember.getDetail()));
-		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));		
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));
 		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum()));
-		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2023) /1000));		
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2023) /1000));
 		layout.addComponent(getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualSpendingSummaryMap.get(2023)/1000));
 
 	}
@@ -251,8 +251,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		Responsive.makeResponsive(ministryTitleLabel);
 		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(ministryTitleLabel);
-		
-		{		
+
+		{
 		final Label experienceLabel = new Label("Government(year):" + viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365 + " , Party(year):" + viewRiksdagenPolitician.getTotalDaysServedParty() / 365 + " , Parliament(year):" + viewRiksdagenPolitician.getTotalDaysServedParliament() / 365);
 		Responsive.makeResponsive(experienceLabel);
 		experienceLabel.setWidth(100, Unit.PERCENTAGE);

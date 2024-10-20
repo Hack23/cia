@@ -155,7 +155,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	
+
 	@Override
 	public Link createRegisterPageLink() {
 		final Link pageLink = new Link("Register", new ExternalResource(
@@ -213,7 +213,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 				+ name);
 		pageLink.setIcon(VaadinIcons.GROUP);
 		return pageLink;
-	}	
+	}
 
 	@Override
 	public Link addMinistrGovermentBodiesSpendingPageLink(String name, double d) {
