@@ -110,14 +110,14 @@ To launch the CloudFormation stack, follow these steps:
 
 # Installing Debian/Ubuntu package
 
-This guide will walk you through installing the CIA project on Debian and Ubuntu 22.4+ systems.
+This guide will walk you through installing the CIA project on Debian and Ubuntu 24.4+ systems.
 
 ## Prerequisites
 
 1. Install OpenJDK and PostgreSQL:
 
 ```bash
-$ sudo apt-get install openjdk-21-jdk postgresql-16 pgadmin3
+$ sudo apt-get install openjdk-21-jdk postgresql-16
 ```
 
 2. Install PostgreSQL on Ubuntu:
@@ -144,7 +144,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 
 4. Enable prepared transactions and required extensions:
 
-Edit `/etc/postgresql/15/main/postgresql.conf` and set:
+Edit `/etc/postgresql/16/main/postgresql.conf` and set:
 
 ```ini
 max_prepared_transactions = 100
@@ -159,7 +159,7 @@ pg_stat_statements.max = 10000
 
 5. Modify PostgreSQL settings:
 
-Edit `/etc/postgresql/15/main/pg_hba.conf` and add the following line:
+Edit `/etc/postgresql/16/main/pg_hba.conf` and add the following line:
 
 ```ini
 host all all ::1/128 md5
@@ -176,13 +176,13 @@ $ service postgresql restart
 7. Download the CIA Debian package:
 
 ```bash
-$ wget https://github.com/Hack23/cia/releases/download/2024.9.27/cia-dist-deb-2024.9.27.all.deb
+$ wget https://github.com/Hack23/cia/releases/download/2024.10.15/cia-dist-deb-2024.10.15.all.deb
 ```
 
 8. Install the Debian package:
 
 ```bash
-$ sudo dpkg -i cia-dist-deb-2024.9.27.all.deb
+$ sudo dpkg -i cia-dist-deb-2024.10.15.all.deb
 ```
 
 ## Access the Server
