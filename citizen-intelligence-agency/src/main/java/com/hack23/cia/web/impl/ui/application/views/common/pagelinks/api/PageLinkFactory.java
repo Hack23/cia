@@ -125,7 +125,7 @@ public interface PageLinkFactory {
 	 */
 	Link addMinistryPageLink(String name);
 
-	
+
 	/**
 	 * Adds the ministry goverment bodies page link.
 	 *
@@ -161,7 +161,7 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link addMinistrGovermentBodiesSpendingPageLink(String name , double d);
-	
 
-	
+
+
 }

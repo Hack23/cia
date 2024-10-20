@@ -58,8 +58,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	@Parameters(name = "AdminRoleSiteTest{index}: browser({0})")
 	public static Collection<String[]> browsersStrings() {
 		return Arrays.asList(new String[][] { { "chrome" } });
-		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
-		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}
 
 
@@ -317,8 +315,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.sendEmailOnEmailPage("nonvalidemail", "siteAdminEmailFailedNoValidEmailTest", "siteAdminEmailFailedNoValidEmailTest content");
 
-		//TODO check button enabled and field messsage
-		//userPageVisit.checkNotificationMessage("Send email failedEmail is not a valid email address");
 	}
 
 	/**
@@ -407,10 +403,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denied:adminmonitoring"));
-
-		// assertTrue("Expect this content",
-		// userPageVisit.getIframesHtmlBodyAsText().contains("Access
-		// denided:adminmonitoring"));
 	}
 
 
@@ -573,9 +565,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final WebElement removeApplicationHistoryButton =userPageVisit.findButton("Remove Application History");
 		assertNotNull("Expect to find a Button",removeApplicationHistoryButton);
-
-		// userPageVisit.performClickAction(removeApplicationHistoryButton);
-
 	}
 
 	/**
@@ -597,8 +586,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final WebElement removeDocumentsButton =userPageVisit.findButton("Remove Documents");
 		assertNotNull("Expect to find a Button",removeDocumentsButton);
-
-		// userPageVisit.performClickAction(removeDocumentsButton);
 	}
 
 
@@ -621,8 +608,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final WebElement removePoliticiansButton =userPageVisit.findButton("Remove Politicians");
 		assertNotNull("Expect to find a Button",removePoliticiansButton);
-
-		// userPageVisit.performClickAction(removePoliticiansButton);
 	}
 
 

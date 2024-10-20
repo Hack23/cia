@@ -164,8 +164,6 @@ public final class CitizenIntelligenceAgencyServer {
 		final MBeanContainer mbContainer = new MBeanContainer(ManagementFactory.getPlatformMBeanServer());
 		server.addBean(mbContainer);
 
-		final org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
-
 		final HttpConfiguration http_config = new HttpConfiguration();
 		http_config.setSecureScheme("https");
 		http_config.setSecurePort(28443);

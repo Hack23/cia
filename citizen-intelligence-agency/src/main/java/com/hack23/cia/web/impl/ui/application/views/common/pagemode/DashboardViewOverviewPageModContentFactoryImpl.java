@@ -51,7 +51,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -111,11 +110,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
-	
-	/** The government body chart data manager. */
-	@Autowired
-	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
-
 
 	/**
 	 * Instantiates a new dashboard view overview page mod content factory impl.
@@ -311,9 +305,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
-		
+
 		createHeadCountCard(horizontalLayout,"202100-3831");
-				
+
 		horizontalLayout
 		.addComponent(new CounterStatisticsCard(
 				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", 1191)
@@ -433,9 +427,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 								"Members"));
 
-		final DataContainer<ViewRiksdagenMinistry, String> ministryDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
 		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
@@ -459,9 +450,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		layout.addComponent(horizontalLayout);
 
 		addParliamentIncomeSpending(layout);
-		
+
 		VerticalLayout layoutPanel = createPanelContent();
-		
+
 		layout.addComponent(layoutPanel);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
@@ -475,7 +466,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 */
 	private void createDashboardPartRiskByType(final ResponsiveRow row) {
 		final CssLayout layout = createLayoutWithTitle("Number of risk by each type");
-		
+
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 
@@ -527,7 +518,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
-	
+
 	/**
 	 * Creates the head count chart.
 	 *
@@ -535,14 +526,14 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param orgId the org id
 	 */
 	private void createHeadCountCard(final Layout panelContent, final String orgId) {
-		
+
 
 		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		final List<GovernmentBodyAnnualSummary> list = map.get(getPageId(orgId));
-		
+
 		if (list != null && !list.isEmpty()) {
 			final GovernmentBodyAnnualSummary findName = list.get(0);
-			
+
 			if (findName != null) {
 				Map<Integer,GovernmentBodyAnnualSummary> dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
 				Set<Integer> keySet = dataPerGovernmentBody.keySet();
@@ -554,9 +545,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 			}
 		}
 	}
-	
 
-	
+
+
 	/**
 	 * Matches.
 	 *
