@@ -60,7 +60,8 @@
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
     <cyclonedx.skipAttach>true</cyclonedx.skipAttach>
     <cyclonedx.skip>true</cyclonedx.skip>
-    <sonar.host.url>https://www.hack23.com/sonar/</sonar.host.url>
+    <sonar.organization>hack23</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
