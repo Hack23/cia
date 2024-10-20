@@ -590,7 +590,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDETAILS.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTDETAILS.toString(), "gz02c343"));
 	}
 
 
@@ -608,7 +608,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTACTIVITY.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), "gz02c343"));
 
 	}
 
@@ -625,7 +625,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "H5024180"));
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "h5024180"));
 
 	}
 
@@ -643,7 +643,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "gz02c343"));
 
 	}
 
@@ -661,7 +661,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTDATA.toString(), "gz02c343"));
 	}
 
 	/**
@@ -678,7 +678,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDECISION.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTDECISION.toString(), "gz02c343"));
 
 	}
 
@@ -696,7 +696,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), "gz02c343"));
 
 	}
 
@@ -714,7 +714,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), "H701NU6"));
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), "h701nu6"));
 
 	}
 
@@ -733,7 +733,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "GZ02C343"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "gz02c343"));
 	}
 
 
@@ -751,7 +751,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, "gz02c343"));
 	}
 
 	/**
@@ -768,7 +768,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), "GZ02C343"));
+				DocumentPageMode.PERSONREFERENCES.toString(), "gz02c343"));
 
 	}
 
