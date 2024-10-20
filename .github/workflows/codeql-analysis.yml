@@ -140,7 +140,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: maven/bin/mvn -B install --file pom.xml clean install -Prelease-site,all-modules  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT  -Dsurefire.failIfNoSpecifiedTests=false org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hack23_cia
+      run: maven/bin/mvn -B install --file pom.xml clean install -Prelease-site,all-modules  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT  -Dsurefire.failIfNoSpecifiedTests=false -Dmaven.test.failure.ignore=true
+
+    - name: Analyse Sonarcloud
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: maven/bin/mvn -B -Prelease-site,all-modules org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hack23_cia --file pom.xml -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true -Dsonar.dynamicAnalysis=reuseReports
 
     - name: Submit Dependency Snapshot
       uses: advanced-security/maven-dependency-submission-action@4f64ddab9d742a4806eeb588d238e4c311a8397d
