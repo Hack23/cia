@@ -36,10 +36,8 @@ public class StaleElementUtils {
 	 *             the illegal access exception
 	 */
 	private static By getBy(final String key, final String value) throws InvocationTargetException, IllegalAccessException {
-		final By by = null;
-		final Class clazz = By.class;
 		final String methodName = key.replace(" ", "");
-		final Method m = getCaseInsensitiveStaticDeclaredMethod(clazz, methodName);
+		final Method m = getCaseInsensitiveStaticDeclaredMethod(By.class, methodName);
 		return (By) m.invoke(null, value);
 	}
 
@@ -148,7 +146,6 @@ public class StaleElementUtils {
 		Object lastObject = null;
 		try {
 			final String[] arr = elem.toString().split("->");
-			final List<String> newStr = new ArrayList<>();
 			for (final String s : arr) {
 				final String newstr = s.trim().replaceAll("^\\[+", "").replaceAll("\\]+$", "");
 				final String[] parts = newstr.split(": ");
