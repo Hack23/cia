@@ -331,9 +331,9 @@ public final class UserPageVisit extends Assert {
 	public Set<ViewAction> getActionsAvailable() {
 		final Set<ViewAction> actions = new HashSet<>();
 
-		for (final ViewAction action : ViewAction.values()) {
-			if (driver.findElements(By.id(action.name())).size() > 0) {
-				actions.add(action);
+		for (final ViewAction actionValue : ViewAction.values()) {
+			if (driver.findElements(By.id(actionValue.name())).size() > 0) {
+				actions.add(actionValue);
 			}
 		}
 		return actions;
@@ -815,11 +815,6 @@ public final class UserPageVisit extends Assert {
 		final WebElement committeeViewLink = driver.findElement(By.id(id));
 		performClickAction(committeeViewLink, WAIT_FOR_PAGE_DELAY);
 
-		//		assertEquals(
-		//				"https://localhost:28443/#!committee/"
-		//						+ URLEncoder.encode(id.replace(ViewAction.VisitCommitteeView.name() + "/", "")
-		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
-
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
 
@@ -909,11 +904,6 @@ public final class UserPageVisit extends Assert {
 		final WebElement ministryViewLink = driver.findElement(By.id(id));
 		performClickAction(ministryViewLink, WAIT_FOR_PAGE_DELAY);
 
-		//		assertEquals(
-		//				"https://localhost:28443/#!ministry/"
-		//						+ URLEncoder.encode(id.replace(ViewAction.VisitMinistryView.name() + "/", "")
-		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
-
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
 
@@ -949,11 +939,6 @@ public final class UserPageVisit extends Assert {
 		final WebElement politicianViewLink = driver.findElement(By.id(id));
 		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
 
-		//		assertEquals(
-		//				"https://localhost:28443/#!party/"
-		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPartyView.name() + "/", "")
-		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
-
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
 
@@ -974,8 +959,6 @@ public final class UserPageVisit extends Assert {
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 
-//		final List<String> actionIdsBy = getActionIdsBy(ViewAction.VISIT_POLITICIAN_VIEW);
-//		assertTrue(!actionIdsBy.isEmpty());
 	}
 
 
@@ -991,11 +974,6 @@ public final class UserPageVisit extends Assert {
 	public void VisitPoliticianView(final String id) throws Exception {
 		final WebElement politicianViewLink = driver.findElement(By.id(id));
 		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
-
-		//		assertEquals(
-		//				"https://localhost:28443/#!politicia/"
-		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPoliticianView.name() + "/", "")
-		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
