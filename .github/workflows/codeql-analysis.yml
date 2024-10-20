@@ -140,7 +140,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: maven/bin/mvn -B install --file pom.xml clean install -Prelease-site,all-modules  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT  -Dsurefire.failIfNoSpecifiedTests=false -Dmaven.test.failure.ignore=true
+      run: maven/bin/mvn -B clean install --file pom.xml -Prelease-site,all-modules  -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.reportNameSuffix=UNIT  -Dsurefire.failIfNoSpecifiedTests=false -Dmaven.test.failure.ignore=true
 
     - name: Analyse Sonarcloud
       env:
