@@ -133,12 +133,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyMinistryMap = headCountGovermentBodies
 				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));
 
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-		final List<ViewRiksdagenPartyRoleMember> partyDataList = partyRoleMemberDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.active);
-
 		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {
 			createDashboardGovernmentMember(row, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember,
 					parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0));

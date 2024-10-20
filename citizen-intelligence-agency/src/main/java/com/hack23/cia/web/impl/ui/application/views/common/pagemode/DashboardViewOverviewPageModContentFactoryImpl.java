@@ -51,7 +51,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -111,11 +110,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
-
-	/** The government body chart data manager. */
-	@Autowired
-	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
-
 
 	/**
 	 * Instantiates a new dashboard view overview page mod content factory impl.
@@ -432,9 +426,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 								new CounterStatisticModel("Members", parliamentMembers.size())
 										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
 								"Members"));
-
-		final DataContainer<ViewRiksdagenMinistry, String> ministryDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
 
 		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);

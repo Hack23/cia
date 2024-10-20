@@ -26,8 +26,6 @@ import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
-import com.hack23.cia.service.api.action.admin.RemoveDataResponse;
-import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
@@ -45,7 +43,6 @@ public class RemoveDataClickListenerTest extends AbstractUnitTest {
 		final ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 
-		final RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
 		Mockito.when(applicationManager.asyncService(request)).thenReturn(Mockito.mock(Future.class));
 
 		Mockito.doNothing().when(listener).showNotification(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Type.class));
