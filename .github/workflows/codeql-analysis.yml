@@ -65,6 +65,7 @@ jobs:
           tools.vaadin.com:443
           uploads.github.com:443
           spdx.org:443
+          sonarcloud.io:443
           repository.jboss.org:443
           repository.sonatype.org:443
           files.pythonhosted.org:443
@@ -137,6 +138,12 @@ jobs:
       
     - name: Build with Maven
       run: maven/bin/mvn -B install --file pom.xml -DskipTests
+
+    - name: Analyze sonarcloud
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: maven/bin/mv -B verify --file pom.xml -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hack23_cia
 
     - name: Submit Dependency Snapshot
       uses: advanced-security/maven-dependency-submission-action@4f64ddab9d742a4806eeb588d238e4c311a8397d
