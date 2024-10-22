@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PartyMenuItemFactoryImpl.java</span></div><h1>PartyMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PartyMenuItemFactoryImpl.java</span></div><h1>PartyMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -108,133 +108,133 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 	 * Instantiates a new party menu item factory impl.
 	 */
 	public PartyMenuItemFactoryImpl() {
-<span class="nc" id="L111">		super();</span>
-<span class="nc" id="L112">	}</span>
+<span class="fc" id="L111">		super();</span>
+<span class="fc" id="L112">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="nc" id="L116">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L116">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="nc" id="L118">		createButtonLink(grid,CURRENT_LEADERS, VaadinIcons.GROUP,</span>
-<span class="nc" id="L119">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId), &quot;Current leaders&quot;);</span>
+<span class="fc" id="L118">		createButtonLink(grid,CURRENT_LEADERS, VaadinIcons.GROUP,</span>
+<span class="fc" id="L119">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId), &quot;Current leaders&quot;);</span>
 
-<span class="nc" id="L121">		createButtonLink(grid,LEADER_HISTORY, VaadinIcons.GROUP,</span>
-<span class="nc" id="L122">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId), &quot;Leader history&quot;);</span>
+<span class="fc" id="L121">		createButtonLink(grid,LEADER_HISTORY, VaadinIcons.GROUP,</span>
+<span class="fc" id="L122">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId), &quot;Leader history&quot;);</span>
 
-<span class="nc" id="L124">		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L125">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId), &quot;Current members&quot;);</span>
+<span class="fc" id="L124">		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L125">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId), &quot;Current members&quot;);</span>
 
-<span class="nc" id="L127">		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L128">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId), &quot;Current and past members&quot;);</span>
+<span class="fc" id="L127">		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L128">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId), &quot;Current and past members&quot;);</span>
 
-<span class="nc" id="L130">		createButtonLink(grid,GOVERMENT_ROLES, VaadinIcons.GROUP,</span>
-<span class="nc" id="L131">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId), &quot;Government roles hold&quot;);</span>
+<span class="fc" id="L130">		createButtonLink(grid,GOVERMENT_ROLES, VaadinIcons.GROUP,</span>
+<span class="fc" id="L131">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId), &quot;Government roles hold&quot;);</span>
 
-<span class="nc" id="L133">		createButtonLink(grid,COMMITTEE_ROLES, VaadinIcons.GROUP,</span>
-<span class="nc" id="L134">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), &quot;Committe roles hold&quot;);</span>
+<span class="fc" id="L133">		createButtonLink(grid,COMMITTEE_ROLES, VaadinIcons.GROUP,</span>
+<span class="fc" id="L134">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), &quot;Committe roles hold&quot;);</span>
 
-<span class="nc" id="L136">		createButtonLink(grid,ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,</span>
-<span class="nc" id="L137">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), &quot;Gantt chart all party leaders&quot;);</span>
-
-
-<span class="nc" id="L140">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L141">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId), &quot;Chart over document activity by type&quot;);</span>
-
-<span class="nc" id="L143">		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L144">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId), &quot;List all document history&quot;);</span>
+<span class="fc" id="L136">		createButtonLink(grid,ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,</span>
+<span class="fc" id="L137">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), &quot;Gantt chart all party leaders&quot;);</span>
 
 
-<span class="nc" id="L147">		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.GROUP,</span>
-<span class="nc" id="L148">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), VOTE_HISTORY);</span>
+<span class="fc" id="L140">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L141">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId), &quot;Chart over document activity by type&quot;);</span>
 
-<span class="nc" id="L150">		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L151">				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), &quot;Ballot decision summary&quot;);</span>
-
-<span class="nc" id="L153">		createButtonLink(grid,PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L154">				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId), &quot;Chart for Party over won,absent and party rebel votes&quot;);</span>
+<span class="fc" id="L143">		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L144">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId), &quot;List all document history&quot;);</span>
 
 
-<span class="nc" id="L157">		createButtonLink(grid,PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L158">				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId), &quot;Coalations with groups of diffrent parties aginst committe proposals ballots&quot;);</span>
+<span class="fc" id="L147">		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.GROUP,</span>
+<span class="fc" id="L148">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), VOTE_HISTORY);</span>
 
-<span class="nc" id="L160">		createButtonLink(grid,PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L161">				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId), &quot;Trend of agreements with other parties during ballots&quot;);</span>
+<span class="fc" id="L150">		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L151">				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), &quot;Ballot decision summary&quot;);</span>
+
+<span class="fc" id="L153">		createButtonLink(grid,PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L154">				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId), &quot;Chart for Party over won,absent and party rebel votes&quot;);</span>
 
 
-<span class="nc" id="L164">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L165">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);</span>
+<span class="fc" id="L157">		createButtonLink(grid,PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L158">				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId), &quot;Coalations with groups of diffrent parties aginst committe proposals ballots&quot;);</span>
+
+<span class="fc" id="L160">		createButtonLink(grid,PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L161">				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId), &quot;Trend of agreements with other parties during ballots&quot;);</span>
 
 
-<span class="nc" id="L168">	}</span>
+<span class="fc" id="L164">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);
+
+
+<span class="fc" id="L168">	}</span>
 
 	@Override
 	public void createPartyMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="nc" id="L172">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L172">		initApplicationMenuBar(menuBar);</span>
 
-<span class="nc" id="L174">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L174">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="nc" id="L176">		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));</span>
+<span class="fc" id="L176">		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));</span>
 
-<span class="nc" id="L178">		final MenuItem partyItem = menuBar.addItem(&quot;Party &quot;+ pageId, VaadinIcons.GROUP,null);</span>
+<span class="fc" id="L178">		final MenuItem partyItem = menuBar.addItem(&quot;Party &quot;+ pageId, VaadinIcons.GROUP,null);</span>
 
-<span class="nc" id="L180">		partyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L181">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));</span>
+<span class="fc" id="L180">		partyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-<span class="nc" id="L183">		final MenuItem rolesItem = partyItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="fc" id="L183">		final MenuItem rolesItem = partyItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="nc" id="L185">		rolesItem.addItem(CURRENT_LEADERS, VaadinIcons.GROUP,</span>
-<span class="nc" id="L186">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));</span>
+<span class="fc" id="L185">		rolesItem.addItem(CURRENT_LEADERS, VaadinIcons.GROUP,</span>
+<span class="fc" id="L186">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));</span>
 
-<span class="nc" id="L188">		rolesItem.addItem(LEADER_HISTORY, VaadinIcons.GROUP,</span>
-<span class="nc" id="L189">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId));</span>
+<span class="fc" id="L188">		rolesItem.addItem(LEADER_HISTORY, VaadinIcons.GROUP,</span>
+<span class="fc" id="L189">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId));</span>
 
-<span class="nc" id="L191">		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L192">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId));</span>
+<span class="fc" id="L191">		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L192">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId));</span>
 
-<span class="nc" id="L194">		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L195">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId));</span>
+<span class="fc" id="L194">		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L195">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId));</span>
 
-<span class="nc" id="L197">		rolesItem.addItem(GOVERMENT_ROLES, VaadinIcons.GROUP,</span>
-<span class="nc" id="L198">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId));</span>
+<span class="fc" id="L197">		rolesItem.addItem(GOVERMENT_ROLES, VaadinIcons.GROUP,</span>
+<span class="fc" id="L198">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId));</span>
 
-<span class="nc" id="L200">		rolesItem.addItem(COMMITTEE_ROLES, VaadinIcons.GROUP,</span>
-<span class="nc" id="L201">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));</span>
+<span class="fc" id="L200">		rolesItem.addItem(COMMITTEE_ROLES, VaadinIcons.GROUP,</span>
+<span class="fc" id="L201">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));</span>
 
-<span class="nc" id="L203">		rolesItem.addItem(ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,</span>
-<span class="nc" id="L204">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId));</span>
-
-
-<span class="nc" id="L207">		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);</span>
-
-<span class="nc" id="L209">		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L210">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
-
-<span class="nc" id="L212">		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L213">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
-
-<span class="nc" id="L215">		final MenuItem ballotItem = partyItem.addItem(BALLOTS_TEXT, VaadinIcons.GROUP, null);</span>
-
-<span class="nc" id="L217">		ballotItem.addItem(VOTE_HISTORY, VaadinIcons.GROUP,</span>
-<span class="nc" id="L218">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));</span>
-
-<span class="nc" id="L220">		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L221">				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));</span>
-
-<span class="nc" id="L223">		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L224">				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));</span>
+<span class="fc" id="L203">		rolesItem.addItem(ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,</span>
+<span class="fc" id="L204">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId));</span>
 
 
-<span class="nc" id="L227">		ballotItem.addItem(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L228">				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId));</span>
+<span class="fc" id="L207">		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="nc" id="L230">		ballotItem.addItem(PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
-<span class="nc" id="L231">				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));</span>
+<span class="fc" id="L209">		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L210">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
+
+<span class="fc" id="L212">		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L213">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
+
+<span class="fc" id="L215">		final MenuItem ballotItem = partyItem.addItem(BALLOTS_TEXT, VaadinIcons.GROUP, null);</span>
+
+<span class="fc" id="L217">		ballotItem.addItem(VOTE_HISTORY, VaadinIcons.GROUP,</span>
+<span class="fc" id="L218">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));</span>
+
+<span class="fc" id="L220">		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L221">				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));</span>
+
+<span class="fc" id="L223">		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L224">				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));</span>
 
 
-<span class="nc" id="L234">		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L235">				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));</span>
+<span class="fc" id="L227">		ballotItem.addItem(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L228">				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId));</span>
 
-<span class="nc" id="L237">	}</span>
+<span class="fc" id="L230">		ballotItem.addItem(PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,</span>
+<span class="fc" id="L231">				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));</span>
+
+
+<span class="fc" id="L234">		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+
+<span class="fc" id="L237">	}</span>
 
 
 }

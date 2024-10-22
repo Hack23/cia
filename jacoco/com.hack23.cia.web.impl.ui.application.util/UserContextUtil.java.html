@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserContextUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.util</a> &gt; <span class="el_source">UserContextUtil.java</span></div><h1>UserContextUtil.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserContextUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.util</a> &gt; <span class="el_source">UserContextUtil.java</span></div><h1>UserContextUtil.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -44,18 +44,18 @@ import com.vaadin.server.Page;
 	 * @return true, if successful
 	 */
 	public static boolean allowRoleInSecurityContext(final String role) {
-<span class="nc" id="L47">		boolean result = false;</span>
-<span class="nc" id="L48">		final SecurityContext context = SecurityContextHolder.getContext();</span>
-<span class="nc bnc" id="L49" title="All 4 branches missed.">		if (context != null &amp;&amp; context.getAuthentication() != null) {</span>
-<span class="nc" id="L50">			final Collection&lt;? extends GrantedAuthority&gt; authorities = context.getAuthentication().getAuthorities();</span>
+<span class="fc" id="L47">		boolean result = false;</span>
+<span class="fc" id="L48">		final SecurityContext context = SecurityContextHolder.getContext();</span>
+<span class="pc bpc" id="L49" title="1 of 4 branches missed.">		if (context != null &amp;&amp; context.getAuthentication() != null) {</span>
+<span class="fc" id="L50">			final Collection&lt;? extends GrantedAuthority&gt; authorities = context.getAuthentication().getAuthorities();</span>
 
-<span class="nc bnc" id="L52" title="All 2 branches missed.">			for (final GrantedAuthority grantedAuthority : authorities) {</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {</span>
-<span class="nc" id="L54">					result = true;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">			for (final GrantedAuthority grantedAuthority : authorities) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {</span>
+<span class="fc" id="L54">					result = true;</span>
 				}
-			}
+<span class="fc" id="L56">			}</span>
 		}
-<span class="nc" id="L58">		return result;</span>
+<span class="fc" id="L58">		return result;</span>
 	}
 
 	/**
@@ -66,12 +66,12 @@ import com.vaadin.server.Page;
 	 * @return the request url
 	 */
 	public static String getRequestUrl(final Page current) {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (current != null) {</span>
-<span class="nc" id="L70">			return current.getLocation().toString();</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (current != null) {</span>
+<span class="fc" id="L70">			return current.getLocation().toString();</span>
 
 		} else {
-<span class="nc" id="L73">			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();</span>
-<span class="nc" id="L74">			return httpRequest.getRequestURL().toString();</span>
+<span class="fc" id="L73">			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();</span>
+<span class="fc" id="L74">			return httpRequest.getRequestURL().toString();</span>
 		}
 	}
 
@@ -81,14 +81,14 @@ import com.vaadin.server.Page;
 	 * @return the user id from security context
 	 */
 	public static String getUserIdFromSecurityContext() {
-<span class="nc" id="L84">		final SecurityContext context = SecurityContextHolder.getContext();</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">		if (context != null) {</span>
-<span class="nc" id="L86">			final Authentication authentication = context.getAuthentication();</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">			if (authentication != null) {</span>
-<span class="nc" id="L88">				return authentication.getPrincipal().toString();</span>
+<span class="fc" id="L84">		final SecurityContext context = SecurityContextHolder.getContext();</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">		if (context != null) {</span>
+<span class="fc" id="L86">			final Authentication authentication = context.getAuthentication();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">			if (authentication != null) {</span>
+<span class="fc" id="L88">				return authentication.getPrincipal().toString();</span>
 			}
 		}
-<span class="nc" id="L91">		return null;</span>
+<span class="fc" id="L91">		return null;</span>
 	}
 
 }

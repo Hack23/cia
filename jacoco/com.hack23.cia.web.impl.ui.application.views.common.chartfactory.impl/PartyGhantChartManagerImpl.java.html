@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyGhantChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PartyGhantChartManagerImpl.java</span></div><h1>PartyGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyGhantChartManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PartyGhantChartManagerImpl.java</span></div><h1>PartyGhantChartManagerImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -40,22 +40,22 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 	 * Instantiates a new party ghant chart manager impl.
 	 */
 	public PartyGhantChartManagerImpl() {
-<span class="nc" id="L43">		super();</span>
-<span class="nc" id="L44">	}</span>
+<span class="fc" id="L43">		super();</span>
+<span class="fc" id="L44">	}</span>
 
 	@Override
 	protected Comparator&lt;ViewRiksdagenPartyRoleMember&gt; getComparator() {
-<span class="nc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+<span class="fc" id="L48">		return (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
 	}
 
 	@Override
 	protected Function&lt;ViewRiksdagenPartyRoleMember, String&gt; getRoleMapping() {
-<span class="nc" id="L53">		return new RoleMapping();</span>
+<span class="fc" id="L53">		return new RoleMapping();</span>
 	}
 
 	@Override
 	protected StepMapping&lt;ViewRiksdagenPartyRoleMember&gt; getStepMapping() {
-<span class="pc" id="L58">		return new StepMapping&lt;&gt;() {</span>
+<span class="fc" id="L58">		return new StepMapping&lt;&gt;() {</span>
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
@@ -67,7 +67,7 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 <span class="pc bpc" id="L67" title="1 of 2 branches missed.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;språkrör&quot;)</span>
 <span class="fc bfc" id="L68" title="All 2 branches covered.">						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains(&quot;partisekreterare&quot;)) {</span>
 <span class="fc" id="L69">					color = &quot;3271c8&quot;;</span>
-<span class="fc" id="L70">				} else {</span>
+				} else {
 <span class="fc" id="L71">					color = &quot;0eab76&quot;;</span>
 				}
 

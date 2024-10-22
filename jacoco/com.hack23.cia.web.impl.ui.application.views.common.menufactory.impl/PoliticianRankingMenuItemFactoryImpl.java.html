@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PoliticianRankingMenuItemFactoryImpl.java</span></div><h1>PoliticianRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PoliticianRankingMenuItemFactoryImpl.java</span></div><h1>PoliticianRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -48,24 +48,24 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	private static final String CHART_BY_TOPIC_TEXT = &quot;Chart by topic&quot;;
 
 	/** The Constant COMMAND_ALL_PARTIES. */
-<span class="nc" id="L51">	private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
-<span class="nc" id="L52">			PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());</span>
+<span class="fc" id="L51">	private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L52">			PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());</span>
 
 	/** The Constant COMMAND_CURRENT_PARTIES. */
-<span class="nc" id="L55">	private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
-<span class="nc" id="L56">			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());</span>
+<span class="fc" id="L55">	private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+<span class="fc" id="L56">			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());</span>
 
 	/** The Constant COMMAND_DATAGRID. */
-<span class="nc" id="L59">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
-<span class="nc" id="L60">			PageMode.DATAGRID);</span>
+<span class="fc" id="L59">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_OVERVIEW. */
-<span class="nc" id="L63">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
-<span class="nc" id="L64">			PageMode.OVERVIEW);</span>
+<span class="fc" id="L63">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
-<span class="nc" id="L67">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
-<span class="nc" id="L68">			PageMode.PAGEVISITHISTORY);</span>
+<span class="fc" id="L67">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
 
 	/**
 	 * The Constant CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS.
@@ -88,7 +88,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	private static final String POLITICIAN_RANKING = &quot;Politician Ranking&quot;;
 
 	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-<span class="nc" id="L91">	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;</span>
+	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;
 
 	/** The application menu item factory. */
 	@Autowired
@@ -98,50 +98,50 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	 * Instantiates a new politician ranking menu item factory impl.
 	 */
 	public PoliticianRankingMenuItemFactoryImpl() {
-<span class="nc" id="L101">		super();</span>
-<span class="nc" id="L102">	}</span>
+<span class="fc" id="L101">		super();</span>
+<span class="fc" id="L102">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="nc" id="L106">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L106">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="nc" id="L108">		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, &quot;All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
+<span class="fc" id="L108">		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, &quot;All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.&quot;);</span>
 
-<span class="nc" id="L110">		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, &quot;All parties summary by number of roles in parliament&quot;);</span>
+<span class="fc" id="L110">		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, &quot;All parties summary by number of roles in parliament&quot;);</span>
 
-<span class="nc" id="L112">		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, &quot;Current parties roles in parliament&quot;);</span>
+<span class="fc" id="L112">		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, &quot;Current parties roles in parliament&quot;);</span>
 
-<span class="nc" id="L114">		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);</span>
+<span class="fc" id="L114">		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);</span>
 
-<span class="nc" id="L116">	}</span>
+<span class="fc" id="L116">	}</span>
 
 	@Override
 	public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
-<span class="nc" id="L120">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L120">		initApplicationMenuBar(menuBar);</span>
 
-<span class="nc" id="L122">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L122">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="nc" id="L124">		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.BUG, null));</span>
-<span class="nc" id="L125">	}</span>
+<span class="fc" id="L124">		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.BUG, null));</span>
+<span class="fc" id="L125">	}</span>
 
 	@Override
 	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-<span class="nc" id="L129">		politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG, COMMAND_OVERVIEW);</span>
+<span class="fc" id="L129">		politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG, COMMAND_OVERVIEW);</span>
 
-<span class="nc" id="L131">		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.BUG, null);</span>
+<span class="fc" id="L131">		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.BUG, null);</span>
 
-<span class="nc" id="L133">		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID);</span>
-<span class="nc" id="L134">		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);</span>
+<span class="fc" id="L133">		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID);</span>
+<span class="fc" id="L134">		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);</span>
 
-<span class="nc" id="L136">		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.BUG, null);</span>
+<span class="fc" id="L136">		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.BUG, null);</span>
 
-<span class="nc" id="L138">		chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);</span>
+<span class="fc" id="L138">		chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);</span>
 
-<span class="nc" id="L140">		chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);</span>
+<span class="fc" id="L140">		chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);</span>
 
-<span class="nc" id="L142">		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY);</span>
+<span class="fc" id="L142">		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY);</span>
 
-<span class="nc" id="L144">	}</span>
+<span class="fc" id="L144">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

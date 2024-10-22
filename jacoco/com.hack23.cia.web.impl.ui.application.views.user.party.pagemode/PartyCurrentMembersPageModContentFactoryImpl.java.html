@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyCurrentMembersPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.party.pagemode</a> &gt; <span class="el_source">PartyCurrentMembersPageModContentFactoryImpl.java</span></div><h1>PartyCurrentMembersPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyCurrentMembersPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.party.pagemode</a> &gt; <span class="el_source">PartyCurrentMembersPageModContentFactoryImpl.java</span></div><h1>PartyCurrentMembersPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -40,63 +40,63 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="nc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
-<span class="nc" id="L44">			&quot;bornYear&quot;, &quot;totalDaysServed&quot;, &quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;,</span>
-<span class="nc" id="L45">			&quot;lastAssignmentDate&quot;, &quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,</span>
-<span class="nc" id="L46">			&quot;totalDaysServedEu&quot;,</span>
+<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
+			&quot;bornYear&quot;, &quot;totalDaysServed&quot;, &quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;,
+			&quot;lastAssignmentDate&quot;, &quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,
+			&quot;totalDaysServedEu&quot;,
 
-<span class="nc" id="L48">			&quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;,</span>
+			&quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;,
 
-<span class="nc" id="L50">			&quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;totalDaysServedSpeaker&quot;, &quot;totalDaysServedParty&quot;,</span>
+			&quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;totalDaysServedSpeaker&quot;, &quot;totalDaysServedParty&quot;,
 
-<span class="nc" id="L52">			&quot;totalPartyAssignments&quot;, &quot;totalMinistryAssignments&quot;, &quot;totalCommitteeAssignments&quot;, &quot;totalSpeakerAssignments&quot;,</span>
+			&quot;totalPartyAssignments&quot;, &quot;totalMinistryAssignments&quot;, &quot;totalCommitteeAssignments&quot;, &quot;totalSpeakerAssignments&quot;,
 
-<span class="nc" id="L54">			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,</span>
-<span class="nc" id="L55">			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };</span>
+			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,
+			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };
 
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = &quot;Current Members&quot;;
-<span class="nc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;party&quot;,</span>
-<span class="nc" id="L60">			&quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot; };</span>
-<span class="nc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-<span class="nc" id="L62">			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);</span>
-<span class="nc" id="L63">	private static final String POLITICIANS = &quot;Politicians&quot;;</span>
+<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;party&quot;,</span>
+			&quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot; };
+<span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
+	private static final String POLITICIANS = &quot;Politicians&quot;;
 
 	/**
 	 * Instantiates a new party current members page mod content factory impl.
 	 */
 	public PartyCurrentMembersPageModContentFactoryImpl() {
-<span class="nc" id="L69">		super();</span>
-<span class="nc" id="L70">	}</span>
+<span class="fc" id="L69">		super();</span>
+<span class="fc" id="L70">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L75">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L75">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L77">		final String pageId = getPageId(parameters);</span>
-<span class="nc" id="L78">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="nc" id="L79">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L77">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L78">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L79">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L81">		LabelFactory.createHeader2Label(panelContent, CURRENT_MEMBERS);</span>
+<span class="fc" id="L81">		LabelFactory.createHeader2Label(panelContent, CURRENT_MEMBERS);</span>
 
-<span class="nc" id="L83">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="nc" id="L84">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L83">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
+<span class="fc" id="L84">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-<span class="nc" id="L86">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,</span>
-<span class="nc" id="L87">				politicianDataContainer.findListByProperty(</span>
-<span class="nc" id="L88">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE }, ViewRiksdagenPolitician_.party,</span>
-<span class="nc" id="L89">						ViewRiksdagenPolitician_.active),</span>
-<span class="nc" id="L90">				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);</span>
+<span class="fc" id="L86">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,</span>
+<span class="fc" id="L87">				politicianDataContainer.findListByProperty(</span>
+<span class="fc" id="L88">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE }, ViewRiksdagenPolitician_.party,</span>
+						ViewRiksdagenPolitician_.active),
+				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="nc" id="L92">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="nc" id="L93">		return panelContent;</span>
+<span class="fc" id="L92">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L93">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L99" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.CURRENTMEMBERS.toString());</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.CURRENTMEMBERS.toString());</span>
 	}
 
 }

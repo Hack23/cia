@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentDecisionPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentDecisionPageModContentFactoryImpl.java</span></div><h1>DocumentDecisionPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentDecisionPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentDecisionPageModContentFactoryImpl.java</span></div><h1>DocumentDecisionPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -46,55 +46,55 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-<span class="nc" id="L49">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;committee&quot;, &quot;chamber&quot;, &quot;processedIn&quot;, &quot;decisionType&quot;,</span>
-<span class="nc" id="L50">			&quot;proposalNumber&quot;, &quot;designation&quot;, &quot;wording&quot;, &quot;wording2&quot;, &quot;wording3&quot;, &quot;wording4&quot;);</span>
+<span class="fc" id="L49">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;committee&quot;, &quot;chamber&quot;, &quot;processedIn&quot;, &quot;decisionType&quot;,</span>
+			&quot;proposalNumber&quot;, &quot;designation&quot;, &quot;wording&quot;, &quot;wording2&quot;, &quot;wording3&quot;, &quot;wording4&quot;);
 	/** The Constant DOCUMENT_DECISION. */
-<span class="nc" id="L52">	private static final String DOCUMENT_DECISION = &quot;Document Decision&quot;;</span>
+	private static final String DOCUMENT_DECISION = &quot;Document Decision&quot;;
 
 	/**
 	 * Instantiates a new document decision page mod content factory impl.
 	 */
 	public DocumentDecisionPageModContentFactoryImpl() {
-<span class="nc" id="L58">		super();</span>
-<span class="nc" id="L59">	}</span>
+<span class="fc" id="L58">		super();</span>
+<span class="fc" id="L59">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L66">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L68">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L68">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L70">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="nc" id="L71">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L70">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="nc" id="L73">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="nc" id="L74">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
-<span class="nc" id="L75">						DocumentData.class, DocumentData_.id, pageId);</span>
+<span class="fc" id="L73">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L74">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="nc" id="L77">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);</span>
+<span class="fc" id="L77">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);</span>
 
-<span class="nc bnc" id="L79" title="All 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentProposal() != null</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentProposal().getProposal() != null) {</span>
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentProposal() != null</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentProposal().getProposal() != null) {</span>
 
-<span class="nc" id="L82">			getFormFactory().addFormPanelTextFields(panelContent,</span>
-<span class="nc" id="L83">					documentStatusContainer.getDocumentProposal().getProposal(), DocumentProposalData.class, AS_LIST);</span>
+<span class="fc" id="L82">			getFormFactory().addFormPanelTextFields(panelContent,</span>
+<span class="fc" id="L83">					documentStatusContainer.getDocumentProposal().getProposal(), DocumentProposalData.class, AS_LIST);</span>
 
 		}
 
-<span class="nc" id="L87">		panel.setContent(panelContent);</span>
-<span class="nc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L89">				parameters, pageId);</span>
+<span class="fc" id="L87">		panel.setContent(panelContent);</span>
+<span class="fc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
 
-<span class="nc" id="L91">		return panelContent;</span>
+<span class="fc" id="L91">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L97" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());</span>
+<span class="fc bfc" id="L97" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDECISION.toString());</span>
 	}
 
 }

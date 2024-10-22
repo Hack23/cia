@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRoleListPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRoleListPageModContentFactoryImpl.java</span></div><h1>PoliticianRoleListPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRoleListPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRoleListPageModContentFactoryImpl.java</span></div><h1>PoliticianRoleListPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -42,36 +42,36 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	private static final String ASSIGNMENTS = &quot;Assignments&quot;;
-<span class="nc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;assignmentType&quot;, &quot;status&quot;, &quot;detail&quot;,</span>
-<span class="nc" id="L46">			&quot;orgCode&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };</span>
-<span class="nc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;intressentId&quot;, &quot;orderNumber&quot;, &quot;orgCode&quot; };</span>
+<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;assignmentType&quot;, &quot;status&quot;, &quot;detail&quot;,</span>
+			&quot;orgCode&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
+<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;intressentId&quot;, &quot;orderNumber&quot;, &quot;orgCode&quot; };</span>
 
 	/**
 	 * Instantiates a new politician role list page mod content factory impl.
 	 */
 	public PoliticianRoleListPageModContentFactoryImpl() {
-<span class="nc" id="L53">		super();</span>
-<span class="nc" id="L54">	}</span>
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L61">		final String pageId = getPageId(parameters);</span>
-<span class="nc" id="L62">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="nc" id="L63">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
-<span class="nc" id="L64">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());</span>
+<span class="fc" id="L61">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L62">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L63">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());</span>
 
-<span class="nc" id="L66">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="nc" id="L67">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="fc" id="L66">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="fc" id="L67">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="nc" id="L69">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+<span class="fc" id="L69">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
 
-<span class="nc" id="L71">		createRoleList(panelContent, assignmentList);</span>
+<span class="fc" id="L71">		createRoleList(panelContent, assignmentList);</span>
 
-<span class="nc" id="L73">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="nc" id="L74">		return panelContent;</span>
+<span class="fc" id="L73">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
+<span class="fc" id="L74">		return panelContent;</span>
 
 	}
 
@@ -84,18 +84,18 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List&lt;AssignmentData&gt; assignmentList) {
 
-<span class="nc" id="L87">		final Comparator&lt;AssignmentData&gt; compare = (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+<span class="fc" id="L87">		final Comparator&lt;AssignmentData&gt; compare = (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
 
-<span class="nc" id="L89">		Collections.sort(assignmentList, compare);</span>
+<span class="fc" id="L89">		Collections.sort(assignmentList, compare);</span>
 
-<span class="nc" id="L91">		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,</span>
-<span class="nc" id="L92">				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);</span>
+<span class="fc" id="L91">		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,</span>
+				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
-<span class="nc" id="L94">	}</span>
+<span class="fc" id="L94">	}</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L98" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLELIST.toString());</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLELIST.toString());</span>
 	}
 
 }

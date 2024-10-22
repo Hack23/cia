@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</span></div><h1>CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</span></div><h1>CommitteeBallotDecisionSummaryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -53,71 +53,71 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = &quot;ballotId&quot;;
 
-<span class="nc" id="L56">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.id&quot;,</span>
-<span class="nc" id="L57">			&quot;committeeReport&quot;, &quot;embeddedId.issue&quot;, &quot;rm&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;endNumber&quot;, &quot;org&quot;, &quot;createdDate&quot;,</span>
-<span class="nc" id="L58">			&quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;againstProposalParties&quot;, &quot;againstProposalNumber&quot;, &quot;winner&quot;,</span>
-<span class="nc" id="L59">			&quot;ballotType&quot;, &quot;label&quot;, &quot;avgBornYear&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;abstainVotes&quot;, &quot;absentVotes&quot;,</span>
-<span class="nc" id="L60">			&quot;approved&quot;, &quot;noWinner&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;, &quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;,</span>
-<span class="nc" id="L61">			&quot;percentageMale&quot; };</span>
+<span class="fc" id="L56">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.id&quot;,</span>
+			&quot;committeeReport&quot;, &quot;embeddedId.issue&quot;, &quot;rm&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;endNumber&quot;, &quot;org&quot;, &quot;createdDate&quot;,
+			&quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;againstProposalParties&quot;, &quot;againstProposalNumber&quot;, &quot;winner&quot;,
+			&quot;ballotType&quot;, &quot;label&quot;, &quot;avgBornYear&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;abstainVotes&quot;, &quot;absentVotes&quot;,
+			&quot;approved&quot;, &quot;noWinner&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;, &quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;,
+			&quot;percentageMale&quot; };
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = &quot;Committee:&quot;;
 
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = &quot;Committee Ballot Decision Summary&quot;;
 
-<span class="nc" id="L68">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;embeddedId.id&quot;, &quot;endNumber&quot;, &quot;org&quot;,</span>
-<span class="nc" id="L69">			&quot;createdDate&quot;, &quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;label&quot;, &quot;againstProposalNumber&quot;, &quot;avgBornYear&quot;,</span>
-<span class="nc" id="L70">			&quot;percentageMale&quot;, &quot;approved&quot;, &quot;noWinner&quot;, &quot;ballotType&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;, &quot;percentageAbsent&quot;,</span>
-<span class="nc" id="L71">			&quot;percentageAbstain&quot; };</span>
+<span class="fc" id="L68">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;embeddedId.id&quot;, &quot;endNumber&quot;, &quot;org&quot;,</span>
+			&quot;createdDate&quot;, &quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;label&quot;, &quot;againstProposalNumber&quot;, &quot;avgBornYear&quot;,
+			&quot;percentageMale&quot;, &quot;approved&quot;, &quot;noWinner&quot;, &quot;ballotType&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;, &quot;percentageAbsent&quot;,
+			&quot;percentageAbstain&quot; };
 
-<span class="nc" id="L73">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-<span class="nc" id="L74">			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);</span>
+<span class="fc" id="L73">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-<span class="nc" id="L76">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
-<span class="nc" id="L77">			&quot;embeddedId.id&quot; };</span>
+<span class="fc" id="L76">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
+			&quot;embeddedId.id&quot; };
 
 	/**
 	 * Instantiates a new committee ballot decision summary page mod content
 	 * factory impl.
 	 */
 	public CommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
-<span class="nc" id="L84">		super();</span>
-<span class="nc" id="L85">	}</span>
+<span class="fc" id="L84">		super();</span>
+<span class="fc" id="L85">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L90">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L90">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L92">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L92">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L94">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="nc" id="L95">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L94">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L95">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L97">		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);</span>
+<span class="fc" id="L97">		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);</span>
 
-<span class="nc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
+<span class="fc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
 
-<span class="nc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
-<span class="nc" id="L103">				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,</span>
-<span class="nc" id="L104">						pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);</span>
+<span class="fc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
+<span class="fc" id="L103">				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,</span>
+<span class="fc" id="L104">						pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);</span>
 
-<span class="nc" id="L106">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
-<span class="nc" id="L107">				ViewRiksdagenCommitteeBallotDecisionSummary.class, decisionPartySummaryList,</span>
-<span class="nc" id="L108">				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,</span>
-<span class="nc" id="L109">				null);</span>
+<span class="fc" id="L106">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+				ViewRiksdagenCommitteeBallotDecisionSummary.class, decisionPartySummaryList,
+				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
+				null);
 
-<span class="nc" id="L111">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="nc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L113">				parameters, pageId);</span>
-<span class="nc" id="L114">		return panelContent;</span>
+<span class="fc" id="L111">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="fc" id="L114">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L120" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.BALLOTDECISIONSUMMARY.toString());</span>
+<span class="fc bfc" id="L120" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.BALLOTDECISIONSUMMARY.toString());</span>
 	}
 
 }

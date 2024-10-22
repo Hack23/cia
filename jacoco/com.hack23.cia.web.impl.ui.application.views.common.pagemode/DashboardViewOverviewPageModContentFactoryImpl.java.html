@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DashboardViewOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">DashboardViewOverviewPageModContentFactoryImpl.java</span></div><h1>DashboardViewOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DashboardViewOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">DashboardViewOverviewPageModContentFactoryImpl.java</span></div><h1>DashboardViewOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -48,10 +48,9 @@ import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-<span class="nc" id="L51">import com.hack23.cia.service.external.esv.api.EsvApi;</span>
+import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -94,7 +93,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	private static final String PAGE_PREFIX = &quot;#!&quot;;
 
 	/** The Constant PAGE_SEPARATOR. */
-	private static final Character PAGE_SEPARATOR = '/';
+<span class="fc" id="L96">	private static final Character PAGE_SEPARATOR = '/';</span>
 
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
@@ -111,18 +110,13 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
-	
-	/** The government body chart data manager. */
-	@Autowired
-	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
-
 
 	/**
 	 * Instantiates a new dashboard view overview page mod content factory impl.
 	 */
 	public DashboardViewOverviewPageModContentFactoryImpl() {
-		super();
-	}
+<span class="fc" id="L118">		super();</span>
+<span class="fc" id="L119">	}</span>
 
 	/**
 	 * Creates the content.
@@ -134,38 +128,38 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 */
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
-<span class="nc" id="L137">	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {</span>
-		final VerticalLayout panelContent = createPanelContent();
-		final String pageId = getPageId(parameters);
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L132">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L133">		final String pageId = getPageId(parameters);</span>
 
-		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+<span class="fc" id="L135">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
 
-		getMenuItemFactory().createMainPageMenuBar(menuBar);
+<span class="fc" id="L137">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-		LabelFactory.createHeader2Label(panelContent, &quot;Dashboard Overview&quot;);
+<span class="fc" id="L139">		LabelFactory.createHeader2Label(panelContent, &quot;Dashboard Overview&quot;);</span>
 
-		final Label descriptionLabel = new Label(
+<span class="fc" id="L141">		final Label descriptionLabel = new Label(</span>
 				&quot;Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level&quot;);
-		descriptionLabel.addStyleName(&quot;itembox&quot;);
-		Responsive.makeResponsive(descriptionLabel);
-		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		panelContent.addComponent(descriptionLabel);
+<span class="fc" id="L143">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
+<span class="fc" id="L144">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L145">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L146">		panelContent.addComponent(descriptionLabel);</span>
 
-		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
+<span class="fc" id="L148">		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);</span>
 
-		createDashboardMonarch(row);
+<span class="fc" id="L150">		createDashboardMonarch(row);</span>
 
-		createDashboardGovernment(row);
-		createDashboardParliament(row);
+<span class="fc" id="L152">		createDashboardGovernment(row);</span>
+<span class="fc" id="L153">		createDashboardParliament(row);</span>
 
-		createDashboardPartRiskByType(row);
-		createDashboardPartRiskBySeverity(row);
+<span class="fc" id="L155">		createDashboardPartRiskByType(row);</span>
+<span class="fc" id="L156">		createDashboardPartRiskBySeverity(row);</span>
 
-		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DASHBOARD_VIEW, ApplicationEventGroup.USER,
+<span class="fc" id="L158">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L159">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DASHBOARD_VIEW, ApplicationEventGroup.USER,</span>
 				CommonsViews.DASHBOARD_VIEW_NAME, parameters, pageId);
 
-		return panelContent;
+<span class="fc" id="L162">		return panelContent;</span>
 
 	}
 
@@ -175,25 +169,25 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 *
 	 * @param row the row
 	 */
-<span class="nc" id="L178">	private void createDashboardMonarch(final ResponsiveRow row) {</span>
+	private void createDashboardMonarch(final ResponsiveRow row) {
 
-		final CssLayout layout = createLayoutWithTitle(&quot;Monarch&quot;);
+<span class="fc" id="L174">		final CssLayout layout = createLayoutWithTitle(&quot;Monarch&quot;);</span>
 
-		final Label headOfStateLabel = new Label(&quot;Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973&quot;);
-		Responsive.makeResponsive(headOfStateLabel);
-		headOfStateLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(headOfStateLabel);
-		final Label nextHeadOfStateLabel = new Label(&quot;Future head of state(Queen): Victoria Ingrid Alice Désirée;&quot;);
-		Responsive.makeResponsive(nextHeadOfStateLabel);
-		nextHeadOfStateLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(nextHeadOfStateLabel);
+<span class="fc" id="L176">		final Label headOfStateLabel = new Label(&quot;Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973&quot;);</span>
+<span class="fc" id="L177">		Responsive.makeResponsive(headOfStateLabel);</span>
+<span class="fc" id="L178">		headOfStateLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L179">		layout.addComponent(headOfStateLabel);</span>
+<span class="fc" id="L180">		final Label nextHeadOfStateLabel = new Label(&quot;Future head of state(Queen): Victoria Ingrid Alice Désirée;&quot;);</span>
+<span class="fc" id="L181">		Responsive.makeResponsive(nextHeadOfStateLabel);</span>
+<span class="fc" id="L182">		nextHeadOfStateLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L183">		layout.addComponent(nextHeadOfStateLabel);</span>
 
 
-		addMonarchIncomeSpending(layout);
+<span class="fc" id="L186">		addMonarchIncomeSpending(layout);</span>
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
+<span class="fc" id="L188">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L189">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L190">	}</span>
 
 	/**
 	 * Creates the layout with title.
@@ -201,18 +195,18 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param title the title
 	 * @return the css layout
 	 */
-<span class="nc" id="L204">	private static CssLayout createLayoutWithTitle(final String title) {</span>
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName(&quot;v-layout-content-overview-dashboard-panel-level2&quot;);
-		Responsive.makeResponsive(layout);
-		layout.setSizeUndefined();
+	private static CssLayout createLayoutWithTitle(final String title) {
+<span class="fc" id="L199">		final CssLayout layout = new CssLayout();</span>
+<span class="fc" id="L200">		layout.addStyleName(&quot;v-layout-content-overview-dashboard-panel-level2&quot;);</span>
+<span class="fc" id="L201">		Responsive.makeResponsive(layout);</span>
+<span class="fc" id="L202">		layout.setSizeUndefined();</span>
 
-		final Label titleLabel = new Label(title);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.addStyleName(&quot;title&quot;);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		return layout;
+<span class="fc" id="L204">		final Label titleLabel = new Label(title);</span>
+<span class="fc" id="L205">		Responsive.makeResponsive(titleLabel);</span>
+<span class="fc" id="L206">		titleLabel.addStyleName(&quot;title&quot;);</span>
+<span class="fc" id="L207">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L208">		layout.addComponent(titleLabel);</span>
+<span class="fc" id="L209">		return layout;</span>
 	}
 
 
@@ -223,68 +217,68 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 */
 	private void createDashboardGovernment(final ResponsiveRow row) {
 
-		final CssLayout layout = createLayoutWithTitle(&quot;Government&quot;);
+<span class="fc" id="L220">		final CssLayout layout = createLayoutWithTitle(&quot;Government&quot;);</span>
 
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L222">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L223">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
+<span class="fc" id="L225">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L226">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
 
-		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
+<span class="fc" id="L228">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer</span>
+<span class="fc" id="L229">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);</span>
 
-		horizontalLayout
-				.addComponent(
+<span class="fc" id="L231">		horizontalLayout</span>
+<span class="fc" id="L232">				.addComponent(</span>
 						new CounterStatisticsCard(VaadinIcons.WARNING,
-								new CounterStatisticModel(&quot;Members&quot;, listMinistryMembers.size())
-										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L234">								new CounterStatisticModel(&quot;Members&quot;, listMinistryMembers.size())</span>
+<span class="fc" id="L235">										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 								&quot;Members&quot;));
 
-		final DataContainer&lt;ViewRiksdagenMinistry, String&gt; ministryDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
+<span class="fc" id="L238">		final DataContainer&lt;ViewRiksdagenMinistry, String&gt; ministryDataContainer = getApplicationManager()</span>
+<span class="fc" id="L239">				.getDataContainer(ViewRiksdagenMinistry.class);</span>
 
-		final List&lt;ViewRiksdagenMinistry&gt; listMinistries = ministryDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenMinistry_.active);
+<span class="fc" id="L241">		final List&lt;ViewRiksdagenMinistry&gt; listMinistries = ministryDataContainer</span>
+<span class="fc" id="L242">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenMinistry_.active);</span>
 
-		horizontalLayout
-				.addComponent(new CounterStatisticsCard(
-						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Ministries&quot;, listMinistries.size())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L244">		horizontalLayout</span>
+<span class="fc" id="L245">				.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L246">						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Ministries&quot;, listMinistries.size())</span>
+<span class="fc" id="L247">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 						&quot;Ministries&quot;));
 
-		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
+<span class="fc" id="L250">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L251">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
 
-		final List&lt;ViewRiksdagenPartySummary&gt; listparties = partyDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeGovernment);
+<span class="fc" id="L253">		final List&lt;ViewRiksdagenPartySummary&gt; listparties = partyDataContainer</span>
+<span class="fc" id="L254">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeGovernment);</span>
 
-		horizontalLayout.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Parties&quot;, listparties.size())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Parties&quot;));
+<span class="fc" id="L256">		horizontalLayout.addComponent(</span>
+<span class="fc" id="L257">				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Parties&quot;, listparties.size())</span>
+<span class="fc" id="L258">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Parties&quot;));</span>
 
 
-<span class="nc" id="L267">		final List&lt;GovernmentBodyAnnualSummary&gt; governmentBodies = esvApi.getData().get(2022);</span>
-		horizontalLayout
-		.addComponent(
+<span class="fc" id="L261">		final List&lt;GovernmentBodyAnnualSummary&gt; governmentBodies = esvApi.getData().get(2022);</span>
+<span class="fc" id="L262">		horizontalLayout</span>
+<span class="fc" id="L263">		.addComponent(</span>
 				new CounterStatisticsCard(VaadinIcons.WARNING,
-						new CounterStatisticModel(&quot;Government bodies&quot;, governmentBodies.size())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L265">						new CounterStatisticModel(&quot;Government bodies&quot;, governmentBodies.size())</span>
+<span class="fc" id="L266">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 						&quot;Government bodies&quot;));
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Headcount&quot;, governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L268">		horizontalLayout</span>
+<span class="fc" id="L269">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L270">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Headcount&quot;, governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())</span>
+<span class="fc" id="L271">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Headcount&quot;));
 
 
-		layout.addComponent(horizontalLayout);
+<span class="fc" id="L275">		layout.addComponent(horizontalLayout);</span>
 
-		addIncomeSpending(layout);
+<span class="fc" id="L277">		addIncomeSpending(layout);</span>
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
+<span class="fc" id="L279">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L280">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L281">	}</span>
 
 
 	/**
@@ -292,50 +286,50 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 *
 	 * @param layout the layout
 	 */
-<span class="nc" id="L295">	private void addIncomeSpending(final CssLayout layout) {</span>
+	private void addIncomeSpending(final CssLayout layout) {
 
-		final Link pageLink = new Link(&quot;Regeringskansliet(Government Offices)&quot;, new ExternalResource(PAGE_PREFIX
+<span class="fc" id="L291">		final Link pageLink = new Link(&quot;Regeringskansliet(Government Offices)&quot;, new ExternalResource(PAGE_PREFIX</span>
 				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + ORG_CODE_GOV_OFFICES));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+<span class="fc" id="L293">		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR</span>
 				+ ORG_CODE_GOV_OFFICES);
-		pageLink.setIcon(VaadinIcons.GROUP);
-		Responsive.makeResponsive(pageLink);
-		pageLink.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(pageLink);
+<span class="fc" id="L295">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L296">		Responsive.makeResponsive(pageLink);</span>
+<span class="fc" id="L297">		pageLink.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L298">		layout.addComponent(pageLink);</span>
 
 
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L301">		final Label titleLabel = new Label(FINANCIAL);</span>
+<span class="fc" id="L302">		Responsive.makeResponsive(titleLabel);</span>
+<span class="fc" id="L303">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L304">		layout.addComponent(titleLabel);</span>
+<span class="fc" id="L305">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L306">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		
-		createHeadCountCard(horizontalLayout,&quot;202100-3831&quot;);
-				
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Income(B SEK)&quot;, 1191)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+
+<span class="fc" id="L309">		createHeadCountCard(horizontalLayout,&quot;202100-3831&quot;);</span>
+
+<span class="fc" id="L311">		horizontalLayout</span>
+<span class="fc" id="L312">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L313">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Income(B SEK)&quot;, 1191)</span>
+<span class="fc" id="L314">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Income&quot;));
 
 
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(B SEK)&quot;, 1216)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L318">		horizontalLayout</span>
+<span class="fc" id="L319">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L320">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(B SEK)&quot;, 1216)</span>
+<span class="fc" id="L321">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Spending&quot;));
 
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Result(B SEK)&quot;, -70)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L324">		horizontalLayout</span>
+<span class="fc" id="L325">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L326">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Result(B SEK)&quot;, -70)</span>
+<span class="fc" id="L327">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Result&quot;));
 
 
-		layout.addComponent(horizontalLayout);
-	}
+<span class="fc" id="L331">		layout.addComponent(horizontalLayout);</span>
+<span class="fc" id="L332">	}</span>
 
 
 	/**
@@ -343,69 +337,69 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 *
 	 * @param layout the layout
 	 */
-<span class="nc" id="L346">	private void addParliamentIncomeSpending(final CssLayout layout) {</span>
+	private void addParliamentIncomeSpending(final CssLayout layout) {
 
-		final Link pageLink = new Link(&quot;Riksdagsförvaltningen(the Riksdag administration)&quot;, new ExternalResource(PAGE_PREFIX
+<span class="fc" id="L342">		final Link pageLink = new Link(&quot;Riksdagsförvaltningen(the Riksdag administration)&quot;, new ExternalResource(PAGE_PREFIX</span>
 						+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + &quot;202100-2627&quot;));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+<span class="fc" id="L344">		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR</span>
 				+ &quot;202100-2627&quot;);
-		pageLink.setIcon(VaadinIcons.GROUP);
-		Responsive.makeResponsive(pageLink);
-		pageLink.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(pageLink);
+<span class="fc" id="L346">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L347">		Responsive.makeResponsive(pageLink);</span>
+<span class="fc" id="L348">		pageLink.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L349">		layout.addComponent(pageLink);</span>
 
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L351">		final Label titleLabel = new Label(FINANCIAL);</span>
+<span class="fc" id="L352">		Responsive.makeResponsive(titleLabel);</span>
+<span class="fc" id="L353">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L354">		layout.addComponent(titleLabel);</span>
+<span class="fc" id="L355">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L356">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		createHeadCountCard(horizontalLayout,&quot;202100-2627&quot;);
+<span class="fc" id="L358">		createHeadCountCard(horizontalLayout,&quot;202100-2627&quot;);</span>
 
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(M SEK)&quot;, 1719)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L360">		horizontalLayout</span>
+<span class="fc" id="L361">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L362">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(M SEK)&quot;, 1719)</span>
+<span class="fc" id="L363">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Spending&quot;));
 
-		layout.addComponent(horizontalLayout);
-	}
+<span class="fc" id="L366">		layout.addComponent(horizontalLayout);</span>
+<span class="fc" id="L367">	}</span>
 
 	/**
 	 * Adds the monarch income spending.
 	 *
 	 * @param layout the layout
 	 */
-<span class="nc" id="L380">	private void addMonarchIncomeSpending(final CssLayout layout) {</span>
+	private void addMonarchIncomeSpending(final CssLayout layout) {
 
-		final Link pageLink = new Link(&quot;Kungliga hov- och slottsstaten(The Royal Court)&quot;, new ExternalResource(PAGE_PREFIX
+<span class="fc" id="L376">		final Link pageLink = new Link(&quot;Kungliga hov- och slottsstaten(The Royal Court)&quot;, new ExternalResource(PAGE_PREFIX</span>
 				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + &quot;202100-3484&quot;));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
+<span class="fc" id="L378">		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR</span>
 				+ &quot;202100-3484&quot;);
-		pageLink.setIcon(VaadinIcons.GROUP);
-		Responsive.makeResponsive(pageLink);
-		pageLink.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(pageLink);
+<span class="fc" id="L380">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L381">		Responsive.makeResponsive(pageLink);</span>
+<span class="fc" id="L382">		pageLink.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L383">		layout.addComponent(pageLink);</span>
 
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L385">		final Label titleLabel = new Label(FINANCIAL);</span>
+<span class="fc" id="L386">		Responsive.makeResponsive(titleLabel);</span>
+<span class="fc" id="L387">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L388">		layout.addComponent(titleLabel);</span>
+<span class="fc" id="L389">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L390">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		createHeadCountCard(horizontalLayout,&quot;202100-3484&quot;);
+<span class="fc" id="L392">		createHeadCountCard(horizontalLayout,&quot;202100-3484&quot;);</span>
 
 
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(M SEK)&quot;, 148)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L395">		horizontalLayout</span>
+<span class="fc" id="L396">		.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L397">				VaadinIcons.WARNING, new CounterStatisticModel(&quot;Spending(M SEK)&quot;, 148)</span>
+<span class="fc" id="L398">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 				&quot;Spending&quot;));
 
-		layout.addComponent(horizontalLayout);
-	}
+<span class="fc" id="L401">		layout.addComponent(horizontalLayout);</span>
+<span class="fc" id="L402">	}</span>
 
 
 
@@ -414,120 +408,117 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 *
 	 * @param row the row
 	 */
-<span class="nc" id="L417">	private void createDashboardParliament(final ResponsiveRow row) {</span>
-		final CssLayout layout = createLayoutWithTitle(&quot;Parliament&quot;);
+	private void createDashboardParliament(final ResponsiveRow row) {
+<span class="fc" id="L412">		final CssLayout layout = createLayoutWithTitle(&quot;Parliament&quot;);</span>
 
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L414">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L415">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; parliamentRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPolitician.class);
+<span class="fc" id="L417">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; parliamentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L418">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-		final List&lt;ViewRiksdagenPolitician&gt; parliamentMembers = parliamentRoleMemberDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeParliament);
+<span class="fc" id="L420">		final List&lt;ViewRiksdagenPolitician&gt; parliamentMembers = parliamentRoleMemberDataContainer</span>
+<span class="fc" id="L421">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeParliament);</span>
 
-		horizontalLayout
-				.addComponent(
+<span class="fc" id="L423">		horizontalLayout</span>
+<span class="fc" id="L424">				.addComponent(</span>
 						new CounterStatisticsCard(VaadinIcons.WARNING,
-								new CounterStatisticModel(&quot;Members&quot;, parliamentMembers.size())
-										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+<span class="fc" id="L426">								new CounterStatisticModel(&quot;Members&quot;, parliamentMembers.size())</span>
+<span class="fc" id="L427">										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 								&quot;Members&quot;));
 
-		final DataContainer&lt;ViewRiksdagenMinistry, String&gt; ministryDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
+<span class="fc" id="L430">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L431">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
 
-		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; partyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
+<span class="fc" id="L433">		final List&lt;ViewRiksdagenPartySummary&gt; listparties = partyDataContainer</span>
+<span class="fc" id="L434">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeParliament);</span>
 
-		final List&lt;ViewRiksdagenPartySummary&gt; listparties = partyDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeParliament);
+<span class="fc" id="L436">		horizontalLayout.addComponent(</span>
+<span class="fc" id="L437">				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Parties&quot;, listparties.size())</span>
+<span class="fc" id="L438">						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Parties&quot;));</span>
 
-		horizontalLayout.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Parties&quot;, listparties.size())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Parties&quot;));
+<span class="fc" id="L440">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; committeeDataContainer = getApplicationManager()</span>
+<span class="fc" id="L441">					.getDataContainer(ViewRiksdagenCommittee.class);</span>
 
-		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; committeeDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenCommittee.class);
+<span class="fc" id="L443">		final List&lt;ViewRiksdagenCommittee&gt; listCommittees = committeeDataContainer</span>
+<span class="fc" id="L444">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenCommittee_.active);</span>
 
-		final List&lt;ViewRiksdagenCommittee&gt; listCommittees = committeeDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenCommittee_.active);
+<span class="fc" id="L446">		horizontalLayout.addComponent(</span>
+<span class="fc" id="L447">					new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Committees&quot;, listCommittees.size())</span>
+<span class="fc" id="L448">							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Committees&quot;));</span>
 
-		horizontalLayout.addComponent(
-					new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel(&quot;Committees&quot;, listCommittees.size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), &quot;Committees&quot;));
+<span class="fc" id="L450">		layout.addComponent(horizontalLayout);</span>
 
-		layout.addComponent(horizontalLayout);
+<span class="fc" id="L452">		addParliamentIncomeSpending(layout);</span>
 
-		addParliamentIncomeSpending(layout);
-		
-		VerticalLayout layoutPanel = createPanelContent();
-		
-		layout.addComponent(layoutPanel);
+<span class="fc" id="L454">		VerticalLayout layoutPanel = createPanelContent();</span>
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
+<span class="fc" id="L456">		layout.addComponent(layoutPanel);</span>
+
+<span class="fc" id="L458">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L459">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L460">	}</span>
 
 	/**
 	 * Creates the dashboard part risk by type.
 	 *
 	 * @param row the row
 	 */
-<span class="nc" id="L476">	private void createDashboardPartRiskByType(final ResponsiveRow row) {</span>
-		final CssLayout layout = createLayoutWithTitle(&quot;Number of risk by each type&quot;);
-		
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+	private void createDashboardPartRiskByType(final ResponsiveRow row) {
+<span class="fc" id="L468">		final CssLayout layout = createLayoutWithTitle(&quot;Number of risk by each type&quot;);</span>
 
-		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()
-				.getDataContainer(RuleViolation.class);
+<span class="fc" id="L470">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L471">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();
+<span class="fc" id="L473">		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L474">				.getDataContainer(RuleViolation.class);</span>
 
-		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
-			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,
-					new CounterStatisticModel(&quot;&quot; + statusEntry.getKey(), statusEntry.getValue().size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-					&quot;&quot; + statusEntry.getKey()));
-		}
+<span class="fc" id="L476">		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();</span>
 
-		layout.addComponent(horizontalLayout);
+<span class="fc" id="L478">		for (final Entry&lt;ResourceType, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream()</span>
+<span class="fc bfc" id="L479" title="All 2 branches covered.">				.collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {</span>
+<span class="fc" id="L480">			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,</span>
+<span class="fc" id="L481">					new CounterStatisticModel(&quot;&quot; + statusEntry.getKey(), statusEntry.getValue().size())</span>
+<span class="fc" id="L482">							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
+<span class="fc" id="L483">					&quot;&quot; + statusEntry.getKey()));</span>
+<span class="fc" id="L484">		}</span>
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
+<span class="fc" id="L486">		layout.addComponent(horizontalLayout);</span>
+
+<span class="fc" id="L488">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L489">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L490">	}</span>
 
 	/**
 	 * Creates the dashboard part risk by severity.
 	 *
 	 * @param row the row
 	 */
-<span class="nc" id="L506">	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {</span>
-		final CssLayout layout = createLayoutWithTitle(&quot;Number of risk by severity&quot;);
+	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
+<span class="fc" id="L498">		final CssLayout layout = createLayoutWithTitle(&quot;Number of risk by severity&quot;);</span>
 
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
+<span class="fc" id="L500">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L501">		Responsive.makeResponsive(horizontalLayout);</span>
 
-		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()
-				.getDataContainer(RuleViolation.class);
+<span class="fc" id="L503">		final DataContainer&lt;RuleViolation, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L504">				.getDataContainer(RuleViolation.class);</span>
 
-		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();
+<span class="fc" id="L506">		final List&lt;RuleViolation&gt; ruleViolations = dataContainer.getAll();</span>
 
-		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
-			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,
-					new CounterStatisticModel(&quot;&quot; + statusEntry.getKey(), statusEntry.getValue().size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-					&quot;&quot; + statusEntry.getKey()));
-		}
+<span class="fc" id="L508">		for (final Entry&lt;Status, List&lt;RuleViolation&gt;&gt; statusEntry : ruleViolations.stream()</span>
+<span class="fc bfc" id="L509" title="All 2 branches covered.">				.collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {</span>
+<span class="fc" id="L510">			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,</span>
+<span class="fc" id="L511">					new CounterStatisticModel(&quot;&quot; + statusEntry.getKey(), statusEntry.getValue().size())</span>
+<span class="fc" id="L512">							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
+<span class="fc" id="L513">					&quot;&quot; + statusEntry.getKey()));</span>
+<span class="fc" id="L514">		}</span>
 
-		layout.addComponent(horizontalLayout);
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
+<span class="fc" id="L516">		layout.addComponent(horizontalLayout);</span>
+<span class="fc" id="L517">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L518">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L519">	}</span>
 
-	
+
 	/**
 	 * Creates the head count chart.
 	 *
@@ -535,28 +526,28 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param orgId the org id
 	 */
 	private void createHeadCountCard(final Layout panelContent, final String orgId) {
-		
 
-<span class="nc" id="L540">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));</span>
-		final List&lt;GovernmentBodyAnnualSummary&gt; list = map.get(getPageId(orgId));
-		
-		if (list != null &amp;&amp; !list.isEmpty()) {
-			final GovernmentBodyAnnualSummary findName = list.get(0);
-			
-			if (findName != null) {
-				Map&lt;Integer,GovernmentBodyAnnualSummary&gt; dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
-				Set&lt;Integer&gt; keySet = dataPerGovernmentBody.keySet();
-				GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));
-				panelContent.addComponent(new CounterStatisticsCard(
-						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Headcount&quot;, governmentBodyAnnualSummary.getHeadCount())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+
+<span class="fc" id="L531">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));</span>
+<span class="fc" id="L532">		final List&lt;GovernmentBodyAnnualSummary&gt; list = map.get(getPageId(orgId));</span>
+
+<span class="pc bpc" id="L534" title="2 of 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()) {</span>
+<span class="fc" id="L535">			final GovernmentBodyAnnualSummary findName = list.get(0);</span>
+
+<span class="pc bpc" id="L537" title="1 of 2 branches missed.">			if (findName != null) {</span>
+<span class="fc" id="L538">				Map&lt;Integer,GovernmentBodyAnnualSummary&gt; dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());</span>
+<span class="fc" id="L539">				Set&lt;Integer&gt; keySet = dataPerGovernmentBody.keySet();</span>
+<span class="fc" id="L540">				GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));</span>
+<span class="fc" id="L541">				panelContent.addComponent(new CounterStatisticsCard(</span>
+<span class="fc" id="L542">						VaadinIcons.WARNING, new CounterStatisticModel(&quot;Headcount&quot;, governmentBodyAnnualSummary.getHeadCount())</span>
+<span class="fc" id="L543">								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),</span>
 						&quot;Headcount&quot;));
 			}
 		}
-	}
-	
+<span class="fc" id="L547">	}</span>
 
-	
+
+
 	/**
 	 * Matches.
 	 *
@@ -565,9 +556,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @return true, if successful
 	 */
 	@Override
-<span class="nc" id="L568">	public boolean matches(final String page, final String parameters) {</span>
-		return NAME.equals(page)
-				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+	public boolean matches(final String page, final String parameters) {
+<span class="fc bfc" id="L560" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="pc bpc" id="L561" title="2 of 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

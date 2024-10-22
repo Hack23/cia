@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DecisionChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DecisionChartDataManagerImpl.java</span></div><h1>DecisionChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DecisionChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DecisionChartDataManagerImpl.java</span></div><h1>DecisionChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -63,8 +63,8 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 * Instantiates a new decision chart data manager impl.
 	 */
 	public DecisionChartDataManagerImpl() {
-<span class="nc" id="L66">		super();</span>
-<span class="nc" id="L67">	}</span>
+<span class="fc" id="L66">		super();</span>
+<span class="fc" id="L67">	}</span>
 
 	/**
 	 * Adds the decision type by org data.
@@ -76,81 +76,81 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 */
 	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
 			final Series series, final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; map) {
-<span class="nc bnc" id="L79" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; entry : map.entrySet()) {</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">			if (!EMPTY_STRING.equals(entry.getKey())) {</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">			if (!EMPTY_STRING.equals(entry.getKey())) {</span>
 
-<span class="nc" id="L82">				final XYseries label = new XYseries();</span>
-<span class="nc" id="L83">				label.setLabel(entry.getKey());</span>
+<span class="fc" id="L82">				final XYseries label = new XYseries();</span>
+<span class="fc" id="L83">				label.setLabel(entry.getKey());</span>
 
-<span class="nc" id="L85">				series.addSeries(label);</span>
+<span class="fc" id="L85">				series.addSeries(label);</span>
 
-<span class="nc" id="L87">				dataSeries.newSeries();</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {</span>
-<span class="nc" id="L89">						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),</span>
-<span class="nc" id="L90">								item.getTotal());</span>
-				}
+<span class="fc" id="L87">				dataSeries.newSeries();</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {</span>
+<span class="fc" id="L89">						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),</span>
+<span class="fc" id="L90">								item.getTotal());</span>
+<span class="fc" id="L91">				}</span>
 			}
-		}
-<span class="nc" id="L94">	}</span>
+<span class="fc" id="L93">		}</span>
+<span class="fc" id="L94">	}</span>
 
 	@Override
 	public void createDecisionTypeChart(final AbstractOrderedLayout content) {
 
-<span class="nc" id="L99">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt;&gt; map = getCommitteeDecisionTypeMap();</span>
+<span class="fc" id="L99">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt;&gt; map = getCommitteeDecisionTypeMap();</span>
 
-<span class="nc" id="L101">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L101">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="nc" id="L103">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L103">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="nc" id="L105">		final Series series = new Series();</span>
+<span class="fc" id="L105">		final Series series = new Series();</span>
 
-<span class="nc bnc" id="L107" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
 
-<span class="nc bnc" id="L109" title="All 2 branches missed.">			if (entry.getKey() != null) {</span>
-<span class="nc" id="L110">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">			if (entry.getKey() != null) {</span>
+<span class="fc" id="L110">				series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
 
-<span class="nc" id="L112">				dataSeries.newSeries();</span>
-<span class="nc" id="L113">				final List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt; list = entry.getValue();</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">				for (final ViewRiksdagenCommitteeDecisionTypeDailySummary item : list) {</span>
-<span class="nc" id="L115">					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()), item.getTotal());</span>
-				}
+<span class="fc" id="L112">				dataSeries.newSeries();</span>
+<span class="fc" id="L113">				final List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt; list = entry.getValue();</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">				for (final ViewRiksdagenCommitteeDecisionTypeDailySummary item : list) {</span>
+<span class="fc" id="L115">					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()), item.getTotal());</span>
+<span class="fc" id="L116">				}</span>
 			}
 
-		}
+<span class="fc" id="L119">		}</span>
 
-<span class="nc" id="L121">		addChart(content, &quot;Decision type daily summary&quot;,</span>
-<span class="nc" id="L122">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="nc" id="L123">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
-<span class="nc" id="L124">				true);</span>
-<span class="nc" id="L125">	}</span>
+<span class="fc" id="L121">		addChart(content, &quot;Decision type daily summary&quot;,</span>
+<span class="fc" id="L122">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L123">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
+				true);
+<span class="fc" id="L125">	}</span>
 
 	@Override
 	public void createDecisionTypeChart(final AbstractOrderedLayout content, final String org) {
 
-<span class="nc" id="L130">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L130">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="nc" id="L132">		final DataSeries dataSeries = new DataSeries();</span>
-<span class="nc" id="L133">		final Series series = new Series();</span>
+<span class="fc" id="L132">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L133">		final Series series = new Series();</span>
 
-<span class="nc" id="L135">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; allMap = getCommitteeDecisionTypeOrgMap();</span>
+<span class="fc" id="L135">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; allMap = getCommitteeDecisionTypeOrgMap();</span>
 
-<span class="nc" id="L137">		final List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt; itemList = allMap</span>
-<span class="nc" id="L138">				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());</span>
+<span class="fc" id="L137">		final List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt; itemList = allMap</span>
+<span class="fc" id="L138">				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());</span>
 
-<span class="nc bnc" id="L140" title="All 2 branches missed.">		if (itemList != null) {</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">		if (itemList != null) {</span>
 
-<span class="nc" id="L142">			final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; map = itemList.parallelStream()</span>
-<span class="nc bnc" id="L143" title="All 4 branches missed.">					.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getDecisionDate() != null)</span>
-<span class="nc" id="L144">					.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDecisionType()));</span>
+<span class="fc" id="L142">			final Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; map = itemList.parallelStream()</span>
+<span class="pc bpc" id="L143" title="2 of 4 branches missed.">					.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getDecisionDate() != null)</span>
+<span class="fc" id="L144">					.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDecisionType()));</span>
 
-<span class="nc" id="L146">			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);</span>
+<span class="fc" id="L146">			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);</span>
 		}
 
-<span class="nc" id="L149">		addChart(content, &quot;Org Decision type daily summary&quot;,</span>
-<span class="nc" id="L150">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="nc" id="L151">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
-<span class="nc" id="L152">				true);</span>
-<span class="nc" id="L153">	}</span>
+<span class="fc" id="L149">		addChart(content, &quot;Org Decision type daily summary&quot;,</span>
+<span class="fc" id="L150">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L151">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
+				true);
+<span class="fc" id="L153">	}</span>
 
 	/**
 	 * Gets the committee decision type map.
@@ -158,15 +158,15 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the committee decision type map
 	 */
 	private Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary&gt;&gt; getCommitteeDecisionTypeMap() {
-<span class="nc" id="L161">		final DataContainer&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L162">				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);</span>
+<span class="fc" id="L161">		final DataContainer&lt;ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L162">				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);</span>
 
-<span class="nc" id="L164">		final Date now = new Date();</span>
-<span class="nc" id="L165">		final Date notBefore = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();</span>
-<span class="nc" id="L166">		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()</span>
-<span class="nc bnc" id="L167" title="All 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; !t.getEmbeddedId().getDecisionDate().after(now)</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">						&amp;&amp; !notBefore.after(t.getEmbeddedId().getDecisionDate()))</span>
-<span class="nc" id="L169">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDecisionType()));</span>
+<span class="fc" id="L164">		final Date now = new Date();</span>
+<span class="fc" id="L165">		final Date notBefore = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();</span>
+<span class="fc" id="L166">		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()</span>
+<span class="pc bpc" id="L167" title="2 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; !t.getEmbeddedId().getDecisionDate().after(now)</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">						&amp;&amp; !notBefore.after(t.getEmbeddedId().getDecisionDate()))</span>
+<span class="fc" id="L169">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDecisionType()));</span>
 	}
 
 	/**
@@ -175,11 +175,11 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the committee decision type org map
 	 */
 	private Map&lt;String, List&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary&gt;&gt; getCommitteeDecisionTypeOrgMap() {
-<span class="nc" id="L178">		final DataContainer&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L179">				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);</span>
+<span class="fc" id="L178">		final DataContainer&lt;ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L179">				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);</span>
 
-<span class="nc" id="L181">		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
-<span class="nc" id="L182">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getOrg()));</span>
+<span class="fc" id="L181">		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(Objects::nonNull)</span>
+<span class="fc" id="L182">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getOrg()));</span>
 	}
 
 }

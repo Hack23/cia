@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">DocumentMenuItemFactoryImpl.java</span></div><h1>DocumentMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">DocumentMenuItemFactoryImpl.java</span></div><h1>DocumentMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -44,10 +44,10 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	private static final String ATTACHEMENTS = &quot;Attachements&quot;;
 
 	/** The Constant COMMAND_DOCUMENTS. */
-<span class="nc" id="L47">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
+<span class="fc" id="L47">	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);</span>
 
 	/** The Constant COMMAND_SEARCH_DOCUMENT. */
-<span class="nc" id="L50">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
+<span class="fc" id="L50">	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,&quot;&quot;);</span>
 
 	/** The Constant COMPLETE_DOCUMENT_AS_TEXT. */
 	private static final String COMPLETE_DOCUMENT_AS_TEXT = &quot;Complete document as text&quot;;
@@ -90,7 +90,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
 
 	/** The Constant PERSON_REFERENCES. */
-<span class="nc" id="L93">	private static final String PERSON_REFERENCES = &quot;Person references&quot;;</span>
+	private static final String PERSON_REFERENCES = &quot;Person references&quot;;
 
 	/** The application menu item factory. */
 	@Autowired
@@ -100,84 +100,84 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	 * Instantiates a new document menu item factory impl.
 	 */
 	public DocumentMenuItemFactoryImpl() {
-<span class="nc" id="L103">		super();</span>
-<span class="nc" id="L104">	}</span>
+<span class="fc" id="L103">		super();</span>
+<span class="fc" id="L104">	}</span>
 
 
 	@Override
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="nc" id="L109">			createDocumentsMenuBar(menuBar);</span>
+<span class="fc" id="L109">			createDocumentsMenuBar(menuBar);</span>
 
-<span class="nc" id="L111">			final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE, null);</span>
+<span class="fc" id="L111">			final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE, null);</span>
 
-<span class="nc" id="L113">			documentItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE,</span>
-<span class="nc" id="L114">					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));</span>
+<span class="fc" id="L113">			documentItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE,</span>
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-<span class="nc" id="L116">			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L117">					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
+<span class="fc" id="L116">			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L117">					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
 
-<span class="nc" id="L119">			documentItem.addItem(PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L120">					DocumentPageMode.PERSONREFERENCES.toString(), pageId));</span>
+<span class="fc" id="L119">			documentItem.addItem(PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L120">					DocumentPageMode.PERSONREFERENCES.toString(), pageId));</span>
 
-<span class="nc" id="L122">			documentItem.addItem(DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L123">					DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));</span>
+<span class="fc" id="L122">			documentItem.addItem(DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L123">					DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));</span>
 
-<span class="nc" id="L125">			documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L126">					DocumentPageMode.DOCUMENTDATA.toString(), pageId));</span>
+<span class="fc" id="L125">			documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L126">					DocumentPageMode.DOCUMENTDATA.toString(), pageId));</span>
 
-<span class="nc" id="L128">			documentItem.addItem(DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L129">					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));</span>
+<span class="fc" id="L128">			documentItem.addItem(DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L129">					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));</span>
 
-<span class="nc" id="L131">			documentItem.addItem(DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L132">					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));</span>
+<span class="fc" id="L131">			documentItem.addItem(DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L132">					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));</span>
 
-<span class="nc" id="L134">			documentItem.addItem(DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L135">					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));</span>
+<span class="fc" id="L134">			documentItem.addItem(DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L135">					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));</span>
 
 
-<span class="nc" id="L138">			documentItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,</span>
-<span class="nc" id="L139">					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));</span>
+<span class="fc" id="L138">			documentItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,</span>
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
-<span class="nc" id="L141">	}</span>
+<span class="fc" id="L141">	}</span>
 
 
 	@Override
 	public void createDocumentsMenuBar(final MenuBar menuBar) {
-<span class="nc" id="L146">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L146">		initApplicationMenuBar(menuBar);</span>
 
-<span class="nc" id="L148">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
-<span class="nc" id="L149">		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);</span>
-<span class="nc" id="L150">		documentsItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
-<span class="nc" id="L151">		documentsItem.addItem(&quot;Search Documents&quot;,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
+<span class="fc" id="L148">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L149">		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);</span>
+<span class="fc" id="L150">		documentsItem.addItem(&quot;List all&quot;,VaadinIcons.GROUP, COMMAND_DOCUMENTS);</span>
+<span class="fc" id="L151">		documentsItem.addItem(&quot;Search Documents&quot;,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);</span>
 
-<span class="nc" id="L153">	}</span>
+<span class="fc" id="L153">	}</span>
 
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="nc" id="L158">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L158">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="nc" id="L160">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L161">				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);</span>
+<span class="fc" id="L160">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L161">				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);</span>
 
-<span class="nc" id="L163">		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L164">				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);</span>
+<span class="fc" id="L163">		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L164">				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);</span>
 
-<span class="nc" id="L166">		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L167">				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);</span>
+<span class="fc" id="L166">		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L167">				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);</span>
 
-<span class="nc" id="L169">		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L170">				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);</span>
+<span class="fc" id="L169">		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L170">				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);</span>
 
-<span class="nc" id="L172">		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L173">				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);</span>
+<span class="fc" id="L172">		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L173">				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);</span>
 
-<span class="nc" id="L175">		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L176">				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);</span>
+<span class="fc" id="L175">		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L176">				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);</span>
 
-<span class="nc" id="L178">		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
-<span class="nc" id="L179">				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);</span>
-<span class="nc" id="L180">	}</span>
+<span class="fc" id="L178">		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,</span>
+<span class="fc" id="L179">				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);</span>
+<span class="fc" id="L180">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

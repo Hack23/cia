@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeRankingOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeRankingOverviewPageModContentFactoryImpl.java</span></div><h1>CommitteeRankingOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeRankingOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeRankingOverviewPageModContentFactoryImpl.java</span></div><h1>CommitteeRankingOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -64,8 +64,8 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 	 * impl.
 	 */
 	public CommitteeRankingOverviewPageModContentFactoryImpl() {
-<span class="nc" id="L67">		super();</span>
-<span class="nc" id="L68">	}</span>
+<span class="fc" id="L67">		super();</span>
+<span class="fc" id="L68">	}</span>
 
 	/**
 	 * Creates the description.
@@ -73,39 +73,39 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 	 * @return the text area
 	 */
 	private static TextArea createDescription() {
-<span class="nc" id="L76">		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,</span>
-<span class="nc" id="L77">				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);</span>
-<span class="nc" id="L78">		totalCommitteeRankinglistLabel.setSizeFull();</span>
-<span class="nc" id="L79">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="nc" id="L80">		return totalCommitteeRankinglistLabel;</span>
+<span class="fc" id="L76">		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,</span>
+				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
+<span class="fc" id="L78">		totalCommitteeRankinglistLabel.setSizeFull();</span>
+<span class="fc" id="L79">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
+<span class="fc" id="L80">		return totalCommitteeRankinglistLabel;</span>
 	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L88">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L88">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
 
-<span class="nc" id="L90">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L92">		panelContent.addComponent(createDescription());</span>
+<span class="fc" id="L92">		panelContent.addComponent(createDescription());</span>
 
-<span class="nc" id="L94">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L94">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="nc" id="L96">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
+<span class="fc" id="L96">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
 
-<span class="nc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L99">				parameters, pageId);</span>
+<span class="fc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
 
-<span class="nc" id="L101">		return panelContent;</span>
+<span class="fc" id="L101">		return panelContent;</span>
 
 	}
 
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L108" title="All 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="pc bpc" id="L108" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 

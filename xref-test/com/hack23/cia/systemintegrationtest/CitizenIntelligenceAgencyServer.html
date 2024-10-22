@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>CitizenIntelligenceAgencyServer xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
@@ -172,99 +172,97 @@
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 		<strong class="jxr_keyword">final</strong> MBeanContainer mbContainer = <strong class="jxr_keyword">new</strong> MBeanContainer(ManagementFactory.getPlatformMBeanServer());
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> 		server.addBean(mbContainer);
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		<strong class="jxr_keyword">final</strong> org.eclipse.jetty.webapp.Configurations classlist = org.eclipse.jetty.webapp.Configurations.setServerDefault(server);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 		<strong class="jxr_keyword">final</strong> HttpConfiguration http_config = <strong class="jxr_keyword">new</strong> HttpConfiguration();
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		http_config.setSecureScheme(<span class="jxr_string">"https"</span>);
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 		http_config.setSecurePort(28443);
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		http_config.setSendServerVersion(false);
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 		<strong class="jxr_keyword">final</strong> HttpConfiguration https_config = <strong class="jxr_keyword">new</strong> HttpConfiguration(http_config);
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		https_config.addCustomizer(<strong class="jxr_keyword">new</strong> SecureRequestCustomizer(false));
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		<strong class="jxr_keyword">final</strong> SslContextFactory.Server sslContextFactory = <strong class="jxr_keyword">new</strong> SslContextFactory.Server();
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		sslContextFactory.setKeyStoreType(<span class="jxr_string">"PKCS12"</span>);
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		sslContextFactory.setKeyStorePath(<span class="jxr_string">"target/keystore.p12"</span>);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		sslContextFactory.setTrustStorePath(<span class="jxr_string">"target/keystore.p12"</span>);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		sslContextFactory.setTrustStoreType(<span class="jxr_string">"PKCS12"</span>);
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		sslContextFactory.setKeyStorePassword(<span class="jxr_string">"changeit"</span>);
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		sslContextFactory.setTrustStorePassword(<span class="jxr_string">"changeit"</span>);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		sslContextFactory.setKeyManagerPassword(<span class="jxr_string">"changeit"</span>);
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		sslContextFactory.setCertAlias(<span class="jxr_string">"jetty"</span>);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 		sslContextFactory.setIncludeCipherSuites(<span class="jxr_string">"TLS_AES_256_GCM_SHA384"</span>, <span class="jxr_string">"TLS_CHACHA20_POLY1305_SHA256"</span>,
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> 				<span class="jxr_string">"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"</span>, <span class="jxr_string">"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"</span>,
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 				<span class="jxr_string">"TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256"</span>);
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		sslContextFactory.setExcludeProtocols(<span class="jxr_string">"SSL"</span>, <span class="jxr_string">"SSLv2"</span>, <span class="jxr_string">"SSLv2Hello"</span>, <span class="jxr_string">"SSLv3"</span>, <span class="jxr_string">"TLSv1"</span>, <span class="jxr_string">"TLSv1.1"</span>);
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		sslContextFactory.setIncludeProtocols(<span class="jxr_string">"TLSv1.2"</span>, <span class="jxr_string">"TLSv1.3"</span>);
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		<strong class="jxr_keyword">final</strong> ServerConnector sslConnector = <strong class="jxr_keyword">new</strong> ServerConnector(server,
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 				<strong class="jxr_keyword">new</strong> SslConnectionFactory(sslContextFactory, <span class="jxr_string">"http/1.1"</span>), <strong class="jxr_keyword">new</strong> HttpConnectionFactory(https_config),
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 				<strong class="jxr_keyword">new</strong> HTTP2CServerConnectionFactory(https_config));
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 		sslConnector.setPort(PORT);
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		server.setConnectors(<strong class="jxr_keyword">new</strong> ServerConnector[] { sslConnector });
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 		<strong class="jxr_keyword">final</strong> WebAppContext handler = <strong class="jxr_keyword">new</strong> WebAppContext(<span class="jxr_string">"src/main/webapp"</span>, <span class="jxr_string">"/"</span>);
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		handler.setExtraClasspath(<span class="jxr_string">"target/classes"</span>);
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> 		handler.setParentLoaderPriority(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 		handler.setConfigurationDiscovered(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		handler.setClassLoader(Thread.currentThread().getContextClassLoader());
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 		<strong class="jxr_keyword">final</strong> HandlerList handlers = <strong class="jxr_keyword">new</strong> HandlerList();
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		<strong class="jxr_keyword">final</strong> HttpConfiguration http_config = <strong class="jxr_keyword">new</strong> HttpConfiguration();
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 		http_config.setSecureScheme(<span class="jxr_string">"https"</span>);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 		http_config.setSecurePort(28443);
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		http_config.setSendServerVersion(false);
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		<strong class="jxr_keyword">final</strong> HttpConfiguration https_config = <strong class="jxr_keyword">new</strong> HttpConfiguration(http_config);
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		https_config.addCustomizer(<strong class="jxr_keyword">new</strong> SecureRequestCustomizer(false));
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		<strong class="jxr_keyword">final</strong> SslContextFactory.Server sslContextFactory = <strong class="jxr_keyword">new</strong> SslContextFactory.Server();
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 		sslContextFactory.setKeyStoreType(<span class="jxr_string">"PKCS12"</span>);
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		sslContextFactory.setKeyStorePath(<span class="jxr_string">"target/keystore.p12"</span>);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		sslContextFactory.setTrustStorePath(<span class="jxr_string">"target/keystore.p12"</span>);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		sslContextFactory.setTrustStoreType(<span class="jxr_string">"PKCS12"</span>);
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		sslContextFactory.setKeyStorePassword(<span class="jxr_string">"changeit"</span>);
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 		sslContextFactory.setTrustStorePassword(<span class="jxr_string">"changeit"</span>);
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		sslContextFactory.setKeyManagerPassword(<span class="jxr_string">"changeit"</span>);
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		sslContextFactory.setCertAlias(<span class="jxr_string">"jetty"</span>);
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		sslContextFactory.setIncludeCipherSuites(<span class="jxr_string">"TLS_AES_256_GCM_SHA384"</span>, <span class="jxr_string">"TLS_CHACHA20_POLY1305_SHA256"</span>,
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 				<span class="jxr_string">"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"</span>, <span class="jxr_string">"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"</span>,
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> 				<span class="jxr_string">"TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256"</span>);
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> 		sslContextFactory.setExcludeProtocols(<span class="jxr_string">"SSL"</span>, <span class="jxr_string">"SSLv2"</span>, <span class="jxr_string">"SSLv2Hello"</span>, <span class="jxr_string">"SSLv3"</span>, <span class="jxr_string">"TLSv1"</span>, <span class="jxr_string">"TLSv1.1"</span>);
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 		sslContextFactory.setIncludeProtocols(<span class="jxr_string">"TLSv1.2"</span>, <span class="jxr_string">"TLSv1.3"</span>);
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		<strong class="jxr_keyword">final</strong> ServerConnector sslConnector = <strong class="jxr_keyword">new</strong> ServerConnector(server,
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> 				<strong class="jxr_keyword">new</strong> SslConnectionFactory(sslContextFactory, <span class="jxr_string">"http/1.1"</span>), <strong class="jxr_keyword">new</strong> HttpConnectionFactory(https_config),
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 				<strong class="jxr_keyword">new</strong> HTTP2CServerConnectionFactory(https_config));
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> 		sslConnector.setPort(PORT);
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 		server.setConnectors(<strong class="jxr_keyword">new</strong> ServerConnector[] { sslConnector });
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		<strong class="jxr_keyword">final</strong> WebAppContext handler = <strong class="jxr_keyword">new</strong> WebAppContext(<span class="jxr_string">"src/main/webapp"</span>, <span class="jxr_string">"/"</span>);
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		handler.setExtraClasspath(<span class="jxr_string">"target/classes"</span>);
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 		handler.setParentLoaderPriority(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		handler.setConfigurationDiscovered(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 		handler.setClassLoader(Thread.currentThread().getContextClassLoader());
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 		<strong class="jxr_keyword">final</strong> HandlerList handlers = <strong class="jxr_keyword">new</strong> HandlerList();
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> 		handlers.setHandlers(<strong class="jxr_keyword">new</strong> Handler[] { handler, <strong class="jxr_keyword">new</strong> DefaultHandler() });
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> 		handlers.setHandlers(<strong class="jxr_keyword">new</strong> Handler[] { handler, <strong class="jxr_keyword">new</strong> DefaultHandler() });
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> 
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 		server.setHandler(handlers);
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 	}
-<a class="jxr_linenumber" name="L210" href="#L210">210</a> 
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">	 * Start.</em>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 		<strong class="jxr_keyword">if</strong> (!initialised) {
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 			LOGGER.info(<span class="jxr_string">"Exiting init not called before start"</span>);
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> 			System.exit(-1);
-<a class="jxr_linenumber" name="L220" href="#L220">220</a> 		}
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> 
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> 			server.start();
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> 			LOGGER.error(<span class="jxr_string">"Problem starting server"</span>, e);
-<a class="jxr_linenumber" name="L226" href="#L226">226</a> 		}
-<a class="jxr_linenumber" name="L227" href="#L227">227</a> 	}
-<a class="jxr_linenumber" name="L228" href="#L228">228</a> 
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> <em class="jxr_javadoccomment">	 * Start server.</em>
-<a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> startServer() {
-<a class="jxr_linenumber" name="L233" href="#L233">233</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L234" href="#L234">234</a> 			initLogger();
-<a class="jxr_linenumber" name="L235" href="#L235">235</a> 			init();
-<a class="jxr_linenumber" name="L236" href="#L236">236</a> 			start();
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> 			<strong class="jxr_keyword">while</strong> (!server.isStarted()) {
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 		server.setHandler(handlers);
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> 	}
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> 
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">	 * Start.</em>
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> 		<strong class="jxr_keyword">if</strong> (!initialised) {
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> 			LOGGER.info(<span class="jxr_string">"Exiting init not called before start"</span>);
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> 			System.exit(-1);
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		}
+<a class="jxr_linenumber" name="L219" href="#L219">219</a> 
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 			server.start();
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> 			LOGGER.error(<span class="jxr_string">"Problem starting server"</span>, e);
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> 		}
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> 	}
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> 
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L228" href="#L228">228</a> <em class="jxr_javadoccomment">	 * Start server.</em>
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L230" href="#L230">230</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> startServer() {
+<a class="jxr_linenumber" name="L231" href="#L231">231</a> 		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> 			initLogger();
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> 			init();
+<a class="jxr_linenumber" name="L234" href="#L234">234</a> 			start();
+<a class="jxr_linenumber" name="L235" href="#L235">235</a> 			<strong class="jxr_keyword">while</strong> (!server.isStarted()) {
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> 
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> 			}
 <a class="jxr_linenumber" name="L238" href="#L238">238</a> 
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 			}
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> 
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
-<a class="jxr_linenumber" name="L242" href="#L242">242</a> 			LOGGER.error(<span class="jxr_string">"Application Exception"</span>, e);
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> 		}
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> 	}
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">	 * Stop.</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stop() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> 		server.stop();
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		<strong class="jxr_keyword">while</strong> (!server.isStopped()) {
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		}
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> 	}
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> }
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> 			LOGGER.error(<span class="jxr_string">"Application Exception"</span>, e);
+<a class="jxr_linenumber" name="L241" href="#L241">241</a> 		}
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 	}
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> 
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">	 * Stop.</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stop() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		server.stop();
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 		<strong class="jxr_keyword">while</strong> (!server.isStopped()) {
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> 
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		}
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 	}
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2024 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainViewRegisterPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">MainViewRegisterPageModContentFactoryImpl.java</span></div><h1>MainViewRegisterPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainViewRegisterPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">MainViewRegisterPageModContentFactoryImpl.java</span></div><h1>MainViewRegisterPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -49,7 +49,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-<span class="nc" id="L52">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;username&quot;, &quot;email&quot;, &quot;country&quot;, &quot;userpassword&quot; );</span>
+<span class="fc" id="L52">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;username&quot;, &quot;email&quot;, &quot;country&quot;, &quot;userpassword&quot; );</span>
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = &quot;Citizen Intelligence Agency::Main&quot;;
@@ -57,67 +57,67 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
-<span class="nc" id="L60">	private static final String REGISTER = &quot;Register&quot;;</span>
+	private static final String REGISTER = &quot;Register&quot;;
 
 	/**
 	 * Instantiates a new main view register page mod content factory impl.
 	 */
 	public MainViewRegisterPageModContentFactoryImpl() {
-<span class="nc" id="L66">		super();</span>
-<span class="nc" id="L67">	}</span>
+<span class="fc" id="L66">		super();</span>
+<span class="fc" id="L67">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L72">		final VerticalLayout content = createPanelContent();</span>
-<span class="nc" id="L73">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L72">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
 
 
-<span class="nc" id="L76">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L76">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="nc" id="L78">		final VerticalLayout registerLayout = new VerticalLayout();</span>
-<span class="nc" id="L79">		registerLayout.setSizeFull();</span>
+<span class="fc" id="L78">		final VerticalLayout registerLayout = new VerticalLayout();</span>
+<span class="fc" id="L79">		registerLayout.setSizeFull();</span>
 
-<span class="nc" id="L81">		final Panel formPanel = new Panel();</span>
-<span class="nc" id="L82">		formPanel.setSizeFull();</span>
+<span class="fc" id="L81">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L82">		formPanel.setSizeFull();</span>
 
-<span class="nc" id="L84">		registerLayout.addComponent(formPanel);</span>
+<span class="fc" id="L84">		registerLayout.addComponent(formPanel);</span>
 
-<span class="nc" id="L86">		final FormLayout formContent = new FormLayout();</span>
-<span class="nc" id="L87">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L86">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L87">		formPanel.setContent(formContent);</span>
 
-<span class="nc" id="L89">		final RegisterUserRequest reqisterRequest = new RegisterUserRequest();</span>
-<span class="nc" id="L90">		reqisterRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="nc" id="L91">		reqisterRequest.setUsername(&quot;&quot;);</span>
-<span class="nc" id="L92">		reqisterRequest.setEmail(&quot;&quot;);</span>
-<span class="nc" id="L93">		reqisterRequest.setCountry(&quot;&quot;);</span>
-<span class="nc" id="L94">		reqisterRequest.setUserpassword(&quot;&quot;);</span>
-<span class="nc" id="L95">		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);</span>
-<span class="nc" id="L96">		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,</span>
-<span class="nc" id="L97">				RegisterUserRequest.class,</span>
-<span class="nc" id="L98">				AS_LIST, REGISTER,</span>
-<span class="nc" id="L99">				reqisterListener);</span>
+<span class="fc" id="L89">		final RegisterUserRequest reqisterRequest = new RegisterUserRequest();</span>
+<span class="fc" id="L90">		reqisterRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L91">		reqisterRequest.setUsername(&quot;&quot;);</span>
+<span class="fc" id="L92">		reqisterRequest.setEmail(&quot;&quot;);</span>
+<span class="fc" id="L93">		reqisterRequest.setCountry(&quot;&quot;);</span>
+<span class="fc" id="L94">		reqisterRequest.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L95">		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);</span>
+<span class="fc" id="L96">		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,</span>
+				RegisterUserRequest.class,
+				AS_LIST, REGISTER,
+				reqisterListener);
 
-<span class="nc" id="L101">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="nc" id="L102">		overviewLayout.setSizeFull();</span>
-<span class="nc" id="L103">		content.addComponent(overviewLayout);</span>
-<span class="nc" id="L104">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L101">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L102">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L103">		content.addComponent(overviewLayout);</span>
+<span class="fc" id="L104">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="nc" id="L106">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
-<span class="nc" id="L107">		RowUtil.createRowComponent(grid,registerLayout,&quot;Register a new user&quot;);</span>
+<span class="fc" id="L106">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L107">		RowUtil.createRowComponent(grid,registerLayout,&quot;Register a new user&quot;);</span>
 
-<span class="nc" id="L109">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
-<span class="nc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
-<span class="nc" id="L111">				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);</span>
+<span class="fc" id="L109">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
+				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
-<span class="nc" id="L113">		return content;</span>
+<span class="fc" id="L113">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L119" title="All 2 branches missed.">		return NAME.equals(page)</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">				&amp;&amp; StringUtils.contains(parameters, ApplicationPageMode.REGISTER.toString());</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">				&amp;&amp; StringUtils.contains(parameters, ApplicationPageMode.REGISTER.toString());</span>
 	}
 
 }

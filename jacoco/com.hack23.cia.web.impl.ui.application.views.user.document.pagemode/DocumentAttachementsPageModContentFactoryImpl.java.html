@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentAttachementsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentAttachementsPageModContentFactoryImpl.java</span></div><h1>DocumentAttachementsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentAttachementsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.document.pagemode</a> &gt; <span class="el_source">DocumentAttachementsPageModContentFactoryImpl.java</span></div><h1>DocumentAttachementsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -51,23 +51,23 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-<span class="nc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;fileName&quot;, &quot;fileSize&quot;, &quot;fileType&quot;, &quot;fileUrl&quot; };</span>
+<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;fileName&quot;, &quot;fileSize&quot;, &quot;fileType&quot;, &quot;fileUrl&quot; };</span>
 
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = &quot;Document Attachments&quot;;
 
 	/** The Constant HIDE_COLUMNS. */
-<span class="nc" id="L60">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot; };</span>
+<span class="fc" id="L60">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot; };</span>
 
 	/** The Constant PDF. */
-<span class="nc" id="L63">	private static final String PDF = &quot;pdf&quot;;</span>
+	private static final String PDF = &quot;pdf&quot;;
 
 	/**
 	 * Instantiates a new document attachements page mod content factory impl.
 	 */
 	public DocumentAttachementsPageModContentFactoryImpl() {
-<span class="nc" id="L69">		super();</span>
-<span class="nc" id="L70">	}</span>
+<span class="fc" id="L69">		super();</span>
+<span class="fc" id="L70">	}</span>
 
 	/**
 	 * Display document attachements.
@@ -77,67 +77,67 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 	 */
 	private static void displayDocumentAttachements(final VerticalLayout panelContent,
 			final List&lt;DocumentAttachment&gt; documentAttachmentList) {
-<span class="nc bnc" id="L80" title="All 2 branches missed.">		for (final DocumentAttachment documentAttachment : documentAttachmentList) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		for (final DocumentAttachment documentAttachment : documentAttachmentList) {</span>
 
-<span class="nc bnc" id="L82" title="All 2 branches missed.">			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {</span>
-<span class="nc" id="L83">				final WTPdfViewer wtPdfViewer = new WTPdfViewer();</span>
-<span class="nc" id="L84">				wtPdfViewer.setSizeFull();</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {</span>
+<span class="fc" id="L83">				final WTPdfViewer wtPdfViewer = new WTPdfViewer();</span>
+<span class="fc" id="L84">				wtPdfViewer.setSizeFull();</span>
 
-<span class="nc" id="L86">				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment.getFileUrl()), documentAttachment.getFileName()));</span>
+<span class="fc" id="L86">				wtPdfViewer.setResource(new StreamResource(new StreamSourceImplementation(documentAttachment.getFileUrl()), documentAttachment.getFileName()));</span>
 
-<span class="nc" id="L88">				panelContent.addComponent(wtPdfViewer);</span>
-<span class="nc" id="L89">				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);</span>
-<span class="nc" id="L90">			} else {</span>
-<span class="nc" id="L91">				final VerticalLayout verticalLayout = new VerticalLayout();</span>
-<span class="nc" id="L92">				panelContent.addComponent(verticalLayout);</span>
-<span class="nc" id="L93">				panelContent.setExpandRatio(verticalLayout, ContentRatio.SMALL);</span>
-<span class="nc" id="L94">				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(</span>
-<span class="nc" id="L95">						documentAttachment.getFileName(), documentAttachment.getFileType(),</span>
-<span class="nc" id="L96">						documentAttachment.getFileUrl());</span>
-<span class="nc" id="L97">				verticalLayout.addComponent(link);</span>
+<span class="fc" id="L88">				panelContent.addComponent(wtPdfViewer);</span>
+<span class="fc" id="L89">				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);</span>
+<span class="fc" id="L90">			} else {</span>
+<span class="fc" id="L91">				final VerticalLayout verticalLayout = new VerticalLayout();</span>
+<span class="fc" id="L92">				panelContent.addComponent(verticalLayout);</span>
+<span class="fc" id="L93">				panelContent.setExpandRatio(verticalLayout, ContentRatio.SMALL);</span>
+<span class="fc" id="L94">				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(</span>
+<span class="fc" id="L95">						documentAttachment.getFileName(), documentAttachment.getFileType(),</span>
+<span class="fc" id="L96">						documentAttachment.getFileUrl());</span>
+<span class="fc" id="L97">				verticalLayout.addComponent(link);</span>
 			}
-		}
-<span class="nc" id="L100">	}</span>
+<span class="fc" id="L99">		}</span>
+<span class="fc" id="L100">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L105">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L105">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L107">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L107">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L109">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L109">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L111">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="nc" id="L112">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L111">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L112">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="nc" id="L114">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="nc" id="L115">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
-<span class="nc" id="L116">						DocumentData.class, DocumentData_.id, pageId);</span>
+<span class="fc" id="L114">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L115">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="nc" id="L118">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ATTACHMENTS);</span>
+<span class="fc" id="L118">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ATTACHMENTS);</span>
 
-<span class="nc bnc" id="L120" title="All 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentAttachmentContainer() != null</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {</span>
+<span class="pc bpc" id="L120" title="1 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentAttachmentContainer() != null</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {</span>
 
-<span class="nc" id="L123">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentAttachment.class,</span>
-<span class="nc" id="L124">					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),</span>
-<span class="nc" id="L125">					DOCUMENT_ATTACHMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);</span>
+<span class="fc" id="L123">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentAttachment.class,</span>
+<span class="fc" id="L124">					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),</span>
+					DOCUMENT_ATTACHMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
-<span class="nc" id="L127">			displayDocumentAttachements(panelContent,</span>
-<span class="nc" id="L128">					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());</span>
+<span class="fc" id="L127">			displayDocumentAttachements(panelContent,</span>
+<span class="fc" id="L128">					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());</span>
 		}
 
-<span class="nc" id="L131">		panel.setContent(panelContent);</span>
-<span class="nc" id="L132">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L133">				parameters, pageId);</span>
-<span class="nc" id="L134">		return panelContent;</span>
+<span class="fc" id="L131">		panel.setContent(panelContent);</span>
+<span class="fc" id="L132">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="fc" id="L134">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L140" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTATTACHMENTS.toString());</span>
+<span class="fc bfc" id="L140" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.DOCUMENTATTACHMENTS.toString());</span>
 	}
 
 }

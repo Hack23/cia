@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PartyRankingMenuItemFactoryImpl.java</span></div><h1>PartyRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyRankingMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">PartyRankingMenuItemFactoryImpl.java</span></div><h1>PartyRankingMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -50,28 +50,28 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	private static final String CHART_BY_TOPIC_TEXT = &quot;Chart by topic&quot;;
 
 	/** The Constant COMMAND_CHARTS_ALL_PARTIES. */
-<span class="nc" id="L53">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());</span>
+<span class="fc" id="L53">	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_CURRENT_COMMITTEES. */
-<span class="nc" id="L56">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());</span>
+<span class="fc" id="L56">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES. */
-<span class="nc" id="L59">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());</span>
+<span class="fc" id="L59">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES. */
-<span class="nc" id="L62">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());</span>
+<span class="fc" id="L62">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD. */
-<span class="nc" id="L65">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());</span>
+<span class="fc" id="L65">	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());</span>
 
 	/** The Constant COMMAND_DATAGRID. */
-<span class="nc" id="L68">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);</span>
+<span class="fc" id="L68">	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);</span>
 
 	/** The Constant COMMAND_OVERVIEW. */
-<span class="nc" id="L71">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);</span>
+<span class="fc" id="L71">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);</span>
 
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
-<span class="nc" id="L74">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
+<span class="fc" id="L74">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
 
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = &quot;Current parties active in committees, head count&quot;;
@@ -101,7 +101,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	private static final String RANKING_LIST_BY_TOPIC_TEXT = &quot;Ranking list by topic&quot;;
 
 	/** The Constant TOTAL_MEMBERS. */
-<span class="nc" id="L104">	private static final String TOTAL_MEMBERS = &quot;Total members&quot;;</span>
+	private static final String TOTAL_MEMBERS = &quot;Total members&quot;;
 
 	/** The application menu item factory. */
 	@Autowired
@@ -112,77 +112,77 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	 * Instantiates a new party ranking menu item factory impl.
 	 */
 	public PartyRankingMenuItemFactoryImpl() {
-<span class="nc" id="L115">		super();</span>
-<span class="nc" id="L116">	}</span>
+<span class="fc" id="L115">		super();</span>
+<span class="fc" id="L116">	}</span>
 
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="nc" id="L121">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L121">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="nc" id="L123">		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,</span>
-<span class="nc" id="L124">				COMMAND_DATAGRID, &quot;Scoreboard all parties current assignments and roles in eu,government,committes and parliament&quot;);</span>
-<span class="nc" id="L125">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L126">				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, &quot;Chart over the headcount by party in current goverment&quot;);</span>
+<span class="fc" id="L123">		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,</span>
+				COMMAND_DATAGRID, &quot;Scoreboard all parties current assignments and roles in eu,government,committes and parliament&quot;);
+<span class="fc" id="L125">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, &quot;Chart over the headcount by party in current goverment&quot;);
 
-<span class="nc" id="L128">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L129">				COMMAND_CHARTS_CURRENT_COMMITTEES, &quot;Chart over the headcount by party in current committees&quot;);</span>
-<span class="nc" id="L130">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L131">				COMMAND_CHARTS_CURRENT_PARTIES, &quot;Chart over the headcount by party in current parliament&quot;);</span>
+<span class="fc" id="L128">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_COMMITTEES, &quot;Chart over the headcount by party in current committees&quot;);
+<span class="fc" id="L130">		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_PARTIES, &quot;Chart over the headcount by party in current parliament&quot;);
 
-<span class="nc" id="L133">		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,</span>
-<span class="nc" id="L134">				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, &quot;Party leaders scoreboard&quot;);</span>
+<span class="fc" id="L133">		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, &quot;Party leaders scoreboard&quot;);
 
 
-<span class="nc" id="L137">		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L138">				COMMAND_CHARTS_ALL_PARTIES, &quot;Chart all parties total politician days serverd in parliament&quot;);</span>
+<span class="fc" id="L137">		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_ALL_PARTIES, &quot;Chart all parties total politician days serverd in parliament&quot;);
 
-<span class="nc" id="L140">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L141">				COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);</span>
+<span class="fc" id="L140">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+				COMMAND_PAGEVISITHISTORY, &quot;View history of page visit for this page.&quot;);
 
-<span class="nc" id="L143">	}</span>
+<span class="fc" id="L143">	}</span>
 
 
 	@Override
 	public void createPartyRankingMenuBar(final MenuBar menuBar) {
-<span class="nc" id="L148">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L148">		initApplicationMenuBar(menuBar);</span>
 
-<span class="nc" id="L150">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L150">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="nc" id="L152">		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));</span>
+<span class="fc" id="L152">		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));</span>
 
-<span class="nc" id="L154">	}</span>
+<span class="fc" id="L154">	}</span>
 
 
 	@Override
 	public void createPartyRankingTopics(final MenuItem partynMenuItem) {
 
-<span class="nc" id="L160">		partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L161">				COMMAND_OVERVIEW);</span>
+<span class="fc" id="L160">		partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
+				COMMAND_OVERVIEW);
 
-<span class="nc" id="L163">		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="fc" id="L163">		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="nc" id="L165">		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,VaadinIcons.GROUP,</span>
-<span class="nc" id="L166">				COMMAND_DATAGRID);</span>
-<span class="nc" id="L167">		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);</span>
+<span class="fc" id="L165">		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,VaadinIcons.GROUP,</span>
+				COMMAND_DATAGRID);
+<span class="fc" id="L167">		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);</span>
 
-<span class="nc" id="L169">		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="fc" id="L169">		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);</span>
 
 
-<span class="nc" id="L172">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L173">				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);</span>
+<span class="fc" id="L172">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
 
-<span class="nc" id="L175">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L176">				COMMAND_CHARTS_CURRENT_COMMITTEES);</span>
+<span class="fc" id="L175">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_COMMITTEES);
 
-<span class="nc" id="L178">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L179">				COMMAND_CHARTS_CURRENT_PARTIES);</span>
-<span class="nc" id="L180">		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,</span>
-<span class="nc" id="L181">				COMMAND_CHARTS_ALL_PARTIES);</span>
+<span class="fc" id="L178">		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_CURRENT_PARTIES);
+<span class="fc" id="L180">		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,</span>
+				COMMAND_CHARTS_ALL_PARTIES);
 
-<span class="nc" id="L183">		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-<span class="nc" id="L184">				COMMAND_PAGEVISITHISTORY);</span>
-<span class="nc" id="L185">	}</span>
+<span class="fc" id="L183">		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+				COMMAND_PAGEVISITHISTORY);
+<span class="fc" id="L185">	}</span>
 
 
 }

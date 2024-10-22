@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeDecisionSummaryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeDecisionSummaryPageModContentFactoryImpl.java</span></div><h1>CommitteeDecisionSummaryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeDecisionSummaryPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode</a> &gt; <span class="el_source">CommitteeDecisionSummaryPageModContentFactoryImpl.java</span></div><h1>CommitteeDecisionSummaryPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -49,10 +49,10 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = &quot;ballotId&quot;;
 
-<span class="nc" id="L52">	private static final String[] COLUMN_ORDER = { &quot;createdDate&quot;, &quot;publicDate&quot;, &quot;committeeReport&quot;,</span>
-<span class="nc" id="L53">			&quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;, &quot;embeddedId.issueNummer&quot;, &quot;rm&quot;, &quot;decisionType&quot;, &quot;winner&quot;, &quot;title&quot;,</span>
-<span class="nc" id="L54">			&quot;header&quot;, &quot;endNumber&quot;, &quot;org&quot;, &quot;committeeProposalUrlXml&quot;, BALLOT_ID, &quot;againstProposalParties&quot;,</span>
-<span class="nc" id="L55">			&quot;againstProposalNumber&quot; };</span>
+<span class="fc" id="L52">	private static final String[] COLUMN_ORDER = { &quot;createdDate&quot;, &quot;publicDate&quot;, &quot;committeeReport&quot;,</span>
+			&quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;, &quot;embeddedId.issueNummer&quot;, &quot;rm&quot;, &quot;decisionType&quot;, &quot;winner&quot;, &quot;title&quot;,
+			&quot;header&quot;, &quot;endNumber&quot;, &quot;org&quot;, &quot;committeeProposalUrlXml&quot;, BALLOT_ID, &quot;againstProposalParties&quot;,
+			&quot;againstProposalNumber&quot; };
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = &quot;Committee:&quot;;
@@ -60,57 +60,57 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = &quot;Decision Summary&quot;;
 
-<span class="nc" id="L63">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;,</span>
-<span class="nc" id="L64">			&quot;endNumber&quot;, &quot;org&quot;, &quot;committeeProposalUrlXml&quot;, BALLOT_ID, &quot;againstProposalParties&quot;, &quot;againstProposalNumber&quot;,</span>
-<span class="nc" id="L65">			&quot;createdDate&quot; };</span>
+<span class="fc" id="L63">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;,</span>
+			&quot;endNumber&quot;, &quot;org&quot;, &quot;committeeProposalUrlXml&quot;, BALLOT_ID, &quot;againstProposalParties&quot;, &quot;againstProposalNumber&quot;,
+			&quot;createdDate&quot; };
 
-<span class="nc" id="L67">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-<span class="nc" id="L68">			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);</span>
+<span class="fc" id="L67">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-<span class="nc" id="L70">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;,</span>
-<span class="nc" id="L71">			&quot;embeddedId.issueNummer&quot; };</span>
+<span class="fc" id="L70">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.hangarId&quot;, &quot;embeddedId.id&quot;,</span>
+			&quot;embeddedId.issueNummer&quot; };
 
 	/**
 	 * Instantiates a new committee decision summary page mod content factory
 	 * impl.
 	 */
 	public CommitteeDecisionSummaryPageModContentFactoryImpl() {
-<span class="nc" id="L78">		super();</span>
-<span class="nc" id="L79">	}</span>
+<span class="fc" id="L78">		super();</span>
+<span class="fc" id="L79">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L86">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L86">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L88">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="nc" id="L89">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L88">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L89">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="nc" id="L91">		LabelFactory.createHeader2Label(panelContent, DECISION_SUMMARY);</span>
+<span class="fc" id="L91">		LabelFactory.createHeader2Label(panelContent, DECISION_SUMMARY);</span>
 
-<span class="nc" id="L93">		final DataContainer&lt;ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId&gt; committeeDecisionDataContainer = getApplicationManager()</span>
-<span class="nc" id="L94">				.getDataContainer(ViewRiksdagenCommitteeDecisions.class);</span>
+<span class="fc" id="L93">		final DataContainer&lt;ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId&gt; committeeDecisionDataContainer = getApplicationManager()</span>
+<span class="fc" id="L94">				.getDataContainer(ViewRiksdagenCommitteeDecisions.class);</span>
 
-<span class="nc" id="L96">		final List&lt;ViewRiksdagenCommitteeDecisions&gt; decisionPartySummaryList = committeeDecisionDataContainer</span>
-<span class="nc" id="L97">				.findOrderedListByProperty(ViewRiksdagenCommitteeDecisions_.org, pageId,</span>
-<span class="nc" id="L98">						ViewRiksdagenCommitteeDecisions_.createdDate);</span>
+<span class="fc" id="L96">		final List&lt;ViewRiksdagenCommitteeDecisions&gt; decisionPartySummaryList = committeeDecisionDataContainer</span>
+<span class="fc" id="L97">				.findOrderedListByProperty(ViewRiksdagenCommitteeDecisions_.org, pageId,</span>
+						ViewRiksdagenCommitteeDecisions_.createdDate);
 
-<span class="nc" id="L100">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeDecisions.class,</span>
-<span class="nc" id="L101">				decisionPartySummaryList, DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,</span>
-<span class="nc" id="L102">				BALLOT_ID, null);</span>
+<span class="fc" id="L100">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeDecisions.class,</span>
+				decisionPartySummaryList, DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
+				BALLOT_ID, null);
 
-<span class="nc" id="L104">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="nc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L106">				parameters, pageId);</span>
-<span class="nc" id="L107">		return panelContent;</span>
+<span class="fc" id="L104">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="fc" id="L107">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L113" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DECISIONSUMMARY.toString());</span>
+<span class="fc bfc" id="L113" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DECISIONSUMMARY.toString());</span>
 	}
 
 }

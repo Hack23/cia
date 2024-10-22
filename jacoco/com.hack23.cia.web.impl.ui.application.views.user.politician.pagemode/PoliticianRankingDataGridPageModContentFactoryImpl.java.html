@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRankingDataGridPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRankingDataGridPageModContentFactoryImpl.java</span></div><h1>PoliticianRankingDataGridPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRankingDataGridPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode</a> &gt; <span class="el_source">PoliticianRankingDataGridPageModContentFactoryImpl.java</span></div><h1>PoliticianRankingDataGridPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -43,70 +43,70 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-<span class="nc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, &quot;bornYear&quot;, &quot;totalDaysServed&quot;,</span>
-<span class="nc" id="L47">			&quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;,</span>
-<span class="nc" id="L48">			&quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,</span>
-<span class="nc" id="L49">			&quot;totalDaysServedEu&quot;,</span>
+<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, &quot;bornYear&quot;, &quot;totalDaysServed&quot;,</span>
+			&quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;,
+			&quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,
+			&quot;totalDaysServedEu&quot;,
 
-<span class="nc" id="L51">			&quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;,</span>
+			&quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;,
 
-<span class="nc" id="L53">			&quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;totalDaysServedSpeaker&quot;, &quot;totalDaysServedParty&quot;,</span>
+			&quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;totalDaysServedSpeaker&quot;, &quot;totalDaysServedParty&quot;,
 
-<span class="nc" id="L55">			&quot;totalPartyAssignments&quot;, &quot;totalMinistryAssignments&quot;, &quot;totalCommitteeAssignments&quot;,</span>
-<span class="nc" id="L56">			&quot;totalSpeakerAssignments&quot;,</span>
+			&quot;totalPartyAssignments&quot;, &quot;totalMinistryAssignments&quot;, &quot;totalCommitteeAssignments&quot;,
+			&quot;totalSpeakerAssignments&quot;,
 
-<span class="nc" id="L58">			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,</span>
-<span class="nc" id="L59">			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };</span>
+			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,
+			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };
 
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = &quot;Datagrid&quot;;
 
-<span class="nc" id="L64">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;,&quot;bornYear&quot; };</span>
+<span class="fc" id="L64">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;,&quot;bornYear&quot; };</span>
 
-<span class="nc" id="L66">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);</span>
+<span class="fc" id="L66">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
-<span class="nc" id="L71">	private static final String POLITICIANS = &quot;Politicians&quot;;</span>
+	private static final String POLITICIANS = &quot;Politicians&quot;;
 
 	/**
 	 * Instantiates a new politician ranking data grid page mod content factory
 	 * impl.
 	 */
 	public PoliticianRankingDataGridPageModContentFactoryImpl() {
-<span class="nc" id="L78">		super();</span>
-<span class="nc" id="L79">	}</span>
+<span class="fc" id="L78">		super();</span>
+<span class="fc" id="L79">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="nc" id="L86">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+<span class="fc" id="L86">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
 
-<span class="nc" id="L88">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L88">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L90">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="nc" id="L91">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L90">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
+<span class="fc" id="L91">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-<span class="nc" id="L93">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),</span>
-<span class="nc" id="L94">				POLITICIANS,</span>
-<span class="nc" id="L95">				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);</span>
+<span class="fc" id="L93">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),</span>
+				POLITICIANS,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="nc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
+<span class="fc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
 
-<span class="nc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
-<span class="nc" id="L100">				NAME, parameters, pageId);</span>
+<span class="fc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+				NAME, parameters, pageId);
 
-<span class="nc" id="L102">		return panelContent;</span>
+<span class="fc" id="L102">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L108" title="All 2 branches missed.">		return NAME.equals(page)</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
 	}
 
 }

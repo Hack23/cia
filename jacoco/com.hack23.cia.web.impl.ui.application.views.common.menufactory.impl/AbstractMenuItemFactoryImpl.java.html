@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">AbstractMenuItemFactoryImpl.java</span></div><h1>AbstractMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractMenuItemFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl</a> &gt; <span class="el_source">AbstractMenuItemFactoryImpl.java</span></div><h1>AbstractMenuItemFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -70,91 +70,87 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final String APPLICATION_SESSION_CHARTS = &quot;Active Daily Users&quot;;
 
 	/** The Constant COMMAND_AGENCY. */
-<span class="nc" id="L73">	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L73">	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;&quot;);</span>
 
 	/** The Constant COMMAND_AGENT_OPERATION. */
-<span class="nc" id="L76">	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(</span>
-<span class="nc" id="L77">			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L76">	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, &quot;&quot;);
 
 	/** The Constant COMMAND_APPLICATION_CONFIGURATION. */
-<span class="nc" id="L80">	private static final PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(</span>
-<span class="nc" id="L81">			AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L80">	private static final PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;&quot;);
 
 	/** The Constant COMMAND_APPLICATION_EVENTS. */
-<span class="nc" id="L84">	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(</span>
-<span class="nc" id="L85">			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L84">	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;&quot;);
 
 	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
-<span class="nc" id="L88">	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);</span>
+<span class="fc" id="L88">	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);</span>
 
 	/** The Constant COMMAND_APPLICATION_SESSION. */
-<span class="nc" id="L91">	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(</span>
-<span class="nc" id="L92">			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L91">	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, &quot;&quot;);
 
 	/** The Constant COMMAND_APPLICATION_SESSION_CHARTS. */
-<span class="nc" id="L95">	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(</span>
-<span class="nc" id="L96">			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS);</span>
+<span class="fc" id="L95">	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS);
 
-<span class="nc" id="L98">	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(</span>
-<span class="nc" id="L99">			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());</span>
+<span class="fc" id="L98">	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L99">			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());</span>
 
 	/** The Constant COMMAND_COUNTRY. */
-<span class="nc" id="L102">	private static final PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L102">	private static final PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;&quot;);</span>
 
 	/** The Constant COMMAND_DATASUMMARY. */
-<span class="nc" id="L105">	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(</span>
-<span class="nc" id="L106">			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L105">	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(</span>
+			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, &quot;&quot;);
 
 	/** The Constant COMMAND_EMAIL. */
-<span class="nc" id="L109">	private static final PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,</span>
-<span class="nc" id="L110">			&quot;&quot;);</span>
+<span class="fc" id="L109">	private static final PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,</span>
+			&quot;&quot;);
 
 	/** The Constant COMMAND_LANGUAGE. */
-<span class="nc" id="L113">	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,</span>
-<span class="nc" id="L114">			&quot;&quot;);</span>
-
-	/** The Constant COMMAND_LANGUAGE_CONTENT. */
-<span class="nc" id="L117">	private static final PageModeMenuCommand COMMAND_LANGUAGE_CONTENT = new PageModeMenuCommand(</span>
-<span class="nc" id="L118">			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L113">	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,</span>
+			&quot;&quot;);
 
 	/** The Constant COMMAND_LOGIN. */
-<span class="nc" id="L121">	private static final PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
-<span class="nc" id="L122">			ApplicationPageMode.LOGIN.toString());</span>
+<span class="fc" id="L117">	private static final PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
+<span class="fc" id="L118">			ApplicationPageMode.LOGIN.toString());</span>
 
 	/** The Constant COMMAND_LOGOUT. */
-<span class="nc" id="L125">	private static final PageModeMenuCommand COMMAND_LOGOUT = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
-<span class="nc" id="L126">			ApplicationPageMode.LOGOUT.toString());</span>
+<span class="fc" id="L121">	private static final PageModeMenuCommand COMMAND_LOGOUT = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
+<span class="fc" id="L122">			ApplicationPageMode.LOGOUT.toString());</span>
 
 	/** The Constant COMMAND_MAINVIEW_OVERVIEW. */
-<span class="nc" id="L129">	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
-<span class="nc" id="L130">			PageMode.OVERVIEW);</span>
+<span class="fc" id="L125">	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
 
 
 	/** The Constant COMMAND_DASHBOARDVIEW_OVERVIEW. */
-<span class="nc" id="L134">	private static final PageModeMenuCommand COMMAND_DASHBOARDVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.DASHBOARD_VIEW_NAME,</span>
-<span class="nc" id="L135">			PageMode.OVERVIEW);</span>
+<span class="fc" id="L130">	private static final PageModeMenuCommand COMMAND_DASHBOARDVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.DASHBOARD_VIEW_NAME,</span>
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_MAINVIEW_PAGEVISITHISTORY. */
-<span class="nc" id="L138">	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
-<span class="nc" id="L139">			PageMode.PAGEVISITHISTORY);</span>
+<span class="fc" id="L134">	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
 
 	/** The Constant COMMAND_MONITORING. */
-<span class="nc" id="L142">	private static final PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,</span>
-<span class="nc" id="L143">			&quot;&quot;);</span>
+<span class="fc" id="L138">	private static final PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,</span>
+			&quot;&quot;);
 
 	/** The Constant COMMAND_PORTAL. */
-<span class="nc" id="L146">	private static final PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L142">	private static final PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;&quot;);</span>
 
 	/** The Constant COMMAND_REGISTER. */
-<span class="nc" id="L149">	private static final PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
-<span class="nc" id="L150">			ApplicationPageMode.REGISTER.toString());</span>
+<span class="fc" id="L145">	private static final PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,</span>
+<span class="fc" id="L146">			ApplicationPageMode.REGISTER.toString());</span>
 
 	/** The Constant COMMAND_USERACCOUNT. */
-<span class="nc" id="L153">	private static final PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,</span>
-<span class="nc" id="L154">			&quot;&quot;);</span>
+<span class="fc" id="L149">	private static final PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,</span>
+			&quot;&quot;);
 
 	/** The Constant COMMAND_USERHOME. */
-<span class="nc" id="L157">	private static final PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, &quot;&quot;);</span>
+<span class="fc" id="L153">	private static final PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, &quot;&quot;);</span>
 
 	/** The Constant CONFIGURATION. */
 	private static final String CONFIGURATION = &quot;Configuration&quot;;
@@ -188,9 +184,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant LANGUAGE. */
 	private static final String LANGUAGE = &quot;Language&quot;;
-
-	/** The Constant LANGUAGE_CONTENT. */
-	private static final String LANGUAGE_CONTENT = &quot;Language Content&quot;;
 
 	/** The Constant LINK_STYLE_NAME. */
 	private static final String LINK_STYLE_NAME = &quot;link&quot;;
@@ -238,7 +231,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final String USERACCOUNT = &quot;Useraccount&quot;;
 
 	/** The Constant USERHOME. */
-<span class="nc" id="L241">	private static final String USERHOME = &quot;Userhome&quot;;</span>
+	private static final String USERHOME = &quot;Userhome&quot;;
 
 
 
@@ -247,8 +240,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * Instantiates a new abstract menu item factory impl.
 	 */
 	public AbstractMenuItemFactoryImpl() {
-<span class="nc" id="L250">		super();</span>
-<span class="nc" id="L251">	}</span>
+<span class="fc" id="L243">		super();</span>
+<span class="fc" id="L244">	}</span>
 
 	/**
 	 * Creates the admin menu.
@@ -257,41 +250,40 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the main view item
 	 */
 	private static void createAdminMenu(final MenuItem mainViewItem) {
-<span class="nc bnc" id="L260" title="All 2 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
-<span class="nc" id="L261">			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);</span>
+<span class="fc bfc" id="L253" title="All 2 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {</span>
+<span class="fc" id="L254">			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);</span>
 
-<span class="nc" id="L263">			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);</span>
-<span class="nc" id="L264">			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,VaadinIcons.TOOLS, COMMAND_APPLICATION_CONFIGURATION);</span>
+<span class="fc" id="L256">			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);</span>
+<span class="fc" id="L257">			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,VaadinIcons.TOOLS, COMMAND_APPLICATION_CONFIGURATION);</span>
 
-<span class="nc" id="L266">			configurationMenuItem.addItem(AGENCY,VaadinIcons.SERVER, COMMAND_AGENCY);</span>
-<span class="nc" id="L267">			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP,COMMAND_PORTAL);</span>
-<span class="nc" id="L268">			configurationMenuItem.addItem(COUNTRY,VaadinIcons.FLAG, COMMAND_COUNTRY);</span>
-<span class="nc" id="L269">			configurationMenuItem.addItem(LANGUAGE,VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);</span>
-<span class="nc" id="L270">			configurationMenuItem.addItem(LANGUAGE_CONTENT,VaadinIcons.FILE_TEXT, COMMAND_LANGUAGE_CONTENT);</span>
+<span class="fc" id="L259">			configurationMenuItem.addItem(AGENCY,VaadinIcons.SERVER, COMMAND_AGENCY);</span>
+<span class="fc" id="L260">			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP,COMMAND_PORTAL);</span>
+<span class="fc" id="L261">			configurationMenuItem.addItem(COUNTRY,VaadinIcons.FLAG, COMMAND_COUNTRY);</span>
+<span class="fc" id="L262">			configurationMenuItem.addItem(LANGUAGE,VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);</span>
 
-<span class="nc" id="L272">			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, VaadinIcons.SERVER, null);</span>
+<span class="fc" id="L264">			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, VaadinIcons.SERVER, null);</span>
 
-<span class="nc" id="L274">			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);</span>
+<span class="fc" id="L266">			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);</span>
 
-<span class="nc" id="L276">			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);</span>
-<span class="nc" id="L277">			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);</span>
-
-
-<span class="nc" id="L280">			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);</span>
+<span class="fc" id="L268">			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);</span>
+<span class="fc" id="L269">			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);</span>
 
 
-<span class="nc" id="L283">			managementMenuItem.addItem(SYSTEM_PERFORMANCE,VaadinIcons.DASHBOARD, COMMAND_MONITORING);</span>
+<span class="fc" id="L272">			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);</span>
 
-<span class="nc" id="L285">			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);</span>
-<span class="nc" id="L286">			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);</span>
-<span class="nc" id="L287">			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);</span>
-<span class="nc" id="L288">			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);</span>
-<span class="nc" id="L289">			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);</span>
 
-<span class="nc" id="L291">			userActivityMenuItem.addItem(USERACCOUNT,VaadinIcons.GROUP, COMMAND_USERACCOUNT);</span>
+<span class="fc" id="L275">			managementMenuItem.addItem(SYSTEM_PERFORMANCE,VaadinIcons.DASHBOARD, COMMAND_MONITORING);</span>
+
+<span class="fc" id="L277">			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);</span>
+<span class="fc" id="L278">			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);</span>
+<span class="fc" id="L279">			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);</span>
+<span class="fc" id="L280">			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);</span>
+<span class="fc" id="L281">			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);</span>
+
+<span class="fc" id="L283">			userActivityMenuItem.addItem(USERACCOUNT,VaadinIcons.GROUP, COMMAND_USERACCOUNT);</span>
 
 		}
-<span class="nc" id="L294">	}</span>
+<span class="fc" id="L286">	}</span>
 
 	/**
 	 * Creates the button link.
@@ -308,31 +300,31 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the description
 	 */
 	protected static final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
-<span class="nc" id="L311">		final CssLayout layout = new CssLayout();</span>
-<span class="nc" id="L312">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
-<span class="nc" id="L313">		Responsive.makeResponsive(layout);</span>
-<span class="nc" id="L314">		layout.setSizeUndefined();</span>
+<span class="fc" id="L303">		final CssLayout layout = new CssLayout();</span>
+<span class="fc" id="L304">		layout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="fc" id="L305">		Responsive.makeResponsive(layout);</span>
+<span class="fc" id="L306">		layout.setSizeUndefined();</span>
 
 
-<span class="nc" id="L317">		final Button button = new Button(linkText);</span>
-<span class="nc" id="L318">		Responsive.makeResponsive(button);</span>
-<span class="nc" id="L319">		button.setStyleName(LINK_STYLE_NAME);</span>
-<span class="nc" id="L320">		button.addStyleName(&quot;title&quot;);</span>
-<span class="nc" id="L321">		button.addClickListener(command);</span>
-<span class="nc" id="L322">		button.setIcon(icon);</span>
-<span class="nc" id="L323">		button.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L309">		final Button button = new Button(linkText);</span>
+<span class="fc" id="L310">		Responsive.makeResponsive(button);</span>
+<span class="fc" id="L311">		button.setStyleName(LINK_STYLE_NAME);</span>
+<span class="fc" id="L312">		button.addStyleName(&quot;title&quot;);</span>
+<span class="fc" id="L313">		button.addClickListener(command);</span>
+<span class="fc" id="L314">		button.setIcon(icon);</span>
+<span class="fc" id="L315">		button.setWidth(100, Unit.PERCENTAGE);</span>
 
 
-<span class="nc" id="L326">		layout.addComponent(button);</span>
+<span class="fc" id="L318">		layout.addComponent(button);</span>
 
-<span class="nc" id="L328">		final Label descriptionLabel = new Label(description);</span>
-<span class="nc" id="L329">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
-<span class="nc" id="L330">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="nc" id="L331">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="nc" id="L332">		layout.addComponent(descriptionLabel);</span>
+<span class="fc" id="L320">		final Label descriptionLabel = new Label(description);</span>
+<span class="fc" id="L321">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
+<span class="fc" id="L322">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L323">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L324">		layout.addComponent(descriptionLabel);</span>
 
-<span class="nc" id="L334">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="nc" id="L335">	}</span>
+<span class="fc" id="L326">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
+<span class="fc" id="L327">	}</span>
 
 	/**
 	 * Inits the application menu bar.
@@ -341,30 +333,30 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the menu bar
 	 */
 	protected static final void initApplicationMenuBar(final MenuBar menuBar) {
-<span class="nc" id="L344">		menuBar.removeItems();</span>
-<span class="nc" id="L345">		menuBar.setWidth(MENU_BAR_WIDTH);</span>
-<span class="nc" id="L346">		menuBar.setStyleName(HEADER_STYLE_NAME);</span>
-<span class="nc" id="L347">		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);</span>
+<span class="fc" id="L336">		menuBar.removeItems();</span>
+<span class="fc" id="L337">		menuBar.setWidth(MENU_BAR_WIDTH);</span>
+<span class="fc" id="L338">		menuBar.setStyleName(HEADER_STYLE_NAME);</span>
+<span class="fc" id="L339">		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);</span>
 
-<span class="nc" id="L349">		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);</span>
+<span class="fc" id="L341">		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);</span>
 
-<span class="nc" id="L351">		mainViewItem.addItem(&quot;Dashboard&quot;, VaadinIcons.STAR, COMMAND_DASHBOARDVIEW_OVERVIEW);</span>
+<span class="fc" id="L343">		mainViewItem.addItem(&quot;Dashboard&quot;, VaadinIcons.STAR, COMMAND_DASHBOARDVIEW_OVERVIEW);</span>
 
-<span class="nc" id="L353">		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);</span>
+<span class="fc" id="L345">		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);</span>
 
-<span class="nc" id="L355">		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);</span>
+<span class="fc" id="L347">		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);</span>
 
 
-<span class="nc bnc" id="L358" title="All 4 branches missed.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
-<span class="nc" id="L359">			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);</span>
-<span class="nc" id="L360">			createAdminMenu(mainViewItem);</span>
-<span class="nc" id="L361">			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);</span>
-<span class="nc" id="L362">		} else {</span>
-<span class="nc" id="L363">			mainViewItem.addItem(LOGIN, VaadinIcons.SIGN_IN, COMMAND_LOGIN);</span>
-<span class="nc" id="L364">			mainViewItem.addItem(REGISTER, VaadinIcons.FILE_ADD, COMMAND_REGISTER);</span>
+<span class="fc bfc" id="L350" title="All 4 branches covered.">		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {</span>
+<span class="fc" id="L351">			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);</span>
+<span class="fc" id="L352">			createAdminMenu(mainViewItem);</span>
+<span class="fc" id="L353">			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);</span>
+		} else {
+<span class="fc" id="L355">			mainViewItem.addItem(LOGIN, VaadinIcons.SIGN_IN, COMMAND_LOGIN);</span>
+<span class="fc" id="L356">			mainViewItem.addItem(REGISTER, VaadinIcons.FILE_ADD, COMMAND_REGISTER);</span>
 		}
 
-<span class="nc" id="L367">	}</span>
+<span class="fc" id="L359">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

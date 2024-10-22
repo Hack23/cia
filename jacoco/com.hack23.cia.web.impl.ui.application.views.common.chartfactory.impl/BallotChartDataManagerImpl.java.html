@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BallotChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">BallotChartDataManagerImpl.java</span></div><h1>BallotChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BallotChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">BallotChartDataManagerImpl.java</span></div><h1>BallotChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -42,56 +42,56 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 	 * Instantiates a new ballot chart data manager impl.
 	 */
 	public BallotChartDataManagerImpl() {
-<span class="nc" id="L45">		super();</span>
-<span class="nc" id="L46">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 
 	@Override
 	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyList) {
-<span class="nc" id="L51">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L51">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="nc" id="L53">		final Series series = new Series();</span>
+<span class="fc" id="L53">		final Series series = new Series();</span>
 
-<span class="nc" id="L55">		series.addSeries(new XYseries().setLabel(&quot;Yes&quot;));</span>
-<span class="nc" id="L56">		series.addSeries(new XYseries().setLabel(&quot;No&quot;));</span>
-<span class="nc" id="L57">		series.addSeries(new XYseries().setLabel(&quot;Abstain&quot;));</span>
-<span class="nc" id="L58">		series.addSeries(new XYseries().setLabel(&quot;Absent&quot;));</span>
+<span class="fc" id="L55">		series.addSeries(new XYseries().setLabel(&quot;Yes&quot;));</span>
+<span class="fc" id="L56">		series.addSeries(new XYseries().setLabel(&quot;No&quot;));</span>
+<span class="fc" id="L57">		series.addSeries(new XYseries().setLabel(&quot;Abstain&quot;));</span>
+<span class="fc" id="L58">		series.addSeries(new XYseries().setLabel(&quot;Absent&quot;));</span>
 
-<span class="nc" id="L60">		String caption=null;</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">			if (caption == null) {</span>
-<span class="nc" id="L63">				caption = &quot;Party Summary : &quot; + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + &quot; &quot; + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();</span>
-<span class="nc" id="L64">				content.setCaption(caption);</span>
-<span class="nc" id="L65">				tab.setCaption(caption);</span>
+<span class="fc" id="L60">		String caption=null;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">			if (caption == null) {</span>
+<span class="fc" id="L63">				caption = &quot;Party Summary : &quot; + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + &quot; &quot; + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();</span>
+<span class="fc" id="L64">				content.setCaption(caption);</span>
+<span class="fc" id="L65">				tab.setCaption(caption);</span>
 			}
 
-<span class="nc" id="L68">			dataSeries.newSeries()</span>
-<span class="nc" id="L69">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())</span>
-<span class="nc" id="L70">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())</span>
-<span class="nc" id="L71">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())</span>
-<span class="nc" id="L72">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());</span>
-		}
+<span class="fc" id="L68">			dataSeries.newSeries()</span>
+<span class="fc" id="L69">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())</span>
+<span class="fc" id="L70">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())</span>
+<span class="fc" id="L71">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())</span>
+<span class="fc" id="L72">			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());</span>
+<span class="fc" id="L73">		}</span>
 
 
-<span class="nc" id="L76">		addChart(content,caption + &quot; ( 4 circles Yes/No/Abstain/Absent votes by party )&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChartWithSeries(series)).show(), true);</span>
-<span class="nc" id="L77">	}</span>
+<span class="fc" id="L76">		addChart(content,caption + &quot; ( 4 circles Yes/No/Abstain/Absent votes by party )&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChartWithSeries(series)).show(), true);</span>
+<span class="fc" id="L77">	}</span>
 
 
 
 	@Override
 	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
-<span class="nc" id="L83">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L83">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="nc" id="L85">		dataSeries.newSeries().add(&quot;Yes&quot;, viewRiksdagenVoteDataBallotSummary.getYesVotes());</span>
-<span class="nc" id="L86">		dataSeries.newSeries().add(&quot;No&quot;, viewRiksdagenVoteDataBallotSummary.getNoVotes());</span>
-<span class="nc" id="L87">		dataSeries.newSeries().add(&quot;Abstain&quot;, viewRiksdagenVoteDataBallotSummary.getAbstainVotes());</span>
-<span class="nc" id="L88">		dataSeries.newSeries().add(&quot;Absent&quot;, viewRiksdagenVoteDataBallotSummary.getAbsentVotes());</span>
+<span class="fc" id="L85">		dataSeries.newSeries().add(&quot;Yes&quot;, viewRiksdagenVoteDataBallotSummary.getYesVotes());</span>
+<span class="fc" id="L86">		dataSeries.newSeries().add(&quot;No&quot;, viewRiksdagenVoteDataBallotSummary.getNoVotes());</span>
+<span class="fc" id="L87">		dataSeries.newSeries().add(&quot;Abstain&quot;, viewRiksdagenVoteDataBallotSummary.getAbstainVotes());</span>
+<span class="fc" id="L88">		dataSeries.newSeries().add(&quot;Absent&quot;, viewRiksdagenVoteDataBallotSummary.getAbsentVotes());</span>
 
-<span class="nc" id="L90">		final String caption = &quot;Summary : &quot; +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + &quot; &quot; + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();</span>
-<span class="nc" id="L91">		tab.setCaption(caption);</span>
+<span class="fc" id="L90">		final String caption = &quot;Summary : &quot; +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + &quot; &quot; + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();</span>
+<span class="fc" id="L91">		tab.setCaption(caption);</span>
 
-<span class="nc" id="L93">		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);</span>
-<span class="nc" id="L94">	}</span>
+<span class="fc" id="L93">		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);</span>
+<span class="fc" id="L94">	}</span>
 
 
 }

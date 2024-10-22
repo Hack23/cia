@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParliamentChartsPartyGenderPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode</a> &gt; <span class="el_source">ParliamentChartsPartyGenderPageModContentFactoryImpl.java</span></div><h1>ParliamentChartsPartyGenderPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParliamentChartsPartyGenderPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode</a> &gt; <span class="el_source">ParliamentChartsPartyGenderPageModContentFactoryImpl.java</span></div><h1>ParliamentChartsPartyGenderPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -51,32 +51,32 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 	 * impl.
 	 */
 	public ParliamentChartsPartyGenderPageModContentFactoryImpl() {
-<span class="nc" id="L54">		super();</span>
-<span class="nc" id="L55">	}</span>
+<span class="fc" id="L54">		super();</span>
+<span class="fc" id="L55">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="nc" id="L61">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
 
 
-<span class="nc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
 
-<span class="nc" id="L66">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
+<span class="fc" id="L66">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
 
-<span class="nc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
-<span class="nc" id="L69">				parameters, pageId);</span>
-<span class="nc" id="L70">		panel.setCaption(NAME + &quot;::&quot; + PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);</span>
+<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+<span class="fc" id="L70">		panel.setCaption(NAME + &quot;::&quot; + PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);</span>
 
-<span class="nc" id="L72">		return panelContent;</span>
+<span class="fc" id="L72">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L78" title="All 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.PARTYGENDER.toString());</span>
+<span class="fc bfc" id="L78" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.PARTYGENDER.toString());</span>
 	}
 
 }

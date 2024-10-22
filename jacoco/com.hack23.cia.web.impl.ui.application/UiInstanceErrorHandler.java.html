@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UiInstanceErrorHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">UiInstanceErrorHandler.java</span></div><h1>UiInstanceErrorHandler.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UiInstanceErrorHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">UiInstanceErrorHandler.java</span></div><h1>UiInstanceErrorHandler.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -38,10 +38,10 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 	private static final String LOG_WARN_VAADIN_ERROR = &quot;Vaadin error&quot;;
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L41">	private static final Logger LOGGER = LoggerFactory.getLogger(UiInstanceErrorHandler.class);</span>
+<span class="fc" id="L41">	private static final Logger LOGGER = LoggerFactory.getLogger(UiInstanceErrorHandler.class);</span>
 
 	/** The Constant serialVersionUID. */
-<span class="nc" id="L44">	private static final long serialVersionUID = 1L;</span>
+	private static final long serialVersionUID = 1L;
 
 	/** The ui. */
 	private final UI ui;
@@ -53,19 +53,19 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 	 *            the ui
 	 */
 	public UiInstanceErrorHandler(final UI ui) {
-<span class="nc" id="L56">		super();</span>
-<span class="nc" id="L57">		this.ui = ui;</span>
-<span class="nc" id="L58">	}</span>
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">		this.ui = ui;</span>
+<span class="fc" id="L58">	}</span>
 
 	@Override
 	public void error(final ErrorEvent event) {
-<span class="nc bnc" id="L62" title="All 2 branches missed.">		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof final AccessDeniedException accessDeniedException) {</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof final AccessDeniedException accessDeniedException) {</span>
 <span class="nc" id="L63">			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);</span>
 <span class="nc" id="L64">			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);</span>
-<span class="nc" id="L65">		} else {</span>
-<span class="nc" id="L66">			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());</span>
+		} else {
+<span class="fc" id="L66">			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());</span>
 		}
-<span class="nc" id="L68">	}</span>
+<span class="fc" id="L68">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

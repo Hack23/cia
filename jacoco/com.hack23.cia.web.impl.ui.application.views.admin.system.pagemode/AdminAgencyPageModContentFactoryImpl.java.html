@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminAgencyPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminAgencyPageModContentFactoryImpl.java</span></div><h1>AdminAgencyPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminAgencyPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminAgencyPageModContentFactoryImpl.java</span></div><h1>AdminAgencyPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -55,19 +55,19 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 	private static final String AGENCY = &quot;Agency&quot;;
 
 	/** The Constant AGENCY_FORM_FIELDS. */
-<span class="nc" id="L58">	private static final List&lt;String&gt; AGENCY_FORM_FIELDS = Arrays.asList( &quot;agencyName&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L58">	private static final List&lt;String&gt; AGENCY_FORM_FIELDS = Arrays.asList( &quot;agencyName&quot;, &quot;description&quot;);</span>
 
 	/** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
-<span class="nc" id="L61">	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = { new ListPropertyConverter(&quot;portalName&quot;, &quot;portals&quot;)};</span>
+<span class="fc" id="L61">	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = { new ListPropertyConverter(&quot;portalName&quot;, &quot;portals&quot;)};</span>
 
 	/** The Constant AGENCY_GRID_COLUMN_ORDER. */
-<span class="nc" id="L64">	private static final String[] AGENCY_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;agencyName&quot;, &quot;description&quot;, &quot;portals&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L64">	private static final String[] AGENCY_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;agencyName&quot;, &quot;description&quot;, &quot;portals&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	/** The Constant AGENCY_GRID_HIDE_COLUMNS. */
-<span class="nc" id="L67">	private static final String[] AGENCY_GRID_HIDE_COLUMNS = { &quot;hjid&quot;,&quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L67">	private static final String[] AGENCY_GRID_HIDE_COLUMNS = { &quot;hjid&quot;,&quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	/** The Constant AGENCY_GRID_LISTENER. */
-<span class="nc" id="L70">	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L70">	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
@@ -76,79 +76,79 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 	private static final String PORTAL = &quot;Portal&quot;;
 
 	/** The Constant PORTAL_GRID_COLUMN_ORDER. */
-<span class="nc" id="L79">	private static final String[] PORTAL_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L79">	private static final String[] PORTAL_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	/** The Constant PORTAL_GRID_HIDE_COLUMNS. */
-<span class="nc" id="L82">	private static final String[] PORTAL_GRID_HIDE_COLUMNS = { &quot;hjid&quot;,&quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;googleMapApiKey&quot; };</span>
+<span class="fc" id="L82">	private static final String[] PORTAL_GRID_HIDE_COLUMNS = { &quot;hjid&quot;,&quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;googleMapApiKey&quot; };</span>
 
 	/** The Constant PORTAL_GRID_LISTENER. */
-<span class="nc" id="L85">	private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L85">	private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/**
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminAgencyPageModContentFactoryImpl() {
-<span class="nc" id="L91">		super(NAME);</span>
-<span class="nc" id="L92">	}</span>
+<span class="fc" id="L91">		super(NAME);</span>
+<span class="fc" id="L92">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L97">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L97">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="nc" id="L99">		final String pageId = getPageId(parameters);</span>
-<span class="nc" id="L100">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L99">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L100">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="nc" id="L102">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
-
-
-<span class="nc" id="L105">		LabelFactory.createHeader2Label(content,ADMIN_AGENCY);</span>
-
-<span class="nc" id="L107">		final DataContainer&lt;Agency, Long&gt; dataContainer = getApplicationManager().getDataContainer(Agency.class);</span>
-
-<span class="nc" id="L109">		final List&lt;Agency&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);</span>
-
-<span class="nc" id="L111">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
-
-<span class="nc" id="L113">		getGridFactory().createBasicBeanItemGrid(content,</span>
-<span class="nc" id="L114">				Agency.class,pageOrderBy, AGENCY,</span>
-<span class="nc" id="L115">				AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS,</span>
-<span class="nc" id="L116">				AGENCY_GRID_LISTENER, null, AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);</span>
-
-<span class="nc bnc" id="L118" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
-
-<span class="nc" id="L120">			final VerticalLayout leftLayout = new VerticalLayout();</span>
-<span class="nc" id="L121">			leftLayout.setSizeFull();</span>
-<span class="nc" id="L122">			final VerticalLayout rightLayout = new VerticalLayout();</span>
-<span class="nc" id="L123">			rightLayout.setSizeFull();</span>
-<span class="nc" id="L124">			final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="nc" id="L125">			horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
-<span class="nc" id="L126">			content.addComponent(horizontalLayout);</span>
-
-<span class="nc" id="L128">			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L102">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
 
-<span class="nc" id="L131">			horizontalLayout.addComponent(leftLayout);</span>
-<span class="nc" id="L132">			horizontalLayout.addComponent(rightLayout);</span>
+<span class="fc" id="L105">		LabelFactory.createHeader2Label(content,ADMIN_AGENCY);</span>
 
-<span class="nc" id="L134">			final Agency agency = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">			if (agency != null) {</span>
+<span class="fc" id="L107">		final DataContainer&lt;Agency, Long&gt; dataContainer = getApplicationManager().getDataContainer(Agency.class);</span>
 
-<span class="nc" id="L137">				getFormFactory().addFormPanelTextFields(leftLayout, agency, Agency.class,</span>
-<span class="nc" id="L138">						AGENCY_FORM_FIELDS);</span>
+<span class="fc" id="L109">		final List&lt;Agency&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);</span>
 
-<span class="nc" id="L140">				getGridFactory().createBasicBeanItemGrid(rightLayout,Portal.class, agency.getPortals(),</span>
-<span class="nc" id="L141">						PORTAL,</span>
-<span class="nc" id="L142">						PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,</span>
-<span class="nc" id="L143">						PORTAL_GRID_LISTENER, null, null);</span>
+<span class="fc" id="L111">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+
+<span class="fc" id="L113">		getGridFactory().createBasicBeanItemGrid(content,</span>
+				Agency.class,pageOrderBy, AGENCY,
+				AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS,
+				AGENCY_GRID_LISTENER, null, AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
+
+<span class="pc bpc" id="L118" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+
+<span class="fc" id="L120">			final VerticalLayout leftLayout = new VerticalLayout();</span>
+<span class="fc" id="L121">			leftLayout.setSizeFull();</span>
+<span class="fc" id="L122">			final VerticalLayout rightLayout = new VerticalLayout();</span>
+<span class="fc" id="L123">			rightLayout.setSizeFull();</span>
+<span class="fc" id="L124">			final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L125">			horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="fc" id="L126">			content.addComponent(horizontalLayout);</span>
+
+<span class="fc" id="L128">			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);</span>
+
+
+<span class="fc" id="L131">			horizontalLayout.addComponent(leftLayout);</span>
+<span class="fc" id="L132">			horizontalLayout.addComponent(rightLayout);</span>
+
+<span class="fc" id="L134">			final Agency agency = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">			if (agency != null) {</span>
+
+<span class="fc" id="L137">				getFormFactory().addFormPanelTextFields(leftLayout, agency, Agency.class,</span>
+						AGENCY_FORM_FIELDS);
+
+<span class="fc" id="L140">				getGridFactory().createBasicBeanItemGrid(rightLayout,Portal.class, agency.getPortals(),</span>
+						PORTAL,
+						PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,
+						PORTAL_GRID_LISTENER, null, null);
 			}
 
 		}
 
-<span class="nc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,</span>
-<span class="nc" id="L149">				NAME, null, pageId);</span>
+<span class="fc" id="L148">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,</span>
+				NAME, null, pageId);
 
-<span class="nc" id="L151">		return content;</span>
+<span class="fc" id="L151">		return content;</span>
 
 	}
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DocumentChartDataManagerImpl.java</span></div><h1>DocumentChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentChartDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DocumentChartDataManagerImpl.java</span></div><h1>DocumentChartDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -53,20 +53,20 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = &quot;&quot;;
 
-<span class="nc" id="L56">	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);</span>
+<span class="fc" id="L56">	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);</span>
 
 	/** The Constant MOT_PROP_BET. */
 	private static final String MOT_PROP_BET = &quot;mot:prop:bet&quot;;
 
 	/** The Constant YEAR_PREFIX. */
-<span class="nc" id="L62">	private static final String YEAR_PREFIX = &quot;19&quot;;</span>
+	private static final String YEAR_PREFIX = &quot;19&quot;;
 
 	/**
 	 * Instantiates a new document chart data manager impl.
 	 */
 	public DocumentChartDataManagerImpl() {
-<span class="nc" id="L68">		super();</span>
-<span class="nc" id="L69">	}</span>
+<span class="fc" id="L68">		super();</span>
+<span class="fc" id="L69">	}</span>
 
 	/**
 	 * Adds the data series.
@@ -81,41 +81,41 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			final SimpleDateFormat parseInputDateFormat, final DataSeries dataSeries, final Series series,
 			final Entry&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; entry) {
 
-<span class="nc" id="L84">		series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
-<span class="nc" id="L85">		dataSeries.newSeries();</span>
+<span class="fc" id="L84">		series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="fc" id="L85">		dataSeries.newSeries();</span>
 
-<span class="nc bnc" id="L87" title="All 2 branches missed.">		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {</span>
-<span class="nc bnc" id="L88" title="All 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {</span>
+<span class="pc bpc" id="L88" title="2 of 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
 				try {
-<span class="nc" id="L90">					dataSeries.add(simpleDateFormat.format(parseInputDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());</span>
+<span class="fc" id="L90">					dataSeries.add(simpleDateFormat.format(parseInputDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());</span>
 <span class="nc" id="L91">				} catch (final ParseException e) {</span>
 <span class="nc" id="L92">					LOGGER.warn(&quot;Problem parsing date:{}&quot;, item.getEmbeddedId().getPublicDate());</span>
-				}
+<span class="fc" id="L93">				}</span>
 
 			}
-		}
-<span class="nc" id="L97">	}</span>
+<span class="fc" id="L96">		}</span>
+<span class="fc" id="L97">	}</span>
 
 	@Override
 	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
-<span class="nc" id="L101">		final Map&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; map = getDocumentTypeMap();</span>
-<span class="nc" id="L102">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
-<span class="nc" id="L103">		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;,Locale.ENGLISH);</span>
+<span class="fc" id="L101">		final Map&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; map = getDocumentTypeMap();</span>
+<span class="fc" id="L102">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L103">		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;,Locale.ENGLISH);</span>
 
-<span class="nc" id="L105">		final DataSeries dataSeries = new DataSeries();</span>
-<span class="nc" id="L106">		final Series series = new Series();</span>
+<span class="fc" id="L105">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L106">		final Series series = new Series();</span>
 
-<span class="nc bnc" id="L108" title="All 2 branches missed.">		for (final Entry&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
-<span class="nc bnc" id="L109" title="All 4 branches missed.">			if (entry.getKey() != null &amp;&amp; !EMPTY_STRING.equals(entry.getKey())) {</span>
-<span class="nc" id="L110">				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		for (final Entry&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; entry : map.entrySet()) {</span>
+<span class="pc bpc" id="L109" title="1 of 4 branches missed.">			if (entry.getKey() != null &amp;&amp; !EMPTY_STRING.equals(entry.getKey())) {</span>
+<span class="fc" id="L110">				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);</span>
 			}
-		}
+<span class="fc" id="L112">		}</span>
 
-<span class="nc" id="L114">		addChart(content, &quot;Document type&quot;,</span>
-<span class="nc" id="L115">				new DCharts().setDataSeries(dataSeries)</span>
-<span class="nc" id="L116">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
-<span class="nc" id="L117">				true);</span>
-<span class="nc" id="L118">	}</span>
+<span class="fc" id="L114">		addChart(content, &quot;Document type&quot;,</span>
+<span class="fc" id="L115">				new DCharts().setDataSeries(dataSeries)</span>
+<span class="fc" id="L116">						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),</span>
+				true);
+<span class="fc" id="L118">	}</span>
 
 	/**
 	 * Gets the document type map.
@@ -123,13 +123,13 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the document type map
 	 */
 	private Map&lt;String, List&lt;ViewRiksdagenDocumentTypeDailySummary&gt;&gt; getDocumentTypeMap() {
-<span class="nc" id="L126">		final DataContainer&lt;ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="nc" id="L127">				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);</span>
+<span class="fc" id="L126">		final DataContainer&lt;ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId&gt; documentTypeSummaryDailyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L127">				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);</span>
 
-<span class="nc" id="L129">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()</span>
-<span class="nc bnc" id="L130" title="All 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">						&amp;&amp; StringUtils.containsIgnoreCase(MOT_PROP_BET, t.getEmbeddedId().getDocumentType()))</span>
-<span class="nc" id="L132">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDocumentType()));</span>
+<span class="fc" id="L129">		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()</span>
+<span class="pc bpc" id="L130" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">						&amp;&amp; StringUtils.containsIgnoreCase(MOT_PROP_BET, t.getEmbeddedId().getDocumentType()))</span>
+<span class="fc" id="L132">				.collect(Collectors.groupingBy(t -&gt; t.getEmbeddedId().getDocumentType()));</span>
 	}
 
 }

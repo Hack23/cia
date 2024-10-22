@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataSummaryOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode</a> &gt; <span class="el_source">DataSummaryOverviewPageModContentFactoryImpl.java</span></div><h1>DataSummaryOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataSummaryOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode</a> &gt; <span class="el_source">DataSummaryOverviewPageModContentFactoryImpl.java</span></div><h1>DataSummaryOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -54,9 +54,9 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant ADMIN_DATA_SUMMARY. */
 	private static final String ADMIN_DATA_SUMMARY = &quot;Admin Data Summary&quot;;
 
-<span class="nc" id="L57">	private static final String[] COLUMN_ORDER = { &quot;dataType&quot;, &quot;dataSize&quot; };</span>
+<span class="fc" id="L57">	private static final String[] COLUMN_ORDER = { &quot;dataType&quot;, &quot;dataSize&quot; };</span>
 
-<span class="nc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
+<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;id&quot; };</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
@@ -80,91 +80,91 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = &quot;Update document search index&quot;;
 
 	/** The Constant UPDATE_SEARCH_INDEX. */
-<span class="nc" id="L83">	private static final String UPDATE_SEARCH_INDEX = &quot;Update Search Index&quot;;</span>
+	private static final String UPDATE_SEARCH_INDEX = &quot;Update Search Index&quot;;
 
 	/**
 	 * Instantiates a new data summary overview page mod content factory impl.
 	 */
 	public DataSummaryOverviewPageModContentFactoryImpl() {
-<span class="nc" id="L89">		super();</span>
-<span class="nc" id="L90">	}</span>
+<span class="fc" id="L89">		super();</span>
+<span class="fc" id="L90">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L95">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L95">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="nc" id="L97">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L97">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="nc" id="L99">		LabelFactory.createHeader2Label(content, ADMIN_DATA_SUMMARY);</span>
+<span class="fc" id="L99">		LabelFactory.createHeader2Label(content, ADMIN_DATA_SUMMARY);</span>
 
-<span class="nc" id="L101">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="nc" id="L102">		horizontalLayout.setSizeFull();</span>
+<span class="fc" id="L101">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L102">		horizontalLayout.setSizeFull();</span>
 
-<span class="nc" id="L104">		content.addComponent(horizontalLayout);</span>
-<span class="nc" id="L105">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L104">		content.addComponent(horizontalLayout);</span>
+<span class="fc" id="L105">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
 
-<span class="nc" id="L107">		final DataContainer&lt;ViewAuditDataSummary, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="nc" id="L108">				.getDataContainer(ViewAuditDataSummary.class);</span>
+<span class="fc" id="L107">		final DataContainer&lt;ViewAuditDataSummary, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L108">				.getDataContainer(ViewAuditDataSummary.class);</span>
 
-<span class="nc" id="L110">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class,</span>
-<span class="nc" id="L111">				dataContainer.getAll(), ADMIN_DATA_SUMMARY, null, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);</span>
+<span class="fc" id="L110">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class,</span>
+<span class="fc" id="L111">				dataContainer.getAll(), ADMIN_DATA_SUMMARY, null, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);</span>
 
-<span class="nc" id="L113">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="nc" id="L114">		overviewLayout.setSizeFull();</span>
-<span class="nc" id="L115">		content.addComponent(overviewLayout);</span>
-<span class="nc" id="L116">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L113">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L114">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L115">		content.addComponent(overviewLayout);</span>
+<span class="fc" id="L116">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="nc" id="L118">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L118">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 
-<span class="nc" id="L120">		final RefreshDataViewsRequest refreshRequest = new RefreshDataViewsRequest();</span>
-<span class="nc" id="L121">		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L120">		final RefreshDataViewsRequest refreshRequest = new RefreshDataViewsRequest();</span>
+<span class="fc" id="L121">		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
 
-<span class="nc" id="L123">		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);</span>
-<span class="nc" id="L124">		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(refreshRequest));</span>
-<span class="nc" id="L125">		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);</span>
+<span class="fc" id="L123">		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);</span>
+<span class="fc" id="L124">		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(refreshRequest));</span>
+<span class="fc" id="L125">		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);</span>
 
-<span class="nc" id="L127">		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);</span>
+<span class="fc" id="L127">		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);</span>
 
-<span class="nc" id="L129">		final UpdateSearchIndexRequest updateIndexRequest = new UpdateSearchIndexRequest();</span>
-<span class="nc" id="L130">		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L129">		final UpdateSearchIndexRequest updateIndexRequest = new UpdateSearchIndexRequest();</span>
+<span class="fc" id="L130">		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
 
-<span class="nc" id="L132">		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(updateIndexRequest));</span>
-<span class="nc" id="L133">		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);</span>
+<span class="fc" id="L132">		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(updateIndexRequest));</span>
+<span class="fc" id="L133">		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);</span>
 
-<span class="nc" id="L135">		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);</span>
+<span class="fc" id="L135">		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);</span>
 
-<span class="nc" id="L137">		final RemoveDataRequest removePoliticianRequest = new RemoveDataRequest();</span>
-<span class="nc" id="L138">		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="nc" id="L139">		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);</span>
+<span class="fc" id="L137">		final RemoveDataRequest removePoliticianRequest = new RemoveDataRequest();</span>
+<span class="fc" id="L138">		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L139">		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);</span>
 
-<span class="nc" id="L141">		removeDataButton.addClickListener(new RemoveDataClickListener(removePoliticianRequest));</span>
-<span class="nc" id="L142">		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);</span>
+<span class="fc" id="L141">		removeDataButton.addClickListener(new RemoveDataClickListener(removePoliticianRequest));</span>
+<span class="fc" id="L142">		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);</span>
 
-<span class="nc" id="L144">		final RemoveDataRequest removeDocumentsRequest = new RemoveDataRequest();</span>
-<span class="nc" id="L145">		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="nc" id="L146">		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);</span>
+<span class="fc" id="L144">		final RemoveDataRequest removeDocumentsRequest = new RemoveDataRequest();</span>
+<span class="fc" id="L145">		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L146">		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);</span>
 
-<span class="nc" id="L148">		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);</span>
-<span class="nc" id="L149">		removeDocumentsButton.addClickListener(new RemoveDataClickListener(removeDocumentsRequest));</span>
-<span class="nc" id="L150">		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);</span>
+<span class="fc" id="L148">		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);</span>
+<span class="fc" id="L149">		removeDocumentsButton.addClickListener(new RemoveDataClickListener(removeDocumentsRequest));</span>
+<span class="fc" id="L150">		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);</span>
 
-<span class="nc" id="L152">		final RemoveDataRequest removeApplicationHistoryRequest = new RemoveDataRequest();</span>
-<span class="nc" id="L153">		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="nc" id="L154">		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);</span>
+<span class="fc" id="L152">		final RemoveDataRequest removeApplicationHistoryRequest = new RemoveDataRequest();</span>
+<span class="fc" id="L153">		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L154">		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);</span>
 
-<span class="nc" id="L156">		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);</span>
-<span class="nc" id="L157">		removeApplicationHistoryButton.addClickListener(new RemoveDataClickListener(removeApplicationHistoryRequest));</span>
-<span class="nc" id="L158">		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);</span>
+<span class="fc" id="L156">		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);</span>
+<span class="fc" id="L157">		removeApplicationHistoryButton.addClickListener(new RemoveDataClickListener(removeApplicationHistoryRequest));</span>
+<span class="fc" id="L158">		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);</span>
 
-<span class="nc" id="L160">		return content;</span>
+<span class="fc" id="L160">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="nc bnc" id="L166" title="All 2 branches missed.">		return NAME.equals(page)</span>
-<span class="nc bnc" id="L167" title="All 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="pc bpc" id="L167" title="3 of 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

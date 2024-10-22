@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CitizenIntelligenceAgencyUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">CitizenIntelligenceAgencyUI.java</span></div><h1>CitizenIntelligenceAgencyUI.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">/*</span>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CitizenIntelligenceAgencyUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application</a> &gt; <span class="el_source">CitizenIntelligenceAgencyUI.java</span></div><h1>CitizenIntelligenceAgencyUI.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -65,8 +65,8 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = &quot;Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}&quot;;
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CitizenIntelligenceAgencyUI.class);
+<span class="fc" id="L68">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L69">			.getLogger(CitizenIntelligenceAgencyUI.class);</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -89,44 +89,44 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	 * Instantiates a new citizen intelligence agency ui.
 	 */
 	public CitizenIntelligenceAgencyUI() {
-		super();
-	}
+<span class="fc" id="L92">		super();</span>
+<span class="fc" id="L93">	}</span>
 
 
 	@Override
-<span class="nc" id="L97">	protected void init(final VaadinRequest request) {</span>
-		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));
-		setSizeFull();
-		springNavigator.addView(CRLF_REPLACEMENT, mainView);
-		setNavigator(springNavigator);
+	protected void init(final VaadinRequest request) {
+<span class="fc" id="L98">		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));</span>
+<span class="fc" id="L99">		setSizeFull();</span>
+<span class="fc" id="L100">		springNavigator.addView(CRLF_REPLACEMENT, mainView);</span>
+<span class="fc" id="L101">		setNavigator(springNavigator);</span>
 
 
-		final Page currentPage = Page.getCurrent();
-		final String requestUrl = currentPage.getLocation().toString();
-		final String language = request.getLocale().getLanguage();
-		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);
+<span class="fc" id="L104">		final Page currentPage = Page.getCurrent();</span>
+<span class="fc" id="L105">		final String requestUrl = currentPage.getLocation().toString();</span>
+<span class="fc" id="L106">		final String language = request.getLocale().getLanguage();</span>
+<span class="fc" id="L107">		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);</span>
 
-		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + &quot;:&quot; + userConfiguration.getPortal().getPortalName() + &quot;:&quot; + userConfiguration.getLanguage().getLanguageName());
+<span class="fc" id="L109">		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + &quot;:&quot; + userConfiguration.getPortal().getPortalName() + &quot;:&quot; + userConfiguration.getLanguage().getLanguageName());</span>
 
-		if (getSession().getUIs().isEmpty()) {
-			final WebBrowser webBrowser = currentPage.getWebBrowser();
+<span class="fc bfc" id="L111" title="All 2 branches covered.">		if (getSession().getUIs().isEmpty()) {</span>
+<span class="fc" id="L112">			final WebBrowser webBrowser = currentPage.getWebBrowser();</span>
 
-			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<span class="fc" id="L114">			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();</span>
+<span class="fc" id="L115">			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
 
-			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);
-			serviceRequest.setIpInformation(ipInformation);
-			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());
-			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + &quot;x&quot; + webBrowser.getScreenHeight());
-			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
-			serviceRequest.setLocale(webBrowser.getLocale().toString());
-			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));
-			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
+<span class="fc" id="L117">			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);</span>
+<span class="fc" id="L118">			serviceRequest.setIpInformation(ipInformation);</span>
+<span class="fc" id="L119">			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());</span>
+<span class="fc" id="L120">			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + &quot;x&quot; + webBrowser.getScreenHeight());</span>
+<span class="fc" id="L121">			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());</span>
+<span class="fc" id="L122">			serviceRequest.setLocale(webBrowser.getLocale().toString());</span>
+<span class="fc" id="L123">			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));</span>
+<span class="fc" id="L124">			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);</span>
 
-			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));
+<span class="fc" id="L126">			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);</span>
+<span class="fc" id="L127">			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));</span>
 		}
-	}
+<span class="fc" id="L129">	}</span>
 
 
 }

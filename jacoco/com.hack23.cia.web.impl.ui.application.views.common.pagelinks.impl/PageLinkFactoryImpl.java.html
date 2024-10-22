@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageLinkFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl</a> &gt; <span class="el_source">PageLinkFactoryImpl.java</span></div><h1>PageLinkFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageLinkFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl</a> &gt; <span class="el_source">PageLinkFactoryImpl.java</span></div><h1>PageLinkFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -39,7 +39,7 @@ import com.vaadin.ui.Link;
  * The Class PageLinkFactoryImpl.
  */
 @Service
-<span class="nc" id="L42">public final class PageLinkFactoryImpl implements PageLinkFactory {</span>
+<span class="fc" id="L42">public final class PageLinkFactoryImpl implements PageLinkFactory {</span>
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = &quot;Committee &quot;;
@@ -58,171 +58,171 @@ import com.vaadin.ui.Link;
 
 
 	/** The Constant PAGE_SEPARATOR. */
-<span class="nc" id="L61">	private static final Character PAGE_SEPARATOR = '/';</span>
+<span class="fc" id="L61">	private static final Character PAGE_SEPARATOR = '/';</span>
 
 	/** The Constant PARTY. */
 	private static final String PARTY = &quot;Party &quot;;
 
 	/** The Constant POLITICIAN. */
-<span class="nc" id="L67">	private static final String POLITICIAN = &quot;Politician &quot;;</span>
+	private static final String POLITICIAN = &quot;Politician &quot;;
 
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
-<span class="nc" id="L71">		final Link pageLink = new Link(COMMITTEE</span>
-<span class="nc" id="L72">				+ data.getEmbeddedId().getDetail(), new ExternalResource(PAGE_PREFIX</span>
-<span class="nc" id="L73">						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));</span>
-<span class="nc" id="L74">		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L75">				+ data.getEmbeddedId().getOrgCode());</span>
-<span class="nc" id="L76">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L77">		return pageLink;</span>
+<span class="fc" id="L71">		final Link pageLink = new Link(COMMITTEE</span>
+<span class="fc" id="L72">				+ data.getEmbeddedId().getDetail(), new ExternalResource(PAGE_PREFIX</span>
+<span class="fc" id="L73">						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));</span>
+<span class="fc" id="L74">		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR</span>
+<span class="fc" id="L75">				+ data.getEmbeddedId().getOrgCode());</span>
+<span class="fc" id="L76">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L77">		return pageLink;</span>
 	}
 
 	@Override
 	public Link addMinistryPageLink(final ViewRiksdagenMinistry data) {
-<span class="nc" id="L82">		final Link pageLink = new Link(MINISTRY + data.getNameId(),</span>
-<span class="nc" id="L83">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR</span>
-<span class="nc" id="L84">						+ data.getNameId()));</span>
-<span class="nc" id="L85">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L86">				+ data.getNameId());</span>
-<span class="nc" id="L87">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L88">		return pageLink;</span>
+<span class="fc" id="L82">		final Link pageLink = new Link(MINISTRY + data.getNameId(),</span>
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
+<span class="fc" id="L84">						+ data.getNameId()));</span>
+<span class="fc" id="L85">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+<span class="fc" id="L86">				+ data.getNameId());</span>
+<span class="fc" id="L87">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L88">		return pageLink;</span>
 	}
 
 	@Override
 	public Link addPartyPageLink(final ViewRiksdagenParty data) {
-<span class="nc" id="L93">		final Link pageLink = new Link(PARTY + data.getPartyName(),</span>
-<span class="nc" id="L94">				new ExternalResource(PAGE_PREFIX + UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR</span>
-<span class="nc" id="L95">						+ data.getPartyId()));</span>
-<span class="nc" id="L96">		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L97">				+ data.getPartyId());</span>
-<span class="nc" id="L98">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L99">		return pageLink;</span>
+<span class="fc" id="L93">		final Link pageLink = new Link(PARTY + data.getPartyName(),</span>
+				new ExternalResource(PAGE_PREFIX + UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR
+<span class="fc" id="L95">						+ data.getPartyId()));</span>
+<span class="fc" id="L96">		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR</span>
+<span class="fc" id="L97">				+ data.getPartyId());</span>
+<span class="fc" id="L98">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L99">		return pageLink;</span>
 	}
 
 
 
 	@Override
 	public Link createAdminPagingLink(final String label,final String page, final String pageId, final String pageNr) {
-<span class="nc" id="L106">		final Link pageLink = new Link(label,</span>
-<span class="nc" id="L107">				new ExternalResource(PAGE_PREFIX + page + PAGE_SEPARATOR</span>
-<span class="nc" id="L108">						+ &quot;[&quot; + pageNr + &quot;]&quot;));</span>
-<span class="nc" id="L109">		pageLink.setId(page +&quot;ShowPage&quot; + PAGE_SEPARATOR</span>
-<span class="nc" id="L110">				+ pageNr);</span>
-<span class="nc" id="L111">		pageLink.setIcon(VaadinIcons.SERVER);</span>
+<span class="fc" id="L106">		final Link pageLink = new Link(label,</span>
+				new ExternalResource(PAGE_PREFIX + page + PAGE_SEPARATOR
+						+ &quot;[&quot; + pageNr + &quot;]&quot;));
+<span class="fc" id="L109">		pageLink.setId(page +&quot;ShowPage&quot; + PAGE_SEPARATOR</span>
+				+ pageNr);
+<span class="fc" id="L111">		pageLink.setIcon(VaadinIcons.SERVER);</span>
 
-<span class="nc" id="L113">		return pageLink;</span>
+<span class="fc" id="L113">		return pageLink;</span>
 	}
 
 	@Override
 	public Link createLoginPageLink() {
-<span class="nc" id="L118">		final Link pageLink = new Link(&quot;Login&quot;, new ExternalResource(</span>
-<span class="nc" id="L119">				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));</span>
-<span class="nc" id="L120">		pageLink.setId(ViewAction.VISIT_LOGIN.name());</span>
-<span class="nc" id="L121">		pageLink.setIcon(VaadinIcons.SIGN_IN);</span>
-<span class="nc" id="L122">		return pageLink;</span>
+<span class="fc" id="L118">		final Link pageLink = new Link(&quot;Login&quot;, new ExternalResource(</span>
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));
+<span class="fc" id="L120">		pageLink.setId(ViewAction.VISIT_LOGIN.name());</span>
+<span class="fc" id="L121">		pageLink.setIcon(VaadinIcons.SIGN_IN);</span>
+<span class="fc" id="L122">		return pageLink;</span>
 	}
 
 	@Override
 	public Link createMainViewPageLink() {
-<span class="nc" id="L127">		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(</span>
-<span class="nc" id="L128">				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));</span>
-<span class="nc" id="L129">		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());</span>
-<span class="nc" id="L130">		pageLink.setIcon(VaadinIcons.STAR);</span>
-<span class="nc" id="L131">		return pageLink;</span>
+<span class="fc" id="L127">		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(</span>
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
+<span class="fc" id="L129">		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());</span>
+<span class="fc" id="L130">		pageLink.setIcon(VaadinIcons.STAR);</span>
+<span class="fc" id="L131">		return pageLink;</span>
 	}
 
 	@Override
 	public Link createPoliticianPageLink(final PersonData personData) {
-<span class="nc" id="L136">		final Link pageLink = new Link(POLITICIAN</span>
-<span class="nc" id="L137">				+ personData.getFirstName() + ' '</span>
-<span class="nc" id="L138">				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX</span>
-<span class="nc" id="L139">						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));</span>
-<span class="nc" id="L140">		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L141">				+ personData.getId());</span>
-<span class="nc" id="L142">		pageLink.setIcon(VaadinIcons.BUG);</span>
-<span class="nc" id="L143">		return pageLink;</span>
+<span class="fc" id="L136">		final Link pageLink = new Link(POLITICIAN</span>
+<span class="fc" id="L137">				+ personData.getFirstName() + ' '</span>
+<span class="fc" id="L138">				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX</span>
+<span class="fc" id="L139">						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));</span>
+<span class="fc" id="L140">		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR</span>
+<span class="fc" id="L141">				+ personData.getId());</span>
+<span class="fc" id="L142">		pageLink.setIcon(VaadinIcons.BUG);</span>
+<span class="fc" id="L143">		return pageLink;</span>
 	}
 
 	@Override
 	public Link createPoliticianPageLink(final ViewRiksdagenPolitician personData) {
-<span class="nc" id="L148">		final Link pageLink = new Link(POLITICIAN</span>
-<span class="nc" id="L149">				+ personData.getFirstName() + ' '</span>
-<span class="nc" id="L150">				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX</span>
-<span class="nc" id="L151">						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getPersonId()));</span>
-<span class="nc" id="L152">		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L153">				+ personData.getPersonId());</span>
-<span class="nc" id="L154">		pageLink.setIcon(VaadinIcons.BUG);</span>
-<span class="nc" id="L155">		return pageLink;</span>
+<span class="fc" id="L148">		final Link pageLink = new Link(POLITICIAN</span>
+<span class="fc" id="L149">				+ personData.getFirstName() + ' '</span>
+<span class="fc" id="L150">				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX</span>
+<span class="fc" id="L151">						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getPersonId()));</span>
+<span class="fc" id="L152">		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR</span>
+<span class="fc" id="L153">				+ personData.getPersonId());</span>
+<span class="fc" id="L154">		pageLink.setIcon(VaadinIcons.BUG);</span>
+<span class="fc" id="L155">		return pageLink;</span>
 	}
 
-	
+
 	@Override
 	public Link createRegisterPageLink() {
-<span class="nc" id="L161">		final Link pageLink = new Link(&quot;Register&quot;, new ExternalResource(</span>
-<span class="nc" id="L162">				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));</span>
-<span class="nc" id="L163">		pageLink.setId(ViewAction.VISIT_REGISTER.name());</span>
-<span class="nc" id="L164">		pageLink.setIcon(VaadinIcons.RANDOM);</span>
-<span class="nc" id="L165">		return pageLink;</span>
+<span class="fc" id="L161">		final Link pageLink = new Link(&quot;Register&quot;, new ExternalResource(</span>
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));
+<span class="fc" id="L163">		pageLink.setId(ViewAction.VISIT_REGISTER.name());</span>
+<span class="fc" id="L164">		pageLink.setIcon(VaadinIcons.RANDOM);</span>
+<span class="fc" id="L165">		return pageLink;</span>
 	}
 
 	@Override
 	public Link createUserHomeViewPageLink() {
-<span class="nc" id="L170">		final Link pageLink = new Link(&quot;User account:&quot;, new ExternalResource(PAGE_PREFIX</span>
+<span class="fc" id="L170">		final Link pageLink = new Link(&quot;User account:&quot;, new ExternalResource(PAGE_PREFIX</span>
 				+ UserViews.USERHOME_VIEW_NAME));
-<span class="nc" id="L172">			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());</span>
-<span class="nc" id="L173">			pageLink.setIcon(VaadinIcons.USER);</span>
-<span class="nc" id="L174">			return pageLink;</span>
+<span class="fc" id="L172">			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());</span>
+<span class="fc" id="L173">			pageLink.setIcon(VaadinIcons.USER);</span>
+<span class="fc" id="L174">			return pageLink;</span>
 	}
 
 	@Override
 	public Link addMinistryPageLink(String name) {
-<span class="nc" id="L179">		final Link pageLink = new Link(MINISTRY + name,</span>
-<span class="nc" id="L180">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR</span>
-<span class="nc" id="L181">						+ name));</span>
-<span class="nc" id="L182">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L183">				+ name);</span>
-<span class="nc" id="L184">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L185">		return pageLink;</span>
+<span class="fc" id="L179">		final Link pageLink = new Link(MINISTRY + name,</span>
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
+						+ name));
+<span class="fc" id="L182">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+				+ name);
+<span class="fc" id="L184">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L185">		return pageLink;</span>
 	}
 
 	@Override
 	public Link addMinistryGovermentBodiesPageLink(String name, int size) {
-<span class="nc" id="L190">		final Link pageLink = new Link(&quot;Government bodies:&quot; + size,</span>
-<span class="nc" id="L191">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));</span>
-<span class="nc" id="L192">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L193">				+ name);</span>
-<span class="nc" id="L194">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L195">		return pageLink;</span>
+<span class="fc" id="L190">		final Link pageLink = new Link(&quot;Government bodies:&quot; + size,</span>
+<span class="fc" id="L191">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));</span>
+<span class="fc" id="L192">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+				+ name);
+<span class="fc" id="L194">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L195">		return pageLink;</span>
 	}
 
 	@Override
 	public Link addMinistryGovermentBodiesHeadcountPageLink(String name, int size) {
-<span class="nc" id="L200">		final Link pageLink = new Link(&quot;Headcount:&quot; + size,</span>
-<span class="nc" id="L201">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));</span>
-<span class="nc" id="L202">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L203">				+ name);</span>
-<span class="nc" id="L204">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L205">		return pageLink;</span>
+<span class="fc" id="L200">		final Link pageLink = new Link(&quot;Headcount:&quot; + size,</span>
+<span class="fc" id="L201">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));</span>
+<span class="fc" id="L202">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+				+ name);
+<span class="fc" id="L204">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L205">		return pageLink;</span>
 	}
 
 	@Override
 	public Link addMinistryGovermentBodiesIncomePageLink(String name, double d) {
-<span class="nc" id="L210">		final Link pageLink = new Link(&quot;Income(B SEK):&quot; + d,</span>
-<span class="nc" id="L211">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString() + PAGE_SEPARATOR +  name));</span>
-<span class="nc" id="L212">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L213">				+ name);</span>
-<span class="nc" id="L214">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L215">		return pageLink;</span>
-	}	
+<span class="fc" id="L210">		final Link pageLink = new Link(&quot;Income(B SEK):&quot; + d,</span>
+<span class="fc" id="L211">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString() + PAGE_SEPARATOR +  name));</span>
+<span class="fc" id="L212">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+				+ name);
+<span class="fc" id="L214">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L215">		return pageLink;</span>
+	}
 
 	@Override
 	public Link addMinistrGovermentBodiesSpendingPageLink(String name, double d) {
-<span class="nc" id="L220">		final Link pageLink = new Link(&quot;Spending(B SEK):&quot; + d,</span>
-<span class="nc" id="L221">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString() + PAGE_SEPARATOR +  name));</span>
-<span class="nc" id="L222">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
-<span class="nc" id="L223">				+ name);</span>
-<span class="nc" id="L224">		pageLink.setIcon(VaadinIcons.GROUP);</span>
-<span class="nc" id="L225">		return pageLink;</span>
+<span class="fc" id="L220">		final Link pageLink = new Link(&quot;Spending(B SEK):&quot; + d,</span>
+<span class="fc" id="L221">				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString() + PAGE_SEPARATOR +  name));</span>
+<span class="fc" id="L222">		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR</span>
+				+ name);
+<span class="fc" id="L224">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L225">		return pageLink;</span>
 	}
 
 }

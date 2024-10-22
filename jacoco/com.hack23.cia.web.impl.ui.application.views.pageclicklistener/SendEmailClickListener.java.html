@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SendEmailClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">SendEmailClickListener.java</span></div><h1>SendEmailClickListener.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SendEmailClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">SendEmailClickListener.java</span></div><h1>SendEmailClickListener.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -40,7 +40,7 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	private static final String LOG_MSG_SEND_EMAIL = &quot;SendEmail {}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L43">	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);</span>
+<span class="fc" id="L43">	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);</span>
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
 	private static final String SEND_EMAIL_FAILEDFAILED = &quot;Send email failed&quot;;
@@ -49,7 +49,7 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	private static final String SEND_EMAIL_FAILURE = &quot;SendEmail {} failure&quot;;
 
 	/** The Constant serialVersionUID. */
-<span class="nc" id="L52">	private static final long serialVersionUID = 1L;</span>
+	private static final long serialVersionUID = 1L;
 
 	/** The reqister request. */
 	private final SendEmailRequest sendEmailRequest;
@@ -60,22 +60,22 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	 * @param sendEmailRequest
 	 *            the reqister request
 	 */
-<span class="nc" id="L63">	public SendEmailClickListener(final SendEmailRequest sendEmailRequest) {</span>
-<span class="nc" id="L64">		this.sendEmailRequest = sendEmailRequest;</span>
-<span class="nc" id="L65">	}</span>
+<span class="fc" id="L63">	public SendEmailClickListener(final SendEmailRequest sendEmailRequest) {</span>
+<span class="fc" id="L64">		this.sendEmailRequest = sendEmailRequest;</span>
+<span class="fc" id="L65">	}</span>
 
 	@Override
 	public final void buttonClick(final ClickEvent event) {
-<span class="nc" id="L69">		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="nc" id="L71">			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());</span>
-<span class="nc" id="L72">			showNotification(EMAIL_SENT, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
-<span class="nc" id="L73">		} else {</span>
-<span class="nc" id="L74">			showNotification(SEND_EMAIL_FAILEDFAILED,</span>
-<span class="nc" id="L75">	                  response.getErrorMessage(),</span>
-<span class="nc" id="L76">	                  Notification.Type.WARNING_MESSAGE);</span>
-<span class="nc" id="L77">			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());</span>
+<span class="fc" id="L69">		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="fc" id="L71">			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());</span>
+<span class="fc" id="L72">			showNotification(EMAIL_SENT, &quot;desc&quot;, Notification.Type.HUMANIZED_MESSAGE);</span>
+		} else {
+<span class="fc" id="L74">			showNotification(SEND_EMAIL_FAILEDFAILED,</span>
+<span class="fc" id="L75">	                  response.getErrorMessage(),</span>
+	                  Notification.Type.WARNING_MESSAGE);
+<span class="fc" id="L77">			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());</span>
 		}
-<span class="nc" id="L79">	}</span>
+<span class="fc" id="L79">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

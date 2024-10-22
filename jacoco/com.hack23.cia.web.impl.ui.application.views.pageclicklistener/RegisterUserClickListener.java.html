@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterUserClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">RegisterUserClickListener.java</span></div><h1>RegisterUserClickListener.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterUserClickListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.pageclicklistener</a> &gt; <span class="el_source">RegisterUserClickListener.java</span></div><h1>RegisterUserClickListener.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -48,7 +48,7 @@ public final class RegisterUserClickListener extends AbstractClickListener imple
 	private static final String REGISTER_USER_FAILURE = &quot;RegisterUser {} failure&quot;;
 
 	/** The Constant serialVersionUID. */
-<span class="fc" id="L51">	private static final long serialVersionUID = 1L;</span>
+	private static final long serialVersionUID = 1L;
 
 	/** The reqister request. */
 	private final RegisterUserRequest reqisterRequest;
@@ -69,10 +69,10 @@ public final class RegisterUserClickListener extends AbstractClickListener imple
 <span class="fc bfc" id="L69" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
 <span class="fc" id="L70">			LOGGER.info(LOG_MSG_REGISTER_USER,reqisterRequest.getUsername());</span>
 <span class="fc" id="L71">			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);</span>
-<span class="fc" id="L72">		} else {</span>
+		} else {
 <span class="fc" id="L73">			showNotification(REGISTER_FAILED,</span>
 <span class="fc" id="L74">					response.getErrorMessage(),</span>
-<span class="fc" id="L75">	                  Notification.Type.WARNING_MESSAGE);</span>
+	                  Notification.Type.WARNING_MESSAGE);
 <span class="fc" id="L76">			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername());</span>
 		}
 <span class="fc" id="L78">	}</span>

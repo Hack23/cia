@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminLanguagePageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminLanguagePageModContentFactoryImpl.java</span></div><h1>AdminLanguagePageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminLanguagePageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode</a> &gt; <span class="el_source">AdminLanguagePageModContentFactoryImpl.java</span></div><h1>AdminLanguagePageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -48,66 +48,66 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 	/** The Constant ADMIN_LANGUAGE. */
 	private static final String ADMIN_LANGUAGE = &quot;Admin Language&quot;;
 
-<span class="nc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;languageName&quot;, &quot;createdDate&quot;,&quot;lastModifiedDate&quot; ,&quot;languageEnabled&quot; );</span>
+<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;languageName&quot;, &quot;createdDate&quot;,&quot;lastModifiedDate&quot; ,&quot;languageEnabled&quot; );</span>
 
-<span class="nc" id="L53">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;languageName&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L53">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;languageName&quot;, &quot;modelObjectVersion&quot; };</span>
 
-<span class="nc" id="L55">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;, &quot;createdDate&quot;,&quot;lastModifiedDate&quot; };</span>
+<span class="fc" id="L55">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;,&quot;modelObjectVersion&quot;, &quot;createdDate&quot;,&quot;lastModifiedDate&quot; };</span>
 
 	private static final String LANGUAGE_DATA = &quot;LanguageData&quot;;
 
-<span class="nc" id="L59">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L59">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
-<span class="nc" id="L62">	public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;</span>
+	public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;
 
 	/**
 	 * Instantiates a new admin language page mod content factory impl.
 	 */
 	public AdminLanguagePageModContentFactoryImpl() {
-<span class="nc" id="L68">		super(NAME);</span>
-<span class="nc" id="L69">	}</span>
+<span class="fc" id="L68">		super(NAME);</span>
+<span class="fc" id="L69">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="nc" id="L74">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L74">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="nc" id="L76">		final String pageId = getPageId(parameters);</span>
-<span class="nc" id="L77">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L76">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L77">		final int pageNr= getPageNr(parameters);</span>
 
 
-<span class="nc" id="L80">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L80">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="nc" id="L82">		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE);</span>
+<span class="fc" id="L82">		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE);</span>
 
-<span class="nc" id="L84">		final DataContainer&lt;LanguageData, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="nc" id="L85">				.getDataContainer(LanguageData.class);</span>
+<span class="fc" id="L84">		final DataContainer&lt;LanguageData, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L85">				.getDataContainer(LanguageData.class);</span>
 
-<span class="nc" id="L87">		final List&lt;LanguageData&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);</span>
+<span class="fc" id="L87">		final List&lt;LanguageData&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);</span>
 
-<span class="nc" id="L89">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L89">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="nc" id="L91">		getGridFactory().createBasicBeanItemGrid(content,</span>
-<span class="nc" id="L92">				LanguageData.class, pageOrderBy, LANGUAGE_DATA,</span>
-<span class="nc" id="L93">				COLUMN_ORDER, HIDE_COLUMNS,</span>
-<span class="nc" id="L94">				LISTENER, null, null);</span>
+<span class="fc" id="L91">		getGridFactory().createBasicBeanItemGrid(content,</span>
+				LanguageData.class, pageOrderBy, LANGUAGE_DATA,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
 
-<span class="nc bnc" id="L96" title="All 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L96" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="nc" id="L98">			final LanguageData languageData = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L98">			final LanguageData languageData = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="nc bnc" id="L100" title="All 2 branches missed.">			if (languageData != null) {</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">			if (languageData != null) {</span>
 
 <span class="nc" id="L102">				getFormFactory().addFormPanelTextFields(content, languageData, LanguageData.class,</span>
-<span class="nc" id="L103">						AS_LIST);</span>
+						AS_LIST);
 			}
 		}
 
-<span class="nc" id="L107">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_VIEW, ApplicationEventGroup.ADMIN,</span>
-<span class="nc" id="L108">				NAME, null, pageId);</span>
+<span class="fc" id="L107">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_VIEW, ApplicationEventGroup.ADMIN,</span>
+				NAME, null, pageId);
 
-<span class="nc" id="L110">		return content;</span>
+<span class="fc" id="L110">		return content;</span>
 
 	}
 

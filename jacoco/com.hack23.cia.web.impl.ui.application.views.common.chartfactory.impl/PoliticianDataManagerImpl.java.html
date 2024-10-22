@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PoliticianDataManagerImpl.java</span></div><h1>PoliticianDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianDataManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">PoliticianDataManagerImpl.java</span></div><h1>PoliticianDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
  * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -64,8 +64,8 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 * Instantiates a new politician data manager impl.
 	 */
 	public PoliticianDataManagerImpl() {
-<span class="nc" id="L67">		super();</span>
-<span class="nc" id="L68">	}</span>
+<span class="fc" id="L67">		super();</span>
+<span class="fc" id="L68">	}</span>
 
 
 
@@ -79,16 +79,16 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private static void addPoliticanData(final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object&gt; t) {
-<span class="nc" id="L82">		dataSeries.newSeries();</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {</span>
-<span class="nc" id="L85">				dataSeries.add(</span>
-<span class="nc" id="L86">						simpleDateFormat.format(</span>
-<span class="nc" id="L87">								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),</span>
-<span class="nc" id="L88">						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));</span>
+<span class="fc" id="L82">		dataSeries.newSeries();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {</span>
+<span class="fc" id="L85">				dataSeries.add(</span>
+<span class="fc" id="L86">						simpleDateFormat.format(</span>
+<span class="fc" id="L87">								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),</span>
+<span class="fc" id="L88">						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));</span>
 			}
-		}
-<span class="nc" id="L91">	}</span>
+<span class="fc" id="L90">		}</span>
+<span class="fc" id="L91">	}</span>
 
 
 
@@ -104,11 +104,11 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private static void addPoliticianIndicatorData(final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
-<span class="nc" id="L107">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);</span>
-<span class="nc" id="L108">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);</span>
-<span class="nc" id="L109">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);</span>
-<span class="nc" id="L110">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);</span>
-<span class="nc" id="L111">	}</span>
+<span class="fc" id="L107">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);</span>
+<span class="fc" id="L108">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);</span>
+<span class="fc" id="L109">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);</span>
+<span class="fc" id="L110">		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);</span>
+<span class="fc" id="L111">	}</span>
 
 
 
@@ -116,22 +116,22 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	@Override
 	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
 
-<span class="nc" id="L119">		final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list = dataChartManager.findByValue(personId);</span>
+<span class="fc" id="L119">		final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; list = dataChartManager.findByValue(personId);</span>
 
-<span class="nc" id="L121">		final Series series = new Series().addSeries(new XYseries().setLabel(WON))</span>
-<span class="nc" id="L122">				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))</span>
-<span class="nc" id="L123">				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));</span>
+<span class="fc" id="L121">		final Series series = new Series().addSeries(new XYseries().setLabel(WON))</span>
+<span class="fc" id="L122">				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))</span>
+<span class="fc" id="L123">				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));</span>
 
-<span class="nc" id="L125">		final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L125">		final DataSeries dataSeries = new DataSeries();</span>
 
-<span class="nc" id="L127">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
+<span class="fc" id="L127">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);</span>
 
-<span class="nc bnc" id="L129" title="All 2 branches missed.">		if (list != null) {</span>
-<span class="nc" id="L130">			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">		if (list != null) {</span>
+<span class="fc" id="L130">			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);</span>
 		}
 
-<span class="nc" id="L133">		addChart(content,&quot;Ballot indicators&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);</span>
-<span class="nc" id="L134">	}</span>
+<span class="fc" id="L133">		addChart(content,&quot;Ballot indicators&quot;, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);</span>
+<span class="fc" id="L134">	}</span>
 
 
 }
