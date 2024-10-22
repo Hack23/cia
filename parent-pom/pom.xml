@@ -726,7 +726,7 @@
         <plugin>
           <groupId>org.owasp</groupId>
           <artifactId>dependency-check-maven</artifactId>
-          <version>10.0.4</version>
+          <version>11.0.0</version>
           <configuration>
             <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
           </configuration>
