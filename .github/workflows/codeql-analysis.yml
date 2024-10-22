@@ -143,7 +143,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      if: github.ref == 'ref/head/master'
       run: maven/bin/mvn -B -Prelease-site,all-modules verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Hack23_cia --file pom.xml -DforkMode=once '-Dtest=!**.*ITest*' -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dmaven.test.failure.ignore=true
 
     - name: Submit Dependency Snapshot

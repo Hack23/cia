@@ -341,31 +341,6 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 
 	/**
-	 * Site admin language content test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = 60000)
-	public void siteAdminLanguageContentTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language Content"));
-
-		clickFirstRowInGrid(userPageVisit);
-		userPageVisit.validatePage(new
-		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
-		""));
-
-	}
-
-
-	/**
 	 * Site admin language test.
 	 *
 	 * @throws Exception

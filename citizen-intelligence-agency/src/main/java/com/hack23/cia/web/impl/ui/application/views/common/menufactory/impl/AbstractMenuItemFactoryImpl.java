@@ -113,10 +113,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
 			"");
 
-	/** The Constant COMMAND_LANGUAGE_CONTENT. */
-	private static final PageModeMenuCommand COMMAND_LANGUAGE_CONTENT = new PageModeMenuCommand(
-			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "");
-
 	/** The Constant COMMAND_LOGIN. */
 	private static final PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			ApplicationPageMode.LOGIN.toString());
@@ -188,9 +184,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant LANGUAGE. */
 	private static final String LANGUAGE = "Language";
-
-	/** The Constant LANGUAGE_CONTENT. */
-	private static final String LANGUAGE_CONTENT = "Language Content";
 
 	/** The Constant LINK_STYLE_NAME. */
 	private static final String LINK_STYLE_NAME = "link";
@@ -267,7 +260,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP,COMMAND_PORTAL);
 			configurationMenuItem.addItem(COUNTRY,VaadinIcons.FLAG, COMMAND_COUNTRY);
 			configurationMenuItem.addItem(LANGUAGE,VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);
-			configurationMenuItem.addItem(LANGUAGE_CONTENT,VaadinIcons.FILE_TEXT, COMMAND_LANGUAGE_CONTENT);
 
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, VaadinIcons.SERVER, null);
 
