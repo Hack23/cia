@@ -47,9 +47,6 @@ public final class AdminViews {
 	/** The Constant ADMIN_EMAIL_VIEW_NAME. */
 	public static final String ADMIN_EMAIL_VIEW_NAME = "adminemail";
 
-	/** The Constant ADMIN_LANGUAGE_CONTENT_VIEW_NAME. */
-	public static final String ADMIN_LANGUAGE_CONTENT_VIEW_NAME = "adminlanguagecontent";
-
 	/** The Constant ADMIN_LANGUAGE_VIEW_NAME. */
 	public static final String ADMIN_LANGUAGE_VIEW_NAME = "adminlanguage";
 
