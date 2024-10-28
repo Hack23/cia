@@ -21,6 +21,7 @@ The project relies on open data from various sources, including:
 [![GitHub Release](https://img.shields.io/github/v/release/Hack23/cia)](https://github.com/Hack23/cia/releases)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev/spec/v1.0/levels)
 [![Verify & Release ](https://github.com/Hack23/cia/actions/workflows/release.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 [![Verify PR](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
