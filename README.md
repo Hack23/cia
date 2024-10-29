@@ -194,3 +194,37 @@ $ sudo dpkg -i cia-dist-deb-2024.10.15.all.deb
 
 - ![Cloudformation stack Diagram](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.png)
 - ![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)
+
+## Project Technology Stack Overview
+
+This document provides a high-level overview of the key technologies used within the **Citizen Intelligence Agency (CIA)** project. Each technology plays a vital role in supporting CIA’s goals for data analysis, security, and scalability within the political intelligence domain.
+
+| **Category**              | **Technologies**                                                                                                                                                   |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Core Framework**        | [Spring Framework](https://spring.io/projects/spring-framework)                                                                                                   |
+| **Security**              | [Spring Security](https://spring.io/projects/spring-security), [Bouncy Castle](https://www.bouncycastle.org/)                                                     |
+| **Data Access**           | [Hibernate](https://hibernate.org/orm/), [JPA](https://jakarta.ee/specifications/persistence/), [PostgreSQL](https://www.postgresql.org/), [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) |
+| **Transaction Management**| [Narayana](https://narayana.io/) (Integrated with Spring `JpaTransactionManager`)                                           |
+| **Data Auditing**         | [Javers](https://javers.org/)                                                                                                                                     |
+| **Messaging**             | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                    |
+| **Web/UI Layer**          | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                  |
+| **Monitoring**            | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                              |
+| **Testing**               | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html) |
+| **Utilities**             | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](http://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson) |
+| **Build & Dependency Management** | [Maven](https://maven.apache.org/)                                                                                                                           |
+
+## Stack Summary
+
+This stack comprises:
+
+- **Core Framework**: The project uses **Spring Framework** to provide a foundation for dependency injection, component management, and service configuration across modules.
+- **Security**: **Spring Security** manages authentication and authorization, complemented by **Bouncy Castle** for cryptographic operations.
+- **Data Access**: A combination of **Hibernate**, **JPA**, and **PostgreSQL** supports robust ORM-based data persistence, with **JDBC** facilitating additional database connectivity needs.
+- **Transaction Management**: The project uses **Narayana** as the transaction manager implementation, integrated with **Spring’s JpaTransactionManager** for distributed transaction support and ensuring transactional integrity.
+- **Data Auditing**: **Javers** provides auditing and historical versioning, allowing for tracking and comparing changes to data over time.
+- **Messaging**: **ActiveMQ Artemis** and **Spring JMS** enable asynchronous communication between application components, supporting distributed and event-driven designs.
+- **Web/UI Layer**: **Vaadin** powers the UI with a server-driven architecture, providing components like **Vaadin Themes** and **Sass Compiler** for a rich, interactive frontend experience directly in Java.
+- **Monitoring**: **JavaMelody** and **AWS SDK for CloudWatch** provide real-time application monitoring and logging capabilities, supporting both local and cloud environments.
+- **Testing**: **JUnit**, **Mockito**, and **Spring Test** are used extensively for unit, integration, and mock testing to ensure application reliability and robustness.
+- **Utilities**: **Apache Commons**, **Google Guava**, **SLF4J**, and **Logback** offer utility functions and structured logging, enhancing application maintainability and monitoring.
+- **Build & Dependency Management**: **Maven** handles project builds, dependency management, and plugin configurations, enabling smooth project management and modular builds.
