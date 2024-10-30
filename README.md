@@ -228,3 +228,45 @@ This stack comprises:
 - **Testing**: **JUnit**, **Mockito**, and **Spring Test** are used extensively for unit, integration, and mock testing to ensure application reliability and robustness.
 - **Utilities**: **Apache Commons**, **Google Guava**, **SLF4J**, and **Logback** offer utility functions and structured logging, enhancing application maintainability and monitoring.
 - **Build & Dependency Management**: **Maven** handles project builds, dependency management, and plugin configurations, enabling smooth project management and modular builds.
+
+## AWS Services Stack Overview
+
+This document provides a comprehensive summary of the AWS services utilized in the **Citizen Intelligence Agency (CIA)** project infrastructure, as defined by its CloudFormation template. These services work together to ensure a secure, resilient, and scalable deployment environment.
+
+| **Category**                  | **AWS Services**                                                                                              |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Networking and Security**   | - [Amazon VPC](https://aws.amazon.com/vpc/): Configures a custom network environment with public and private subnets, route tables, **NAT Gateway** for secure outbound access, **Network ACLs (NACLs)** for subnet-level traffic control, and **VPC Flow Logs** for monitoring network traffic. |
+|                               | - [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/): Enables private access to AWS services (e.g., S3, EC2, SSM, CloudWatch Logs) within the VPC, avoiding the need for public internet connections. |
+|                               | - [AWS WAF](https://aws.amazon.com/waf/): Protects against common web attacks (e.g., SQL injection, XSS) at the Application Load Balancer (ALB) layer. |
+|                               | - [AWS IAM](https://aws.amazon.com/iam/): Manages role-based access control and permissions across AWS services. |
+|                               | - [AWS KMS](https://aws.amazon.com/kms/): Manages encryption for data at rest, including custom keys for S3 and RDS encryption. |
+| **Domain and SSL Management** | - [Amazon Route 53](https://aws.amazon.com/route53/): Manages domain registration and DNS routing. |
+|                               | - [AWS Certificate Manager (ACM)](https://aws.amazon.com/certificate-manager/): Issues and manages SSL/TLS certificates for secure HTTPS connections. |
+| **Compute**                   | - [Amazon EC2](https://aws.amazon.com/ec2/): Provides scalable compute instances (e.g., `t4g.large`) to host application workloads. |
+| **Load Balancing**            | - [Application Load Balancer (ALB)](https://aws.amazon.com/elasticloadbalancing/application-load-balancer/): Distributes incoming HTTP/HTTPS traffic across EC2 instances for high availability. |
+| **Data Storage**              | - [Amazon S3](https://aws.amazon.com/s3/): Stores application artifacts and logs, with encryption, access control, and lifecycle policies for retention management. |
+|                               | - [Amazon RDS](https://aws.amazon.com/rds/): Hosts a PostgreSQL database with multi-AZ deployment, enhanced by custom parameter groups for optimized performance and durability. |
+| **Secrets Management**        | - [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/): Securely stores and automatically rotates sensitive credentials, such as database passwords, with Lambda-backed rotation support. |
+| **Monitoring and Alarms**     | - [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/): Provides real-time metrics, logs, and alarms to monitor application performance and infrastructure health. |
+| **Resilience and Disaster Recovery** | - [AWS Resilience Hub](https://aws.amazon.com/resilience-hub/): Assesses and improves the architecture’s resilience, recommending strategies for fault tolerance and disaster recovery. |
+| **Automation and Maintenance** | - [AWS Systems Manager (SSM)](https://aws.amazon.com/systems-manager/): Automates inventory, patching, and maintenance tasks, with **SSM Maintenance Windows** and **SSM Patch Baselines** for streamlined operations. |
+
+## AWS Stack Summary
+
+- **Networking and Security**: [Amazon VPC](https://aws.amazon.com/vpc/) creates an isolated network environment with NAT Gateway, NACLs, and VPC Flow Logs. [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/) provide private access to AWS services (e.g., S3, EC2, SSM), [AWS WAF](https://aws.amazon.com/waf/) protects against web attacks, [AWS IAM](https://aws.amazon.com/iam/) secures access control, and [AWS KMS](https://aws.amazon.com/kms/) encrypts data at rest.
+
+- **Domain and SSL Management**: [Amazon Route 53](https://aws.amazon.com/route53/) handles DNS and domain registration, while [AWS Certificate Manager (ACM)](https://aws.amazon.com/certificate-manager/) provides SSL/TLS certificates for HTTPS security.
+
+- **Compute Layer**: [Amazon EC2](https://aws.amazon.com/ec2/) instances host the application, providing flexible and scalable compute resources.
+
+- **Load Balancing**: The [Application Load Balancer (ALB)](https://aws.amazon.com/elasticloadbalancing/application-load-balancer/) distributes HTTP/HTTPS traffic across EC2 instances, optimizing for high availability and resilience.
+
+- **Data Storage**: [Amazon RDS](https://aws.amazon.com/rds/) offers a resilient PostgreSQL setup with multi-AZ deployment and custom parameter groups. [Amazon S3](https://aws.amazon.com/s3/) securely stores artifacts and logs, with lifecycle policies and KMS-managed encryption keys for compliance.
+
+- **Secrets Management**: [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) securely stores and rotates credentials, such as database passwords, with automated Lambda support for rotation.
+
+- **Monitoring and Alarms**: [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) monitors infrastructure health through metrics, logs, and alarms, enabling proactive management.
+
+- **Resilience and Disaster Recovery**: [AWS Resilience Hub](https://aws.amazon.com/resilience-hub/) assesses and recommends enhancements to improve the system's resilience, providing disaster recovery and fault-tolerant strategies.
+
+- **Automation and Maintenance**: [AWS Systems Manager (SSM)](https://aws.amazon.com/systems-manager/) automates inventory, patching, and other maintenance tasks, increasing operational efficiency.
