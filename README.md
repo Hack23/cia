@@ -67,6 +67,7 @@ This document provides a high-level overview of the key technologies used within
 | **Data Access**           | [Hibernate](https://hibernate.org/orm/), [JPA](https://jakarta.ee/specifications/persistence/), [PostgreSQL](https://www.postgresql.org/), [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) |
 | **Transaction Management**| [Narayana](https://narayana.io/) (Integrated with Spring `JpaTransactionManager`)                                           |
 | **Data Auditing**         | [Javers](https://javers.org/)                                                                                                                                     |
+| **Business Rules Engine** | [Drools](https://www.drools.org/)                                                                                                                                 |
 | **Messaging**             | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                    |
 | **Web/UI Layer**          | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                  |
 | **Monitoring**            | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                              |
@@ -83,6 +84,7 @@ This stack comprises:
 - **Data Access**: A combination of **Hibernate**, **JPA**, and **PostgreSQL** supports robust ORM-based data persistence, with **JDBC** facilitating additional database connectivity needs.
 - **Transaction Management**: The project uses **Narayana** as the transaction manager implementation, integrated with **Spring’s JpaTransactionManager** for distributed transaction support and ensuring transactional integrity.
 - **Data Auditing**: **Javers** provides auditing and historical versioning, allowing for tracking and comparing changes to data over time.
+- **Business Rules Engine** : **Drools** is integrated into the CIA project to enable a robust business rules engine.
 - **Messaging**: **ActiveMQ Artemis** and **Spring JMS** enable asynchronous communication between application components, supporting distributed and event-driven designs.
 - **Web/UI Layer**: **Vaadin** powers the UI with a server-driven architecture, providing components like **Vaadin Themes** and **Sass Compiler** for a rich, interactive frontend experience directly in Java.
 - **Monitoring**: **JavaMelody** and **AWS SDK for CloudWatch** provide real-time application monitoring and logging capabilities, supporting both local and cloud environments.
