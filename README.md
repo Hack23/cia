@@ -49,6 +49,7 @@ The project relies on open data from various sources, including:
 - [Project Architecture](http://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
 - [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
+- [End-of-Life-Strategy.md](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) Project End-of-Life (EOL) Strategy
 
 
 ## Reporting Security Issues
