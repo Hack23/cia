@@ -70,7 +70,7 @@ This document provides a high-level overview of the key technologies used within
 | **Messaging**             | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                    |
 | **Web/UI Layer**          | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                  |
 | **Monitoring**            | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                              |
-| **Testing**               | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html) |
+| **Testing**               | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html), [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/) |
 | **Utilities**             | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](http://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson) |
 | **Build & Dependency Management** | [Maven](https://maven.apache.org/)                                                                                                                           |
 
@@ -86,7 +86,7 @@ This stack comprises:
 - **Messaging**: **ActiveMQ Artemis** and **Spring JMS** enable asynchronous communication between application components, supporting distributed and event-driven designs.
 - **Web/UI Layer**: **Vaadin** powers the UI with a server-driven architecture, providing components like **Vaadin Themes** and **Sass Compiler** for a rich, interactive frontend experience directly in Java.
 - **Monitoring**: **JavaMelody** and **AWS SDK for CloudWatch** provide real-time application monitoring and logging capabilities, supporting both local and cloud environments.
-- **Testing**: **JUnit**, **Mockito**, and **Spring Test** are used extensively for unit, integration, and mock testing to ensure application reliability and robustness.
+- **Testing**: **JUnit**, **Mockito**, **Spring Test** and **Selenium WebDriver** are used extensively for unit, integration, system, browser and mock testing to ensure application reliability and robustness.
 - **Utilities**: **Apache Commons**, **Google Guava**, **SLF4J**, and **Logback** offer utility functions and structured logging, enhancing application maintainability and monitoring.
 - **Build & Dependency Management**: **Maven** handles project builds, dependency management, and plugin configurations, enabling smooth project management and modular builds.
 
