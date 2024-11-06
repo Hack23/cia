@@ -140,7 +140,7 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.24</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
-    <cia.project.versions.javamelody>1.99.1</cia.project.versions.javamelody>
+    <cia.project.versions.javamelody>2.3.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.14.3</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
