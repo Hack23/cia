@@ -237,13 +237,12 @@ $ service postgresql restart
 7. Download the CIA Debian package:
 
 ```bash
-$ wget https://github.com/Hack23/cia/releases/download/2024.10.15/cia-dist-deb-2024.10.15.all.deb
-```
+$ wget https://github.com/Hack23/cia/releases/download/2024.11.24/cia-dist-deb-2024.11.14.all.deb```
 
 8. Install the Debian package:
 
 ```bash
-$ sudo dpkg -i cia-dist-deb-2024.10.15.all.deb
+$ sudo dpkg -i cia-dist-deb-2024.11.24.all.deb
 ```
 
 ## Access the Server
