@@ -424,7 +424,7 @@
       <dependency>
         <groupId>org.jboss</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.2.2</version>
+        <version>3.2.3</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
