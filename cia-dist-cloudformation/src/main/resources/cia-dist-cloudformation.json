@@ -2464,7 +2464,7 @@
             "Type": "AWS::RDS::DBParameterGroup",
             "Properties": {
                 "Description": "Database Parameter Group + pg_stat_statements",
-                "Family": "postgres16",
+                "Family": "postgres17",
                 "Parameters": {
                     "max_prepared_transactions": "400",
                     "max_parallel_workers_per_gather": "4",
@@ -2620,7 +2620,7 @@
                     "Ref": "DBClass"
                 },
                 "Engine": "postgres",
-                "EngineVersion": "16.4",
+                "EngineVersion": "17.1",
                 "MultiAZ": "true",
                 "PubliclyAccessible": "false",
                 "BackupRetentionPeriod": "7",
