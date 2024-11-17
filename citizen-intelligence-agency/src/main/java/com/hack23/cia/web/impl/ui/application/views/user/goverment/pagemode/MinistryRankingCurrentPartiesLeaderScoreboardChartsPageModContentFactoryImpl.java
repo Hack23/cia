@@ -229,7 +229,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		layout.addComponent(ministryDaysServedLabel);
 
 		{
-		final Label experienceLabel = new Label("Political Experience:" + viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365 + " year Government, " + viewRiksdagenPolitician.getTotalDaysServedParty() / 365 + " year Party ," + viewRiksdagenPolitician.getTotalDaysServedParliament() / 365) +" year parliament";
+		final Label experienceLabel = new Label("Political Experience:" + (viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365) + " year Government, " + (viewRiksdagenPolitician.getTotalDaysServedParty() / 365) + " year Party ," + (viewRiksdagenPolitician.getTotalDaysServedParliament() / 365) +" year parliament");
 		Responsive.makeResponsive(experienceLabel);
 		experienceLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(experienceLabel);
