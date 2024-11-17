@@ -200,34 +200,21 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
 
 
-		final Label ministryTitleLabel = new Label(viewRiksdagenGovermentRoleMember.getDetail());
-		Responsive.makeResponsive(ministryTitleLabel);
-		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(ministryTitleLabel);
-
+		layout.addComponent(getPageLinkFactory().addMinistryPageLink(viewRiksdagenGovermentRoleMember.getDetail()));
 
 		final List<GovernmentBodyAnnualSummary> governentBodies = governmentBodyMinistryMap
 				.get(viewRiksdagenGovermentRoleMember.getDetail());
 
-		final Label govBodiesLabel = new Label("Government bodies:" + governentBodies.size() + " , Total Headcount(all goverment bodies):" + governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum());
-		Responsive.makeResponsive(govBodiesLabel);
-		govBodiesLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(govBodiesLabel);
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum()));
 
 		final List<GovernmentBodyAnnualOutcomeSummary> listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());
 		final Map<Integer, Double> annualIncomeSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 		final Map<Integer, Double> annualSpendingSummaryMap = listOutCome.stream().filter(t -> t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
 
-		final Label govBodiesFinanceLabel = new Label("Income(B SEK):" + governentBodies.size() + " , Spending(B SEK):" + annualSpendingSummaryMap.get(2024)/1000);
-		Responsive.makeResponsive(govBodiesFinanceLabel);
-		govBodiesFinanceLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(govBodiesFinanceLabel);
+		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2024) /1000));
+		layout.addComponent(getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualSpendingSummaryMap.get(2024)/1000));
 
-		layout.addComponent(getPageLinkFactory().addMinistryPageLink(viewRiksdagenGovermentRoleMember.getDetail()));
-		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));
-		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum()));
-		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2023) /1000));
-		layout.addComponent(getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualSpendingSummaryMap.get(2023)/1000));
 
 	}
 
@@ -241,13 +228,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		ministryDaysServedLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(ministryDaysServedLabel);
 
-		final Label ministryTitleLabel = new Label("Political Experience");
-		Responsive.makeResponsive(ministryTitleLabel);
-		ministryTitleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(ministryTitleLabel);
-
 		{
-		final Label experienceLabel = new Label("Government(year):" + viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365 + " , Party(year):" + viewRiksdagenPolitician.getTotalDaysServedParty() / 365 + " , Parliament(year):" + viewRiksdagenPolitician.getTotalDaysServedParliament() / 365);
+		final Label experienceLabel = new Label("Political Experience:" + viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365 + " year Government, " + viewRiksdagenPolitician.getTotalDaysServedParty() / 365 + " year Party ," + viewRiksdagenPolitician.getTotalDaysServedParliament() / 365) +" year parliament";
 		Responsive.makeResponsive(experienceLabel);
 		experienceLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(experienceLabel);
