@@ -8,7 +8,7 @@ Below is a breakdown of daily, monthly, and annual cash flows for better financi
 
 | **Time Frame**  | **Daily (USD)** | **Monthly (USD)** | **Annual (USD)** |
 |------------------|-----------------|-------------------|------------------|
-| **Total Cash Flow** | **$26.39**      | **$799.16**       | **$9,589.92**    |
+| **Total Cash Flow** | **$24.70**      | **$750.80**       | **$9,009.60**    |
 
 ---
 
@@ -37,8 +37,8 @@ This financial plan provides a structured and cost-efficient deployment for your
 | **CloudWatch Logs & Alarms** | $0.59           | $17.60            | $211.20           |
 | **Amazon S3 for Logs**  | $0.01           | $0.24             | $2.88             |
 | **AWS Resilience Hub**  | $0.50           | $15.00            | $180.00           |
-| **Security Services (Combined)** | $5.49           | $164.80           | $1,977.60         |
-| **Total**               | **$26.39**      | **$799.16**       | **$9,589.92**    |
+| **Security Services (Combined)** | $5.95           | $178.56           | $2,142.72         |
+| **Total**               | **$24.70**      | **$750.80**       | **$9,009.60**    |
 
 #### Links to Core Components:
 - [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) | [Amazon EC2 Documentation](https://docs.aws.amazon.com/ec2/)
@@ -60,8 +60,8 @@ Below is a breakdown of daily, monthly, and annual costs for AWS security servic
 | **Amazon Inspector**        | $0.87           | $26.04            | $312.48          |
 | **Key Management Service**  | $0.77           | $22.99            | $275.88          |
 | **AWS Config**              | $0.65           | $19.59            | $235.08          |
-| **Amazon GuardDuty**        | $0.50           | $15.14            | $181.68          |
-| **Total Security Costs**    | **$5.49**       | **$164.80**       | **$1,977.60**    |
+| **Amazon GuardDuty**        | $0.96           | $28.90            | $346.80          |
+| **Total Security Costs**    | **$5.95**       | **$178.56**       | **$2,142.72**    |
 
 #### Links to Security Services:
 - [AWS Security Hub Pricing](https://aws.amazon.com/security-hub/pricing/) | [AWS Security Hub Documentation](https://docs.aws.amazon.com/securityhub/)
