@@ -8,7 +8,7 @@ Below is a breakdown of daily, monthly, and annual cash flows for better financi
 
 | **Time Frame**  | **Daily (USD)** | **Monthly (USD)** | **Annual (USD)** |
 |------------------|-----------------|-------------------|------------------|
-| **Total Cash Flow** | **$15.94**      | **$478.24**       | **$5,738.88**    |
+| **Total Cash Flow** | **$26.39**      | **$799.16**       | **$9,589.92**    |
 
 ---
 
@@ -24,120 +24,85 @@ This financial plan provides a structured and cost-efficient deployment for your
 
 ---
 
-### Core Security Capabilities with NAT
+### Cost Breakdown: Core Components
 
-#### Enhanced Security Measures for Key Components
+| **Component**          | **Daily (USD)** | **Monthly (USD)** | **Annual (USD)** |
+|-------------------------|-----------------|-------------------|------------------|
+| **Amazon EC2 (m7g.2xlarge)** | $8.37           | $251.12           | $3,013.44         |
+| **Amazon RDS (db.m7g.large)** | $3.24           | $97.26            | $1,167.12         |
+| **Elastic Load Balancer (ALB)** | $0.89           | $26.58            | $318.96           |
+| **NAT Gateway**         | $1.33           | $39.84            | $478.08           |
+| **Data Transfer (100 GB)** | $0.30           | $9.00             | $108.00           |
+| **AWS WAF**             | $0.52           | $15.60            | $187.20           |
+| **CloudWatch Logs & Alarms** | $0.59           | $17.60            | $211.20           |
+| **Amazon S3 for Logs**  | $0.01           | $0.24             | $2.88             |
+| **AWS Resilience Hub**  | $0.50           | $15.00            | $180.00           |
+| **Security Services (Combined)** | $5.49           | $164.80           | $1,977.60         |
+| **Total**               | **$26.39**      | **$799.16**       | **$9,589.92**    |
 
-1. **AWS WAF (Web Application Firewall):**
-   - Protects web applications from common threats like SQL injection, cross-site scripting (XSS), and DDoS attacks.
-   - Ensures that only valid and authorized traffic reaches your application.
-   - **Monthly Cost:** $15.60  
-   - [AWS WAF Pricing](https://aws.amazon.com/waf/pricing/)  
-   - [AWS WAF Documentation](https://docs.aws.amazon.com/waf/latest/developerguide/)
-
-2. **CloudWatch Logs & Alarms:**
-   - Enables real-time monitoring of application and system logs for suspicious activities.
-   - Triggers alarms for predefined thresholds, supporting proactive threat detection.
-   - **Monthly Cost:** $17.60  
-   - [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)  
-   - [CloudWatch Documentation](https://docs.aws.amazon.com/cloudwatch/)
-
-3. **Amazon S3 for Log Storage:**
-   - Securely stores application logs, audit trails, and compliance data.
-   - Offers server-side encryption to protect sensitive log information.
-   - **Monthly Cost:** $0.24  
-   - [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)  
-   - [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/)
-
-4. **NAT Gateway (Network Address Translation):**
-   - Provides secure internet access for resources in private subnets, such as backend databases and application servers.
-   - Ensures that outbound traffic is routed through a controlled and monitored gateway.
-   - Shields internal resources by hiding their IP addresses.
-   - **Monthly Cost:** $39.84  
-   - [NAT Gateway Pricing](https://aws.amazon.com/vpc/pricing/)  
-   - [NAT Gateway Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
-
-5. **AWS Resilience Hub:**
-   - Tracks and assesses resilience against operational and cyber disruptions.
-   - Identifies gaps in recovery planning and provides actionable recommendations.
-   - **Monthly Cost:** $15.00  
-   - [AWS Resilience Hub Pricing](https://aws.amazon.com/resilience-hub/pricing/)  
-   - [AWS Resilience Hub Documentation](https://docs.aws.amazon.com/resilience-hub/)
+#### Links to Core Components:
+- [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) | [Amazon EC2 Documentation](https://docs.aws.amazon.com/ec2/)
+- [Amazon RDS Pricing](https://aws.amazon.com/rds/pricing/) | [Amazon RDS Documentation](https://docs.aws.amazon.com/rds/)
+- [Elastic Load Balancer Pricing](https://aws.amazon.com/elasticloadbalancing/pricing/) | [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/)
+- [NAT Gateway Pricing](https://aws.amazon.com/vpc/pricing/) | [NAT Gateway Documentation](https://docs.aws.amazon.com/vpc/)
+- [Data Transfer Pricing](https://aws.amazon.com/ec2/pricing/on-demand/) | [Data Transfer Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html)
 
 ---
 
-### Security Summary
-- The **NAT Gateway** is a key component in securing private subnets by controlling outbound internet access while preventing direct exposure to external threats.
-- Combined with AWS WAF, CloudWatch Logs, and secure S3 storage, the infrastructure achieves a layered security model.
-- **Total Monthly Security-Related Cost:** $88.28 (includes WAF, CloudWatch, S3 Logs, NAT, and Resilience Hub).
+### Security Assumptions and Costs for Basic Services
 
-This approach addresses both network-level and application-level security, ensuring a robust defense posture.
+Below is a breakdown of daily, monthly, and annual costs for AWS security services based on typical usage patterns. These estimates include foundational security services that enhance your AWS account's overall security posture.
+
+| **Service**                 | **Daily (USD)** | **Monthly (USD)** | **Annual (USD)** |
+|-----------------------------|-----------------|-------------------|------------------|
+| **Security Hub**            | $1.69           | $50.78            | $609.36          |
+| **Amazon Detective**        | $1.01           | $30.26            | $363.12          |
+| **Amazon Inspector**        | $0.87           | $26.04            | $312.48          |
+| **Key Management Service**  | $0.77           | $22.99            | $275.88          |
+| **AWS Config**              | $0.65           | $19.59            | $235.08          |
+| **Amazon GuardDuty**        | $0.50           | $15.14            | $181.68          |
+| **Total Security Costs**    | **$5.49**       | **$164.80**       | **$1,977.60**    |
+
+#### Links to Security Services:
+- [AWS Security Hub Pricing](https://aws.amazon.com/security-hub/pricing/) | [AWS Security Hub Documentation](https://docs.aws.amazon.com/securityhub/)
+- [Amazon Detective Pricing](https://aws.amazon.com/detective/pricing/) | [Amazon Detective Documentation](https://docs.aws.amazon.com/detective/)
+- [Amazon Inspector Pricing](https://aws.amazon.com/inspector/pricing/) | [Amazon Inspector Documentation](https://docs.aws.amazon.com/inspector/)
+- [AWS Key Management Service Pricing](https://aws.amazon.com/kms/pricing/) | [AWS KMS Documentation](https://docs.aws.amazon.com/kms/)
+- [AWS Config Pricing](https://aws.amazon.com/config/pricing/) | [AWS Config Documentation](https://docs.aws.amazon.com/config/)
+- [Amazon GuardDuty Pricing](https://aws.amazon.com/guardduty/pricing/) | [Amazon GuardDuty Documentation](https://docs.aws.amazon.com/guardduty/)
 
 ---
 
-### Detailed Technical and Financial Breakdown
+### Cybersecurity Enhancements via AWS Security Services
 
-#### 1. Amazon EC2 Instances
-- **Purpose:** Hosts the web application.
-- **Instance Type:** `m7g.2xlarge` (8 vCPUs, 32 GiB RAM)
-- **Daily Cost:** $8.37  
-- **Monthly Cost:** $251.12  
-- **Annual Cost:** $3,013.44  
-- [EC2 Pricing](https://aws.amazon.com/ec2/pricing/)  
-- [EC2 Documentation](https://docs.aws.amazon.com/ec2/)
+#### Core Features
+1. **Threat Detection with GuardDuty:**
+   - Analyzes AWS logs (e.g., CloudTrail, VPC Flow Logs) for suspicious activity.
+   - Automatically integrates with Security Hub for unified threat visibility.
+   - **Benefit:** Real-time alerts on potential threats.
 
-#### 2. Amazon RDS (Relational Database Service)
-- **Purpose:** Supports the backend PostgreSQL database.
-- **Instance Type:** `db.m7g.large` (2 vCPUs, 8 GiB RAM, 200 GB SSD)
-- **Daily Cost:** $3.24  
-- **Monthly Cost:** $97.26  
-- **Annual Cost:** $1,167.12  
-- [RDS Pricing](https://aws.amazon.com/rds/pricing/)  
-- [RDS Documentation](https://docs.aws.amazon.com/rds/)
+2. **Vulnerability Scanning with Inspector:**
+   - Automatically assesses EC2 instances and container workloads for vulnerabilities.
+   - Provides actionable findings for improving security posture.
+   - **Benefit:** Continuous compliance with security best practices.
 
-#### 3. Elastic Load Balancer (ALB)
-- **Purpose:** Distributes incoming application traffic across multiple instances.
-- **Daily Cost:** $0.89  
-- **Monthly Cost:** $26.58  
-- **Annual Cost:** $318.96  
-- [Elastic Load Balancer Pricing](https://aws.amazon.com/elasticloadbalancing/pricing/)  
-- [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/)
+3. **Security Event Investigations with Detective:**
+   - Simplifies root cause analysis for suspicious activities flagged by GuardDuty.
+   - **Benefit:** Faster resolution of security incidents with visual context.
 
-#### 4. NAT Gateway
-- **Purpose:** Enables outbound internet traffic for private subnets.
-- **Daily Cost:** $1.33  
-- **Monthly Cost:** $39.84  
-- **Annual Cost:** $478.08  
+4. **Configuration Management with AWS Config:**
+   - Tracks changes to resource configurations and ensures compliance with defined rules.
+   - **Benefit:** Proactive compliance auditing and security enforcement.
 
-#### 5. Data Transfer (Outbound)
-- **Purpose:** Handles 100 GB of outbound traffic monthly.
-- **Daily Cost:** $0.30  
-- **Monthly Cost:** $9.00  
-- **Annual Cost:** $108.00  
+5. **Centralized Visibility with Security Hub:**
+   - Aggregates findings from GuardDuty, Inspector, and Config into a single dashboard.
+   - Provides AWS Foundational Security Best Practices checks.
+   - **Benefit:** Unified security insights and automation.
 
-#### 6. AWS WAF
-- **Purpose:** Protects against SQL injection, XSS, and other cyber threats.
-- **Daily Cost:** $0.52  
-- **Monthly Cost:** $15.60  
-- **Annual Cost:** $187.20  
-
-#### 7. CloudWatch Logs & Alarms
-- **Purpose:** Monitors and logs data in real-time.
-- **Daily Cost:** $0.59  
-- **Monthly Cost:** $17.60  
-- **Annual Cost:** $211.20  
-
-#### 8. S3 for Logs
-- **Purpose:** Stores compliance and audit logs securely.
-- **Daily Cost:** $0.01  
-- **Monthly Cost:** $0.24  
-- **Annual Cost:** $2.88  
-
-#### 9. AWS Resilience Hub
-- **Purpose:** Tracks resilience across workloads.
-- **Daily Cost:** $0.50  
-- **Monthly Cost:** $15.00  
-- **Annual Cost:** $180.00  
+6. **Data Protection with Key Management Service (KMS):**
+   - Provides encryption for data at rest and in transit.
+   - Integrates with S3, EBS, RDS, and other AWS services.
+   - **Benefit:** Secure encryption key storage and management.
 
 ---
 
@@ -151,4 +116,4 @@ This approach addresses both network-level and application-level security, ensur
 
 ### Conclusion
 
-This financial plan balances scalability, cost-efficiency, and cybersecurity. Optional HA ensures resilience for critical workloads requiring robust uptime guarantees.
+This financial plan balances scalability, cost-efficiency, and cybersecurity. The inclusion of EC2 and RDS costs complements the robust AWS security services. Optional HA ensures resilience for critical workloads requiring robust uptime guarantees while leveraging AWS security services for proactive threat detection and compliance monitoring.
