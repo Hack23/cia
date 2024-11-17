@@ -132,8 +132,14 @@
                 "db.r7g.2xlarge",
                 "db.r7g.4xlarge",
                 "db.r7g.8xlarge",
-                "db.r7g.16xlarge"
-            ],
+                "db.r7g.16xlarge",
+                "db.m7g.large",
+                "db.m7g.xlarge",
+                "db.m7g.2xlarge",
+                "db.m7g.4xlarge",
+                "db.m7g.8xlarge",
+                "db.m7g.16xlarge"
+	    ],
             "ConstraintDescription": "must select a valid database instance type."
         },
         "DBAllocatedStorage": {
