@@ -2931,13 +2931,13 @@
                     },
                     {
                         "Key": "idle_timeout.timeout_seconds",
-                        "Value": "60"
+                        "Value": "180"
                     },
                     {
                         "Key": "routing.http.drop_invalid_header_fields.enabled",
                         "Value": "true"
                     },
-                    {
+		    {
                         "Key": "routing.http.desync_mitigation_mode",
                         "Value": "strictest"
                     }
@@ -3454,7 +3454,7 @@
                     "Ref": "VPC"
                 },
                 "HealthCheckPort": 8443,
-                "HealthCheckIntervalSeconds": 5,
+                "HealthCheckIntervalSeconds": 10,
                 "HealthCheckProtocol": "HTTPS",
                 "HealthCheckPath": "/healthcheck/",
                 "HealthCheckTimeoutSeconds": 4,
