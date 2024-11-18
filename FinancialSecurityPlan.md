@@ -117,3 +117,62 @@ Below is a breakdown of daily, monthly, and annual costs for AWS security servic
 ### Conclusion
 
 This financial plan balances scalability, cost-efficiency, and cybersecurity. The inclusion of EC2 and RDS costs complements the robust AWS security services. Optional HA ensures resilience for critical workloads requiring robust uptime guarantees while leveraging AWS security services for proactive threat detection and compliance monitoring.
+
+
+## Security Controls
+
+The Citizen Intelligence Agency (CIA) project implements the following **AWS Foundational Security Best Practices (FSBP)** controls. These controls leverage AWS services to protect financial data, detect threats, and ensure compliance.
+
+---
+
+## 1. Foundational Security Services
+
+### AWS Config
+- **Control:** [Config.1: AWS Config should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-config-1)  
+- **Description:** AWS Config provides continuous monitoring of resource configurations and compliance checks. It is foundational for AWS Security Hub and other security services.  
+- **Implementation Steps:** Enable AWS Config in all regions and configure compliance rules.  
+- **Learn More:** [What is AWS Config?](https://docs.aws.amazon.com/config/latest/developerguide/)
+
+### AWS Security Hub
+- **Control:** [SecurityHub.1: Security Hub should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-securityhub-1)  
+- **Description:** AWS Security Hub aggregates security findings and evaluates compliance with the AWS FSBP standard.  
+- **Implementation Steps:** Enable Security Hub and integrate it with GuardDuty, Inspector, and AWS Config.  
+- **Learn More:** [AWS Security Hub Overview](https://docs.aws.amazon.com/securityhub/latest/userguide/)
+
+---
+
+## 2. Threat Detection and Monitoring
+
+### Amazon GuardDuty
+- **Controls:**  
+  - [GuardDuty.1: GuardDuty should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-1)  
+  - [GuardDuty.5: GuardDuty EKS Audit Log Monitoring should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-5)  
+  - [GuardDuty.6: GuardDuty Lambda Protection should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-6)  
+  - [GuardDuty.7: GuardDuty EKS Runtime Monitoring should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-7)  
+  - [GuardDuty.8: GuardDuty Malware Protection for EC2 should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-8)  
+  - [GuardDuty.9: GuardDuty RDS Protection should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-9)  
+  - [GuardDuty.10: GuardDuty S3 Protection should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-guardduty-10)  
+- **Description:** GuardDuty provides intelligent threat detection across AWS resources, including EKS, Lambda, EC2, RDS, and S3.  
+- **Implementation Steps:** Enable GuardDuty in all regions, activate relevant protections, and regularly review and address findings.  
+- **Learn More:** [What is Amazon GuardDuty?](https://docs.aws.amazon.com/guardduty/latest/ug/)
+
+---
+
+## 3. Vulnerability Management
+
+### Amazon Inspector
+- **Controls:**  
+  - [Inspector.1: Amazon Inspector should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-inspector-1)  
+  - [Inspector.2: Amazon Inspector ECR scanning should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-inspector-2)  
+  - [Inspector.3: Amazon Inspector Lambda code scanning should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-inspector-3)  
+  - [Inspector.4: Amazon Inspector Lambda standard scanning should be enabled](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-inspector-4)  
+- **Description:** Inspector scans workloads, container images (ECR), and Lambda functions for vulnerabilities.  
+- **Implementation Steps:** Enable Amazon Inspector, configure ECR scanning, and activate Lambda code and standard scans.  
+- **Learn More:** [What is Amazon Inspector?](https://docs.aws.amazon.com/inspector/latest/user/)
+
+---
+
+## Conclusion
+
+These **FSBP-aligned controls** ensure the CIA project maintains robust security for financial operations, proactively addresses vulnerabilities, and aligns with industry best practices.
+```
