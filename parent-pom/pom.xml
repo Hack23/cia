@@ -32,7 +32,7 @@
       <timezone>0</timezone>
     </developer>
   </developers>
-  <mailingLists></mailingLists>
+  <mailingLists/>
   <prerequisites>
     <maven>3.9.1</maven>
   </prerequisites>
@@ -65,14 +65,14 @@
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-    <sonar.dependencyCheck.htmlReportPath></sonar.dependencyCheck.htmlReportPath>
-    <sonar.dependencyCheck.xmlReportPath></sonar.dependencyCheck.xmlReportPath>
-    <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
-    <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
+    <sonar.dependencyCheck.htmlReportPath/>
+    <sonar.dependencyCheck.xmlReportPath/>
+    <sonar.zaproxy.htmlReportPath/>
+    <sonar.zaproxy.reportPath/>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <root.dir>file:///${basedir}/../</root.dir>
-    <cia.project.versions.spring>5.3.39</cia.project.versions.spring>
-    <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
+    <cia.project.versions.spring>6.1.14</cia.project.versions.spring>
+    <cia.project.versions.spring.security>6.2.7</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.778</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.22.1</cia.project.versions.aspectj>
@@ -1536,7 +1536,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
             <inherited>true</inherited>
-            <configuration></configuration>
+            <configuration/>
           </plugin>
           <plugin>
             <groupId>org.jboss.tattletale</groupId>
