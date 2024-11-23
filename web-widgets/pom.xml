@@ -40,7 +40,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-spring</artifactId>
-      <version>3.2.1</version>
+      <version>10.0.0</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -675,7 +675,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -802,7 +802,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration></configuration>
+            <configuration/>
           </execution>
         </executions>
       </plugin>
