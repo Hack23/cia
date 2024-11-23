@@ -88,7 +88,7 @@
         </createIndex>
 	</changeSet>
 
-	<changeSet author="pether (generated)" id="1414872417007-331">
+	<changeSet author="pether (generated)" id="1414872417007-331" failOnError="false">
 		<sql>CREATE EXTENSION vector</sql>
 	</changeSet>
 
