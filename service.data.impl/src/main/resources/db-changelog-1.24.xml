@@ -86,8 +86,10 @@
 		<createIndex indexName="application_session_created_date_idx" tableName="application_session">
             <column name="created_date"/>
         </createIndex>
-        
-        
+	</changeSet>
+
+	<changeSet author="pether (generated)" id="1414872417007-331" failOnError="false">
+		<sql>CREATE EXTENSION vector</sql>
 	</changeSet>
 
 </databaseChangeLog>
