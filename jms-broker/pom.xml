@@ -325,7 +325,7 @@
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
       <artifactId>jboss-logmanager</artifactId>
-      <version>3.0.6.Final</version>
+      <version>3.1.0.Final</version>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.logging</groupId>
