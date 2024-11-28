@@ -110,7 +110,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	@Override
 	public boolean matches(final String page, final String parameters) {
 <span class="fc" id="L112">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L113" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="pc bpc" id="L113" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
 <span class="fc bfc" id="L114" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
