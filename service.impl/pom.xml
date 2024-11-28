@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.18.1</version>
+      <version>1.18.2</version>
     </dependency>
     <dependency>
       <groupId>javax.annotation</groupId>
@@ -87,7 +87,7 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>4.28.3</version>
+      <version>4.29.0</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jdt</groupId>
