@@ -84,6 +84,36 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The Constant ROLES_TEXT. */
 	private static final String ROLES_TEXT = "Roles";
 
+	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
+	private static final String CURRENT_MEMBERS_DESCRIPTION = "Current roles and days served";
+
+	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
+	private static final String MEMBER_HISTORY_DESCRIPTION = "History of all roles and days served";
+
+	/** The Constant ROLE_GHANT_DESCRIPTION. */
+	private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart of all roles over time";
+
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart of document activity by document type.";
+
+	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
+	private static final String DOCUMENT_HISTORY_DESCRIPTION = "Document history list";
+
+	/** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
+	private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Summary of all ballot decisions";
+
+	/** The Constant DECISION_SUMMARY_DESCRIPTION. */
+	private static final String DECISION_SUMMARY_DESCRIPTION = "Summary of all ballots";
+
+	/** The Constant DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION. */
+	private static final String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Chart over decisions by decisions type, daily summary";
+
+	/** The Constant DECISION_FLOW_DESCRIPTION. */
+	private static final String DECISION_FLOW_DESCRIPTION = "Decision flow chart";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -158,37 +188,37 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), "Current roles and days served");
+				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);
 
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.MEMBERHISTORY.toString(), pageId), "History of all roles and days served");
+				CommitteePageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
 
 		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles over time");
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart of document activity by document type.");
+				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), "Document history list");
+				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);
 
 
 		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
+				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
 		createButtonLink(grid,DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), "Summary of all ballots");
+				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), DECISION_SUMMARY_DESCRIPTION);
 
 		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Chart over decisions by decisions type, daily summary");
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION);
 
 		createButtonLink(grid,"Decision flow", VaadinIcons.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId),"desc");
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId), DECISION_FLOW_DESCRIPTION);
 
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
 
 
 	}

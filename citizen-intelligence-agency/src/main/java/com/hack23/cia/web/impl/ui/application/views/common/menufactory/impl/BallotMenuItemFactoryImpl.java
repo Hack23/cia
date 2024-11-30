@@ -42,6 +42,8 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
+	/** The Constant CHARTS_DESCRIPTION. */
+	private static final String CHARTS_DESCRIPTION = "Breakdown by total votes and by party.";
 
 	/**
 	 * Instantiates a new ballot menu item factory impl.
@@ -65,7 +67,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Breakdown by total votes and by party.");
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), CHARTS_DESCRIPTION);
 	}
 
 }

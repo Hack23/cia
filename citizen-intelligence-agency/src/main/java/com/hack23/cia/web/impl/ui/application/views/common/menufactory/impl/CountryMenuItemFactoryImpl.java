@@ -79,6 +79,12 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant BY_TOPIC. */
+	private static final String BY_TOPIC = "By Topic";
+
+	/** The Constant BY_TOPIC_DESCRIPTION. */
+	private static final String BY_TOPIC_DESCRIPTION = "Indicators for Sweden overview, find data by topic or source.";
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -159,7 +165,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
 		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
-		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC,VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
 		menuBar.setAutoOpen(true);
 	}
 

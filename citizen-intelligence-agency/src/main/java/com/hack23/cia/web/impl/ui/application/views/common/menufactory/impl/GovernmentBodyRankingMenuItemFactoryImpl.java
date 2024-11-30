@@ -80,6 +80,18 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant HEADCOUNT_DESCRIPTION. */
+	private static final String HEADCOUNT_DESCRIPTION = "Chart showing the headcount of government bodies";
+
+	/** The Constant INCOME_DESCRIPTION. */
+	private static final String INCOME_DESCRIPTION = "Chart showing the income of government bodies";
+
+	/** The Constant EXPENDITURE_DESCRIPTION. */
+	private static final String EXPENDITURE_DESCRIPTION = "Chart showing the expenditure of government bodies";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -122,11 +134,11 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 
 		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, "Current government bodies");
 
-		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, "Desc");
-		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, "Desc");
-		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , "Desc");
+		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, HEADCOUNT_DESCRIPTION);
+		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, INCOME_DESCRIPTION);
+		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , EXPENDITURE_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

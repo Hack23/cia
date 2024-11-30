@@ -157,6 +157,47 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant SEARCH_DOCUMENTS. */
 	private static final String SEARCH_DOCUMENTS = "Search documents";
 
+	/** The Constant COUNTRY_RANKING_DESCRIPTION. */
+	private static final String COUNTRY_RANKING_DESCRIPTION = "Indicators for Sweden overview, find data by topic or source.";
+
+	/** The Constant MINISTRY_RANKING_DESCRIPTION. */
+	private static final String MINISTRY_RANKING_DESCRIPTION = "Ministry ranking overview, contains data and charts.";
+
+	/** The Constant MINISTRIES_DESCRIPTION. */
+	private static final String MINISTRIES_DESCRIPTION = "All ministries, scoreboard assignments and days served in committees";
+
+	/** The Constant GOVERNMENT_BODY_RANKING_DESCRIPTION. */
+	private static final String GOVERNMENT_BODY_RANKING_DESCRIPTION = "All government bodies overview";
+
+	/** The Constant GOVERNMENT_BODIES_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_DESCRIPTION = "All government bodies, current headcount";
+
+	/** The Constant PARLIAMENT_RANKING_DESCRIPTION. */
+	private static final String PARLIAMENT_RANKING_DESCRIPTION = "Charts over parliamentary ballots and document activity";
+
+	/** The Constant COMMITTEE_RANKING_DESCRIPTION. */
+	private static final String COMMITTEE_RANKING_DESCRIPTION = "Committee ranking overview, contains data and charts.";
+
+	/** The Constant COMMITTEES_DESCRIPTION. */
+	private static final String COMMITTEES_DESCRIPTION = "All committees, scoreboard assignments and days served in committees";
+
+	/** The Constant PARTY_RANKING_DESCRIPTION. */
+	private static final String PARTY_RANKING_DESCRIPTION = "Party ranking overview, contains data and charts.";
+
+	/** The Constant PARTIES_DESCRIPTION. */
+	private static final String PARTIES_DESCRIPTION = "All parties, scoreboard assignments and days served in government, committees, speaker and party positions.";
+
+	/** The Constant POLITICIAN_RANKING_DESCRIPTION. */
+	private static final String POLITICIAN_RANKING_DESCRIPTION = "Politician ranking overview, contains data and charts.";
+
+	/** The Constant POLITICIANS_DESCRIPTION. */
+	private static final String POLITICIANS_DESCRIPTION = "All politicians, scoreboard assignments and days served in government, committees, speaker and party positions.";
+
+	/** The Constant SEARCH_DOCUMENTS_DESCRIPTION. */
+	private static final String SEARCH_DOCUMENTS_DESCRIPTION = "Search parliament documents";
+
+	/** The Constant DOCUMENTS_DESCRIPTION. */
+	private static final String DOCUMENTS_DESCRIPTION = "List all parliament documents";
 
 	/** The committee ranking menu item factory. */
 	@Autowired
@@ -246,34 +287,34 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,"Indicators for Sweden overview, find data by topic or source.");
+		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,COUNTRY_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Ministry ranking overiew, contains data and charts.");
+		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,MINISTRY_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
+		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,MINISTRIES_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,"All government bodies overview");
+		createButtonLink(grid,GOVERNMENT_BODY_RANKING,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW,GOVERNMENT_BODY_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies, current headcount");
+		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,GOVERNMENT_BODIES_DESCRIPTION);
 
-		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
+		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,PARLIAMENT_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Committee ranking overiew, contains data and charts.");
+		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,COMMITTEE_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,COMMITTEES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,"All committees, scoreboard assignments and days served in committees");
+		createButtonLink(grid,COMMITTEES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,COMMITTEES_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,"Party ranking overiew, contains data and charts.");
+		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,PARTY_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,PARTIES_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_DATAGRID,"All parties, scoreboard assignments and days served in government, committees, speaker and party positions.");
+		createButtonLink(grid,PARTIES_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_DATAGRID,PARTIES_DESCRIPTION);
 
 
-		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,"Politician ranking overiew, contains data and charts.");
+		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,POLITICIAN_RANKING_DESCRIPTION);
 
-		createButtonLink(grid,POLITICIANS_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,"All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
+		createButtonLink(grid,POLITICIANS_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,POLITICIANS_DESCRIPTION);
 
-		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
+		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,SEARCH_DOCUMENTS_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS,"List all parliament documents");
+		createButtonLink(grid,DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS,DOCUMENTS_DESCRIPTION);
 
 	}
 
