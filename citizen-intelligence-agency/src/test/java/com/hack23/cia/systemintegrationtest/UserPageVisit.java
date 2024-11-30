@@ -1006,4 +1006,34 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_COMMITTEE_RANKING_VIEW,
 				ViewAction.VISIT_COUNTRY_VIEW });
 	}
+
+	// New methods added from UserRoleSystemITest and AdminRoleSystemITest
+
+	public void loginAsAdmin() throws Exception {
+		loginUser("admin", "adminpassword");
+	}
+
+	public void clickFirstRowInGrid() throws Exception {
+		final List<WebElement> gridRows = getGridRows();
+		assertFalse("Expect grid rows", gridRows.isEmpty());
+
+		final WebElement firstRow = gridRows.get(0);
+		performClickAction(firstRow);
+	}
+
+	public void validatePage(PageModeMenuCommand page, String expectedText) throws Exception {
+		validatePage(page);
+		assertTrue("Expect content", checkHtmlBodyContainsText(expectedText));
+	}
+
+	public void validatePage(PageModeMenuCommand page, ViewAction[] viewActions) throws Exception {
+		validatePage(page);
+		verifyViewActions(viewActions);
+	}
+
+	public void validatePage(PageModeMenuCommand page, String expectedText, ViewAction[] viewActions) throws Exception {
+		validatePage(page);
+		assertTrue("Expect content", checkHtmlBodyContainsText(expectedText));
+		verifyViewActions(viewActions);
+	}
 }
