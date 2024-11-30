@@ -26,6 +26,7 @@ import java.util.UUID;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
@@ -494,7 +495,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,""));
 
@@ -2021,7 +2022,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,""));
 
@@ -2240,7 +2241,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
 				RiskIndicators.RISK_SUMMARY.toString()));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 	}
 
 
@@ -2259,7 +2260,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
 				RiskIndicators.RULE_VIOLATIONS.toString()));
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 	}
 
 
@@ -3142,7 +3143,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, ""));
 

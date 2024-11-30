@@ -74,12 +74,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Agency"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 
@@ -98,7 +98,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 
@@ -124,13 +124,13 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Configuration"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit
 				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
@@ -153,7 +153,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event chart"));
@@ -174,12 +174,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 
@@ -197,7 +197,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Daily Active Users Chart"));
@@ -217,7 +217,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
@@ -238,7 +238,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
@@ -260,12 +260,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 
@@ -285,12 +285,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Country"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 
@@ -308,7 +308,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
@@ -329,7 +329,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
@@ -352,12 +352,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 
@@ -394,7 +394,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Admin Monitoring"));
@@ -416,12 +416,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Portal"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 
@@ -439,12 +439,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 
@@ -468,12 +468,12 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
 
-		userPageVisit.clickFirstRowInGrid();
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 
@@ -492,7 +492,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString()));
 	}
@@ -510,7 +510,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
@@ -534,7 +534,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
@@ -555,7 +555,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
@@ -577,7 +577,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
@@ -602,7 +602,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
@@ -621,7 +621,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.loginAsAdmin();
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
