@@ -92,6 +92,27 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person references";
 
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Document activities";
+
+	/** The Constant PERSON_REFERENCES_DESCRIPTION. */
+	private static final String PERSON_REFERENCES_DESCRIPTION = "Person references";
+
+	/** The Constant DOCUMENT_DETAILS_DESCRIPTION. */
+	private static final String DOCUMENT_DETAILS_DESCRIPTION = "Document details";
+
+	/** The Constant DOCUMENT_DATA_DESCRIPTION. */
+	private static final String DOCUMENT_DATA_DESCRIPTION = "Complete document as text";
+
+	/** The Constant DOCUMENT_REFERENCES_DESCRIPTION. */
+	private static final String DOCUMENT_REFERENCES_DESCRIPTION = "Document References";
+
+	/** The Constant DOCUMENT_DECISION_DESCRIPTION. */
+	private static final String DOCUMENT_DECISION_DESCRIPTION = "Document decisions";
+
+	/** The Constant DOCUMENT_ATTACHEMENTS_DESCRIPTION. */
+	private static final String DOCUMENT_ATTACHEMENTS_DESCRIPTION = "Attachements";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -158,25 +179,25 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);
+				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);
+				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);
+				DocumentPageMode.DOCUMENTDATA.toString(), pageId), DOCUMENT_DATA_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);
+				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISION_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), DOCUMENT_ATTACHEMENTS_DESCRIPTION);
 	}
 
 }

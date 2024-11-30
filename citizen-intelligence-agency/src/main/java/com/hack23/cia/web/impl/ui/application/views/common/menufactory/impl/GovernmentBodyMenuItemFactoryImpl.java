@@ -59,6 +59,15 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant HEADCOUNT_DESCRIPTION. */
+	private static final String HEADCOUNT_DESCRIPTION = "Chart showing the headcount of the government body";
+
+	/** The Constant INCOME_DESCRIPTION. */
+	private static final String INCOME_DESCRIPTION = "Chart showing the income of the government body";
+
+	/** The Constant EXPENDITURE_DESCRIPTION. */
+	private static final String EXPENDITURE_DESCRIPTION = "Chart showing the expenditure of the government body";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -108,13 +117,13 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), "Desc.");
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), HEADCOUNT_DESCRIPTION);
 
 		createButtonLink(grid,INCOME, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), "Desc.");
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), INCOME_DESCRIPTION);
 
 		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), "Desc");
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), EXPENDITURE_DESCRIPTION);
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");

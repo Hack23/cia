@@ -80,6 +80,33 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant ROLES_TEXT. */
 	private static final String ROLES_TEXT = "Roles";
 
+	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
+	private static final String CURRENT_MEMBERS_DESCRIPTION = "Members currently holding positions";
+
+	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
+	private static final String MEMBER_HISTORY_DESCRIPTION = "Current and past members";
+
+	/** The Constant ROLE_GHANT_DESCRIPTION. */
+	private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart for all the roles";
+
+	/** The Constant GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION = "All government bodies that are governed by ministry";
+
+	/** The Constant GOVERNMENT_BODIES_INCOME_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_INCOME_DESCRIPTION = "All government bodies income";
+
+	/** The Constant GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION = "All government bodies expenditure";
+
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart over document activity";
+
+	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
+	private static final String DOCUMENT_HISTORY_DESCRIPTION = "List of all document sorted by most recent";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -146,31 +173,31 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), "Members currently holding positions");
+				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);
 
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.MEMBERHISTORY.toString(), pageId), "Current and past members");
+				MinistryPageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
 
 		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), "Gantt chart for all the roles");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);
 
 		createButtonLink(grid,GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), "All government bodies that are governed by ministry");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
 
 		createButtonLink(grid,GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), "All government bodies income");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), GOVERNMENT_BODIES_INCOME_DESCRIPTION);
 
 		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), "All government bodies expenditure");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart over document activity");
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), "List of all document sorted by most recent");
+				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
 
 
 	}
