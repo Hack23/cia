@@ -1,7 +1,7 @@
 @mixin gantt {
 	
 	.gantt {
-		background: #0C0F0A; // Black
+		background: #fff;
 		overflow: hidden;
 	
 		.timeline {
@@ -15,8 +15,8 @@
 			padding-left: 2px;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-		    border-right: 1px solid #00FF00; // Green
-		    background-color: #0C0F0A; // Black
+		    border-right: 1px solid #A9A9A9;
+		    background-color: #d0d0d0;
 		    box-sizing: border-box;
 		    -moz-box-sizing: border-box;
 		    -webkit-box-sizing: border-box;
@@ -28,18 +28,18 @@
 		
 		.month:nth-of-type(even),
 		.day:nth-of-type(even) {
-		    background-color: #00FFFF; // Cyan
+		    background-color: #ddd;
 		}
 		.col.even {
-		    background-color: #00FFFF; // Cyan
+		    background-color: #ccc;
 		}
 		
 		.col {
 			height: 100%;
 			float: left;
 			overflow: hidden;
-			border-right: 1px solid #00FF00; // Green
-			background-color: #0C0F0A; // Black
+			border-right: 1px solid #A9A9A9;
+			background-color: #ddd;
 			font-size: 10px;
 			text-align: center;
 			box-sizing: border-box;
@@ -54,20 +54,20 @@
 		}
 		
 		.col.weekend {
-			background-color: #00FFFF; // Cyan
+			background-color: #ccc;
 		}
 		.col.now,
 		.col.even.now {
-			background-color: #00FF00; // Green
+			background-color: #ff8080;
 		}
 		.col.weekend.now { 
-			background-color: #00FF00; // Green
+			background-color: #d86b6b;
 		}
 		.col.measure {
 		    // Change min-width to adjust grid's cell width with day and hour-resolution.
 			//min-width: 40px;
 		}
-			.col.w.measure {
+		.col.w.measure {
 			// Change min-width to adjust grid's cell width with week-resolution.
 			//min-width: 70px;
 		}
@@ -94,7 +94,7 @@
 			
 			/* Background grid. IE 8 not supported.*/
 			
-			@include ganttBgGrid(#00FFFF); // Cyan
+			@include ganttBgGrid(#eee);
 		}
 		
 		.gantt-content {
@@ -181,13 +181,13 @@
 		}
 		
 		.bar.moving {
-			background: #00FF00; // Green
+			background: orange;
 			cursor: move;
 			z-index: 3;
 		}
 		
 		.bar.resizing {
-			background: #00FF00; // Green
+			background: orange;
 			cursor: e-resize;
 			z-index: 3;
 		}
@@ -205,8 +205,8 @@
 			height: 100%;
 			z-index: 2;
 			background: transparent;
-			border-left: 1px dashed #00FFFF; // Cyan
-			border-right: 1px dashed #00FFFF; // Cyan
+			border-left: 1px dashed #ddd;
+			border-right: 1px dashed #ddd;
 		}
 		
 		.now-el {
@@ -217,20 +217,20 @@
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
 			width: 1px;
-			background-color: #00FF00; // Green
+			background-color: #ca0000;
 			z-index: 2;
 		}
 		
 		.arrow {
 			.start-p,
 			.end-p {
-				fill: #00FFFF; // Cyan
-    			stroke: #00FF00; // Green
+				fill: #005fff;
+    			stroke: #0019ff;
 			}
 			.start-p:hover,
 			.end-p:hover {
-				fill: #00FF00; // Green
-    			stroke: #00FF00; // Green
+				fill: orange;
+    			stroke: orange;
 			}
 			.curve-line {
 			
@@ -244,7 +244,7 @@
 			-ms-touch-action: none;
 			
 			.bar:hover {
-				background: #00FF00 !important; // Green
+				background: orange !important;
 			}
 		}
 		
