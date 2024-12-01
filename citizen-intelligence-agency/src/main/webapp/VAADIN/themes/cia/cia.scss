@@ -4,18 +4,18 @@
 
 
 	$backGroundColor: $v-background-color;
-	$groundColor: #00FFFF; // Cyan
+	$groundColor: #FFFFFF;	
 	$backGroundColorLevel1: $v-background-color;
 	$backGroundColorLevel2: $v-background-color;
 	$borderColorLevel: rgb(246, 245, 244);
-	$backGroundColorPanelCaption: #00FFFF; // Cyan
+	$backGroundColorPanelCaption: #FFFFFF;
 	$groundColorPanelCaption: rgb(52,124,29);
 	$backGroundColorLevel2Header : $v-background-color;
 	$backGroundColorCaptionLevel2Header : $v-background-color;	
 	
 	$headerBorderRadius : 6px;
 	$panelBorderRadius: 8px;
-	$headerFontSize : 18px; // Adjusted font size to match Ingress style
+	$headerFontSize : 16px;
 
     @include valo-panel-caption-style($background-color: $backGroundColor);
 	@include valo-caption-style($background-color: $backGroundColor);
@@ -50,7 +50,7 @@
 
 	    .title {
 	    	font-weight: bold;
-	    	font-size: 20px; // Adjusted font size to match Ingress style
+	    	font-size: 18px;
 			height: 30px;
 			text-align: center;
 	    }
@@ -75,7 +75,7 @@
 
 	    .title {
 	    	font-weight: bold;
-	    	font-size: 20px; // Adjusted font size to match Ingress style
+	    	font-size: 18px;
 			height: 30px;
 			text-align: center;
 	    }
@@ -91,7 +91,7 @@
 		.title {
 			width: 100%;
 			font-weight: bold;
-	    	font-size: 16px; // Adjusted font size to match Ingress style
+	    	font-size: 14px;
 			height: 30px;
 			text-align: center;
 
@@ -129,7 +129,7 @@
 
 	    .title {
 	    	font-weight: bold;
-	    	font-size: 20px; // Adjusted font size to match Ingress style
+	    	font-size: 18px;
 			height: 40px;
 			width: 100%;
 			text-align: center;
@@ -146,15 +146,15 @@
 
 
 	.v-label-Header {
-	 font-size: 16px; // Adjusted font size to match Ingress style
-	 color: #00FFFF; // Cyan
+	 font-size: 14px;
+	 color: #FFFFFF;
 	 border-radius: $headerBorderRadius;
 	 padding : 2px;
 	}
 
 	.v-label-HeaderSlogan {
-	 font-size: 16px; // Adjusted font size to match Ingress style
-	 color: #00FFFF; // Cyan
+	 font-size: 14px;
+	 color: #FFFFFF;
 	 border-radius: $headerBorderRadius;
 	}
 
@@ -187,41 +187,41 @@
 	}
 
 	.v-menubar-menuitem-Header {
-	 font-size: 14px; // Adjusted font size to match Ingress style
+	 font-size: 12px;
 	}
 
 	.v-menubar-menuitem-caption-Header {
-	 font-size: 14px; // Adjusted font size to match Ingress style
+	 font-size: 12px;
 	}
 
 	.v-menubar-submenu-Header {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
 	}
 
 	.v-menubar-selected-Header {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
 	}
 
 	.v-menubar-menuitem-RestrictedHeader {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
      width:320px;
      overflow: auto;
 	}
 
 	.v-menubar-menuitem-caption-RestrictedHeader {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}
 	
 	.v-menubar-submenu-RestrictedHeader {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}
 
 	.v-menubar-selected-RestrictedHeader {
-	 font-size: 12px; // Adjusted font size to match Ingress style
+	 font-size: 10px;
 	 width:320px;
 	 overflow: auto;
 	}
