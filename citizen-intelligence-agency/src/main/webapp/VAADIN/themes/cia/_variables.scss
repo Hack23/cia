@@ -1,8 +1,8 @@
 $v-app-loading-text: "Loading Citizen Intelligence Agency:: Tracking politicians like bugs!";
-$v-app-background-color:  #232F3E;
-$v-background-color: #232F3E;
-$v-focus-color: rgb(52,124,29);
-$v-color: #FFFFFF;
+$v-app-background-color:  #0C0F0A; // Black
+$v-background-color: #0C0F0A; // Black
+$v-focus-color: #00FF00; // Green
+$v-color: #00FFFF; // Cyan
 $v-font-size: 12px;
 $v-font-weight: 600;
 $v-unit-size: 20px;
@@ -15,7 +15,7 @@ $v-border-radius: 0;
 $v-border: 2px solid v-tone;
 $v-overlay-shadow: 0 0 0 2px (v-tint 10);
 $v-focus-style: $v-focus-color;
-$v-font-family: 'Arial';
+$v-font-family: 'Orbitron', sans-serif; // Futuristic and sleek font
 $v-font-weight--header: 600;
 	
 @import "../valo/valo";
