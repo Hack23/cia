@@ -3,7 +3,7 @@
 The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project focusing on political activity in Sweden. By monitoring key political figures and institutions, the platform provides valuable insights into financial performance, risk metrics, and political trends. The dashboard features a ranking system, enabling users to objectively compare politicians based on performance. The initiative is independent and non-partisan, seeking to encourage informed decision-making, enhance transparency in governance, and cultivate an engaged and well-informed citizenry. 
 
 ## Features
-[Features of the CIA Project](https://github.com/Hack23/homepage/blob/master/screenshots/readme.md) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
+[Features of the CIA Project](https://hack23.com/#features) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
 
 ## About Hack23
 
@@ -49,7 +49,7 @@ The project relies on open data from various sources, including:
 ## Resources
 
 - [Project Documentation](http://hack23.github.io/cia/)
-- [Features of the CIA Project](https://github.com/Hack23/homepage/blob/master/screenshots/readme.md) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
+- [Features of the CIA Project](https://hack23.com/#features) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
 - [Project Architecture](http://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
 - [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
