@@ -52,8 +52,6 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 	private static final List<String> AS_LIST = Arrays.asList("indicatorName",
 			   "sourceValue",
-			   "topics",
-			   "sourceNote",
 			   "sourceOrganization");
 
 	/** The Constant WORLD_INDICATORS. */
@@ -80,10 +78,9 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length());
 
-		createDataIndicatorSummaryChartPanel(panelContent,indicator);
+		createDataIndicatorSummaryChartPanel(panelContent,indicator,panel);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		panel.setCaption(new StringBuilder().append("World Indicators Overview for ").append(indicator).toString());
 
 		return panelContent;
 
@@ -96,8 +93,10 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	 *            the vertical layout
 	 * @param indicator
 	 *            the indicator
+	 * @param panel
+	 *            the panel
 	 */
-	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator) {
+	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator,final Panel panel) {
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
@@ -112,12 +111,16 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;
 		if (indicatorSummary.isPresent()) {
 			indicatorSummaryValue = indicatorSummary.get();
+			panel.setCaption(new StringBuilder().append("World Indicator: ").append(indicatorSummaryValue.getTopics()).append(" - ").append(indicatorSummaryValue.getIndicatorName()).toString());
 
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							AS_LIST);
+		} else {
+			panel.setCaption(new StringBuilder().append("World Indicator: ").toString());
 		}
+		
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
 		.getDataContainer(WorldBankData.class);

@@ -66,9 +66,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
 
-	/** The Constant COMMITTEE. */
-	private static final String BALLOT = "Ballot:";
-
 	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
@@ -138,11 +135,13 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							AS_LIST);
 
+					panel.setCaption(new StringBuilder().append("Ballot Overview : ").append(decisionSummaries.get(FIRST_OBJECT).getTitle()).append(" - ").append(decisionSummaries.get(FIRST_OBJECT).getSubTitle()).toString());
 				} else {
 
 					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
 							ViewRiksdagenVoteDataBallotSummary.class,
 							AS_LIST2);
+					panel.setCaption(new StringBuilder().append("Ballot Overview : ").append(viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern()).toString());
 				}
 
 			}
@@ -163,7 +162,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 
-			panel.setCaption(new StringBuilder().append("Ballot Overview for pageId: ").append(pageId).toString());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

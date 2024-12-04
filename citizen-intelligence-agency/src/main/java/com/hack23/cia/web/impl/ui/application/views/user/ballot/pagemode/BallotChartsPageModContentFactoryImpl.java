@@ -31,6 +31,9 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
@@ -55,9 +58,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
-
-	/** The Constant COMMITTEE. */
-	private static final String BALLOT = "Ballot:";
 
 	/** The Constant OVERVIEW. */
 	private static final String CHARTS = "Charts";
@@ -142,9 +142,23 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
 				}
+				
+				final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
+						.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
+				final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
+						.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-				panel.setCaption(new StringBuilder().append("Ballot Charts for pageId: ").append(pageId).toString());
+				
+				if (!decisionSummaries.isEmpty()) {
+
+					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(decisionSummaries.get(0).getTitle()).append(" - ").append(decisionSummaries.get(0).getSubTitle()).toString());
+				} else {
+
+					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(ballots.get(0).getEmbeddedId().getConcern()).toString());								
+				}
+				
+
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 			}
 		return panelContent;
