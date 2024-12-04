@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.14.3";
+	content: "8.14.4";
 }
 
 .v-widget {
@@ -18148,19 +18148,19 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px inset #f6f5f4;
 	border-radius: 8px;
 	padding: 10px;
-	height: 200px;
+	height: 240px;
 	display: inline-block;
 }
 
 .cia .v-layout-content-overview-dashboard-panel-level2 .title {
 	font-weight: bold;
 	font-size: 18px;
-	height: 40px;
+	height: 30px;
 	text-align: center;
 }
 
 .cia .v-layout-content-overview-dashboard-panel-level2 .itembox {
-	height: 160px;
+	height: 200px;
 	white-space: normal;
 	text-align: left;
 }
@@ -18171,19 +18171,19 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px inset #f6f5f4;
 	border-radius: 8px;
 	padding: 10px;
-	height: 100px;
+	height: 80px;
 	display: inline-block;
 }
 
 .cia .v-layout-content-overview-panel-level2 .title {
 	font-weight: bold;
 	font-size: 18px;
-	height: 40px;
+	height: 30px;
 	text-align: center;
 }
 
 .cia .v-layout-content-overview-panel-level2 .itembox {
-	height: 60px;
+	height: 50px;
 	white-space: normal;
 	text-align: left;
 }
@@ -18198,7 +18198,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-layout-content-overview-panel-level2[width-range~="0-600px"] .itembox {
 	width: 100%;
-	height: 70px;
+	height: 60px;
 	white-space: normal;
 	text-align: left;
 }
