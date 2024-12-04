@@ -85,7 +85,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 						viewRiksdagenMinistry.getNameId()),
 				MEMBER_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		panel.setCaption(new StringBuilder().append("Ministry Member History for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

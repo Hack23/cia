@@ -88,7 +88,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		panel.setCaption(new StringBuilder().append("Committee Overview for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

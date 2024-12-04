@@ -86,7 +86,7 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
+		panel.setCaption(new StringBuilder().append("Committee by Party Charts for ").append(parameters).toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

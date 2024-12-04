@@ -163,7 +163,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 
-			panel.setCaption(NAME + "::" + BALLOT + pageId);
+			panel.setCaption(new StringBuilder().append("Ballot Overview for ").append(pageId).toString());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 		}

@@ -94,7 +94,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 								ViewRiksdagenPoliticianDocument_.madePublicDate),
 						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		panel.setCaption(new StringBuilder().append("Committee Document History for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

@@ -108,7 +108,7 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
 				null);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		panel.setCaption(new StringBuilder().append("Committee Ballot Decision Summary for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

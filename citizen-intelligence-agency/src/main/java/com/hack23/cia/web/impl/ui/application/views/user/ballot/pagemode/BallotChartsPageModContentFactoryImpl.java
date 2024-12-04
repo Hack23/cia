@@ -144,9 +144,9 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				}
 
 
-				panel.setCaption(new StringBuilder().append(NAME).append("::").append(BALLOT).append(pageId).toString());
+				panel.setCaption(new StringBuilder().append("Ballot Charts for ").append(pageId).toString());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		}
+			}
 		return panelContent;
 
 	}
