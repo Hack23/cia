@@ -142,6 +142,15 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
 				}
+				
+				final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
+						.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+
+				final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
+						.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
+
+				
+				if (!decisionSummaries.isEmpty()) {
 
 				final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
 						.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
@@ -157,7 +166,6 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(ballots.get(0).getEmbeddedId().getConcern()).toString());
 				}
-
 
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 			}

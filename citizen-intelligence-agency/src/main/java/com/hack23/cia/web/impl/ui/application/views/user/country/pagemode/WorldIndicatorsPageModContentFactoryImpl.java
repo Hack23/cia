@@ -117,6 +117,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		} else {
 			panel.setCaption(new StringBuilder().append("World Indicator: ").toString());
 		}
+		
 
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
