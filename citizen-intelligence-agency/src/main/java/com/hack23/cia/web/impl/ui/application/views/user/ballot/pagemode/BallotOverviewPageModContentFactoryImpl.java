@@ -166,7 +166,8 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			panel.setCaption(new StringBuilder().append("Ballot Overview for concern: ").append(ballots.get(0).getEmbeddedId().getConcern()).toString());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
-		}
+
+		} 
 		return panelContent;
 
 	}
