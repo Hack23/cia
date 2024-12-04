@@ -7,14 +7,13 @@
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *distributed under the License is distributed on an "AS IS" BASIS,
+ *WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *See the License for the specific language governing permissions and
+ *limitations under the License.
  *
- *	$Id$
- *  $HeadURL$
+ *$Id$
+ *$HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
@@ -110,6 +109,8 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList,
 				COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
+
+		panel.setCaption(new StringBuilder().append("Committee Ballot Decision Summary for concern: ").append(viewRiksdagenParty.getEmbeddedId().getConcern()).toString());
 
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 
