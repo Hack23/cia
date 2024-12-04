@@ -7,6 +7,7 @@
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
+ * Unless required by applicable law or agreed to in writing, software
  *distributed under the License is distributed on an "AS IS" BASIS,
  *WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *See the License for the specific language governing permissions and
@@ -107,7 +108,7 @@ extends AbstractCommitteePageModContentFactoryImpl {
 				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
 				null);
 
-		panel.setCaption(new StringBuilder().append("Committee Ballot Decision Summary for concern: ").append(viewRiksdagenCommittee.getEmbeddedId().getConcern()).toString());
+		panel.setCaption(new StringBuilder().append("Committee Ballot Decision Summary for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;
