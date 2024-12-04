@@ -1,6 +1,6 @@
 /**
  * This package provides the main entry points and configuration for the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - CitizenIntelligenceAgencyHealthCheckServlet: Servlet for health check endpoint.
  * - CitizenIntelligenceAgencySpringVaadinServlet: Main Vaadin servlet for the application.
@@ -9,7 +9,7 @@
  * - ResourceServlet: Servlet for serving static resources.
  * - UiInstanceErrorHandler: Custom error handler for UI instances.
  * - VaadinSpringConfig: Spring configuration for Vaadin.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.vaadin for Vaadin framework classes and interfaces.
  * - Depends on org.springframework for Spring framework classes and interfaces.

@@ -46,9 +46,6 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 

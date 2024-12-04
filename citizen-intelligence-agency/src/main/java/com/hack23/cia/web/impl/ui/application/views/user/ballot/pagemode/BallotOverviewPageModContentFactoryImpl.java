@@ -165,7 +165,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 
-		} 
+		}
 		return panelContent;
 
 	}

@@ -54,9 +54,6 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			   "sourceValue",
 			   "sourceOrganization");
 
-	/** The Constant WORLD_INDICATORS. */
-	private static final String WORLD_INDICATORS = "World Indicators";
-
 	/** The chart data manager. */
 	@Autowired
 	private WorldIndicatorChartDataManager chartDataManager;
@@ -121,6 +118,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			panel.setCaption(new StringBuilder().append("World Indicator: ").toString());
 		}
 		
+
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
 		.getDataContainer(WorldBankData.class);

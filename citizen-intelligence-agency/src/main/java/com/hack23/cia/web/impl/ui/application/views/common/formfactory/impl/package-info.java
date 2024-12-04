@@ -1,10 +1,10 @@
 /**
  * This package provides classes and interfaces for creating and managing form components within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - FormFactoryImpl: Implementation of the FormFactory interface.
  * - StringToEnumConverter: Converter for handling enum properties.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.formfactory.api for form factory interfaces.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.sizing for ContentRatio and ContentSize.

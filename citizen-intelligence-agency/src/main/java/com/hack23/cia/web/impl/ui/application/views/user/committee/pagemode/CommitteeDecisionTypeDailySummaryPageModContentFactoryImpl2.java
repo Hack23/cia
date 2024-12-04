@@ -41,9 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/** The Constant DECISION_TYPE_DAILY_SUMMARY. */
 	private static final String DECISION_TYPE_DAILY_SUMMARY = "Decision Type Daily Summary";
 

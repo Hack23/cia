@@ -47,9 +47,6 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 
 	private static final String COMMITTEES = "Committees";
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
-
 	private static final String[] HIDE_COLUMNS = { "active","embeddedId" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode");

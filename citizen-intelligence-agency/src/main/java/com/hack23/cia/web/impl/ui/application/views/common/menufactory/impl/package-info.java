@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for creating and managing menu items within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractMenuItemFactoryImpl: Base class for creating menu items.
  * - ApplicationMenuItemFactoryImpl: Implementation of the ApplicationMenuItemFactory interface.
@@ -19,7 +19,7 @@
  * - PoliticianMenuItemFactoryImpl: Implementation of the PoliticianMenuItemFactory interface.
  * - PoliticianRankingMenuItemFactoryImpl: Implementation of the PoliticianRankingMenuItemFactory interface.
  * - UserHomeMenuItemFactoryImpl: Implementation of the UserHomeMenuItemFactory interface.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.util for UserContextUtil.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api for PageModeMenuCommand.

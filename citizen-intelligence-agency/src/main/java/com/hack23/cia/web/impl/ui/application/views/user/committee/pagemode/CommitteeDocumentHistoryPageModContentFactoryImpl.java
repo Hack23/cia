@@ -48,9 +48,6 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
 			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
 

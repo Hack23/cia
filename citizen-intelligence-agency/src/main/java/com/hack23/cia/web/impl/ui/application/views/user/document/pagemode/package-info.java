@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within document views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractDocumentPageModContentFactoryImpl: Abstract base class for document page mode content factories.
  * - AbstractDocumentsPageModContentFactoryImpl: Abstract base class for documents page mode content factories.
@@ -15,7 +15,7 @@
  * - DocumentReferencesPageModContentFactoryImpl: Implementation of the document references page mode content factory.
  * - DocumentsOverviewPageModContentFactoryImpl: Implementation of the documents overview page mode content factory.
  * - SearchDocumentPageModContentFactoryImpl: Implementation of the search document page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and DocumentPageMode.

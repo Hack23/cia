@@ -1,6 +1,6 @@
 /**
  * This package provides implementations for creating various charts within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractChartDataManagerImpl: Base class for chart data manager implementations.
  * - AbstractGhantChartManagerImpl: Base class for Gantt chart manager implementations.
@@ -28,7 +28,7 @@
  * - ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl: Implementation of the ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager interface.
  * - ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl: Implementation of the ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManager interface.
  * - WorldIndicatorChartDataManagerImpl: Implementation of the WorldIndicatorChartDataManager interface.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.vaadin.ui for Vaadin UI components.
  * - Depends on org.dussan.vaadin.dcharts for chart components.

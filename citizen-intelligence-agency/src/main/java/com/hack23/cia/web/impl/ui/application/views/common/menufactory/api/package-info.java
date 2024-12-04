@@ -1,6 +1,6 @@
 /**
  * This package provides interfaces for creating various menu items within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key interfaces:
  * - ApplicationMenuItemFactory: Interface for creating application menu items.
  * - BallotMenuItemFactory: Interface for creating ballot menu items.
@@ -18,7 +18,7 @@
  * - PoliticianMenuItemFactory: Interface for creating politician menu items.
  * - PoliticianRankingMenuItemFactory: Interface for creating politician ranking menu items.
  * - UserHomeMenuItemFactory: Interface for creating user home menu items.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.vaadin.ui for Vaadin UI components.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for view names.

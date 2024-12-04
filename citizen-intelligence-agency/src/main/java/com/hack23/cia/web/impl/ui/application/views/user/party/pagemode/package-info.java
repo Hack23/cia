@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within party views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractPartyPageModContentFactoryImpl: Abstract base class for party page mode content factories.
  * - AbstractPartyRankingPageModContentFactoryImpl: Abstract base class for party ranking page mode content factories.
@@ -28,7 +28,7 @@
  * - PartySupportAnnualSummaryChartPageModContentFactoryImpl: Implementation of the party support annual summary chart page mode content factory.
  * - PartyVoteHistoryPageModContentFactoryImpl: Implementation of the party vote history page mode content factory.
  * - PartyWonDailySummaryChartPageModContentFactoryImpl: Implementation of the party won daily summary chart page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and PartyPageMode.

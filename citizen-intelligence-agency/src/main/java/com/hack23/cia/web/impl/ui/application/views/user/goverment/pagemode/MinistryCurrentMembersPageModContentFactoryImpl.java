@@ -54,9 +54,6 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/**
 	 * Instantiates a new ministry current members page mod content factory
 	 * impl.

@@ -451,7 +451,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		addParliamentIncomeSpending(layout);
 
-		VerticalLayout layoutPanel = createPanelContent();
+		final VerticalLayout layoutPanel = createPanelContent();
 
 		layout.addComponent(layoutPanel);
 
@@ -535,9 +535,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 			final GovernmentBodyAnnualSummary findName = list.get(0);
 
 			if (findName != null) {
-				Map<Integer,GovernmentBodyAnnualSummary> dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
-				Set<Integer> keySet = dataPerGovernmentBody.keySet();
-				GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));
+				final Map<Integer,GovernmentBodyAnnualSummary> dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
+				final Set<Integer> keySet = dataPerGovernmentBody.keySet();
+				final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));
 				panelContent.addComponent(new CounterStatisticsCard(
 						VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governmentBodyAnnualSummary.getHeadCount())
 								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),

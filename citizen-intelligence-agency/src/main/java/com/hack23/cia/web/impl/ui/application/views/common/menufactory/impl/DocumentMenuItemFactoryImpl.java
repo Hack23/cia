@@ -40,23 +40,14 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
-	/** The Constant ATTACHEMENTS. */
-	private static final String ATTACHEMENTS = "Attachements";
-
 	/** The Constant COMMAND_DOCUMENTS. */
 	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
 
 	/** The Constant COMMAND_SEARCH_DOCUMENT. */
 	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
 
-	/** The Constant COMPLETE_DOCUMENT_AS_TEXT. */
-	private static final String COMPLETE_DOCUMENT_AS_TEXT = "Complete document as text";
-
 	/** The Constant DOCUMENT. */
 	private static final String DOCUMENT = "Document";
-
-	/** The Constant DOCUMENT_ACTIVITIES. */
-	private static final String DOCUMENT_ACTIVITIES = "Document activities";
 
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
@@ -70,9 +61,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
-
-	/** The Constant DOCUMENT_DECISIONS. */
-	private static final String DOCUMENT_DECISIONS = "Document decisions";
 
 	/** The Constant DOCUMENT_DETAILS. */
 	private static final String DOCUMENT_DETAILS = "Document details";

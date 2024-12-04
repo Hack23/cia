@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within politician views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractPoliticianPageModContentFactoryImpl: Abstract base class for politician page mode content factories.
  * - AbstractPoliticianRankingPageModContentFactoryImpl: Abstract base class for politician ranking page mode content factories.
@@ -19,7 +19,7 @@
  * - PoliticianRoleListPageModContentFactoryImpl: Implementation of the politician role list page mode content factory.
  * - PoliticianRoleSummaryPageModContentFactoryImpl: Implementation of the politician role summary page mode content factory.
  * - PoliticianVotesHistoryPageModContentFactoryImpl: Implementation of the politician votes history page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and PoliticianPageMode.

@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing various system-related page modes within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractAdminSystemPageModContentFactoryImpl: Base class for admin system page mode content factories.
  * - AdminAgencyPageModContentFactoryImpl: Content factory for the admin agency page mode.
@@ -15,7 +15,7 @@
  * - AdminPortalPageModContentFactoryImpl: Content factory for the admin portal page mode.
  * - AdminUserAccountPageModContentFactoryImpl: Content factory for the admin user account page mode.
  * - EmailPageModContentFactoryImpl: Content factory for the email page mode.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.paging for PagingUtil.

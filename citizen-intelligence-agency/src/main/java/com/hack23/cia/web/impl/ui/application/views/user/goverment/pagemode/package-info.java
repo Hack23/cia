@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within government views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractMinistryPageModContentFactoryImpl: Abstract base class for ministry page mode content factories.
  * - AbstractMinistryRankingPageModContentFactoryImpl: Abstract base class for ministry ranking page mode content factories.
@@ -27,7 +27,7 @@
  * - MinistryRankingOverviewPageModContentFactoryImpl: Implementation of the ministry ranking overview page mode content factory.
  * - MinistryRankingPageVisitHistoryPageModContentFactoryImpl: Implementation of the ministry ranking page visit history page mode content factory.
  * - MinistryRoleGhantPageModContentFactoryImpl: Implementation of the ministry role ghant page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and MinistryPageMode.

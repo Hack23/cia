@@ -58,9 +58,6 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId");
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/**
 	 * Instantiates a new ministry document history page mod content factory
 	 * impl.

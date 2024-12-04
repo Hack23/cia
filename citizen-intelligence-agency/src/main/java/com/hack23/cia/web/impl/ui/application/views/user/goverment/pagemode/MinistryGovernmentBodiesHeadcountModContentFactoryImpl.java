@@ -42,9 +42,6 @@ public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extend
 
 	private static final String GOVERNMENT_BODIES = "Government bodies headcount";
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 

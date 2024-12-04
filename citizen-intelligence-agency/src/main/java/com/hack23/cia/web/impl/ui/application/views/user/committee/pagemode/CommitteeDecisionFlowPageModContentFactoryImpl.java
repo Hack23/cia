@@ -52,9 +52,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant PARLIAMENT_DECISION_FLOW. */
-	private static final String COMMITTEE_DECISION_FLOW = "Committee decision flow";
-
 	@Autowired
 	private DecisionFlowChartManager decisionFlowChartManager;
 

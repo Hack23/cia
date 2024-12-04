@@ -1,9 +1,9 @@
 /**
  * This package provides classes and interfaces for managing risk-related page modes within parliament views.
- * 
+ *
  * Key classes and interfaces:
  * - ParliamentRiskPageModContentFactoryImpl: Factory class for creating parliament risk page mode content.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and ParliamentPageMode.

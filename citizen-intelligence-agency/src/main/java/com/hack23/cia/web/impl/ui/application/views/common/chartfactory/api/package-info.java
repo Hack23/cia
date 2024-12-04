@@ -1,6 +1,6 @@
 /**
  * This package provides interfaces for creating various charts within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AdminChartDataManager: Interface for creating charts related to admin data.
  * - BallotChartDataManager: Interface for creating charts related to ballot data.
@@ -24,7 +24,7 @@
  * - PoliticianChartDataManager: Interface for creating charts related to politician data.
  * - PoliticianGhantChartManager: Interface for creating politician Gantt charts.
  * - WorldIndicatorChartDataManager: Interface for creating charts related to world indicators.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.vaadin.ui for Vaadin UI components.
  * - Depends on org.dussan.vaadin.dcharts for chart components.

@@ -1,11 +1,11 @@
 /**
  * This package provides classes and interfaces for handling various actions within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - PageActionEventHelper: Interface for creating page events.
  * - PageActionEventHelperImpl: Implementation of the PageActionEventHelper interface.
  * - ViewAction: Enum representing different view actions.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.model.internal.application.system.impl for ApplicationEventGroup and ApplicationOperationType.
  * - Depends on com.hack23.cia.service.api for ApplicationManager and CreateApplicationEventRequest.

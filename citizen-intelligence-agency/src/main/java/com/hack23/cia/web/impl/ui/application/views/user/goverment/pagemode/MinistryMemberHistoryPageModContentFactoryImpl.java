@@ -54,9 +54,6 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "Member History";
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/**
 	 * Instantiates a new ministry member history page mod content factory impl.
 	 */

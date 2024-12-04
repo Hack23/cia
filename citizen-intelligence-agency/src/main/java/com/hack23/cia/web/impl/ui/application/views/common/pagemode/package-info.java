@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing different page modes within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractBasicPageModContentFactoryImpl: Base class for creating basic page mode content.
  * - AbstractItemPageModContentFactoryImpl: Base class for creating item-specific page mode content.
@@ -11,7 +11,7 @@
  * - MainViewPageVisitHistoryPageModContentFactoryImpl: Factory class for creating main view page visit history page mode content.
  * - MainViewRegisterPageModContentFactoryImpl: Factory class for creating main view register page mode content.
  * - PageModeContentFactory: Interface for creating page mode content.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.service.api for application and configuration management services.
  * - Depends on com.hack23.cia.web.impl.ui.application.action for handling page actions.

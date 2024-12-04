@@ -60,9 +60,6 @@ extends AbstractCommitteePageModContentFactoryImpl {
 			"approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
 			"percentageMale" };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "Committee Ballot Decision Summary";
 
 	private static final String[] HIDE_COLUMNS = { "embeddedId", "embeddedId.id", "endNumber", "org",

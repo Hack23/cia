@@ -1,11 +1,11 @@
 /**
  * This package provides classes and interfaces for managing the page modes within the data summary view of the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractDataSummaryPageModContentFactoryImpl: Abstract base class for data summary page mode content factories.
  * - DataSummaryAuthorPageModContentFactoryImpl: Implementation of the data summary author page mode content factory.
  * - DataSummaryOverviewPageModContentFactoryImpl: Implementation of the data summary overview page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for AdminViews and DataSummaryPageMode.
