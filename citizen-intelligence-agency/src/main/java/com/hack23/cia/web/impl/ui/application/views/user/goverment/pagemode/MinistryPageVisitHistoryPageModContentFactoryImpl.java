@@ -60,7 +60,7 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		panel.setCaption(new StringBuilder().append("Ministry Page Visit History for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

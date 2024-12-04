@@ -47,7 +47,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";
 
-	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
+	/** The Constant CURRENT_PARTIES_BY_DAYS_SERVED. */
 	private static final String CURRENT_PARTIES_BY_DAYS_SERVED = "Current Parties, total political days served";
 
 	/** The Constant NAME. */
@@ -86,7 +86,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
+		panel.setCaption(new StringBuilder().append("Current Committee Parties Charts for ").append(parameters).toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

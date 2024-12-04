@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -87,7 +87,7 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 						ViewRiksdagenGovermentRoleMember_.detail, ViewRiksdagenGovermentRoleMember_.active),
 				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		panel.setCaption(new StringBuilder().append("Ministry Current Members for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

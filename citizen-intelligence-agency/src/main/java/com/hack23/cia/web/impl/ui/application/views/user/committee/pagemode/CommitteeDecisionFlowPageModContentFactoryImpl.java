@@ -106,7 +106,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(new StringBuilder().append(NAME).append("::").append(COMMITTEE_DECISION_FLOW).toString());
+		panel.setCaption(new StringBuilder().append("Committee Decision Flow").toString());
 
 		return panelContent;
 
