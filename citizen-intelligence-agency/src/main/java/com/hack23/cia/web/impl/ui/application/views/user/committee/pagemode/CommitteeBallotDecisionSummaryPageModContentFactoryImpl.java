@@ -8,13 +8,13 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *distributed under the License is distributed on an "AS IS" BASIS,
+ *WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *See the License for the specific language governing permissions and
+ *limitations under the License.
  *
- *	$Id$
- *  $HeadURL$
+ *$Id$
+ *$HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
@@ -46,7 +46,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
-		extends AbstractCommitteePageModContentFactoryImpl {
+extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant BALLOT_DECISION_SUMMARY. */
 	private static final String BALLOT_DECISION_SUMMARY = "Ballot Decision Summary";

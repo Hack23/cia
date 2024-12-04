@@ -81,7 +81,7 @@ public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(new StringBuilder().append("All Committees Charts for ").append(parameters).toString());
+		panel.setCaption("All Committees Charts Overview");
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

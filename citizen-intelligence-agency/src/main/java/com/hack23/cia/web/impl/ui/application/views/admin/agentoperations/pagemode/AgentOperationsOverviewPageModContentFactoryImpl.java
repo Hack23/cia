@@ -97,6 +97,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,
 				NAME, null, pageId);
 
+		panel.setCaption("Admin Agent Operation Overview");
 
 		return content;
 	}
