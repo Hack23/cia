@@ -86,7 +86,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(new StringBuilder().append("Current Committee Parties Charts for ").append(parameters).toString());
+		panel.setCaption("Current Committee Parties Charts Overview");
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
