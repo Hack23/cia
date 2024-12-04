@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/**
 	 * Instantiates a new ministry page visit history page mod content factory
 	 * impl.

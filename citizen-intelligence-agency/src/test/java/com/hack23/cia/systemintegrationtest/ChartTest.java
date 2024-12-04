@@ -64,7 +64,7 @@ public final class ChartTest extends Assert {
 
 				if (fieldValue != null) {
 					fieldValue = !ObjectHelper.isString(fieldValue) ? fieldValue
-							: fieldValue.toString().replaceAll("\"", "'");
+							: fieldValue.toString().replace('"', '\'');
 					builder.append(builder.length() > 0 ? ", " : "");
 					builder.append(fieldName).append(": ");
 					builder.append(ObjectHelper.isString(fieldValue) ? "\""

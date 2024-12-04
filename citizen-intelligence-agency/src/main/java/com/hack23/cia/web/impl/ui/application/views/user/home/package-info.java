@@ -1,9 +1,9 @@
 /**
  * This package provides classes and interfaces for managing home views within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - UserHomeView: Main view class for the user home page.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews.

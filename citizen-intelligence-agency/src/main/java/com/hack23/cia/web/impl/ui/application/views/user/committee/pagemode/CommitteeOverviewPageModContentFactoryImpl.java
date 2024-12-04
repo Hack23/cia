@@ -46,9 +46,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 	private static final List<String> AS_LIST = Arrays.asList("embeddedId.detail", "active", "firstAssignmentDate",
 			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 

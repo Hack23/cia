@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
-
 	/** The Constant CURRENT_PARTIES_BY_DAYS_SERVED. */
 	private static final String CURRENT_PARTIES_BY_DAYS_SERVED = "Current Parties, total political days served";
 

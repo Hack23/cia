@@ -1,12 +1,12 @@
 /**
  * This package provides implementations for creating various data series within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - CommitteeDataSeriesFactoryImpl: Implementation of the CommitteeDataSeriesFactory interface.
  * - DecisionDataFactoryImpl: Implementation of the DecisionDataFactory interface.
  * - MinistryDataSeriesFactoryImpl: Implementation of the MinistryDataSeriesFactory interface.
  * - PartyDataSeriesFactoryImpl: Implementation of the PartyDataSeriesFactory interface.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api for data series factory interfaces.
  * - Depends on com.hack23.cia.model.external.riksdagen.dokumentstatus.impl for DocumentStatusContainer.

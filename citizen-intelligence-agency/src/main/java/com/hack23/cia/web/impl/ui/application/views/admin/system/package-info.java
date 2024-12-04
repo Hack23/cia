@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing various system-related functionalities within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AdminAgencyView: Main view class for managing agency-related information.
  * - AdminApplicationConfigurationView: Main view class for managing application configuration.
@@ -12,7 +12,7 @@
  * - AdminMonitoringView: Main view class for monitoring system performance.
  * - AdminPortalView: Main view class for managing portal-related information.
  * - AdminUseraccountView: Main view class for managing user accounts.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.admin.common for AbstractAdminView.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.

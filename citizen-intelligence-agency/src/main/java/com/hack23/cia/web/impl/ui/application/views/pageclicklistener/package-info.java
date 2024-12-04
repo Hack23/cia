@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for handling page click events within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractClickListener: Base class for click listeners.
  * - AbstractPageItemRendererClickListener: Base class for page item renderer click listeners.
@@ -25,7 +25,7 @@
  * - StartAgentClickListener: Listener for handling start agent events.
  * - UpdateApplicationConfigurationClickListener: Listener for handling update application configuration events.
  * - UpdateSearchIndexClickListener: Listener for handling update search index events.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.service.api for application manager and service response classes.
  * - Depends on com.vaadin.ui for Vaadin framework classes and interfaces.

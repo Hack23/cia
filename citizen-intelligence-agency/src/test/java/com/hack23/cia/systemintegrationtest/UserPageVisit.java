@@ -108,7 +108,7 @@ public final class UserPageVisit extends Assert {
 	    final File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
 	    try {
 	    	screenShotNumber = screenShotNumber +1;
-	    	final String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, "").replaceAll("#", "-").replaceAll("!", "-").replaceAll("/", "-").replaceAll("--", "-");
+	    	final String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, "").replace('#', '-').replace('!', '-').replace('/', '-').replace("--", "-");
 	        FileUtils.copyFile(scrFile, new File("target/site/screenshots/Page"+screenShotName+ "-" + screenShotNumber+ ".png"));
 	    } catch (final IOException e) {
 	        e.printStackTrace();

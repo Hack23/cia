@@ -82,9 +82,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	/** The Constant BY_TOPIC. */
 	private static final String BY_TOPIC = "By Topic";
 
-	/** The Constant BY_TOPIC_DESCRIPTION. */
-	private static final String BY_TOPIC_DESCRIPTION = "Indicators for Sweden overview, find data by topic or source.";
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;

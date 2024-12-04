@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing parliament views within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - ParliamentRankingView: View class for displaying parliament rankings.
  * - ParliamentOverviewPageModContentFactoryImpl: Factory class for creating parliament overview page mode content.
@@ -13,7 +13,7 @@
  * - ParliamentPageVisitHistoryPageModContentFactoryImpl: Factory class for creating parliament page visit history page mode content.
  * - ParliamentRiskPageModContentFactoryImpl: Factory class for creating parliament risk page mode content.
  * - ParliamentRuleViolationsPageModContentFactoryImpl: Factory class for creating parliament rule violations page mode content.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and ParliamentPageMode.

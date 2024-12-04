@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within government body views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractGovernmentBodyPageModContentFactoryImpl: Abstract base class for government body page mode content factories.
  * - AbstractGovernmentBodyRankingPageModContentFactoryImpl: Abstract base class for government body ranking page mode content factories.
@@ -15,7 +15,7 @@
  * - GovernmentBodyRankingIncomePageModContentFactoryImpl: Implementation of the government body ranking income page mode content factory.
  * - GovernmentBodyRankingOverviewPageModContentFactoryImpl: Implementation of the government body ranking overview page mode content factory.
  * - GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl: Implementation of the government body ranking page visit history page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and GovernmentBodyPageMode.

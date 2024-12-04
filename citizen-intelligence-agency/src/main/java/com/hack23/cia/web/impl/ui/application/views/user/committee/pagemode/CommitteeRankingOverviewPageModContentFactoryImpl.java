@@ -55,10 +55,6 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
-
 	/**
 	 * Instantiates a new committee ranking overview page mod content factory
 	 * impl.

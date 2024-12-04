@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within the committee views of the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractCommitteePageModContentFactoryImpl: Abstract base class for committee page mode content factories.
  * - AbstractCommitteeRankingPageModContentFactoryImpl: Abstract base class for committee ranking page mode content factories.
@@ -22,7 +22,7 @@
  * - CommitteeRankingOverviewPageModContentFactoryImpl: Implementation of the committee ranking overview page mode content factory.
  * - CommitteeRankingPageVisitHistoryPageModContentFactoryImpl: Implementation of the committee ranking page visit history page mode content factory.
  * - CommitteeRoleGhantPageModContentFactoryImpl: Implementation of the committee role ghant page mode content factory.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for AbstractBasicPageModContentFactoryImpl.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and CommitteePageMode.

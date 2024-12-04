@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for defining view names and page modes within the Citizen Intelligence Agency web application.
- * 
+ *
  * Key classes and interfaces:
  * - AdminViews: Contains constants for admin view names.
  * - ApplicationPageMode: Enum representing different application page modes.
@@ -17,7 +17,7 @@
  * - RiskIndicators: Enum representing different risk indicators.
  * - UserHomePageMode: Enum representing different user home page modes.
  * - UserViews: Contains constants for user view names.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common for common view classes.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for page mode content factories.

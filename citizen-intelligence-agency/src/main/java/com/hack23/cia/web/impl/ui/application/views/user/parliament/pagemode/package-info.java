@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for managing page modes within parliament views.
- * 
+ *
  * Key classes and interfaces:
  * - AbstractParliamentPageModContentFactoryImpl: Abstract base class for parliament page mode content factories.
  * - ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl: Factory class for creating parliament charts decision activity by type page mode content.
@@ -13,7 +13,7 @@
  * - ParliamentPageVisitHistoryPageModContentFactoryImpl: Factory class for creating parliament page visit history page mode content.
  * - ParliamentRiskPageModContentFactoryImpl: Factory class for creating parliament risk page mode content.
  * - ParliamentRuleViolationsPageModContentFactoryImpl: Factory class for creating parliament rule violations page mode content.
- * 
+ *
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and ParliamentPageMode.

@@ -43,9 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
