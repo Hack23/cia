@@ -111,14 +111,14 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;
 		if (indicatorSummary.isPresent()) {
 			indicatorSummaryValue = indicatorSummary.get();
-			panel.setCaption(new StringBuilder().append("World Indicator").append(indicatorSummaryValue.getTopics()).append(" - ").append(indicatorSummaryValue.getIndicatorName()).toString());
+			panel.setCaption(new StringBuilder().append("World Indicator: ").append(indicatorSummaryValue.getTopics()).append(" - ").append(indicatorSummaryValue.getIndicatorName()).toString());
 
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							AS_LIST);
 		} else {
-			panel.setCaption(new StringBuilder().append("World Indicator").toString());
+			panel.setCaption(new StringBuilder().append("World Indicator: ").toString());
 		}
 		
 
