@@ -86,7 +86,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + DATAGRID);
+		panel.setCaption(new StringBuilder().append("Committee Data Grid").toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

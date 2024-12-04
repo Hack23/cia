@@ -83,7 +83,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		createDataIndicatorSummaryChartPanel(panelContent,indicator);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		panel.setCaption(NAME + "::" + WORLD_INDICATORS);
+		panel.setCaption(new StringBuilder().append("World Indicators for ").append(indicator).toString());
 
 		return panelContent;
 

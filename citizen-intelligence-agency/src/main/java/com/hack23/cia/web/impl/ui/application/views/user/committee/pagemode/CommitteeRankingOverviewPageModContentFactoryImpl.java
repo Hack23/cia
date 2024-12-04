@@ -93,7 +93,7 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 
 		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);
 
-		panel.setCaption(NAME + "::" + OVERVIEW);
+		panel.setCaption(new StringBuilder().append("Committee Ranking Overview").toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
