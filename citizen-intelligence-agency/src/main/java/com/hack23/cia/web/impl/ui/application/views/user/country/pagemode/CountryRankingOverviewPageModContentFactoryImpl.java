@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -36,9 +35,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class CountryRankingOverviewPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
 
 	/**
 	 * Instantiates a new country ranking overview page mod content factory
@@ -53,15 +49,10 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-
+		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::Country Ranking","Country Ranking","Indicators for Sweden overview, find data by topic.");	
 		final String pageId = getPageId(parameters);
-
-		panelContent.addComponent(new Label(OVERVIEW));
-
 		getCountryMenuItemFactory().createOverviewPage(panelContent);
-
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		panel.setCaption(new StringBuilder().append("Country Ranking Overview").toString());
 
 		return panelContent;
 

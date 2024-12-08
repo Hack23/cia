@@ -32,7 +32,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -59,9 +58,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -84,7 +80,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+			createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Overview",OVERVIEW,"Manage user and security settings");
 
 			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
 
@@ -105,8 +101,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
 			userHomeMenuItemFactory.createOverviewPage(overviewLayout);
-
-			panel.setCaption(NAME + "::" + USERHOME);
 		}
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,

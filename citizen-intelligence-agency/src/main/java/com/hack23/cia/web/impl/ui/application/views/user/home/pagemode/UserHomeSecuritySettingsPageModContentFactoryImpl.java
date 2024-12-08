@@ -33,7 +33,6 @@ import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -70,9 +69,6 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String SECURITY_SETTINGS = "Security Settings";
-
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -124,8 +120,8 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-
-		LabelFactory.createHeader2Label(panelContent, SECURITY_SETTINGS);
+		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Security Settings",SECURITY_SETTINGS,"Manage user security settings");
+	
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
@@ -138,8 +134,6 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), "Enable MFA using google authenticator");
 		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), "Disable MFA using google authenticator");
 		RowUtil.createRowComponent(grid, createDeleteAccountButton(), "Delete Account");
-
-		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

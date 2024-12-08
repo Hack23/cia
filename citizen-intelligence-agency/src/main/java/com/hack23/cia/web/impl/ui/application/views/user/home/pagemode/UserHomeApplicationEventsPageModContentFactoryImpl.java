@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
@@ -62,9 +61,6 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 	/** The Constant USER_EVENTS. */
 	private static final String USER_EVENTS = "User Events";
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -87,8 +83,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 		if (userAccount.isPresent()) {
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-
-			LabelFactory.createHeader2Label(panelContent, USER_EVENTS);
+			createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Events",USER_EVENTS,"All past user events");
 
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationActionEvent.class);
@@ -97,8 +92,6 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 					eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,
 							userAccount.get().getUserId(), ApplicationActionEvent_.createdDate),
 					APPLICATION_ACTION_EVENT, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
-
-			panel.setCaption(NAME + "::" + USERHOME + USER_EVENTS);
 		}
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,

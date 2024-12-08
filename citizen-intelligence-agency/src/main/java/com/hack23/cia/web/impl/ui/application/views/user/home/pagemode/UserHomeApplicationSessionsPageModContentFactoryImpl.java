@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
@@ -65,9 +64,6 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String USER_VISITS = "User Visits";
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = "Userhome:";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -89,7 +85,7 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 
 		if (userAccount.isPresent()) {
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-			LabelFactory.createHeader2Label(panelContent, USER_VISITS);
+			createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Visits",USER_VISITS,"All past user visits");
 
 			final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationSession.class);
@@ -98,8 +94,6 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,
 							userAccount.get().getUserId(), ApplicationSession_.createdDate),
 					APPLICATION_SESSION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, COLLECTION_PROPERTY_CONVERTERS);
-
-			panel.setCaption(NAME + "::" + USERHOME + USER_VISITS);
 		}
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
