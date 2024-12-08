@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -77,7 +76,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_AGENT_OPERATION);
+		createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Admin Agent Operation Overview");
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
@@ -96,8 +95,6 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,
 				NAME, null, pageId);
-
-		panel.setCaption("Admin Agent Operation Overview");
 
 		return content;
 	}

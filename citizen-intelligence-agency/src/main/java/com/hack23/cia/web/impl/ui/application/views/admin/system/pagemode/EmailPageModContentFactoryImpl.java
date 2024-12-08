@@ -28,7 +28,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SendEmailClickListener;
@@ -74,7 +73,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content, ADMIN_EMAIL);
+		createPageHeader(panel, content, NAME + "::" + ADMIN_EMAIL, ADMIN_EMAIL, "Admin email page");
 
 		final VerticalLayout emailLayout = new VerticalLayout();
 		emailLayout.setSizeFull();
@@ -100,7 +99,6 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 		content.addComponent(emailLayout);
 		content.setExpandRatio(emailLayout, ContentRatio.LARGE_FORM);
 
-		panel.setCaption(NAME + "::" + ADMIN_EMAIL);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_EMAIL_VIEW, ApplicationEventGroup.ADMIN, NAME,
 				null, pageId);
 

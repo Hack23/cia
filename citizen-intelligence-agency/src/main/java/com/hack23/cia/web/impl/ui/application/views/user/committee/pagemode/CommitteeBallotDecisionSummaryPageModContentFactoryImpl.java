@@ -32,7 +32,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -91,10 +90,10 @@ extends AbstractCommitteePageModContentFactoryImpl {
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);
+		createPageHeader(panel, panelContent, "Committee Ballot Decision Summary for " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), BALLOT_DECISION_SUMMARY, "Committee ballot decision summary page");
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
 		final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer
 				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,
@@ -105,7 +104,6 @@ extends AbstractCommitteePageModContentFactoryImpl {
 				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
 				null);
 
-		panel.setCaption(new StringBuilder().append("Committee Ballot Decision Summary for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;
