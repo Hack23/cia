@@ -52,9 +52,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 
 	private static final List<String> AS_LIST = Arrays.asList( "email", "otpCode", "userpassword" );
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency";
-
 	private static final String LOGIN = "Login";
 
 	private static final String LOGIN_USER = "Login user";
@@ -75,9 +72,8 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		final VerticalLayout content = createPanelContent();
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
-
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
+		createPageHeader(panel, content,"Citizen Intelligence Agency::Login","Login User","Please provide the details below to login user");
 
 		final VerticalLayout loginLayout = new VerticalLayout();
 		loginLayout.setSizeFull();
@@ -111,7 +107,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

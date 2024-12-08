@@ -36,10 +36,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
-
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
-
+	
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -58,13 +55,11 @@ public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
-
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
+		createPageHeader(panel, content,"CitizenIntelligence Agency::Overview::Page Visits","Page Visits","History of page visits");
 
 		createPageVisitHistory(NAME,pageId,content);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

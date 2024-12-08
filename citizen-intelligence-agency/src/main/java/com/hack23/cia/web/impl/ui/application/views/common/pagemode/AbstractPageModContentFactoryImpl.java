@@ -25,11 +25,15 @@ import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.VerticalLayout;
@@ -205,6 +209,34 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 			return "";
 		}
 	}
+	/**
+	 * Creates and configures a page header with description section.
+	 * 
+	 * @param panel          The main panel container to set the caption on
+	 * @param panelContent   The vertical layout container where header components will be added
+	 * @param header        The text to be used as the panel's caption
+	 * @param pageheader    The text to be displayed as a header2 label
+	 * @param pageDescription The description text to be displayed below the header
+	 * 
+	 * @throws IllegalArgumentException if any of the parameters are null
+	 * 
+	 * The method:
+	 * - Sets the panel caption
+	 * - Creates a header2 label with the pageHeader text
+	 * - Creates a responsive description label with the pageDescription text
+	 * - Applies styling and responsive behavior to the description label
+	 * - Adds the description label to the panel content
+	 */
+	protected static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header, final String pageHeader, final String pageDescription) {
+		panel.setCaption(header);
+		LabelFactory.createHeader2Label(panelContent, pageHeader);
+		final Label descriptionLabel = new Label(pageDescription);
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		panelContent.addComponent(descriptionLabel);
+	}
+
 
 	/**
 	 * Gets the page link factory.

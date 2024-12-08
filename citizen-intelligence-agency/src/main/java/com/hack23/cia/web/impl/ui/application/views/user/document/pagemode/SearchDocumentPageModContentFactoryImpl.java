@@ -76,7 +76,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 		final String pageId = getPageId(parameters);
 
 		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
-
+		createPageHeader(panel, panelContent,"Citizen Intelligence Agency::Search","Document Search","Search Parliament documents");
 
 		final VerticalLayout searchLayout = new VerticalLayout();
 		searchLayout.setSizeFull();
