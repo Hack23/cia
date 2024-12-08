@@ -51,7 +51,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -70,7 +69,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DashboardViewOverviewPageModContentFactoryImpl.
  */
@@ -82,9 +80,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/** The Constant FINANCIAL. */
 	private static final String FINANCIAL = "Financial";
-
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Dashboard";
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
@@ -132,30 +127,17 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
-
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-
-		LabelFactory.createHeader2Label(panelContent, "Dashboard Overview");
-
-		final Label descriptionLabel = new Label(
-				"Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
-		descriptionLabel.addStyleName("itembox");
-		Responsive.makeResponsive(descriptionLabel);
-		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		panelContent.addComponent(descriptionLabel);
+		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::Dashboard Overview","Dashboard Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.");		
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
 		createDashboardMonarch(row);
-
 		createDashboardGovernment(row);
 		createDashboardParliament(row);
-
 		createDashboardPartRiskByType(row);
 		createDashboardPartRiskBySeverity(row);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DASHBOARD_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.DASHBOARD_VIEW_NAME, parameters, pageId);
 

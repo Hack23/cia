@@ -50,10 +50,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	private static final List<String> AS_LIST = Arrays.asList( "username", "email", "country", "userpassword" );
-
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
-
+	
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -74,7 +71,8 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-
+		createPageHeader(panel, content,"Citizen Intelligence Agency::Register","Register User","Please provide below details to register a new user");
+		
 		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();
 
@@ -106,7 +104,6 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 		RowUtil.createRowComponent(grid,registerLayout,"Register a new user");
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

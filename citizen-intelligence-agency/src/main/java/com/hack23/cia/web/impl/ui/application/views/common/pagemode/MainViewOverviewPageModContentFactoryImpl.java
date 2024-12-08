@@ -24,12 +24,8 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.server.Responsive;
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -42,7 +38,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
+	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Overview";
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
@@ -60,22 +56,10 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
-
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-
-		LabelFactory.createHeader2Label(panelContent, "MainOverview");
-
-
-		final Label descriptionLabel = new Label("Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
-		descriptionLabel.addStyleName("itembox");
-		Responsive.makeResponsive(descriptionLabel);
-		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		panelContent.addComponent(descriptionLabel);
-
+		createPageHeader(panel, panelContent,CITIZEN_INTELLIGENCE_AGENCY_MAIN,"Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
 		getMenuItemFactory().createOverviewPage(panelContent);
 
-		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
