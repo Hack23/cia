@@ -96,6 +96,8 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
+		createPageHeader(panel, content, "Admin Data Summary Overview", "Admin Data Summary", "Admin Data Summary Overview");
+
 		LabelFactory.createHeader2Label(content, ADMIN_DATA_SUMMARY);
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();

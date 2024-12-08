@@ -72,6 +72,8 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Committee Decision Flow for " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Decision Flow", "Committee decision flow page");
+
 		String selectedYear = "2022/23";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
@@ -103,7 +105,6 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(new StringBuilder().append("Committee Decision Flow for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 
 		return panelContent;
 

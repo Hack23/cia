@@ -36,7 +36,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -111,8 +110,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-
 			final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
 
@@ -126,6 +123,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
+			createPageHeader(panel, panelContent, "Ballot Overview : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), OVERVIEW, "Ballot overview page");
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 

@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -111,8 +111,12 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
+			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
+					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-				LabelFactory.createHeader2Label(panelContent,CHARTS);
+			createPageHeader(panel, panelContent, "Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), CHARTS, "Ballot charts overview");
 
 				final TabSheet tabsheet = new TabSheet();
 				tabsheet.setWidth(100, Unit.PERCENTAGE);
@@ -142,11 +146,6 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
 				}
-
-				final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
-						.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
-				final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
-						.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
 				if (!decisionSummaries.isEmpty()) {
 					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(decisionSummaries.get(0).getTitle()).append(" - ").append(decisionSummaries.get(0).getSubTitle()).toString());

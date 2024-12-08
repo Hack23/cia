@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -88,7 +87,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DECISION_SUMMARY);
+		createPageHeader(panel, panelContent, NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail(), DECISION_SUMMARY, "Committee decision summary page");
 
 		final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisions.class);
@@ -101,7 +100,6 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 				decisionPartySummaryList, DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;
