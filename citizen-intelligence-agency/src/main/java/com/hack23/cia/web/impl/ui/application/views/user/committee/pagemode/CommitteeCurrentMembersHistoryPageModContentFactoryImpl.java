@@ -28,7 +28,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -76,7 +75,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, CURRENT_MEMBERS);
+		createPageHeader(panel, panelContent, "Committee History " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Current Members History", "Tracks and presents historical data about committee members' participation.");
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -87,7 +86,6 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 						ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),
 				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

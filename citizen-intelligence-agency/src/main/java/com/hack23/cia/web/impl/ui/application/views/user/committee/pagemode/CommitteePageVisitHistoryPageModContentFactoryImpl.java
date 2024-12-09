@@ -59,9 +59,10 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Committee Visits", "Page Visit History for Committees", "Tracks user interaction with committee pages for analytical purposes.");
+
 		createPageVisitHistory(NAME, pageId, panelContent);
 
-		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -40,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		extends AbstractCommitteePageModContentFactoryImpl {
-
-	/** The Constant DECISION_TYPE_DAILY_SUMMARY. */
-	private static final String DECISION_TYPE_DAILY_SUMMARY = "Decision Type Daily Summary";
 
 	/** The chart data manager. */
 	@Autowired
@@ -66,11 +62,10 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DECISION_TYPE_DAILY_SUMMARY);
+		createPageHeader(panel, panelContent, "Daily Committee Decisions " + viewRiksdagenCommittee.getEmbeddedId().getDetail() , "Summary of Decision Types", "Displays a summary of daily committee decision-making activity.");
 
 		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
-		panel.setCaption(new StringBuilder().append("Committee Decision Type Daily Summary for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

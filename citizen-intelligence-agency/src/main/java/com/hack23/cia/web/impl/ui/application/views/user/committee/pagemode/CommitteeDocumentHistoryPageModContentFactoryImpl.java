@@ -28,7 +28,6 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -78,7 +77,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);
+		createPageHeader(panel, panelContent, "Document History " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Document History", "Displays the historical progression of documents managed by committees.");
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -91,7 +90,6 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 								ViewRiksdagenPoliticianDocument_.madePublicDate),
 						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(new StringBuilder().append("Committee Document History for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

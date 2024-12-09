@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -68,11 +67,10 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
+		createPageHeader(panel, panelContent, "Ministry Documents " + viewRiksdagenMinistry.getNameId(), "Document Activity Overview", "Tracks and visualizes the activity associated with ministry documents.");
 
 		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

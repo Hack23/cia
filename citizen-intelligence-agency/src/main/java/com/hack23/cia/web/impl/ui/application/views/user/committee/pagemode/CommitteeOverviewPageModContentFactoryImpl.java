@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -67,7 +66,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+		createPageHeader(panel, panelContent, "Committee Overview " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Operations Overview", "Provides an overview of committee operations for decision-making support.");
 
 		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 		panelContent.addComponent(addCommitteePageLink);
@@ -85,7 +84,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);
 
-		panel.setCaption(new StringBuilder().append("Committee Overview for ").append(viewRiksdagenCommittee.getEmbeddedId().getDetail()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;
