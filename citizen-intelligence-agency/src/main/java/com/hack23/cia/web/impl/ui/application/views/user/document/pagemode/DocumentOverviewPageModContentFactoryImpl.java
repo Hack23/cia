@@ -34,7 +34,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -81,7 +80,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+		createPageHeader(panel, panelContent, "Document Overview " + documentElement.getTitle() +" " + documentElement.getSubTitle(), "Document Details", "Access and explore official documents and reports.");
 
 		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);
 

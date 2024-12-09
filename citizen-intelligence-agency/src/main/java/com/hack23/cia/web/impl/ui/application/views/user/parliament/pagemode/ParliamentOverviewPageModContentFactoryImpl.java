@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -36,9 +35,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
 
 	/**
 	 * Instantiates a new parliament overview page mod content factory impl.
@@ -52,13 +48,11 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-
-		panelContent.addComponent(new Label(OVERVIEW));
+		createPageHeader(panel, panelContent, "Parliament Overview", "Parliament Details", "Insights into parliamentary structure, members, and activities.");
 
 		getParliamentMenuItemFactory().createOverviewPage(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));
-		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		return panelContent;
 

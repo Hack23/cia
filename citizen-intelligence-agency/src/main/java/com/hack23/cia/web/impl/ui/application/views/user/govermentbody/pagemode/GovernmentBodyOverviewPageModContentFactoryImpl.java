@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -41,12 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		extends AbstractGovernmentBodyPageModContentFactoryImpl {
-
-	/** The Constant GOVERNMENT_BODY. */
-	private static final String GOVERNMENT_BODY = "GovernmentBody:";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "Overview:";
 
 	/**
 	 * Instantiates a new government body overview page mod content factory
@@ -69,10 +62,8 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		if (item != null && !item.isEmpty()) {
 			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = item.get(0);
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
-
-			LabelFactory.createHeader2Label(panelContent, OVERVIEW + " " +governmentBodyAnnualSummary.getName());
-			panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.getName());
-
+			createPageHeader(panel, panelContent, "Government Body Overview " + governmentBodyAnnualSummary.getName(), "Government Details", "Explore detailed information about government bodies and their functions.");
+			
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
 

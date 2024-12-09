@@ -49,7 +49,7 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,"Country Ranking","Country Ranking","Overview of indicators and rankings for Sweden and other nations.");	
+		createPageHeader(panel, panelContent,"Country Rankings","Ranking Overview","Visualize and compare country-level political or economic indicators.");	
 		final String pageId = getPageId(parameters);
 		getCountryMenuItemFactory().createOverviewPage(panelContent);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

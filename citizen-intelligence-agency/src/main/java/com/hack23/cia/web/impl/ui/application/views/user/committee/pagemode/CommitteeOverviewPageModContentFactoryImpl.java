@@ -45,9 +45,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 	private static final List<String> AS_LIST = Arrays.asList("embeddedId.detail", "active", "firstAssignmentDate",
 			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new committee overview page mod content factory impl.
 	 */
@@ -66,7 +63,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Overview " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Operations Overview", "Provides an overview of committee operations for decision-making support.");
+		createPageHeader(panel, panelContent, "Committee Overview " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Details", "Detailed insights into parliamentary committees and their activities.");
 
 		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 		panelContent.addComponent(addCommitteePageLink);

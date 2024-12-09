@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -42,9 +41,6 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new politician ranking overview page mod content factory
 	 * impl.
@@ -53,28 +49,6 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 		super();
 	}
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalpoliticantoplistLabel = new TextArea("Politician Ranking by topic",
-				"Time served in Parliament:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTime served in Committees:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTime served in Government:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
-
-						+ "\nTop votes:ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nSearch by name");
-		totalpoliticantoplistLabel.setSizeFull();
-		totalpoliticantoplistLabel.setStyleName("Level2Header");
-		return totalpoliticantoplistLabel;
-	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -82,14 +56,11 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
-
+		createPageHeader(panel, panelContent, "Politician Rankings", "Ranking Overview", "Evaluate and rank politicians based on performance and influence.");
+		
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createDescription());
-
 		getPoliticianRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
