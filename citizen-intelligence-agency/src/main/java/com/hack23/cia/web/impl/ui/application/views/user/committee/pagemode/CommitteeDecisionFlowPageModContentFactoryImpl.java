@@ -72,7 +72,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Decision Flow for " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Decision Flow", "Committee decision flow page");
+		createPageHeader(panel, panelContent, "Committee Decision Flow " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Decision Flow", "Analyze decision-making processes within committees.");
 
 		String selectedYear = "2022/23";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {

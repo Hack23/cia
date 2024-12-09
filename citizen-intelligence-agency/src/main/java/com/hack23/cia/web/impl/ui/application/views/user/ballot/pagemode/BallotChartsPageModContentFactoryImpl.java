@@ -41,7 +41,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.server.Sizeable.Unit;
@@ -116,7 +115,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-			createPageHeader(panel, panelContent, "Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), CHARTS, "Ballot charts overview");
+			createPageHeader(panel, panelContent, "Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), "Ballot Trends and Visualizations", "Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
 
 				final TabSheet tabsheet = new TabSheet();
 				tabsheet.setWidth(100, Unit.PERCENTAGE);

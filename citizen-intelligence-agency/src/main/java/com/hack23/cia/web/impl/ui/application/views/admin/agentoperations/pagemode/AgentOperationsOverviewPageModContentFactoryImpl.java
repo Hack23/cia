@@ -76,7 +76,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Admin Agent Operation Overview");
+		createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Overview of administrative agent operations and tasks.");
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();

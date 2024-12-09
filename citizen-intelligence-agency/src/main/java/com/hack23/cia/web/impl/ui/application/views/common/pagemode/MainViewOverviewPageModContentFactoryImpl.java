@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Overview";
-
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -57,7 +54,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		createPageHeader(panel, panelContent,CITIZEN_INTELLIGENCE_AGENCY_MAIN,"Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
+		createPageHeader(panel, panelContent,"Overview","Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.");
 		getMenuItemFactory().createOverviewPage(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
