@@ -123,7 +123,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-			createPageHeader(panel, panelContent, "Ballot Overview : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), OVERVIEW, "Ballot overview page");
+			createPageHeader(panel, panelContent, "Ballot Overview", "Overview", "Summarize and analyze key details of ballot processes.");
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 

@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
@@ -63,9 +62,7 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Author Summary", "Admin Author Summary", "Summary of authors and their changes");
-
-		LabelFactory.createHeader2Label(content, ADMIN_AUTHOR_SUMMARY);
+		createPageHeader(panel, content, "Admin Author Summary", "Admin Author Summary", "Detailed summary of authors and their contributions to data records.");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();

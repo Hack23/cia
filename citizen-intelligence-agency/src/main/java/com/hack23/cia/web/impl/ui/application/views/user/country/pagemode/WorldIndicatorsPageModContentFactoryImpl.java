@@ -70,7 +70,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::Country Indicator","Country Indicator","Indicator for Sweden, Denmark, Norway, Finland, USA and UK.");
+		createPageHeader(panel, panelContent,"Country Indicator","Country Indicator","Compare key performance indicators across multiple countries.");
 		final String pageId = getPageId(parameters);
 
 		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length());

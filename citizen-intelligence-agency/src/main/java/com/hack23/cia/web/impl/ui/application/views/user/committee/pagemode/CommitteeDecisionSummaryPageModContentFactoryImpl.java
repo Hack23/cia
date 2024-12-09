@@ -87,7 +87,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail(), DECISION_SUMMARY, "Committee decision summary page");
+		createPageHeader(panel, panelContent, "Committee Decision Summary", "Decision Summary", "Overview of decisions made by the committee.");
 
 		final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisions.class);
