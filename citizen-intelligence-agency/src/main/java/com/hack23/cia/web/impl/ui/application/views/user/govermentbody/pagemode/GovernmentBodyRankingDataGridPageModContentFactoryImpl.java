@@ -47,10 +47,14 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 	private static final String[] COLUMN_ORDER = { "name", "ministry", "orgNumber",
 			"headCount", "annualWorkHeadCount" };
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
+
+	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = "Government bodies";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "vat", "consecutiveNumber", "comment", "mCode","govermentBodyId" };
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.GOVERNMENT_BODY_VIEW_NAME, "orgNumber");
 
@@ -72,6 +76,7 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Government Body Ranking Overview", "Government Body Rankings", "Examine rankings of government bodies based on roles, efficiency, and achievements.");
 
 		final String pageId = getPageId(parameters);
 
@@ -81,8 +86,6 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, GovernmentBodyAnnualSummary.class, list,
 				GOVERNMENT_BODIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
-
-		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,
 				ApplicationEventGroup.USER, NAME, parameters, pageId);

@@ -50,7 +50,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	private static final List<String> AS_LIST = Arrays.asList( "username", "email", "country", "userpassword" );
-	
+
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -72,7 +72,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 		createPageHeader(panel, content,"Register","Register User","Register new users with essential details.");
-		
+
 		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();
 

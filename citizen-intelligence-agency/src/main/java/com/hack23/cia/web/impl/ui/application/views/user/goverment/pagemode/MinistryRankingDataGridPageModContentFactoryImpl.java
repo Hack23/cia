@@ -45,10 +45,14 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 
 	private static final String[] COLUMN_ORDER = { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
 			"firstAssignmentDate", "lastAssignmentDate", "active" };
+
 	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
 	private static final String[] HIDE_COLUMNS = {"active"};
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId");
+
+	/** The Constant MINISTRIES. */
 	private static final String MINISTRIES = "Ministries";
 
 	/**
@@ -65,6 +69,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Ministry Ranking Dashboard", "Ministry Rankings", "Compare ministry rankings to assess their assignments, performance, and overall impact.");
 
 		final String pageId = getPageId(parameters);
 
@@ -75,7 +80,6 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 				MINISTRIES,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

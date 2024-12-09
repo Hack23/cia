@@ -24,7 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionsEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions_;
@@ -84,7 +83,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 		createPageHeader(panel, panelContent, "Committee Decision Summary", "Decision Summary", "Overview of decisions made by the committee.");

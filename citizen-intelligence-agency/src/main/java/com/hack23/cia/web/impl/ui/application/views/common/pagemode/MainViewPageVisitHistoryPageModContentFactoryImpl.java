@@ -36,7 +36,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
-	
+
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 

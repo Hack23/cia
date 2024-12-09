@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -56,7 +55,7 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 		createPageHeader(panel, panelContent, "Committee Visits", "Page Visit History for Committees", "Tracks user interaction with committee pages for analytical purposes.");

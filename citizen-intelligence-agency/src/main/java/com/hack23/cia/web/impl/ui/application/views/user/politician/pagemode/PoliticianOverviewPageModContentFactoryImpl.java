@@ -73,8 +73,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 		createPageHeader(panel, panelContent, "Politician Overview " + viewRiksdagenPolitician.getFirstName() + ' '
-				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')', "Politician Details", "Detailed profiles and activities of politicians.");		
-		
+				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')', "Politician Details", "Detailed profiles and activities of politicians.");
+
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
 
@@ -85,9 +85,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * Creates the overview content.
 	 *

@@ -63,7 +63,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = item.get(0);
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 			createPageHeader(panel, panelContent, "Government Body Overview " + governmentBodyAnnualSummary.getName(), "Government Details", "Explore detailed information about government bodies and their functions.");
-			
+
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
 

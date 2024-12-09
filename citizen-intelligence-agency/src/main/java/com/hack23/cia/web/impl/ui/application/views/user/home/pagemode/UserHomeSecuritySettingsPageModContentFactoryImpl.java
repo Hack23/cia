@@ -121,7 +121,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Security Settings",SECURITY_SETTINGS,"Manage user security settings");
-	
+
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
