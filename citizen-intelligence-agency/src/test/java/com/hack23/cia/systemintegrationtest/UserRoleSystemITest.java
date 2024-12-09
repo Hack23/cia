@@ -474,7 +474,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
-		assertTrue(userPageVisit.checkHtmlBodyContainsText("Committee Data Grid"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Committee Rankings"));
 
 	}
 
