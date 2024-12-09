@@ -45,43 +45,39 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
-
 /**
  * The Class BallotOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
-			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
-			"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
-			"againstProposalNumber" );
+	private static final List<String> AS_LIST = Arrays.asList("embeddedId.id", "ballotId", "rm", "voteDate", "org",
+			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType", "embeddedId.concern",
+			"ballotType", "winner", "totalVotes", "yesVotes", "noVotes", "abstainVotes", "absentVotes", "approved",
+			"endNumber", "againstProposalParties", "againstProposalNumber");
 
-	private static final List<String> AS_LIST2 = Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
-			"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved" );
+	private static final List<String> AS_LIST2 = Arrays.asList("embeddedId.ballotId", "rm", "voteDate",
+			"embeddedId.issue", "embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "approved");
 
 	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
 
 	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
-			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
-			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
-			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
-			"percentageMale", "ballotType", "embeddedId.ballotId" };
-
-
+			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes", "yesVotes",
+			"partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes", "partyAbsentVotes",
+			"absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "ballotType",
+			"embeddedId.ballotId" };
 
 	private static final int FIRST_OBJECT = 0;
 
-	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
-			"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
-			"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" };
+	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes",
+			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern", "totalVotes",
+			"approved", "yesVotes", "noVotes", "ballotType", "abstainVotes", "absentVotes", "embeddedId.ballotId",
+			"noWinner" };
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
 
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
@@ -116,41 +112,40 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
-			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(
-					ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
-					RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer
+					.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class,
+							ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
+							RiksdagenVoteDataBallotPartyEmbeddedId.class,
+							RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-			createPageHeader(panel, panelContent, "Ballot Overview  " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), "Overview", "Summarize and analyze key details of ballot processes.");
-
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 
 				if (!decisionSummaries.isEmpty()) {
+					createPageHeader(panel, panelContent,
+							"Ballot Overview  " + decisionSummaries.get(0).getTitle() + " - "
+									+ decisionSummaries.get(0).getSubTitle(),
+							"Overview", "Summarize and analyze key details of ballot processes.");
 
 					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
-							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							AS_LIST);
+							ViewRiksdagenCommitteeBallotDecisionSummary.class, AS_LIST);
 
-					panel.setCaption(new StringBuilder().append("Ballot Overview : ").append(decisionSummaries.get(FIRST_OBJECT).getTitle()).append(" - ").append(decisionSummaries.get(FIRST_OBJECT).getSubTitle()).toString());
 				} else {
+					createPageHeader(panel, panelContent,
+							"Ballot Overview  " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern(),
+							"Overview", "Summarize and analyze key details of ballot processes.");
 
 					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
-							ViewRiksdagenVoteDataBallotSummary.class,
-							AS_LIST2);
-					panel.setCaption(new StringBuilder().append("Ballot Overview : ").append(viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern()).toString());
+							ViewRiksdagenVoteDataBallotSummary.class, AS_LIST2);
 				}
 
 			}
 
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,
-					partyBallotList, PARTY_BALLOT_SUMMARY,
-					NESTED_PROPERTIES,
-					COLUMN_ORDER,
-					HIDE_COLUMNS,
-					LISTENER, EMBEDDED_ID_PARTY, null);
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
+					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, PARTY_BALLOT_SUMMARY,
+					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_PARTY, null);
 
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
@@ -158,7 +153,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			panelContent.addComponent(overviewLayout);
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
 
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
