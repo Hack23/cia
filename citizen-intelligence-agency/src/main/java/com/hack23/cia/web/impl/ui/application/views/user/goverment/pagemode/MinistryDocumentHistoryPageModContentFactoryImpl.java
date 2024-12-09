@@ -28,7 +28,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -77,7 +76,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);
+		createPageHeader(panel, panelContent, "Document History " + viewRiksdagenMinistry.getNameId(), "Ministry Document History", "Displays the historical progression of documents managed by ministries.");
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -87,7 +86,6 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 						viewRiksdagenMinistry.getNameId(), ViewRiksdagenPoliticianDocument_.madePublicDate),
 				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(new StringBuilder().append("Ministry Document History for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

@@ -71,14 +71,14 @@ public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Committee Rankings", "Ranking of All Committees", "Provides comparative rankings for committees based on performance or metrics.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesAll(), "All");
 
 		panelContent.addComponent(chartLayout);
-
-		panel.setCaption("All Committees Charts Overview");
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

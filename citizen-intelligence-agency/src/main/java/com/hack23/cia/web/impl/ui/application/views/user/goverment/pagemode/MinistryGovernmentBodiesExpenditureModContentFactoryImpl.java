@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -39,11 +38,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MinistryGovernmentBodiesExpenditureModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
-
-	private static final String GOVERNMENT_BODIES = "Government bodies spending";
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
 
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
@@ -66,12 +60,11 @@ public final class MinistryGovernmentBodiesExpenditureModContentFactoryImpl exte
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);
+		createPageHeader(panel, panelContent, "Expenditure Analysis " + viewRiksdagenMinistry.getNameId(), "Government Bodies Expenditure Analysis", "Provides detailed expenditure data for government bodies under ministries.");
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 
