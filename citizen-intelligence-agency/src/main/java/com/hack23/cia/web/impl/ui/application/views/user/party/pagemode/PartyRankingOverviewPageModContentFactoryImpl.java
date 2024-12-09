@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -41,10 +40,6 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
-
 	/**
 	 * Instantiates a new party ranking overview page mod content factory impl.
 	 */
@@ -52,29 +47,6 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		super();
 	}
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalpartytoplistLabel = new TextArea(
-				"Party Ranking by topic",
-				"Time served in Parliament:ALL:CURRENT:"
-						+ "\nTime served in Committees:ALL:CURRENT:"
-						+ "\nTime served in Government:ALL:CURRENT:"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-						+ "\nTop votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nSearch by name");
-		totalpartytoplistLabel.setSizeFull();
-		totalpartytoplistLabel.setStyleName("Level2Header");
-		return totalpartytoplistLabel;
-	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -82,14 +54,11 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-
+		createPageHeader(panel, panelContent, "Party Rankings", "Ranking Overview", "Compare and rank political parties based on predefined metrics.");
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createDescription());
 
 		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -46,12 +45,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 	private static final List<String> AS_LIST = Arrays.asList("nameId", "active", "firstAssignmentDate",
 			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new ministry overview page mod content factory impl.
 	 */
@@ -68,8 +61,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
-
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+		createPageHeader(panel, panelContent, "Ministry Overview " + viewRiksdagenMinistry.getNameId(), "Ministry Details", "Detailed view of ministries, their roles, and responsibilities.");
 
 		final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
 		panelContent.addComponent(addMinistryPageLink);
@@ -79,7 +71,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 		panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();

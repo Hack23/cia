@@ -42,22 +42,23 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingDataGridPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate",
 			"activeEu",
 			"activeGovernment", "activeCommittee",
 			"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
 			"totalDaysServedParliament", "totalDaysServedEu" };
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
-
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"};
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party");
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
+	/** The Constant PARTIES. */
 	private static final String PARTIES = "Parties";
 
 	/**
@@ -73,6 +74,7 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Party Performance Dashboard", "Party Rankings", "Evaluate political parties using data on legislative activity, assignments, and influence.");
 
 		final String pageId = getPageId(parameters);
 
@@ -85,7 +87,6 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 
-		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

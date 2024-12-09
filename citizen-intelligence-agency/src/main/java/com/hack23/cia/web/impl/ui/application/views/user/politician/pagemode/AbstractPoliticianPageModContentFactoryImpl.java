@@ -40,9 +40,6 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
 
-	/** The Constant POLITICIAN. */
-	private static final String POLITICIAN = "Politician:";
-
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianMenuItemFactory politicianMenuItemFactory;
@@ -105,9 +102,6 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
 				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
-
-		panel.setCaption(NAME + "::" + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '
-				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');
 	}
 
 }

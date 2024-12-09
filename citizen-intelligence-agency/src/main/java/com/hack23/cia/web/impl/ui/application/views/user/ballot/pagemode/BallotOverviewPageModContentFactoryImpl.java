@@ -82,9 +82,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
 
 	/**
@@ -127,7 +124,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 					createPageHeader(panel, panelContent,
 							"Ballot Overview  " + decisionSummaries.get(0).getTitle() + " - "
 									+ decisionSummaries.get(0).getSubTitle(),
-							"Overview", "Summarize and analyze key details of ballot processes.");
+							"Ballot Details", "Explore and analyze ballot results and voting statistics.");
 
 					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class, AS_LIST);
@@ -135,7 +132,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 				} else {
 					createPageHeader(panel, panelContent,
 							"Ballot Overview  " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern(),
-							"Overview", "Summarize and analyze key details of ballot processes.");
+							"Ballot Details", "Explore and analyze ballot results and voting statistics.");
 
 					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
 							ViewRiksdagenVoteDataBallotSummary.class, AS_LIST2);

@@ -42,18 +42,23 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "embeddedId.detail", "embeddedId", "totalDaysServed", "currentMemberSize",
 			"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" };
 
+	/** The Constant COMMITTEES. */
 	private static final String COMMITTEES = "Committees";
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "active","embeddedId" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode");
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
+	/** The Constant NESTED_PROPERTIES. */
 	private static final String[] NESTED_PROPERTIES = {"embeddedId.detail"};
 
 
@@ -71,6 +76,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+        createPageHeader(panel, panelContent, "Committee Ranking Overview", "Committee Rankings", "Analyze committee rankings with a focus on membership, performance, and activity metrics.");
 
 		final String pageId = getPageId(parameters);
 
@@ -82,8 +88,6 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 				COMMITTEES, NESTED_PROPERTIES,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
-
-		panel.setCaption(new StringBuilder().append("Committee Data Grid Overview").toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

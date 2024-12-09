@@ -28,7 +28,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -36,25 +35,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MinistryRankingOverviewPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
-
-	/** The Constant MINISTRY_RANKING_BY_TOPIC. */
-	private static final String MINISTRY_RANKING_BY_TOPIC = "Ministry Ranking by topic";
-
-	/** The Constant MINISTRY_RANKING_BY_TOPIC_DESCRIPTION. */
-	private static final String MINISTRY_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Ministry:ALL:CURRENT:"
-			+ "\nPoliticans served in Committee:ALL:CURRENT:"
-			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-			+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-			+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-
-			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-			+ "\nSearch by name";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 
 	/**
 	 * Instantiates a new ministry ranking overview page mod content factory
@@ -64,18 +44,6 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		super();
 	}
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,
-				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
-		totalCommitteeRankinglistLabel.setSizeFull();
-		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
-		return totalCommitteeRankinglistLabel;
-	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -83,14 +51,12 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Ministry Rankings", "Ranking Overview", "Evaluate and compare the performance of various ministries.");
+
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createDescription());
-
 		getMinistryRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

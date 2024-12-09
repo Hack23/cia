@@ -82,14 +82,13 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Committee Rankings", "Ranking Details", "Analyze and compare rankings of parliamentary committees based on performance.");
 
 		final String pageId = getPageId(parameters);
 
 		panelContent.addComponent(createDescription());
 
 		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(new StringBuilder().append("Committee Ranking Overview").toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

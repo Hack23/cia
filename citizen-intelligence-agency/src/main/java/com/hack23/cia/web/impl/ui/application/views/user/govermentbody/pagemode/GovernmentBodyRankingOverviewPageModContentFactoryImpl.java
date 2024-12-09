@@ -36,8 +36,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
 
 	/**
 	 * Instantiates a new government body ranking overview page mod content factory
@@ -53,12 +51,12 @@ public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extend
 		final VerticalLayout panelContent = createPanelContent();
 
 		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Government Body Rankings", "Ranking Overview", "Analyze and rank government bodies based on predefined metrics.");
+
 
 		final String pageId = getPageId(parameters);
 
 		getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

@@ -43,6 +43,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
 			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
 			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
@@ -58,16 +59,16 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid";
-
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
+	/** The Constant POLITICIANS. */
 	private static final String POLITICIANS = "Politicians";
 
 	/**
@@ -84,6 +85,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Politician Performance Overview", "Politician Rankings", "Review rankings of politicians based on tenure, contributions, and performance metrics.");
 
 		final String pageId = getPageId(parameters);
 
@@ -94,7 +96,6 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 				POLITICIANS,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

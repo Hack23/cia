@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -52,9 +51,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 			"activeCommittee", "totalActiveCommittee", "totalDaysServedCommittee", "activeParliament",
 			"totalActiveParliament", "totalDaysServedParliament");
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new party overview page mod content factory impl.
 	 */
@@ -72,8 +68,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
-
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+		createPageHeader(panel, panelContent, "Party Overview " + viewRiksdagenParty.getPartyName(), "Party Details", "Explore detailed information about political parties and their activities.");
 
 		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 		panelContent.addComponent(addPartyPageLink);
