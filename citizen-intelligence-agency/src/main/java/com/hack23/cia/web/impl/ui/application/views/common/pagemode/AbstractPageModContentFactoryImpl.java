@@ -209,23 +209,15 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 			return "";
 		}
 	}
+
 	/**
-	 * Creates and configures a page header with description section.
-	 * 
-	 * @param panel          The main panel container to set the caption on
-	 * @param panelContent   The vertical layout container where header components will be added
-	 * @param header        The text to be used as the panel's caption
-	 * @param pageheader    The text to be displayed as a header2 label
-	 * @param pageDescription The description text to be displayed below the header
-	 * 
-	 * @throws IllegalArgumentException if any of the parameters are null
-	 * 
-	 * The method:
-	 * - Sets the panel caption
-	 * - Creates a header2 label with the pageHeader text
-	 * - Creates a responsive description label with the pageDescription text
-	 * - Applies styling and responsive behavior to the description label
-	 * - Adds the description label to the panel content
+	 * Creates the page header.
+	 *
+	 * @param panel the panel
+	 * @param panelContent the panel content
+	 * @param header the header
+	 * @param pageHeader the page header
+	 * @param pageDescription the page description
 	 */
 	protected static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header, final String pageHeader, final String pageDescription) {
 		panel.setCaption(header);

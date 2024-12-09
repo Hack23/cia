@@ -58,9 +58,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String CHARTS = "Charts";
-
 	@Autowired
 	private BallotChartDataManager ballotChartDataManager;
 
@@ -74,17 +71,18 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	/**
 	 * Creates the issue concern map.
 	 *
-	 * @param partyBallotList
-	 *            the party ballot list
+	 * @param partyBallotList the party ballot list
 	 * @return the map
 	 */
-	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
-		final Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
-		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
+	private static Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(
+			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
+		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
+		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary : partyBallotList) {
 
-			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
+			if (partySummary.getEmbeddedId().getIssue() != null || partySummary.getEmbeddedId().getConcern() != null) {
 				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
-				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());
+				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap
+						.computeIfAbsent(key, k -> new ArrayList<>());
 				partySummarList.add(partySummary);
 			}
 		}
@@ -101,59 +99,73 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = getItem(parameters);
 
-
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
 			final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
 
-			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+			final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer
+					.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class,
+							ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
+							RiksdagenVoteDataBallotPartyEmbeddedId.class,
+							RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-			createPageHeader(panel, panelContent, "Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - " + decisionSummaries.get(0).getSubTitle(), "Ballot Trends and Visualizations", "Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
+			if (!decisionSummaries.isEmpty()) {
+				createPageHeader(panel, panelContent,
+						"Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - "
+								+ decisionSummaries.get(0).getSubTitle(),
+						"Ballot Trends and Visualizations",
+						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
+			} else {
+				createPageHeader(panel, panelContent, "Ballot Charts : " + ballots.get(0).getEmbeddedId().getConcern(),
+						"Ballot Trends and Visualizations",
+						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
 
-				final TabSheet tabsheet = new TabSheet();
-				tabsheet.setWidth(100, Unit.PERCENTAGE);
-				tabsheet.setHeight(100, Unit.PERCENTAGE);
-
-				panelContent.addComponent(tabsheet);
-				panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
-
-				Collections.sort(ballots, (Comparator<ViewRiksdagenVoteDataBallotSummary>) (o1, o2) -> (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));
-
-				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
-					final HorizontalLayout tabContent = new HorizontalLayout();
-					tabContent.setWidth(100, Unit.PERCENTAGE);
-					tabContent.setHeight(100, Unit.PERCENTAGE);
-					final Tab tab = tabsheet.addTab(tabContent);
-
-					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);
-				}
-
-				final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
-
-				for (final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {
-					final HorizontalLayout tabContent = new HorizontalLayout();
-					tabContent.setWidth(100, Unit.PERCENTAGE);
-					tabContent.setHeight(100, Unit.PERCENTAGE);
-					final Tab tab = tabsheet.addTab(tabContent);
-
-					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
-				}
-
-				if (!decisionSummaries.isEmpty()) {
-					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(decisionSummaries.get(0).getTitle()).append(" - ").append(decisionSummaries.get(0).getSubTitle()).toString());
-				} else {
-					panel.setCaption(new StringBuilder().append("Ballot Charts : ").append(ballots.get(0).getEmbeddedId().getConcern()).toString());
-				}
-
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 			}
+
+			final TabSheet tabsheet = new TabSheet();
+			tabsheet.setWidth(100, Unit.PERCENTAGE);
+			tabsheet.setHeight(100, Unit.PERCENTAGE);
+
+			panelContent.addComponent(tabsheet);
+			panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
+
+			Collections.sort(ballots,
+					(Comparator<ViewRiksdagenVoteDataBallotSummary>) (o1,
+							o2) -> (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern())
+									.compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));
+
+			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
+				final HorizontalLayout tabContent = new HorizontalLayout();
+				tabContent.setWidth(100, Unit.PERCENTAGE);
+				tabContent.setHeight(100, Unit.PERCENTAGE);
+				final Tab tab = tabsheet.addTab(tabContent);
+
+				ballotChartDataManager.createChart(tab, tabContent, viewRiksdagenVoteDataBallotSummary);
+			}
+
+			final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(
+					partyBallotList);
+
+			for (final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap
+					.values()) {
+				final HorizontalLayout tabContent = new HorizontalLayout();
+				tabContent.setWidth(100, Unit.PERCENTAGE);
+				tabContent.setHeight(100, Unit.PERCENTAGE);
+				final Tab tab = tabsheet.addTab(tabContent);
+
+				ballotChartDataManager.createChart(tab, tabContent, partyBallotSummaryList);
+			}
+
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
+					parameters, pageId);
+		}
 		return panelContent;
 
 	}
