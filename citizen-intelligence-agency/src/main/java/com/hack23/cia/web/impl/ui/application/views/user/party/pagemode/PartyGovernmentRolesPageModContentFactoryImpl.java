@@ -64,7 +64,7 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_ROLES);
+		createPageHeader(panel, panelContent, "Government Roles", "Government Members", "Explore the roles and members of the government within the party.");
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);

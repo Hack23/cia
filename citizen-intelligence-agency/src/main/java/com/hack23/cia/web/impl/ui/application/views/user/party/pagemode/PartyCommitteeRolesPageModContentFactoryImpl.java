@@ -65,7 +65,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, COMMITTEE_ROLES);
+		createPageHeader(panel, panelContent, "Committee Roles", "Committee Members", "Explore the roles and members of various committees within the party.");
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

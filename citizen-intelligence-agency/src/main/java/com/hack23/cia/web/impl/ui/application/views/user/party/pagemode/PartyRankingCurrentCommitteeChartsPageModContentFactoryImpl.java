@@ -71,8 +71,10 @@ public final class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl e
 
 		final String pageId = getPageId(parameters);
 
-
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+
+		createPageHeader(panel, panelContent, "Current Committee Charts", "Committee Performance", "Analyze the performance of current committees using various charts.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -80,7 +82,6 @@ public final class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl e
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

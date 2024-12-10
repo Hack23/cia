@@ -78,7 +78,7 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, MEMBER_HISTORY);
+		createPageHeader(panel, panelContent, "Member History", "Party Members", "Explore the history of party members and their roles.");
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);

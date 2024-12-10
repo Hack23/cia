@@ -53,6 +53,8 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Page Visit History", "Visit History", "Review the history of page visits for the selected party.");
+
 		createPageVisitHistory(NAME, pageId, panelContent);
 
 		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

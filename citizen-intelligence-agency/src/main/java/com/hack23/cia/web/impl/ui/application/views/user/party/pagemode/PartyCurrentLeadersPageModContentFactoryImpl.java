@@ -64,7 +64,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, CURRENT_LEADERS);
+		createPageHeader(panel, panelContent, "Current Leaders", "Party Leadership", "Meet the current leaders of the party and their roles.");
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);

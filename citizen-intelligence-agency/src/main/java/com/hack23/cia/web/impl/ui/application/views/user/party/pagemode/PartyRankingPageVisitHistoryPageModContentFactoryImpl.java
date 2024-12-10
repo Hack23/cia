@@ -61,9 +61,9 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+		createPageHeader(panel, panelContent, "Page Visit History", "User Activity", "Track the history of page visits for party rankings.");
 
-		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
