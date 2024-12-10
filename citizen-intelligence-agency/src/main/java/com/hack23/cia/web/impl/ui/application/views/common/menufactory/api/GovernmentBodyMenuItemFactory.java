@@ -34,6 +34,7 @@ public interface GovernmentBodyMenuItemFactory {
 	 * @param pageId
 	 *            the page id
 	 * @param title
+	 *            the title of the menu item
 	 */
 	void createGovernmentBodyMenuBar(MenuBar menuBar, String pageId, String title);
 

@@ -59,4 +59,10 @@ public final class AdminViews {
 	/** The Constant ADMIN_USERACCOUNT_VIEW_NAME. */
 	public static final String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
 
+	/**
+	 * Default constructor for AdminViews.
+	 */
+	public AdminViews() {
+		// Default constructor
+	}
 }

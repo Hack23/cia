@@ -44,6 +44,13 @@ public final class WebBrowserUtil {
 	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
 	/**
+	 * Default constructor for WebBrowserUtil.
+	 */
+	public WebBrowserUtil() {
+		// Default constructor
+	}
+
+	/**
 	 * Gets the ip information.
 	 *
 	 * @param webBrowser

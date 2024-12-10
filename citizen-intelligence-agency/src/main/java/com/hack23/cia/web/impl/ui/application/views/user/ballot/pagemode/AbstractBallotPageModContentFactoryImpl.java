@@ -49,6 +49,11 @@ abstract class AbstractBallotPageModContentFactoryImpl extends AbstractItemPageM
 		super();
 	}
 
+	/**
+	 * Gets the ballot menu item factory.
+	 *
+	 * @return the ballot menu item factory
+	 */
 	protected final BallotMenuItemFactory getBallotMenuItemFactory() {
 		return ballotMenuItemFactory;
 	}

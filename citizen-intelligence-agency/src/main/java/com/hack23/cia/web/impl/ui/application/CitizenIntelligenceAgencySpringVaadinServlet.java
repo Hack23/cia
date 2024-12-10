@@ -44,6 +44,13 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor for CitizenIntelligenceAgencySpringVaadinServlet.
+	 */
+	public CitizenIntelligenceAgencySpringVaadinServlet() {
+		// Default constructor
+	}
+
 	@Override
 	protected void service(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {

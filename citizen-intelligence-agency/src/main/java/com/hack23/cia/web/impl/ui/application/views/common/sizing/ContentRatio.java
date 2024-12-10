@@ -50,4 +50,10 @@ public final class ContentRatio {
 	/** The Constant SMALL3. */
 	public static final float SMALL3 = 3;
 
+	/**
+	 * Default constructor for ContentRatio.
+	 */
+	public ContentRatio() {
+		// Default constructor
+	}
 }

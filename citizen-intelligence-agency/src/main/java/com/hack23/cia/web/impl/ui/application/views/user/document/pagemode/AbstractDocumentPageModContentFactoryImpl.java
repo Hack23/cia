@@ -43,6 +43,11 @@ abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractItemPag
 		super();
 	}
 
+	/**
+	 * Gets the document menu item factory.
+	 *
+	 * @return the document menu item factory
+	 */
 	protected final DocumentMenuItemFactory getDocumentMenuItemFactory() {
 		return documentMenuItemFactory;
 	}

@@ -48,6 +48,11 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPag
 		return getApplicationManager().getDataContainer(ViewRiksdagenMinistry.class).load(getPageId(parameters));
 	}
 
+	/**
+	 * Gets the ministry menu item factory.
+	 *
+	 * @return the ministry menu item factory
+	 */
 	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
 		return ministryMenuItemFactory;
 	}
