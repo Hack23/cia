@@ -71,8 +71,10 @@ public final class PartyRankingAllPartiesChartsPageModContentFactoryImpl extends
 
 		final String pageId = getPageId(parameters);
 
-
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+
+		createPageHeader(panel, panelContent, "All Parties Charts", "Party Performance", "Analyze the performance of all political parties using various charts.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -80,7 +82,6 @@ public final class PartyRankingAllPartiesChartsPageModContentFactoryImpl extends
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

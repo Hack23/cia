@@ -94,7 +94,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, COMMITTEE_BALLOT_DECISION_SUMMARY);
+		createPageHeader(panel, panelContent, "Committee Ballot Decision Summary", "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);

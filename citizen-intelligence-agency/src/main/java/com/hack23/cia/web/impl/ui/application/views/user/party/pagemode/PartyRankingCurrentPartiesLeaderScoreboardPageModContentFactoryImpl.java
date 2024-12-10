@@ -61,16 +61,15 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+
+		createPageHeader(panel, panelContent, "Current Party Leaders Scoreboard", "Leader Performance", "Evaluate the performance of current party leaders using a scoreboard.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
 
-
-
-
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

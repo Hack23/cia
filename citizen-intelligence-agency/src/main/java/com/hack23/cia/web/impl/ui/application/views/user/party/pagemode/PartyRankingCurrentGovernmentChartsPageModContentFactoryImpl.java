@@ -73,6 +73,9 @@ public final class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl 
 
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+
+		createPageHeader(panel, panelContent, "Current Government Charts", "Government Performance", "Analyze the performance of the current government using various charts.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -80,7 +83,6 @@ public final class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl 
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
