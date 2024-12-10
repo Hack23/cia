@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -60,11 +59,9 @@ public final class PartySupportAnnualSummaryChartPageModContentFactoryImpl exten
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		createPageHeader(panel, panelContent, "Party Support " + viewRiksdagenParty.getPartyName(), "Party Support Deatails", "Review the party support history for the selected party.");
 
-		LabelFactory.createHeader2Label(panelContent, TITLE);
-		chartDataManager.createPartyChart(panelContent,pageId);
-
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

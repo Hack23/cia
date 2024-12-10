@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -43,8 +42,6 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "title", "subTitle", "id",
 			"docId", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "documentType",
 			"subType", "org", "label", "numberValue", "status", "tempLabel", "orderNumber" };
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = "Document History";
 	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
 			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
@@ -67,7 +64,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Document History", "Historical Documents", "Explore the historical documents associated with the party.");
+		createPageHeader(panel, panelContent, "Document History " + viewRiksdagenParty.getPartyName(), "Historical Documents", "Explore the historical documents associated with the party.");
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -78,7 +75,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				MEMBER_DOCUMENT_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

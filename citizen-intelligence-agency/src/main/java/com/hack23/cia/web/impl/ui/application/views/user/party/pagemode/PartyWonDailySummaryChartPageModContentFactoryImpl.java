@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -36,9 +35,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
-
-	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
-	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "PartyWonDailySummaryChart";
 
 	/** The chart data manager. */
 	@Autowired
@@ -62,11 +58,11 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Party Won Daily Summary Chart", "Daily Summary", "Analyze the daily summary of party wins over time.");
+		createPageHeader(panel, panelContent, "Party Won Daily Summary Chart " + viewRiksdagenParty.getPartyName(), "Daily Summary", "Analyze the daily summary of party wins over time.");
 
 		chartDataManager.createPartyLineChart(panelContent, pageId);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

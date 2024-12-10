@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -36,9 +35,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class PartyDocumentActivityPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
-
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 
 	/** The document chart data manager. */
 	@Autowired
@@ -61,11 +57,11 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
+		createPageHeader(panel, panelContent, "Document Activity " + viewRiksdagenParty.getPartyName(), "Document Activity details", "Review the summary of document activity for the selected party.");
 
 		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

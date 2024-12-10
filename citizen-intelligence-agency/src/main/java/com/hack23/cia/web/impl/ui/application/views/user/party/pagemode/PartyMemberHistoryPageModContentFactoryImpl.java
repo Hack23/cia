@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -57,8 +56,6 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
-	/** The Constant MEMBER_HISTORY. */
-	private static final String MEMBER_HISTORY = "MemberHistory";
 	private static final String POLITICIANS = "Politicians";
 
 	/**
@@ -78,7 +75,7 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Member History", "Party Members", "Explore the history of party members and their roles.");
+		createPageHeader(panel, panelContent, "Member History " + viewRiksdagenParty.getPartyName(), "Party Members", "Explore the history of party members and their roles.");
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
@@ -87,7 +84,7 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 				politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),
 				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

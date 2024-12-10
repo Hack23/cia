@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyGhantChartManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -65,6 +64,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Party Role Ghant " + viewRiksdagenParty.getPartyName(), "Party Ghant Deatails", "Review the party role ghant history for the selected party.");
 		createPageHeader(panel, panelContent, viewRiksdagenParty.getPartyName(), viewRiksdagenParty.getPartyId(), ROLE_GHANT);
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
@@ -75,7 +75,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 		partyGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}
