@@ -41,6 +41,13 @@ public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServl
 	/** The Constant TEXT_HTML. */
 	private static final String TEXT_HTML = "text/html";
 
+	/**
+	 * Default constructor for CitizenIntelligenceAgencyHealthCheckServlet.
+	 */
+	public CitizenIntelligenceAgencyHealthCheckServlet() {
+		// Default constructor
+	}
+
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType(TEXT_HTML);

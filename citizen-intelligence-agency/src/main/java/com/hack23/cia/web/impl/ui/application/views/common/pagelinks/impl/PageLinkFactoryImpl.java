@@ -66,6 +66,13 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = "Politician ";
 
+	/**
+	 * Default constructor for PageLinkFactoryImpl.
+	 */
+	public PageLinkFactoryImpl() {
+		// Default constructor
+	}
+
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
 		final Link pageLink = new Link(COMMITTEE

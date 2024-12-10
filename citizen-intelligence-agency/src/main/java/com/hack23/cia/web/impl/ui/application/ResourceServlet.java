@@ -43,6 +43,13 @@ public class ResourceServlet extends DefaultServlet {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor for ResourceServlet.
+	 */
+	public ResourceServlet() {
+		// Default constructor
+	}
+
 	 @Override
 	  protected void service(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		 response.setHeader("Pragma", "cache");

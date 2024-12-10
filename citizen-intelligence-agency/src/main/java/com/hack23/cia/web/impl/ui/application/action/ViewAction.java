@@ -101,6 +101,7 @@ public enum ViewAction {
 	/** The visit ministry view. */
 	VISIT_MINISTRY_VIEW,
 
+	/** The visit parliament ranking view. */
 	VISIT_PARLIAMENT_RANKING_VIEW,
 
 	/** The visit party ranking view. */
@@ -113,7 +114,10 @@ public enum ViewAction {
 	VISIT_POLITICIAN_RANKING_VIEW,
 
 	/** The visit politician view. */
-	VISIT_POLITICIAN_VIEW, VISIT_REGISTER,
+	VISIT_POLITICIAN_VIEW,
+
+	/** The visit register. */
+	VISIT_REGISTER,
 
 	/** The visit search view. */
 	VISIT_SEARCH_VIEW,

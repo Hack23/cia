@@ -74,4 +74,10 @@ public final class UserViews {
 	/** The Constant USERHOME_VIEW_NAME. */
 	public static final String USERHOME_VIEW_NAME = "userhome";
 
+	/**
+	 * Default constructor for UserViews.
+	 */
+	public UserViews() {
+		// Default constructor
+	}
 }

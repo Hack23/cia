@@ -37,6 +37,13 @@ import com.vaadin.server.Page;
 public final class UserContextUtil {
 
 	/**
+	 * Default constructor for UserContextUtil.
+	 */
+	public UserContextUtil() {
+		// Default constructor
+	}
+
+	/**
 	 * Allow role in security context.
 	 *
 	 * @param role

@@ -1,3 +1,6 @@
+/**
+ * This module contains the main application code for the Citizen Intelligence Agency web application.
+ */
 open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;
 	exports com.hack23.cia.web.impl.ui.application.action;

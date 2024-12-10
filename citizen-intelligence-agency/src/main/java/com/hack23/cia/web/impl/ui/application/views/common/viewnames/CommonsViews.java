@@ -29,4 +29,10 @@ public final class CommonsViews {
 	/** The Constant DASHBOARD_VIEW_NAME. */
 	public static final String DASHBOARD_VIEW_NAME = "dashboard";
 
+	/**
+	 * Default constructor for CommonsViews.
+	 */
+	public CommonsViews() {
+		// Default constructor
+	}
 }
