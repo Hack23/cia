@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -63,12 +62,11 @@ public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extend
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);
+		createPageHeader(panel, panelContent, "Ministry Government Bodies Headcount " + viewRiksdagenMinistry.getNameId(), "Government Bodies Headcount", "Provides detailed headcount data for government bodies under ministries.");
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());
 
-		panel.setCaption(new StringBuilder().append("Ministry Government Bodies Headcount for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

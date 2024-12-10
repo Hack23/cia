@@ -62,7 +62,8 @@ public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactory
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
+		createPageHeader(panel, panelContent, "Government Bodies Expenditure", "Government Body Expenditure", "Provides detailed expenditure data for government bodies under ministries.");
+
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent);
 

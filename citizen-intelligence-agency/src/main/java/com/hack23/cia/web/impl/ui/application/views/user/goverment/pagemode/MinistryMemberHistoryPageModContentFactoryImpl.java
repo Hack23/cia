@@ -72,7 +72,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, MEMBER_HISTORY);
+		createPageHeader(panel, panelContent, "Ministry Member History " + viewRiksdagenMinistry.getNameId(), "Member History", "Details the historical composition of ministry members.");
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -82,7 +82,6 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 						viewRiksdagenMinistry.getNameId()),
 				MEMBER_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		panel.setCaption(new StringBuilder().append("Ministry Member History for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

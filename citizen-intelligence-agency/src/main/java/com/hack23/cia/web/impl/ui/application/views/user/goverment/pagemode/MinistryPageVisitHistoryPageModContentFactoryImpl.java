@@ -55,9 +55,10 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Ministry Page Visit History " + viewRiksdagenMinistry.getNameId(), "Page Visit History", "Tracks and visualizes the history of page visits for ministries.");
+
 		createPageVisitHistory(NAME, pageId, panelContent);
 
-		panel.setCaption(new StringBuilder().append("Ministry Page Visit History for ").append(viewRiksdagenMinistry.getNameId()).toString());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 

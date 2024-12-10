@@ -68,6 +68,8 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "All Roles", "Visual representation of all government roles.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -78,7 +80,6 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
 		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

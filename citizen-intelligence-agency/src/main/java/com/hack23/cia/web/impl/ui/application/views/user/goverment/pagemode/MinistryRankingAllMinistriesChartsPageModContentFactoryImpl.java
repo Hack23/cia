@@ -70,6 +70,8 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "All Ministries", "Visual representation of all ministries and their total headcount.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -77,7 +79,6 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

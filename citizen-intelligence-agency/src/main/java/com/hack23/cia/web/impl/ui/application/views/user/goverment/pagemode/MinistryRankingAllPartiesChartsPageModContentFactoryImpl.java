@@ -70,6 +70,8 @@ public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "All Parties", "Visual representation of all parties and their total days served.");
+
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
@@ -79,7 +81,6 @@ public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
