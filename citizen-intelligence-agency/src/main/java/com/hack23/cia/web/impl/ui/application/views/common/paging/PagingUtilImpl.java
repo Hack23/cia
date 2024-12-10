@@ -72,6 +72,13 @@ public final class PagingUtilImpl implements PagingUtil {
 	private PageLinkFactory pageLinkFactory;
 
 	/**
+	 * Default constructor for PagingUtilImpl.
+	 */
+	public PagingUtilImpl() {
+		// Default constructor
+	}
+
+	/**
 	 * Adds the paging link.
 	 *
 	 * @param label          the label

@@ -76,6 +76,13 @@ public final class FormFactoryImpl implements FormFactory {
 	private static final int SIZE_FOR_GRID = 8;
 
 	/**
+	 * Default constructor for FormFactoryImpl.
+	 */
+	public FormFactoryImpl() {
+		// Default constructor
+	}
+
+	/**
 	 * Creates the display property converters.
 	 *
 	 * @param                     <T> the generic type

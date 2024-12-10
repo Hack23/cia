@@ -29,4 +29,10 @@ public final class ContentSize {
 	/** The Constant HALF_SIZE. */
 	public static final String HALF_SIZE = "50%";
 
+	/**
+	 * Default constructor for ContentSize.
+	 */
+	public ContentSize() {
+		// Default constructor
+	}
 }

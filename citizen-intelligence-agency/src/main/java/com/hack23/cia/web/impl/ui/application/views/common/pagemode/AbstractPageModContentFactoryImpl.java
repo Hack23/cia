@@ -141,6 +141,11 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return panelContent;
 	}
 
+	/**
+	 * Gets the admin chart data manager.
+	 *
+	 * @return the admin chart data manager
+	 */
 	protected final AdminChartDataManager getAdminChartDataManager() {
 		return adminChartDataManager;
 	}

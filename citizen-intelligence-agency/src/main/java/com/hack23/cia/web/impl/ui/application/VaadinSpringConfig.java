@@ -31,4 +31,10 @@ import com.vaadin.spring.annotation.EnableVaadinNavigation;
 @EnableVaadinNavigation
 public class VaadinSpringConfig {
 
+    /**
+     * Default constructor for VaadinSpringConfig.
+     */
+    public VaadinSpringConfig() {
+        // Default constructor
+    }
 }

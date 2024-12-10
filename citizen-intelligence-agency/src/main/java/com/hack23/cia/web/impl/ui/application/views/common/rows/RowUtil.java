@@ -53,6 +53,13 @@ public final class RowUtil {
 	private static final String TITLE = "title";
 
 	/**
+	 * Default constructor for RowUtil.
+	 */
+	public RowUtil() {
+		// Default constructor
+	}
+
+	/**
 	 * Creates the grid layout.
 	 *
 	 * @param panelContent the panel content
