@@ -74,11 +74,10 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
-				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.getName());
+				createPageHeader(panel, panelContent, "Government Body Expenditure " + governmentBodyAnnualSummary.getName(), "Expenditure Details", "Explore detailed expenditure information for government bodies.");				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.getName());
 
 				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 
-				panel.setCaption(GOVERNMENT_BODY + ":" + governmentBodyAnnualSummary.getName());
 
 			}
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

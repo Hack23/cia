@@ -62,7 +62,7 @@ public final class GovernmentBodyRankingHeadCountPageModContentFactoryImpl exten
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
+		createPageHeader(panel, panelContent, "Government Body Headcount", "Headcount Details", "Explore detailed headcount information for government bodies.");
 
 		governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent);
 

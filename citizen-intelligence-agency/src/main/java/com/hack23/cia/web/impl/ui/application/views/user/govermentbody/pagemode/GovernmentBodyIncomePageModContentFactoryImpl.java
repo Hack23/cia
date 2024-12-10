@@ -73,9 +73,8 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
-				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.getName());
+				createPageHeader(panel, panelContent, "Government Body Income " + governmentBodyAnnualSummary.getName(), "Income Details", "Explore detailed income information for government bodies.");
 				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
-				panel.setCaption(GOVERNMENT_BODY + ":"+ governmentBodyAnnualSummary.getName());
 			}
 
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

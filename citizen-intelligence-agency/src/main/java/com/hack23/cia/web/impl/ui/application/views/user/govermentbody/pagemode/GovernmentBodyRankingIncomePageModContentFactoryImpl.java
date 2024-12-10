@@ -62,7 +62,7 @@ public final class GovernmentBodyRankingIncomePageModContentFactoryImpl extends 
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
+		createPageHeader(panel, panelContent, "Government Body Income", "Income Details", "Explore detailed income information for government bodies.");
 
 		governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent);
 
