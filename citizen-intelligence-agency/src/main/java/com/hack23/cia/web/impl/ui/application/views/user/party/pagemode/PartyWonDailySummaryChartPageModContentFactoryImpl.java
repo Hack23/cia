@@ -62,7 +62,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panelContent, "Party Won Daily Summary Chart", "Daily Summary", "Analyze the daily summary of party wins over time.");
+		createPageHeader(panel, panelContent, "Party Won Daily Summary Chart", "Daily Summary", "Analyze the daily summary of party wins over time.");
 
 		chartDataManager.createPartyLineChart(panelContent, pageId);
 
