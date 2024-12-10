@@ -61,6 +61,7 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Government Bodies", "Government Body Headcount", "Provides detailed headcount data for government bodies under ministries.");
 
 		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
 

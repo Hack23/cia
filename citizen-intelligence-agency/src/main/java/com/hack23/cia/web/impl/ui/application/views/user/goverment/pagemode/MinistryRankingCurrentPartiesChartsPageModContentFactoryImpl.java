@@ -69,6 +69,7 @@ public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl 
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "Current Parties", "Visual representation of current parties and their headcount.");
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
@@ -78,7 +79,6 @@ public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl 
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

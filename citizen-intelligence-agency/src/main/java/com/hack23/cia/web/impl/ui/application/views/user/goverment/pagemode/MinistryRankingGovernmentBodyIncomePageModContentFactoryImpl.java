@@ -62,7 +62,8 @@ public final class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl 
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
+		createPageHeader(panel, panelContent, "Government Bodies Income", "Government Body Income", "Provides detailed income data for government bodies under ministries.");
+
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyIncomeSummaryChart(panelContent);
 

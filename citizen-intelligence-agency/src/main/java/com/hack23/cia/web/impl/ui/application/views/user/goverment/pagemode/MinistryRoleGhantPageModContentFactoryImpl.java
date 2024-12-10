@@ -71,7 +71,7 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
+		createPageHeader(panel, panelContent, "Ministry Role Ghant " + viewRiksdagenMinistry.getNameId(), "Role Ghant", "Visual representation of ministry roles over time.");
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -81,7 +81,6 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 
 		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		return panelContent;

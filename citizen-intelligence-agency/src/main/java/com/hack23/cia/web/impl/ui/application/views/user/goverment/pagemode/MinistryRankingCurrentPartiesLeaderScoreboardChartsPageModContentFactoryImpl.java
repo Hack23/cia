@@ -103,6 +103,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		final String pageId = getPageId(parameters);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "Leader Scoreboard", "Visual representation of ministry leaders and their performance.");
+
 		LabelFactory.createHeader2Label(panelContent, "Dashboard Government members");
 
 		final Label descriptionLabel = new Label(
@@ -139,7 +141,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		}
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
