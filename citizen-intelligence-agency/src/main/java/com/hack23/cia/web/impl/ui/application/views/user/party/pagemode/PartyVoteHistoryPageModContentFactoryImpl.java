@@ -60,9 +60,6 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue", "embeddedId.party" };
 
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = "VoteHistory";
-
 	/** The view riksdagen vote data ballot party summary chart data manager. */
 	@Autowired
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
@@ -84,14 +81,14 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Vote History", "Ballots", "Review the voting history for the selected party.");
+		createPageHeader(panel, panelContent, "Vote History " + viewRiksdagenParty.getPartyName(), "Ballots", "Review the voting history for the selected party.");
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenVoteDataBallotPartySummary.class,
 				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

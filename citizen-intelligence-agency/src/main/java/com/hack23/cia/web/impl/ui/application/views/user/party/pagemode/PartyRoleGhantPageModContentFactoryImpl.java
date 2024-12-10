@@ -64,6 +64,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
+		createPageHeader(panel, panelContent, "Party Role Ghant " + viewRiksdagenParty.getPartyName(), "Party Ghant Deatails", "Review the party role ghant history for the selected party.");
 		createPageHeader(panel, panelContent, viewRiksdagenParty.getPartyName(), viewRiksdagenParty.getPartyId(), ROLE_GHANT);
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
@@ -74,7 +75,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 		partyGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}
