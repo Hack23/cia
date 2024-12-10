@@ -82,6 +82,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private MainView mainView;
 
+	/** The spring navigator. */
 	@Autowired
 	private SpringNavigator springNavigator;
 

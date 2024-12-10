@@ -12,10 +12,19 @@ import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
  */
 public class ComplianceCheckImpl implements ComplianceCheck {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The rule violations. */
 	private final List<RuleViolation> ruleViolations;
+	
+	/** The resource type. */
 	private final ResourceType resourceType;
+	
+	/** The id. */
 	private final String id;
+	
+	/** The name. */
 	private final String name;
 
 	/**
