@@ -27,9 +27,11 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
@@ -80,7 +82,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}
@@ -98,7 +101,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);

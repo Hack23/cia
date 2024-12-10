@@ -28,8 +28,10 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -61,8 +63,9 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());
-
+		
+		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role List", "Roles Overview", "Explore the list of roles held by the politician across their career.");
+		
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
 
@@ -70,7 +73,8 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 		createRoleList(panelContent, assignmentList);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}

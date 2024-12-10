@@ -28,8 +28,9 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -80,8 +81,8 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());
-
+		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Ballot Decision Summary", "Decision Summary Overview", "Summarize and analyze the politician's voting decisions on various ballots.");
+				
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
 
@@ -99,7 +100,8 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 				BALLOT_ID, null);
 
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 
 		return panelContent;
 
