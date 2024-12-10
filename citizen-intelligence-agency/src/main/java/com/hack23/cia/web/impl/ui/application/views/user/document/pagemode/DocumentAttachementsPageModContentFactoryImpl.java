@@ -32,7 +32,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.ExternalAttachmentDownloadLink;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.StreamSourceImplementation;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -115,7 +114,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ATTACHMENTS);
+		createPageHeader(panel, panelContent, "Document Attachments", "Attachments Overview", "Explore and manage attachments associated with the document.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
 				&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {

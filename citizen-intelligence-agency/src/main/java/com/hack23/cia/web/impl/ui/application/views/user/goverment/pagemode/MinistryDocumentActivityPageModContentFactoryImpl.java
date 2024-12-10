@@ -39,12 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentActivityPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	/** The chart data manager. */
 	@Autowired
 	private OrgDocumentChartDataManager chartDataManager;

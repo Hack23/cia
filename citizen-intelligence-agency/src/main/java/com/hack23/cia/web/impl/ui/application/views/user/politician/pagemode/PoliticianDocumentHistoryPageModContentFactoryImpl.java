@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -69,7 +70,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());
+		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Document History", "History Overview", "Historical record of documents associated with the politician's roles and activities.");
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -80,7 +81,8 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}

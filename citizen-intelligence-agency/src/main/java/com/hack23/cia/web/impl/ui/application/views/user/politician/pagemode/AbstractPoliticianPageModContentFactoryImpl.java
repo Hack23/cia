@@ -22,12 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
@@ -84,24 +81,6 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 */
 	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
 		return politicianMenuItemFactory;
-	}
-
-	/**
-	 * Page completed.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @param panel
-	 *            the panel
-	 * @param pageId
-	 *            the page id
-	 * @param viewRiksdagenPolitician
-	 *            the view riksdagen politician
-	 */
-	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
-				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 	}
 
 }

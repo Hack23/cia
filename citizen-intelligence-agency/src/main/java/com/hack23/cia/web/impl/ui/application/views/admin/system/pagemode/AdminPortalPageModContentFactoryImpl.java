@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.model.internal.application.system.impl.Portal_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -44,9 +43,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
-
-	/** The Constant ADMIN_PORTAL. */
-	private static final String ADMIN_PORTAL = "Admin Portal";
 
 	private static final List<String> AS_LIST = Arrays.asList("portalName", "description", "portalType",
 			"googleMapApiKey");
@@ -79,7 +75,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_PORTAL);
+		createPageHeader(panel, content, "Admin Portal", "Portal Overview", "Centralized management interface for accessing and controlling administrative tools.");
 
 		final DataContainer<Portal, Long> dataContainer = getApplicationManager().getDataContainer(Portal.class);
 

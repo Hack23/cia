@@ -47,9 +47,6 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
 			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
 
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = "Document History";
-
 	private static final String DOCUMENTS = "Documents";
 
 	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",

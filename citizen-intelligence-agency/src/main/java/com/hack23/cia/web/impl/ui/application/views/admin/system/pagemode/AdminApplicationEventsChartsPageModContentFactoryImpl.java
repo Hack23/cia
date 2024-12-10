@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -37,9 +36,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
-
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event chart";
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
@@ -61,7 +57,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);
+		createPageHeader(panel, content, "Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
 
 		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 

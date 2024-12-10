@@ -30,7 +30,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -51,9 +50,6 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 	private static final String[] HIDE_COLUMNS = { "personReferenceId", "hjid" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personReferenceId");
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = "Person References";
-
 	/**
 	 * Instantiates a new document person references page mod content factory
 	 * impl.
@@ -77,7 +73,7 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, PERSON_REFERENCES);
+		createPageHeader(panel, panelContent, "Document Person References", "Person References", "Identify and explore references to individuals within the document.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentPersonReferenceContainer() != null
 				&& documentStatusContainer.getDocumentPersonReferenceContainer()

@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/**
 	 * Instantiates a new committee page visit history page mod content factory
 	 * impl.

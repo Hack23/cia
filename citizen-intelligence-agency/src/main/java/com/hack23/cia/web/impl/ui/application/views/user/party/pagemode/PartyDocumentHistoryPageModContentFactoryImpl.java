@@ -24,7 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -75,7 +77,8 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				MEMBER_DOCUMENT_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
+		pageId);
 		return panelContent;
 
 	}

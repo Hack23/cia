@@ -41,12 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyIncomePageModContentFactoryImpl extends AbstractGovernmentBodyPageModContentFactoryImpl {
 
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Income:";
-
-	/** The Constant GOVERNMENT_BODY. */
-	private static final String GOVERNMENT_BODY = "GovernmentBody:";
-
 	/** The government body chart data manager. */
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;

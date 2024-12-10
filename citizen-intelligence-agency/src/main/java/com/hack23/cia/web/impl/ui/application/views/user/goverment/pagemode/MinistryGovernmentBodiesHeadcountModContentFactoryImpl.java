@@ -39,8 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String GOVERNMENT_BODIES = "Government bodies headcount";
-
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 

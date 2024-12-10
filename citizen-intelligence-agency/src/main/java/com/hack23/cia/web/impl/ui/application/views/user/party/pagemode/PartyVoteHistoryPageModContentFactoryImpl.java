@@ -24,6 +24,8 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -88,7 +90,8 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
-		pageCompleted(parameters, panel, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
+		pageId);
 		return panelContent;
 
 	}
