@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -93,7 +92,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_SESSION);
+		createPageHeader(panel, content, "Application Sessions", "Session Details", "Explore detailed data on user sessions, including durations and activity logs.");
 
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);

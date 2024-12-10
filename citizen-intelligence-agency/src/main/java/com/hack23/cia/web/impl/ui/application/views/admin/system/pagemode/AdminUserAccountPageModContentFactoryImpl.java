@@ -33,7 +33,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -97,7 +96,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_USERACCOUNT);
+		createPageHeader(panel, content, "User Account Management", "Account Overview", "Manage user accounts, including roles, permissions, and activity logs.");
 
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
 				.getDataContainer(UserAccount.class);

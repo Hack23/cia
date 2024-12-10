@@ -62,8 +62,8 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-		
-		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role Gantt Chart", "Role Timeline", "Visualize the timeline and duration of roles held by the politician.");		
+
+		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role Gantt Chart", "Role Timeline", "Visualize the timeline and duration of roles held by the politician.");
 
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());

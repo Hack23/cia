@@ -66,7 +66,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Role Gantt Chart " +  viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Role Timeline", "Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.");		
+		createPageHeader(panel, panelContent, "Committee Role Gantt Chart " +  viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Role Timeline", "Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.");
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

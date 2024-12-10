@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -102,7 +101,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
-		LabelFactory.createHeader2Label(content,ADMIN_AGENCY);
+		createPageHeader(panel, content, "Admin Agency Management", "Agency Overview", "Manage and review details of agencies, including organizational data and performance metrics.");
 
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 

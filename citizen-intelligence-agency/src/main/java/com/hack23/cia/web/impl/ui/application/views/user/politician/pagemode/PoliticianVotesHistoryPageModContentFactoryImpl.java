@@ -81,7 +81,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Votes History", "Voting Record", "Review the politician's voting history, including key decisions and patterns.");
-		
+
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 				viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager

@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.LanguageData_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -79,7 +78,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE);
+		createPageHeader(panel, content, "Language Management", "Language Overview", "Administer and update language settings and configurations for the platform.");
 
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);

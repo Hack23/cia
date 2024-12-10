@@ -82,7 +82,7 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Ballot Decision Summary", "Decision Summary Overview", "Summarize and analyze the politician's voting decisions on various ballots.");
-				
+
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
 

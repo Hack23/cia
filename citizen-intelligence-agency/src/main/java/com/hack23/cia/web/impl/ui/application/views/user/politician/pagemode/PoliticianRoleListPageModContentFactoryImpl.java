@@ -63,9 +63,9 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-		
+
 		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role List", "Roles Overview", "Explore the list of roles held by the politician across their career.");
-		
+
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
 

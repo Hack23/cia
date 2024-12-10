@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -94,7 +93,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_CONFIGURATION);
+		createPageHeader(panel, content, "Application Configuration", "Configuration Overview", "View and edit application settings and configurations for optimal performance.");
 
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);

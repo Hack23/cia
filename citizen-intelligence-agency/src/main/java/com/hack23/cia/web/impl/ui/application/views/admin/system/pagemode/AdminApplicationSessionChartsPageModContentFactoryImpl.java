@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -60,7 +59,7 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);
+		createPageHeader(panel, content, "Application Session Charts", "Session Analysis", "Analyze user sessions using graphical insights to track usage patterns.");
 
 		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);
 

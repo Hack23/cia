@@ -61,7 +61,7 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 		createPageHeader(panel, panelContent, "Party Coalitions Against " + viewRiksdagenParty.getPartyName(), "Party Coalitions", "Review the summary of party coalitions against the selected party.");
-	
+
 		chartDataManager.createPartyChart(panelContent,pageId);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
