@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyCoalationChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -37,8 +36,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant TITLE. */
-	private static final String TITLE = PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString();
 
 	@Autowired
 	private PartyCoalationChartDataManager chartDataManager;
@@ -61,10 +58,11 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, TITLE);
+		createPageHeader(panel, panelContent, "Party Coalitions Against " + viewRiksdagenParty.getPartyName(), "Party Coalitions", "Review the summary of party coalitions against the selected party.");
+	
 		chartDataManager.createPartyChart(panelContent,pageId);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

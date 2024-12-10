@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -43,8 +42,6 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 	private static final String[] COLUMN_ORDER = { "roleId", "roleCode", "personId", "firstName",
 			"lastName", "party", "totalDaysServed", "active", "detail", "fromDate", "toDate" };
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "party", "detail" };
-	/** The Constant LEADER_HISTORY. */
-	private static final String LEADER_HISTORY = "LeaderHistory";
 	private static final String LEADER_HISTORY2 = "Leader History";
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
@@ -65,7 +62,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Leader History", "Party Leaders", "Explore the history of party leaders and their roles.");
+		createPageHeader(panel, panelContent, "Leader History " + viewRiksdagenParty.getPartyName(), "Party Leaders", "Explore the history of party leaders and their roles.");
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -75,7 +72,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 						viewRiksdagenParty.getPartyId()),
 				LEADER_HISTORY2, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

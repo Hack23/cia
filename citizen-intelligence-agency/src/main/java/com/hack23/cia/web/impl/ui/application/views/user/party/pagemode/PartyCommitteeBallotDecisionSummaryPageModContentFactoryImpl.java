@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -59,9 +58,6 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = "Committee Ballot Decision Party Summary";
-
-	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
-	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "CommitteeBallotDecisionSummary";
 
 	private static final String[] HIDE_COLUMNS = { "embeddedId", BALLOT_ID, "decisionType", "ballotType",
 			"againstProposalNumber", "embeddedId.id", "embeddedId.party", "createdDate", "publicDate", "label",
@@ -94,7 +90,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Ballot Decision Summary", "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
+		createPageHeader(panel, panelContent, "Committee Ballot Decision Summary " + viewRiksdagenParty.getPartyName(), "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
@@ -111,7 +107,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 				COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 
 		return panelContent;
 

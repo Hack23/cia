@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -64,7 +63,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Current Leaders", "Party Leadership", "Meet the current leaders of the party and their roles.");
+		createPageHeader(panel, panelContent, "Current Leaders " + viewRiksdagenParty.getPartyName(), "Party Leadership", "Meet the current leaders of the party and their roles.");
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -75,7 +74,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 						ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active),
 				CURRENT_LEADERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

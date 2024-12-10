@@ -97,7 +97,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 		getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

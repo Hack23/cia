@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -54,8 +53,6 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
 
-	/** The Constant CURRENT_MEMBERS. */
-	private static final String CURRENT_MEMBERS = "Current Members";
 	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "party",
 			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
@@ -78,7 +75,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Current Members", "Party Members", "Discover the current members of the party and their roles.");
+		createPageHeader(panel, panelContent, "Current Members " +viewRiksdagenParty.getPartyName(), "Party Members", "Discover the current members of the party and their roles.");
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
@@ -89,7 +86,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 						ViewRiksdagenPolitician_.active),
 				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
+		pageCompleted(parameters, panel, pageId);
 		return panelContent;
 
 	}

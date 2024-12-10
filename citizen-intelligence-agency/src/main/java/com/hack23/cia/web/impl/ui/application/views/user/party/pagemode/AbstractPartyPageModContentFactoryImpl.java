@@ -33,14 +33,8 @@ import com.vaadin.ui.Component;
  */
 abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenParty> {
 
-	/** The Constant CAPTION_SEPARATOR. */
-	private static final String CAPTION_SEPARATOR = "::";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
-
-	/** The Constant PARTY. */
-	private static final String PARTY = "Party:";
 
 	/** The party menu item factory. */
 	@Autowired
@@ -76,12 +70,8 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 *            the panel
 	 * @param pageId
 	 *            the page id
-	 * @param viewRiksdagenParty
-	 *            the view riksdagen party
 	 */
-	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
-			final ViewRiksdagenParty viewRiksdagenParty) {
-		panel.setCaption(new StringBuilder().append(NAME).append(CAPTION_SEPARATOR).append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());
+	protected final void pageCompleted(final String parameters, final Component panel, final String pageId) {
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);
