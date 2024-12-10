@@ -37,23 +37,28 @@ import com.vaadin.data.ValueProvider;
  */
 public final class ListPropertyConverter implements Converter<String, List<?>>,ValueProvider<Object, String> {
 
+	/** The Constant CONTENT_SEPARATOR. */
 	private static final char CONTENT_SEPARATOR = ' ';
 
+	/** The Constant END_TAG. */
 	private static final char END_TAG = ']';
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);
 
+	/** The Constant PROPERTY_UTILS_BEAN. */
 	private static final PropertyUtilsBean PROPERTY_UTILS_BEAN= new PropertyUtilsBean();
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant START_TAG. */
 	private static final char START_TAG = '[';
 
 	/** The column. */
 	private final String column;
 
+	/** The fallback column. */
 	private final String fallbackColumn;
 
 	/** The property. */
