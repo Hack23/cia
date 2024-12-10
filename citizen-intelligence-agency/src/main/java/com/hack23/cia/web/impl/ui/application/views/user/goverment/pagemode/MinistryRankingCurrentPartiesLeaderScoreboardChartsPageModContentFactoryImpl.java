@@ -60,9 +60,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Ministries leader scoreboard";
-
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
 

@@ -47,9 +47,6 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 	private static final List<String> AS_LIST = Arrays.asList("committee", "chamber", "processedIn", "decisionType",
 			"proposalNumber", "designation", "wording", "wording2", "wording3", "wording4");
-	/** The Constant DOCUMENT_DECISION. */
-	private static final String DOCUMENT_DECISION = "Document Decision";
-
 	/**
 	 * Instantiates a new document decision page mod content factory impl.
 	 */

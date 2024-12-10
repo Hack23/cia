@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_PORTAL. */
-	private static final String ADMIN_PORTAL = "Admin Portal";
-
 	private static final List<String> AS_LIST = Arrays.asList("portalName", "description", "portalType",
 			"googleMapApiKey");
 

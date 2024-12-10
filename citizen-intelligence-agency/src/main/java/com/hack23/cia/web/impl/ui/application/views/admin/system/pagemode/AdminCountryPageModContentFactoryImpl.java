@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_COUNTRY. */
-	private static final String ADMIN_COUNTRY = "Admin Country";
-
 	private static final List<String> AS_LIST = Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
 			"longitude", "latitude" );
 

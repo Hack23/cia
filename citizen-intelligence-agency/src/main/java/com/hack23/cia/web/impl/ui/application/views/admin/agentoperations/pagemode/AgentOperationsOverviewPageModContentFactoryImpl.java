@@ -46,9 +46,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AgentOperationsOverviewPageModContentFactoryImpl
 		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_AGENT_OPERATION. */
-	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
-
 	/** The Constant BUTTON_ID_PATTERN. */
 	private static final String BUTTON_ID_PATTERN = "{0}.{1}.{2}";
 

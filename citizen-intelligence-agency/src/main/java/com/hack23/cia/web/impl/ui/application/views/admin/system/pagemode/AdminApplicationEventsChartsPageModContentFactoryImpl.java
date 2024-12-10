@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event chart";
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
 

@@ -47,9 +47,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant BALLOT_DECISION_SUMMARY. */
-	private static final String BALLOT_DECISION_SUMMARY = "Ballot Decision Summary";
-
 	private static final String BALLOT_ID = "ballotId";
 
 	private static final String[] COLUMN_ORDER = { "voteDate", "embeddedId.concern", "embeddedId.id",

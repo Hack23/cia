@@ -38,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyRankingHeadCountPageModContentFactoryImpl extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government body headcount";
-
 	/** The government body chart data manager. */
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;

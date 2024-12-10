@@ -48,9 +48,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant DOCUMENT_DATA. */
-	private static final String DOCUMENT_DATA = "Document Data";
-
 	/**
 	 * Instantiates a new document data page mod content factory impl.
 	 */

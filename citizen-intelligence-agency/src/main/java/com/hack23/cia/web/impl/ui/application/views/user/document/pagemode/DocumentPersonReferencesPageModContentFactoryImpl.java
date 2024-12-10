@@ -50,9 +50,6 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 	private static final String[] HIDE_COLUMNS = { "personReferenceId", "hjid" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personReferenceId");
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = "Person References";
-
 	/**
 	 * Instantiates a new document person references page mod content factory
 	 * impl.

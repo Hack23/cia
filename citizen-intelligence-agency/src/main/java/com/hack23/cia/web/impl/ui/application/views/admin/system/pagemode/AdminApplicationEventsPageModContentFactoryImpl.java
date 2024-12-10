@@ -45,9 +45,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationEventsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
-
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
 	private static final List<String> AS_LIST = Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage");

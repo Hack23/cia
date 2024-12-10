@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianIndicatorsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	/** The Constant INDICATORS. */
-	private static final String INDICATORS = "Indicators";
-
 	/** The chart data manager. */
 	@Autowired
 	private PoliticianChartDataManager politicianChartDataManager;

@@ -52,9 +52,6 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 			"header", "endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties",
 			"againstProposalNumber" };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = "Decision Summary";
 

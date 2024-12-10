@@ -47,9 +47,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_AGENCY. */
-	private static final String ADMIN_AGENCY = "Admin Agency";
-
 	/** The Constant AGENCY. */
 	private static final String AGENCY = "Agency";
 

@@ -40,12 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentActivityPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
-
 	/** The chart data manager. */
 	@Autowired
 	private OrgDocumentChartDataManager chartDataManager;

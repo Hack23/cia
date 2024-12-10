@@ -45,9 +45,6 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
 			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(

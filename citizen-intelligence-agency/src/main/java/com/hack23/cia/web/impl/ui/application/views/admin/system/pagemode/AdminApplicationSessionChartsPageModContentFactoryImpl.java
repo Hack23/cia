@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Daily Active Users Chart";
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;
 

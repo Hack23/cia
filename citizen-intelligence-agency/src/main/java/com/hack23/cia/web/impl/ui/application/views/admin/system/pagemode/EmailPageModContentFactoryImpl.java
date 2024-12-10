@@ -45,9 +45,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_EMAIL. */
-	private static final String ADMIN_EMAIL = "Admin email";
-
 	/** The Constant EMAIL. */
 	private static final String EMAIL = "Email";
 

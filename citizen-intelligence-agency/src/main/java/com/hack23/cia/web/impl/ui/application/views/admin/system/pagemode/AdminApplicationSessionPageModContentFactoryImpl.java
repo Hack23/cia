@@ -50,9 +50,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationSessionPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_SESSION. */
-	private static final String ADMIN_APPLICATION_SESSION = "Admin Application Session";
-
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
 	private static final String APPLICATION_SESSION = "ApplicationSession";

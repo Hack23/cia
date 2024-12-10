@@ -42,9 +42,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts: All Parties, total days served";
-
 	/** The chart data manager. */
 	@Autowired
 	private ChartDataManager chartDataManager;

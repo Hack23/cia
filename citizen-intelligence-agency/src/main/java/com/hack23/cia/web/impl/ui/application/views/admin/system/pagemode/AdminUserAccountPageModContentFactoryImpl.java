@@ -54,9 +54,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_USERACCOUNT. */
-	private static final String ADMIN_USERACCOUNT = "Admin Useraccount";
-
 	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country",
 			"numberOfVisits" );
 

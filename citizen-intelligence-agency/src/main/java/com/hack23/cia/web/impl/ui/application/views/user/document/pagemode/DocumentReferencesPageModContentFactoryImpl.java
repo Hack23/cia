@@ -43,8 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class DocumentReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	private static final String[] COLUMN_ORDER = { "referenceType", "referenceDocumentId", "detail" };
-	/** The Constant DOCUMENT_REFERENCES. */
-	private static final String DOCUMENT_REFERENCES = "Document References";
 	private static final String DOCUMENT_REFERENCES2 = "Document references";
 	private static final String[] HIDE_COLUMNS = { "hjid" };
 

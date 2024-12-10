@@ -46,9 +46,6 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			"org", "label", "rm", "madePublicDate", "numberValue", "title", "subTitle", "tempLabel", "orderNumber",
 			"documentType", "subType", "status", "partyShortCode", "referenceName" };
 
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = "Document History";
-
 	private static final String DOCUMENTS = "Documents";
 
 	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",

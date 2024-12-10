@@ -41,9 +41,6 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
 	/**
 	 * Instantiates a new party ranking page visit history page mod content
 	 * factory impl.

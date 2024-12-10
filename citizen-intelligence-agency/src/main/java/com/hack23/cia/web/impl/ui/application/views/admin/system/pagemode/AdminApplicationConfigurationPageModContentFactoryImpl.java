@@ -52,9 +52,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
-	private static final String ADMIN_APPLICATION_CONFIGURATION = "Admin Application Configuration";
-
 	private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
 
 	private static final List<String> AS_LIST = Arrays.asList( "configurationGroup", "component","configTitle" ,"configDescription",

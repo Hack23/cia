@@ -45,8 +45,6 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 	private static final String[] COLUMN_ORDER = { "createdDate", "code", "activityName", "orderNumber",
 			"process", "status" };
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**

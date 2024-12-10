@@ -55,9 +55,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 			"totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker", "activeCommittee",
 			"totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament", "activeParty",
 			"totalDaysServedParty");
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new politician overview page mod content factory impl.
 	 */

@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = "Role chart";
-
 	@Autowired
 	private CommitteeGhantChartManager committeeGhantChartManager;
 

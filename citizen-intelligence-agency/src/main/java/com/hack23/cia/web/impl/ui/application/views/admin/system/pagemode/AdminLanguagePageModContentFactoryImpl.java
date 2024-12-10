@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_LANGUAGE. */
-	private static final String ADMIN_LANGUAGE = "Admin Language";
-
 	private static final List<String> AS_LIST = Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" );
 
 	private static final String[] COLUMN_ORDER = { "hjid", "languageName", "modelObjectVersion" };

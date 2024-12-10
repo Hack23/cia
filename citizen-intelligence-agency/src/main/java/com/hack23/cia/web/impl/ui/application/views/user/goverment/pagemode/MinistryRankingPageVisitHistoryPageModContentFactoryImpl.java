@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
 	/**
 	 * Instantiates a new ministry ranking page visit history page mod content
 	 * factory impl.
