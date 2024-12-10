@@ -61,9 +61,9 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 
 		final String pageId = getPageId(parameters);
 
-		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+		createPageHeader(panel, panelContent, "Government Body Ranking Page Visit History", "Page Visit History", "Track the visit history of government body ranking pages.");
 
-		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
