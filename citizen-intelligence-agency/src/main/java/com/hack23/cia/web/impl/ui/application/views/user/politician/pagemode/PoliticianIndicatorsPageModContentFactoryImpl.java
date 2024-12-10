@@ -23,9 +23,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -36,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class PoliticianIndicatorsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
-
-	/** The Constant INDICATORS. */
-	private static final String INDICATORS = "Indicators";
 
 	/** The chart data manager. */
 	@Autowired
@@ -60,11 +59,12 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, INDICATORS);
+		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Performance Indicators", "Indicator Overview", "Key performance indicators reflecting the politician's impact and activity.");
 
 		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());
 
-		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}

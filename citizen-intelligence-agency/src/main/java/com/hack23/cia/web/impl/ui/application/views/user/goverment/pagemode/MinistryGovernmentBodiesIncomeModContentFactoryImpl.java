@@ -39,11 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryGovernmentBodiesIncomeModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String GOVERNMENT_BODIES = "Government bodies income";
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 

@@ -53,9 +53,6 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 	private static final List<String> AS_LIST2 = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
 			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue", "hangarId");
 	private static final List<String> AS_LIST3 = Collections.singletonList("documentCategory");
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/**
 	 * Instantiates a new document overview page mod content factory impl.
 	 */

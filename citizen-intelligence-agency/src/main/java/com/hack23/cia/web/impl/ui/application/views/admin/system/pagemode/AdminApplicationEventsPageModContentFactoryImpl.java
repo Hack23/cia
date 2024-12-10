@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -45,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class AdminApplicationEventsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
-
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
 
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
@@ -81,7 +77,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
-		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_ACTION_EVENT);
+		createPageHeader(panel, content, "Application Events", "Event Details", "Review a comprehensive list of application events, including timestamps and statuses.");
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 

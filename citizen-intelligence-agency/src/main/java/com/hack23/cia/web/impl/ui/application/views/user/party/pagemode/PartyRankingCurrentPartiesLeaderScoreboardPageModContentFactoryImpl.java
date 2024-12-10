@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Leader Scoreboard:";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 

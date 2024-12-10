@@ -41,9 +41,6 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
 	/**
 	 * Instantiates a new government body ranking page visit history page mod
 	 * content factory impl.

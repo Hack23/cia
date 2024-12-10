@@ -30,7 +30,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -46,8 +45,6 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 	private static final String[] COLUMN_ORDER = { "createdDate", "code", "activityName", "orderNumber",
 			"process", "status" };
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**
@@ -73,7 +70,7 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
+		createPageHeader(panel, panelContent, "Document Activity", "Activity Overview", "Analyze document activities, including modifications, approvals, and related events.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentActivityContainer() != null
 				&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {

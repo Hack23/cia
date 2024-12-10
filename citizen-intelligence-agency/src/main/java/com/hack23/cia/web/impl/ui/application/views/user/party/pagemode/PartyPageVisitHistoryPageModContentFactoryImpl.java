@@ -23,6 +23,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -57,7 +59,8 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 
-		pageCompleted(parameters, panel, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
+		pageId);
 		return panelContent;
 
 	}

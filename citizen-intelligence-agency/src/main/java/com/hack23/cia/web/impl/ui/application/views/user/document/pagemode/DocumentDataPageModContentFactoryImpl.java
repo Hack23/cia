@@ -32,7 +32,6 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.shared.ui.ContentMode;
@@ -48,9 +47,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
-
-	/** The Constant DOCUMENT_DATA. */
-	private static final String DOCUMENT_DATA = "Document Data";
 
 	/**
 	 * Instantiates a new document data page mod content factory impl.
@@ -69,7 +65,8 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DATA);
+		createPageHeader(panel, panelContent, "Document Data", "Data Overview", "Detailed view of the document's core data and metadata.");
+
 
 		final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()
 				.getDataContainer(DocumentContentData.class);

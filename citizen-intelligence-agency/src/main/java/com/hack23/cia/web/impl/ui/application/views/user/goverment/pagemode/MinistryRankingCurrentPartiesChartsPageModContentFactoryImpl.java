@@ -41,9 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts: Current parties by headcount";
-
 	/** The chart data manager. */
 	@Autowired
 	private ChartDataManager chartDataManager;

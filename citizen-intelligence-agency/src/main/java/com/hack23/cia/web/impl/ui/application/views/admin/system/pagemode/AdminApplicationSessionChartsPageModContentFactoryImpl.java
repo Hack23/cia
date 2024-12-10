@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -37,9 +36,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
-
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Daily Active Users Chart";
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;
@@ -60,7 +56,7 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);
+		createPageHeader(panel, content, "Application Session Charts", "Session Analysis", "Analyze user sessions using graphical insights to track usage patterns.");
 
 		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);
 

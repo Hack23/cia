@@ -33,7 +33,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -48,9 +47,6 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 	private static final List<String> AS_LIST = Arrays.asList("committee", "chamber", "processedIn", "decisionType",
 			"proposalNumber", "designation", "wording", "wording2", "wording3", "wording4");
-	/** The Constant DOCUMENT_DECISION. */
-	private static final String DOCUMENT_DECISION = "Document Decision";
-
 	/**
 	 * Instantiates a new document decision page mod content factory impl.
 	 */
@@ -74,7 +70,7 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);
+		createPageHeader(panel, panelContent, "Document Decision", "Decision Overview", "Review decisions made regarding the document and their implications.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 				&& documentStatusContainer.getDocumentProposal().getProposal() != null) {

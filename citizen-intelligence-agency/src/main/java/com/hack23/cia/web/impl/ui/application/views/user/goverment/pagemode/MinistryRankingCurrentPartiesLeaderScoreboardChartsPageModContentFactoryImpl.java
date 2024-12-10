@@ -39,7 +39,6 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -60,9 +59,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
-
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Ministries leader scoreboard";
 
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
@@ -104,15 +100,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final String pageId = getPageId(parameters);
 
 		createPageHeader(panel, panelContent, "Ministry Rankings", "Leader Scoreboard", "Visual representation of ministry leaders and their performance.");
-
-		LabelFactory.createHeader2Label(panelContent, "Dashboard Government members");
-
-		final Label descriptionLabel = new Label(
-				"Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level");
-		descriptionLabel.addStyleName("itembox");
-		Responsive.makeResponsive(descriptionLabel);
-		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		panelContent.addComponent(descriptionLabel);
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 

@@ -29,7 +29,6 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -44,9 +43,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
-
-	/** The Constant ADMIN_COUNTRY. */
-	private static final String ADMIN_COUNTRY = "Admin Country";
 
 	private static final List<String> AS_LIST = Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
 			"longitude", "latitude" );
@@ -80,7 +76,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_COUNTRY);
+		createPageHeader(panel, content, "Country Management", "Country Overview", "Manage and review country-specific data, including metrics and geopolitical information.");
 
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);

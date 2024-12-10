@@ -44,12 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
-
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = "Role Ghant";
-
 	@Autowired
 	private MinistryGhantChartManager ministryGhantChartManager;
 

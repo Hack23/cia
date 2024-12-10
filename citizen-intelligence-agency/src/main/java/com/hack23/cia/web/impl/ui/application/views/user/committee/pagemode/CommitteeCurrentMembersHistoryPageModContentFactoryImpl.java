@@ -46,9 +46,6 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
 			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = "Committee:";
-
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
