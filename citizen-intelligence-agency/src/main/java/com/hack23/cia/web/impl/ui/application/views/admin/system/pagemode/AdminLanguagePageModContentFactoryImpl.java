@@ -75,7 +75,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Language Management", "Language Overview", "Administer and update language settings and configurations for the platform.");
+		createPageHeader(panel, content, "Admin Language Management", "Language Overview", "Administer and update language settings and configurations for the platform.");
 
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);

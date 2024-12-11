@@ -56,7 +56,7 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Application Session Charts", "Session Analysis", "Analyze user sessions using graphical insights to track usage patterns.");
+		createPageHeader(panel, content, "Admin Application Session Charts", "Session Analysis", "Analyze user sessions using graphical insights to track usage patterns.");
 
 		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);
 

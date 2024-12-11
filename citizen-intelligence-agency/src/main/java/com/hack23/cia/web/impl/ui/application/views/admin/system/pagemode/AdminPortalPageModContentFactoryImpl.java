@@ -75,7 +75,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Portal", "Portal Overview", "Centralized management interface for accessing and controlling administrative tools.");
+		createPageHeader(panel, content, "Admin Portal Management", "Portal Overview", "Centralized management interface for accessing and controlling administrative tools.");
 
 		final DataContainer<Portal, Long> dataContainer = getApplicationManager().getDataContainer(Portal.class);
 

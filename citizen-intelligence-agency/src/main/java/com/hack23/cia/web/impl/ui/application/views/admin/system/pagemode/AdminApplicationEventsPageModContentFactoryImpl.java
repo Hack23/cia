@@ -77,7 +77,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
-		createPageHeader(panel, content, "Application Events", "Event Details", "Review a comprehensive list of application events, including timestamps and statuses.");
+		createPageHeader(panel, content, "Admin Application Events", "Event Details", "Review a comprehensive list of application events, including timestamps and statuses.");
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 

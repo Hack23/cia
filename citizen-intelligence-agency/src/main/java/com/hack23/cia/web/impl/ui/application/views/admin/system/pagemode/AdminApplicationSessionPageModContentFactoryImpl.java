@@ -89,7 +89,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Application Sessions", "Session Details", "Explore detailed data on user sessions, including durations and activity logs.");
+		createPageHeader(panel, content, "Admin Application Sessions", "Session Details", "Explore detailed data on user sessions, including durations and activity logs.");
 
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
