@@ -228,23 +228,100 @@
 	
 }
 
-// Custom styles for the leader cards
-.leader-card {
-  @include valo-panel; // Leverages Valo theme defaults for panels
-  background-color: $v-background-color;
-  border: 1px solid $v-border-color;
-  border-radius: $v-border-radius;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: $v-unit-size;
-  margin-bottom: $v-unit-size;
+.leader-baseball-card {
+  background: #1f1f1f;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  color: #e0e0e0;
+  margin: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
 }
 
-.leader-card-header {
-  font-size: $v-font-size-xl;
-  font-weight: 600;
-  margin-bottom: $v-unit-size-sm;
+.card-header-section {
+  border-bottom: 2px solid #333;
+  margin-bottom: 0.25rem; // Less empty space after headers
+  padding-bottom: 0.25rem;
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    white-space: normal;
+    word-break: break-word;
+  }
 }
 
-.light-text {
-  color: $v-text-color-lighter;
+.card-subtitle {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #a0a0a0;
+  margin-bottom: 0.25rem; // Reduce space after subtitle
+}
+
+.card-divider {
+  border-top: 1px solid #333;
+  margin: 0.25rem 0; // Reduce vertical space around divider
+  width: 100%;
+}
+
+// Container for tenure and experience rows
+.card-stats-container {
+  margin-top: 0.25rem; // Slight space after divider
+}
+
+// Tenure and experience each on their own row, no extra large margins
+.card-tenure, .card-experience-section {
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+  min-width: 0;
+  margin-top: 0.25rem;
+}
+
+.card-tenure-text, .card-experience-text {
+  margin-left: 0.3rem;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.card-tenure-value, .card-experience-value {
+  margin-left: 0.3rem;
+  white-space: normal;
+  word-break: break-word;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+
+.metric-label .metric-value {
+  margin-left: 0.5rem;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.metric-label {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  align-items: center;
+  .v-icon, .v-label {
+    color: #a0ff90;
+  }
+  .v-label {
+    margin-left: 0.3rem;
+    word-break: break-word;
+  }
+}
+
+.card-ministry {
+  font-size: 0.9rem;
+  color: #a0ff90;
+  margin-top: 0.3rem;
 }
