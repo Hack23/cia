@@ -62,7 +62,7 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Author Summary", "Admin Author Summary", "Detailed summary of authors and their contributions to data records.");
+		createPageHeader(panel, content, "Admin Author Summary", "Author Overview", "Detailed summary of authors and their contributions to data records.");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();

@@ -90,7 +90,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Application Configuration", "Configuration Overview", "View and edit application settings and configurations for optimal performance.");
+		createPageHeader(panel, content, "Admin Application Configuration", "Application Configuration", "View and edit application settings and configurations for optimal performance.");
 
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);
