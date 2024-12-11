@@ -70,7 +70,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Email", "Admin Email", "Page for managing email configurations and communications within the agency.");
+		createPageHeader(panel, content, "Admin Email Management", "Email Overview", "Page for managing email configurations and communications within the agency.");
 
 		final VerticalLayout emailLayout = new VerticalLayout();
 		emailLayout.setSizeFull();

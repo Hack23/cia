@@ -57,7 +57,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
+		createPageHeader(panel, content, "Admin Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
 
 		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 
