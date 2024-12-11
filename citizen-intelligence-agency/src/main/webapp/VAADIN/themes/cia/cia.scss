@@ -227,3 +227,24 @@
 	}
 	
 }
+
+// Custom styles for the leader cards
+.leader-card {
+  @include valo-panel; // Leverages Valo theme defaults for panels
+  background-color: $v-background-color;
+  border: 1px solid $v-border-color;
+  border-radius: $v-border-radius;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: $v-unit-size;
+  margin-bottom: $v-unit-size;
+}
+
+.leader-card-header {
+  font-size: $v-font-size-xl;
+  font-weight: 600;
+  margin-bottom: $v-unit-size-sm;
+}
+
+.light-text {
+  color: $v-text-color-lighter;
+}
