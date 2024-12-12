@@ -184,7 +184,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		statsLayout.addComponent(createStatisticCard("Parties", partiesInGov.size()));
 
-		final List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
+		final List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2024);
 		statsLayout.addComponent(createStatisticCard("Government bodies", governmentBodies.size()));
 
 		final int totalGovHeadcount = governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum();
@@ -416,7 +416,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * Create a card showing headcount for a given orgId.
 	 */
 	private void createHeadCountCard(final Layout panelContent, final String orgId) {
-		final Map<String, List<GovernmentBodyAnnualSummary>> yearlyData = esvApi.getData().get(2022).stream()
+		final Map<String, List<GovernmentBodyAnnualSummary>> yearlyData = esvApi.getData().get(2024).stream()
 				.collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 
 		final List<GovernmentBodyAnnualSummary> summaries = yearlyData.get(getPageId(orgId));
