@@ -188,7 +188,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.HISTORY, 
+        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.HISTORY_BOOKMARK, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
 
