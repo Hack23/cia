@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.Collections;
@@ -60,7 +60,6 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
@@ -70,56 +69,45 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DashboardViewOverviewPageModContentFactoryImpl.
+ * The DashboardViewOverviewPageModContentFactoryImpl creates a high-level dashboard
+ * overview for the Citizen Intelligence Agency. It displays various metrics and
+ * statistics about the monarch, government, parliament, and related financial and
+ * risk data.
  */
 @Component
 public final class DashboardViewOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	/** The Constant ORG_CODE_GOV_OFFICES. */
 	private static final String ORG_CODE_GOV_OFFICES = "202100-3831";
-
-	/** The Constant FINANCIAL. */
+	private static final String ORG_CODE_RIKSDAG = "202100-2627";
+	private static final String ORG_CODE_MONARCH = "202100-3484";
 	private static final String FINANCIAL = "Financial";
-
-	/** The Constant NAME. */
-	public static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
-
-	/** The Constant PAGE_PREFIX. */
+	private static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
 	private static final String PAGE_PREFIX = "#!";
+	private static final char PAGE_SEPARATOR = '/';
 
-	/** The Constant PAGE_SEPARATOR. */
-	private static final Character PAGE_SEPARATOR = '/';
-
-	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
-
-	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
-
-	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
-
-	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
-	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
 
 	/**
-	 * Instantiates a new dashboard view overview page mod content factory impl.
+	 * Instantiates a new dashboard view overview page mod content factory.
 	 */
 	public DashboardViewOverviewPageModContentFactoryImpl() {
 		super();
 	}
 
 	/**
-	 * Creates the content.
+	 * Create content for the dashboard overview page. Displays KPIs, statistics,
+	 * and financial info for monarch, government, parliament, and related entities.
 	 *
-	 * @param parameters the parameters
-	 * @param menuBar the menu bar
-	 * @param panel the panel
-	 * @return the layout
+	 * @param parameters the navigation parameters
+	 * @param menuBar    the main menu bar
+	 * @param panel      the main panel holding the content
+	 * @return a Layout containing the dashboard overview
 	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -128,7 +116,10 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::Dashboard Overview","Dashboard Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.");
+		createPageHeader(panel, panelContent,
+				"CitizenIntelligence Agency::Dashboard Overview",
+				"Dashboard Overview",
+				"Visualize political activity in Sweden, present key performance indicators and metadata.");
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
@@ -142,44 +133,250 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 				CommonsViews.DASHBOARD_VIEW_NAME, parameters, pageId);
 
 		return panelContent;
-
 	}
 
-
 	/**
-	 * Creates the dashboard monarch.
-	 *
-	 * @param row the row
+	 * Create a section for Monarch info.
 	 */
 	private void createDashboardMonarch(final ResponsiveRow row) {
+		final VerticalLayout monarchLayout = createLayoutWithTitle("Monarch");
 
-		final CssLayout layout = createLayoutWithTitle("Monarch");
+		// Basic Monarch info
+		addFullWidthLabel(monarchLayout, "Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973");
+		addFullWidthLabel(monarchLayout, "Future head of state(Queen): Victoria Ingrid Alice Désirée");
 
-		final Label headOfStateLabel = new Label("Head of state(King): Carl Gustaf Folke Hubertus since 15 September 1973");
-		Responsive.makeResponsive(headOfStateLabel);
-		headOfStateLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(headOfStateLabel);
-		final Label nextHeadOfStateLabel = new Label("Future head of state(Queen): Victoria Ingrid Alice Désirée;");
-		Responsive.makeResponsive(nextHeadOfStateLabel);
-		nextHeadOfStateLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(nextHeadOfStateLabel);
+		addMonarchIncomeSpending(monarchLayout);
 
-
-		addMonarchIncomeSpending(layout);
-
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+		row.addColumn()
+				.withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE, DISPLAY_SIZE_LG_DEVICE)
+				.withComponent(monarchLayout);
 	}
 
 	/**
-	 * Creates the layout with title.
-	 *
-	 * @param title the title
-	 * @return the css layout
+	 * Create a section for Government info.
 	 */
-	private static CssLayout createLayoutWithTitle(final String title) {
-		final CssLayout layout = new CssLayout();
-		layout.addStyleName("v-layout-content-overview-dashboard-panel-level2");
+	private void createDashboardGovernment(final ResponsiveRow row) {
+		final VerticalLayout govLayout = createLayoutWithTitle("Government");
+		final HorizontalLayout statsLayout = new HorizontalLayout();
+		Responsive.makeResponsive(statsLayout);
+
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
+
+		final List<ViewRiksdagenGovermentRoleMember> ministryMembers = govermentRoleMemberData
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
+
+		statsLayout.addComponent(createStatisticCard("Members", ministryMembers.size()));
+
+		final DataContainer<ViewRiksdagenMinistry, String> ministryData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenMinistry.class);
+
+		final List<ViewRiksdagenMinistry> ministries = ministryData
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenMinistry_.active);
+
+		statsLayout.addComponent(createStatisticCard("Ministries", ministries.size()));
+
+		final DataContainer<ViewRiksdagenPartySummary, String> partyData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartySummary.class);
+
+		final List<ViewRiksdagenPartySummary> partiesInGov = partyData.findListByProperty(new Object[] { Boolean.TRUE },
+				ViewRiksdagenPartySummary_.activeGovernment);
+
+		statsLayout.addComponent(createStatisticCard("Parties", partiesInGov.size()));
+
+		final List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
+		statsLayout.addComponent(createStatisticCard("Government bodies", governmentBodies.size()));
+
+		final int totalGovHeadcount = governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum();
+		statsLayout.addComponent(createStatisticCard("Headcount", totalGovHeadcount));
+
+		govLayout.addComponent(statsLayout);
+		addIncomeSpending(govLayout, ORG_CODE_GOV_OFFICES, "Regeringskansliet(Government Offices)", 1191, 1216, -70);
+
+		row.addColumn()
+				.withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE, DISPLAY_SIZE_LG_DEVICE)
+				.withComponent(govLayout);
+	}
+
+	/**
+	 * Create a section for Parliament info.
+	 */
+	private void createDashboardParliament(final ResponsiveRow row) {
+		final VerticalLayout parliamentLayout = createLayoutWithTitle("Parliament");
+		final HorizontalLayout statsLayout = new HorizontalLayout();
+		Responsive.makeResponsive(statsLayout);
+
+		final DataContainer<ViewRiksdagenPolitician, String> parliamentData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPolitician.class);
+		final List<ViewRiksdagenPolitician> parliamentMembers = parliamentData
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeParliament);
+
+		statsLayout.addComponent(createStatisticCard("Members", parliamentMembers.size()));
+
+		final DataContainer<ViewRiksdagenPartySummary, String> partyData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartySummary.class);
+		final List<ViewRiksdagenPartySummary> parliamentParties = partyData.findListByProperty(new Object[] { Boolean.TRUE },
+				ViewRiksdagenPartySummary_.activeParliament);
+		statsLayout.addComponent(createStatisticCard("Parties", parliamentParties.size()));
+
+		final DataContainer<ViewRiksdagenCommittee, String> committeeData = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommittee.class);
+		final List<ViewRiksdagenCommittee> committees = committeeData
+				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenCommittee_.active);
+		statsLayout.addComponent(createStatisticCard("Committees", committees.size()));
+
+		parliamentLayout.addComponent(statsLayout);
+		addParliamentIncomeSpending(parliamentLayout, ORG_CODE_RIKSDAG, "Riksdagsförvaltningen(the Riksdag administration)", 1719);
+
+		// Additional panel or content (if needed)
+		final VerticalLayout layoutPanel = createPanelContent();
+		parliamentLayout.addComponent(layoutPanel);
+
+		row.addColumn()
+				.withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE, DISPLAY_SIZE_LG_DEVICE)
+				.withComponent(parliamentLayout);
+	}
+
+	/**
+	 * Create a section listing the number of risks by type.
+	 */
+	private void createDashboardPartRiskByType(final ResponsiveRow row) {
+		final VerticalLayout layout = createLayoutWithTitle("Number of risk by each type");
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+
+		final DataContainer<RuleViolation, String> violationData = getApplicationManager()
+				.getDataContainer(RuleViolation.class);
+		final List<RuleViolation> ruleViolations = violationData.getAll();
+
+		// Group by ResourceType and show counts
+		final Map<ResourceType, List<RuleViolation>> groupedByType = ruleViolations.stream()
+				.collect(Collectors.groupingBy(RuleViolation::getResourceType));
+
+		for (final Entry<ResourceType, List<RuleViolation>> entry : groupedByType.entrySet()) {
+			horizontalLayout.addComponent(createStatisticCard(entry.getKey().toString(), entry.getValue().size()));
+		}
+
+		layout.addComponent(horizontalLayout);
+
+		row.addColumn()
+				.withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE, DISPLAY_SIZE_LG_DEVICE)
+				.withComponent(layout);
+	}
+
+	/**
+	 * Create a section listing the number of risks by severity.
+	 */
+	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
+		final VerticalLayout layout = createLayoutWithTitle("Number of risk by severity");
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		Responsive.makeResponsive(horizontalLayout);
+
+		final DataContainer<RuleViolation, String> violationData = getApplicationManager()
+				.getDataContainer(RuleViolation.class);
+		final List<RuleViolation> ruleViolations = violationData.getAll();
+
+		// Group by Status and show counts
+		final Map<Status, List<RuleViolation>> groupedByStatus = ruleViolations.stream()
+				.collect(Collectors.groupingBy(RuleViolation::getStatus));
+
+		for (final Entry<Status, List<RuleViolation>> entry : groupedByStatus.entrySet()) {
+			horizontalLayout.addComponent(createStatisticCard(entry.getKey().toString(), entry.getValue().size()));
+		}
+
+		layout.addComponent(horizontalLayout);
+
+		row.addColumn()
+				.withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE, DISPLAY_SIZE_LG_DEVICE)
+				.withComponent(layout);
+	}
+
+	/**
+	 * Add income/spending overview for a given orgId.
+	 */
+	private void addIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
+			int incomeBillionSek, int spendingBillionSek, int resultBillionSek) {
+
+		addGovernmentBodyLink(layout, orgId, linkTitle);
+
+		final Label titleLabel = new Label(FINANCIAL);
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+
+		final HorizontalLayout financialLayout = new HorizontalLayout();
+		Responsive.makeResponsive(financialLayout);
+
+		createHeadCountCard(financialLayout, orgId);
+
+		financialLayout.addComponent(createStatisticCard("Income(B SEK)", incomeBillionSek));
+		financialLayout.addComponent(createStatisticCard("Spending(B SEK)", spendingBillionSek));
+		financialLayout.addComponent(createStatisticCard("Result(B SEK)", resultBillionSek));
+
+		layout.addComponent(financialLayout);
+	}
+
+	/**
+	 * Add Parliament income and spending info.
+	 */
+	private void addParliamentIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
+			int spendingMSek) {
+
+		addGovernmentBodyLink(layout, orgId, linkTitle);
+
+		final Label titleLabel = new Label(FINANCIAL);
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+
+		final HorizontalLayout financialLayout = new HorizontalLayout();
+		Responsive.makeResponsive(financialLayout);
+
+		createHeadCountCard(financialLayout, orgId);
+
+		financialLayout.addComponent(createStatisticCard("Spending(M SEK)", spendingMSek));
+
+		layout.addComponent(financialLayout);
+	}
+
+	/**
+	 * Add Monarch income and spending info.
+	 */
+	private void addMonarchIncomeSpending(final VerticalLayout layout) {
+		addGovernmentBodyLink(layout, ORG_CODE_MONARCH, "Kungliga hov- och slottsstaten(The Royal Court)");
+
+		final Label titleLabel = new Label(FINANCIAL);
+		Responsive.makeResponsive(titleLabel);
+		titleLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(titleLabel);
+
+		final HorizontalLayout financialLayout = new HorizontalLayout();
+		Responsive.makeResponsive(financialLayout);
+
+		createHeadCountCard(financialLayout, ORG_CODE_MONARCH);
+
+		// Example: Just Spending info
+		financialLayout.addComponent(createStatisticCard("Spending(M SEK)", 148));
+
+		layout.addComponent(financialLayout);
+	}
+
+	/**
+	 * Create a statistic card with a given title and value.
+	 */
+	private CounterStatisticsCard createStatisticCard(final String title, final int value) {
+		return new CounterStatisticsCard(
+				VaadinIcons.WARNING,
+				new CounterStatisticModel(title, value).withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+				title);
+	}
+
+	/**
+	 * Create a vertical layout with a title label.
+	 */
+	private static VerticalLayout createLayoutWithTitle(final String title) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.addStyleName("leader-baseball-card");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
@@ -188,359 +385,65 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		titleLabel.addStyleName("title");
 		titleLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(titleLabel);
+
 		return layout;
 	}
 
-
 	/**
-	 * Creates the dashboard government.
-	 *
-	 * @param row the row
+	 * Add a full-width label to a layout.
 	 */
-	private void createDashboardGovernment(final ResponsiveRow row) {
-
-		final CssLayout layout = createLayoutWithTitle("Government");
-
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
-
-		final List<ViewRiksdagenGovermentRoleMember> listMinistryMembers = govermentRoleMemberDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
-
-		horizontalLayout
-				.addComponent(
-						new CounterStatisticsCard(VaadinIcons.WARNING,
-								new CounterStatisticModel("Members", listMinistryMembers.size())
-										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-								"Members"));
-
-		final DataContainer<ViewRiksdagenMinistry, String> ministryDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		final List<ViewRiksdagenMinistry> listMinistries = ministryDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenMinistry_.active);
-
-		horizontalLayout
-				.addComponent(new CounterStatisticsCard(
-						VaadinIcons.WARNING, new CounterStatisticModel("Ministries", listMinistries.size())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-						"Ministries"));
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		final List<ViewRiksdagenPartySummary> listparties = partyDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeGovernment);
-
-		horizontalLayout.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Parties", listparties.size())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Parties"));
-
-
-		final List<GovernmentBodyAnnualSummary> governmentBodies = esvApi.getData().get(2022);
-		horizontalLayout
-		.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING,
-						new CounterStatisticModel("Government bodies", governmentBodies.size())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-						"Government bodies"));
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governmentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Headcount"));
-
-
-		layout.addComponent(horizontalLayout);
-
-		addIncomeSpending(layout);
-
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	private static void addFullWidthLabel(final VerticalLayout layout, final String text) {
+		final Label label = new Label(text);
+		Responsive.makeResponsive(label);
+		label.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(label);
 	}
 
-
 	/**
-	 * Adds the income spending.
-	 *
-	 * @param layout the layout
+	 * Add a link to a government body page.
 	 */
-	private void addIncomeSpending(final CssLayout layout) {
-
-		final Link pageLink = new Link("Regeringskansliet(Government Offices)", new ExternalResource(PAGE_PREFIX
-				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + ORG_CODE_GOV_OFFICES));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
-				+ ORG_CODE_GOV_OFFICES);
+	private void addGovernmentBodyLink(final VerticalLayout layout, final String orgId, final String linkTitle) {
+		final Link pageLink = new Link(linkTitle,
+				new ExternalResource(PAGE_PREFIX + UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + orgId));
+		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR + orgId);
 		pageLink.setIcon(VaadinIcons.GROUP);
 		Responsive.makeResponsive(pageLink);
 		pageLink.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(pageLink);
-
-
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-
-		createHeadCountCard(horizontalLayout,"202100-3831");
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Income(B SEK)", 1191)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Income"));
-
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Spending(B SEK)", 1216)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Spending"));
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Result(B SEK)", -70)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Result"));
-
-
-		layout.addComponent(horizontalLayout);
-	}
-
-
-	/**
-	 * Adds the parliament income spending.
-	 *
-	 * @param layout the layout
-	 */
-	private void addParliamentIncomeSpending(final CssLayout layout) {
-
-		final Link pageLink = new Link("Riksdagsförvaltningen(the Riksdag administration)", new ExternalResource(PAGE_PREFIX
-						+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-2627"));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
-				+ "202100-2627");
-		pageLink.setIcon(VaadinIcons.GROUP);
-		Responsive.makeResponsive(pageLink);
-		pageLink.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(pageLink);
-
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		createHeadCountCard(horizontalLayout,"202100-2627");
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 1719)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Spending"));
-
-		layout.addComponent(horizontalLayout);
 	}
 
 	/**
-	 * Adds the monarch income spending.
-	 *
-	 * @param layout the layout
-	 */
-	private void addMonarchIncomeSpending(final CssLayout layout) {
-
-		final Link pageLink = new Link("Kungliga hov- och slottsstaten(The Royal Court)", new ExternalResource(PAGE_PREFIX
-				+ UserViews.GOVERNMENT_BODY_VIEW_NAME + PAGE_SEPARATOR + "202100-3484"));
-		pageLink.setId(ViewAction.VISIT_GOVERNMENT_BODY_VIEW.name() + PAGE_SEPARATOR
-				+ "202100-3484");
-		pageLink.setIcon(VaadinIcons.GROUP);
-		Responsive.makeResponsive(pageLink);
-		pageLink.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(pageLink);
-
-		final Label titleLabel = new Label(FINANCIAL);
-		Responsive.makeResponsive(titleLabel);
-		titleLabel.setWidth(100, Unit.PERCENTAGE);
-		layout.addComponent(titleLabel);
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		createHeadCountCard(horizontalLayout,"202100-3484");
-
-
-		horizontalLayout
-		.addComponent(new CounterStatisticsCard(
-				VaadinIcons.WARNING, new CounterStatisticModel("Spending(M SEK)", 148)
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-				"Spending"));
-
-		layout.addComponent(horizontalLayout);
-	}
-
-
-
-	/**
-	 * Creates the dashboard parliament.
-	 *
-	 * @param row the row
-	 */
-	private void createDashboardParliament(final ResponsiveRow row) {
-		final CssLayout layout = createLayoutWithTitle("Parliament");
-
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		final DataContainer<ViewRiksdagenPolitician, String> parliamentRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPolitician.class);
-
-		final List<ViewRiksdagenPolitician> parliamentMembers = parliamentRoleMemberDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeParliament);
-
-		horizontalLayout
-				.addComponent(
-						new CounterStatisticsCard(VaadinIcons.WARNING,
-								new CounterStatisticModel("Members", parliamentMembers.size())
-										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-								"Members"));
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		final List<ViewRiksdagenPartySummary> listparties = partyDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.activeParliament);
-
-		horizontalLayout.addComponent(
-				new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Parties", listparties.size())
-						.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Parties"));
-
-		final DataContainer<ViewRiksdagenCommittee, String> committeeDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenCommittee.class);
-
-		final List<ViewRiksdagenCommittee> listCommittees = committeeDataContainer
-				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenCommittee_.active);
-
-		horizontalLayout.addComponent(
-					new CounterStatisticsCard(VaadinIcons.WARNING, new CounterStatisticModel("Committees", listCommittees.size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true), "Committees"));
-
-		layout.addComponent(horizontalLayout);
-
-		addParliamentIncomeSpending(layout);
-
-		final VerticalLayout layoutPanel = createPanelContent();
-
-		layout.addComponent(layoutPanel);
-
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
-
-	/**
-	 * Creates the dashboard part risk by type.
-	 *
-	 * @param row the row
-	 */
-	private void createDashboardPartRiskByType(final ResponsiveRow row) {
-		final CssLayout layout = createLayoutWithTitle("Number of risk by each type");
-
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
-				.getDataContainer(RuleViolation.class);
-
-		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-
-		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getResourceType)).entrySet()) {
-			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,
-					new CounterStatisticModel("" + statusEntry.getKey(), statusEntry.getValue().size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-					"" + statusEntry.getKey()));
-		}
-
-		layout.addComponent(horizontalLayout);
-
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
-
-	/**
-	 * Creates the dashboard part risk by severity.
-	 *
-	 * @param row the row
-	 */
-	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
-		final CssLayout layout = createLayoutWithTitle("Number of risk by severity");
-
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-		Responsive.makeResponsive(horizontalLayout);
-
-		final DataContainer<RuleViolation, String> dataContainer = getApplicationManager()
-				.getDataContainer(RuleViolation.class);
-
-		final List<RuleViolation> ruleViolations = dataContainer.getAll();
-
-		for (final Entry<Status, List<RuleViolation>> statusEntry : ruleViolations.stream()
-				.collect(Collectors.groupingBy(RuleViolation::getStatus)).entrySet()) {
-			horizontalLayout.addComponent(new CounterStatisticsCard(VaadinIcons.WARNING,
-					new CounterStatisticModel("" + statusEntry.getKey(), statusEntry.getValue().size())
-							.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-					"" + statusEntry.getKey()));
-		}
-
-		layout.addComponent(horizontalLayout);
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
-
-
-	/**
-	 * Creates the head count chart.
-	 *
-	 * @param panelContent the panel content
-	 * @param orgId the org id
+	 * Create a card showing headcount for a given orgId.
 	 */
 	private void createHeadCountCard(final Layout panelContent, final String orgId) {
+		final Map<String, List<GovernmentBodyAnnualSummary>> yearlyData = esvApi.getData().get(2022).stream()
+				.collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 
+		final List<GovernmentBodyAnnualSummary> summaries = yearlyData.get(getPageId(orgId));
 
-		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2022).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
-		final List<GovernmentBodyAnnualSummary> list = map.get(getPageId(orgId));
+		if (summaries != null && !summaries.isEmpty()) {
+			final GovernmentBodyAnnualSummary bodySummary = summaries.get(0);
+			if (bodySummary != null) {
+				final Map<Integer,GovernmentBodyAnnualSummary> dataPerBody = esvApi.getDataPerGovernmentBody(bodySummary.getName());
+				final Set<Integer> yearKeys = dataPerBody.keySet();
+				final GovernmentBodyAnnualSummary latestSummary = dataPerBody.get(Collections.max(yearKeys));
 
-		if (list != null && !list.isEmpty()) {
-			final GovernmentBodyAnnualSummary findName = list.get(0);
-
-			if (findName != null) {
-				final Map<Integer,GovernmentBodyAnnualSummary> dataPerGovernmentBody = esvApi.getDataPerGovernmentBody(findName.getName());
-				final Set<Integer> keySet = dataPerGovernmentBody.keySet();
-				final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = dataPerGovernmentBody.get(Collections.max(keySet));
-				panelContent.addComponent(new CounterStatisticsCard(
-						VaadinIcons.WARNING, new CounterStatisticModel("Headcount", governmentBodyAnnualSummary.getHeadCount())
-								.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
-						"Headcount"));
+				panelContent.addComponent(
+						new CounterStatisticsCard(
+								VaadinIcons.WARNING,
+								new CounterStatisticModel("Headcount", latestSummary.getHeadCount())
+										.withShow(StatisticShow.Sum).withIconHidden().withShowOnlyStatistic(true),
+								"Headcount"));
 			}
 		}
 	}
 
-
-
 	/**
-	 * Matches.
-	 *
-	 * @param page the page
-	 * @param parameters the parameters
-	 * @return true, if successful
+	 * Checks if this factory matches the given page and parameters.
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }
