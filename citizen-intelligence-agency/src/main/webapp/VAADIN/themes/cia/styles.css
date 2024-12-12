@@ -2399,6 +2399,103 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: black;
 }
 
+.leader-baseball-card {
+	background: #1f1f1f;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	color: #e0e0e0;
+	margin: 1rem 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1rem;
+}
+
+.leader-baseball-card:hover {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-header-section {
+	border-bottom: 2px solid #333;
+	margin-bottom: 0.25rem;
+	padding-bottom: 0.25rem;
+}
+
+.card-header-section .card-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #e0e0e0;
+	white-space: normal;
+	word-break: break-word;
+}
+
+.card-subtitle {
+	font-size: 0.9rem;
+	font-style: italic;
+	color: #a0a0a0;
+	margin-bottom: 0.25rem;
+}
+
+.card-divider {
+	border-top: 1px solid #333;
+	margin: 0.25rem 0;
+	width: 100%;
+}
+
+.card-stats-container {
+	margin-top: 0.25rem;
+}
+
+.card-tenure, .card-experience-section {
+	display: flex;
+	align-items: center;
+	word-break: break-word;
+	min-width: 0;
+	margin-top: 0.25rem;
+}
+
+.card-tenure-text, .card-experience-text {
+	margin-left: 0.3rem;
+	color: #e0e0e0;
+	font-size: 0.9rem;
+	white-space: normal;
+	word-break: break-word;
+}
+
+.card-tenure-value, .card-experience-value {
+	margin-left: 0.3rem;
+	white-space: normal;
+	word-break: break-word;
+	font-size: 0.9rem;
+	color: #e0e0e0;
+}
+
+.metric-label .metric-value {
+	margin-left: 0.5rem;
+	color: #e0e0e0;
+	font-size: 0.9rem;
+}
+
+.metric-label {
+	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
+	align-items: center;
+}
+
+.metric-label .v-icon, .metric-label .v-label {
+	color: #a0ff90;
+}
+
+.metric-label .v-label {
+	margin-left: 0.3rem;
+	word-break: break-word;
+}
+
+.card-ministry {
+	font-size: 0.9rem;
+	color: #a0ff90;
+	margin-top: 0.3rem;
+}
+
 .cia {
 	@-webkit-keyframes progressIndeterminate {
 		0% {

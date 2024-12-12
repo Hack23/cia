@@ -93,7 +93,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "User Account Management", "Account Overview", "Manage user accounts, including roles, permissions, and activity logs.");
+		createPageHeader(panel, content, "Admin User Account Management", "User Account Overview", "Manage user accounts, including roles, permissions, and activity logs.");
 
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
 				.getDataContainer(UserAccount.class);

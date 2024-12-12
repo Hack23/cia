@@ -76,7 +76,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Country Management", "Country Overview", "Manage and review country-specific data, including metrics and geopolitical information.");
+		createPageHeader(panel, content, "Admin Country Management", "Country Overview", "Manage and review country-specific data, including metrics and geopolitical information.");
 
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);
