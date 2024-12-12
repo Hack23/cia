@@ -122,7 +122,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
         menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT);
         menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME);
         menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE);
-        menuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY, COMMAND_PAGEVISITHISTORY);
+        menuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY_BOOKMARK, COMMAND_PAGEVISITHISTORY);
     }
 
     /**
@@ -147,6 +147,6 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
         createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT, HEADCOUNT_DESCRIPTION);
         createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME, INCOME_DESCRIPTION);
         createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE, EXPENDITURE_DESCRIPTION);
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY, COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
+        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY_BOOKMARK, COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
     }
 }
