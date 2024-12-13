@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id$
+ *  $Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,111 +36,129 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianRankingMenuItemFactoryImpl.
+ * 
+ * <p>
+ * Builds menus and overviews for politician rankings, enabling analysis of
+ * individual politicians' influence, roles, and longevity in various political
+ * arenas such as parliament, committees, and parties. Emphasizes political
+ * context, strategic influence, and institutional footprints rather than
+ * technical details.
+ * </p>
  */
 @Service
 public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-		implements PoliticianRankingMenuItemFactory {
+        implements PoliticianRankingMenuItemFactory {
 
-	/** The Constant ALL_PARTIES. */
-	private static final String ALL_PARTIES = "All parties";
+    // Label constants
+    private static final String ALL_PARTIES = "All parties";
+    private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
+    private static final String CURRENT_PARTIES = "Current parties";
+    private static final String OVERVIEW_TEXT = "Overview";
+    private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
+    private static final String POLITICIAN_RANKING = "Politician Ranking";
+    private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
 
-	/** The Constant CHART_BY_TOPIC_TEXT. */
-	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
+    // Description for total experience detail (tooltip)
+    private static final String CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION = 
+            "Summarized roles, responsibilities, and tenure influence";
 
-	/** The Constant COMMAND_ALL_PARTIES. */
-	private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
+    // Politically focused descriptions (~50 chars)
+    private static final String DESC_POLITICAL_EXPERIENCE = "Experience metrics: roles shaping political influence.";
+    private static final String DESC_ALL_PARTIES = "All parties: mapping legislative engagements.";
+    private static final String DESC_CURRENT_PARTIES = "Current parties: active parliamentary presence.";
+    private static final String DESC_PAGE_HISTORY = "Visit history: tracing engagement over time.";
 
-	/** The Constant COMMAND_CURRENT_PARTIES. */
-	private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
+    // Page mode commands
+    private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(
+            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
+    private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(
+            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
+    private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(
+            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID);
+    private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(
+            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+    private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(
+            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.DATAGRID);
+    /** The application menu item factory. */
+    @Autowired
+    private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.OVERVIEW);
+    /**
+     * Instantiates a new politician ranking menu item factory implementation.
+     */
+    public PoliticianRankingMenuItemFactoryImpl() {
+        super();
+    }
 
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
+    /**
+     * Creates the overview page with concise, politically focused descriptions.
+     * Each button link offers a ~50 char description emphasizing political dynamics.
+     *
+     * @param panelContent the vertical layout to hold the overview content
+     */
+    @Override
+    public void createOverviewPage(final VerticalLayout panelContent) {
+        final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-	/**
-	 * The Constant CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS.
-	 */
-	private static final String CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS = "Current and past assignments and summary experience in days";
+        // Politician experience summary: USER_CLOCK to indicate roles over time
+        createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK,
+                COMMAND_DATAGRID, DESC_POLITICAL_EXPERIENCE);
 
-	/** The Constant CURRENT_PARTIES. */
-	private static final String CURRENT_PARTIES = "Current parties";
+        // All parties: analyzing roles, use GROUP icon for multiple parties
+        createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP,
+                COMMAND_ALL_PARTIES, DESC_ALL_PARTIES);
 
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
+        // Current parties: similarly GROUP icon for active parties
+        createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP,
+                COMMAND_CURRENT_PARTIES, DESC_CURRENT_PARTIES);
 
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+        // Page visit history: use HISTORY icon for historical data
+        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
+                COMMAND_PAGEVISITHISTORY, DESC_PAGE_HISTORY);
+    }
 
-	/** The Constant POLITICAL_EXPERIENCE_SUMMARY. */
-	private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
+    /**
+     * Creates the politician ranking menu bar and integrates it into the main
+     * application menu. Ensures logical grouping and context-appropriate icons.
+     *
+     * @param menuBar the main menu bar to which the politician ranking items are added
+     */
+    @Override
+    public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
+        initApplicationMenuBar(menuBar);
+        applicationMenuItemFactory.addRankingMenu(menuBar);
 
-	/** The Constant POLITICIAN_RANKING. */
-	private static final String POLITICIAN_RANKING = "Politician Ranking";
+        // Politician Ranking: USER icon for individual-centric analysis
+        createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.USER, null));
+    }
 
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
+    /**
+     * Adds politician ranking topics to the specified menu item. Uses icons to convey
+     * context—e.g., LIST for lists, CHART for data visualization, GROUP for parties, 
+     * HISTORY for historical data.
+     *
+     * @param politicianMenuItem the parent menu item for politician ranking topics
+     */
+    @Override
+    public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
+        // Overview: DASHBOARD for a general overview panel
+        politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
 
-	/** The application menu item factory. */
-	@Autowired
-	private ApplicationMenuItemFactory applicationMenuItemFactory;
+        // Ranking list by topic: LIST icon for enumerations
+        final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.LIST, null);
 
-	/**
-	 * Instantiates a new politician ranking menu item factory impl.
-	 */
-	public PoliticianRankingMenuItemFactoryImpl() {
-		super();
-	}
+        // Political experience summary: USER_CLOCK indicating experience over time
+        final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK, COMMAND_DATAGRID);
+        listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION);
 
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
+        // Chart by topic: CHART icon for visual data representation
+        final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, null);
 
-		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
+        chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);
+        chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);
 
-		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
-
-		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
-
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
-
-	}
-
-	@Override
-	public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
-		initApplicationMenuBar(menuBar);
-
-		applicationMenuItemFactory.addRankingMenu(menuBar);
-
-		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.BUG, null));
-	}
-
-	@Override
-	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-		politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG, COMMAND_OVERVIEW);
-
-		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.BUG, null);
-
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID);
-		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
-
-		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.BUG, null);
-
-		chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);
-
-		chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);
-
-		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY);
-
-	}
-
+        politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+    }
 }
