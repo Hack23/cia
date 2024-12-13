@@ -79,7 +79,7 @@ public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl ext
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Current");
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Party Total Active in Parliament");
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

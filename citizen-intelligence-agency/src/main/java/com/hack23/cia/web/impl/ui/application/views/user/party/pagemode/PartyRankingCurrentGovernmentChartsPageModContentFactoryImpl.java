@@ -77,7 +77,7 @@ public final class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Party Total Active in Government");
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

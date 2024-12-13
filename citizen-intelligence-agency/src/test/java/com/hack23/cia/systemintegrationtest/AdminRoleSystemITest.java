@@ -128,7 +128,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Configuration"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Application Configuration"));
 
 		clickFirstRowInGrid(userPageVisit);
 
@@ -156,7 +156,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event chart"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Application Session Charts"));
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
 
@@ -177,7 +177,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Application Events"));
 
 		clickFirstRowInGrid(userPageVisit);
 
@@ -200,7 +200,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Daily Active Users Chart"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin Application Session Charts"));
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
 
@@ -442,7 +442,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Admin User Account Management"));
 
 		clickFirstRowInGrid(userPageVisit);
 
