@@ -60,13 +60,16 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
 	/** The Constant HEADCOUNT_DESCRIPTION. */
-	private static final String HEADCOUNT_DESCRIPTION = "Chart showing the headcount of the government body";
+	private static final String HEADCOUNT_DESCRIPTION = "Government body: headcount trends.";
 
 	/** The Constant INCOME_DESCRIPTION. */
-	private static final String INCOME_DESCRIPTION = "Chart showing the income of the government body";
+	private static final String INCOME_DESCRIPTION = "Government body: income analysis.";
 
 	/** The Constant EXPENDITURE_DESCRIPTION. */
-	private static final String EXPENDITURE_DESCRIPTION = "Chart showing the expenditure of the government body";
+	private static final String EXPENDITURE_DESCRIPTION = "Government body: expenditure review.";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "Page visit history for this government body.";
 
 	/** The application menu item factory. */
 	@Autowired
@@ -89,25 +92,25 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.GROUP,null));
+		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O,null));
 
-		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.GROUP,null);
+		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.BUILDING_O,null);
 
 
-		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
+		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.GROUP,
+		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));
 
-		governmentBodyItem.addItem(INCOME, VaadinIcons.GROUP,
+		governmentBodyItem.addItem(INCOME, VaadinIcons.MONEY,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId));
 
-		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.GROUP,
+		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.CREDIT_CARD,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));
 
 
-		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -116,17 +119,17 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,
+		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), HEADCOUNT_DESCRIPTION);
 
-		createButtonLink(grid,INCOME, VaadinIcons.GROUP,
+		createButtonLink(grid,INCOME, VaadinIcons.MONEY,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), INCOME_DESCRIPTION);
 
-		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,
+		createButtonLink(grid,EXPENDITURE, VaadinIcons.CREDIT_CARD,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), EXPENDITURE_DESCRIPTION);
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

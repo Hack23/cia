@@ -107,6 +107,30 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
+	/** The Constant TOTAL_MEMBERS_DESCRIPTION. */
+	private static final String TOTAL_MEMBERS_DESCRIPTION = "Scoreboard all parties current assignments and roles in eu,government,committes and parliament";
+	
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_DESCRIPTION. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_DESCRIPTION = "Chart over the headcount by party in current goverment";
+	
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT_DESCRIPTION. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT_DESCRIPTION = "Chart over the headcount by party in current committees";
+	
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT_DESCRIPTION. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT_DESCRIPTION = "Chart over the headcount by party in current parliament";
+	
+	/** The Constant PART_LEADERS_SCOREBOARD_DESCRIPTION. */
+	private static final String PART_LEADERS_SCOREBOARD_DESCRIPTION = "Party leaders scoreboard";
+	
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT_DESCRIPTION. */
+	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT_DESCRIPTION = "Chart all parties total politician days serverd in parliament";
+	
+	/** The Constant PAGE_VISIT_HISTORY_TEXT_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_TEXT_DESCRIPTION = "View history of page visit for this page.";
+	
+	/** The Constant PARTY_RANKING_DESCRIPTION. */
+	private static final String PARTY_RANKING_DESCRIPTION = "Party by total members, based on roles in departments, committees and parliament";
+
 
 	/**
 	 * Instantiates a new party ranking menu item factory impl.
@@ -121,24 +145,24 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
-				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");
+				COMMAND_DATAGRID, TOTAL_MEMBERS_DESCRIPTION);
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Chart over the headcount by party in current goverment");
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_DESCRIPTION);
 
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
+				COMMAND_CHARTS_CURRENT_COMMITTEES, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT_DESCRIPTION);
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
+				COMMAND_CHARTS_CURRENT_PARTIES, CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT_DESCRIPTION);
 
 		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, "Party leaders scoreboard");
+				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, PART_LEADERS_SCOREBOARD_DESCRIPTION);
 
 
 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
-				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
+				COMMAND_CHARTS_ALL_PARTIES, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT_DESCRIPTION);
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+				COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_TEXT_DESCRIPTION);
 
 	}
 
@@ -164,7 +188,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,VaadinIcons.GROUP,
 				COMMAND_DATAGRID);
-		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
+		listItem.setDescription(PARTY_RANKING_DESCRIPTION);
 
 		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 

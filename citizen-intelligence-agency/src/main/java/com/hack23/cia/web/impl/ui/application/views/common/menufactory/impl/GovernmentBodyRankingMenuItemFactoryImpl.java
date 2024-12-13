@@ -98,7 +98,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
     public void createGovernmentBodyRankingMenuBar(final MenuBar menuBar) {
         initApplicationMenuBar(menuBar);
         applicationMenuItemFactory.addRankingMenu(menuBar);
-        createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, null, null));
+        createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O, null));
     }
 
     /**

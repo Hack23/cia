@@ -138,14 +138,14 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 
-		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.SERVER, null));
+		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.FLAG, null));
 
 	}
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
 		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				COMMAND_OVERVIEW);
+				 COMMAND_OVERVIEW);
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
 
