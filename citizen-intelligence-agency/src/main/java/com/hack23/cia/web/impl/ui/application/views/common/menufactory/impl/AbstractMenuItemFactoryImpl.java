@@ -40,6 +40,10 @@ import com.vaadin.ui.MenuBar.MenuItem;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
+ *
+ * This abstract class provides common functionality for creating menu items and button links
+ * in the Citizen Intelligence Agency web application. It includes methods for initializing
+ * application menus, creating admin menus, and generating button links with descriptions.
  */
 public abstract class AbstractMenuItemFactoryImpl {
 

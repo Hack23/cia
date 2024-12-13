@@ -154,6 +154,33 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE. */
 	private static final String VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE = "View history of page visit for this page.";
 
+	/** The Constant PARTY_WINNER_DESCRIPTION. */
+	private static final String PARTY_WINNER_DESCRIPTION = "Daily average % won ballots";
+
+	/** The Constant PARTY_GENDER_DESCRIPTION. */
+	private static final String PARTY_GENDER_DESCRIPTION = "Average percentage male";
+
+	/** The Constant PARTY_AGE_DESCRIPTION. */
+	private static final String PARTY_AGE_DESCRIPTION = "Average age";
+
+	/** The Constant RISK_SUMMARY_DESCRIPTION. */
+	private static final String RISK_SUMMARY_DESCRIPTION = "Risk summary";
+
+	/** The Constant RULE_VIOLATIONS_DESCRIPTION. */
+	private static final String RULE_VIOLATIONS_DESCRIPTION = "Rule violations";
+
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Daily total of number published documents";
+
+	/** The Constant DECISION_ACTIVITY_DESCRIPTION. */
+	private static final String DECISION_ACTIVITY_DESCRIPTION = "Daily total of number of decisions made";
+
+	/** The Constant DECISION_FLOW_DESCRIPTION. */
+	private static final String DECISION_FLOW_DESCRIPTION = "Decision flow description";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -169,24 +196,24 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE);
+		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, PARTY_WINNER_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS);
+		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, PARTY_GENDER_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, CHART_PARTY_AGE_ALL_BALLOTS);
+		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
 
-		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY);
+		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS);
+		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, CHART_DOCUMENT_ACTIVITY_BY_TYPE);
-		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, CHART_DECISIONS_BY_DECISION_TYPE);
+		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, DECISION_ACTIVITY_DESCRIPTION);
 
 		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);
 
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
-				COMMAND_PAGEVISITHISTORY, VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE);
+				COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 
@@ -208,26 +235,26 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);
 
 		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);
-		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);
+		addItem.setDescription(PARTY_WINNER_DESCRIPTION);
 
 		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);
-		addItem2.setDescription(AVERAGE_PERCENTAGE_MALE);
+		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);
 
 		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
-		addItem3.setDescription(AVERAGE_AGE);
+		addItem3.setDescription(PARTY_AGE_DESCRIPTION);
 
 		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);
-		addItem7.setDescription(RISK_SUMMARY);
+		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);
 
 		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);
-		addItem8.setDescription(RULE_VIOLATIONS);
+		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);
 
 
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
-		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
+		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
-		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
+		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);
 
 		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);

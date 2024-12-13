@@ -32,6 +32,11 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class BallotMenuItemFactoryImpl.
+ *
+ * This class is responsible for creating and managing the ballot menu items
+ * and overview pages in the Citizen Intelligence Agency web application.
+ * It provides methods to initialize the ballot menu bar and generate
+ * overview pages with relevant descriptions and icons.
  */
 @Service
 public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory {
@@ -45,6 +50,9 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	/** The Constant CHARTS_DESCRIPTION. */
 	private static final String CHARTS_DESCRIPTION = "Breakdown by total votes and by party.";
 
+	/** The Constant BALLOT_RESULTS_DESCRIPTION. */
+	private static final String BALLOT_RESULTS_DESCRIPTION = "Ballot results: vote breakdown by party.";
+
 	/**
 	 * Instantiates a new ballot menu item factory impl.
 	 */
@@ -52,6 +60,12 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		super();
 	}
 
+	/**
+	 * Creates the ballot menu bar.
+	 *
+	 * @param menuBar the menu bar
+	 * @param pageId the page id
+	 */
 	@Override
 	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
@@ -62,12 +76,18 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
 	}
 
+	/**
+	 * Creates the overview page.
+	 *
+	 * @param panelContent the panel content
+	 * @param pageId the page id
+	 */
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), CHARTS_DESCRIPTION);
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), BALLOT_RESULTS_DESCRIPTION);
 	}
 
 }

@@ -108,6 +108,24 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
 	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
 
+	/** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
+	private static final String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
+
+	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION. */
+	private static final String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
+
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION = "Chart over current parties active in committees and member size";
+
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION. */
+	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION = "Chart over current parties active in committees days served";
+
+	/** The Constant ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION. */
+	private static final String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -131,7 +149,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));
+		createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, VaadinIcons.GROUP, null));
 	}
 
 	/**
@@ -173,14 +191,14 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 
-		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, "Scoreboard over current member size, political days served and total assignments");
-		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Chart over current committees and member size");
+		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, POLITICAL_WORK_SUMMARY_DESCRIPTION);
+		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Chart over current parties active in committees and member size");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, "Chart over current parties active in committees days served");
-		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Chart over all committees and member size");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION);
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION);
+		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, "View history of page visit for this page.");
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

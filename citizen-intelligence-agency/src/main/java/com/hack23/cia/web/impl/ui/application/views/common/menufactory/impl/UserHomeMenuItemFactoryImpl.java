@@ -52,6 +52,15 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant USER_VISITS. */
 	private static final String USER_VISITS = "User Visits";
 
+	/** The Constant SECURITY_SETTINGS_DESCRIPTION. */
+	private static final String SECURITY_SETTINGS_DESCRIPTION = "Security settings, enable MFA";
+
+	/** The Constant USER_VISITS_DESCRIPTION. */
+	private static final String USER_VISITS_DESCRIPTION = "All past visits";
+
+	/** The Constant USER_EVENTS_DESCRIPTION. */
+	private static final String USER_EVENTS_DESCRIPTION = "All past events";
+
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
@@ -67,14 +76,14 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createOverviewPage(final VerticalLayout overviewLayout) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),"Security settings, enable MFA");
+		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),SECURITY_SETTINGS_DESCRIPTION);
 
-		createButtonLink(grid,USER_VISITS, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),"All past visits");
+		createButtonLink(grid,USER_VISITS, VaadinIcons.EYE,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),USER_VISITS_DESCRIPTION);
 
-		createButtonLink(grid,USER_EVENTS, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),"All past events");
+		createButtonLink(grid,USER_EVENTS, VaadinIcons.CALENDAR,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),USER_EVENTS_DESCRIPTION);
 
 
 	}
@@ -91,13 +100,13 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		accountItem.addItem(OVERVIEW_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.USER,
+		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
 
-		accountItem.addItem(USER_VISITS, VaadinIcons.USER,
+		accountItem.addItem(USER_VISITS, VaadinIcons.EYE,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString(), pageId));
 
-		accountItem.addItem(USER_EVENTS, VaadinIcons.USER,
+		accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
 
 
