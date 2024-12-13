@@ -69,6 +69,11 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Decision Flow",
+			    "Legislative Pipelines",
+			    "Mapping legislative pipelines shaping national policies.");
+
 
 		String selectedYear = "2022/23";
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {

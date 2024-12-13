@@ -55,6 +55,11 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Ministry Ranking - Government Outcomes",
+			    "Evaluating Results",
+			    "Evaluating ministry influence on governance results.");
+
 
 		final String pageId = getPageId(parameters);
 

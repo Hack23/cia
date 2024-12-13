@@ -55,6 +55,10 @@ public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Party Age Dynamics",
+			    "Generational Shifts",
+			    "Examining generational shifts influencing governance.");
 
 
 		final String pageId = getPageId(parameters);

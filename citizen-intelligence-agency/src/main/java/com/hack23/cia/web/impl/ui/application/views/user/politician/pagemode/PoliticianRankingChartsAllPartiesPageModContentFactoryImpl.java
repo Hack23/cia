@@ -69,6 +69,11 @@ public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Politician Ranking - All Parties Charts",
+			    "Cross-Party Influence",
+			    "All parties: mapping politician influence across coalitions.");
+
 
 		chartDataManager
 				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesAll(), "All");

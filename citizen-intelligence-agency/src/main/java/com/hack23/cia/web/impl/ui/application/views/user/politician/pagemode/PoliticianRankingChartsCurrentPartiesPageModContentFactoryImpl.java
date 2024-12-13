@@ -69,6 +69,11 @@ public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImp
 		final String pageId = getPageId(parameters);
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Politician Ranking - Current Parties Charts",
+			    "Current Political Landscape",
+			    "Current parties: assessing dynamic political landscapes.");
+
 
 		chartDataManager
 				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");

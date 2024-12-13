@@ -55,6 +55,11 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Politician Ranking - Page Visit History",
+			    "Engagement Trends",
+			    "Viewing interest trends to understand shifting political focus.");
+
 
 		final String pageId = getPageId(parameters);
 
