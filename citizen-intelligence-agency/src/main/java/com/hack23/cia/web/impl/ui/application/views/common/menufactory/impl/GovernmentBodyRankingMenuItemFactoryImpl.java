@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Gover
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -35,11 +36,11 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class GovernmentBodyRankingMenuItemFactoryImpl.
- * 
- * <p>This class builds menus and overview pages for government body rankings, 
- * enabling users to navigate through institutional staffing, revenue streams, 
- * expenditure focus, and historical engagement patterns. Through integration 
- * with {@link ApplicationMenuItemFactory}, it ensures a coherent experience 
+ *
+ * <p>This class builds menus and overview pages for government body rankings,
+ * enabling users to navigate through institutional staffing, revenue streams,
+ * expenditure focus, and historical engagement patterns. Through integration
+ * with {@link ApplicationMenuItemFactory}, it ensures a coherent experience
  * within the main menu structure.</p>
  */
 @Service
@@ -59,6 +60,41 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
             GovernmentBodyPageMode.INCOME.toString());
     private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
             PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_EXPENDITURE. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_HEADCOUNT. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
+
+	/** The Constant COMMAND_GOVERNMENT_BODIES_INCOME. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
+
+
+	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY. */
+	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY = "Government body expenditure by ministry";
+
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY = "Government body headcount by ministry";
+
+	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY. */
+	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY = "Government body income by ministry";
+
+
+	/** The Constant GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION. */
+	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION = "Chart over total headcount for all goverment bodies governed by ministries";
+
+	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION. */
+	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION = "Chart over total income for all goverment bodies governed by ministries";
+
+	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION. */
+	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION = "Chart over total spending for all goverment bodies governed by ministries";
+
+
+
 
     /** Menu labels. */
     private static final String EXPENDITURE = "Expenditure";
@@ -119,6 +155,10 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
     public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
         menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAN_OVERVIEW);
         menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID);
+        menuItem.addItem(GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+        menuItem.addItem(GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
+        menuItem.addItem(GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
+
         menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT);
         menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME);
         menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE);
@@ -144,6 +184,10 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
         createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID, CURRENT_GOVERNMENT_BODIES_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME, GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION);
+
         createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT, HEADCOUNT_DESCRIPTION);
         createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME, INCOME_DESCRIPTION);
         createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE, EXPENDITURE_DESCRIPTION);

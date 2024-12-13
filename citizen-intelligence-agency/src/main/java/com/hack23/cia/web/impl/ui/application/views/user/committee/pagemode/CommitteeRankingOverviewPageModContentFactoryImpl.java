@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -39,18 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingOverviewPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
-	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
-
-	/** The Constant COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION. */
-	private static final String COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Committee:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
-			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-			+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-			+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-
-			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-			+ "\nSearch by name";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
@@ -63,18 +50,6 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		super();
 	}
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
-				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
-		totalCommitteeRankinglistLabel.setSizeFull();
-		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
-		return totalCommitteeRankinglistLabel;
-	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
@@ -85,8 +60,6 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		createPageHeader(panel, panelContent, "Committee Rankings", "Ranking Details", "Analyze and compare rankings of parliamentary committees based on performance.");
 
 		final String pageId = getPageId(parameters);
-
-		panelContent.addComponent(createDescription());
 
 		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);
 

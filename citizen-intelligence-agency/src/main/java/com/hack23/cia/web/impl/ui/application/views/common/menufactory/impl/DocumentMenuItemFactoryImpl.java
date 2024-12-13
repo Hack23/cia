@@ -80,27 +80,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person references";
 
-	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Document activities";
-
-	/** The Constant PERSON_REFERENCES_DESCRIPTION. */
-	private static final String PERSON_REFERENCES_DESCRIPTION = "Person references";
-
-	/** The Constant DOCUMENT_DETAILS_DESCRIPTION. */
-	private static final String DOCUMENT_DETAILS_DESCRIPTION = "Document details";
-
-	/** The Constant DOCUMENT_DATA_DESCRIPTION. */
-	private static final String DOCUMENT_DATA_DESCRIPTION = "Complete document as text";
-
-	/** The Constant DOCUMENT_REFERENCES_DESCRIPTION. */
-	private static final String DOCUMENT_REFERENCES_DESCRIPTION = "Document References";
-
-	/** The Constant DOCUMENT_DECISION_DESCRIPTION. */
-	private static final String DOCUMENT_DECISION_DESCRIPTION = "Document decisions";
-
-	/** The Constant DOCUMENT_ATTACHEMENTS_DESCRIPTION. */
-	private static final String DOCUMENT_ATTACHEMENTS_DESCRIPTION = "Attachements";
-
 	/** The Constant LIST_ALL. */
 	private static final String LIST_ALL = "List all";
 

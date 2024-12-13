@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -72,6 +73,8 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Committee Rankings", "Current Committee Parties Charts Overview", "Provides comparative rankings for committees based on performance or metrics.");
+
 
 		final String pageId = getPageId(parameters);
 
@@ -82,8 +85,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_BY_DAYS_SERVED);
 
 		panelContent.addComponent(chartLayout);
-
-		panel.setCaption("Current Committee Parties Charts Overview");
+		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

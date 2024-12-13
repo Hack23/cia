@@ -37,15 +37,15 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianMenuItemFactoryImpl.
- * 
- * <p>This class builds menus and overview pages for politician-related views, 
- * enabling users to navigate through indicators, roles, document activities, 
- * vote histories, and more. It integrates with {@link ApplicationMenuItemFactory} 
- * and {@link PoliticianRankingMenuItemFactory} to ensure consistent menu 
+ *
+ * <p>This class builds menus and overview pages for politician-related views,
+ * enabling users to navigate through indicators, roles, document activities,
+ * vote histories, and more. It integrates with {@link ApplicationMenuItemFactory}
+ * and {@link PoliticianRankingMenuItemFactory} to ensure consistent menu
  * structures within the application.</p>
  */
 @Service
-public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
+public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
         implements PoliticianMenuItemFactory {
 
     /** Menu labels. */
@@ -74,7 +74,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
     private static final String VOTE_HISTORY_DESCRIPTION = "Summary of voting records.";
     private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Overview of ballot decisions.";
     private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "History of page visits.";
-    
+
     /** The application menu item factory. */
     @Autowired
     private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -94,7 +94,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
      * Creates the overview page with quick-access links to various politician-related
      * views such as indicators, roles, document activities, and vote histories.
      *
-     * @param panelContent the {@link VerticalLayout} container that holds the overview 
+     * @param panelContent the {@link VerticalLayout} container that holds the overview
      *                     content. New UI components (buttons/links) will be added here.
      * @param pageId the identifier for the current page context.
      */
@@ -106,43 +106,43 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId),
                 INDICATORS_DESCRIPTION);
 
-        createButtonLink(grid, TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.ROLESUMMARY.toString(), pageId), 
+        createButtonLink(grid, TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.ROLESUMMARY.toString(), pageId),
                 TOTAL_EXPERIENCE_DESCRIPTION);
 
-        createButtonLink(grid, ROLE_LIST, VaadinIcons.LIST, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.ROLELIST.toString(), pageId), 
+        createButtonLink(grid, ROLE_LIST, VaadinIcons.LIST,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.ROLELIST.toString(), pageId),
                 ROLE_LIST_DESCRIPTION);
 
-        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.ROLEGHANT.toString(), pageId), 
+        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.ROLEGHANT.toString(), pageId),
                 ROLE_GHANT_DESCRIPTION);
 
-        createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), 
+        createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId),
                 DOCUMENT_ACTIVITY_DESCRIPTION);
 
-        createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), 
+        createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId),
                 DOCUMENT_HISTORY_DESCRIPTION);
 
-        createButtonLink(grid, VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.VOTEHISTORY.toString(), pageId), 
+        createButtonLink(grid, VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.VOTEHISTORY.toString(), pageId),
                 VOTE_HISTORY_DESCRIPTION);
 
-        createButtonLink(grid, BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
-                        PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), 
+        createButtonLink(grid, BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+                        PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId),
                 BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), 
+        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
                 PAGE_VISIT_HISTORY_DESCRIPTION);
     }
 
@@ -150,7 +150,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
      * Creates the politician menu bar and integrates it into the main application menu.
      * Adds politician ranking topics and specific politician-related menu items.
      *
-     * @param menuBar the main application {@link MenuBar} to which the politician 
+     * @param menuBar the main application {@link MenuBar} to which the politician
      *                menu will be added.
      * @param pageId the identifier for the current page context.
      */
@@ -171,39 +171,39 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
         final MenuItem rolesItem = politicianItem.addItem(ROLES_TEXT, VaadinIcons.TAGS, null);
 
-        rolesItem.addItem(TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        rolesItem.addItem(TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.ROLESUMMARY.toString(), pageId));
 
-        rolesItem.addItem(ROLE_LIST, VaadinIcons.LIST, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        rolesItem.addItem(ROLE_LIST, VaadinIcons.LIST,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.ROLELIST.toString(), pageId));
 
-        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.ROLEGHANT.toString(), pageId));
 
         final MenuItem documentItem = politicianItem.addItem(DOCUMENTS_TEXT, VaadinIcons.FILE_TEXT, null);
 
-        documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
 
         final MenuItem ballotItem = politicianItem.addItem(BALLOTS_TEXT, VaadinIcons.CHECK, null);
 
-        ballotItem.addItem(VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        ballotItem.addItem(VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.VOTEHISTORY.toString(), pageId));
 
-        ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK, 
-                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
+        ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK,
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
                         PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-        politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
+        politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
     }
 }

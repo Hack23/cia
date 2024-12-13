@@ -47,6 +47,9 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	/** The Constant DASHBOARD. */
+	private static final String DASHBOARD = "Dashboard";
+
 	/** The Constant ADMIN_TEXT. */
 	private static final String ADMIN_TEXT = "Admin";
 
@@ -71,6 +74,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = "Application Session";
 
+	/** The Constant APPLICATION_SESSION_CHARTS. */
 	private static final String APPLICATION_SESSION_CHARTS = "Active Daily Users";
 
 	/** The Constant COMMAND_AGENCY. */
@@ -99,6 +103,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS);
 
+	/** The Constant COMMAND_AUTHOR_DATASUMMARY. */
 	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
 			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
 
@@ -342,13 +347,13 @@ public abstract class AbstractMenuItemFactoryImpl {
 		menuBar.setStyleName(HEADER_STYLE_NAME);
 		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);
 
-		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);
+		mainViewItem.addItem(START_TEXT, VaadinIcons.HOME, COMMAND_MAINVIEW_OVERVIEW);
 
-		mainViewItem.addItem("Dashboard", VaadinIcons.STAR, COMMAND_DASHBOARDVIEW_OVERVIEW);
+		mainViewItem.addItem(DASHBOARD, VaadinIcons.DASHBOARD, COMMAND_DASHBOARDVIEW_OVERVIEW);
 
 		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
 
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {

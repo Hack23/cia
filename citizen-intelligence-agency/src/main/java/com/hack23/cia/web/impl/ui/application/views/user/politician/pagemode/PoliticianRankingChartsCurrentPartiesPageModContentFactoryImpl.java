@@ -42,9 +42,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:Current parties";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
@@ -76,7 +73,6 @@ public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImp
 		chartDataManager
 				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
 
-		panel.setCaption(NAME + "::" + CHARTS);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

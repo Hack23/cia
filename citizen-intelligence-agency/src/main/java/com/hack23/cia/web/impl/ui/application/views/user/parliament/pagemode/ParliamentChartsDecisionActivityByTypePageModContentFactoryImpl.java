@@ -39,8 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	private static final String DECISION_ACTIVIY_DESCRIPTION = "Decision activity by type";
-
 	/** The decision chart data manager. */
 	@Autowired
 	private DecisionChartDataManager decisionChartDataManager;
@@ -66,7 +64,6 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(NAME + "::" + DECISION_ACTIVIY_DESCRIPTION);
 
 		return panelContent;
 

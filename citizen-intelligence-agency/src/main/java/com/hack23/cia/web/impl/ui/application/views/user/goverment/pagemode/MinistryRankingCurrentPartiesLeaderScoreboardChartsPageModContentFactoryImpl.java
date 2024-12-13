@@ -81,14 +81,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final List<ViewRiksdagenGovermentRoleMember> activeGovMembers = loadActiveGovernmentRoleMembers();
 		final Map<String, List<ViewRiksdagenPolitician>> activePoliticianMap = loadActivePoliticiansByPersonId();
 
-		Map<String, Boolean> partyLeaderMap = computePartyLeaders(activePoliticianMap.keySet());
+		final Map<String, Boolean> partyLeaderMap = computePartyLeaders(activePoliticianMap.keySet());
 
 		// Sort roles
 		activeGovMembers.sort((a, b) -> {
-			boolean aLeader = partyLeaderMap.getOrDefault(a.getPersonId(), false);
-			boolean bLeader = partyLeaderMap.getOrDefault(b.getPersonId(), false);
-			int aPriority = getRolePriority(a.getRoleCode(), aLeader);
-			int bPriority = getRolePriority(b.getRoleCode(), bLeader);
+			final boolean aLeader = partyLeaderMap.getOrDefault(a.getPersonId(), false);
+			final boolean bLeader = partyLeaderMap.getOrDefault(b.getPersonId(), false);
+			final int aPriority = getRolePriority(a.getRoleCode(), aLeader);
+			final int bPriority = getRolePriority(b.getRoleCode(), bLeader);
 			return Integer.compare(aPriority, bPriority);
 		});
 
@@ -135,13 +135,13 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-		Map<String, Boolean> result = new HashMap<>();
-		for (String personId : personIds) {
-			List<ViewRiksdagenPartyRoleMember> roles = partyRoleMemberDataContainer.findListByProperty(
+		final Map<String, Boolean> result = new HashMap<>();
+		for (final String personId : personIds) {
+			final List<ViewRiksdagenPartyRoleMember> roles = partyRoleMemberDataContainer.findListByProperty(
 					new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
 					ViewRiksdagenPartyRoleMember_.active);
 
-			boolean isLeader = roles.stream().anyMatch(
+			final boolean isLeader = roles.stream().anyMatch(
 					role -> role.getRoleCode() != null && "Partiledare".equalsIgnoreCase(role.getRoleCode().trim()));
 
 			result.put(personId, isLeader);
@@ -150,7 +150,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	private int getRolePriority(String role, boolean isPartyLeader) {
-		String roleNormalized = role.toLowerCase(Locale.ROOT).trim();
+		final String roleNormalized = role.toLowerCase(Locale.ROOT).trim();
 		if ("statsminister".equals(roleNormalized)) {
 			return 1;
 		} else if (isPartyLeader) {
@@ -180,14 +180,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		cardPanel.setContent(cardContent);
 
 		// Header Section
-		HorizontalLayout headerLayout = new HorizontalLayout();
+		final HorizontalLayout headerLayout = new HorizontalLayout();
 		headerLayout.setSpacing(true);
 		headerLayout.setWidth("100%");
 		headerLayout.addStyleName("card-header-section");
 
-		String titleText = govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
+		final String titleText = govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
 				+ " (" + govMember.getParty() + ")";
-		Label titleLabel = new Label(titleText);
+		final Label titleLabel = new Label(titleText);
 		titleLabel.addStyleName("card-title");
 		titleLabel.setWidthUndefined();
 		headerLayout.addComponent(titleLabel);
@@ -202,11 +202,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		cardContent.addComponent(pageLink);
 
-		boolean isPartyLeader = isPartyLeader(politician.getPersonId());
+		final boolean isPartyLeader = isPartyLeader(politician.getPersonId());
 		if (isPartyLeader) {
-			ViewRiksdagenPartyRoleMember leaderRole = getPartyLeaderRole(politician.getPersonId());
+			final ViewRiksdagenPartyRoleMember leaderRole = getPartyLeaderRole(politician.getPersonId());
 			if (leaderRole != null) {
-				Label subHeader = new Label(
+				final Label subHeader = new Label(
 						"Partiledare (" + govMember.getParty() + ") since " + leaderRole.getFromDate());
 				subHeader.addStyleName("card-subtitle");
 				cardContent.addComponent(subHeader);
@@ -215,41 +215,41 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		// After creating the divider following the header/subtitle
 		// We create a vertical layout to hold Tenure and Experience on separate rows
-		VerticalLayout statsContainer = new VerticalLayout();
+		final VerticalLayout statsContainer = new VerticalLayout();
 		statsContainer.setSpacing(false); // Less space between rows
 		statsContainer.addStyleName("card-stats-container");
 		statsContainer.setWidth("100%");
 
 		// Tenure Row
-		HorizontalLayout tenureLayout = new HorizontalLayout();
+		final HorizontalLayout tenureLayout = new HorizontalLayout();
 		tenureLayout.setSpacing(true);
 		tenureLayout.addStyleName("card-tenure");
-		Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);
+		final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);
 		tenureIcon.setDescription("Tenure in days");
 
-		Label tenureLabel = new Label("Tenure:");
+		final Label tenureLabel = new Label("Tenure:");
 		tenureLabel.addStyleName("card-tenure-text");
 
-		Label tenureValue = new Label(govMember.getTotalDaysServed() + " days");
+		final Label tenureValue = new Label(govMember.getTotalDaysServed() + " days");
 		tenureValue.addStyleName("card-tenure-value");
 
 		tenureLayout.addComponents(tenureIcon, tenureLabel, tenureValue);
 		statsContainer.addComponent(tenureLayout);
 
 		// Experience Row
-		HorizontalLayout experienceLayout = new HorizontalLayout();
+		final HorizontalLayout experienceLayout = new HorizontalLayout();
 		experienceLayout.setSpacing(true);
 		experienceLayout.addStyleName("card-experience-section");
-		Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);
+		final Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);
 		expIcon.setDescription("Political Experience");
 
-		Label expLabel = new Label("Experience:");
+		final Label expLabel = new Label("Experience:");
 		expLabel.addStyleName("card-experience-text");
 
-		int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);
-		int partyYears = (int) (politician.getTotalDaysServedParty() / 365);
-		int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);
-		Label expValue = new Label(
+		final int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);
+		final int partyYears = (int) (politician.getTotalDaysServedParty() / 365);
+		final int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);
+		final Label expValue = new Label(
 				"Goverment: " + govYears + "y, Party: " + partyYears + "y, Parliament: " + parliamentYears + "y");
 		expValue.addStyleName("card-experience-value");
 
@@ -305,15 +305,15 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				.sum();
 
 		// Bodies count
-		int bodyCount = ministryBodies.size();
+		final int bodyCount = ministryBodies.size();
 		cardLayout.addComponent(createMetricRow(VaadinIcons.GROUP,
-				getPageLinkFactory().addMinistryGovermentBodiesPageLink(govMember.getDetail(), bodyCount),
+				getPageLinkFactory().addMinistryGovermentBodiesPageLink(govMember.getDetail()),
 				"Number of government bodies", String.valueOf(bodyCount) // display the count separately
 		));
 
 		// Headcount
 		cardLayout.addComponent(createMetricRow(VaadinIcons.USER,
-				getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(govMember.getDetail(), totalHeadCount),
+				getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(govMember.getDetail()),
 				"Total headcount of government bodies", String.valueOf(totalHeadCount) // display the headcount
 																						// separately
 		));
@@ -342,17 +342,17 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		}
 
 		// Income
-		String incomeStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearIncome);
+		final String incomeStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearIncome);
 		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,
-				getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(govMember.getDetail(), currentYearIncome),
+				getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),
 				"Yearly Income (B SEK)", incomeStr // display income outside link
 		));
 
 		// Spending
-		String spendingStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearSpending);
+		final String spendingStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearSpending);
 		cardLayout.addComponent(
 				createMetricRow(VaadinIcons.ARROW_DOWN, getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(
-						govMember.getDetail(), currentYearSpending), "Yearly Spending (B SEK)", spendingStr // display
+						govMember.getDetail()), "Yearly Spending (B SEK)", spendingStr // display
 																											// spending
 																											// outside
 																											// link
@@ -361,12 +361,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 	private HorizontalLayout createMetricRow(VaadinIcons icon, com.vaadin.ui.Component linkComponent,
 			String description, String valueText) {
-		HorizontalLayout layout = new HorizontalLayout();
+		final HorizontalLayout layout = new HorizontalLayout();
 		layout.setSpacing(true);
 		layout.addStyleName("metric-label");
 		layout.setWidthUndefined();
 
-		Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
 		iconLabel.setDescription(description);
 
 		// Value displayed outside of the link

@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsPartyWinnerPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
-
 	/** The party chart data manager. */
 	@Autowired
 	private PartyChartDataManager partyChartDataManager;
@@ -67,7 +64,6 @@ public final class ParliamentChartsPartyWinnerPageModContentFactoryImpl extends 
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(NAME + "::" + PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

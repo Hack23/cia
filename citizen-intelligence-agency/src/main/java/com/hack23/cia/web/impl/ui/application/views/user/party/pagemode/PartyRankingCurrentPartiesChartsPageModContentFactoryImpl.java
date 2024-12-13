@@ -42,9 +42,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
@@ -79,8 +76,6 @@ public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl ext
 		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Current");
 
 		panelContent.addComponent(chartLayout);
-
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

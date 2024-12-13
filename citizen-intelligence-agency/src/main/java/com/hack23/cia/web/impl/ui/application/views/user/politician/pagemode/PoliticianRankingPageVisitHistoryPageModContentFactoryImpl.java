@@ -41,9 +41,6 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
 	/**
 	 * Instantiates a new politician ranking page visit history page mod content
 	 * factory impl.
@@ -62,8 +59,6 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
-
-		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

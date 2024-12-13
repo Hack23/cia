@@ -55,9 +55,6 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 	/** The Constant CLICK_LISTENER. */
 	private static final RuleViolationPageItemRendererClickListener CLICK_LISTENER = new RuleViolationPageItemRendererClickListener();
 
-	/** The Constant PARLIAMENT_DECISION_FLOW. */
-	private static final String PARLIAMENT_RULE_VIOLATIONS = "Parliament Rules violations";
-
 	/**
 	 * Instantiates a new parliament rule violations page mod content factory impl.
 	 */
@@ -101,7 +98,6 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
-		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_RULE_VIOLATIONS).toString());
 
 		return panelContent;
 

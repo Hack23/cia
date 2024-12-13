@@ -47,9 +47,6 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
-	/** The Constant CHARTS_DESCRIPTION. */
-	private static final String CHARTS_DESCRIPTION = "Breakdown by total votes and by party.";
-
 	/** The Constant BALLOT_RESULTS_DESCRIPTION. */
 	private static final String BALLOT_RESULTS_DESCRIPTION = "Ballot results: vote breakdown by party.";
 
