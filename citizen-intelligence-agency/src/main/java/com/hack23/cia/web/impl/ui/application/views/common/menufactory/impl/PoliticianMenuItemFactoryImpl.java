@@ -102,7 +102,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
     public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-        createButtonLink(grid, INDICATORS_TEXT, VaadinIcons.CHART_BAR,
+        createButtonLink(grid, INDICATORS_TEXT, VaadinIcons.CHART,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId),
                 INDICATORS_DESCRIPTION);
 
@@ -116,7 +116,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                         PoliticianPageMode.ROLELIST.toString(), pageId), 
                 ROLE_LIST_DESCRIPTION);
 
-        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.TIME_CIRCLE, 
+        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLEGHANT.toString(), pageId), 
                 ROLE_GHANT_DESCRIPTION);
@@ -166,7 +166,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
         politicianItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-        politicianItem.addItem(INDICATORS_TEXT, VaadinIcons.CHART_BAR,
+        politicianItem.addItem(INDICATORS_TEXT, VaadinIcons.CHART,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
         final MenuItem rolesItem = politicianItem.addItem(ROLES_TEXT, VaadinIcons.TAGS, null);
@@ -179,7 +179,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLELIST.toString(), pageId));
 
-        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.TIME_CIRCLE, 
+        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLEGHANT.toString(), pageId));
 
