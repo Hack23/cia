@@ -38,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String GOVERNMENT_BODIES = "Government body";
-
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
@@ -63,7 +60,6 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 		createPageHeader(panel, panelContent, "Government Bodies", "Government Body Headcount", "Provides detailed headcount data for government bodies under ministries.");
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
 

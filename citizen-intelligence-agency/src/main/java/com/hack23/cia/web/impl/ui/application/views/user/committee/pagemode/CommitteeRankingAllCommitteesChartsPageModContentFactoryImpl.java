@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -79,6 +80,7 @@ public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
 		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesAll(), "All");
 
 		panelContent.addComponent(chartLayout);
+		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

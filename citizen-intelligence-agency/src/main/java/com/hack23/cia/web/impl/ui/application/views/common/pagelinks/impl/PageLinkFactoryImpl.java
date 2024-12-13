@@ -193,8 +193,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesPageLink(String name, int size) {
-		final Link pageLink = new Link("Government bodies:" + size,
+	public Link addMinistryGovermentBodiesPageLink(String name) {
+		final Link pageLink = new Link("Government bodies:",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ name);
@@ -203,8 +203,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesHeadcountPageLink(String name, int size) {
-		final Link pageLink = new Link("Headcount:" + size,
+	public Link addMinistryGovermentBodiesHeadcountPageLink(String name) {
+		final Link pageLink = new Link("Headcount:",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ name);
@@ -213,8 +213,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesIncomePageLink(String name, double d) {
-		final Link pageLink = new Link("Income(B SEK):" + d,
+	public Link addMinistryGovermentBodiesIncomePageLink(String name) {
+		final Link pageLink = new Link("Income(B SEK):" ,
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ name);
@@ -223,8 +223,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistrGovermentBodiesSpendingPageLink(String name, double d) {
-		final Link pageLink = new Link("Spending(B SEK):" + d,
+	public Link addMinistrGovermentBodiesSpendingPageLink(String name) {
+		final Link pageLink = new Link("Spending(B SEK):",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ name);

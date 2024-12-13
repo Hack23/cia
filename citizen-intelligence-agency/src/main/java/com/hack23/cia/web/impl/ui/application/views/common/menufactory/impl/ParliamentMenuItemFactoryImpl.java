@@ -41,30 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory {
 
-	/** The Constant AVERAGE_AGE. */
-	private static final String AVERAGE_AGE = "Average age";
-
-	/** The Constant AVERAGE_PERCENTAGE_MALE. */
-	private static final String AVERAGE_PERCENTAGE_MALE = "Average percentage male";
-
-	/**
-	 * The Constant
-	 * CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE.
-	 */
-	private static final String CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE = "Chart daily ballot summary, percentage ballots that day the voted in winning side";
-
-	/** The Constant CHART_DECISIONS_BY_DECISION_TYPE. */
-	private static final String CHART_DECISIONS_BY_DECISION_TYPE = "Chart decisions by decision type";
-
-	/** The Constant CHART_DOCUMENT_ACTIVITY_BY_TYPE. */
-	private static final String CHART_DOCUMENT_ACTIVITY_BY_TYPE = "Chart document activity by type";
-
-	/** The Constant CHART_PARTY_AGE_ALL_BALLOTS. */
-	private static final String CHART_PARTY_AGE_ALL_BALLOTS = "Chart party age  all ballots";
-
-	/** The Constant CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS. */
-	private static final String CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS = "Chart Party average gender all ballots";
-
 	/** The Constant COMMAND_CHARTS_DECISION_FLOW. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());
@@ -102,15 +78,6 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant COMMAND_RULE_VIOLATION. */
 	private static final PageModeMenuCommand COMMAND_RULE_VIOLATION = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RULE_VIOLATIONS.toString());
-
-	/** The Constant DAILY_AVERAGE_WON_BALLOTS. */
-	private static final String DAILY_AVERAGE_WON_BALLOTS = "daily average % won ballots";
-
-	/** The Constant DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE. */
-	private static final String DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE = "daily total of number of decsions made";
-
-	/** The Constant DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS. */
-	private static final String DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS = "daily total of number published documents";
 
 	/** The Constant DECISION_ACTIVITY_BY_TYPE. */
 	private static final String DECISION_ACTIVITY_BY_TYPE = "Decision activity by type";
@@ -151,9 +118,6 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant SWEDISH_PARLIAMENT_INDICATORS. */
 	private static final String SWEDISH_PARLIAMENT_INDICATORS = "Swedish parliament Indicators";
 
-	/** The Constant VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE. */
-	private static final String VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE = "View history of page visit for this page.";
-
 	/** The Constant PARTY_WINNER_DESCRIPTION. */
 	private static final String PARTY_WINNER_DESCRIPTION = "Daily average % won ballots";
 
@@ -174,9 +138,6 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	/** The Constant DECISION_ACTIVITY_DESCRIPTION. */
 	private static final String DECISION_ACTIVITY_DESCRIPTION = "Daily total of number of decisions made";
-
-	/** The Constant DECISION_FLOW_DESCRIPTION. */
-	private static final String DECISION_FLOW_DESCRIPTION = "Decision flow description";
 
 	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
 	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";

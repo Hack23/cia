@@ -157,7 +157,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GANTT_CHART,
+		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.LINE_CHART,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
 		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, VaadinIcons.FILE_TEXT, null);
@@ -179,7 +179,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		ballotItem.addItem("Decision flow", VaadinIcons.FLOW_CHART, new PageModeMenuCommand(
+		ballotItem.addItem("Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));
 
 
@@ -198,7 +198,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GANTT_CHART,
+		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.LINE_CHART,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);
 
 
@@ -218,7 +218,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,"Decision flow", VaadinIcons.FLOW_CHART, new PageModeMenuCommand(
+		createButtonLink(grid,"Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId), DECISION_FLOW_DESCRIPTION);
 
 

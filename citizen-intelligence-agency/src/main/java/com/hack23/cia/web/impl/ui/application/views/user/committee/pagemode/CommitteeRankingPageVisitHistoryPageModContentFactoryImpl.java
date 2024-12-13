@@ -41,9 +41,6 @@ public final class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
 	/**
 	 * Instantiates a new committee ranking page visit history page mod content
 	 * factory impl.
@@ -58,12 +55,12 @@ public final class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Committee Rankings", "Page Visit History", "Tracks and visualizes the history of page visits for committee rankings.");
+
 
 		final String pageId = getPageId(parameters);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
-
-		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

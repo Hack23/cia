@@ -36,7 +36,7 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PartyRankingMenuItemFactoryImpl.
- * 
+ *
  * <p>
  * Responsible for creating and organizing party ranking menu items, charts, and
  * overview pages. Enhances user navigation to analyze party influence, roles,
@@ -57,7 +57,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
     private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties in parliament";
     private static final String OVERVIEW_TEXT = "Overview";
     private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-    private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = 
+    private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT =
             "Party by total members across EU/gov/committees/parliament";
     private static final String PARTY_RANKING = "Party Ranking";
     private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
@@ -128,7 +128,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
     /**
      * Creates the party ranking menu bar and integrates it into the main application
-     * menu. Ensures consistent icon usage and logical grouping of party ranking 
+     * menu. Ensures consistent icon usage and logical grouping of party ranking
      * topics.
      *
      * @param menuBar the main menu bar to which the party ranking items will be added

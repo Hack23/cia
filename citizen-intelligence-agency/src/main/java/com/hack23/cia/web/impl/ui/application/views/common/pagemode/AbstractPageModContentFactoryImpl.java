@@ -232,6 +232,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		Responsive.makeResponsive(descriptionLabel);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		panelContent.addComponent(descriptionLabel);
+		panelContent.setExpandRatio(descriptionLabel,ContentRatio.SMALL);
 	}
 
 

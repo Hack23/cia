@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.HorizontalLayout;
@@ -40,9 +41,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
-
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts: Current Ministies, by headcount";
 
 	/** The chart data manager. */
 	@Autowired
@@ -67,6 +65,8 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
+		createPageHeader(panel, panelContent, "Ministry Rankings", "Current Ministries", "Visual representation of current ministries and their total headcount.");
+
 		final String pageId = getPageId(parameters);
 
 
@@ -76,8 +76,8 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
 				"Current Ministies, by headcount");
 		panelContent.addComponent(chartLayout);
+		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

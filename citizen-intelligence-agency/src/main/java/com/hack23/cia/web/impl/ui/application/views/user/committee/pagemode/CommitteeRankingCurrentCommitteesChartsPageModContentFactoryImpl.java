@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -42,9 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
-
-	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
@@ -71,6 +69,8 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+		createPageHeader(panel, panelContent, "Committee Rankings", "Current Committees", "Provides comparative rankings for committees based on performance or metrics.");
+
 
 		final String pageId = getPageId(parameters);
 
@@ -78,11 +78,11 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),
-				"Current");
+				"Current Committees");
 
 		panelContent.addComponent(chartLayout);
+		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
 
-		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

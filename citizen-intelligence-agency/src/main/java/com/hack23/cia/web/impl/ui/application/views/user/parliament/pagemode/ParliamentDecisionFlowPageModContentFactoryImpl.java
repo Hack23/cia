@@ -54,9 +54,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
 
-	/** The Constant PARLIAMENT_DECISION_FLOW. */
-	private static final String PARLIAMENT_DECISION_FLOW = "Parliament decision flow";
-
 	@Autowired
 	private DecisionFlowChartManager decisionFlowChartManager;
 
@@ -102,7 +99,6 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, selectedYear);
-		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_DECISION_FLOW).toString());
 
 		return panelContent;
 

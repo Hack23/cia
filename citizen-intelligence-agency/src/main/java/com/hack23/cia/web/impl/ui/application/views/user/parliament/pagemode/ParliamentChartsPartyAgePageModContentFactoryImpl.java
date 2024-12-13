@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party average age at day of ballot";
-
 	/** The party chart data manager. */
 	@Autowired
 	private PartyChartDataManager partyChartDataManager;
@@ -66,7 +63,6 @@ public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends Abs
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(NAME + "::" + PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

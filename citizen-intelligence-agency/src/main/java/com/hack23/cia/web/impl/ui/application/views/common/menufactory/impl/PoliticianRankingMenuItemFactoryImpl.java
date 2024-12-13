@@ -36,7 +36,7 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianRankingMenuItemFactoryImpl.
- * 
+ *
  * <p>
  * Builds menus and overviews for politician rankings, enabling analysis of
  * individual politicians' influence, roles, and longevity in various political
@@ -60,7 +60,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
     private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
 
     // Description for total experience detail (tooltip)
-    private static final String CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION = 
+    private static final String CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION =
             "Summarized roles, responsibilities, and tenure influence";
 
     // Politically focused descriptions (~50 chars)
@@ -136,7 +136,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
     /**
      * Adds politician ranking topics to the specified menu item. Uses icons to convey
-     * context—e.g., LIST for lists, CHART for data visualization, GROUP for parties, 
+     * context—e.g., LIST for lists, CHART for data visualization, GROUP for parties,
      * HISTORY for historical data.
      *
      * @param politicianMenuItem the parent menu item for politician ranking topics

@@ -130,37 +130,33 @@ public interface PageLinkFactory {
 	 * Adds the ministry goverment bodies page link.
 	 *
 	 * @param name the name
-	 * @param size the size
 	 * @return the link
 	 */
-	Link addMinistryGovermentBodiesPageLink(String name, int size);
+	Link addMinistryGovermentBodiesPageLink(String name);
 
 	/**
 	 * Adds the ministry goverment bodies headcount page link.
 	 *
 	 * @param name the name
-	 * @param size the size
 	 * @return the link
 	 */
-	Link addMinistryGovermentBodiesHeadcountPageLink(String name, int size);
+	Link addMinistryGovermentBodiesHeadcountPageLink(String name);
 
 	/**
 	 * Adds the ministry goverment bodies income page link.
 	 *
 	 * @param name the name
-	 * @param d the d
 	 * @return the link
 	 */
-	Link addMinistryGovermentBodiesIncomePageLink(String name, double d);
+	Link addMinistryGovermentBodiesIncomePageLink(String name);
 
 	/**
 	 * Adds the ministr goverment bodies spending page link.
 	 *
 	 * @param name the name
-	 * @param d the d
 	 * @return the link
 	 */
-	Link addMinistrGovermentBodiesSpendingPageLink(String name , double d);
+	Link addMinistrGovermentBodiesSpendingPageLink(String name);
 
 
 

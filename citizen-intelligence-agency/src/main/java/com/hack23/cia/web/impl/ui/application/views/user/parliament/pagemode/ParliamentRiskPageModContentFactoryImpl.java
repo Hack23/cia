@@ -55,9 +55,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
 	private static final ComplianceCheckPageItemRendererClickListener CLICK_LISTENER = new ComplianceCheckPageItemRendererClickListener();
-	/** The Constant PARLIAMENT_DECISION_FLOW. */
-	private static final String PARLIAMENT_RISK_SUMMARY = "Parliament Risk Summary";
-
 	/**
 	 * Instantiates a new parliament risk page mod content factory impl.
 	 */
@@ -107,7 +104,6 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
-		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_RISK_SUMMARY).toString());
 
 		return panelContent;
 

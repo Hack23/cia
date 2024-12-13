@@ -38,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String GOVERNMENT_OUTCOME = "Government outcome";
-
 	@Autowired
 	private GovernmentOutcomeChartDataManager governmentOutcomeChartDataManager;
 
@@ -60,8 +57,6 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
 		final String pageId = getPageId(parameters);
-
-		panel.setCaption(NAME + "::" + GOVERNMENT_OUTCOME);
 
 		governmentOutcomeChartDataManager.createGovernmentOutcomeChart(panelContent);
 

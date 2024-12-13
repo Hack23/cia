@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Document activity by type";
-
 	/** The document chart data manager. */
 	@Autowired
 	private DocumentChartDataManager documentChartDataManager;
@@ -68,7 +65,6 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(NAME + "::" + DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		return panelContent;
 
