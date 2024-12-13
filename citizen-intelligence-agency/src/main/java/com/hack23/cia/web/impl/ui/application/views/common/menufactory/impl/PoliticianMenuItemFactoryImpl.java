@@ -125,7 +125,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), 
                 DOCUMENT_ACTIVITY_DESCRIPTION);
 
-        createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.HISTORY, 
+        createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), 
                 DOCUMENT_HISTORY_DESCRIPTION);
@@ -140,7 +140,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                         PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), 
                 BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY, 
+        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), 
                 PAGE_VISIT_HISTORY_DESCRIPTION);
     }
@@ -188,7 +188,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.HISTORY_BOOKMARK, 
+        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
 
@@ -202,7 +202,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-        politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.HISTORY, 
+        politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
     }
 }
