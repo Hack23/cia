@@ -67,6 +67,11 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Rule Violations",
+			    "Procedural Oversight",
+			    "Highlighting procedural breaches and oversight challenges.");
+
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 

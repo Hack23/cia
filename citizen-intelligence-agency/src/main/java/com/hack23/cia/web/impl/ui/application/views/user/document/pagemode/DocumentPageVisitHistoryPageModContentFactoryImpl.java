@@ -51,6 +51,11 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		final String pageId = getPageId(parameters);
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		createPageHeader(panel, panelContent,
+			    "Documents - Page Visit History",
+			    "Engagement Insights",
+			    "Tracking how interest in policy materials evolves.");
+
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 

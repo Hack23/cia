@@ -56,6 +56,10 @@ public final class ParliamentChartsPartyWinnerPageModContentFactoryImpl extends 
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Party Winner Charts",
+			    "Prevailing Forces",
+			    "Identifying parties prevailing in legislative contests.");
 
 
 		final String pageId = getPageId(parameters);

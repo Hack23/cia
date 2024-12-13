@@ -55,6 +55,11 @@ public final class ParliamentPageVisitHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Page Visit History",
+			    "Engagement Over Time",
+			    "Tracing shifts in engagement with legislative proceedings.");
+
 
 		final String pageId = getPageId(parameters);
 

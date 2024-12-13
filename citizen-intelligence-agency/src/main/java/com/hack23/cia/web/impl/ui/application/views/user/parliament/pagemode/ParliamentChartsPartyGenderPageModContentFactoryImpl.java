@@ -56,6 +56,11 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+		createPageHeader(panel, panelContent,
+			    "Parliament - Party Gender Analysis",
+			    "Representation Patterns",
+			    "Assessing representation and inclusive leadership patterns.");
+
 
 
 		final String pageId = getPageId(parameters);
