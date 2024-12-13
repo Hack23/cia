@@ -32,6 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -73,7 +74,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
     private static final String VOTE_HISTORY_DESCRIPTION = "Summary of voting records.";
     private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Overview of ballot decisions.";
     private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "History of page visits.";
-
+    
     /** The application menu item factory. */
     @Autowired
     private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -101,7 +102,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
     public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-        createButtonLink(grid, INDICATORS_TEXT, VaadinIcons.CHART,
+        createButtonLink(grid, INDICATORS_TEXT, VaadinIcons.CHART_BAR,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId),
                 INDICATORS_DESCRIPTION);
 
@@ -115,12 +116,12 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                         PoliticianPageMode.ROLELIST.toString(), pageId), 
                 ROLE_LIST_DESCRIPTION);
 
-        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.TIME, 
+        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.TIME_CIRCLE, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLEGHANT.toString(), pageId), 
                 ROLE_GHANT_DESCRIPTION);
 
-        createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.DOCUMENT_TEXT, 
+        createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), 
                 DOCUMENT_ACTIVITY_DESCRIPTION);
@@ -165,7 +166,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
         politicianItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-        politicianItem.addItem(INDICATORS_TEXT, VaadinIcons.CHART,
+        politicianItem.addItem(INDICATORS_TEXT, VaadinIcons.CHART_BAR,
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
         final MenuItem rolesItem = politicianItem.addItem(ROLES_TEXT, VaadinIcons.TAGS, null);
@@ -178,13 +179,13 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLELIST.toString(), pageId));
 
-        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.TIME, 
+        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.TIME_CIRCLE, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.ROLEGHANT.toString(), pageId));
 
-        final MenuItem documentItem = politicianItem.addItem(DOCUMENTS_TEXT, VaadinIcons.DOCUMENT_TEXT, null);
+        final MenuItem documentItem = politicianItem.addItem(DOCUMENTS_TEXT, VaadinIcons.FILE_TEXT, null);
 
-        documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.DOCUMENT_TEXT, 
+        documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT, 
                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, 
                         PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
