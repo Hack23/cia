@@ -126,7 +126,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
      * @param menuBar the main menu bar to which the politician ranking items are added
      */
     @Override
-    public void createPoliticianMenuBar(final MenuBar menuBar) {
+    public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
         initApplicationMenuBar(menuBar);
         applicationMenuItemFactory.addRankingMenu(menuBar);
 
