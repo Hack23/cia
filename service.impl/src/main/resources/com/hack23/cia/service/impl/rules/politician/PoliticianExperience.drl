@@ -1,0 +1,71 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with more than 1000 days served in government"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 1000)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Experienced in Government");
+end
+
+rule "Politician with more than 500 days served in committees"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 500)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Experienced in Committees");
+end
+
+rule "Politician with more than 2000 days served in government"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 2000)
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Highly Experienced in Government");
+end
+
+rule "Politician with more than 1000 days served in committees"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 1000)
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Highly Experienced in Committees");
+end
+
+rule "Politician with more than 3000 days served in government"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 3000)
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Extremely Experienced in Government");
+end
+
+rule "Politician with more than 1500 days served in committees"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 1500)
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Extremely Experienced in Committees");
+end
+
+rule "Politician with no days served in government"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment == 0)
+    then
+        $p.addViolation(Status.NA, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "No Experience in Government");
+end
+
+rule "Politician with no days served in committees"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee == 0)
+    then
+        $p.addViolation(Status.NA, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "No Experience in Committees");
+end

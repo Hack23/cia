@@ -1,0 +1,25 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with current party assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentPartyAssignments > 0)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianAdditionalAttributes", "Party", kcontext.getRule().getName(), "Current Party Assignments");
+end
+
+rule "Politician with current ministry assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentMinistryAssignments > 0)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianAdditionalAttributes", "Ministry", kcontext.getRule().getName(), "Current Ministry Assignments");
+end
+
+

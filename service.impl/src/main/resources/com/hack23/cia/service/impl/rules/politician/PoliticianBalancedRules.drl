@@ -1,0 +1,47 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with multiple current assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 3)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "Multiple Current Assignments");
+end
+
+rule "Politician left party but still holds positions"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.party == "-" && politician.active)
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianBalancedRules", "Party", kcontext.getRule().getName(), "Left Party Still Holding Positions");
+end
+
+rule "Politician with no current assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentAssignments == 0)
+    then
+        $p.addViolation(Status.NA, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "No Current Assignments");
+end
+
+rule "Politician with more than 5 current assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 5)
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "More than 5 Current Assignments");
+end
+
+rule "Politician with more than 6 current assignments"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 6)
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "More than 6 Current Assignments");
+end
