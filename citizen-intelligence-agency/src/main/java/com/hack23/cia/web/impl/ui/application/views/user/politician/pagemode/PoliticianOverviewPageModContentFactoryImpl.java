@@ -143,8 +143,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + viewRiksdagenPolitician.getParty()));
 		partyLink.setIcon(VaadinIcons.GROUP);
 		partyLink.addStyleName("card-title");
-		headerLayout.addComponent(partyLink);	
-		
+		headerLayout.addComponent(partyLink);
+
 		cardContent.addComponent(headerLayout);
 
 		// Divider line for better separation
