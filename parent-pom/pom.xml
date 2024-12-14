@@ -84,7 +84,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.17.0</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.text>1.12.0</cia.project.versions.commons.text>
+    <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.17.1</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
