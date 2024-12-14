@@ -7,10 +7,10 @@
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software  
- * distributed under the License is distributed on an "AS IS" BASIS,  
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
- * See the License for the specific language governing permissions and  
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
  * limitations under the License.
  *
  *  $Id$
@@ -175,7 +175,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		profileDetailsLayout.addStyleName("card-details-column");
 		profileDetailsLayout.setWidthUndefined();
 
-		Label profileDetailsHeader = new Label("Profile Details");
+		final Label profileDetailsHeader = new Label("Profile Details");
 		profileDetailsHeader.addStyleName("card-section-title");
 		profileDetailsLayout.addComponent(profileDetailsHeader);
 
@@ -192,7 +192,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		serviceStatsLayout.addStyleName("card-details-column");
 		serviceStatsLayout.setWidthUndefined();
 
-		Label serviceStatsHeader = new Label("Service Statistics");
+		final Label serviceStatsHeader = new Label("Service Statistics");
 		serviceStatsHeader.addStyleName("card-section-title");
 		serviceStatsLayout.addComponent(serviceStatsHeader);
 

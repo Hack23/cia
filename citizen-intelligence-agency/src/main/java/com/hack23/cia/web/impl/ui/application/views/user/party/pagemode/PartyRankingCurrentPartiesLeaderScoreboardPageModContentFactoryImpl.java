@@ -114,8 +114,8 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 
 		// Sort leaders: those currently in government first, then non-government
 		partyLeaders.sort((a, b) -> {
-			boolean aInGov = a.isActiveGovernment();
-			boolean bInGov = b.isActiveGovernment();
+			final boolean aInGov = a.isActiveGovernment();
+			final boolean bInGov = b.isActiveGovernment();
 			if (aInGov == bInGov) {
 				// If both are in the same category, sort by last name or some other criteria
 				return a.getLastName().compareToIgnoreCase(b.getLastName());
@@ -263,7 +263,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		// If not available, this may need to query ViewRiksdagenPartyRoleMember for fromDate
 		// and compute tenure. For simplicity, assume total days served in party roles is a proxy.
 
-		long daysAsPartyLeader = leader.getTotalDaysServedParty(); // hypothetical property
+		final long daysAsPartyLeader = leader.getTotalDaysServedParty(); // hypothetical property
 		if (daysAsPartyLeader > 0) {
 			final Label tenureLabel = new Label("Party Leadership Tenure: " + daysAsPartyLeader + " days");
 			tenureLabel.addStyleName("card-tenure-value");
