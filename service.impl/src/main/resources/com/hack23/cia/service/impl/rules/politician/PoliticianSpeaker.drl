@@ -37,11 +37,3 @@ rule "Politician served as a speaker for more than 3000 days"
     then
         $p.addViolation(Status.CRITICAL, "PoliticianSpeaker", "Experience", kcontext.getRule().getName(), "Extremely Experienced Speaker");
 end
-
-rule "Politician with no days served as a speaker"
-    dialect "java"
-    when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedSpeaker == 0)
-    then
-        $p.addViolation(Status.NA, "PoliticianSpeaker", "Experience", kcontext.getRule().getName(), "No Experience as Speaker");
-end

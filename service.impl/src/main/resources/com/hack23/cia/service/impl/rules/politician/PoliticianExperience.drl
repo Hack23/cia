@@ -53,19 +53,3 @@ rule "Politician with more than 1500 days served in committees"
     then
         $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Extremely Experienced in Committees");
 end
-
-rule "Politician with no days served in government"
-    dialect "java"
-    when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment == 0)
-    then
-        $p.addViolation(Status.NA, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "No Experience in Government");
-end
-
-rule "Politician with no days served in committees"
-    dialect "java"
-    when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee == 0)
-    then
-        $p.addViolation(Status.NA, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "No Experience in Committees");
-end
