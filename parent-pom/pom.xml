@@ -74,7 +74,7 @@
     <cia.project.versions.spring>5.3.39</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.779</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.780</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.22.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.7.0</cia.project.versions.javers>
@@ -84,7 +84,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.17.0</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.text>1.12.0</cia.project.versions.commons.text>
+    <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.17.1</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
