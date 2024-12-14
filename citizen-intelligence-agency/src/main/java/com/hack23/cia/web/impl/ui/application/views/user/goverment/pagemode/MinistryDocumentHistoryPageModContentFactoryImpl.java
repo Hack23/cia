@@ -52,7 +52,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
+			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
 	/**
 	 * Instantiates a new ministry document history page mod content factory
