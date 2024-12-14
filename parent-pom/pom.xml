@@ -110,7 +110,7 @@
     <cia.project.versions.junit>4.13.2</cia.project.versions.junit>
     <cia.project.versions.dbunit>2.8.0</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
-    <cia.project.versions.xmlbeans>5.2.2</cia.project.versions.xmlbeans>
+    <cia.project.versions.xmlbeans>5.3.0</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>4.0.2</cia.project.versions.plexus.utils>
