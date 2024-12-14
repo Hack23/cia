@@ -138,6 +138,13 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		titleLabel.setWidthUndefined();
 		headerLayout.addComponent(titleLabel);
 
+		// Party link
+		final Link partyLink = new Link("Party " + viewRiksdagenPolitician.getParty(),
+				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + viewRiksdagenPolitician.getParty()));
+		partyLink.setIcon(VaadinIcons.GROUP);
+		partyLink.addStyleName("card-title");
+		headerLayout.addComponent(partyLink);	
+		
 		cardContent.addComponent(headerLayout);
 
 		// Divider line for better separation
@@ -181,8 +188,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		profileDetailsLayout.addComponent(createInfoRow("Gender:", viewRiksdagenPolitician.getGender(), VaadinIcons.USER, "Politician's gender"));
 		profileDetailsLayout.addComponent(createInfoRow("Born Year:", String.valueOf(viewRiksdagenPolitician.getBornYear()), VaadinIcons.CALENDAR, "Year the politician was born"));
-		profileDetailsLayout.addComponent(createInfoRow("Active:", String.valueOf(viewRiksdagenPolitician.isActive()), VaadinIcons.FLASH, "Indicates if the politician is currently active in politics"));
 		profileDetailsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServed()), VaadinIcons.CLOCK, "Total number of days in public service"));
+		profileDetailsLayout.addComponent(createInfoRow("Ministry Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServedGovernment()), VaadinIcons.CLOCK, "Total number of days as Minister"));
+		profileDetailsLayout.addComponent(createInfoRow("Parliament Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServedParliament()), VaadinIcons.CLOCK, "Total number of days in Parliament"));
 
 		attributesLayout.addComponent(profileDetailsLayout);
 
@@ -198,10 +206,11 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		// Additional stats (Assuming these methods exist)
 		serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalAssignments()), VaadinIcons.BAR_CHART, "Total number of assignments held"));
+		serviceStatsLayout.addComponent(createInfoRow("First Assignment Date:", String.valueOf(viewRiksdagenPolitician.getFirstAssignmentDate().toString()), VaadinIcons.FLASH, "First assignment in public service"));
+		serviceStatsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenPolitician.getLastAssignmentDate().toString()), VaadinIcons.FLASH, "Last assignment in public service"));
 		serviceStatsLayout.addComponent(createInfoRow("Ministry Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalMinistryAssignments()), VaadinIcons.INSTITUTION, "Number of ministry level assignments"));
-		serviceStatsLayout.addComponent(createInfoRow("Committee Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalCommitteeAssignments()), VaadinIcons.GROUP, "Number of committee assignments"));
 		serviceStatsLayout.addComponent(createInfoRow("Speaker Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalSpeakerAssignments()), VaadinIcons.MICROPHONE, "Number of speaker assignments"));
-		serviceStatsLayout.addComponent(createInfoRow("Party Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalPartyAssignments()), VaadinIcons.GROUP, "Number of party-related assignments"));
+
 
 		attributesLayout.addComponent(serviceStatsLayout);
 
