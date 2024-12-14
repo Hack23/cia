@@ -22,14 +22,6 @@ rule "Politician left party but still holds positions"
         $p.addViolation(Status.CRITICAL, "PoliticianBalancedRules", "Party", kcontext.getRule().getName(), "Left Party Still Holding Positions");
 end
 
-rule "Politician with no current assignments"
-    dialect "java"
-    when
-        $p : PoliticianComplianceCheckImpl(politician.currentAssignments == 0)
-    then
-        $p.addViolation(Status.NA, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "No Current Assignments");
-end
-
 rule "Politician with more than 5 current assignments"
     dialect "java"
     when
