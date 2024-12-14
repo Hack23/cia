@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -47,6 +48,9 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	/** The property. */
 	private final String property;
 
+	/** The lower case. */
+	private boolean lowerCase = false;
+
 	/**
 	 * Instantiates a new page item property click listener.
 	 *
@@ -60,10 +64,27 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 		this.property = property;
 	}
 
+	/**
+	 * Instantiates a new page item property click listener.
+	 *
+	 * @param page the page
+	 * @param property the property
+	 * @param lowerCase the lower case
+	 */
+	public PageItemPropertyClickListener(final String page, final String property, final boolean lowerCase) {
+		super(page);
+		this.property = property;
+		this.lowerCase = lowerCase;
+	}
+
 	@Override
 	protected String getPageId(final Serializable t) {
 		try {
-			return BeanUtils.getProperty(t, property);
+			if (lowerCase) {
+				return BeanUtils.getProperty(t, property).toLowerCase(Locale.ENGLISH);
+			} else {
+				return BeanUtils.getProperty(t, property);
+			}
 		} catch (IllegalAccessException | InvocationTargetException |
 	            NoSuchMethodException e) {
 			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);

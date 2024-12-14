@@ -49,7 +49,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
 			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
+			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
 	/**
 	 * Instantiates a new politician document history page mod content factory

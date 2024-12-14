@@ -53,7 +53,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 			"personReferenceId", "org", "docId", "label", "roleDescription" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
+			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
 	/**
 	 * Instantiates a new committee document history page mod content factory
