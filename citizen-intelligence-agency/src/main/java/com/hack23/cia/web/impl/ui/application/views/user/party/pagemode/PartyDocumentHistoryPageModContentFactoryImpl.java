@@ -47,7 +47,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
 			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId");
+			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 	private static final String MEMBER_DOCUMENT_HISTORY = "Member Document history";
 
 	/**

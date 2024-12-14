@@ -51,7 +51,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
 			"committeeReportUrlXml" };
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id",true);
 
 	/** The paging util. */
 	@Autowired
