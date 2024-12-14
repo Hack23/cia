@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +39,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -51,37 +55,35 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList("embeddedId.id", "ballotId", "rm", "voteDate", "org",
-			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType", "embeddedId.concern",
-			"ballotType", "winner", "totalVotes", "yesVotes", "noVotes", "abstainVotes", "absentVotes", "approved",
-			"endNumber", "againstProposalParties", "againstProposalNumber");
-
-	private static final List<String> AS_LIST2 = Arrays.asList("embeddedId.ballotId", "rm", "voteDate",
-			"embeddedId.issue", "embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved");
-
+	/** The Constant EMBEDDED_ID_PARTY. */
 	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
 			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes", "yesVotes",
 			"partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes", "partyAbsentVotes",
 			"absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "ballotType",
 			"embeddedId.ballotId" };
 
+	/** The Constant FIRST_OBJECT. */
 	private static final int FIRST_OBJECT = 0;
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes",
 			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern", "totalVotes",
 			"approved", "yesVotes", "noVotes", "ballotType", "abstainVotes", "absentVotes", "embeddedId.ballotId",
 			"noWinner" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
 
+	/** The Constant NESTED_PROPERTIES. */
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
 
+	/** The Constant PARTY_BALLOT_SUMMARY. */
 	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
 
 	/**
@@ -91,13 +93,21 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 		super();
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
+		panel.setContent(panelContent);
 
 		final String pageId = getPageId(parameters);
-
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = getItem(parameters);
 
 		if (!ballots.isEmpty()) {
@@ -118,52 +128,198 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
-			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
+			final boolean useDecisionSummaries = !decisionSummaries.isEmpty();
 
-				if (!decisionSummaries.isEmpty()) {
-					createPageHeader(panel, panelContent,
-							"Ballot Overview  " + decisionSummaries.get(0).getTitle() + " - "
-									+ decisionSummaries.get(0).getSubTitle(),
-							"Ballot Details", "Explore and analyze ballot results and voting statistics.");
+			String mainTitle;
+			String subTitle;
+			if (useDecisionSummaries) {
+				mainTitle = "Ballot Overview " + decisionSummaries.get(0).getTitle() + " - "
+						+ decisionSummaries.get(0).getSubTitle();
+			} else {
+				final ViewRiksdagenVoteDataBallotSummary firstBallot = ballots.get(FIRST_OBJECT);
+				mainTitle = "Ballot Overview " + firstBallot.getEmbeddedId().getConcern();
+			}
+			subTitle = "Ballot Details";
 
-					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
-							ViewRiksdagenCommitteeBallotDecisionSummary.class, AS_LIST);
+			createPageHeader(panel, panelContent, mainTitle, subTitle,
+					"Explore and analyze ballot results and voting statistics.");
 
-				} else {
-					createPageHeader(panel, panelContent,
-							"Ballot Overview  " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern(),
-							"Ballot Details", "Explore and analyze ballot results and voting statistics.");
+			// Card panel
+			final Panel cardPanel = new Panel();
+			cardPanel.addStyleName("politician-overview-card");
+			cardPanel.setWidth("100%");
+			cardPanel.setHeightUndefined();
+			Responsive.makeResponsive(cardPanel);
 
-					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
-							ViewRiksdagenVoteDataBallotSummary.class, AS_LIST2);
-				}
+			final VerticalLayout cardContent = new VerticalLayout();
+			cardContent.setMargin(true);
+			cardContent.setSpacing(true);
+			cardContent.setWidth("100%");
+			cardPanel.setContent(cardContent);
 
+			panelContent.addComponent(cardPanel);
+			panelContent.setExpandRatio(cardPanel, ContentRatio.GRID);
+
+			// Header layout for the card
+			final HorizontalLayout headerLayout = new HorizontalLayout();
+			headerLayout.setSpacing(true);
+			headerLayout.setWidth("100%");
+			headerLayout.addStyleName("card-header-section");
+
+			final Label titleLabel = new Label("Ballot Information", ContentMode.HTML);
+			titleLabel.addStyleName("card-title");
+			titleLabel.setWidthUndefined();
+			headerLayout.addComponent(titleLabel);
+			cardContent.addComponent(headerLayout);
+
+			// Divider line
+			final Label divider = new Label("<hr/>", ContentMode.HTML);
+			divider.addStyleName("card-divider");
+			divider.setWidth("100%");
+			cardContent.addComponent(divider);
+
+			// Two-column layout
+			final HorizontalLayout attributesLayout = new HorizontalLayout();
+			attributesLayout.setSpacing(true);
+			attributesLayout.setWidth("100%");
+			cardContent.addComponent(attributesLayout);
+
+			// Left column: Ballot Profile (Textual and identifying attributes)
+			final VerticalLayout profileDetailsLayout = new VerticalLayout();
+			profileDetailsLayout.setSpacing(true);
+			profileDetailsLayout.addStyleName("card-details-column");
+			profileDetailsLayout.setWidthUndefined();
+
+			final Label profileDetailsHeader = new Label("Ballot Profile");
+			profileDetailsHeader.addStyleName("card-section-title");
+			profileDetailsLayout.addComponent(profileDetailsHeader);
+
+			// Right column: Voting Statistics (Numeric and outcome attributes)
+			final VerticalLayout serviceStatsLayout = new VerticalLayout();
+			serviceStatsLayout.setSpacing(true);
+			serviceStatsLayout.addStyleName("card-details-column");
+			serviceStatsLayout.setWidthUndefined();
+
+			final Label serviceStatsHeader = new Label("Voting Statistics");
+			serviceStatsHeader.addStyleName("card-section-title");
+			serviceStatsLayout.addComponent(serviceStatsHeader);
+
+			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);
+
+			// Populate fields depending on data
+			if (useDecisionSummaries) {
+				final ViewRiksdagenCommitteeBallotDecisionSummary ds = decisionSummaries.get(FIRST_OBJECT);
+				// Show essential profile fields
+				profileDetailsLayout.addComponent(createInfoRow("Vote Date:", String.valueOf(ds.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
+				profileDetailsLayout.addComponent(createInfoRow("Title:", ds.getTitle(), VaadinIcons.FILE_TEXT_O, "Title of the ballot"));
+				profileDetailsLayout.addComponent(createInfoRow("SubTitle:", ds.getSubTitle(), VaadinIcons.FILE_TEXT, "Subtitle of the ballot"));
+				profileDetailsLayout.addComponent(createInfoRow("Decision Type:", ds.getDecisionType(), VaadinIcons.QUESTION_CIRCLE, "Type of decision"));
+
+				// Stats fields
+				serviceStatsLayout.addComponent(createInfoRow("Concern:", ds.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
+				serviceStatsLayout.addComponent(createInfoRow("Ballot Type:", ds.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
+				serviceStatsLayout.addComponent(createInfoRow("Winner:", ds.getWinner(), VaadinIcons.TROPHY, "Winner or outcome"));
+				serviceStatsLayout.addComponent(createInfoRow("Approved:", String.valueOf(ds.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
+
+				// Optional: If still too crowded, remove againstProposal fields
+				// serviceStatsLayout.addComponent(createInfoRow("Against Proposal Parties:", ds.getAgainstProposalParties(), VaadinIcons.WARNING, "Parties against the proposal"));
+				// serviceStatsLayout.addComponent(createInfoRow("Against Proposal Number:", String.valueOf(ds.getAgainstProposalNumber()), VaadinIcons.WARNING, "Number of parties against the proposal"));
+			} else {
+				// Non-decision scenario
+				final ViewRiksdagenVoteDataBallotSummary bs = ballots.get(FIRST_OBJECT);
+				// Profile fields
+				profileDetailsLayout.addComponent(createInfoRow("Ballot ID:", bs.getEmbeddedId().getBallotId(), VaadinIcons.CLIPBOARD_USER, "Ballot identification"));
+				profileDetailsLayout.addComponent(createInfoRow("RM:", bs.getRm(), VaadinIcons.CALENDAR, "Session (RM) identifier"));
+				profileDetailsLayout.addComponent(createInfoRow("Vote Date:", String.valueOf(bs.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
+				profileDetailsLayout.addComponent(createInfoRow("Issue:", bs.getEmbeddedId().getIssue(), VaadinIcons.CLIPBOARD_TEXT, "The specific issue voted upon"));
+				profileDetailsLayout.addComponent(createInfoRow("Concern:", bs.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
+				profileDetailsLayout.addComponent(createInfoRow("Ballot Type:", bs.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
+				profileDetailsLayout.addComponent(createInfoRow("Label:", bs.getLabel(), VaadinIcons.FILE_TEXT, "Short label or description"));
+
+				// Stats fields
+				serviceStatsLayout.addComponent(createInfoRow("Total Votes:", String.valueOf(bs.getTotalVotes()), VaadinIcons.GROUP, "Total number of votes cast"));
+				serviceStatsLayout.addComponent(createInfoRow("Yes Votes:", String.valueOf(bs.getYesVotes()), VaadinIcons.THUMBS_UP, "Number of 'yes' votes"));
+				serviceStatsLayout.addComponent(createInfoRow("No Votes:", String.valueOf(bs.getNoVotes()), VaadinIcons.THUMBS_DOWN, "Number of 'no' votes"));
+				serviceStatsLayout.addComponent(createInfoRow("Abstain Votes:", String.valueOf(bs.getAbstainVotes()), VaadinIcons.SPLIT, "Number of abstentions"));
+				serviceStatsLayout.addComponent(createInfoRow("Absent Votes:", String.valueOf(bs.getAbsentVotes()), VaadinIcons.EXIT_O, "Number of absent voters"));
+				serviceStatsLayout.addComponent(createInfoRow("Approved:", String.valueOf(bs.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
 			}
 
+			// Spacer before Party Ballot Summary
+			final Label tableDivider = new Label("<hr/>", ContentMode.HTML);
+			tableDivider.addStyleName("card-divider");
+			tableDivider.setWidth("100%");
+			panelContent.addComponent(tableDivider);
+
+			// Party Ballot Summary table
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, PARTY_BALLOT_SUMMARY,
 					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_PARTY, null);
 
+			// Overview layout after table
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
-
 			panelContent.addComponent(overviewLayout);
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
-
 		}
-		return panelContent;
 
+		return panelContent;
 	}
 
+	/**
+	 * Creates the info row.
+	 *
+	 * @param caption the caption
+	 * @param value the value
+	 * @param icon the icon
+	 * @param tooltip the tooltip
+	 * @return the horizontal layout
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("metric-label");
+		layout.setWidthUndefined();
+
+		if (icon != null) {
+			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+			iconLabel.addStyleName("card-info-icon");
+			if (tooltip != null && !tooltip.isEmpty()) {
+				iconLabel.setDescription(tooltip);
+			}
+			layout.addComponent(iconLabel);
+		}
+
+		final Label captionLabel = new Label(caption);
+		captionLabel.addStyleName("card-info-caption");
+		if (tooltip != null && !tooltip.isEmpty()) {
+			captionLabel.setDescription(tooltip);
+		}
+
+		final Label valueLabel = new Label(value != null ? value : "");
+		valueLabel.addStyleName("card-info-value");
+
+		layout.addComponents(captionLabel, valueLabel);
+		return layout;
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page)
+				&& (StringUtils.isEmpty(parameters) || parameters.equals(pageId) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 }
