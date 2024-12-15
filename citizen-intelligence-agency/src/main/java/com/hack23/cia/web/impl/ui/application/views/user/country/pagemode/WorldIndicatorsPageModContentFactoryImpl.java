@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,21 +37,21 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class WorldIndicatorsPageModContentFactoryImpl.
  */
 @Component
 public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
-
-	private static final List<String> AS_LIST = Arrays.asList("indicatorName",
-			   "sourceValue",
-			   "sourceOrganization");
 
 	/** The chart data manager. */
 	@Autowired
@@ -70,59 +69,116 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,"Country Indicator","Country Indicator","Compare key performance indicators across multiple countries.");
+		createPageHeader(panel, panelContent, "Country Indicator", "Country Indicator",
+				"Compare key performance indicators across multiple countries.");
 		final String pageId = getPageId(parameters);
 
-		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length());
+		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length() + "/".length());
 
-		createDataIndicatorSummaryChartPanel(panelContent,indicator,panel);
+		createDataIndicatorSummaryChartPanel(panelContent, indicator, panel);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
-
 	}
 
 	/**
 	 * Creates the data indicator summary chart panel.
 	 *
-	 * @param verticalLayout
-	 *            the vertical layout
-	 * @param indicator
-	 *            the indicator
-	 * @param panel
-	 *            the panel
+	 * @param verticalLayout the vertical layout
+	 * @param indicator      the indicator
+	 * @param panel          the panel
 	 */
-	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator,final Panel panel) {
-
-		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()
+	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout, final String indicator,
+			final Panel panel) {
+		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataSummaryContainer = getApplicationManager()
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
-
-		final Optional<ViewWorldbankIndicatorDataCountrySummary> indicatorSummary = indicatorDataCountrSummaryDailyDataContainer
-				.getAll()
-				.parallelStream()
+		final Optional<ViewWorldbankIndicatorDataCountrySummary> indicatorSummary = indicatorDataSummaryContainer
+				.getAll().parallelStream()
 				.filter(t -> t != null && t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();
-
 
 		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;
 		if (indicatorSummary.isPresent()) {
 			indicatorSummaryValue = indicatorSummary.get();
 
-			getFormFactory().addFormPanelTextFields(verticalLayout,
-					indicatorSummaryValue,
-							ViewWorldbankIndicatorDataCountrySummary.class,
-							AS_LIST);
+			// Instead of formFactory, we create a card for the indicator summary
+			final Label sectionHeader = new Label("Indicator Summary");
+			sectionHeader.addStyleName("section-header");
+			verticalLayout.addComponent(sectionHeader);
+
+			final VerticalLayout card = new VerticalLayout();
+			card.setMargin(true);
+			card.setSpacing(true);
+			card.addStyleName("indicator-summary-card");
+			Responsive.makeResponsive(card);
+
+			// For each field in AS_LIST, we create a row
+			if (indicatorSummaryValue.getIndicatorName() != null) {
+				card.addComponent(createInfoRow("Indicator Name:", indicatorSummaryValue.getIndicatorName(),
+						VaadinIcons.INFO_CIRCLE, "Name of the indicator"));
+			}
+			if (indicatorSummaryValue.getSourceValue() != null) {
+				card.addComponent(createInfoRow("Source Value:", indicatorSummaryValue.getSourceValue(),
+						VaadinIcons.GLOBE, "Source of this indicator data"));
+			}
+			if (indicatorSummaryValue.getSourceOrganization() != null) {
+				card.addComponent(createInfoRow("Source Organization:", indicatorSummaryValue.getSourceOrganization(),
+						VaadinIcons.INSTITUTION, "Organization providing this data"));
+			}
+
+			verticalLayout.addComponent(card);
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
-		.getDataContainer(WorldBankData.class);
+				.getDataContainer(WorldBankData.class);
 
+		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class,
+				WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
-		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
+		chartDataManager.createIndicatorChart(verticalLayout, dataList, indicatorSummaryValue);
+	}
 
-		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("metric-label");
+		layout.setWidthUndefined();
 
+		if (icon != null) {
+			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+			iconLabel.addStyleName("card-info-icon");
+			if (tooltip != null && !tooltip.isEmpty()) {
+				iconLabel.setDescription(tooltip);
+			}
+			layout.addComponent(iconLabel);
+		}
+
+		final Label captionLabel = new Label(caption);
+		captionLabel.addStyleName("card-info-caption");
+		if (tooltip != null && !tooltip.isEmpty()) {
+			captionLabel.setDescription(tooltip);
+		}
+		layout.addComponent(captionLabel);
+
+		if (value != null && !value.isEmpty()) {
+			final Label valueLabel = new Label(value);
+			valueLabel.addStyleName("card-info-value");
+			layout.addComponent(valueLabel);
+		}
+
+		return layout;
 	}
 
 	@Override
